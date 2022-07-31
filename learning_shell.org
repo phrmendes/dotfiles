@@ -1,4 +1,0 @@
-#+title: Learning Shell
-#+author: Pedro Mendes
-
-* Curso - Shell Script (Diolinux)

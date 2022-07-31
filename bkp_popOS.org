@@ -1,0 +1,5 @@
+#+title: Pós-instalação - Pop!_OS 22.04 LTS
+#+author: Pedro Mendes
+#+PROPERTY: header-args:shell :tangle ./bkp.sh :mkdirp yes
+
+* Variáveis 

@@ -43,6 +43,7 @@
               PROGRAMS_SNAP+=("$str_1")
           else
               PROGRAMS_BREW+=("$str_1")
+          fi
 
       done < $PROGRAMS_FILE 
   }

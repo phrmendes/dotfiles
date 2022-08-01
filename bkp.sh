@@ -22,6 +22,7 @@ reading_programs_variables () {
             PROGRAMS_SNAP+=("$str_1")
         else
             PROGRAMS_BREW+=("$str_1")
+        fi
 
     done < $PROGRAMS_FILE 
 }

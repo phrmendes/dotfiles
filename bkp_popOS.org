@@ -35,8 +35,8 @@
           PROGRAMS_SNAP=()
           PROGRAMS_BREW=()
 
-          local str_1=$(echo ${line%%,*})
-          local str_2=$(echo ${line##*,})
+          local str_1=$(echo -e ${line%%,*})
+          local str_2=$(echo -e ${line##*,})
 
           if [[ $str_2 = "apt" ]]; then
               PROGRAMS_APT+=("$str_1")
@@ -73,18 +73,18 @@
 #+begin_src shell
 
   remove_locks () {
-      echo "[INFO] - Removendo locks"
+      echo -e "[INFO] - Removendo locks"
       sudo rm /var/lib/dpkg/lock-frontend
       sudo rm /var/cache/apt/archives/lock
   }
 
   add_i386_architecture () {
-      echo "[INFO] - Adicionando arquitetura x86"
+      echo -e "[INFO] - Adicionando arquitetura x86"
       sudo dpkg --add-architecture i386
   }
 
   att_repos () {
-      echo "[INFO] - Atualizando repositórios"
+      echo -e "[INFO] - Atualizando repositórios"
       sudo apt update -y
   }
 
@@ -102,11 +102,11 @@
   }
 
   install_deb () {
-      echo "[INFO] - Download de pacotes .deb"
+      echo -e "[INFO] - Download de pacotes .deb"
       download_deb
-      echo "[INFO] - Instalando pacotes .deb"
+      echo -e "[INFO] - Instalando pacotes .deb"
       sudo dpkg -i $DIR_DOWNLOAD/*.deb
-      echo "[INFO] - Instalando dependências"
+      echo -e "[INFO] - Instalando dependências"
       sudo apt -f install -y
   }
 
@@ -118,12 +118,8 @@
 
   install_apt () {
       for program in ${PROGRAMS_APT[@]}; do
-          if ! dpkg -l | grep -q $program; then
-              echo "[INFO] - Instalando $program (apt)"
-              sudo apt install $program -y
-          else
-              echo "[INFO] - $program já instalado"
-          fi
+          echo -e "[INFO] - Instalando $program (apt)"
+          sudo apt install $program -y
       done
   }
 
@@ -135,7 +131,7 @@
 
   install_flatpak () {
       for program in ${PROGRAMS_FLATPAK[@]}; do
-          echo "[INFO] - Instalando $program (flatpak)"
+          echo -e "[INFO] - Instalando $program (flatpak)"
           flatpak install $program -y
       done
   }
@@ -148,7 +144,7 @@
 
   install_snap () {
       for program in ${PROGRAMS_SNAP[@]}; do
-          echo "[INFO] - Instalando $program (snap)"
+          echo -e "[INFO] - Instalando $program (snap)"
           sudo snap install $program
       done
   }
@@ -160,17 +156,17 @@
 #+begin_src shell
 
   homebrew () {
-      echo "[INFO] - Instalando homebrew"
+      echo -e "[INFO] - Instalando homebrew"
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
       test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-      test -r ~/.zshrc && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
-      echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+      test -r ~/.zshrc && echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+      echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
   }
 
   install_brew () {
       for program in ${PROGRAMS_BREW[@]}; do
-          echo "[INFO] - Instalando $program (brew)"
+          echo -e "[INFO] - Instalando $program (brew)"
           brew install $program
       done
   }
@@ -208,7 +204,7 @@
 #+begin_src shell
 
   adding_ppas () {
-      echo "[INFO] - Adicionando PPA's"
+      echo -e "[INFO] - Adicionando PPA's"
       for ppa in ${PPAS[@]}; do
           sudo add-apt-repository $ppa -y
       done
@@ -222,7 +218,7 @@
 
   zsh_p10k () {
 
-      echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
+      echo -e "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
       chsh -s $(which zsh)
 
   }
@@ -291,6 +287,6 @@
 
   sudo rm -r $DIR_DOWNLOAD
 
-  echo "[INFO] - Finalizado"
+  echo -e "[INFO] - Finalizado"
 
 #+end_src

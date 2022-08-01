@@ -1,1 +1,2 @@
 https://download1.rstudio.org/desktop/jammy/amd64/rstudio-2022.07.1-554-amd64.deb    https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+https://github.com/quarto-dev/quarto-cli/releases/download/v1.0.37/quarto-1.0.37-linux-amd64.deb

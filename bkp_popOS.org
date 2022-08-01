@@ -132,7 +132,7 @@
 
   install_apt () {
       for program in ${PROGRAMS_APT[@]}; do
-          if ! is_installed program; then
+          if ! is_installed $program; then
               echo "[INFO] - Instalando $program (apt)"
               sudo apt install $program -y
           else

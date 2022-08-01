@@ -14,7 +14,7 @@ reading_programs_variables () {
         local str_1=$(echo ${line%%,*})
         local str_2=$(echo ${line##*,})
 
-        elif [[ $str_2 = "apt" ]]; then
+        if [[ $str_2 = "apt" ]]; then
             PROGRAMS_APT+=("$str_1")
         elif [[ $str_2 = "flatpak" ]]; then
             PROGRAMS_FLATPAK+=("$str_1")

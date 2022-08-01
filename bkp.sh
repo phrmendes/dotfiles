@@ -26,7 +26,6 @@ reading_programs_variables () {
         else
             PROGRAMS_BREW+=("$str_1")
         fi
-
     done < $PROGRAMS_FILE 
 }
 
@@ -128,11 +127,9 @@ install_brew () {
 }
 
 install_R_packages () {
-    sudo chmod 777 `R RHOME`/etc/Rprofile.site
-
-    sudo echo "options(repos = c(RSPM = \"https://packagemanager.rstudio.com/all/__linux__/focal/latest\"))" >> `R RHOME`/etc/Rprofile.site
 
     Rscript r_packages.R
+
 }
 
 upgrade () {
@@ -191,8 +188,8 @@ att_repos
 adding_ppas
 upgrade
 homebrew
-install_deb
 install_apt
+install_deb
 install_flatpak
 install_snap
 install_brew

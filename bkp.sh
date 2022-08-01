@@ -60,7 +60,7 @@ att_repos () {
 }
 
 download_deb () {
-    [[ ! -d "$DIR_DOWNLOAD" ]] && mkdir "$DIR_DOWNLOAD"
+    mkdir "$DIR_DOWNLOAD"
     for program in ${PROGRAMS_DEB[@]}; do
         wget -c "$program" -P "$DIR_DOWNLOAD"
     done
@@ -108,8 +108,11 @@ homebrew () {
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 }
 
-upgrade_cleaning () {
+upgrade () {
     sudo apt dist-upgrade -y
+}
+
+clean () {
     sudo apt autoclean
     sudo apt autoremove -y
 }
@@ -119,15 +122,16 @@ if [[ ! -x `which wget` ]]; then
 fi
 
 reading_programs_variables
+reading_urls_deb 
 remove_locks
 add_i386_architecture
 att_repos
-download_deb
+upgrade
 install_deb
 install_apt
 install_flatpak
 install_snap
-upgrade_cleaning
+clean
 
 sudo rm -r $DIR_DOWNLOAD
 

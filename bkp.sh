@@ -14,14 +14,14 @@ reading_programs_variables () {
         local str_1=$(echo ${line%%,*})
         local str_2=$(echo ${line##*,})
 
-        elif [[ str_2 = "apt" ]]; then
-            PROGRAMS_APT+=("$str_2")
-        elif [[ str_2 = "flatpak" ]]; then
-            PROGRAMS_FLATPAK+=("$str_2")
-        elif [[ str_2 = "snap" ]]; then
-            PROGRAMS_SNAP+=("$str_2")
+        elif [[ $str_2 = "apt" ]]; then
+            PROGRAMS_APT+=("$str_1")
+        elif [[ $str_2 = "flatpak" ]]; then
+            PROGRAMS_FLATPAK+=("$str_1")
+        elif [[ $str_2 = "snap" ]]; then
+            PROGRAMS_SNAP+=("$str_1")
         else
-            PROGRAMS_BREW+=("$str_2")
+            PROGRAMS_BREW+=("$str_1")
 
     done < $PROGRAMS_FILE 
 }

@@ -14,9 +14,12 @@
 
 #+begin_src shell
 
-  DEB_URLS_FILE=deb_urls.txt
-  PROGRAMS_FILE=programs.txt
-  DIR_DOWNLOAD=$HOME/Downloads/deb_packages
+  DEB_URLS_FILE="deb_urls.txt"
+  PROGRAMS_FILE="programs.txt"
+  DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
+  PPAS_URLS_FILE="ppas.txt"
+  R_PACKAGES_FILE="r_packages.R"
+  TUTANOTA_LINK="https://mail.tutanota.com/desktop/tutanota-desktop-linux.AppImage"
 
 #+end_src
 
@@ -56,6 +59,14 @@
       done < $DEB_URLS_FILE
   }
 
+  reading_ppas_file () {
+      while IFS= read -r line; do
+          PPAS=()
+
+          PPAS+=("$line")
+      done < $PPAS_URLS_FILE
+  }
+
 #+end_src
 
 ** check if program is installed
@@ -75,6 +86,7 @@
 ** preparing installations
 
 #+begin_src shell
+
   remove_locks () {
       echo "[INFO] - Removendo locks"
       sudo rm /var/lib/dpkg/lock-frontend
@@ -90,6 +102,7 @@
       echo "[INFO] - Atualizando repositórios"
       sudo apt update -y
   }
+
 #+end_src
 
 ** .deb installations
@@ -98,8 +111,8 @@
 
   download_deb () {
       mkdir "$DIR_DOWNLOAD"
-      for program in ${PROGRAMS_DEB[@]}; do
-          wget -c "$program" -P "$DIR_DOWNLOAD"
+      for url in ${PROGRAMS_DEB[@]}; do
+          wget -c "$url" -P "$DIR_DOWNLOAD"
       done
   }
 
@@ -121,7 +134,7 @@
   install_apt () {
       for program in ${PROGRAMS_APT[@]}; do
           if ! is_installed program; then
-              echo "[INFO] - Instalando $program"
+              echo "[INFO] - Instalando $program (apt)"
               sudo apt install $program -y
           else
               echo "[INFO] - $program já instalado"
@@ -136,8 +149,8 @@
 #+begin_src shell
 
   install_flatpak () {
-      for program in ${PROGRAMS_APT[@]}; do
-          echo "[INFO] - Instalando $program"
+      for program in ${PROGRAMS_FLATPAK[@]}; do
+          echo "[INFO] - Instalando $program (flatpak)"
           flatpak install $program -y
       done
   }
@@ -149,8 +162,8 @@
 #+begin_src shell
 
   install_snap () {
-      for program in ${PROGRAMS_APT[@]}; do
-          echo "[INFO] - Instalando $program"
+      for program in ${PROGRAMS_SNAP[@]}; do
+          echo "[INFO] - Instalando $program (snap)"
           sudo snap install $program
       done
   }
@@ -162,12 +175,34 @@
 #+begin_src shell
 
   homebrew () {
+      echo "[INFO] - Instalando homebrew"
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
       test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       test -r ~/.zshrc && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
       echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
   }
+
+  install_brew () {
+      for program in ${PROGRAMS_BREW[@]}; do
+          echo "[INFO] - Instalando $program (brew)"
+          brew install $program
+      done
+  }
+
+#+end_src
+
+** R packages installation
+
+#+begin_src shell
+
+    install_R_packages () {
+        sudo chmod 777 `R RHOME`/etc/Rprofile.site
+
+        sudo echo "options(repos = c(RSPM = \"https://packagemanager.rstudio.com/all/__linux__/focal/latest\"))" >> `R RHOME`/etc/Rprofile.site
+
+        Rscript r_packages.R
+    }
 
 #+end_src
 
@@ -185,6 +220,58 @@
   }
 #+end_src
 
+** adding ppa's
+
+#+begin_src shell
+
+  adding_ppas () {
+      echo "[INFO] - Adicionando PPA's"
+      for ppa in ${PPAS[@]}; do
+          sudo add-apt-repository $ppa -y
+      done
+  }
+
+#+end_src
+
+** zsh and powerlevel10k 
+
+#+begin_src shell
+
+  zsh_p10k () {
+
+      echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
+      chsh -s $(which zsh)
+
+  }
+
+  zsh_p10k_root () {
+
+      zsh && p10k configure
+
+      local files=(powerlevel10k .zshrc .p10k.zsh)
+
+      for i in ${files[@]}; do
+          sudo ln -s $HOME/$i /root/$i
+          sudo chmod 744 /root/$i
+      done
+
+  }
+
+#+end_src
+
+** tutanota
+
+#+begin_src shell
+
+  tutanota_download () {
+
+      mkdir $HOME/appimages/
+      wget -c "$TUTANOTA_LINK" -P $HOME/appimages/ 
+
+  }
+
+#+end_src
+
 * dependencies
 
 #+begin_src shell
@@ -200,15 +287,23 @@
 #+begin_src shell
 
   reading_programs_variables
-  reading_urls_deb 
+  reading_urls_deb
+  reading_ppas_file
   remove_locks
   add_i386_architecture
   att_repos
+  adding_ppas
   upgrade
+  homebrew
   install_deb
   install_apt
   install_flatpak
   install_snap
+  install_brew
+  tutanota_download
+  install_R_packages
+  zsh_p10k
+  zsh_p10k_root
   clean
 
   sudo rm -r $DIR_DOWNLOAD
@@ -216,3 +311,4 @@
   echo "[INFO] - Finalizado"
 
 #+end_src
+

@@ -1,8 +1,11 @@
 #!/bin/bash
 
-DEB_URLS_FILE=deb_urls.txt
-PROGRAMS_FILE=programs.txt
-DIR_DOWNLOAD=$HOME/Downloads/deb_packages
+DEB_URLS_FILE="deb_urls.txt"
+PROGRAMS_FILE="programs.txt"
+DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
+PPAS_URLS_FILE="ppas.txt"
+R_PACKAGES_FILE="r_packages.R"
+TUTANOTA_LINK="https://mail.tutanota.com/desktop/tutanota-desktop-linux.AppImage"
 
 reading_programs_variables () {
     while IFS= read -r line; do
@@ -35,6 +38,14 @@ reading_urls_deb () {
     done < $DEB_URLS_FILE
 }
 
+reading_ppas_file () {
+    while IFS= read -r line; do
+        PPAS=()
+
+        PPAS+=("$line")
+    done < $PPAS_URLS_FILE
+}
+
 is_installed () {
     if dpkg -l | grep -q $1; then
         exit 0
@@ -61,8 +72,8 @@ att_repos () {
 
 download_deb () {
     mkdir "$DIR_DOWNLOAD"
-    for program in ${PROGRAMS_DEB[@]}; do
-        wget -c "$program" -P "$DIR_DOWNLOAD"
+    for url in ${PROGRAMS_DEB[@]}; do
+        wget -c "$url" -P "$DIR_DOWNLOAD"
     done
 }
 
@@ -78,7 +89,7 @@ install_deb () {
 install_apt () {
     for program in ${PROGRAMS_APT[@]}; do
         if ! is_installed program; then
-            echo "[INFO] - Instalando $program"
+            echo "[INFO] - Instalando $program (apt)"
             sudo apt install $program -y
         else
             echo "[INFO] - $program já instalado"
@@ -87,25 +98,41 @@ install_apt () {
 }
 
 install_flatpak () {
-    for program in ${PROGRAMS_APT[@]}; do
-        echo "[INFO] - Instalando $program"
+    for program in ${PROGRAMS_FLATPAK[@]}; do
+        echo "[INFO] - Instalando $program (flatpak)"
         flatpak install $program -y
     done
 }
 
 install_snap () {
-    for program in ${PROGRAMS_APT[@]}; do
-        echo "[INFO] - Instalando $program"
+    for program in ${PROGRAMS_SNAP[@]}; do
+        echo "[INFO] - Instalando $program (snap)"
         sudo snap install $program
     done
 }
 
 homebrew () {
+    echo "[INFO] - Instalando homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     test -r ~/.zshrc && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+}
+
+install_brew () {
+    for program in ${PROGRAMS_BREW[@]}; do
+        echo "[INFO] - Instalando $program (brew)"
+        brew install $program
+    done
+}
+
+install_R_packages () {
+    sudo chmod 777 `R RHOME`/etc/Rprofile.site
+
+    sudo echo "options(repos = c(RSPM = \"https://packagemanager.rstudio.com/all/__linux__/focal/latest\"))" >> `R RHOME`/etc/Rprofile.site
+
+    Rscript r_packages.R
 }
 
 upgrade () {
@@ -117,20 +144,62 @@ clean () {
     sudo apt autoremove -y
 }
 
+adding_ppas () {
+    echo "[INFO] - Adicionando PPA's"
+    for ppa in ${PPAS[@]}; do
+        sudo add-apt-repository $ppa -y
+    done
+}
+
+zsh_p10k () {
+
+    echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
+    chsh -s $(which zsh)
+
+}
+
+zsh_p10k_root () {
+
+    zsh && p10k configure
+
+    local files=(powerlevel10k .zshrc .p10k.zsh)
+
+    for i in ${files[@]}; do
+        sudo ln -s $HOME/$i /root/$i
+        sudo chmod 744 /root/$i
+    done
+
+}
+
+tutanota_download () {
+
+    mkdir $HOME/appimages/
+    wget -c "$TUTANOTA_LINK" -P $HOME/appimages/ 
+
+}
+
 if [[ ! -x `which wget` ]]; then
     sudo apt install wget -y
 fi
 
 reading_programs_variables
-reading_urls_deb 
+reading_urls_deb
+reading_ppas_file
 remove_locks
 add_i386_architecture
 att_repos
+adding_ppas
 upgrade
+homebrew
 install_deb
 install_apt
 install_flatpak
 install_snap
+install_brew
+tutanota_download
+install_R_packages
+zsh_p10k
+zsh_p10k_root
 clean
 
 sudo rm -r $DIR_DOWNLOAD

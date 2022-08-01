@@ -32,6 +32,8 @@ r-base,apt
 r-base-dev,apt
 libcurl4-openssl-dev,apt
 libssl-dev,apt
+libclang-dev,apt
+libpq5,apt
 libxml2-dev,apt
 jpegoptim,apt
 libudunits2-dev,apt

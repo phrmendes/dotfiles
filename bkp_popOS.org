@@ -14,9 +14,9 @@
 
 #+begin_src shell
 
-  DEB_URLS_FILE="deb_urls.txt"
-  PROGRAMS_FILE="programs.txt"
-  DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
+  DEB_URLS_FILE=deb_urls.txt
+  PROGRAMS_FILE=programs.txt
+  DIR_DOWNLOAD=$HOME/Downloads/deb_packages
 
 #+end_src
 

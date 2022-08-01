@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DEB_URLS_FILE="deb_urls.txt"
-PROGRAMS_FILE="programs.txt"
-DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
+DEB_URLS_FILE=deb_urls.txt
+PROGRAMS_FILE=programs.txt
+DIR_DOWNLOAD=$HOME/Downloads/deb_packages
 
 reading_programs_variables () {
     while IFS= read -r line; do

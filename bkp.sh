@@ -32,7 +32,7 @@ reading_urls_deb () {
 
     while IFS= read -r line; do
         PROGRAMS_DEB+=("$line")
-    done < $DEB_URlS_FILE
+    done < $DEB_URLS_FILE
 }
 
 is_installed () {

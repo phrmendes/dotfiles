@@ -1,5 +1,214 @@
-#+title: Pós-instalação - Pop!_OS 22.04 LTS
+#+title: Post-instalation - Pop!_OS 22.04 LTS
 #+author: Pedro Mendes
 #+PROPERTY: header-args:shell :tangle ./bkp.sh :mkdirp yes
 
-* Variáveis 
+* shebang
+
+#+begin_src shell
+
+  #!/bin/bash
+
+#+end_src
+
+* variables
+
+#+begin_src shell
+
+  DEB_URLS_FILE="deb_urls.txt"
+  PROGRAMS_FILE="programs.txt"
+  DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
+
+#+end_src
+
+* functions
+** reading variables in files
+
+#+begin_src shell
+
+  reading_programs_variables () {
+      while IFS= read -r line; do
+          PROGRAMS_APT=()
+          PROGRAMS_FLATPAK=()
+          PROGRAMS_SNAP=()
+          PROGRAMS_BREW=()
+
+          local str_1=$(echo ${line%%,*})
+          local str_2=$(echo ${line##*,})
+
+          elif [[ str_2 = "apt" ]]; then
+              PROGRAMS_APT+=("$str_2")
+          elif [[ str_2 = "flatpak" ]]; then
+              PROGRAMS_FLATPAK+=("$str_2")
+          elif [[ str_2 = "snap" ]]; then
+              PROGRAMS_SNAP+=("$str_2")
+          else
+              PROGRAMS_BREW+=("$str_2")
+
+      done < $PROGRAMS_FILE 
+  }
+
+  reading_urls_deb () {
+      PROGRAMS_DEB=()
+
+      while IFS= read -r line; do
+          PROGRAMS_DEB+=("$line")
+      done < $DEB_URS_FILE
+  }
+
+#+end_src
+
+** check if program is installed
+
+#+begin_src shell
+
+  is_installed () {
+      if dpkg -l | grep -q $1; then
+          exit 0
+      else
+          exit 1
+      fi
+  }
+
+#+end_src
+
+** preparing installations
+
+#+begin_src shell
+  remove_locks () {
+      echo "[INFO] - Removendo locks"
+      sudo rm /var/lib/dpkg/lock-frontend
+      sudo rm /var/cache/apt/archives/lock
+  }
+
+  add_i386_architecture () {
+      echo "[INFO] - Adicionando arquitetura x86"
+      sudo dpkg --add-architecture i386
+  }
+
+  att_repos () {
+      echo "[INFO] - Atualizando repositórios"
+      sudo apt update -y
+  }
+#+end_src
+
+** .deb installations
+
+#+begin_src shell
+
+  download_deb () {
+      [[ ! -d "$DIR_DOWNLOAD" ]] && mkdir "$DIR_DOWNLOAD"
+      for program in ${PROGRAMS_DEB[@]}; do
+          wget -c "$program" -P "$DIR_DOWNLOAD"
+      done
+  }
+
+  install_deb () {
+      echo "[INFO] - Download de pacotes .deb"
+      download_deb
+      echo "[INFO] - Instalando pacotes .deb"
+      sudo dpkg -i $DIR_DOWNLOAD/*.deb
+      echo "[INFO] - Instalando dependências"
+      sudo apt -f install -y
+  }
+
+#+end_src
+
+** apt installations
+
+#+begin_src shell
+
+  install_apt () {
+      for program in ${PROGRAMS_APT[@]}; do
+          if ! is_installed program; then
+              echo "[INFO] - Instalando $program"
+              sudo apt install $program -y
+          else
+              echo "[INFO] - $program já instalado"
+          fi
+      done
+  }
+
+#+end_src
+
+** flatpak instalations
+
+#+begin_src shell
+
+  install_flatpak () {
+      for program in ${PROGRAMS_APT[@]}; do
+          echo "[INFO] - Instalando $program"
+          flatpak install $program -y
+      done
+  }
+
+#+end_src
+
+** snap instalations
+
+#+begin_src shell
+
+  install_snap () {
+      for program in ${PROGRAMS_APT[@]}; do
+          echo "[INFO] - Instalando $program"
+          sudo snap install $program
+      done
+  }
+
+#+end_src
+
+** homebrew instalations
+
+#+begin_src shell
+
+  homebrew () {
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+      test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      test -r ~/.zshrc && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+      echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+  }
+
+#+end_src
+
+** upgrade and cleaning
+
+#+begin_src shell
+
+  upgrade_cleaning () {
+      sudo apt dist-upgrade -y
+      sudo apt autoclean
+      sudo apt autoremove -y
+  }
+
+#+end_src
+
+* dependencies
+
+#+begin_src shell
+
+  if [[ ! -x `which wget` ]]; then
+      sudo apt install wget -y
+  fi
+ 
+#+end_src
+
+* execution
+
+#+begin_src shell
+
+  reading_programs_variables
+  remove_locks
+  add_i386_architecture
+  att_repos
+  download_deb
+  install_deb
+  install_apt
+  install_flatpak
+  install_snap
+  upgrade_cleaning
+
+  sudo rm -r $DIR_DOWNLOAD
+
+  echo "[INFO] - Finalizado"
+
+#+end_src

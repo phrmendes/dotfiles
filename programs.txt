@@ -1,4 +1,5 @@
 snapd,apt
 nala,apt
 git,apt
+npm,apt
 

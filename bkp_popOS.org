@@ -68,20 +68,6 @@
 
 #+end_src
 
-** check if program is installed
-
-#+begin_src shell
-
-  is_installed () {
-      if dpkg -l | grep -q $1; then
-          exit 0
-      else
-          exit 1
-      fi
-  }
-
-#+end_src
-
 ** preparing installations
 
 #+begin_src shell
@@ -132,7 +118,7 @@
 
   install_apt () {
       for program in ${PROGRAMS_APT[@]}; do
-          if ! is_installed $program; then
+          if ! dpkg -l | grep -q $program; then
               echo "[INFO] - Instalando $program (apt)"
               sudo apt install $program -y
           else

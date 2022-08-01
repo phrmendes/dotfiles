@@ -45,14 +45,6 @@ reading_ppas_file () {
     done < $PPAS_URLS_FILE
 }
 
-is_installed () {
-    if dpkg -l | grep -q $1; then
-        exit 0
-    else
-        exit 1
-    fi
-}
-
 remove_locks () {
     echo "[INFO] - Removendo locks"
     sudo rm /var/lib/dpkg/lock-frontend
@@ -87,7 +79,7 @@ install_deb () {
 
 install_apt () {
     for program in ${PROGRAMS_APT[@]}; do
-        if ! is_installed $program; then
+        if ! dpkg -l | grep -q $program; then
             echo "[INFO] - Instalando $program (apt)"
             sudo apt install $program -y
         else

@@ -8,12 +8,12 @@ R_PACKAGES_FILE="r_packages.R"
 TUTANOTA_LINK="https://mail.tutanota.com/desktop/tutanota-desktop-linux.AppImage"
 
 reading_programs_variables () {
-    while IFS= read -r line; do
-        PROGRAMS_APT=()
-        PROGRAMS_FLATPAK=()
-        PROGRAMS_SNAP=()
-        PROGRAMS_BREW=()
+    PROGRAMS_APT=()
+    PROGRAMS_FLATPAK=()
+    PROGRAMS_SNAP=()
+    PROGRAMS_BREW=()
 
+    while IFS= read -r line; do
         local str_1=$(echo -e ${line%%,*})
         local str_2=$(echo -e ${line##*,})
 
@@ -38,9 +38,9 @@ reading_urls_deb () {
 }
 
 reading_ppas_file () {
-    while IFS= read -r line; do
-        PPAS=()
+    PPAS=()
 
+    while IFS= read -r line; do
         PPAS+=("$line")
     done < $PPAS_URLS_FILE
 }

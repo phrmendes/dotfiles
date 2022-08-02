@@ -41,11 +41,12 @@ libproj-dev,apt
 ncdu,apt
 nodejs,apt
 npm,apt
-zsh,apt
+fish,apt
 ripgrep,apt
 sagemath,apt
 seahorse,apt
 shotwell,apt
+libtool-bin,apt
 vim,apt
 vlc,apt
 zip,apt

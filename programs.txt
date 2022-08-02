@@ -61,7 +61,7 @@ com.stremio.Stremio,flatpak
 de.haeckerfelix.Fragments,flatpak
 io.github.seadve.Kooha,flatpak
 me.kozec.syncthingtk,flatpak
-org.libreoffice.LibreOffice,flatpak
+org.onlyoffice.desktopeditors,flatpak
 org.telegram.desktop,flatpak
 org.zotero.Zotero,flatpak
 bat,brew

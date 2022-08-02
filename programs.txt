@@ -18,6 +18,7 @@ cmake,apt
 docker,apt
 emacs,apt
 exa,apt
+seahorse-nautilus,apt
 filezilla,apt
 file-roller,apt
 fonts-firacode,apt
@@ -60,7 +61,6 @@ com.stremio.Stremio,flatpak
 de.haeckerfelix.Fragments,flatpak
 io.github.seadve.Kooha,flatpak
 me.kozec.syncthingtk,flatpak
-org.gnome.DejaDup,flatpak
 org.libreoffice.LibreOffice,flatpak
 org.telegram.desktop,flatpak
 org.zotero.Zotero,flatpak

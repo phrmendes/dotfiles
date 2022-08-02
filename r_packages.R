@@ -28,5 +28,8 @@ pacman::p_load(
   rstan,
   sf,
   parallel,
-  distill
+  distill,
+  tinytex
 )
+
+tinytex::install_tinytex()

@@ -14,7 +14,6 @@ automake,apt
 bleachbit,apt
 v4l2loopback-utils,apt
 cmake,apt
-docker,apt
 emacs,apt
 exa,apt
 seahorse-nautilus,apt

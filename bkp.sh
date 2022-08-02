@@ -116,6 +116,16 @@ install_brew () {
 
 install_R_packages () {
 
+    sudo apt update -qq
+
+    sudo apt install --no-install-recommends software-properties-common dirmngr
+
+    wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
+    sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+    sudo apt install r-base r-base-dev -y
+
     Rscript r_packages.R
 
 }
@@ -138,22 +148,27 @@ adding_ppas () {
 
 zsh_p10k () {
 
+    local fonts=(
+        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
+        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
+        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
+        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
+    )
+    local files=(powerlevel10k .zshrc .p10k.zsh)
+
     echo -e "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
     chsh -s $(which zsh)
 
-}
+    mkdir "$HOME/Downloads/fonts"
 
-zsh_p10k_root () {
-
-    zsh && p10k configure
-
-    local files=(powerlevel10k .zshrc .p10k.zsh)
+    for font in ${fonts[@]}; do
+        wget -c "$font" -P "$HOME/Downloads/fonts"
+    done
 
     for i in ${files[@]}; do
         sudo ln -s $HOME/$i /root/$i
         sudo chmod 744 /root/$i
     done
-
 }
 
 tutanota_download () {
@@ -161,6 +176,22 @@ tutanota_download () {
     mkdir $HOME/appimages/
     wget -c "$TUTANOTA_LINK" -P $HOME/appimages/ 
 
+}
+
+remove_installed () {
+    local libreoffice=$(apt list --installed | grep libreoffice | cut -d "/" -f 1)
+
+    local apps=(geary gnome-calendar gnome-contacts)
+
+    for program in ${libreoffice}; do
+        echo -e "[INFO] - Removendo $program (apt)"
+        sudo apt remove $program -y
+    done
+
+    for program in ${apps}; do
+        echo -e "[INFO] - Removendo $program (apt)"
+        sudo apt remove $program -y
+    done
 }
 
 if [[ ! -x `which wget` ]]; then
@@ -176,6 +207,7 @@ att_repos
 adding_ppas
 upgrade
 homebrew
+remove_installed
 install_apt
 install_deb
 install_flatpak
@@ -183,9 +215,8 @@ install_snap
 install_brew
 tutanota_download
 install_R_packages
-zsh_p10k
-zsh_p10k_root
 clean
+zsh_p10k
 
 sudo rm -r $DIR_DOWNLOAD
 

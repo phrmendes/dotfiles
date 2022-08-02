@@ -103,8 +103,10 @@ homebrew () {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    test -r ~/.zshrc && echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
-    echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+    test -r ~/config/fish/config.fish && echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/config/fish/config.fish
+    echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/config/fish/config.fish
+    test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 }
 
 install_brew () {
@@ -146,35 +148,16 @@ adding_ppas () {
     done
 }
 
-zsh_p10k () {
-
-    local fonts=(
-        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
-        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
-        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
-        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
-    )
-    local files=(powerlevel10k .zshrc .p10k.zsh)
-
-    echo -e "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
-    chsh -s $(which zsh)
-
-    mkdir "$HOME/Downloads/fonts"
-
-    for font in ${fonts[@]}; do
-        wget -c "$font" -P "$HOME/Downloads/fonts"
-    done
-
-    for i in ${files[@]}; do
-        sudo ln -s $HOME/$i /root/$i
-        sudo chmod 744 /root/$i
-    done
-}
-
 tutanota_download () {
 
     mkdir $HOME/appimages/
     wget -c "$TUTANOTA_LINK" -P $HOME/appimages/ 
+
+}
+
+emacs_settings () {
+
+    git clone https://github.com/phrmendes/emacs_settings.git $HOME/.emacs.d/
 
 }
 
@@ -215,8 +198,8 @@ install_snap
 install_brew
 tutanota_download
 install_R_packages
+emacs_settings
 clean
-zsh_p10k
 
 sudo rm -r $DIR_DOWNLOAD
 

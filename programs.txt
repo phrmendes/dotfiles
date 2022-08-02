@@ -1,5 +1,4 @@
 snapd,apt
-nala,apt
 git,apt
 npm,apt
 build-essential,apt
@@ -39,6 +38,8 @@ libudunits2-dev,apt
 libgdal-dev,apt
 libgeos-dev,apt
 libproj-dev,apt
+libharfbuzz-dev,apt
+libfribidi-dev,apt
 ncdu,apt
 nodejs,apt
 npm,apt
@@ -81,5 +82,4 @@ mpfr,brew
 openssl@1.1,brew
 zlib,brew
 zstd,brew
-romkatv/powerlevel10k/powerlevel10k,brew
 authy,snap

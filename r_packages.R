@@ -31,7 +31,14 @@ packages <- c(
   "distill",
   "tinytex",
   "reticulate",
-  "glue"
+  "glue",
+  "rstanarm",
+  "brms",
+  "varstan",
+  "bayesforecast",
+  "prophet",
+  "cmdstanr",
+  "posterior"
 )
 
 invisible(
@@ -49,3 +56,7 @@ invisible(
 )
 
 tinytex::install_tinytex(force = TRUE)
+
+cmdstanr::install_cmdstan()
+
+Sys.setenv(R_STAN_BACKEND = "CMDSTANR")

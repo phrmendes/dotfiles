@@ -21,14 +21,14 @@ requirements () {
 
     for app in "${apps[@]}"; do
         if [[ ! -x $(which "$app") ]]; then
-            echo -e "${RED}[ERROR] - {$app} not installed.${NO_COLOR}"
-            echo -e "${BLUE}[IN PROGRESS] - Installing {$app}...${NO_COLOR}"
+            echo -e "${RED}[ERROR] - $app not installed.${NO_COLOR}"
+            echo -e "${BLUE}[IN PROGRESS] - Installing $app...${NO_COLOR}"
 
             sudo apt install "$app" -y &> "/dev/null"
 
-            echo -e "${GREEN}[DONE] - {$app} installed."
+            echo -e "${GREEN}[DONE] - $app installed."
         else
-            echo -e "${GREEN}[DONE] - {$app} already installed."
+            echo -e "${GREEN}[DONE] - $app already installed."
         fi
     done
 }

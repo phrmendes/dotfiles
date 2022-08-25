@@ -75,7 +75,6 @@ reading_ppas_file () {
 }
 
 remove_locks () {
-    
     echo -e "${BLUE}[IN PROGRESS] - Removing locks...${NO_COLOR}"
     sudo rm /var/lib/dpkg/lock-frontend
     sudo rm /var/cache/apt/archives/lock
@@ -238,6 +237,7 @@ setup_vim () {
     cp .vimrc "$HOME"/
     cp solarized.vim "$HOME"/.vim/colors/
     vim +PluginInstall +qall
+    git config --global core.editor "vim"
     echo -e "${GREEN}[DONE] - Vim set up.${NO_COLOR}"
 }
 

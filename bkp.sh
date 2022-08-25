@@ -216,7 +216,7 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev
     att_repos
     sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
     sudo groupadd docker
-    sudo usermod -aG docker "$USER"
+    sudo usermod -aG docker "USER"
     echo -e "${GREEN}[DONE] - Docker installed.${NO_COLOR}"
 }
 
@@ -233,8 +233,8 @@ setup_fonts () {
 setup_vim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up Vim...${NO_COLOR}"
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    cp .vimrc "$HOME"/
-    cp solarized.vim "$HOME"/.vim/colors/
+    cp ./.vimrc "$HOME"/
+    cp ./solarized.vim "$HOME"/.vim/colors/
     vim +PluginInstall +qall
     git config --global core.editor "vim"
     echo -e "${GREEN}[DONE] - Vim set up.${NO_COLOR}"

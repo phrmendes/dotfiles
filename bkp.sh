@@ -230,18 +230,6 @@ setup_fonts () {
     echo -e "${GREEN}[DONE] - Fonts set up.${NO_COLOR}"
 }
 
-setup_vim () {
-    echo -e "${BLUE}[IN PROGRESS] - Setting up Vim...${NO_COLOR}"
-    mkdir -p "$HOME"/.vim/bundle
-    mkdir -p "$HOME"/.vim/colors/
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    cp .vimrc "$HOME"/
-    cp solarized.vim "$HOME"/.vim/colors/
-    vim +PluginInstall +qall
-    git config --global core.editor "vim"
-    echo -e "${GREEN}[DONE] - Vim set up.${NO_COLOR}"
-}
-
 # EXECUTION --------------------
 
 requirements
@@ -262,7 +250,7 @@ install_brew
 install_docker
 tutanota_download
 install_R_packages
-vim_setup
+setup_fonts
 clean
 
 sudo rm -r "$DIR_DOWNLOAD"

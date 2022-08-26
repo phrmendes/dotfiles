@@ -232,22 +232,14 @@ setup_fonts () {
 
 setup_vim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up Vim...${NO_COLOR}"
+    mkdir -p "$HOME"/.vim/bundle
+    mkdir -p "$HOME"/.vim/colors/
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    cp ./.vimrc "$HOME"/
-    cp ./solarized.vim "$HOME"/.vim/colors/
+    cp .vimrc "$HOME"/
+    cp solarized.vim "$HOME"/.vim/colors/
     vim +PluginInstall +qall
     git config --global core.editor "vim"
     echo -e "${GREEN}[DONE] - Vim set up.${NO_COLOR}"
-}
-
-setup_fish () {
-    echo -e "${BLUE}[IN PROGRESS] - Setting up Fish...${NO_COLOR}"
-    curl -L https://get.oh-my.fish | fish
-    chsh -s /usr/bin/fish
-    omf install agnoster
-    omf theme agnoster 
-    cp config.fish "$HOME"/.config/fish/
-    echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 
 # EXECUTION --------------------
@@ -271,7 +263,6 @@ install_docker
 tutanota_download
 install_R_packages
 vim_setup
-setup_fish
 clean
 
 sudo rm -r "$DIR_DOWNLOAD"

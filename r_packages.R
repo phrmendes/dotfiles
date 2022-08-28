@@ -36,9 +36,7 @@ packages <- c(
   "brms",
   "varstan",
   "bayesforecast",
-  "prophet",
-  "cmdstanr",
-  "posterior"
+  "prophet"
 )
 
 dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
@@ -59,6 +57,8 @@ invisible(
 )
 
 tinytex::install_tinytex(force = TRUE)
+
+install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
 
 cmdstanr::install_cmdstan()
 

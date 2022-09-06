@@ -57,11 +57,8 @@ com.mattjakeman.ExtensionManager,flatpak
 com.spotify.Client,flatpak
 com.stremio.Stremio,flatpak
 de.haeckerfelix.Fragments,flatpak
-me.kozec.syncthingtk,flatpak
 org.onlyoffice.desktopeditors,flatpak
-org.telegram.desktop,flatpak
 org.zotero.Zotero,flatpak
-org.gnome.DejaDup,flatpak
 io.github.seadve.Kooha,flatpak
 bat,brew
 binutils,brew

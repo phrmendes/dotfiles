@@ -42,13 +42,13 @@ seahorse,apt
 shotwell,apt
 libtool-bin,apt
 vim,apt
-vlc,apt
 timeshift,apt
 ack,apt,
 solaar,apt
 ranger,apt
 fonts-firacode,apt
 fonts-font-awesome,apt
+io.github.celluloid_player.Celluloid,flatpak
 com.bitwarden.desktop,flatpak
 com.discordapp.Discord,flatpak
 com.github.muriloventuroso.easyssh,flatpak

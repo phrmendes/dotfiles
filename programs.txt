@@ -1,4 +1,3 @@
-npm,apt
 build-essential,apt
 procps,apt
 curl,apt

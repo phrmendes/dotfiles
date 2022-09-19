@@ -22,7 +22,7 @@ NO_COLOR="\e[0m"
 required_programs () {
     local apps 
     
-    apps=(wget git zip unzip gzip curl file procps)
+    apps=(wget git zip unzip gzip curl file build-essential procps)
     
     for app in "${apps[@]}"; do
         if [[ ! -x $(which "$app") ]]; then

@@ -50,7 +50,7 @@ add_i386_architecture () {
 }
 
 homebrew () {
-    echo -e "${BLUE}[IN PROGRESS - Installing Homebrew...${NO_COLOR}"
+    echo -e "${BLUE}[IN PROGRESS] - Installing Homebrew...${NO_COLOR}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &> "/dev/null"
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

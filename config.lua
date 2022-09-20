@@ -158,6 +158,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- Additional Plugins
 lvim.plugins = {
   { "github/copilot.vim" },
+  { "shaunsingh/solarized.nvim" },
   {
     "wfxr/minimap.vim",
     run = "cargo install --locked code-minimap",
@@ -231,10 +232,6 @@ lvim.plugins = {
       vim.cmd "highlight default link gitblame SpecialComment"
       vim.g.gitblame_enabled = 1
     end,
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "BufRead",
   },
   {
     "ray-x/lsp_signature.nvim",

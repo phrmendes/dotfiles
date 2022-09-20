@@ -250,6 +250,7 @@ setup_ranger () {
 
 setup_npm () {
     echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.bashrc"
+    echo 'source $NVM_DIR/nvm.sh' >> "$HOME/.bashrc"
     echo '[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" # This loads nvm' >> "$HOME/.bashrc"
     echo '[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion' >> .bashrc
     source "$HOME/.bashrc"

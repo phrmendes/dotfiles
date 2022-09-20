@@ -293,7 +293,6 @@ setup_npm
 install_lvim
 setup_fonts
 setup_ranger
-remove_installed
 setup_fish
 clean
 

@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO lvim install
-# TODO execution order
-# TODO fish dot file
-
 # VARIABLES -------------------------------------------------------------------------------------------------------------
 
 DEB_URLS_FILE="deb_urls.txt"

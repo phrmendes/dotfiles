@@ -289,10 +289,10 @@ install_flatpak
 install_brew
 install_docker
 install_R_packages
+setup_npm
 install_lvim
 setup_fonts
 setup_ranger
-setup_npm
 remove_installed
 setup_fish
 clean

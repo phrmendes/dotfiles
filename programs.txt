@@ -35,6 +35,7 @@ timeshift,apt
 solaar,apt
 fonts-font-awesome,apt
 python3-pip,apt
+nnn,apt
 io.github.celluloid_player.Celluloid,flatpak
 com.bitwarden.desktop,flatpak
 com.discordapp.Discord,flatpak
@@ -67,4 +68,5 @@ procs,brew
 exa,brew
 shellcheck,brew
 neovim,brew
+neovide,brew
 glow,brew

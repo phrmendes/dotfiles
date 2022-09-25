@@ -225,10 +225,10 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /de
 }
 
 install_lvim () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing LunarVim...${NO_COLOR}"
-    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-    cp ./config.lua ~/.config/lvim/config.lua
-    echo -e "${GREEN}[DONE] - LunarVim installed.${NO_COLOR}"
+    local LVIM_GUI_PATH
+    LVIM_GUI_PATH="$HOME/.local/bin/lvim-gui"
+    echo -e "${BLUE}[IN PROGRESS] - Installing LunarVim...${NO_COLOR}" bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) cp ./config.lua ~/.config/lvim/config.lua
+    cp ./lvim-gui "$LVIM_GUI_PATH" sudo chmod +x "$LVIM_GUI_PATH" echo -e "${GREEN}[DONE] - LunarVim installed.${NO_COLOR}"
 }
 
 setup_fonts () {
@@ -241,23 +241,15 @@ setup_fonts () {
     echo -e "${GREEN}[DONE] - Fonts set up.${NO_COLOR}"
 }
 
-setup_ranger () {
-  echo -e "${BLUE}[IN PROGRESS] - Setting up ranger...${NO_COLOR}"
-  git clone https://github.com/alexanderjeurissen/ranger_devicons "$HOME/.config/ranger/plugins/ranger_devicons"
-  echo "default_linemode devicons" >> "$HOME/.config/ranger/rc.conf"
-  echo -e "${GREEN}[DONE] - Ranger set up.${NO_COLOR}"
-}
-
 setup_npm () {
-    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.bashrc"
-    echo 'source $NVM_DIR/nvm.sh' >> "$HOME/.bashrc"
-    echo '[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" # This loads nvm' >> "$HOME/.bashrc"
-    echo '[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion' >> .bashrc
+    (echo export NVM_DIR="$HOME/.nvm"; echo source "$NVM_DIR/nvm.sh") >> "$HOME/.bashrc"
+    echo [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" >> "$HOME/.bashrc"
+    echo [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion' >> .bashrc
     source "$HOME/.bashrc"
     nvm install 16
     nvm use 16
     mkdir ~/.npm-global
-    echo 'export PATH=~/.npm-global/bin:$PATH' >> "$HOME/.bashrc"
+    echo export PATH="~/.npm-global/bin:$PATH" >> "$HOME/.bashrc"
     npm config set prefix "$HOME/.npm-global"
     source "$HOME/.bashrc"
 }
@@ -293,7 +285,7 @@ install_R_packages
 setup_npm
 install_lvim
 setup_fonts
-setup_ranger
+setup_nnn
 setup_fish
 clean
 

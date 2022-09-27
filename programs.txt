@@ -69,4 +69,3 @@ exa,brew
 shellcheck,brew
 neovim,brew
 neovide,brew
-glow,brew

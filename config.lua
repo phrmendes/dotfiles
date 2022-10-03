@@ -38,6 +38,7 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 
 -- use which-key to add extra bindings with the leader-key prefix
+lvim.builtin.which_key.mappings["S"] = { "<cmd>lua require('spectre').open()<CR>", "Spectre" }
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",

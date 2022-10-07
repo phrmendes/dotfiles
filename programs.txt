@@ -50,7 +50,6 @@ org.zotero.Zotero,flatpak
 io.github.seadve.Kooha,flatpak
 gcc,brew
 fish,brew
-ranger,brew
 rust,brew
 golang,brew
 nvm,brew
@@ -68,4 +67,4 @@ procs,brew
 exa,brew
 shellcheck,brew
 neovim,brew
-neovide,brew
+mamba,radian

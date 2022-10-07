@@ -25,7 +25,7 @@ packages <- c(
   "writexl",
   "rmarkdown",
   "rstan",
-  "classInt", 
+  "classInt",
   "sf",
   "parallel",
   "distill",
@@ -36,7 +36,9 @@ packages <- c(
   "brms",
   "varstan",
   "bayesforecast",
-  "prophet"
+  "prophet",
+  "languageserver",
+  "httpgd"
 )
 
 dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
@@ -44,7 +46,7 @@ dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 
 invisible(
   lapply(
-    packages, 
+    packages,
     function(i) {
       if (i %in% rownames(installed.packages()) == FALSE) {
         cat(paste0("\n[INFO] - Instalando ", i, "\n"))
@@ -52,7 +54,7 @@ invisible(
       } else {
         cat(paste0("\n[INFO] - Pacote ", i, " já instalado.\n"))
       }
-    } 
+    }
   )
 )
 

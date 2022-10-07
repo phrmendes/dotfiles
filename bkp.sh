@@ -71,6 +71,17 @@ reading_ppas_file () {
     done < $PPAS_URLS_FILE
 }
 
+mamba () {
+    echo -e "${BLUE}[IN PROGRESS] - Installing Mamba...${NO_COLOR}"
+    cd /tmp && wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+    sudo chmod +x Mambaforge-Linux-x86_64.sh 
+    ./Mambaforge-Linux-x86_64.sh
+    source "$HOME/.bashrc"
+    conda config --set auto_activate_base false
+    conda init fish
+    echo -e "${GREEN}[DONE] - Mamba installed.${NO_COLOR}" 
+}
+
 # SYSTEM JOBS ----------------------------------------------------------------------------------------------------------
 
 att_repos () {
@@ -98,6 +109,7 @@ reading_programs_file () {
     PROGRAMS_APT=()
     PROGRAMS_FLATPAK=()
     PROGRAMS_BREW=()
+    PROGRAMS_MAMBA=()
 
     while IFS= read -r line; do
         local str_1
@@ -110,6 +122,8 @@ reading_programs_file () {
             PROGRAMS_APT+=("$str_1")
         elif [[ $str_2 = "flatpak" ]]; then
             PROGRAMS_FLATPAK+=("$str_1")
+        elif [[ $str_2 = "mamba" ]]; then
+            PROGRAMS_MAMBA+=("$str_1")
         else
             PROGRAMS_BREW+=("$str_1")
         fi
@@ -198,6 +212,12 @@ install_R_packages () {
     echo -e "${GREEN}[DONE] - R packages installed.${NO_COLOR}"
 }
 
+install_python_packages () {
+    echo -e "${BLUE}[IN PROGRESS] - Installing Python packages...${NO_COLOR}"
+    mamba install -y "${PROGRAMS_MAMBA[@]}" &> "/dev/null"
+    echo -e "${GREEN}[DONE] - Python packages installed.${NO_COLOR}"
+}
+
 remove_installed () {
     local apps_to_uninstall
 
@@ -224,13 +244,6 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /de
     echo -e "${GREEN}[DONE] - Docker installed.${NO_COLOR}"
 }
 
-install_lvim () {
-    local LVIM_GUI_PATH
-    LVIM_GUI_PATH="$HOME/.local/bin/lvim-gui"
-    echo -e "${BLUE}[IN PROGRESS] - Installing LunarVim...${NO_COLOR}" bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) cp ./config.lua ~/.config/lvim/config.lua
-    cp ./lvim-gui "$LVIM_GUI_PATH" sudo chmod +x "$LVIM_GUI_PATH" echo -e "${GREEN}[DONE] - LunarVim installed.${NO_COLOR}"
-}
-
 setup_fonts () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up fonts...${NO_COLOR}"
     mkdir -p "$HOME"/.local/share/fonts/NerdFonts
@@ -241,24 +254,16 @@ setup_fonts () {
     echo -e "${GREEN}[DONE] - Fonts set up.${NO_COLOR}"
 }
 
-setup_npm () {
-    (echo export NVM_DIR="$HOME/.nvm"; echo source "$NVM_DIR/nvm.sh") >> "$HOME/.bashrc"
-    echo [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" >> "$HOME/.bashrc"
-    echo [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion' >> .bashrc
-    source "$HOME/.bashrc"
-    nvm install 16
-    nvm use 16
-    mkdir ~/.npm-global
-    echo export PATH="~/.npm-global/bin:$PATH" >> "$HOME/.bashrc"
-    npm config set prefix "$HOME/.npm-global"
-    source "$HOME/.bashrc"
-}
-
 setup_fish () {
     echo -e "${BLUE}[IN PROGRESS] - Installing fish...${NO_COLOR}"
     chmod +x ./fish_setup.fish
     fish fish_setup.fish
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
+}
+
+setup_neovim_vscode () {
+    mkdir -p "$HOME"/.config/nvim
+    cp ./init.vim "$HOME"/.config/nvim
 }
 
 # EXECUTION ------------------------------------------------------------------------------------------------------------
@@ -271,6 +276,7 @@ adding_ppas
 att_repos
 upgrade
 homebrew
+mamba
 remove_installed
 reading_programs_file
 reading_urls_deb_file
@@ -282,11 +288,10 @@ install_flatpak
 install_brew
 install_docker
 install_R_packages
-setup_npm
-install_lvim
+install_python_packages
 setup_fonts
-setup_nnn
 setup_fish
+setup_neovim_vscode
 clean
 
 sudo rm -r "$DIR_DOWNLOAD"

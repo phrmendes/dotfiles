@@ -264,7 +264,9 @@ setup_fish () {
 setup_neovim_vscode () {
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
+    mkdir -p "$HOME"/.config/Code/User
     cp ./init.vim "$HOME"/.config/nvim
+    cp *.json "$HOME"/.config/Code/User
 }
 
 # EXECUTION ------------------------------------------------------------------------------------------------------------

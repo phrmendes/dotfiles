@@ -61,7 +61,7 @@
         "when": "inQuickOpen"
     },
     {
-        "key": "shit+tab",
+        "key": "shift+tab",
         "command": "selectPrevSuggestion",
         "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
     },
@@ -171,13 +171,17 @@
     {
         "key": "ctrl+shift+m",
         "command": "type",
-        "args": { "text": " |> " },
+        "args": {
+            "text": " |> "
+        },
         "when": "editorTextFocus && editorLangId == r"
     },
     {
         "key": "ctrl+shift+n",
         "command": "type",
-        "args": { "text": " | " },
+        "args": {
+            "text": " | "
+        },
         "when": "editorTextFocus && editorLangId == r"
     },
     {
@@ -188,5 +192,87 @@
     {
         "key": "ctrl+shift+n",
         "command": "-workbench.action.newWindow"
+    },
+    {
+        "key": "alt+-",
+        "command": "type",
+        "when": "editorLangId =~ /r|rmd|qmd/ && editorTextFocus",
+        "args": {
+            "text": " <- "
+        }
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "-workbench.actions.view.problems"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'rmd'",
+        "args": {
+            "snippet": "```{r}\n${TM_SELECTED_TEXT}$0\n```"
+        },
+        "label": "input indicative of r markdown code chunk"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'r'",
+        "args": {
+            "snippet": "$LINE_COMMENT %% "
+        },
+        "label": "input indicative of code chunk"
+    },
+    {
+        "key": "f1",
+        "command": "r.helpPanel.openForSelection",
+        "when": "editorTextFocus && editorLangId == 'r' || editorTextFocus && editorLangId == 'rmd'"
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "r.install",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "r.check",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "r.test",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "r.document",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "r.loadAll",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+alt+p",
+        "command": "r.runCommand",
+        "when": "editorTextFocus && editorLangId == 'r'",
+        "args": ".vsc.browser(httpgd::hgd_url(), viewer = \"Beside\")",
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "r.document",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "r.loadAll",
+        "when": "resourceLangId == 'r'"
+    },
+    {
+        "key": "ctrl+alt+p",
+        "command": "r.runCommand",
+        "when": "editorTextFocus && editorLangId == 'r'",
+        "args": ".vsc.browser(httpgd::hgd_url(), viewer = \"Beside\")"
     }
 ]

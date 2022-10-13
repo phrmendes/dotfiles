@@ -13,6 +13,12 @@ call plug#begin()
     Plug 'preservim/nerdcommenter'
     Plug 'mileszs/ack.vim'
     Plug 'airblade/vim-gitgutter'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'junegunn/fzf.vim'
+    Plug 'tpope/surround.vim'
+    Plug 'hzchirs/vim-material'
+    Plug 'psliwka/vim-smoothie'
+    Plug 'preservim/nerdtree' 
 call plug#end()
 
 "vscode settings
@@ -103,6 +109,7 @@ if exists('g:vscode')
     " Easymotion
     nmap s <Plug>(easymotion-s2)
 else
+    " Settings
     set nocompatible
     filetype off
     filetype plugin indent on
@@ -131,5 +138,30 @@ else
     set wildmode=list:longest
     set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
     set laststatus=2
+    set background=dark
+    colorscheme vim-material
+
+    " Keybindings
+    " Swap gj/gk with j/k.
+    nnoremap <expr> j v:count ? 'j' : 'gj'
+    nnoremap <expr> k v:count ? 'k' : 'gk'
+    nnoremap gj j
+    nnoremap gk k
+
+    " Unhighlight by pusing escape keys twice.
+    nnoremap <esc><esc> :nohlsearch<cr>
+
+    " Yank a line with Y.
+    nnoremap Y y$
+
+    " Open buffers, files, and so on with fzf.
+    nnoremap <leader>b :Buffers<cr>
+    nnoremap <leader>c :History:<cr>
+    nnoremap <leader>f :Files<cr>
+    nnoremap <leader>g :GFiles<cr>
+    nnoremap <leader>h :History<cr>
+    nnoremap <leader>l :Lines<cr>
+    nnoremap <leader>m :Maps<cr>
+    nnoremap <leader>r :Ag<cr>
 endif
 

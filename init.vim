@@ -15,8 +15,6 @@ call plug#begin()
     Plug 'airblade/vim-gitgutter'
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf.vim'
-    Plug 'tpope/surround.vim'
-    Plug 'hzchirs/vim-material'
     Plug 'psliwka/vim-smoothie'
     Plug 'preservim/nerdtree' 
 call plug#end()
@@ -138,8 +136,6 @@ else
     set wildmode=list:longest
     set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
     set laststatus=2
-    set background=dark
-    colorscheme vim-material
 
     " Keybindings
     " Swap gj/gk with j/k.

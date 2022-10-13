@@ -110,7 +110,6 @@ else
     let g:rainbow_active = 1
     syntax enable
     set background=dark
-    colorscheme solarized
     set nocompatible
     filetype on
     filetype plugin on

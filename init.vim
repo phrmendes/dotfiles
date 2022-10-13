@@ -8,6 +8,11 @@
 call plug#begin()
     Plug 'asvetliakov/vim-easymotion'
     Plug 'tpope/vim-commentary'
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'itchyny/lightline.vim'
+    Plug 'preservim/nerdcommenter'
+    Plug 'mileszs/ack.vim'
+    Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 "vscode settings
@@ -20,8 +25,6 @@ if exists('g:vscode')
             execute "'<,'>Commentary"
         endif
     endfunction
-
-    " vnoremap <silent> <space>/ :call Comment()
 
     function! s:split(...) abort
         let direction = a:1
@@ -99,5 +102,35 @@ if exists('g:vscode')
 
     " Easymotion
     nmap s <Plug>(easymotion-s2)
+else
+    set nocompatible
+    filetype off
+    filetype plugin indent on
+    set shell=/usr/bin/fish
+    let g:rainbow_active = 1
+    syntax enable
+    set background=dark
+    colorscheme solarized
+    set nocompatible
+    filetype on
+    filetype plugin on
+    filetype indent on
+    set number
+    set cursorline
+    set shiftwidth=4
+    set tabstop=4
+    set expandtab
+    set nobackup
+    set scrolloff=10
+    set incsearch
+    set ignorecase
+    set showmode
+    set showmatch
+    set hlsearch
+    set history=1000
+    set wildmenu
+    set wildmode=list:longest
+    set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+    set laststatus=2
 endif
 

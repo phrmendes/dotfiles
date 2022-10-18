@@ -263,3 +263,10 @@ lvim.plugins = {
   { "jalvesaq/Nvim-R" },
   { "quarto-dev/quarto-nvim" }
 }
+
+vim.cmd("let R_app = 'radian'")
+vim.cmd("let R_app = 'radian'")
+vim.cmd("let R_cmd = 'R'")
+vim.cmd("let R_hl_term = 0")
+vim.cmd("let R_args = []")
+vim.cmd("let R_bracketed_paste = 1")

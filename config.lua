@@ -265,7 +265,6 @@ lvim.plugins = {
 }
 
 vim.cmd("let R_app = 'radian'")
-vim.cmd("let R_app = 'radian'")
 vim.cmd("let R_cmd = 'R'")
 vim.cmd("let R_hl_term = 0")
 vim.cmd("let R_args = []")

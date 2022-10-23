@@ -3,11 +3,12 @@
 # BREW -----
 
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-test -r ~/config/fish/config.fish && echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.config/fish/config.fish
+test -r "$HOME/.config/fish/config.fish" && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.config/fish/config.fish"
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.config/fish/config.fish"
 
 # OH MY FISH -----
 
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > install
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | bash 
 fish install --path=~/.local/share/omf --config=~/.config/omf --yes
 omf install agnoster
 omf theme agnoster
@@ -18,13 +19,15 @@ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
 # FISH CONFIG -----
 
-echo alias ls="exa --icons" >> ~/.config/fish/config.fish
-echo alias cat="bat" >> ~/.config/fish/config.fish
+echo 'alias ls="exa --icons"' >> ~/.config/fish/config.fish
+echo 'alias cat="bat"' >> ~/.config/fish/config.fish
+echo 'alias radian="/home/$USER/mambaforge/bin/radian"'
+echo 'alias r="/home/$USER/mambaforge/bin/radian"'
 
 # NVM -----
 
 fisher install jorgebucaran/nvm.fish
-echo "nvm use 16 &> /dev/null"  >> "$HOME/.config/fish/config.fish"
+echo 'nvm use 16 &> /dev/null'  >> "$HOME/.config/fish/config.fish"
 
 # LVIM PATH -----
 

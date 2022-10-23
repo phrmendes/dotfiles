@@ -224,33 +224,6 @@ lvim.plugins = {
     "metakirby5/codi.vim",
     cmd = "Codi",
   },
-  -- indentation guides for every line
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    config = function()
-      local opts = {
-        char = "▏",
-        filetype_exclude = {
-          "alpha",
-          "help",
-          "terminal",
-          "dashboard",
-          "lspinfo",
-          "lsp-installer",
-          "mason",
-        },
-        buftype_exclude = { "terminal" },
-        bufname_exclude = { "config.lua" },
-
-        show_trailing_blankline_indent = false,
-        show_first_indent_level = false,
-        -- use_treesitter = false,
-      }
-
-      require("indent_blankline").setup(opts)
-    end
-  },
   -- highlight and search for todo comments
   {
     "folke/todo-comments.nvim",

@@ -3,7 +3,6 @@
 # VARIABLES -------------------------------------------------------------------------------------------------------------
 
 DEB_URLS_FILE="deb_urls.txt"
-PROGRAMS_FILE="programs.txt"
 DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
 DIR_APPIMAGES="$HOME/appimages"
 PPAS_URLS_FILE="ppas.txt"
@@ -18,7 +17,7 @@ NO_COLOR="\e[0m"
 required_programs () {
     local apps 
     
-    apps=(wget git zip unzip gzip curl file build-essential procps)
+    apps=(flatpak wget git  zip unzip gzip curl file build-essential procps csvkit)
     
     for app in "${apps[@]}"; do
         if [[ ! -x $(which "$app") ]]; then
@@ -60,6 +59,7 @@ adding_ppas () {
     for ppa in "${PPAS[@]}"; do
         sudo add-apt-repository "$ppa" -y &> "/dev/null"
     done
+    wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash &> "/dev/null"
     echo -e "${GREEN}[DONE] - PPAs added.${NO_COLOR}"
 }
 
@@ -80,6 +80,19 @@ mamba () {
     conda config --set auto_activate_base false
     conda init fish
     echo -e "${GREEN}[DONE] - Mamba installed.${NO_COLOR}" 
+}
+
+remove_installed () {
+    local apps_to_uninstall
+
+    apps_to_uninstall=$(apt list --installed | grep libreoffice | cut -d "/" -f 1)
+    apps_to_uninstall+=(geary gnome-calendar gnome-contacts)
+
+    for app in "${apps_to_uninstall[@]}"; do
+        echo -e "${BLUE}[IN PROGRESS] - Removing $app...${NO_COLOR}"
+        sudo apt remove "$app" -y &> "/dev/null"
+        echo -e "${GREEN}[DONE] - $app removed.${NO_COLOR}"
+    done
 }
 
 # SYSTEM JOBS ----------------------------------------------------------------------------------------------------------
@@ -110,6 +123,13 @@ reading_programs_file () {
     PROGRAMS_FLATPAK=()
     PROGRAMS_BREW=()
     PROGRAMS_MAMBA=()
+    local apps
+
+    if [[ $pc_or_laptop == "pc" ]]; then
+        apps=$(csvsql --query "select program,package_manager from programs" ./programs.csv | tr -s ' ' '\n')
+    else
+        apps=$(csvsql --query "select program,package_manager from programs where where_install='both'" ./programs.csv | tr -s ' ' '\n')
+    fi
 
     while IFS= read -r line; do
         local str_1
@@ -127,7 +147,7 @@ reading_programs_file () {
         else
             PROGRAMS_BREW+=("$str_1")
         fi
-    done < $PROGRAMS_FILE 
+    done < "$apps"
 }
 
 reading_urls_deb_file () {
@@ -218,19 +238,6 @@ install_python_packages () {
     echo -e "${GREEN}[DONE] - Python packages installed.${NO_COLOR}"
 }
 
-remove_installed () {
-    local apps_to_uninstall
-
-    apps_to_uninstall=$(apt list --installed | grep libreoffice | cut -d "/" -f 1)
-    apps_to_uninstall+=( geary gnome-calendar gnome-contacts)
-
-    for app in "${apps_to_uninstall[@]}"; do
-        echo -e "${BLUE}[IN PROGRESS] - Removing $app...${NO_COLOR}"
-        sudo apt remove "$app" -y &> "/dev/null"
-        echo -e "${GREEN}[DONE] - $app removed.${NO_COLOR}"
-    done
-}
-
 install_docker () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Docker...${NO_COLOR}"
     sudo mkdir -p /etc/apt/keyrings
@@ -261,15 +268,27 @@ setup_fish () {
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 
-setup_neovim_vscode () {
+setup_vscode () {
+    echo -e "${BLUE}[IN PROGRESS] - Setting up VSCode...${NO_COLOR}"
+    cd /tmp && wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    sudo apt install *.deb
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
     mkdir -p "$HOME"/.config/Code/User
     cp ./init.vim "$HOME"/.config/nvim
     cp *.json "$HOME"/.config/Code/User
+    echo -e "${GREEN}[DONE] - VSCode set up.${NO_COLOR}" 
+}
+
+setup_lunarvim () {
+    echo -e "${BLUE}[IN PROGRESS] - Setting up LunarVim...${NO_COLOR}" 
+    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+    echo -e "${GREEN}[DONE] - LunarVim set up.${NO_COLOR}"
 }
 
 # EXECUTION ------------------------------------------------------------------------------------------------------------
+
+read -r -p "PC or laptop? (p/l): " pc_or_laptop
 
 required_programs
 remove_locks
@@ -278,24 +297,34 @@ reading_ppas_file
 adding_ppas
 att_repos
 upgrade
+remove_installed
 homebrew
 mamba
-remove_installed
 reading_programs_file
 reading_urls_deb_file
 reading_appimage_file
 download_appimage
+download_deb
 install_deb
 install_apt
-install_flatpak
 install_brew
-install_docker
-install_R_packages
+
+if [[ $pc_or_laptop == "l" ]]; then
+    setup_lunarvim
+else
+    install_flatpak
+    install_docker
+    setup_vscode
+fi
+
 install_python_packages
 setup_fonts
-setup_fish
-setup_neovim_vscode
 clean
+
+read -r -p "Install R packages? (y/n): " install_r
+if [[ $install_r == "y" ]]; then install_R_packages; fi
+
+setup_fish
 
 sudo rm -r "$DIR_DOWNLOAD"
 

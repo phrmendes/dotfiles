@@ -828,12 +828,11 @@
         },
     },
     "github.copilot.enable": {
-        "*": true,
+        "*": false,
         "yaml": false,
         "plaintext": true,
         "markdown": true
     },
-    "editor.minimap.enabled": false,
     "quarto.mathjax.theme": "dark",
     "vscode-neovim.neovimExecutablePaths.win32": "C:\\Users\\prochame\\scoop\\shims\\nvim.exe",
     "settingsSync.ignoredExtensions": [
@@ -843,4 +842,10 @@
         "hashicorp.terraform"
     ],
     "workbench.activityBar.visible": false,
+    "editor.minimap.enabled": false,
+    "[lua]": {
+        "editor.defaultFormatter": "sumneko.lua"
+    },
+    "Lua.telemetry.enable": true,
+    "workbench.startupEditor": "none",
 }

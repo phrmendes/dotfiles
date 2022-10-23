@@ -232,7 +232,7 @@ lvim.plugins = {
       require("todo-comments").setup()
     end,
   },
-  -- r packages for chromebook
+  -- r packages
   { "jalvesaq/Nvim-R" },
   { "quarto-dev/quarto-nvim" }
 }

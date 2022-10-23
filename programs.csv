@@ -48,7 +48,6 @@ gcc,brew,both
 fish,brew,both
 rust,brew,both
 golang,brew,both
-nvm,brew,both
 bat,brew,both
 btop,brew,both
 gh,brew,both

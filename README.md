@@ -1,2 +1,2 @@
-# bkp_popOS
-Backup script for my personal computer.
+# bkps
+Backup script for my personal computers.

@@ -49,10 +49,10 @@ invisible(
     packages,
     function(i) {
       if (i %in% rownames(installed.packages()) == FALSE) {
-        cat(paste0("\n[INFO] - Instalando ", i, "\n"))
+        cat(paste0("\n[INFO] - Installing ", i, "\n"))
         install.packages(i)
       } else {
-        cat(paste0("\n[INFO] - Pacote ", i, " já instalado.\n"))
+        cat(paste0("\n[INFO] - Package ", i, " already installed.\n"))
       }
     }
   )

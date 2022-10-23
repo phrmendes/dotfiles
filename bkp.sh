@@ -272,7 +272,7 @@ setup_fish () {
 setup_vscode () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up VSCode...${NO_COLOR}"
     wget -O /tmp/vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" &> "/dev/null"
-    sudo apt install /tmp/*.deb
+    sudo apt install /tmp/vscode.deb
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
     mkdir -p "$HOME"/.config/Code/User

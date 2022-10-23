@@ -293,6 +293,7 @@ setup_lunarvim () {
 
 read -r -p "PC or laptop? (pc/lp): " pc_or_laptop
 
+att_repos
 required_programs
 remove_locks
 add_i386_architecture

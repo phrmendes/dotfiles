@@ -47,11 +47,10 @@ add_i386_architecture () {
 
 homebrew () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Homebrew...${NO_COLOR}"
-    yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
-    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
-    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+    test -r "$HOME/.bash_profile" && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bash_profile"
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bashrc"
     echo -e "${GREEN}[DONE] - Homebrew installed.${NO_COLOR}"
 }
 
@@ -69,16 +68,17 @@ adding_ppas () {
         sudo add-apt-repository "$ppa" -y 
     done
     wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash 
+    att_repos
     echo -e "${GREEN}[DONE] - PPAs added.${NO_COLOR}"
 }
 
 mamba () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Mamba...${NO_COLOR}"
-    wget -O /tmp/mambaforge.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" 
+    wget -O /tmp/mambaforge.sh "https://github.com/"/home/$USER/mambaforge/condabin/conda"-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" 
     sudo chmod +x /tmp/mambaforge.sh 
     bash /tmp/mambaforge.sh
     source "$HOME/.bashrc"
-    conda config --set auto_activate_base false
+    "/home/$USER/mambaforge/condabin/conda" config --set auto_activate_base false
     echo -e "${GREEN}[DONE] - Mamba installed.${NO_COLOR}" 
 }
 
@@ -234,7 +234,7 @@ install_R_packages () {
 
 install_python_packages () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Python packages...${NO_COLOR}"
-    mamba install -y "${PROGRAMS_MAMBA[@]}" 
+    /home/phrmendes/mambaforge/condabin/mamba install "${PROGRAMS_MAMBA[@]}" -y 
     echo -e "${GREEN}[DONE] - Python packages installed.${NO_COLOR}"
 }
 
@@ -254,18 +254,17 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /de
 setup_fonts () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up fonts...${NO_COLOR}"
     mkdir -p "$HOME"/.local/share/fonts/NerdFonts
-    unzip NerdFonts.zip
-    cp -r NerdFonts/* "$HOME"/.local/share/fonts/NerdFonts
-    fc-cache -f -v
-    sudo rm -r NerdFonts
+    unzip /tmp/NerdFonts.zip
+    cp -r /tmp/NerdFonts/* "$HOME"/.local/share/fonts/NerdFonts
+    fc-cache -f -v "$HOME"/.local/share/fonts/
     echo -e "${GREEN}[DONE] - Fonts set up.${NO_COLOR}"
 }
 
 setup_fish () {
     echo -e "${BLUE}[IN PROGRESS] - Installing fish...${NO_COLOR}"
-    conda init fish
-    chmod +x ./fish_setup.fish
-    ./fish_setup.fish
+    "/home/$USER/mambaforge/condabin/conda" init fish
+    chmod +x "$MAIN_DIR/fish_setup.fish"
+    "/home/linuxbrew/.linuxbrew/bin/fish" "$MAIN_DIR/fish_setup.fish"
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 
@@ -283,6 +282,14 @@ setup_vscode () {
 
 setup_lunarvim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up LunarVim...${NO_COLOR}" 
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.bashrc"
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> "$HOME/.bashrc"
+    echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> "$HOME/.bashrc"
+    source "$HOME/.bashrc"
+    nvm install 16
+    echo 'nvm use 16 &> /dev/null' >> "$HOME/.bashrc"
+    source "$HOME/.bashrc"
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
     mkdir -p "$HOME"/.config/lvim
     cp "$MAIN_DIR"/config.lua "$HOME"/.config/lvim

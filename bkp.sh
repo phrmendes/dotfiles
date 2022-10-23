@@ -124,18 +124,18 @@ reading_programs_file () {
     PROGRAMS_FLATPAK=()
     PROGRAMS_BREW=()
     PROGRAMS_MAMBA=()
-    local apps
+    local file_apps="/tmp/apps.txt"
 
     if [[ $pc_or_laptop == "pc" ]]; then
-        apps=$(csvsql --query "select program,package_manager from programs" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n' | tail -n +2)
+        csvsql --query "select program,package_manager from programs" "$MAIN_DIR"/programs.csv | tail -n +2 | xargs echo | tr ' ' '\n' > "$file_apps" 
     else
-        apps=$(csvsql --query "select program,package_manager from programs where where_install='both'" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n' | tail -n +2)
+        csvsql --query "select program,package_manager from programs where where_install='both'" "$MAIN_DIR"/programs.csv | tail -n +2 | xargs echo | tr ' ' '\n' > "$file_apps"
     fi
 
     while IFS= read -r line; do
         local str_1
         local str_2
-        
+
         str_1=$(echo -e "${line%%,*}")
         str_2=$(echo -e "${line##*,}")
 
@@ -148,7 +148,7 @@ reading_programs_file () {
         else
             PROGRAMS_BREW+=("$str_1")
         fi
-    done < "$apps"
+    done < "$file_apps"
 }
 
 reading_urls_deb_file () {

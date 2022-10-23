@@ -63,4 +63,4 @@ procs,brew,both
 exa,brew,both
 shellcheck,brew,both
 neovim,brew,both
-mamba,radian,both
+radian,mamba,both

@@ -74,7 +74,7 @@ adding_ppas () {
 
 mamba () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Mamba...${NO_COLOR}"
-    wget -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" /tmp/mambaforge.sh
+    wget -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" /tmp/mambaforge.sh &> "/dev/null"
     sudo chmod +x /tmp/mambaforge.sh 
     bash /tmp/mambaforge.sh
     source "$HOME/.bashrc"
@@ -285,7 +285,7 @@ setup_lunarvim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up LunarVim...${NO_COLOR}" 
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
     mkdir -p "$HOME"/.config/lvim
-    cp ./config.lua "$HOME"/.config/lvim
+    cp "$MAIN_DIR"/config.lua "$HOME"/.config/lvim
     echo -e "${GREEN}[DONE] - LunarVim set up.${NO_COLOR}"
 }
 

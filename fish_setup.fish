@@ -3,7 +3,7 @@
 # BREW -----
 
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-test -r ~/config/fish/config.fish && echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/config/fish/config.fish
+test -r ~/config/fish/config.fish && echo -e "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.config/fish/config.fish
 
 # OH MY FISH -----
 
@@ -18,8 +18,8 @@ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
 # FISH CONFIG -----
 
-alias ls="exa --icons"
-alias cat="bat"
+echo alias ls="exa --icons" >> ~/.config/fish/config.fish
+echo alias cat="bat" >> ~/.config/fish/config.fish
 
 # NVM -----
 

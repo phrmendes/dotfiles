@@ -283,6 +283,8 @@ setup_vscode () {
 setup_lunarvim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up LunarVim...${NO_COLOR}" 
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+    mkdir -p "$HOME"/.config/lvim
+    cp ./config.lua "$HOME"/.config/lvim
     echo -e "${GREEN}[DONE] - LunarVim set up.${NO_COLOR}"
 }
 

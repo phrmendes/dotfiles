@@ -127,9 +127,9 @@ reading_programs_file () {
     local apps
 
     if [[ $pc_or_laptop == "pc" ]]; then
-        apps=$(csvsql --query "select program,package_manager from programs" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n')
+        apps=$(csvsql --query "select program,package_manager from programs" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n' | tail -n +2)
     else
-        apps=$(csvsql --query "select program,package_manager from programs where where_install='both'" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n')
+        apps=$(csvsql --query "select program,package_manager from programs where where_install='both'" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n' | tail -n +2)
     fi
 
     while IFS= read -r line; do

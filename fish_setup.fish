@@ -24,7 +24,7 @@ echo alias cat="bat" >> ~/.config/fish/config.fish
 # NVM -----
 
 fisher install jorgebucaran/nvm.fish
-echo "nvm use 16 &> /dev/null"  >> $HOME/.config/fish/config.fish
+echo "nvm use 16 &> /dev/null"  >> "$HOME/.config/fish/config.fish"
 
 # LVIM PATH -----
 

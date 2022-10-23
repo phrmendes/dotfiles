@@ -79,7 +79,6 @@ mamba () {
     bash /tmp/mambaforge.sh
     source "$HOME/.bashrc"
     conda config --set auto_activate_base false
-    conda init fish
     echo -e "${GREEN}[DONE] - Mamba installed.${NO_COLOR}" 
 }
 
@@ -264,8 +263,9 @@ setup_fonts () {
 
 setup_fish () {
     echo -e "${BLUE}[IN PROGRESS] - Installing fish...${NO_COLOR}"
+    conda init fish
     chmod +x ./fish_setup.fish
-    fish fish_setup.fish
+    ./fish_setup.fish
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 

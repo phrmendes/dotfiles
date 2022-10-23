@@ -24,7 +24,7 @@ required_programs () {
         if [[ ! -x $(which "$app") ]]; then
             echo -e "${RED}[ERROR] - $app not installed.${NO_COLOR}"
             echo -e "${BLUE}[IN PROGRESS] - Installing $app...${NO_COLOR}"
-            sudo apt install "$app" -y &> "/dev/null"
+            sudo apt install "$app" -y 
             echo -e "${GREEN}[DONE] - $app installed."
         else
             echo -e "${GREEN}[DONE] - $app already installed."
@@ -66,15 +66,15 @@ reading_ppas_file () {
 adding_ppas () {
     echo -e "${BLUE}[IN PROGRESS] - Adding PPAs...${NO_COLOR}"
     for ppa in "${PPAS[@]}"; do
-        sudo add-apt-repository "$ppa" -y &> "/dev/null"
+        sudo add-apt-repository "$ppa" -y 
     done
-    wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash &> "/dev/null"
+    wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash 
     echo -e "${GREEN}[DONE] - PPAs added.${NO_COLOR}"
 }
 
 mamba () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Mamba...${NO_COLOR}"
-    wget -O /tmp/mambaforge.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" &> "/dev/null"
+    wget -O /tmp/mambaforge.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" 
     sudo chmod +x /tmp/mambaforge.sh 
     bash /tmp/mambaforge.sh
     source "$HOME/.bashrc"
@@ -91,7 +91,7 @@ remove_installed () {
 
     for app in "${apps_to_uninstall[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Removing $app...${NO_COLOR}"
-        sudo apt remove "$app" -y &> "/dev/null"
+        sudo apt remove "$app" -y 
         echo -e "${GREEN}[DONE] - $app removed.${NO_COLOR}"
     done
 }
@@ -100,20 +100,20 @@ remove_installed () {
 
 att_repos () {
     echo -e "${BLUE}[IN PROGRESS] - Updating repos...${NO_COLOR}"
-    sudo apt update -y &> "/dev/null"
+    sudo apt update -y 
     echo -e "${GREEN}[DONE] - Repos updated.${NO_COLOR}"
 }
 
 upgrade () {
     echo -e "${BLUE}[IN PROGRESS] - Upgrading system...${NO_COLOR}"
-    sudo apt dist-upgrade -y &> "/dev/null" 
+    sudo apt dist-upgrade -y  
     echo -e "${GREEN}[DONE] - System upgraded.${NO_COLOR}"
 }
 
 clean () {
     echo -e "${BLUE}[IN PROGRESS] - Cleaning system...${NO_COLOR}"
-    sudo apt autoclean &> "/dev/null"
-    sudo apt autoremove -y &> "/dev/null"
+    sudo apt autoclean 
+    sudo apt autoremove -y 
     echo -e "${GREEN}[DONE] - System cleaned.${NO_COLOR}"
 }
 
@@ -173,7 +173,7 @@ download_deb () {
     mkdir "$DIR_DOWNLOAD"
     echo -e "${BLUE}[IN PROGRESS] - Downloading .deb packages...${NO_COLOR}"
     for url in "${PROGRAMS_DEB[@]}"; do
-        wget -c "$url" -P "$DIR_DOWNLOAD" &> "/dev/null"
+        wget -c "$url" -P "$DIR_DOWNLOAD" 
     done
     echo -e "${GREEN}[DONE] - .deb packages downloaded.${NO_COLOR}"
 }
@@ -182,7 +182,7 @@ download_appimage () {
     mkdir "$DIR_APPIMAGES"
     echo -e "${BLUE}[IN PROGRESS] - Downloading Appimages...${NO_COLOR}"
     for url in "${PROGRAMS_APPIMAGE[@]}"; do
-        wget -c "$url" -P "$DIR_APPIMAGES" &> "/dev/null"
+        wget -c "$url" -P "$DIR_APPIMAGES" 
     done
     echo -e "${GREEN}[DONE] - Appimages downloaded.${NO_COLOR}"
 }
@@ -190,16 +190,16 @@ download_appimage () {
 install_deb () {
     download_deb
     echo -e "${BLUE}[IN PROGRESS] - Installing .deb packages...${NO_COLOR}"
-    sudo dpkg -i "$DIR_DOWNLOAD"/*.deb &> "/dev/null"
+    sudo dpkg -i "$DIR_DOWNLOAD"/*.deb 
     echo -e "${BLUE}[IN PROGRESS] - Installing dependencies...${NO_COLOR}"
-    sudo apt -f install -y &> "/dev/null"
+    sudo apt -f install -y 
     echo -e "${GREEN}[DONE] - .deb packages installed.${NO_COLOR}"
 }
 
 install_apt () {
     for program in "${PROGRAMS_APT[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Installing $program (apt)...${NO_COLOR}"
-        sudo apt install "$program" -y &> "/dev/null"
+        sudo apt install "$program" -y 
         echo -e "${GREEN}[DONE] - $program installed.${NO_COLOR}" 
     done
 }
@@ -207,7 +207,7 @@ install_apt () {
 install_flatpak () {
     for program in "${PROGRAMS_FLATPAK[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Installing $program (flatpak)...${NO_COLOR}"
-        flatpak install "$program" -y &> "/dev/null"
+        flatpak install "$program" -y 
         echo -e "${GREEN}[DONE] - $program installed.${NO_COLOR}"
     done
 }
@@ -215,19 +215,19 @@ install_flatpak () {
 install_brew () {
     for program in "${PROGRAMS_BREW[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Installing $program (brew)...${NO_COLOR}"
-        brew install "$program" &> "/dev/null"
+        brew install "$program" 
         echo -e "${GREEN}[DONE] - $program installed.${NO_COLOR}"    
     done
 }
 
 install_R_packages () {
     echo -e "${BLUE}[IN PROGRESS] - Installing R dependencies...${NO_COLOR}"
-    sudo apt update -qq &> "/dev/null"
-    sudo apt install --no-install-recommends software-properties-common dirmngr &> "/dev/null"
+    sudo apt update -qq 
+    sudo apt install --no-install-recommends software-properties-common dirmngr 
     wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-    sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" &> "/dev/null"
+    sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" 
     echo -e "${BLUE}[IN PROGRESS] - Installing R...${NO_COLOR}"
-    sudo apt install r-base r-base-dev -y &> "/dev/null"
+    sudo apt install r-base r-base-dev -y 
     echo -e "${BLUE}[IN PROGRESS] - Installing R packages...${NO_COLOR}"
     Rscript r_packages.R
     echo -e "${GREEN}[DONE] - R packages installed.${NO_COLOR}"
@@ -235,7 +235,7 @@ install_R_packages () {
 
 install_python_packages () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Python packages...${NO_COLOR}"
-    mamba install -y "${PROGRAMS_MAMBA[@]}" &> "/dev/null"
+    mamba install -y "${PROGRAMS_MAMBA[@]}" 
     echo -e "${GREEN}[DONE] - Python packages installed.${NO_COLOR}"
 }
 
@@ -246,7 +246,7 @@ install_docker () {
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /dev/null
     att_repos
-    sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y &> "/dev/null"
+    sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y 
     sudo groupadd docker
     sudo usermod -aG docker phrmendes 
     echo -e "${GREEN}[DONE] - Docker installed.${NO_COLOR}"
@@ -271,7 +271,7 @@ setup_fish () {
 
 setup_vscode () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up VSCode...${NO_COLOR}"
-    wget -O /tmp/vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" &> "/dev/null"
+    wget -O /tmp/vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" 
     sudo apt install /tmp/vscode.deb
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim

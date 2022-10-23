@@ -3,14 +3,15 @@
 # VARIABLES -------------------------------------------------------------------------------------------------------------
 
 DEB_URLS_FILE="deb_urls.txt"
-DIR_DOWNLOAD="$HOME/Downloads/deb_packages"
+DIR_DOWNLOAD="/tmp/deb_packages"
 DIR_APPIMAGES="$HOME/appimages"
-PPAS_URLS_FILE="ppas.txt"
-APPIMAGES_FILE="appimages.txt"
 RED="\e[1;31m"
 BLUE="\e[1;34m"
 GREEN="\e[1;32m"
 NO_COLOR="\e[0m"
+MAIN_DIR="$(pwd)"
+PPAS_URLS_FILE="$MAIN_DIR/ppas.txt"
+APPIMAGES_FILE="$MAIN_DIR/appimages.txt"
 
 # REQUIREMENTS ---------------------------------------------------------------------------------------------------------
 
@@ -54,6 +55,14 @@ homebrew () {
     echo -e "${GREEN}[DONE] - Homebrew installed.${NO_COLOR}"
 }
 
+reading_ppas_file () {
+    PPAS=()
+
+    while IFS= read -r line; do
+        PPAS+=("$line")
+    done < "$PPAS_URLS_FILE"
+}
+
 adding_ppas () {
     echo -e "${BLUE}[IN PROGRESS] - Adding PPAs...${NO_COLOR}"
     for ppa in "${PPAS[@]}"; do
@@ -63,19 +72,11 @@ adding_ppas () {
     echo -e "${GREEN}[DONE] - PPAs added.${NO_COLOR}"
 }
 
-reading_ppas_file () {
-    PPAS=()
-
-    while IFS= read -r line; do
-        PPAS+=("$line")
-    done < $PPAS_URLS_FILE
-}
-
 mamba () {
     echo -e "${BLUE}[IN PROGRESS] - Installing Mamba...${NO_COLOR}"
-    cd /tmp && wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-    sudo chmod +x Mambaforge-Linux-x86_64.sh 
-    ./Mambaforge-Linux-x86_64.sh
+    wget -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" /tmp/mambaforge.sh
+    sudo chmod +x /tmp/mambaforge.sh 
+    bash /tmp/mambaforge.sh
     source "$HOME/.bashrc"
     conda config --set auto_activate_base false
     conda init fish
@@ -126,9 +127,9 @@ reading_programs_file () {
     local apps
 
     if [[ $pc_or_laptop == "pc" ]]; then
-        apps=$(csvsql --query "select program,package_manager from programs" ./programs.csv | tr -s ' ' '\n')
+        apps=$(csvsql --query "select program,package_manager from programs" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n')
     else
-        apps=$(csvsql --query "select program,package_manager from programs where where_install='both'" ./programs.csv | tr -s ' ' '\n')
+        apps=$(csvsql --query "select program,package_manager from programs where where_install='both'" "$MAIN_DIR"/programs.csv | tr -s ' ' '\n')
     fi
 
     while IFS= read -r line; do
@@ -155,7 +156,7 @@ reading_urls_deb_file () {
 
     while IFS= read -r line; do
         PROGRAMS_DEB+=("$line")
-    done < $DEB_URLS_FILE
+    done < "$DEB_URLS_FILE"
 }
 
 reading_appimage_file () {
@@ -163,7 +164,7 @@ reading_appimage_file () {
 
     while IFS= read -r line; do
         APPIMAGE+=("$line")
-    done < $APPIMAGES_FILE
+    done < "$APPIMAGES_FILE"
 }
 
 # INSTALLING PROGRAMS --------------------------------------------------------------------------------------------------
@@ -270,13 +271,13 @@ setup_fish () {
 
 setup_vscode () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up VSCode...${NO_COLOR}"
-    cd /tmp && wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-    sudo apt install *.deb
+    wget -O "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" /tmp/vscode.deb &> "/dev/null"
+    sudo apt install /tmp/*.deb
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
     mkdir -p "$HOME"/.config/Code/User
-    cp ./init.vim "$HOME"/.config/nvim
-    cp *.json "$HOME"/.config/Code/User
+    cp "$MAIN_DIR"/init.vim "$HOME"/.config/nvim
+    cp "$MAIN_DIR"/*.json "$HOME"/.config/Code/User
     echo -e "${GREEN}[DONE] - VSCode set up.${NO_COLOR}" 
 }
 
@@ -327,7 +328,5 @@ read -r -p "Install R packages? (y/n): " install_r
 if [[ $install_r == "y" ]]; then install_R_packages; fi
 
 setup_fish
-
-sudo rm -r "$DIR_DOWNLOAD"
 
 echo -e "${GREEN}[DONE] - Setup finished.${NO_COLOR}"

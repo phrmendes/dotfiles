@@ -291,7 +291,7 @@ setup_lunarvim () {
 
 # EXECUTION ------------------------------------------------------------------------------------------------------------
 
-read -r -p "PC or laptop? (p/l): " pc_or_laptop
+read -r -p "PC or laptop? (pc/lp): " pc_or_laptop
 
 required_programs
 remove_locks
@@ -312,7 +312,7 @@ install_deb
 install_apt
 install_brew
 
-if [[ $pc_or_laptop == "l" ]]; then
+if [[ $pc_or_laptop == "lp" ]]; then
     setup_lunarvim
 else
     install_flatpak

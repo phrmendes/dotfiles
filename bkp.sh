@@ -193,7 +193,10 @@ install_R_packages () {
     wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
     sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" 
     echo -e "${BLUE}[IN PROGRESS] - Installing R...${NO_COLOR}"
-    sudo apt install r-base r-base-dev -y 
+    sudo apt install r-base r-base-dev -y
+    echo -e "${BLUE}[IN PROGRESS] - Installing libssl1.1...${NO_COLOR}"
+    wget -O /tmp/http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
+    sudo dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
     echo -e "${BLUE}[IN PROGRESS] - Installing R packages...${NO_COLOR}"
     Rscript r_packages.R
     echo -e "${GREEN}[DONE] - R packages installed.${NO_COLOR}"

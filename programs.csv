@@ -70,3 +70,4 @@ harfbuzz,brew,both
 fribidi,brew,both
 libtiff,brew,both
 radian,mamba,both
+visidata,mamba,both

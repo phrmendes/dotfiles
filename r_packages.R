@@ -21,22 +21,28 @@ cat(
   5. dev
   6. parallel
   7. stan
-  8. all"
+  8. all\n
+  Enter packages bundles to install (without white space): "
 )
 
-choosed_packages <- readline(
-    prompt = "Enter packages bundles to install (without white space): "
-  ) |>
+choosed_packages <- readLines(con = "stdin", n = 1) |>
   strsplit(split = ",") |>
   unlist()
 
 # requirements ----
 
-if (!require("stringi")) install.packages(
-  "stringi",
-  dependencies = TRUE,
-  INSTALL_opts = "--no-lock",
-  configure.args = "--disable-pkg-config"
+invisible(
+  lapply(
+    c("stringi", "textshaping"),
+    function(i) {
+      if (!require(i)) install.packages(
+        i,
+        dependencies = TRUE,
+        INSTALL_opts = "--no-lock",
+        configure.args = "--disable-pkg-config"
+      )
+    }
+  )
 )
 
 if (!require("rjson")) install.packages("jsonlite")
@@ -45,7 +51,7 @@ if (!require("rjson")) install.packages("jsonlite")
 
 packages <- rjson::fromJSON(file = "r_packages.json")
 
-if (choosed_packages == "all") {
+if ("all" %in% choosed_packages) {
   vec_packages <- packages |>
     unlist(use.names = FALSE)
 } else {

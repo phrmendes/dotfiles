@@ -1,0 +1,9 @@
+{
+  "main": ["pacman", "tidyverse", "data.table", "quarto", "renv", "janitor", "markdown", "pbapply", "styler", "lintr", "fs", "distill", "tinytex", "glue", "languageserver", "httpgd", "writexl", "rmarkdown", "shiny", "gh", "reticulate"],
+  "db": ["arrow", "duckdb", "mice"],
+  "geo": ["sf"],
+  "cpp": ["Rcpp", "RcppEigen"],
+  "dev": ["devtools", "usethis", "assertthat", "testthat"],
+  "parallel": ["furrr", "future", "parallel"],
+  "stan": ["rstan", "rstanarm", "brms", "varstan", "bayesforecast", "prophet"]
+}

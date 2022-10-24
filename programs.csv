@@ -61,4 +61,6 @@ procs,brew,both
 exa,brew,both
 shellcheck,brew,both
 neovim,brew,both
+harfbuzz,brew,both
+fribidi,brew,both
 radian,mamba,both

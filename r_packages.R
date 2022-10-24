@@ -45,7 +45,7 @@ invisible(
   )
 )
 
-if (!require("rjson")) install.packages("jsonlite")
+if (!require("rjson")) install.packages("rjson")
 
 # packages ----
 
@@ -67,7 +67,7 @@ invisible(
     function(i) {
       if (!require(i, character.only = TRUE)) {
         cat(paste0("\n[INFO] - Installing ", i, "\n"))
-        install.packages(i)
+        install.packages(i, character.only = TRUE)
       } else {
         cat(paste0("\n[INFO] - Package ", i, " already installed.\n"))
       }

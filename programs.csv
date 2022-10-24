@@ -1,5 +1,4 @@
 program,package_manager,where_install
-appimagelauncher,apt,both
 aspell,apt,both
 aspell-en,apt,both
 aspell-pt-br,apt,both

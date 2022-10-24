@@ -1,5 +1,4 @@
 https://mail.tutanota.com/desktop/tutanota-desktop-linux.AppImage
-https://p-def8.pcloud.com/cBZu1eKrMZMqwjTqZZZmR2Jc7Z2ZZSzRZkZPF7pVZrHZrzZZpRZc5Z6pZopZ9pZApZGFZUJZkJZPpZkzZWTVkVZlMpp5WkQNEkPdDDliygH9YJ2eBe7/pcloud
-https://objects.githubusercontent.com/github-production-release-asset-2e65be/75675698/54842110-b08a-449c-82e8-d5eefdbb3404?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220914T144153Z&X-Amz-Expires=300&X-Amz-Signature=c82c556b66cafd989eeecd3f9fc7b1523e86bf27b0a27f1664c6273a939eabf6&X-Amz-SignedHeaders=host&actor_id=22376151&key_id=0&repo_id=75675698&response-content-disposition=attachment%3B%20filename%3Dstandard-notes-3.23.121-linux-x86_64.AppImage&response-content-type=application%2Foctet-stream
+https://p-def8.pcloud.com/cBZu1eKrMZMqwjTqZZZQfsjc7Z2ZZSzRZkZPF7pVZrHZZBpZpRZc5Z6pZopZ9pZApZGFZUJZkJZPpZkzZWTVkVZ1hISvmguG6jIiLwq2LxbXfUMxLBk/pcloud
 https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/Obsidian-1.0.0.AppImage
 https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-lite-2.2.0-travis995-0f91801-x86_64.AppImage

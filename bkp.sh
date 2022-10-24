@@ -203,7 +203,7 @@ install_R_packages () {
     echo -e "${BLUE}[IN PROGRESS] - Installing R...${NO_COLOR}"
     sudo apt install r-base r-base-dev -y
     echo -e "${BLUE}[IN PROGRESS] - Installing libssl1.1...${NO_COLOR}"
-    wget -O /tmp/http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
+    wget -O /tmp/ http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
     sudo dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
     echo 'alias radian="$HOME/mambaforge/bin/radian"' >> "$HOME/.bashrc"
     echo 'alias r="$HOME/mambaforge/bin/radian"' >> "$HOME/.bashrc"
@@ -281,34 +281,34 @@ setup_lunarvim () {
 
 read -r -p "PC or laptop? (pc/lp): " pc_or_laptop
 
-att_repos
-required_programs
-remove_locks
-add_i386_architecture
-att_repos
-upgrade
-remove_installed
-homebrew
-mamba
+# att_repos
+# required_programs
+# remove_locks
+# add_i386_architecture
+# att_repos
+# upgrade
+# remove_installed
+# homebrew
+# mamba
 reading_programs_file
-download_appimage
-download_deb
-install_deb
-install_apt
+# download_appimage
+# download_deb
+# install_deb
+# install_apt
 install_brew
 
-if [[ $pc_or_laptop == "lp" ]]; then
-    setup_lunarvim
-else
-    install_flatpak
-    install_docker
-    setup_vscode
-fi
+# if [[ $pc_or_laptop == "lp" ]]; then
+#     setup_lunarvim
+# else
+#     install_flatpak
+#     install_docker
+#     setup_vscode
+# fi
 
-install_python_packages
-setup_fonts
-clean
-setup_fish
+# install_python_packages
+# setup_fonts
+# clean
+# setup_fish
 
 read -r -p "Install R packages? (y/n): " install_r
 if [[ $install_r == "y" ]]; then install_R_packages; fi

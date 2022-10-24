@@ -27,6 +27,11 @@ libgeos-dev,apt,both
 libproj-dev,apt,both
 libharfbuzz-dev,apt,both
 libfribidi-dev,apt,both
+libgit2-dev,apt,both
+libfreetype6-dev,apt,both
+libpng-dev,apt,both
+libtiff5-dev,apt,both
+libjpeg-dev,apt,both
 shotwell,apt,pc
 timeshift,apt,pc
 solaar,apt,pc
@@ -63,4 +68,5 @@ shellcheck,brew,both
 neovim,brew,both
 harfbuzz,brew,both
 fribidi,brew,both
+libtiff,brew,both
 radian,mamba,both

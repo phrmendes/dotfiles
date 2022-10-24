@@ -35,7 +35,7 @@ invisible(
   lapply(
     c("stringi", "textshaping"),
     function(i) {
-      if (!require(i)) install.packages(
+      if (!require(i, character.only = TRUE)) install.packages(
         i,
         dependencies = TRUE,
         INSTALL_opts = "--no-lock",
@@ -65,7 +65,7 @@ invisible(
   lapply(
     vec_packages,
     function(i) {
-      if (!(i %in% rownames(installed.packages()))) {
+      if (!require(i, character.only = TRUE)) {
         cat(paste0("\n[INFO] - Installing ", i, "\n"))
         install.packages(i)
       } else {

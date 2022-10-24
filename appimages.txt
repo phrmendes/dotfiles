@@ -1,4 +1,3 @@
 https://mail.tutanota.com/desktop/tutanota-desktop-linux.AppImage
 https://p-def8.pcloud.com/cBZu1eKrMZMqwjTqZZZQfsjc7Z2ZZSzRZkZPF7pVZrHZZBpZpRZc5Z6pZopZ9pZApZGFZUJZkJZPpZkzZWTVkVZ1hISvmguG6jIiLwq2LxbXfUMxLBk/pcloud
 https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/Obsidian-1.0.0.AppImage
-https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-lite-2.2.0-travis995-0f91801-x86_64.AppImage

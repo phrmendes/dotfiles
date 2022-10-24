@@ -3,14 +3,13 @@
 # VARIABLES -------------------------------------------------------------------------------------------------------------
 
 DEB_URLS_FILE="deb_urls.txt"
-DIR_DOWNLOAD="/tmp/deb_packages"
+DIR_DEB="/tmp/deb_packages"
 DIR_APPIMAGES="$HOME/appimages"
 RED="\e[1;31m"
 BLUE="\e[1;34m"
 GREEN="\e[1;32m"
 NO_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
-PPAS_URLS_FILE="$MAIN_DIR/ppas.txt"
 APPIMAGES_FILE="$MAIN_DIR/appimages.txt"
 
 # REQUIREMENTS ---------------------------------------------------------------------------------------------------------
@@ -52,24 +51,6 @@ homebrew () {
     test -r "$HOME/.bash_profile" && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bash_profile"
     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bashrc"
     echo -e "${GREEN}[DONE] - Homebrew installed.${NO_COLOR}"
-}
-
-reading_ppas_file () {
-    PPAS=()
-
-    while IFS= read -r line; do
-        PPAS+=("$line")
-    done < "$PPAS_URLS_FILE"
-}
-
-adding_ppas () {
-    echo -e "${BLUE}[IN PROGRESS] - Adding PPAs...${NO_COLOR}"
-    for ppa in "${PPAS[@]}"; do
-        sudo add-apt-repository "$ppa" -y 
-    done
-    wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash 
-    att_repos
-    echo -e "${GREEN}[DONE] - PPAs added.${NO_COLOR}"
 }
 
 mamba () {
@@ -150,52 +131,38 @@ reading_programs_file () {
     done < "$file_apps"
 }
 
-reading_urls_deb_file () {
-    PROGRAMS_DEB=()
-
-    while IFS= read -r line; do
-        PROGRAMS_DEB+=("$line")
-    done < "$DEB_URLS_FILE"
-}
-
-reading_appimage_file () {
-    PROGRAMS_APPIMAGE=()
-
-    while IFS= read -r line; do
-        APPIMAGE+=("$line")
-    done < "$APPIMAGES_FILE"
-}
-
 # INSTALLING PROGRAMS --------------------------------------------------------------------------------------------------
 
 download_deb () {
-    mkdir "$DIR_DOWNLOAD"
+    mkdir "$DIR_DEB"
     echo -e "${BLUE}[IN PROGRESS] - Downloading .deb packages...${NO_COLOR}"
-    for url in "${PROGRAMS_DEB[@]}"; do
-        wget -c "$url" -P "$DIR_DOWNLOAD" 
-    done
+    while IFS= read -r line; do
+        wget -c "$line" -P "$DIR_DEB" 
+    done < "$DEB_URLS_FILE"
     echo -e "${GREEN}[DONE] - .deb packages downloaded.${NO_COLOR}"
 }
 
 download_appimage () {
     mkdir "$DIR_APPIMAGES"
     echo -e "${BLUE}[IN PROGRESS] - Downloading Appimages...${NO_COLOR}"
-    for url in "${PROGRAMS_APPIMAGE[@]}"; do
-        wget -c "$url" -P "$DIR_APPIMAGES" 
-    done
+    while IFS= read -r line; do
+        wget -c "$line" -P "$DIR_APPIMAGES" 
+    done < "$APPIMAGES_FILE"
     echo -e "${GREEN}[DONE] - Appimages downloaded.${NO_COLOR}"
 }
 
 install_deb () {
     download_deb
     echo -e "${BLUE}[IN PROGRESS] - Installing .deb packages...${NO_COLOR}"
-    sudo dpkg -i "$DIR_DOWNLOAD"/*.deb 
+    sudo apt install "$DIR_DEB"/*.deb 
     echo -e "${BLUE}[IN PROGRESS] - Installing dependencies...${NO_COLOR}"
     sudo apt -f install -y 
     echo -e "${GREEN}[DONE] - .deb packages installed.${NO_COLOR}"
 }
 
 install_apt () {
+    wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash 
+    att_repos
     for program in "${PROGRAMS_APT[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Installing $program (apt)...${NO_COLOR}"
         sudo apt install "$program" -y 
@@ -254,8 +221,8 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /de
 setup_fonts () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up fonts...${NO_COLOR}"
     mkdir -p "$HOME"/.local/share/fonts/NerdFonts
-    unzip /tmp/NerdFonts.zip
-    cp -r /tmp/NerdFonts/* "$HOME"/.local/share/fonts/NerdFonts
+    unzip -d "/tmp/NerdFonts" "$MAIN_DIR/NerdFonts.zip"
+    cp -r /tmp/NerdFonts/* "$HOME/.local/share/fonts/NerdFonts"
     fc-cache -f -v "$HOME"/.local/share/fonts/
     echo -e "${GREEN}[DONE] - Fonts set up.${NO_COLOR}"
 }
@@ -304,16 +271,12 @@ att_repos
 required_programs
 remove_locks
 add_i386_architecture
-reading_ppas_file
-adding_ppas
 att_repos
 upgrade
 remove_installed
 homebrew
 mamba
 reading_programs_file
-reading_urls_deb_file
-reading_appimage_file
 download_appimage
 download_deb
 install_deb

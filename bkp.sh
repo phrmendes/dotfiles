@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-# ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-# ██░▄▄▀█░▄▄▀██░▄▄▀██░█▀▄██░██░██░▄▄░████░▄▄▄░██░▄▄▀██░▄▄▀█▄░▄██░▄▄░█▄▄░▄▄
-# ██░▄▄▀█░▀▀░██░█████░▄▀███░██░██░▀▀░████▄▄▄▀▀██░█████░▀▀▄██░███░▀▀░███░██
-# ██░▀▀░█░██░██░▀▀▄██░██░██▄▀▀▄██░███████░▀▀▀░██░▀▀▄██░██░█▀░▀██░██████░██
-# ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+############################################################################
+# ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ #
+# ██░▄▄▀█░▄▄▀██░▄▄▀██░█▀▄██░██░██░▄▄░████░▄▄▄░██░▄▄▀██░▄▄▀█▄░▄██░▄▄░█▄▄░▄▄ #
+# ██░▄▄▀█░▀▀░██░█████░▄▀███░██░██░▀▀░████▄▄▄▀▀██░█████░▀▀▄██░███░▀▀░███░██ #
+# ██░▀▀░█░██░██░▀▀▄██░██░██▄▀▀▄██░███████░▀▀▀░██░▀▀▄██░██░█▀░▀██░██████░██ #
+# ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ # 
+############################################################################
 
 # VARIABLES -------------------------------------------------------------------------------------------------------------
 
@@ -65,7 +67,7 @@ mamba () {
     sudo chmod +x /tmp/mambaforge.sh 
     bash /tmp/mambaforge.sh
     source "$HOME/.bashrc"
-    "/home/$USER/mambaforge/condabin/conda" config --set auto_activate_base false
+    "$HOME/mambaforge/condabin/conda" config --set auto_activate_base false
     echo -e "${GREEN}[DONE] - Mamba installed.${NO_COLOR}" 
 }
 
@@ -203,6 +205,8 @@ install_R_packages () {
     echo -e "${BLUE}[IN PROGRESS] - Installing libssl1.1...${NO_COLOR}"
     wget -O /tmp/http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
     sudo dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
+    echo 'alias radian="$HOME/mambaforge/bin/radian"' >> "$HOME/.bashrc"
+    echo 'alias r="$HOME/mambaforge/bin/radian"' >> "$HOME/.bashrc"
     echo -e "${BLUE}[IN PROGRESS] - Installing R packages...${NO_COLOR}"
     Rscript r_packages.R
     echo -e "${GREEN}[DONE] - R packages installed.${NO_COLOR}"
@@ -269,6 +273,7 @@ setup_lunarvim () {
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
     mkdir -p "$HOME"/.config/lvim
     cp "$MAIN_DIR"/config.lua "$HOME"/.config/lvim
+    echo 'lvim="$HOME/.local/bin/lvim"' >> "$HOME/.bashrc"
     echo -e "${GREEN}[DONE] - LunarVim set up.${NO_COLOR}"
 }
 

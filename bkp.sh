@@ -294,10 +294,9 @@ fi
 install_python_packages
 setup_fonts
 clean
+setup_fish
 
 read -r -p "Install R packages? (y/n): " install_r
 if [[ $install_r == "y" ]]; then install_R_packages; fi
-
-setup_fish
 
 echo -e "${GREEN}[DONE] - Setup finished.${NO_COLOR}"

@@ -5,5 +5,5 @@
   "cpp": ["Rcpp", "RcppEigen"],
   "dev": ["devtools", "usethis", "assertthat", "testthat"],
   "parallel": ["furrr", "future", "parallel"],
-  "stan": ["rstan", "rstanarm", "brms", "varstan", "bayesforecast", "prophet"]
+  "stan": ["rstan", "rstanarm", "brms", "bayesforecast", "prophet"]
 }

@@ -4,11 +4,10 @@
 
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 test -r "$HOME/.config/fish/config.fish" && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.config/fish/config.fish"
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.config/fish/config.fish"
 
 # OH MY FISH -----
 
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | bash 
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 fish install --path=~/.local/share/omf --config=~/.config/omf --yes
 omf install agnoster
 omf theme agnoster
@@ -21,8 +20,8 @@ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
 echo 'alias ls="exa --icons"' >> ~/.config/fish/config.fish
 echo 'alias cat="bat"' >> ~/.config/fish/config.fish
-echo 'alias radian="/home/$USER/mambaforge/bin/radian"'
-echo 'alias r="/home/$USER/mambaforge/bin/radian"'
+echo 'alias radian="/home/$USER/mambaforge/bin/radian"' >> ~/.config/fish/config.fish
+echo 'alias r="/home/$USER/mambaforge/bin/radian"' >> ~/.config/fish/config.fish
 
 # NVM -----
 

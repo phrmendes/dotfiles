@@ -8,7 +8,6 @@
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
 vim.o.guifont = "SauceCodePro Nerd Font Mono"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -233,7 +232,15 @@ lvim.plugins = {
   },
   -- r packages
   { "jalvesaq/Nvim-R" },
-  { "quarto-dev/quarto-nvim" }
+  { "quarto-dev/quarto-nvim" },
+  {
+    "quarto-dev/quarto-vim",
+    requires = {
+      { "vim-pandoc/vim-pandoc" },
+      { "vim-pandoc/vim-pandoc-syntax" },
+    },
+    ft = { "quarto" },
+  }
 }
 
 vim.cmd("let R_app = 'radian'")
@@ -241,3 +248,5 @@ vim.cmd("let R_cmd = 'R'")
 vim.cmd("let R_hl_term = 0")
 vim.cmd("let R_args = []")
 vim.cmd("let R_bracketed_paste = 1")
+vim.cmd("let R_external_term = 'gnome-terminal'")
+vim.cmd("let R_csv_app = 'terminal:vd'")

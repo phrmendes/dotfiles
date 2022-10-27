@@ -37,7 +37,7 @@ timeshift,apt,pc
 solaar,apt,pc
 python3-pip,apt,both
 zotero,apt,both
-pandoic,apt,both
+pandoc,apt,both
 io.github.celluloid_player.Celluloid,flatpak,pc
 com.bitwarden.desktop,flatpak,pc
 com.discordapp.Discord,flatpak,pc

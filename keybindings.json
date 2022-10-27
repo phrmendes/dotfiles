@@ -172,7 +172,7 @@
         "key": "ctrl+shift+m",
         "command": "type",
         "args": {
-            "text": " |> "
+            "text": " |>"
         },
         "when": "editorTextFocus && editorLangId == r"
     },

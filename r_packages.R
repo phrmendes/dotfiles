@@ -47,6 +47,14 @@ invisible(
   )
 )
 
+install.packages(
+  "capsule",
+  repos = c(
+    mm = "https://milesmcbain.r-universe.dev",
+    getOption("repos")
+  )
+)
+
 if (!require("rjson")) install.packages("rjson")
 
 # packages ----

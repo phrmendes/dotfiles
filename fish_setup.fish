@@ -8,11 +8,6 @@
 # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ #
 ##############################################################
 
-# BREW -----
-
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-test -r "$HOME/.config/fish/config.fish" && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.config/fish/config.fish"
-
 # OH MY FISH -----
 
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
@@ -31,6 +26,10 @@ echo 'alias cat="bat"' >> ~/.config/fish/config.fish
 echo 'alias radian="$HOME/mambaforge/bin/radian"' >> ~/.config/fish/config.fish
 echo 'alias r="$HOME/mambaforge/bin/radian"' >> ~/.config/fish/config.fish
 echo 'lvim="$HOME/.local/bin/lvim"' >> "$HOME/.bashrc"
+
+# NIX -----
+
+fisher install lilyball/nix-env.fish
 
 # NVM -----
 

@@ -116,7 +116,7 @@
     "r.bracketedPaste": true,
     "r.plot.useHttpgd": true,
     "cSpell.languageSettings": [],
-    "vscode-neovim.neovimExecutablePaths.linux": "/home/linuxbrew/.linuxbrew/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.linux": "/home/phrmendes/.nix-profile/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/init.vim",
     "whichkey.sortOrder": "alphabetically",
     "whichkey.bindings": [
@@ -831,7 +831,7 @@
     "github.copilot.enable": {
         "*": false,
         "yaml": false,
-        "plaintext": true,
+        "plaintext": false,
         "markdown": true
     },
     "quarto.mathjax.theme": "dark",
@@ -849,4 +849,8 @@
     },
     "Lua.telemetry.enable": true,
     "workbench.startupEditor": "none",
+    "Lua.workspace.supportScheme": [
+        "file",
+        "default"
+    ],
 }

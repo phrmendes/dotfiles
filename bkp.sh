@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-############################################################################
-# ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ #
-# ██░▄▄▀█░▄▄▀██░▄▄▀██░█▀▄██░██░██░▄▄░████░▄▄▄░██░▄▄▀██░▄▄▀█▄░▄██░▄▄░█▄▄░▄▄ #
-# ██░▄▄▀█░▀▀░██░█████░▄▀███░██░██░▀▀░████▄▄▄▀▀██░█████░▀▀▄██░███░▀▀░███░██ #
-# ██░▀▀░█░██░██░▀▀▄██░██░██▄▀▀▄██░███████░▀▀▀░██░▀▀▄██░██░█▀░▀██░██████░██ #
-# ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ # 
-############################################################################
+##############################################################################
+## ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ##
+## ██░▄▄▀█░▄▄▀██░▄▄▀██░█▀▄██░██░██░▄▄░████░▄▄▄░██░▄▄▀██░▄▄▀█▄░▄██░▄▄░█▄▄░▄▄ ##
+## ██░▄▄▀█░▀▀░██░█████░▄▀███░██░██░▀▀░████▄▄▄▀▀██░█████░▀▀▄██░███░▀▀░███░██ ##
+## ██░▀▀░█░██░██░▀▀▄██░██░██▄▀▀▄██░███████░▀▀▀░██░▀▀▄██░██░█▀░▀██░██████░██ ##
+## ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ## 
+##############################################################################
 
-# VARIABLES -------------------------------------------------------------------------------------------------------------
+# VARIABLES -----
 
 DEB_URLS_FILE="deb_urls.txt"
 DIR_DEB="/tmp/deb_packages"
@@ -20,12 +20,12 @@ NO_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
 APPIMAGES_FILE="$MAIN_DIR/appimages.txt"
 
-# REQUIREMENTS ---------------------------------------------------------------------------------------------------------
+# REQUIREMENTS -----
 
 required_programs () {
     local apps 
     
-    apps=(flatpak wget git  zip unzip gzip curl file build-essential procps csvkit)
+    apps=(flatpak wget git zip unzip gzip curl file build-essential procps csvkit)
     
     for app in "${apps[@]}"; do
         if [[ ! -x $(which "$app") ]]; then
@@ -37,6 +37,12 @@ required_programs () {
             echo -e "${GREEN}[DONE] - $app already installed."
         fi
     done
+
+    echo -e "${BLUE}[IN PROGRESS] - Settting up flathub.."
+
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    echo -e "${GREEN}[DONE] - Flathub set up."
 }
 
 remove_locks () {
@@ -52,13 +58,12 @@ add_i386_architecture () {
     echo -e "${GREEN}[DONE] - x86 architecture added.${NO_COLOR}"
 }
 
-homebrew () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing Homebrew...${NO_COLOR}"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
-    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    test -r "$HOME/.bash_profile" && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bash_profile"
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.bashrc"
-    echo -e "${GREEN}[DONE] - Homebrew installed.${NO_COLOR}"
+nix () {
+    echo -e "${BLUE}[IN PROGRESS] - Installing Nix...${NO_COLOR}"
+    sh <(curl -L https://nixos.org/nix/install) --daemon
+    echo 'export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS' >> "$HOME/.profile"
+    mkdir "$HOME/.nixpkgs" && echo '{ allowUnfree = true; }' > "$HOME/.nixpkgs/config.nix"
+    echo -e "${GREEN}[DONE] - Nix installed.${NO_COLOR}"
 }
 
 mamba () {
@@ -84,7 +89,7 @@ remove_installed () {
     done
 }
 
-# SYSTEM JOBS ----------------------------------------------------------------------------------------------------------
+# SYSTEM JOBS -----
 
 att_repos () {
     echo -e "${BLUE}[IN PROGRESS] - Updating repos...${NO_COLOR}"
@@ -105,12 +110,12 @@ clean () {
     echo -e "${GREEN}[DONE] - System cleaned.${NO_COLOR}"
 }
 
-# READING FILES --------------------------------------------------------------------------------------------------------
+# READING FILES -----
 
 reading_programs_file () {
     PROGRAMS_APT=()
     PROGRAMS_FLATPAK=()
-    PROGRAMS_BREW=()
+    PROGRAMS_NIX=()
     PROGRAMS_MAMBA=()
     local file_apps="/tmp/apps.txt"
 
@@ -134,12 +139,12 @@ reading_programs_file () {
         elif [[ $str_2 = "mamba" ]]; then
             PROGRAMS_MAMBA+=("$str_1")
         else
-            PROGRAMS_BREW+=("$str_1")
+            PROGRAMS_NIX+=("$str_1")
         fi
     done < "$file_apps"
 }
 
-# INSTALLING PROGRAMS --------------------------------------------------------------------------------------------------
+# INSTALLING PROGRAMS -----
 
 download_deb () {
     mkdir "$DIR_DEB"
@@ -153,9 +158,7 @@ download_deb () {
 download_appimage () {
     mkdir "$DIR_APPIMAGES"
     echo -e "${BLUE}[IN PROGRESS] - Downloading Appimages...${NO_COLOR}"
-    while IFS= read -r line; do
-        wget -c "$line" -P "$DIR_APPIMAGES" 
-    done < "$APPIMAGES_FILE"
+    wget -i "$APPIMAGES_FILE" -P "$DIR_APPIMAGES"
     echo -e "${GREEN}[DONE] - Appimages downloaded.${NO_COLOR}"
 }
 
@@ -169,7 +172,6 @@ install_deb () {
 }
 
 install_apt () {
-    wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash 
     att_repos
     for program in "${PROGRAMS_APT[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Installing $program (apt)...${NO_COLOR}"
@@ -186,12 +188,14 @@ install_flatpak () {
     done
 }
 
-install_brew () {
-    for program in "${PROGRAMS_BREW[@]}"; do
-        echo -e "${BLUE}[IN PROGRESS] - Installing $program (brew)...${NO_COLOR}"
-        brew install "$program" 
+install_nix () {
+    for program in "${PROGRAMS_NIX[@]}"; do
+        echo -e "${BLUE}[IN PROGRESS] - Installing $program (nix)...${NO_COLOR}"
+        nix-env -iA nixpkgs."$program"
         echo -e "${GREEN}[DONE] - $program installed.${NO_COLOR}"    
     done
+
+    nix-collect-garbage
 }
 
 install_R_packages () {
@@ -241,7 +245,7 @@ setup_fonts () {
 }
 
 setup_fish () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing fish...${NO_COLOR}"
+    echo -e "${BLUE}[IN PROGRESS] - Setting up fish...${NO_COLOR}"
     "/home/$USER/mambaforge/condabin/conda" init fish
     chmod +x "$MAIN_DIR/fish_setup.fish"
     "/home/linuxbrew/.linuxbrew/bin/fish" "$MAIN_DIR/fish_setup.fish"
@@ -250,8 +254,7 @@ setup_fish () {
 
 setup_vscode () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up VSCode...${NO_COLOR}"
-    wget -O /tmp/vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" 
-    sudo apt install /tmp/vscode.deb
+    nix-env -iA nixpkgs.vscode
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
     mkdir -p "$HOME"/.config/Code/User
@@ -277,38 +280,38 @@ setup_lunarvim () {
     echo -e "${GREEN}[DONE] - LunarVim set up.${NO_COLOR}"
 }
 
-# EXECUTION ------------------------------------------------------------------------------------------------------------
+# EXECUTION -----
 
 read -r -p "PC or laptop? (pc/lp): " pc_or_laptop
 
-# att_repos
-# required_programs
-# remove_locks
-# add_i386_architecture
-# att_repos
-# upgrade
-# remove_installed
-# homebrew
-# mamba
+att_repos
+required_programs
+remove_locks
+add_i386_architecture
+att_repos
+upgrade
+remove_installed
+nix
+mamba
 reading_programs_file
-# download_appimage
-# download_deb
-# install_deb
-# install_apt
-install_brew
+download_appimage
+download_deb
+install_deb
+install_apt
+install_nix
+install_flatpak
 
-# if [[ $pc_or_laptop == "lp" ]]; then
-#     setup_lunarvim
-# else
-#     install_flatpak
-#     install_docker
-#     setup_vscode
-# fi
+if [[ $pc_or_laptop == "lp" ]]; then
+    setup_lunarvim
+else
+    install_docker
+    setup_vscode
+fi
 
-# install_python_packages
-# setup_fonts
-# clean
-# setup_fish
+install_python_packages
+setup_fonts
+clean
+setup_fish
 
 read -r -p "Install R packages? (y/n): " install_r
 if [[ $install_r == "y" ]]; then install_R_packages; fi

@@ -34,6 +34,7 @@ libtiff5-dev,apt,both
 libjpeg-dev,apt,both
 com.github.muriloventuroso.easyssh,flatpak,pc
 com.mattjakeman.ExtensionManager,flatpak,pc
+com.stremio.Stremio,flatpak,pc
 radian,mamba,both
 visidata,mamba,both
 bitwarden,nix,both
@@ -46,7 +47,6 @@ filezilla,nix,both
 ncdu,nix,both
 celluloid,nix,both
 spotify,nix,both
-stremio,nix,both
 fragments,nix,both
 kooha,nix,both
 fish,nix,both

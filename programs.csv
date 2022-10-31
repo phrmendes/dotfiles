@@ -56,7 +56,6 @@ go,nix,both
 bat,nix,both
 btop,nix,both
 gh,nix,both
-lazydocker,nix,pc
 lazygit,nix,both
 ripgrep,nix,both
 fd,nix,both
@@ -64,3 +63,5 @@ sd,nix,both
 tealdeer,nix,both
 exa,nix,both
 shellcheck,nix,both
+nodejs,nix,both
+emacs,nix,both

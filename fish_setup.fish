@@ -25,7 +25,6 @@ echo 'alias ls="exa --icons"' >> ~/.config/fish/config.fish
 echo 'alias cat="bat"' >> ~/.config/fish/config.fish
 echo 'alias radian="$HOME/mambaforge/bin/radian"' >> ~/.config/fish/config.fish
 echo 'alias r="$HOME/mambaforge/bin/radian"' >> ~/.config/fish/config.fish
-echo 'lvim="$HOME/.local/bin/lvim"' >> "$HOME/.bashrc"
 
 # NIX -----
 

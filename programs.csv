@@ -16,6 +16,7 @@ python3-pip,apt,both
 gfortran,apt,both
 gdal-data,apt,both
 gdebi-core,apt,both
+fonts-firacode,apt,both
 libcurl4-openssl-dev,apt,both
 libssl-dev,apt,both
 libclang-dev,apt,both
@@ -65,3 +66,4 @@ exa,nix,both
 shellcheck,nix,both
 nodejs,nix,both
 emacs,nix,both
+languagetool,nix,both

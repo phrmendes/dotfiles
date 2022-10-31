@@ -8,7 +8,7 @@
 ## ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ## 
 ##############################################################################
 
-# VARIABLES -----
+# VARIABLES ---------
 
 DEB_URLS_FILE="deb_urls.txt"
 DIR_DEB="/tmp/deb_packages"
@@ -20,7 +20,7 @@ NO_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
 APPIMAGES_FILE="$MAIN_DIR/appimages.txt"
 
-# REQUIREMENTS -----
+# REQUIREMENTS ---------
 
 required_programs () {
     local apps 
@@ -89,7 +89,7 @@ remove_installed () {
     done
 }
 
-# SYSTEM JOBS -----
+# SYSTEM JOBS ---------
 
 att_repos () {
     echo -e "${BLUE}[IN PROGRESS] - Updating repos...${NO_COLOR}"
@@ -110,7 +110,7 @@ clean () {
     echo -e "${GREEN}[DONE] - System cleaned.${NO_COLOR}"
 }
 
-# READING FILES -----
+# READING FILES ---------
 
 reading_programs_file () {
     PROGRAMS_APT=()
@@ -144,7 +144,7 @@ reading_programs_file () {
     done < "$file_apps"
 }
 
-# INSTALLING PROGRAMS -----
+# INSTALLING PROGRAMS ---------
 
 download_deb () {
     mkdir "$DIR_DEB"
@@ -232,6 +232,7 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /de
     sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y 
     sudo groupadd docker
     sudo usermod -aG docker phrmendes 
+    nix-env -iA nixpkgs.lazydocker
     echo -e "${GREEN}[DONE] - Docker installed.${NO_COLOR}"
 }
 
@@ -252,35 +253,24 @@ setup_fish () {
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 
-setup_vscode () {
-    echo -e "${BLUE}[IN PROGRESS] - Setting up VSCode...${NO_COLOR}"
-    nix-env -iA nixpkgs.vscode
+setup_emacs () {
+    echo -e "${BLUE}[IN PROGRESS] - Setting up Emacs...${NO_COLOR}"
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+    "$HOME/.emacs.d/bin/doom" install
+    cp "$MAIN_DIR/*.el" "$HOME/.doom.d/"
+    "$HOME/.emacs.d/bin/doom" sync
+    echo -e "${GREEN}[DONE] - Emacs set up.${NO_COLOR}"
+}
+
+setup_nvim () {
+    echo -e "${BLUE}[IN PROGRESS] - Setting up Neovim...${NO_COLOR}"
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
-    mkdir -p "$HOME"/.config/Code/User
     cp "$MAIN_DIR"/init.vim "$HOME"/.config/nvim
-    cp "$MAIN_DIR"/*.json "$HOME"/.config/Code/User
-    echo -e "${GREEN}[DONE] - VSCode set up.${NO_COLOR}" 
+    echo -e "${GREEN}[DONE] - Neovim set up.${NO_COLOR}"
 }
 
-setup_lunarvim () {
-    echo -e "${BLUE}[IN PROGRESS] - Setting up LunarVim...${NO_COLOR}" 
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.bashrc"
-    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> "$HOME/.bashrc"
-    echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> "$HOME/.bashrc"
-    source "$HOME/.bashrc"
-    nvm install 16
-    echo 'nvm use 16 &> /dev/null' >> "$HOME/.bashrc"
-    source "$HOME/.bashrc"
-    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-    mkdir -p "$HOME"/.config/lvim
-    cp "$MAIN_DIR"/config.lua "$HOME"/.config/lvim
-    echo 'lvim="$HOME/.local/bin/lvim"' >> "$HOME/.bashrc"
-    echo -e "${GREEN}[DONE] - LunarVim set up.${NO_COLOR}"
-}
-
-# EXECUTION -----
+# EXECUTION ---------
 
 read -r -p "PC or laptop? (pc/lp): " pc_or_laptop
 
@@ -300,17 +290,16 @@ install_deb
 install_apt
 install_nix
 install_flatpak
-
-if [[ $pc_or_laptop == "lp" ]]; then
-    setup_lunarvim
-else
-    install_docker
-    setup_vscode
-fi
-
 install_python_packages
 setup_fonts
+setup_emacs
+setup_neovim
 clean
+
+if [[ $pc_or_laptop == "pc" ]]; then
+    install_docker
+fi
+
 setup_fish
 
 read -r -p "Install R packages? (y/n): " install_r

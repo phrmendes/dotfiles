@@ -251,7 +251,7 @@ setup_fish () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up fish...${NO_COLOR}"
     "/home/$USER/mambaforge/condabin/conda" init fish
     chmod +x "$MAIN_DIR/fish_setup.fish"
-    "/home/linuxbrew/.linuxbrew/bin/fish" "$MAIN_DIR/fish_setup.fish"
+    "$HOME/.nix-profile/bin/fish" "$MAIN_DIR/fish_setup.fish"
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 
@@ -264,7 +264,7 @@ setup_emacs () {
     echo -e "${GREEN}[DONE] - Emacs set up.${NO_COLOR}"
 }
 
-setup_nvim () {
+setup_neovim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up Neovim...${NO_COLOR}"
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim

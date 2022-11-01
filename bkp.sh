@@ -259,7 +259,7 @@ setup_emacs () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up Emacs...${NO_COLOR}"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
     "$HOME/.emacs.d/bin/doom" install
-    cp "$MAIN_DIR/*.el" "$HOME/.doom.d/"
+    cp "$MAIN_DIR"/*.el "$HOME/.doom.d/"
     "$HOME/.emacs.d/bin/doom" sync
     echo -e "${GREEN}[DONE] - Emacs set up.${NO_COLOR}"
 }

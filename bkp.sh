@@ -195,6 +195,8 @@ install_nix () {
         echo -e "${GREEN}[DONE] - $program installed.${NO_COLOR}"    
     done
 
+    source "$HOME/.profile"
+
     nix-collect-garbage
 }
 

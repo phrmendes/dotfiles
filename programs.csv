@@ -33,6 +33,7 @@ libfreetype6-dev,apt,both
 libpng-dev,apt,both
 libtiff5-dev,apt,both
 libjpeg-dev,apt,both
+dvipng,apt,both
 com.github.muriloventuroso.easyssh,flatpak,pc
 com.mattjakeman.ExtensionManager,flatpak,pc
 com.stremio.Stremio,flatpak,pc
@@ -67,3 +68,4 @@ shellcheck,nix,both
 nodejs,nix,both
 emacs,nix,both
 languagetool,nix,both
+texlive.combined.scheme-minimal,nix,both

@@ -39,6 +39,8 @@
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1)))
+
 ;; ========= PROJECTILE SETTINGS =========
 
 (setq projectile-project-search-path '("~/Projects"))

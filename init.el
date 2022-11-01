@@ -20,8 +20,8 @@
 ;;      directory (for easy access to its source code).
 
 (doom! :completion
-       (company +childframe +tng) ; the ultimate code completion backend
-       (vertico +icons)           ; the search engine of the future
+       (company +tng)   ; the ultimate code completion backend
+       (vertico +icons) ; the search engine of the future
 
        :ui
        doom                ; what makes DOOM look the way it does
@@ -67,9 +67,9 @@
        eshell
 
        :checkers
-       (syntax +childframe) ; tasing you for every semicolon you forget
-       (spell +flyspell)    ; tasing you for misspelling mispelling
-       grammar              ; tasing grammar mistake every you make
+       (syntax +childframe)   ; tasing you for every semicolon you forget
+       ;;(spell +flyspell)    ; tasing you for misspelling mispelling
+       ;;grammar              ; tasing grammar mistake every you make
 
        :tools
        ansible

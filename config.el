@@ -34,8 +34,7 @@
 
 (after! org
   (setq org-directory "~/pCloudDrive/notes"
-        org-agenda-files '("~/pCloudDrive/notes/todo.org"
-                           "~/pCloudDrive/notes/calendar.org")
+        org-agenda-files '("~/pCloudDrive/notes/todo.org")
         org-ellipsis " ▼ "))
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))

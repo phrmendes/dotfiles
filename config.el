@@ -35,14 +35,13 @@
 (after! org
   (setq org-directory "~/pCloudDrive/notes"
         org-agenda-files '("~/pCloudDrive/notes/todo.org")
-        org-ellipsis " ▼ "))
+        org-ellipsis " ▼ "
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))))
 
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1)))
-
-(after! org
-  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" | "DONE(d)"))))
+(add-hook 'org-mode-hook (lambda ()
+                           (org-bullets-mode 1)
+                           (org-zotxt-mode 1)
+                           (set-input-method "portuguese-prefix")))
 
 ;; ========= PROJECTILE SETTINGS =========
 

@@ -20,8 +20,8 @@
 ;;      directory (for easy access to its source code).
 
 (doom! :completion
-       (company +tng)   ; the ultimate code completion backend
-       (vertico +icons) ; the search engine of the future
+       (company +tng)       ; the ultimate code completion backend
+       (helm +fuzzy +icons) ; the search engine of the future
 
        :ui
        doom                ; what makes DOOM look the way it does
@@ -45,6 +45,7 @@
        window-select       ; visually switch windows
        workspaces          ; tab emulation, persistence & separate workspaces
        zen                 ; distraction-free coding or writing
+       deft                ; creating, browsing, and filtering notes written in plain text formats
 
        :editor
        (evil +everywhere) ; come to the dark side, we have cookies
@@ -72,15 +73,16 @@
        ;;grammar              ; tasing grammar mistake every you make
 
        :tools
-       ansible
-       ;;biblio        ; Writes a PhD for you (citation needed)
+       ansible         ; DevOps automation tool
+       pdf             ; PDF tools for notes
+       biblio          ; writes a PhD for you (citation needed)
        (debugger +lsp) ; FIXME stepping through code, to help you add bugs
        (docker +lsp)   ; container management tool
        ;;editorconfig  ; let someone else argue about tabs vs spaces
        ein             ; tame Jupyter notebooks with emacs
        (eval +overlay) ; run code, run (also, repls)
        lookup          ; navigate your code and its documentation
-       lsp             ; M-x vscode
+       (lsp +peek)     ; M-x vscode
        magit           ; a git porcelain for Emacs
        pdf             ; pdf enhancements
        terraform       ; infrastructure as code
@@ -98,7 +100,7 @@
        (julia +lsp)
        (latex +lsp +fold +cdlatex)
        markdown
-       org
+       (org +roam2 +dragndrop +jupyter +pandoc +pretty +present +noter)
        (python +lsp +conda +pyright +poetry)
        (sh +lsp +fish)
        (yaml +lsp)

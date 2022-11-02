@@ -16,11 +16,17 @@
 (package! request)
 (package! quarto-mode)
 (package! company-box)
-(package! org-bullets)
 (package! org-auto-tangle)
 (package! org-latex-impatient)
 (package! org-elp)
-(package! zotxt)
+(package! org-tree-slide)
+(package! org-bullets)
+(package! visual-fill-column)
+(package! eshell-git-prompt)
+(package! org-ref)
+(package! org-roam-bibtex
+  :recipe (:host github
+           :repo "org-roam/org-roam-bibtex"))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

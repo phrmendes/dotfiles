@@ -41,7 +41,7 @@
 (add-hook 'org-mode-hook (lambda ()
                            (org-bullets-mode 1)
                            (org-zotxt-mode 1)
-                           (set-input-method "portuguese-prefix")))
+                           (set-input-method "TeX")))
 
 ;; ========= PROJECTILE SETTINGS =========
 

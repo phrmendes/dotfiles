@@ -30,6 +30,10 @@
 
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 
+;; ========= COMPANY MODE =========
+
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; ========= ORG SETTINGS =========
 
 (after! org

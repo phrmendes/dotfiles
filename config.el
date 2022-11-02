@@ -41,6 +41,9 @@
 
 (add-hook 'org-mode-hook (lambda () (org-zotxt-mode 1)))
 
+(after! org
+  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" | "DONE(d)"))))
+
 ;; ========= PROJECTILE SETTINGS =========
 
 (setq projectile-project-search-path '("~/Projects"))

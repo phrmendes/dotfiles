@@ -20,8 +20,8 @@
 ;;      directory (for easy access to its source code).
 
 (doom! :completion
-       (company +tng)       ; the ultimate code completion backend
-       (helm +fuzzy +icons) ; the search engine of the future
+       (company +childframe) ; the ultimate code completion backend
+       (helm +fuzzy +icons)  ; the search engine of the future
 
        :ui
        doom                ; what makes DOOM look the way it does
@@ -45,7 +45,6 @@
        window-select       ; visually switch windows
        workspaces          ; tab emulation, persistence & separate workspaces
        zen                 ; distraction-free coding or writing
-       deft                ; creating, browsing, and filtering notes written in plain text formats
 
        :editor
        (evil +everywhere) ; come to the dark side, we have cookies
@@ -65,16 +64,15 @@
        vc        ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell
+       vterm
 
        :checkers
-       (syntax +childframe)   ; tasing you for every semicolon you forget
-       ;;(spell +flyspell)    ; tasing you for misspelling mispelling
-       ;;grammar              ; tasing grammar mistake every you make
+       (syntax +childframe) ; tasing you for every semicolon you forget
+       (spell +flyspell)    ; tasing you for misspelling mispelling
+       ;;grammar            ; tasing grammar mistake every you make
 
        :tools
        ansible         ; DevOps automation tool
-       pdf             ; PDF tools for notes
        biblio          ; writes a PhD for you (citation needed)
        (debugger +lsp) ; FIXME stepping through code, to help you add bugs
        (docker +lsp)   ; container management tool
@@ -100,7 +98,7 @@
        (julia +lsp)
        (latex +lsp +fold +cdlatex)
        markdown
-       (org +roam2 +dragndrop +jupyter +pandoc +pretty +present +noter)
+       (org +roam2 +dragndrop +jupyter +pandoc +pretty +present)
        (python +lsp +conda +pyright +poetry)
        (sh +lsp +fish)
        (yaml +lsp)

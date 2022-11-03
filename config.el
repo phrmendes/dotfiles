@@ -8,6 +8,10 @@
 ;; ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; ========= INCREASE GC SIZE =========
+
+(setq gc-cons-threshold (* 50 1000 1000))
+
 ;; ========= ID =========
 
 (setq user-full-name "Pedro Mendes"
@@ -30,13 +34,19 @@
 
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 
-;; ========= COMPANY MODE =========
+;; ========= DEFAULT PDF READER =========
 
-(add-hook 'after-init-hook 'global-company-mode)
+(use-package! openwith
+  :init (add-hook 'after-init-hook 'openwith-mode)
+  :config
+  (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
+
+;; ========= COMPANY MODE =========
 
 (use-package! company
   :after lsp-mode
-  :hook (lsp-mode . company-mode)
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -53,32 +63,14 @@
     (map! :map helm-find-files-map
           "<DEL>" #'helm-find-files-up-one-level)))
 
-;; ========= ESHELL =========
+;; ========= VTERM =========
 
-(defun phrm/configure-eshell ()
-  ;; save command history when commands are entered
-  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
-
-  ;; truncate buffer for performance
-  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
-
-  (setq eshell-history-size         10000
-        eshell-buffer-maximum-lines 10000
-        eshell-hist-ignoredups t
-        eshell-scroll-to-bottom-on-input t))
-
-(use-package! eshell-git-prompt
-  :after eshell)
-
-(use-package! eshell
-  :hook (eshell-first-time-mode . phrm/configure-eshell)
+(use-package! vterm
+  :commands vterm
   :config
-
-  (with-eval-after-load 'esh-opt
-    (setq eshell-destroy-buffer-when-process-dies t)
-    (setq eshell-visual-commands '("fish" "nvim")))
-
-  (eshell-git-prompt-use-theme 'powerline))
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")
+  (setq vterm-shell "fish")
+  (setq vterm-max-scrollback 10000))
 
 ;; ========= ORG MODE =========
 
@@ -87,7 +79,6 @@
         org-agenda-files
         '("~/pCloudDrive/notes/todo.org"
           "~/pCloudDrive/notes/dates.org")
-        org-roam-directory "~/pCloudDrive/notes/roam_notes/"
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))))
@@ -99,7 +90,7 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-;; Center org buffers ---
+;; Center Org buffers ---
 
 (defun phrm/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
@@ -109,81 +100,79 @@
 (use-package! visual-fill-column
   :hook (org-mode . phrm/org-mode-visual-fill))
 
-;; Deft ---
-
-(use-package! deft
-  :commands deft
-  :init
-  (setq deft-default-extension "org"
-        ;; de-couples filename and note title:
-        deft-use-filename-as-title nil
-        deft-use-filter-string-for-filename t
-        ;; disable auto-save
-        deft-auto-save-interval -1.0
-        ;; converts the filter string into a readable file-name using kebab-case:
-        deft-file-naming-rules
-        '((noslash . "-")
-          (nospace . "-")
-          (case-fn . downcase)))
-  :config
-  (add-to-list 'deft-extensions "tex"))
-
 ;; Org-Roam ---
 
-(use-package! org-roam-bibtex
-  :after org-roam
-  :config
-  (require 'org-ref)
-  (require 'org-ref-helm)
-  :hook (org-roam-mode . org-roam-bibtex-mode))
+(use-package! org-roam
+  :init (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/pCloudDrive/notes/roam_notes/")
+  (org-roam-complete-everywhere t)
+  :config (org-roam-db-autosync-enable))
 
-;; Org-Ref ---
+;; Zotero connection ---
 
-(after! org-ref
-  (setq
-   bibtex-completion-notes-path "~/pCloudDrive/notes/roam_notes/"
-   bibtex-completion-bibliography "~/pCloudDrive/notes/roam_notes/library.bib"
-   bibtex-completion-library-path '("~/pCloudDrive/zotero")
-   bibtex-completion-pdf-field "file"
-   bibtex-completion-additional-search-fields '(keywords)
-   bibtex-completion-notes-template-multiple-files
-   (concat
-    "#+TITLE: ${title}\n"
-    "#+ROAM_KEY: cite:${=key=}\n"
-    "* TODO Notes\n"
-    ":PROPERTIES:\n"
-    ":Custom_ID: ${=key=}\n"
-    ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
-    ":AUTHOR: ${author-abbrev}\n"
-    ":JOURNAL: ${journaltitle}\n"
-    ":DATE: ${date}\n"
-    ":YEAR: ${year}\n"
-    ":DOI: ${doi}\n"
-    ":URL: ${url}\n"
-    ":END:\n\n")))
+(use-package! zotxt
+  :hook (org-mode . org-zotxt-mode))
 
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+;; Slides ---
 
-;; Org-Noter
+(defun phrm/presentation-setup ()
+  ;; hide the mode line
+  (hide-mode-line-mode 1)
+  ;; display images inline
+  (org-display-inline-images)
+  ;; hide tabs
+  (centaur-tabs-mode 0)
+  ;; scale the text
+  (setq text-scale-mode-amount 2)
+  (text-scale-mode 1))
 
-(use-package org-noter
-  :after (:any org pdf-view)
-  :config
-  (setq
-   ;; the WM can handle splits
-   org-noter-notes-window-location 'other-frame
-   ;; please stop opening frames
-   org-noter-always-create-frame nil
-   ;; i want to see the whole file
-   org-noter-hide-other nil
-   ;; everything is relative to the main notes file
-   org-noter-notes-search-path '("~/pCloudDrive/notes/")))
+(defun phrm/presentation-end ()
+  ;; show the mode line again
+  (hide-mode-line-mode 0)
+  ;; descale the text
+  (text-scale-mode 0)
+  ;; show tabs
+  (centaur-tabs-mode 1))
+
+(use-package! org-tree-slide
+  :hook ((org-tree-slide-play . phrm/presentation-setup)
+         (org-tree-slide-stop . phrm/presentation-end))
+  :custom
+  (org-tree-slide-slide-in-effect t)
+  (org-tree-slide-activate-message "Presentation started!")
+  (org-tree-slide-deactivate-message "Presentation finished!")
+  (org-tree-slide-header t)
+  (org-tree-slide-breadcrumbs " > ")
+  (org-image-actual-width nil))
+
+;; Org-Babel ---
+
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+      (python . t)
+      (R . t)))
+
+  (push '("conf-unix" . conf-unix) org-src-lang-modes))
+
+;; Org template ---
+
+(with-eval-after-load 'org
+  (require 'org-tempo)
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("rl" . "src R")))
 
 ;; ========= PROJECTILE =========
 
 (setq projectile-project-search-path '("~/Projects"))
 
 ;; ========= SPELLCHECK =========
+
+(set-input-method "TeX")
 
 (after! guess-language
   (setq guess-language-langcodes
@@ -193,8 +182,7 @@
         guess-language-min-paragraph-length 35
         guess-language-langcodes
         '((en . ("en_US" "English" "🇺🇸" "English"))
-          (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese"))))
-  (add-hook 'text-mode-hook (lambda () (guess-language-mode 1))))
+          (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))))
 
 (remove-hook 'yaml-mode-hook #'flyspell-prog-mode)
 (remove-hook 'json-mode-hook #'flyspell-prog-mode)
@@ -229,6 +217,10 @@
 
 (add-hook 'ess-mode-hook 'quarto-mode)
 (add-to-list 'auto-mode-alist '("\\.qmd" . poly-markdown-mode))
+
+;; ========= DECREASE GC SIZE =========
+
+(setq gc-cons-threshold (* 2 1000 1000))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

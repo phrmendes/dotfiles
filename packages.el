@@ -22,11 +22,8 @@
 (package! org-tree-slide)
 (package! org-bullets)
 (package! visual-fill-column)
-(package! eshell-git-prompt)
-(package! org-ref)
-(package! org-roam-bibtex
-  :recipe (:host github
-           :repo "org-roam/org-roam-bibtex"))
+(package! zotxt)
+(package! openwith)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

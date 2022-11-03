@@ -59,14 +59,11 @@
     (map! :map helm-find-files-map
           "<DEL>" #'helm-find-files-up-one-level)))
 
-;; ========= VTERM =========
+;; ========= ESHELL =========
 
-(use-package! vterm
-  :commands vterm
-  :config
-  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")
-  (setq vterm-shell "fish")
-  (setq vterm-max-scrollback 10000))
+(use-package! esh-autosuggest
+  :hook (eshell-mode . esh-autosuggest-mode)
+  :ensure t)
 
 ;; ========= ORG MODE =========
 

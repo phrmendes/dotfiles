@@ -98,7 +98,7 @@
        (julia +lsp)
        (latex +lsp +fold +cdlatex)
        markdown
-       (org +roam2 +dragndrop +jupyter +pandoc +pretty +present)
+       (org +dragndrop +jupyter +pandoc +pretty +present)
        (python +lsp +conda +pyright +poetry)
        (sh +lsp +fish)
        (yaml +lsp)

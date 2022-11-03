@@ -8,10 +8,6 @@
 ;; ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; ========= INCREASE GC SIZE =========
-
-(setq gc-cons-threshold (* 50 1000 1000))
-
 ;; ========= ID =========
 
 (setq user-full-name "Pedro Mendes"
@@ -100,15 +96,6 @@
 (use-package! visual-fill-column
   :hook (org-mode . phrm/org-mode-visual-fill))
 
-;; Org-Roam ---
-
-(use-package! org-roam
-  :init (setq org-roam-v2-ack t)
-  :custom
-  (org-roam-directory "~/pCloudDrive/notes/roam_notes/")
-  (org-roam-complete-everywhere t)
-  :config (org-roam-db-autosync-enable))
-
 ;; Zotero connection ---
 
 (use-package! zotxt
@@ -157,7 +144,7 @@
 
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
-;; Org template ---
+;; Org templates ---
 
 (with-eval-after-load 'org
   (require 'org-tempo)
@@ -215,12 +202,10 @@
 
 ;; Quarto ---
 
+(require 'quarto-mode)
 (add-hook 'ess-mode-hook 'quarto-mode)
 (add-to-list 'auto-mode-alist '("\\.qmd" . poly-markdown-mode))
 
-;; ========= DECREASE GC SIZE =========
-
-(setq gc-cons-threshold (* 2 1000 1000))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

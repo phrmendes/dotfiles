@@ -45,6 +45,7 @@
        window-select       ; visually switch windows
        workspaces          ; tab emulation, persistence & separate workspaces
        zen                 ; distraction-free coding or writing
+       deft                ; major mode for managing notes written in plain text formats
 
        :editor
        (evil +everywhere) ; come to the dark side, we have cookies
@@ -81,7 +82,7 @@
        (eval +overlay) ; run code, run (also, repls)
        lookup          ; navigate your code and its documentation
        (lsp +peek)     ; M-x vscode
-       magit           ; a git porcelain for Emacs
+       (magit +forge)  ; a git porcelain for Emacs
        pdf             ; pdf enhancements
        terraform       ; infrastructure as code
        tree-sitter     ; syntax and parsing, sitting in a tree...

@@ -77,7 +77,9 @@
           "~/pCloudDrive/notes/dates.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
-        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))))
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
+        org-src-fontify-natively t
+        org-display-inline-images t))
 
 ;; Org bullets ---
 
@@ -153,6 +155,13 @@
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("rl" . "src R")))
 
+;; ========= DEFT =========
+
+(after! deft
+  (setq deft-extensions '("txt" "org" "md")
+        deft-directory "~/pCloudDrive/notes/"
+        deft-recursive t))
+
 ;; ========= PROJECTILE =========
 
 (setq projectile-project-search-path '("~/Projects"))
@@ -183,12 +192,15 @@
 ;; ========= ESS-R =========
 
 (after! ess-mode
-  (setq ess-style 'C++
+  (setq ess-style 'RStudio
         ;; don't wait when evaluating
         ess-eval-visibly-p 'nowait
         ;; scroll buffer to bottom
-        comint-scroll-to-bottom-on-output t)
-  )
+        comint-scroll-to-bottom-on-output t))
+
+(global-set-key [f1] 'ess-eval-line)
+(global-set-key [f2] 'ess-eval-region-and-go)
+(global-set-key [f3] 'ess-eval-line-and-step)
 
 ;; Pipe snippet ---
 
@@ -203,9 +215,12 @@
 ;; Quarto ---
 
 (require 'quarto-mode)
+(require 'poly-R)
 (add-hook 'ess-mode-hook 'quarto-mode)
-(add-to-list 'auto-mode-alist '("\\.qmd" . poly-markdown-mode))
-
+(add-hook 'ess-mode-hook 'company-mode)
+(add-hook 'poly-gfm+r-mode 'company-mode)
+(add-to-list 'auto-mode-alist '("\\.[q]md\\'" . poly-gfm+r-mode))
+(setq markdown-code-block-braces t)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

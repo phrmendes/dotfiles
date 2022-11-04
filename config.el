@@ -177,6 +177,7 @@
         '((en . ("en_US" "English" "🇺🇸" "English"))
           (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))))
 
+(add-hook 'text-mode-hook 'guess-language-mode)
 (remove-hook 'yaml-mode-hook #'flyspell-prog-mode)
 (remove-hook 'json-mode-hook #'flyspell-prog-mode)
 

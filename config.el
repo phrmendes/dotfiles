@@ -52,9 +52,8 @@
 
 ;; ========= HELM =========
 
-(require 'helm-easymenu)
-
 (after! helm
+  (require 'helm-easymenu)
   (add-hook! 'helm-find-files-after-init-hook
     (map! :map helm-find-files-map
           "<DEL>" #'helm-find-files-up-one-level)))
@@ -139,8 +138,8 @@
       'org-babel-load-languages
       '((emacs-lisp . t)
       (python . t)
-      (R . t)))
-
+      (R . t)
+      (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 ;; Org templates ---
@@ -150,7 +149,8 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("rl" . "src R")))
+  (add-to-list 'org-structure-template-alist '("rl" . "src R"))
+  (add-to-list 'org-structure-template-alist '("go" . "src go")))
 
 ;; ========= DEFT =========
 
@@ -165,9 +165,8 @@
 
 ;; ========= SPELLCHECK =========
 
-(set-input-method "TeX")
-
 (after! guess-language
+  (set-input-method "TeX")
   (setq guess-language-langcodes
         '((en . ("en_US" "English" "🇺🇸" "English"))
           (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))
@@ -180,6 +179,7 @@
 (add-hook 'text-mode-hook 'guess-language-mode)
 (remove-hook 'yaml-mode-hook #'flyspell-prog-mode)
 (remove-hook 'json-mode-hook #'flyspell-prog-mode)
+(global-set-key [f5] 'guess-language)
 
 ;; ========= EVIL SNIPE =========
 
@@ -197,8 +197,9 @@
         comint-scroll-to-bottom-on-output t))
 
 (global-set-key [f1] 'ess-eval-line)
-(global-set-key [f2] 'ess-eval-region-and-go)
-(global-set-key [f3] 'ess-eval-line-and-step)
+(global-set-key [f2] 'ess-eval-region)
+(global-set-key [f3] 'ess-eval-region-and-go)
+(global-set-key [f4] 'ess-eval-line-and-step)
 
 ;; Pipe snippet ---
 
@@ -212,13 +213,14 @@
 
 ;; Quarto ---
 
-(require 'quarto-mode)
-(require 'poly-R)
-(add-hook 'ess-mode-hook 'quarto-mode)
-(add-hook 'ess-mode-hook 'company-mode)
+(add-hook 'ess-mode-hook 'quarto-mode #'company-mode)
 (add-hook 'poly-gfm+r-mode 'company-mode)
 (add-to-list 'auto-mode-alist '("\\.[q]md\\'" . poly-gfm+r-mode))
-(setq markdown-code-block-braces t)
+
+(after! poly-gfm+r-mode
+  (require 'quarto-mode)
+  (require 'poly-R)
+  (setq markdown-code-block-braces t))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

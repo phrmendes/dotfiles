@@ -16,6 +16,7 @@ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
 echo 'alias ls="exa --icons"' >"$HOME"/.config/fish/config.fish
 echo 'alias cat="bat"' >>"$HOME"/.config/fish/config.fish
+echo 'alias stow_dotfiles="stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles"' >>"$HOME"/.config/fish/config.fish
 
 # NIX ---------
 

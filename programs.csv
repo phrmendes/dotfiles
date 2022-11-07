@@ -13,10 +13,12 @@ file-roller,apt,both
 shotwell,apt,pc
 timeshift,apt,pc
 solaar,apt,pc
+alacritty,apt,both
 python3-pip,apt,both
 gfortran,apt,both
 gdal-data,apt,both
 gdebi-core,apt,both
+locate,apt,both
 fonts-firacode,apt,both
 libcurl4-openssl-dev,apt,both
 libssl-dev,apt,both

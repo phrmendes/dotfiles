@@ -8,6 +8,7 @@ cmake,apt,both
 gpg,apt,both
 seahorse,apt,both
 seahorse-nautilus,apt,both
+stow,apt,both
 file-roller,apt,both
 shotwell,apt,pc
 timeshift,apt,pc
@@ -16,6 +17,7 @@ python3-pip,apt,both
 gfortran,apt,both
 gdal-data,apt,both
 gdebi-core,apt,both
+kitty,apt,both
 fonts-firacode,apt,both
 libcurl4-openssl-dev,apt,both
 libssl-dev,apt,both
@@ -34,11 +36,13 @@ libpng-dev,apt,both
 libtiff5-dev,apt,both
 libjpeg-dev,apt,both
 dvipng,apt,both
-com.github.muriloventuroso.easyssh,flatpak,pc
-com.mattjakeman.ExtensionManager,flatpak,pc
-com.stremio.Stremio,flatpak,pc
-radian,mamba,both
-visidata,mamba,both
+mesautils,apt,both
+com.github.muriloventuroso.easyssh,flatpak,both
+com.mattjakeman.ExtensionManager,flatpak,both
+com.stremio.Stremio,flatpak,both
+com.github.tchx84.Flatseal,flatpak,both
+com.tutanota.Tutanota,flatpak,both
+eu.ithz.umftpd,flatpak,both
 bitwarden,nix,both
 pcloud,nix,both
 onlyoffice-bin,nix,both
@@ -51,7 +55,6 @@ celluloid,nix,both
 spotify,nix,both
 fragments,nix,both
 kooha,nix,both
-fish,nix,both
 cargo,nix,both
 neovim,nix,both
 go,nix,both
@@ -69,3 +72,6 @@ nodejs,nix,both
 emacs,nix,both
 languagetool,nix,both
 texlive.combined.scheme-minimal,nix,both
+podman,nix,pc
+starship,nix,both
+fish,nix,both

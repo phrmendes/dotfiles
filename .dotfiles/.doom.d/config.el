@@ -22,12 +22,7 @@
 
 ;; ========= LINE NUMBERS =========
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-;; In this case, line numbers are disable for text buffer.
-
 (setq display-line-numbers-type 'relative)
-
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 
 ;; ========= DEFAULT PDF READER =========
@@ -177,8 +172,8 @@
           (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))))
 
 (add-hook 'text-mode-hook 'guess-language-mode)
-(remove-hook 'yaml-mode-hook #'flyspell-prog-mode)
-(remove-hook 'json-mode-hook #'flyspell-prog-mode)
+(remove-hook 'yaml-mode-hook #'prog-mode)
+(remove-hook 'json-mode-hook #'prog-mode)
 (global-set-key [f5] 'guess-language)
 
 ;; ========= EVIL SNIPE =========
@@ -213,14 +208,24 @@
 
 ;; Quarto ---
 
+(require 'poly-R)
+
+(after! poly-gfm+r-mode
+  (require 'quarto-mode)
+  (setq markdown-code-block-braces t))
+
 (add-hook 'ess-mode-hook 'quarto-mode #'company-mode)
 (add-hook 'poly-gfm+r-mode 'company-mode)
 (add-to-list 'auto-mode-alist '("\\.[q]md\\'" . poly-gfm+r-mode))
 
-(after! poly-gfm+r-mode
-  (require 'quarto-mode)
-  (require 'poly-R)
-  (setq markdown-code-block-braces t))
+;; ========= SIMPLENOTE =========
+
+(after! simplenote2
+  (setq simplenote2-email "phrmendes@tuta.io")
+  (setq simplenote2-password "Xl79z*iHIkQT!l"))
+
+(simplenote2-setup)
+(simplenote2-sync-notes)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

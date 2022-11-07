@@ -66,8 +66,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "yaml",
-  "go",
-  "r"
+  "go"
 }
 
 -- generic LSP settings
@@ -191,11 +190,9 @@ lvim.plugins = {
         debug = false; -- print debug information
         opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
         post_open_hook = nil -- a function taking two arguments, a buffer and a window to be ran as a hook.
-        -- you can use "default_mappings = true" setup option
-        -- or explicitly set keybindings
-        -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
-        -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
-        -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+        vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+        vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+        vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
       }
     end
   },
@@ -229,24 +226,5 @@ lvim.plugins = {
     config = function()
       require("todo-comments").setup()
     end,
-  },
-  -- r packages
-  { "jalvesaq/Nvim-R" },
-  { "quarto-dev/quarto-nvim" },
-  {
-    "quarto-dev/quarto-vim",
-    requires = {
-      { "vim-pandoc/vim-pandoc" },
-      { "vim-pandoc/vim-pandoc-syntax" },
-    },
-    ft = { "quarto" },
   }
 }
-
-vim.cmd("let R_app = 'radian'")
-vim.cmd("let R_cmd = 'R'")
-vim.cmd("let R_hl_term = 0")
-vim.cmd("let R_args = []")
-vim.cmd("let R_bracketed_paste = 1")
-vim.cmd("let R_external_term = 'gnome-terminal'")
-vim.cmd("let R_csv_app = 'terminal:vd'")

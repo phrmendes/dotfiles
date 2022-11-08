@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
 
-##############################################################################
-## ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ##
-## ██░▄▄▀█░▄▄▀██░▄▄▀██░█▀▄██░██░██░▄▄░████░▄▄▄░██░▄▄▀██░▄▄▀█▄░▄██░▄▄░█▄▄░▄▄ ##
-## ██░▄▄▀█░▀▀░██░█████░▄▀███░██░██░▀▀░████▄▄▄▀▀██░█████░▀▀▄██░███░▀▀░███░██ ##
-## ██░▀▀░█░██░██░▀▀▄██░██░██▄▀▀▄██░███████░▀▀▀░██░▀▀▄██░██░█▀░▀██░██████░██ ##
-## ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ## 
-##############################################################################
+###############################################################################
+## ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ##
+## ██░▄▄▀█░▄▄▀██░▄▄▀██░█▀▄██░██░██░▄▄░████░▄▄▄░██░▄▄▀██░▄▄▀█▄░▄██░▄▄░█▄▄░▄▄█ ##
+## ██░▄▄▀█░▀▀░██░█████░▄▀███░██░██░▀▀░████▄▄▄▀▀██░█████░▀▀▄██░███░▀▀░███░███ ##
+## ██░▀▀░█░██░██░▀▀▄██░██░██▄▀▀▄██░███████░▀▀▀░██░▀▀▄██░██░█▀░▀██░██████░███ ##
+## ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ##
+###############################################################################
+
+# TODO Setup Nix, R and Python packages
+# TODO Create stow function
 
 # VARIABLES ---------
 
 DEB_URLS_FILE="deb_urls.txt"
 DIR_DEB="/tmp/deb_packages"
-DIR_APPIMAGES="$HOME/appimages"
 RED="\e[1;31m"
 BLUE="\e[1;34m"
 GREEN="\e[1;32m"
 NO_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
-APPIMAGES_FILE="$MAIN_DIR/appimages.txt"
 
 # REQUIREMENTS ---------
 
@@ -66,21 +67,11 @@ nix () {
     echo -e "${GREEN}[DONE] - Nix installed.${NO_COLOR}"
 }
 
-mamba () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing Mamba...${NO_COLOR}"
-    wget -O /tmp/mambaforge.sh "https://github.com/"/home/$USER/mambaforge/condabin/conda"-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh" 
-    sudo chmod +x /tmp/mambaforge.sh 
-    bash /tmp/mambaforge.sh
-    source "$HOME/.bashrc"
-    "$HOME/mambaforge/condabin/conda" config --set auto_activate_base false
-    echo -e "${GREEN}[DONE] - Mamba installed.${NO_COLOR}" 
-}
-
 remove_installed () {
     local apps_to_uninstall
 
     apps_to_uninstall=$(apt list --installed | grep libreoffice | cut -d "/" -f 1)
-    apps_to_uninstall+=(geary gnome-calendar gnome-contacts)
+    apps_to_uninstall+=(geary gnome-calendar gnome-contacts gnome-terminal)
 
     for app in "${apps_to_uninstall[@]}"; do
         echo -e "${BLUE}[IN PROGRESS] - Removing $app...${NO_COLOR}"
@@ -115,8 +106,6 @@ clean () {
 reading_programs_file () {
     PROGRAMS_APT=()
     PROGRAMS_FLATPAK=()
-    PROGRAMS_NIX=()
-    PROGRAMS_MAMBA=()
     local file_apps="/tmp/apps.txt"
 
     if [[ $pc_or_laptop == "pc" ]]; then
@@ -134,12 +123,8 @@ reading_programs_file () {
 
         if [[ $str_2 = "apt" ]]; then
             PROGRAMS_APT+=("$str_1")
-        elif [[ $str_2 = "flatpak" ]]; then
-            PROGRAMS_FLATPAK+=("$str_1")
-        elif [[ $str_2 = "mamba" ]]; then
-            PROGRAMS_MAMBA+=("$str_1")
         else
-            PROGRAMS_NIX+=("$str_1")
+            PROGRAMS_FLATPAK+=("$str_1")
         fi
     done < "$file_apps"
 }
@@ -153,13 +138,6 @@ download_deb () {
         wget -c "$line" -P "$DIR_DEB" 
     done < "$DEB_URLS_FILE"
     echo -e "${GREEN}[DONE] - .deb packages downloaded.${NO_COLOR}"
-}
-
-download_appimage () {
-    mkdir "$DIR_APPIMAGES"
-    echo -e "${BLUE}[IN PROGRESS] - Downloading Appimages...${NO_COLOR}"
-    wget -i "$APPIMAGES_FILE" -P "$DIR_APPIMAGES"
-    echo -e "${GREEN}[DONE] - Appimages downloaded.${NO_COLOR}"
 }
 
 install_deb () {
@@ -188,56 +166,6 @@ install_flatpak () {
     done
 }
 
-install_nix () {
-    for program in "${PROGRAMS_NIX[@]}"; do
-        echo -e "${BLUE}[IN PROGRESS] - Installing $program (nix)...${NO_COLOR}"
-        nix-env -iA nixpkgs."$program"
-        echo -e "${GREEN}[DONE] - $program installed.${NO_COLOR}"    
-    done
-
-    source "$HOME/.profile"
-
-    nix-collect-garbage
-}
-
-install_R_packages () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing R dependencies...${NO_COLOR}"
-    sudo apt update -qq 
-    sudo apt install --no-install-recommends software-properties-common dirmngr 
-    wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-    sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" 
-    echo -e "${BLUE}[IN PROGRESS] - Installing R...${NO_COLOR}"
-    sudo apt install r-base r-base-dev -y
-    echo -e "${BLUE}[IN PROGRESS] - Installing libssl1.1...${NO_COLOR}"
-    wget -O /tmp/ http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
-    sudo dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
-    echo 'alias radian="$HOME/mambaforge/bin/radian"' >> "$HOME/.bashrc"
-    echo 'alias r="$HOME/mambaforge/bin/radian"' >> "$HOME/.bashrc"
-    echo -e "${BLUE}[IN PROGRESS] - Installing R packages...${NO_COLOR}"
-    Rscript r_packages.R
-    echo -e "${GREEN}[DONE] - R packages installed.${NO_COLOR}"
-}
-
-install_python_packages () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing Python packages...${NO_COLOR}"
-    /home/phrmendes/mambaforge/condabin/mamba install "${PROGRAMS_MAMBA[@]}" -y 
-    echo -e "${GREEN}[DONE] - Python packages installed.${NO_COLOR}"
-}
-
-install_docker () {
-    echo -e "${BLUE}[IN PROGRESS] - Installing Docker...${NO_COLOR}"
-    sudo mkdir -p /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &> /dev/null
-    att_repos
-    sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y 
-    sudo groupadd docker
-    sudo usermod -aG docker phrmendes 
-    nix-env -iA nixpkgs.lazydocker
-    echo -e "${GREEN}[DONE] - Docker installed.${NO_COLOR}"
-}
-
 setup_fonts () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up fonts...${NO_COLOR}"
     mkdir -p "$HOME"/.local/share/fonts/NerdFonts
@@ -249,9 +177,8 @@ setup_fonts () {
 
 setup_fish () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up fish...${NO_COLOR}"
-    "/home/$USER/mambaforge/condabin/conda" init fish
-    chmod +x "$MAIN_DIR/fish_setup.fish"
-    "$HOME/.nix-profile/bin/fish" "$MAIN_DIR/fish_setup.fish"
+    chmod +x "$MAIN_DIR/setup.fish"
+    "$HOME/.nix-profile/bin/fish" "$MAIN_DIR/setup.fish"
     echo -e "${GREEN}[DONE] - Fish set up.${NO_COLOR}"
 }
 
@@ -259,7 +186,6 @@ setup_emacs () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up Emacs...${NO_COLOR}"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
     "$HOME/.emacs.d/bin/doom" install
-    cp "$MAIN_DIR"/*.el "$HOME/.doom.d/"
     "$HOME/.emacs.d/bin/doom" sync
     echo -e "${GREEN}[DONE] - Emacs set up.${NO_COLOR}"
 }
@@ -268,8 +194,13 @@ setup_neovim () {
     echo -e "${BLUE}[IN PROGRESS] - Setting up Neovim...${NO_COLOR}"
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     mkdir -p "$HOME"/.config/nvim
-    cp "$MAIN_DIR"/init.vim "$HOME"/.config/nvim
     echo -e "${GREEN}[DONE] - Neovim set up.${NO_COLOR}"
+}
+
+stow_dotfiles () {
+    echo -e "${BLUE}[IN PROGRESS] - Setting up dotfiles...${NO_COLOR}"
+    stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
+    echo -e "${GREEN}[DONE] - Dotfiles set up.${NO_COLOR}"
 }
 
 # EXECUTION ---------
@@ -284,27 +215,14 @@ att_repos
 upgrade
 remove_installed
 nix
-mamba
 reading_programs_file
-download_appimage
-download_deb
 install_deb
 install_apt
-install_nix
 install_flatpak
-install_python_packages
 setup_fonts
 setup_emacs
 setup_neovim
 clean
-
-if [[ $pc_or_laptop == "pc" ]]; then
-    install_docker
-fi
-
 setup_fish
-
-read -r -p "Install R packages? (y/n): " install_r
-if [[ $install_r == "y" ]]; then install_R_packages; fi
 
 echo -e "${GREEN}[DONE] - Setup finished.${NO_COLOR}"

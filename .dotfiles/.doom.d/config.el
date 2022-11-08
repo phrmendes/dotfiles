@@ -32,6 +32,10 @@
   :config
   (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
 
+;; ========= TANGLE CONFIG FILES =========
+
+(global-set-key [f6] 'org-babel-tangle)
+
 ;; ========= COMPANY MODE =========
 
 (use-package! company

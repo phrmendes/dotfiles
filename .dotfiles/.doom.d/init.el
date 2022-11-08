@@ -92,6 +92,7 @@
        ;;(elixir +lsp)
        emacs-lisp
        ;;(erlang +lsp)
+       nix
        ess
        (go +lsp)
        ;;(haskell +lsp)

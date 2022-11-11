@@ -227,18 +227,10 @@ lvim.plugins = {
       require("todo-comments").setup()
     end
   },
-  -- markdown
-  {
-    "jghauser/auto-pandoc.nvim",
-    ft = { "markdown" },
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('auto-pandoc')
-    end
-  },
+  -- markdown preview
   {
     "npxbr/glow.nvim",
     ft = { "markdown" },
-    run = "brew install glow"
+    -- run = "brew install glow"
   }
 }

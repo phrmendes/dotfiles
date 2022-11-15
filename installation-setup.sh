@@ -32,4 +32,4 @@ sudo nixos-generate-config --root /mnt
 sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
 
 # adding swap
-sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' hardware-configuration.nix
+sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' /mnt/etc/nixos/hardware-configuration.nix

@@ -25,14 +25,6 @@
       timeout = 5;
     };
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.luks.devices = [
-      {
-        name = "root";
-        device = "/dev/disk/by-label/primary";
-        preLVM = true;
-        allowDiscards = true;
-      }
-    ];
   };
 
   networking = {

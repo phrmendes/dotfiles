@@ -23,24 +23,16 @@ sudo parted /dev/sda -- set 2 esp on
 sudo cryptsetup luksFormat /dev/sda1
 
 # open encrypted partition
-sudo cryptsetup luksOpen /dev/sda1 enc-pv
-
-# creating logical volumes
-sudo pvcreate /dev/mapper/enc-pv
-sudo vgcreate vg /dev/mapper/enc-pv
-sudo lvcreate -L 8G -n swap vg # swap
-sudo lvcreate -l '100%FREE' -n root vg # system
+sudo cryptsetup luksOpen /dev/sda1 cryptroot
 
 # format partitions
 sudo mkfs.fat -F 32 -n boot /dev/sda2
-sudo mkfs.ext4 -L root /dev/vg/root
-sudo mkswap -L swap /dev/vg/swap
+sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 # mounting partitions
-sudo mount /dev/vg/root /mnt
+sudo mount /dev/disk/by-label/nixos /mnt
 sudo mkdir /mnt/boot
 sudo mount /dev/sda2 /mnt/boot
-sudo swapon /dev/vg/swap
 
 # generate *.nix files
 sudo nixos-generate-config --root /mnt
@@ -78,14 +70,6 @@ sudo nixos-generate-config --root /mnt
       timeout = 5;
     };
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.luks.devices = [
-      {
-        name = "root";
-        device = "/dev/disk/by-label/primary";
-        preLVM = true;
-        allowDiscards = true;
-      }
-    ];
   };
 
   networking = {

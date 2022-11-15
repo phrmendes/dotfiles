@@ -111,10 +111,10 @@
 
   users.users.phrmendes = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "networkmanager" ]
+    extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
     shell = pkgs.fish;
-  }
+  };
 
   system.stateVersion = "22.05";
 }

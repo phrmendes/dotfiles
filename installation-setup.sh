@@ -36,4 +36,4 @@ sudo swapon /dev/vg/swap
 # generate *.nix files
 nixos-generate-config --root /mnt
 
-curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
+sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix

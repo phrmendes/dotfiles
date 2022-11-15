@@ -59,7 +59,7 @@ sudo nixos-generate-config --root /mnt
         enable = true;
         version = 2;
         efiSupport = true;
-        device = "nodev";
+        devices = [ "nodev" ];
         gfxmodeEfi = "1024x768";
         configurationLimit = 5; # number of listed generations in grub
       };
@@ -97,30 +97,18 @@ sudo nixos-generate-config --root /mnt
       enable = true;
       layout = "us,br";
       desktopManager.xfce.enable = true;
-      displayManager.lightdm = {
-        enable = true;
-        greeters.mini = {
-          enable = true;
-          user = "phrmendes";
-          extraConfig = ''
-                [greeter]
-                show-password-label = true
-                password-label-text = Password:
-                password-alignment = left
-                [greeter-theme]
-                font = "SauceCodePro Nerd Font"
-                background-image = ""
-            '';
-        };
+      displayManager = {
+        defaultSession = "xfce+bspwm";
+        greeters.pantheon.enable = true
       };
-      windowManager.bspwm.enable = true;
-      # for laptop
-      # libinput = {
-      #   enable = true;
-      #   tapping = true;
-      #   naturalScrolling = true;
-      # }
     };
+    windowManager.bspwm.enable = true;
+    # for laptop
+    # libinput = {
+    #   enable = true;
+    #   tapping = true;
+    #   naturalScrolling = true;
+    # }
   };
 
   sound = {
@@ -149,10 +137,19 @@ sudo nixos-generate-config --root /mnt
 
   users.users.phrmendes = {
     isNormalUser = true;
+    uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
     shell = pkgs.fish;
+    useDefaultSHell = false
   };
+
+  enviroment = {
+    pathsToLink = ["/share/fish"];
+    shells = [ pkgs.fish ];
+  }
+
+  nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "22.05";
 }
@@ -175,3 +172,9 @@ sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; siz
 
 1) ~sudo nixos-install~
 2) ~nixos-rebuild switch~ after applying changes to the ~configuration.nix~ file
+
+* home.nix
+
+#+begin_src nix :tangle ./home.nix
+
+#+end_src

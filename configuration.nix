@@ -14,7 +14,7 @@
         enable = true;
         version = 2;
         efiSupport = true;
-        device = "nodev";
+        devices = [ "nodev" ];
         gfxmodeEfi = "1024x768";
         configurationLimit = 5; # number of listed generations in grub
       };
@@ -52,30 +52,18 @@
       enable = true;
       layout = "us,br";
       desktopManager.xfce.enable = true;
-      displayManager.lightdm = {
-        enable = true;
-        greeters.mini = {
-          enable = true;
-          user = "phrmendes";
-          extraConfig = ''
-                [greeter]
-                show-password-label = true
-                password-label-text = Password:
-                password-alignment = left
-                [greeter-theme]
-                font = "SauceCodePro Nerd Font"
-                background-image = ""
-            '';
-        };
+      displayManager = {
+        defaultSession = "xfce+bspwm";
+        greeters.pantheon.enable = true
       };
-      windowManager.bspwm.enable = true;
-      # for laptop
-      # libinput = {
-      #   enable = true;
-      #   tapping = true;
-      #   naturalScrolling = true;
-      # }
     };
+    windowManager.bspwm.enable = true;
+    # for laptop
+    # libinput = {
+    #   enable = true;
+    #   tapping = true;
+    #   naturalScrolling = true;
+    # }
   };
 
   sound = {
@@ -104,10 +92,19 @@
 
   users.users.phrmendes = {
     isNormalUser = true;
+    uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
     shell = pkgs.fish;
+    useDefaultSHell = false
   };
+
+  enviroment = {
+    pathsToLink = ["/share/fish"];
+    shells = [ pkgs.fish ];
+  }
+
+  nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "22.05";
 }

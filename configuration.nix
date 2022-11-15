@@ -71,7 +71,7 @@
                 password-label-text = Password:
                 password-alignment = left
                 [greeter-theme]
-                font = "Fira Code"
+                font = "SauceCodePro Nerd Font"
                 background-image = ""
             '';
         };

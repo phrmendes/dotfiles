@@ -34,7 +34,7 @@ sudo mount /dev/sda2 /mnt/boot
 sudo swapon /dev/vg/swap
 
 # generate *.nix files
-nixos-generate-config --root /mnt
+sudo nixos-generate-config --root /mnt
 
 # downloading configuration.nix file
 sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix

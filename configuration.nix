@@ -36,8 +36,8 @@
   };
 
   networking = {
-    hostName = "nixos"
-      networkmanager.enable = true;  # for pc
+    hostName = "nixos";
+    networkmanager.enable = true;  # for pc
     # wireless.enable = true; # for laptop
   };
 
@@ -58,8 +58,8 @@
     openssh.enable = true;
     xserver = {
       enable = true;
-      layout = "us,br"
-        desktopManager.xfce.enable = true;
+      layout = "us,br";
+      desktopManager.xfce.enable = true;
       displayManager.lightdm = {
         enable = true;
         greeters.mini = {

@@ -82,7 +82,7 @@
       #   tapping = true;
       #   naturalScrolling = true;
       # } # for laptops
-    }
+    };
   };
 
   sound = {

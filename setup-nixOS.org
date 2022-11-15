@@ -135,7 +135,7 @@ sudo nixos-generate-config --root /mnt
       #   tapping = true;
       #   naturalScrolling = true;
       # } # for laptops
-    }
+    };
   };
 
   sound = {
@@ -182,3 +182,8 @@ sudo nixos-generate-config --root /mnt
 sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
 
 #+end_src
+
+* Installation
+
+1) ~sudo nixos-install~
+2) ~nixos-rebuild switch~ after applying changes to the ~configuration.nix~ file

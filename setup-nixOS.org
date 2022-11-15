@@ -1,0 +1,186 @@
+#+title: NixOS Setup
+#+property: header-args:nix
+
+* Partitioning and mounting
+
+Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/installation-setup.sh --output installation-setup.sh~
+
+#+begin_src shell :tangle ./installation-setup.sh
+
+#!/usr/bin/env bash
+
+# variables
+
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main"
+
+# create partitions
+sudo parted /dev/sda -- mklabel gpt
+sudo parted /dev/sda -- mkpart primary 512MiB 100% # main partition
+sudo parted /dev/sda -- mkpart ESP fat32 1Mib 512MiB # efi
+sudo parted /dev/sda -- set 2 esp on
+
+# encryption
+sudo cryptsetup luksFormat /dev/sda1
+
+# open encrypted partition
+sudo cryptsetup luksOpen /dev/sda1 enc-pv
+
+# creating logical volumes
+sudo pvcreate /dev/mapper/enc-pv
+sudo vgcreate vg /dev/mapper/enc-pv
+sudo lvcreate -L 8G -n swap vg # swap
+sudo lvcreate -l '100%FREE' -n root vg # system
+
+# format partitions
+sudo mkfs.fat -F 32 -n boot /dev/sda2
+sudo mkfs.ext4 -L root /dev/vg/root
+sudo mkswap -L swap /dev/vg/swap
+
+# mounting partitions
+sudo mount /dev/vg/root /mnt
+sudo mkdir /mnt/boot
+sudo mount /dev/sda2 /mnt/boot
+sudo swapon /dev/vg/swap
+
+# generate *.nix files
+nixos-generate-config --root /mnt
+
+#+end_src
+
+#+RESULTS:
+
+* configuration.nix
+
+#+begin_src nix :tangle ./configuration.nix
+
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [
+      ./hardware-configuration.nix
+    ];
+
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        version = 2;
+        efiSupport = true;
+        device = "nodev";
+        gfxmodeEfi = "1024x768";
+        configurationLimit = 5; # number of listed generations in grub
+      };
+      efi = {
+        efiSysMountPoint = "/boot/efi";
+        canTouchEfiVariables = true;
+      };
+      timeout = 5;
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.luks.devices = [
+      {
+        name = "root";
+        device = "/dev/sda1";
+        preLVM = true;
+        allowDiscards = true;
+      }
+    ];
+  };
+
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;  # for pc
+    # wireless.enable = true; # for laptop
+  };
+
+  time.timeZone = "America/Sao_Paulo";
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+  ];
+
+  services = {
+    openssh.enable = true;
+    xserver = {
+      enable = true;
+      layout = "us,br";
+      desktopManager.xfce.enable = true;
+      displayManager.lightdm = {
+        enable = true;
+        greeters.mini = {
+          enable = true;
+          user = "phrmendes";
+          extraConfig = ''
+                [greeter]
+                show-password-label = true
+                password-label-text = Password:
+                password-alignment = left
+                [greeter-theme]
+                font = "SauceCodePro Nerd Font"
+                background-image = ""
+            '';
+        };
+      };
+      windowManager.bspwm.enable = true;
+      # libinput = {
+      #   enable = true;
+      #   tapping = true;
+      #   naturalScrolling = true;
+      # } # for laptops
+    }
+  };
+
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
+
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+      extraConfig = ''
+        load-module module-switch-on-connect
+      '';
+    };
+    bluetooth = {
+      enable = true;
+      hsphfpd.enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+  };
+
+  users.users.phrmendes = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
+    initialPassword = "password";
+    shell = pkgs.fish;
+  };
+
+  system.stateVersion = "22.05";
+}
+
+#+end_src
+
+* Placing *.nix files
+
+#+begin_src shell :tangle ./installation-setup.sh
+
+# downloading configuration.nix file
+sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
+
+#+end_src

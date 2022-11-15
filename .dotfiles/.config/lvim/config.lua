@@ -189,9 +189,9 @@ lvim.plugins = {
         default_mappings = false; -- bind default mappings
         debug = false; -- print debug information
         opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        post_open_hook = nil -- a function taking two arguments, a buffer and a window to be ran as a hook.
-        vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
-        vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+        post_open_hook = nil; -- a function taking two arguments, a buffer and a window to be ran as a hook.
+        vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>");
+        vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>");
         vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
       }
     end
@@ -225,6 +225,12 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("todo-comments").setup()
-    end,
+    end
+  },
+  -- markdown preview
+  {
+    "npxbr/glow.nvim",
+    ft = { "markdown" },
+    -- run = "brew install glow"
   }
 }

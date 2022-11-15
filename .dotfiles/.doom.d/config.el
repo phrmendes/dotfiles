@@ -15,8 +15,8 @@
 
 ;; ========= FONT =========
 
-(setq doom-font (font-spec :family "Fira Code" :size 15 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "Fira Sans" :size 17))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 15)
+     doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 17))
 
 (setq doom-theme 'doom-gruvbox)
 
@@ -31,6 +31,10 @@
   :init (add-hook 'after-init-hook 'openwith-mode)
   :config
   (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
+
+;; ========= TANGLE CONFIG FILES =========
+
+(global-set-key [f6] 'org-babel-tangle)
 
 ;; ========= COMPANY MODE =========
 
@@ -145,6 +149,7 @@
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("rl" . "src R"))
+  (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
   (add-to-list 'org-structure-template-alist '("go" . "src go")))
 
 ;; ========= DEFT =========

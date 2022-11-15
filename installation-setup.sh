@@ -2,7 +2,7 @@
 
 # variables
 
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main/partition.sh"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main"
 
 # create partitions
 sudo parted /dev/sda -- mklabel gpt

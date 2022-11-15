@@ -3,7 +3,7 @@
 
 * Partitioning and mounting
 
-Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/partition.sh --output installation-setup.sh~
+Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/installation-setup.sh --output installation-setup.sh~
 
 #+begin_src shell :tangle ./installation-setup.sh
 
@@ -11,7 +11,7 @@ Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/par
 
 # variables
 
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main/partition.sh"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main"
 
 # create partitions
 sudo parted /dev/sda -- mklabel gpt
@@ -46,6 +46,8 @@ sudo swapon /dev/vg/swap
 nixos-generate-config --root /mnt
 
 #+end_src
+
+#+RESULTS:
 
 * configuration.nix
 

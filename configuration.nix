@@ -6,9 +6,18 @@
       ./hardware-configuration.nix
     ];
 
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+  fileSystem."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+    options = [ "noatime" "nodiratime" "discard" ];
+  };
 
   boot = {
+    initrd.luks.devices."cryptroot" = {
+      device = "/dev/mapper/cryptroot";
+      preLVM = true;
+      allowDiscards = true;
+    };
     loader = {
       grub = {
         enable = true;
@@ -25,11 +34,6 @@
       timeout = 5;
     };
     kernelPackages = pkgs.linuxPackages_latest;
-  };
-
-  fileSystem."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
   };
 
   networking = {

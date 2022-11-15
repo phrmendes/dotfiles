@@ -28,7 +28,7 @@
     initrd.luks.devices = [
       {
         name = "root";
-        device = "/dev/sda1";
+        device = "/dev/disk/by-label/primary";
         preLVM = true;
         allowDiscards = true;
       }

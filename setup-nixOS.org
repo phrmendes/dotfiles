@@ -51,18 +51,9 @@ sudo nixos-generate-config --root /mnt
       ./hardware-configuration.nix
     ];
 
-  fileSystem."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-    options = [ "noatime" "nodiratime" "discard" ];
-  };
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
   boot = {
-    initrd.luks.devices."cryptroot" = {
-      device = "/dev/mapper/cryptroot";
-      preLVM = true;
-      allowDiscards = true;
-    };
     loader = {
       grub = {
         enable = true;

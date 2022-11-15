@@ -22,7 +22,7 @@ sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 # mounting partitions
 sudo mount /dev/disk/by-label/nixos /mnt
-sudo mkdir /mnt/boot
+sudo mkdir -p /mnt/boot/efi
 sudo mount /dev/sda2 /mnt/boot
 
 # generate *.nix files

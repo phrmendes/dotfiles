@@ -178,6 +178,7 @@ nixos-generate-config --root /mnt
 
 #+begin_src shell :tangle ./installation-setup.sh
 
+# downloading configuration.nix file
 sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
 
 #+end_src

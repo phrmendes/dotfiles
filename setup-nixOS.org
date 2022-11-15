@@ -72,6 +72,11 @@ sudo nixos-generate-config --root /mnt
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  fileSystem."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;  # for pc
@@ -114,11 +119,12 @@ sudo nixos-generate-config --root /mnt
         };
       };
       windowManager.bspwm.enable = true;
+      # for laptop
       # libinput = {
       #   enable = true;
       #   tapping = true;
       #   naturalScrolling = true;
-      # } # for laptops
+      # }
     };
   };
 
@@ -164,6 +170,9 @@ sudo nixos-generate-config --root /mnt
 
 # downloading configuration.nix file
 sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
+
+# adding swap
+sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' hardware-configuration.nix
 
 #+end_src
 

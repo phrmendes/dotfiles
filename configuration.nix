@@ -27,6 +27,11 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  fileSystem."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;  # for pc
@@ -69,11 +74,12 @@
         };
       };
       windowManager.bspwm.enable = true;
+      # for laptop
       # libinput = {
       #   enable = true;
       #   tapping = true;
       #   naturalScrolling = true;
-      # } # for laptops
+      # }
     };
   };
 

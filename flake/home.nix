@@ -22,6 +22,7 @@ in {
       shellcheck
       automake
       cmake
+      fish
       alacritty
       ncdu
       gnupg

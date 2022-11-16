@@ -99,12 +99,10 @@ in {
     uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
-    shell = pkgs.fish;
+    shell = pkgs.bash;
   };
 
   environment = {
-    pathsToLink = ["/share/fish"];
-    shells = [ pkgs.fish ];
     systemPackages = with pkgs; [
       vim
       zip

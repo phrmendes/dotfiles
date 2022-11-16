@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  user = "phrmendes";
+in {
   imports =
     [
       ./hardware-configuration.nix
@@ -54,7 +56,9 @@
       desktopManager.xfce.enable = true;
       displayManager = {
         defaultSession = "xfce+bspwm";
-        greeters.pantheon.enable = true
+        lightdm = {
+          greeters.pantheon.enable = true;
+        };
       };
     };
     windowManager.bspwm.enable = true;
@@ -63,7 +67,7 @@
     #   enable = true;
     #   tapping = true;
     #   naturalScrolling = true;
-    # }
+    # };
   };
 
   sound = {
@@ -90,21 +94,41 @@
     };
   };
 
-  users.users.phrmendes = {
+  users.users.${user} = {
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
     shell = pkgs.fish;
-    useDefaultSHell = false
   };
 
-  enviroment = {
+  environment = {
     pathsToLink = ["/share/fish"];
     shells = [ pkgs.fish ];
-  }
+    systemPackages = with pkgs; [
+      vim
+      zip
+      unzip
+      unrar
+      tree
+      git
+      gzip
+    ];
+  };
 
-  nixpkgs.config.allowUnfree = true;
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
 
   system.stateVersion = "22.05";
 }

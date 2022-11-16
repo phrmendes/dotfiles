@@ -11,7 +11,7 @@ Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/ins
 
 # variables
 
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main/flake"
 
 # create partitions
 sudo parted /dev/sda -- mklabel gpt
@@ -39,13 +39,60 @@ sudo nixos-generate-config --root /mnt
 
 #+end_src
 
+* flake.nix
+
+#+begin_src nix :tangle ./flake/flake.nix
+
+{
+  description = "Personal flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
+      user = "phrmendes";
+    in {
+      nixosConfigurations = {
+        ${user} = lib.nixosSystem {
+          inherit system pkgs;
+          modules = [
+            ./configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} = {
+                imports = [ ./home.nix ];
+              };
+            }
+          ];
+        };
+      };
+    };
+}
+
+#+end_src
+
 * configuration.nix
 
-#+begin_src nix :tangle ./configuration.nix
+#+begin_src nix :tangle ./flake/configuration.nix
 
 { config, pkgs, ... }:
 
-{
+let
+  user = "phrmendes";
+in {
   imports =
     [
       ./hardware-configuration.nix
@@ -99,7 +146,9 @@ sudo nixos-generate-config --root /mnt
       desktopManager.xfce.enable = true;
       displayManager = {
         defaultSession = "xfce+bspwm";
-        greeters.pantheon.enable = true
+        lightdm = {
+          greeters.pantheon.enable = true;
+        };
       };
     };
     windowManager.bspwm.enable = true;
@@ -108,7 +157,7 @@ sudo nixos-generate-config --root /mnt
     #   enable = true;
     #   tapping = true;
     #   naturalScrolling = true;
-    # }
+    # };
   };
 
   sound = {
@@ -135,25 +184,195 @@ sudo nixos-generate-config --root /mnt
     };
   };
 
-  users.users.phrmendes = {
+  users.users.${user} = {
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
     shell = pkgs.fish;
-    useDefaultSHell = false
   };
 
-  enviroment = {
+  environment = {
     pathsToLink = ["/share/fish"];
     shells = [ pkgs.fish ];
-  }
+    systemPackages = with pkgs; [
+      vim
+      zip
+      unzip
+      unrar
+      tree
+      git
+      gzip
+    ];
+  };
 
-  nixpkgs.config.allowUnfree = true;
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
 
   system.stateVersion = "22.05";
 }
 
+#+end_src
+
+* home.nix
+
+#+begin_src nix :tangle ./flake/home.nix
+
+{ config, pkgs, ... }:
+
+let
+  user = "phrmendes";
+in {
+  home = {
+    username = "${user}";
+    homeDirectory = "/home/${user}";
+    packages = with pkgs; [
+      # TERMINAL
+      btop
+      pandoc
+      bat
+      btop
+      gh
+      lazygit
+      ripgrep
+      fd
+      sd
+      tealdeer
+      exa
+      shellcheck
+      automake
+      cmake
+      alacritty
+      ncdu
+      gnupg
+      starship
+      file
+      procps
+      # TEXT EDITORS
+      neovim
+      emacs
+      # PACKAGE MANAGERS
+      flatpak
+      cargo
+      go
+      nodejs
+      # FILE MANAGERS
+      thunar-archive-plugin
+      filezilla
+      # APPS
+      droidcam
+      keepassxc
+      solaar
+      stremio
+      tutanota
+      bitwarden
+      pcloud
+      onlyoffice-bin
+      zotero
+      spotify
+      fragments
+      kooha
+      podman
+      zathura
+      # TWM APPS
+      sxhkd
+      rofi
+      compton
+      # OTHERS
+      aspellDicts.en
+      aspellDicts.pt_BR
+      texlive.combined.scheme-minimal
+    ];
+    pointerCursor = {
+      name = "Dracula-cursors";
+      package = pkgs.dracula-theme;
+      size = 16;
+    };
+    stateVersion = "22.05";
+    sessionVariables = {
+      EDITOR = "neovim";
+    };
+  };
+
+  programs = {
+    fish = {
+      enable = true;
+      shellAliases = {
+        rm = "rm -i";
+        cp = "cp -i";
+        mv = "mv -i";
+        mkdir = "mkdir -p";
+        ls = "exa --icons";
+        cat = "bat";
+      };
+      shellAbbrs = {
+        nv = "nvim";
+        lg = "lazygit";
+      };
+      shellInit = ''
+        set -gx STARSHIP_CONFIG "$HOME"/.config/starship/starship.toml
+        starship init fish | source
+      '';
+      plugins = [
+        {
+          name = "nix-env";
+          src = pkgs.fetchFromGitHub {
+            owner = "lilyball";
+            repo = "nix-env.fish";
+            sha256 = "0000000000000000000000000000000000000000000000000000";
+          };
+        }
+
+        {
+          name = "autopair.fish";
+          src = pkgs.fetchFromGithub {
+            owner = "jorgebucaran";
+            repo = "autopair.fish";
+            sha256 = "0000000000000000000000000000000000000000000000000000";
+          };
+        }
+
+        {
+          name = "fzf";
+          src = pkgs.fetchFromGithub {
+            owner = "PatrickF1";
+            repo = "fzf.fish";
+            sha256 = "0000000000000000000000000000000000000000000000000000";
+          };
+        }
+      ];
+    };
+    bat = {
+      enable = true;
+      config = {
+        theme = "GitHub";
+        italic-text = "always";
+    };
+    git = {
+      enable = true;
+      userName = "Pedro Mendes";
+      userEmail = "phrmendes@tuta.io";
+    };
+
+    home-manager.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+    font.name = "SauceCodePro Nerd Font";
+  };
+}
 #+end_src
 
 * Placing *.nix files
@@ -162,6 +381,7 @@ sudo nixos-generate-config --root /mnt
 
 # downloading configuration.nix file
 sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
+sudo curl "$GITHUB_URL/flake.nix" --output /mnt/etc/nixos/flake.nix
 
 # adding swap
 sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' /mnt/etc/nixos/hardware-configuration.nix
@@ -170,11 +390,21 @@ sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; siz
 
 * Installation
 
-1) ~sudo nixos-install~
-2) ~nixos-rebuild switch~ after applying changes to the ~configuration.nix~ file
+#+begin_src shell :tangle ./installation-setup.sh
 
-* home.nix
+# downloading configuration.nix file
+sudo mkdir /mnt/flake
+sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/flake/configuration.nix
+sudo curl "$GITHUB_URL/flake.nix" --output /mnt/flake/flake.nix
 
-#+begin_src nix :tangle ./home.nix
+# creating hardware-configuration.nix
+sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' /mnt/etc/nixos/hardware-configuration.nix
+cp /mnt/etc/nixos/hardware-configuration.nix /mnt
+sudo rm -r /mnt/etc/nixos
+
+# installing
+nixos-install --flake .#"$USER"
 
 #+end_src
+
+Updates: ~nix flake update~ and ~nixos-rebuild switch --flake .#phrmendes~ after applying changes to the ~*.nix~ files.

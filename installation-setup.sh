@@ -3,6 +3,8 @@
 # variables
 
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main/flake"
+FLAKE_DIR="/mnt/flake"
+NIX_FILES=("configuration.nix" "flake.nix" "home.nix")
 
 # create partitions
 sudo parted /dev/sda -- mklabel gpt
@@ -29,20 +31,17 @@ sudo mount /dev/sda2 /mnt/boot
 sudo nixos-generate-config --root /mnt
 
 # downloading configuration.nix file
-sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/etc/nixos/configuration.nix
-sudo curl "$GITHUB_URL/flake.nix" --output /mnt/etc/nixos/flake.nix
+sudo mkdir "$FLAKE_DIR/"
 
-# adding swap
-sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' /mnt/etc/nixos/hardware-configuration.nix
-
-# downloading configuration.nix file
-sudo mkdir /mnt/flake
-sudo curl "$GITHUB_URL/configuration.nix" --output /mnt/flake/configuration.nix
-sudo curl "$GITHUB_URL/flake.nix" --output /mnt/flake/flake.nix
+for i in "${NIX_FILES[@]}"; do
+    sudo curl "$GITHUB_URL/$i" --output "$FLAKE_DIR/$i"
+done
 
 # creating hardware-configuration.nix
 sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' /mnt/etc/nixos/hardware-configuration.nix
-cp /mnt/etc/nixos/hardware-configuration.nix /mnt
+
+cp /mnt/etc/nixos/hardware-configuration.nix "$FLAKE_DIR"
+
 sudo rm -r /mnt/etc/nixos
 
 # installing

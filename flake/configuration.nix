@@ -53,15 +53,12 @@ in {
     xserver = {
       enable = true;
       layout = "us,br";
-      desktopManager.xfce.enable = true;
-      displayManager = {
-        defaultSession = "xfce+bspwm";
-        lightdm = {
-          greeters.pantheon.enable = true;
-        };
-      };
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
+      excludePackages = [ pkgs.xterm ];
     };
-    windowManager.bspwm.enable = true;
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    gnome.core-utilities.enable = false;
     # for laptop
     # libinput = {
     #   enable = true;
@@ -104,13 +101,20 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      vim
       zip
       unzip
       unrar
       tree
       git
       gzip
+      pop-gtk-theme
+      gnomeExtensions.pop-shell
+      gnomeExtensions.caffeine
+      gnomeExtensions.appindicator
+      gnomeExtensions.vitals
+      gnomeExtensions.gsconnect
+      gnomeExtensions.clipboard-indicator
+      gnomeExtensions.sound-output-device-chooser
     ];
   };
 

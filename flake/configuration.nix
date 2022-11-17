@@ -55,7 +55,6 @@ in {
       layout = "us,br";
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
-      excludePackages = [ pkgs.xterm ];
     };
     udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
     gnome.core-utilities.enable = false;

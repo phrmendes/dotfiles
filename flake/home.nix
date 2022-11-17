@@ -22,7 +22,6 @@ in {
       shellcheck
       automake
       cmake
-      fish
       alacritty
       ncdu
       gnupg
@@ -30,6 +29,10 @@ in {
       file
       procps
       quarto
+      # FISH
+      fish
+      fishPlugins.fzf-fish
+      fishPlugins.autopair-fish
       # TEXT EDITORS
       neovim
       emacs
@@ -39,14 +42,13 @@ in {
       go
       nodejs
       # FILE MANAGERS
-      thunar-archive-plugin
       filezilla
       # APPS
       droidcam
       keepassxc
       solaar
       stremio
-      tutanota
+      tutanota-desktop
       bitwarden
       pcloud
       onlyoffice-bin
@@ -78,7 +80,6 @@ in {
       rPackages.testthat
       # BASIC PYTHON PACKAGES
       python310Packages.pandas
-      python310Packages.polars
       python310Packages.matplotlib
       python310Packages.numpy
       python310Packages.scipy
@@ -111,32 +112,6 @@ in {
         nv = "nvim";
         lg = "lazygit";
       };
-      plugins = [
-        {
-          name = "nix-env";
-          src = pkgs.fetchFromGitHub {
-            owner = "lilyball";
-            repo = "nix-env.fish";
-            sha256 = "0000000000000000000000000000000000000000000000000000";
-          };
-        }
-        {
-          name = "autopair.fish";
-          src = pkgs.fetchFromGithub {
-            owner = "jorgebucaran";
-            repo = "autopair.fish";
-            sha256 = "0000000000000000000000000000000000000000000000000000";
-          };
-        }
-        {
-          name = "fzf";
-          src = pkgs.fetchFromGithub {
-            owner = "PatrickF1";
-            repo = "fzf.fish";
-            sha256 = "0000000000000000000000000000000000000000000000000000";
-          };
-        }
-      ];
     };
     git = {
       enable = true;

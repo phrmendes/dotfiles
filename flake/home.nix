@@ -148,12 +148,12 @@ in {
       plugins = with pkgs.vimPlugins; [
         vim-easymotion
         vim-commentary
-        lightline.vim
+        lightline-vim
         nerdcommenter
         ack.vim
         vim-gitgutter
         auto-pairs
-        fzf.vim
+        fzf-vim
         vim-polyglot
       ];
       extraConfig = ''

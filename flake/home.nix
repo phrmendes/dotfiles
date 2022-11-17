@@ -6,7 +6,6 @@ in {
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
-    packages = import (fetchTarball "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.269/quarto-1.2.269-linux-amd64.tar.gz");
     packages = with pkgs; [
       # TERMINAL
       btop
@@ -30,6 +29,7 @@ in {
       starship
       file
       procps
+      quarto
       # TEXT EDITORS
       neovim
       emacs
@@ -120,7 +120,6 @@ in {
             sha256 = "0000000000000000000000000000000000000000000000000000";
           };
         }
-
         {
           name = "autopair.fish";
           src = pkgs.fetchFromGithub {
@@ -129,7 +128,6 @@ in {
             sha256 = "0000000000000000000000000000000000000000000000000000";
           };
         }
-
         {
           name = "fzf";
           src = pkgs.fetchFromGithub {
@@ -244,6 +242,7 @@ in {
             cyan = "0x8ec07c";
             white = "0xebdbb2";
           };
+        };
       };
     };
     starship = {

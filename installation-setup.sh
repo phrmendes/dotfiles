@@ -45,4 +45,4 @@ sudo cp /mnt/etc/nixos/hardware-configuration.nix "$FLAKE_DIR"
 sudo rm -r /mnt/etc/nixos
 
 # installing
-sudo nixos-install --flake .#"$USER"
+sudo nixos-install --flake .#phrmendes

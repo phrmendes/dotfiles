@@ -41,8 +41,6 @@ sudo nixos-generate-config --root /mnt
 
 #+end_src
 
-#+RESULTS:
-
 * flake.nix
 
 #+begin_src nix :tangle ./flake/flake.nix
@@ -388,7 +386,7 @@ in {
         vim-commentary
         lightline-vim
         nerdcommenter
-        ack.vim
+        ack-vim
         vim-gitgutter
         auto-pairs
         fzf-vim

@@ -150,7 +150,7 @@ in {
         vim-commentary
         lightline-vim
         nerdcommenter
-        ack.vim
+        ack-vim
         vim-gitgutter
         auto-pairs
         fzf-vim

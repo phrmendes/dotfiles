@@ -40,9 +40,9 @@ done
 # creating hardware-configuration.nix
 sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' /mnt/etc/nixos/hardware-configuration.nix
 
-cp /mnt/etc/nixos/hardware-configuration.nix "$FLAKE_DIR"
+sudo cp /mnt/etc/nixos/hardware-configuration.nix "$FLAKE_DIR"
 
 sudo rm -r /mnt/etc/nixos
 
 # installing
-nixos-install --flake .#"$USER"
+sudo nixos-install --flake .#"$USER"

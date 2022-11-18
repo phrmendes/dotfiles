@@ -29,7 +29,6 @@ libpng-dev,apt
 libtiff5-dev,apt
 libjpeg-dev,apt
 dvipng,apt
-mesautils,apt
 com.github.muriloventuroso.easyssh,flatpak
 com.mattjakeman.extensionmanager,flatpak
 com.stremio.stremio,flatpak

@@ -101,7 +101,7 @@ done
       #   };
       # in [
 
-stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
+stow --target="$HOME" --dir="$MAIN_DIR" --stow .dotfiles
 
 sudo cp "$HOME/Projects/bkps/aux_files/phrmendes" "/var/lib/AccountsService/users/"
 gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.imgs/wallpaper.png"

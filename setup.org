@@ -162,7 +162,7 @@ done
 
 #+begin_src shell :tangle ./setup.sh
 
-stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
+stow --target="$HOME" --dir="$MAIN_DIR" --stow .dotfiles
 
 #+end_src
 
@@ -254,7 +254,6 @@ in {
       cmdstan
       # GNOME EXTENSIONS
       gnomeExtensions.caffeine
-      gnomeExtensions.appindicator
       gnomeExtensions.vitals
       gnomeExtensions.gsconnect
       gnomeExtensions.clipboard-indicator

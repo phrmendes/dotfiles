@@ -47,7 +47,6 @@ in {
       cmdstan
       # GNOME EXTENSIONS
       gnomeExtensions.caffeine
-      gnomeExtensions.appindicator
       gnomeExtensions.vitals
       gnomeExtensions.gsconnect
       gnomeExtensions.clipboard-indicator

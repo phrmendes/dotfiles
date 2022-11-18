@@ -34,6 +34,7 @@ let
         assertthat
         testthat
       ];
+    };
   };
 in {
   home = {

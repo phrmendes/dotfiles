@@ -2,39 +2,6 @@
 
 let
   user = "phrmendes";
-  my-python-packages = python-packages: with python-packages; [
-    pandas
-    matplotlib
-    numpy
-    scipy
-    scikit-learn
-    pyarrow
-    sympy
-  ];
-  python-with-my-packages = python310.withPackages my-python-packages;
-  my-r-packages = rWrapper.override{
-    packages = with rPackages;
-      [
-        tidyverse
-        data_table
-        quarto
-        janitor
-        pbapply
-        styler
-        lintr
-        fs
-        distill
-        tinytex
-        languageserver
-        writexl
-        arrow
-        duckdb
-        devtools
-        usethis
-        assertthat
-        testthat
-      ];
-    };
 in {
   imports =
     [

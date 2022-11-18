@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # variables
-
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main/flake"
 FLAKE_DIR="/mnt/flake"
 NIX_FILES=("configuration.nix" "flake.nix" "home.nix")

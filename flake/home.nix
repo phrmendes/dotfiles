@@ -6,7 +6,42 @@ in {
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
-    packages = with pkgs; [
+    packages = with pkgs;
+      let
+        my-python-packages = python-packages: with python-packages; [
+          pandas
+          matplotlib
+          numpy
+          scipy
+          scikit-learn
+          pyarrow
+          sympy
+        ];
+        python-with-my-packages = python310.withPackages my-python-packages;
+        my-r-packages = rWrapper.override{
+          packages = with rPackages;
+            [
+              tidyverse
+              data_table
+              quarto
+              janitor
+              pbapply
+              styler
+              lintr
+              fs
+              distill
+              tinytex
+              languageserver
+              writexl
+              arrow
+              duckdb
+              devtools
+              usethis
+              assertthat
+              testthat
+            ];
+        };
+      in [
       # TERMINAL
       btop
       pandoc
@@ -59,6 +94,9 @@ in {
       podman
       zathura
       cmdstan
+      # PYTHON AND R
+      python-with-my-packages
+      my-r-packages
       # OTHERS
       aspellDicts.en
       aspellDicts.pt_BR

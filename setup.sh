@@ -3,7 +3,9 @@
 MAIN_DIR="$(pwd)"
 NIX_FILES=("config.nix" "flake.nix" "home.nix")
 REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps csvkit)
-APPS_TO_UNINSTALL=($(apt list --installed | grep libreoffice | cut -d "/" -f 1) (geary gnome-calendar gnome-contacts gnome-terminal evince))
+LIBREOFFICE_APPS=$(apt list --installed | grep libreoffice | cut -d "/" -f 1)
+GNOME_APPS=(geary gnome-calendar gnome-contacts gnome-terminal evince)
+APPS_TO_UNINSTALL=(echo "${LIBREOFFICE_APPS[@]} ${GNOME_APPS[@]}")
 PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
 APT_PROGRAMS=()
 FLATPAK_PROGRAMS=()

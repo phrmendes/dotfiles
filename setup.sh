@@ -39,6 +39,8 @@ for app in "${APPS_TO_UNINSTALL[@]}"; do
     sudo apt remove "$app" -y
 done
 
+sudo apt autoremove -y
+
 sh <(curl -L https://nixos.org/nix/install) --daemon
 echo 'export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS' >> "$HOME/.profile"
 source "$HOME/.profile"

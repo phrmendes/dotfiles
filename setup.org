@@ -76,6 +76,8 @@ for app in "${APPS_TO_UNINSTALL[@]}"; do
     sudo apt remove "$app" -y
 done
 
+sudo apt autoremove -y
+
 #+end_src
 
 ** Install Nix

@@ -10,6 +10,9 @@ PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
 APT_PROGRAMS=()
 FLATPAK_PROGRAMS=()
 
+sudo apt update -y
+sudo apt full-upgrade -y
+
 while IFS= read line; do
     str_1=$(echo -e "${line%%,*}")
     str_2=$(echo -e "${line##*,}")

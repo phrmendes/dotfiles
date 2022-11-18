@@ -19,6 +19,16 @@ FLATPAK_PROGRAMS=()
 
 #+end_src
 
+** Update system
+
+
+#+begin_src shell :tangle ./setup.sh
+
+sudo apt update -y
+sudo apt full-upgrade -y
+
+#+end_src
+
 ** Reading program files
 
 #+begin_src shell :tangle ./setup.sh

@@ -54,8 +54,6 @@ for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
 
-"$HOME.nix-profile/bin/micromamba"
-
       # let
       #   my-python-packages = python-packages: with python-packages; [
       #     pandas
@@ -107,6 +105,8 @@ stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
 
 sudo cp "$HOME/Projects/bkps/aux_files/phrmendes" "/var/lib/AccountsService/users/"
 gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.imgs/wallpaper.png"
+
+gsettings set org.gnome.desktop.interface enable-animations false
 
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install

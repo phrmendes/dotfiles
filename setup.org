@@ -175,6 +175,14 @@ gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.imgs/wallp
 
 #+end_src
 
+** Remove Gnome animations
+
+#+begin_src shell :tangle ./setup.sh
+
+gsettings set org.gnome.desktop.interface enable-animations false
+
+#+end_src
+
 ** Doom Emacs
 
 #+begin_src shell :tangle ./setup.sh

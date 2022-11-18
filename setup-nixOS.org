@@ -199,8 +199,6 @@ in {
       git
       gzip
       pop-gtk-theme
-      python-with-my-packages
-      my-r-packages
       gnomeExtensions.pop-shell
       gnomeExtensions.caffeine
       gnomeExtensions.appindicator

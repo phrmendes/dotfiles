@@ -3,7 +3,7 @@
 
 * Partitioning and mounting
 
-Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/installation-setup.sh --output installation-setup.sh~
+Download script: ~curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/phrmendes/bkps/main/installation-setup.sh --output installation-setup.sh~
 
 #+begin_src shell :tangle ./installation-setup.sh
 

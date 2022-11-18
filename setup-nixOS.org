@@ -255,12 +255,25 @@ in {
         my-r-packages = rWrapper.override{
           packages = with rPackages;
             [
-              tidyverse
+              ggplot2
+              dplyr
+              dbplyr
+              dtplyr
+              tidyr
+              readr
+              purrr
+              tibble
+              stringr
+              forcats
+              DBI
+              glue
               data_table
               quarto
               janitor
               pbapply
               styler
+              zoo
+              xts
               lintr
               fs
               distill

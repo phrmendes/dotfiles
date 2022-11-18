@@ -131,6 +131,8 @@ in {
     neovim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
+        vim-nix
+        vim-fish
         vim-easymotion
         vim-commentary
         lightline-vim

@@ -2,6 +2,39 @@
 
 let
   user = "phrmendes";
+  my-python-packages = python-packages: with python-packages; [
+    pandas
+    matplotlib
+    numpy
+    scipy
+    scikit-learn
+    pyarrow
+    sympy
+  ];
+  python-with-my-packages = python310.withPackages my-python-packages;
+  my-r-packages = rWrapper.override{
+    packages = with rPackages;
+      [
+        tidyverse
+        data_table
+        quarto
+        janitor
+        pbapply
+        styler
+        lintr
+        fs
+        distill
+        tinytex
+        languageserver
+        writexl
+        arrow
+        duckdb
+        devtools
+        usethis
+        assertthat
+        testthat
+      ];
+  };
 in {
   home = {
     username = "${user}";
@@ -59,33 +92,10 @@ in {
       podman
       zathura
       cmdstan
-      # BASIC R PACKAGES
-      rPackages.tidyverse
-      rPackages.data_table
-      rPackages.quarto
-      rPackages.janitor
-      rPackages.pbapply
-      rPackages.styler
-      rPackages.lintr
-      rPackages.fs
-      rPackages.distill
-      rPackages.tinytex
-      rPackages.languageserver
-      rPackages.writexl
-      rPackages.arrow
-      rPackages.duckdb
-      rPackages.devtools
-      rPackages.usethis
-      rPackages.assertthat
-      rPackages.testthat
-      # BASIC PYTHON PACKAGES
-      python310Packages.pandas
-      python310Packages.matplotlib
-      python310Packages.numpy
-      python310Packages.scipy
-      python310Packages.scikit-learn
-      python310Packages.pyarrow
-      python310Packages.sympy
+      # R PACKAGES
+      my-r-packages
+      # PYTHON PACKAGES
+      python-with-my-packages
       # OTHERS
       aspellDicts.en
       aspellDicts.pt_BR

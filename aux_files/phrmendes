@@ -1,0 +1,11 @@
+[User]
+Language=en_US
+FormatsLocale=pt_BR.UTF-8
+Icon="$HOME/.imgs/profile.png"
+SystemAccount=false
+
+[InputSource0]
+xkb=br
+
+[InputSource1]
+xkb=us

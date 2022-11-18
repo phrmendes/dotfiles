@@ -1,20 +1,16 @@
 * Backups
 
-~.nix~ files for my personal computers.
+Scripts and dotfiles files for my personal computers.
 
 ** References
 
 *** Official wiki
 
 + https://nixos.wiki/wiki/Nix_package_manager
-+ https://nixos.wiki/wiki/R
-+ https://nixos.wiki/wiki/Python
-+ https://nixos.wiki/wiki/Full_Disk_Encryption
 + https://nixos.wiki/wiki/Flakes
 
 *** Guides
 
-+ https://arinbasu.medium.com/how-i-set-up-my-data-science-workflow-with-nixos-ess-and-curvenote-part-i-setting-it-up-377b5c776ff3
 + https://www.tweag.io/blog/2022-05-26-probabilistic-programming-nix/
 + https://rgoswami.me/posts/rethinking-r-nix/
 + https://rgoswami.me/posts/nix-r-devtools/

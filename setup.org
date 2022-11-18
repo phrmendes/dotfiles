@@ -1,0 +1,407 @@
+#+title: Pop!_OS Setup
+
+* PopOS configuration
+** Variables
+
+#+begin_src shell :tangle ./setup.sh
+
+#!/usr/bin/env bash
+
+MAIN_DIR="$(pwd)"
+NIX_FILES=("config.nix" "flake.nix" "home.nix")
+REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps csvkit)
+APPS_TO_UNINSTALL=($(apt list --installed | grep libreoffice | cut -d "/" -f 1) (geary gnome-calendar gnome-contacts gnome-terminal evince))
+PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
+APT_PROGRAMS=()
+FLATPAK_PROGRAMS=()
+
+#+end_src
+
+** Reading program files
+
+#+begin_src shell :tangle ./setup.sh
+
+while IFS= read line; do
+    str_1=$(echo -e "${line%%,*}")
+    str_2=$(echo -e "${line##*,}")
+
+    if [[ $str_2 = "apt" ]]; then
+        APT_PROGRAMS+=("$str_1")
+    else
+        FLATPAK_PROGRAMS+=("$str_1")
+    fi
+done < "$PROGRAMS_FILE"
+
+#+end_src
+
+** Installing required programs
+
+#+begin_src shell :tangle ./setup.sh
+
+for app in "${REQUIRED_PROGRAMS[@]}"; do
+    if [[ ! -x $(which "$app") ]]; then
+        sudo apt install "$app" -y
+    fi
+done
+
+#+end_src
+
+** Removing locks and adding i386 architecture
+
+#+begin_src shell :tangle ./setup.sh
+
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/cache/apt/archives/lock
+sudo dpkg --add-architecture i386
+
+#+end_src
+
+** Removing some Pop!_OS default programs
+
+#+begin_src shell :tangle ./setup.sh
+
+for app in "${APPS_TO_INSTALL[@]}"; do
+    sudo apt remove "$app" -y
+done
+
+#+end_src
+
+** Install Nix and home-manager
+
+#+begin_src shell :tangle ./setup.sh
+
+sh <(curl -L https://nixos.org/nix/install) --daemon
+echo 'export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS' >> "$HOME/.profile"
+source "$HOME/.profile"
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+echo 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}' >> "$HOME/.profile"
+source "$HOME/.profile"
+nix-shell '<home-manager>' -A install
+
+#+end_src
+
+** Install SouceCodePro Nerd Font
+
+#+begin_src shell :tangle ./setup.sh
+
+sudo cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "/usr/share/fonts"
+sudo unzip "/usr/share/fonts/SauceCodePro.zip"
+sudo fc-cache
+
+#+end_src
+
+** Install apt and flatpak programs
+
+#+begin_src shell :tangle ./setup.sh
+
+for program in "${APT_PROGRAMS[@]}"; do
+    sudo apt install "$program" -y
+done
+
+for program in "${FLATPAK_PROGRAMS[@]}"; do
+    flatpak install "$program" -y
+done
+
+#+end_src
+
+** R and Python package
+
+#+begin_src shell :tangle ./setup.sh
+
+      # let
+      #   my-python-packages = python-packages: with python-packages; [
+      #     pandas
+      #     matplotlib
+      #     numpy
+      #     scipy
+      #     scikit-learn
+      #     pyarrow
+      #     sympy
+      #   ];
+      #   python-with-my-packages = python310.withPackages my-python-packages;
+      #   my-r-packages = rWrapper.override{
+      #     packages = with rPackages;
+      #       [
+      #         ggplot2
+      #         dplyr
+      #         dbplyr
+      #         dtplyr
+      #         tidyr
+      #         readr
+      #         purrr
+      #         tibble
+      #         stringr
+      #         forcats
+      #         DBI
+      #         glue
+      #         data_table
+      #         quarto
+      #         janitor
+      #         pbapply
+      #         styler
+      #         zoo
+      #         xts
+      #         lintr
+      #         fs
+      #         distill
+      #         tinytex
+      #         languageserver
+      #         writexl
+      #         devtools
+      #         usethis
+      #         assertthat
+      #         testthat
+      #       ];
+      #   };
+      # in [
+
+#+end_src
+
+** Stow
+
+#+begin_src shell :tangle ./setup.sh
+
+stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
+
+#+end_src
+
+** Profile and wallpaper
+
+#+begin_src shell :tangle ./setup.sh
+
+sudo cp "$HOME/Projects/bkps/aux_files/phrmendes" "/var/lib/AccountsService/users/"
+gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.imgs/wallpaper.png"
+
+#+end_src
+
+** Doom Emacs
+
+#+begin_src shell :tangle ./setup.sh
+
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+"$HOME/.emacs.d/bin/doom" install
+"$HOME/.emacs.d/bin/doom" sync
+
+#+end_src
+
+* config.nix
+
+#+begin_src nix :tangle ./.dotfiles/.nixpkgs/config.nix
+
+{ allowUnfree = true; }
+
+#+end_src
+
+* home.nix
+
+#+begin_src nix :tangle ./.dotfiles/.config/nixpkgs/home.nix
+
+{ config, pkgs, ... }:
+
+let
+  user = "phrmendes";
+in {
+  home = {
+    username = "${user}";
+    homeDirectory = "/home/${user}";
+    packages = with pkgs; [
+      # TERMINAL PROGRAMS
+      btop
+      pandoc
+      bat
+      btop
+      gh
+      lazygit
+      ripgrep
+      fd
+      sd
+      tealdeer
+      exa
+      shellcheck
+      alacritty
+      ncdu
+      starship
+      quarto
+      stow
+      micromamba
+      # PACKAGE MANAGERS
+      flatpak
+      cargo
+      go
+      nodejs
+      # APPS
+      emacs
+      droidcam
+      filezilla
+      solaar
+      bitwarden
+      pcloud
+      zotero
+      spotify
+      fragments
+      kooha
+      podman
+      zathura
+      cmdstan
+      # GNOME EXTENSIONS
+      gnomeExtensions.caffeine
+      gnomeExtensions.appindicator
+      gnomeExtensions.vitals
+      gnomeExtensions.gsconnect
+      gnomeExtensions.clipboard-indicator
+      gnomeExtensions.sound-output-device-chooser
+      # OTHERS
+      texlive.combined.scheme-minimal
+    ];
+    stateVersion = "22.05";
+    sessionVariables = {
+      EDITOR = "neovim";
+    };
+  };
+
+  programs = {
+    fish = {
+      enable = true;
+      shellAliases = {
+        rm = "rm -i";
+        cp = "cp -i";
+        mv = "mv -i";
+        mkdir = "mkdir -p";
+        ls = "exa --icons";
+        cat = "bat";
+        stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+      };
+      shellAbbrs = {
+        nv = "nvim";
+        lg = "lazygit";
+      };
+      plugins = with pkgs.fishPlugins; [
+        fzf-fish
+        autopair-fish
+      ];
+     };
+    neovim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        vim-fish
+        vim-easymotion
+        vim-commentary
+        lightline-vim
+        nerdcommenter
+        ack-vim
+        vim-gitgutter
+        auto-pairs
+        fzf-vim
+        vim-polyglot
+      ];
+      extraConfig = ''
+        set background=dark
+        set clipboard=unnamedplus
+        set completeopt=noinsert,menuone,noselect
+        set cursorline
+        set hidden
+        set inccommand=split
+        set mouse=a
+        set number
+        set relativenumber
+        set splitbelow splitright
+        set title
+        set ttimeoutlen=0
+        set wildmenu
+        set expandtab
+        set shiftwidth=2
+        set tabstop=2
+      '';
+      vimAlias = true;
+      vimdiffAlias = true;
+    };
+    alacritty = {
+      enable = true;
+      settings = {
+        window = {
+          padding = {
+            x = 15;
+            y = 15;
+          };
+          class = {
+            instance = "Alacritty";
+            general = "Alacritty";
+          };
+          opacity = 1;
+        };
+        scrolling = {
+          history = 10000;
+          multiplier = 3;
+        };
+        font = {
+          normal = {
+            family = "SauceCodePro Nerd Font";
+            style = "Medium";
+          };
+          bold = {
+            family = "SauceCodePro Nerd Font";
+            style = "Bold";
+          };
+          italic = {
+            family = "SauceCodePro Nerd Font";
+            style = "MediumItalic";
+          };
+          bold_italic = {
+            family = "SauceCodePro Nerd Font";
+            style = "BoldItalic";
+          };
+          size = 13;
+        };
+        draw_bold_text_with_bright_colors = true;
+        selection.save_to_clipboard = true;
+        shell.program = "${pkgs.fish}/bin/fish";
+        colors = {
+          primary = {
+            background = "0x282828";
+            foreground = "0xebdbb2";
+          };
+          normal = {
+            black = "0x282828";
+            red = "0xcc241d";
+            green = "0x98971a";
+            yellow = "0xd79921";
+            blue = "0x458588";
+            magenta = "0xb16286";
+            cyan = "0x689d6a";
+            white = "0xa89984";
+          };
+          bright = {
+            black = "0x928374";
+            red = "0xfb4934";
+            green = "0xb8bb26";
+            yellow = "0xfabd2f";
+            blue = "0x83a598";
+            magenta = "0xd3869b";
+            cyan = "0x8ec07c";
+            white = "0xebdbb2";
+          };
+        };
+      };
+    };
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    home-manager.enable = true;
+  };
+}
+
+#+end_src
+
+* Installation
+
+#+begin_src shell :tangle ./setup.sh
+
+home-manager switch
+
+#+end_src
+
+Script: ~setup.sh~
+Updates: ~home-manager switch~ after applying changes to the ~*.nix~ files.

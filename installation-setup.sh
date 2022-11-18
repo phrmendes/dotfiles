@@ -34,7 +34,7 @@ sudo nixos-generate-config --root /mnt
 sudo mkdir "$FLAKE_DIR/"
 
 for i in "${NIX_FILES[@]}"; do
-    sudo curl "$GITHUB_URL/$i" --output "$FLAKE_DIR/$i"
+    sudo curl -H 'Cache-Control: no-cache, no-store' "$GITHUB_URL/$i" --output "$FLAKE_DIR/$i"
 done
 
 # creating hardware-configuration.nix

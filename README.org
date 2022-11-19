@@ -2,7 +2,7 @@
 
 Scripts and dotfiles files for my personal computers.
 
-Create the ~~/Projects~ directory and clone the repo inside.
+Create the ~"$HOME"/Projects~ directory and clone the repo inside.
 
 Execution order:
 

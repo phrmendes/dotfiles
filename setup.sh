@@ -59,7 +59,3 @@ done
 for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
-
-sudo cp "$MAIN_DIR/aux_files/phrmendes" "/var/lib/AccountsService/users/"
-gsettings set org.gnome.desktop.background picture-uri "file://$HOME/.imgs/wallpaper.png"
-gsettings set org.gnome.desktop.interface enable-animations false

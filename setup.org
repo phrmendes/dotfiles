@@ -141,8 +141,6 @@ echo 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user
 
 #+begin_src nix :tangle ./.dotfiles/.config/nixpkgs/home.nix
 
-# TODO alacritty overlay
-
 { config, pkgs, ... }:
 
 let

@@ -6,6 +6,7 @@ let
   user = "phrmendes";
 in {
   home = {
+    stateVersion = "22.05";
     username = "${user}";
     homeDirectory = "/home/${user}";
     packages = with pkgs; [

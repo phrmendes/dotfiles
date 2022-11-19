@@ -96,7 +96,9 @@ source "$HOME/.profile"
 
 sudo mkdir -p "/usr/share/fonts/truetype/sourcecodepro/"
 sudo cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "/usr/share/fonts/truetype/sourcecodepro/"
-sudo cd "/usr/share/fonts/truetype/sourcecodepro/" && sudo unzip SauceCodePro.zip && sudo rm SauceCodePro.zip
+sudo cd "/usr/share/fonts/truetype/sourcecodepro/"
+sudo unzip SauceCodePro.zip
+sudo rm SauceCodePro.zip
 sudo fc-cache
 cd "$MAIN_DIR"
 

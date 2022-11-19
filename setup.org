@@ -127,8 +127,7 @@ gsettings set org.gnome.desktop.interface enable-animations false
 
 #+end_src
 
-* home-manager
-** home-manager installation
+* home-manager setup
 
 #+begin_src shell :tangle ./home-manager.sh
 
@@ -136,27 +135,7 @@ gsettings set org.gnome.desktop.interface enable-animations false
 
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
-echo 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}' >> "$HOME/.profile"
-source "$HOME/.profile"
-nix-shell '<home-manager>' -A install
-
-#+end_src
-
-** Stow
-
-#+begin_src shell :tangle ./home-manager.sh
-
-stow --target="$HOME" --dir="$HOME/bkps" --stow .dotfiles
-
-#+end_src
-
-** Doom Emacs
-
-#+begin_src shell :tangle ./home-manager.sh
-
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-"$HOME/.emacs.d/bin/doom" install
-"$HOME/.emacs.d/bin/doom" sync
+echo 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}' >> "$HOME/.bashrc"
 
 #+end_src
 
@@ -198,7 +177,6 @@ in {
       ncdu
       starship
       quarto
-      stow
       micromamba
       # PACKAGE MANAGERS
       flatpak
@@ -370,13 +348,18 @@ in {
 
 #+end_src
 
-* Installation
+* Placing dotfiles and installing Doom Emacs
 
-#+begin_src shell :tangle ./home-manager.sh
+#+begin_src shell :tangle ./dotfiles.sh
 
+mkdir Projects
+nix-shell '<home-manager>' -A install
+stow --target="$HOME" --dir="$HOME/bkps" --stow .dotfiles
 home-manager switch
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+"$HOME/.emacs.d/bin/doom" install
+"$HOME/.emacs.d/bin/doom" sync
 
 #+end_src
 
-Script: ~setup.sh~
 Updates: ~home-manager switch~ after applying changes to the ~*.nix~ files.

@@ -2,6 +2,8 @@
 
 Scripts and dotfiles files for my personal computers.
 
+Clone the repo in the home directory.
+
 Execution order:
 
 1) ~setup.sh~

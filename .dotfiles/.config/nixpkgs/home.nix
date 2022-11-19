@@ -24,7 +24,6 @@ in {
       ncdu
       starship
       quarto
-      stow
       micromamba
       # PACKAGE MANAGERS
       flatpak

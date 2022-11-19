@@ -4,10 +4,7 @@ aspell-en,apt
 aspell-pt-br,apt
 automake,apt
 cmake,apt
-gpg,apt
-seahorse,apt
 file-roller,apt
-shotwell,apt
 timeshift,apt
 python3-pip,apt
 gfortran,apt

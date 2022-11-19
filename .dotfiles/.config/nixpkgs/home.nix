@@ -45,6 +45,7 @@ in {
       podman
       zathura
       cmdstan
+      celluloid
       # GNOME EXTENSIONS
       gnomeExtensions.caffeine
       gnomeExtensions.vitals

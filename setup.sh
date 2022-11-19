@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
 MAIN_DIR="$(pwd)"
-NIX_FILES=("config.nix" "flake.nix" "home.nix")
-REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps csvkit)
-LIBREOFFICE_APPS=$(apt list --installed | grep libreoffice | cut -d "/" -f 1)
-GNOME_APPS=(geary gnome-calendar gnome-contacts gnome-terminal evince)
-APPS_TO_UNINSTALL=(echo "${LIBREOFFICE_APPS[@]} ${GNOME_APPS[@]}")
+REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps)
+TO_REMOVE=(geary gnome-terminal gnome-orca evince totem xterm)
 PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
 APT_PROGRAMS=()
 FLATPAK_PROGRAMS=()
@@ -35,8 +32,10 @@ sudo rm /var/lib/dpkg/lock-frontend
 sudo rm /var/cache/apt/archives/lock
 sudo dpkg --add-architecture i386
 
-for app in "${APPS_TO_UNINSTALL[@]}"; do
-    sudo apt remove "$app" -y
+apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
+
+for program in "${TO_REMOVE@]}"; do
+    sudo apt remove "$program" -y
 done
 
 sudo apt autoremove -y

@@ -71,7 +71,7 @@ sudo dpkg --add-architecture i386
 
 apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
 
-for program in "${TO_REMOVE@]}"; do
+for program in "${TO_REMOVE[@]}"; do
     sudo apt remove "$program" -y
 done
 
@@ -351,6 +351,8 @@ in {
 * Placing dotfiles and installing Doom Emacs
 
 #+begin_src shell :tangle ./dotfiles.sh
+
+#!/usr/bin/env bash
 
 mkdir Projects
 nix-shell '<home-manager>' -A install

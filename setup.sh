@@ -34,7 +34,7 @@ sudo dpkg --add-architecture i386
 
 apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
 
-for program in "${TO_REMOVE@]}"; do
+for program in "${TO_REMOVE[@]}"; do
     sudo apt remove "$program" -y
 done
 

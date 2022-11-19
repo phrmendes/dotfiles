@@ -3,8 +3,7 @@
 # home-manager
 nix-shell '<home-manager>' -A install
 rm "$HOME/.config/nixpkgs/home.nix"
-stow --target="$HOME" --dir="$MAIN_DIR" --stow .dotfiles
-cd "$HOME/.config/nixpkgs/home.nix"
+stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 home-manager switch
 
 # alacritty

@@ -54,10 +54,6 @@ in {
       # OTHERS
       texlive.combined.scheme-minimal
     ];
-    stateVersion = "22.05";
-    sessionVariables = {
-      EDITOR = "neovim";
-    };
   };
 
   programs = {

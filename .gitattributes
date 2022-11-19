@@ -1,2 +1,2 @@
 *.html linguist-vendored
-aux-files/* linguist-vendored
+aux_files/* linguist-vendored

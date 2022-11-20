@@ -100,7 +100,7 @@
        (julia +lsp)
        (latex +lsp +fold +cdlatex)
        markdown
-       (org +dragndrop +jupyter +pandoc +pretty +present)
+       (org +dragndrop +jupyter +pandoc +pretty +present +noter +roam2)
        (python +lsp +conda +pyright +poetry)
        (sh +lsp +fish)
        (yaml +lsp)

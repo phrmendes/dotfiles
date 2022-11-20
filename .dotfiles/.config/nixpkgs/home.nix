@@ -25,6 +25,7 @@ in {
       starship
       quarto
       micromamba
+      oh-my-zsh
       # PACKAGE MANAGERS
       cargo
       go
@@ -56,6 +57,7 @@ in {
     };
     zsh = {
       enable = true;
+      enableCompletion = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
       shellAliases = {

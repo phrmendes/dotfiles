@@ -133,7 +133,10 @@ echo 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user
 
 #+begin_src nix :tangle ./.dotfiles/.nixpkgs/config.nix
 
-{ allowUnfree = true; }
+{
+  allowUnfree = true;
+  environment.pathsToLink = [ "/share/zsh" ];
+}
 
 #+end_src
 
@@ -168,6 +171,7 @@ in {
       starship
       quarto
       micromamba
+      oh-my-zsh
       # PACKAGE MANAGERS
       cargo
       go
@@ -199,6 +203,7 @@ in {
     };
     zsh = {
       enable = true;
+      enableCompletion = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
       shellAliases = {

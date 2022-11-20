@@ -1,1 +1,4 @@
-{ allowUnfree = true; }
+{
+  allowUnfree = true;
+  environment.pathsToLink = [ "/share/zsh" ];
+}

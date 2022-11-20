@@ -70,6 +70,7 @@ in {
         stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
         nv = "nvim";
         lg = "lazygit";
+        doom = "$HOME/.emacs.d/bin/doom";
       };
      };
     neovim = {
@@ -113,4 +114,8 @@ in {
     };
     home-manager.enable = true;
   };
+
+    xdg.enable = true;
+    xdg.mime.enable = true;
+    targets.genericLinux.enable = true;
 }

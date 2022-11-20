@@ -62,7 +62,7 @@ in {
       enableSyntaxHighlighting = true;
       dirHashes = ''
       { proj = "$HOME/Projects" };
-      ''
+      '';
       shellAliases = {
         rm = "rm -i";
         cp = "cp -i";

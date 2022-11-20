@@ -60,9 +60,7 @@ in {
       enable = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
-      dirHashes = ''
-      { proj = "$HOME/Projects" };
-      '';
+      dirHashes = { proj = "$HOME/Projects" };
       shellAliases = {
         rm = "rm -i";
         cp = "cp -i";

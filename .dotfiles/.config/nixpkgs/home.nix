@@ -21,7 +21,6 @@ in {
       tealdeer
       exa
       shellcheck
-      alacritty
       ncdu
       starship
       quarto

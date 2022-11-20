@@ -1,5 +1,3 @@
-# TODO alacritty overlay
-
 { config, pkgs, ... }:
 
 let
@@ -56,10 +54,15 @@ in {
   programs = {
     fzf = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
-    fish = {
+    zsh = {
       enable = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+      dirHashes = ''
+      { proj = "$HOME/Projects" };
+      ''
       shellAliases = {
         rm = "rm -i";
         cp = "cp -i";
@@ -68,8 +71,6 @@ in {
         ls = "exa --icons";
         cat = "bat";
         stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-      };
-      shellAbbrs = {
         nv = "nvim";
         lg = "lazygit";
       };
@@ -78,7 +79,6 @@ in {
       enable = true;
       plugins = with pkgs.vimPlugins; [
         vim-nix
-        vim-fish
         vim-easymotion
         vim-commentary
         lightline-vim
@@ -112,7 +112,7 @@ in {
     };
     starship = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
     home-manager.enable = true;
   };

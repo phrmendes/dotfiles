@@ -70,6 +70,7 @@ in {
         nv = "nvim";
         lg = "lazygit";
         doom = "$HOME/.emacs.d/bin/doom";
+        mamba = "micromamba"
       };
      };
     neovim = {

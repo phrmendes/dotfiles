@@ -213,6 +213,7 @@ in {
         nv = "nvim";
         lg = "lazygit";
         doom = "$HOME/.emacs.d/bin/doom";
+        mamba = "micromamba"
       };
      };
     neovim = {
@@ -264,9 +265,9 @@ in {
 
 #+end_src
 
-* Placing dotfiles and installing Doom Emacs
+* Placing dotfiles, installing Doom Emacs, R and Python packages
 
-#+begin_src shell :tangle ./dotfiles.sh
+#+begin_src shell :tangle ./post-install.sh
 
 #!/usr/bin/env bash
 
@@ -281,8 +282,10 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
 
+# r and python packages
+
+micromamba env create --file "$MAIN_DIR/aux_files/config.yml"
+
 #+end_src
 
 Updates: ~home-manager switch~ after applying changes to the ~*.nix~ files.
-
-* R and Python packages with micromamba

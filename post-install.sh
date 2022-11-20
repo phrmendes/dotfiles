@@ -10,3 +10,7 @@ home-manager switch
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
+
+# r and python packages
+
+micromamba env create --file "$MAIN_DIR/aux_files/config.yml"

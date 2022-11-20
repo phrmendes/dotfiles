@@ -93,9 +93,9 @@ source "$HOME/.profile"
 
 #+begin_src shell :tangle ./setup.sh
 
-mkdir -p "$HOME/.local/share/fonts/sourcecodepro"
-cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$HOME/.local/share/fonts/sourcecodepro"
-cd "$HOME/.local/share/fonts/sourcecodepro"
+mkdir -p "$HOME/.local/share/fonts/"
+cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$HOME/.local/share/fonts/"
+cd "$HOME/.local/share/fonts/"
 unzip SauceCodePro.zip
 rm SauceCodePro.zip
 fc-cache -f -v
@@ -169,7 +169,6 @@ in {
       quarto
       micromamba
       # PACKAGE MANAGERS
-      flatpak
       cargo
       go
       nodejs
@@ -213,8 +212,11 @@ in {
         nv = "nvim";
         lg = "lazygit";
         doom = "$HOME/.emacs.d/bin/doom";
-        mamba = "micromamba"
+        mamba = "micromamba";
       };
+      envExtra = ''
+        eval "$(micromamba shell hook --shell=zsh)"
+      '';
      };
     neovim = {
       enable = true;
@@ -284,8 +286,11 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 
 # r and python packages
 
-micromamba env create --file "$MAIN_DIR/aux_files/config.yml"
+micromamba activate
+micromamba create --file "$MAIN_DIR/aux_files/config.yml"
 
 #+end_src
+
+#+RESULTS:
 
 Updates: ~home-manager switch~ after applying changes to the ~*.nix~ files.

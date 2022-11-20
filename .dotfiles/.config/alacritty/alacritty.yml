@@ -49,6 +49,6 @@ colors:
 selection:
   save_to_clipboard: true
 shell:
-  program: /home/phrmendes/.nix-profile/bin/fish
+  program: /home/phrmendes/.nix-profile/bin/zsh
 key_bindings:
   - { key: Return, mods: Super|Shift, action: SpawnNewInstance }

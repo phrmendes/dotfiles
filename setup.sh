@@ -44,9 +44,9 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 echo 'export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS' >> "$HOME/.profile"
 source "$HOME/.profile"
 
-mkdir -p "$HOME/.local/share/fonts/sourcecodepro"
-cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$HOME/.local/share/fonts/sourcecodepro"
-cd "$HOME/.local/share/fonts/sourcecodepro"
+mkdir -p "$HOME/.local/share/fonts/"
+cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$HOME/.local/share/fonts/"
+cd "$HOME/.local/share/fonts/"
 unzip SauceCodePro.zip
 rm SauceCodePro.zip
 fc-cache -f -v

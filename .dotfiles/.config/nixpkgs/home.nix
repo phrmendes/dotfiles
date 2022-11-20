@@ -26,7 +26,6 @@ in {
       quarto
       micromamba
       # PACKAGE MANAGERS
-      flatpak
       cargo
       go
       nodejs
@@ -70,8 +69,11 @@ in {
         nv = "nvim";
         lg = "lazygit";
         doom = "$HOME/.emacs.d/bin/doom";
-        mamba = "micromamba"
+        mamba = "micromamba";
       };
+      envExtra = ''
+        eval "$(micromamba shell hook --shell=zsh)"
+      '';
      };
     neovim = {
       enable = true;

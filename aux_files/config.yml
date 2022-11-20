@@ -1,9 +1,8 @@
-name: base
+name: dev-env
 channels:
   - defaults
-  - bioconda
-  - defaults
   - R
+  - conda-forge
 dependencies:
   - pip
   - pandas
@@ -13,7 +12,7 @@ dependencies:
   - scipy
   - sympy
   - pyarrow
-  - r-base
+  - r-base>=4.2.2
   - r-tidyverse
   - r-data.table
   - r-quarto
@@ -27,3 +26,4 @@ dependencies:
   - r-distill
   - r-arrow
   - r-duckdb
+  - r-tinytex

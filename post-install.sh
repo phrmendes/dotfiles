@@ -13,5 +13,6 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 
 # r and python packages
 
+micromamba shell init --shell=bash --prefix=~/micromamba
 micromamba activate
 micromamba create --file "$MAIN_DIR/aux_files/config.yml"

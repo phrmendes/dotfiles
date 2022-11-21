@@ -13,7 +13,6 @@ in {
       pandoc
       bat
       btop
-      gh
       lazygit
       ripgrep
       fd
@@ -23,29 +22,13 @@ in {
       shellcheck
       ncdu
       starship
-      quarto
       micromamba
       # PACKAGE MANAGERS
       cargo
       go
       nodejs
       # APPS
-      emacs
-      droidcam
-      filezilla
-      solaar
-      bitwarden
-      pcloud
-      zotero
-      spotify
-      fragments
-      kooha
       podman
-      zathura
-      cmdstan
-      celluloid
-      # OTHERS
-      texlive.combined.scheme-minimal
     ];
   };
 

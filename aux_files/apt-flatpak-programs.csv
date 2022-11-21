@@ -27,6 +27,7 @@ libjpeg-dev,apt
 dvipng,apt
 stow,apt
 alacritty,apt
+celluloid,apt
 com.github.muriloventuroso.easyssh,flatpak
 com.mattjakeman.extensionmanager,flatpak
 com.stremio.stremio,flatpak

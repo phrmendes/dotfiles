@@ -53,7 +53,6 @@ in {
       podman
       zathura
       cmdstan
-      celluloid
       # OTHERS
       texlive.combined.scheme-minimal
     ];

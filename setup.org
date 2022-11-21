@@ -217,7 +217,7 @@ in {
         fish_add_path "$HOME/.emacs.d/bin"
         set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
         set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
-        eval "/home/phrmendes/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
+        eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
       '';
      };
     neovim = {

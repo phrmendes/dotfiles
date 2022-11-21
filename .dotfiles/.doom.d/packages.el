@@ -18,7 +18,6 @@
 (package! org-latex-impatient)
 (package! org-elp)
 (package! org-tree-slide)
-(package! org-bullets)
 (package! org-ref)
 (package! visual-fill-column)
 (package! zotxt)

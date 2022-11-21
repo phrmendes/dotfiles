@@ -7,7 +7,16 @@ in {
     stateVersion = "22.05";
     username = "${user}";
     homeDirectory = "/home/${user}";
-    packages = with pkgs; [
+    packages = with pkgs;
+    let
+      my-r-packages = rWrapper.override{
+        packages = with rPackages; [
+          tidyverse
+          data_table
+        ];
+      };
+    in
+    [
       # TERMINAL PROGRAMS
       btop
       pandoc
@@ -29,6 +38,7 @@ in {
       cargo
       go
       nodejs
+      my-r-packages
       # APPS
       emacs
       droidcam

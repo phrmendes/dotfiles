@@ -153,7 +153,16 @@ in {
     stateVersion = "22.05";
     username = "${user}";
     homeDirectory = "/home/${user}";
-    packages = with pkgs; [
+    packages = with pkgs;
+    let
+      my-r-packages = rWrapper.override{
+        packages = with rPackages; [
+          tidyverse
+          data_table
+        ];
+      };
+    in
+    [
       # TERMINAL PROGRAMS
       btop
       pandoc
@@ -175,6 +184,7 @@ in {
       cargo
       go
       nodejs
+      my-r-packages
       # APPS
       emacs
       droidcam
@@ -270,7 +280,7 @@ in {
 
 #+end_src
 
-* Placing dotfiles, installing Doom Emacs, R and Python packages
+* Placing dotfiles and installing Doom Emacs
 
 #+begin_src shell :tangle ./post-install.sh
 
@@ -287,13 +297,6 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
 
-# r and python packages
-
-micromamba shell init --shell=bash --prefix=~/micromamba
-micromamba create --file "$MAIN_DIR/aux_files/config.yml"
-
 #+end_src
-
-#+RESULTS:
 
 Updates: ~home-manager switch~ after applying changes to the ~*.nix~ files.

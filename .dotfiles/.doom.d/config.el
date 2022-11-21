@@ -76,12 +76,9 @@
         org-src-fontify-natively t
         org-display-inline-images t))
 
-;; Org bullets ---
+;; Org superstar ---
 
-(use-package! org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+(setq org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
 
 ;; Center Org buffers ---
 
@@ -213,15 +210,12 @@
 
 ;; Quarto ---
 
-(require 'poly-R)
+(require 'quarto-mode)
 
-(after! poly-gfm+r-mode
-  (require 'quarto-mode)
-  (setq markdown-code-block-braces t))
-
-(add-hook 'ess-mode-hook 'quarto-mode #'company-mode)
-(add-hook 'poly-gfm+r-mode 'company-mode)
+(add-hook 'poly-gfm+r-mode 'quarto-mode #'company-mode)
 (add-to-list 'auto-mode-alist '("\\.[q]md\\'" . poly-gfm+r-mode))
+(after! poly-gfm+r-mode
+  (setq markdown-code-block-braces t))
 
 ;; ========= SIMPLENOTE =========
 

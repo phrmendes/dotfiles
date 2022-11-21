@@ -1,4 +1,4 @@
 {
   allowUnfree = true;
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/fish" ];
 }

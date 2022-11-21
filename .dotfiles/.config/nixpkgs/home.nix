@@ -25,7 +25,6 @@ in {
       starship
       quarto
       micromamba
-      oh-my-zsh
       # PACKAGE MANAGERS
       cargo
       go
@@ -53,34 +52,33 @@ in {
   programs = {
     fzf = {
       enable = true;
-      enableZshIntegration = true;
+      enableFishIntegration = true;
     };
-    zsh = {
+    fish = {
       enable = true;
-      enableCompletion = true;
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
       shellAliases = {
-        rm = "rm -i";
-        cp = "cp -i";
-        mv = "mv -i";
         mkdir = "mkdir -p";
         ls = "exa --icons";
         cat = "bat";
-        stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
         nv = "nvim";
         lg = "lazygit";
-        doom = "$HOME/.emacs.d/bin/doom";
+      };
+      shellAbbrs = {
+        stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
         mamba = "micromamba";
       };
-      envExtra = ''
-        eval "$(micromamba shell hook --shell=zsh)"
+      shellInit = ''
+        fish_add_path "$HOME/.emacs.d/bin"
+        set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
+        set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
+        eval "/home/phrmendes/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
       '';
      };
     neovim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
         vim-nix
+        vim-fish
         vim-easymotion
         vim-commentary
         lightline-vim
@@ -114,7 +112,7 @@ in {
     };
     starship = {
       enable = true;
-      enableZshIntegration = true;
+      enableFishIntegration = true;
     };
     home-manager.enable = true;
   };

@@ -41,7 +41,6 @@ in {
       my-r-packages
       # APPS
       emacs
-      droidcam
       filezilla
       solaar
       bitwarden

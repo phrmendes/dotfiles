@@ -34,6 +34,7 @@ in {
       starship
       quarto
       micromamba
+      niv
       # PACKAGE MANAGERS
       cargo
       go

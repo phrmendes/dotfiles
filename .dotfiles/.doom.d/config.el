@@ -30,7 +30,7 @@
 (use-package! openwith
   :init (add-hook 'after-init-hook 'openwith-mode)
   :config
-  (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
+  (setq openwith-associations '(("\\.pdf\\'" "zathura" (file)))))
 
 ;; ========= TANGLE CONFIG FILES =========
 

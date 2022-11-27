@@ -162,9 +162,7 @@
 
 ;; ========= DIRENV =========
 
-(use-package! direnv
- :config
- (direnv-mode))
+(envrc-global-mode)
 
 ;; ========= SPELLCHECK =========
 

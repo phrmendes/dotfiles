@@ -13,6 +13,8 @@ in {
         packages = with rPackages; [
           tidyverse
           data_table
+          tinytex
+          quarto
         ];
       };
     in

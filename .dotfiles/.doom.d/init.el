@@ -87,6 +87,7 @@
        terraform       ; infrastructure as code
        tree-sitter     ; syntax and parsing, sitting in a tree...
        ;;upload        ; map local to remote projects via ssh/ftp
+       direnv          ; save (or destroy) the environment at your leisure
 
        :lang
        ;;(elixir +lsp)

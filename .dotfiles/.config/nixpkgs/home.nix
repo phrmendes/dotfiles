@@ -34,6 +34,7 @@ in {
       starship
       quarto
       micromamba
+      direnv
       niv
       lorri
       # PACKAGE MANAGERS

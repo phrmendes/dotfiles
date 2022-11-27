@@ -35,6 +35,7 @@ in {
       quarto
       micromamba
       niv
+      lorri
       # PACKAGE MANAGERS
       cargo
       go

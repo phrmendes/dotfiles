@@ -61,19 +61,11 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- parsers
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "c",
   "json",
   "lua",
   "python",
   "yaml",
   "go"
-}
-
--- generic LSP settings
-
-lvim.lsp.installer.setup.ensure_installed = {
-  "sumeko_lua",
-  "jsonls",
 }
 
 -- set additional linters

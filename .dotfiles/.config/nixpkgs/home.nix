@@ -49,6 +49,7 @@ in {
         cat = "bat";
         nv = "nvim";
         lg = "lazygit";
+        lv = "lvim";
       };
       shellAbbrs = {
         stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";

@@ -221,28 +221,13 @@ lvim.plugins = {
       require("todo-comments").setup()
     end
   },
-  -- org mode
+  -- markdown
   {
-    "nvim-orgmode/orgmode",
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
     config = function()
-      require("orgmode").setup({ org_agenda_files = "~/docs/agenda.org" })
-      require("orgmode").setup_ts_grammar()
-    end
-  },
-  {
-    "akinsho/org-bullets.nvim", 
-    config = function()
-      require("org-bullets").setup()
-    end
-  },
-  {
-    "lukas-reineke/headlines.nvim",
-    config = function()
-        require("headlines").setup()
-    end
-  },
-  {
-    "michaelb/sniprun",
-    run = "bash ./install.sh"
+      vim.g.mkdp_auto_start = 1
+    end,
   }
 }

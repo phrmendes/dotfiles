@@ -3,6 +3,7 @@
 # home-manager
 nix-shell '<home-manager>' -A install
 rm "$HOME/.config/nixpkgs/home.nix"
+rm "$HOME/.profile"
 stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 home-manager switch
 

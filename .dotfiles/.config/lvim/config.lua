@@ -65,7 +65,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "yaml",
-  "go"
+  "go",
+  "org"
 }
 
 -- set additional linters
@@ -227,14 +228,6 @@ lvim.plugins = {
     config = function()
       require("orgmode").setup({ org_agenda_files = "~/docs/agenda.org" })
       require("orgmode").setup_ts_grammar()
-      require("nvim-treesitter.configs").setup({
-        highlight = {
-          enable = true,
-          disable = { "org" },
-          additional_vim_regex_highlighting = { "org" }
-        },
-        ensure_installed = { "org" }
-      })
     end
   },
   {

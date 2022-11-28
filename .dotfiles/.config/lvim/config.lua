@@ -229,7 +229,7 @@ lvim.plugins = {
   },
   -- org mode
   {
-    "nvim-treesitter/nvim-treesitter",
+    "nvim-orgmode/orgmode",
     config = function()
       require("orgmode").setup{}
     end

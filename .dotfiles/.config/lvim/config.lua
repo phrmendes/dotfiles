@@ -61,7 +61,6 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- parsers
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "c",
   "json",
   "lua",
   "python",

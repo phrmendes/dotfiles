@@ -65,8 +65,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "yaml",
-  "go",
-  "org"
+  "go"
 }
 
 -- set additional linters

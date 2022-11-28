@@ -227,10 +227,27 @@ lvim.plugins = {
       require("todo-comments").setup()
     end
   },
-  -- markdown preview
+  -- org mode
   {
-    "npxbr/glow.nvim",
-    ft = { "markdown" },
-    -- run = "brew install glow"
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("orgmode").setup{}
+    end
+  },
+  {
+    "akinsho/org-bullets.nvim", 
+    config = function()
+      require("org-bullets").setup()
+    end
+  },
+  {
+    "lukas-reineke/headlines.nvim",
+    config = function()
+        require("headlines").setup()
+    end
+  },
+  {
+    "michaelb/sniprun",
+    run = "bash ./install.sh"
   }
 }

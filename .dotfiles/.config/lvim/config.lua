@@ -69,6 +69,13 @@ lvim.builtin.treesitter.ensure_installed = {
   "go"
 }
 
+-- generic LSP settings
+
+lvim.lsp.installer.setup.ensure_installed = {
+  "sumeko_lua",
+  "jsonls",
+}
+
 -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
@@ -222,7 +229,8 @@ lvim.plugins = {
   },
   -- org mode
   {
-    "nvim-orgmode/orgmode", config = function()
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
       require("orgmode").setup{}
     end
   },

@@ -90,10 +90,10 @@ lvim.plugins = {
     "nacro90/numb.nvim",
     event = "BufRead",
     config = function()
-      require("numb").setup {
+      require("numb").setup({
         show_numbers = true, -- Enable 'number' for the window while peeking
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-      }
+      })
     end,
   },
   -- quickfix window
@@ -157,25 +157,25 @@ lvim.plugins = {
   {
     "romgrk/nvim-treesitter-context",
     config = function()
-      require("treesitter-context").setup {
+      require("treesitter-context").setup({
         enable = true,
         throttle = true,
         max_lines = 0,
         patterns = {
           default = {
-            'class',
-            'function',
-            'method',
+            "class",
+            "function",
+            "method",
           },
         },
-      }
+      })
     end
   },
   -- previewing goto definition calls
   {
     "rmagatti/goto-preview",
     config = function()
-      require('goto-preview').setup {
+      require("goto-preview").setup({
         width = 120; -- width of the floating window
         height = 25; -- height of the floating window
         default_mappings = false; -- bind default mappings
@@ -185,20 +185,22 @@ lvim.plugins = {
         vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>");
         vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>");
         vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
-      }
+      })
     end
   },
   -- hint when you type
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
-    config = function() require "lsp_signature".on_attach() end,
+    config = function()
+      require("lsp_signature").on_attach() 
+    end
   },
   -- a tree like view for symbols
   {
     "simrat39/symbols-outline.nvim",
     config = function()
-      require('symbols-outline').setup()
+      require("symbols-outline").setup()
     end
   },
   -- diagnostics, references, telescope results, quickfix and location lists
@@ -223,7 +225,16 @@ lvim.plugins = {
   {
     "nvim-orgmode/orgmode",
     config = function()
+      require("orgmode").setup({ org_agenda_files = "~/docs/agenda.org" })
       require("orgmode").setup_ts_grammar()
+      require("nvim-treesitter.configs").setup({
+        highlight = {
+          enable = true,
+          disable = { "org" },
+          additional_vim_regex_highlighting = { "org" }
+        },
+        ensure_installed = { "org" }
+      })
     end
   },
   {

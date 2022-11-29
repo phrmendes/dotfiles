@@ -1,14 +1,11 @@
 automake,apt
 cmake,apt
-file-roller,apt
-timeshift,apt
 python3-pip,apt
+clang,apt
 libcurl4-openssl-dev,apt
 libssl-dev,apt
 libclang-dev,apt
 libpq5,apt
-libxml2-dev,apt
-libudunits2-dev,apt
 libharfbuzz-dev,apt
 libfribidi-dev,apt
 libgit2-dev,apt
@@ -16,5 +13,5 @@ libfreetype6-dev,apt
 libpng-dev,apt
 libtiff5-dev,apt
 libjpeg-dev,apt
+libfuse-dev,apt
 stow,apt
-alacritty,apt

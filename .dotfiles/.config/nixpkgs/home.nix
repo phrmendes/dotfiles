@@ -24,7 +24,6 @@ in
       ncdu
       starship
       micromamba
-      neovim
       direnv
       terraform
       terragrunt

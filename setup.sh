@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MAIN_DIR="$(pwd)"
-REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps clang)
+REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps)
 PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
 APT_PROGRAMS=()
 FLATPAK_PROGRAMS=()
@@ -15,8 +15,6 @@ while IFS= read line; do
 
     if [[ $str_2 = "apt" ]]; then
         APT_PROGRAMS+=("$str_1")
-    else
-        FLATPAK_PROGRAMS+=("$str_1")
     fi
 done < "$PROGRAMS_FILE"
 

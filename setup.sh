@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MAIN_DIR="$(pwd)"
-REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps)
+REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps clang)
 PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
 APT_PROGRAMS=()
 FLATPAK_PROGRAMS=()

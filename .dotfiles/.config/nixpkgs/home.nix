@@ -2,7 +2,8 @@
 
 let
   user = "phrmendes";
-in {
+in
+{
   home = {
     stateVersion = "22.05";
     username = "${user}";
@@ -63,9 +64,10 @@ in {
         fish_add_path "$HOME/.emacs.d/bin"
         set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
         set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
+        set -gx EDITOR "lvim"
         eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
       '';
-     };
+    };
     starship = {
       enable = true;
       enableFishIntegration = true;
@@ -73,7 +75,7 @@ in {
     home-manager.enable = true;
   };
 
-    xdg.enable = true;
-    xdg.mime.enable = true;
-    targets.genericLinux.enable = true;
+  xdg.enable = true;
+  xdg.mime.enable = true;
+  targets.genericLinux.enable = true;
 }

@@ -65,7 +65,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "yaml",
-  "go"
+  "go",
+  "hcl"
 }
 
 -- set additional linters
@@ -255,3 +256,6 @@ lvim.plugins = {
     requires = "nvim-lua/plenary.nvim"
   }
 }
+
+-- changing c compiler
+require("nvim-treesitter.install").compilers = { "clang" }

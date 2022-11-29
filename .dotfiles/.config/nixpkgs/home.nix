@@ -25,6 +25,9 @@ in {
       micromamba
       neovim
       direnv
+      terraform
+      terragrunt
+      gh
       # PACKAGE MANAGERS
       cargo
       go

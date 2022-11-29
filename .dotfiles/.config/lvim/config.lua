@@ -193,7 +193,7 @@ lvim.plugins = {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()
-      require("lsp_signature").on_attach() 
+      require("lsp_signature").on_attach()
     end
   },
   -- a tree like view for symbols
@@ -228,6 +228,30 @@ lvim.plugins = {
     ft = "markdown",
     config = function()
       vim.g.mkdp_auto_start = 1
+    end
+  },
+  -- neorg
+  {
+    "nvim-neorg/neorg",
+    ft = "norg",
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.export"] = {},
+          ["core.presenter"] = {},
+          ["core.export.markdown"] = {},
+          ["core.neorg.completion"] = {},
+          ["core.norg.dirman"] = {
+            config = {
+              workspaces = {
+                work = "~/Docs",
+              }
+            }
+          }
+        }
+      })
     end,
+    requires = "nvim-lua/plenary.nvim"
   }
 }

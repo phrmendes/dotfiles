@@ -28,6 +28,7 @@ in {
       terraform
       terragrunt
       gh
+      ranger
       # PACKAGE MANAGERS
       cargo
       go

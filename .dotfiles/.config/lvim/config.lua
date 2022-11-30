@@ -231,31 +231,13 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 1
     end
   },
-  -- neorg
+  -- zen mode
   {
-    "nvim-neorg/neorg",
-    ft = "norg",
+    "folke/zen-mode.nvim",
     config = function()
-      require("neorg").setup({
-        load = {
-          ["core.defaults"] = {},
-          ["core.export"] = {},
-          ["core.presenter"] = {},
-          ["core.export.markdown"] = {},
-          ["core.neorg.completion"] = {},
-          ["core.norg.dirman"] = {
-            config = {
-              workspaces = {
-                work = "~/Docs",
-              }
-            }
-          }
-        }
-      })
-    end,
-    requires = "nvim-lua/plenary.nvim"
-  }
+      require("zen-mode").setup()
+    end
+  },
+  -- literate
+  { "zyedidia/literate.vim" }
 }
-
--- changing c compiler
-require("nvim-treesitter.install").compilers = { "clang" }

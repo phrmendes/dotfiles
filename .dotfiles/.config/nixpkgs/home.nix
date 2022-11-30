@@ -29,6 +29,7 @@ in
       terragrunt
       gh
       ranger
+      Literate
       # PACKAGE MANAGERS
       cargo
       go

@@ -60,8 +60,7 @@
 ;; ========= ESHELL =========
 
 (use-package! esh-autosuggest
-  :hook (eshell-mode . esh-autosuggest-mode)
-  :ensure t)
+  :hook (eshell-mode . esh-autosuggest-mode))
 
 ;; ========= ORG MODE =========
 

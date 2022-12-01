@@ -13,8 +13,15 @@ in {
         packages = with rPackages; [
           tidyverse
           data_table
+          pbapply
           tinytex
           quarto
+          styler
+          lintr
+          zip
+          fs
+          janitor
+          zoo
         ];
       };
     in

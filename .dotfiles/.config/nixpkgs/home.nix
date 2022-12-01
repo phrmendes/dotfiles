@@ -39,6 +39,7 @@ in {
       direnv
       niv
       lorri
+      ranger
       # PACKAGE MANAGERS
       cargo
       go

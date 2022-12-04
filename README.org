@@ -2,6 +2,10 @@
 
 Dotfiles files for my personal computer using NixOS.
 
+** To do
+*** TODO config xmonad
+*** TODO home-manager as module in configuration.nix
+
 ** References
 
 *** Official Nix wiki

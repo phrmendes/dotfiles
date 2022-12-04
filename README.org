@@ -8,6 +8,7 @@ Dotfiles files for my personal computer using NixOS.
 
 + https://nixos.wiki/wiki/Nix_package_manager
 + https://nixos.wiki/wiki/Flakes
++ https://nixos.wiki/wiki/Full_Disk_Encryption
 
 *** Guides
 

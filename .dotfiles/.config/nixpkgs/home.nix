@@ -30,6 +30,7 @@ in
       gh
       ranger
       Literate
+      tflint
       # PACKAGE MANAGERS
       cargo
       go

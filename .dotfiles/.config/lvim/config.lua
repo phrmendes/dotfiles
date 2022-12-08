@@ -69,25 +69,9 @@ lvim.builtin.treesitter.ensure_installed = {
   "hcl"
 }
 
--- set additional formatters and linters
-local formatters = require "lvim.lsp.null-ls.formatters"
-local linters = require "lvim.lsp.null-ls.linters"
-
-formatters.setup {
-
-}
-
-linters.setup {
-  {
-    command = "flake8",
-    filetypes = { "python" }
-  },
-  {
-    command = "shellcheck",
-    extra_args = { "--severity", "warning" },
-    filetypes = { "bash" }
-  },
-}
+-- lsp settings
+lvim.lsp.automatic_servers_installation = true
+lvim.format_on_save = true
 
 -- Additional Plugins
 lvim.plugins = {

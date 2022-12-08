@@ -3,477 +3,515 @@
 * Installation script
 ** Variables
 
-Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/installation.sh --output installation-setup.sh~
+Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/installation.sh --output ~/installation-setup.sh~
 
-#+begin_src shell :tangle ./installation.sh
-
-#!/usr/bin/env bash
-
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/main/flake"
-FLAKE_DIR="/mnt/flake"
-NIX_FILES=("configuration.nix" "flake.nix" "home.nix")
-HARDWARE_CONFIGURATION_FILE="/mnt/etc/nixos/hardware-configuration.nix"
-
+#+begin_src shell :tangle ./installation.sh :shebang #!/usr/bin/env bash
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS/"
+NIX_FILES=("configuration.nix" "home.nix")
+NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
 
 ** Partitions
 *** Create
 
 #+begin_src shell :tangle ./installation.sh
-
 sudo parted /dev/sda -- mklabel gpt
 sudo parted /dev/sda -- mkpart primary 512MiB 100% # main partition
 sudo parted /dev/sda -- mkpart ESP fat32 1Mib 512MiB # efi
 sudo parted /dev/sda -- set 2 esp on
-
 #+end_src
 
-*** Encryption
+*** Encrypt
 
 #+begin_src shell :tangle ./installation.sh
-
 sudo cryptsetup luksFormat /dev/sda1
 sudo cryptsetup luksOpen /dev/sda1 cryptroot
-
-# format partitions
-sudo mkfs.fat -F 32 -n boot /dev/sda2
-sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
-
-# mounting partitions
-sudo mount /dev/disk/by-label/nixos /mnt
-sudo mkdir -p /mnt/boot/efi
-sudo mount /dev/sda2 /mnt/boot
-
 #+end_src
 
 *** Format
 
 #+begin_src shell :tangle ./installation.sh
-
 sudo mkfs.fat -F 32 -n boot /dev/sda2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
-
 #+end_src
 
 *** Mount
 
 #+begin_src shell :tangle ./installation.sh
-
 sudo mount /dev/disk/by-label/nixos /mnt
 sudo mkdir -p /mnt/boot/efi
 sudo mount /dev/sda2 /mnt/boot
-
 #+end_src
 
 ** Generate *.nix files
 
 #+begin_src shell :tangle ./installation.sh
-
 sudo nixos-generate-config --root /mnt
-
 #+end_src
 
 ** Placing *.nix files
 
 #+begin_src shell :tangle ./installation.sh
-
-sudo mkdir "$FLAKE_DIR/"
-
 for i in "${NIX_FILES[@]}"; do
-    sudo curl "$GITHUB_URL/$i" --output "$FLAKE_DIR/$i"
+    sudo curl "$GITHUB_URL/$i" --output "$NIX_FILES_LOCATION/$i"
 done
-
 #+end_src
 
 ** Adding swap configuration to hardware-configuration.nix
 
 #+begin_src shell :tangle ./installation.sh
-
-sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$HARDWARE_CONFIGURATION_FILE"
-
-sudo cp "$HARDWARE_CONFIGURATION_FILE" "$FLAKE_DIR"
-
-sudo rm -r /mnt/etc/nixos
-
+sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 #+end_src
 
 ** Installation
 
 #+begin_src shell :tangle ./installation.sh
-
-cd "$FLAKE_DIR" && sudo nixos-install --flake .#phrmendes
-
+nixos-install
 #+end_src
 
 * Post-installation
+** Variables
+
+#+begin_src shell :tangle ./post-installation.sh :shebang #!/usr/bin/env bash
+
+FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
+MAIN_DIR="$(pwd)"
+FONTS_DIR="$HOME/.local/share/fonts/"
+#+end_src
+
 ** Flatpak programs
 
 #+begin_src shell :tangle ./post-installation.sh
-
-#!/usr/bin/env bash
-
-FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
-
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 for program in "$FLATPAK_PROGRAMS"; do
     flatpak install "$program" -y
 done
-
 #+end_src
 
 ** Installing nerd fonts
 
 #+begin_src shell :tangle ./post-installation.sh
-
-mkdir -p "$HOME/.local/share/fonts/"
-cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$HOME/.local/share/fonts/"
-cd "$HOME/.local/share/fonts/"
+mkdir -p "$FONTS_DIR"
+cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$FONTS_DIR"
+cd "$FONTS_DIR"
 unzip SauceCodePro.zip
 rm SauceCodePro.zip
 fc-cache -f -v
 cd "$MAIN_DIR"
-
 #+end_src
 
 ** Doom Emacs
 
 #+begin_src shell :tangle ./post-installation.sh
-
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
-
 #+end_src
 
 ** Placing dotfiles
 
 #+begin_src shell :tangle ./post-installation.sh
-
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
-
-#+end_src
-
-* flake.nix
-
-#+begin_src nix :tangle ./flake/flake.nix
-
-{
-  description = "Personal flake";
-
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = { self, nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
-      user = "phrmendes";
-    in {
-      nixosConfigurations = {
-        ${user} = lib.nixosSystem {
-          inherit system pkgs;
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} = {
-                imports = [ ./home.nix ];
-              };
-            }
-          ];
-        };
-      };
-    };
-}
-
 #+end_src
 
 * configuration.nix
 
-#+begin_src nix :tangle ./flake/configuration.nix
+#+begin_src nix :tangle ./configuration.nix :noweb yes
 
 { config, pkgs, ... }:
 
 let
-  user = "phrmendes";
+  <<nixOS-variables>>
 in {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
-
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
-
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        version = 2;
-        efiSupport = true;
-        devices = [ "nodev" ];
-        gfxmodeEfi = "1024x768";
-        configurationLimit = 5; # number of listed generations in grub
-      };
-      efi = {
-        efiSysMountPoint = "/boot/efi";
-        canTouchEfiVariables = true;
-      };
-      timeout = 5;
-    };
-    kernelPackages = pkgs.linuxPackages_latest;
-  };
-
-  networking = {
-    hostName = "nixos";
-    networkmanager.enable = true;
-    wireless.enable = true;
-  };
-
-  time.timeZone = "America/Sao_Paulo";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
-
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-  ];
-
-  services = {
-    openssh.enable = true;
-    xserver = {
-      enable = true;
-      layout = "us,br";
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-    };
-    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-    gnome.core-utilities.enable = false;
-    libinput = {
-      enable = true;
-      tapping = true;
-      naturalScrolling = true;
-    };
-  };
-
-  sound = {
-    enable = true;
-    mediaKeys.enable = true;
-  };
-
-  hardware = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      extraConfig = ''
-        load-module module-switch-on-connect
-      '';
-    };
-    bluetooth = {
-      enable = true;
-      hsphfpd.enable = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
-    };
-  };
-
-  users.users.${user} = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
-    initialPassword = "password";
-    shell = pkgs.bash;
-  };
-
-  environment = {
-    systemPackages = with pkgs; [
-      zip
-      curl
-      unzip
-      unrar
-      tree
-      git
-      gzip
-    ];
-  };
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
-
-  system.stateVersion = "22.11";
+  <<nixOS-parameters>>
 }
 
 #+end_src
 
+** Variables
+:PROPERTIES:
+:header-args: :noweb-ref nixOS-variables
+:END:
+
+#+begin_src nix
+user = "phrmendes";
+unstable = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+#+end_src
+
+** Parameters
+:PROPERTIES:
+:header-args: :noweb-ref nixOS-parameters
+:END:
+*** Imports
+
+#+begin_src nix
+imports =
+  [
+    ./hardware-configuration.nix
+    (import "${home-manager}/nixos")
+    ./home.nix
+  ];
+#+end_src
+
+*** Boot
+
+#+begin_src nix
+boot = {
+  loader = {
+    grub = {
+      enable = true;
+      version = 2;
+      efiSupport = true;
+      devices = [ "nodev" ];
+      gfxmodeEfi = "1024x768";
+      configurationLimit = 5;
+    };
+    efi = {
+      efiSysMountPoint = "/boot/efi";
+      canTouchEfiVariables = true;
+    };
+    timeout = 5;
+  };
+  kernelPackages = pkgs.linuxPackages_latest;
+};
+#+end_src
+
+*** Networking
+
+#+begin_src nix
+networking = {
+  hostName = "nixos";
+  networkmanager.enable = true;
+  wireless.enable = true;
+};
+#+end_src
+
+*** Timezone and locale
+
+#+begin_src nix
+time.timeZone = "America/Sao_Paulo";
+i18n.defaultLocale = "en_US.UTF-8";
+#+end_src
+
+*** Console
+
+#+begin_src nix
+console = {
+  font = "Lat2-Terminus16";
+  keyMap = "us";
+};
+#+end_src
+
+*** Fonts
+
+#+begin_src nix
+fonts.fonts = with pkgs; [
+  (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+];
+#+end_src
+
+*** Services
+
+#+begin_src nix
+services = {
+  openssh.enable = true;
+  xserver = {
+    enable = true;
+    layout = "us,br";
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+  };
+  udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  gnome.core-utilities.enable = false;
+  libinput = {
+    enable = true;
+    tapping = true;
+    naturalScrolling = true;
+  };
+};
+#+end_src
+
+*** Sound
+
+#+begin_src nix
+sound = {
+  enable = true;
+  mediaKeys.enable = true;
+};
+#+end_src
+
+*** Hardware
+
+#+begin_src nix
+hardware = {
+  pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+    extraConfig = ''
+      load-module module-switch-on-connect
+    '';
+  };
+  bluetooth = {
+    enable = true;
+    hsphfpd.enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
+};
+#+end_src
+
+*** Users
+
+#+begin_src nix
+users.users.${user} = {
+  isNormalUser = true;
+  uid = 1000;
+  extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
+  initialPassword = "password";
+  shell = pkgs.bash;
+};
+#+end_src
+
+*** System packages
+
+#+begin_src nix
+environment = {
+  systemPackages = with pkgs; [
+    zip
+    curl
+    unzip
+    unrar
+    tree
+    git
+    gzip
+    home-manager
+  ];
+};
+#+end_src
+
+*** Nix
+
+#+begin_src nix
+nix = {
+  settings.auto-optimise-store = true;
+  gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  package = pkgs.nixFlakes;
+  extraOptions = "experimental-features = nix-command flakes";
+};
+#+end_src
+
+*** System state version
+
+#+begin_src nix
+system.stateVersion = "22.11";
+#+end_src
+
 * home.nix
 
-#+begin_src nix :tangle ./flake/home.nix
+#+begin_src nix :tangle ./home.nix :noweb yes
 
 { config, pkgs, ... }:
 
 let
-  user = "phrmendes";
+  <<home-manager-variables>>
 in {
-  home = {
-    username = "${user}";
-    homeDirectory = "/home/${user}";
-    packages = with pkgs;
-      let
-        my-r-packages = rWrapper.override{
-          packages = with rPackages;
-            [
-              tidyverse
-              data_table
-              pbapply
-              tinytex
-              quarto
-              styler
-              lintr
-              zip
-              fs
-              janitor
-              zoo
-              curl
-            ];
-        };
-      in [
-        # TERMINAL
-        btop
-        pandoc
-        bat
-        btop
-        gh
-        lazygit
-        ripgrep
-        fd
-        sd
-        tealdeer
-        exa
-        shellcheck
-        ncdu
-        quarto
-        micromamba
-        direnv
-        niv
-        lorri
-        ranger
-        gnugpg
-        stow
-        # PACKAGE MANAGERS
-        flatpak
-        micromamba
-        cargo
-        go
-        nodejs
-        my-r-packages
-        # TEXT EDITORS
-        neovim
-        emacs
-        # FILE MANAGERS
-        filezilla
-        # APPS
-        droidcam
-        keepassxc
-        solaar
-        stremio
-        tutanota-desktop
-        bitwarden
-        pcloud
-        onlyoffice-bin
-        zotero
-        spotify
-        fragments
-        kooha
-        podman
-        zathura
-        cmdstan
-        # OTHERS
-        aspellDicts.en
-        aspellDicts.pt_BR
-        texlive.combined.scheme-minimal
-      ];
-    stateVersion = "22.05";
-    sessionVariables = {
-      EDITOR = "neovim";
-    };
-  };
+  <<home-manager-parameters>>
+}
 
-  programs = {
-    home-manager.enable = true;
-    git = {
-      enable = true;
-      userName = "Pedro Mendes";
-      userEmail = "phrmendes@tuta.io";
-    };
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    fish = {
-      enable = true;
-      shellAliases = {
-        mkdir = "mkdir -p";
-        ls = "exa --icons";
-        cat = "bat";
-        nv = "nvim";
-        lg = "lazygit";
+#+end_src
+
+** Variables
+:PROPERTIES:
+:header-args: :noweb-ref home-manager-variables
+:END:
+
+#+begin_src nix
+user = "phrmendes";
+#+end_src
+
+** Parameters
+:PROPERTIES:
+:header-args: :noweb-ref home-manager-parameters
+:END:
+
+#+begin_src nix :noweb yes
+
+home = {
+  <<home>>
+};
+
+#+end_src
+
+
+#+begin_src nix :noweb yes
+
+programs = {
+  <<programs>>
+};
+
+#+end_src
+
+*** home
+:PROPERTIES:
+:header-args: :noweb-ref home
+:END:
+**** Username
+
+#+begin_src nix
+username = "${user}";
+#+end_src
+
+**** Home directory
+
+#+begin_src nix
+homeDirectory = "/home/${user}";
+#+end_srcx
+
+**** Packages
+*** programs
+:PROPERTIES:
+:header-args: :noweb-ref programs
+:END:
+
+#+begin_src nix
+home = {
+  packages = with pkgs;
+    let
+      my-r-packages = rWrapper.override{
+        packages = with rPackages;
+          [
+            tidyverse
+            data_table
+            pbapply
+            tinytex
+            quarto
+            styler
+            lintr
+            zip
+            fs
+            janitor
+            zoo
+            curl
+          ];
       };
-      shellAbbrs = {
-        stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-        mamba = "micromamba";
-      };
-      shellInit = ''
+    in [
+      # TERMINAL
+      btop
+      pandoc
+      bat
+      btop
+      gh
+      lazygit
+      ripgrep
+      fd
+      sd
+      tealdeer
+      exa
+      shellcheck
+      ncdu
+      quarto
+      micromamba
+      direnv
+      niv
+      lorri
+      ranger
+      gnugpg
+      stow
+      # PACKAGE MANAGERS
+      flatpak
+      micromamba
+      cargo
+      go
+      nodejs
+      my-r-packages
+      # TEXT EDITORS
+      neovim
+      emacs
+      # FILE MANAGERS
+      filezilla
+      # APPS
+      droidcam
+      keepassxc
+      solaar
+      stremio
+      tutanota-desktop
+      bitwarden
+      pcloud
+      onlyoffice-bin
+      zotero
+      spotify
+      fragments
+      kooha
+      podman
+      zathura
+      cmdstan
+      # OTHERS
+      aspellDicts.en
+      aspellDicts.pt_BR
+      texlive.combined.scheme-minimal
+    ];
+  stateVersion = "22.05";
+  sessionVariables = {
+    EDITOR = "neovim";
+  };
+};
+
+programs = {
+  home-manager.enable = true;
+  git = {
+    enable = true;
+    userName = "Pedro Mendes";
+    userEmail = "phrmendes@tuta.io";
+  };
+  fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+  fish = {
+    enable = true;
+    shellAliases = {
+      mkdir = "mkdir -p";
+      ls = "exa --icons";
+      cat = "bat";
+      nv = "nvim";
+      lg = "lazygit";
+    };
+    shellAbbrs = {
+      stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+      mamba = "micromamba";
+    };
+    shellInit = ''
             fish_add_path "$HOME/.emacs.d/bin"
             set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
             set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
             eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
         '';
-    };
-    neovim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        vim-fish
-        vim-easymotion
-        vim-commentary
-        lightline-vim
-        nerdcommenter
-        ack-vim
-        vim-gitgutter
-        auto-pairs
-        fzf-vim
-        vim-polyglot
-      ];
-      extraConfig = ''
+  };
+  neovim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+      vim-fish
+      vim-easymotion
+      vim-commentary
+      lightline-vim
+      nerdcommenter
+      ack-vim
+      vim-gitgutter
+      auto-pairs
+      fzf-vim
+      vim-polyglot
+    ];
+    extraConfig = ''
             set background=dark
             set clipboard=unnamedplus
             set completeopt=noinsert,menuone,noselect
@@ -491,87 +529,85 @@ in {
             set shiftwidth=2
             set tabstop=2
         '';
-      vimAlias = true;
-      vimdiffAlias = true;
-    };
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          padding = {
-            x = 15;
-            y = 15;
-          };
-          class = {
-            instance = "Alacritty";
-            general = "Alacritty";
-          };
-          opacity = 1;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+  alacritty = {
+    enable = true;
+    settings = {
+      window = {
+        padding = {
+          x = 15;
+          y = 15;
         };
-        scrolling = {
-          history = 10000;
-          multiplier = 3;
+        class = {
+          instance = "Alacritty";
+          general = "Alacritty";
         };
-        font = {
-          normal = {
-            family = "SauceCodePro Nerd Font";
-            style = "Medium";
-          };
-          bold = {
-            family = "SauceCodePro Nerd Font";
-            style = "Bold";
-          };
-          italic = {
-            family = "SauceCodePro Nerd Font";
-            style = "MediumItalic";
-          };
-          bold_italic = {
-            family = "SauceCodePro Nerd Font";
-            style = "BoldItalic";
-          };
-          size = 13;
+        opacity = 1;
+      };
+      scrolling = {
+        history = 10000;
+        multiplier = 3;
+      };
+      font = {
+        normal = {
+          family = "SauceCodePro Nerd Font";
+          style = "Medium";
         };
-        draw_bold_text_with_bright_colors = true;
-        selection.save_to_clipboard = true;
-        shell.program = "${pkgs.fish}/bin/fish";
-        colors = {
-          primary = {
-            background = "0x282828";
-            foreground = "0xebdbb2";
-          };
-          normal = {
-            black = "0x282828";
-            red = "0xcc241d";
-            green = "0x98971a";
-            yellow = "0xd79921";
-            blue = "0x458588";
-            magenta = "0xb16286";
-            cyan = "0x689d6a";
-            white = "0xa89984";
-          };
-          bright = {
-            black = "0x928374";
-            red = "0xfb4934";
-            green = "0xb8bb26";
-            yellow = "0xfabd2f";
-            blue = "0x83a598";
-            magenta = "0xd3869b";
-            cyan = "0x8ec07c";
-            white = "0xebdbb2";
-          };
+        bold = {
+          family = "SauceCodePro Nerd Font";
+          style = "Bold";
+        };
+        italic = {
+          family = "SauceCodePro Nerd Font";
+          style = "MediumItalic";
+        };
+        bold_italic = {
+          family = "SauceCodePro Nerd Font";
+          style = "BoldItalic";
+        };
+        size = 13;
+      };
+      draw_bold_text_with_bright_colors = true;
+      selection.save_to_clipboard = true;
+      shell.program = "${pkgs.fish}/bin/fish";
+      colors = {
+        primary = {
+          background = "0x282828";
+          foreground = "0xebdbb2";
+        };
+        normal = {
+          black = "0x282828";
+          red = "0xcc241d";
+          green = "0x98971a";
+          yellow = "0xd79921";
+          blue = "0x458588";
+          magenta = "0xb16286";
+          cyan = "0x689d6a";
+          white = "0xa89984";
+        };
+        bright = {
+          black = "0x928374";
+          red = "0xfb4934";
+          green = "0xb8bb26";
+          yellow = "0xfabd2f";
+          blue = "0x83a598";
+          magenta = "0xd3869b";
+          cyan = "0x8ec07c";
+          white = "0xebdbb2";
         };
       };
     };
-    starship = {
-      enable = true;
-      enableFishIntegration = true;
-    };
   };
-  xdg.enable = true;
-  xdg.mime.enable = true;
-  targets.genericLinux.enable = true;
-}
-
+  starship = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+};
+xdg.enable = true;
+xdg.mime.enable = true;
+targets.genericLinux.enable = true;
 #+end_src
 
 * Updates

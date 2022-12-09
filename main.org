@@ -3,7 +3,7 @@
 * Installation script
 ** Variables
 
-Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/main/installation.sh --output ~/installation-setup.sh~
+Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS/installation.sh --output ~/installation.sh~
 
 #+begin_src shell :tangle ./installation.sh :shebang #!/usr/bin/env bash
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS/"
@@ -73,7 +73,6 @@ nixos-install
 ** Variables
 
 #+begin_src shell :tangle ./post-installation.sh :shebang #!/usr/bin/env bash
-
 FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
 FONTS_DIR="$HOME/.local/share/fonts/"
@@ -219,12 +218,11 @@ services = {
   openssh.enable = true;
   xserver = {
     enable = true;
+    autorun = true;
     layout = "us,br";
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
+    windowManager.xmonad.enable = true;
+    displayManager.sddm.enable = true;
   };
-  udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-  gnome.core-utilities.enable = false;
   libinput = {
     enable = true;
     tapping = true;
@@ -270,6 +268,7 @@ hardware = {
 #+begin_src nix
 users.users.${user} = {
   isNormalUser = true;
+  home = "/home/${user}"
   uid = 1000;
   extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
   initialPassword = "password";
@@ -289,6 +288,8 @@ environment = {
     tree
     git
     gzip
+    vim
+    appimage-run
     home-manager
   ];
 };
@@ -309,10 +310,13 @@ nix = {
 };
 #+end_src
 
-*** System state version
+*** System
 
 #+begin_src nix
-system.stateVersion = "22.11";
+system = {
+  stateVersion = "22.11";
+  autoUpgrade.enable = true;
+}
 #+end_src
 
 * home.nix
@@ -344,20 +348,21 @@ user = "phrmendes";
 :END:
 
 #+begin_src nix :noweb yes
-
 home = {
   <<home>>
 };
-
 #+end_src
 
-
 #+begin_src nix :noweb yes
-
 programs = {
   <<programs>>
 };
+#+end_src
 
+#+begin_src nix
+xdg.enable = true;
+xdg.mime.enable = true;
+targets.genericLinux.enable = true;
 #+end_src
 
 *** home
@@ -374,242 +379,291 @@ username = "${user}";
 
 #+begin_src nix
 homeDirectory = "/home/${user}";
-#+end_srcx
+#+end_src
 
 **** Packages
+
+#+begin_src nix :noweb yes
+packages = with pkgs;
+  let
+    my-r-packages = rWrapper.override{
+      packages = with rPackages;
+        [
+          tidyverse
+          data_table
+          pbapply
+          tinytex
+          quarto
+          styler
+          lintr
+          zip
+          fs
+          janitor
+          zoo
+          curl
+        ];
+    };
+  in [
+    # terminal
+    btop
+    pandoc
+    bat
+    btop
+    gh
+    lazygit
+    ripgrep
+    fd
+    sd
+    tealdeer
+    exa
+    shellcheck
+    ncdu
+    quarto
+    micromamba
+    direnv
+    niv
+    lorri
+    ranger
+    gnugpg
+    stow
+    # package managers
+    flatpak
+    micromamba
+    cargo
+    go
+    nodejs
+    my-r-packages
+    # text editors
+    neovim
+    emacs
+    # apps
+    droidcam
+    keepassxc
+    solaar
+    stremio
+    tutanota-desktop
+    bitwarden
+    pcloud
+    onlyoffice-bin
+    zotero
+    spotify
+    fragments
+    kooha
+    podman
+    zathura
+    cmdstan
+    libsForQt514.kdeconnect-kde
+    # others
+    aspellDicts.en
+    aspellDicts.pt_BR
+    texlive.combined.scheme-minimal
+  ];
+stateVersion = "22.11";
+sessionVariables.EDITOR = "neovim";
+#+end_src
+
 *** programs
 :PROPERTIES:
 :header-args: :noweb-ref programs
 :END:
+**** home-manager
 
 #+begin_src nix
-home = {
-  packages = with pkgs;
-    let
-      my-r-packages = rWrapper.override{
-        packages = with rPackages;
-          [
-            tidyverse
-            data_table
-            pbapply
-            tinytex
-            quarto
-            styler
-            lintr
-            zip
-            fs
-            janitor
-            zoo
-            curl
-          ];
-      };
-    in [
-      # TERMINAL
-      btop
-      pandoc
-      bat
-      btop
-      gh
-      lazygit
-      ripgrep
-      fd
-      sd
-      tealdeer
-      exa
-      shellcheck
-      ncdu
-      quarto
-      micromamba
-      direnv
-      niv
-      lorri
-      ranger
-      gnugpg
-      stow
-      # PACKAGE MANAGERS
-      flatpak
-      micromamba
-      cargo
-      go
-      nodejs
-      my-r-packages
-      # TEXT EDITORS
-      neovim
-      emacs
-      # FILE MANAGERS
-      filezilla
-      # APPS
-      droidcam
-      keepassxc
-      solaar
-      stremio
-      tutanota-desktop
-      bitwarden
-      pcloud
-      onlyoffice-bin
-      zotero
-      spotify
-      fragments
-      kooha
-      podman
-      zathura
-      cmdstan
-      # OTHERS
-      aspellDicts.en
-      aspellDicts.pt_BR
-      texlive.combined.scheme-minimal
-    ];
-  stateVersion = "22.05";
-  sessionVariables = {
-    EDITOR = "neovim";
-  };
-};
+home-manager.enable = true;
+#+end_src
 
-programs = {
-  home-manager.enable = true;
-  git = {
-    enable = true;
-    userName = "Pedro Mendes";
-    userEmail = "phrmendes@tuta.io";
+**** git
+
+#+begin_src nix
+git = {
+  enable = true;
+  userName = "Pedro Mendes";
+  userEmail = "phrmendes@tuta.io";
+};
+#+end_src
+
+**** fzf
+
+#+begin_src nix
+fzf = {
+  enable = true;
+  enableFishIntegration = true;
+};
+#+end_src
+
+**** fish
+
+#+begin_src nix
+fish = {
+  enable = true;
+  shellAliases = {
+    mkdir = "mkdir -p";
+    ls = "exa --icons";
+    cat = "bat";
+    nv = "nvim";
+    lg = "lazygit";
   };
-  fzf = {
-    enable = true;
-    enableFishIntegration = true;
+  shellAbbrs = {
+    stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+    mamba = "micromamba";
   };
-  fish = {
-    enable = true;
-    shellAliases = {
-      mkdir = "mkdir -p";
-      ls = "exa --icons";
-      cat = "bat";
-      nv = "nvim";
-      lg = "lazygit";
+  shellInit = ''
+    fish_add_path "$HOME/.emacs.d/bin"
+    set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
+    set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
+    eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
+  '';
+};
+#+end_src
+
+**** neovim
+
+#+begin_src nix
+neovim = {
+  enable = true;
+  plugins = with pkgs.vimPlugins; [
+    nvim-web-devicons
+    nvim-tree-lua
+    plenary-nvim
+    vim-nix
+    vim-fish
+    vim-easymotion
+    vim-commentary
+    vim-gitgutter
+    vim-polyglot
+    auto-pairs
+    fzf-vim
+    {
+      plugin = gruvbox;
+      config = "colorscheme gruvbox";
+    }
+    {
+      plugin = indent-blankline-nvim;
+      config = ''
+        lua << EOF
+        require("indent_blankline").setup()
+        EOF
+      '';
+    }
+    {
+      plugin = lualine-nvim;
+      config = ''
+        lua << EOF
+        require("lualine").setup({
+            options = {
+            icons_enabled = true,
+            theme = "gruvbox_dark"
+            }
+        })
+        EOF
+      '';
+    }
+  ];
+  extraConfig = ''
+    set background=dark
+    set clipboard+=unnamedplus
+    set completeopt=noinsert,menuone,noselect
+    set cursorline
+    set hidden
+    set inccommand=split
+    set mouse=a
+    set number
+    set relativenumber
+    set splitbelow splitright
+    set title
+    set ttimeoutlen=0
+    set wildmenu
+    set expandtab
+    set shiftwidth=2
+    set tabstop=2
+  '';
+  vimAlias = true;
+  vimdiffAlias = true;
+};
+#+end_src
+
+**** alacritty
+
+#+begin_src nix
+alacritty = {
+  enable = true;
+  settings = {
+    window = {
+      padding = {
+        x = 15;
+        y = 15;
+      };
+      class = {
+        instance = "Alacritty";
+        general = "Alacritty";
+      };
+      opacity = 1;
     };
-    shellAbbrs = {
-      stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-      mamba = "micromamba";
+    scrolling = {
+      history = 10000;
+      multiplier = 3;
     };
-    shellInit = ''
-            fish_add_path "$HOME/.emacs.d/bin"
-            set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
-            set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
-            eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
-        '';
-  };
-  neovim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [
-      vim-nix
-      vim-fish
-      vim-easymotion
-      vim-commentary
-      lightline-vim
-      nerdcommenter
-      ack-vim
-      vim-gitgutter
-      auto-pairs
-      fzf-vim
-      vim-polyglot
-    ];
-    extraConfig = ''
-            set background=dark
-            set clipboard=unnamedplus
-            set completeopt=noinsert,menuone,noselect
-            set cursorline
-            set hidden
-            set inccommand=split
-            set mouse=a
-            set number
-            set relativenumber
-            set splitbelow splitright
-            set title
-            set ttimeoutlen=0
-            set wildmenu
-            set expandtab
-            set shiftwidth=2
-            set tabstop=2
-        '';
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
-  alacritty = {
-    enable = true;
-    settings = {
-      window = {
-        padding = {
-          x = 15;
-          y = 15;
-        };
-        class = {
-          instance = "Alacritty";
-          general = "Alacritty";
-        };
-        opacity = 1;
+    font = {
+      normal = {
+        family = "SauceCodePro Nerd Font";
+        style = "Medium";
       };
-      scrolling = {
-        history = 10000;
-        multiplier = 3;
+      bold = {
+        family = "SauceCodePro Nerd Font";
+        style = "Bold";
       };
-      font = {
-        normal = {
-          family = "SauceCodePro Nerd Font";
-          style = "Medium";
-        };
-        bold = {
-          family = "SauceCodePro Nerd Font";
-          style = "Bold";
-        };
-        italic = {
-          family = "SauceCodePro Nerd Font";
-          style = "MediumItalic";
-        };
-        bold_italic = {
-          family = "SauceCodePro Nerd Font";
-          style = "BoldItalic";
-        };
-        size = 13;
+      italic = {
+        family = "SauceCodePro Nerd Font";
+        style = "MediumItalic";
       };
-      draw_bold_text_with_bright_colors = true;
-      selection.save_to_clipboard = true;
-      shell.program = "${pkgs.fish}/bin/fish";
-      colors = {
-        primary = {
-          background = "0x282828";
-          foreground = "0xebdbb2";
-        };
-        normal = {
-          black = "0x282828";
-          red = "0xcc241d";
-          green = "0x98971a";
-          yellow = "0xd79921";
-          blue = "0x458588";
-          magenta = "0xb16286";
-          cyan = "0x689d6a";
-          white = "0xa89984";
-        };
-        bright = {
-          black = "0x928374";
-          red = "0xfb4934";
-          green = "0xb8bb26";
-          yellow = "0xfabd2f";
-          blue = "0x83a598";
-          magenta = "0xd3869b";
-          cyan = "0x8ec07c";
-          white = "0xebdbb2";
-        };
+      bold_italic = {
+        family = "SauceCodePro Nerd Font";
+        style = "BoldItalic";
+      };
+      size = 13;
+    };
+    draw_bold_text_with_bright_colors = true;
+    selection.save_to_clipboard = true;
+    shell.program = "${pkgs.fish}/bin/fish";
+    colors = {
+      primary = {
+        background = "0x282828";
+        foreground = "0xebdbb2";
+      };
+      normal = {
+        black = "0x282828";
+        red = "0xcc241d";
+        green = "0x98971a";
+        yellow = "0xd79921";
+        blue = "0x458588";
+        magenta = "0xb16286";
+        cyan = "0x689d6a";
+        white = "0xa89984";
+      };
+      bright = {
+        black = "0x928374";
+        red = "0xfb4934";
+        green = "0xb8bb26";
+        yellow = "0xfabd2f";
+        blue = "0x83a598";
+        magenta = "0xd3869b";
+        cyan = "0x8ec07c";
+        white = "0xebdbb2";
       };
     };
-  };
-  starship = {
-    enable = true;
-    enableFishIntegration = true;
   };
 };
-xdg.enable = true;
-xdg.mime.enable = true;
-targets.genericLinux.enable = true;
+#+end_src
+
+**** starship
+
+#+begin_src nix
+starship = {
+  enable = true;
+  enableFishIntegration = true;
+};
 #+end_src
 
 * Updates
 
-~nix flake update~ and ~nixos-rebuild switch --flake .#phrmendes~ after applying changes to the *.nix files.
+~nixos-rebuild switch~ after applying changes to the *.nix files.

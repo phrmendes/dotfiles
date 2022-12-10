@@ -48,7 +48,8 @@ in {
         ranger
         gnugpg
         stow
-        # package managers
+        # programming tools
+        haskell.compiler.ghc94
         micromamba
         cargo
         go
@@ -76,13 +77,12 @@ in {
         podman
         zathura
         cmdstan
-        libsForQt514.kdeconnect-kde
         # others
         aspellDicts.en
         aspellDicts.pt_BR
         texlive.combined.scheme-minimal
       ];
-    stateVersion = "22.11";
+    stateVersion = "unstable";
     sessionVariables.EDITOR = "neovim";
   };
   programs = {

@@ -43,23 +43,22 @@ in {
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-        (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        noto-fonts-extra
+      (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      noto-fonts-extra
     ];
     fontconfig = {
-        defaultFonts = {
+      defaultFonts = {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Noto Sans" ];
         monospace = [ "SourceCodePro" ];
-        };
+      };
     };
   };
   services = {
     clipmenu.enable = true
-    autorandr.enable = true;
     openssh.enable = true;
     flatpak.enable = true;
     xserver = {
@@ -67,43 +66,18 @@ in {
       autorun = true;
       layout = "us,br";
       videoDrivers = [ "nvidia" ];
-      xrandrHeads = [
-        {
-          output = "HDMI-0";
-          primary = true;
-        }
-      ];
-      windowManager = {
-        xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
-          extraPackages = haskellPackages: with haskellPackages; [
-            xmonad
-            xmonad-contrib
-            xmonad-extras
-            xmobar
-          ];
-        };
-        config = builtins.readFile $HOME/.config/xmonad/xmonad.hs;
-      };
-      displayManager = {
-        defaultSession = "none+xmonad";
-        lightdm = {
-          greeters.enso = {
-            enable = true;
-            blur = true;
-          };
-          extraConfig = "default-wallpaper=/usr/share/streets_of_gruvbox.png";
-        };
-        sessionCommands = ''
-          xrandr --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal
-        '';
-      };
+      desktopManager.xterm.enable = false;
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enagle = true;
       libinput = {
         enable = true;
         tapping = true;
         naturalScrolling = true;
       };
+    };
+    gnome = {
+      games.enable = false;
+      core-developer-tools.enable = false;
     };
   };
   sound = {
@@ -139,11 +113,6 @@ in {
   nixpkgs.config.allowUnfree = true;
   environment = {
     systemPackages = with pkgs; [
-      xclip
-      dmenu
-      blueman
-      bluez
-      pavucontrol
       zip
       curl
       unzip
@@ -156,15 +125,31 @@ in {
       feh
       appimage-run
       home-manager
+      gnomeExtensions.gsconnect
+      gnomeExtensions.vitals
+      gnomeExtensions.espresso
+      gnomeExtensions.clipboard-indicator
+      gnomeExtensions.sound-output-device-chooser
+      gnomeExtensions.pop-shell
     ];
-  };
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      "volman"
-      "archive-plugin"
-      "media-tags-plugin"
-    ];
+    gnome.excludePackages = with pkgs.gnome; [
+      simple-scan
+      cheese
+      epiphany
+      gnome-calendar
+      gnome-contacts
+      gnome-logs
+      gnome-maps
+      gnome-music
+      gnome-photos
+      gnome-screenshot
+      totem
+      gnome-connections
+      yelp
+      evince
+      geary
+      gnome-terminal
+    ]
   };
   nix = {
     settings.auto-optimise-store = true;
@@ -174,7 +159,7 @@ in {
       options = "--delete-older-than 7d";
     };
     trustedUsers = ["root" "@wheel"];
-    package = pkgs.nixFlakes;
+    package = pkgs.nixUnstable;
     experimental-features = [ "nix-command" "flakes" ];
   };
   system = {

@@ -2,17 +2,15 @@
 
 Dotfiles files for my personal computer using NixOS.
 
-** To do
-*** TODO config xmonad
-*** TODO home-manager as module in configuration.nix
-
 ** References
 
 *** Official Nix wiki
 
 + https://nixos.wiki/wiki/Nix_package_manager
 + https://nixos.wiki/wiki/Flakes
++ https://nixos.wiki/wiki/Home_Manager
 + https://nixos.wiki/wiki/Full_Disk_Encryption
++ https://nixos.org/manual/nixos/unstable/
 
 *** Guides
 

@@ -40,22 +40,70 @@ in {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-  ];
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+        (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        noto-fonts-extra
+    ];
+    fontconfig = {
+        defaultFonts = {
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Noto Sans" ];
+        monospace = [ "SourceCodePro" ];
+        };
+    };
+  };
   services = {
+    clipmenu.enable = true
+    autorandr.enable = true;
     openssh.enable = true;
+    flatpak.enable = true;
     xserver = {
       enable = true;
       autorun = true;
       layout = "us,br";
-      windowManager.xmonad.enable = true;
-      displayManager.sddm.enable = true;
-    };
-    libinput = {
-      enable = true;
-      tapping = true;
-      naturalScrolling = true;
+      videoDrivers = [ "nvidia" ];
+      xrandrHeads = [
+        {
+          output = "HDMI-0";
+          primary = true;
+        }
+      ];
+      windowManager = {
+        xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+          extraPackages = haskellPackages: with haskellPackages; [
+            xmonad
+            xmonad-contrib
+            xmonad-extras
+            xmobar
+          ];
+        };
+        config = builtins.readFile $HOME/.config/xmonad/xmonad.hs;
+      };
+      displayManager = {
+        defaultSession = "none+xmonad";
+        lightdm = {
+          greeters.enso = {
+            enable = true;
+            blur = true;
+          };
+          extraConfig = "default-wallpaper=/usr/share/streets_of_gruvbox.png";
+        };
+        sessionCommands = ''
+          xrandr --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal
+        '';
+      };
+      libinput = {
+        enable = true;
+        tapping = true;
+        naturalScrolling = true;
+      };
     };
   };
   sound = {
@@ -88,8 +136,14 @@ in {
     initialPassword = "password";
     shell = pkgs.bash;
   };
+  nixpkgs.config.allowUnfree = true;
   environment = {
     systemPackages = with pkgs; [
+      xclip
+      dmenu
+      blueman
+      bluez
+      pavucontrol
       zip
       curl
       unzip
@@ -98,8 +152,18 @@ in {
       git
       gzip
       vim
+      arand
+      feh
       appimage-run
       home-manager
+    ];
+  };
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      "volman"
+      "archive-plugin"
+      "media-tags-plugin"
     ];
   };
   nix = {
@@ -109,11 +173,15 @@ in {
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+    trustedUsers = ["root" "@wheel"];
     package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    experimental-features = [ "nix-command" "flakes" ];
   };
   system = {
-    stateVersion = "22.11";
+    stateVersion = "unstable";
+    system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
     autoUpgrade.enable = true;
+    journald.extraConfig = "SystemMaxUse=1G";
   }
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 }

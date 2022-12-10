@@ -4,18 +4,11 @@ MAIN_DIR="$(pwd)"
 FONTS_DIR="$HOME/.local/share/fonts/"
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak update
 
 for program in "$FLATPAK_PROGRAMS"; do
     flatpak install "$program" -y
 done
-
-mkdir -p "$FONTS_DIR"
-cp "$MAIN_DIR/aux_files/SauceCodePro.zip" "$FONTS_DIR"
-cd "$FONTS_DIR"
-unzip SauceCodePro.zip
-rm SauceCodePro.zip
-fc-cache -f -v
-cd "$MAIN_DIR"
 
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install

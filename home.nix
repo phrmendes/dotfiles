@@ -49,7 +49,6 @@ in {
         gnugpg
         stow
         # package managers
-        flatpak
         micromamba
         cargo
         go
@@ -59,7 +58,10 @@ in {
         neovim
         emacs
         # apps
+        firefox
+        chromium
         droidcam
+        flameshot
         keepassxc
         solaar
         stremio

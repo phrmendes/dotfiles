@@ -67,17 +67,24 @@ in {
       layout = "us,br";
       videoDrivers = [ "nvidia" ];
       desktopManager.xterm.enable = false;
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enagle = true;
+      desktopManager.plasma5 = {
+        enable = true;
+        excludePackages = with pkgs.libsForQt5; [
+          elisa
+          gwenview
+          okular
+          oxygen
+          khelpcenter
+          konsole
+          print-manager
+        ]
+      };
+      displayManager.sddm.enagle = true;
       libinput = {
         enable = true;
         tapping = true;
         naturalScrolling = true;
       };
-    };
-    gnome = {
-      games.enable = false;
-      core-developer-tools.enable = false;
     };
   };
   sound = {
@@ -114,6 +121,7 @@ in {
   environment = {
     systemPackages = with pkgs; [
       zip
+      feh
       curl
       unzip
       unrar
@@ -121,36 +129,14 @@ in {
       git
       gzip
       vim
-      arand
-      feh
       appimage-run
+      i3
+      kde-gruvbox
+      gruvbox-dark-gtk
       home-manager
-      gnomeExtensions.gsconnect
-      gnomeExtensions.vitals
-      gnomeExtensions.espresso
-      gnomeExtensions.clipboard-indicator
-      gnomeExtensions.sound-output-device-chooser
-      gnomeExtensions.pop-shell
     ];
-    gnome.excludePackages = with pkgs.gnome; [
-      simple-scan
-      cheese
-      epiphany
-      gnome-calendar
-      gnome-contacts
-      gnome-logs
-      gnome-maps
-      gnome-music
-      gnome-photos
-      gnome-screenshot
-      totem
-      gnome-connections
-      yelp
-      evince
-      geary
-      gnome-terminal
-    ]
   };
+  programs.dconf.enable = true;
   nix = {
     settings.auto-optimise-store = true;
     gc = {

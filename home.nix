@@ -49,7 +49,6 @@ in {
         gnugpg
         stow
         # programming tools
-        haskell.compiler.ghc94
         micromamba
         cargo
         go
@@ -62,8 +61,6 @@ in {
         firefox
         chromium
         droidcam
-        flameshot
-        keepassxc
         solaar
         stremio
         tutanota-desktop
@@ -83,7 +80,10 @@ in {
         texlive.combined.scheme-minimal
       ];
     stateVersion = "unstable";
-    sessionVariables.EDITOR = "neovim";
+    sessionVariables = {
+      EDITOR = "neovim";
+      TERMINAL = "alacritty"
+    }
   };
   programs = {
     home-manager.enable = true;

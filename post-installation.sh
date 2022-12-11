@@ -14,4 +14,19 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
 
+sudo cat <<EOF > /usr/local/bin/plasma-i3.sh
+#!/bin/sh
+export KDEWM=$(which i3)
+/usr/bin/startkde
+EOF
+
+sudo cat <<EOF > /usr/share/xsessions/plasma-i3.desktop
+[Desktop Entry]
+Type=XSession
+Exec=/usr/local/bin/plasma-i3.sh
+DesktopNames=KDE
+Name=Plasma (i3)
+Comment=Plasma by KDE w/i3
+EOF
+
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles

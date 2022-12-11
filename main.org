@@ -103,6 +103,27 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" sync
 #+end_src
 
+** Config KDE + i3gaps
+
+#+begin_src shell
+
+sudo cat <<EOF > /usr/local/bin/plasma-i3.sh
+#!/bin/sh
+export KDEWM=$(which i3)
+/usr/bin/startkde
+EOF
+
+sudo cat <<EOF > /usr/share/xsessions/plasma-i3.desktop
+[Desktop Entry]
+Type=XSession
+Exec=/usr/local/bin/plasma-i3.sh
+DesktopNames=KDE
+Name=Plasma (i3)
+Comment=Plasma by KDE w/i3
+EOF
+
+#+end_src
+
 ** Placing dotfiles
 
 #+begin_src shell
@@ -232,17 +253,24 @@ services = {
     layout = "us,br";
     videoDrivers = [ "nvidia" ];
     desktopManager.xterm.enable = false;
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enagle = true;
+    desktopManager.plasma5 = {
+      enable = true;
+      excludePackages = with pkgs.libsForQt5; [
+        elisa
+        gwenview
+        okular
+        oxygen
+        khelpcenter
+        konsole
+        print-manager
+      ]
+    };
+    displayManager.sddm.enagle = true;
     libinput = {
       enable = true;
       tapping = true;
       naturalScrolling = true;
     };
-  };
-  gnome = {
-    games.enable = false;
-    core-developer-tools.enable = false;
   };
 };
 #+end_src
@@ -293,12 +321,13 @@ users.users.${user} = {
 #+end_src
 
 *** System packages
-
+    
 #+begin_src nix
 nixpkgs.config.allowUnfree = true;
 environment = {
   systemPackages = with pkgs; [
     zip
+    feh
     curl
     unzip
     unrar
@@ -306,36 +335,14 @@ environment = {
     git
     gzip
     vim
-    arand
-    feh
     appimage-run
+    i3
+    kde-gruvbox
+    gruvbox-dark-gtk
     home-manager
-    gnomeExtensions.gsconnect
-    gnomeExtensions.vitals
-    gnomeExtensions.espresso
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.sound-output-device-chooser
-    gnomeExtensions.pop-shell
   ];
-  gnome.excludePackages = with pkgs.gnome; [
-    simple-scan
-    cheese
-    epiphany
-    gnome-calendar
-    gnome-contacts
-    gnome-logs
-    gnome-maps
-    gnome-music
-    gnome-photos
-    gnome-screenshot
-    totem
-    gnome-connections
-    yelp
-    evince
-    geary
-    gnome-terminal
-  ]
 };
+programs.dconf.enable = true;
 #+end_src
 
 *** Nix
@@ -479,7 +486,6 @@ packages = with pkgs;
     gnugpg
     stow
     # programming tools
-    haskell.compiler.ghc94
     micromamba
     cargo
     go
@@ -492,8 +498,6 @@ packages = with pkgs;
     firefox
     chromium
     droidcam
-    flameshot
-    keepassxc
     solaar
     stremio
     tutanota-desktop
@@ -513,7 +517,10 @@ packages = with pkgs;
     texlive.combined.scheme-minimal
   ];
 stateVersion = "unstable";
-sessionVariables.EDITOR = "neovim";
+sessionVariables = {
+  EDITOR = "neovim";
+  TERMINAL = "alacritty"
+}
 #+end_src
 
 *** programs

@@ -80,8 +80,8 @@ in {
       };
       displayManager.sddm.enable = true;
       libinput = {
+        enable = true;
         touchpad = {
-          enable = true;
           tapping = true;
           naturalScrolling = true;
         };

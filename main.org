@@ -349,7 +349,10 @@ programs.dconf.enable = true;
 
 #+begin_src nix
 nix = {
-  settings.auto-optimise-store = true;
+  settings = {
+    auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
   gc = {
     automatic = true;
     dates = "weekly";
@@ -357,7 +360,6 @@ nix = {
   };
   trustedUsers = ["root" "@wheel"];
   package = pkgs.nixUnstable;
-  experimental-features = [ "nix-command" "flakes" ];
 };
 #+end_src
 

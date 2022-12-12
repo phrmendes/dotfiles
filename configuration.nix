@@ -138,7 +138,10 @@ in {
   };
   programs.dconf.enable = true;
   nix = {
-    settings.auto-optimise-store = true;
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
     gc = {
       automatic = true;
       dates = "weekly";
@@ -146,7 +149,6 @@ in {
     };
     trustedUsers = ["root" "@wheel"];
     package = pkgs.nixUnstable;
-    experimental-features = [ "nix-command" "flakes" ];
   };
   system = {
     stateVersion = "unstable";

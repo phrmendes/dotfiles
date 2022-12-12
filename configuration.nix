@@ -85,6 +85,7 @@ in {
         naturalScrolling = true;
       };
     };
+    journald.extraConfig = "SystemMaxUse=1G";
   };
   sound = {
     enable = true;
@@ -148,12 +149,10 @@ in {
       options = "--delete-older-than 7d";
     };
     trustedUsers = ["root" "@wheel"];
-    package = pkgs.nixUnstable;
+    package = pkgs.nix;
   };
   system = {
-    stateVersion = "unstable";
-    system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+    stateVersion = "22.11";
     autoUpgrade.enable = true;
-    journald.extraConfig = "SystemMaxUse=1G";
   };
 }

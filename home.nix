@@ -80,7 +80,7 @@ in {
           aspellDicts.pt_BR
           texlive.combined.scheme-minimal
         ];
-      stateVersion = "unstable";
+      stateVersion = "22.11";
       sessionVariables = {
         EDITOR = "neovim";
         TERMINAL = "alacritty";

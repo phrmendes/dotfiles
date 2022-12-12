@@ -271,6 +271,7 @@ services = {
       naturalScrolling = true;
     };
   };
+  journald.extraConfig = "SystemMaxUse=1G";
 };
 #+end_src
 
@@ -359,7 +360,7 @@ nix = {
     options = "--delete-older-than 7d";
   };
   trustedUsers = ["root" "@wheel"];
-  package = pkgs.nixUnstable;
+  package = pkgs.nix;
 };
 #+end_src
 
@@ -367,10 +368,8 @@ nix = {
 
 #+begin_src nix
 system = {
-  stateVersion = "unstable";
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+  stateVersion = "22.11";
   autoUpgrade.enable = true;
-  journald.extraConfig = "SystemMaxUse=1G";
 };
 #+end_src
 
@@ -514,7 +513,7 @@ packages = with pkgs;
     aspellDicts.pt_BR
     texlive.combined.scheme-minimal
   ];
-stateVersion = "unstable";
+stateVersion = "22.11";
 sessionVariables = {
   EDITOR = "neovim";
   TERMINAL = "alacritty";

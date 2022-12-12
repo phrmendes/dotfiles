@@ -72,7 +72,7 @@ sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; siz
 if grep -Fxq "fileSystems.\"/\" =" "$NIX_FILES_LOCATION/hardware-configuration.nix"; then
     true
 else
-   REPLACEMENT="fileSystem.\"/\" = { device = \"/dev/disk/by-label/nixos\"; fsType = \"ext4\"; }; }"
+    REPLACEMENT="fileSystem.\"/\" = { device = \"/dev/disk/by-label/nixos\"; fsType = \"ext4\"; }; }"
     sudo sed -i 's/}$/\${REPLACEMENT}/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 fi
 #+end_src

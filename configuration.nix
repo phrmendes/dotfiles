@@ -133,6 +133,7 @@ in {
       i3
       kde-gruvbox
       gruvbox-dark-gtk
+      libsForQt514.kdeconnect-kde
       home-manager
     ];
   };

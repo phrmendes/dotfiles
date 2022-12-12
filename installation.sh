@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS/"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS"
 NIX_FILES=("configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 

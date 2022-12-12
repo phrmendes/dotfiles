@@ -31,7 +31,7 @@ in {
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    wireless.enable = true;
+    # wireless.enable = true;
   };
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "en_US.UTF-8";

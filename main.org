@@ -66,6 +66,17 @@ done
 sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 #+end_src
 
+** Adding root partition if isn't detected
+
+#+begin_src shell
+if grep -Fxq "fileSystems.\"/\" =" "$NIX_FILES_LOCATION/hardware-configuration.nix"; then
+    true
+else
+   REPLACEMENT="fileSystem.\"/\" = { device = \"/dev/disk/by-label/nixos\"; fsType = \"ext4\"; }; }"
+    sudo sed -i 's/}$/\${REPLACEMENT}/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
+fi
+#+end_src
+
 ** Installation
 
 #+begin_src shell 
@@ -197,7 +208,7 @@ boot = {
 networking = {
   hostName = "nixos";
   networkmanager.enable = true;
-  wireless.enable = true;
+  # wireless.enable = true;
 };
 #+end_src
 

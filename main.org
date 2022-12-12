@@ -386,7 +386,7 @@ in {
   home-manager.users.${user} = {
     <<home-manager-parameters>>
   };
-};
+}
 #+end_src
 
 ** Variables

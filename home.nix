@@ -255,4 +255,4 @@ in {
     xdg.mime.enable = true;
     targets.genericLinux.enable = true;
   };
-};
+}

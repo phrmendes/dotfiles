@@ -8,13 +8,11 @@
 
 Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS/installation.sh --output ~/installation.sh~
 
-#+begin_src shell  :shebang #!/usr/bin/env bash
+#+begin_src shell :shebang #!/usr/bin/env bash
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS"
 NIX_FILES=("configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
-
-#+RESULTS:
 
 ** Partitions
 *** Create
@@ -152,7 +150,6 @@ in {
 
 #+begin_src nix
 user = "phrmendes";
-unstable = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 #+end_src
 
@@ -246,7 +243,7 @@ fonts = {
 
 #+begin_src nix
 services = {
-  clipmenu.enable = true
+  clipmenu.enable = true;
   openssh.enable = true;
   flatpak.enable = true;
   xserver = {
@@ -265,9 +262,9 @@ services = {
         khelpcenter
         konsole
         print-manager
-      ]
+      ];
     };
-    displayManager.sddm.enagle = true;
+    displayManager.sddm.enable = true;
     libinput = {
       enable = true;
       tapping = true;
@@ -314,7 +311,7 @@ hardware = {
 #+begin_src nix
 users.users.${user} = {
   isNormalUser = true;
-  home = "/home/${user}"
+  home = "/home/${user}";
   uid = 1000;
   extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
   initialPassword = "password";
@@ -372,13 +369,7 @@ system = {
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
   autoUpgrade.enable = true;
   journald.extraConfig = "SystemMaxUse=1G";
-}
-#+end_src
-
-*** xdg
-
-#+begin_src nix
-xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+};
 #+end_src
 
 * home.nix
@@ -390,7 +381,9 @@ xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 let
   <<home-manager-variables>>
 in {
-  <<home-manager-parameters>>
+  home-manager = {
+    <<home-manager-parameters>>
+  }
 }
 #+end_src
 
@@ -486,7 +479,7 @@ packages = with pkgs;
     niv
     lorri
     ranger
-    gnugpg
+    gnupg
     stow
     # programming tools
     micromamba
@@ -522,8 +515,8 @@ packages = with pkgs;
 stateVersion = "unstable";
 sessionVariables = {
   EDITOR = "neovim";
-  TERMINAL = "alacritty"
-}
+  TERMINAL = "alacritty";
+};
 #+end_src
 
 *** programs

@@ -2,7 +2,6 @@
 
 let
   user = "phrmendes";
-  unstable = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in {
   imports =
@@ -58,7 +57,7 @@ in {
     };
   };
   services = {
-    clipmenu.enable = true
+    clipmenu.enable = true;
     openssh.enable = true;
     flatpak.enable = true;
     xserver = {
@@ -77,9 +76,9 @@ in {
           khelpcenter
           konsole
           print-manager
-        ]
+        ];
       };
-      displayManager.sddm.enagle = true;
+      displayManager.sddm.enable = true;
       libinput = {
         enable = true;
         tapping = true;
@@ -111,7 +110,7 @@ in {
   };
   users.users.${user} = {
     isNormalUser = true;
-    home = "/home/${user}"
+    home = "/home/${user}";
     uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
@@ -154,6 +153,5 @@ in {
     system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
     autoUpgrade.enable = true;
     journald.extraConfig = "SystemMaxUse=1G";
-  }
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 }

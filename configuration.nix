@@ -80,9 +80,11 @@ in {
       };
       displayManager.sddm.enable = true;
       libinput = {
-        enable = true;
-        tapping = true;
-        naturalScrolling = true;
+        touchpad = {
+          enable = true;
+          tapping = true;
+          naturalScrolling = true;
+        };
       };
     };
     journald.extraConfig = "SystemMaxUse=1G";
@@ -133,10 +135,10 @@ in {
       i3
       kde-gruvbox
       gruvbox-dark-gtk
-      libsForQt514.kdeconnect-kde
       home-manager
     ];
   };
+  programs.kdeconnect.enable = true;
   programs.dconf.enable = true;
   nix = {
     settings = {
@@ -148,7 +150,7 @@ in {
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    trustedUsers = ["root" "@wheel"];
+    trusted-users = ["root" "@wheel"];
     package = pkgs.nix;
   };
   system = {

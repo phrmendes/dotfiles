@@ -71,7 +71,7 @@ sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; siz
 ** Installation
 
 #+begin_src shell 
-nixos-install
+sudo nixos-install
 #+end_src
 
 * Post-installation

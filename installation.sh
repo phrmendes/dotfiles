@@ -26,4 +26,4 @@ done
 
 sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 
-nixos-install
+sudo nixos-install

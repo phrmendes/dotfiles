@@ -3,7 +3,7 @@
 let
   user = "phrmendes";
 in {
-  home-manager = {
+  home-manager.users.${user} = {
     home = {
       username = "${user}";
       homeDirectory = "/home/${user}";
@@ -254,5 +254,5 @@ in {
     xdg.enable = true;
     xdg.mime.enable = true;
     targets.genericLinux.enable = true;
-  }
-}
+  };
+};

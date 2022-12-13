@@ -490,9 +490,6 @@ packages = with pkgs;
     go
     nodejs
     my-r-packages
-    # text editors
-    neovim
-    emacs
     # apps
     firefox
     chromium
@@ -510,6 +507,7 @@ packages = with pkgs;
     podman
     zathura
     cmdstan
+    emacs
     # others
     aspellDicts.en
     aspellDicts.pt_BR

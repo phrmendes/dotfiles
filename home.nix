@@ -55,9 +55,6 @@ in {
           go
           nodejs
           my-r-packages
-          # text editors
-          neovim
-          emacs
           # apps
           firefox
           chromium
@@ -75,6 +72,7 @@ in {
           podman
           zathura
           cmdstan
+          emacs
           # others
           aspellDicts.en
           aspellDicts.pt_BR

@@ -7,7 +7,7 @@ in {
     <home-manager/nix-darwin>
     ./home.nix 
   ];
-  users.user.${user} = {
+  users.users.${user} = {
     home = "/Users/${user}";
     isNormalUser = true;
     description = "Pedro Mendes";

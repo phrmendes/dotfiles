@@ -1,19 +1,18 @@
 #!/bin/bash
 
-# exporting darwin env vars
-source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-echo 'export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH' | tee -a ~/.zshrc
-echo 'source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh' | tee -a ~/.zshrc
+# add darwin channel
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+
+# add home-manager channel
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 
 # placing nix files
-ln -s $HOME/Projects/bkps/.dotfiles/.config "$HOME"
-ln -s $HOME/Projects/bkps/.dotfiles/.nixpkgs "$HOME"
+ln -s $HOME/Projects/bkps/.dotfiles/.config/ "$HOME"/
+ln -s $HOME/Projects/bkps/.dotfiles/.nixpkgs/ "$HOME"/
 
 # updating channels
 nix-channel --update
-
-# removing shell settings
-sudo rm /etc/shells /etc/zprofile /etc/zshrc
 
 # installing home-manager
 nix-build '<home-manager>' -A installer

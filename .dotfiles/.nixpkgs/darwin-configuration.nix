@@ -4,7 +4,10 @@ let
   user = "prochame";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in {
-  imports = [ ./home.nix ];
+  imports = [
+    (import "${home-manager}/nixos")
+    ./home.nix 
+  ];
   users.users.${user} = {
     home = "/Users/${user}";
     description = "Pedro Mendes";

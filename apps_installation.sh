@@ -8,8 +8,8 @@ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 
 # placing nix files
-ln -s $HOME/Projects/bkps/.dotfiles/.config/ "$HOME"/
-ln -s $HOME/Projects/bkps/.dotfiles/.nixpkgs/ "$HOME"/
+ln -s $HOME/Projects/bkps/.dotfiles/.config/ "$HOME"
+ln -s $HOME/Projects/bkps/.dotfiles/.nixpkgs/ "$HOME"
 
 # updating channels
 nix-channel --update

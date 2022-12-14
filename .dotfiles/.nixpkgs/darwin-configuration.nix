@@ -12,7 +12,13 @@ in {
     description = "Pedro Mendes";
     shell = pkgs.zsh;
   };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+      allowUnsupportedSystem = true;
+    };
+  };
   environment = {
     pathsToLink = [ "/share/fish" ];
     systemPackages = with pkgs; [

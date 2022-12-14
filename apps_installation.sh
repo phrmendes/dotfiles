@@ -6,10 +6,11 @@ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 
 # copy nix files
 rm "$HOME/.nixpkgs/darwin-configuration.nix"
-ln -s "$(pwd)/.dotfiles/.nixpkgs/darwin-configuration.nix" "$HOME/.nixpkgs/"
-ln -s "$(pwd)/.dotfiles/.nixpkgs/home.nix" "$HOME/.nixpkgs/"
+ln -s "$HOME/Projects/bkps/.dotfiles/.nixpkgs/darwin-configuration.nix" "$HOME/.nixpkgs/"
+ln -s "$HOME/Projects/bkps/.dotfiles/.nixpkgs/home.nix" "$HOME/.nixpkgs/"
 
 # installing programs
+nix-channel --update darwin
 darwin-rebuild switch
 
 # configuring stow

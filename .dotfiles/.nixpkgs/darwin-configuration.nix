@@ -8,7 +8,7 @@ in {
   users.users.${user} = {
     home = "/Users/${user}";
     description = "Pedro Mendes";
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
   nixpkgs.config.allowUnfree = true;
   environment = {
@@ -27,7 +27,7 @@ in {
   };
   fonts = {
      enableFontDir = true;
-     fonts = [ "nerdfonts" ];
+     fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
   };
   system = {
     defaults = {

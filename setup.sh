@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # config xcode
 xcode-select --install

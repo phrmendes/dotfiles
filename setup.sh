@@ -1,37 +1,44 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
-MAIN_DIR="$(pwd)"
-REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps)
-PROGRAMS_FILE="$MAIN_DIR/aux_files/apt-flatpak-programs.csv"
-APT_PROGRAMS=()
-FLATPAK_PROGRAMS=()
+# config xcode
+xcode-select --install
 
-sudo apt update -y
-sudo apt full-upgrade -y
+# install brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-while IFS= read line; do
-    str_1=$(echo -e "${line%%,*}")
-    str_2=$(echo -e "${line##*,}")
+# install nix
+curl -L https://nixos.org/nix/install | sh
 
-    if [[ $str_2 = "apt" ]]; then
-        APT_PROGRAMS+=("$str_1")
-    fi
-done < "$PROGRAMS_FILE"
+# install nix-darwin
+if ! grep -q nix-darwin ~/.nix-channels; then
+  echo "https://github.com/LnL7/nix-darwin/archive/master.tar.gz darwin" >> ~/.nix-channels
+fi
 
-for app in "${REQUIRED_PROGRAMS[@]}"; do
-    if [[ ! -x $(which "$app") ]]; then
-        sudo apt install "$app" -y
-    fi
-done
+export NIX_PATH=darwin=$HOME/.nix-defexpr/channels/darwin:$NIX_PATH
 
-sudo rm /var/lib/dpkg/lock-frontend
-sudo rm /var/cache/apt/archives/lock
-sudo dpkg --add-architecture i386
+# install home-manager
+if ! grep -q home-manager ~/.nix-channels; then
+  echo "https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager" >> ~/.nix-channels
+fi
 
-sh <(curl -L https://nixos.org/nix/install)
-echo 'export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS' >> "$HOME/.profile"
+export NIX_PATH=home-manager=$HOME/.nix-defexpr/channels/home-manager:$NIX_PATH
+
+# placing dotfiles
+stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
+ln -s ./.dotfiles/* "$HOME"
+
+# installing programs
+darwin-rebuild switch
+
+# node
+mkdir "$HOME/.npm-global"
+npm config set prefix "$HOME/.npm-global"
+export PATH="$HOME"/.npm-global/bin:$PATH
 source "$HOME/.profile"
 
-for program in "${APT_PROGRAMS[@]}"; do
-    sudo apt install "$program" -y
-done
+# lunarvim
+LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+# configuring stow
+sudo rm -r "$HOME/.config" "$HOME/.nixpkgs"
+stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles

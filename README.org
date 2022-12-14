@@ -9,7 +9,6 @@ Create the ~$HOME/Projects~ directory and clone the repo inside.
 *** Official Nix wiki
 
 + https://nixos.wiki/wiki/Nix_package_manager
-+ https://nixos.wiki/wiki/Flakes
 
 *** Guides
 

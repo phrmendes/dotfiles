@@ -3,9 +3,6 @@
 # config xcode
 xcode-select --install
 
-# install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
 # install nix
 curl -L https://nixos.org/nix/install | sh
 

@@ -6,7 +6,7 @@ in {
   home-manager.users.${user} = {
     home = {
       username = "${user}";
-      homeDirectory = "/home/${user}";
+      homeDirectory = "/User/${user}";
       packages = with pkgs;
         [
           # terminal

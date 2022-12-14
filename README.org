@@ -9,13 +9,11 @@ Create the ~$HOME/Projects~ directory and clone the repo inside.
 *** Official Nix wiki
 
 + https://nixos.wiki/wiki/Nix_package_manager
++ https://nixos.wiki/wiki/Home_Manager
++ https://github.com/LnL7/nix-darwin
 
 *** Guides
 
-+ https://www.tweag.io/blog/2022-05-26-probabilistic-programming-nix/
-+ https://rgoswami.me/posts/rethinking-r-nix/
-+ https://rgoswami.me/posts/nix-r-devtools/
-+ https://churchman.nl/2019/03/10/using-nix-to-create-r-virtual-environments/
 + https://churchman.nl/2019/01/22/using-nix-to-create-python-virtual-environments/
 + https://www.youtube.com/watch?v=QI2Qg_1aySc
 

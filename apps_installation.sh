@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # add darwin channel
 nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
@@ -10,11 +10,11 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/master.t
 # updating channels
 nix-channel --update
 
-# installing home-manager
-nix-build '<home-manager>' -A installer
-
 # installing darwin
-nix-build '<darwin>' -A installer
+nix-build '<darwin>' -A install
+
+# installing home-manager
+nix-build '<home-manager>' -A install
 
 # installing programs
 darwin-rebuild switch -I "darwin-config=$HOME/Projects/bkps/.dotfiles/.nixpkgs/darwin-configuration.nix"

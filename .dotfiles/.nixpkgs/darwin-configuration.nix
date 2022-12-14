@@ -34,7 +34,7 @@ in {
   homebrew = {
     enable = true;
     onActivation.cleanup = "uninstall";
-    onActivation.upgrade = "true";
+    onActivation.upgrade = true;
     taps = [
       "homebrew/cask"
       "homebrew/cask-drivers"

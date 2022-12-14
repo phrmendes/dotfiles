@@ -1,15 +1,14 @@
 #!/bin/bash
 
+# disable system integrity protection
+csrutil disable --with kext --with dtrace --with nvram --with basesystem
+
 # add darwin channel
 nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 ./result/bin/darwin-installer
 
 # add home-manager channel
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-
-# placing nix files
-ln -s $HOME/Projects/bkps/.dotfiles/.config/ "$HOME"
-ln -s $HOME/Projects/bkps/.dotfiles/.nixpkgs/ "$HOME"
 
 # updating channels
 nix-channel --update
@@ -21,7 +20,9 @@ nix-build '<home-manager>' -A installer
 nix-build '<darwin>' -A installer
 
 # installing programs
-darwin-rebuild switch
+darwin-rebuild switch -I "darwin-config=$HOME/Projects/bkps/.dotfiles/.nixpkgs/darwin-configuration.nix"
+
+home-manager switch
 
 # node
 mkdir "$HOME/.npm-global"

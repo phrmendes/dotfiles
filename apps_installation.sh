@@ -11,6 +11,9 @@ ln -s "$HOME/Projects/bkps/.dotfiles/.nixpkgs/home.nix" "$HOME/.nixpkgs/"
 
 # installing programs
 nix-channel --update darwin
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update darwin
+nix-channel --update
 darwin-rebuild switch
 
 # configuring stow

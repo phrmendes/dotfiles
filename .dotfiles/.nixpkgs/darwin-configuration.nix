@@ -2,14 +2,14 @@
 
 let
   user = "prochame";
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in {
   imports = [
-    (import "${home-manager}/nixos")
+    <home-manager/nix-darwin>
     ./home.nix 
   ];
-  users.users.${user} = {
+  users.user.${user} = {
     home = "/Users/${user}";
+    isNormalUser = true;
     description = "Pedro Mendes";
     shell = pkgs.zsh;
   };

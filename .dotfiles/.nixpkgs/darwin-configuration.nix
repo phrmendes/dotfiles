@@ -28,7 +28,7 @@ in {
     ];
   };
   fonts = {
-     FontDir.enable = true;
+     fontDir.enable = true;
      fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
    };
   homebrew = {

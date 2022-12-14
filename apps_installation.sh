@@ -5,7 +5,7 @@ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 ./result/bin/darwin-installer
 
 # copy nix files
-mkdir "$HOME/.nixpkgs"
+rm "$HOME/.nixpkgs/darwin-configuration.nix"
 ln -s "$(pwd)/.dotfiles/.nixpkgs/darwin-configuration.nix" "$HOME/.nixpkgs/"
 ln -s "$(pwd)/.dotfiles/.nixpkgs/home.nix" "$HOME/.nixpkgs/"
 

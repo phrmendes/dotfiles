@@ -31,6 +31,14 @@ in {
   fonts = {
      enableFontDir = true;
      fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
+   };
+  homebrew = {
+    enable = true;
+    cleanup = "uninstall";
+    taps = [
+      "homebrew/cask"
+      "homebrew/cask-drivers"
+    ];
   };
   system = {
     defaults = {

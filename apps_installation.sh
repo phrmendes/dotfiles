@@ -1,13 +1,13 @@
 !/bin/bash
 
+# installing nix darwin
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+
 # copy nix files
 mkdir "$HOME/.nixpkgs"
 ln -s "$(pwd)/.dotfiles/.nixpkgs/darwin-configuration.nix" "$HOME/.nixpkgs/"
 ln -s "$(pwd)/.dotfiles/.nixpkgs/home.nix" "$HOME/.nixpkgs/"
-
-# add darwin channel
-nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-./result/bin/darwin-installer
 
 # installing programs
 darwin-rebuild switch

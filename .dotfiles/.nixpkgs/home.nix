@@ -10,11 +10,9 @@ in {
       packages = with pkgs;
         [
           # terminal
-          btop
           pandoc
           bat
           btop
-          gh
           lazygit
           ripgrep
           fd
@@ -22,8 +20,6 @@ in {
           tealdeer
           exa
           shellcheck
-          ncdu
-          micromamba
           direnv
           niv
           lorri

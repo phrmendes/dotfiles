@@ -28,12 +28,13 @@ in {
     ];
   };
   fonts = {
-     enableFontDir = true;
+     FontDir.enable = true;
      fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
    };
   homebrew = {
     enable = true;
-    cleanup = "uninstall";
+    onActivation.cleanup = "uninstall";
+    onActivation.upgrade = "true";
     taps = [
       "homebrew/cask"
       "homebrew/cask-drivers"

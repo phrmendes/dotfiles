@@ -9,7 +9,6 @@ in {
   ];
   users.users.${user} = {
     home = "/Users/${user}";
-    isNormalUser = true;
     description = "Pedro Mendes";
     shell = pkgs.zsh;
   };

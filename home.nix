@@ -67,7 +67,6 @@ in {
           zotero
           spotify
           fragments
-          kooha
           podman
           zathura
           cmdstan

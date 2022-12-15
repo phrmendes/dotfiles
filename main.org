@@ -202,7 +202,7 @@ i18n.defaultLocale = "en_US.UTF-8";
 #+begin_src nix
 console = {
   font = "Lat2-Terminus16";
-  keyMap = "br";
+  keyMap = "us";
 };
 #+end_src
 
@@ -456,7 +456,6 @@ packages = with pkgs;
     btop
     pandoc
     bat
-    btop
     gh
     lazygit
     ripgrep
@@ -492,7 +491,6 @@ packages = with pkgs;
     zotero
     spotify
     fragments
-    kooha
     podman
     zathura
     cmdstan

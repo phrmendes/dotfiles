@@ -12,7 +12,6 @@ ln -s "$HOME/Projects/bkps/.dotfiles/.nixpkgs/home.nix" "$HOME/.nixpkgs/"
 # installing programs
 nix-channel --update darwin
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update darwin
 nix-channel --update
 darwin-rebuild switch
 
@@ -24,7 +23,6 @@ stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 mkdir "$HOME/.npm-global"
 npm config set prefix "$HOME/.npm-global"
 export PATH="$HOME"/.npm-global/bin:$PATH
-source "$HOME/.profile"
 
 # lunarvim
 LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)

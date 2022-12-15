@@ -25,6 +25,7 @@ in {
           nodejs
           podman
           neovim
+          starship
           texlive.combined.scheme-minimal
         ];
       stateVersion = "22.11";
@@ -39,10 +40,6 @@ in {
         userEmail = "phrmendes@tuta.io";
       };
       fzf = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      starship = {
         enable = true;
         enableZshIntegration = true;
       };

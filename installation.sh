@@ -14,7 +14,7 @@ sudo cryptsetup luksOpen /dev/sda1 cryptroot
 sudo mkfs.fat -F 32 -n boot /dev/sda2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
-sudo mount /dev/sda1 /mnt
+sudo mount /dev/mapper/cryptroot /mnt
 sudo mkdir -p /mnt/boot
 sudo mount /dev/sda2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi

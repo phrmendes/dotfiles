@@ -29,9 +29,7 @@ in {
           cargo
           go
           nodejs
-          keepassxc
           podman
-          zathura
           neovim
           texlive.combined.scheme-minimal
         ];

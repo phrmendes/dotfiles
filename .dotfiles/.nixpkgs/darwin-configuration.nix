@@ -32,6 +32,7 @@ in {
       nv = "nvim";
       lg = "lazygit";
       stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+      darwin_rebuild = "";
     };
   };
   fonts = {
@@ -61,6 +62,11 @@ in {
     enableFzfCompletion = true;
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
+    shellInit = ''
+      export PATH=$HOME/.local/bin:$PATH
+      export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix
+      export NIX_PATH=darwin=$HOME/.nix-defexpr/channels/darwin
+    '';
   };
   system = {
     defaults = {

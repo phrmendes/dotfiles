@@ -163,7 +163,6 @@ in {
         # toggle float and center
         lalt - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
       '';
-      };
     };
   };
 }

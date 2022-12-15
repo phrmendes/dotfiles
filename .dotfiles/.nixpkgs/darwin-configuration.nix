@@ -23,7 +23,6 @@ in {
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       tree
-      starship
       home-manager
     ];
     shellAliases = {
@@ -62,12 +61,9 @@ in {
     enableFzfCompletion = true;
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
-    shellInit = ''
+    loginShellInit = ''
       export PATH=$HOME/.local/bin:$PATH
       eval "$(starship init zsh)"
-      # export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix/:$NIX_PATH
-      # export NIX_PATH=darwin=$HOME/.nix-defexpr/channels/darwin/:$NIX_PATH
-      # export NIX_PATH=nixpkgs=$HOME/.nix-defexpr/channels_root/nixpkgs/:$NIX_PATH
     '';
   };
   system = {

@@ -43,6 +43,7 @@ in {
       "slack"
       "caffeine"
       "maccy"
+      "iterm2"
     ];
   };
   system = {
@@ -136,7 +137,7 @@ in {
           enable = true;
           skhdConfig = ''
             # open terminal
-            shift + alt - return : open -a alacritty --new
+            shift + alt - return : open -a iterm2 --new
             # space focus
             ctrl - left : yabai -m space --focus prev
             ctrl - right : yabai -m space --focus next

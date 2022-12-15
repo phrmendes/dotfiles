@@ -41,7 +41,6 @@ in {
     casks = [
       "microsoft-edge"
       "keepassxc"
-      "zathura"
       "mpv"
       "slack"
       "caffeine"

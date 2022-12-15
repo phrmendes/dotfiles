@@ -19,12 +19,14 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" sync
 rm -r "$HOME/.doom.d"
 
+sudo mkdir -p /usr/local/bin/
 sudo cat <<'EOF' > /usr/local/bin/plasma-i3.sh
 #!/bin/sh
 export KDEWM=$(which i3)
 /usr/bin/startkde
 EOF
 
+sudo mkdir -p /usr/share/xsessions
 sudo cat <<'EOF' > /usr/share/xsessions/plasma-i3.desktop
 [Desktop Entry]
 Type=XSession

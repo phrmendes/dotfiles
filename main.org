@@ -494,6 +494,7 @@ packages = with pkgs;
     podman
     zathura
     cmdstan
+    kooha
     emacs
     # others
     aspellDicts.en

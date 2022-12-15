@@ -31,7 +31,6 @@ in {
           btop
           pandoc
           bat
-          btop
           gh
           lazygit
           ripgrep
@@ -70,6 +69,7 @@ in {
           podman
           zathura
           cmdstan
+          kooha
           emacs
           # others
           aspellDicts.en

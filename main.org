@@ -86,6 +86,15 @@ MAIN_DIR="$(pwd)"
 FONTS_DIR="$HOME/.local/share/fonts/"
 #+end_src
 
+** Creating symlinks to nix files
+
+#+begin_src shell
+sudo rm -r /etc/nixos/configuration.nix
+sudo rm -r /etc/nixos/home.nix
+sudo ln -s "$MAIN_DIR/configuration.nix" "/etc/nixos/"
+sudo ln -s "$MAIN_DIR/home.nix" "/etc/nixos/"
+#+end_src
+
 ** Flatpak programs
 
 #+begin_src shell

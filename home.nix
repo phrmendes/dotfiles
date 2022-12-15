@@ -58,7 +58,6 @@ in {
           # apps
           firefox
           chromium
-          droidcam
           solaar
           stremio
           tutanota-desktop

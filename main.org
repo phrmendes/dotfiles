@@ -4,9 +4,10 @@
 :PROPERTIES:
 :header-args: :tangle ./installation.sh
 :END:
-** Variables
 
 Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS/installation.sh --output ~/installation.sh~
+
+** Variables
 
 #+begin_src shell :shebang #!/usr/bin/env bash
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS"
@@ -106,7 +107,6 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ** Config KDE + i3gaps
 
 #+begin_src shell
-
 sudo cat <<EOF > /usr/local/bin/plasma-i3.sh
 #!/bin/sh
 export KDEWM=$(which i3)
@@ -121,7 +121,6 @@ DesktopNames=KDE
 Name=Plasma (i3)
 Comment=Plasma by KDE w/i3
 EOF
-
 #+end_src
 
 ** Placing dotfiles
@@ -265,6 +264,10 @@ services = {
       ];
     };
     displayManager.sddm.enable = true;
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+    };
     libinput = {
       enable = true;
       touchpad = {
@@ -338,7 +341,6 @@ environment = {
     gzip
     vim
     appimage-run
-    i3
     kde-gruvbox
     gruvbox-dark-gtk
     home-manager

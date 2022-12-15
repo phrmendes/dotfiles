@@ -14,6 +14,7 @@ in {
       systemd-boot.enable = true;
       timeout = 5;
     };
+    kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
   networking = {

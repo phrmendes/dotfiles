@@ -46,10 +46,13 @@ in {
       "homebrew/cask-drivers"
     ];
     casks = [
-      "firefox"
+      "microsoft-edge"
       "keepassxc"
       "zathura"
       "mpv"
+      "slack"
+      "caffeine"
+      "maccy"
     ];
   };
   system = {

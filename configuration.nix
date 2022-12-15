@@ -13,11 +13,6 @@ in {
   boot = {
     loader = {
       systemd-boot.enable = true;
-      generationsDir.enable = true;
-      efi = {
-        efiSysMountPoint = "/boot";
-        canTouchEfiVariables = true;
-      };
       timeout = 5;
     };
     kernelPackages = pkgs.linuxPackages_latest;

@@ -3,6 +3,10 @@ FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensio
 MAIN_DIR="$(pwd)"
 FONTS_DIR="$HOME/.local/share/fonts/"
 
+sudo rm -r /etc/nixos/*.nix
+sudo ln -s "$MAIN_DIR/configuration.nix" "/etc/nixos/"
+sudo ln -s "$MAIN_DIR/home.nix" "/etc/nixos/"
+
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
 

@@ -161,8 +161,8 @@ home-manager = builtins.fetchTarball https://github.com/nix-community/home-manag
 #+begin_src nix
 imports =
   [
+    <home-manager/nixos>
     ./hardware-configuration.nix
-    (import "${home-manager}/nixos")
     ./home.nix
   ];
 #+end_src

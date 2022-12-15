@@ -12,8 +12,6 @@ in {
           pandoc
           bat
           lazygit
-          ripgrep
-          fd
           sd
           tealdeer
           exa
@@ -42,20 +40,7 @@ in {
       };
       fzf = {
         enable = true;
-        enableFishIntegration = true;
-      };
-      fish = {
-        enable = true;
-        shellAliases = {
-          mkdir = "mkdir -p";
-          ls = "exa --icons";
-          cat = "bat";
-          nv = "nvim";
-          lg = "lazygit";
-        };
-        shellAbbrs = {
-          stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-        };
+        enableZshIntegration = true;
       };
       starship = {
         enable = true;

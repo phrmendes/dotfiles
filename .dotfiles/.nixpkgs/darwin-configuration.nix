@@ -25,6 +25,14 @@ in {
       tree
       home-manager
     ];
+    shellAliases = {
+      mkdir = "mkdir -p";
+      ls = "exa --icons";
+      cat = "bat";
+      nv = "nvim";
+      lg = "lazygit";
+      stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+    };
   };
   fonts = {
      fontDir.enable = true;
@@ -43,8 +51,16 @@ in {
       "slack"
       "caffeine"
       "maccy"
-      "iterm2"
+      "iterm1"
     ];
+  };
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
+    enableFzfCompletion = true;
+    enableFzfHistory = true;
+    enableSyntaxHighlighting = true;
   };
   system = {
     defaults = {

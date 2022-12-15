@@ -64,7 +64,9 @@ in {
     enableSyntaxHighlighting = true;
     shellInit = ''
       export PATH=$HOME/.local/bin:$PATH
-      export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
+      export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix/:$NIX_PATH
+      export NIX_PATH=darwin=$HOME/.nix-defexpr/channels/darwin/:$NIX_PATH
+      export NIX_PATH=nixpkgs=$HOME/.nix-defexpr/channels_root/nixpkgs/:$NIX_PATH
     '';
   };
   system = {

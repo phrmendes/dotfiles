@@ -117,13 +117,13 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ** Config KDE + i3gaps
 
 #+begin_src shell
-sudo cat <<EOF > /usr/local/bin/plasma-i3.sh
+sudo cat <<'EOF' > /usr/local/bin/plasma-i3.sh
 #!/bin/sh
 export KDEWM=$(which i3)
 /usr/bin/startkde
 EOF
 
-sudo cat <<EOF > /usr/share/xsessions/plasma-i3.desktop
+sudo cat <<'EOF' > /usr/share/xsessions/plasma-i3.desktop
 [Desktop Entry]
 Type=XSession
 Exec=/usr/local/bin/plasma-i3.sh
@@ -337,6 +337,7 @@ environment = {
     git
     gzip
     vim
+    i3
     appimage-run
     kde-gruvbox
     gruvbox-dark-gtk

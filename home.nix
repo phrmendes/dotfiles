@@ -209,7 +209,7 @@ in {
               family = "SauceCodePro Nerd Font";
               style = "BoldItalic";
             };
-            size = 13;
+            size = 11;
           };
           draw_bold_text_with_bright_colors = true;
           selection.save_to_clipboard = true;

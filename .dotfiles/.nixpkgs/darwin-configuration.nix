@@ -20,7 +20,7 @@ in {
     };
   };
   environment = {
-    pathsToLink = [ "/share/fish" ];
+    pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       tree
       home-manager
@@ -64,8 +64,7 @@ in {
     enableSyntaxHighlighting = true;
     shellInit = ''
       export PATH=$HOME/.local/bin:$PATH
-      export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix
-      export NIX_PATH=darwin=$HOME/.nix-defexpr/channels/darwin
+      export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
     '';
   };
   system = {

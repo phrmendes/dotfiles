@@ -45,6 +45,12 @@ in {
       "homebrew/cask"
       "homebrew/cask-drivers"
     ];
+    casks = [
+      "firefox"
+      "keepassxc"
+      "zathura"
+      "mpv"
+    ];
   };
   system = {
     defaults = {

@@ -16,7 +16,7 @@ in {
         enable = true;
         version = 2;
         efiSupport = true;
-        devices = [ "nodev" ];
+        device = "nodev";
         gfxmodeEfi = "1024x768";
         configurationLimit = 5;
       };

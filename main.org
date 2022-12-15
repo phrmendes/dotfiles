@@ -43,8 +43,8 @@ sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 #+begin_src shell 
 sudo mount /dev/disk/by-label/nixos /mnt
+sudo mount /dev/disk/by-label/boot /mnt/boot
 sudo mkdir -p /mnt/boot/efi
-sudo mount /dev/sda2 /mnt/boot/efi
 #+end_src
 
 ** Generate *.nix files
@@ -172,16 +172,10 @@ imports =
 #+begin_src nix
 boot = {
   loader = {
-    grub = {
-      enable = true;
-      version = 2;
-      efiSupport = true;
-      device = "nodev";
-      gfxmodeEfi = "1024x768";
-      configurationLimit = 5;
-    };
+    systemd-boot.enable = true;
+    generationsDir.enable = true;monsemonmo
     efi = {
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot";
       canTouchEfiVariables = true;
     };
     timeout = 5;

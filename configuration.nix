@@ -12,16 +12,10 @@ in {
     ];
   boot = {
     loader = {
-      grub = {
-        enable = true;
-        version = 2;
-        efiSupport = true;
-        device = "nodev";
-        gfxmodeEfi = "1024x768";
-        configurationLimit = 5;
-      };
+      systemd-boot.enable = true;
+      generationsDir.enable = true;monsemonmo
       efi = {
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;
       };
       timeout = 5;

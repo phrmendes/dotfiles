@@ -15,8 +15,8 @@ sudo mkfs.fat -F 32 -n boot /dev/sda2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 sudo mount /dev/disk/by-label/nixos /mnt
+sudo mount /dev/disk/by-label/boot /mnt/boot
 sudo mkdir -p /mnt/boot/efi
-sudo mount /dev/sda2 /mnt/boot/efi
 
 sudo nixos-generate-config --root /mnt
 

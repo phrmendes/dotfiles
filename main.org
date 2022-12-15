@@ -5,12 +5,12 @@
 :header-args: :tangle ./installation.sh
 :END:
 
-Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS/installation.sh --output ~/installation.sh~
+Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS-laptop/installation.sh --output ~/installation.sh~
 
 ** Variables
 
 #+begin_src shell :shebang #!/usr/bin/env bash
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-laptop"
 NIX_FILES=("configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
@@ -19,32 +19,32 @@ NIX_FILES_LOCATION="/mnt/etc/nixos/"
 *** Create
 
 #+begin_src shell 
-sudo parted /dev/sda -- mklabel gpt
-sudo parted /dev/sda -- mkpart primary 512MiB 100% # main partition
-sudo parted /dev/sda -- mkpart ESP fat32 1Mib 512MiB # efi
-sudo parted /dev/sda -- set 2 esp on
+sudo parted /dev/nvme0n1 -- mklabel gpt
+sudo parted /dev/nvme0n1 -- mkpart primary 512MiB 100% # main partition
+sudo parted /dev/nvme0n1 -- mkpart ESP fat32 1Mib 512MiB # efi
+sudo parted /dev/nvme0n1 -- set 2 esp on
 #+end_src
 
 *** Encrypt
 
 #+begin_src shell 
-sudo cryptsetup luksFormat /dev/sda1
-sudo cryptsetup luksOpen /dev/sda1 cryptroot
+sudo cryptsetup luksFormat /dev/nvme0n1p1
+sudo cryptsetup luksOpen /dev/nvme0n1p1 cryptroot
 #+end_src
 
 *** Format
 
 #+begin_src shell 
-sudo mkfs.fat -F 32 -n boot /dev/sda2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
+sudo mkfs.fat -F 32 -n boot /dev/nvme0n1p2
 #+end_src
 
 *** Mount
 
 #+begin_src shell 
-sudo mount /dev/disk/by-label/nixos /mnt
+sudo mount /dev/nvme0n1p1 /mnt
 sudo mkdir -p /mnt/boot
-sudo mount /dev/disk/by-label/boot /mnt/boot
+sudo mount /dev/nvme0n1p2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 #+end_src
 
@@ -135,7 +135,6 @@ stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 
 #+begin_src nix :tangle ./configuration.nix :noweb yes
 { config, pkgs, ... }:
-
 let
   <<nixOS-variables>>
 in {
@@ -202,7 +201,7 @@ i18n.defaultLocale = "en_US.UTF-8";
 #+begin_src nix
 console = {
   font = "Lat2-Terminus16";
-  keyMap = "us";
+  keyMap = "br";
 };
 #+end_src
 
@@ -238,8 +237,7 @@ services = {
   xserver = {
     enable = true;
     autorun = true;
-    layout = "us,br";
-    videoDrivers = [ "nvidia" ];
+    layout = "br";
     desktopManager.xterm.enable = false;
     desktopManager.plasma5 = {
       enable = true;
@@ -253,10 +251,9 @@ services = {
         print-manager
       ];
     };
-    displayManager.sddm.enable = true;
-    windowManager.i3 = {
+    displayManager.sddm = {
       enable = true;
-      package = pkgs.i3-gaps;
+      autoNumlock = true;
     };
     libinput = {
       enable = true;

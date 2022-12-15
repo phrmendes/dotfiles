@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   user = "phrmendes";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
@@ -26,7 +25,7 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "us";
+    keyMap = "br";
   };
   fonts = {
     enableDefaultFonts = true;
@@ -52,8 +51,7 @@ in {
     xserver = {
       enable = true;
       autorun = true;
-      layout = "us,br";
-      videoDrivers = [ "nvidia" ];
+      layout = "br";
       desktopManager.xterm.enable = false;
       desktopManager.plasma5 = {
         enable = true;
@@ -67,10 +65,9 @@ in {
           print-manager
         ];
       };
-      displayManager.sddm.enable = true;
-      windowManager.i3 = {
+      displayManager.sddm = {
         enable = true;
-        package = pkgs.i3-gaps;
+        autoNumlock = true;
       };
       libinput = {
         enable = true;

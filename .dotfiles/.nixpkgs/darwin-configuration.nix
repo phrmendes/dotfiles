@@ -81,9 +81,8 @@ in {
       };
     };
   };
-  nix.useDaemon = false;
   services = {
-    nix-daemon.enable = false;
+    nix-daemon.enable = true;
     yabai = {
       enable = true;
       package = pkgs.yabai;

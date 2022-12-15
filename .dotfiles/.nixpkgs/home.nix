@@ -25,7 +25,6 @@ in {
           nodejs
           podman
           neovim
-          starship
           texlive.combined.scheme-minimal
         ];
       stateVersion = "22.11";

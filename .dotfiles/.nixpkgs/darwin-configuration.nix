@@ -23,6 +23,7 @@ in {
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       tree
+      starship
       home-manager
     ];
     shellAliases = {

@@ -16,7 +16,7 @@ sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 sudo mount /dev/disk/by-label/nixos /mnt
 sudo mkdir -p /mnt/boot/efi
-sudo mount /dev/sda2 /mnt/boot
+sudo mount /dev/sda2 /mnt/boot/efi
 
 sudo nixos-generate-config --root /mnt
 

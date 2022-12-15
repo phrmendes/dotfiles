@@ -11,7 +11,6 @@ in {
         [
           pandoc
           bat
-          btop
           lazygit
           ripgrep
           fd
@@ -20,12 +19,9 @@ in {
           exa
           shellcheck
           direnv
-          niv
-          lorri
           ranger
-          gnupg
           stow
-          micromamba
+          python311
           cargo
           go
           nodejs
@@ -40,7 +36,6 @@ in {
       };
     };
     programs = {
-      home-manager.enable = true;
       git = {
         enable = true;
         userName = "Pedro Mendes";
@@ -61,14 +56,7 @@ in {
         };
         shellAbbrs = {
           stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-          mamba = "micromamba";
         };
-        shellInit = ''
-          fish_add_path "$HOME/.emacs.d/bin"
-          set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
-          set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
-          eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
-        '';
       };
       alacritty = {
         enable = true;

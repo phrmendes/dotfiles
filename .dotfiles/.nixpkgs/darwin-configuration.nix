@@ -22,14 +22,7 @@ in {
   environment = {
     pathsToLink = [ "/share/fish" ];
     systemPackages = with pkgs; [
-      zip
-      curl
-      unzip
-      unrar
       tree
-      git
-      gzip
-      vim
       home-manager
     ];
   };
@@ -43,7 +36,6 @@ in {
     onActivation.upgrade = true;
     taps = [
       "homebrew/cask"
-      "homebrew/cask-drivers"
     ];
     casks = [
       "microsoft-edge"
@@ -159,8 +151,7 @@ in {
         shift + lalt - 3 : yabai -m window --space 3
         shift + lalt - 4 : yabai -m window --space 4
         # toggle float and center
-        lalt - t : yabai -m window --toggle float; \
-                   yabai -m window --grid 4:4:1:1:2:2
+        lalt - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
       '';
     };
 }

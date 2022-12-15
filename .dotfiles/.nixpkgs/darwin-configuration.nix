@@ -69,7 +69,7 @@ in {
   system = {
     defaults = {
       dock = {
-        autohide = false;
+        autohide = true;
         orientation = "right";
         showhidden = true;
         mru-spaces = false;
@@ -97,7 +97,7 @@ in {
         NSAutomaticSpellingCorrectionEnabled = false;
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
       };
     };
   };

@@ -29,7 +29,7 @@ in {
       mkdir = "mkdir -p";
       ls = "exa --icons";
       cat = "bat";
-      nv = "nvim";
+      lv = "lvim";
       lg = "lazygit";
       stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
     };

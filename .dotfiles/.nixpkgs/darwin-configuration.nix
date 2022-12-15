@@ -32,7 +32,6 @@ in {
       nv = "nvim";
       lg = "lazygit";
       stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-      darwin_rebuild = "/run/current-system/sw/bin/darwin-rebuild";
     };
   };
   fonts = {

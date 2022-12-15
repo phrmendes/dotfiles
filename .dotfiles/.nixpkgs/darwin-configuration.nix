@@ -39,7 +39,6 @@ in {
       "homebrew/cask"
     ];
     casks = [
-      "microsoft-edge"
       "keepassxc"
       "mpv"
       "slack"

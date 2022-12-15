@@ -17,6 +17,7 @@ done
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
+rm -r "$HOME/.doom.d"
 
 sudo cat <<EOF > /usr/local/bin/plasma-i3.sh
 #!/bin/sh

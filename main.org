@@ -111,6 +111,7 @@ done
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
+rm -r "$HOME/.doom.d"
 #+end_src
 
 ** Config KDE + i3gaps

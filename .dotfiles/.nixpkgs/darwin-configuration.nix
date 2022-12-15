@@ -12,6 +12,7 @@ in {
     description = "Pedro Mendes";
     shell = pkgs.zsh;
   };
+  nix.useDaemon = true;
   nixpkgs = {
     config = {
       allowUnfree = true;

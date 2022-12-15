@@ -63,7 +63,7 @@ in {
     enableSyntaxHighlighting = true;
     loginShellInit = ''
       export PATH=$HOME/.local/bin:$PATH
-      eval "$(starship init zsh)"
+      eval "$($HOME/.nix-profile/bin/starship init zsh)"
     '';
   };
   system = {

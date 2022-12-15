@@ -43,6 +43,7 @@ sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 #+begin_src shell 
 sudo mount /dev/disk/by-label/nixos /mnt
+sudo mkdir -p /mnt/boot
 sudo mount /dev/disk/by-label/boot /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 #+end_src
@@ -173,7 +174,7 @@ imports =
 boot = {
   loader = {
     systemd-boot.enable = true;
-    generationsDir.enable = true;monsemonmo
+    generationsDir.enable = true;
     efi = {
       efiSysMountPoint = "/boot";
       canTouchEfiVariables = true;

@@ -13,7 +13,7 @@ in {
   boot = {
     loader = {
       systemd-boot.enable = true;
-      generationsDir.enable = true;monsemonmo
+      generationsDir.enable = true;
       efi = {
         efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;

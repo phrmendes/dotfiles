@@ -15,6 +15,7 @@ sudo mkfs.fat -F 32 -n boot /dev/sda2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
 sudo mount /dev/disk/by-label/nixos /mnt
+sudo mkdir -p /mnt/boot
 sudo mount /dev/disk/by-label/boot /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 

@@ -42,7 +42,7 @@ sudo mkfs.fat -F 32 -n boot /dev/nvme0n1p2
 *** Mount
 
 #+begin_src shell 
-sudo mount /dev/nvme0n1p1 /mnt
+sudo mount /dev/mapper/cryptroot /mnt
 sudo mkdir -p /mnt/boot
 sudo mount /dev/nvme0n1p2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi

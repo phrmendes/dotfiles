@@ -14,7 +14,7 @@ sudo cryptsetup luksOpen /dev/nvme0n1p1 cryptroot
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 sudo mkfs.fat -F 32 -n boot /dev/nvme0n1p2
 
-sudo mount /dev/nvme0n1p1 /mnt
+sudo mount /dev/mapper/cryptroot /mnt
 sudo mkdir -p /mnt/boot
 sudo mount /dev/nvme0n1p2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi

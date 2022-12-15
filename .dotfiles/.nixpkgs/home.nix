@@ -9,7 +9,6 @@ in {
       homeDirectory = "/Users/${user}";
       packages = with pkgs;
         [
-          # terminal
           pandoc
           bat
           btop
@@ -26,22 +25,15 @@ in {
           ranger
           gnupg
           stow
-          # programming tools
           micromamba
           cargo
           go
           nodejs
-          # apps
-          firefox
           keepassxc
           podman
           zathura
           neovim
-          # others
           texlive.combined.scheme-minimal
-        ] ++ lib.optionals stdenv.isDarwin [
-          cocoapods
-          m-cli
         ];
       stateVersion = "22.11";
       sessionVariables = {

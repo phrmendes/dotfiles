@@ -26,6 +26,9 @@ in {
           podman
           neovim
           starship
+          terraform
+          terragrunt
+          tflint
           texlive.combined.scheme-minimal
         ];
       stateVersion = "22.11";

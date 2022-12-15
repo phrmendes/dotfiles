@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   user = "phrmendes";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
@@ -67,10 +66,9 @@ in {
           print-manager
         ];
       };
-      displayManager.sddm.enable = true;
-      windowManager.i3 = {
+      displayManager.sddm = {
         enable = true;
-        package = pkgs.i3-gaps;
+        autoNumlock = true;
       };
       libinput = {
         enable = true;

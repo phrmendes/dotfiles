@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc"
 NIX_FILES=("configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 
@@ -14,9 +14,9 @@ sudo cryptsetup luksOpen /dev/sda1 cryptroot
 sudo mkfs.fat -F 32 -n boot /dev/sda2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 
-sudo mount /dev/disk/by-label/nixos /mnt
+sudo mount /dev/sda1 /mnt
 sudo mkdir -p /mnt/boot
-sudo mount /dev/disk/by-label/boot /mnt/boot
+sudo mount /dev/sda2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 
 sudo nixos-generate-config --root /mnt

@@ -79,6 +79,10 @@ in {
         ];
       };
       displayManager.sddm.enable = true;
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+      };
       libinput = {
         enable = true;
         touchpad = {
@@ -132,7 +136,6 @@ in {
       gzip
       vim
       appimage-run
-      i3
       kde-gruvbox
       gruvbox-dark-gtk
       home-manager

@@ -44,7 +44,6 @@ in {
     onActivation.upgrade = true;
     taps = [ "homebrew/cask" ];
     casks = [
-      "keepassxc"
       "mpv"
       "slack"
       "caffeine"

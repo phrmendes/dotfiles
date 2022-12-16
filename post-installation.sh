@@ -6,7 +6,7 @@ NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 sudo rm -r /etc/nixos/*.nix
 
 for file in "${NIX_FILES[@]}"; do
-    sudo ln -s "$MAIN_DIR/$program" "/etc/nixos/"
+    sudo ln -s "$MAIN_DIR/$file" "/etc/nixos/"
 done
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

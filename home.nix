@@ -61,7 +61,6 @@ in {
           tutanota-desktop
           bitwarden
           pcloud
-          onlyoffice-bin
           zotero
           spotify
           fragments

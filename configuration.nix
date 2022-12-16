@@ -109,7 +109,10 @@ in {
     initialPassword = "password";
     shell = pkgs.bash;
   };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+  };
   environment = {
     systemPackages = with pkgs; [
       zip
@@ -124,8 +127,8 @@ in {
       appimage-run
       kde-gruvbox
       gruvbox-dark-gtk
-      # libsForQt514.bismuth
-      libsForQt514.krohnkite
+      libsForQt514.bismuth
+      #libsForQt514.krohnkite
       home-manager
     ];
   };

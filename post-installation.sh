@@ -22,23 +22,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" sync
 rm -r "$HOME/.doom.d"
 
-cat <<'EOF' > ./plasma-i3.sh
-#!/bin/sh
-export KDEWM=/run/current-system/sw/bin/i3
-/usr/bin/startkde
-EOF
-sudo mkdir -p /usr/local/bin/
-sudo mv ./plasma-i3.sh /usr/local/bin/
-
-cat <<'EOF' > ./plasma-i3.desktop
-[Desktop Entry]
-Type=XSession
-Exec=/usr/local/bin/plasma-i3.sh
-DesktopNames=KDE
-Name=Plasma (i3)
-Comment=Plasma by KDE w/i3
-EOF
-sudo mkdir -p /usr/share/xsessions
-sudo mv ./plasma-i3.desktop /usr/share/xsessions/
-
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
+
+systemctl mask plasma-kwin_x11.service --user
+systemctl enable plasma-i3 --user

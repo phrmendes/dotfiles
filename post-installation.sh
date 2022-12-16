@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
+FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
 NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 

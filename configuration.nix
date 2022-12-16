@@ -57,7 +57,6 @@ in {
         enable = true;
         excludePackages = with pkgs.libsForQt5; [
           elisa
-          gwenview
           okular
           oxygen
           khelpcenter

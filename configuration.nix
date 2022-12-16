@@ -124,7 +124,8 @@ in {
       appimage-run
       kde-gruvbox
       gruvbox-dark-gtk
-      libsForQt514.bismuth
+      # libsForQt514.bismuth
+      libsForQt514.krohnkite
       home-manager
     ];
   };

@@ -125,13 +125,6 @@ rm -r "$HOME/.doom.d"
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 #+end_src
 
-** Config KDE + i3gaps
-
-#+begin_src shell
-systemctl mask plasma-kwin_x11.service --user
-systemctl enable plasma-i3 --user
-#+end_src
-
 * hardware-configuration.nix
 :PROPERTIES:
 :header-args: :tangle ./hardware-configuration.nix
@@ -367,10 +360,10 @@ environment = {
     git
     gzip
     vim
-    i3
     appimage-run
     kde-gruvbox
     gruvbox-dark-gtk
+    libsForQt514.bismuth
     home-manager
   ];
 };

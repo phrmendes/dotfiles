@@ -121,10 +121,10 @@ in {
       git
       gzip
       vim
-      i3
       appimage-run
       kde-gruvbox
       gruvbox-dark-gtk
+      libsForQt514.bismuth
       home-manager
     ];
   };

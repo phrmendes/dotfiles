@@ -23,6 +23,3 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 rm -r "$HOME/.doom.d"
 
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
-
-systemctl mask plasma-kwin_x11.service --user
-systemctl enable plasma-i3 --user

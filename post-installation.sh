@@ -3,7 +3,8 @@ FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "co
 MAIN_DIR="$(pwd)"
 NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 
-sudo rm -r /etc/nixos/*.nix
+sudo rm -r /etc/nixos/
+sudo mkdir /etc/nixos/
 
 for file in "${NIX_FILES[@]}"; do
     sudo ln -s "$MAIN_DIR/$file" "/etc/nixos/"

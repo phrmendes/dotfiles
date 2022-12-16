@@ -88,9 +88,12 @@ NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 
 ** Creating symlinks to nix files
 
-#+begin_src shell
-sudo rm -r /etc/nixos/*.nix
+#+begin_src nix
+sudo rm -r /etc/nixos/
+sudo mkdir /etc/nixos/
+#+end_src
 
+#+begin_src shell
 for file in "${NIX_FILES[@]}"; do
     sudo ln -s "$MAIN_DIR/$file" "/etc/nixos/"
 done

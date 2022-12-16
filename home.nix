@@ -58,7 +58,6 @@ in {
           firefox
           chromium
           solaar
-          stremio
           tutanota-desktop
           bitwarden
           pcloud

@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
-FONTS_DIR="$HOME/.local/share/fonts/"
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 
 sudo rm -r /etc/nixos/*.nix
-sudo ln -s "$MAIN_DIR/configuration.nix" "/etc/nixos/"
-sudo ln -s "$MAIN_DIR/home.nix" "/etc/nixos/"
+
+for file in "${NIX_FILES[@]}"; do
+    sudo ln -s "$MAIN_DIR/$program" "/etc/nixos/"
+done
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
 
-for program in "$FLATPAK_PROGRAMS"; do
+for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
 
@@ -22,7 +24,7 @@ rm -r "$HOME/.doom.d"
 sudo mkdir -p /usr/local/bin/
 sudo cat <<'EOF' > /usr/local/bin/plasma-i3.sh
 #!/bin/sh
-export KDEWM=$(which i3)
+export KDEWM=/run/current-system/sw/bin/i3
 /usr/bin/startkde
 EOF
 

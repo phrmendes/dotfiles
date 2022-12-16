@@ -11,7 +11,7 @@ Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS-la
 
 #+begin_src shell :shebang #!/usr/bin/env bash
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-laptop"
-NIX_FILES=("configuration.nix" "home.nix")
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
 
@@ -83,15 +83,17 @@ sudo nixos-install
 #+begin_src shell :shebang #!/usr/bin/env bash
 FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
-FONTS_DIR="$HOME/.local/share/fonts/"
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 #+end_src
 
 ** Creating symlinks to nix files
 
 #+begin_src shell
 sudo rm -r /etc/nixos/*.nix
-sudo ln -s "$MAIN_DIR/configuration.nix" "/etc/nixos/"
-sudo ln -s "$MAIN_DIR/home.nix" "/etc/nixos/"
+
+for file in "${NIX_FILES[@]}"; do
+    sudo ln -s "$MAIN_DIR/$program" "/etc/nixos/"
+done
 #+end_src
 
 ** Flatpak programs
@@ -100,7 +102,7 @@ sudo ln -s "$MAIN_DIR/home.nix" "/etc/nixos/"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
 
-for program in "$FLATPAK_PROGRAMS"; do
+for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
 #+end_src
@@ -120,10 +122,12 @@ rm -r "$HOME/.doom.d"
 sudo mkdir -p /usr/local/bin/
 sudo cat <<'EOF' > /usr/local/bin/plasma-i3.sh
 #!/bin/sh
-export KDEWM=$(which i3)
+export KDEWM=/run/current-system/sw/bin/i3
 /usr/bin/startkde
 EOF
+#+end_src
 
+#+begin_src shell
 sudo mkdir -p /usr/share/xsessions
 sudo cat <<'EOF' > /usr/share/xsessions/plasma-i3.desktop
 [Desktop Entry]
@@ -139,6 +143,44 @@ EOF
 
 #+begin_src shell
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
+#+end_src
+
+* hardware-configuration.nix
+:PROPERTIES:
+:header-args: :tangle ./hardware-configuration.nix
+:END:
+
+#+begin_src nix
+{ config, lib, pkgs, modulesPath, ... }:
+
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/55576cfc-09c8-473e-8e57-92f182579231";
+      fsType = "ext4";
+    };
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/db084812-d6c8-4a45-9f32-31fec142234b";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/F6DE-EAFD";
+      fsType = "vfat";
+    };
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 10000;
+    }
+  ];
+  networking.useDHCP = lib.mkDefault true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}
 #+end_src
 
 * configuration.nix
@@ -170,8 +212,7 @@ home-manager = builtins.fetchTarball https://github.com/nix-community/home-manag
 *** Imports
 
 #+begin_src nix
-imports =
-  [
+imports = [
     (import "${home-manager}/nixos")
     ./hardware-configuration.nix
     ./home.nix
@@ -495,7 +536,6 @@ packages = with pkgs;
     firefox
     chromium
     solaar
-    stremio
     tutanota-desktop
     bitwarden
     pcloud

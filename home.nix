@@ -214,6 +214,10 @@ in {
               background = "#2e3440";
               foreground = "#d8dee9";
               dim_foreground = "#a5abb6";
+              footer_bar = {
+                background = "#434c5e";
+                foreground = "#d8dee9";
+              };
             };
             cursor = {
               text = "#2e3440";
@@ -231,10 +235,6 @@ in {
               matches = {
                 foreground = "CellBackground";
                 background = "#88c0d0";
-              };
-              bar = {
-                background = "#434c5e";
-                foreground = "#d8dee9";
               };
             };
             normal = {

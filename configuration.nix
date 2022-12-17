@@ -3,8 +3,7 @@ let
   user = "phrmendes";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in {
-  imports =
-    [
+  imports = [
       (import "${home-manager}/nixos")
       ./hardware-configuration.nix
       ./home.nix
@@ -58,7 +57,6 @@ in {
         enable = true;
         excludePackages = with pkgs.libsForQt5; [
           elisa
-          gwenview
           okular
           oxygen
           khelpcenter
@@ -122,10 +120,11 @@ in {
       git
       gzip
       vim
-      i3
       appimage-run
       kde-gruvbox
       gruvbox-dark-gtk
+      libsForQt5.bismuth
+      # libsForQt514.krohnkite
       home-manager
     ];
   };

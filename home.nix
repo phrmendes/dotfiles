@@ -31,7 +31,6 @@ in {
           btop
           pandoc
           bat
-          btop
           gh
           lazygit
           ripgrep
@@ -58,20 +57,17 @@ in {
           # apps
           firefox
           chromium
-          droidcam
           solaar
-          stremio
           tutanota-desktop
           bitwarden
           pcloud
-          onlyoffice-bin
           zotero
           spotify
           fragments
-          kooha
           podman
           zathura
           cmdstan
+          kooha
           emacs
           # others
           aspellDicts.en

@@ -10,8 +10,8 @@ Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc
 ** Variables
 
 #+begin_src shell :shebang #!/usr/bin/env bash
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc"
-NIX_FILES=("configuration.nix" "home.nix")
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-laptop"
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
 
@@ -81,27 +81,33 @@ sudo nixos-install
 ** Variables
 
 #+begin_src shell :shebang #!/usr/bin/env bash
-FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.mattjakeman.extensionmanager" "com.stremio.stremio" "com.github.tchx84.flatseal" "com.tutanota.tutanota" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
+FLATPAK_PROGRAMS=("com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "eu.ithz.umftpd" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
-FONTS_DIR="$HOME/.local/share/fonts/"
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 #+end_src
 
 ** Creating symlinks to nix files
 
+#+begin_src nix
+sudo rm -r /etc/nixos/
+sudo mkdir /etc/nixos/
+#+end_src
+
 #+begin_src shell
-sudo rm -r /etc/nixos/configuration.nix
-sudo rm -r /etc/nixos/home.nix
-sudo ln -s "$MAIN_DIR/configuration.nix" "/etc/nixos/"
-sudo ln -s "$MAIN_DIR/home.nix" "/etc/nixos/"
+for file in "${NIX_FILES[@]}"; do
+    sudo ln -s "$MAIN_DIR/$file" "/etc/nixos/"
+done
 #+end_src
 
 ** Flatpak programs
 
-#+begin_src shell
+#+begin_src nix
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
+#+end_src
 
-for program in "$FLATPAK_PROGRAMS"; do
+#+begin_src shell
+for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
 #+end_src
@@ -112,33 +118,22 @@ done
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
-#+end_src
-
-** Config KDE + i3gaps
-
-#+begin_src shell
-sudo mkdir -p /usr/local/bin/
-sudo cat <<'EOF' > /usr/local/bin/plasma-i3.sh
-#!/bin/sh
-export KDEWM=$(which i3)
-/usr/bin/startkde
-EOF
-
-sudo mkdir -p /usr/share/xsessions
-sudo cat <<'EOF' > /usr/share/xsessions/plasma-i3.desktop
-[Desktop Entry]
-Type=XSession
-Exec=/usr/local/bin/plasma-i3.sh
-DesktopNames=KDE
-Name=Plasma (i3)
-Comment=Plasma by KDE w/i3
-EOF
+rm -r "$HOME/.doom.d"
 #+end_src
 
 ** Placing dotfiles
 
 #+begin_src shell
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
+#+end_src
+
+* hardware-configuration.nix
+:PROPERTIES:
+:header-args: :tangle ./hardware-configuration.nix
+:END:
+
+#+begin_src nix
+
 #+end_src
 
 * configuration.nix
@@ -170,8 +165,7 @@ home-manager = builtins.fetchTarball https://github.com/nix-community/home-manag
 *** Imports
 
 #+begin_src nix
-imports =
-  [
+imports = [
     (import "${home-manager}/nixos")
     ./hardware-configuration.nix
     ./home.nix
@@ -255,7 +249,6 @@ services = {
       enable = true;
       excludePackages = with pkgs.libsForQt5; [
         elisa
-        gwenview
         okular
         oxygen
         khelpcenter
@@ -339,10 +332,11 @@ environment = {
     git
     gzip
     vim
-    i3
     appimage-run
     kde-gruvbox
     gruvbox-dark-gtk
+    libsForQt5.bismuth
+    # libsForQt514.krohnkite
     home-manager
   ];
 };
@@ -468,7 +462,6 @@ packages = with pkgs;
     btop
     pandoc
     bat
-    btop
     gh
     lazygit
     ripgrep
@@ -495,20 +488,17 @@ packages = with pkgs;
     # apps
     firefox
     chromium
-    droidcam
     solaar
-    stremio
     tutanota-desktop
     bitwarden
     pcloud
-    onlyoffice-bin
     zotero
     spotify
     fragments
-    kooha
     podman
     zathura
     cmdstan
+    kooha
     emacs
     # others
     aspellDicts.en

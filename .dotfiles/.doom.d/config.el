@@ -18,7 +18,7 @@
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 15)
      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 17))
 
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-nord)
 
 ;; ========= LINE NUMBERS =========
 

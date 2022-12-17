@@ -529,16 +529,6 @@ sessionVariables = {
 home-manager.enable = true;
 #+end_src
 
-**** git
-
-#+begin_src nix
-git = {
-  enable = true;
-  userName = "Pedro Mendes";
-  userEmail = "phrmendes@tuta.io";
-};
-#+end_src
-
 **** fzf
 
 #+begin_src nix

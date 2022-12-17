@@ -81,11 +81,6 @@ in {
     };
     programs = {
       home-manager.enable = true;
-      git = {
-        enable = true;
-        userName = "Pedro Mendes";
-        userEmail = "phrmendes@tuta.io";
-      };
       fzf = {
         enable = true;
         enableFishIntegration = true;

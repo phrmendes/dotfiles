@@ -224,12 +224,12 @@ in {
               cursor = "#d8dee9";
             };
             selection = {
-              text =  CellForeground;
+              text = "CellForeground";
               background = "#4c566a";
             };
             search = {
               matches = {
-                foreground =  CellBackground;
+                foreground = "CellBackground";
                 background = "#88c0d0";
               };
               bar = {

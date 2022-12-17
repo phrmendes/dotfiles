@@ -19,7 +19,6 @@ in {
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    # wireless.enable = true;
   };
   time.timeZone = "America/Sao_Paulo";
   i18n = {
@@ -60,7 +59,8 @@ in {
     xserver = {
       enable = true;
       autorun = true;
-      layout = "br";
+      layout = "us,br";
+      videoDrivers = [ "nvidia" ];
       desktopManager.xterm.enable = false;
       desktopManager.plasma5 = {
         enable = true;
@@ -76,6 +76,7 @@ in {
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
+        theme = "Nordic";
       };
       libinput = {
         enable = true;

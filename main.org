@@ -208,7 +208,6 @@ boot = {
 networking = {
   hostName = "nixos";
   networkmanager.enable = true;
-  # wireless.enable = true;
 };
 #+end_src
 
@@ -285,6 +284,7 @@ services = {
     displayManager.sddm = {
       enable = true;
       autoNumlock = true;
+      theme = "Nordic";
     };
     libinput = {
       enable = true;
@@ -314,9 +314,7 @@ hardware = {
   pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-    '';
+    extraConfig = "load-module module-switch-on-connect";
   };
   bluetooth = {
     enable = true;

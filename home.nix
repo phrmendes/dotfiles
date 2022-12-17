@@ -47,8 +47,10 @@ in {
           lorri
           ranger
           stow
+          ispell
           # programming tools
           micromamba
+          python3Full
           cargo
           go
           nodejs

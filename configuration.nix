@@ -18,10 +18,18 @@ in {
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    # wireless.enable = true;
   };
   time.timeZone = "America/Sao_Paulo";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LANGUAGE = "en_us.UTF-8";
+      LC_MONETARY = "pt_BR.UTF8";
+      LC_MEASUREMENT = "pt_BR.UTF8";
+      LC_TIME = "pt_BR.UTF8";
+      LC_NUMERIC = "pt_BR.UTF8";
+    };
+  };
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
@@ -67,6 +75,7 @@ in {
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
+        theme = "Nordic";
       };
       libinput = {
         enable = true;
@@ -86,9 +95,7 @@ in {
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
-      extraConfig = ''
-        load-module module-switch-on-connect
-      '';
+      extraConfig = "load-module module-switch-on-connect";
     };
     bluetooth = {
       enable = true;
@@ -108,7 +115,10 @@ in {
     initialPassword = "password";
     shell = pkgs.bash;
   };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+  };
   environment = {
     systemPackages = with pkgs; [
       zip
@@ -121,10 +131,8 @@ in {
       gzip
       vim
       appimage-run
-      kde-gruvbox
-      gruvbox-dark-gtk
+      nordic
       libsForQt5.bismuth
-      # libsForQt514.krohnkite
       home-manager
     ];
   };

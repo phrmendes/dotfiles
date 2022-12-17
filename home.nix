@@ -58,7 +58,6 @@ in {
           firefox
           chromium
           solaar
-          tutanota-desktop
           bitwarden
           pcloud
           zotero
@@ -126,8 +125,8 @@ in {
           auto-pairs
           fzf-vim
           {
-            plugin = gruvbox;
-            config = "colorscheme gruvbox";
+            plugin = nord-nvim;
+            config = "colorscheme nord";
           }
           {
             plugin = indent-blankline-nvim;
@@ -207,35 +206,68 @@ in {
               family = "SauceCodePro Nerd Font";
               style = "BoldItalic";
             };
-            size = 13;
+            size = 11;
           };
           draw_bold_text_with_bright_colors = true;
           selection.save_to_clipboard = true;
           shell.program = "${pkgs.fish}/bin/fish";
           colors = {
             primary = {
-              background = "0x282828";
-              foreground = "0xebdbb2";
+              background = "#2e3440";
+              foreground = "#d8dee9";
+              dim_foreground = "#a5abb6";
+              footer_bar = {
+                background = "#434c5e";
+                foreground = "#d8dee9";
+              };
+            };
+            cursor = {
+              text = "#2e3440";
+              cursor = "#d8dee9";
+            };
+            vi_mode_cursor = {
+              text = "#2e3440";
+              cursor = "#d8dee9";
+            };
+            selection = {
+              text = "CellForeground";
+              background = "#4c566a";
+            };
+            search = {
+              matches = {
+                foreground = "CellBackground";
+                background = "#88c0d0";
+              };
             };
             normal = {
-              black = "0x282828";
-              red = "0xcc241d";
-              green = "0x98971a";
-              yellow = "0xd79921";
-              blue = "0x458588";
-              magenta = "0xb16286";
-              cyan = "0x689d6a";
-              white = "0xa89984";
+              black = "#3b4252";
+              red = "#bf616a";
+              green = "#a3be8c";
+              yellow = "#ebcb8b";
+              blue = "#81a1c1";
+              magenta = "#b48ead";
+              cyan = "#88c0d0";
+              white = "#e5e9f0";
             };
             bright = {
-              black = "0x928374";
-              red = "0xfb4934";
-              green = "0xb8bb26";
-              yellow = "0xfabd2f";
-              blue = "0x83a598";
-              magenta = "0xd3869b";
-              cyan = "0x8ec07c";
-              white = "0xebdbb2";
+              black = "#4c566a";
+              red = "#bf616a";
+              green = "#a3be8c";
+              yellow = "#ebcb8b";
+              blue = "#81a1c1";
+              magenta = "#b48ead";
+              cyan = "#8fbcbb";
+              white = "#eceff4";
+            };
+            dim = {
+              black = "#373e4d";
+              red = "#94545d";
+              green = "#809575";
+              yellow = "#b29e75";
+              blue = "#68809a";
+              magenta = "#8c738c";
+              cyan = "#6d96a5";
+              white = "#aeb3bb";
             };
           };
         };

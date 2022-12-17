@@ -48,24 +48,12 @@ sudo mount /dev/nvme0n1p2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 #+end_src
 
-** Generate *.nix files
-
-#+begin_src shell 
-sudo nixos-generate-config --root /mnt
-#+end_src
-
 ** Placing *.nix files
 
 #+begin_src shell 
 for i in "${NIX_FILES[@]}"; do
     sudo curl "$GITHUB_URL/$i" --output "$NIX_FILES_LOCATION/$i"
 done
-#+end_src
-
-** Adding swap configuration to hardware-configuration.nix
-
-#+begin_src shell 
-sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 #+end_src
 
 ** Installation
@@ -104,7 +92,9 @@ done
 #+begin_src shell
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
+#+end_src
 
+#+begin_src shell
 for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
@@ -372,10 +362,8 @@ environment = {
     gzip
     vim
     appimage-run
-    kde-gruvbox
-    gruvbox-dark-gtk
+    nordic
     libsForQt5.bismuth
-    # libsForQt514.krohnkite
     home-manager
   ];
 };

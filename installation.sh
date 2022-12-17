@@ -19,12 +19,8 @@ sudo mkdir -p /mnt/boot
 sudo mount /dev/nvme0n1p2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 
-sudo nixos-generate-config --root /mnt
-
 for i in "${NIX_FILES[@]}"; do
     sudo curl "$GITHUB_URL/$i" --output "$NIX_FILES_LOCATION/$i"
 done
-
-sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 
 sudo nixos-install

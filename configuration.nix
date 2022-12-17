@@ -133,10 +133,8 @@ in {
       gzip
       vim
       appimage-run
-      kde-gruvbox
-      gruvbox-dark-gtk
+      nordic
       libsForQt5.bismuth
-      # libsForQt514.krohnkite
       home-manager
     ];
   };

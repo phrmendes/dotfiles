@@ -59,8 +59,7 @@ in {
     xserver = {
       enable = true;
       autorun = true;
-      layout = "us,br";
-      videoDrivers = [ "nvidia" ];
+      layout = "br";
       desktopManager.xterm.enable = false;
       desktopManager.plasma5 = {
         enable = true;
@@ -96,9 +95,7 @@ in {
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
-      extraConfig = ''
-        load-module module-switch-on-connect
-      '';
+      extraConfig = "load-module module-switch-on-connect";
     };
     bluetooth = {
       enable = true;

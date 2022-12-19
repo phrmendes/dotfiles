@@ -65,6 +65,7 @@ in {
           cmdstan
           kooha
           emacs
+          exa
           # others
           aspellDicts.en
           aspellDicts.pt_BR
@@ -83,10 +84,6 @@ in {
         enable = true;
         config.theme = "Nord";
       };
-      exa = {
-        enable = true;
-        enableAliases = true;
-      };
       fzf = {
         enable = true;
         enableFishIntegration = true;
@@ -101,19 +98,24 @@ in {
         enable = true;
         shellAliases = {
           mkdir = "mkdir -p";
-          cat = "bat";
-          nv = "nvim";
-          lg = "lazygit";
+          cat = "${pkgs.bat}/bin/bat";
+          nv = "${pkgs.nvim}/bin/nvim";
+          lg = "${pkgs.lazygit}/bin/lazygit";
+          ls = "${pkgs.exa}/bin/exa --icons";
+          ll = "${pkgs.exa}/bin/exa --icons -l";
+          la = "${pkgs.exa}/bin/exa --icons -a";
+          lt = "${pkgs.exa}/bin/exa ---icons ---tree";
+          lla = "${pkgs.exa}/bin/exa --icons -la";
         };
         shellAbbrs = {
           stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-          mamba = "micromamba";
+          mamba = "${pkgs.micromamba}/bin/micromamba";
         };
         shellInit = ''
           fish_add_path "$HOME/.emacs.d/bin"
-          set -gx MAMBA_EXE "/home/phrmendes/.nix-profile/bin/micromamba"
+          set -gx MAMBA_EXE "${pkgs.micromamba}/bin/micromamba"
           set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
-          eval "/home/phrmendes/.nix-profile/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
+          eval "${pkgs.micromamba}/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
         '';
       };
       neovim = {
@@ -148,8 +150,8 @@ in {
               lua << EOF
               require("lualine").setup({
                   options = {
-                  icons_enabled = true,
-                  theme = "nord"
+                    icons_enabled = true,
+                    theme = "nord"
                   }
               })
               EOF

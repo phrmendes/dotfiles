@@ -61,7 +61,8 @@ in {
     enableFzfCompletion = true;
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
-    profileExtra = ''
+    enableFzfGit = true;
+    shellInit = ''
       export PATH=$HOME/.local/bin:$PATH
       eval "$($HOME/.nix-profile/bin/starship init zsh)"
       export EDITOR=lvim

@@ -177,7 +177,10 @@ imports = [
 #+begin_src nix
 boot = {
   loader = {
-    systemd-boot.enable = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+    };
     timeout = 5;
   };
   kernelPackages = pkgs.linuxPackages_latest;
@@ -601,7 +604,7 @@ neovim = {
         require("lualine").setup({
             options = {
             icons_enabled = true,
-            theme = "gruvbox_dark"
+            theme = "nord"
             }
         })
         EOF

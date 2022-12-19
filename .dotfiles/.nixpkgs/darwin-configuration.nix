@@ -22,6 +22,7 @@ in {
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       tree
+      gnused
       home-manager
     ];
     shellAliases = {
@@ -41,7 +42,6 @@ in {
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
     taps = [ "homebrew/cask" ];
-    brews = [ "gnu-sed" ];
     casks = [
       "mpv"
       "slack"

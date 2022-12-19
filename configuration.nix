@@ -10,7 +10,10 @@ in {
     ];
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
       timeout = 5;
     };
     kernelModules = [ "kvm-intel" ];

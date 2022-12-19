@@ -15,8 +15,8 @@ decrease_window_height=Meta+Ctrl+K
 decrease_window_width=Meta+Ctrl+H
 focus_bottom_window=
 focus_left_window=
-focus_next_window=Meta+J
-focus_prev_window=Meta+K
+focus_next_window=Meta+K
+focus_prev_window=Meta+J
 focus_right_window=
 focus_upper_window=
 increase_master_size=
@@ -220,7 +220,7 @@ Window to Screen 5=
 Window to Screen 6=
 Window to Screen 7=
 view_actual_size=Meta+0
-view_zoom_in=Meta+=; Meta++
+view_zoom_in=Meta++; Meta+=
 view_zoom_out=Meta+-
 
 [mediacontrol][Global Shortcuts]

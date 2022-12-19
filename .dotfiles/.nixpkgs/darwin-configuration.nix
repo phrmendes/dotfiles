@@ -48,10 +48,6 @@ in {
       "amethyst"
       "iterm2"
     ];
-    masApps = {
-      Xcode = 497799835;
-      Amphetamine = 937984704;
-    };
   };
   programs.zsh = {
     enable = true;

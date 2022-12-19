@@ -14,9 +14,7 @@ in {
           lazygit
           sd
           tealdeer
-          exa
           shellcheck
-          direnv
           ranger
           stow
           python311
@@ -45,6 +43,19 @@ in {
       fzf = {
         enable = true;
         enableZshIntegration = true;
+      };
+      exa = {
+        enable = true;
+        enableAliases = true;
+      };
+      bat = {
+        enable = true;
+        config.theme = "Nord";
+      };
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
       };
     };
   };

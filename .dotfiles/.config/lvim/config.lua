@@ -34,7 +34,7 @@ lvim.builtin.telescope.defaults.mappings = {
   n = {
     ["<C-j>"] = actions.move_selection_next,
     ["<C-k>"] = actions.move_selection_previous,
-  },
+  }
 }
 
 -- use which-key to add extra bindings with the leader-key prefix
@@ -47,7 +47,7 @@ lvim.builtin.which_key.mappings["t"] = {
   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" }
 }
 
 -- after changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -78,7 +78,7 @@ lvim.plugins = {
   -- motion plugin
   {
     "ggandor/lightspeed.nvim",
-    event = "BufRead",
+    event = "BufRead"
   },
   -- jump to specific line
   {
@@ -87,9 +87,9 @@ lvim.plugins = {
     config = function()
       require("numb").setup({
         show_numbers = true, -- Enable 'number' for the window while peeking
-        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+        show_cursorline = true -- Enable 'cursorline' for the window while peeking
       })
-    end,
+    end
   },
   -- quickfix window
   {
@@ -114,9 +114,9 @@ lvim.plugins = {
             action_for = { ["ctrl-s"] = "split" },
             extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
           },
-        },
+        }
       })
-    end,
+    end
   },
   -- search and replace
   {
@@ -124,7 +124,7 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("spectre").setup()
-    end,
+    end
   },
   -- navigate and highlight matching words
   {
@@ -132,12 +132,12 @@ lvim.plugins = {
     event = "CursorMoved",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
+    end
   },
   -- git diff view
   {
     "sindrets/diffview.nvim",
-    event = "BufRead",
+    event = "BufRead"
   },
   -- git blame in buffer lines
   {
@@ -146,7 +146,7 @@ lvim.plugins = {
     config = function()
       vim.cmd "highlight default link gitblame SpecialComment"
       vim.g.gitblame_enabled = 1
-    end,
+    end
   },
   -- show current function at the top of the screen when function does not fit in screen
   {
@@ -160,9 +160,9 @@ lvim.plugins = {
           default = {
             "class",
             "function",
-            "method",
-          },
-        },
+            "method"
+          }
+        }
       })
     end
   },
@@ -201,12 +201,12 @@ lvim.plugins = {
   -- diagnostics, references, telescope results, quickfix and location lists
   {
     "folke/trouble.nvim",
-    cmd = "TroubleToggle",
+    cmd = "TroubleToggle"
   },
   -- interactive scratchpad
   {
     "metakirby5/codi.vim",
-    cmd = "Codi",
+    cmd = "Codi"
   },
   -- highlight and search for todo comments
   {
@@ -233,5 +233,35 @@ lvim.plugins = {
     end
   },
   -- literate
-  { "zyedidia/literate.vim" }
+  { "zyedidia/literate.vim" },
+  -- ranger
+  {
+    "kevinhwang91/rnvimr",
+    cmd = "RnvimrToggle",
+    config = function()
+      vim.g.rnvimr_draw_border = 1
+      vim.g.rnvimr_pick_enable = 1
+      vim.g.rnvimr_bw_enable = 1
+    end
+  },
+  -- smooth scrolling
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require("neoscroll").setup({
+        mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+        hide_cursor = true,
+        stop_eof = true,
+        use_local_scrolloff = false,
+        respect_scrolloff = false,
+        cursor_scrolls_alone = true,
+        easing_function = nil,
+        pre_hook = nil,
+        post_hook = nil
+      })
+    end
+  },
+  -- personal database
+  { "vimwiki/vimwiki" }
 }

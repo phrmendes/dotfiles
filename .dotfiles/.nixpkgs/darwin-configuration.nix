@@ -15,7 +15,6 @@ in {
   nixpkgs = {
     config = {
       allowUnfree = true;
-      allowBroken = true;
       allowUnsupportedSystem = true;
     };
   };
@@ -46,11 +45,14 @@ in {
     casks = [
       "mpv"
       "slack"
-      "caffeine"
       "maccy"
       "amethyst"
       "iterm2"
     ];
+    masApps = {
+      Xcode = "497799835";
+      Amphetamine = "937984704";
+    };
   };
   programs.zsh = {
     enable = true;
@@ -59,16 +61,19 @@ in {
     enableFzfCompletion = true;
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
-    loginShellInit = ''
+    profileExtra = ''
       export PATH=$HOME/.local/bin:$PATH
       eval "$($HOME/.nix-profile/bin/starship init zsh)"
+      export EDITOR=lvim
+      export VISUAL=lvim
     '';
   };
+  security.pam.enableSudoTouchIdAuth = true;
   system = {
     defaults = {
       dock = {
         autohide = true;
-        orientation = "right";
+        orientation = "left";
         showhidden = true;
         mru-spaces = false;
         show-recents = false;

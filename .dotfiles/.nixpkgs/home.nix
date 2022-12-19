@@ -17,6 +17,7 @@ in {
           shellcheck
           ranger
           stow
+          exa
           python311
           cargo
           go
@@ -43,10 +44,6 @@ in {
       fzf = {
         enable = true;
         enableZshIntegration = true;
-      };
-      exa = {
-        enable = true;
-        enableAliases = true;
       };
       bat = {
         enable = true;

@@ -21,15 +21,20 @@ in {
   environment = {
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
-      tree
       gnused
       home-manager
     ];
     shellAliases = {
       mkdir = "mkdir -p";
-      cat = "bat";
       lv = "lvim";
-      lg = "lazygit";
+      cat = "${pkgs.bat}/bin/bat";
+      nv = "${pkgs.nvim}/bin/nvim";
+      lg = "${pkgs.lazygit}/bin/lazygit";
+      ls = "${pkgs.exa}/bin/exa --icons";
+      ll = "${pkgs.exa}/bin/exa --icons -l";
+      la = "${pkgs.exa}/bin/exa --icons -a";
+      lt = "${pkgs.exa}/bin/exa --icons --tree";
+      lla = "${pkgs.exa}/bin/exa --icons -la";
       stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
     };
   };

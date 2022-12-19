@@ -41,6 +41,10 @@ in {
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
     taps = [ "homebrew/cask" ];
+    brews = [
+      "gnu-sed"
+      "mas"
+    ];
     casks = [
       "mpv"
       "slack"
@@ -48,6 +52,10 @@ in {
       "amethyst"
       "iterm2"
     ];
+    masApps = {
+      Xcode = 497799835;
+      Amphetamine = 937984704;
+    };
   };
   programs.zsh = {
     enable = true;

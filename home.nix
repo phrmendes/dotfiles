@@ -30,19 +30,16 @@ in {
           # terminal
           btop
           pandoc
-          bat
           gh
           lazygit
           ripgrep
           fd
           sd
           tealdeer
-          exa
           shellcheck
           ncdu
           quarto
           micromamba
-          direnv
           niv
           lorri
           ranger
@@ -76,20 +73,34 @@ in {
       stateVersion = "22.11";
       sessionVariables = {
         EDITOR = "neovim";
+        VISUAL = "neovim";
         TERMINAL = "alacritty";
       };
     };
     programs = {
       home-manager.enable = true;
+      bat = {
+        enable = true;
+        config.theme = "Nord";
+      };
+      exa = {
+        enable = true;
+        enableAliases = true;
+      };
       fzf = {
         enable = true;
         enableFishIntegration = true;
+      };
+      direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        enableFishIntegration = true;
+        nix-direnv.enable = true;
       };
       fish = {
         enable = true;
         shellAliases = {
           mkdir = "mkdir -p";
-          ls = "exa --icons";
           cat = "bat";
           nv = "nvim";
           lg = "lazygit";
@@ -269,6 +280,7 @@ in {
       };
       starship = {
         enable = true;
+        enableBashIntegration = true;
         enableFishIntegration = true;
       };
     };

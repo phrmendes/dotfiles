@@ -489,19 +489,16 @@ packages = with pkgs;
     # terminal
     btop
     pandoc
-    bat
     gh
     lazygit
     ripgrep
     fd
     sd
     tealdeer
-    exa
     shellcheck
     ncdu
     quarto
     micromamba
-    direnv
     niv
     lorri
     ranger
@@ -535,6 +532,7 @@ packages = with pkgs;
 stateVersion = "22.11";
 sessionVariables = {
   EDITOR = "neovim";
+  VISUAL = "neovim";
   TERMINAL = "alacritty";
 };
 #+end_src
@@ -549,12 +547,41 @@ sessionVariables = {
 home-manager.enable = true;
 #+end_src
 
+**** bat
+
+#+begin_src nix
+bat = {
+  enable = true;
+  config.theme = "Nord";
+};
+#+end_src
+
+**** exa
+
+#+begin_src nix
+exa = {
+  enable = true;
+  enableAliases = true;
+};
+#+end_src
+
 **** fzf
 
 #+begin_src nix
 fzf = {
   enable = true;
   enableFishIntegration = true;
+};
+#+end_src
+
+**** direnv
+
+#+begin_src nix
+direnv = {
+  enable = true;
+  enableBashIntegration = true;
+  enableFishIntegration = true;
+  nix-direnv.enable = true;
 };
 #+end_src
 
@@ -565,7 +592,6 @@ fish = {
   enable = true;
   shellAliases = {
     mkdir = "mkdir -p";
-    ls = "exa --icons";
     cat = "bat";
     nv = "nvim";
     lg = "lazygit";
@@ -760,6 +786,7 @@ alacritty = {
 #+begin_src nix
 starship = {
   enable = true;
+  enableBashIntegration = true;
   enableFishIntegration = true;
 };
 #+end_src

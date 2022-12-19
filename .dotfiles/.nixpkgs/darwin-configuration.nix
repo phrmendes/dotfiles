@@ -26,7 +26,6 @@ in {
     ];
     shellAliases = {
       mkdir = "mkdir -p";
-      ls = "exa --icons";
       cat = "bat";
       lv = "lvim";
       lg = "lazygit";
@@ -50,8 +49,8 @@ in {
       "iterm2"
     ];
     masApps = {
-      Xcode = "497799835";
-      Amphetamine = "937984704";
+      Xcode = 497799835;
+      Amphetamine = 937984704;
     };
   };
   programs.zsh = {

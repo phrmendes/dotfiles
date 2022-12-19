@@ -104,7 +104,7 @@ in {
           ls = "${pkgs.exa}/bin/exa --icons";
           ll = "${pkgs.exa}/bin/exa --icons -l";
           la = "${pkgs.exa}/bin/exa --icons -a";
-          lt = "${pkgs.exa}/bin/exa ---icons ---tree";
+          lt = "${pkgs.exa}/bin/exa --icons --tree";
           lla = "${pkgs.exa}/bin/exa --icons -la";
         };
         shellAbbrs = {
@@ -114,8 +114,8 @@ in {
         shellInit = ''
           fish_add_path "$HOME/.emacs.d/bin"
           set -gx MAMBA_EXE "${pkgs.micromamba}/bin/micromamba"
-          set -gx MAMBA_ROOT_PREFIX "/home/phrmendes/micromamba"
-          eval "${pkgs.micromamba}/bin/micromamba" shell hook --shell fish --prefix "/home/phrmendes/micromamba" | source
+          set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
+          eval "${pkgs.micromamba}/bin/micromamba" shell hook --shell fish --prefix "$HOME/micromamba" | source
         '';
       };
       neovim = {

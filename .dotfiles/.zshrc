@@ -7,4 +7,3 @@ export EDITOR=lvim
 export VISUAL=lvim
 eval "$(starship init zsh)"
 source ~/.iterm2_shell_integration.zsh
-PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"

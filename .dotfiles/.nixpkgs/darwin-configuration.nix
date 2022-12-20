@@ -43,13 +43,13 @@ in {
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
     taps = [ "homebrew/cask" ];
+    brews = [ "gnu-sed" ];
     casks = [
       "mpv"
       "slack"
       "maccy"
       "amethyst"
       "iterm2"
-      "gnu-sed"
     ];
   };
   programs.zsh = {

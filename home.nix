@@ -47,6 +47,7 @@ in {
           stow
           ispell
           exa
+          sqlite
           # programming tools
           micromamba
           python3Full

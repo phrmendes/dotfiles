@@ -90,6 +90,7 @@ in {
     };
     journald.extraConfig = "SystemMaxUse=1G";
   };
+  security.pam.services.sddm.enableKwallet = true;
   sound = {
     enable = true;
     mediaKeys.enable = true;

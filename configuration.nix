@@ -75,10 +75,13 @@ in {
           print-manager
         ];
       };
-      displayManager.sddm = {
-        enable = true;
-        autoNumlock = true;
-        theme = "Nordic";
+      displayManager = {
+        setupCommands = "${pkgs.kwallet-pam}/libexec/pam_kwallet_init";
+        sddm = {
+          enable = true;
+          autoNumlock = true;
+          theme = "Nordic";
+        };
       };
       libinput = {
         enable = true;

@@ -287,7 +287,10 @@ services = {
 *** Security
 
 #+begin_src nix
-security.pam.services.sddm.enableKwallet = true;
+security.pam.services.kwallet = {
+  name = "kwallet";
+  enableKwallet = true;
+};
 #+end_src
 
 *** Sound

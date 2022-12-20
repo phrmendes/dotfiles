@@ -90,7 +90,10 @@ in {
     };
     journald.extraConfig = "SystemMaxUse=1G";
   };
-  security.pam.services.sddm.enableKwallet = true;
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
   sound = {
     enable = true;
     mediaKeys.enable = true;

@@ -301,6 +301,12 @@ services = {
 };
 #+end_src
 
+*** Security
+
+#+begin_src nix
+security.pam.services.sddm.enableKwallet = true;
+#+end_src
+
 *** Sound
 
 #+begin_src nix
@@ -503,6 +509,7 @@ packages = with pkgs;
     ranger
     stow
     ispell
+    sqlite
     # programming tools
     micromamba
     python3Full

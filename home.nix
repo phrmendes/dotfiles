@@ -45,6 +45,7 @@ in {
           ranger
           stow
           ispell
+          sqlite
           # programming tools
           micromamba
           python3Full

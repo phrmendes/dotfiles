@@ -20,7 +20,10 @@ in {
   };
   environment = {
     pathsToLink = [ "/share/zsh" ];
-    systemPackages = with pkgs; [ home-manager ];
+    systemPackages = with pkgs; [ 
+      gnused
+      home-manager 
+    ];
     shellAliases = {
       mkdir = "mkdir -p";
       lv = "lvim";
@@ -43,7 +46,6 @@ in {
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
     taps = [ "homebrew/cask" ];
-    brews = [ "gnu-sed" ];
     casks = [
       "mpv"
       "slack"

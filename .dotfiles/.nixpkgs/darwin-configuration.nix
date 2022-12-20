@@ -20,10 +20,7 @@ in {
   };
   environment = {
     pathsToLink = [ "/share/zsh" ];
-    systemPackages = with pkgs; [
-      gnused
-      home-manager
-    ];
+    systemPackages = with pkgs; [ home-manager ];
     shellAliases = {
       mkdir = "mkdir -p";
       lv = "lvim";
@@ -52,6 +49,7 @@ in {
       "maccy"
       "amethyst"
       "iterm2"
+      "gnu-sed"
     ];
   };
   programs.zsh = {
@@ -62,12 +60,6 @@ in {
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
     enableFzfGit = true;
-    shellInit = ''
-      export PATH=$HOME/.local/bin:$PATH
-      eval "$($HOME/.nix-profile/bin/starship init zsh)"
-      export EDITOR=lvim
-      export VISUAL=lvim
-    '';
   };
   security.pam.enableSudoTouchIdAuth = true;
   system = {

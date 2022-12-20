@@ -28,6 +28,7 @@ in {
           terraform
           terragrunt
           tflint
+          qemu
           texlive.combined.scheme-minimal
         ];
       stateVersion = "22.11";

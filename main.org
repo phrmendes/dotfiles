@@ -301,15 +301,6 @@ services = {
 };
 #+end_src
 
-*** Security
-
-#+begin_src nix
-security.pam.services.kwallet = {
-  name = "kwallet";
-  enableKwallet = true;
-};
-#+end_src
-
 *** Sound
 
 #+begin_src nix

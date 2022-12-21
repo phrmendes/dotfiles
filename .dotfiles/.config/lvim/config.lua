@@ -66,7 +66,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "python",
   "yaml",
   "go",
-  "hcl"
+  "hcl",
+  "org"
 }
 
 -- lsp settings
@@ -263,5 +264,5 @@ lvim.plugins = {
     end
   },
   -- personal database
-  { "vimwiki/vimwiki" }
+  { "nvim-orgmode/orgmode" }
 }

@@ -498,6 +498,7 @@ packages = with pkgs;
     ranger
     stow
     ispell
+    exa
     sqlite
     # programming tools
     micromamba
@@ -519,7 +520,7 @@ packages = with pkgs;
     cmdstan
     kooha
     emacs
-    exa
+    gparted
     # others
     aspellDicts.en
     aspellDicts.pt_BR

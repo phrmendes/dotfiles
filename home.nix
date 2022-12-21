@@ -45,6 +45,7 @@ in {
           ranger
           stow
           ispell
+          exa
           sqlite
           # programming tools
           micromamba
@@ -66,7 +67,7 @@ in {
           cmdstan
           kooha
           emacs
-          exa
+          gparted
           # others
           aspellDicts.en
           aspellDicts.pt_BR

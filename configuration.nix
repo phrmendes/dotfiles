@@ -16,6 +16,7 @@ in {
       };
       timeout = 5;
     };
+    supportedFilesystems = [ "ntfs" ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };

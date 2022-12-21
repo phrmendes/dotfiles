@@ -68,6 +68,7 @@ in {
           kooha
           emacs
           gparted
+          ventoy-bin-full
           # others
           aspellDicts.en
           aspellDicts.pt_BR

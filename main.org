@@ -534,6 +534,7 @@ packages = with pkgs;
     cmdstan
     kooha
     emacs
+    gparted
     # others
     aspellDicts.en
     aspellDicts.pt_BR

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-laptop"
+GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc"
 NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 

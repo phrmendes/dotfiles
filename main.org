@@ -19,23 +19,23 @@ NIX_FILES_LOCATION="/mnt/etc/nixos/"
 *** Create
 
 #+begin_src shell 
-sudo parted /dev/sda -- mklabel gpt
-sudo parted /dev/sda -- mkpart primary 512MiB 100% # main partition
-sudo parted /dev/sda -- mkpart ESP fat32 1Mib 512MiB # efi
-sudo parted /dev/sda -- set 2 esp on
+sudo parted /dev/sdc -- mklabel gpt
+sudo parted /dev/sdc -- mkpart primary 512MiB 100% # main partition
+sudo parted /dev/sdc -- mkpart ESP fat32 1Mib 512MiB # efi
+sudo parted /dev/sdc -- set 2 esp on
 #+end_src
 
 *** Encrypt
 
 #+begin_src shell 
-sudo cryptsetup luksFormat /dev/sda1
-sudo cryptsetup luksOpen /dev/sda1 cryptroot
+sudo cryptsetup luksFormat /dev/sdc1
+sudo cryptsetup luksOpen /dev/sdc1 cryptroot
 #+end_src
 
 *** Format
 
 #+begin_src shell 
-sudo mkfs.fat -F 32 -n boot /dev/sda2
+sudo mkfs.fat -F 32 -n boot /dev/sdc2
 sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 #+end_src
 
@@ -44,7 +44,7 @@ sudo mkfs.ext4 -L nixos /dev/mapper/cryptroot
 #+begin_src shell 
 sudo mount /dev/mapper/cryptroot /mnt
 sudo mkdir -p /mnt/boot
-sudo mount /dev/sda2 /mnt/boot
+sudo mount /dev/sdc2 /mnt/boot
 sudo mkdir -p /mnt/boot/efi
 #+end_src
 
@@ -60,12 +60,6 @@ sudo nixos-generate-config --root /mnt
 for i in "${NIX_FILES[@]}"; do
     sudo curl "$GITHUB_URL/$i" --output "$NIX_FILES_LOCATION/$i"
 done
-#+end_src
-
-** Adding swap configuration to hardware-configuration.nix
-
-#+begin_src shell 
-sudo sed -i 's/swapDevices = \[ \];/swapDevices = \[\{device = "\/swapfile"; size = 10000;\}\];/g' "$NIX_FILES_LOCATION/hardware-configuration.nix"
 #+end_src
 
 ** Installation
@@ -133,7 +127,28 @@ stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 :END:
 
 #+begin_src nix
+{ config, lib, pkgs, modulesPath, ... }:
 
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/bde838e7-eca3-4543-b5f8-4f766fd71869";
+    fsType = "ext4";
+  };
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/71600493-5d0d-4c71-ae74-eeda36820fb6";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/02C8-A678";
+      fsType = "vfat";
+    };
+  swapDevices = [ {device = "/swapfile"; size = 10000;} ];
+  networking.useDHCP = lib.mkDefault true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}
 #+end_src
 
 * configuration.nix

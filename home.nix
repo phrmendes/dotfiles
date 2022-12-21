@@ -69,6 +69,7 @@ in {
           cmdstan
           kooha
           emacs
+          gparted
           # others
           aspellDicts.en
           aspellDicts.pt_BR

@@ -16,6 +16,7 @@ in {
       };
       timeout = 5;
     };
+    supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
   networking = {

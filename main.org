@@ -197,6 +197,7 @@ boot = {
     };
     timeout = 5;
   };
+  supportedFilesystems = [ "ntfs" ];
   kernelPackages = pkgs.linuxPackages_latest;
 };
 #+end_src

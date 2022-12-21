@@ -136,12 +136,12 @@ stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   fileSystems."/" ={
-    device = "/dev/disk/by-uuid/ece0459b-8058-4143-8c91-b2fbcef4cd09";
+    device = "/dev/disk/by-uuid/0b248b0c-d9bf-438c-84f0-1431bcd87d9c";
     fsType = "ext4";
   };
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/f67000e8-9a58-47d5-a5b6-7816b8afc853";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/975f382e-de1f-4447-ad21-2690a748026e";
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/148A-7773";
+    device = "/dev/disk/by-uuid/8989-856E";
     fsType = "vfat";
   };
   swapDevices = [ {device = "/swapfile"; size = 10000;} ];

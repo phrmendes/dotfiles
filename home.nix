@@ -45,9 +45,9 @@ in {
           ranger
           gnupg
           stow
-          ispell
           exa
           sqlite
+          hugo
           # programming tools
           micromamba
           python3Full
@@ -71,6 +71,7 @@ in {
           emacs
           gparted
           # others
+          aspell
           aspellDicts.en
           aspellDicts.pt_BR
           texlive.combined.scheme-minimal

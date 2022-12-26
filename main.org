@@ -511,9 +511,9 @@ packages = with pkgs;
     ranger
     gnupg
     stow
-    ispell
     exa
     sqlite
+    hugo
     # programming tools
     micromamba
     python3Full
@@ -537,6 +537,7 @@ packages = with pkgs;
     emacs
     gparted
     # others
+    aspell
     aspellDicts.en
     aspellDicts.pt_BR
     texlive.combined.scheme-minimal

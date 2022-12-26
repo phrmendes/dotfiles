@@ -498,9 +498,9 @@ packages = with pkgs;
     lorri
     ranger
     stow
-    ispell
     exa
     sqlite
+    hugo
     # programming tools
     micromamba
     python3Full
@@ -524,6 +524,7 @@ packages = with pkgs;
     gparted
     ventoy-bin-full
     # others
+    aspell
     aspellDicts.en
     aspellDicts.pt_BR
     texlive.combined.scheme-minimal

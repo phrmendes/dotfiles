@@ -44,9 +44,9 @@ in {
           lorri
           ranger
           stow
-          ispell
           exa
           sqlite
+          hugo
           # programming tools
           micromamba
           python3Full
@@ -70,6 +70,7 @@ in {
           gparted
           ventoy-bin-full
           # others
+          aspell
           aspellDicts.en
           aspellDicts.pt_BR
           texlive.combined.scheme-minimal

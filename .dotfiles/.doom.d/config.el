@@ -168,6 +168,10 @@
 
 ;; ========= SPELLCHECK =========
 
+(setq flyspell-issue-message-flag nil
+      ispell-local-dictionary "en_US"
+      ispell-program-name "~/.nix-profile/bin/aspell")
+
 (after! guess-language
   (set-input-method "TeX")
   (setq guess-language-langcodes
@@ -180,10 +184,7 @@
           (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))))
 
 (add-hook 'text-mode-hook 'guess-language-mode)
-(remove-hook 'yaml-mode-hook #'prog-mode)
-(remove-hook 'json-mode-hook #'prog-mode)
 (global-set-key [f5] 'guess-language)
-
 ;; ========= EVIL SNIPE =========
 
 (evil-snipe-mode +1)

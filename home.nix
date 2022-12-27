@@ -9,12 +9,11 @@ in {
       homeDirectory = "/home/${user}";
       packages = with pkgs;
         let
-          my-r-packages = rWrapper.override{
+          r-packages = rWrapper.override{
             packages = with rPackages;
               [
                 tidyverse
                 data_table
-                pbapply
                 tinytex
                 quarto
                 styler

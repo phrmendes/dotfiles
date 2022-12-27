@@ -275,7 +275,6 @@ services = {
       enable = true;
       excludePackages = with pkgs.libsForQt5; [
         elisa
-        okular
         oxygen
         khelpcenter
         konsole
@@ -361,7 +360,6 @@ nixpkgs.config = {
 environment = {
   systemPackages = with pkgs; [
     zip
-    feh
     curl
     unzip
     unrar
@@ -371,7 +369,6 @@ environment = {
     vim
     appimage-run
     nordic
-    libsForQt5.bismuth
     home-manager
   ];
 };
@@ -475,12 +472,11 @@ homeDirectory = "/home/${user}";
 #+begin_src nix :noweb yes
 packages = with pkgs;
   let
-    my-r-packages = rWrapper.override{
+    r-packages = rWrapper.override{
       packages = with rPackages;
         [
           tidyverse
           data_table
-          pbapply
           tinytex
           quarto
           styler

@@ -132,7 +132,6 @@ in {
       curl
       unzip
       unrar
-      tree
       git
       gzip
       vim

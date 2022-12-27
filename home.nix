@@ -68,7 +68,14 @@ in {
           cmdstan
           kooha
           emacs
-          gparted
+          ventoy-bin-full
+          haruna
+          libsForQt5.bismuth
+          libsForQt5.ktorrent
+          libsForQt5.filelight
+          libsForQt5.kpmcore
+          libsForQt5.nota
+          libsForQt5.syntax-highlighting
           # others
           aspell
           aspellDicts.en

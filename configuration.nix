@@ -131,6 +131,7 @@ in {
       git
       gzip
       vim
+      gcc
       appimage-run
       nordic
       home-manager

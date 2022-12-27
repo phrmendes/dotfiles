@@ -273,7 +273,6 @@ services = {
       enable = true;
       excludePackages = with pkgs.libsForQt5; [
         elisa
-        okular
         oxygen
         khelpcenter
         konsole
@@ -350,7 +349,6 @@ nixpkgs.config = {
 environment = {
   systemPackages = with pkgs; [
     zip
-    feh
     curl
     unzip
     unrar
@@ -359,7 +357,6 @@ environment = {
     vim
     appimage-run
     nordic
-    libsForQt5.bismuth
     home-manager
   ];
 };
@@ -463,22 +460,20 @@ homeDirectory = "/home/${user}";
 #+begin_src nix :noweb yes
 packages = with pkgs;
   let
-    my-r-packages = rWrapper.override{
-      packages = with rPackages;
-        [
-          tidyverse
-          data_table
-          pbapply
-          tinytex
-          quarto
-          styler
-          lintr
-          zip
-          fs
-          janitor
-          zoo
-          curl
-        ];
+    r-packages = rWrapper.override{
+      packages = with rPackages; [
+        tidyverse
+        data_table
+        tinytex
+        quarto
+        styler
+        lintr
+        zip
+        fs
+        janitor
+        zoo
+        curl
+      ];
     };
   in [
     # terminal
@@ -507,7 +502,7 @@ packages = with pkgs;
     cargo
     go
     nodejs
-    my-r-packages
+    r-packages
     # apps
     firefox
     chromium
@@ -515,14 +510,18 @@ packages = with pkgs;
     pcloud
     zotero
     spotify
-    fragments
     podman
-    zathura
     cmdstan
-    kooha
+    peek
     emacs
-    gparted
     ventoy-bin-full
+    haruna
+    libsForQt5.bismuth
+    libsForQt5.ktorrent
+    libsForQt5.filelight
+    libsForQt5.kpmcore
+    libsForQt5.nota
+    libsForQt5.syntax-highlighting
     # others
     aspell
     aspellDicts.en

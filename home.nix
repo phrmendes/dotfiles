@@ -9,22 +9,20 @@ in {
       homeDirectory = "/home/${user}";
       packages = with pkgs;
         let
-          my-r-packages = rWrapper.override{
-            packages = with rPackages;
-              [
-                tidyverse
-                data_table
-                pbapply
-                tinytex
-                quarto
-                styler
-                lintr
-                zip
-                fs
-                janitor
-                zoo
-                curl
-              ];
+          r-packages = rWrapper.override{
+            packages = with rPackages; [
+              tidyverse
+              data_table
+              tinytex
+              quarto
+              styler
+              lintr
+              zip
+              fs
+              janitor
+              zoo
+              curl
+            ];
           };
         in [
           # terminal
@@ -53,7 +51,7 @@ in {
           cargo
           go
           nodejs
-          my-r-packages
+          r-packages
           # apps
           firefox
           chromium
@@ -61,14 +59,18 @@ in {
           pcloud
           zotero
           spotify
-          fragments
           podman
-          zathura
           cmdstan
-          kooha
+          peek
           emacs
-          gparted
           ventoy-bin-full
+          haruna
+          libsForQt5.bismuth
+          libsForQt5.ktorrent
+          libsForQt5.filelight
+          libsForQt5.kpmcore
+          libsForQt5.nota
+          libsForQt5.syntax-highlighting
           # others
           aspell
           aspellDicts.en

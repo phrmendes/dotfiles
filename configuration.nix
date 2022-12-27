@@ -69,7 +69,6 @@ in {
         enable = true;
         excludePackages = with pkgs.libsForQt5; [
           elisa
-          okular
           oxygen
           khelpcenter
           konsole
@@ -126,7 +125,6 @@ in {
   environment = {
     systemPackages = with pkgs; [
       zip
-      feh
       curl
       unzip
       unrar
@@ -135,7 +133,6 @@ in {
       vim
       appimage-run
       nordic
-      libsForQt5.bismuth
       home-manager
     ];
   };

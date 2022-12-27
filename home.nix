@@ -53,7 +53,7 @@ in {
           cargo
           go
           nodejs
-          my-r-packages
+          r-packages
           # apps
           firefox
           chromium

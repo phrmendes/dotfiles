@@ -66,10 +66,10 @@ in {
           podman
           zathura
           cmdstan
-          kooha
           emacs
           ventoy-bin-full
           haruna
+          peek
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight

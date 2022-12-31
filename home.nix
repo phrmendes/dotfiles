@@ -71,6 +71,7 @@ in {
           libsForQt5.kpmcore
           libsForQt5.nota
           libsForQt5.syntax-highlighting
+          libsForQt5.ark
           # others
           aspell
           aspellDicts.en

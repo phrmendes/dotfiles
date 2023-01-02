@@ -50,7 +50,6 @@ in {
     taps = [
       "homebrew/core"
       "homebrew/cask"
-      "homebrew/formulae"
     ];
     casks = [
       "mpv"

@@ -1,8 +1,8 @@
 # mod keys
 mod1:
-  - command
+  - option
 mod2:
-  - command
+  - option
   - shift
 
 # layouts
@@ -32,7 +32,7 @@ mouse-resizes-windows: true
 # keys
 cycle-layout:
   mod: mod1
-  key: \
+  key: c
 shrink-main:
   mod: mod2
   key: h

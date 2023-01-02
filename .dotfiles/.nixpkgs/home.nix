@@ -19,7 +19,6 @@ in {
           stow
           exa
           python3Full
-          micromamba
           cargo
           go
           nodejs

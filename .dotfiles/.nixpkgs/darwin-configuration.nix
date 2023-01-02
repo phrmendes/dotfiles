@@ -57,7 +57,7 @@ in {
       "maccy"
       "amethyst"
       "caffeine"
-      "warp"
+      "iterm2"
     ];
   };
   programs.zsh = {

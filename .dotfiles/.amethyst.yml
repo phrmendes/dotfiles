@@ -1,0 +1,53 @@
+# mod keys
+mod1:
+  - option
+mod2:
+  - option
+  - shift
+
+# layouts
+enables-layout-hud: true
+layouts:
+  - bsp
+  - fullscreen
+  - column
+
+# windows
+window-margins: true
+window-margin-size: 15
+float-small-windows: true
+follow-space-thrown-windows: false
+
+# padding
+screen-padding-left: 20
+screen-padding-bottom: 20
+screen-padding-right: 20
+screen-padding-top: 20
+
+# mouse
+mouse-follows-focus: false
+focus-follows-mouse: true
+mouse-resizes-windows: true
+
+# keys
+cycle-layout:
+  mod: mod1
+  key: \
+shrink-main:
+  mod: mod2
+  key: h
+expand-main:
+  mod: mod2
+  key: l
+focus-cw:
+  mod: mod1
+  key: j
+focus-ccw:
+  mod: mod1
+  key: k
+relaunch-amethyst:
+  mod: mod2
+  key: x
+toggle-tiling:
+  mod: mod2
+  key: d

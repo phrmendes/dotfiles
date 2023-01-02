@@ -34,7 +34,7 @@ in {
       la = "${pkgs.exa}/bin/exa --icons -a";
       lt = "${pkgs.exa}/bin/exa --icons --tree";
       lla = "${pkgs.exa}/bin/exa --icons -la";
-      stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+      stow_dotfiles = "${pkgs.stow} --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
     };
   };
   fonts = {
@@ -51,7 +51,7 @@ in {
       "slack"
       "maccy"
       "amethyst"
-      "iterm2"
+      "caffeine"
     ];
   };
   programs.zsh = {
@@ -69,13 +69,18 @@ in {
       dock = {
         autohide = true;
         orientation = "left";
-        showhidden = true;
+        showhidden = false;
+        static-only = true;
+        tilesize = 50;
         mru-spaces = false;
         show-recents = false;
       };
       finder = {
         AppleShowAllExtensions = true;
+        AppleShowAllFiles = false;
+        CreateDesktop = false;
         QuitMenuItem = true;
+        ShowStatusBar = true;
         FXEnableExtensionChangeWarning = false;
       };
       trackpad = {
@@ -84,8 +89,14 @@ in {
         TrackpadThreeFingerDrag = true;
       };
       NSGlobalDomain = {
+        AppleEnableSwipeNavigateWithScrolls = true;
+        AppleInterfaceStyleSwitchesAutomatically = true;
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
         AppleKeyboardUIMode = 3;
         ApplePressAndHoldEnabled = true;
+        AppleICUForce24HourTime = true;
+        AppleTemperatureUnit = "Celsius";
         InitialKeyRepeat = 10;
         KeyRepeat = 1;
         NSAutomaticCapitalizationEnabled = false;
@@ -95,7 +106,7 @@ in {
         NSAutomaticSpellingCorrectionEnabled = false;
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
-        _HIHideMenuBar = false;
+        _HIHideMenuBar = true;
       };
     };
   };

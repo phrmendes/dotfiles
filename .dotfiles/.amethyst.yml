@@ -14,7 +14,7 @@ layouts:
 
 # windows
 window-margins: true
-window-margin-size: 15
+window-margin-size: 5
 float-small-windows: true
 follow-space-thrown-windows: false
 

@@ -31,11 +31,11 @@ mouse-resizes-windows: true
 
 # keys
 relaunch-amethyst:
-    mod: mod2
-    key: z
+  mod: mod2
+  key: z
 cycle-layout:
-    mod: mod1
-    key: y
+  mod: mod1
+  key: y
 focus-cw:
   mod: mod1
   key: j

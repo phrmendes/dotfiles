@@ -1,8 +1,8 @@
 # mod keys
 mod1:
-  - option
+  - command
 mod2:
-  - option
+  - command
   - shift
 
 # layouts

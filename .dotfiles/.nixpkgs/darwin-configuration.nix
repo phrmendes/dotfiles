@@ -34,7 +34,7 @@ in {
       la = "${pkgs.exa}/bin/exa --icons -a";
       lt = "${pkgs.exa}/bin/exa --icons --tree";
       lla = "${pkgs.exa}/bin/exa --icons -la";
-      stow_dotfiles = "${pkgs.stow} --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+      stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
     };
   };
   fonts = {

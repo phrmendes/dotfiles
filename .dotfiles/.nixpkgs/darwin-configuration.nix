@@ -95,7 +95,6 @@ in {
         AppleMetricUnits = 1;
         AppleKeyboardUIMode = 3;
         ApplePressAndHoldEnabled = true;
-        AppleICUForce24HourTime = true;
         AppleTemperatureUnit = "Celsius";
         InitialKeyRepeat = 10;
         KeyRepeat = 1;

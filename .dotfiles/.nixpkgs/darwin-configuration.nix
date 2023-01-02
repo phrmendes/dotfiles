@@ -57,7 +57,7 @@ in {
       "maccy"
       "amethyst"
       "caffeine"
-      "alacritty"
+      "warp"
     ];
   };
   programs.zsh = {

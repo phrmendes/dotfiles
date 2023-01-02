@@ -14,15 +14,15 @@ layouts:
 
 # windows
 window-margins: true
-window-margin-size: 5
+window-margin-size: 10
 float-small-windows: true
 follow-space-thrown-windows: false
 
 # padding
-screen-padding-left: 10
-screen-padding-bottom: 10
-screen-padding-right: 10
-screen-padding-top: 10
+screen-padding-left: 5
+screen-padding-bottom: 5
+screen-padding-right: 5
+screen-padding-top: 5
 
 # mouse
 mouse-follows-focus: false

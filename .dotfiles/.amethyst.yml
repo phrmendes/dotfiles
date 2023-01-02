@@ -1,7 +1,8 @@
+# mod keys
 mod1:
   - option
 mod2:
-  - command
+  - option
   - shift
 
 # layouts
@@ -29,24 +30,34 @@ focus-follows-mouse: false
 mouse-resizes-windows: true
 
 # keys
+relaunch-amethyst:
+    mod: mod2
+    key: z
 cycle-layout:
-  mod: mod2
-  key: l
-shrink-main:
-  mod: mod2
-  key: h
-expand-main:
-  mod: mod2
-  key: l
+    mod: mod1
+    key: y
 focus-cw:
   mod: mod1
   key: j
 focus-ccw:
   mod: mod1
   key: k
-relaunch-amethyst:
+shrink-main:
+  mod: mod1
+  key: h
+expand-main:
+  mod: mod1
+  key: l
+focus-main:
+  mod: mod1
+  key: enter
+swap-cw:
   mod: mod2
-  key: x
-toggle-tiling:
+  key: h
+swap-ccw:
   mod: mod2
-  key: d
+  key: l
+toggle-float:
+  mod: mod1
+  key: f
+

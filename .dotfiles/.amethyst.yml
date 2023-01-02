@@ -19,10 +19,10 @@ float-small-windows: true
 follow-space-thrown-windows: false
 
 # padding
-screen-padding-left: 20
-screen-padding-bottom: 20
-screen-padding-right: 20
-screen-padding-top: 20
+screen-padding-left: 5
+screen-padding-bottom: 5
+screen-padding-right: 5
+screen-padding-top: 5
 
 # mouse
 mouse-follows-focus: false

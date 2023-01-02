@@ -1,5 +1,4 @@
-# mod keys
-mod1:
+
   - option
 mod2:
   - option
@@ -31,7 +30,7 @@ mouse-resizes-windows: true
 
 # keys
 cycle-layout:
-  mod: mod1
+  mod: mod2
   key: c
 shrink-main:
   mod: mod2

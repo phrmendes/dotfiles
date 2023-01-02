@@ -43,15 +43,22 @@ in {
    };
   homebrew = {
     enable = true;
-    onActivation.cleanup = "uninstall";
-    onActivation.upgrade = true;
-    taps = [ "homebrew/cask" ];
+    onActivation = {
+      cleanup = "uninstall";
+      upgrade = true;
+    };
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+      "homebrew/formulae"
+    ];
     casks = [
       "mpv"
       "slack"
       "maccy"
       "amethyst"
       "caffeine"
+      "alacritty"
     ];
   };
   programs.zsh = {
@@ -105,7 +112,6 @@ in {
         NSAutomaticSpellingCorrectionEnabled = false;
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
-        _HIHideMenuBar = true;
       };
     };
   };

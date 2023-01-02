@@ -31,7 +31,7 @@ mouse-resizes-windows: true
 # keys
 cycle-layout:
   mod: mod2
-  key: c
+  key: l
 shrink-main:
   mod: mod2
   key: h

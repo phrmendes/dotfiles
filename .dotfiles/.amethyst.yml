@@ -26,7 +26,7 @@ screen-padding-top: 5
 
 # mouse
 mouse-follows-focus: false
-focus-follows-mouse: true
+focus-follows-mouse: false
 mouse-resizes-windows: true
 
 # keys

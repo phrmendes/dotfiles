@@ -1,9 +1,9 @@
 # mod keys
 mod1:
-  - command
+  - control
   - shift
 mod2:
-  - command
+  - control
   - option
   - shift
 

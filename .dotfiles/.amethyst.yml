@@ -1,16 +1,20 @@
 # mod keys
 mod1:
-  - option
+  - command
+  - shift
 mod2:
+  - command
   - option
   - shift
 
 # layouts
 enables-layout-hud: true
 layouts:
-  - bsp
-  - fullscreen
+  - tall
+  - wide
   - column
+  - fullscreen
+  - bsp
 
 # windows
 window-margins: true

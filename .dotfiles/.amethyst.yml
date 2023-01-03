@@ -1,10 +1,10 @@
 # mod keys
 mod1:
-  - control
+  - option
   - shift
 mod2:
-  - control
   - option
+  - control
   - shift
 
 # layouts

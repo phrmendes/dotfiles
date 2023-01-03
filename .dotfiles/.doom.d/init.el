@@ -52,12 +52,11 @@
        vc        ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell
+       vterm
 
        :checkers
-       (syntax +childframe) ; tasing you for every semicolon you forget
-       (spell +flyspell)    ; tasing you for misspelling mispelling
-       ;;grammar            ; tasing grammar mistake every you make
+       (syntax +childframe)                      ; tasing you for every semicolon you forget
+       (:if (executable-find "aspell") spell)    ; tasing you for misspelling mispelling
 
        :tools
        ansible         ; DevOps automation tool

@@ -84,11 +84,6 @@
 (use-package! visual-fill-column
   :hook (org-mode . phrm/org-mode-visual-fill))
 
-;; Zotero connection ---
-
-(use-package! zotxt
-  :hook (org-mode . org-zotxt-mode))
-
 ;; Slides ---
 
 (defun phrm/presentation-setup ()

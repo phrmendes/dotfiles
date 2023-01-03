@@ -3,8 +3,8 @@ mod1:
   - option
   - shift
 mod2:
-  - option
   - control
+  - option
   - shift
 
 # layouts
@@ -34,12 +34,15 @@ focus-follows-mouse: false
 mouse-resizes-windows: true
 
 # keys
+reevaluate-windows:
+  mod: mod1
+  key: z
 relaunch-amethyst:
   mod: mod2
   key: z
 cycle-layout:
   mod: mod1
-  key: y
+  key: space
 focus-cw:
   mod: mod1
   key: j
@@ -64,4 +67,9 @@ swap-ccw:
 toggle-float:
   mod: mod1
   key: f
-
+throw-space-right:
+  mod: mod2
+  key: right
+throw-space-left:
+  mod: mod2
+  key: right

@@ -73,3 +73,18 @@ throw-space-right:
 throw-space-left:
   mod: mod2
   key: right
+throw-screen-1:
+  mod: mod2
+  key: 1
+throw-screen-2:
+  mod: mod2
+  key: 2
+throw-screen-3:
+  mod: mod2
+  key: 3
+throw-screen-4:
+  mod: mod2
+  key: 4
+throw-screen-5:
+  mod: mod2
+  key: 5

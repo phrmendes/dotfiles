@@ -25,13 +25,6 @@
 (setq display-line-numbers-type 'relative)
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 
-;; ========= DEFAULT PDF READER =========
-
-(use-package! openwith
-  :init (add-hook 'after-init-hook 'openwith-mode)
-  :config
-  (setq openwith-associations '(("\\.pdf\\'" "zathura" (file)))))
-
 ;; ========= TANGLE CONFIG FILES =========
 
 (global-set-key [f6] 'org-babel-tangle)

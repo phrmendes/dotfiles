@@ -233,8 +233,6 @@ lvim.plugins = {
       require("zen-mode").setup()
     end
   },
-  -- literate
-  { "zyedidia/literate.vim" },
   -- ranger
   {
     "kevinhwang91/rnvimr",
@@ -243,24 +241,6 @@ lvim.plugins = {
       vim.g.rnvimr_draw_border = 1
       vim.g.rnvimr_pick_enable = 1
       vim.g.rnvimr_bw_enable = 1
-    end
-  },
-  -- smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require("neoscroll").setup({
-        mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
-        hide_cursor = true,
-        stop_eof = true,
-        use_local_scrolloff = false,
-        respect_scrolloff = false,
-        cursor_scrolls_alone = true,
-        easing_function = nil,
-        pre_hook = nil,
-        post_hook = nil
-      })
     end
   },
   -- personal database

@@ -77,7 +77,7 @@
 
        :lang
        emacs-lisp
-       nix
+       (nix +lsp)
        (ess +stan)
        (go +lsp)
        (json +lsp)

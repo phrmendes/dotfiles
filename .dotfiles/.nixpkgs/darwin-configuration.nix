@@ -20,7 +20,7 @@ in {
   };
   environment = {
     pathsToLink = [ "/share/zsh" ];
-    systemPackages = pkgs.home-manager;
+    systemPackages = [ pkgs.home-manager ];
     shellAliases = {
       mkdir = "mkdir -p";
       lv = "lvim";

@@ -76,7 +76,7 @@ in {
           aspell
           aspellDicts.en
           aspellDicts.pt_BR
-          texlive.combined.scheme-minimal
+          texlive.combined.scheme-full
         ];
       stateVersion = "22.11";
       sessionVariables = {

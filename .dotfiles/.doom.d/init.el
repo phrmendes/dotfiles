@@ -9,8 +9,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (doom! :completion
-       (company +childframe) ; the ultimate code completion backend
-       (helm +fuzzy +icons)  ; the search engine of the future
+       (company +childframe)  ; the ultimate code completion backend
+       (helm +fuzzy +icons)   ; the search engine of the future
 
        :ui
        doom                  ; what makes DOOM look the way it does
@@ -19,7 +19,7 @@
        emoji                 ; 🙂
        hl-todo               ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        indent-guides         ; highlighted indent columns
-       ligatures             ; ligatures and symbols to make your code pretty again
+       (ligatures +extra)    ; ligatures and symbols to make your code pretty again
        minimap               ; show a map of the code on the side
        modeline              ; snazzy, Atom-inspired modeline, plus API
        nav-flash             ; blink cursor line after big motions
@@ -36,14 +36,14 @@
        deft                  ; major mode for managing notes written in plain text formats
 
        :editor
-       (evil +everywhere) ; come to the dark side, we have cookies
-       file-templates     ; auto-snippets for empty files
-       fold               ; (nigh) universal code folding
-       (format +onsave)   ; automated prettiness
-       multiple-cursors   ; editing in many places at once
-       rotate-text        ; cycle region at point between text candidates
-       snippets           ; my elves. They type so I don't have to
-       ;;word-wrap        ; soft wrapping with language-aware indent
+       (evil +everywhere)  ; come to the dark side, we have cookies
+       file-templates      ; auto-snippets for empty files
+       fold                ; (nigh) universal code folding
+       (format +onsave)    ; automated prettiness
+       multiple-cursors    ; editing in many places at once
+       rotate-text         ; cycle region at point between text candidates
+       snippets            ; my elves. They type so I don't have to
+       word-wrap           ; soft wrapping with language-aware indent
 
        :emacs
        dired     ; making dired pretty [functional]
@@ -55,25 +55,25 @@
        eshell
 
        :checkers
-       (syntax +childframe)                      ; tasing you for every semicolon you forget
-       (:if (executable-find "aspell") spell)    ; tasing you for misspelling mispelling
+       (syntax +childframe)                    ; tasing you for every semicolon you forget
+       (:if (executable-find "aspell") spell)  ; tasing you for misspelling mispelling
 
        :tools
-       ansible         ; DevOps automation tool
-       biblio          ; writes a PhD for you (citation needed)
-       (debugger +lsp) ; FIXME stepping through code, to help you add bugs
-       (docker +lsp)   ; container management tool
-       ;;editorconfig  ; let someone else argue about tabs vs spaces
-       ein             ; tame Jupyter notebooks with emacs
-       (eval +overlay) ; run code, run (also, repls)
-       lookup          ; navigate your code and its documentation
-       (lsp +peek)     ; M-x vscode
-       (magit +forge)  ; a git porcelain for Emacs
-       pdf             ; pdf enhancements
-       terraform       ; infrastructure as code
-       tree-sitter     ; syntax and parsing, sitting in a tree...
-       direnv          ; save (or destroy) the environment at your leisure
-       (eval +overlay) ; run code, run (also, repls)
+       ansible            ; DevOps automation tool
+       biblio             ; writes a PhD for you (citation needed)
+       (debugger +lsp)    ; FIXME stepping through code, to help you add bugs
+       (docker +lsp)      ; container management tool
+       editorconfig       ; let someone else argue about tabs vs spaces
+       ein                ; tame Jupyter notebooks with emacs
+       (eval +overlay)    ; run code, run (also, repls)
+       (lookup +dicsets)  ; navigate your code and its documentation
+       (lsp +peek)        ; M-x vscode
+       (magit +forge)     ; a git porcelain for Emacs
+       pdf                ; pdf enhancements
+       terraform          ; infrastructure as code
+       tree-sitter        ; syntax and parsing, sitting in a tree...
+       direnv             ; save (or destroy) the environment at your leisure
+       (eval +overlay)    ; run code, run (also, repls)
 
        :lang
        emacs-lisp
@@ -91,5 +91,4 @@
        (lua +lsp)
 
        :config
-       ;;literate
        (default +bindings +smartparens))

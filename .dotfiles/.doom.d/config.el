@@ -189,25 +189,9 @@
         ;; scroll buffer to bottom
         comint-scroll-to-bottom-on-output t))
 
-(global-set-key [f1] 'ess-eval-line)
-(global-set-key [f2] 'ess-eval-region)
-(global-set-key [f3] 'ess-eval-region-and-go)
-(global-set-key [f4] 'ess-eval-line-and-step)
-
-;; Pipe snippet ---
-
-(defun gkh-r-add-pipe ()
-  (interactive)
-  (end-of-line)
-  (unless (looking-back "|>" nil)
-    (just-one-space 1)
-    (insert "|>"))
-  (newline-and-indent))
-
 ;; Quarto ---
 
-(require 'quarto-mode)
-(add-hook 'poly-gfm+r-mode 'quarto-mode #'company-mode)
+(require 'quoly-gfm+r-mode 'quarto-mode #'company-mode)
 (add-to-list 'auto-mode-alist '("\\.[q]md\\'" . poly-gfm+r-mode))
 (add-to-list 'company-backends 'company-bibtex)
 (after! poly-gfm+r-mode

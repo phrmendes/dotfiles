@@ -191,10 +191,11 @@
 
 ;; Quarto ---
 
-(require 'quoly-gfm+r-mode 'quarto-mode #'company-mode)
-(add-to-list 'auto-mode-alist '("\\.[q]md\\'" . poly-gfm+r-mode))
+(use-package! quarto-mode
+  :mode (("\\.[q]md" . poly-quarto-mode)))
+
 (add-to-list 'company-backends 'company-bibtex)
-(after! poly-gfm+r-mode
+(after! poly-quarto-mode
   (setq markdown-code-block-braces t))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an

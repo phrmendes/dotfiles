@@ -133,7 +133,7 @@ stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
   boot.extraModulePackages = [ ];
   fileSystems."/" ={
     device = "/dev/disk/by-uuid/0b248b0c-d9bf-438c-84f0-1431bcd87d9c";
@@ -199,7 +199,6 @@ boot = {
   };
   supportedFilesystems = [ "ntfs" ];
   kernelPackages = pkgs.linuxPackages_latest;
-};
 #+end_src
 
 *** Networking
@@ -361,6 +360,7 @@ environment = {
   systemPackages = with pkgs; [
     zip
     curl
+    wget
     unzip
     unrar
     git
@@ -369,6 +369,7 @@ environment = {
     gcc
     appimage-run
     nordic
+    droidcam
     home-manager
   ];
 };
@@ -470,25 +471,7 @@ homeDirectory = "/home/${user}";
 **** Packages
 
 #+begin_src nix :noweb yes
-packages = with pkgs;
-  let
-    r-packages = rWrapper.override{
-      packages = with rPackages;
-        [
-          tidyverse
-          data_table
-          tinytex
-          quarto
-          styler
-          lintr
-          zip
-          fs
-          janitor
-          zoo
-          curl
-        ];
-    };
-  in [
+packages = with pkgs; [
     # terminal
     btop
     pandoc
@@ -511,12 +494,11 @@ packages = with pkgs;
     sqlite
     hugo
     # programming tools
-    micromamba
+    poetry
     python3Full
     cargo
     go
     nodejs
-    r-packages
     # apps
     firefox
     chromium
@@ -533,6 +515,7 @@ packages = with pkgs;
     ventoy-bin-full
     haruna
     peek
+    droidcam
     libsForQt5.bismuth
     libsForQt5.ktorrent
     libsForQt5.filelight

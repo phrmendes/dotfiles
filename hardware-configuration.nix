@@ -4,7 +4,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
   boot.extraModulePackages = [ ];
   fileSystems."/" ={
     device = "/dev/disk/by-uuid/0b248b0c-d9bf-438c-84f0-1431bcd87d9c";

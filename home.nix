@@ -7,25 +7,7 @@ in {
     home = {
       username = "${user}";
       homeDirectory = "/home/${user}";
-      packages = with pkgs;
-        let
-          r-packages = rWrapper.override{
-            packages = with rPackages;
-              [
-                tidyverse
-                data_table
-                tinytex
-                quarto
-                styler
-                lintr
-                zip
-                fs
-                janitor
-                zoo
-                curl
-              ];
-          };
-        in [
+      packages = with pkgs; [
           # terminal
           btop
           pandoc
@@ -48,12 +30,11 @@ in {
           sqlite
           hugo
           # programming tools
-          micromamba
+          poetry
           python3Full
           cargo
           go
           nodejs
-          r-packages
           # apps
           firefox
           chromium
@@ -70,6 +51,7 @@ in {
           ventoy-bin-full
           haruna
           peek
+          droidcam
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight

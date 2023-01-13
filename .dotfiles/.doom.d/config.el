@@ -25,24 +25,34 @@
 (setq display-line-numbers-type 'relative)
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 
-;; ========= TANGLE CONFIG FILES =========
-
-(global-set-key [f6] 'org-babel-tangle)
-
 ;; ========= COMPANY MODE =========
 
 (use-package! company
   :after lsp-mode
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+              ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+        ("<tab>" . company-indent-or-complete-common))
+  :config
+  (setq company-global-modes '(not org-mode))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
 (use-package! company-box
+  :after company
   :hook (company-mode . company-box-mode))
 
-(setq company-global-modes '(not org-mode))
+;; ========= HELPFUL =========
+
+(use-package! helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :bind
+  ([remap describe-function] . helpful-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-key] . helpful-key))
 
 ;; ========= HELM =========
 
@@ -60,6 +70,8 @@
 ;; ========= ORG MODE =========
 
 (after! org
+  (org-latex-preview)
+  (add-hook 'org-mode-hook 'evil-tex-mode #'org-cdlatex-mode)
   (setq org-directory "~/pCloudDrive/notes/"
         org-agenda-files
         '("~/pCloudDrive/notes/todo.org"
@@ -68,13 +80,10 @@
         org-ellipsis " ▼ "
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
         org-src-fontify-natively t
-        org-display-inline-images t))
+        org-display-inline-images t
+        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")))
 
-;; Org superstar ---
-
-(setq org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
-
-;; Center Org buffers ---
+;; center org buffers ---
 
 (defun phrm/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
@@ -84,7 +93,7 @@
 (use-package! visual-fill-column
   :hook (org-mode . phrm/org-mode-visual-fill))
 
-;; Slides ---
+;; slides ---
 
 (defun phrm/presentation-setup ()
   ;; hide the mode line
@@ -116,39 +125,43 @@
   (org-tree-slide-breadcrumbs " > ")
   (org-image-actual-width nil))
 
-;; Org-Babel ---
+;; org-babel ---
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
       (python . t)
-      (R . t)
       (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
-;; Org templates ---
+;; tangle config files ---
+
+(global-set-key [f6] 'org-babel-tangle)
+
+;; org templates ---
 
 (with-eval-after-load 'org
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("rl" . "src R"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
-  (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
+  (add-to-list 'org-structure-template-alist '("tx" . "src latex"))
   (add-to-list 'org-structure-template-alist '("go" . "src go")))
 
 ;; ========= DEFT =========
 
-(after! deft
-  (setq deft-extensions '("txt" "org" "md")
-        deft-directory "~/pCloudDrive/notes/"
-        deft-recursive t))
+(use-package! deft
+  :bind ("<f8>" . deft)
+  :commands (deft)
+  :config (setq deft-directory "~/pCloudDrive/notes"
+                deft-extensions '("md" "org")))
 
 ;; ========= PROJECTILE =========
 
-(setq projectile-project-search-path '("~/Projects"))
+(after! projectile
+  (setq projectile-project-search-path '("~/Projects")))
 
 ;; ========= DIRENV =========
 
@@ -176,9 +189,10 @@
 
 ;; ========= EVIL SNIPE =========
 
-(evil-snipe-mode +1)
-(evil-snipe-override-mode +1)
-(setq evil-snipe-scope 'buffer)
+(after! evil
+  (evil-snipe-mode +1)
+  (evil-snipe-override-mode +1)
+  (setq evil-snipe-scope 'buffer))
 
 ;; ========= ESS-R =========
 
@@ -189,43 +203,15 @@
         ;; scroll buffer to bottom
         comint-scroll-to-bottom-on-output t))
 
-;; Quarto ---
+;; ========= QUARTO =========
 
 (use-package! quarto-mode
   :mode (("\\.[q]md" . poly-quarto-mode)))
 
-(add-to-list 'company-backends 'company-bibtex)
 (after! poly-quarto-mode
   (setq markdown-code-block-braces t))
 
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
+;; ========= ZOTERO INTEGRATION =========
+
+(use-package! zotxt
+  :hook (org-mode . org-zotxt-mode))

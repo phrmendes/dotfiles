@@ -206,6 +206,7 @@
 ;; ========= QUARTO =========
 
 (use-package! quarto-mode
+  :hook (quarto-mode 'evil-tex-mode)
   :mode (("\\.[q]md" . poly-quarto-mode)))
 
 (after! poly-quarto-mode

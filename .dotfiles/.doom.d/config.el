@@ -81,7 +81,8 @@
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
         org-src-fontify-natively t
         org-display-inline-images t
-        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")))
+        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
+        org-latex-pdf-process '("tectonic %f"))
 
 ;; center org buffers ---
 

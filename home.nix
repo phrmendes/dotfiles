@@ -19,7 +19,6 @@ in {
           tealdeer
           shellcheck
           ncdu
-          unstable.quarto
           niv
           lorri
           ranger
@@ -28,6 +27,8 @@ in {
           exa
           sqlite
           hugo
+          unstable.quarto
+          unstable.tectonic
           # programming tools
           poetry
           python3Full

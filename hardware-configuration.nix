@@ -5,8 +5,8 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
-  boot.extraModulePackages = [ ];
-  fileSystems."/" ={
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
+  fileSystems."/" = {
     device = "/dev/disk/by-uuid/0b248b0c-d9bf-438c-84f0-1431bcd87d9c";
     fsType = "ext4";
   };

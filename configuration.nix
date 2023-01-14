@@ -18,6 +18,7 @@ in {
     };
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
+  };
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
@@ -138,7 +139,6 @@ in {
       gcc
       appimage-run
       nordic
-      droidcam
       home-manager
     ];
   };

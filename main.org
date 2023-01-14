@@ -199,6 +199,7 @@ boot = {
   };
   supportedFilesystems = [ "ntfs" ];
   kernelPackages = pkgs.linuxPackages_latest;
+};
 #+end_src
 
 *** Networking
@@ -369,7 +370,6 @@ environment = {
     gcc
     appimage-run
     nordic
-    droidcam
     home-manager
   ];
 };
@@ -527,7 +527,6 @@ packages = with pkgs; [
     aspell
     aspellDicts.en
     aspellDicts.pt_BR
-    texlive.combined.scheme-full
   ];
 stateVersion = "22.11";
 sessionVariables = {

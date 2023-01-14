@@ -19,8 +19,7 @@ in {
           tealdeer
           shellcheck
           ncdu
-          quarto
-          micromamba
+          unstable.quarto
           niv
           lorri
           ranger

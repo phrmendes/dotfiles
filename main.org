@@ -477,7 +477,6 @@ packages = with pkgs; [
     tealdeer
     shellcheck
     ncdu
-    unstable.quarto
     micromamba
     niv
     lorri
@@ -486,6 +485,8 @@ packages = with pkgs; [
     exa
     sqlite
     hugo
+    unstable.quarto
+    unstable.tectonic
     # programming tools
     poetry
     python3Full

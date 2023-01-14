@@ -51,7 +51,6 @@ in {
           ventoy-bin-full
           haruna
           peek
-          droidcam
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight

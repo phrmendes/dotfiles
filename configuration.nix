@@ -2,6 +2,7 @@
 let
   user = "phrmendes";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+  unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in {
   imports = [
       (import "${home-manager}/nixos")
@@ -121,6 +122,11 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
   };
   environment = {
     systemPackages = with pkgs; [

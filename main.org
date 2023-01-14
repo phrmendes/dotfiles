@@ -168,6 +168,7 @@ in {
 #+begin_src nix
 user = "phrmendes";
 home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 #+end_src
 
 ** Parameters
@@ -340,11 +341,16 @@ users.users.${user} = {
 #+end_src
 
 *** System packages
-    
+
 #+begin_src nix
 nixpkgs.config = {
   allowUnfree = true;
   allowBroken = true;
+  packageOverrides = pkgs: {
+    unstable = import unstableTarball {
+      config = config.nixpkgs.config;
+    };
+  };
 };
 environment = {
   systemPackages = with pkgs; [
@@ -471,7 +477,7 @@ packages = with pkgs; [
     tealdeer
     shellcheck
     ncdu
-    quarto
+    unstable.quarto
     micromamba
     niv
     lorri

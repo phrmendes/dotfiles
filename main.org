@@ -459,24 +459,7 @@ homeDirectory = "/home/${user}";
 **** Packages
 
 #+begin_src nix :noweb yes
-packages = with pkgs;
-  let
-    r-packages = rWrapper.override{
-      packages = with rPackages; [
-        tidyverse
-        data_table
-        tinytex
-        quarto
-        styler
-        lintr
-        zip
-        fs
-        janitor
-        zoo
-        curl
-      ];
-    };
-  in [
+packages = with pkgs; [
     # terminal
     btop
     pandoc
@@ -498,12 +481,11 @@ packages = with pkgs;
     sqlite
     hugo
     # programming tools
-    micromamba
+    poetry
     python3Full
     cargo
     go
     nodejs
-    r-packages
     # apps
     firefox
     chromium
@@ -528,7 +510,6 @@ packages = with pkgs;
     aspell
     aspellDicts.en
     aspellDicts.pt_BR
-    texlive.combined.scheme-full
   ];
 stateVersion = "22.11";
 sessionVariables = {

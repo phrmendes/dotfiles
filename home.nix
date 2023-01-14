@@ -7,24 +7,7 @@ in {
     home = {
       username = "${user}";
       homeDirectory = "/home/${user}";
-      packages = with pkgs;
-        let
-          r-packages = rWrapper.override{
-            packages = with rPackages; [
-              tidyverse
-              data_table
-              tinytex
-              quarto
-              styler
-              lintr
-              zip
-              fs
-              janitor
-              zoo
-              curl
-            ];
-          };
-        in [
+      packages = with pkgs; [
           # terminal
           btop
           pandoc
@@ -46,12 +29,11 @@ in {
           sqlite
           hugo
           # programming tools
-          micromamba
+          poetry
           python3Full
           cargo
           go
           nodejs
-          r-packages
           # apps
           firefox
           chromium
@@ -76,7 +58,6 @@ in {
           aspell
           aspellDicts.en
           aspellDicts.pt_BR
-          texlive.combined.scheme-full
         ];
       stateVersion = "22.11";
       sessionVariables = {

@@ -55,8 +55,8 @@
        eshell
 
        :checkers
-       (syntax +childframe)                    ; tasing you for every semicolon you forget
-       (:if (executable-find "aspell") spell)  ; tasing you for misspelling mispelling
+       (syntax +childframe)       ; tasing you for every semicolon you forget
+       (spell +aspell +flyspell)  ; tasing you for misspelling mispelling
 
        :tools
        ansible            ; DevOps automation tool

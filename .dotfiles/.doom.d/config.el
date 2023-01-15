@@ -16,7 +16,7 @@
 ;; ========= FONT =========
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 15)
-     doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 17))
+      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 17))
 
 (setq doom-theme 'doom-nord)
 
@@ -70,8 +70,7 @@
 ;; ========= ORG MODE =========
 
 (after! org
-  (org-latex-preview)
-  (add-hook 'org-mode-hook 'evil-tex-mode #'org-cdlatex-mode)
+  (add-hook! 'org-mode-hook 'evil-tex-mode #'org-cdlatex-mode)
   (setq org-directory "~/pCloudDrive/notes/"
         org-agenda-files
         '("~/pCloudDrive/notes/todo.org"
@@ -130,10 +129,10 @@
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-      (python . t)
-      (go . t)))
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 ;; tangle config files ---
@@ -174,19 +173,22 @@
       ispell-local-dictionary "en_US"
       ispell-program-name "~/.nix-profile/bin/aspell")
 
-(after! guess-language
-  (set-input-method "TeX")
-  (setq guess-language-langcodes
-        '((en . ("en_US" "English" "🇺🇸" "English"))
-          (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))
-        guess-language-languages '(en pt)
-        guess-language-min-paragraph-length 35
-        guess-language-langcodes
-        '((en . ("en_US" "English" "🇺🇸" "English"))
-          (pt . ("pt_BR" "Portuguese" "🇧🇷" "Brazilian Portuguese")))))
+(let ((langs '("en_US" "pt_BR")))
+  (setq lang-ring (make-ring (length langs)))
+  (dolist (elem langs) (ring-insert lang-ring elem)))
+(let ((dics '("american-english" "portuguese")))
+  (setq dic-ring (make-ring (length dics)))
+  (dolist (elem dics) (ring-insert dic-ring elem)))
 
-(add-hook 'text-mode-hook 'guess-language-mode)
-(global-set-key [f5] 'guess-language)
+(defun cycle-ispell-languages ()
+  (interactive)
+  (let ((lang (ring-ref lang-ring -1))
+        (dic (ring-ref dic-ring -1)))
+    (ring-insert lang-ring lang)
+    (ring-insert dic-ring dic)
+    (ispell-change-dictionary lang)))
+
+(global-set-key [f5] 'cycle-ispell-languages)
 
 ;; ========= EVIL SNIPE =========
 
@@ -207,6 +209,7 @@
 ;; ========= QUARTO =========
 
 (use-package! quarto-mode
+  :hook (quarto-mode-default-hook . phrm/org-mode-visual-fill)
   :mode (("\\.[q]md" . poly-quarto-mode)))
 
 (after! poly-quarto-mode

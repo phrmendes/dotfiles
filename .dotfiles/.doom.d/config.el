@@ -159,16 +159,27 @@
 \\documentclass[12pt,a4paper]{scrartcl}
 \\usepackage[margin=2cm]{geometry}
 \\usepackage{lmodern}
+\\usepackage{fontspec}
 \\usepackage{booktabs}
-\\usepackage{indentfirst}"))
+\\usepackage{indentfirst}"
+               ("\\section*{%s}" . "\\section*{%s}")
+               ("\\subsection*{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
+
+;; preview equations in org-mode ---
+
+(use-package! org-fragtog
+  :hook (org-mode . org-fragtog-mode))
 
 ;; ========= DEFT =========
 
 (use-package! deft
   :bind ("<f8>" . deft)
   :commands (deft)
-  :config (setq deft-directory "~/pCloudDrive/notes"
-                deft-extensions '("md" "org")))
+  :config
+  (setq deft-directory "~/pCloudDrive/notes"
+        deft-extensions '("md" "org")
+        deft-recursive t))
 
 ;; ========= PROJECTILE =========
 

@@ -21,3 +21,4 @@
 (package! request)
 (package! deferred)
 (package! zotxt)
+(package! org-fragtog)

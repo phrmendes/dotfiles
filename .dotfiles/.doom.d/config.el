@@ -80,8 +80,8 @@
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
         org-src-fontify-natively t
         org-display-inline-images t
-        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")
-        org-latex-pdf-process '("tectonic %f")))
+        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
+  (setq-default org-latex-pdf-process '("tectonic %f")))
 
 ;; center org buffers ---
 
@@ -129,10 +129,9 @@
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (python . t)
-     (go . t)))
+   'org-babel-load-languages '((emacs-lisp . t)
+                               (python . t)
+                               (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 ;; tangle config files ---
@@ -141,14 +140,27 @@
 
 ;; org templates ---
 
-(with-eval-after-load 'org
+(after! org
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
+  (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
   (add-to-list 'org-structure-template-alist '("tx" . "src latex"))
   (add-to-list 'org-structure-template-alist '("go" . "src go")))
+
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+
+(add-to-list 'org-latex-classes
+             '("default"
+               "
+\\documentclass[12pt,a4paper]{scrartcl}
+\\usepackage[margin=2cm]{geometry}
+\\usepackage{lmodern}
+\\usepackage{booktabs}
+\\usepackage{indentfirst}"))
 
 ;; ========= DEFT =========
 
@@ -190,6 +202,8 @@
 
 (global-set-key [f5] 'cycle-ispell-languages)
 
+(remove-hook! 'text-mode-hook #'flyspell-mode)
+
 ;; ========= EVIL SNIPE =========
 
 (after! evil
@@ -197,25 +211,26 @@
   (evil-snipe-override-mode +1)
   (setq evil-snipe-scope 'buffer))
 
-;; ========= ESS-R =========
-
-(after! ess-mode
-  (setq ess-style 'RStudio
-        ;; don't wait when evaluating
-        ess-eval-visibly-p 'nowait
-        ;; scroll buffer to bottom
-        comint-scroll-to-bottom-on-output t))
-
 ;; ========= QUARTO =========
 
 (use-package! quarto-mode
-  :hook (quarto-mode-default-hook . phrm/org-mode-visual-fill)
   :mode (("\\.[q]md" . poly-quarto-mode)))
 
 (after! poly-quarto-mode
-  (setq markdown-code-block-braces t))
+  (setq markdown-code-block-braces t)
+  (phrm/org-mode-visual-fill))
 
 ;; ========= ZOTERO INTEGRATION =========
 
 (use-package! zotxt
-  :hook (org-mode . org-zotxt-mode))
+  :hook
+  ((poly-quarto-mode . zotxt-citekey-mode)
+  (org-mode . org-zotxt-mode)))
+
+(map! :leader
+      (:prefix-map ("z" . "zotero")
+       :desc "Insert citekey" "s" #'zotxt-citekey-insert
+       :desc "Complete citekey at point" "c" #'zotxt-citekey-complete-at-point
+       :desc "Select citekey at point" "y" #'zotxt-citekey-select-item-at-point
+       :desc "Insert reference link" "i" #'org-zotxt-insert-reference-link
+       :desc "Open attachment" "o" #'org-zotxt-open-attachment))

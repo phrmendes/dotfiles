@@ -245,3 +245,10 @@
        :desc "Select citekey at point" "y" #'zotxt-citekey-select-item-at-point
        :desc "Insert reference link" "i" #'org-zotxt-insert-reference-link
        :desc "Open attachment" "o" #'org-zotxt-open-attachment))
+
+;; ========= SNIPPETS =========
+
+(use-package! yasnippet
+  :config
+  (setq yas-snippet-dirs '("./snippets"))
+  (yas-global-mode 1))

@@ -27,8 +27,8 @@ in {
           exa
           sqlite
           hugo
+          tectonic
           unstable.quarto
-          unstable.tectonic
           # programming tools
           poetry
           python3Full

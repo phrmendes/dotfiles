@@ -22,7 +22,7 @@ in {
     kernelPackages = pkgs.linuxPackages_latest;
   };
   networking = {
-    hostName = "nixos-notebook";
+    hostName = "nixos-laptop";
     networkmanager.enable = true;
   };
   time.timeZone = "America/Sao_Paulo";

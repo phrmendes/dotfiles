@@ -145,6 +145,7 @@ in {
       gcc
       appimage-run
       nordic
+      libsForQt5.sddm-kcm
       home-manager
     ];
   };

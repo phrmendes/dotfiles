@@ -48,6 +48,7 @@ in {
           emacs
           ventoy-bin-full
           haruna
+          cinnamon.warpinator
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight

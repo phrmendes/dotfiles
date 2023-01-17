@@ -206,7 +206,7 @@ boot = {
 
 #+begin_src nix
 networking = {
-  hostName = "nixos";
+  hostName = "nixos-notebook";
   networkmanager.enable = true;
 };
 #+end_src
@@ -506,7 +506,6 @@ packages = with pkgs; [
     emacs
     ventoy-bin-full
     haruna
-    cinnamon.warpinator
     libsForQt5.bismuth
     libsForQt5.ktorrent
     libsForQt5.filelight

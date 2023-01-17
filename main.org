@@ -207,7 +207,7 @@ boot = {
 
 #+begin_src nix
 networking = {
-  hostName = "nixos";
+  hostName = "nixos-desktop";
   networkmanager.enable = true;
 };
 #+end_src
@@ -523,7 +523,6 @@ packages = with pkgs; [
     haruna
     peek
     droidcam
-    cinnamon.warpinator
     libsForQt5.bismuth
     libsForQt5.ktorrent
     libsForQt5.filelight

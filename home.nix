@@ -53,7 +53,6 @@ in {
           haruna
           peek
           droidcam
-          cinnamon.warpinator
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight

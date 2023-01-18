@@ -48,12 +48,16 @@ in {
       "homebrew/core"
       "homebrew/cask"
     ];
+    brews = [ 
+      "git"
+      "jq"
+    ];
     casks = [
       "mpv"
       "slack"
       "maccy"
       "amethyst"
-      "caffeine"
+      "keepingyouawake"
       "iterm2"
     ];
   };

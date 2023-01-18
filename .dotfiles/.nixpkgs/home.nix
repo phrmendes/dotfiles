@@ -10,7 +10,6 @@ in {
       packages = with pkgs;
         [
           pandoc
-          gnused
           bat
           lazygit
           sd
@@ -20,6 +19,7 @@ in {
           stow
           exa
           python3Full
+          poetry
           cargo
           go
           nodejs
@@ -29,7 +29,8 @@ in {
           terragrunt
           tflint
           qemu
-          texlive.combined.scheme-minimal
+          tectonic
+          git
         ];
       stateVersion = "22.11";
       sessionVariables = {
@@ -37,11 +38,6 @@ in {
       };
     };
     programs = {
-      git = {
-        enable = true;
-        userName = "Pedro Mendes";
-        userEmail = "phrmendes@tuta.io";
-      };
       fzf = {
         enable = true;
         enableZshIntegration = true;

@@ -23,6 +23,7 @@ in {
     systemPackages = [ pkgs.home-manager ];
     shellAliases = {
       mkdir = "mkdir -p";
+      vim = "lvim";
       lv = "lvim";
       cat = "${pkgs.bat}/bin/bat";
       lg = "${pkgs.lazygit}/bin/lazygit";
@@ -47,10 +48,6 @@ in {
     taps = [
       "homebrew/core"
       "homebrew/cask"
-    ];
-    brews = [ 
-      "git"
-      "jq"
     ];
     casks = [
       "mpv"

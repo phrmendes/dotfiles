@@ -17,7 +17,7 @@ in {
           fd
           sd
           tealdeer
-          shellcheck
+          rnix-lsp
           ncdu
           niv
           lorri
@@ -29,6 +29,7 @@ in {
           hugo
           biber
           tectonic
+          tflint
           unstable.quarto
           # programming tools
           poetry

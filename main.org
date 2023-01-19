@@ -488,7 +488,7 @@ packages = with pkgs; [
     fd
     sd
     tealdeer
-    shellcheck
+    rnix-lsp
     ncdu
     niv
     lorri
@@ -500,6 +500,7 @@ packages = with pkgs; [
     hugo
     biber
     tectonic
+    tflint
     unstable.quarto
     # programming tools
     poetry

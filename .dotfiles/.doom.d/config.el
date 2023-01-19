@@ -62,7 +62,6 @@
 ;; ========= ORG MODE =========
 
 (after! org
-  (add-hook! 'org-mode-hook 'evil-tex-mode #'org-cdlatex-mode)
   (setq org-directory "~/pCloudDrive/notes/"
         org-agenda-files
         '("~/pCloudDrive/notes/todo.org"
@@ -72,6 +71,7 @@
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
         org-src-fontify-natively t
         org-display-inline-images t
+        org-pretty-entities t
         org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
   (setq-default org-latex-pdf-process '("tectonic %f")))
 

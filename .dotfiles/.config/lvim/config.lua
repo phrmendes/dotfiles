@@ -66,8 +66,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "python",
   "yaml",
   "go",
-  "hcl",
-  "neorg"
+  "hcl"
 }
 
 -- lsp settings
@@ -226,7 +225,7 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 1
     end
   },
-  -- zen mode
+  -- zen modes
   {
     "folke/zen-mode.nvim",
     config = function()
@@ -234,27 +233,20 @@ lvim.plugins = {
     end
   },
   -- neorg
-  {
-    "nvim-neorg/neorg",
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {},
-          ["core.norg.concealer"] = {},
-          ["core.integrations.telescope"] = {},
-          ["core.presenter"] = {},
-          ["core.export.markdown"] = {},
-          ["core.norg.completion"] = {},
-          ["core.norg.dirman"] = {
-            config = {
-              workspaces = {
-                notes = "~/Documents/notes",
-              },
-            },
-          },
-        },
+{
+  "vimwiki/vimwiki",
+  config = function()
+    vim.g.vimwiki_list = {
+      {
+        path = "~/Documents/notes",
+        syntax = "markdown",
+        ext  = ".md",
       }
-    end,
-    run = ":Neorg sync-parsers"
-  }
+    }
+    vim.g.vimwiki_ext2syntax = {
+      [".md"] = "markdown",
+      [".markdown"] = "markdown",
+      [".mdown"] = "markdown",
+    }
+  end
 }

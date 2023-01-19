@@ -17,7 +17,6 @@ in {
           fd
           sd
           tealdeer
-          shellcheck
           ncdu
           micromamba
           niv
@@ -27,7 +26,9 @@ in {
           exa
           sqlite
           hugo
+          rnix-lsp
           tectonic
+          tflint
           unstable.quarto
           # programming tools
           poetry

@@ -62,8 +62,8 @@
 ;; ========= ORG MODE =========
 
 (after! org
-  (add-hook! 'org-mode-hook 'evil-tex-mode #'org-cdlatex-mode)
   (setq org-directory "~/pCloudDrive/notes/"
+        org-pretty-entities t
         org-agenda-files
         '("~/pCloudDrive/notes/todo.org"
           "~/pCloudDrive/notes/datas.org")

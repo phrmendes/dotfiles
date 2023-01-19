@@ -476,7 +476,6 @@ packages = with pkgs; [
     fd
     sd
     tealdeer
-    shellcheck
     ncdu
     micromamba
     niv
@@ -486,7 +485,9 @@ packages = with pkgs; [
     exa
     sqlite
     hugo
+    rnix-lsp
     tectonic
+    tflint
     unstable.quarto
     # programming tools
     poetry

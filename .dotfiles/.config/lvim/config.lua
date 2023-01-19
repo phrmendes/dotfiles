@@ -67,7 +67,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
   "go",
   "hcl",
-  "org"
+  "neorg"
 }
 
 -- lsp settings
@@ -87,9 +87,9 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("numb").setup({
-        show_numbers = true,
-        show_cursorline = true
-      })
+          show_numbers = true,
+          show_cursorline = true
+        })
     end
   },
   -- quickfix window
@@ -154,16 +154,16 @@ lvim.plugins = {
     "romgrk/nvim-treesitter-context",
     config = function()
       require("treesitter-context").setup({
-        enable = true,
-        throttle = true,
-        max_lines = 0,
-        patterns = {
-          default = {
-            "class",
-            "function",
-            "method"
+          enable = true,
+          throttle = true,
+          max_lines = 0,
+          patterns = {
+            default = {
+              "class",
+              "function",
+              "method"
+            }
           }
-        }
       })
     end
   },
@@ -233,6 +233,28 @@ lvim.plugins = {
       require("zen-mode").setup()
     end
   },
-  -- personal database
-  { "nvim-orgmode/orgmode" }
+  -- neorg
+  {
+    "nvim-neorg/neorg",
+    config = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.norg.concealer"] = {},
+          ["core.integrations.telescope"] = {},
+          ["core.presenter"] = {},
+          ["core.export.markdown"] = {},
+          ["core.norg.completion"] = {},
+          ["core.norg.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/Documents/notes",
+              },
+            },
+          },
+        },
+      }
+    end,
+    run = ":Neorg sync-parsers"
+  }
 }

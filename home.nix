@@ -68,10 +68,10 @@ in {
         ];
       stateVersion = "22.11";
       sessionVariables = {
-        EDITOR = "${pkgs.neovim}/bin/nvim";
-        VISUAL = "${pkgs.neovim}/bin/nvim";
-        TERMINAL = "${pkgs.alacritty}/bin/alacritty";
-        SUDO_EDITOR = "${pkgs.neovim}/bin/nvim";
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+        TERMINAL = "alacritty";
+        SUDO_EDITOR = "nvim";
       };
     };
     programs = {

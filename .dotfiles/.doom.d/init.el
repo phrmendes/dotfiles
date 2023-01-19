@@ -10,7 +10,7 @@
 
 (doom! :completion
        (company +childframe)  ; the ultimate code completion backend
-       (helm +fuzzy +icons)   ; the search engine of the future
+       (vertico +icons)       ; the search engine of the future
 
        :ui
        doom                  ; what makes DOOM look the way it does
@@ -46,10 +46,10 @@
        word-wrap           ; soft wrapping with language-aware indent
 
        :emacs
-       dired     ; making dired pretty [functional]
-       electric  ; smarter, keyword-based electric-indent
-       undo      ; persistent, smarter undo for your inevitable mistakes
-       vc        ; version-control and Emacs, sitting in a tree
+       (dired +ranger)  ; making dired pretty [functional]
+       electric         ; smarter, keyword-based electric-indent
+       undo             ; persistent, smarter undo for your inevitable mistakes
+       vc               ; version-control and Emacs, sitting in a tree
 
        :term
        eshell
@@ -67,24 +67,22 @@
        ein                ; tame Jupyter notebooks with emacs
        (eval +overlay)    ; run code, run (also, repls)
        (lookup +dicsets)  ; navigate your code and its documentation
-       (lsp +peek)        ; M-x vscode
+       (lsp +lsp + peek)  ; M-x vscode
        (magit +forge)     ; a git porcelain for Emacs
        pdf                ; pdf enhancements
        terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...
        direnv             ; save (or destroy) the environment at your leisure
-       (eval +overlay)    ; run code, run (also, repls)
 
        :lang
        emacs-lisp
        (nix +lsp)
-       (ess +stan)
        (go +lsp)
        (json +lsp)
        (julia +lsp)
        (latex +lsp +fold +cdlatex)
        markdown
-       (org +dragndrop +jupyter +pandoc +pretty +present +noter)
+       (org +dragndrop +jupyter +pretty +present +noter)
        (python +lsp +conda +pyright +poetry)
        (sh +lsp +fish)
        (yaml +lsp)

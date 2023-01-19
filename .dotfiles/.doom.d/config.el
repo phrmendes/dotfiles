@@ -54,14 +54,6 @@
   ([remap describe-variable] . helpful-variable)
   ([remap describe-key] . helpful-key))
 
-;; ========= HELM =========
-
-(after! helm
-  (require 'helm-easymenu)
-  (add-hook! 'helm-find-files-after-init-hook
-    (map! :map helm-find-files-map
-          "<DEL>" #'helm-find-files-up-one-level)))
-
 ;; ========= ESHELL =========
 
 (use-package! esh-autosuggest
@@ -83,7 +75,7 @@
         org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
   (setq-default org-latex-pdf-process '("tectonic %f")))
 
-;; center org buffers ---
+;; center org buffers -----
 
 (defun phrm/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
@@ -93,7 +85,7 @@
 (use-package! visual-fill-column
   :hook (org-mode . phrm/org-mode-visual-fill))
 
-;; slides ---
+;; slides -----
 
 (defun phrm/presentation-setup ()
   ;; hide the mode line
@@ -125,7 +117,7 @@
   (org-tree-slide-breadcrumbs " > ")
   (org-image-actual-width nil))
 
-;; org-babel ---
+;; org-babel -----
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -134,11 +126,11 @@
                                (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
-;; tangle config files ---
+;; tangle config files -----
 
 (global-set-key [f6] 'org-babel-tangle)
 
-;; org templates ---
+;; org templates -----
 
 (after! org
   (require 'org-tempo)
@@ -166,7 +158,7 @@
                ("\\subsection*{%s}" . "\\subsection*{%s}")
                ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
-;; preview equations in org-mode ---
+;; preview equations in org-mode -----
 
 (use-package! org-fragtog
   :hook (org-mode . org-fragtog-mode))
@@ -192,9 +184,8 @@
 
 ;; ========= SPELLCHECK =========
 
-(setq flyspell-issue-message-flag nil
-      ispell-local-dictionary "en_US"
-      ispell-program-name "~/.nix-profile/bin/aspell")
+(after! flycheck
+  (setq flyspell-issue-message-flag nil))
 
 (let ((langs '("en_US" "pt_BR")))
   (setq lang-ring (make-ring (length langs)))

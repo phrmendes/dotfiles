@@ -232,21 +232,22 @@ lvim.plugins = {
       require("zen-mode").setup()
     end
   },
-  -- neorg
-{
-  "vimwiki/vimwiki",
-  config = function()
-    vim.g.vimwiki_list = {
-      {
-        path = "~/Documents/notes",
-        syntax = "markdown",
-        ext  = ".md",
+  -- vimwiki
+  {
+    "vimwiki/vimwiki",
+    config = function()
+      vim.g.vimwiki_list = {
+        {
+          path = "~/Documents/notes",
+          syntax = "markdown",
+          ext  = ".md",
+        }
       }
-    }
-    vim.g.vimwiki_ext2syntax = {
-      [".md"] = "markdown",
-      [".markdown"] = "markdown",
-      [".mdown"] = "markdown",
-    }
-  end
+      vim.g.vimwiki_ext2syntax = {
+        [".md"] = "markdown",
+        [".markdown"] = "markdown",
+        [".mdown"] = "markdown",
+      }
+    end
+  }
 }

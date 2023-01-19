@@ -68,9 +68,10 @@ in {
         ];
       stateVersion = "22.11";
       sessionVariables = {
-        EDITOR = "neovim";
-        VISUAL = "neovim";
-        TERMINAL = "alacritty";
+        EDITOR = "${pkgs.neovim}/bin/nvim";
+        VISUAL = "${pkgs.neovim}/bin/nvim";
+        TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+        SUDO_EDITOR = "${pkgs.neovim}/bin/nvim";
       };
     };
     programs = {
@@ -92,7 +93,7 @@ in {
         shellAliases = {
           mkdir = "mkdir -p";
           cat = "${pkgs.bat}/bin/bat";
-          nv = "${pkgs.neovim}/bin/nvim";
+          vim = "${pkgs.neovim}/bin/nvim";
           lg = "${pkgs.lazygit}/bin/lazygit";
           ls = "${pkgs.exa}/bin/exa --icons";
           ll = "${pkgs.exa}/bin/exa --icons -l";
@@ -102,13 +103,9 @@ in {
         };
         shellAbbrs = {
           stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
-          mamba = "${pkgs.micromamba}/bin/micromamba";
         };
         shellInit = ''
           fish_add_path "$HOME/.emacs.d/bin"
-          set -gx MAMBA_EXE "${pkgs.micromamba}/bin/micromamba"
-          set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
-          eval "${pkgs.micromamba}/bin/micromamba" shell hook --shell fish --prefix "$HOME/micromamba" | source
         '';
       };
       neovim = {

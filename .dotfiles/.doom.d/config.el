@@ -28,11 +28,11 @@
 ;; ========= COMPANY MODE =========
 
 (use-package! company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
+  :after eglot-mode
+  :hook (eglot-mode . company-mode)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selection))
-  (:map lsp-mode-map
+  (:map eglot-mode-map
         ("<tab>" . company-indent-or-complete-common))
   :config
   (setq company-global-modes '(not org-mode))

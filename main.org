@@ -374,6 +374,7 @@ environment = {
     gzip
     vim
     gcc
+    zlib
     appimage-run
     nordic
     libsForQt5.sddm-kcm
@@ -482,16 +483,13 @@ packages = with pkgs; [
     # terminal
     btop
     pandoc
-    gh
+    unstable.gh
     lazygit
     ripgrep
     fd
     sd
     tealdeer
-    rnix-lsp
     ncdu
-    niv
-    lorri
     ranger
     gnupg
     stow
@@ -500,27 +498,26 @@ packages = with pkgs; [
     hugo
     biber
     tectonic
-    tflint
+    progress
+    unstable.tflint
     unstable.quarto
     # programming tools
-    poetry
-    python3Full
-    cargo
-    go
-    nodejs
+    unstable.poetry
+    unstable.python310Full
+    unstable.cargo
+    unstable.go
+    unstable.nodejs
     # apps
-    firefox
+    unstable.firefox
     chromium
     solaar
     bitwarden
-    pcloud
-    zotero
+    unstable.pcloud
+    unstable.zotero
     spotify
-    fragments
     podman
-    zathura
     cmdstan
-    emacs
+    unstable.emacs
     ventoy-bin-full
     haruna
     peek
@@ -529,9 +526,20 @@ packages = with pkgs; [
     libsForQt5.ktorrent
     libsForQt5.filelight
     libsForQt5.kpmcore
-    libsForQt5.nota
+    libsForQt5.kate
     libsForQt5.syntax-highlighting
     libsForQt5.ark
+    # language servers
+    unstable.nodePackages_latest.bash-language-server
+    unstable.nodePackages_latest.dockerfile-language-server-nodejs
+    unstable.nodePackages_latest.pyright
+    unstable.nodePackages_latest.vscode-langservers-extracted
+    unstable.nodePackages_latest.yaml-language-server
+    lua53Packages.lua-lsp
+    lua53Packages.digestif
+    unstable.marksman
+    unstable.gopls
+    unstable.rnix-lsp
     # others
     aspell
     aspellDicts.en

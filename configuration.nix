@@ -138,6 +138,7 @@ in {
       gzip
       vim
       gcc
+      zlib
       appimage-run
       nordic
       libsForQt5.sddm-kcm

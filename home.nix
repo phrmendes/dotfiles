@@ -11,16 +11,13 @@ in {
           # terminal
           btop
           pandoc
-          gh
+          unstable.gh
           lazygit
           ripgrep
           fd
           sd
           tealdeer
           ncdu
-          micromamba
-          niv
-          lorri
           ranger
           stow
           exa
@@ -28,34 +25,45 @@ in {
           hugo
           rnix-lsp
           tectonic
-          tflint
+          progress
+          unstable.tflint
           unstable.quarto
           # programming tools
-          poetry
-          python3Full
-          cargo
-          go
-          nodejs
+          unstable.poetry
+          unstable.python310Full
+          unstable.cargo
+          unstable.go
+          unstable.nodejs
           # apps
-          firefox
+          unstable.firefox
           chromium
           bitwarden
-          pcloud
-          zotero
+          unstable.pcloud
+          unstable.zotero
           spotify
           podman
           cmdstan
-          peek
-          emacs
+          unstable.emacs
           ventoy-bin-full
           haruna
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight
           libsForQt5.kpmcore
-          libsForQt5.nota
+          libsForQt5.kate
           libsForQt5.syntax-highlighting
           libsForQt5.ark
+          # language servers
+          unstable.nodePackages_latest.bash-language-server
+          unstable.nodePackages_latest.dockerfile-language-server-nodejs
+          unstable.nodePackages_latest.pyright
+          unstable.nodePackages_latest.vscode-langservers-extracted
+          unstable.nodePackages_latest.yaml-language-server
+          lua53Packages.lua-lsp
+          lua53Packages.digestif
+          unstable.marksman
+          unstable.gopls
+          unstable.rnix-lsp
           # others
           aspell
           aspellDicts.en

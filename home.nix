@@ -23,7 +23,7 @@ in {
           exa
           sqlite
           hugo
-          rnix-lsp
+          biber
           tectonic
           progress
           unstable.quarto

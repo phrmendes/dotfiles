@@ -28,11 +28,11 @@
 ;; ========= COMPANY MODE =========
 
 (use-package! company
-  :after eglot-mode
-  :hook (eglot-mode . company-mode)
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selection))
-  (:map eglot-mode-map
+  (:map lsp-mode-map
         ("<tab>" . company-indent-or-complete-common))
   :config
   (setq company-global-modes '(not org-mode))
@@ -59,6 +59,19 @@
 (use-package! esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode))
 
+;; ========= LSP =========
+
+(use-package! lsp-mode
+  :hook lsp-headerline-breadcrumb-mode
+  :config
+  (setq lsp-headerline-breadcrumb-segments '(file symbols))
+  (lsp-enable-which-key-integration t))
+
+(use-package! lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
 ;; ========= ORG MODE =========
 
 (after! org
@@ -74,6 +87,10 @@
         org-pretty-entities t
         org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
   (setq-default org-latex-pdf-process '("tectonic %f")))
+
+;; cdlatex -----
+
+(map! :map cdlatex-mode-map :i "TAB" #'cdlatex-tab)
 
 ;; center org buffers -----
 
@@ -227,7 +244,7 @@
 (use-package! zotxt
   :hook
   ((poly-quarto-mode . zotxt-citekey-mode)
-  (org-mode . org-zotxt-mode)))
+   (org-mode . org-zotxt-mode)))
 
 (map! :leader
       (:prefix-map ("z" . "zotero")

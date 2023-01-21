@@ -499,7 +499,6 @@ packages = with pkgs; [
     biber
     tectonic
     progress
-    unstable.tflint
     unstable.quarto
     # programming tools
     unstable.poetry
@@ -530,16 +529,12 @@ packages = with pkgs; [
     libsForQt5.syntax-highlighting
     libsForQt5.ark
     # language servers
-    unstable.nodePackages_latest.bash-language-server
-    unstable.nodePackages_latest.dockerfile-language-server-nodejs
-    unstable.nodePackages_latest.pyright
-    unstable.nodePackages_latest.vscode-langservers-extracted
-    unstable.nodePackages_latest.yaml-language-server
-    lua53Packages.lua-lsp
-    lua53Packages.digestif
-    unstable.marksman
+    unstable.shellcheck
+    unstable.texlab
     unstable.gopls
     unstable.rnix-lsp
+    unstable.terraform-ls
+    unstable.tflint
     # others
     aspell
     aspellDicts.en

@@ -77,8 +77,8 @@
 (after! org
   (setq org-directory "~/pCloudDrive/notes/"
         org-agenda-files
-        '("~/pCloudDrive/notes/todo.org"
-          "~/pCloudDrive/notes/datas.org")
+        '("~/pCloudDrive/notes/personal/todo.org"
+          "~/pCloudDrive/notes/personal/datas.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))

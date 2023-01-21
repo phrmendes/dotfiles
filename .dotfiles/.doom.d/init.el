@@ -23,11 +23,10 @@
        minimap               ; show a map of the code on the side
        modeline              ; snazzy, Atom-inspired modeline, plus API
        nav-flash             ; blink cursor line after big motions
-       neotree               ; a project drawer, like NERDTree for vim
        ophints               ; highlight the region an operation acts on
        (popup +defaults)     ; tame sudden yet inevitable temporary windows
        (tabs +centaur-tabs)  ; a tab bar for Emacs
-       treemacs              ; a project drawer, like neotree but cooler
+       (treemacs +lsp)       ; a project drawer, like neotree but cooler
        (vc-gutter +pretty)   ; vcs diff in the fringe
        vi-tilde-fringe       ; fringe tildes to mark beyond EOB
        window-select         ; visually switch windows
@@ -44,12 +43,13 @@
        rotate-text         ; cycle region at point between text candidates
        snippets            ; my elves. They type so I don't have to
        word-wrap           ; soft wrapping with language-aware indent
+       parinfer            ; for lispers that like Python more
 
        :emacs
-       (dired +ranger)  ; making dired pretty [functional]
-       electric         ; smarter, keyword-based electric-indent
-       undo             ; persistent, smarter undo for your inevitable mistakes
-       vc               ; version-control and Emacs, sitting in a tree
+       (dired +ranger + icons)  ; making dired pretty [functional]
+       electric                 ; smarter, keyword-based electric-indent
+       undo                     ; persistent, smarter undo for your inevitable mistakes
+       vc                       ; version-control and Emacs, sitting in a tree
 
        :term
        eshell
@@ -67,7 +67,7 @@
        ein                ; tame Jupyter notebooks with emacs
        (eval +overlay)    ; run code, run (also, repls)
        (lookup +dicsets)  ; navigate your code and its documentation
-       (lsp +eglot)       ; M-x vscode
+       (lsp +lsp +peek)   ; M-x vscode
        (magit +forge)     ; a git porcelain for Emacs
        pdf                ; pdf enhancements
        terraform          ; infrastructure as code
@@ -80,7 +80,7 @@
        (go +lsp)
        (json +lsp)
        (latex +lsp +fold +cdlatex)
-       markdown
+       (markdown +grip)
        (org +dragndrop +jupyter +pretty +present +noter)
        (python +lsp +poetry +pyright)
        (sh +lsp +fish)

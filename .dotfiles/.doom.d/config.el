@@ -8,6 +8,10 @@
 ;; ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; ========= GC =========
+
+(setq gc-cons-threshold (* 50 1000 1000))
+
 ;; ========= ID =========
 
 (setq user-full-name "Pedro Mendes"
@@ -75,22 +79,18 @@
 ;; ========= ORG MODE =========
 
 (after! org
-  (setq org-directory "~/pCloudDrive/notes/"
-        org-pretty-entities t
-        org-agenda-files
-        '("~/pCloudDrive/notes/personal/todo.org"
-          "~/pCloudDrive/notes/personal/datas.org")
+  (setq org-directory "~/pCloudDrive/org/"
+        org-agenda-files '("agenda.org" "agenda_rec.org" "calendario.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
         org-src-fontify-natively t
         org-display-inline-images t
-        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
-  (setq-default org-latex-pdf-process '("tectonic %f")))
-
-;; cdlatex -----
-
-(map! :map cdlatex-mode-map :i "TAB" #'cdlatex-tab)
+        org-pretty-entities t
+        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")
+        org-refile-targets '("arquivo.org" :maxlevel . 1)))
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+(setq-default org-latex-pdf-process '("tectonic %f"))
 
 ;; center org buffers -----
 
@@ -140,6 +140,10 @@
   (org-babel-do-load-languages
    'org-babel-load-languages '((emacs-lisp . t)
                                (python . t)
+                               (nix . t)
+                               (shell . t)
+                               (terraform . t)
+                               (latex . t)
                                (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
@@ -177,8 +181,11 @@
 
 ;; preview equations in org-mode -----
 
-(use-package! org-fragtog
-  :hook (org-mode . org-fragtog-mode))
+(use-package! org-latex-impatient
+  :hook (org-mode . org-latex-impatient-mode)
+  :init
+  (setq org-latex-impatient-tex2svg-bin
+        "~/node_modules/mathjax-node-cli/bin/tex2svg"))
 
 ;; ========= DEFT =========
 
@@ -186,7 +193,7 @@
   :bind ("<f8>" . deft)
   :commands (deft)
   :config
-  (setq deft-directory "~/pCloudDrive/notes"
+  (setq deft-directory "~/pCloudDrive/org"
         deft-extensions '("md" "org")
         deft-recursive t))
 
@@ -258,5 +265,9 @@
 
 (use-package! yasnippet
   :config
-  (setq yas-snippet-dirs '("./snippets"))
+  (setq yas-snippet-dirs '("~/.doom.d/snippets"))
   (yas-global-mode 1))
+
+;; ========= GC =========
+
+(setq gc-cons-threshold (* 2 1000 1000))

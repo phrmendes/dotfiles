@@ -69,7 +69,6 @@
        (lookup +dicsets)  ; navigate your code and its documentation
        (lsp +lsp +peek)   ; M-x vscode
        (magit +forge)     ; a git porcelain for Emacs
-       pdf                ; pdf enhancements
        terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...
        direnv             ; save (or destroy) the environment at your leisure
@@ -79,7 +78,7 @@
        (nix +lsp)
        (go +lsp)
        (json +lsp)
-       (latex +lsp +fold +cdlatex)
+       (latex +lsp +fold)
        (markdown +grip)
        (org +dragndrop +jupyter +pretty +present +noter)
        (python +lsp +poetry +pyright)

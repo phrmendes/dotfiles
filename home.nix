@@ -33,6 +33,7 @@ in {
           unstable.python310Full
           unstable.cargo
           unstable.go
+          unstable.delve
           unstable.nodejs
           # apps
           unstable.firefox

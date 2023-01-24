@@ -11,7 +11,6 @@ in {
           # terminal
           btop
           pandoc
-          unstable.gh
           lazygit
           ripgrep
           fd
@@ -27,29 +26,30 @@ in {
           biber
           tectonic
           progress
+          unstable.gh
           unstable.quarto
           # programming tools
-          unstable.poetry
-          unstable.python310Full
+          poetry
+          python310Full
           unstable.cargo
           unstable.go
           unstable.delve
           unstable.nodejs
           # apps
-          unstable.firefox
-          chromium
           solaar
           bitwarden
-          unstable.pcloud
-          unstable.zotero
           spotify
           podman
           cmdstan
-          unstable.emacs
           ventoy-bin-full
           haruna
           peek
           droidcam
+          unstable.emacs
+          unstable.pcloud
+          unstable.zotero
+          unstable.firefox
+          unstable.chromium
           libsForQt5.bismuth
           libsForQt5.ktorrent
           libsForQt5.filelight

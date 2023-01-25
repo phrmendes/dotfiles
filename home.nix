@@ -36,6 +36,15 @@ in {
           unstable.cargo
           unstable.go
           unstable.nodejs
+          # language servers
+          unstable.gopls
+          unstable.rnix-lsp
+          unstable.tflint
+          unstable.terraform-ls
+          # debuggers
+          lldb
+          unstable.delve
+          python310Packages.debugpy
           # apps
           bitwarden
           spotify
@@ -44,7 +53,6 @@ in {
           ventoy-bin-full
           haruna
           peek
-          droidcam
           unstable.emacs
           unstable.pcloud
           unstable.zotero
@@ -57,12 +65,6 @@ in {
           libsForQt5.kate
           libsForQt5.syntax-highlighting
           libsForQt5.ark
-          # language servers
-          unstable.ccls
-          unstable.gopls
-          unstable.rnix-lsp
-          unstable.tflint
-          unstable.terraform-ls
           # others
           aspell
           aspellDicts.en

@@ -24,7 +24,7 @@
        ophints               ; highlight the region an operation acts on
        (popup +defaults)     ; tame sudden yet inevitable temporary windows
        (tabs +centaur-tabs)  ; a tab bar for Emacs
-       treemacs              ; a project drawer, like neotree but cooler
+       (treemacs +lsp)       ; a project drawer, like neotree but cooler
        (vc-gutter +pretty)   ; vcs diff in the fringe
        vi-tilde-fringe       ; fringe tildes to mark beyond EOB
        window-select         ; visually switch windows
@@ -64,8 +64,9 @@
        ein                ; tame Jupyter notebooks with emacs
        (eval +overlay)    ; run code, run (also, repls)
        (lookup +dicsets)  ; navigate your code and its documentation
-       (lsp +eglot)       ; M-x vscode
-       magit              ; a git porcelain for Emacs
+       (lsp +lsp +peek)   ; M-x vscode
+       (magit +forge)     ; a git porcelain for Emacs
+       make               ; the discount build system
        terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...
        direnv             ; save (or destroy) the environment at your leisure
@@ -75,7 +76,7 @@
        (nix +lsp)
        (go +lsp)
        (json +lsp)
-       (latex +fold)
+       (latex +lsp +fold)
        (markdown +grip)
        (org +dragndrop +jupyter +pretty +present +noter)
        (python +lsp +poetry +pyright)

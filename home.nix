@@ -26,6 +26,7 @@ in {
           biber
           tectonic
           progress
+          ditaa
           unstable.gh
           unstable.quarto
           # programming tools

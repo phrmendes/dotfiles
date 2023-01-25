@@ -67,8 +67,9 @@
        ein                ; tame Jupyter notebooks with emacs
        (eval +overlay)    ; run code, run (also, repls)
        (lookup +dicsets)  ; navigate your code and its documentation
-       (lsp +eglot)       ; M-x vscode
+       (lsp +lsp +peek)   ; M-x vscode
        (magit +forge)     ; a git porcelain for Emacs
+       make               ; the discount build system
        terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...
        direnv             ; save (or destroy) the environment at your leisure
@@ -78,7 +79,7 @@
        (nix +lsp)
        (go +lsp)
        (json +lsp)
-       (latex +fold)
+       (latex +lsp +fold)
        (markdown +grip)
        (org +dragndrop +jupyter +pretty +present +noter)
        (python +lsp +poetry +pyright)

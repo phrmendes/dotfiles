@@ -26,6 +26,8 @@ in {
           tectonic
           progress
           ditaa
+          unstable.terraform
+          unstable.ansible
           unstable.gh
           unstable.quarto
           # programming tools
@@ -56,14 +58,11 @@ in {
           libsForQt5.syntax-highlighting
           libsForQt5.ark
           # language servers
-          unstable.nodePackages.bash-language-server
           unstable.ccls
-          unstable.nodePackages.dockerfile-language-server-nodejs
           unstable.gopls
-          unstable.nodePackages.vscode-langservers-extracted
-          unstable.python310Packages.python-lsp-server
           unstable.rnix-lsp
           unstable.tflint
+          unstable.terraform-ls
           # others
           aspell
           aspellDicts.en

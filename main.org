@@ -466,7 +466,7 @@ homeDirectory = "/home/${user}";
 
 **** Packages
 
-#+begin_src nix :noweb yes
+#+begin_src nix
 packages = with pkgs; [
     # terminal
     btop
@@ -486,6 +486,8 @@ packages = with pkgs; [
     tectonic
     progress
     ditaa
+    unstable.terraform
+    unstable.ansible
     unstable.gh
     unstable.quarto
     # programming tools
@@ -516,14 +518,11 @@ packages = with pkgs; [
     libsForQt5.syntax-highlighting
     libsForQt5.ark
     # language servers
-    unstable.nodePackages.bash-language-server
     unstable.ccls
-    unstable.nodePackages.dockerfile-language-server-nodejs
     unstable.gopls
-    unstable.nodePackages.vscode-langservers-extracted
-    unstable.python310Packages.python-lsp-server
     unstable.rnix-lsp
     unstable.tflint
+    unstable.terraform-ls
     # others
     aspell
     aspellDicts.en

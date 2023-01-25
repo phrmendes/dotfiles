@@ -9,8 +9,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (doom! :completion
-       (company +childframe)  ; the ultimate code completion backend
-       (vertico +icons)       ; the search engine of the future
+       (company +childframe)                       ; the ultimate code completion backend
+       (ivy +fuzzy +icons +prescient)  ; yesterday's lightest search engine
 
        :ui
        doom                  ; what makes DOOM look the way it does
@@ -43,10 +43,10 @@
        word-wrap           ; soft wrapping with language-aware indent
 
        :emacs
-       (dired + icons)          ; making dired pretty [functional]
-       electric                 ; smarter, keyword-based electric-indent
-       undo                     ; persistent, smarter undo for your inevitable mistakes
-       vc                       ; version-control and Emacs, sitting in a tree
+       (dired + icons)  ; making dired pretty [functional]
+       electric         ; smarter, keyword-based electric-indent
+       undo             ; persistent, smarter undo for your inevitable mistakes
+       vc               ; version-control and Emacs, sitting in a tree
 
        :term
        eshell
@@ -58,7 +58,7 @@
        :tools
        ansible            ; DevOps automation tool
        biblio             ; writes a PhD for you (citation needed)
-       debugger           ; FIXME stepping through code, to help you add bugs
+       (debugger +lsp)    ; FIXME stepping through code, to help you add bugs
        (docker +lsp)      ; container management tool
        editorconfig       ; let someone else argue about tabs vs spaces
        ein                ; tame Jupyter notebooks with emacs

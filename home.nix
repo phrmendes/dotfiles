@@ -36,8 +36,16 @@ in {
           python310Full
           unstable.cargo
           unstable.go
-          unstable.delve
           unstable.nodejs
+          # language servers
+          unstable.gopls
+          unstable.rnix-lsp
+          unstable.tflint
+          unstable.terraform-ls
+          # debuggers
+          unstable.delve
+          lldb
+          python310Packages.debugpy
           # apps
           solaar
           bitwarden
@@ -60,12 +68,6 @@ in {
           libsForQt5.kate
           libsForQt5.syntax-highlighting
           libsForQt5.ark
-          # language servers
-          unstable.ccls
-          unstable.gopls
-          unstable.rnix-lsp
-          unstable.tflint
-          unstable.terraform-ls
           # others
           aspell
           aspellDicts.en

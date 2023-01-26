@@ -43,11 +43,10 @@ in {
           unstable.tflint
           unstable.terraform-ls
           # debuggers
-          unstable.delve
           lldb
+          unstable.delve
           python310Packages.debugpy
           # apps
-          solaar
           bitwarden
           spotify
           podman

@@ -9,23 +9,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (doom! :completion
-       (company +childframe)  ; the ultimate code completion backend
-       (vertico +icons)       ; the search engine of the future
+       (company +childframe)           ; the ultimate code completion backend
+       (ivy +fuzzy +icons +prescient)  ; yesterday's lightest search engine
 
        :ui
        doom                  ; what makes DOOM look the way it does
-       doom-dashboard        ; a nifty splash screen for Emacs
-       doom-quit             ; DOOM quit-message prompts when you quit Emacs
+       doom-dashboard        ; a nifty splash screen for emacs
+       doom-quit             ; DOOM quit-message prompts when you quit emacs
        emoji                 ; 🙂
        hl-todo               ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        indent-guides         ; highlighted indent columns
        (ligatures +extra)    ; ligatures and symbols to make your code pretty again
-       minimap               ; show a map of the code on the side
        modeline              ; snazzy, Atom-inspired modeline, plus API
-       nav-flash             ; blink cursor line after big motions
        ophints               ; highlight the region an operation acts on
        (popup +defaults)     ; tame sudden yet inevitable temporary windows
-       (tabs +centaur-tabs)  ; a tab bar for Emacs
+       (tabs +centaur-tabs)  ; a tab bar for emacs
        (treemacs +lsp)       ; a project drawer, like neotree but cooler
        (vc-gutter +pretty)   ; vcs diff in the fringe
        vi-tilde-fringe       ; fringe tildes to mark beyond EOB
@@ -41,15 +39,15 @@
        (format +onsave)    ; automated prettiness
        multiple-cursors    ; editing in many places at once
        rotate-text         ; cycle region at point between text candidates
-       snippets            ; my elves. They type so I don't have to
+       snippets            ; they type so I don't have to
        word-wrap           ; soft wrapping with language-aware indent
-       parinfer            ; for lispers that like Python more
 
        :emacs
-       (dired +ranger + icons)  ; making dired pretty [functional]
-       electric                 ; smarter, keyword-based electric-indent
-       undo                     ; persistent, smarter undo for your inevitable mistakes
-       vc                       ; version-control and Emacs, sitting in a tree
+       (dired +icons +ranger)  ; making dired pretty [functional]
+       electric                ; smarter, keyword-based electric-indent
+       undo                    ; persistent, smarter undo for your inevitable mistakes
+       vc                      ; version-control and emacs, sitting in a tree
+       (ibuffer +icons)        ; edit me like your French buffers
 
        :term
        eshell
@@ -68,7 +66,7 @@
        (eval +overlay)    ; run code, run (also, repls)
        (lookup +dicsets)  ; navigate your code and its documentation
        (lsp +lsp +peek)   ; M-x vscode
-       (magit +forge)     ; a git porcelain for Emacs
+       (magit +forge)     ; a git porcelain for emacs
        make               ; the discount build system
        terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...

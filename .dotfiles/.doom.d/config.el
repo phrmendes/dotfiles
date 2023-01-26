@@ -207,6 +207,13 @@
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
 
+;; ========= DAP MODE =========
+
+(after! dap-mode
+  (require 'dap-python)
+  (require 'dap-dlv-go)
+  (setq dap-python-debugger 'debugpy))
+
 ;; ========= EVIL SNIPE =========
 
 (after! evil

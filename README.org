@@ -15,9 +15,6 @@ Dotfiles files for my personal computer using NixOS.
 *** Guides
 
 + https://www.tweag.io/blog/2022-05-26-probabilistic-programming-nix/
-+ https://rgoswami.me/posts/rethinking-r-nix/
-+ https://rgoswami.me/posts/nix-r-devtools/
-+ https://churchman.nl/2019/03/10/using-nix-to-create-r-virtual-environments/
 + https://churchman.nl/2019/01/22/using-nix-to-create-python-virtual-environments/
 + https://www.youtube.com/watch?v=QI2Qg_1aySc
 

@@ -139,6 +139,7 @@ in {
       vim
       gcc
       zlib
+      gnumake
       appimage-run
       nordic
       libsForQt5.sddm-kcm

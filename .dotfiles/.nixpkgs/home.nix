@@ -14,27 +14,24 @@ in {
           lazygit
           sd
           tealdeer
-          shellcheck
-          ranger
           stow
           exa
-          python3Full
+          python310Full
           poetry
           cargo
           go
           nodejs
           podman
-          neovim
           terraform
           terragrunt
           tflint
           qemu
-          tectonic
           git
+          emacs
         ];
       stateVersion = "22.11";
       sessionVariables = {
-        EDITOR = "lunarvim";
+        EDITOR = "nvim";
       };
     };
     programs = {
@@ -56,6 +53,63 @@ in {
         enableBashIntegration = true;
         enableZshIntegration = true;
       };
+    };
+    neovim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [
+        nvim-web-devicons
+        nvim-tree-lua
+        plenary-nvim
+        vim-nix
+        vim-fish
+        vim-easymotion
+        vim-commentary
+        vim-gitgutter
+        vim-polyglot
+        auto-pairs
+        fzf-vim
+        {
+          plugin = indent-blankline-nvim;
+          config = ''
+            lua << EOF
+            require("indent_blankline").setup()
+            EOF
+          '';
+        }
+        {
+          plugin = lualine-nvim;
+          config = ''
+            lua << EOF
+            require("lualine").setup({
+                options = {
+                icons_enabled = true,
+                theme = "nord"
+                }
+            })
+            EOF
+          '';
+        }
+      ];
+      extraConfig = ''
+        set background=dark
+        set clipboard+=unnamedplus
+        set completeopt=noinsert,menuone,noselect
+        set cursorline
+        set hidden
+        set inccommand=split
+        set mouse=a
+        set number
+        set relativenumber
+        set splitbelow splitright
+        set title
+        set ttimeoutlen=0
+        set wildmenu
+        set expandtab
+        set shiftwidth=2
+        set tabstop=2
+      '';
+      vimAlias = true;
+      vimdiffAlias = true;
     };
   };
 }

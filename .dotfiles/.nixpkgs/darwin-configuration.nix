@@ -48,6 +48,7 @@ in
       "homebrew/core"
       "homebrew/cask"
     ];
+    brews = [ "emacs" ];
     casks = [
       "mpv"
       "slack"
@@ -55,7 +56,6 @@ in
       "amethyst"
       "keepingyouawake"
       "iterm2"
-      "emacs"
     ];
   };
   programs.zsh = {

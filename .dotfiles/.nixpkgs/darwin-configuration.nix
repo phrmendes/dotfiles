@@ -48,7 +48,6 @@ in
       "homebrew/core"
       "homebrew/cask"
     ];
-    brews = [ "emacs" ];
     casks = [
       "mpv"
       "slack"

@@ -29,6 +29,7 @@ in
           qemu
           git
           emacs
+          gnumake
         ];
       stateVersion = "22.11";
       sessionVariables = {

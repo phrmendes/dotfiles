@@ -65,7 +65,9 @@ in
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
     enableFzfGit = true;
-    shellInit = "path+=('$HOME/.emacs.d/bin')";
+    shellInit = ''
+      path+=("$HOME/.emacs.d/bin")
+    '';
   };
   security.pam.enableSudoTouchIdAuth = true;
   system = {

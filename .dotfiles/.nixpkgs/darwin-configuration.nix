@@ -2,11 +2,10 @@
 
 let
   user = "prochame";
-in
-{
+in {
   imports = [
     <home-manager/nix-darwin>
-    ./home.nix
+    ./home.nix 
   ];
   users.users.${user} = {
     home = "/Users/${user}";
@@ -24,6 +23,8 @@ in
     systemPackages = [ pkgs.home-manager ];
     shellAliases = {
       mkdir = "mkdir -p";
+      vim = "lvim";
+      lv = "lvim";
       cat = "${pkgs.bat}/bin/bat";
       lg = "${pkgs.lazygit}/bin/lazygit";
       ls = "${pkgs.exa}/bin/exa --icons";
@@ -35,9 +36,9 @@ in
     };
   };
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
-  };
+     fontDir.enable = true;
+     fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
+   };
   homebrew = {
     enable = true;
     onActivation = {
@@ -65,9 +66,6 @@ in
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
     enableFzfGit = true;
-    shellInit = ''
-      path+=("$HOME/.emacs.d/bin")
-    '';
   };
   security.pam.enableSudoTouchIdAuth = true;
   system = {

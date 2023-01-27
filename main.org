@@ -478,7 +478,6 @@ packages = with pkgs; [
     sd
     tealdeer
     ncdu
-    ranger
     stow
     exa
     sqlite

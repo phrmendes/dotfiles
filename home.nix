@@ -17,7 +17,6 @@ in {
           sd
           tealdeer
           ncdu
-          ranger
           stow
           exa
           sqlite

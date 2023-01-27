@@ -58,15 +58,13 @@
 
        :tools
        ansible            ; DevOps automation tool
-       biblio             ; writes a PhD for you (citation needed)
        (debugger +lsp)    ; FIXME stepping through code, to help you add bugs
        (docker +lsp)      ; container management tool
        editorconfig       ; let someone else argue about tabs vs spaces
-       ein                ; tame Jupyter notebooks with emacs
        (eval +overlay)    ; run code, run (also, repls)
        (lookup +dicsets)  ; navigate your code and its documentation
        (lsp +lsp +peek)   ; M-x vscode
-       (magit +forge)     ; a git porcelain for emacs
+       magit              ; a git porcelain for emacs
        make               ; the discount build system
        terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...

@@ -28,7 +28,6 @@ in
           tflint
           qemu
           git
-          emacs
           gnumake
         ];
       stateVersion = "22.11";

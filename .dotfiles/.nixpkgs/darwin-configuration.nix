@@ -55,6 +55,7 @@ in
       "amethyst"
       "keepingyouawake"
       "iterm2"
+      "emacs"
     ];
   };
   programs.zsh = {

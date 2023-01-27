@@ -20,3 +20,4 @@
 (package! deferred)
 (package! zotxt)
 (package! org-latex-impatient)
+(package! dired-single)

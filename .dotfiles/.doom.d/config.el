@@ -221,6 +221,10 @@
   (evil-snipe-override-mode +1)
   (setq evil-snipe-scope 'buffer))
 
+;; ========= DIRED =========
+
+(use-package! dired-single)
+
 ;; ========= QUARTO =========
 
 (use-package! quarto-mode

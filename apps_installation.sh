@@ -15,13 +15,14 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/master.t
 nix-channel --update
 darwin-rebuild switch
 
-# configuring stow
-sudo rm -r "$HOME/.nixpkgs"
-stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
-
 # doom emacs
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 "$HOME/.emacs.d/bin/doom" install
+sudo rm -r "$HOME/.doom.d/*.el"
+
+# configuring stow
+sudo rm -r "$HOME/.nixpkgs"
+stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 
 # iterm2/zsh integration
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh

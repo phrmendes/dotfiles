@@ -111,6 +111,6 @@ in
         NSNavPanelExpandedStateForSaveMode2 = true;
       };
     };
-    services.nix-daemon.enable = true;
   };
+  services.nix-daemon.enable = true;
 }

@@ -33,82 +33,82 @@ in
       lla = "${pkgs.exa}/bin/exa --icons -la";
       stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
     };
+  };
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
+  };
+  homebrew = {
+    enable = true;
+    onActivation = {
+      cleanup = "uninstall";
+      upgrade = true;
+    };
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+    ];
+    casks = [
+      "mpv"
+      "slack"
+      "maccy"
+      "amethyst"
+      "keepingyouawake"
+      "iterm2"
+    ];
+  };
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
+    enableFzfCompletion = true;
+    enableFzfHistory = true;
+    enableSyntaxHighlighting = true;
+    enableFzfGit = true;
     shellInit = "path+=('$HOME/.emacs.d/bin')";
-    fonts = {
-      fontDir.enable = true;
-      fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
-    };
-    homebrew = {
-      enable = true;
-      onActivation = {
-        cleanup = "uninstall";
-        upgrade = true;
+  };
+  security.pam.enableSudoTouchIdAuth = true;
+  system = {
+    defaults = {
+      dock = {
+        autohide = true;
+        orientation = "left";
+        showhidden = false;
+        static-only = true;
+        tilesize = 50;
+        mru-spaces = false;
+        show-recents = false;
       };
-      taps = [
-        "homebrew/core"
-        "homebrew/cask"
-      ];
-      casks = [
-        "mpv"
-        "slack"
-        "maccy"
-        "amethyst"
-        "keepingyouawake"
-        "iterm2"
-      ];
-    };
-    programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      enableBashCompletion = true;
-      enableFzfCompletion = true;
-      enableFzfHistory = true;
-      enableSyntaxHighlighting = true;
-      enableFzfGit = true;
-    };
-    security.pam.enableSudoTouchIdAuth = true;
-    system = {
-      defaults = {
-        dock = {
-          autohide = true;
-          orientation = "left";
-          showhidden = false;
-          static-only = true;
-          tilesize = 50;
-          mru-spaces = false;
-          show-recents = false;
-        };
-        finder = {
-          AppleShowAllExtensions = true;
-          AppleShowAllFiles = false;
-          CreateDesktop = false;
-          QuitMenuItem = true;
-          ShowStatusBar = true;
-          FXEnableExtensionChangeWarning = false;
-        };
-        trackpad = {
-          Clicking = true;
-          TrackpadRightClick = true;
-          TrackpadThreeFingerDrag = true;
-        };
-        NSGlobalDomain = {
-          AppleEnableSwipeNavigateWithScrolls = true;
-          AppleInterfaceStyleSwitchesAutomatically = true;
-          AppleMeasurementUnits = "Centimeters";
-          AppleMetricUnits = 1;
-          AppleKeyboardUIMode = 3;
-          ApplePressAndHoldEnabled = true;
-          AppleTemperatureUnit = "Celsius";
-          InitialKeyRepeat = 10;
-          KeyRepeat = 1;
-          NSAutomaticCapitalizationEnabled = false;
-          NSAutomaticDashSubstitutionEnabled = false;
-          NSAutomaticPeriodSubstitutionEnabled = false;
-          NSAutomaticQuoteSubstitutionEnabled = false;
-          NSAutomaticSpellingCorrectionEnabled = false;
-          NSNavPanelExpandedStateForSaveMode = true;
-          NSNavPanelExpandedStateForSaveMode2 = true;
-        };
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = false;
+        CreateDesktop = false;
+        QuitMenuItem = true;
+        ShowStatusBar = true;
+        FXEnableExtensionChangeWarning = false;
+      };
+      trackpad = {
+        Clicking = true;
+        TrackpadRightClick = true;
+        TrackpadThreeFingerDrag = true;
+      };
+      NSGlobalDomain = {
+        AppleEnableSwipeNavigateWithScrolls = true;
+        AppleInterfaceStyleSwitchesAutomatically = true;
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
+        AppleKeyboardUIMode = 3;
+        ApplePressAndHoldEnabled = true;
+        AppleTemperatureUnit = "Celsius";
+        InitialKeyRepeat = 10;
+        KeyRepeat = 1;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
+        NSNavPanelExpandedStateForSaveMode = true;
+        NSNavPanelExpandedStateForSaveMode2 = true;
       };
     };
     services.nix-daemon.enable = true;

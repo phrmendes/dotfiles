@@ -490,7 +490,6 @@ packages = with pkgs; [
     sd
     tealdeer
     ncdu
-    ranger
     gnupg
     stow
     exa

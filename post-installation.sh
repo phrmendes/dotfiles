@@ -23,3 +23,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 rm -r "$HOME/.doom.d"
 
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
+
+mkdir $HOME/.npm-global
+npm config set prefix "$HOME/.npm-global"
+npm install -g git+https://gitlab.com/matsievskiysv/math-preview

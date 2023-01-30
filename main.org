@@ -115,6 +115,14 @@ rm -r "$HOME/.doom.d"
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 #+end_src
 
+** npm
+
+#+begin_src shell
+mkdir $HOME/.npm-global
+npm config set prefix "$HOME/.npm-global"
+npm install -g git+https://gitlab.com/matsievskiysv/math-preview
+#+end_src
+
 * hardware-configuration.nix
 :PROPERTIES:
 :header-args: :tangle ./hardware-configuration.nix
@@ -599,6 +607,7 @@ fish = {
   };
   shellInit = ''
     fish_add_path "$HOME/.emacs.d/bin"
+    fish_add_path "$HOME/.npm-global/bin"
   '';
 };
 #+end_src

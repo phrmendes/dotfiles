@@ -75,7 +75,7 @@ sudo nixos-install
 ** Variables
 
 #+begin_src shell :shebang #!/usr/bin/env bash
-FLATPAK_PROGRAMS=("com.tutanota.Tutanota" "com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
+FLATPAK_PROGRAMS=("ch.protonmail.protonmail-bridge" "com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
 NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 #+end_src
@@ -532,8 +532,10 @@ packages = with pkgs; [
     unstable.zotero
     unstable.firefox
     unstable.chromium
+    unstable.protonvpn-gui
     libsForQt5.bismuth
     libsForQt5.ktorrent
+    libsForQt5.kmail
     libsForQt5.filelight
     libsForQt5.kpmcore
     libsForQt5.kate

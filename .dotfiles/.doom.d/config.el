@@ -156,14 +156,6 @@
                ("\\subsection*{%s}" . "\\subsection*{%s}")
                ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
-;; preview equations in org-mode -----
-
-(use-package! org-latex-impatient
-  :hook (org-mode . org-latex-impatient-mode)
-  :init
-  (setq org-latex-impatient-tex2svg-bin
-        "~/node_modules/mathjax-node-cli/bin/tex2svg"))
-
 ;; ========= DEFT =========
 
 (use-package! deft

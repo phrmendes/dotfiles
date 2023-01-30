@@ -19,5 +19,5 @@
 (package! request)
 (package! deferred)
 (package! zotxt)
-(package! org-latex-impatient)
+(package! math-preview) ; run "npm install -g git+https://gitlab.com/matsievskiysv/math-preview"
 (package! dired-single)

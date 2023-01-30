@@ -59,8 +59,10 @@ in {
           unstable.zotero
           unstable.firefox
           unstable.chromium
+          unstable.protonvpn-gui
           libsForQt5.bismuth
           libsForQt5.ktorrent
+          libsForQt5.kmail
           libsForQt5.filelight
           libsForQt5.kpmcore
           libsForQt5.kate

@@ -156,6 +156,49 @@
                ("\\subsection*{%s}" . "\\subsection*{%s}")
                ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
+;; org roam -----
+
+(use-package! org-roam
+  :config
+  (define-key minibuffer-local-completion-map (kbd "SPC") 'self-insert-command)
+  (setq org-roam-directory "~/pCloudDrive/org/roam")
+  (setq org-roam-capture-templates '(("d" "default" plain
+                                      "%?"
+                                      :target
+                                      (file+head "%<%Y%m%d%H%M%S>-${name}.org"
+                                                 "#+title: ${title}\n")
+                                      :unnarrowed t)
+                                     ("r" "bibliography reference" plain
+                                      "%?"
+                                      :target
+                                      (file+head
+                                       "references/${citekey}.org"
+                                       "#+title: ${title}\n")
+                                      :unnarrowed t)))
+  (org-roam-db-autosync-mode t))
+
+(use-package! org-roam-ui
+  :after org-roam
+  (setq
+   org-roam-ui-sync-theme t
+   org-roam-ui-follow t
+   org-roam-ui-update-on-save t
+   org-roam-ui-open-on-start t))
+
+(use-package! org-ref
+  :config
+  (setq
+   bibtex-completion-bibliography "~/pCloudDrive/org/roam/references/library.bib"
+   bibtex-completion-library-path "~/pCloudDrive/zotero"
+   bibtex-completion-notes-path "~/pCloudDrive/org/roam/references"
+   bibtex-completion-pdf-field "file"))
+
+(use-package! org-roam-bibtex
+  :after org-roam
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :config
+  (require 'org-ref))
+
 ;; ========= DEFT =========
 
 (use-package! deft
@@ -225,21 +268,6 @@
 (after! poly-quarto-mode
   (setq markdown-code-block-braces t)
   (phrm/org-mode-visual-fill))
-
-;; ========= ZOTERO INTEGRATION =========
-
-(use-package! zotxt
-  :hook
-  ((poly-quarto-mode . zotxt-citekey-mode)
-   (org-mode . org-zotxt-mode)))
-
-(map! :leader
-      (:prefix-map ("z" . "zotero")
-       :desc "Insert citekey" "s" #'zotxt-citekey-insert
-       :desc "Complete citekey at point" "c" #'zotxt-citekey-complete-at-point
-       :desc "Select citekey at point" "y" #'zotxt-citekey-select-item-at-point
-       :desc "Insert reference link" "i" #'org-zotxt-insert-reference-link
-       :desc "Open attachment" "o" #'org-zotxt-open-attachment))
 
 ;; ========= GC =========
 

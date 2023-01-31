@@ -79,7 +79,7 @@
        (json +lsp)
        (latex +lsp +fold)
        (markdown +grip)
-       (org +dragndrop +jupyter +pretty +present +noter)
+       (org +dragndrop +jupyter +pretty +present +pandoc +roam2)
        (python +lsp +poetry +pyright)
        (sh +lsp +fish)
        (yaml +lsp)

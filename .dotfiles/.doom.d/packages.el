@@ -16,8 +16,8 @@
 (package! visual-fill-column)
 (package! esh-autosuggest)
 (package! helpful)
-(package! request)
-(package! deferred)
-(package! zotxt)
-(package! math-preview) ; run "npm install -g git+https://gitlab.com/matsievskiysv/math-preview"
+(package! math-preview)
 (package! dired-single)
+(package! org-roam-ui)
+(package! org-roam-bibtex)
+(package! org-ref)

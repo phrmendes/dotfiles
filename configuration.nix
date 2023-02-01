@@ -79,6 +79,7 @@ in {
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
+        theme = "Nordic";
         settings.Theme.CursorTheme = "breeze_cursors";
       };
       libinput = {

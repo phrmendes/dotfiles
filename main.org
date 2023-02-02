@@ -277,7 +277,6 @@ services = {
     enable = true;
     autorun = true;
     layout = "br";
-    desktopManager.xterm.enable = false;
     desktopManager.plasma5 = {
       enable = true;
       excludePackages = with pkgs.libsForQt5; [
@@ -303,6 +302,18 @@ services = {
     };
   };
   journald.extraConfig = "SystemMaxUse=1G";
+};
+#+end_src
+
+*** Security
+
+#+begin_src nix
+security.pam.services = {
+  sddm.enableKwallet = true;
+  kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
 };
 #+end_src
 
@@ -375,8 +386,10 @@ environment = {
     gnumake
     appimage-run
     nordic
-    libsForQt5.sddm-kcm
     home-manager
+    libsForQt5.sddm-kcm
+    libsForQt5.kwallet
+    libsForQt5.kwallet-pam
   ];
 };
 programs.kdeconnect.enable = true;
@@ -528,9 +541,9 @@ packages = with pkgs; [
     unstable.firefox
     unstable.chromium
     unstable.protonvpn-gui
+    unstable.thunderbird
     libsForQt5.bismuth
     libsForQt5.ktorrent
-    libsForQt5.kmail
     libsForQt5.filelight
     libsForQt5.kpmcore
     libsForQt5.kate

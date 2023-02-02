@@ -65,7 +65,6 @@ in {
       autorun = true;
       layout = "us,br";
       videoDrivers = [ "nvidia" ];
-      desktopManager.xterm.enable = false;
       desktopManager.plasma5 = {
         enable = true;
         excludePackages = with pkgs.libsForQt5; [
@@ -92,9 +91,12 @@ in {
     };
     journald.extraConfig = "SystemMaxUse=1G";
   };
-  security.pam.services.kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
+  security.pam.services = {
+    sddm.enableKwallet = true;
+    kwallet = {
+      name = "kwallet";
+      enableKwallet = true;
+    };
   };
   sound = {
     enable = true;
@@ -148,8 +150,10 @@ in {
       gnumake
       appimage-run
       nordic
-      libsForQt5.sddm-kcm
       home-manager
+      libsForQt5.sddm-kcm
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
     ];
   };
   programs.kdeconnect.enable = true;

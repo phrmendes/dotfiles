@@ -24,8 +24,9 @@ mkdir "$HOME/.npm-global"
 npm config set prefix "$HOME/.npm-global"
 export PATH="$HOME"/.npm-global/bin:$PATH
 
-# lunarvim
-LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+# doom emacs
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+~/.emacs.d/bin/doom install
 
 # iterm2/zsh integration
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh

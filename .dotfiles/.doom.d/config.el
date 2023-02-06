@@ -15,7 +15,7 @@
 ;; ========= ID =========
 
 (setq user-full-name "Pedro Mendes"
-      user-mail-address "phrmendes@tuta.io")
+      user-mail-address "phrmendes00@pm.me")
 
 ;; ========= FONT =========
 
@@ -48,11 +48,13 @@
 ;; ========= ESHELL =========
 
 (use-package! esh-autosuggest
+  :after eshell
   :hook (eshell-mode . esh-autosuggest-mode))
 
 ;; ========= ORG MODE =========
 
 (after! org
+  (org-display-inline-images)
   (setq org-directory "~/pCloudDrive/org/"
         org-agenda-files '("agenda.org" "agenda_rec.org" "calendario.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
@@ -61,10 +63,8 @@
         org-src-fontify-natively t
         org-display-inline-images t
         org-pretty-entities t
-        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")
-        org-refile-targets '("arquivo.org" :maxlevel . 1)))
-(advice-add 'org-refile :after 'org-save-all-org-buffers)
-(setq-default org-latex-pdf-process '("tectonic %f"))
+        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
+  (setq-default org-latex-pdf-process '("tectonic %f")))
 
 ;; center org buffers -----
 
@@ -79,25 +79,18 @@
 ;; slides -----
 
 (defun phrm/presentation-setup ()
-  ;; hide the mode line
   (hide-mode-line-mode 1)
-  ;; display images inline
-  (org-display-inline-images)
-  ;; hide tabs
   (centaur-tabs-mode 0)
-  ;; scale the text
   (setq text-scale-mode-amount 2)
   (text-scale-mode 1))
 
 (defun phrm/presentation-end ()
-  ;; show the mode line again
   (hide-mode-line-mode 0)
-  ;; descale the text
   (text-scale-mode 0)
-  ;; show tabs
   (centaur-tabs-mode 1))
 
 (use-package! org-tree-slide
+  :after org
   :hook ((org-tree-slide-play . phrm/presentation-setup)
          (org-tree-slide-stop . phrm/presentation-end))
   :custom
@@ -108,23 +101,21 @@
   (org-tree-slide-breadcrumbs " > ")
   (org-image-actual-width nil))
 
-;; org-babel -----
+;; org babel -----
 
-(with-eval-after-load 'org
+(after! org
   (org-babel-do-load-languages
-   'org-babel-load-languages '((emacs-lisp . t)
-                               (python . t)
-                               (nix . t)
-                               (shell . t)
-                               (terraform . t)
-                               (ditaa . t)
-                               (latex . t)
-                               (go . t)))
-  (push '("conf-unix" . conf-unix) org-src-lang-modes))
-
-;; tangle config files -----
-
-(global-set-key [f6] 'org-babel-tangle)
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (nix . t)
+     (shell . t)
+     (terraform . t)
+     (ditaa . t)
+     (latex . t)
+     (go . t)))
+  (push '("conf-unix" . conf-unix) org-src-lang-modes)
+  (map! "<f6>" #'org-babel-tangle))
 
 ;; org templates -----
 
@@ -143,71 +134,79 @@
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
 
-(add-to-list 'org-latex-classes
-             '("default"
-               "
+(add-to-list
+ 'org-latex-classes
+ '("default"
+   "
 \\documentclass[12pt,a4paper]{scrartcl}
 \\usepackage[margin=2cm]{geometry}
 \\usepackage{lmodern}
 \\usepackage{fontspec}
 \\usepackage{booktabs}
-\\usepackage{indentfirst}"
-               ("\\section*{%s}" . "\\section*{%s}")
-               ("\\subsection*{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
-
-;; org roam -----
-
-(use-package! org-roam
-  :config
-  (define-key minibuffer-local-completion-map (kbd "SPC") 'self-insert-command)
-  (setq org-roam-directory "~/pCloudDrive/org/roam")
-  (setq org-roam-capture-templates '(("d" "default" plain
-                                      "%?"
-                                      :target
-                                      (file+head "%<%Y%m%d%H%M%S>-${name}.org"
-                                                 "#+title: ${title}\n")
-                                      :unnarrowed t)
-                                     ("r" "bibliography reference" plain
-                                      "%?"
-                                      :target
-                                      (file+head
-                                       "references/${citekey}.org"
-                                       "#+title: ${title}\n")
-                                      :unnarrowed t)))
-  (org-roam-db-autosync-mode t))
-
-(use-package! org-roam-ui
-  :after org-roam
-  (setq
-   org-roam-ui-sync-theme t
-   org-roam-ui-follow t
-   org-roam-ui-update-on-save t
-   org-roam-ui-open-on-start t))
-
-(use-package! org-ref
-  :config
-  (setq
-   bibtex-completion-bibliography "~/pCloudDrive/org/roam/references/library.bib"
-   bibtex-completion-library-path "~/pCloudDrive/zotero"
-   bibtex-completion-notes-path "~/pCloudDrive/org/roam/references"
-   bibtex-completion-pdf-field "file"))
-
-(use-package! org-roam-bibtex
-  :after org-roam
-  :hook (org-roam-mode . org-roam-bibtex-mode)
-  :config
-  (require 'org-ref))
+\\usepackage{indentfirst}
+"
+   ("\\section*{%s}" . "\\section*{%s}")
+   ("\\subsection*{%s}" . "\\subsection*{%s}")
+   ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
 ;; ========= DEFT =========
 
 (use-package! deft
-  :bind ("<f8>" . deft)
-  :commands (deft)
+  :commands deft
   :config
   (setq deft-directory "~/pCloudDrive/org"
         deft-extensions '("md" "org")
+        deft-use-filename-as-title t
         deft-recursive t))
+
+(use-package! zetteldeft
+  :after deft)
+
+(map! :leader
+      (:prefix ("d" . "deft-zetteldeft")
+       :desc "Deft"
+       "d" #'deft
+       :desc "Refresh deft"
+       "r" #'deft-refresh
+       "n" #'zetteldeft-new-file
+       "N" #'zetteldeft-new-file-and-link
+       "i" #'zetteldeft-find-file-id-insert
+       "I" #'zetteldeft-find-file-full-title-insert
+       "f" #'zetteldeft-follow-link
+       "o" #'zetteldeft-find-file
+       "s" #'zetteldeft-search-current-id
+       "R" #'zetteldeft-file-rename
+       "t" #'zetteldeft-tag-insert))
+
+;; ========= ZOTERO INTEGRATION =========
+
+(use-package! zotxt
+  :after org
+  :hook (org-zotxt-mode . org-mode))
+
+(map! :leader
+      (:prefix ("z" . "zotero")
+       :desc "Insert reference link"
+       "i" #'org-zotxt-insert-reference-link
+       :desc "Update reference link"
+       "u" #'org-zotxt-update-reference-link-at-point
+       :desc "Open attachment"
+       "o" #'org-zotxt-open-attachment))
+
+;; ========= CITAR =========
+
+(use-package! citar
+  :custom
+  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
+
+(map! :leader
+      (:prefix ("r" . "citar")
+       :desc "Insert citation"
+       "i" #'citar-insert-citation
+       :desc "Insert reference"
+       "r" #'citar-insert-reference
+       :desc "Insert predefined search"
+       "o" #'citar-insert-preset))
 
 ;; ========= PROJECTILE =========
 
@@ -219,9 +218,6 @@
 (envrc-global-mode)
 
 ;; ========= SPELLCHECK =========
-
-(after! flycheck
-  (setq flyspell-issue-message-flag nil))
 
 (let ((langs '("en_US" "pt_BR")))
   (setq lang-ring (make-ring (length langs)))
@@ -238,11 +234,11 @@
     (ring-insert dic-ring dic)
     (ispell-change-dictionary lang)))
 
-(global-set-key [f5] 'cycle-ispell-languages)
+(map! "<f5>" #'cycle-ispell-languages)
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
 
-;; ========= DAP MODE =========
+;; ;; ========= DAP MODE =========
 
 (after! dap-mode
   (require 'dap-python)
@@ -258,7 +254,8 @@
 
 ;; ========= DIRED =========
 
-(use-package! dired-single)
+(use-package! dired-single
+  :after dired)
 
 ;; ========= QUARTO =========
 

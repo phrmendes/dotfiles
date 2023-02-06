@@ -9,66 +9,60 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (doom! :completion
-       (company +childframe)           ; the ultimate code completion backend
-       (ivy +fuzzy +icons +prescient)  ; yesterday's lightest search engine
+       (company +childframe)
+       (vertico +icons)
 
        :ui
-       doom                  ; what makes DOOM look the way it does
-       doom-dashboard        ; a nifty splash screen for emacs
-       doom-quit             ; DOOM quit-message prompts when you quit emacs
-       emoji                 ; 🙂
-       hl-todo               ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       indent-guides         ; highlighted indent columns
-       (ligatures +extra)    ; ligatures and symbols to make your code pretty again
-       modeline              ; snazzy, Atom-inspired modeline, plus API
-       ophints               ; highlight the region an operation acts on
-       (popup +defaults)     ; tame sudden yet inevitable temporary windows
-       (tabs +centaur-tabs)  ; a tab bar for emacs
-       (treemacs +lsp)       ; a project drawer, like neotree but cooler
-       (vc-gutter +pretty)   ; vcs diff in the fringe
-       vi-tilde-fringe       ; fringe tildes to mark beyond EOB
-       window-select         ; visually switch windows
+       doom
+       doom-dashboard
+       emoji
+       (treemacs +lsp)
+       (popup +defaults)
+       modeline
+       window-select
        workspaces            ; tab emulation, persistence & separate workspaces
-       zen                   ; distraction-free coding or writing
+       hl-todo               ; highlights TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+       indent-guides         ; highlights indented columns
+       ophints               ; highlights the region where an operation takes place
+       (tabs +centaur-tabs)  ; a tab bar for emacs
+       (vc-gutter +pretty)   ; show git diff
+       vi-tilde-fringe       ; display tildes on empty lines
        deft                  ; major mode for managing notes written in plain text formats
 
        :editor
-       (evil +everywhere)  ; come to the dark side, we have cookies
-       file-templates      ; auto-snippets for empty files
-       fold                ; (nigh) universal code folding
-       (format +onsave)    ; automated prettiness
-       multiple-cursors    ; editing in many places at once
-       rotate-text         ; cycle region at point between text candidates
-       snippets            ; they type so I don't have to
-       word-wrap           ; soft wrapping with language-aware indent
+       (evil +everywhere)
+       file-templates
+       fold
+       (format +onsave)
+       multiple-cursors
+       rotate-text
+       snippets
+       word-wrap
 
        :emacs
-       (dired +icons +ranger)  ; making dired pretty [functional]
-       electric                ; smarter, keyword-based electric-indent
-       undo                    ; persistent, smarter undo for your inevitable mistakes
-       vc                      ; version-control and emacs, sitting in a tree
-       (ibuffer +icons)        ; edit me like your French buffers
+       (dired +icons)
+       (ibuffer +icons)
+       electric  ; smarter, keyword-based electric-indent
+       undo      ; persistent, smarter undo for your inevitable mistakes
 
        :term
        eshell
 
        :checkers
-       (syntax +childframe)       ; tasing you for every semicolon you forget
-       (spell +aspell +flyspell)  ; tasing you for misspelling mispelling
+       (syntax +childframe)
+       (spell +aspell +flyspell)
 
        :tools
-       ansible            ; DevOps automation tool
-       biblio             ; writes a PhD for you (citation needed)
-       (debugger +lsp)    ; FIXME stepping through code, to help you add bugs
-       (docker +lsp)      ; container management tool
-       editorconfig       ; let someone else argue about tabs vs spaces
-       ein                ; tame Jupyter notebooks with emacs
-       (eval +overlay)    ; run code, run (also, repls)
+       ansible
+       terraform
+       biblio
+       (debugger +lsp)
+       (lsp +lsp +peek)
+       (docker +lsp)
+       ein                ; Jupyter notebook integration
+       (eval +overlay)    ; inline code evaluation
        (lookup +dicsets)  ; navigate your code and its documentation
-       (lsp +lsp +peek)   ; M-x vscode
        (magit +forge)     ; a git porcelain for emacs
-       make               ; the discount build system
-       terraform          ; infrastructure as code
        tree-sitter        ; syntax and parsing, sitting in a tree...
        direnv             ; save (or destroy) the environment at your leisure
 
@@ -79,9 +73,9 @@
        (json +lsp)
        (latex +lsp +fold)
        (markdown +grip)
-       (org +dragndrop +jupyter +pretty +present +pandoc +roam2)
-       (python +lsp +poetry +pyright)
-       (sh +lsp +fish)
+       (org +jupyter +pretty)
+       (python +lsp +poetry)
+       (sh +lsp)
        (yaml +lsp)
 
        :config

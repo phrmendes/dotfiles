@@ -20,4 +20,5 @@
 (package! dired-single)
 (package! org-roam-ui)
 (package! org-roam-bibtex)
-(package! org-ref)
+(package! zetteldeft)
+(package! zotxt)

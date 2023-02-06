@@ -3,7 +3,7 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 
 export PATH=$HOME/.local/bin:$PATH
-export EDITOR=lvim
-export VISUAL=lvim
+export EDITOR=vim
+export VISUAL=vim
 eval "$(starship init zsh)"
 source ~/.iterm2_shell_integration.zsh

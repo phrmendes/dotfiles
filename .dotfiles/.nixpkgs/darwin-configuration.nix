@@ -23,8 +23,6 @@ in {
     systemPackages = [ pkgs.home-manager ];
     shellAliases = {
       mkdir = "mkdir -p";
-      vim = "lvim";
-      lv = "lvim";
       cat = "${pkgs.bat}/bin/bat";
       lg = "${pkgs.lazygit}/bin/lazygit";
       ls = "${pkgs.exa}/bin/exa --icons";
@@ -56,6 +54,7 @@ in {
       "amethyst"
       "keepingyouawake"
       "iterm2"
+      "emacs"
     ];
   };
   programs.zsh = {

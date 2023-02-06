@@ -25,6 +25,7 @@ in
     shellAliases = {
       mkdir = "mkdir -p";
       cat = "${pkgs.bat}/bin/bat";
+      emacs = "/opt/homebrew/bin/emacs-28.2";
       lg = "${pkgs.lazygit}/bin/lazygit";
       ls = "${pkgs.exa}/bin/exa --icons";
       ll = "${pkgs.exa}/bin/exa --icons -l";

@@ -75,5 +75,8 @@
        (sh +lsp)
        (yaml +lsp)
 
+       :os
+       macos
+
        :config
        (default +bindings +smartparens))

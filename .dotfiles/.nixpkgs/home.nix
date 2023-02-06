@@ -87,8 +87,7 @@ in
               lua << EOF
               require("lualine").setup({
                   options = {
-                  icons_enabled = true,
-                  theme = "nord"
+                  icons_enabled = true
                   }
               })
               EOF

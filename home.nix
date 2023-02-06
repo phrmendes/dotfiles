@@ -15,7 +15,6 @@ in {
           ripgrep
           fd
           sd
-          tealdeer
           ncdu
           gnupg
           stow
@@ -31,29 +30,28 @@ in {
           unstable.gh
           unstable.quarto
           # programming tools
-          poetry
           python310Full
+          unstable.poetry
           unstable.cargo
           unstable.go
           unstable.nodejs
-          # language servers
+          # language servers and debuggers
+          python310Packages.debugpy
           unstable.gopls
           unstable.rnix-lsp
           unstable.tflint
-          unstable.terraform-ls
-          # debuggers
-          lldb
+          unstable.lua53Packages.digestif
+          unstable.lldb
           unstable.delve
-          python310Packages.debugpy
           # apps
           bitwarden
           spotify
-          podman
           cmdstan
           ventoy-bin-full
           haruna
           peek
           droidcam
+          unstable.podman
           unstable.emacs
           unstable.pcloud
           unstable.zotero

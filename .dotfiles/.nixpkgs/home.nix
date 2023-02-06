@@ -26,7 +26,6 @@ in
           go
           nodejs
           podman
-          neovim
           terraform
           terragrunt
           tflint

@@ -74,10 +74,6 @@ in
           auto-pairs
           fzf-vim
           {
-            plugin = nord-nvim;
-            config = "colorscheme nord";
-          }
-          {
             plugin = indent-blankline-nvim;
             config = ''
               lua << EOF

@@ -49,6 +49,17 @@ in
       "homebrew/cask"
       "d12frosted/emacs-plus"
     ];
+    brews = [
+      "gcc"
+      "libgccjit"
+      {
+        name = "emacs-plus@28";
+        args = [
+          "with-native-comp"
+          "with-no-titlebar-and-round-corners"
+        ];
+      }
+    ];
     casks = [
       "mpv"
       "slack"
@@ -56,7 +67,6 @@ in
       "amethyst"
       "keepingyouawake"
       "iterm2"
-      "emacs-plus@28"
     ];
   };
   programs.zsh = {

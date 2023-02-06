@@ -61,10 +61,7 @@ in
       "amethyst"
       "keepingyouawake"
       "iterm2"
-      {
-        name = "emacs-mac";
-        args = [ "with-native-comp" ];
-      }
+      "emacs-mac"
     ];
   };
   programs.zsh = {

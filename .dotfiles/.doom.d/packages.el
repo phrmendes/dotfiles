@@ -18,7 +18,5 @@
 (package! helpful)
 (package! math-preview)
 (package! dired-single)
-(package! org-roam-ui)
-(package! org-roam-bibtex)
 (package! zetteldeft)
 (package! zotxt)

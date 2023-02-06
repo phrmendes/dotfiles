@@ -65,15 +65,18 @@ in {
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
     enableFzfGit = true;
-    shellInit = ''
+    promptInit = ''
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
 
-      eval "$(starship init zsh)"
       source ~/.iterm2_shell_integration.zsh
+      eval "$(starship init zsh)"
+    '';
+    shellInit = ''
       path+=("$HOME/.local/bin")
       path+=("/opt/homebrew/bin")
+      path+=("$HOME/.emacs.d/bin")
       export PATH
     '';
   };

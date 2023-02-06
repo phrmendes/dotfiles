@@ -53,13 +53,6 @@ in
     brews = [
       "gcc"
       "libgccjit"
-      {
-        name = "emacs-mac";
-        args = [
-          "with-native-comp"
-          "with-no-title-bars"
-        ];
-      }
     ];
     casks = [
       "mpv"
@@ -68,6 +61,7 @@ in
       "amethyst"
       "keepingyouawake"
       "iterm2"
+      "emacs-mac"
     ];
   };
   programs.zsh = {

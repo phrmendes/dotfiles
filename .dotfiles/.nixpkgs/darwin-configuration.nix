@@ -2,10 +2,11 @@
 
 let
   user = "prochame";
-in {
+in
+{
   imports = [
     <home-manager/nix-darwin>
-    ./home.nix 
+    ./home.nix
   ];
   users.users.${user} = {
     home = "/Users/${user}";
@@ -34,9 +35,9 @@ in {
     };
   };
   fonts = {
-     fontDir.enable = true;
-     fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
-   };
+    fontDir.enable = true;
+    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "SourceCodePro" ]; }) ];
+  };
   homebrew = {
     enable = true;
     onActivation = {
@@ -46,6 +47,7 @@ in {
     taps = [
       "homebrew/core"
       "homebrew/cask"
+      "d12frosted/emacs-plus"
     ];
     casks = [
       "mpv"
@@ -54,7 +56,7 @@ in {
       "amethyst"
       "keepingyouawake"
       "iterm2"
-      "emacs"
+      "emacs-plus@28"
     ];
   };
   programs.zsh = {

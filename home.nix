@@ -121,7 +121,6 @@ in {
           nvim-tree-lua
           plenary-nvim
           vim-nix
-          vim-fish
           vim-easymotion
           vim-commentary
           vim-gitgutter

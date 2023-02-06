@@ -48,18 +48,11 @@ in
     taps = [
       "homebrew/core"
       "homebrew/cask"
-      "d12frosted/emacs-plus"
+      "railwaycat/emacsmacport"
     ];
     brews = [
       "gcc"
       "libgccjit"
-      {
-        name = "emacs-plus@28";
-        args = [
-          "with-native-comp"
-          "with-no-titlebar-and-round-corners"
-        ];
-      }
     ];
     casks = [
       "mpv"
@@ -68,6 +61,10 @@ in
       "amethyst"
       "keepingyouawake"
       "iterm2"
+      {
+        name = "emacs-mac";
+        args = [ "with-native-comp" ];
+      }
     ];
   };
   programs.zsh = {

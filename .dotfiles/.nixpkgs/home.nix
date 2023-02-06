@@ -38,6 +38,7 @@ in
       stateVersion = "22.11";
       sessionVariables = {
         EDITOR = "vim";
+        VISUAL = "vim";
       };
     };
     programs = {

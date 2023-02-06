@@ -33,6 +33,7 @@ in
           git
           gnumake
           tectonic
+          gopls
         ];
       stateVersion = "22.11";
       sessionVariables = {

@@ -13,5 +13,4 @@
 (package! visual-fill-column)
 (package! esh-autosuggest)
 (package! helpful)
-(package! dired-single)
 (package! zetteldeft)

@@ -217,8 +217,8 @@
 
 ;; ========= DIRED =========
 
-(use-package! dired-single
-  :after dired)
+(after! dired
+  (setq dired-kill-when-opening-new-dired-buffer t))
 
 ;; ========= GC =========
 

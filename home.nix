@@ -23,8 +23,8 @@ in {
           hugo
           biber
           tectonic
-          progress
           ditaa
+          tere
           unstable.terraform
           unstable.ansible
           unstable.gh

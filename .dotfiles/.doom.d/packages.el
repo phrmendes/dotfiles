@@ -17,6 +17,5 @@
 (package! esh-autosuggest)
 (package! helpful)
 (package! math-preview)
-(package! dired-single)
 (package! zetteldeft)
 (package! zotxt)

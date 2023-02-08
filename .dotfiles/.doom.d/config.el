@@ -109,6 +109,7 @@
      (python . t)
      (shell . t)
      (terraform . t)
+     (restclient . t)
      (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   (map! "<f6>" #'org-babel-tangle))

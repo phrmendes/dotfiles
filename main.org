@@ -511,6 +511,7 @@ packages = with pkgs; [
     tectonic
     ditaa
     tere
+    ispell
     unstable.terraform
     unstable.ansible
     unstable.gh
@@ -553,9 +554,6 @@ packages = with pkgs; [
     libsForQt5.syntax-highlighting
     libsForQt5.ark
     # others
-    aspell
-    aspellDicts.en
-    aspellDicts.pt_BR
   ];
 stateVersion = "22.11";
 sessionVariables = {

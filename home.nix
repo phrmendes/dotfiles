@@ -67,6 +67,7 @@ in {
           libsForQt5.syntax-highlighting
           libsForQt5.ark
           # others
+          ispell
           aspell
           aspellDicts.en
           aspellDicts.pt_BR

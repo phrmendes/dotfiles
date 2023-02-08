@@ -512,6 +512,9 @@ packages = with pkgs; [
     ditaa
     tere
     ispell
+    aspell
+    aspellDicts.pt_BR
+    aspellDicts.en
     unstable.terraform
     unstable.ansible
     unstable.gh

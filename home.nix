@@ -25,6 +25,10 @@ in {
           tectonic
           ditaa
           tere
+          ispell
+          aspell
+          aspellDicts.pt_BR
+          aspellDicts.en
           unstable.terraform
           unstable.ansible
           unstable.gh
@@ -67,10 +71,6 @@ in {
           libsForQt5.syntax-highlighting
           libsForQt5.ark
           # others
-          ispell
-          aspell
-          aspellDicts.en
-          aspellDicts.pt_BR
         ];
       stateVersion = "22.11";
       sessionVariables = {

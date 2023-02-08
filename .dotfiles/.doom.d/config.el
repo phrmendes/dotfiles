@@ -221,12 +221,12 @@
 
 (defun flyspell-english ()
   (interactive)
-  (ispell-change-dictionary "english")
+  (ispell-change-dictionary "en")
   (flyspell-buffer))
 
 (defun flyspell-portuguese ()
   (interactive)
-  (ispell-change-dictionary "brasileiro")
+  (ispell-change-dictionary "pt_BR")
   (flyspell-buffer))
 
 (map! :leader

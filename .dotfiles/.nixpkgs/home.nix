@@ -34,6 +34,9 @@ in
           gnumake
           tectonic
           gopls
+          aspell
+          aspellDicts.en
+          aspellDicts.pt_BR
         ];
       stateVersion = "22.11";
       sessionVariables = {

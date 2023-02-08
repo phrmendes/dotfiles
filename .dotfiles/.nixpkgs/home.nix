@@ -34,7 +34,6 @@ in
           gnumake
           tectonic
           gopls
-          aspell
           ispell
         ];
       stateVersion = "22.11";

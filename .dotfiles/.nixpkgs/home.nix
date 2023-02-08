@@ -35,8 +35,7 @@ in
           tectonic
           gopls
           aspell
-          aspellDicts.en
-          aspellDicts.pt_BR
+          ispell
         ];
       stateVersion = "22.11";
       sessionVariables = {

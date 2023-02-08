@@ -183,22 +183,22 @@
 
 ;; ========= SPELLCHECK =========
 
-(let ((langs '("en_US" "pt_BR")))
-  (setq lang-ring (make-ring (length langs)))
-  (dolist (elem langs) (ring-insert lang-ring elem)))
-(let ((dics '("american-english" "portuguese")))
-  (setq dic-ring (make-ring (length dics)))
-  (dolist (elem dics) (ring-insert dic-ring elem)))
-
-(defun cycle-ispell-languages ()
+(defun flyspell-english ()
   (interactive)
-  (let ((lang (ring-ref lang-ring -1))
-        (dic (ring-ref dic-ring -1)))
-    (ring-insert lang-ring lang)
-    (ring-insert dic-ring dic)
-    (ispell-change-dictionary lang)))
+  (ispell-change-dictionary "english")
+  (flyspell-buffer))
 
-(map! "<f5>" #'cycle-ispell-languages)
+(defun flyspell-portuguese ()
+  (interactive)
+  (ispell-change-dictionary "brasileiro")
+  (flyspell-buffer))
+
+(map! :leader
+      (:prefix ("l" . "language")
+       :desc "Portuguese"
+       "p" #'flyspell-portuguese
+       :desc "English"
+       "e" #'flyspell-english))
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
 

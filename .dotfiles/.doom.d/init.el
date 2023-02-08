@@ -50,7 +50,7 @@
 
        :checkers
        (syntax +childframe)
-       (spell +aspell +flyspell)
+       (spell +flyspell)
 
        :tools
        ansible

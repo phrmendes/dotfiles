@@ -55,14 +55,13 @@
 
 (after! org
   (org-display-inline-images)
+  (org-toggle-pretty-entities)
   (setq org-directory "~/pCloudDrive/org/"
         org-agenda-files '("agenda.org" "agenda_rec.org" "calendario.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
         org-src-fontify-natively t
-        org-display-inline-images t
-        org-pretty-entities t
         org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
   (setq-default org-latex-pdf-process '("tectonic %f")))
 

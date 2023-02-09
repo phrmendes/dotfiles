@@ -136,7 +136,7 @@
 
 (add-to-list
  'org-latex-classes
- '("default"
+ '("article"
    "
 \\documentclass[12pt,a4paper]{scrartcl}
 \\usepackage[margin=2cm]{geometry}
@@ -238,7 +238,7 @@
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
 
-;; ;; ========= DAP MODE =========
+;; ========= DAP MODE =========
 
 (after! dap-mode
   (require 'dap-python)

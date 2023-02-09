@@ -148,6 +148,8 @@ in {
       gcc
       zlib
       gnumake
+      cmake
+      binutils
       appimage-run
       nordic
       home-manager

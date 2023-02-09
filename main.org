@@ -387,6 +387,8 @@ environment = {
     gcc
     zlib
     gnumake
+    cmake
+    binutils
     appimage-run
     nordic
     home-manager
@@ -560,7 +562,6 @@ packages = with pkgs; [
   ];
 stateVersion = "22.11";
 sessionVariables = {
-  EDITOR = "nvim";
   VISUAL = "nvim";
   TERMINAL = "alacritty";
   SUDO_EDITOR = "nvim";
@@ -622,10 +623,17 @@ fish = {
   };
   shellAbbrs = {
     stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+    nix_update = "sudo nixos-rebuild switch";
+    nix_clean = "nix-collect-garbage";
   };
   shellInit = ''
     fish_add_path "$HOME/.emacs.d/bin"
     fish_add_path "$HOME/.npm-global/bin"
+
+    function tere
+        set --local result (command tere $argv)
+        [ -n "$result" ] && cd -- "$result"
+    end
   '';
 };
 #+end_src
@@ -635,6 +643,7 @@ fish = {
 #+begin_src nix
 neovim = {
   enable = true;
+  defaultEditor = true;
   plugins = with pkgs.vimPlugins; [
     nvim-web-devicons
     nvim-tree-lua
@@ -643,18 +652,25 @@ neovim = {
     vim-easymotion
     vim-commentary
     vim-gitgutter
-    vim-polyglot
     auto-pairs
-    fzf-vim
     {
       plugin = nord-nvim;
       config = "colorscheme nord";
     }
     {
       plugin = indent-blankline-nvim;
+      config = "lua require('indent_blankline').setup()";
+    }
+    {
+      plugin = nvim-treesitter;
       config = ''
         lua << EOF
-        require("indent_blankline").setup()
+        require('nvim-treesitter.configs').setup {
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false
+            }
+        }
         EOF
       '';
     }
@@ -662,33 +678,40 @@ neovim = {
       plugin = lualine-nvim;
       config = ''
         lua << EOF
-        require("lualine").setup({
+        require('lualine').setup {
             options = {
-            icons_enabled = true,
-            theme = "nord"
+                icons_enabled = true,
+                theme = 'nord'
             }
-        })
+        }
         EOF
       '';
     }
   ];
-  extraConfig = ''
-    set background=dark
-    set clipboard+=unnamedplus
-    set completeopt=noinsert,menuone,noselect
-    set cursorline
-    set hidden
-    set inccommand=split
-    set mouse=a
-    set number
-    set relativenumber
-    set splitbelow splitright
-    set title
-    set ttimeoutlen=0
-    set wildmenu
-    set expandtab
-    set shiftwidth=2
-    set tabstop=2
+  extraLuaConfig = ''
+    vim.o.background = 'dark'
+    vim.o.clipboard = 'unnamedplus'
+    vim.o.completeopt = 'noinsert,menuone,noselect'
+    vim.o.cursorline = true
+    vim.o.hidden = true
+    vim.o.inccommand = 'split'
+    vim.o.number = true
+    vim.o.relativenumber = true
+    vim.o.splitbelow = true
+    vim.o.splitright = true
+    vim.o.title = true
+    vim.o.wildmenu = true
+    vim.o.expandtab = true
+    vim.o.ttimeoutlen = 0
+    vim.o.shiftwidth = 2
+    vim.o.tabstop = 2
+    vim.o.undofile = true
+    vim.o.smartindent = true
+    vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.o.shiftround = true
+    vim.o.expandtab = true
+    vim.o.scrolloff = 3
   '';
   vimAlias = true;
   vimdiffAlias = true;

@@ -99,8 +99,8 @@ in
           }
         ];
         extraConfig = ''
-          set clipboard='unnamedplus'
-          set completeopt='noinsert,menuone,noselect'
+          set clipboard+='unnamedplus'
+          set completeopt+='noinsert,menuone,noselect'
           set cursorline
           set hidden
           set inccommand='split'

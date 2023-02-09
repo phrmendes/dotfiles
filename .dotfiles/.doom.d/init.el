@@ -24,7 +24,6 @@
        hl-todo               ; highlights TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        indent-guides         ; highlights indented columns
        ophints               ; highlights the region where an operation takes place
-       (tabs +centaur-tabs)  ; a tab bar for emacs
        (vc-gutter +pretty)   ; show git diff
        vi-tilde-fringe       ; display tildes on empty lines
        deft                  ; major mode for managing notes written in plain text formats
@@ -50,7 +49,7 @@
 
        :checkers
        (syntax +childframe)
-       (spell +aspell +flyspell)
+       (spell +flyspell)
 
        :tools
        ansible

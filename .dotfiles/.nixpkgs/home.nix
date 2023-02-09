@@ -10,19 +10,17 @@ in
       homeDirectory = "/Users/${user}";
       packages = with pkgs;
         [
-          pandoc
           bat
           lazygit
           fd
           ripgrep
           sd
           tealdeer
-          ranger
+          tere
           stow
           exa
           python310Full
           poetry
-          cargo
           go
           nodejs
           podman
@@ -41,7 +39,6 @@ in
         ];
       stateVersion = "22.11";
       sessionVariables = {
-        EDITOR = "vim";
         VISUAL = "vim";
       };
     };
@@ -50,10 +47,7 @@ in
         enable = true;
         enableZshIntegration = true;
       };
-      bat = {
-        enable = true;
-        config.theme = "Nord";
-      };
+      bat.enable = true;
       direnv = {
         enable = true;
         enableZshIntegration = true;
@@ -61,7 +55,6 @@ in
       };
       starship = {
         enable = true;
-        enableBashIntegration = true;
         enableZshIntegration = true;
       };
       neovim = {
@@ -74,14 +67,25 @@ in
           vim-easymotion
           vim-commentary
           vim-gitgutter
-          vim-polyglot
           auto-pairs
-          fzf-vim
+          {
+            plugin = nord-nvim;
+            config = "colorscheme nord";
+          }
           {
             plugin = indent-blankline-nvim;
+            config = "lua require('indent_blankline').setup()";
+          }
+          {
+            plugin = nvim-treesitter;
             config = ''
               lua << EOF
-              require("indent_blankline").setup()
+              require('nvim-treesitter.configs').setup {
+                  highlight = {
+                      enable = true,
+                      additional_vim_regex_highlighting = false
+                  }
+              }
               EOF
             '';
           }
@@ -89,32 +93,40 @@ in
             plugin = lualine-nvim;
             config = ''
               lua << EOF
-              require("lualine").setup({
+              require('lualine').setup {
                   options = {
-                  icons_enabled = true
+                      icons_enabled = true,
+                      theme = 'nord'
                   }
-              })
+              }
               EOF
             '';
           }
         ];
-        extraConfig = ''
-          set background=dark
-          set clipboard+=unnamedplus
-          set completeopt=noinsert,menuone,noselect
-          set cursorline
-          set hidden
-          set inccommand=split
-          set mouse=a
-          set number
-          set relativenumber
-          set splitbelow splitright
-          set title
-          set ttimeoutlen=0
-          set wildmenu
-          set expandtab
-          set shiftwidth=2
-          set tabstop=2
+        extraLuaConfig = ''
+          vim.o.background = 'dark'
+          vim.o.clipboard = 'unnamedplus'
+          vim.o.completeopt = 'noinsert,menuone,noselect'
+          vim.o.cursorline = true
+          vim.o.hidden = true
+          vim.o.inccommand = 'split'
+          vim.o.number = true
+          vim.o.relativenumber = true
+          vim.o.splitbelow = true
+          vim.o.splitright = true
+          vim.o.title = true
+          vim.o.wildmenu = true
+          vim.o.expandtab = true
+          vim.o.ttimeoutlen = 0
+          vim.o.shiftwidth = 2
+          vim.o.tabstop = 2
+          vim.o.undofile = true
+          vim.o.smartindent = true
+          vim.o.tabstop = 4
+          vim.o.shiftwidth = 4
+          vim.o.shiftround = true
+          vim.o.expandtab = true
+          vim.o.scrolloff = 3
         '';
         vimAlias = true;
         vimdiffAlias = true;

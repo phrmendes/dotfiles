@@ -130,7 +130,7 @@
 
 (add-to-list
  'org-latex-classes
- '("default"
+ '("article"
    "
 \\documentclass[12pt,a4paper]{scrartcl}
 \\usepackage[margin=2cm]{geometry}
@@ -185,12 +185,12 @@
 
 (defun flyspell-english ()
   (interactive)
-  (ispell-change-dictionary "en")
+  (ispell-change-dictionary "english")
   (flyspell-buffer))
 
 (defun flyspell-portuguese ()
   (interactive)
-  (ispell-change-dictionary "pt_BR")
+  (ispell-change-dictionary "brasileiro")
   (flyspell-buffer))
 
 (map! :leader
@@ -202,7 +202,7 @@
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
 
-;; ;; ========= DAP MODE =========
+;; ========= DAP MODE =========
 
 (after! dap-mode
   (require 'dap-python)

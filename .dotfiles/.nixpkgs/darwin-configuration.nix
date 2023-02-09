@@ -32,6 +32,8 @@ in
       lt = "${pkgs.exa}/bin/exa --icons --tree";
       lla = "${pkgs.exa}/bin/exa --icons -la";
       stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+      nix_update = "darwin-rebuild switch";
+      nix_clean = "nix-collect-garbage";
     };
   };
   fonts = {
@@ -49,10 +51,7 @@ in
       "homebrew/cask"
       "railwaycat/emacsmacport"
     ];
-    brews = [
-      "gcc"
-      "libgccjit"
-    ];
+    brews = [ "gcc" ];
     casks = [
       "mpv"
       "slack"
@@ -72,11 +71,11 @@ in
     enableSyntaxHighlighting = true;
     enableFzfGit = true;
     promptInit = ''
-      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+        . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       fi
 
-      source ~/.iterm2_shell_integration.zsh
+      source "$HOME/.iterm2_shell_integration.zsh"
       eval "$(starship init zsh)"
     '';
     shellInit = ''
@@ -84,6 +83,11 @@ in
       path+=("/opt/homebrew/bin")
       path+=("$HOME/.emacs.d/bin")
       export PATH
+
+      tere() {
+          local result=$(command tere "$@")
+          [ -n "$result" ] && cd -- "$result"
+      }
     '';
   };
   security.pam.enableSudoTouchIdAuth = true;

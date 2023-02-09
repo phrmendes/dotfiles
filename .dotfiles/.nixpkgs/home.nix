@@ -69,10 +69,6 @@ in
           vim-gitgutter
           auto-pairs
           {
-            plugin = nord-nvim;
-            config = "colorscheme nord";
-          }
-          {
             plugin = indent-blankline-nvim;
             config = "lua require('indent_blankline').setup()";
           }
@@ -95,8 +91,7 @@ in
               lua << EOF
               require('lualine').setup {
                   options = {
-                      icons_enabled = true,
-                      theme = 'nord'
+                      icons_enabled = true
                   }
               }
               EOF
@@ -104,7 +99,6 @@ in
           }
         ];
         extraConfig = ''
-          set background='dark'
           set clipboard='unnamedplus'
           set completeopt='noinsert,menuone,noselect'
           set cursorline

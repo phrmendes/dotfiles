@@ -135,7 +135,7 @@ in {
           auto-pairs
           {
             plugin = nord-nvim;
-            config = "colorscheme nord";
+            config = "lua vim.cmd('colorscheme nord')";
           }
           {
             plugin = indent-blankline-nvim;

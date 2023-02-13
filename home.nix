@@ -20,6 +20,7 @@ in {
           stow
           exa
           sqlite
+          jq
           hugo
           biber
           tectonic

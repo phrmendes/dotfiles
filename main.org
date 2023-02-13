@@ -508,6 +508,7 @@ packages = with pkgs; [
     stow
     exa
     sqlite
+    jq
     hugo
     biber
     tectonic

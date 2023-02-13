@@ -19,6 +19,7 @@ in
           tere
           stow
           exa
+          jq
           python310Full
           poetry
           go

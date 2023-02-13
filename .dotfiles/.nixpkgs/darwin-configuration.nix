@@ -77,6 +77,7 @@ in
 
       source "$HOME/.iterm2_shell_integration.zsh"
       eval "$(starship init zsh)"
+      eval "$(direnv hook zsh)"
     '';
     shellInit = ''
       path+=("$HOME/.local/bin")

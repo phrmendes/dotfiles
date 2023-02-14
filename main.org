@@ -11,7 +11,7 @@ Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc
 
 #+begin_src shell :shebang #!/usr/bin/env bash
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc"
-NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix" "sddm.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
 
@@ -158,6 +158,30 @@ npm install -g git+https://gitlab.com/matsievskiysv/math-preview
 }
 #+end_src
 
+* sddm.nix
+
+#+begin_src nix :tangle ./sddm.nix :noweb yes
+{ stdenv, fetchFromGitHub }:
+
+{
+  nordic-custom-theme = stdenv.mkDerivation rec {
+    pname = "sddm-nordic-custom-theme";
+    version = "1.1";
+    dontBuild = true;
+    installPhase = ''
+        mkdir -p $out/share/sddm/themes
+        cp -aR $src $out/share/sddm/themes/nordic-custom-theme
+    '';
+    src = fetchFromGitHub {
+      owner = "phrmendes";
+      repo = "nordic_sddm_theme";
+      rev = "v${version}";
+      sha256 = "1nqby92gkxlzg6vdjyz65019cz3k1qjc2f041a2pkf830gf2dvjk";
+    };
+  };
+}
+#+end_src
+
 * configuration.nix
 ** Main
 
@@ -179,6 +203,7 @@ in {
 user = "phrmendes";
 home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+themes = pkgs.callPackage ./sddm.nix {};
 #+end_src
 
 ** Parameters
@@ -292,7 +317,7 @@ services = {
     displayManager.sddm = {
       enable = true;
       autoNumlock = true;
-      theme = "Nordic";
+      theme = "nordic-custom-theme";
       settings.Theme.CursorTheme = "breeze_cursors";
     };
     libinput = {
@@ -375,30 +400,33 @@ nixpkgs.config = {
   };
 };
 environment = {
-  systemPackages = with pkgs; [
-    zip
-    curl
-    wget
-    unzip
-    unrar
-    git
-    gzip
-    vim
-    gcc
-    zlib
-    gnumake
-    cmake
-    binutils
-    appimage-run
-    nordic
-    home-manager
-    libsForQt5.sddm-kcm
-    libsForQt5.kwallet
-    libsForQt5.kwallet-pam
-  ];
+  systemPackages = with pkgs;
+    [
+      zip
+      curl
+      wget
+      unzip
+      unrar
+      git
+      gzip
+      vim
+      gcc
+      zlib
+      gnumake
+      cmake
+      binutils
+      appimage-run
+      nordic
+      home-manager
+      libsForQt5.sddm-kcm
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
+    ] ++ [ themes.nordic-custom-theme ];
 };
-programs.kdeconnect.enable = true;
-programs.dconf.enable = true;
+programs = {
+  kdeconnect.enable = true;
+  dconf.enable = true;
+};
 #+end_src
 
 *** Nix

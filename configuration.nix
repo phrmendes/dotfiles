@@ -3,6 +3,7 @@ let
   user = "phrmendes";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
   unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+  themes = pkgs.callPackage ./sddm.nix {};
 in {
   imports = [
       (import "${home-manager}/nixos")
@@ -78,7 +79,7 @@ in {
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
-        theme = "Nordic";
+        theme = "nordic-custom-theme";
         settings.Theme.CursorTheme = "breeze_cursors";
       };
       libinput = {
@@ -136,30 +137,33 @@ in {
     };
   };
   environment = {
-    systemPackages = with pkgs; [
-      zip
-      curl
-      wget
-      unzip
-      unrar
-      git
-      gzip
-      vim
-      gcc
-      zlib
-      gnumake
-      cmake
-      binutils
-      appimage-run
-      nordic
-      home-manager
-      libsForQt5.sddm-kcm
-      libsForQt5.kwallet
-      libsForQt5.kwallet-pam
-    ];
+    systemPackages = with pkgs;
+      [
+        zip
+        curl
+        wget
+        unzip
+        unrar
+        git
+        gzip
+        vim
+        gcc
+        zlib
+        gnumake
+        cmake
+        binutils
+        appimage-run
+        nordic
+        home-manager
+        libsForQt5.sddm-kcm
+        libsForQt5.kwallet
+        libsForQt5.kwallet-pam
+      ] ++ [ themes.nordic-custom-theme ];
   };
-  programs.kdeconnect.enable = true;
-  programs.dconf.enable = true;
+  programs = {
+    kdeconnect.enable = true;
+    dconf.enable = true;
+  };
   nix = {
     settings = {
       auto-optimise-store = true;

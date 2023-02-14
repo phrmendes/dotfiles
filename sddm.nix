@@ -13,7 +13,7 @@
       owner = "phrmendes";
       repo = "nordic_sddm_theme";
       rev = "v${version}";
-      sha256 = "1nqby92gkxlzg6vdjyz65019cz3k1qjc2f041a2pkf830gf2dvjk";
+      sha256 = "19axwzykzbhx2p6c4z7jk6qps6hp0a5z64ma93yhzda9hcw4c84x";
     };
   };
 }

@@ -35,8 +35,8 @@ in {
           unstable.gh
           unstable.quarto
           # programming tools
-          python310Full
-          unstable.poetry
+          unstable.python311
+          unstable.pipenv
           unstable.cargo
           unstable.go
           unstable.nodejs
@@ -121,6 +121,17 @@ in {
               [ -n "$result" ] && cd -- "$result"
           end
         '';
+        plugins = [
+          {
+            name = "fish-pipenv";
+            src = pkgs.fetchFromGitHub {
+              owner = "sentriz";
+              repo = "fish-pipenv";
+              rev = "v0.0.2";
+              sha256 = "09c52x5ccpsglbcm073yf5bfyf61hkx0f3r1ljbg1zj9ykbqvw3p";
+            };
+          }
+        ];
       };
       neovim = {
         enable = true;

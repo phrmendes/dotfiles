@@ -664,17 +664,6 @@ fish = {
         [ -n "$result" ] && cd -- "$result"
     end
   '';
-  plugins = [
-    {
-      name = "fish-pipenv";
-      src = pkgs.fetchFromGitHub {
-        owner = "sentriz";
-        repo = "fish-pipenv";
-        rev = "v0.0.2";
-        sha256 = "09c52x5ccpsglbcm073yf5bfyf61hkx0f3r1ljbg1zj9ykbqvw3p";
-      };
-    }
-  ];
 };
 #+end_src
 

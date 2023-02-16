@@ -20,8 +20,8 @@ in
           stow
           exa
           jq
-          python310Full
-          poetry
+          python311
+          pipenv
           go
           nodejs
           podman
@@ -33,6 +33,9 @@ in
           gnumake
           tectonic
           gopls
+          rnix-lsp
+          libgccjit
+          zlib
           ispell
           aspell
           aspellDicts.en

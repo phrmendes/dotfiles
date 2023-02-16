@@ -70,7 +70,7 @@
        (json +lsp)
        (markdown +grip)
        (org +jupyter +pretty)
-       (python +lsp +poetry +pyright)
+       (python +lsp +pyright)
        (sh +lsp)
        (yaml +lsp)
 

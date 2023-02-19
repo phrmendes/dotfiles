@@ -125,6 +125,8 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("jp" . "src jupyter-python :async yes"))
+  (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
   (add-to-list 'org-structure-template-alist '("go" . "src go")))

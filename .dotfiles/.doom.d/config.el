@@ -29,6 +29,10 @@
 (setq display-line-numbers-type 'relative)
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 
+;; ========= MODELINE =========
+
+(setq doom-modeline-major-mode-icon t)
+
 ;; ========= COMPANY MODE =========
 
 (use-package! company-box

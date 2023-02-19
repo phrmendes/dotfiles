@@ -71,7 +71,7 @@
        (json +lsp)
        (latex +lsp +fold)
        (markdown +grip)
-       (org +ipython +pretty)
+       (org +jupyter +pretty)
        (python +lsp +pyright)
        (sh +lsp)
        (yaml +lsp)

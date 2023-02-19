@@ -59,7 +59,6 @@
        (debugger +lsp)
        (lsp +lsp +peek)
        (docker +lsp)
-       ein                ; Jupyter notebook integration
        (eval +overlay)    ; inline code evaluation
        (lookup +dicsets)  ; navigate your code and its documentation
        (magit +forge)     ; a git porcelain for emacs
@@ -73,7 +72,7 @@
        (json +lsp)
        (latex +lsp +fold)
        (markdown +grip)
-       (org +jupyter +pretty)
+       (org +ipython +pretty)
        (python +lsp +pyright)
        (sh +lsp)
        (yaml +lsp)

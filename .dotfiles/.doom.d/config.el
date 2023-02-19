@@ -107,6 +107,7 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
+     (ipython . t)
      (nix . t)
      (shell . t)
      (terraform . t)

@@ -54,7 +54,6 @@
        :tools
        ansible
        terraform
-       (debugger +lsp)
        (lsp +lsp +peek)
        (docker +lsp)
        (eval +overlay)    ; inline code evaluation

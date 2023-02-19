@@ -35,6 +35,10 @@
   :after company
   :hook (company-mode . company-box-mode))
 
+;; ========= PYTHON REPL =========
+
+(setq python-shell-completion-native-enable nil)
+
 ;; ========= HELPFUL =========
 
 (use-package! helpful
@@ -201,13 +205,6 @@
        "e" #'flyspell-english))
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
-
-;; ========= DAP MODE =========
-
-(after! dap-mode
-  (require 'dap-python)
-  (require 'dap-dlv-go)
-  (setq dap-python-debugger 'debugpy))
 
 ;; ========= EVIL SNIPE =========
 

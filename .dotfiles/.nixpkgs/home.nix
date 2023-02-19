@@ -21,6 +21,7 @@ in
           exa
           jq
           python311
+          python311Packages.ipython
           pipenv
           go
           nodejs

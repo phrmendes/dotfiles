@@ -14,6 +14,3 @@
 (package! esh-autosuggest)
 (package! helpful)
 (package! zetteldeft)
-(package! restclient)
-(package! company-restclient)
-(package! ob-restclient)

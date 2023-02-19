@@ -15,7 +15,6 @@ in {
           ripgrep
           fd
           sd
-          ncdu
           gnupg
           stow
           exa
@@ -26,6 +25,7 @@ in {
           tectonic
           ditaa
           tere
+          imagemagick
           ispell
           aspell
           aspellDicts.pt_BR
@@ -36,18 +36,15 @@ in {
           unstable.quarto
           # programming tools
           unstable.python311
+          unstable.python311Packages.ipython
           unstable.pipenv
           unstable.cargo
           unstable.go
           unstable.nodejs
-          # language servers and debuggers
-          python310Packages.debugpy
           unstable.gopls
           unstable.rnix-lsp
           unstable.tflint
           unstable.lua53Packages.digestif
-          unstable.lldb
-          unstable.delve
           # apps
           bitwarden
           spotify
@@ -71,7 +68,6 @@ in {
           libsForQt5.kate
           libsForQt5.syntax-highlighting
           libsForQt5.ark
-          # others
         ];
       stateVersion = "22.11";
       sessionVariables = {

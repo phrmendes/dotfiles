@@ -35,6 +35,10 @@
   :after company
   :hook (company-mode . company-box-mode))
 
+;; ========= PYTHON REPL =========
+
+(setq python-shell-completion-native-enable nil)
+
 ;; ========= HELPFUL =========
 
 (use-package! helpful
@@ -125,6 +129,7 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("jp" . "src ipython"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
   (add-to-list 'org-structure-template-alist '("dt" . "src ditaa"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
@@ -238,13 +243,6 @@
        "e" #'flyspell-english))
 
 (remove-hook! 'text-mode-hook #'flyspell-mode)
-
-;; ========= DAP MODE =========
-
-(after! dap-mode
-  (require 'dap-python)
-  (require 'dap-dlv-go)
-  (setq dap-python-debugger 'debugpy))
 
 ;; ========= EVIL SNIPE =========
 

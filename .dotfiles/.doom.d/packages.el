@@ -19,6 +19,3 @@
 (package! math-preview)
 (package! zetteldeft)
 (package! zotxt)
-(package! restclient)
-(package! company-restclient)
-(package! ob-restclient)

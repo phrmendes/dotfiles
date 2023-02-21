@@ -217,4 +217,8 @@
 
 (after! poly-quarto-mode
   (setq markdown-code-block-braces t)
-  (phrm/org-mode-visual-fill))
+  (myfun/org-mode-visual-fill))
+
+(after! markdown-mode
+  (setq markdown-code-block-braces t)
+  (myfun/org-mode-visual-fill))

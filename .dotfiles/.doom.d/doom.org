@@ -435,7 +435,7 @@ emacs-lisp
   (setq dired-kill-when-opening-new-dired-buffer t))
 #+end_src
 
-** quarto mode
+** markdown and quarto mode
 
 #+begin_src emacs-lisp
 (use-package! quarto-mode
@@ -443,7 +443,11 @@ emacs-lisp
 
 (after! poly-quarto-mode
   (setq markdown-code-block-braces t)
-  (phrm/org-mode-visual-fill))
+  (myfun/org-mode-visual-fill))
+
+(after! markdown-mode
+  (setq markdown-code-block-braces t)
+  (myfun/org-mode-visual-fill))
 #+end_src
 
 * packages.el

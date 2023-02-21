@@ -183,4 +183,8 @@
   (setq evil-snipe-scope 'buffer))
 
 (after! dired
-  ( setq dired-kill-when-opening-new-dired-buffer t))
+  (setq dired-kill-when-opening-new-dired-buffer t))
+
+(after! markdown-mode
+  (setq markdown-code-block-braces t)
+  (myfun/org-mode-visual-fill))

@@ -2,7 +2,7 @@
 
 * init.el
 
-#+begin_src emacs-lisp ./init.el :noweb yes
+#+begin_src emacs-lisp :tangle ./init.el :noweb yes
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
@@ -402,7 +402,15 @@ macos
 
 #+begin_src emacs-lisp
 (after! dired
-  ( setq dired-kill-when-opening-new-dired-buffer t))
+  (setq dired-kill-when-opening-new-dired-buffer t))
+#+end_src
+
+** markdown mode
+
+#+begin_src emacs-lisp
+(after! markdown-mode
+  (setq markdown-code-block-braces t)
+  (myfun/org-mode-visual-fill))
 #+end_src
 
 * packages.el

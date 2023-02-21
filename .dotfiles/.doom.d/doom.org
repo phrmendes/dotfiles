@@ -2,7 +2,7 @@
 
 * init.el
 
-#+begin_src emacs-lisp ./init.el :noweb yes
+#+begin_src emacs-lisp :tangle ./init.el :noweb yes
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion

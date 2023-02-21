@@ -8,10 +8,6 @@
 ;; ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; ========= GC =========
-
-(setq gc-cons-threshold (* 50 1000 1000))
-
 ;; ========= ID =========
 
 (setq user-full-name "Pedro Mendes"
@@ -268,7 +264,3 @@
 (after! poly-quarto-mode
   (setq markdown-code-block-braces t)
   (phrm/org-mode-visual-fill))
-
-;; ========= GC =========
-
-(setq gc-cons-threshold (* 2 1000 1000))

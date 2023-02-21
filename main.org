@@ -160,7 +160,7 @@ npm install -g git+https://gitlab.com/matsievskiysv/math-preview
 
 * sddm.nix
 
-#+begin_src nix :tangle ./sddm.nix :noweb yes
+#+begin_src nix :tangle ./sddm.nix
 { stdenv, fetchFromGitHub }:
 
 {

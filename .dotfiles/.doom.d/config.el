@@ -8,10 +8,6 @@
 ;; ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; ========= GC =========
-
-(setq gc-cons-threshold (* 50 1000 1000))
-
 ;; ========= ID =========
 
 (setq user-full-name "Pedro Mendes"
@@ -223,7 +219,3 @@
 
 (after! dired
   (setq dired-kill-when-opening-new-dired-buffer t))
-
-;; ========= GC =========
-
-(setq gc-cons-threshold (* 2 1000 1000))

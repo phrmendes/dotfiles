@@ -58,7 +58,7 @@
   (setq-default org-latex-pdf-process '("tectonic %f")))
 
 (defun myfun/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
+  (setq visual-fill-column-width 175
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 

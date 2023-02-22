@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 FLATPAK_PROGRAMS=("ch.protonmail.protonmail-bridge" "com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
-NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix" "sddm.nix")
 
 sudo rm -r /etc/nixos/
 sudo mkdir /etc/nixos/
@@ -17,7 +17,7 @@ for program in "${FLATPAK_PROGRAMS[@]}"; do
     flatpak install "$program" -y
 done
 
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.emacs.d"
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
 rm -r "$HOME/.doom.d"

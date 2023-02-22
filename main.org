@@ -77,7 +77,7 @@ sudo nixos-install
 #+begin_src shell :shebang #!/usr/bin/env bash
 FLATPAK_PROGRAMS=("ch.protonmail.protonmail-bridge" "com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
 MAIN_DIR="$(pwd)"
-NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix" "sddm.nix")
 #+end_src
 
 ** Creating symlinks to nix files
@@ -109,7 +109,7 @@ done
 ** Doom Emacs
 
 #+begin_src shell
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.emacs.d"
 "$HOME/.emacs.d/bin/doom" install
 "$HOME/.emacs.d/bin/doom" sync
 rm -r "$HOME/.doom.d"
@@ -155,30 +155,6 @@ npm install -g git+https://gitlab.com/matsievskiysv/math-preview
   swapDevices = [ {device = "/swapfile"; size = 10000;} ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-}
-#+end_src
-
-* sddm.nix
-
-#+begin_src nix :tangle ./sddm.nix
-{ stdenv, fetchFromGitHub }:
-
-{
-  nordic-custom-theme = stdenv.mkDerivation rec {
-    pname = "sddm-nordic-custom-theme";
-    version = "1.0";
-    dontBuild = true;
-    installPhase = ''
-        mkdir -p $out/share/sddm/themes
-        cp -aR $src $out/share/sddm/themes/nordic-custom-theme
-    '';
-    src = fetchFromGitHub {
-      owner = "phrmendes";
-      repo = "nordic_sddm_theme";
-      rev = "v${version}";
-      sha256 = "19axwzykzbhx2p6c4z7jk6qps6hp0a5z64ma93yhzda9hcw4c84x";
-    };
-  };
 }
 #+end_src
 
@@ -249,6 +225,9 @@ networking = {
 
 #+begin_src nix
 time.timeZone = "America/Sao_Paulo";
+#+end_src
+
+#+begin_src nix
 i18n = {
   defaultLocale = "en_US.UTF-8";
   extraLocaleSettings = {
@@ -392,13 +371,15 @@ users.users.${user} = {
 #+begin_src nix
 nixpkgs.config = {
   allowUnfree = true;
-  allowBroken = true;
   packageOverrides = pkgs: {
     unstable = import unstableTarball {
       config = config.nixpkgs.config;
     };
   };
 };
+#+end_src
+
+#+begin_src nix
 environment = {
   systemPackages = with pkgs;
     [
@@ -421,8 +402,13 @@ environment = {
       libsForQt5.sddm-kcm
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
-    ] ++ [ themes.nordic-custom-theme ];
+    ] ++ [
+      themes.nordic-custom-theme
+    ];
 };
+#+end_src
+
+#+begin_src nix
 programs = {
   kdeconnect.enable = true;
   dconf.enable = true;
@@ -454,6 +440,30 @@ system = {
   stateVersion = "22.11";
   autoUpgrade.enable = true;
 };
+#+end_src
+
+* sddm.nix
+
+#+begin_src nix :tangle ./sddm.nix
+{ stdenv, fetchFromGitHub }:
+
+{
+  nordic-custom-theme = stdenv.mkDerivation rec {
+    pname = "sddm-nordic-custom-theme";
+    version = "1.0";
+    dontBuild = true;
+    installPhase = ''
+        mkdir -p $out/share/sddm/themes
+        cp -aR $src $out/share/sddm/themes/nordic-custom-theme
+    '';
+    src = fetchFromGitHub {
+      owner = "phrmendes";
+      repo = "nordic_sddm_theme";
+      rev = "v${version}";
+      sha256 = "19axwzykzbhx2p6c4z7jk6qps6hp0a5z64ma93yhzda9hcw4c84x";
+    };
+  };
+}
 #+end_src
 
 * home.nix
@@ -520,72 +530,75 @@ username = "${user}";
 homeDirectory = "/home/${user}";
 #+end_src
 
-**** Packages
+**** Stand-alone packages
 
 #+begin_src nix
 packages = with pkgs; [
-    # terminal
-    btop
-    pandoc
-    lazygit
-    ripgrep
-    fd
-    sd
-    gnupg
-    stow
-    exa
-    sqlite
-    jq
-    hugo
-    biber
-    tectonic
-    ditaa
-    tere
-    imagemagick
-    ispell
-    aspell
-    aspellDicts.pt_BR
-    aspellDicts.en
-    unstable.terraform
-    unstable.ansible
-    unstable.gh
-    unstable.quarto
-    # programming tools
-    unstable.python311
-    unstable.python311Packages.ipython
-    unstable.pipenv
-    unstable.cargo
-    unstable.go
-    unstable.nodejs
-    unstable.gopls
-    unstable.rnix-lsp
-    unstable.tflint
-    unstable.lua53Packages.digestif
-    # apps
-    bitwarden
-    spotify
-    cmdstan
-    ventoy-bin-full
-    haruna
-    peek
-    droidcam
-    unstable.podman
-    unstable.emacs
-    unstable.pcloud
-    unstable.zotero
-    unstable.firefox
-    unstable.chromium
-    unstable.protonvpn-gui
-    unstable.thunderbird
-    libsForQt5.bismuth
-    libsForQt5.ktorrent
-    libsForQt5.filelight
-    libsForQt5.kpmcore
-    libsForQt5.kate
-    libsForQt5.syntax-highlighting
-    libsForQt5.ark
-  ];
+  btop
+  pandoc
+  lazygit
+  ripgrep
+  fd
+  sd
+  gnupg
+  stow
+  exa
+  sqlite
+  jq
+  hugo
+  biber
+  tectonic
+  ditaa
+  tere
+  imagemagick
+  bitwarden
+  spotify
+  ventoy-bin-full
+  haruna
+  peek
+  droidcam
+  ispell
+  aspell
+  aspellDicts.pt_BR
+  aspellDicts.en
+  unstable.cmdstan
+  unstable.terraform
+  unstable.ansible
+  unstable.gh
+  unstable.quarto
+  unstable.python311
+  unstable.python311Packages.ipython
+  unstable.pipenv
+  unstable.cargo
+  unstable.go
+  unstable.nodejs
+  unstable.gopls
+  unstable.rnix-lsp
+  unstable.tflint
+  unstable.lua53Packages.digestif
+  unstable.podman
+  unstable.emacs
+  unstable.pcloud
+  unstable.zotero
+  unstable.firefox
+  unstable.chromium
+  unstable.protonvpn-gui
+  unstable.thunderbird
+  libsForQt5bismuth
+  libsForQt5ktorrent
+  libsForQt5filelight
+  libsForQt5kpmcore
+  libsForQt5kate
+  libsForQt5syntax-highlighting
+  libsForQt5ark
+];
+#+end_src
+
+#+begin_src nix
 stateVersion = "22.11";
+#+end_src
+
+#+begin_src nix
 sessionVariables = {
   VISUAL = "nvim";
   TERMINAL = "alacritty";
@@ -593,7 +606,7 @@ sessionVariables = {
 };
 #+end_src
 
-*** programs
+*** programs with home-manager settings
 :PROPERTIES:
 :header-args: :noweb-ref programs
 :END:
@@ -861,4 +874,4 @@ starship = {
 
 * Updates
 
-~nixos-rebuild switch~ after applying changes to the *.nix files.
+~sudo nixos-rebuild switch~ after applying changes to the *.nix files.

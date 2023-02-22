@@ -129,7 +129,6 @@ in {
   };
   nixpkgs.config = {
     allowUnfree = true;
-    allowBroken = true;
     packageOverrides = pkgs: {
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
@@ -158,7 +157,9 @@ in {
         libsForQt5.sddm-kcm
         libsForQt5.kwallet
         libsForQt5.kwallet-pam
-      ] ++ [ themes.nordic-custom-theme ];
+      ] ++ [
+        themes.nordic-custom-theme
+      ];
   };
   programs = {
     kdeconnect.enable = true;

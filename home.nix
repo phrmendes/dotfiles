@@ -58,13 +58,13 @@ in {
         unstable.chromium
         unstable.protonvpn-gui
         unstable.thunderbird
-        libsForQt5bismuth
-        libsForQt5ktorrent
-        libsForQt5filelight
-        libsForQt5kpmcore
-        libsForQt5kate
-        libsForQt5syntax-highlighting
-        libsForQt5ark
+        libsForQt5.bismuth
+        libsForQt5.ktorrent
+        libsForQt5.filelight
+        libsForQt5.kpmcore
+        libsForQt5.kate
+        libsForQt5.syntax-highlighting
+        libsForQt5.ark
       ];
       stateVersion = "22.11";
       sessionVariables = {

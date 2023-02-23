@@ -20,27 +20,27 @@ in
           stow
           exa
           jq
-          python311
-          python311Packages.ipython
-          pipenv
-          go
-          nodejs
-          podman
-          terraform
-          terragrunt
-          tflint
-          qemu
           git
           gnumake
-          tectonic
-          gopls
-          rnix-lsp
-          libgccjit
-          zlib
           ispell
           aspell
           aspellDicts.en
           aspellDicts.pt_BR
+          unstable.python311
+          unstable.python311Packages.ipython
+          unstable.pipenv
+          unstable.go
+          unstable.nodejs
+          unstable.podman
+          unstable.qemu
+          unstable.terraform
+          unstable.terragrunt
+          unstable.tflint
+          unstable.tectonic
+          unstable.gopls
+          unstable.rnix-lsp
+          unstable.libgccjit
+          unstable.zlib
         ];
       stateVersion = "22.11";
       sessionVariables = {

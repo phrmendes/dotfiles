@@ -2,6 +2,7 @@
 
 let
   user = "prochame";
+  unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in
 {
   imports = [
@@ -17,6 +18,11 @@ in
     config = {
       allowUnfree = true;
       allowUnsupportedSystem = true;
+      packageOverrides = pkgs: {
+        unstable = import unstableTarball {
+          config = config.nixpkgs.config;
+        };
+      };
     };
   };
   environment = {

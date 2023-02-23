@@ -18,10 +18,6 @@
   :after company
   :hook (company-mode . company-box-mode))
 
-(use-package! citar
-  :custom
-  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
-
 (map! :leader
       (:prefix ("r" . "citar")
        :desc "Insert citation"

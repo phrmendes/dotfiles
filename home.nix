@@ -31,8 +31,6 @@ in {
         haruna
         peek
         droidcam
-        mu
-        isync
         ispell
         aspell
         aspellDicts.pt_BR

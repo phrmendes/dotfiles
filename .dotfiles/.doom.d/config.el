@@ -49,7 +49,7 @@
   (org-display-inline-images)
   (org-toggle-pretty-entities)
   (setq org-directory "~/pCloudDrive/org/"
-        org-agenda-files '("agenda.org" "agenda_rec.org" "calendario.org")
+        org-agenda-files '("agenda.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))

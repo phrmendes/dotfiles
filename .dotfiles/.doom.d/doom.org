@@ -184,18 +184,8 @@ macos
 ** projectile
 
 #+begin_src emacs-lisp
-(use-package! citar
-  :custom
-  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
-
-(map! :leader
-      (:prefix ("r" . "citar")
-       :desc "Insert citation"
-       "i" #'citar-insert-citation
-       :desc "Insert reference"
-       "r" #'citar-insert-reference
-       :desc "Insert predefined search"
-       "o" #'citar-insert-preset))
+(after! projectile
+  (setq projectile-project-search-path '("~/Projects")))
 #+end_src
 
 ** direnv
@@ -214,14 +204,6 @@ macos
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . helpful-variable)
   ([remap describe-key] . helpful-key))
-#+end_src
-
-** eshell
-
-#+begin_src emacs-lisp
-(use-package! esh-autosuggest
-  :after eshell
-  :hook (eshell-mode . esh-autosuggest-mode))
 #+end_src
 
 ** org mode

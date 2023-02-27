@@ -57,7 +57,10 @@ in
       "homebrew/cask"
       "railwaycat/emacsmacport"
     ];
-    brews = [ "gcc" ];
+    brews = [
+      "gcc"
+      "libvterm"
+    ];
     casks = [
       "mpv"
       "slack"

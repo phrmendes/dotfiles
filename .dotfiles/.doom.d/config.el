@@ -18,6 +18,9 @@
   :after company
   :hook (company-mode . company-box-mode))
 
+(after! projectile
+  (setq projectile-project-search-path '("~/Projects")))
+
 (use-package! citar
   :custom
   (citar-bibliography '("~/pCloudDrive/org/library.bib")))

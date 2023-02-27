@@ -577,7 +577,6 @@ packages = with pkgs; [
   unstable.tflint
   unstable.lua53Packages.digestif
   unstable.podman
-  unstable.emacs
   unstable.pcloud
   unstable.zotero
   unstable.firefox
@@ -673,6 +672,15 @@ fish = {
         [ -n "$result" ] && cd -- "$result"
     end
   '';
+};
+#+end_src
+
+**** emacs
+
+#+begin_src nix
+emacs = {
+  enable = true;
+  extraPackages = epkgs: [ epkgs.vterm ];
 };
 #+end_src
 

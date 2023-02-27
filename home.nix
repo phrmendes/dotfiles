@@ -51,7 +51,6 @@ in {
         unstable.tflint
         unstable.lua53Packages.digestif
         unstable.podman
-        unstable.emacs
         unstable.pcloud
         unstable.zotero
         unstable.firefox
@@ -114,6 +113,10 @@ in {
               [ -n "$result" ] && cd -- "$result"
           end
         '';
+      };
+      emacs = {
+        enable = true;
+        extraPackages = epkgs: [ epkgs.vterm ];
       };
       neovim = {
         enable = true;

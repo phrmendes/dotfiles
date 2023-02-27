@@ -44,10 +44,6 @@
   ([remap describe-variable] . helpful-variable)
   ([remap describe-key] . helpful-key))
 
-(use-package! esh-autosuggest
-  :after eshell
-  :hook (eshell-mode . esh-autosuggest-mode))
-
 (after! org
   (org-display-inline-images)
   (org-toggle-pretty-entities)

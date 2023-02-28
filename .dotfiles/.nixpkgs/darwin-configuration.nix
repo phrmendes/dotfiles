@@ -98,6 +98,10 @@ in
           local result=$(command tere "$@")
           [ -n "$result" ] && cd -- "$result"
       }
+
+      TRAPALRM() {
+        zle reset-prompt
+      }
     '';
   };
   security.pam.enableSudoTouchIdAuth = true;

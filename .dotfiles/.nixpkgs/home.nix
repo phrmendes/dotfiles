@@ -22,6 +22,7 @@ in
           jq
           git
           gnumake
+          gh
           ispell
           aspell
           aspellDicts.en

@@ -78,7 +78,7 @@ undo      ; persistent, smarter undo for your inevitable mistakes
 ** term
 
 #+begin_src emacs-lisp :noweb-ref term
-eshell
+vterm
 #+end_src
 
 ** checkers

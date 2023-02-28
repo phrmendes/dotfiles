@@ -18,14 +18,8 @@
   :after company
   :hook (company-mode . company-box-mode))
 
-(map! :leader
-      (:prefix ("r" . "citar")
-       :desc "Insert citation"
-       "i" #'citar-insert-citation
-       :desc "Insert reference"
-       "r" #'citar-insert-reference
-       :desc "Insert predefined search"
-       "o" #'citar-insert-preset))
+(after! projectile
+  (setq projectile-project-search-path '("~/Projects")))
 
 (envrc-global-mode)
 
@@ -36,10 +30,6 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . helpful-variable)
   ([remap describe-key] . helpful-key))
-
-(use-package! esh-autosuggest
-  :after eshell
-  :hook (eshell-mode . esh-autosuggest-mode))
 
 (after! org
   (org-display-inline-images)

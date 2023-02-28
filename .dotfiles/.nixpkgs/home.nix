@@ -22,6 +22,8 @@ in
           jq
           git
           gnumake
+          cmake
+          gcc
           gh
           ispell
           aspell

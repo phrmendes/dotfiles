@@ -57,10 +57,7 @@ in
       "homebrew/cask"
       "railwaycat/emacsmacport"
     ];
-    brews = [
-      "gcc"
-      "libvterm"
-    ];
+    brews = [ "libvterm" ];
     casks = [
       "mpv"
       "slack"
@@ -91,16 +88,13 @@ in
     shellInit = ''
       path+=("$HOME/.local/bin")
       path+=("/opt/homebrew/bin")
+      path+=("/opt/homebrew/sbin)
       path+=("$HOME/.emacs.d/bin")
       export PATH
 
       tere() {
           local result=$(command tere "$@")
           [ -n "$result" ] && cd -- "$result"
-      }
-
-      TRAPALRM() {
-        zle reset-prompt
       }
     '';
   };

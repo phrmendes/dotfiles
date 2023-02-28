@@ -96,6 +96,8 @@ in
           local result=$(command tere "$@")
           [ -n "$result" ] && cd -- "$result"
       }
+
+      bindkey "^t" fzf-history-widget
     '';
   };
   security.pam.enableSudoTouchIdAuth = true;

@@ -75,6 +75,7 @@ in {
         # shell script
         shfmt
         shellcheck
+        # latex
         lua53Packages.digestif
         # others
         cargo

@@ -8,42 +8,68 @@ in
     home = {
       username = "${user}";
       homeDirectory = "/Users/${user}";
-      packages = with pkgs;
+      packages = with pkgs.unstable;
         [
-          bat
+          podman
+          pandoc
           lazygit
-          fd
           ripgrep
+          fd
           sd
-          tealdeer
-          tere
+          gnupg
           stow
           exa
+          sqlite
           jq
+          tectonic
+          tere
+          imagemagick
+          ispell
+          aspell
+          aspellDicts.pt_BR
+          aspellDicts.en
+          ansible
+          gh
           git
           gnumake
           cmake
           gcc
-          gh
-          ispell
-          aspell
-          aspellDicts.en
-          aspellDicts.pt_BR
-          unstable.python311
-          unstable.python311Packages.ipython
-          unstable.pipenv
-          unstable.go
-          unstable.nodejs
-          unstable.podman
-          unstable.qemu
-          unstable.terraform
-          unstable.terragrunt
-          unstable.tflint
-          unstable.tectonic
-          unstable.gopls
-          unstable.rnix-lsp
-          unstable.libgccjit
-          unstable.zlib
+          qemu
+          libgccjit
+          zlib
+          # terraform
+          terraform
+          tflint
+          terragrunt
+          # python
+          python311
+          python311Packages.ipython
+          python311Packages.grip
+          python311Packages.black
+          python311Packages.pyflakes
+          python311Packages.isort
+          python311Packages.pytest
+          python311Packages.nose
+          pipenv
+          # go
+          go
+          gopls
+          gotests
+          gore
+          gotools
+          gomodifytags
+          delve
+          # nix
+          rnix-lsp
+          nixfmt
+          # shell script
+          shfmt
+          shellcheck
+          # latex
+          lua53Packages.digestif
+          # others
+          cargo
+          nodejs
         ];
       stateVersion = "22.11";
       sessionVariables = {

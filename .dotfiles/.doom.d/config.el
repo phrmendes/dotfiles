@@ -1,5 +1,4 @@
-;;; -*- lexical-binding: t; -*-
-;;; $DOOMDIR/config.el
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (setq user-full-name "Pedro Mendes"
       user-mail-address "phrmendes00@pm.me")

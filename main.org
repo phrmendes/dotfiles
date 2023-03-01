@@ -369,13 +369,20 @@ users.users.${user} = {
 *** System packages
     
 #+begin_src nix
-nixpkgs.config = {
-  allowUnfree = true;
-  packageOverrides = pkgs: {
-    unstable = import unstableTarball {
-      config = config.nixpkgs.config;
+nixpkgs = {
+  config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
     };
   };
+  overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
 };
 #+end_src
 
@@ -664,7 +671,7 @@ fish = {
     nix_clean = "nix-collect-garbage";
   };
   shellInit = ''
-    fish_add_path "$HOME/.emacs.d/bin"
+    fish_add_path "$HOME/.config/emacs/bin"
     fish_add_path "$HOME/.npm-global/bin"
 
     function tere
@@ -680,7 +687,7 @@ fish = {
 #+begin_src nix
 emacs = {
   enable = true;
-  extraPackages = epkgs: [ epkgs.vterm ];
+  extraPackages = (epkgs: [ epkgs.vterm ] );
 };
 #+end_src
 

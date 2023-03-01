@@ -105,7 +105,7 @@ in {
           nix_clean = "nix-collect-garbage";
         };
         shellInit = ''
-          fish_add_path "$HOME/.emacs.d/bin"
+          fish_add_path "$HOME/.config/emacs/bin"
           fish_add_path "$HOME/.npm-global/bin"
       
           function tere
@@ -116,7 +116,7 @@ in {
       };
       emacs = {
         enable = true;
-        extraPackages = epkgs: [ epkgs.vterm ];
+        extraPackages = (epkgs: [ epkgs.vterm ] );
       };
       neovim = {
         enable = true;

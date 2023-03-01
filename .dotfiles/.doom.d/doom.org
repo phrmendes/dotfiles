@@ -129,8 +129,7 @@ emacs-lisp
 :END:
 
 #+begin_src emacs-lisp
-;;; -*- lexical-binding: t; -*-
-;;; $DOOMDIR/config.el
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 #+end_src
 
 ** doom settings
@@ -452,7 +451,7 @@ emacs-lisp
 * packages.el
 
 #+begin_src emacs-lisp :tangle ./packages.el
-;;; -*- no-byte-compile: t; -*-
+;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
 (package! polymode)

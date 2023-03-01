@@ -75,7 +75,10 @@ in {
         # shell script
         shfmt
         shellcheck
+<<<<<<< HEAD
         # latex
+=======
+>>>>>>> 1a01ac9 (Adding programs.)
         lua53Packages.digestif
         # others
         cargo

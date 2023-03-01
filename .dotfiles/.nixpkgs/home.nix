@@ -10,7 +10,9 @@ in
       homeDirectory = "/Users/${user}";
       packages = with pkgs.unstable;
         [
+          # CLI apps
           podman
+          qemu
           pandoc
           lazygit
           ripgrep
@@ -34,7 +36,6 @@ in
           gnumake
           cmake
           gcc
-          qemu
           libgccjit
           zlib
           # terraform

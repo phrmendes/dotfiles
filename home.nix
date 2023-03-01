@@ -81,7 +81,6 @@ in {
         cargo
         nodejs
         # KDE apps
-        libsForQt5.bismuth
         libsForQt5.ktorrent
         libsForQt5.filelight
         libsForQt5.kpmcore

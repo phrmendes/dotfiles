@@ -1,13 +1,13 @@
 { stdenv, fetchFromGitHub }:
 
 {
-  nordic-custom-theme = stdenv.mkDerivation rec {
-    pname = "sddm-nordic-custom-theme";
+  sddm-nordic = stdenv.mkDerivation rec {
+    pname = "sddm-nordic";
     version = "1.0";
     dontBuild = true;
     installPhase = ''
         mkdir -p $out/share/sddm/themes
-        cp -aR $src $out/share/sddm/themes/nordic-custom-theme
+        cp -aR $src $out/share/sddm/themes/nordic
     '';
     src = fetchFromGitHub {
       owner = "phrmendes";

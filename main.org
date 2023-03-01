@@ -296,7 +296,7 @@ services = {
     displayManager.sddm = {
       enable = true;
       autoNumlock = true;
-      theme = "nordic-custom-theme";
+      theme = "nordic";
       settings.Theme.CursorTheme = "breeze_cursors";
     };
     libinput = {
@@ -409,8 +409,9 @@ environment = {
       libsForQt5.sddm-kcm
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
+      libsForQt5.bismuth
     ] ++ [
-      themes.nordic-custom-theme
+      themes.sddm-nordic
     ];
 };
 #+end_src
@@ -455,13 +456,13 @@ system = {
 { stdenv, fetchFromGitHub }:
 
 {
-  nordic-custom-theme = stdenv.mkDerivation rec {
-    pname = "sddm-nordic-custom-theme";
+  sddm-nordic = stdenv.mkDerivation rec {
+    pname = "sddm-nordic";
     version = "1.0";
     dontBuild = true;
     installPhase = ''
         mkdir -p $out/share/sddm/themes
-        cp -aR $src $out/share/sddm/themes/nordic-custom-theme
+        cp -aR $src $out/share/sddm/themes/nordic
     '';
     src = fetchFromGitHub {
       owner = "phrmendes";
@@ -614,7 +615,6 @@ packages = with pkgs.unstable; [
   cargo
   nodejs
   # KDE apps
-  libsForQt5.bismuth
   libsForQt5.ktorrent
   libsForQt5.filelight
   libsForQt5.kpmcore

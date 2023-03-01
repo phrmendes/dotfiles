@@ -79,7 +79,7 @@ in {
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
-        theme = "nordic-custom-theme";
+        theme = "nordic";
         settings.Theme.CursorTheme = "breeze_cursors";
       };
       libinput = {
@@ -164,8 +164,9 @@ in {
         libsForQt5.sddm-kcm
         libsForQt5.kwallet
         libsForQt5.kwallet-pam
+        libsForQt5.bismuth
       ] ++ [
-        themes.nordic-custom-theme
+        themes.sddm-nordic
       ];
   };
   programs = {

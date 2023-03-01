@@ -7,7 +7,22 @@ in {
     home = {
       username = "${user}";
       homeDirectory = "/home/${user}";
-      packages = with pkgs; [
+      packages = with pkgs.unstable; [
+        # GUI apps
+        pcloud
+        zotero
+        firefox
+        chromium
+        protonvpn-gui
+        thunderbird
+        bitwarden
+        spotify
+        ventoy-bin-full
+        haruna
+        peek
+        droidcam
+        # CLI apps
+        podman
         btop
         pandoc
         lazygit
@@ -22,41 +37,49 @@ in {
         hugo
         biber
         tectonic
-        ditaa
         tere
         imagemagick
-        bitwarden
-        spotify
-        ventoy-bin-full
-        haruna
-        peek
-        droidcam
         ispell
         aspell
         aspellDicts.pt_BR
         aspellDicts.en
-        unstable.cmdstan
-        unstable.terraform
-        unstable.ansible
-        unstable.gh
-        unstable.quarto
-        unstable.python311
-        unstable.python311Packages.ipython
-        unstable.pipenv
-        unstable.cargo
-        unstable.go
-        unstable.nodejs
-        unstable.gopls
-        unstable.rnix-lsp
-        unstable.tflint
-        unstable.lua53Packages.digestif
-        unstable.podman
-        unstable.pcloud
-        unstable.zotero
-        unstable.firefox
-        unstable.chromium
-        unstable.protonvpn-gui
-        unstable.thunderbird
+        cmdstan
+        ansible
+        gh
+        quarto
+        # terraform
+        terraform
+        tflint
+        terragrunt
+        # python
+        python311
+        python311Packages.ipython
+        python311Packages.grip
+        python311Packages.black
+        python311Packages.pyflakes
+        python311Packages.isort
+        python311Packages.pytest
+        python311Packages.nose
+        pipenv
+        # go
+        go
+        gopls
+        gotests
+        gore
+        gotools
+        gomodifytags
+        delve
+        # nix
+        rnix-lsp
+        nixfmt
+        # shell script
+        shfmt
+        shellcheck
+        lua53Packages.digestif
+        # others
+        cargo
+        nodejs
+        # KDE apps
         libsForQt5.bismuth
         libsForQt5.ktorrent
         libsForQt5.filelight

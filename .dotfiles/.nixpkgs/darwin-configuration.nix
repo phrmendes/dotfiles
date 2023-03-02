@@ -88,7 +88,8 @@ in
     shellInit = ''
       path+=("$HOME/.local/bin")
       path+=("/opt/homebrew/bin")
-      path+=("/opt/homebrew/sbin)
+      path+=("/opt/homebrew/sbin")
+      path+=("$HOME/.config/.emacs.d/bin")
       path+=("$HOME/.emacs.d/bin")
       export PATH
 
@@ -96,8 +97,6 @@ in
           local result=$(command tere "$@")
           [ -n "$result" ] && cd -- "$result"
       }
-
-      bindkey "^t" fzf-history-widget
     '';
   };
   security.pam.enableSudoTouchIdAuth = true;

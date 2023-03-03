@@ -66,8 +66,6 @@ in
           # shell script
           shfmt
           shellcheck
-          # latex
-          lua53Packages.digestif
           # others
           cargo
           nodejs
@@ -94,7 +92,7 @@ in
       };
       helix = {
         enable = true;
-        theme = "base16_transparent";
+        settings.theme = "base16_terminal";
       };
     };
   };

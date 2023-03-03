@@ -76,7 +76,7 @@ in {
         shfmt
         shellcheck
         # latex
-        lua53Packages.digestif
+        texlab
         # others
         cargo
         nodejs

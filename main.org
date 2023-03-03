@@ -718,7 +718,7 @@ emacs = {
 #+begin_src nix
 helix = {
   enable = true;
-  languages = [ "python" "json" "yaml" "bash" "latex" "make" "toml" "tfvars" "dockerfile" "go" ];
+  settings.theme = "nord";
 };
 #+end_src
 

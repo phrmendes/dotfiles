@@ -141,7 +141,7 @@ in {
       };
       helix = {
         enable = true;
-        languages = [ "python" "json" "yaml" "bash" "latex" "make" "toml" "tfvars" "dockerfile" "go" ];
+        settings.theme = "nord";
       };
       alacritty = {
         enable = true;

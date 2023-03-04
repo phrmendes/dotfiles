@@ -48,6 +48,7 @@ in
   };
   homebrew = {
     enable = true;
+    global.autoUpdate = true;
     onActivation = {
       cleanup = "uninstall";
       upgrade = true;

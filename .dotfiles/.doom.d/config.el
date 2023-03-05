@@ -79,7 +79,6 @@
      (nix . t)
      (shell . t)
      (terraform . t)
-     (ditaa . t)
      (latex . t)
      (go . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
@@ -92,7 +91,6 @@
   (add-to-list 'org-structure-template-alist '("py" . "src ipython"))
   (add-to-list 'org-structure-template-alist '("jp" . "src jupyter-python :async yes"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
-  (add-to-list 'org-structure-template-alist '("dt" . "src ditaa"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("js" . "src json"))
   (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
@@ -119,14 +117,12 @@
 
 (setq bibtex-completion-bibliography (concat org-directory "/library/library.bib")
       bibtex-completion-library-path (concat (getenv "HOME") "/pCloudDrive/zotero")
-      org-cite-follow-processor 'my-ivy-bibtex-org-cite-follow
       bibtex-completion-format-citation-functions
       '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
         (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
         (default       . bibtex-completion-format-citation-default)))
 
-(org-cite-register-processor 'my-ivy-bibtex-org-cite-follow
-  :follow (lambda (_ _) (ivy-bibtex)))
+(setq org-cite-follow-processor 'helm-bibtex-org-cite-follow)
 
 (use-package! deft
   :commands deft

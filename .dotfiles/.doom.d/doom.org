@@ -31,7 +31,7 @@
 
 #+begin_src emacs-lisp :noweb-ref completion
 (company +childframe)
-(vertico +icons)
+(ivy +icons +prescient +fuzzy)
 #+end_src
 
 ** ui

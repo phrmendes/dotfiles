@@ -29,7 +29,7 @@
 
 #+begin_src emacs-lisp :noweb-ref completion
 (company +childframe)
-(vertico +icons)
+(ivy +icons +prescient +fuzzy)
 #+end_src
 
 ** ui
@@ -181,23 +181,6 @@ emacs-lisp
   (setq projectile-project-search-path '("~/Projects")))
 #+end_src
 
-** citar
-
-#+begin_src emacs-lisp
-(use-package! citar
-  :custom
-  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
-
-(map! :leader
-      (:prefix ("r" . "citar")
-       :desc "Insert citation"
-       "i" #'citar-insert-citation
-       :desc "Insert reference"
-       "r" #'citar-insert-reference
-       :desc "Insert predefined search"
-       "o" #'citar-insert-preset))
-#+end_src
-
 ** direnv
 
 #+begin_src emacs-lisp
@@ -328,6 +311,21 @@ emacs-lisp
    ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 #+end_src
 
+** bibliography settings
+
+#+begin_src emacs-lisp
+(org-cite-register-processor 'my-ivy-bibtex-org-cite-follow
+  :follow (lambda (_ _) (ivy-bibtex)))
+
+(setq bibtex-completion-bibliography "~/pCloudDrive/org/library/library.bib"
+      bibtex-completion-library-path "~/pCloudDrive/zotero"
+      org-cite-follow-processor 'my-ivy-bibtex-org-cite-follow
+      bibtex-completion-format-citation-functions
+      '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
+        (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
+        (default       . bibtex-completion-format-citation-default)))
+#+end_src
+
 ** deft and zetteldeft
 
 #+begin_src emacs-lisp
@@ -357,41 +355,6 @@ emacs-lisp
        "s" #'zetteldeft-search-current-id
        "R" #'zetteldeft-file-rename
        "t" #'zetteldeft-tag-insert))
-#+end_src
-
-** bibliography packages
-*** zotero integration
-
-#+begin_src emacs-lisp
-(use-package! zotxt
-  :after org
-  :hook (org-zotxt-mode . org-mode))
-
-(map! :leader
-      (:prefix ("z" . "zotero")
-       :desc "Insert reference link"
-       "i" #'org-zotxt-insert-reference-link
-       :desc "Update reference link"
-       "u" #'org-zotxt-update-reference-link-at-point
-       :desc "Open attachment"
-       "o" #'org-zotxt-open-attachment))
-#+end_src
-
-*** citar
-
-#+begin_src emacs-lisp
-(use-package! citar
-  :custom
-  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
-
-(map! :leader
-      (:prefix ("r" . "citar")
-       :desc "Insert citation"
-       "i" #'citar-insert-citation
-       :desc "Insert reference"
-       "r" #'citar-insert-reference
-       :desc "Insert predefined search"
-       "o" #'citar-insert-preset))
 #+end_src
 
 ** spellcheck
@@ -463,5 +426,4 @@ emacs-lisp
 (package! helpful)
 (package! math-preview)
 (package! zetteldeft)
-(package! zotxt)
 #+end_src

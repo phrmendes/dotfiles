@@ -2,7 +2,7 @@
 
 (doom! :completion
        (company +childframe)
-       (vertico +icons)
+       (ivy +icons +prescient +fuzzy)
        :ui
        doom
        doom-dashboard

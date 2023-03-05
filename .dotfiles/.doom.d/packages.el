@@ -10,4 +10,3 @@
 (package! helpful)
 (package! math-preview)
 (package! zetteldeft)
-(package! zotxt)

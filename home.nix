@@ -23,6 +23,7 @@ in {
         droidcam
         # CLI apps
         podman
+        graphviz
         btop
         pandoc
         lazygit

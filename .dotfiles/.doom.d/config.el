@@ -20,19 +20,6 @@
 (after! projectile
   (setq projectile-project-search-path '("~/Projects")))
 
-(use-package! citar
-  :custom
-  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
-
-(map! :leader
-      (:prefix ("r" . "citar")
-       :desc "Insert citation"
-       "i" #'citar-insert-citation
-       :desc "Insert reference"
-       "r" #'citar-insert-reference
-       :desc "Insert predefined search"
-       "o" #'citar-insert-preset))
-
 (envrc-global-mode)
 
 (use-package! helpful
@@ -130,6 +117,13 @@
    ("\\subsection*{%s}" . "\\subsection*{%s}")
    ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
+(setq bibtex-completion-bibliography "~/pCloudDrive/org/library/library.bib"
+      bibtex-completion-library-path "~/pCloudDrive/zotero"
+      bibtex-completion-format-citation-functions
+      '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
+        (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
+        (default       . bibtex-completion-format-citation-default)))
+
 (use-package! deft
   :commands deft
   :config
@@ -156,32 +150,6 @@
        "s" #'zetteldeft-search-current-id
        "R" #'zetteldeft-file-rename
        "t" #'zetteldeft-tag-insert))
-
-(use-package! zotxt
-  :after org
-  :hook (org-zotxt-mode . org-mode))
-
-(map! :leader
-      (:prefix ("z" . "zotero")
-       :desc "Insert reference link"
-       "i" #'org-zotxt-insert-reference-link
-       :desc "Update reference link"
-       "u" #'org-zotxt-update-reference-link-at-point
-       :desc "Open attachment"
-       "o" #'org-zotxt-open-attachment))
-
-(use-package! citar
-  :custom
-  (citar-bibliography '("~/pCloudDrive/org/library.bib")))
-
-(map! :leader
-      (:prefix ("r" . "citar")
-       :desc "Insert citation"
-       "i" #'citar-insert-citation
-       :desc "Insert reference"
-       "r" #'citar-insert-reference
-       :desc "Insert predefined search"
-       "o" #'citar-insert-preset))
 
 (defun myfun/flyspell-english ()
   (interactive)

@@ -557,6 +557,7 @@ packages = with pkgs.unstable; [
   droidcam
   # CLI apps
   podman
+  graphviz
   btop
   pandoc
   lazygit

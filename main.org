@@ -571,7 +571,6 @@ packages = with pkgs.unstable; [
   jq
   hugo
   biber
-  tectonic
   tere
   imagemagick
   ispell
@@ -621,7 +620,7 @@ packages = with pkgs.unstable; [
   libsForQt5.kpmcore
   libsForQt5.syntax-highlighting
   libsForQt5.ark
-];
+] ++ [ pkgs.tectonic ];
 #+end_src
 
 #+begin_src nix

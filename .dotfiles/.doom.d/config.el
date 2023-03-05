@@ -33,7 +33,7 @@
 (after! org
   (org-display-inline-images)
   (org-toggle-pretty-entities)
-  (setq org-directory "~/pCloudDrive/org/"
+  (setq org-directory (concat (getenv "HOME")"/pCloudDrive/org")
         org-agenda-files '("agenda.org")
         org-cite-csl-styles-dir "~/Zotero/styles"
         org-ellipsis " ▼ "
@@ -117,17 +117,21 @@
    ("\\subsection*{%s}" . "\\subsection*{%s}")
    ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
-(setq bibtex-completion-bibliography "~/pCloudDrive/org/library/library.bib"
-      bibtex-completion-library-path "~/pCloudDrive/zotero"
+(setq bibtex-completion-bibliography (concat org-directory "/library/library.bib")
+      bibtex-completion-library-path (concat (getenv "HOME") "/pCloudDrive/zotero")
+      org-cite-follow-processor 'my-ivy-bibtex-org-cite-follow
       bibtex-completion-format-citation-functions
       '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
         (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
         (default       . bibtex-completion-format-citation-default)))
 
+(org-cite-register-processor 'my-ivy-bibtex-org-cite-follow
+  :follow (lambda (_ _) (ivy-bibtex)))
+
 (use-package! deft
   :commands deft
   :config
-  (setq deft-directory "~/pCloudDrive/org"
+  (setq deft-directory org-directory
         deft-extensions '("md" "org")
         deft-use-filename-as-title t
         deft-recursive t))

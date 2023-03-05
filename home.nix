@@ -37,7 +37,6 @@ in {
         jq
         hugo
         biber
-        tectonic
         tere
         imagemagick
         ispell
@@ -87,7 +86,7 @@ in {
         libsForQt5.kpmcore
         libsForQt5.syntax-highlighting
         libsForQt5.ark
-      ];
+      ] ++ [ pkgs.tectonic ];
       stateVersion = "22.11";
       sessionVariables = {
         VISUAL = "hx";

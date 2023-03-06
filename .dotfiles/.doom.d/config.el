@@ -115,14 +115,12 @@
    ("\\subsection*{%s}" . "\\subsection*{%s}")
    ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
-(setq bibtex-completion-bibliography (concat org-directory "/library/library.bib")
+(setq bibtex-completion-bibliography (concat (getenv "HOME") "/pCloudDrive/org/library/library.bib")
       bibtex-completion-library-path (concat (getenv "HOME") "/pCloudDrive/zotero")
       bibtex-completion-format-citation-functions
       '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
         (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
         (default       . bibtex-completion-format-citation-default)))
-
-(setq org-cite-follow-processor 'helm-bibtex-org-cite-follow)
 
 (use-package! deft
   :commands deft

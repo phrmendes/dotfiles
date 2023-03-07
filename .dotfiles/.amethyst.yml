@@ -42,11 +42,11 @@ cycle-layout:
   mod: mod1
   key: space
 focus-cw:
-  mod: mod1
-  key: j
+  mod: mod2
+  key: up
 focus-ccw:
-  mod: mod1
-  key: k
+  mod: mod2
+  key: down
 shrink-main:
   mod: mod1
   key: h

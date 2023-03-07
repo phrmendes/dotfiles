@@ -24,6 +24,7 @@ in {
         krename
         notepadqq
         # CLI apps
+        protonmail-bridge
         podman
         graphviz
         btop

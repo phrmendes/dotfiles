@@ -556,6 +556,7 @@ packages = with pkgs.unstable; [
   krename
   notepadqq
   # CLI apps
+  protonmail-bridge
   podman
   graphviz
   btop

@@ -555,6 +555,8 @@ packages = with pkgs.unstable; [
   haruna
   peek
   droidcam
+  krename
+  notepadqq
   # CLI apps
   podman
   graphviz
@@ -572,15 +574,17 @@ packages = with pkgs.unstable; [
   hugo
   biber
   tere
-  imagemagick
+  cmdstan
+  gh
+  quarto
+  # dictionaries
   ispell
   aspell
   aspellDicts.pt_BR
   aspellDicts.en
-  cmdstan
+  # ansible
+  ansible-lint
   ansible
-  gh
-  quarto
   # terraform
   terraform
   tflint
@@ -588,6 +592,7 @@ packages = with pkgs.unstable; [
   # python
   python311
   python311Packages.ipython
+  python311Packages.jupyter
   python311Packages.grip
   python311Packages.black
   python311Packages.pyflakes
@@ -618,7 +623,6 @@ packages = with pkgs.unstable; [
   libsForQt5.ktorrent
   libsForQt5.filelight
   libsForQt5.kpmcore
-  libsForQt5.syntax-highlighting
   libsForQt5.ark
 ] ++ [ pkgs.tectonic ];
 #+end_src

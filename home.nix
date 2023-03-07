@@ -21,6 +21,8 @@ in {
         haruna
         peek
         droidcam
+        krename
+        notepadqq
         # CLI apps
         podman
         graphviz
@@ -38,15 +40,17 @@ in {
         hugo
         biber
         tere
-        imagemagick
+        cmdstan
+        gh
+        quarto
+        # dictionaries
         ispell
         aspell
         aspellDicts.pt_BR
         aspellDicts.en
-        cmdstan
+        # ansible
+        ansible-lint
         ansible
-        gh
-        quarto
         # terraform
         terraform
         tflint
@@ -54,6 +58,7 @@ in {
         # python
         python311
         python311Packages.ipython
+        python311Packages.jupyter
         python311Packages.grip
         python311Packages.black
         python311Packages.pyflakes
@@ -84,7 +89,6 @@ in {
         libsForQt5.ktorrent
         libsForQt5.filelight
         libsForQt5.kpmcore
-        libsForQt5.syntax-highlighting
         libsForQt5.ark
       ] ++ [ pkgs.tectonic ];
       stateVersion = "22.11";

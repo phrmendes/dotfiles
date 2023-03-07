@@ -19,7 +19,7 @@ in {
       timeout = 5;
     };
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.unstable.linuxPackages_latest;
   };
   networking = {
     hostName = "nixos-desktop";
@@ -118,6 +118,8 @@ in {
         };
       };
     };
+    opengl.enable = true;
+    nvidia.package = pkgs.unstable.linuxKernel.packages.linux_6_2.nvidia_x11;
   };
   users.users.${user} = {
     isNormalUser = true;

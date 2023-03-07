@@ -1,9 +1,7 @@
 # mod keys
 mod1:
   - option
-  - shift
 mod2:
-  - control
   - option
   - shift
 
@@ -72,7 +70,7 @@ throw-space-right:
   key: right
 throw-space-left:
   mod: mod2
-  key: right
+  key: left
 throw-screen-1:
   mod: mod2
   key: 1

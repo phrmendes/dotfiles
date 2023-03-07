@@ -44,15 +44,11 @@ in {
     enableDefaultFonts = true;
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      noto-fonts-extra
     ];
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
+        serif = [ "SourceCodePro" ];
+        sansSerif = [ "SourceCodePro" ];
         monospace = [ "SourceCodePro" ];
       };
     };

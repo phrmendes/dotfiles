@@ -2,3 +2,4 @@
 .dotfiles/.config/systemd/user/picom.service
 .dotfiles/.config/systemd/user/plasma-kwin_x11.service
 .dotfiles/.config/systemd/user/graphical-session.target.wants
+.dotfiles/.config/systemd/user/plasma-workspace.target.wants/plasma-i3.service

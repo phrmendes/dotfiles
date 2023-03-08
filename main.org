@@ -124,8 +124,8 @@ stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 ** Plasma + i3 settings
 
 #+begin_src shell
-sudo systemctl mask plasma-kwin_x11.service --user
-sudo systemctl enable plasma-i3 --user
+systemctl mask plasma-kwin_x11.service --user
+systemctl enable plasma-i3 --user
 #+end_src
 
 ** npm

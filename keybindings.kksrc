@@ -76,7 +76,7 @@ mute=Volume Mute
 
 [ksmserver][Global Shortcuts]
 Halt Without Confirmation=
-Lock Session=Ctrl+Shift+Esc; Screensaver
+Lock Session=Screensaver; Ctrl+Shift+Esc
 Log Out=Ctrl+Alt+Del
 Log Out Without Confirmation=
 Reboot Without Confirmation=
@@ -244,7 +244,7 @@ _launch=Meta+E
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Meta+Space
+_launch=Search; Meta+Space
 
 [org.kde.plasma.emojier.desktop][Global Shortcuts]
 _launch=Meta+.
@@ -254,7 +254,7 @@ ActiveWindowScreenShot=
 CurrentMonitorScreenShot=
 FullScreenScreenShot=
 OpenWithoutScreenshot=
-RectangularRegionScreenShot=Meta+Shift+Print
+RectangularRegionScreenShot=Print
 WindowUnderCursorScreenShot=
 _launch=
 

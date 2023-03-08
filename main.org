@@ -121,6 +121,13 @@ rm -r "$HOME/.doom.d"
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 #+end_src
 
+** Plasma + i3 settings
+
+#+begin_src shell
+sudo systemctl mask plasma-kwin_x11.service --user
+sudo systemctl enable plasma-i3 --user
+#+end_src
+
 ** npm
 
 #+begin_src shell
@@ -279,6 +286,10 @@ services = {
     autorun = true;
     layout = "us,br";
     videoDrivers = [ "nvidia" ];
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+    };
     desktopManager.plasma5 = {
       enable = true;
       excludePackages = with pkgs.libsForQt5; [
@@ -289,11 +300,13 @@ services = {
         print-manager
       ];
     };
-    displayManager.sddm = {
-      enable = true;
-      autoNumlock = true;
-      theme = "nordic";
-      settings.Theme.CursorTheme = "breeze_cursors";
+    displayManager = {
+      sddm = {
+        enable = true;
+        autoNumlock = true;
+        theme = "nordic";
+        settings.Theme.CursorTheme = "breeze_cursors";
+      };
     };
     libinput = {
       enable = true;
@@ -407,7 +420,6 @@ environment = {
       libsForQt5.sddm-kcm
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
-      libsForQt5.bismuth
     ] ++ [
       themes.sddm-nordic
     ];
@@ -514,6 +526,12 @@ programs = {
 };
 #+end_src
 
+#+begin_src nix :noweb yes
+services = {
+  <<services>>
+};
+#+end_src
+
 #+begin_src nix
 xdg.enable = true;
 xdg.mime.enable = true;
@@ -555,6 +573,7 @@ packages = with pkgs.unstable; [
   droidcam
   krename
   notepadqq
+  nitrogen
   # CLI apps
   protonmail-bridge
   podman
@@ -638,7 +657,7 @@ sessionVariables = {
 };
 #+end_src
 
-*** programs with home-manager settings
+*** Programs with home-manager settings
 :PROPERTIES:
 :header-args: :noweb-ref programs
 :END:
@@ -838,6 +857,24 @@ starship = {
   enable = true;
   enableBashIntegration = true;
   enableFishIntegration = true;
+};
+#+end_src
+
+*** services
+:PROPERTIES:
+:header-args: :noweb-ref services
+:END:
+**** picom
+
+#+begin_src nix
+picom = {
+  enable = true;
+  activeOpacity = 1.0;
+  backend = "glx";
+  shadow = true;
+  vSync = true;
+  fade = true;
+  fadeDelta = 2;
 };
 #+end_src
 

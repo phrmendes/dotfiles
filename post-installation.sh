@@ -24,6 +24,9 @@ rm -r "$HOME/.doom.d"
 
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 
+sudo systemctl mask plasma-kwin_x11.service --user
+sudo systemctl enable plasma-i3 --user
+
 mkdir $HOME/.npm-global
 npm config set prefix "$HOME/.npm-global"
 npm install -g git+https://gitlab.com/matsievskiysv/math-preview

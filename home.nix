@@ -23,6 +23,7 @@ in {
         droidcam
         krename
         notepadqq
+        nitrogen
         # CLI apps
         protonmail-bridge
         podman
@@ -253,6 +254,17 @@ in {
         enable = true;
         enableBashIntegration = true;
         enableFishIntegration = true;
+      };
+    };
+    services = {
+      picom = {
+        enable = true;
+        activeOpacity = 1.0;
+        backend = "glx";
+        shadow = true;
+        vSync = true;
+        fade = true;
+        fadeDelta = 2;
       };
     };
     xdg.enable = true;

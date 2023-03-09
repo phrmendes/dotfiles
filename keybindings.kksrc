@@ -1,5 +1,6 @@
 [ActivityManager][Global Shortcuts]
 switch-to-activity-451bfea9-8914-4de9-a326-d93c1ff1415a=
+switch-to-activity-66c73b75-89be-45b1-8ee3-ac3e7b289f75=
 
 [Alacritty.desktop][Global Shortcuts]
 New=Meta+Return
@@ -76,7 +77,7 @@ mute=Volume Mute
 
 [ksmserver][Global Shortcuts]
 Halt Without Confirmation=
-Lock Session=Screensaver; Meta+L
+Lock Session=Meta+L; Screensaver
 Log Out=Ctrl+Alt+Del
 Log Out Without Confirmation=
 Reboot Without Confirmation=
@@ -244,19 +245,19 @@ _launch=Meta+E
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Search; Meta+Space
+_launch=Search; Alt+Space; Alt+F2
 
 [org.kde.plasma.emojier.desktop][Global Shortcuts]
 _launch=Meta+.
 
 [org.kde.spectacle.desktop][Global Shortcuts]
-ActiveWindowScreenShot=
+ActiveWindowScreenShot=Meta+Print
 CurrentMonitorScreenShot=
-FullScreenScreenShot=
+FullScreenScreenShot=Shift+Print
 OpenWithoutScreenshot=
-RectangularRegionScreenShot=Print
-WindowUnderCursorScreenShot=
-_launch=
+RectangularRegionScreenShot=Meta+Shift+Print
+WindowUnderCursorScreenShot=Meta+Ctrl+Print
+_launch=Print
 
 [org_kde_powerdevil][Global Shortcuts]
 Decrease Keyboard Brightness=Keyboard Brightness Down
@@ -285,6 +286,7 @@ activate widget 25=Alt+F1
 activate widget 3=
 activate widget 30=
 activate widget 54=
+activate widget 57=
 activate widget 76=
 clear-history=
 clipboard_action=Meta+Ctrl+X
@@ -306,7 +308,7 @@ toggle do not disturb=
 
 [systemsettings.desktop][Global Shortcuts]
 _launch=Tools
-kcm-kscreen=Meta+S
+kcm-kscreen=
 kcm-lookandfeel=
 kcm-users=
 powerdevilprofilesconfig=

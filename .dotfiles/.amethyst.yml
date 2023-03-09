@@ -8,6 +8,7 @@ mod2:
 # layouts
 enables-layout-hud: true
 layouts:
+  - tall
   - bsp
   - fullscreen
 

@@ -573,7 +573,6 @@ packages = with pkgs.unstable; [
   droidcam
   krename
   notepadqq
-  nitrogen
   # CLI apps
   protonmail-bridge
   podman
@@ -595,6 +594,8 @@ packages = with pkgs.unstable; [
   cmdstan
   gh
   quarto
+  feh
+  wmctrl
   # dictionaries
   ispell
   aspell

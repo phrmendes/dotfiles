@@ -76,11 +76,13 @@ in {
           print-manager
         ];
       };
-      displayManager.sddm = {
-        enable = true;
-        autoNumlock = true;
-        theme = "nordic";
-        settings.Theme.CursorTheme = "breeze_cursors";
+      displayManager = {
+        sddm = {
+          enable = true;
+          autoNumlock = true;
+          theme = "nordic";
+          settings.Theme.CursorTheme = "breeze_cursors";
+        };
       };
       libinput = {
         enable = true;

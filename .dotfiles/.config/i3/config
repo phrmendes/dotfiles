@@ -1,20 +1,13 @@
-# plasma settings
-exec --no-startup-id wmctrl -c Plasma
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
-
 # default workspace partition
 for_window [class=".*"] split toggle
 
 # default split
-default_orientation vertical
+default_orientation horizontal
 
 # gaps and borders
 gaps inner 4
 gaps outer 2
 smart_borders on
-
-# print screen
-bindsym Print exec --no-startup-id spectacle -r
 
 # windows button
 set $mod Mod4
@@ -28,8 +21,10 @@ floating_modifier $mod
 # mouse focus
 focus_follows_mouse no
 
-# start a terminal
-bindsym $mod+Return exec alacritty
+# programs
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+space exec --no-startup-id krunner
+bindsym Print exec --no-startup-id spectacle -r
 
 # kill focused window
 bindsym $mod+q kill
@@ -72,9 +67,8 @@ bindsym $mod+Control+v split h
 bindsym $mod+f fullscreen toggle
 
 # change container layout
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -135,17 +129,22 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # kde stuff
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [window_role="pop-up"] floating enable
 for_window [class="plasmashell"] floating enable
-for_window [class="Plasma"] floating enable, border none
-for_window [title="plasma-desktop"] floating enable, border none
-for_window [title="win7"] floating enable, border none
-for_window [class="krunner"] floating enable, border none, position center
-for_window [class="Klipper"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [class="krunner"] floating enable; border none; move position center
+for_window [class="spectacle"] floating enable; border none; move position center
+for_window [class="plasmashell" window_type="notification"] floating enable; border none; move right 700px; move down 450px
+for_window [class="Klipper"] floating enable; border none
+no_focus [class="plasmashell"]
+no_focus [window_role="pop-up"]
+no_focus [window_type="notification"]
 
-# active window hint
-for_window [class="^.*"] border pixel 2
+# active window border
+for_window [class="^.*"] border pixel 1
 
-# theme                   border  bg      text    indicator
+# nord theme              border  bg      text    indicator
 client.focused            #81a1c1 #81a1c1 #ffffff #81a1c1
 client.focused_tab_title  #81a1c1 #81a1c1 #ffffff #81a1c1
 client.unfocused          #2e3440 #1f222d #888888 #1f222d
@@ -154,8 +153,7 @@ client.placeholder        #2e3440 #1f222d #888888 #1f222d
 client.urgent             #900000 #900000 #ffffff #900000
 client.background         #242424
 
-# picom
-exec --no-startup-id picom &
-
-# wallpaper
-exec --no-startup-id nitrogen --restore &
+# starting i3
+exec --no-startup-id picom
+exec --no-startup-id feh --bg-scale ~/.imgs/wallpaper.png
+exec --no-startup-id wmctrl -c Plasma

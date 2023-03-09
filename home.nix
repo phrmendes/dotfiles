@@ -23,7 +23,6 @@ in {
         droidcam
         krename
         notepadqq
-        nitrogen
         # CLI apps
         protonmail-bridge
         podman
@@ -45,6 +44,8 @@ in {
         cmdstan
         gh
         quarto
+        feh
+        wmctrl
         # dictionaries
         ispell
         aspell

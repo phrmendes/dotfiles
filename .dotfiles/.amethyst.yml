@@ -8,11 +8,8 @@ mod2:
 # layouts
 enables-layout-hud: true
 layouts:
-  - tall
-  - wide
-  - column
-  - fullscreen
   - bsp
+  - fullscreen
 
 # windows
 window-margins: true
@@ -39,23 +36,20 @@ relaunch-amethyst:
   mod: mod2
   key: z
 cycle-layout:
-  mod: mod1
+  mod: mod2
   key: space
 focus-cw:
-  mod: mod2
+  mod: mod1
   key: up
 focus-ccw:
-  mod: mod2
+  mod: mod1
   key: down
 shrink-main:
-  mod: mod1
-  key: h
+  mod: mod2
+  key: s
 expand-main:
-  mod: mod1
-  key: l
-focus-main:
-  mod: mod1
-  key: enter
+  mod: mod2
+  key: e
 swap-cw:
   mod: mod2
   key: h
@@ -63,7 +57,7 @@ swap-ccw:
   mod: mod2
   key: l
 toggle-float:
-  mod: mod1
+  mod: mod2
   key: f
 throw-space-right:
   mod: mod2

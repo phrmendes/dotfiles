@@ -112,6 +112,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace
 bindsym $mod+Shift+r restart
 
+# plasma logout screen
+bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+
 # resize windows
 mode "resize" {
         bindsym j resize shrink width 10 px or 5 ppt
@@ -129,17 +132,25 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # kde stuff
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [window_role="pop-up"] floating enable
-for_window [class="plasmashell"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
 for_window [title="plasma-desktop"] floating enable; border none
-for_window [class="krunner"] floating enable; border none; move position center
-for_window [class="spectacle"] floating enable; border none; move position center
-for_window [class="plasmashell" window_type="notification"] floating enable; border none; move right 700px; move down 450px
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
-no_focus [class="plasmashell"]
-no_focus [window_role="pop-up"]
-no_focus [window_type="notification"]
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] border none
+no_focus [class="plasmashell" window_type="notification"]
+
+# killing plasma desktop window
+for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 # active window border
 for_window [class="^.*"] border pixel 1
@@ -154,6 +165,6 @@ client.urgent             #900000 #900000 #ffffff #900000
 client.background         #242424
 
 # starting i3
-exec --no-startup-id picom
-exec --no-startup-id feh --bg-scale ~/.imgs/wallpaper.png
-exec --no-startup-id wmctrl -c Plasma
+exec --no-startup-id picom &
+exec --no-startup-id feh --bg-scale ~/.imgs/wallpaper.png &
+exec --no-startup-id wmctrl -c Plasma &

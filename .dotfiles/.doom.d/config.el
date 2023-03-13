@@ -125,7 +125,7 @@
 (use-package! deft
   :commands deft
   :config
-  (setq deft-directory org-directory
+  (setq deft-directory (concat (getenv "HOME") "/pCloudDrive/org")
         deft-extensions '("md" "org")
         deft-use-filename-as-title t
         deft-recursive t))

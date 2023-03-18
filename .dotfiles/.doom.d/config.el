@@ -50,27 +50,6 @@
 (use-package! visual-fill-column
   :hook (org-mode . myfun/org-mode-visual-fill))
 
-(defun myfun/presentation-start ()
-  (hide-mode-line-mode 1)
-  (setq text-scale-mode-amount 2)
-  (text-scale-mode 1))
-
-(defun myfun/presentation-end ()
-  (hide-mode-line-mode 0)
-  (text-scale-mode 0))
-
-(use-package! org-tree-slide
-  :after org
-  :hook ((org-tree-slide-play . myfun/presentation-start)
-         (org-tree-slide-stop . myfun/presentation-end))
-  :custom
-  (org-tree-slide-slide-in-effect t)
-  (org-tree-slide-activate-message "Presentation started!")
-  (org-tree-slide-deactivate-message "Presentation finished!")
-  (org-tree-slide-header t)
-  (org-tree-slide-breadcrumbs " > ")
-  (org-image-actual-width nil))
-
 (after! org
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -115,18 +94,19 @@
    ("\\subsection*{%s}" . "\\subsection*{%s}")
    ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
 
-(setq bibtex-completion-bibliography (concat (getenv "HOME") "/pCloudDrive/org/library/library.bib")
+(setq bibtex-completion-bibliography (concat (getenv "HOME") "/pCloudDrive/org/references/library.bib")
       bibtex-completion-library-path (concat (getenv "HOME") "/pCloudDrive/zotero")
       bibtex-completion-format-citation-functions
-      '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
+      '((org-mode . bibtex-completion-format-citation-org-link-to-PDF)
         (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
-        (default       . bibtex-completion-format-citation-default)))
+        (poly-quarto-mode . bibtex-completion-format-citation-pandoc-citeproc)
+        (default . bibtex-completion-format-citation-default)))
 
 (use-package! deft
   :commands deft
   :config
-  (setq deft-directory (concat (getenv "HOME") "/pCloudDrive/org")
-        deft-extensions '("md" "org")
+  (setq deft-directory (concat (getenv "HOME") "/pCloudDrive/org/zetteldeft")
+        deft-extensions '("org")
         deft-use-filename-as-title t
         deft-recursive t))
 
@@ -177,12 +157,4 @@
   (setq dired-kill-when-opening-new-dired-buffer t))
 
 (use-package! quarto-mode
-  :mode (("\\.[q]md" . poly-quarto-mode)))
-
-(after! poly-quarto-mode
-  (setq markdown-code-block-braces t)
-  (myfun/org-mode-visual-fill))
-
-(after! markdown-mode
-  (setq markdown-code-block-braces t)
-  (myfun/org-mode-visual-fill))
+  :mode (("\\.qmd" . poly-quarto-mode)))

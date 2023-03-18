@@ -110,9 +110,9 @@ emacs-lisp
 (go +lsp)
 (json +lsp)
 (latex +lsp +fold)
-(markdown +grip)
+markdown 
 (org +jupyter +pretty)
-(python +lsp +pyright)
+(python +lsp +pyright) 
 (sh +lsp)
 (yaml +lsp)
 #+end_src
@@ -228,31 +228,6 @@ emacs-lisp
   :hook (org-mode . myfun/org-mode-visual-fill))
 #+end_src
 
-*** slides
-
-#+begin_src emacs-lisp
-(defun myfun/presentation-start ()
-  (hide-mode-line-mode 1)
-  (setq text-scale-mode-amount 2)
-  (text-scale-mode 1))
-
-(defun myfun/presentation-end ()
-  (hide-mode-line-mode 0)
-  (text-scale-mode 0))
-
-(use-package! org-tree-slide
-  :after org
-  :hook ((org-tree-slide-play . myfun/presentation-start)
-         (org-tree-slide-stop . myfun/presentation-end))
-  :custom
-  (org-tree-slide-slide-in-effect t)
-  (org-tree-slide-activate-message "Presentation started!")
-  (org-tree-slide-deactivate-message "Presentation finished!")
-  (org-tree-slide-header t)
-  (org-tree-slide-breadcrumbs " > ")
-  (org-image-actual-width nil))
-#+end_src
-
 *** org babel
 
 #+begin_src emacs-lisp
@@ -312,22 +287,23 @@ emacs-lisp
 ** bibliography settings
 
 #+begin_src emacs-lisp
-(setq bibtex-completion-bibliography (concat (getenv "HOME") "/pCloudDrive/org/library/library.bib")
+(setq bibtex-completion-bibliography (concat (getenv "HOME") "/pCloudDrive/org/references/library.bib")
       bibtex-completion-library-path (concat (getenv "HOME") "/pCloudDrive/zotero")
       bibtex-completion-format-citation-functions
-      '((org-mode      . bibtex-completion-format-citation-org-link-to-PDF)
+      '((org-mode . bibtex-completion-format-citation-org-link-to-PDF)
         (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
-        (default       . bibtex-completion-format-citation-default)))
+        (poly-quarto-mode . bibtex-completion-format-citation-pandoc-citeproc)
+        (default . bibtex-completion-format-citation-default)))
 #+end_src
 
-** deft and zetteldeft
+** zetteldeft
 
 #+begin_src emacs-lisp
 (use-package! deft
   :commands deft
   :config
-  (setq deft-directory (concat (getenv "HOME") "/pCloudDrive/org")
-        deft-extensions '("md" "org")
+  (setq deft-directory (concat (getenv "HOME") "/pCloudDrive/org/zetteldeft")
+        deft-extensions '("org")
         deft-use-filename-as-title t
         deft-recursive t))
 
@@ -390,19 +366,11 @@ emacs-lisp
   (setq dired-kill-when-opening-new-dired-buffer t))
 #+end_src
 
-** markdown and quarto mode
+** quarto mode
 
 #+begin_src emacs-lisp
 (use-package! quarto-mode
-  :mode (("\\.[q]md" . poly-quarto-mode)))
-
-(after! poly-quarto-mode
-  (setq markdown-code-block-braces t)
-  (myfun/org-mode-visual-fill))
-
-(after! markdown-mode
-  (setq markdown-code-block-braces t)
-  (myfun/org-mode-visual-fill))
+  :mode (("\\.qmd" . poly-quarto-mode)))
 #+end_src
 
 * packages.el
@@ -411,12 +379,8 @@ emacs-lisp
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
-(package! polymode)
-(package! poly-markdown)
 (package! quarto-mode)
-(package! org-tree-slide)
 (package! visual-fill-column)
-(package! esh-autosuggest)
 (package! helpful)
 (package! math-preview)
 (package! zetteldeft)

@@ -55,9 +55,9 @@
        (go +lsp)
        (json +lsp)
        (latex +lsp +fold)
-       (markdown +grip)
+       markdown 
        (org +jupyter +pretty)
-       (python +lsp +pyright)
+       (python +lsp +pyright) 
        (sh +lsp)
        (yaml +lsp)
        :config

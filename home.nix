@@ -44,7 +44,6 @@ in {
         cmdstan
         gh
         quarto
-        feh
         wmctrl
         # dictionaries
         ispell
@@ -92,9 +91,9 @@ in {
       ] ++ [ pkgs.tectonic ];
       stateVersion = "22.11";
       sessionVariables = {
-        VISUAL = "hx";
+        VISUAL = "nvim";
         TERMINAL = "alacritty";
-        SUDO_EDITOR = "hx";
+        SUDO_EDITOR = "nvim";
       };
     };
     programs = {
@@ -142,9 +141,80 @@ in {
         enable = true;
         extraPackages = (epkgs: [ epkgs.vterm ] );
       };
-      helix = {
+      neovim = {
         enable = true;
-        settings.theme = "nord";
+        defaultEditor = true;
+        plugins = with pkgs.vimPlugins; [
+          nvim-web-devicons
+          nvim-tree-lua
+          plenary-nvim
+          vim-nix
+          vim-easymotion
+          vim-commentary
+          vim-gitgutter
+          auto-pairs
+          {
+            plugin = nord-nvim;
+            config = "lua vim.cmd('colorscheme nord')";
+          }
+          {
+            plugin = indent-blankline-nvim;
+            config = "lua require('indent_blankline').setup()";
+          }
+          {
+            plugin = nvim-treesitter;
+            config = ''
+              lua << EOF
+              require('nvim-treesitter.configs').setup {
+                  highlight = {
+                      enable = true,
+                      additional_vim_regex_highlighting = false
+                  }
+              }
+              EOF
+            '';
+          }
+          {
+            plugin = lualine-nvim;
+            config = ''
+              lua << EOF
+              require('lualine').setup {
+                  options = {
+                      icons_enabled = true,
+                      theme = 'nord'
+                  }
+              }
+              EOF
+            '';
+          }
+        ];
+        extraLuaConfig = ''
+          vim.o.background = 'dark'
+          vim.o.clipboard = 'unnamedplus'
+          vim.o.completeopt = 'noinsert,menuone,noselect'
+          vim.o.cursorline = true
+          vim.o.hidden = true
+          vim.o.inccommand = 'split'
+          vim.o.number = true
+          vim.o.relativenumber = true
+          vim.o.splitbelow = true
+          vim.o.splitright = true
+          vim.o.title = true
+          vim.o.wildmenu = true
+          vim.o.expandtab = true
+          vim.o.ttimeoutlen = 0
+          vim.o.shiftwidth = 2
+          vim.o.tabstop = 2
+          vim.o.undofile = true
+          vim.o.smartindent = true
+          vim.o.tabstop = 4
+          vim.o.shiftwidth = 4
+          vim.o.shiftround = true
+          vim.o.expandtab = true
+          vim.o.scrolloff = 3
+        '';
+        vimAlias = true;
+        vimdiffAlias = true;
       };
       alacritty = {
         enable = true;
@@ -254,15 +324,7 @@ in {
       };
     };
     services = {
-      picom = {
-        enable = true;
-        activeOpacity = 1.0;
-        backend = "glx";
-        shadow = true;
-        vSync = true;
-        fade = true;
-        fadeDelta = 2;
-      };
+      
     };
     xdg.enable = true;
     xdg.mime.enable = true;

@@ -121,13 +121,6 @@ rm -r "$HOME/.doom.d"
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 #+end_src
 
-** Plasma + i3 settings
-
-#+begin_src shell
-systemctl mask plasma-kwin_x11.service --user
-systemctl enable plasma-i3 --user
-#+end_src
-
 ** npm
 
 #+begin_src shell
@@ -288,10 +281,6 @@ services = {
     autorun = true;
     layout = "us,br";
     videoDrivers = [ "nvidia" ];
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
     desktopManager.plasma5 = {
       enable = true;
       excludePackages = with pkgs.libsForQt5; [
@@ -422,6 +411,7 @@ environment = {
       libsForQt5.sddm-kcm
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
+      libsForQt5.bismuth
     ] ++ [
       themes.sddm-nordic
     ];
@@ -596,7 +586,6 @@ packages = with pkgs.unstable; [
   cmdstan
   gh
   quarto
-  feh
   wmctrl
   # dictionaries
   ispell
@@ -650,9 +639,9 @@ stateVersion = "22.11";
 
 #+begin_src nix
 sessionVariables = {
-  VISUAL = "hx";
+  VISUAL = "nvim";
   TERMINAL = "alacritty";
-  SUDO_EDITOR = "hx";
+  SUDO_EDITOR = "nvim";
 };
 #+end_src
 
@@ -734,12 +723,83 @@ emacs = {
 };
 #+end_src
 
-**** helix
+**** neovim
 
 #+begin_src nix
-helix = {
+neovim = {
   enable = true;
-  settings.theme = "nord";
+  defaultEditor = true;
+  plugins = with pkgs.vimPlugins; [
+    nvim-web-devicons
+    nvim-tree-lua
+    plenary-nvim
+    vim-nix
+    vim-easymotion
+    vim-commentary
+    vim-gitgutter
+    auto-pairs
+    {
+      plugin = nord-nvim;
+      config = "lua vim.cmd('colorscheme nord')";
+    }
+    {
+      plugin = indent-blankline-nvim;
+      config = "lua require('indent_blankline').setup()";
+    }
+    {
+      plugin = nvim-treesitter;
+      config = ''
+        lua << EOF
+        require('nvim-treesitter.configs').setup {
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false
+            }
+        }
+        EOF
+      '';
+    }
+    {
+      plugin = lualine-nvim;
+      config = ''
+        lua << EOF
+        require('lualine').setup {
+            options = {
+                icons_enabled = true,
+                theme = 'nord'
+            }
+        }
+        EOF
+      '';
+    }
+  ];
+  extraLuaConfig = ''
+    vim.o.background = 'dark'
+    vim.o.clipboard = 'unnamedplus'
+    vim.o.completeopt = 'noinsert,menuone,noselect'
+    vim.o.cursorline = true
+    vim.o.hidden = true
+    vim.o.inccommand = 'split'
+    vim.o.number = true
+    vim.o.relativenumber = true
+    vim.o.splitbelow = true
+    vim.o.splitright = true
+    vim.o.title = true
+    vim.o.wildmenu = true
+    vim.o.expandtab = true
+    vim.o.ttimeoutlen = 0
+    vim.o.shiftwidth = 2
+    vim.o.tabstop = 2
+    vim.o.undofile = true
+    vim.o.smartindent = true
+    vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.o.shiftround = true
+    vim.o.expandtab = true
+    vim.o.scrolloff = 3
+  '';
+  vimAlias = true;
+  vimdiffAlias = true;
 };
 #+end_src
 
@@ -856,24 +916,6 @@ starship = {
   enable = true;
   enableBashIntegration = true;
   enableFishIntegration = true;
-};
-#+end_src
-
-*** services
-:PROPERTIES:
-:header-args: :noweb-ref services
-:END:
-**** picom
-
-#+begin_src nix
-picom = {
-  enable = true;
-  activeOpacity = 1.0;
-  backend = "glx";
-  shadow = true;
-  vSync = true;
-  fade = true;
-  fadeDelta = 2;
 };
 #+end_src
 

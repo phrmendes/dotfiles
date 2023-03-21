@@ -64,10 +64,6 @@ in {
       autorun = true;
       layout = "us,br";
       videoDrivers = [ "nvidia" ];
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-      };
       desktopManager.plasma5 = {
         enable = true;
         excludePackages = with pkgs.libsForQt5; [
@@ -170,6 +166,7 @@ in {
         libsForQt5.sddm-kcm
         libsForQt5.kwallet
         libsForQt5.kwallet-pam
+        libsForQt5.bismuth
       ] ++ [
         themes.sddm-nordic
       ];

@@ -148,7 +148,7 @@ Toggle Touchpad=Touchpad Toggle
 
 [kded5][Global Shortcuts]
 Show System Activity=Ctrl+Esc
-display=Meta+P; Display
+display=Display; Meta+P
 
 [khotkeys][Global Shortcuts]
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=
@@ -218,11 +218,11 @@ Switch to Desktop 7=
 Switch to Desktop 8=
 Switch to Desktop 9=
 Switch to Next Desktop=Meta+Ctrl+Right
-Switch to Next Screen=
+Switch to Next Screen=Meta+Ctrl+Up
 Switch to Previous Desktop=Meta+Ctrl+Left
-Switch to Previous Screen=
-Switch to Screen 0=Meta+Ctrl+1
-Switch to Screen 1=Meta+Ctrl+2
+Switch to Previous Screen=Meta+Ctrl+Down
+Switch to Screen 0=
+Switch to Screen 1=
 Switch to Screen 2=
 Switch to Screen 3=
 Switch to Screen 4=
@@ -304,8 +304,8 @@ Window to Next Desktop=
 Window to Next Screen=Meta+Ctrl+Shift+Right
 Window to Previous Desktop=
 Window to Previous Screen=Meta+Ctrl+Shift+Left
-Window to Screen 0=Meta+Ctrl+!
-Window to Screen 1=Meta+Ctrl+@
+Window to Screen 0=
+Window to Screen 1=
 Window to Screen 2=
 Window to Screen 3=
 Window to Screen 4=

@@ -32,13 +32,16 @@ mouse-resizes-windows: true
 # keys
 reevaluate-windows:
   mod: mod1
-  key: z
+  key: r
 relaunch-amethyst:
   mod: mod2
-  key: z
+  key: r
 cycle-layout:
   mod: mod2
-  key: space
+  key: >
+cycle-layout-backward:
+  mod: mod2
+  key: <
 focus-cw:
   mod: mod1
   key: up
@@ -53,19 +56,13 @@ expand-main:
   key: e
 swap-cw:
   mod: mod2
-  key: h
+  key: right
 swap-ccw:
   mod: mod2
-  key: l
+  key: left
 toggle-float:
   mod: mod2
   key: f
-throw-space-right:
-  mod: mod2
-  key: right
-throw-space-left:
-  mod: mod2
-  key: left
 throw-screen-1:
   mod: mod2
   key: 1
@@ -81,3 +78,6 @@ throw-screen-4:
 throw-screen-5:
   mod: mod2
   key: 5
+throw-screen-6:
+  mod: mod2
+  key: 6

@@ -266,8 +266,8 @@ in {
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Elementary";
-        package = pkgs.pantheon.elementary-icon-theme;
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
       };
       cursorTheme = {
         name = "Quintom_Ink";

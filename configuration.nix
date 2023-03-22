@@ -77,16 +77,15 @@ in {
     };
     journald.extraConfig = "SystemMaxUse=1G";
   };
-  sound = {
+  services.pipewire = {
     enable = true;
-    mediaKeys.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
+  security.rtkit.enable = true;
   hardware = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      extraConfig = "load-module module-switch-on-connect";
-    };
+    pulseaudio.enable = false;
     bluetooth = {
       enable = true;
       settings = {
@@ -149,7 +148,6 @@ in {
         gnomeExtensions.clipman
         gnomeExtensions.pop-launcher-super-key
         gnomeExtensions.espresso
-        cinnamon.mint-y-icons
       ];
   };
   programs = {

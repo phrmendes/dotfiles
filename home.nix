@@ -263,6 +263,23 @@ in {
     services = {
       
     };
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Elementary";
+        package = pkgs.pantheon.elementary-icon-theme;
+      };
+      cursorTheme = {
+        name = "Quintom_Ink";
+        package = pkgs.quintom-cursor-theme;
+      };
+      gtk3.extraConfig = {
+        Settings = "gtk-application-prefer-dark-theme=1";
+      };
+      gtk4.extraConfig = {
+        Settings = "gtk-application-prefer-dark-theme=1";
+      };
+    };
     xdg.enable = true;
     xdg.mime.enable = true;
     targets.genericLinux.enable = true;

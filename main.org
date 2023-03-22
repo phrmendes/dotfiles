@@ -299,21 +299,25 @@ services = {
 *** Sound
 
 #+begin_src nix
-sound = {
+services.pipewire = {
   enable = true;
-  mediaKeys.enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
 };
+#+end_src
+
+*** Security
+
+#+begin_src nix
+security.rtkit.enable = true;
 #+end_src
 
 *** Hardware
 
 #+begin_src nix
 hardware = {
-  pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = "load-module module-switch-on-connect";
-  };
+  pulseaudio.enable = false;
   bluetooth = {
     enable = true;
     settings = {
@@ -389,7 +393,6 @@ environment = {
       gnomeExtensions.clipman
       gnomeExtensions.pop-launcher-super-key
       gnomeExtensions.espresso
-      cinnamon.mint-y-icons
     ];
 };
 #+end_src
@@ -473,6 +476,12 @@ programs = {
 #+begin_src nix :noweb yes
 services = {
   <<services>>
+};
+#+end_src
+
+#+begin_src nix :noweb yes
+gtk = {
+  <<gtk>>
 };
 #+end_src
 
@@ -601,7 +610,7 @@ sessionVariables = {
 };
 #+end_src
 
-*** Programs with home-manager settings
+*** programs
 :PROPERTIES:
 :header-args: :noweb-ref programs
 :END:
@@ -805,6 +814,29 @@ starship = {
   enable = true;
   enableBashIntegration = true;
   enableFishIntegration = true;
+};
+#+end_src
+
+*** gtk
+:PROPERTIES:
+:header-args: :noweb-ref gtk
+:END:
+
+#+begin_src nix
+enable = true;
+iconTheme = {
+  name = "Elementary";
+  package = pkgs.pantheon.elementary-icon-theme;
+};
+cursorTheme = {
+  name = "Quintom_Ink";
+  package = pkgs.quintom-cursor-theme;
+};
+gtk3.extraConfig = {
+  Settings = "gtk-application-prefer-dark-theme=1";
+};
+gtk4.extraConfig = {
+  Settings = "gtk-application-prefer-dark-theme=1";
 };
 #+end_src
 

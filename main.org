@@ -507,7 +507,6 @@ packages = (with pkgs.unstable; [
   firefox
   chromium
   protonvpn-gui
-  protonmail-bridge
   bitwarden
   spotify
   droidcam

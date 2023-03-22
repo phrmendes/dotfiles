@@ -14,7 +14,6 @@ in {
         firefox
         chromium
         protonvpn-gui
-        protonmail-bridge
         bitwarden
         spotify
         droidcam

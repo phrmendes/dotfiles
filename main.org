@@ -11,7 +11,7 @@ Download script: ~curl https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc
 
 #+begin_src shell :shebang #!/usr/bin/env bash
 GITHUB_URL="https://raw.githubusercontent.com/phrmendes/bkps/nixOS-pc"
-NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix" "sddm.nix")
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 NIX_FILES_LOCATION="/mnt/etc/nixos/"
 #+end_src
 
@@ -75,9 +75,9 @@ sudo nixos-install
 ** Variables
 
 #+begin_src shell :shebang #!/usr/bin/env bash
-FLATPAK_PROGRAMS=("ch.protonmail.protonmail-bridge" "com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "org.onlyoffice.desktopeditors" "org.gnome.Boxes")
+FLATPAK_PROGRAMS=("ch.protonmail.protonmail-bridge" "com.github.muriloventuroso.easyssh" "com.stremio.Stremio" "com.github.tchx84.Flatseal" "org.onlyoffice.desktopeditors")
 MAIN_DIR="$(pwd)"
-NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix" "sddm.nix")
+NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 #+end_src
 
 ** Creating symlinks to nix files
@@ -179,7 +179,6 @@ in {
 user = "phrmendes";
 home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-themes = pkgs.callPackage ./sddm.nix {};
 #+end_src
 
 ** Parameters
@@ -257,14 +256,13 @@ console = {
 fonts = {
   enableDefaultFonts = true;
   fonts = with pkgs; [
+    cantarell-fonts
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
-  fontconfig = {
-    defaultFonts = {
-      serif = [ "SourceCodePro" ];
-      sansSerif = [ "SourceCodePro" ];
-      monospace = [ "SourceCodePro" ];
-    };
+  fontconfig.defaultFonts = {
+    serif = [ "Cantarell" ];
+    sansSerif = [ "Cantarell" ];
+    monospace = [ "SourceCodePro" ];
   };
 };
 #+end_src
@@ -276,29 +274,16 @@ services = {
   clipmenu.enable = true;
   openssh.enable = true;
   flatpak.enable = true;
+  gnome.gnome-keyring.enable = true;
+  gnome.core-utilities.enable = false;
+  udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   xserver = {
     enable = true;
     autorun = true;
     layout = "us,br";
     videoDrivers = [ "nvidia" ];
-    desktopManager.plasma5 = {
-      enable = true;
-      excludePackages = with pkgs.libsForQt5; [
-        elisa
-        oxygen
-        khelpcenter
-        konsole
-        print-manager
-      ];
-    };
-    displayManager = {
-      sddm = {
-        enable = true;
-        autoNumlock = true;
-        theme = "nordic";
-        settings.Theme.CursorTheme = "breeze_cursors";
-      };
-    };
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     libinput = {
       enable = true;
       touchpad = {
@@ -308,18 +293,6 @@ services = {
     };
   };
   journald.extraConfig = "SystemMaxUse=1G";
-};
-#+end_src
-
-*** Security
-
-#+begin_src nix
-security.pam.services = {
-  sddm.enableKwallet = true;
-  kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
-  };
 };
 #+end_src
 
@@ -343,7 +316,6 @@ hardware = {
   };
   bluetooth = {
     enable = true;
-    hsphfpd.enable = true;
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
@@ -408,20 +380,24 @@ environment = {
       appimage-run
       nordic
       home-manager
-      libsForQt5.sddm-kcm
-      libsForQt5.kwallet
-      libsForQt5.kwallet-pam
-      libsForQt5.bismuth
-    ] ++ [
-      themes.sddm-nordic
+      gnome.nautilus
+      gnome.file-roller
+      gnome.gnome-tweaks
+      nautilus-open-any-terminal
+      gnomeExtensions.appindicator
+      gnomeExtensions.pop-shell
+      gnomeExtensions.gsconnect
+      gnomeExtensions.clipman
+      gnomeExtensions.pop-launcher-super-key
+      cinnamon.mint-y-icons
     ];
 };
 #+end_src
 
 #+begin_src nix
 programs = {
-  kdeconnect.enable = true;
   dconf.enable = true;
+  seahorse.enable = true;
 };
 #+end_src
 
@@ -450,30 +426,6 @@ system = {
   stateVersion = "22.11";
   autoUpgrade.enable = true;
 };
-#+end_src
-
-* sddm.nix
-
-#+begin_src nix :tangle ./sddm.nix
-{ stdenv, fetchFromGitHub }:
-
-{
-  sddm-nordic = stdenv.mkDerivation rec {
-    pname = "sddm-nordic";
-    version = "1.0";
-    dontBuild = true;
-    installPhase = ''
-        mkdir -p $out/share/sddm/themes
-        cp -aR $src $out/share/sddm/themes/nordic
-    '';
-    src = fetchFromGitHub {
-      owner = "phrmendes";
-      repo = "nordic_sddm_theme";
-      rev = "v${version}";
-      sha256 = "19axwzykzbhx2p6c4z7jk6qps6hp0a5z64ma93yhzda9hcw4c84x";
-    };
-  };
-}
 #+end_src
 
 * home.nix
@@ -549,24 +501,19 @@ homeDirectory = "/home/${user}";
 **** Stand-alone packages
 
 #+begin_src nix
-packages = with pkgs.unstable; [
+packages = (with pkgs.unstable; [
   # GUI apps
   pcloud
   zotero
   firefox
   chromium
   protonvpn-gui
-  thunderbird
+  protonmail-bridge
   bitwarden
   spotify
-  ventoy-bin-full
-  haruna
-  peek
   droidcam
-  krename
-  notepadqq
+  pop-launcher
   # CLI apps
-  protonmail-bridge
   podman
   graphviz
   btop
@@ -625,12 +572,22 @@ packages = with pkgs.unstable; [
   # others
   cargo
   nodejs
-  # KDE apps
-  libsForQt5.ktorrent
-  libsForQt5.filelight
-  libsForQt5.kpmcore
-  libsForQt5.ark
-] ++ [ pkgs.tectonic ];
+]) ++ (with pkgs; [
+  tectonic
+  baobab
+  fragments
+  celluloid
+  gnome-text-editor
+  gnome-photos
+  gnome-solanum
+]) ++ (with pkgs.gnome; [
+  geary
+  evince
+  gnome-screenshot
+  gnome-boxes
+  gnome-disk-utility
+
+]);
 #+end_src
 
 #+begin_src nix

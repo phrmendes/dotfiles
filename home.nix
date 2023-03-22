@@ -7,24 +7,19 @@ in {
     home = {
       username = "${user}";
       homeDirectory = "/home/${user}";
-      packages = with pkgs.unstable; [
+      packages = (with pkgs.unstable; [
         # GUI apps
         pcloud
         zotero
         firefox
         chromium
         protonvpn-gui
-        thunderbird
+        protonmail-bridge
         bitwarden
         spotify
-        ventoy-bin-full
-        haruna
-        peek
         droidcam
-        krename
-        notepadqq
+        pop-launcher
         # CLI apps
-        protonmail-bridge
         podman
         graphviz
         btop
@@ -83,12 +78,22 @@ in {
         # others
         cargo
         nodejs
-        # KDE apps
-        libsForQt5.ktorrent
-        libsForQt5.filelight
-        libsForQt5.kpmcore
-        libsForQt5.ark
-      ] ++ [ pkgs.tectonic ];
+      ]) ++ (with pkgs; [
+        tectonic
+        baobab
+        fragments
+        celluloid
+        gnome-text-editor
+        gnome-photos
+        gnome-solanum
+      ]) ++ (with pkgs.gnome; [
+        geary
+        evince
+        gnome-screenshot
+        gnome-boxes
+        gnome-disk-utility
+      
+      ]);
       stateVersion = "22.11";
       sessionVariables = {
         VISUAL = "nvim";

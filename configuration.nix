@@ -3,7 +3,6 @@ let
   user = "phrmendes";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
   unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-  themes = pkgs.callPackage ./sddm.nix {};
 in {
   imports = [
       (import "${home-manager}/nixos")
@@ -45,43 +44,29 @@ in {
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
+      cantarell-fonts
       (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     ];
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "SourceCodePro" ];
-        sansSerif = [ "SourceCodePro" ];
-        monospace = [ "SourceCodePro" ];
-      };
+    fontconfig.defaultFonts = {
+      serif = [ "Cantarell" ];
+      sansSerif = [ "Cantarell" ];
+      monospace = [ "SourceCodePro" ];
     };
   };
   services = {
     clipmenu.enable = true;
     openssh.enable = true;
     flatpak.enable = true;
+    gnome.gnome-keyring.enable = true;
+    gnome.core-utilities.enable = false;
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
     xserver = {
       enable = true;
       autorun = true;
       layout = "us,br";
       videoDrivers = [ "nvidia" ];
-      desktopManager.plasma5 = {
-        enable = true;
-        excludePackages = with pkgs.libsForQt5; [
-          elisa
-          oxygen
-          khelpcenter
-          konsole
-          print-manager
-        ];
-      };
-      displayManager = {
-        sddm = {
-          enable = true;
-          autoNumlock = true;
-          theme = "nordic";
-          settings.Theme.CursorTheme = "breeze_cursors";
-        };
-      };
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
       libinput = {
         enable = true;
         touchpad = {
@@ -91,13 +76,6 @@ in {
       };
     };
     journald.extraConfig = "SystemMaxUse=1G";
-  };
-  security.pam.services = {
-    sddm.enableKwallet = true;
-    kwallet = {
-      name = "kwallet";
-      enableKwallet = true;
-    };
   };
   sound = {
     enable = true;
@@ -111,7 +89,6 @@ in {
     };
     bluetooth = {
       enable = true;
-      hsphfpd.enable = true;
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
@@ -163,17 +140,21 @@ in {
         appimage-run
         nordic
         home-manager
-        libsForQt5.sddm-kcm
-        libsForQt5.kwallet
-        libsForQt5.kwallet-pam
-        libsForQt5.bismuth
-      ] ++ [
-        themes.sddm-nordic
+        gnome.nautilus
+        gnome.file-roller
+        gnome.gnome-tweaks
+        nautilus-open-any-terminal
+        gnomeExtensions.appindicator
+        gnomeExtensions.pop-shell
+        gnomeExtensions.gsconnect
+        gnomeExtensions.clipman
+        gnomeExtensions.pop-launcher-super-key
+        cinnamon.mint-y-icons
       ];
   };
   programs = {
-    kdeconnect.enable = true;
     dconf.enable = true;
+    seahorse.enable = true;
   };
   nix = {
     settings = {

@@ -148,6 +148,7 @@ in {
         gnomeExtensions.gsconnect
         gnomeExtensions.clipman
         gnomeExtensions.pop-launcher-super-key
+        gnomeExtensions.espresso
         cinnamon.mint-y-icons
       ];
   };

@@ -150,7 +150,7 @@ markdown
 *** set theme
 
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-dracula)
 #+end_src
 
 *** enable line numbers

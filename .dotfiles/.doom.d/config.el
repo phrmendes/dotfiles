@@ -6,7 +6,7 @@
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 17))
 
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-dracula)
 
 (setq display-line-numbers-type 'relative)
 (remove-hook! 'text-mode-hook #'display-line-numbers-mode)

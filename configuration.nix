@@ -138,7 +138,6 @@ in {
         cmake
         binutils
         appimage-run
-        nordic
         home-manager
         gnome.nautilus
         gnome.file-roller

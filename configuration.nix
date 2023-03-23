@@ -60,6 +60,12 @@ in {
     gnome.gnome-keyring.enable = true;
     gnome.core-utilities.enable = false;
     udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
     xserver = {
       enable = true;
       autorun = true;
@@ -76,12 +82,6 @@ in {
       };
     };
     journald.extraConfig = "SystemMaxUse=1G";
-  };
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
   };
   security.rtkit.enable = true;
   hardware = {
@@ -151,8 +151,8 @@ in {
       ];
   };
   programs = {
-    dconf.enable = true;
     seahorse.enable = true;
+    dconf.enable = true;
   };
   nix = {
     settings = {

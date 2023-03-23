@@ -14,6 +14,8 @@
 
 (setq doom-modeline-major-mode-icon t)
 
+(set-frame-parameter (selected-frame) 'internal-border-width 8)
+
 (use-package! company-box
   :after company
   :hook (company-mode . company-box-mode))

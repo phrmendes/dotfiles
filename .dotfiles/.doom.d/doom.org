@@ -1,4 +1,4 @@
-#+title: Doom Settings
+#+title: DoOm Settings
 
 * init.el
 
@@ -171,6 +171,12 @@ macos
 
 #+begin_src emacs-lisp
 (setq doom-modeline-major-mode-icon t)
+#+end_src
+
+*** window margins
+
+#+begin_src emacs-lisp
+(set-frame-parameter (selected-frame) 'internal-border-width 8)
 #+end_src
 
 ** company

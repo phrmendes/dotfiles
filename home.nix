@@ -91,7 +91,7 @@ in {
         gnome-screenshot
         gnome-boxes
         gnome-disk-utility
-      
+        gnome-calculator
       ]);
       stateVersion = "22.11";
       sessionVariables = {
@@ -278,6 +278,90 @@ in {
       };
       gtk4.extraConfig = {
         Settings = "gtk-application-prefer-dark-theme=1";
+      };
+    };
+    dconf = {
+      settings = {
+        "org/gnome/shell" = {
+          disable-user-extensions = false;
+          enabled-extensions = [
+            "appindicatorsupport@rgcjonas.gmail.com"
+            "clipman@popov895.ukr.net"
+            "gsconnect@andyholmes.github.io"
+            "pop-shell@system76.com"
+            "pop-launcher-super-key@ManeLippert"
+            "espresso@coadmunkee.github.com"
+          ];
+          favourite-apps = [
+            "firefox.desktop"
+            "Alacritty.desktop"
+            "emacs.desktop"
+            "org.gnome.Geary.desktop"
+          ];
+        };
+        "org/gnome/shell/extensions/hidetopbar" = {
+          enable-intellihide = true;
+        };
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+          enable-hot-corners = false;
+          font-antialiasing = "grayscale";
+          font-hinting = "slight";
+          toolkit-accessibility = false;
+        };
+        "org/gnome/desktop/wm/keybindings" = {
+          activate-window-menu = "@as []";
+          begin-move = "@as []";
+          begin-resize = "@as []";
+          close = "['<Super>q']";
+          cycle-group = "@as []";
+          cycle-group-backward = "@as []";
+          cycle-panels = "@as []";
+          cycle-panels-backward = "@as []";
+          cycle-windows = "@as []";
+          cycle-windows-backward = "@as []";
+          maximize = "@as []";
+          move-to-monitor-down = "['<Shift><Control><Super>Down']";
+          move-to-monitor-left = "['<Shift><Control><Super>Left']";
+          move-to-monitor-right = "['<Shift><Control><Super>Right']";
+          move-to-monitor-up = "['<Shift><Control><Super>Up']";
+          move-to-workspace-1 = "['<Shift><Super>1']";
+          move-to-workspace-2 = "['<Shift><Super>2']";
+          move-to-workspace-3 = "['<Shift><Super>3']";
+          move-to-workspace-4 = "['<Shift><Super>4']";
+          move-to-workspace-5 = "['<Super><Shift>5']";
+          move-to-workspace-6 = "['<Super><Shift>6']";
+          move-to-workspace-last = "['<Shift><Super>End']";
+          move-to-workspace-left = "['<Shift><Super>Left']";
+          move-to-workspace-right = "['<Shift><Super>Right']";
+          show-desktop = "['<Control><Super>h']";
+          switch-group = "@as []";
+          switch-group-backward = "@as []";
+          switch-input-source = "['<Shift><Control><Super>space']";
+          switch-input-source-backward = "['<Control><Super>space']";
+          switch-panels = "@as []";
+          switch-panels-backward = "@as []";
+          switch-to-workspace-1 = "['<Super>1']";
+          switch-to-workspace-2 = "['<Super>2']";
+          switch-to-workspace-3 = "['<Super>3']";
+          switch-to-workspace-4 = "['<Super>4']";
+          switch-to-workspace-5 = "['<Super>5']";
+          switch-to-workspace-6 = "['<Super>6']";
+          switch-to-workspace-left = "['<Control><Super>Left']";
+          switch-to-workspace-right = "['<Control><Super>Right']";
+          toggle-maximized = "['<Super>m']";
+          unmaximize = "@as []";
+        };
+        "org/gnome/shell/extensions/pop-shell" = {
+          mouse-cursor-focus-location = "uint32 4";
+          show-title = false;
+          snap-to-grid = false;
+          tile-by-default = true;
+        };
+        "org/gnome/desktop/peripherals/touchpad" = {
+          tap-to-click = true;
+          two-finger-scrolling-enabled = true;
+        };
       };
     };
     xdg.enable = true;

@@ -166,6 +166,12 @@ markdown
 (setq doom-modeline-major-mode-icon t)
 #+end_src
 
+*** windows margins
+
+#+begin_src emacs-lisp
+(set-frame-parameter (selected-frame) 'internal-border-width 8)
+#+end_src
+
 ** company
 
 #+begin_src emacs-lisp

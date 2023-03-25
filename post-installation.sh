@@ -24,8 +24,8 @@ rm -r "$HOME/.doom.d"
 
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 
-dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$MAIN_DIR/gnome-custom-keybindings.txt"
-dconf load /org/gnome/desktop/wm/keybindings/ < "$MAIN_DIR/gnome-keybindings.txt"
+systemctl --user daemon-reload
+systemctl --user enable startup.service
 
 mkdir $HOME/.npm-global
 npm config set prefix "$HOME/.npm-global"

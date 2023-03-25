@@ -1,0 +1,8 @@
+[Unit]
+Description=Auto start script at Gnome startup
+
+[Service]
+ExecStart=/home/phrmendes/.config/autostart/keybindings.sh
+
+[Install]
+WantedBy=default.target

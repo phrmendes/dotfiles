@@ -121,11 +121,11 @@ rm -r "$HOME/.doom.d"
 stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles
 #+end_src
 
-** restoring keybindings
+** Restoring keybindings
 
 #+begin_src shell
-dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$MAIN_DIR/gnome-custom-keybindings.txt"
-dconf load /org/gnome/desktop/wm/keybindings/ < "$MAIN_DIR/gnome-keybindings.txt"
+systemctl --user daemon-reload
+systemctl --user enable startup.service
 #+end_src
 
 ** npm

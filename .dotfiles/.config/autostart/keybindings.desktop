@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Keybindings
+GenericName=Custom keybindings
+Exec=/home/phrmendes/.config/autostart/keybindings.sh"
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true

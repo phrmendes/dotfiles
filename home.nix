@@ -131,6 +131,8 @@ in {
         shellInit = ''
           fish_add_path "$HOME/.config/emacs/bin"
           fish_add_path "$HOME/.npm-global/bin"
+          dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings.txt"
+          dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-custom-keybindings.txt"
       
           function tere
               set --local result (command tere $argv)

@@ -82,7 +82,7 @@ NIX_FILES=("hardware-configuration.nix" "configuration.nix" "home.nix")
 
 ** Creating symlinks to nix files
 
-#+begin_src nix
+#+begin_src shell
 sudo rm -r /etc/nixos/
 sudo mkdir /etc/nixos/
 #+end_src
@@ -95,7 +95,7 @@ done
 
 ** Flatpak programs
 
-#+begin_src nix
+#+begin_src shell
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
 #+end_src
@@ -676,6 +676,8 @@ fish = {
   shellInit = ''
     fish_add_path "$HOME/.config/emacs/bin"
     fish_add_path "$HOME/.npm-global/bin"
+    dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings.txt"
+    dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-custom-keybindings.txt"
 
     function tere
         set --local result (command tere $argv)

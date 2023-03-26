@@ -148,6 +148,7 @@ in {
         gnomeExtensions.clipman
         gnomeExtensions.pop-launcher-super-key
         gnomeExtensions.espresso
+        gnomeExtensions.unite
       ];
   };
   programs = {

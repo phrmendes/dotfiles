@@ -395,6 +395,7 @@ environment = {
       gnomeExtensions.clipman
       gnomeExtensions.pop-launcher-super-key
       gnomeExtensions.espresso
+      gnomeExtensions.unite
     ];
 };
 #+end_src

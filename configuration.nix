@@ -141,14 +141,6 @@ in {
         gnome.nautilus
         gnome.file-roller
         gnome.gnome-tweaks
-        nautilus-open-any-terminal
-        gnomeExtensions.appindicator
-        gnomeExtensions.pop-shell
-        gnomeExtensions.gsconnect
-        gnomeExtensions.clipman
-        gnomeExtensions.pop-launcher-super-key
-        gnomeExtensions.espresso
-        gnomeExtensions.unite
       ];
   };
   programs = {

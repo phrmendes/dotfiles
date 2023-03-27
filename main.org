@@ -388,14 +388,6 @@ environment = {
       gnome.nautilus
       gnome.file-roller
       gnome.gnome-tweaks
-      nautilus-open-any-terminal
-      gnomeExtensions.appindicator
-      gnomeExtensions.pop-shell
-      gnomeExtensions.gsconnect
-      gnomeExtensions.clipman
-      gnomeExtensions.pop-launcher-super-key
-      gnomeExtensions.espresso
-      gnomeExtensions.unite
     ];
 };
 #+end_src
@@ -530,7 +522,6 @@ packages = (with pkgs.unstable; [
   bitwarden
   spotify
   droidcam
-  pop-launcher
   # CLI apps
   podman
   graphviz
@@ -605,6 +596,13 @@ packages = (with pkgs.unstable; [
   gnome-boxes
   gnome-disk-utility
   gnome-calculator
+]) ++ (with pkgs.unstable.gnomeExtensions; [
+  appindicator
+  forge
+  gsconnect
+  clipman
+  espresso
+  unite
 ]);
 #+end_src
 
@@ -677,8 +675,10 @@ fish = {
   shellInit = ''
     fish_add_path "$HOME/.config/emacs/bin"
     fish_add_path "$HOME/.npm-global/bin"
-    dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings.txt"
-    dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-custom-keybindings.txt"
+
+    dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
+    dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
+    dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
 
     function tere
         set --local result (command tere $argv)
@@ -866,10 +866,9 @@ settings = {
       "appindicatorsupport@rgcjonas.gmail.com"
       "clipman@popov895.ukr.net"
       "gsconnect@andyholmes.github.io"
-      "pop-shell@system76.com"
-      "pop-launcher-super-key@ManeLippert"
       "espresso@coadmunkee.github.com"
       "unite@hardpixel.eu"
+      "forge@jmmaranan.com"
     ];
     favourite-apps = [
       "firefox.desktop"
@@ -893,11 +892,6 @@ settings = {
   "org/gnome/desktop/peripherals/touchpad" = {
     tap-to-click = true;
     two-finger-scrolling-enabled = true;
-  };
-  "org/gnome/shell/extensions/pop-shell" = {
-    show-title = false;
-    snap-to-grid = false;
-    tile-by-default = true;
   };
   "org/gnome/shell/extensions/espresso" = {
     has-battery = true;

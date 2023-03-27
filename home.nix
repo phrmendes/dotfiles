@@ -17,7 +17,6 @@ in {
         bitwarden
         spotify
         droidcam
-        pop-launcher
         # CLI apps
         podman
         graphviz
@@ -92,6 +91,13 @@ in {
         gnome-boxes
         gnome-disk-utility
         gnome-calculator
+      ]) ++ (with pkgs.unstable.gnomeExtensions; [
+        appindicator
+        forge
+        gsconnect
+        clipman
+        espresso
+        unite
       ]);
       stateVersion = "22.11";
       sessionVariables = {
@@ -131,8 +137,10 @@ in {
         shellInit = ''
           fish_add_path "$HOME/.config/emacs/bin"
           fish_add_path "$HOME/.npm-global/bin"
-          dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings.txt"
-          dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-custom-keybindings.txt"
+      
+          dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
+          dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
+          dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
       
           function tere
               set --local result (command tere $argv)
@@ -291,10 +299,9 @@ in {
             "appindicatorsupport@rgcjonas.gmail.com"
             "clipman@popov895.ukr.net"
             "gsconnect@andyholmes.github.io"
-            "pop-shell@system76.com"
-            "pop-launcher-super-key@ManeLippert"
             "espresso@coadmunkee.github.com"
             "unite@hardpixel.eu"
+            "forge@jmmaranan.com"
           ];
           favourite-apps = [
             "firefox.desktop"
@@ -318,11 +325,6 @@ in {
         "org/gnome/desktop/peripherals/touchpad" = {
           tap-to-click = true;
           two-finger-scrolling-enabled = true;
-        };
-        "org/gnome/shell/extensions/pop-shell" = {
-          show-title = false;
-          snap-to-grid = false;
-          tile-by-default = true;
         };
         "org/gnome/shell/extensions/espresso" = {
           has-battery = true;

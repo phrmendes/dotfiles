@@ -1,0 +1,38 @@
+[/]
+css-last-update=uint32 37
+dnd-center-layout='stacked'
+focus-border-toggle=false
+tiling-mode-enabled=true
+window-gap-hidden-on-single=false
+workspace-skip-tile=''
+
+[keybindings]
+con-split-horizontal=['<Control><Super>h']
+con-split-layout-toggle=['<Control><Super>t']
+con-split-vertical=['<Control><Super>v']
+focus-border-toggle=['<Super>b']
+mod-mask-mouse-tile='None'
+prefs-open=['<Super>period']
+prefs-tiling-toggle=@as []
+window-focus-down=['<Super>Down']
+window-focus-left=['<Super>Left']
+window-focus-right=['<Super>Right']
+window-focus-up=['<Super>Up']
+window-gap-size-decrease=@as []
+window-gap-size-increase=@as []
+window-move-down=['<Shift><Super>Down']
+window-move-left=['<Shift><Super>Left']
+window-move-right=['<Shift><Super>Right']
+window-move-up=['<Shift><Super>Up']
+window-snap-center=['<Shift><Super>c']
+window-snap-one-third-left=['<Super>a']
+window-snap-one-third-right=['<Super>d']
+window-snap-two-third-left=['<Shift><Super>a']
+window-snap-two-third-right=['<Shift><Super>d']
+window-swap-down=@as []
+window-swap-last-active=@as []
+window-swap-left=@as []
+window-swap-right=@as []
+window-swap-up=@as []
+window-toggle-always-float=@as []
+window-toggle-float=['<Super>f']

@@ -4,6 +4,10 @@ mod1:
 mod2:
   - option
   - shift
+mod3:
+  - option
+  - control
+  - shift
 
 # layouts
 enables-layout-hud: true
@@ -63,6 +67,12 @@ swap-ccw:
 toggle-float:
   mod: mod2
   key: f
+throw-space-left:
+  mod: mod3
+  key: left
+throw-space-right:
+  mod: mod3
+  key: right
 throw-screen-1:
   mod: mod2
   key: 1

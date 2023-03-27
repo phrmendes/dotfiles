@@ -788,6 +788,7 @@ alacritty = {
         general = "Alacritty";
       };
       opacity = 1;
+      decorations = "none";
     };
     scrolling = {
       history = 10000;
@@ -868,6 +869,7 @@ settings = {
       "pop-shell@system76.com"
       "pop-launcher-super-key@ManeLippert"
       "espresso@coadmunkee.github.com"
+      "unite@hardpixel.eu"
     ];
     favourite-apps = [
       "firefox.desktop"
@@ -885,15 +887,39 @@ settings = {
     font-antialiasing = "grayscale";
     font-hinting = "slight";
     toolkit-accessibility = false;
+    font-name = "Cantarell 9";
+  };
+
+  "org/gnome/desktop/peripherals/touchpad" = {
+    tap-to-click = true;
+    two-finger-scrolling-enabled = true;
   };
   "org/gnome/shell/extensions/pop-shell" = {
     show-title = false;
     snap-to-grid = false;
     tile-by-default = true;
   };
-  "org/gnome/desktop/peripherals/touchpad" = {
-    tap-to-click = true;
-    two-finger-scrolling-enabled = true;
+  "org/gnome/shell/extensions/espresso" = {
+    has-battery = true;
+    show-notifications = false;
+    user-enabled = true;
+  };
+  "org/gnome/shell/extensions/unite" = {
+    app-menu-ellipsize-mode = "middle";
+    app-menu-max-width = 0;
+    autofocus-windows = true;
+    desktop-name-text = "";
+    enable-titlebar-actions = true;
+    extend-left-box = false;
+    greyscale-tray-icons = false;
+    hide-activities-button = "always";
+    hide-dropdown-arrows = true;
+    hide-window-titlebars = "always";
+    notifications-position = "center";
+    show-legacy-tray = true;
+    show-window-buttons = "never";
+    show-window-title = "never";
+    window-buttons-placement = "first";
   };
 };
 #+end_src

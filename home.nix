@@ -17,7 +17,9 @@ in {
         bitwarden
         spotify
         droidcam
-        pantheon.elementary-mail
+        gnome.gnome-boxes
+        gnome.evince
+        gnome.geary
         # CLI apps
         podman
         graphviz
@@ -85,15 +87,6 @@ in {
         gnome-text-editor
         gnome-photos
         gnome-solanum
-      ]) ++ (with pkgs.gnome; [
-        evince
-        gnome-screenshot
-        gnome-boxes
-        gnome-disk-utility
-        gnome-calculator
-        nautilus
-        file-roller
-        gnome-tweaks
       ]) ++ (with pkgs.unstable.gnomeExtensions; [
         appindicator
         forge
@@ -279,8 +272,8 @@ in {
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Elementary";
-        package = pkgs.pantheon.elementary-icon-theme;
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
       };
       cursorTheme = {
         name = "Quintom_Ink";

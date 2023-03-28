@@ -138,6 +138,12 @@ in {
         binutils
         appimage-run
         home-manager
+        gnome.gnome-screenshot
+        gnome.gnome-disk-utility
+        gnome.gnome-calculator
+        gnome.nautilus
+        gnome.file-roller
+        gnome.gnome-tweaks
       ];
   };
   programs = {

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   user = "phrmendes";
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz;
   unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in {
   imports = [
@@ -138,9 +138,6 @@ in {
         binutils
         appimage-run
         home-manager
-        gnome.nautilus
-        gnome.file-roller
-        gnome.gnome-tweaks
       ];
   };
   programs = {

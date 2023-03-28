@@ -17,6 +17,7 @@ in {
         bitwarden
         spotify
         droidcam
+        pantheon.elementary-mail
         # CLI apps
         podman
         graphviz
@@ -85,12 +86,14 @@ in {
         gnome-photos
         gnome-solanum
       ]) ++ (with pkgs.gnome; [
-        geary
         evince
         gnome-screenshot
         gnome-boxes
         gnome-disk-utility
         gnome-calculator
+        nautilus
+        file-roller
+        gnome-tweaks
       ]) ++ (with pkgs.unstable.gnomeExtensions; [
         appindicator
         forge
@@ -154,7 +157,6 @@ in {
       };
       neovim = {
         enable = true;
-        defaultEditor = true;
         plugins = with pkgs.vimPlugins; [
           nvim-web-devicons
           nvim-tree-lua
@@ -175,7 +177,7 @@ in {
               require('nvim-treesitter.configs').setup {
                   highlight = {
                       enable = true,
-                      additional_vim_regex_highlighting = false
+                      additional_vim_regex_highlighting = false,
                   }
               }
               EOF
@@ -277,8 +279,8 @@ in {
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Pop";
-        package = pkgs.pop-icon-theme;
+        name = "Elementary";
+        package = pkgs.pantheon.elementary-icon-theme;
       };
       cursorTheme = {
         name = "Quintom_Ink";
@@ -307,7 +309,6 @@ in {
             "firefox.desktop"
             "Alacritty.desktop"
             "emacs.desktop"
-            "org.gnome.Geary.desktop"
           ];
         };
         "org/gnome/shell/extensions/hidetopbar" = {

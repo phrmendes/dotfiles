@@ -184,7 +184,7 @@ in {
 
 #+begin_src nix
 user = "phrmendes";
-home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz;
 unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 #+end_src
 
@@ -385,9 +385,6 @@ environment = {
       binutils
       appimage-run
       home-manager
-      gnome.nautilus
-      gnome.file-roller
-      gnome.gnome-tweaks
     ];
 };
 #+end_src
@@ -522,6 +519,7 @@ packages = (with pkgs.unstable; [
   bitwarden
   spotify
   droidcam
+  pantheon.elementary-mail
   # CLI apps
   podman
   graphviz
@@ -590,12 +588,14 @@ packages = (with pkgs.unstable; [
   gnome-photos
   gnome-solanum
 ]) ++ (with pkgs.gnome; [
-  geary
   evince
   gnome-screenshot
   gnome-boxes
   gnome-disk-utility
   gnome-calculator
+  nautilus
+  file-roller
+  gnome-tweaks
 ]) ++ (with pkgs.unstable.gnomeExtensions; [
   appindicator
   forge
@@ -702,7 +702,6 @@ emacs = {
 #+begin_src nix
 neovim = {
   enable = true;
-  defaultEditor = true;
   plugins = with pkgs.vimPlugins; [
     nvim-web-devicons
     nvim-tree-lua
@@ -723,7 +722,7 @@ neovim = {
         require('nvim-treesitter.configs').setup {
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = false
+                additional_vim_regex_highlighting = false,
             }
         }
         EOF
@@ -838,8 +837,8 @@ starship = {
 #+begin_src nix
 enable = true;
 iconTheme = {
-  name = "Pop";
-  package = pkgs.pop-icon-theme;
+  name = "Elementary";
+  package = pkgs.pantheon.elementary-icon-theme;
 };
 cursorTheme = {
   name = "Quintom_Ink";
@@ -874,7 +873,6 @@ settings = {
       "firefox.desktop"
       "Alacritty.desktop"
       "emacs.desktop"
-      "org.gnome.Geary.desktop"
     ];
   };
   "org/gnome/shell/extensions/hidetopbar" = {

@@ -149,6 +149,10 @@ in {
   programs = {
     seahorse.enable = true;
     dconf.enable = true;
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
   };
   nix = {
     settings = {

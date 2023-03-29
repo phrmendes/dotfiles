@@ -90,7 +90,6 @@ in {
       ]) ++ (with pkgs.unstable.gnomeExtensions; [
         appindicator
         forge
-        gsconnect
         clipman
         espresso
         unite

@@ -399,6 +399,10 @@ environment = {
 programs = {
   seahorse.enable = true;
   dconf.enable = true;
+  kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
 };
 #+end_src
 
@@ -598,7 +602,6 @@ packages = (with pkgs.unstable; [
 ]) ++ (with pkgs.unstable.gnomeExtensions; [
   appindicator
   forge
-  gsconnect
   clipman
   espresso
   unite

@@ -94,6 +94,7 @@ in {
         clipman
         espresso
         unite
+        space-bar
       ]);
       stateVersion = "22.11";
       sessionVariables = {
@@ -297,6 +298,7 @@ in {
             "espresso@coadmunkee.github.com"
             "unite@hardpixel.eu"
             "forge@jmmaranan.com"
+            "space-bar@luchrioh"
           ];
           favourite-apps = [
             "firefox.desktop"
@@ -341,6 +343,15 @@ in {
           show-window-buttons = "never";
           show-window-title = "never";
           window-buttons-placement = "first";
+        };
+        "org/gnome/shell/extensions/space-bar/behavior" = {
+          scroll-wheel = "workspaces-bar";
+          show-empty-workspaces = false;
+          smart-workspace-names = true;
+        };
+        "org/gnome/shell/extensions/space-bar/shortcuts" = {
+          enable-activate-workspace-shortcuts = false;
+          enable-move-to-workspace-shortcuts = false;
         };
       };
     };

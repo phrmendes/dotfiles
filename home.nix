@@ -90,7 +90,7 @@ in {
       ]) ++ (with pkgs.unstable.gnomeExtensions; [
         appindicator
         forge
-        clipman
+        pano
         espresso
         unite
         space-bar
@@ -299,6 +299,7 @@ in {
             "unite@hardpixel.eu"
             "forge@jmmaranan.com"
             "space-bar@luchrioh"
+            "pano@elhan.io"
           ];
           favourite-apps = [
             "firefox.desktop"
@@ -332,17 +333,22 @@ in {
           app-menu-max-width = 0;
           autofocus-windows = true;
           desktop-name-text = "";
-          enable-titlebar-actions = true;
+          enable-titlebar-actions = false;
           extend-left-box = false;
           greyscale-tray-icons = false;
           hide-activities-button = "always";
-          hide-dropdown-arrows = true;
+          hide-app-menu-icon = false;
+          hide-dropdown-arrows = false;
           hide-window-titlebars = "always";
           notifications-position = "center";
+          reduce-panel-spacing = true;
+          restrict-to-primary-screen = false;
+          show-desktop-name = false;
           show-legacy-tray = true;
           show-window-buttons = "never";
           show-window-title = "never";
-          window-buttons-placement = "first";
+          window-buttons-placement = "last";
+          window-buttons-theme = "auto";
         };
         "org/gnome/shell/extensions/space-bar/behavior" = {
           scroll-wheel = "workspaces-bar";
@@ -352,6 +358,10 @@ in {
         "org/gnome/shell/extensions/space-bar/shortcuts" = {
           enable-activate-workspace-shortcuts = false;
           enable-move-to-workspace-shortcuts = false;
+        };
+        "org/gnome/shell/extensions/pano" = {
+          is-in-incognito = false;
+          window-height = 200;
         };
       };
     };

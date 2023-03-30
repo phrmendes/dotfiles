@@ -361,6 +361,8 @@ in {
         };
         "org/gnome/shell/extensions/pano" = {
           is-in-incognito = false;
+          play-audio-on-copy = false;
+          send-notification-on-copy = false;
           window-height = 200;
         };
       };

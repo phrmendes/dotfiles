@@ -76,9 +76,11 @@ in {
         shellcheck
         # latex
         texlab
-        # others
+        # package managers
         cargo
         nodejs
+        # others
+        adw-gtk3
       ]) ++ (with pkgs; [
         tectonic
         baobab
@@ -94,6 +96,7 @@ in {
         espresso
         unite
         space-bar
+        lightdark-theme-switcher
       ]);
       stateVersion = "22.11";
       sessionVariables = {
@@ -280,12 +283,6 @@ in {
         name = "Quintom_Ink";
         package = pkgs.quintom-cursor-theme;
       };
-      gtk3.extraConfig = {
-        Settings = "gtk-application-prefer-dark-theme=1";
-      };
-      gtk4.extraConfig = {
-        Settings = "gtk-application-prefer-dark-theme=1";
-      };
     };
     dconf = {
       settings = {
@@ -300,6 +297,7 @@ in {
             "forge@jmmaranan.com"
             "space-bar@luchrioh"
             "pano@elhan.io"
+            "theme-switcher@fthx"
           ];
           favourite-apps = [
             "firefox.desktop"

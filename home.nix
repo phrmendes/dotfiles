@@ -328,14 +328,14 @@ in {
         };
         "org/gnome/shell/extensions/unite" = {
           app-menu-ellipsize-mode = "middle";
-          app-menu-max-width = 0;
+          app-menu-max-width = 1;
           autofocus-windows = true;
           desktop-name-text = "";
           enable-titlebar-actions = false;
           extend-left-box = false;
           greyscale-tray-icons = false;
           hide-activities-button = "always";
-          hide-app-menu-icon = false;
+          hide-app-menu-icon = true;
           hide-dropdown-arrows = false;
           hide-window-titlebars = "always";
           notifications-position = "center";

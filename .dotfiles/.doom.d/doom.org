@@ -169,7 +169,16 @@ markdown
 *** windows margins
 
 #+begin_src emacs-lisp
-(set-frame-parameter (selected-frame) 'internal-border-width 8)
+(set-frame-paremeter (selected-frame) 'internal-border-width 8)
+#+end_src
+
+*** bars
+
+#+begin_src emacs-lisp
+(customize-set-variable 'scroll-bar-mode nil)
+(customize-set-variable 'tool-bar-mode nil)
+(customize-set-variable 'menu-bar-mode nil)
+(setq default-frame-alist '((undecorated . t)))
 #+end_src
 
 ** company

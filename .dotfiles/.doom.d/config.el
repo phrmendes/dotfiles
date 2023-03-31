@@ -13,7 +13,12 @@
 
 (setq doom-modeline-major-mode-icon t)
 
-(set-frame-parameter (selected-frame) 'internal-border-width 8)
+(set-frame-paremeter (selected-frame) 'internal-border-width 8)
+
+(customize-set-variable 'scroll-bar-mode nil)
+(customize-set-variable 'tool-bar-mode nil)
+(customize-set-variable 'menu-bar-mode nil)
+(setq default-frame-alist '((undecorated . t)))
 
 (use-package! company-box
   :after company

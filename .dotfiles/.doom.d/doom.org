@@ -166,18 +166,12 @@ markdown
 (setq doom-modeline-major-mode-icon t)
 #+end_src
 
-*** windows margins
-
-#+begin_src emacs-lisp
-(set-frame-paremeter (selected-frame) 'internal-border-width 8)
-#+end_src
-
 *** bars
 
 #+begin_src emacs-lisp
-(customize-set-variable 'scroll-bar-mode nil)
-(customize-set-variable 'tool-bar-mode nil)
-(customize-set-variable 'menu-bar-mode nil)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 (setq default-frame-alist '((undecorated . t)))
 #+end_src
 

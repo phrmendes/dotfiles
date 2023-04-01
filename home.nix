@@ -85,7 +85,8 @@ in {
         tectonic
         baobab
         fragments
-        celluloid
+        vlc
+        gthumb
         gnome-text-editor
         gnome-photos
         gnome-solanum
@@ -290,7 +291,6 @@ in {
           disable-user-extensions = false;
           enabled-extensions = [
             "appindicatorsupport@rgcjonas.gmail.com"
-            "clipman@popov895.ukr.net"
             "gsconnect@andyholmes.github.io"
             "espresso@coadmunkee.github.com"
             "unite@hardpixel.eu"
@@ -305,9 +305,6 @@ in {
             "emacs.desktop"
           ];
         };
-        "org/gnome/shell/extensions/hidetopbar" = {
-          enable-intellihide = true;
-        };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           enable-hot-corners = false;
@@ -316,7 +313,6 @@ in {
           toolkit-accessibility = false;
           font-name = "Cantarell 9";
         };
-      
         "org/gnome/desktop/peripherals/touchpad" = {
           tap-to-click = true;
           two-finger-scrolling-enabled = true;

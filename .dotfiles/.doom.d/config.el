@@ -62,8 +62,7 @@
      (nix . t)
      (shell . t)
      (terraform . t)
-     (latex . t)
-     (go . t)))
+     (latex . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   (map! "<f6>" #'org-babel-tangle))
 
@@ -77,8 +76,7 @@
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("js" . "src json"))
   (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
-  (add-to-list 'org-structure-template-alist '("tx" . "src latex"))
-  (add-to-list 'org-structure-template-alist '("go" . "src go")))
+  (add-to-list 'org-structure-template-alist '("tx" . "src latex")))
 
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
@@ -162,3 +160,5 @@
 
 (use-package! quarto-mode
   :mode (("\\.qmd" . poly-quarto-mode)))
+
+(setq python-shell-completion-native-disabled-interpreters '("python" "ipython"))

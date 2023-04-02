@@ -69,8 +69,8 @@ word-wrap
 #+begin_src emacs-lisp :noweb-ref emacs
 (dired +icons)
 (ibuffer +icons)
-electric  ; smarter, keyword-based electric-indent
-undo      ; persistent, smarter undo for your inevitable mistakes
+(undo +tree)  ; persistent, smarter undo for your inevitable mistakes
+electric      ; smarter, keyword-based electric-indent
 #+end_src
 
 ** term
@@ -107,7 +107,6 @@ direnv
 #+begin_src emacs-lisp :noweb-ref lang
 emacs-lisp
 (nix +lsp)
-(go +lsp)
 (json +lsp)
 (latex +lsp +fold)
 markdown 
@@ -247,8 +246,7 @@ markdown
      (nix . t)
      (shell . t)
      (terraform . t)
-     (latex . t)
-     (go . t)))
+     (latex . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   (map! "<f6>" #'org-babel-tangle))
 #+end_src
@@ -266,8 +264,7 @@ markdown
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("js" . "src json"))
   (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
-  (add-to-list 'org-structure-template-alist '("tx" . "src latex"))
-  (add-to-list 'org-structure-template-alist '("go" . "src go")))
+  (add-to-list 'org-structure-template-alist '("tx" . "src latex")))
 #+end_src
 
 *** org latex template
@@ -379,6 +376,12 @@ markdown
 #+begin_src emacs-lisp
 (use-package! quarto-mode
   :mode (("\\.qmd" . poly-quarto-mode)))
+#+end_src
+
+** python repl settings
+
+#+begin_src emacs-lisp
+(setq python-shell-completion-native-disabled-interpreters '("python" "ipython"))
 #+end_src
 
 * packages.el

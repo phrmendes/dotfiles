@@ -60,14 +60,6 @@ in {
         python311Packages.pytest
         ruff
         pipenv
-        # go
-        go
-        gopls
-        gotests
-        gore
-        gotools
-        gomodifytags
-        delve
         # nix
         rnix-lsp
         nixfmt
@@ -267,7 +259,6 @@ in {
       };
       starship = {
         enable = true;
-        enableBashIntegration = true;
         enableFishIntegration = true;
       };
     };

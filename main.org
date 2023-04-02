@@ -571,14 +571,6 @@ packages = (with pkgs.unstable; [
   python311Packages.pytest
   ruff
   pipenv
-  # go
-  go
-  gopls
-  gotests
-  gore
-  gotools
-  gomodifytags
-  delve
   # nix
   rnix-lsp
   nixfmt

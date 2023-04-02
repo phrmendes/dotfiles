@@ -173,6 +173,14 @@ markdown
 (menu-bar-mode -1)
 #+end_src
 
+*** padding
+
+#+begin_src emacs-lisp
+(modify-all-frames-parameters
+ '((right-divider-width . 8)
+   (internal-border-width . 8)))
+#+end_src
+
 ** company
 
 #+begin_src emacs-lisp

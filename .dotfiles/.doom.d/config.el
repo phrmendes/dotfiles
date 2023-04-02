@@ -14,7 +14,13 @@
 
 (setq doom-modeline-major-mode-icon t)
 
-(set-frame-parameter (selected-frame) 'internal-border-width 8)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+(modify-all-frames-parameters
+ '((right-divider-width . 8)
+   (internal-border-width . 8)))
 
 (use-package! company-box
   :after company
@@ -82,8 +88,7 @@
      (shell . t)
      (terraform . t)
      (ditaa . t)
-     (latex . t)
-     (go . t)))
+     (latex . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   (map! "<f6>" #'org-babel-tangle))
 
@@ -92,14 +97,11 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src ipython"))
-  (add-to-list 'org-structure-template-alist '("jp" . "src jupyter-python :async yes"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
-  (add-to-list 'org-structure-template-alist '("dt" . "src ditaa"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("js" . "src json"))
   (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
-  (add-to-list 'org-structure-template-alist '("tx" . "src latex"))
-  (add-to-list 'org-structure-template-alist '("go" . "src go")))
+  (add-to-list 'org-structure-template-alist '("tx" . "src latex")))
 
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
@@ -176,3 +178,5 @@
 (after! markdown-mode
   (setq markdown-code-block-braces t)
   (myfun/org-mode-visual-fill))
+
+(setq python-shell-completion-native-disabled-interpreters '("python" "ipython"))

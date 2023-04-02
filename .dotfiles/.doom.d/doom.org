@@ -71,8 +71,8 @@ word-wrap
 #+begin_src emacs-lisp :noweb-ref emacs
 (dired +icons)
 (ibuffer +icons)
-electric  ; smarter, keyword-based electric-indent
-undo      ; persistent, smarter undo for your inevitable mistakes
+(undo +tree)  ; persistent, smarter undo for your inevitable mistakes
+electric      ; smarter, keyword-based electric-indent
 #+end_src
 
 ** term
@@ -98,7 +98,7 @@ terraform
 (eval +overlay)
 (lookup +dicsets)
 (magit +forge)
-tree-sitter
+Tree-sitter
 direnv
 #+end_src
 
@@ -107,7 +107,6 @@ direnv
 #+begin_src emacs-lisp :noweb-ref lang
 emacs-lisp
 (nix +lsp)
-(go +lsp)
 (json +lsp)
 (latex +lsp +fold)
 (markdown +grip)
@@ -173,10 +172,20 @@ macos
 (setq doom-modeline-major-mode-icon t)
 #+end_src
 
-*** window margins
+*** bars
 
 #+begin_src emacs-lisp
-(set-frame-parameter (selected-frame) 'internal-border-width 8)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+#+end_src
+
+*** paddinG
+
+#+begin_src emacs-lisp
+(modify-all-frames-parameters
+ '((right-divider-width . 8)
+   (internal-border-width . 8)))
 #+end_src
 
 ** company
@@ -277,8 +286,7 @@ macos
      (shell . t)
      (terraform . t)
      (ditaa . t)
-     (latex . t)
-     (go . t)))
+     (latex . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   (map! "<f6>" #'org-babel-tangle))
 #+end_src
@@ -291,14 +299,11 @@ macos
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src ipython"))
-  (add-to-list 'org-structure-template-alist '("jp" . "src jupyter-python :async yes"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
-  (add-to-list 'org-structure-template-alist '("dt" . "src ditaa"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("js" . "src json"))
   (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
-  (add-to-list 'org-structure-template-alist '("tx" . "src latex"))
-  (add-to-list 'org-structure-template-alist '("go" . "src go")))
+  (add-to-list 'org-structure-template-alist '("tx" . "src latex")))
 #+end_src
 
 *** org latex template
@@ -399,6 +404,12 @@ macos
 (after! markdown-mode
   (setq markdown-code-block-braces t)
   (myfun/org-mode-visual-fill))
+#+end_src
+
+** python repl settings
+
+#+begin_src emacs-lisp
+(setq python-shell-completion-native-disabled-interpreters '("python" "ipython"))
 #+end_src
 
 * packages.el

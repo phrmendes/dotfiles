@@ -30,8 +30,8 @@
        :emacs
        (dired +icons)
        (ibuffer +icons)
-       electric  ; smarter, keyword-based electric-indent
-       undo      ; persistent, smarter undo for your inevitable mistakes
+       (undo +tree)  ; persistent, smarter undo for your inevitable mistakes
+       electric      ; smarter, keyword-based electric-indent
        :term
        vterm
        :checkers
@@ -45,12 +45,11 @@
        (eval +overlay)
        (lookup +dicsets)
        (magit +forge)
-       tree-sitter
+       Tree-sitter
        direnv
        :lang
        emacs-lisp
        (nix +lsp)
-       (go +lsp)
        (json +lsp)
        (latex +lsp +fold)
        (markdown +grip)

@@ -17,6 +17,10 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
+(modify-all-frames-parameters
+ '((right-divider-width . 8)
+   (internal-border-width . 8)))
+
 (use-package! company-box
   :after company
   :hook (company-mode . company-box-mode))

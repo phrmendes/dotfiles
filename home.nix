@@ -56,10 +56,13 @@ in {
         terragrunt
         # python
         python311
+        python311Packages.ipython
+        python311Packages.jupyter
         python311Packages.black
         python311Packages.pyflakes
         python311Packages.isort
         python311Packages.pytest
+        python311Packages.nose
         pipenv
         # nix
         rnix-lsp

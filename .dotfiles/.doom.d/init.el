@@ -33,7 +33,7 @@
        (undo +tree)  ; persistent, smarter undo for your inevitable mistakes
        electric      ; smarter, keyword-based electric-indent
        :term
-       vterm
+       eshell
        :checkers
        (syntax +childframe)
        (spell +aspell +flyspell)

@@ -17,6 +17,7 @@ in {
         bitwarden
         spotify
         droidcam
+        emacs
         gnome.gnome-boxes
         gnome.evince
         gnome.geary
@@ -55,9 +56,6 @@ in {
         terragrunt
         # python
         python311
-        python311Packages.ipython
-        python311Packages.jupyter
-        python311Packages.pytest
         ruff
         pipenv
         # nix
@@ -141,10 +139,6 @@ in {
           end
         '';
       };
-      emacs = {
-        enable = true;
-        extraPackages = (epkgs: [ epkgs.vterm ] );
-      };
       neovim = {
         enable = true;
         plugins = with pkgs.vimPlugins; [
@@ -156,61 +150,11 @@ in {
           vim-commentary
           vim-gitgutter
           auto-pairs
-          {
-            plugin = indent-blankline-nvim;
-            config = "lua require('indent_blankline').setup()";
-          }
-          {
-            plugin = nvim-treesitter;
-            config = ''
-              lua << EOF
-              require('nvim-treesitter.configs').setup {
-                  highlight = {
-                      enable = true,
-                      additional_vim_regex_highlighting = false,
-                  }
-              }
-              EOF
-            '';
-          }
-          {
-            plugin = lualine-nvim;
-            config = ''
-              lua << EOF
-              require('lualine').setup {
-                  options = {
-                      icons_enabled = true,
-                  }
-              }
-              EOF
-            '';
-          }
+          indent-blankline-nvim
+          nvim-treesitter
+          lualine-nvim
         ];
-        extraLuaConfig = ''
-          vim.o.background = 'dark'
-          vim.o.clipboard = 'unnamedplus'
-          vim.o.completeopt = 'noinsert,menuone,noselect'
-          vim.o.cursorline = true
-          vim.o.hidden = true
-          vim.o.inccommand = 'split'
-          vim.o.number = true
-          vim.o.relativenumber = true
-          vim.o.splitbelow = true
-          vim.o.splitright = true
-          vim.o.title = true
-          vim.o.wildmenu = true
-          vim.o.expandtab = true
-          vim.o.ttimeoutlen = 0
-          vim.o.shiftwidth = 2
-          vim.o.tabstop = 2
-          vim.o.undofile = true
-          vim.o.smartindent = true
-          vim.o.tabstop = 4
-          vim.o.shiftwidth = 4
-          vim.o.shiftround = true
-          vim.o.expandtab = true
-          vim.o.scrolloff = 3
-        '';
+        extraLuaConfig = (builtins.readFile ./.dotfiles/.config/nvim/settings.lua);
         vimAlias = true;
         vimdiffAlias = true;
       };
@@ -261,9 +205,6 @@ in {
         enable = true;
         enableFishIntegration = true;
       };
-    };
-    services = {
-      
     };
     gtk = {
       enable = true;

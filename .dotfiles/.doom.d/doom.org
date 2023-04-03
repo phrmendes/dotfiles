@@ -76,7 +76,7 @@ electric      ; smarter, keyword-based electric-indent
 ** term
 
 #+begin_src emacs-lisp :noweb-ref term
-vterm
+eshell
 #+end_src
 
 ** checkers

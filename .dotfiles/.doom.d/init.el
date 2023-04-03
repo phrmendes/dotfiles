@@ -46,7 +46,7 @@
        (docker +lsp)
        (eval +overlay)
        (lookup +dicsets)
-       (magit +forge)
+       magit
        tree-sitter
        direnv
        :lang

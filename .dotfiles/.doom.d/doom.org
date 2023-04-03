@@ -97,7 +97,7 @@ pdf
 (docker +lsp)
 (eval +overlay)
 (lookup +dicsets)
-(magit +forge)
+magit
 tree-sitter
 direnv
 #+end_src
@@ -253,7 +253,6 @@ markdown
      (ipython . t)
      (nix . t)
      (shell . t)
-     (terraform . t)
      (latex . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
   (map! "<f6>" #'org-babel-tangle))
@@ -267,11 +266,9 @@ markdown
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src ipython"))
-  (add-to-list 'org-structure-template-alist '("jp" . "src jupyter-python :async yes"))
   (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("js" . "src json"))
-  (add-to-list 'org-structure-template-alist '("tr" . "src terraform"))
   (add-to-list 'org-structure-template-alist '("tx" . "src latex")))
 #+end_src
 

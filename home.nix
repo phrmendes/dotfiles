@@ -44,6 +44,7 @@ in {
         terragrunt
         # python
         python311
+        ruff
         pipenv
         # nix
         rnix-lsp

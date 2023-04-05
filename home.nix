@@ -17,52 +17,33 @@ in {
         bitwarden
         spotify
         droidcam
-        emacs
+        vscode
+        obsidian
+        thunderbird
         gnome.gnome-boxes
         gnome.evince
-        gnome.geary
         # CLI apps
         podman
-        graphviz
         btop
         pandoc
         lazygit
         ripgrep
         fd
         sd
-        gnupg
         stow
         exa
         sqlite
         jq
         hugo
-        biber
         tere
         cmdstan
         gh
         quarto
-        wmctrl
-        # dictionaries
-        ispell
-        aspell
-        aspellDicts.pt_BR
-        aspellDicts.en
-        # ansible
-        ansible-lint
         ansible
-        # terraform
         terraform
-        tflint
         terragrunt
         # python
         python311
-        python311Packages.ipython
-        python311Packages.jupyter
-        python311Packages.black
-        python311Packages.pyflakes
-        python311Packages.isort
-        python311Packages.pytest
-        python311Packages.nose
         pipenv
         # nix
         rnix-lsp
@@ -126,7 +107,7 @@ in {
           lla = "${pkgs.exa}/bin/exa --icons -la";
         };
         shellAbbrs = {
-          stow_dotfiles = "stow --target=$HOME --dir=$HOME/Projects/bkps/ --stow .dotfiles";
+          stow_dotfiles = ''stow --target="$HOME" --dir="$HOME/Projects/bkps/" --stow .dotfiles'';
           nix_update = "sudo nixos-rebuild switch";
           nix_clean = "nix-collect-garbage";
         };

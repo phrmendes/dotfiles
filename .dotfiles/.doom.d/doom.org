@@ -1,0 +1,403 @@
+#+title: Doom Settings
+
+* init.el
+
+#+begin_src emacs-lisp :tangle ./init.el :noweb yes
+;;; init.el -*- lexical-binding: t; -*-
+
+(doom! :completion
+       <<completion>>
+       :ui
+       <<ui>>
+       :editor
+       <<editor>>
+       :emacs
+       <<emacs>>
+       :term
+       <<term>>
+       :checkers
+       <<checkers>>
+       :tools
+       <<tools>>
+       :lang
+       <<lang>>
+       :config
+       <<config>>)
+#+end_src
+
+** completion
+
+#+begin_src emacs-lisp :noweb-ref completion
+(company +childframe)
+(ivy +icons +fuzzy +prescient)
+#+end_src
+
+** ui
+
+#+begin_src emacs-lisp :noweb-ref ui
+doom
+doom-dashboard
+emoji
+(treemacs +lsp)
+(popup +defaults)
+modeline
+window-select
+workspaces            ; tab emulation, persistence & separate workspaces
+hl-todo               ; highlights TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+indent-guides         ; highlights indented columns
+ophints               ; highlights the region where an operation takes place
+(vc-gutter +pretty)   ; show git diff
+vi-tilde-fringe       ; display tildes on empty lines
+deft                  ; major mode for managing notes written in plain text formats
+#+end_src
+
+** editor
+
+#+begin_src emacs-lisp :noweb-ref editor
+(evil +everywhere)
+file-templates
+fold
+(format +onsave)
+multiple-cursors
+rotate-text
+snippets
+word-wrap
+#+end_src
+
+** emacs
+
+#+begin_src emacs-lisp :noweb-ref emacs
+(dired +icons)
+(ibuffer +icons)
+(undo +tree)  ; persistent, smarter undo for your inevitable mistakes
+electric      ; smarter, keyword-based electric-indent
+#+end_src
+
+** term
+
+#+begin_src emacs-lisp :noweb-ref term
+eshell
+#+end_src
+
+** checkers
+
+#+begin_src emacs-lisp :noweb-ref checkers
+(syntax +childframe)
+(spell +aspell +flyspell)
+#+end_src
+
+** tools
+
+#+begin_src emacs-lisp :noweb-ref tools
+ansible
+terraform
+biblio
+pdf
+(lsp +lsp +peek)
+(docker +lsp)
+(eval +overlay)
+(lookup +dicsets)
+magit
+tree-sitter
+direnv
+#+end_src
+
+** lang
+
+#+begin_src emacs-lisp :noweb-ref lang
+emacs-lisp
+(nix +lsp)
+(json +lsp)
+(latex +lsp +fold)
+markdown 
+(org +jupyter +pretty)
+(python +lsp +pyright) 
+(sh +lsp)
+(yaml +lsp)
+#+end_src
+
+** config
+
+#+begin_src emacs-lisp :noweb-ref config
+(default +bindings +smartparens)
+#+end_src
+
+* config.el
+:PROPERTIES:
+:header-args: :tangle ./config.el
+:END:
+
+#+begin_src emacs-lisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+end_src
+
+** doom settings
+*** set id
+
+#+begin_src emacs-lisp
+(setq user-full-name "Pedro Mendes"
+      user-mail-address "phrmendes00@pm.me")
+#+end_src
+
+*** set font
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 15)
+      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 17))
+#+end_src
+
+*** set theme
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-dracula)
+#+end_src
+
+*** enable line numbers
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type 'relative)
+(remove-hook! 'text-mode-hook #'display-line-numbers-mode)
+#+end_src
+
+*** modeline icons
+
+#+begin_src emacs-lisp
+(setq doom-modeline-major-mode-icon t)
+#+end_src
+
+*** bars
+
+#+begin_src emacs-lisp
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+#+end_src
+
+*** padding
+
+#+begin_src emacs-lisp
+(modify-all-frames-parameters
+ '((right-divider-width . 8)
+   (internal-border-width . 8)))
+#+end_src
+
+** company
+
+#+begin_src emacs-lisp
+(use-package! company-box
+  :after company
+  :hook (company-mode . company-box-mode))
+#+end_src
+
+** projectile
+
+#+begin_src emacs-lisp
+(after! projectile
+  (setq projectile-project-search-path '("~/Projects")))
+#+end_src
+
+** direnv
+
+#+begin_src emacs-lisp
+(envrc-global-mode)
+#+end_src
+
+** helpful
+
+#+begin_src emacs-lisp
+(use-package! helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :bind
+  ([remap describe-function] . helpful-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-key] . helpful-key))
+#+end_src
+
+** org mode
+*** org mode agenda basic settings
+
+#+begin_src emacs-lisp
+(after! org
+  (org-display-inline-images)
+  (org-toggle-pretty-entities)
+  (setq org-directory (concat (getenv "HOME")"/pCloudDrive/org")
+        org-agenda-files '("agenda.org")
+        org-cite-csl-styles-dir "~/Zotero/styles"
+        org-ellipsis " ▼ "
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
+        org-src-fontify-natively t
+        org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
+  (setq-default org-latex-pdf-process '("tectonic %f")))
+#+end_src
+
+*** center org buffers
+
+#+begin_src emacs-lisp
+(defun myfun/org-mode-visual-fill ()
+  (setq visual-fill-column-width 175
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package! visual-fill-column
+  :hook (org-mode . myfun/org-mode-visual-fill))
+#+end_src
+
+*** org babel
+
+#+begin_src emacs-lisp
+(after! org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (ipython . t)
+     (nix . t)
+     (shell . t)
+     (latex . t)))
+  (push '("conf-unix" . conf-unix) org-src-lang-modes)
+  (map! "<f6>" #'org-babel-tangle))
+#+end_src
+
+*** org babel templates
+
+#+begin_src emacs-lisp
+(after! org
+  (require 'org-tempo)
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src ipython"))
+  (add-to-list 'org-structure-template-alist '("nx" . "src nix"))
+  (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
+  (add-to-list 'org-structure-template-alist '("js" . "src json"))
+  (add-to-list 'org-structure-template-alist '("tx" . "src latex")))
+#+end_src
+
+*** org latex template
+
+#+begin_src emacs-lisp
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+
+(add-to-list
+ 'org-latex-classes
+ '("article"
+   "
+\\documentclass[12pt,a4paper]{scrartcl}
+\\usepackage[margin=2cm]{geometry}
+\\usepackage{lmodern}
+\\usepackage{fontspec}
+\\usepackage{booktabs}
+\\usepackage{indentfirst}
+"
+   ("\\section*{%s}" . "\\section*{%s}")
+   ("\\subsection*{%s}" . "\\subsection*{%s}")
+   ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")))
+#+end_src
+
+** bibliography settings
+
+#+begin_src emacs-lisp
+(setq bibtex-completion-bibliography (concat (getenv "HOME") "/pCloudDrive/org/references/library.bib")
+      bibtex-completion-library-path (concat (getenv "HOME") "/pCloudDrive/zotero")
+      bibtex-completion-format-citation-functions
+      '((org-mode . bibtex-completion-format-citation-org-link-to-PDF)
+        (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
+        (poly-quarto-mode . bibtex-completion-format-citation-pandoc-citeproc)
+        (default . bibtex-completion-format-citation-default)))
+#+end_src
+
+** zetteldeft
+
+#+begin_src emacs-lisp
+(use-package! deft
+  :commands deft
+  :config
+  (setq deft-directory (concat (getenv "HOME") "/pCloudDrive/org/zetteldeft")
+        deft-extensions '("org")
+        deft-use-filename-as-title t
+        deft-recursive t))
+
+(use-package! zetteldeft
+  :after deft)
+
+(map! :leader
+      (:prefix ("d" . "deft-zetteldeft")
+       :desc "Deft"
+       "d" #'deft
+       :desc "Refresh deft"
+       "r" #'deft-refresh
+       "n" #'zetteldeft-new-file
+       "N" #'zetteldeft-new-file-and-link
+       "i" #'zetteldeft-find-file-id-insert
+       "I" #'zetteldeft-find-file-full-title-insert
+       "f" #'zetteldeft-follow-link
+       "o" #'zetteldeft-find-file
+       "s" #'zetteldeft-search-current-id
+       "R" #'zetteldeft-file-rename
+       "t" #'zetteldeft-tag-insert))
+#+end_src
+
+** spellcheck
+
+#+begin_src emacs-lisp
+(defun myfun/flyspell-english ()
+  (interactive)
+  (ispell-change-dictionary "en")
+  (flyspell-buffer))
+
+(defun myfun/flyspell-portuguese ()
+  (interactive)
+  (ispell-change-dictionary "pt_BR")
+  (flyspell-buffer))
+
+(map! :leader
+      (:prefix ("l" . "language")
+       :desc "Portuguese"
+       "p" #'myfun/flyspell-portuguese
+       :desc "English"
+       "e" #'myfun/flyspell-english))
+
+(remove-hook! 'text-mode-hook #'flyspell-mode)
+#+end_src
+
+** evil snipe
+
+#+begin_src emacs-lisp
+(after! evil
+  (evil-snipe-mode +1)
+  (evil-snipe-override-mode +1)
+  (setq evil-snipe-scope 'buffer))
+#+end_src
+
+** dired
+
+#+begin_src emacs-lisp
+(after! dired
+  (setq dired-kill-when-opening-new-dired-buffer t))
+#+end_src
+
+** quarto mode
+
+#+begin_src emacs-lisp
+(use-package! quarto-mode
+  :mode (("\\.qmd" . poly-quarto-mode)))
+#+end_src
+
+** python repl settings
+
+#+begin_src emacs-lisp
+(setq python-shell-completion-native-disabled-interpreters '("python" "ipython"))
+#+end_src
+
+* packages.el
+
+#+begin_src emacs-lisp :tangle ./packages.el
+;; -*- no-byte-compile: t; -*-
+;;; $DOOMDIR/packages.el
+
+(package! quarto-mode)
+(package! visual-fill-column)
+(package! helpful)
+(package! math-preview)
+(package! zetteldeft)
+#+end_src

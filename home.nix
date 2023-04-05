@@ -112,7 +112,6 @@ in {
           nix_clean = "nix-collect-garbage";
         };
         shellInit = ''
-          fish_add_path "$HOME/.config/emacs/bin"
           fish_add_path "$HOME/.npm-global/bin"
       
           dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
@@ -221,7 +220,7 @@ in {
           favourite-apps = [
             "firefox.desktop"
             "Alacritty.desktop"
-            "emacs.desktop"
+            "code.desktop"
           ];
         };
         "org/gnome/desktop/interface" = {

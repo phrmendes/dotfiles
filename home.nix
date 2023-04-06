@@ -138,7 +138,7 @@ in {
           vim-gitgutter
           auto-pairs
           indent-blankline-nvim
-          nvim-treesitter
+          nvim-treesitter.withAllGrammars
           lualine-nvim
         ];
         extraLuaConfig = (builtins.readFile ./.dotfiles/.config/nvim/settings.lua);

@@ -19,7 +19,7 @@ in {
         droidcam
         vscode
         obsidian
-        thunderbird
+        gnome.geary
         gnome.gnome-boxes
         gnome.evince
         # CLI apps

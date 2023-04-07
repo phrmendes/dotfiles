@@ -45,7 +45,6 @@ in {
         terragrunt
         # python
         python311
-        ruff
         pipenv
         # nix
         rnix-lsp
@@ -129,16 +128,23 @@ in {
       neovim = {
         enable = true;
         plugins = with pkgs.vimPlugins; [
-          nvim-web-devicons
-          nvim-tree-lua
-          plenary-nvim
+          vim-fugitive
+          vim-rhubarb
+          vim-gitgutter
+          vim-sleuth
           vim-nix
           vim-easymotion
           vim-commentary
-          vim-gitgutter
-          auto-pairs
-          indent-blankline-nvim
+          nvim-web-devicons
+          nvim-tree-lua
+          nvim-treesitter-context
+          nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
+          plenary-nvim
+          auto-pairs
+          fidget-nvim
+          indent-blankline-nvim
+          impatient-nvim
           lualine-nvim
         ];
         extraLuaConfig = (builtins.readFile ./.dotfiles/.config/nvim/settings.lua);
@@ -186,6 +192,9 @@ in {
           draw_bold_text_with_bright_colors = true;
           selection.save_to_clipboard = true;
           shell.program = "${pkgs.fish}/bin/fish";
+          import = [
+
+          ];
         };
       };
       starship = {

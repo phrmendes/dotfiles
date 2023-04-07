@@ -19,6 +19,7 @@ in {
         droidcam
         vscode
         obsidian
+        drawing
         gnome.geary
         gnome.gnome-boxes
         gnome.evince
@@ -64,7 +65,6 @@ in {
         baobab
         fragments
         vlc
-        gthumb
         gnome-text-editor
         gnome-photos
         gnome-solanum

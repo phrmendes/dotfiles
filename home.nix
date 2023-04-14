@@ -8,65 +8,62 @@ in {
       username = "${user}";
       homeDirectory = "/home/${user}";
       packages = (with pkgs.unstable; [
-        # GUI apps
-        pcloud
-        zotero
-        firefox
-        chromium
-        protonvpn-gui
-        bitwarden
-        spotify
-        droidcam
-        vscode
-        obsidian
-        drawing
-        gnome.geary
-        gnome.gnome-boxes
-        gnome.evince
-        # CLI apps
-        podman
-        btop
-        pandoc
-        lazygit
-        ripgrep
-        fd
-        sd
-        stow
-        exa
-        sqlite
-        jq
-        hugo
-        tere
-        cmdstan
-        gh
-        quarto
+        adw-gtk3
         ansible
+        bitwarden
+        btop
+        cargo
+        chromium
+        cmdstan
+        drawing
+        droidcam
+        exa
+        fd
+        firefox
+        gh
+        hugo
+        jq
+        lazygit
+        nixfmt
+        nodejs
+        obsidian
+        pandoc
+        pipenv
+        podman
+        python311
+        quarto
+        ripgrep
+        sd
+        shellcheck
+        spotify
+        sqlite
+        stow
+        tere
         terraform
         terragrunt
-        nixfmt
-        python311
-        pipenv
-        shellcheck
-        cargo
-        nodejs
-        # others
-        adw-gtk3
+        vscode
+        zotero
       ]) ++ (with pkgs; [
-        tectonic
         baobab
         fragments
-        vlc
-        gnome-text-editor
         gnome-photos
         gnome-solanum
+        gnome-text-editor
+        pcloud
+        tectonic
+        vlc
+      ]) ++ (with pkgs.unstable.gnome; [
+        evince
+        geary
+        gnome-boxes
       ]) ++ (with pkgs.unstable.gnomeExtensions; [
         appindicator
-        forge
-        pano
+        clipboard-history
         espresso
-        unite
-        space-bar
+        forge
         lightdark-theme-switcher
+        space-bar
+        unite
       ]);
       stateVersion = "22.11";
       sessionVariables = {
@@ -121,16 +118,16 @@ in {
         enable = true;
         package = pkgs.unstable.neovim-unwrapped; 
         plugins = with pkgs.vimPlugins; [
-          vim-gitgutter
-          vim-nix
-          vim-easymotion
-          vim-commentary
-          nvim-web-devicons
-          nvim-treesitter.withAllGrammars
-          plenary-nvim
           auto-pairs
           indent-blankline-nvim
           lualine-nvim
+          nvim-treesitter.withAllGrammars
+          nvim-web-devicons
+          plenary-nvim
+          vim-commentary
+          vim-easymotion
+          vim-gitgutter
+          vim-nix
         ];
         extraLuaConfig = (builtins.readFile ./.dotfiles/.config/nvim/settings.lua);
         vimAlias = true;
@@ -204,18 +201,18 @@ in {
           disable-user-extensions = false;
           enabled-extensions = [
             "appindicatorsupport@rgcjonas.gmail.com"
-            "gsconnect@andyholmes.github.io"
+            "clipboard-history@alexsaveau.dev"
             "espresso@coadmunkee.github.com"
-            "unite@hardpixel.eu"
             "forge@jmmaranan.com"
+            "gsconnect@andyholmes.github.io"
             "space-bar@luchrioh"
-            "pano@elhan.io"
             "theme-switcher@fthx"
+            "unite@hardpixel.eu"
           ];
           favourite-apps = [
-            "firefox.desktop"
             "Alacritty.desktop"
             "code.desktop"
+            "firefox.desktop"
           ];
         };
         "org/gnome/desktop/interface" = {

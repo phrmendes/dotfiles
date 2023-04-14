@@ -43,18 +43,10 @@ in {
         ansible
         terraform
         terragrunt
-        # python
+        nixfmt
         python311
         pipenv
-        # nix
-        rnix-lsp
-        nixfmt
-        # shell script
-        shfmt
         shellcheck
-        # latex
-        texlab
-        # package managers
         cargo
         nodejs
         # others
@@ -127,24 +119,17 @@ in {
       };
       neovim = {
         enable = true;
+        package = pkgs.unstable.neovim-unwrapped; 
         plugins = with pkgs.vimPlugins; [
-          vim-fugitive
-          vim-rhubarb
           vim-gitgutter
-          vim-sleuth
           vim-nix
           vim-easymotion
           vim-commentary
           nvim-web-devicons
-          nvim-tree-lua
-          nvim-treesitter-context
-          nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
           plenary-nvim
           auto-pairs
-          fidget-nvim
           indent-blankline-nvim
-          impatient-nvim
           lualine-nvim
         ];
         extraLuaConfig = (builtins.readFile ./.dotfiles/.config/nvim/settings.lua);

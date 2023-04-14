@@ -1,7 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   user = "phrmendes";
+  fromGitHub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "${lib.strings.sanitizeDerivationName repo}";
+    version = ref;
+    src = builtins.fetchGit {
+      url = "https://github.com/${repo}.git";
+      ref = ref;
+    };
+  };
 in {
   home-manager.users.${user} = {
     home = {
@@ -22,10 +30,7 @@ in {
         firefox
         gh
         hugo
-        jq
         lazygit
-        nixfmt
-        nodejs
         obsidian
         pandoc
         pipenv
@@ -34,7 +39,6 @@ in {
         quarto
         ripgrep
         sd
-        shellcheck
         spotify
         sqlite
         stow
@@ -116,20 +120,88 @@ in {
       };
       neovim = {
         enable = true;
+        withPython3 = true;
         package = pkgs.unstable.neovim-unwrapped; 
-        plugins = with pkgs.vimPlugins; [
+        plugins = with pkgs.unstable.vimPlugins; [
+          (fromGitHub "HEAD" "jmbuhr/otter.nvim")
+          (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
+          (fromGitHub "HEAD" "nvim-telescope/telescope-ui-select.nvim")
+          (fromGitHub "HEAD" "quarto-dev/quarto-nvim")
+          (fromGitHub "HEAD" "szw/vim-maximizer")
+          (nvim-treesitter.withPlugins (p: [
+              p.bash 
+              p.dockerfile
+              p.gitignore
+              p.json
+              p.latex
+              p.lua
+              p.markdown
+              p.markdown-inline
+              p.nix
+              p.python
+              p.hcl
+              p.vim
+              p.yaml
+            ]
+          ))
+          ReplaceWithRegister
           auto-pairs
+          cmp-buffer
+          cmp-nvim-lsp
+          cmp-path
+          cmp_luasnip
+          comment-nvim
+          copilot-vim
+          dashboard-nvim
+          friendly-snippets
+          gitsigns-nvim
           indent-blankline-nvim
+          lazygit-nvim
+          lspkind-nvim
           lualine-nvim
-          nvim-treesitter.withAllGrammars
+          luasnip
+          nvim-cmp
+          nvim-lspconfig
+          nvim-tree-lua
           nvim-web-devicons
           plenary-nvim
-          vim-commentary
+          telescope-fzf-native-nvim
+          telescope-nvim
+          tokyonight-nvim
           vim-easymotion
           vim-gitgutter
           vim-nix
+          vim-surround
+          vim-tmux-navigator
+          vimwiki
+          null-ls-nvim
         ];
-        extraLuaConfig = (builtins.readFile ./.dotfiles/.config/nvim/settings.lua);
+        extraPackages = (with pkgs; [
+          sumneko-lua-language-server
+        ]) ++ (with pkgs.unstable; [
+          jq
+          luajitPackages.luacheck
+          nixfmt
+          rnix-lsp
+          shellcheck
+          shfmt
+          stylua
+          terraform-ls
+          texlab
+        ]) ++ (with pkgs.unstable.nodePackages; [
+          bash-language-server
+          dockerfile-language-server-nodejs
+          prettier
+          pyright
+        ]) ++ (with pkgs.unstable.python311Packages; [
+          autoflake
+          black
+          ipython
+          isort
+          notedown
+          pylint
+        ]);
+        extraLuaConfig = (lib.fileContents ./.dotfiles/.config/nvim/settings.lua);
         vimAlias = true;
         vimdiffAlias = true;
       };

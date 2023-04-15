@@ -2,14 +2,15 @@
 
 let
   user = "phrmendes";
-  fromGitHub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "${lib.strings.sanitizeDerivationName repo}";
-    version = ref;
-    src = builtins.fetchGit {
-      url = "https://github.com/${repo}.git";
-      ref = ref;
+  fromGitHub = ref: repo:
+    pkgs.vimUtils.buildVimPluginFrom2Nix {
+      pname = "${lib.strings.sanitizeDerivationName repo}";
+      version = ref;
+      src = builtins.fetchGit {
+        url = "https://github.com/${repo}.git";
+        ref = ref;
+      };
     };
-  };
 in {
   home-manager.users.${user} = {
     home = {
@@ -56,19 +57,16 @@ in {
         pcloud
         tectonic
         vlc
-      ]) ++ (with pkgs.unstable.gnome; [
-        evince
-        geary
-        gnome-boxes
-      ]) ++ (with pkgs.unstable.gnomeExtensions; [
-        appindicator
-        clipboard-history
-        espresso
-        forge
-        lightdark-theme-switcher
-        space-bar
-        unite
-      ]);
+      ]) ++ (with pkgs.unstable.gnome; [ evince geary gnome-boxes ])
+        ++ (with pkgs.unstable.gnomeExtensions; [
+          appindicator
+          clipboard-history
+          espresso
+          forge
+          lightdark-theme-switcher
+          space-bar
+          unite
+        ]);
       stateVersion = "22.11";
       sessionVariables = {
         VISUAL = "nvim";
@@ -100,18 +98,19 @@ in {
           lla = "${pkgs.exa}/bin/exa --icons -la";
         };
         shellAbbrs = {
-          stow_dotfiles = ''stow --target="$HOME" --dir="$HOME/Projects/bkps/" --stow .dotfiles'';
+          stow_dotfiles = ''
+            stow --target="$HOME" --dir="$HOME/Projects/bkps/" --stow .dotfiles'';
           nix_update = "sudo nixos-rebuild switch";
           nix_clean = "nix-collect-garbage";
         };
         shellInit = ''
           fish_add_path "$HOME/.npm-global/bin"
-      
+
           dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
           dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/wm-keys.txt"
           dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
           dconf load /org/gnome/shell/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
-      
+
           function tere
               set --local result (command tere $argv)
               [ -n "$result" ] && cd -- "$result"
@@ -121,38 +120,39 @@ in {
       neovim = {
         enable = true;
         withPython3 = true;
-        package = pkgs.unstable.neovim-unwrapped; 
+        package = pkgs.unstable.neovim-unwrapped;
         plugins = with pkgs.unstable.vimPlugins; [
+          (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
           (fromGitHub "HEAD" "jmbuhr/otter.nvim")
           (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
           (fromGitHub "HEAD" "nvim-telescope/telescope-ui-select.nvim")
           (fromGitHub "HEAD" "quarto-dev/quarto-nvim")
           (fromGitHub "HEAD" "szw/vim-maximizer")
           (nvim-treesitter.withPlugins (p: [
-              p.bash 
-              p.dockerfile
-              p.gitignore
-              p.json
-              p.latex
-              p.lua
-              p.markdown
-              p.markdown-inline
-              p.nix
-              p.python
-              p.hcl
-              p.vim
-              p.yaml
-            ]
-          ))
+            p.bash
+            p.dockerfile
+            p.gitignore
+            p.json
+            p.latex
+            p.lua
+            p.markdown
+            p.markdown-inline
+            p.nix
+            p.python
+            p.hcl
+            p.vim
+            p.yaml
+          ]))
           ReplaceWithRegister
+          alpha-nvim
           auto-pairs
+          bufferline-nvim
           cmp-buffer
           cmp-nvim-lsp
           cmp-path
           cmp_luasnip
           comment-nvim
           copilot-vim
-          dashboard-nvim
           friendly-snippets
           gitsigns-nvim
           indent-blankline-nvim
@@ -160,6 +160,8 @@ in {
           lspkind-nvim
           lualine-nvim
           luasnip
+          markdown-preview-nvim
+          null-ls-nvim
           nvim-cmp
           nvim-lspconfig
           nvim-tree-lua
@@ -168,18 +170,15 @@ in {
           telescope-fzf-native-nvim
           telescope-nvim
           tokyonight-nvim
-          vim-easymotion
           vim-gitgutter
           vim-nix
           vim-surround
           vim-tmux-navigator
-          vimwiki
-          null-ls-nvim
+          which-key-nvim
         ];
-        extraPackages = (with pkgs; [
-          sumneko-lua-language-server
-        ]) ++ (with pkgs.unstable; [
+        extraPackages = (with pkgs.unstable; [
           jq
+          lua-language-server
           luajitPackages.luacheck
           nixfmt
           rnix-lsp
@@ -200,8 +199,10 @@ in {
           isort
           notedown
           pylint
+          pynvim
         ]);
-        extraLuaConfig = (lib.fileContents ./.dotfiles/.config/nvim/settings.lua);
+        extraLuaConfig =
+          (lib.fileContents ./.dotfiles/.config/nvim/settings.lua);
         vimAlias = true;
         vimdiffAlias = true;
       };
@@ -210,8 +211,8 @@ in {
         settings = {
           window = {
             padding = {
-              x = 15;
-              y = 15;
+              x = 10;
+              y = 10;
             };
             class = {
               instance = "Alacritty";
@@ -223,6 +224,32 @@ in {
           scrolling = {
             history = 10000;
             multiplier = 3;
+          };
+          colors = {
+            primary = {
+              background = "0x1a1b26";
+              foreground = "0xc0caf5";
+            };
+            normal = {
+              black = "0x15161e";
+              red = "0xf7768e";
+              green = "0x9ece6a";
+              yellow = "0xe0af68";
+              blue = "0x7aa2f7";
+              magenta = "0xbb9af7";
+              cyan = "0x7dcfff";
+              white = "0xa9b1d6";
+            };
+            bright = {
+              black = "0x414868";
+              red = "0xf7768e";
+              green = "0x9ece6a";
+              yellow = "0xe0af68";
+              blue = "0x7aa2f7";
+              magenta = "0xbb9af7";
+              cyan = "0x7dcfff";
+              white = "0xc0caf5";
+            };
           };
           font = {
             normal = {
@@ -246,9 +273,6 @@ in {
           draw_bold_text_with_bright_colors = true;
           selection.save_to_clipboard = true;
           shell.program = "${pkgs.fish}/bin/fish";
-          import = [
-
-          ];
         };
       };
       starship = {
@@ -281,11 +305,8 @@ in {
             "theme-switcher@fthx"
             "unite@hardpixel.eu"
           ];
-          favourite-apps = [
-            "Alacritty.desktop"
-            "code.desktop"
-            "firefox.desktop"
-          ];
+          favourite-apps =
+            [ "Alacritty.desktop" "code.desktop" "firefox.desktop" ];
         };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";

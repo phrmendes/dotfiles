@@ -27,8 +27,15 @@ telescope.setup({
 		["ui-select"] = {
 			themes.get_dropdown({}),
 		},
+		["repo"] = {
+			list = {
+				search_dirs = { "~/Projects" },
+			},
+		},
 	},
 })
 
 telescope.load_extension("fzf")
+telescope.load_extension("repo")
+telescope.load_extension("bibtex")
 telescope.load_extension("ui-select")

@@ -1,15 +1,16 @@
-local dap, dapui = require("dap"), require("dapui")
-
-dapui.setup()
-
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+local setup, dap = require("dap")
+if not setup then
+	return
 end
 
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+dap.configurations.python = {
+	{
+		type = "python",
+		request = "launch",
+		name = "Launch file",
+		program = "${file}",
+		pythonPath = function()
+			return "python"
+		end,
+	},
+}

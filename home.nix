@@ -129,6 +129,7 @@ in {
           (fromGitHub "HEAD" "jbyuki/nabla.nvim")
           (fromGitHub "HEAD" "jmcantrell/vim-virtualenv")
           (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
+          (fromGitHub "HEAD" "nvim-telescope/telescope-dap.nvim")
           (fromGitHub "HEAD" "nvim-telescope/telescope-ui-select.nvim")
           (fromGitHub "HEAD" "szw/vim-maximizer")
           (nvim-treesitter.withPlugins (p: [

@@ -48,7 +48,7 @@ local mappings = {
 	},
 
 	d = {
-		name = "Debug",
+		name = "debug",
 		["b"] = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
 		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
 		["d"] = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect" },
@@ -62,7 +62,6 @@ local mappings = {
 		["t"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
 		["u"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
 		["C"] = { "<cmd>lua require('dap').run_to_cursor()<cr>", "Run to cursor" },
-		["U"] = { "<cmd>lua require('dapui').toggle({reset = true})<cr>", "Toggle UI" },
 	},
 
 	f = {
@@ -135,9 +134,10 @@ local mappings = {
 
 	r = {
 		name = "+REPL",
-		["h"] = { "<cmd>IronHide<cr>", "Hide REPL" },
-		["o"] = { "<cmd>IronRepl<cr>", "Open REPL" },
-		["r"] = { "<cmd>IronHide<cr>", "Restart REPL" },
+		["h"] = { "<cmd>IronHide<cr>", "Hide" },
+		["o"] = { "<cmd>IronReplHere<cr>", "Open" },
+		["r"] = { "<cmd>IronRestart<cr>", "Restart" },
+		["f"] = { "<cmd>IronFocus<cr>", "Focus" },
 	},
 
 	t = {

@@ -15,6 +15,7 @@ end
 
 telescope.setup({
 	defaults = {
+		hidden = true,
 		mappings = {
 			i = {
 				["<C-p>"] = actions.move_selection_previous, -- move to prev result

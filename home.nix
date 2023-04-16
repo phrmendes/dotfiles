@@ -122,11 +122,15 @@ in {
         withPython3 = true;
         package = pkgs.unstable.neovim-unwrapped;
         plugins = with pkgs.unstable.vimPlugins; [
+          (fromGitHub "HEAD" "PieterjanMontens/vim-pipenv")
+          (fromGitHub "HEAD" "Vigemus/iron.nvim")
           (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
-          (fromGitHub "HEAD" "jmbuhr/otter.nvim")
+          (fromGitHub "HEAD" "epwalsh/obsidian.nvim")
+          (fromGitHub "HEAD" "fedepujol/move.nvim")
+          (fromGitHub "HEAD" "jbyuki/nabla.nvim")
+          (fromGitHub "HEAD" "jmcantrell/vim-virtualenv")
           (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
           (fromGitHub "HEAD" "nvim-telescope/telescope-ui-select.nvim")
-          (fromGitHub "HEAD" "quarto-dev/quarto-nvim")
           (fromGitHub "HEAD" "szw/vim-maximizer")
           (nvim-treesitter.withPlugins (p: [
             p.bash
@@ -163,7 +167,10 @@ in {
           markdown-preview-nvim
           null-ls-nvim
           nvim-cmp
+          nvim-dap
+          nvim-dap-ui
           nvim-lspconfig
+          nvim-spectre
           nvim-tree-lua
           nvim-web-devicons
           plenary-nvim
@@ -174,6 +181,7 @@ in {
           vim-nix
           vim-surround
           vim-tmux-navigator
+          vim-visual-multi
           which-key-nvim
         ];
         extraPackages = (with pkgs.unstable; [
@@ -187,6 +195,7 @@ in {
           stylua
           terraform-ls
           texlab
+          ltex-ls
         ]) ++ (with pkgs.unstable.nodePackages; [
           bash-language-server
           dockerfile-language-server-nodejs

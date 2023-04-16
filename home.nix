@@ -32,9 +32,9 @@ in {
         gh
         hugo
         lazygit
+        micromamba
         obsidian
         pandoc
-        pipenv
         podman
         python311
         quarto
@@ -122,7 +122,6 @@ in {
         withPython3 = true;
         package = pkgs.unstable.neovim-unwrapped;
         plugins = with pkgs.unstable.vimPlugins; [
-          (fromGitHub "HEAD" "PieterjanMontens/vim-pipenv")
           (fromGitHub "HEAD" "Vigemus/iron.nvim")
           (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
           (fromGitHub "HEAD" "epwalsh/obsidian.nvim")

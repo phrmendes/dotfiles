@@ -46,7 +46,7 @@ lspconfig.dockerls.setup({
 
 lspconfig.ltex.setup({
 	capabilities = capabilities,
-	filetypes = { "markdown", "quarto", "text" },
+	filetypes = { "markdown", "quarto" },
 	settings = {
 		ltex = {
 			language = { "en-US" },

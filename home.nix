@@ -37,13 +37,12 @@ in {
         pandoc
         podman
         python311
-        quarto
+        python311Packages.jupyterlab
         ripgrep
         sd
         spotify
         sqlite
         stow
-        tere
         terraform
         terragrunt
         vscode
@@ -103,19 +102,7 @@ in {
           nix_update = "sudo nixos-rebuild switch";
           nix_clean = "nix-collect-garbage";
         };
-        shellInit = ''
-          fish_add_path "$HOME/.npm-global/bin"
-
-          dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
-          dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/wm-keys.txt"
-          dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
-          dconf load /org/gnome/shell/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
-
-          function tere
-              set --local result (command tere $argv)
-              [ -n "$result" ] && cd -- "$result"
-          end
-        '';
+        shellInit = builtins.readFile ./.dotfiles/.config/fish/shell.fish;
       };
       neovim = {
         enable = true;
@@ -125,12 +112,9 @@ in {
           (fromGitHub "HEAD" "Vigemus/iron.nvim")
           (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
           (fromGitHub "HEAD" "epwalsh/obsidian.nvim")
-          (fromGitHub "HEAD" "fedepujol/move.nvim")
           (fromGitHub "HEAD" "jbyuki/nabla.nvim")
           (fromGitHub "HEAD" "jmcantrell/vim-virtualenv")
           (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
-          (fromGitHub "HEAD" "nvim-telescope/telescope-dap.nvim")
-          (fromGitHub "HEAD" "nvim-telescope/telescope-ui-select.nvim")
           (fromGitHub "HEAD" "szw/vim-maximizer")
           (nvim-treesitter.withPlugins (p: [
             p.bash
@@ -155,7 +139,6 @@ in {
           cmp-nvim-lsp
           cmp-path
           cmp_luasnip
-          comment-nvim
           copilot-vim
           friendly-snippets
           gitsigns-nvim
@@ -165,6 +148,7 @@ in {
           lualine-nvim
           luasnip
           markdown-preview-nvim
+          mini-nvim
           null-ls-nvim
           nvim-cmp
           nvim-dap
@@ -174,18 +158,24 @@ in {
           nvim-tree-lua
           nvim-web-devicons
           plenary-nvim
+          tagbar
+          telescope-ui-select-nvim
+          telescope-dap-nvim
           telescope-fzf-native-nvim
           telescope-nvim
           tokyonight-nvim
+          undotree
+          vim-commentary
           vim-gitgutter
+          vim-illuminate
           vim-nix
-          vim-surround
           vim-tmux-navigator
           vim-visual-multi
           which-key-nvim
         ];
         extraPackages = (with pkgs.unstable; [
           jq
+          ltex-ls
           lua-language-server
           luajitPackages.luacheck
           nixfmt
@@ -195,7 +185,7 @@ in {
           stylua
           terraform-ls
           texlab
-          ltex-ls
+          universal-ctags
         ]) ++ (with pkgs.unstable.nodePackages; [
           bash-language-server
           dockerfile-language-server-nodejs

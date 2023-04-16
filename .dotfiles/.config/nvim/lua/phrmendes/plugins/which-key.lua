@@ -21,6 +21,8 @@ local opts = {
 
 local mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
 	a = {
 		name = "+actions",
@@ -39,16 +41,25 @@ local mappings = {
 		["n"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
 		["p"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
 		["r"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
+		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find", "Fuzzy find" },
 
 		c = {
 			name = "+pick",
 			["c"] = { "<cmd>BufferLinePick<cr>", "Pick" },
 			["d"] = { "<cmd>BufferLinePickClose<cr>", "Pick and close" },
 		},
+
+		s = {
+			name = "+sort",
+			["d"] = { "<cmd>BufferLineSortByDirectory<cr>", "Sort by directory" },
+			["e"] = { "<cmd>BufferLineSortByExtension<cr>", "Sort by extension" },
+			["r"] = { "<cmd>BufferLineSortByRelativeDirectory<cr>", "By relative directory" },
+			["t"] = { "<cmd>BufferLineSortByTabs<cr>", "By tabs" },
+		},
 	},
 
 	d = {
-		name = "debug",
+		name = "+debug",
 		["b"] = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
 		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
 		["d"] = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect" },
@@ -96,6 +107,7 @@ local mappings = {
 
 	l = {
 		name = "+lsp",
+		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 		["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
 		["c"] = { "<cmd>Telescope lsp_definitions", "Definitions" },
 		["d"] = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Diagnostics" },
@@ -134,10 +146,14 @@ local mappings = {
 
 	r = {
 		name = "+REPL",
+		["a"] = { "<cmd>IronFocus<cr>", "Focus" },
+		["f"] = { "<cmd>lua require('iron.core').send_file()", "Send file" },
 		["h"] = { "<cmd>IronHide<cr>", "Hide" },
+		["l"] = { "<cmd>lua require('iron.core').send_line()", "Send line" },
+		["m"] = { "<cmd>lua require('iron.core').send_motion()", "Send motion" },
+		["n"] = { "<cmd>lua require('iron.core').send_mark()", "Send mark" },
 		["o"] = { "<cmd>IronReplHere<cr>", "Open" },
 		["r"] = { "<cmd>IronRestart<cr>", "Restart" },
-		["f"] = { "<cmd>IronFocus<cr>", "Focus" },
 	},
 
 	t = {

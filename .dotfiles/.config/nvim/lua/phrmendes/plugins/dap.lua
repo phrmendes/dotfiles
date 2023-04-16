@@ -1,7 +1,4 @@
-local setup, dap = require("dap")
-if not setup then
-	return
-end
+local dap = require("dap")
 
 dap.configurations.python = {
 	{

@@ -41,7 +41,7 @@ local mappings = {
 		["n"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
 		["p"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
 		["r"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
-		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find", "Fuzzy find" },
+		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find" },
 
 		c = {
 			name = "+pick",

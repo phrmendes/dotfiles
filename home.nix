@@ -37,7 +37,6 @@ in {
         pandoc
         podman
         python311
-        python311Packages.jupyterlab
         ripgrep
         sd
         spotify

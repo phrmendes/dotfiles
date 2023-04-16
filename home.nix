@@ -21,6 +21,7 @@ in {
         ansible
         bitwarden
         btop
+        python311Packages.jupyterlab
         cargo
         chromium
         cmdstan
@@ -304,8 +305,7 @@ in {
             "theme-switcher@fthx"
             "unite@hardpixel.eu"
           ];
-          favourite-apps =
-            [ "Alacritty.desktop" "code.desktop" "firefox.desktop" ];
+          favourite-apps = [ "Alacritty.desktop" "firefox.desktop" ];
         };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";

@@ -88,6 +88,7 @@ in {
         shellAliases = {
           mkdir = "mkdir -p";
           cat = "${pkgs.bat}/bin/bat";
+          mamba = "${pkgs.micromamba}/bin/micromamba";
           lg = "${pkgs.lazygit}/bin/lazygit";
           ls = "${pkgs.exa}/bin/exa --icons";
           ll = "${pkgs.exa}/bin/exa --icons -l";

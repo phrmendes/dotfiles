@@ -32,7 +32,6 @@ in {
         gh
         hugo
         lazygit
-        micromamba
         obsidian
         pandoc
         podman
@@ -113,20 +112,6 @@ in {
           dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/wm-keys.txt"
           dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
           dconf load /org/gnome/shell/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
-
-          export MAMBA_EXE="${pkgs.micromamba}/bin/micromamba";
-          export MAMBA_ROOT_PREFIX="$HOME/micromamba";
-          __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-          if [ $? -eq 0 ]; then
-              eval "$__mamba_setup"
-          else
-              if [ -f "$HOME/micromamba/etc/profile.d/micromamba.sh" ]; then
-                  . "$HOME/micromamba/etc/profile.d/micromamba.sh"
-              else
-                  export  PATH="$HOME/micromamba/bin:$PATH" 
-              fi
-          fi
-          unset __mamba_setup
         '';
       };
       neovim = {

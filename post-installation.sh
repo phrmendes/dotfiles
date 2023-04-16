@@ -8,20 +8,20 @@ sudo rm -r /etc/nixos/
 sudo mkdir /etc/nixos/
 
 for file in "${NIX_FILES[@]}"; do
-    sudo ln -s "$MAIN_DIR/$file" "/etc/nixos/"
+	sudo ln -s "$MAIN_DIR/$file" "/etc/nixos/"
 done
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update
 
 for program in "${FLATPAK_PROGRAMS[@]}"; do
-    flatpak install "$program" -y
+	flatpak install "$program" -y
 done
 
-# git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.emacs.d"
-# "$HOME/.emacs.d/bin/doom" install
-# "$HOME/.emacs.d/bin/doom" sync
-# rm -r "$HOME/.doom.d"
+cd /tmp || exit
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+bash "Mambaforge-$(uname)-$(uname -m).sh"
+cd MAIN_DIR || exit
 
 stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
 

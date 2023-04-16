@@ -1,14 +1,16 @@
 { config, pkgs, ... }:
 let
   user = "phrmendes";
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz;
-  unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+  home-manager = builtins.fetchTarball
+    "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+  unstableTarball = builtins.fetchTarball
+    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
 in {
   imports = [
-      (import "${home-manager}/nixos")
-      ./hardware-configuration.nix
-      ./home.nix
-    ];
+    (import "${home-manager}/nixos")
+    ./hardware-configuration.nix
+    ./home.nix
+  ];
   boot = {
     loader = {
       efi = {
@@ -88,11 +90,7 @@ in {
     pulseaudio.enable = false;
     bluetooth = {
       enable = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
+      settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
     };
     opengl.enable = true;
     nvidia.package = pkgs.unstable.linuxKernel.packages.linux_6_2.nvidia_x11;
@@ -103,43 +101,42 @@ in {
     uid = 1000;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
     initialPassword = "password";
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
   nixpkgs = {
     config = {
       allowUnfree = true;
+      permittedInsecurePackages = [ "electron-21.4.0" ];
       packageOverrides = pkgs: {
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
+        unstable = import unstableTarball { config = config.nixpkgs.config; };
       };
     };
   };
   environment = {
-    systemPackages = with pkgs;
-      [
-        zip
-        curl
-        wget
-        unzip
-        unrar
-        git
-        gzip
-        vim
-        gcc
-        zlib
-        gnumake
-        cmake
-        binutils
-        appimage-run
-        home-manager
-        gnome.gnome-screenshot
-        gnome.gnome-disk-utility
-        gnome.gnome-calculator
-        gnome.nautilus
-        gnome.file-roller
-        gnome.gnome-tweaks
-      ];
+    pathsToLink = [ "/share/zsh" ];
+    systemPackages = with pkgs; [
+      zip
+      curl
+      wget
+      unzip
+      unrar
+      git
+      gzip
+      vim
+      gcc
+      zlib
+      gnumake
+      cmake
+      binutils
+      appimage-run
+      home-manager
+      gnome.gnome-screenshot
+      gnome.gnome-disk-utility
+      gnome.gnome-calculator
+      gnome.nautilus
+      gnome.file-roller
+      gnome.gnome-tweaks
+    ];
   };
   programs = {
     seahorse.enable = true;
@@ -153,7 +150,7 @@ in {
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = ["root" "@wheel"];
+      trusted-users = [ "root" "@wheel" ];
     };
     gc = {
       automatic = true;

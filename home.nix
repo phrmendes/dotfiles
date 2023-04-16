@@ -77,14 +77,19 @@ in {
       bat.enable = true;
       fzf = {
         enable = true;
-        enableFishIntegration = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
       };
       direnv = {
         enable = true;
+        enableZshIntegration = true;
         enableBashIntegration = true;
       };
-      fish = {
+      zsh = {
         enable = true;
+        enableCompletion = true;
+        enableAutosuggestions = true;
+        enableSyntaxHighlighting = true;
         shellAliases = {
           mkdir = "mkdir -p";
           cat = "${pkgs.bat}/bin/bat";
@@ -95,23 +100,22 @@ in {
           la = "${pkgs.exa}/bin/exa --icons -a";
           lt = "${pkgs.exa}/bin/exa --icons --tree";
           lla = "${pkgs.exa}/bin/exa --icons -la";
-        };
-        shellAbbrs = {
           stow_dotfiles = ''
             stow --target="$HOME" --dir="$HOME/Projects/bkps/" --stow .dotfiles'';
           nix_update = "sudo nixos-rebuild switch";
           nix_clean = "nix-collect-garbage";
         };
-        shellInit = ''
-          fish_add_path "$HOME/.npm-global/bin"
+        initExtra = ''
+          path+=("$HOME/.npm-global/bin")
+          export PATH
 
           dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
           dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/wm-keys.txt"
           dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
           dconf load /org/gnome/shell/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
 
-          eval "$(micromamba shell hook --shell=fish)"
-          micromamba activate
+          eval "$(micromamba shell hook --shell=zsh)"
+          micromamba deactivate
         '';
       };
       neovim = {
@@ -281,12 +285,15 @@ in {
           };
           draw_bold_text_with_bright_colors = true;
           selection.save_to_clipboard = true;
-          shell.program = "${pkgs.fish}/bin/fish";
+          shell.program = "${pkgs.zsh}/bin/zsh";
         };
       };
       starship = {
         enable = true;
-        enableFishIntegration = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        settings = (builtins.fromTOML
+          (builtins.readFile ./.dotfiles/.config/starship/starship.toml));
       };
     };
     gtk = {

@@ -36,7 +36,6 @@ in {
         obsidian
         pandoc
         poetry
-        python311
         ripgrep
         sd
         spotify
@@ -108,7 +107,6 @@ in {
       };
       neovim = {
         enable = true;
-        withPython3 = true;
         package = pkgs.unstable.neovim-unwrapped;
         plugins = with pkgs.unstable.vimPlugins; [
           (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")

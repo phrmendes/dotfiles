@@ -13,12 +13,8 @@ local augroup = api.nvim_create_augroup("LspFormatting", {}) -- to setup format 
 null_ls.setup({
 	-- linters and formatters
 	sources = {
-		diagnostics.pylint, -- python
 		diagnostics.shellcheck, -- bash
 		diagnostics.luacheck, -- lua
-		formatting.autoflake, -- python
-		formatting.isort, -- python
-		formatting.black, -- python
 		formatting.jq, -- json
 		formatting.nixfmt, -- nix
 		formatting.prettier, -- markdown

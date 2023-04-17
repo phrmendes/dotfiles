@@ -58,23 +58,6 @@ local mappings = {
 		},
 	},
 
-	d = {
-		name = "+debug",
-		["b"] = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
-		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-		["d"] = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect" },
-		["g"] = { "<cmd>lua require('dap').session()<cr>", "Get session" },
-		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
-		["o"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
-		["p"] = { "<cmd>lua require('dap').pause()<cr>", "Pause" },
-		["q"] = { "<cmd>lua require('dap').close()<cr>", "Quit" },
-		["r"] = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle REPL" },
-		["s"] = { "<cmd>lua require('dap').continue()<cr>", "Start" },
-		["t"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
-		["u"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-		["C"] = { "<cmd>lua require('dap').run_to_cursor()<cr>", "Run to cursor" },
-	},
-
 	f = {
 		name = "+files",
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
@@ -127,33 +110,8 @@ local mappings = {
 
 	m = {
 		name = "+markdown",
-		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
-		["r"] = { "<cmd>lua require('nabla').popup()<CR>", "Render equations" },
-	},
-
-	o = {
-		name = "+obsidian",
-		["b"] = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-		["o"] = { "<cmd>ObsidianOpen<cr>", "Open note in app" },
-		["n"] = { "<cmd>ObsidianNew<cr>", "New note" },
-		["s"] = { "<cmd>ObsidianSearch<cr>", "Search" },
-		["l"] = { "<cmd>ObsidianLink<cr>", "Link to note" },
-		["f"] = { "<cmd>ObsidianFollowLink<cr>", "Follow link" },
-		["k"] = { "<cmd>ObsidianLinkNew<cr>", "Create note and link to it" },
-	},
-
-	r = {
-		name = "+REPL",
-		["a"] = { "<cmd>IronFocus<cr>", "Focus" },
-		["f"] = { "<cmd>lua require('iron.core').send_file()", "Send file" },
-		["h"] = { "<cmd>IronHide<cr>", "Hide" },
-		["l"] = { "<cmd>lua require('iron.core').send_line()", "Send line" },
-		["m"] = { "<cmd>lua require('iron.core').send_motion()", "Send motion" },
-		["n"] = { "<cmd>lua require('iron.core').send_mark()", "Send mark" },
-		["o"] = { "<cmd>IronReplHere<cr>", "Open" },
-		["r"] = { "<cmd>IronRestart<cr>", "Restart" },
 	},
 
 	t = {

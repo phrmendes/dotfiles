@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ sconfig, pkgs, lib, ... }:
 
 let
   user = "phrmendes";
@@ -24,6 +24,7 @@ in {
         cargo
         chromium
         cmdstan
+        conda
         drawing
         droidcam
         exa
@@ -32,6 +33,7 @@ in {
         gh
         hugo
         lazygit
+        micromamba
         obsidian
         pandoc
         podman
@@ -92,7 +94,7 @@ in {
         shellAliases = {
           mkdir = "mkdir -p";
           cat = "${pkgs.bat}/bin/bat";
-          mamba = "${pkgs.micromamba}/bin/micromamba";
+          mamba = "${pkgs.unstable.micromamba}/bin/micromamba";
           lg = "${pkgs.lazygit}/bin/lazygit";
           ls = "${pkgs.exa}/bin/exa --icons";
           ll = "${pkgs.exa}/bin/exa --icons -l";
@@ -104,15 +106,7 @@ in {
           nix_update = "sudo nixos-rebuild switch";
           nix_clean = "nix-collect-garbage";
         };
-        initExtra = ''
-          path+=("$HOME/.npm-global/bin")
-          export PATH
-
-          dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "$HOME/Projects/bkps/gnome-keybindings/custom-keys.txt"
-          dconf load /org/gnome/desktop/wm/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/wm-keys.txt"
-          dconf load /org/gnome/shell/extensions/forge/ < "$HOME/Projects/bkps/gnome-keybindings/forge-keys.txt"
-          dconf load /org/gnome/shell/keybindings/ < "$HOME/Projects/bkps/gnome-keybindings/keys.txt"
-        '';
+        initExtra = builtins.readFile ./config.zsh;
       };
       neovim = {
         enable = true;
@@ -289,7 +283,7 @@ in {
         enableBashIntegration = true;
         enableZshIntegration = true;
         settings = (builtins.fromTOML
-          (builtins.readFile ./.dotfiles/.config/starship/starship.toml));
+          (builtins.readFile ./.dotfiles/.config/starship/config.toml));
       };
     };
     gtk = {

@@ -18,11 +18,6 @@ for program in "${FLATPAK_PROGRAMS[@]}"; do
 	flatpak install "$program" -y
 done
 
-cd /tmp || exit
-curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-bash "Mambaforge-$(uname)-$(uname -m).sh"
-cd MAIN_DIR || exit
-
 stow --target="$HOME" --dir="$HOME"/Projects/bkps/ --stow .dotfiles
 
 systemctl --user daemon-reload

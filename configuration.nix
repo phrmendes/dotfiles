@@ -99,7 +99,7 @@ in {
     isNormalUser = true;
     home = "/home/${user}";
     uid = 1000;
-    extraGroups = [ "wheel" "video" "audio" "networkmanager" ];
+    extraGroups = [ "wheel" "video" "audio" "networkmanager" "docker" ];
     initialPassword = "password";
     shell = pkgs.zsh;
   };
@@ -115,27 +115,28 @@ in {
   environment = {
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
-      zip
-      curl
-      wget
-      unzip
-      unrar
-      git
-      gzip
-      vim
-      gcc
-      zlib
-      gnumake
-      cmake
-      binutils
       appimage-run
+      binutils
+      cmake
+      curl
+      docker-compose
+      gcc
+      git
+      gnumake
+      gzip
       home-manager
-      gnome.gnome-screenshot
-      gnome.gnome-disk-utility
-      gnome.gnome-calculator
-      gnome.nautilus
+      unrar
+      unzip
+      vim
+      wget
+      zip
+      zlib
       gnome.file-roller
+      gnome.gnome-calculator
+      gnome.gnome-disk-utility
+      gnome.gnome-screenshot
       gnome.gnome-tweaks
+      gnome.nautilus
     ];
   };
   programs = {
@@ -163,4 +164,5 @@ in {
     stateVersion = "22.11";
     autoUpgrade.enable = true;
   };
+  virtualisation.docker.enable = true;
 }

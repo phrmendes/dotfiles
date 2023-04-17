@@ -24,8 +24,6 @@ in {
         cargo
         chromium
         cmdstan
-        conda
-        docker
         drawing
         droidcam
         exa
@@ -33,9 +31,11 @@ in {
         firefox
         gh
         hugo
+        lazydocker
         lazygit
         obsidian
         pandoc
+        poetry
         python311
         ripgrep
         sd

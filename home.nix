@@ -35,6 +35,7 @@ in {
         spotify
         sqlite
         stow
+        vscode
         zotero
       ]) ++ (with pkgs; [
         baobab

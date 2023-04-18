@@ -99,9 +99,18 @@ in {
       };
       neovim = {
         enable = true;
+        withPython3 = true;
         package = pkgs.unstable.neovim-unwrapped;
         plugins = with pkgs.unstable.vimPlugins; [
+          (fromGitHub "HEAD" "PieterjanMontens/vim-pipenv")
+          (fromGitHub "HEAD" "Vigemus/iron.nvim")
           (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
+          (fromGitHub "HEAD" "epwalsh/obsidian.nvim")
+          (fromGitHub "HEAD" "jbyuki/nabla.nvim")
+          (fromGitHub "HEAD" "jmbuhr/otter.nvim")
+          (fromGitHub "HEAD" "jmcantrell/vim-virtualenv")
+          (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
+          (fromGitHub "HEAD" "quarto-dev/quarto-nvim")
           (fromGitHub "HEAD" "szw/vim-maximizer")
           (nvim-treesitter.withPlugins (p: [
             p.bash
@@ -138,16 +147,17 @@ in {
           mini-nvim
           null-ls-nvim
           nvim-cmp
+          nvim-dap
           nvim-lspconfig
           nvim-spectre
           nvim-tree-lua
           nvim-web-devicons
           plenary-nvim
           tagbar
-          telescope-ui-select-nvim
           telescope-dap-nvim
           telescope-fzf-native-nvim
           telescope-nvim
+          telescope-ui-select-nvim
           tokyonight-nvim
           undotree
           vim-commentary
@@ -160,6 +170,7 @@ in {
         ];
         extraPackages = (with pkgs.unstable; [
           jq
+          ltex-ls
           lua-language-server
           luajitPackages.luacheck
           nixfmt
@@ -168,11 +179,21 @@ in {
           shfmt
           stylua
           terraform-ls
+          texlab
           universal-ctags
         ]) ++ (with pkgs.unstable.nodePackages; [
           bash-language-server
           dockerfile-language-server-nodejs
           prettier
+          pyright
+        ]) ++ (with pkgs.unstable.python311Packages; [
+          autoflake
+          black
+          ipython
+          isort
+          notedown
+          pylint
+          pynvim
         ]);
         extraLuaConfig =
           (lib.fileContents ./.dotfiles/.config/nvim/settings.lua);

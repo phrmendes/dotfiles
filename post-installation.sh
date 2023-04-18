@@ -25,4 +25,3 @@ systemctl --user enable startup.service
 
 mkdir "$HOME"/.npm-global
 npm config set prefix "$HOME/.npm-global"
-npm install -g git+https://gitlab.com/matsievskiysv/math-preview

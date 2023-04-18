@@ -23,7 +23,6 @@ in {
         btop
         cargo
         chromium
-        cmdstan
         drawing
         droidcam
         exa
@@ -35,7 +34,6 @@ in {
         lazygit
         obsidian
         pandoc
-        poetry
         ripgrep
         sd
         spotify

@@ -114,7 +114,7 @@ in {
   };
   environment = {
     pathsToLink = [ "/share/zsh" ];
-    systemPackages = with pkgs; [
+    systemPackages = (with pkgs; [
       appimage-run
       binutils
       cmake
@@ -137,7 +137,7 @@ in {
       gnome.gnome-screenshot
       gnome.gnome-tweaks
       gnome.nautilus
-    ];
+    ]) ++ (with pkgs.unstable; [ python311 ]);
   };
   programs = {
     seahorse.enable = true;

@@ -18,50 +18,44 @@ in {
       homeDirectory = "/home/${user}";
       packages = (with pkgs.unstable; [
         adw-gtk3
-        ansible
         bitwarden
         btop
-        cargo
-        chromium
+        distrobox
         drawing
         droidcam
         exa
-        fd
         firefox
         gh
         hugo
-        lazydocker
         lazygit
         obsidian
         pandoc
+        quarto
         ripgrep
-        sd
         spotify
         sqlite
         stow
-        terraform
-        terragrunt
         vscode
         zotero
       ]) ++ (with pkgs; [
         baobab
         fragments
         gnome-photos
-        gnome-solanum
         gnome-text-editor
+        gnome.evince
+        gnome.geary
         pcloud
         tectonic
         vlc
-      ]) ++ (with pkgs.unstable.gnome; [ evince geary ])
-        ++ (with pkgs.unstable.gnomeExtensions; [
-          appindicator
-          clipboard-history
-          espresso
-          forge
-          lightdark-theme-switcher
-          space-bar
-          unite
-        ]);
+      ]) ++ (with pkgs.unstable.gnomeExtensions; [
+        appindicator
+        clipboard-history
+        espresso
+        forge
+        lightdark-theme-switcher
+        space-bar
+        unite
+      ]);
       stateVersion = "22.11";
       sessionVariables = {
         VISUAL = "nvim";

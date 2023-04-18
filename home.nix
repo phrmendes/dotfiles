@@ -20,7 +20,6 @@ in {
         adw-gtk3
         bitwarden
         btop
-        distrobox
         drawing
         droidcam
         exa

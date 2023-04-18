@@ -195,8 +195,7 @@ in {
           pylint
           pynvim
         ]);
-        extraLuaConfig =
-          (lib.fileContents ./.dotfiles/.config/nvim/settings.lua);
+        extraConfig = ":luafile $HOME/.config/nvim/init.lua";
         vimAlias = true;
         vimdiffAlias = true;
       };
@@ -354,8 +353,14 @@ in {
         };
       };
     };
-    xdg.enable = true;
-    xdg.mime.enable = true;
+    xdg = {
+      enable = true;
+      mime.enable = true;
+      configFile.nvim = {
+        source = ./.dotfiles/.config/nvim;
+        recursive = true;
+      };
+    };
     targets.genericLinux.enable = true;
   };
 }

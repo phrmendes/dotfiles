@@ -1,4 +1,4 @@
-{ sconfig, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   user = "phrmendes";

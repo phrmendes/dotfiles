@@ -52,7 +52,7 @@ in {
         pcloud
         tectonic
         vlc
-      ]) ++ (with pkgs.unstable.gnome; [ evince geary gnome-boxes ])
+      ]) ++ (with pkgs.unstable.gnome; [ evince geary ])
         ++ (with pkgs.unstable.gnomeExtensions; [
           appindicator
           clipboard-history
@@ -91,6 +91,7 @@ in {
           mkdir = "mkdir -p";
           cat = "${pkgs.bat}/bin/bat";
           lg = "${pkgs.lazygit}/bin/lazygit";
+          ld = "${pkgs.lazydocker}/bin/lazydocker";
           ls = "${pkgs.exa}/bin/exa --icons";
           ll = "${pkgs.exa}/bin/exa --icons -l";
           la = "${pkgs.exa}/bin/exa --icons -a";
@@ -336,12 +337,6 @@ in {
         "org/gnome/shell/extensions/space-bar/shortcuts" = {
           enable-activate-workspace-shortcuts = false;
           enable-move-to-workspace-shortcuts = false;
-        };
-        "org/gnome/shell/extensions/pano" = {
-          is-in-incognito = false;
-          play-audio-on-copy = false;
-          send-notification-on-copy = false;
-          window-height = 200;
         };
       };
     };

@@ -23,6 +23,7 @@ local mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
+	[","] = { "<cmd>T<cr>", "Open terminal" },
 
 	a = {
 		name = "+actions",
@@ -68,7 +69,7 @@ local mappings = {
 		["o"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
 		["p"] = { "<cmd>lua require('dap').pause()<cr>", "Pause" },
 		["q"] = { "<cmd>lua require('dap').close()<cr>", "Quit" },
-		["r"] = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle REPL" },
+		["r"] = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle DAP REPL" },
 		["s"] = { "<cmd>lua require('dap').continue()<cr>", "Start" },
 		["t"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
 		["u"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
@@ -114,7 +115,7 @@ local mappings = {
 		["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
 		["w"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols" },
-		["R"] = { "<cmd>Telescope lsp_references", "References" },
+		["R"] = { "<cmd>Telescope lsp_references<cr>", "References" },
 		["S"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Dynamic workspace symbols" },
 
 		t = {
@@ -157,14 +158,9 @@ local mappings = {
 
 	r = {
 		name = "+REPL",
-		["a"] = { "<cmd>IronFocus<cr>", "Focus" },
-		["f"] = { "<cmd>lua require('iron.core').send_file()", "Send file" },
-		["h"] = { "<cmd>IronHide<cr>", "Hide" },
-		["l"] = { "<cmd>lua require('iron.core').send_line()", "Send line" },
-		["m"] = { "<cmd>lua require('iron.core').send_motion()", "Send motion" },
-		["n"] = { "<cmd>lua require('iron.core').send_mark()", "Send mark" },
-		["o"] = { "<cmd>IronReplHere<cr>", "Open" },
-		["r"] = { "<cmd>IronRestart<cr>", "Restart" },
+		["l"] = { "<cmd>TREPLSendLine<cr>", "Send line" },
+		["f"] = { "<cmd>TREPLSendFile<cr>", "Send file" },
+		["s"] = { "<cmd>TREPLSendSelection<cr>", "Send selection" },
 	},
 
 	t = {

@@ -20,7 +20,7 @@ in {
         adw-gtk3
         bitwarden
         btop
-        vscode
+        distrobox
         drawing
         droidcam
         exa
@@ -35,7 +35,6 @@ in {
         spotify
         sqlite
         stow
-        vscode
         zotero
       ]) ++ (with pkgs; [
         baobab
@@ -155,6 +154,7 @@ in {
           nvim-web-devicons
           plenary-nvim
           tagbar
+          trouble-nvim
           telescope-dap-nvim
           telescope-fzf-native-nvim
           telescope-nvim

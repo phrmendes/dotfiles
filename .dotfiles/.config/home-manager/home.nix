@@ -67,7 +67,7 @@ in {
         mkdir = "mkdir -p";
         rcat = "cat";
         stow_dotfiles = ''
-          stow --target="${home}" --dir="${home}/Projects/bkps/" --stow .dotfiles'';
+          stow --target="${home_dir}" --dir="${home_dir}/Projects/bkps/" --stow .dotfiles'';
         nix_update = "sudo nixos-rebuild switch";
         nix_clean = "nix-collect-garbage";
       };
@@ -76,7 +76,7 @@ in {
       enable = true;
       withPython3 = true;
       package = pkgs.neovim-unwrapped;
-      extraLuaConfig = builtins.readFile ${home}/.config/nvim/settings.lua;
+      extraLuaConfig = builtins.readFile ${home_dir}/.config/nvim/settings.lua;
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [

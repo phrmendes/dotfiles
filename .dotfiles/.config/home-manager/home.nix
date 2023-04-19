@@ -2,15 +2,6 @@
 
 let
   user = "phrmendes";
-  fromGitHub = ref: repo:
-    pkgs.vimUtils.buildVimPluginFrom2Nix {
-      pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
-      src = builtins.fetchGit {
-        url = "https://github.com/${repo}.git";
-        ref = ref;
-      };
-    };
 in {
   home = {
     username = "${user}";
@@ -92,15 +83,6 @@ in {
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
-        (fromGitHub "HEAD" "PieterjanMontens/vim-pipenv")
-        (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
-        (fromGitHub "HEAD" "epwalsh/obsidian.nvim")
-        (fromGitHub "HEAD" "jbyuki/nabla.nvim")
-        (fromGitHub "HEAD" "jmbuhr/otter.nvim")
-        (fromGitHub "HEAD" "jmcantrell/vim-virtualenv")
-        (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim")
-        (fromGitHub "HEAD" "quarto-dev/quarto-nvim")
-        (fromGitHub "HEAD" "szw/vim-maximizer")
         (nvim-treesitter.withPlugins (p: [
           p.bash
           p.dockerfile

@@ -59,23 +59,6 @@ local mappings = {
 		},
 	},
 
-	d = {
-		name = "+debug",
-		["b"] = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
-		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-		["d"] = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect" },
-		["g"] = { "<cmd>lua require('dap').session()<cr>", "Get session" },
-		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
-		["o"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
-		["p"] = { "<cmd>lua require('dap').pause()<cr>", "Pause" },
-		["q"] = { "<cmd>lua require('dap').close()<cr>", "Quit" },
-		["r"] = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle DAP REPL" },
-		["s"] = { "<cmd>lua require('dap').continue()<cr>", "Start" },
-		["t"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
-		["u"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-		["C"] = { "<cmd>lua require('dap').run_to_cursor()<cr>", "Run to cursor" },
-	},
-
 	f = {
 		name = "+files",
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
@@ -100,7 +83,6 @@ local mappings = {
 		["d"] = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 		["l"] = { "<cmd>lua require('gitsigns').blame_line()<cr>", "Blame" },
 		["o"] = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		["p"] = { "<cmd>Telescope repo list<cr>", "List all repos" },
 		["r"] = { "<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer" },
 		["g"] = { "<cmd>LazyGit<cr>", "LazyGit" },
 		["C"] = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (for current file)" },
@@ -121,7 +103,6 @@ local mappings = {
 		t = {
 			name = "+trouble",
 			["a"] = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "LSP type definitions" },
-			["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 			["d"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
 			["f"] = { "<cmd>TroubleToggle lsp_definitions<cr>", "LSP definitions" },
 			["l"] = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
@@ -134,26 +115,8 @@ local mappings = {
 
 	m = {
 		name = "+markdown",
-		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
-		["n"] = { "<cmd>require('nabla').popup()", "Preview equations" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
-		q = {
-			name = "+quarto",
-			["c"] = { "<cmd>QuartoClosePreview<cr>", "Close preview" },
-			["p"] = { "<cmd>QuartoPreview<cr>", "Preview document" },
-		},
-	},
-
-	o = {
-		name = "+obsidian",
-		["b"] = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-		["o"] = { "<cmd>ObsidianOpen<cr>", "Open note in app" },
-		["n"] = { "<cmd>ObsidianNew<cr>", "New note" },
-		["s"] = { "<cmd>ObsidianSearch<cr>", "Search" },
-		["l"] = { "<cmd>ObsidianLink<cr>", "Link to note" },
-		["f"] = { "<cmd>ObsidianFollowLink<cr>", "Follow link" },
-		["k"] = { "<cmd>ObsidianLinkNew<cr>", "Create note and link to it" },
 	},
 
 	r = {
@@ -173,7 +136,6 @@ local mappings = {
 
 	w = {
 		name = "+windows",
-		["m"] = { "<cmd>MaximizerToggle<cr>", "Maximize window" },
 		["h"] = { "<C-w>s", "Split horizontally" },
 		["v"] = { "<C-w>v<cr>", "Split vertically" },
 		["e"] = { "<C-w>=<cr>", "Equalize" },

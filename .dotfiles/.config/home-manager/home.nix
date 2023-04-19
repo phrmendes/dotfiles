@@ -2,6 +2,7 @@
 
 let
   user = "phrmendes";
+  home_dir = builtins.getEnv "HOME";
 in {
   home = {
     username = "${user}";
@@ -15,8 +16,6 @@ in {
       flameshot
       fragments
       gh
-      gnome.evince
-      gnome.geary
       hugo
       lazygit
       obsidian
@@ -27,7 +26,6 @@ in {
       ripgrep
       spotify
       sqlite
-      stow
       tectonic
       vlc
       vscode
@@ -69,7 +67,7 @@ in {
         mkdir = "mkdir -p";
         rcat = "cat";
         stow_dotfiles = ''
-          stow --target="$HOME" --dir="$HOME/Projects/bkps/" --stow .dotfiles'';
+          stow --target="${home}" --dir="${home}/Projects/bkps/" --stow .dotfiles'';
         nix_update = "sudo nixos-rebuild switch";
         nix_clean = "nix-collect-garbage";
       };
@@ -78,8 +76,7 @@ in {
       enable = true;
       withPython3 = true;
       package = pkgs.neovim-unwrapped;
-      extraLuaConfig =
-        builtins.readFile ./.dotfiles/.config/nvim/settings.lua;
+      extraLuaConfig = builtins.readFile ${home}/.config/nvim/settings.lua;
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
@@ -141,7 +138,6 @@ in {
       ];
       extraPackages = (with pkgs; [
         jq
-        ltex-ls
         lua-language-server
         luajitPackages.luacheck
         nixfmt
@@ -150,21 +146,11 @@ in {
         shfmt
         stylua
         terraform-ls
-        texlab
         universal-ctags
       ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
         prettier
-        pyright
-      ]) ++ (with pkgs.python311Packages; [
-        autoflake
-        black
-        ipython
-        isort
-        notedown
-        pylint
-        pynvim
       ]);
     };
     alacritty = {

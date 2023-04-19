@@ -20,28 +20,6 @@ end
 -- config language servers
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-lspconfig.ltex.setup({
-	capabilities = capabilities,
-	filetypes = { "markdown", "quarto" },
-	settings = {
-		ltex = {
-			language = { "en-US" },
-			additionalRules = {
-				enablePickyRules = true,
-				motherTongue = "pt-BR",
-			},
-		},
-	},
-})
-
-lspconfig.pyright.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.texlab.setup({
-	capabilities = capabilities,
-})
-
 lspconfig.rnix.setup({
 	capabilities = capabilities,
 })
@@ -60,7 +38,6 @@ lspconfig.dockerls.setup({
 
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
-
 	settings = {
 		Lua = {
 			-- make the language server recognize 'vim' global

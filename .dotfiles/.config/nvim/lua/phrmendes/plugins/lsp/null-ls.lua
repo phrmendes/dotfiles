@@ -14,11 +14,7 @@ null_ls.setup({
 	-- linters and formatters
 	sources = {
 		diagnostics.luacheck, -- lua
-		diagnostics.pylint, -- python
 		diagnostics.shellcheck, -- bash
-		formatting.autoflake, -- python
-		formatting.black, -- python
-		formatting.isort, -- python
 		formatting.jq, -- json
 		formatting.nixfmt, -- nix
 		formatting.prettier, -- markdown

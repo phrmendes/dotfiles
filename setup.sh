@@ -3,7 +3,7 @@
 MAIN_DIR="$(pwd)"
 REQUIRED_PROGRAMS=(wget git zip unzip gzip curl file build-essential procps)
 TO_REMOVE=(geary gnome-terminal gnome-orca evince totem xterm)
-APT_PACKAGES=(file-roller celluloid python3)
+APT_PACKAGES=(file-roller celluloid python3 stow)
 FLATPAK_PACKAGES=(com.github.muriloventuroso.easyssh com.mattjakeman.extensionmanager com.stremio.stremio com.github.tchx84.flatseal org.onlyoffice.desktopeditors)
 
 update() {

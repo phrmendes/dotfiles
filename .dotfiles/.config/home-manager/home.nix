@@ -2,7 +2,6 @@
 
 let
   user = "phrmendes";
-  home_dir = builtins.getEnv "HOME";
 in {
   home = {
     username = "${user}";
@@ -67,7 +66,7 @@ in {
         mkdir = "mkdir -p";
         rcat = "cat";
         stow_dotfiles = ''
-          stow --target="${home_dir}" --dir="${home_dir}/Projects/bkps/" --stow .dotfiles'';
+          stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
         nix_update = "sudo nixos-rebuild switch";
         nix_clean = "nix-collect-garbage";
       };
@@ -76,7 +75,7 @@ in {
       enable = true;
       withPython3 = true;
       package = pkgs.neovim-unwrapped;
-      extraLuaConfig = builtins.readFile ${home_dir}/.config/nvim/settings.lua;
+      extraLuaConfig = builtins.readFile /home/${user}/.config/nvim/settings.lua;
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
@@ -227,7 +226,7 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       settings = (builtins.fromTOML
-        (builtins.readFile ./.dotfiles/.config/starship/config.toml));
+        (builtins.readFile /home/${user}/.config/starship/config.toml));
     };
   };
   xdg = {

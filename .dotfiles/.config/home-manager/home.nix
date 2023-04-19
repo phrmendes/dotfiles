@@ -67,13 +67,6 @@ in {
         nix_update = "home-manager switch";
         nix_clean = "nix-collect-garbage";
       };
-      initExtraBeforeCompInit = ''
-        . "$HOME/.asdf/asdf.sh"
-        # append completions to fpath
-        fpath=(''${ASDF_DIR}/completions $fpath)
-        # initialise completions with ZSH's compinit
-        autoload -Uz compinit && compinit
-      '';
     };
     neovim = {
       enable = true;

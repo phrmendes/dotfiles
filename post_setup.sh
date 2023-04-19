@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-home_manager_config() {
-	nix-shell '<home-manager>' -A install
+home_manager_first_generation() {
 	home-manager switch
+}
+
+home_manager_update() {
+	nix-shell '<home-manager>' -A install
 }
 
 stow_dotfiles() {
@@ -16,6 +19,7 @@ asdf_config() {
 	asdf global python 3.11
 }
 
+home_manager_first_generation
 stow_dotfiles
 home_manager_config
 asdf_config

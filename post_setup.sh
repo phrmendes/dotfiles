@@ -16,4 +16,4 @@ stow_dotfiles() {
 
 home_manager_first_generation
 stow_dotfiles
-home_manager_config
+home_manager_update

@@ -8,11 +8,9 @@ in {
     homeDirectory = "/home/${user}";
     packages = with pkgs; [
       asdf-vm
-      baobab
       bitwarden
       btop
       exa
-      flameshot
       fragments
       gh
       hugo
@@ -24,7 +22,6 @@ in {
       quarto
       ripgrep
       spotify
-      sqlite
       tectonic
       vlc
       vscode

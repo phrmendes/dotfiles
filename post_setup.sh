@@ -16,7 +16,8 @@ stow_dotfiles() {
 
 asdf_config() {
 	asdf plugin-add python
-	asdf global python 3.11
+	asdf reshim python
+	asdf global python 3.11.3
 }
 
 home_manager_first_generation

@@ -12,11 +12,7 @@ update() {
 }
 
 install_required_programs() {
-	for app in "${REQUIRED_PROGRAMS[@]}"; do
-		if [[ ! -x $(which "$app") ]]; then
-			sudo apt install "$app" -y
-		fi
-	done
+	sudo apt install ${REQUIRED_PROGRAMS[@]} -y
 }
 
 remove_locks() {
@@ -27,11 +23,7 @@ remove_locks() {
 
 remove_programs() {
 	apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
-
-	for program in "${TO_REMOVE[@]}"; do
-		sudo apt remove "$program" -y
-	done
-
+    sudo apt remove "${TO_REMOVE[@]}" -y
 	sudo apt autoremove -y
 }
 
@@ -52,9 +44,7 @@ install_fonts() {
 }
 
 install_apt() {
-	for program in "${APT_PACKAGES[@]}"; do
-		sudo apt install "$program" -y
-	done
+	sudo apt install "${APT_PACKAGES[@]}" -y
 }
 
 install_flatpaks() {

@@ -88,6 +88,10 @@ in {
         enable = true;
         withPython3 = true;
         package = pkgs.unstable.neovim-unwrapped;
+        extraLuaConfig =
+          builtins.readFile ./.dotfiles/.config/nvim/settings.lua;
+        vimAlias = true;
+        vimdiffAlias = true;
         plugins = with pkgs.unstable.vimPlugins; [
           (fromGitHub "HEAD" "PieterjanMontens/vim-pipenv")
           (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
@@ -181,9 +185,6 @@ in {
           pylint
           pynvim
         ]);
-        extraConfig = ":luafile $HOME/.config/nvim/settings.lua";
-        vimAlias = true;
-        vimdiffAlias = true;
       };
       alacritty = {
         enable = true;

@@ -104,6 +104,7 @@ in {
         copilot-vim
         friendly-snippets
         gitsigns-nvim
+        gruvbox
         indent-blankline-nvim
         lazygit-nvim
         lspkind-nvim
@@ -125,7 +126,6 @@ in {
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-ui-select-nvim
-        tokyonight-nvim
         trouble-nvim
         undotree
         vim-commentary

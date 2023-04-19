@@ -17,6 +17,7 @@ stow_dotfiles() {
 asdf_config() {
 	asdf plugin-add python
 	asdf reshim python
+	asdf install python 3.11.3
 	asdf global python 3.11.3
 }
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 home_manager_first_generation() {
-	home-manager switch
+	nix-shell '<home-manager>' -A install
 }
 
 home_manager_update() {
-	nix-shell '<home-manager>' -A install
+	home-manager switch
 }
 
 stow_dotfiles() {

@@ -7,6 +7,7 @@ Dotfiles files for my personal computer.
 - clipboard-history
 - espresso
 - lightdark-theme-switcher
+- gsconnect
 
 ## References
 

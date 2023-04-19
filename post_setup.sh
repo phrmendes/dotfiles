@@ -9,7 +9,7 @@ home_manager_update() {
 }
 
 stow_dotfiles() {
-	rm "$HOME/.config/nixpkgs/home.nix"
+	rm "$HOME/.config/home-manager/home.nix"
 	rm "$HOME/.profile"
 	stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 }

@@ -7,7 +7,6 @@ in {
     username = "${user}";
     homeDirectory = "/home/${user}";
     packages = with pkgs; [
-      asdf-vm
       bitwarden
       btop
       exa
@@ -67,6 +66,11 @@ in {
         nix_update = "home-manager switch";
         nix_clean = "nix-collect-garbage";
       };
+      initExtra = ''
+        export PATH="$HOME/.pyenv/bin:$PATH"
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)" 
+      '';
     };
     neovim = {
       enable = true;

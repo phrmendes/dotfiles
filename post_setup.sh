@@ -14,14 +14,11 @@ stow_dotfiles() {
 	stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 }
 
-asdf_config() {
-	asdf plugin-add python
-	asdf reshim python
-	asdf install python 3.11.3
-	asdf global python 3.11.3
+pyenv_config() {
+	curl https://pyenv.run | bash
 }
 
 home_manager_first_generation
 stow_dotfiles
 home_manager_config
-asdf_config
+pyenv_config

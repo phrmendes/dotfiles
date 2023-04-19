@@ -23,7 +23,6 @@ local mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
-	[","] = { "<cmd>T<cr>", "Open terminal" },
 
 	a = {
 		name = "+actions",

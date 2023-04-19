@@ -86,12 +86,12 @@ in {
     neovim = {
       enable = true;
       withPython3 = true;
-      package = pkgs.unstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
       extraLuaConfig =
         builtins.readFile ./.dotfiles/.config/nvim/settings.lua;
       vimAlias = true;
       vimdiffAlias = true;
-      plugins = with pkgs.unstable.vimPlugins; [
+      plugins = with pkgs.vimPlugins; [
         (fromGitHub "HEAD" "PieterjanMontens/vim-pipenv")
         (fromGitHub "HEAD" "cljoly/telescope-repo.nvim")
         (fromGitHub "HEAD" "epwalsh/obsidian.nvim")
@@ -157,7 +157,7 @@ in {
         vim-visual-multi
         which-key-nvim
       ];
-      extraPackages = (with pkgs.unstable; [
+      extraPackages = (with pkgs; [
         jq
         ltex-ls
         lua-language-server
@@ -170,12 +170,12 @@ in {
         terraform-ls
         texlab
         universal-ctags
-      ]) ++ (with pkgs.unstable.nodePackages; [
+      ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
         prettier
         pyright
-      ]) ++ (with pkgs.unstable.python311Packages; [
+      ]) ++ (with pkgs.python311Packages; [
         autoflake
         black
         ipython

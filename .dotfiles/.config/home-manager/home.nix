@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let
-  user = "phrmendes";
+let user = "phrmendes";
 in {
   home = {
     username = "${user}";
@@ -17,7 +16,6 @@ in {
       micromamba
       obsidian
       pandoc
-      pcloud
       podman
       quarto
       ripgrep
@@ -65,7 +63,8 @@ in {
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
         rcat = "cat";
-        stow_dotfiles = ''stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
+        stow_dotfiles = ''
+          stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
       };
       initExtra = ''
         eval "$(micromamba shell hook --shell=zsh)"
@@ -76,7 +75,8 @@ in {
       enable = true;
       withPython3 = true;
       package = pkgs.neovim-unwrapped;
-      extraLuaConfig = builtins.readFile /home/${user}/.config/nvim/settings.lua;
+      extraLuaConfig =
+        builtins.readFile /home/${user}/.config/nvim/settings.lua;
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [

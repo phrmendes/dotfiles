@@ -64,7 +64,7 @@ in {
         rcat = "cat";
         stow_dotfiles = ''
           stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
-        nix_update = "sudo nixos-rebuild switch";
+        nix_update = "home-manager switch";
         nix_clean = "nix-collect-garbage";
       };
     };

@@ -1,4 +1,3 @@
-require("phrmendes.core.colorscheme")
 require("phrmendes.core.keymaps")
 require("phrmendes.core.options")
 require("phrmendes.plugins.alpha")

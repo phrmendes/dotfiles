@@ -1,4 +1,5 @@
 local opt = vim.opt
+local cmd = vim.cmd
 
 -- line numbers
 opt.relativenumber = true
@@ -53,3 +54,6 @@ opt.completeopt = "noinsert,menuone,noselect"
 
 -- random
 opt.iskeyword:append("-")
+
+-- colorscheme
+cmd("colorscheme gruvbox")

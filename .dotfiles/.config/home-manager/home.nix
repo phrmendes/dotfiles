@@ -13,7 +13,6 @@ in {
       gh
       hugo
       lazygit
-      micromamba
       obsidian
       pandoc
       podman
@@ -58,7 +57,6 @@ in {
         lla = "${pkgs.exa}/bin/exa --icons -la";
         ls = "${pkgs.exa}/bin/exa --icons";
         lt = "${pkgs.exa}/bin/exa --icons --tree";
-        mamba = "micromamba";
         mkdir = "mkdir -p";
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
@@ -67,8 +65,9 @@ in {
           stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
       };
       initExtra = ''
-        eval "$(micromamba shell hook --shell=zsh)"
-        micromamba deactivate
+        export PYENV_ROOT="$HOME/.pyenv"
+        command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
       '';
     };
     neovim = {

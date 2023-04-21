@@ -16,6 +16,7 @@ in {
       obsidian
       pandoc
       podman
+      poetry
       quarto
       ripgrep
       spotify

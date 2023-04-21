@@ -20,7 +20,12 @@ pyenv_setup() {
 	"$HOME/.pyenv/bin/pyenv" global 3.11.3
 }
 
+poetry_setup() {
+	poetry config virtualenvs.in-project true
+}
+
 home_manager_first_generation
 stow_dotfiles
 home_manager_update
 pyenv_setup
+poetry_setup

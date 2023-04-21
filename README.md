@@ -4,10 +4,10 @@ Dotfiles files for my personal computer.
 
 ## Gnome extensions
 
-- clipboard-history
-- espresso
-- lightdark-theme-switcher
-- gsconnect
+- Clipboard History
+- Espresso
+- Light/Dark Theme Switcher
+- GSConnect
 
 ## References
 

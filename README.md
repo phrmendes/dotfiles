@@ -1,6 +1,6 @@
 # Backups
 
-Dotfiles files for my personal computer.
+Scripts and dotfiles files for my personal computer.
 
 ## Gnome extensions
 

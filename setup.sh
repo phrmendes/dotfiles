@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 MAIN_DIR="$(pwd)"
-REQUIRED_PROGRAMS=(wget git zip sqlite unzip gzip curl file build-essential procps libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev llvm)
+REQUIRED_PROGRAMS=(wget git zip sqlite unzip gzip curl file build-essential procps libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev llvm fonts-dejavu)
 TO_REMOVE=(geary gnome-terminal gnome-orca evince totem xterm)
 APT_PACKAGES=(file-roller celluloid python3 stow alacritty)
 FLATPAK_PACKAGES=(com.github.muriloventuroso.easyssh com.mattjakeman.extensionmanager com.stremio.stremio com.github.tchx84.flatseal org.onlyoffice.desktopeditors)
+PROTON_DEB=https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb
 
 update() {
 	sudo apt update -y
@@ -12,7 +13,7 @@ update() {
 }
 
 install_required_programs() {
-	sudo apt install ${REQUIRED_PROGRAMS[@]} -y
+	sudo apt install "${REQUIRED_PROGRAMS[@]}" -y
 }
 
 remove_locks() {
@@ -23,7 +24,7 @@ remove_locks() {
 
 remove_programs() {
 	apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
-    sudo apt remove "${TO_REMOVE[@]}" -y
+	sudo apt remove "${TO_REMOVE[@]}" -y
 	sudo apt autoremove -y
 }
 
@@ -53,6 +54,11 @@ install_flatpaks() {
 	done
 }
 
+install_proton_bridge() {
+	wget -O /tmp/proton.deb "$PROTON_DEB"
+	sudo dpkg -i /tmp/proton.deb
+}
+
 update
 install_required_programs
 remove_locks
@@ -61,3 +67,4 @@ install_nix
 install_fonts
 install_apt
 install_flatpaks
+install_proton_bridge

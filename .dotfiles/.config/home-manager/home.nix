@@ -12,10 +12,10 @@ in {
       fragments
       gh
       hugo
+      lazydocker
       lazygit
       obsidian
       pandoc
-      podman
       poetry
       quarto
       ripgrep
@@ -52,7 +52,9 @@ in {
       enableSyntaxHighlighting = true;
       shellAliases = {
         cat = "${pkgs.bat}/bin/bat";
+        catr = "/usr/bin/cat";
         la = "${pkgs.exa}/bin/exa --icons -a";
+        ld = "${pkgs.lazydocker}/bin/lazydocker";
         lg = "${pkgs.lazygit}/bin/lazygit";
         ll = "${pkgs.exa}/bin/exa --icons -l";
         lla = "${pkgs.exa}/bin/exa --icons -la";
@@ -61,9 +63,12 @@ in {
         mkdir = "mkdir -p";
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
-        rcat = "cat";
         stow_dotfiles = ''
           stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
+        system_clean =
+          "sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y";
+        system_update =
+          "sudo apt update && sudo apt upgrade -y && flatpak update -y";
       };
       initExtra = ''
         export PYENV_ROOT="$HOME/.pyenv"

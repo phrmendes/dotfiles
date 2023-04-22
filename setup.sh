@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MAIN_DIR="$(pwd)"
-REQUIRED_PROGRAMS=(wget git zip sqlite unzip gzip curl file build-essential procps libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev llvm fonts-dejavu)
+REQUIRED_PROGRAMS=(wget git zip sqlite unzip gzip curl file build-essential procps libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev llvm fonts-dejavu ca-certificates gnupg)
 TO_REMOVE=(geary gnome-terminal gnome-orca evince totem xterm)
 APT_PACKAGES=(file-roller celluloid python3 stow alacritty)
 FLATPAK_PACKAGES=(com.github.muriloventuroso.easyssh com.mattjakeman.extensionmanager com.stremio.stremio com.github.tchx84.flatseal org.onlyoffice.desktopeditors)
@@ -19,7 +19,7 @@ install_required_programs() {
 remove_locks() {
 	sudo rm /var/lib/dpkg/lock-frontend
 	sudo rm /var/cache/apt/archives/lock
-	dplg --add-architecture i386
+	dpkg --add-architecture i386
 }
 
 remove_programs() {
@@ -30,7 +30,7 @@ remove_programs() {
 
 install_nix() {
 	sh <(curl -L https://nixos.org/nix/install) --daemon
-	echo 'export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS' >>"$HOME/.profile"
+	echo "export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS" >>"$HOME/.profile"
 	source "$HOME/.profile"
 }
 
@@ -57,6 +57,19 @@ install_flatpaks() {
 install_proton_bridge() {
 	wget -O /tmp/proton.deb "$PROTON_DEB"
 	sudo dpkg -i /tmp/proton.deb
+	sudo dpkg-reconfigure protonmail-bridge
+}
+
+install_docker() {
+	sudo install -m 0755 -d /etc/apt/keyrings
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+	sudo chmod a+r /etc/apt/keyrings/docker.gpg
+	echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+	sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	sudo groupadd docker
+	sudo usermod -aG docker "$USER"
+	sudo systemctl enable docker.service
+	sudo systemctl enable containerd.service
 }
 
 update
@@ -68,3 +81,4 @@ install_fonts
 install_apt
 install_flatpaks
 install_proton_bridge
+install_docker

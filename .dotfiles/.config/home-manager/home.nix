@@ -37,13 +37,11 @@ in {
     bat.enable = true;
     fzf = {
       enable = true;
-      enableBashIntegration = true;
       enableZshIntegration = true;
     };
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      enableBashIntegration = true;
     };
     zsh = {
       enable = true;
@@ -160,10 +158,7 @@ in {
     };
     starship = {
       enable = true;
-      enableBashIntegration = true;
       enableZshIntegration = true;
-      settings = (builtins.fromTOML
-        (builtins.readFile /home/${user}/.config/starship/config.toml));
     };
   };
   xdg = {

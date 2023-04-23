@@ -101,6 +101,7 @@ in {
         ReplaceWithRegister
         alpha-nvim
         auto-pairs
+        bufferline-nvim
         cmp-nvim-lsp
         cmp-path
         cmp_luasnip

@@ -2,7 +2,7 @@
 
 MAIN_DIR="$(pwd)"
 REQUIRED_PROGRAMS=(wget git zip sqlite unzip gzip curl file build-essential procps libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev llvm fonts-dejavu ca-certificates gnupg)
-TO_REMOVE=(geary gnome-terminal gnome-orca evince totem xterm)
+TO_REMOVE=(gnome-contacts totem geary gnome-terminal gnome-orca evince totem xterm)
 APT_PACKAGES=(file-roller celluloid python3 stow alacritty)
 FLATPAK_PACKAGES=(com.github.muriloventuroso.easyssh com.mattjakeman.extensionmanager com.stremio.stremio com.github.tchx84.flatseal org.onlyoffice.desktopeditors)
 PROTON_DEB=https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb
@@ -72,6 +72,16 @@ install_docker() {
 	sudo systemctl enable containerd.service
 }
 
+pyenv_setup() {
+	curl https://pyenv.run | bash
+	"$HOME/.pyenv/bin/pyenv" install 3.11.3
+	"$HOME/.pyenv/bin/pyenv" global 3.11.3
+}
+
+poetry_setup() {
+	poetry config virtualenvs.in-project true
+}
+
 update
 install_required_programs
 remove_locks
@@ -82,3 +92,5 @@ install_apt
 install_flatpaks
 install_proton_bridge
 install_docker
+pyenv_setup
+poetry_setup

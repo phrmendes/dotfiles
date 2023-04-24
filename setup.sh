@@ -72,15 +72,12 @@ install_docker() {
 	sudo systemctl enable containerd.service
 }
 
-pyenv_setup() {
+python_setup() {
 	curl https://pyenv.run | bash
 	"$HOME/.pyenv/bin/pyenv" install 3.11.3
 	"$HOME/.pyenv/bin/pyenv" global 3.11.3
 	python -m pip install --upgrade pip
 	python -m pip install poetry
-}
-
-poetry_setup() {
 	poetry config virtualenvs.in-project true
 }
 
@@ -94,5 +91,4 @@ install_apt
 install_flatpaks
 install_proton_bridge
 install_docker
-pyenv_setup
-poetry_setup
+python_setup

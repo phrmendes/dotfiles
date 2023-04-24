@@ -153,9 +153,10 @@ local mappings = {
 
 	r = {
 		name = "+REPL",
-		["r"] = { "<cmd>SnipRun<cr>", "Open" },
-		["R"] = { "<cmd>SnipReset<cr>", "Reset" },
-		["q"] = { "<cmd>SnipClose<cr>", "Quit" },
+		["R"] = { "<cmd>IronRestart<cr>", "Restart" },
+		["f"] = { "<cmd>IronFocus<cr>", "Focus" },
+		["h"] = { "<cmd>IronHide<cr>", "Hide" },
+		["r"] = { "<cmd>IronRepl<cr>", "Open" },
 	},
 
 	t = {

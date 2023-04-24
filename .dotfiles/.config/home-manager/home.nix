@@ -95,17 +95,18 @@ in {
       extraLuaConfig =
         builtins.readFile /home/${user}/.config/nvim/settings.lua;
       plugins = with pkgs.vimPlugins; [
-        (fromGitHub "HEAD"
-          "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+        (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
         (fromGitHub "HEAD"
           "cljoly/telescope-repo.nvim") # navigate between git repos
-        (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration
         (fromGitHub "HEAD" "epwalsh/obsidian.nvim") # obsidian integration
         (fromGitHub "HEAD" "jbyuki/nabla.nvim") # render equations
         (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto requirements
+        (fromGitHub "HEAD"
+          "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+        (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration
         (fromGitHub "HEAD" "szw/vim-maximizer") # maximize buffer
         alpha-nvim # dashboard
-        auto-pairs # auto close pairs
+        autoclose-nvim # auto close pairs
         bufferline-nvim # manage buffers
         cmp-nvim-lsp # lsp completion
         cmp-path # path completion
@@ -134,7 +135,6 @@ in {
         nvim-treesitter.withAllGrammars # treesitter
         nvim-web-devicons # icons
         plenary-nvim # lua utils
-        sniprun # REPLs
         tagbar # browse tags
         telescope-dap-nvim # telescope debugger
         telescope-file-browser-nvim # telescope file browser
@@ -163,7 +163,6 @@ in {
         terraform-ls
         universal-ctags
         ltex-ls
-        ruff
       ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
@@ -171,7 +170,7 @@ in {
         pyright
         vscode-json-languageserver
         yaml-language-server
-      ]) ++ (with pkgs.python3Packages; [ debugpy ]);
+      ]) ++ (with pkgs.python3Packages; [ debugpy pylint mypy black isort ]);
     };
     starship = {
       enable = true;

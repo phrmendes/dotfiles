@@ -14,16 +14,17 @@ null_ls.setup({
 	-- linters and formatters
 	sources = {
 		diagnostics.luacheck, -- lua
+		diagnostics.mypy, -- python
+		diagnostics.pylint, -- python
 		diagnostics.shellcheck, -- bash
-		diagnostics.ruff, -- python
-		formatting.ruff, -- python
+		formatting.black, -- python
+		formatting.isort, -- python
 		formatting.jq, -- json
 		formatting.nixfmt, -- nix
 		formatting.prettier, -- markdown
 		formatting.shfmt, -- bash
 		formatting.stylua, -- lua
 	},
-	-- configure format on save
 	on_attach = function(current_client, bufnr)
 		if current_client.supports_method("textDocument/formatting") then
 			api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

@@ -19,6 +19,7 @@ in {
       bitwarden
       btop
       exa
+      fd
       fragments
       gh
       hugo
@@ -169,7 +170,14 @@ in {
         pyright
         vscode-json-languageserver
         yaml-language-server
-      ]) ++ (with pkgs.python3Packages; [ debugpy pylint mypy black isort ]);
+      ]) ++ (with pkgs.python3Packages; [
+        debugpy
+        pylint
+        mypy
+        black
+        isort
+        ptipython
+      ]);
     };
     starship = {
       enable = true;

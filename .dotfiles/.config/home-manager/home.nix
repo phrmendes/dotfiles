@@ -26,7 +26,6 @@ in {
       lazygit
       obsidian
       pandoc
-      poetry
       quarto
       ripgrep
       spotify

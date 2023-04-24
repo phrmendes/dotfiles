@@ -176,7 +176,7 @@ in {
         mypy
         black
         isort
-        ptipython
+        ptpython
       ]);
     };
     starship = {

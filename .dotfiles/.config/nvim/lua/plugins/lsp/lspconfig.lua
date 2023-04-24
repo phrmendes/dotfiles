@@ -20,6 +20,13 @@ end
 -- config language servers
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+lspconfig.jsonls.setup({
+	capabilities = capabilities,
+})
+lspconfig.yamlls.setup({
+	capabilities = capabilities,
+})
+
 lspconfig.rnix.setup({
 	capabilities = capabilities,
 })
@@ -36,16 +43,44 @@ lspconfig.dockerls.setup({
 	capabilities = capabilities,
 })
 
+lspconfig.ltex.setup({
+	capabilities = capabilities,
+	settings = {
+		ltex = {
+			language = "en",
+			additionalRules = {
+				motherTongue = "pt-BR",
+			},
+		},
+		filetypes = { "tex", "quarto", "markdown" },
+	},
+})
+
+lspconfig.pyright.setup({
+	capabilities = capabilities,
+	settings = {
+		python = {
+			analysis = {
+				useLibraryCodeForTypes = true,
+				typeCheckingMode = "basic",
+				diagnosticMode = "workspace",
+				inlayHints = {
+					variableTypes = true,
+					functionReturnTypes = true,
+				},
+			},
+		},
+	},
+})
+
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
-			-- make the language server recognize 'vim' global
 			diagnostics = {
 				globals = { "vim" },
 			},
 			workspace = {
-				-- make language server aware of runtime files
 				library = {
 					[fn.expand("$VIMRUNTIME/lua")] = true,
 					[fn.stdpath("config") .. "/lua"] = true,

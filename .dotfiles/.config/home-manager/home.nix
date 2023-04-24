@@ -1,6 +1,16 @@
 { config, pkgs, lib, ... }:
 
-let user = "phrmendes";
+let
+  user = "phrmendes";
+  fromGitHub = ref: repo:
+    pkgs.vimUtils.buildVimPluginFrom2Nix {
+      pname = "${lib.strings.sanitizeDerivationName repo}";
+      version = ref;
+      src = builtins.fetchGit {
+        url = "https://github.com/${repo}.git";
+        ref = ref;
+      };
+    };
 in {
   home = {
     username = "${user}";
@@ -76,69 +86,70 @@ in {
     };
     neovim = {
       enable = true;
-      withPython3 = true;
+      defaultEditor = true;
       package = pkgs.neovim-unwrapped;
-      extraLuaConfig =
-        builtins.readFile /home/${user}/.config/nvim/settings.lua;
       vimAlias = true;
       vimdiffAlias = true;
+      withNodeJs = true;
+      withPython3 = true;
+      extraLuaConfig =
+        builtins.readFile /home/${user}/.config/nvim/settings.lua;
       plugins = with pkgs.vimPlugins; [
-        (nvim-treesitter.withPlugins (p: [
-          p.bash
-          p.dockerfile
-          p.gitignore
-          p.json
-          p.latex
-          p.lua
-          p.markdown
-          p.markdown-inline
-          p.nix
-          p.python
-          p.hcl
-          p.vim
-          p.yaml
-        ]))
-        ReplaceWithRegister
-        alpha-nvim
-        auto-pairs
-        bufferline-nvim
-        cmp-nvim-lsp
-        cmp-path
-        cmp_luasnip
-        copilot-vim
-        friendly-snippets
-        gitsigns-nvim
-        gruvbox
-        indent-blankline-nvim
-        lazygit-nvim
-        lspkind-nvim
-        lualine-nvim
-        luasnip
-        markdown-preview-nvim
-        mini-nvim
-        neoterm
-        null-ls-nvim
-        nvim-cmp
-        nvim-dap
-        nvim-lspconfig
-        nvim-spectre
-        nvim-tree-lua
-        nvim-web-devicons
-        plenary-nvim
-        tagbar
-        telescope-dap-nvim
-        telescope-fzf-native-nvim
-        telescope-nvim
-        telescope-ui-select-nvim
-        trouble-nvim
-        undotree
-        vim-commentary
-        vim-gitgutter
-        vim-illuminate
-        vim-nix
-        vim-tmux-navigator
-        vim-visual-multi
-        which-key-nvim
+        (fromGitHub "HEAD"
+          "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+        (fromGitHub "HEAD"
+          "cljoly/telescope-repo.nvim") # navigate between git repos
+        (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration
+        (fromGitHub "HEAD" "epwalsh/obsidian.nvim") # obsidian integration
+        (fromGitHub "HEAD" "jbyuki/nabla.nvim") # render equations
+        (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto requirements
+        (fromGitHub "HEAD" "szw/vim-maximizer") # maximize buffer
+        alpha-nvim # dashboard
+        auto-pairs # auto close pairs
+        bufferline-nvim # manage buffers
+        cmp-nvim-lsp # lsp completion
+        cmp-path # path completion
+        cmp_luasnip # snippets completion
+        copilot-vim # github copilot
+        friendly-snippets # snippets
+        gitsigns-nvim # git indicators
+        gruvbox # colorscheme
+        indent-blankline-nvim # indent lines
+        lazygit-nvim # lazygit integration
+        leap-nvim # jump to any line
+        lspkind-nvim # vscode-like pictograms
+        lualine-nvim # statusline
+        luasnip # snippets
+        markdown-preview-nvim # markdown preview
+        mini-nvim # set of small plugins
+        neodev-nvim # neovim development utils
+        null-ls-nvim # lsp actions
+        nvim-cmp # completion
+        nvim-dap # debugger
+        nvim-dap-python # python debugger
+        nvim-dap-ui # debugger ui
+        nvim-lspconfig # lsp
+        nvim-spectre # search and replace
+        nvim-tree-lua # file explorer
+        nvim-treesitter.withAllGrammars # treesitter
+        nvim-web-devicons # icons
+        plenary-nvim # lua utils
+        sniprun # REPLs
+        tagbar # browse tags
+        telescope-dap-nvim # telescope debugger
+        telescope-file-browser-nvim # telescope file browser
+        telescope-fzf-native-nvim # telescope fzf integration
+        telescope-nvim # fuzzy finder
+        telescope-ui-select-nvim # telescope ui
+        trouble-nvim # lsp diagnostics
+        undotree # undo history
+        vim-commentary # comment lines
+        vim-gitgutter # git indicators
+        vim-illuminate # highlight word under cursor
+        vim-nix # nix syntax
+        vim-tmux-navigator # tmux-like navigation
+        vim-visual-multi # multiple cursors
+        which-key-nvim # keybindings
       ];
       extraPackages = (with pkgs; [
         jq
@@ -151,11 +162,16 @@ in {
         stylua
         terraform-ls
         universal-ctags
+        ltex-ls
+        ruff
       ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
         prettier
-      ]);
+        pyright
+        vscode-json-languageserver
+        yaml-language-server
+      ]) ++ (with pkgs.python3Packages; [ debugpy ]);
     };
     starship = {
       enable = true;

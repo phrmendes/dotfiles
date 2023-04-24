@@ -15,6 +15,8 @@ null_ls.setup({
 	sources = {
 		diagnostics.luacheck, -- lua
 		diagnostics.shellcheck, -- bash
+		diagnostics.ruff, -- python
+		formatting.ruff, -- python
 		formatting.jq, -- json
 		formatting.nixfmt, -- nix
 		formatting.prettier, -- markdown

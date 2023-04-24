@@ -26,11 +26,11 @@ local mappings = {
 
 	a = {
 		name = "+actions",
-		["S"] = { "<cmd>wq<cr>", "Save and quit" },
+		["Q"] = { "<cmd>q!<cr>", "Quit without saving" },
+		["W"] = { "<cmd>wq<cr>", "Save and quit" },
 		["n"] = { "<cmd>noh<cr>", "Clear highlights" },
 		["q"] = { "<cmd>confirm q<cr>", "Quit" },
-		["s"] = { "<cmd>w<cr>", "Save" },
-		["Q"] = { "<cmd>q!<cr>", "Quit without saving" },
+		["w"] = { "<cmd>w<cr>", "Save" },
 	},
 
 	b = {
@@ -58,6 +58,19 @@ local mappings = {
 		},
 	},
 
+	d = {
+		name = "+debug",
+		["U"] = { "<cmd>lua require('dapui').toggle({reset = true})<cr>", "Toggle DAP UI" },
+		["b"] = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
+		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
+		["o"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
+		["q"] = { "<cmd>lua require('dap').close()<cr>", "Quit" },
+		["r"] = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle DAP REPL" },
+		["t"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
+		["u"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
+	},
+
 	f = {
 		name = "+files",
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
@@ -65,6 +78,11 @@ local mappings = {
 		["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
+		["p"] = { "<cmd>Telescope file_browser<cr>", "File browser (project)" },
+		["b"] = {
+			"<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
+			"File browser (current buffer)",
+		},
 
 		["S"] = {
 			name = "+spectre",
@@ -77,27 +95,28 @@ local mappings = {
 
 	g = {
 		name = "+git",
+		["C"] = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (for current file)" },
 		["b"] = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		["c"] = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		["d"] = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+		["g"] = { "<cmd>LazyGit<cr>", "LazyGit" },
 		["l"] = { "<cmd>lua require('gitsigns').blame_line()<cr>", "Blame" },
 		["o"] = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+		["p"] = { "<cmd>Telescope repo list<cr>", "List all repos" },
 		["r"] = { "<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer" },
-		["g"] = { "<cmd>LazyGit<cr>", "LazyGit" },
-		["C"] = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (for current file)" },
 	},
 
 	l = {
 		name = "+lsp",
-		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
+		["R"] = { "<cmd>Telescope lsp_references<cr>", "References" },
+		["S"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Dynamic workspace symbols" },
 		["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
+		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 		["i"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
 		["l"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
 		["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
 		["w"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols" },
-		["R"] = { "<cmd>Telescope lsp_references<cr>", "References" },
-		["S"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Dynamic workspace symbols" },
 
 		t = {
 			name = "+trouble",
@@ -113,21 +132,35 @@ local mappings = {
 	},
 
 	m = {
-		name = "+markdown",
+		name = "+documents",
+		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
+		["n"] = { "<cmd>require('nabla').popup()", "Preview equations" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
+		["q"] = { "<cmd>QuartoPreview<cr>", "Preview quarto document" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
+	},
+
+	o = {
+		name = "+obsidian",
+		["b"] = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
+		["o"] = { "<cmd>ObsidianOpen<cr>", "Open note in app" },
+		["n"] = { "<cmd>ObsidianNew<cr>", "New note" },
+		["s"] = { "<cmd>ObsidianSearch<cr>", "Search" },
+		["l"] = { "<cmd>ObsidianLink<cr>", "Link to note" },
+		["f"] = { "<cmd>ObsidianFollowLink<cr>", "Follow link" },
+		["k"] = { "<cmd>ObsidianLinkNew<cr>", "Create note and link to it" },
 	},
 
 	r = {
 		name = "+REPL",
-		["l"] = { "<cmd>TREPLSendLine<cr>", "Send line" },
-		["f"] = { "<cmd>TREPLSendFile<cr>", "Send file" },
-		["s"] = { "<cmd>TREPLSendSelection<cr>", "Send selection" },
+		["r"] = { "<cmd>SnipRun<cr>", "Open" },
+		["R"] = { "<cmd>SnipReset<cr>", "Reset" },
+		["q"] = { "<cmd>SnipClose<cr>", "Quit" },
 	},
 
 	t = {
 		name = "+tabs",
-		["c"] = { "<cmd>tabclose<cr>", "Close" },
+		["d"] = { "<cmd>tabclose<cr>", "Close" },
 		["n"] = { "<cmd>tabnext<cr>", "Next" },
 		["p"] = { "<cmd>tabprevious<cr>", "Previous" },
 		["t"] = { "<cmd>tabnew<cr>", "New" },
@@ -135,14 +168,15 @@ local mappings = {
 
 	w = {
 		name = "+windows",
-		["h"] = { "<C-w>s", "Split horizontally" },
-		["v"] = { "<C-w>v<cr>", "Split vertically" },
-		["e"] = { "<C-w>=<cr>", "Equalize" },
-		[">"] = { "<C-w>>", "Increase width" },
-		["<"] = { "<C-w><", "Decrease width" },
 		["+"] = { "<C-w>+", "Increase height" },
 		["-"] = { "<C-w>-", "Decrease height" },
+		["<"] = { "<C-w><", "Decrease width" },
+		[">"] = { "<C-w>>", "Increase width" },
+		["e"] = { "<C-w>=<cr>", "Equalize" },
+		["h"] = { "<C-w>s", "Split horizontally" },
 		["q"] = { "<C-w>q", "Close" },
+		["v"] = { "<C-w>v<cr>", "Split vertically" },
+		["m"] = { "<cmd>MaximizerToggle<cr>", "Maximize window" },
 	},
 }
 

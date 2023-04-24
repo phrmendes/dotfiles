@@ -74,11 +74,11 @@ local mappings = {
 	f = {
 		name = "+files",
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
-		["g"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
+		["g"] = { "<cmd>Telescope live_grep hidden=true<cr>", "Live grep in project" },
 		["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
-		["p"] = { "<cmd>Telescope file_browser<cr>", "File browser (project)" },
+		["p"] = { "<cmd>Telescope file_browser hidden=true<cr>", "File browser (project)" },
 		["b"] = {
 			"<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
 			"File browser (current buffer)",

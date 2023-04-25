@@ -21,7 +21,7 @@ local n_opts = {
 
 local n_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["d"] = { " <cmd>terminal pdb", "Python debugger" },
+	["d"] = { "<cmd>terminal pdb", "Python debugger" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 

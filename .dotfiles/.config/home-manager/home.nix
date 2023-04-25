@@ -51,7 +51,9 @@ in {
     };
     direnv = {
       enable = true;
+      enableBashIntegration = true;
       enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
     zsh = {
       enable = true;
@@ -126,9 +128,6 @@ in {
         neodev-nvim # neovim development utils
         null-ls-nvim # lsp actions
         nvim-cmp # completion
-        nvim-dap # debugger
-        nvim-dap-python # python debugger
-        nvim-dap-ui # debugger ui
         nvim-lspconfig # lsp
         nvim-spectre # search and replace
         nvim-tree-lua # file explorer
@@ -136,7 +135,6 @@ in {
         nvim-web-devicons # icons
         plenary-nvim # lua utils
         tagbar # browse tags
-        telescope-dap-nvim # telescope debugger
         telescope-file-browser-nvim # telescope file browser
         telescope-fzf-native-nvim # telescope fzf integration
         telescope-nvim # fuzzy finder
@@ -171,12 +169,12 @@ in {
         vscode-json-languageserver
         yaml-language-server
       ]) ++ (with pkgs.python3Packages; [
-        debugpy
+        pudb
+        icecream
         pylint
         mypy
         black
         isort
-        ptpython
       ]);
     };
     starship = {

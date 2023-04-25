@@ -10,7 +10,7 @@ local conf = {
 	},
 }
 
-local opts = {
+local n_opts = {
 	mode = "n",
 	prefix = "<leader>",
 	buffer = nil,
@@ -19,8 +19,9 @@ local opts = {
 	nowait = false,
 }
 
-local mappings = {
+local n_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
+	["d"] = { " <cmd>terminal pdb", "Python debugger" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
@@ -58,23 +59,10 @@ local mappings = {
 		},
 	},
 
-	d = {
-		name = "+debug",
-		["U"] = { "<cmd>lua require('dapui').toggle({reset = true})<cr>", "Toggle DAP UI" },
-		["b"] = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
-		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
-		["o"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
-		["q"] = { "<cmd>lua require('dap').close()<cr>", "Quit" },
-		["r"] = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle DAP REPL" },
-		["t"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
-		["u"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-	},
-
 	f = {
 		name = "+files",
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
-		["g"] = { "<cmd>Telescope live_grep hidden=true<cr>", "Live grep in project" },
+		["g"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
 		["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
@@ -182,4 +170,4 @@ local mappings = {
 }
 
 which_key.setup(conf)
-which_key.register(mappings, opts)
+which_key.register(n_mappings, n_opts)

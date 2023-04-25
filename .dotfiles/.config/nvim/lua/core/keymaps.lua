@@ -9,3 +9,4 @@ g.maplocalleader = " "
 -- general keymaps
 keymap.set("i", "jk", "<ESC>", opts) -- exit insert mode pressing 'jk'
 keymap.set("n", "x", '"_x', opts) -- delete single caracter without copy to register
+keymap.set("t", "jk", "<C-\\><C-n>", opts) -- exit terminal mode pressing 'jk'

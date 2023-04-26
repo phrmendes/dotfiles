@@ -181,6 +181,19 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+    tmux = {
+      enable = true;
+      sensibleOnTop = true;
+      shell = "${pkgs.zsh}/bin/zsh";
+      plugins = with pkgs.tmuxPlugins; [
+        vim-tmux-navigator
+        gruvbox
+        yank
+        resurrect
+        continuum
+      ];
+      extraConfig = builtins.readFile /home/${user}/.config/tmux/custom.conf;
+    };
   };
   xdg = {
     enable = true;

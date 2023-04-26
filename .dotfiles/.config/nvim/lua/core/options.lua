@@ -55,5 +55,8 @@ opt.completeopt = "noinsert,menuone,noselect"
 -- random
 opt.iskeyword:append("-")
 
+-- default terminal
+opt.shell = "zsh"
+
 -- colorscheme
 cmd("colorscheme gruvbox")

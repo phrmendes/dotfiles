@@ -37,7 +37,7 @@ local n_mappings = {
 	b = {
 		name = "+buffers",
 		["b"] = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
-		["d"] = { "<cmd>bd<cr>", "Delete buffer" },
+		["d"] = { "<cmd>bd!<cr>", "Delete buffer" },
 		["l"] = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
 		["n"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
 		["p"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },

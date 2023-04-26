@@ -73,6 +73,7 @@ in {
         mkdir = "mkdir -p";
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
+        orangepi = "ssh root@192.168.0.3 -p 22";
         stow_dotfiles = ''
           stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
         system_clean =
@@ -187,7 +188,6 @@ in {
       shell = "${pkgs.zsh}/bin/zsh";
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
-        gruvbox
         yank
         resurrect
         continuum

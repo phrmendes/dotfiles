@@ -157,15 +157,14 @@ local n_mappings = {
 
 	w = {
 		name = "+windows",
-		["+"] = { "<C-w>+", "Increase height" },
-		["-"] = { "<C-w>-", "Decrease height" },
-		["<"] = { "<C-w><", "Decrease width" },
-		[">"] = { "<C-w>>", "Increase width" },
-		["e"] = { "<C-w>=<cr>", "Equalize" },
-		["h"] = { "<C-w>s", "Split horizontally" },
-		["q"] = { "<C-w>q", "Close" },
-		["v"] = { "<C-w>v<cr>", "Split vertically" },
-		["m"] = { "<cmd>MaximizerToggle<cr>", "Maximize window" },
+		["d"] = { "<C-w>q", "Close" },
+		["e"] = { "<cmd>FocusEqualise<cr>", "Equalize" },
+		["h"] = { "<cmd>FocusSplitLeft<cr>", "Split left" },
+		["j"] = { "<cmd>FocusSplitDown<cr>", "Split down" },
+		["k"] = { "<cmd>FocusSplitUp<cr>", "Split up" },
+		["l"] = { "<cmd>FocusSplitRight<cr>", "Split right" },
+		["m"] = { "<cmd>FocusMaximise<cr>", "Maximize" },
+		["s"] = { "<cmd>FocusSplitNicely<cr>", "Auto split" },
 	},
 }
 

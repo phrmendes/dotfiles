@@ -99,6 +99,7 @@ in {
         builtins.readFile /home/${user}/.config/nvim/settings.lua;
       plugins = with pkgs.vimPlugins; [
         (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
+        (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
         (fromGitHub "HEAD"
           "cljoly/telescope-repo.nvim") # navigate between git repos
         (fromGitHub "HEAD" "epwalsh/obsidian.nvim") # obsidian integration
@@ -107,7 +108,6 @@ in {
         (fromGitHub "HEAD"
           "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
         (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration
-        (fromGitHub "HEAD" "szw/vim-maximizer") # maximize buffer
         alpha-nvim # dashboard
         autoclose-nvim # auto close pairs
         bufferline-nvim # manage buffers
@@ -169,14 +169,7 @@ in {
         pyright
         vscode-json-languageserver
         yaml-language-server
-      ]) ++ (with pkgs.python3Packages; [
-        pudb
-        icecream
-        pylint
-        mypy
-        black
-        isort
-      ]);
+      ]) ++ (with pkgs.python3Packages; [ pylint mypy black isort ]);
     };
     starship = {
       enable = true;

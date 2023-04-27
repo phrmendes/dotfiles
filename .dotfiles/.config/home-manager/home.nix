@@ -61,7 +61,7 @@ in {
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
       shellAliases = {
-        cat = "${pkgs.bat}/bin/bat";
+        cat = "${pkgs.bat}/bin/bat --theme=gruvbox-dark";
         catr = "/usr/bin/cat";
         la = "${pkgs.exa}/bin/exa --icons -a";
         ld = "${pkgs.lazydocker}/bin/lazydocker";
@@ -177,13 +177,20 @@ in {
     };
     tmux = {
       enable = true;
+      baseIndex = 1;
+      disableConfirmationPrompt = true;
+      escapeTime = 0;
+      keyMode = "vi";
+      mouse = true;
+      prefix = "C-Space";
       sensibleOnTop = true;
       shell = "${pkgs.zsh}/bin/zsh";
       plugins = with pkgs.tmuxPlugins; [
+        continuum
+        gruvbox
+        resurrect
         vim-tmux-navigator
         yank
-        resurrect
-        continuum
       ];
       extraConfig = builtins.readFile /home/${user}/.config/tmux/custom.conf;
     };

@@ -130,13 +130,14 @@ local n_mappings = {
 
 	o = {
 		name = "+obsidian",
+		["O"] = { "<cmd>ObsidianOpen<cr>", "Open note" },
 		["b"] = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-		["o"] = { "<cmd>ObsidianOpen<cr>", "Open note in app" },
-		["n"] = { "<cmd>ObsidianNew<cr>", "New note" },
-		["s"] = { "<cmd>ObsidianSearch<cr>", "Search" },
-		["l"] = { "<cmd>ObsidianLink<cr>", "Link to note" },
 		["f"] = { "<cmd>ObsidianFollowLink<cr>", "Follow link" },
 		["k"] = { "<cmd>ObsidianLinkNew<cr>", "Create note and link to it" },
+		["l"] = { "<cmd>ObsidianLink<cr>", "Link to note" },
+		["n"] = { "<cmd>ObsidianNew<cr>", "New note" },
+		["o"] = { "<cmd>ObsidianQuickSwitch<cr>", "List notes" },
+		["s"] = { "<cmd>ObsidianSearch<cr>", "Search in notes" },
 	},
 
 	r = {

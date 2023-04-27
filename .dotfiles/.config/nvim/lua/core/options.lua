@@ -59,4 +59,4 @@ opt.iskeyword:append("-")
 opt.shell = "zsh"
 
 -- colorscheme
-cmd("colorscheme gruvbox")
+cmd([[ colorscheme gruvbox ]])

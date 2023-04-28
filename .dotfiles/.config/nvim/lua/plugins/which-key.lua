@@ -21,7 +21,7 @@ local n_opts = {
 
 local n_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["d"] = { "<cmd>terminal pdb", "Python debugger" },
+	["D"] = { "<cmd>terminal pudb", "Python debugger" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
@@ -57,6 +57,15 @@ local n_mappings = {
 			["r"] = { "<cmd>BufferLineSortByRelativeDirectory<cr>", "By relative directory" },
 			["t"] = { "<cmd>BufferLineSortByTabs<cr>", "By tabs" },
 		},
+	},
+
+	d = {
+		name = "+documents",
+		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
+		["n"] = { "<cmd>require('nabla').popup()", "Preview equations" },
+		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
+		["q"] = { "<cmd>QuartoPreview<cr>", "Preview quarto document" },
+		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
 	},
 
 	f = {
@@ -117,15 +126,6 @@ local n_mappings = {
 			["t"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
 			["w"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
 		},
-	},
-
-	m = {
-		name = "+documents",
-		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
-		["n"] = { "<cmd>require('nabla').popup()", "Preview equations" },
-		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
-		["q"] = { "<cmd>QuartoPreview<cr>", "Preview quarto document" },
-		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
 	},
 
 	o = {

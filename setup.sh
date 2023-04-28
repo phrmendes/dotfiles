@@ -76,9 +76,6 @@ python_setup() {
 	curl https://pyenv.run | bash
 	"$HOME/.pyenv/bin/pyenv" install 3.11.3
 	"$HOME/.pyenv/bin/pyenv" global 3.11.3
-	python -m pip install --upgrade pip
-	python -m pip install poetry
-	poetry config virtualenvs.in-project true
 }
 
 update

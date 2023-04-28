@@ -14,6 +14,13 @@ stow_dotfiles() {
 	stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 }
 
+poetry() {
+	python -m pip install --upgrade pip
+	python -m pip install poetry
+	"$HOME/.pyenv/shims/poetry" config virtualenvs.in-project true
+}
+
 home_manager_first_generation
 stow_dotfiles
 home_manager_update
+poetry

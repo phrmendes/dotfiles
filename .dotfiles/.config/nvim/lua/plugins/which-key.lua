@@ -21,8 +21,8 @@ local n_opts = {
 
 local n_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["D"] = { "<cmd>terminal pudb<cr>", "Python debugger" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
 	a = {
@@ -73,7 +73,6 @@ local n_mappings = {
 		["F"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
 		["f"] = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
 		["g"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
-		["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 		["p"] = { "<cmd>Telescope file_browser hidden=true<cr>", "File browser (project)" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
@@ -110,6 +109,7 @@ local n_mappings = {
 		["S"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Dynamic workspace symbols" },
 		["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
 		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
+		["d"] = { "<cmd>terminal pudb<cr>", "Python debugger" },
 		["i"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
 		["l"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
 		["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
@@ -129,18 +129,6 @@ local n_mappings = {
 		},
 	},
 
-	o = {
-		name = "+obsidian",
-		["O"] = { "<cmd>ObsidianOpen<cr>", "Open note" },
-		["b"] = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-		["f"] = { "<cmd>ObsidianFollowLink<cr>", "Follow link" },
-		["k"] = { "<cmd>ObsidianLinkNew<cr>", "Create note and link to it" },
-		["l"] = { "<cmd>ObsidianLink<cr>", "Link to note" },
-		["n"] = { "<cmd>ObsidianNew<cr>", "New note" },
-		["o"] = { "<cmd>ObsidianQuickSwitch<cr>", "List notes" },
-		["s"] = { "<cmd>ObsidianSearch<cr>", "Search in notes" },
-	},
-
 	r = {
 		name = "+REPL",
 		["R"] = { "<cmd>IronRestart<cr>", "Restart" },
@@ -155,6 +143,13 @@ local n_mappings = {
 		["n"] = { "<cmd>tabnext<cr>", "Next" },
 		["p"] = { "<cmd>tabprevious<cr>", "Previous" },
 		["t"] = { "<cmd>tabnew<cr>", "New" },
+	},
+
+	v = {
+		name = "+vimwiki",
+		["i"] = { "<cmd>VimwikiIndex<cr>", "Index (personal)" },
+		["s"] = { "<cmd>VimwikiUISelect<cr>", "Select available wikis" },
+		["r"] = { "<cmd>VimwikiRenameFile<cr>", "Convert current wiki to HTML" },
 	},
 
 	w = {

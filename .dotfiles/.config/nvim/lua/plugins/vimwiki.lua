@@ -1,7 +1,8 @@
 local g = vim.g
 
 g.vimwiki_global_ext = 0
-
+g.vimwiki_filetypes = { "markdown" }
+g.vimwiki_listsyms = "x "
 g.vimwiki_list = {
 	{
 		path = "~/pCloudDrive/notes/personal",
@@ -22,5 +23,3 @@ g.vimwiki_list = {
 		custom_wiki2html = "vimwiki_markdown",
 	},
 }
-
-g.vimwiki_filetypes = { "markdown" }

@@ -21,8 +21,8 @@ local n_opts = {
 
 local n_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
+	["H"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
 	a = {
@@ -147,9 +147,13 @@ local n_mappings = {
 
 	v = {
 		name = "+vimwiki",
+		["e"] = { "<cmd>Vimwiki2HTMLBrowse<cr>", "Export wiki to HTML" },
 		["i"] = { "<cmd>VimwikiIndex<cr>", "Index (personal)" },
-		["s"] = { "<cmd>VimwikiUISelect<cr>", "Select available wikis" },
-		["r"] = { "<cmd>VimwikiRenameFile<cr>", "Convert current wiki to HTML" },
+		["n"] = { "<cmd>VimwikiGoto", "Go to or create new wiki page" },
+		["s"] = { "<cmd>VimwikiUISelect<cr>", "Select wiki" },
+		["d"] = { "<cmd>VimwikiDeleteFile<cr>", "Delete current wiki page" },
+		["r"] = { "<cmd>VimwikiRenameFile<cr>", "Rename current wiki page" },
+		["t"] = { "<cmd>VimwikiTableAlignQ<cr>", "Align table" },
 	},
 
 	w = {

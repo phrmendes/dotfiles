@@ -11,6 +11,16 @@ keymap.set("i", "jk", "<ESC>", opts) -- exit insert mode pressing 'jk'
 keymap.set("n", "x", '"_x', opts) -- delete single caracter without copy to register
 keymap.set("t", "jk", "<C-\\><C-n>", opts) -- exit terminal mode pressing 'jk'
 
+-- vimwiki
+keymap.set("n", "<CR>", "<cmd>VimwikiFollowLink<cr>", opts) -- open link
+keymap.set("n", "<Backspace>", "<cmd>VimwikiGoBackLink<cr>", opts) -- go back
+keymap.set("n", "<Tab>", "<cmd>VimwikiNextLink<cr>", opts) -- go to next link
+keymap.set("n", "<S-Tab>", "<cmd>VimwikiPrevLink<cr>", opts) -- go to previous link
+keymap.set("n", "<C-c><C-c>", "<cmd>VimwikiToggleListItem<cr>", opts) -- toggle list item
+keymap.set("n", "<C-c><C-n>", "<cmd>VimwikiNextTask<cr>", opts) -- go to next task
+keymap.set("n", "<C-c>Left", "<cmd>VimwikiTableMoveColumnLeft<cr>", opts) -- move table column left
+keymap.set("n", "<C-c>Right", "<cmd>VimwikiTableMoveColumnRight<cr>", opts) -- move table column right
+
 -- multi cursor
 g.multi_cursor_use_default_mapping = 0
 g.multi_cursor_start_word_key = "<C-i>"

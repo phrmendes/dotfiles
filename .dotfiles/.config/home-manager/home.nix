@@ -16,6 +16,7 @@ in {
     username = "${user}";
     homeDirectory = "/home/${user}";
     packages = with pkgs; [
+      ansible
       bitwarden
       btop
       exa
@@ -25,7 +26,6 @@ in {
       hugo
       lazydocker
       lazygit
-      obsidian
       pandoc
       quarto
       ripgrep
@@ -102,7 +102,6 @@ in {
         (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
         (fromGitHub "HEAD"
           "cljoly/telescope-repo.nvim") # navigate between git repos
-        (fromGitHub "HEAD" "epwalsh/obsidian.nvim") # obsidian integration
         (fromGitHub "HEAD" "jbyuki/nabla.nvim") # render equations
         (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto requirements
         (fromGitHub "HEAD"
@@ -148,10 +147,13 @@ in {
         vim-nix # nix syntax
         vim-tmux-navigator # tmux-like navigation
         vim-visual-multi # multiple cursors
+        vimwiki # notes
         which-key-nvim # keybindings
       ];
       extraPackages = (with pkgs; [
+        ansible-language-server
         jq
+        ltex-ls
         lua-language-server
         luajitPackages.luacheck
         nixfmt
@@ -161,7 +163,6 @@ in {
         stylua
         terraform-ls
         universal-ctags
-        ltex-ls
       ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs

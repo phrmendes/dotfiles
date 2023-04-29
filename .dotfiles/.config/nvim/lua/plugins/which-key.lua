@@ -21,13 +21,13 @@ local n_opts = {
 
 local n_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["D"] = { "<cmd>terminal pudb", "Python debugger" },
+	["D"] = { "<cmd>terminal pudb<cr>", "Python debugger" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
 	a = {
 		name = "+actions",
-		["Q"] = { "<cmd>q!<cr>", "Quit without saving" },
+		["Q"] = { "<cmd>q!<cr>", "Quit withoust saving" },
 		["W"] = { "<cmd>wq<cr>", "Save and quit" },
 		["n"] = { "<cmd>noh<cr>", "Clear highlights" },
 		["q"] = { "<cmd>confirm q<cr>", "Quit" },
@@ -70,12 +70,13 @@ local n_mappings = {
 
 	f = {
 		name = "+files",
-		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
+		["F"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
+		["f"] = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
 		["g"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
 		["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+		["p"] = { "<cmd>Telescope file_browser hidden=true<cr>", "File browser (project)" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
-		["p"] = { "<cmd>Telescope file_browser hidden=true<cr>", "File browser (project)" },
 		["b"] = {
 			"<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
 			"File browser (current buffer)",

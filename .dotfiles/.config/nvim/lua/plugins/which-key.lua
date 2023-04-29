@@ -62,7 +62,6 @@ local n_mappings = {
 	d = {
 		name = "+documents",
 		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
-		["n"] = { "<cmd>require('nabla').popup()", "Preview equations" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
 		["q"] = { "<cmd>QuartoPreview<cr>", "Preview quarto document" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },

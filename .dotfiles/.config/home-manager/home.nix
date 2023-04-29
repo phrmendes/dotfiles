@@ -102,7 +102,6 @@ in {
         (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
         (fromGitHub "HEAD"
           "cljoly/telescope-repo.nvim") # navigate between git repos
-        (fromGitHub "HEAD" "jbyuki/nabla.nvim") # render equations
         (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto requirements
         (fromGitHub "HEAD"
           "nvim-telescope/telescope-bibtex.nvim") # bibtex integration

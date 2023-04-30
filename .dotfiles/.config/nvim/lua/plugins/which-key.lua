@@ -63,7 +63,6 @@ local n_mappings = {
 		name = "+documents",
 		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
-		["q"] = { "<cmd>QuartoPreview<cr>", "Preview quarto document" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
 	},
 

@@ -4,7 +4,7 @@ local opts = { noremap = true, silent = true }
 
 -- leader keys
 g.mapleader = " "
-g.maplocalleader = " "
+g.maplocalleader = ","
 
 -- general keymaps
 keymap.set("i", "jk", "<ESC>", opts) -- exit insert mode pressing 'jk'

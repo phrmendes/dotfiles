@@ -102,10 +102,8 @@ in {
         (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
         (fromGitHub "HEAD"
           "cljoly/telescope-repo.nvim") # navigate between git repos
-        (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto requirements
         (fromGitHub "HEAD"
           "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
-        (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration
         alpha-nvim # dashboard
         autoclose-nvim # auto close pairs
         bufferline-nvim # manage buffers
@@ -138,6 +136,7 @@ in {
         telescope-fzf-native-nvim # telescope fzf integration
         telescope-nvim # fuzzy finder
         telescope-ui-select-nvim # telescope ui
+        todo-txt-vim # tasks
         trouble-nvim # lsp diagnostics
         undotree # undo history
         vim-commentary # comment lines

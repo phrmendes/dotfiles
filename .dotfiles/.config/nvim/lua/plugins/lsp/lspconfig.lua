@@ -57,7 +57,7 @@ lspconfig.ltex.setup({
 				motherTongue = "pt-BR",
 			},
 		},
-		filetypes = { "tex", "quarto", "markdown" },
+		filetypes = { "tex", "markdown" },
 	},
 })
 

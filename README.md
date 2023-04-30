@@ -10,10 +10,11 @@ Script execution order:
 
 ## Gnome extensions
 
-- Clipboard History
-- Espresso
-- Light/Dark Theme Switcher
-- GSConnect
+- Clipboard History (clipboard-history@alexsaveau.dev)
+- Espresso (expresso@coadmunkee.github.com)
+- GSConnect (gsconnect@andyholmes.github.io)
+- Light/Dark Theme Switcher (theme-switcher@fthx)
+- Todo.txt (todo.txt@bart.libert.gmail.com)
 
 ## References
 

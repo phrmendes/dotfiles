@@ -1,6 +1,12 @@
 local opt = vim.opt
 local cmd = vim.cmd
 
+-- syntax
+opt.syntax = "on"
+
+-- filetype plugin
+cmd([[ filetype plugin on ]])
+
 -- line numbers
 opt.relativenumber = true
 opt.number = true

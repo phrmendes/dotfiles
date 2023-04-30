@@ -20,7 +20,15 @@ poetry() {
 	"$HOME/.pyenv/shims/poetry" config virtualenvs.in-project true
 }
 
+python_debugger() {
+	mkdir "$HOME/.virtualenvs"
+	cd "$HOME/.virtualenvs" || exit
+	python3 -m venv debugpy
+	debugpy/bin/python -m pip install debugpy
+}
+
 home_manager_first_generation
 stow_dotfiles
 home_manager_update
 poetry
+python_debugger

@@ -23,16 +23,17 @@ in {
       fd
       fragments
       gh
+      go
       hugo
       lazydocker
       lazygit
-      tere
       pandoc
       quarto
       ripgrep
       spotify
       tealdeer
       tectonic
+      tere
       vlc
       zotero
       zoxide
@@ -132,6 +133,10 @@ in {
         neodev-nvim # neovim development utils
         null-ls-nvim # lsp actions
         nvim-cmp # completion
+        nvim-dap # debug adapter protocol
+        nvim-dap-go # go dap support
+        nvim-dap-python # python dap support
+        nvim-dap-ui # ui for dap
         nvim-lspconfig # lsp
         nvim-spectre # search and replace
         nvim-tree-lua # file explorer
@@ -157,6 +162,12 @@ in {
       ];
       extraPackages = (with pkgs; [
         ansible-language-server
+        delve
+        gofumpt
+        golangci-lint
+        golines
+        gopls
+        gotools
         jq
         ltex-ls
         lua-language-server

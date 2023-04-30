@@ -68,9 +68,9 @@ local n_mappings = {
 
 	f = {
 		name = "+files",
-		["G"] = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
+		["G"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
-		["g"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
+		["g"] = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
 		["p"] = { "<cmd>Telescope file_browser hidden=true<cr>", "File browser (project)" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },

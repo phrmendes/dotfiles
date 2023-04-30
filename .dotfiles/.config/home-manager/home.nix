@@ -26,14 +26,16 @@ in {
       hugo
       lazydocker
       lazygit
+      tere
       pandoc
       quarto
       ripgrep
       spotify
+      tealdeer
       tectonic
       vlc
-      vscode
       zotero
+      zoxide
     ];
     stateVersion = "22.11";
     sessionVariables = {
@@ -73,7 +75,7 @@ in {
         mkdir = "mkdir -p";
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
-        orangepi = "ssh root@192.168.0.3 -p 22";
+        tldr = "${pkgs.tealdeer}/bin/tldr";
         stow_dotfiles = ''
           stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
         system_clean =
@@ -85,6 +87,11 @@ in {
         export PYENV_ROOT="$HOME/.pyenv"
         command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
         eval "$(pyenv init -)"
+
+        tere() {
+            local result=$(command tere "$@")
+            [ -n "$result" ] && cd -- "$result"
+        }
       '';
     };
     neovim = {

@@ -13,11 +13,15 @@ local augroup = api.nvim_create_augroup("LspFormatting", {}) -- to setup format 
 null_ls.setup({
 	-- linters and formatters
 	sources = {
+		diagnostics.golangci_lint, -- go
 		diagnostics.luacheck, -- lua
 		diagnostics.mypy, -- python
 		diagnostics.pylint, -- python
 		diagnostics.shellcheck, -- bash
 		formatting.black, -- python
+		formatting.gofumpt, -- go
+		formatting.goimports, -- go
+		formatting.golines, -- go
 		formatting.isort, -- python
 		formatting.jq, -- json
 		formatting.nixfmt, -- nix

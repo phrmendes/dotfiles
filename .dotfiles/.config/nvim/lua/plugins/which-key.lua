@@ -60,10 +60,26 @@ local n_mappings = {
 	},
 
 	d = {
-		name = "+documents",
-		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
-		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
-		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
+		name = "+debugger",
+		["b"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint" },
+		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
+		["n"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
+		["o"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
+		["s"] = { "<cmd>lua require('dap').stop()<cr>", "Stop" },
+
+		g = {
+			name = "+go",
+			["t"] = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug test" },
+			["l"] = { "<cmd>lua require('dap-go').debug_latest_test()<cr>", "Debug latest test" },
+		},
+
+		p = {
+			name = "+python",
+			["c"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test method" },
+			["m"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test method" },
+			["s"] = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug selction" },
+		},
 	},
 
 	f = {
@@ -107,7 +123,6 @@ local n_mappings = {
 		["S"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Dynamic workspace symbols" },
 		["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
 		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
-		["d"] = { "<cmd>terminal pudb<cr>", "Python debugger" },
 		["i"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
 		["l"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
 		["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
@@ -125,6 +140,13 @@ local n_mappings = {
 			["t"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
 			["w"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
 		},
+	},
+
+	m = {
+		name = "+markdown",
+		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
+		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
+		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
 	},
 
 	r = {

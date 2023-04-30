@@ -48,6 +48,10 @@ lspconfig.dockerls.setup({
 	capabilities = capabilities,
 })
 
+lspconfig.gopls.setup({
+	capabilities = capabilities,
+})
+
 lspconfig.ltex.setup({
 	capabilities = capabilities,
 	settings = {

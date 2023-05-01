@@ -1,8 +1,10 @@
 local core = require("iron.core")
 local pyfts = require("iron.fts.python")
+local view = require("iron.view")
 
 core.setup({
 	config = {
+		repl_open_cmd = view.split("25%"),
 		repl_definition = {
 			python = pyfts.ptipython,
 		},

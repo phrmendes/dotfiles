@@ -1,4 +1,4 @@
-local keymap = vim.keymap
+local map = vim.keymap.set
 local g = vim.g
 local opts = { noremap = true, silent = true }
 
@@ -18,3 +18,6 @@ map("n", ",c", "<cmd>VimwikiToggleListItem<cr>", opts) -- toggle list item
 map("n", ",n", "<cmd>VimwikiNextTask<cr>", opts) -- go to next task
 map("n", ",Left", "<cmd>VimwikiTableMoveColumnLeft<cr>", opts) -- move table column left
 map("n", ",Right", "<cmd>VimwikiTableMoveColumnRight<cr>", opts) -- move table column right
+
+-- python debugger
+map("v", "<cmd>lua require('dap-python').debug_selection()<cr>", opts)

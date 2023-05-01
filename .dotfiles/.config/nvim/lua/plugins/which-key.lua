@@ -82,7 +82,6 @@ local leader_normal_mappings = {
 			name = "+python",
 			["c"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test method" },
 			["m"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test method" },
-			["s"] = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug selction" },
 		},
 	},
 

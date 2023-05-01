@@ -70,7 +70,7 @@ local n_mappings = {
 		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
 		["n"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
 		["o"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-		["s"] = { "<cmd>lua require('dap').stop()<cr>", "Stop" },
+		["q"] = { "<cmd>lua require('dap').close()<cr>", "Stop" },
 
 		g = {
 			name = "+go",

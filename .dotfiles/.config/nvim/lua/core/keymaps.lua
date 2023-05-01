@@ -18,14 +18,3 @@ keymap.set("n", ",c", "<cmd>VimwikiToggleListItem<cr>", opts) -- toggle list ite
 keymap.set("n", ",n", "<cmd>VimwikiNextTask<cr>", opts) -- go to next task
 keymap.set("n", ",Left", "<cmd>VimwikiTableMoveColumnLeft<cr>", opts) -- move table column left
 keymap.set("n", ",Right", "<cmd>VimwikiTableMoveColumnRight<cr>", opts) -- move table column right
-
--- multi cursor
-g.multi_cursor_use_default_mapping = 0
-g.multi_cursor_start_word_key = "<C-i>"
-g.multi_cursor_select_all_word_key = "<A-i>"
-g.multi_cursor_start_key = "g<C-i>"
-g.multi_cursor_select_all_key = "g<A-i>"
-g.multi_cursor_next_key = "<C-n>"
-g.multi_cursor_prev_key = "<C-p>"
-g.multi_cursor_skip_key = "<C-x>"
-g.multi_cursor_quit_key = "<Esc>"

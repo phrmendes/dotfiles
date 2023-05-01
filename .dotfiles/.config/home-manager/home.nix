@@ -21,7 +21,7 @@ in {
       btop
       exa
       fd
-      fragments
+      motrix
       gh
       go
       hugo

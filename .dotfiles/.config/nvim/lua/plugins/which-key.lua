@@ -158,7 +158,7 @@ local n_mappings = {
 		["R"] = { "<cmd>IronRestart<cr>", "Restart" },
 		["f"] = { "<cmd>IronFocus<cr>", "Focus" },
 		["h"] = { "<cmd>IronHide<cr>", "Hide" },
-		["r"] = { "<cmd>IronRepl<cr>", "Open" },
+		["o"] = { "<cmd>IronRepl<cr>", "Open" },
 	},
 
 	t = {

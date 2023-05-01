@@ -137,6 +137,7 @@ in {
         nvim-dap-go # go dap support
         nvim-dap-python # python dap support
         nvim-dap-ui # ui for dap
+        nvim-dap-virtual-text # virtual text for dap
         nvim-lspconfig # lsp
         nvim-spectre # search and replace
         nvim-tree-lua # file explorer

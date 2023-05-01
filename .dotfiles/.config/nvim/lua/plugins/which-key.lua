@@ -62,6 +62,10 @@ local n_mappings = {
 	d = {
 		name = "+debugger",
 		["b"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint" },
+		["B"] = {
+			"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+			"Conditional breakpoint",
+		},
 		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
 		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
 		["n"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },

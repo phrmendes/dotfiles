@@ -1,10 +1,30 @@
-local dap, dap_ui = require("dap"), require("dapui")
-local dap_go, dap_python = require("dap-go"), require("dap-python")
+local dap = require("dap")
 local fn = vim.fn
+
+local setup_ui, dap_ui = pcall(require, "dapui")
+if not setup_ui then
+	return
+end
+
+local setup_py, dap_python = pcall(require, "dap-python")
+if not setup_py then
+	return
+end
+
+local setup_go, dap_go = pcall(require, "dap-go")
+if not setup_go then
+	return
+end
+
+local setup_txt, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
+if not setup_txt then
+	return
+end
 
 -- dap settings
 dap_ui.setup()
 dap_go.setup()
+dap_virtual_text.setup()
 dap_python.setup("~/.virtualenvs/debugpy/bin/python")
 dap_python.test_runner = "pytest"
 

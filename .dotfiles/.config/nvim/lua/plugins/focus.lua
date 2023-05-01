@@ -3,4 +3,6 @@ if not setup then
 	return
 end
 
-focus.setup()
+focus.setup({
+	autoresize = false,
+})

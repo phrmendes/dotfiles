@@ -10,7 +10,7 @@ local conf = {
 	},
 }
 
-local n_opts = {
+local leader_normal_opts = {
 	mode = "n",
 	prefix = "<leader>",
 	buffer = nil,
@@ -19,7 +19,7 @@ local n_opts = {
 	nowait = false,
 }
 
-local n_mappings = {
+local leader_normal_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
 	["H"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -194,4 +194,4 @@ local n_mappings = {
 }
 
 which_key.setup(conf)
-which_key.register(n_mappings, n_opts)
+which_key.register(leader_normal_mappings, leader_normal_opts)

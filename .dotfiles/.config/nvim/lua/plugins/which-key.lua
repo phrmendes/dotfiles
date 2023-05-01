@@ -61,24 +61,26 @@ local leader_normal_mappings = {
 
 	d = {
 		name = "+debugger",
-		["b"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Breakpoint" },
-		["B"] = {
-			"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-			"Conditional breakpoint",
-		},
-		["c"] = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-		["i"] = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
-		["n"] = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
-		["o"] = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-		["q"] = { "<cmd>lua require('dap').close()<cr>", "Stop" },
+		U = { "<cmd>lua require('dapui').toggle({reset = true})<cr>", "Toggle UI" },
+		b = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
+		c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+		d = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect" },
+		i = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
+		o = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
+		p = { "<cmd>lua require('dap').pause()<cr>", "Pause" },
+		q = { "<cmd>lua require('dap').close()<cr>", "Quit" },
+		r = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle REPL" },
+		s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
+		t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
+		u = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
 
-		g = {
+		G = {
 			name = "+go",
 			["t"] = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug test" },
 			["l"] = { "<cmd>lua require('dap-go').debug_latest_test()<cr>", "Debug latest test" },
 		},
 
-		p = {
+		P = {
 			name = "+python",
 			["c"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test method" },
 			["m"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test method" },

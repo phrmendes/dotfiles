@@ -33,14 +33,6 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 	dap_ui.open()
 end
 
-dap.listeners.before.event_terminated["dapui_config"] = function()
-	dap_ui.close()
-end
-
-dap.listeners.before.event_exited["dapui_config"] = function()
-	dap_ui.close()
-end
-
 -- nicer breakpoints
 fn.sign_define("DapBreakpoint", { text = "🐞" })
 fn.sign_define("DapStopped", { text = "▶" })

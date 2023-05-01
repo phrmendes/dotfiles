@@ -22,5 +22,5 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- nicer breakpoints
-fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
-fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = "" })
+fn.sign_define("DapBreakpoint", { text = "🐞" })
+fn.sign_define("DapStopped", { text = "▶" })

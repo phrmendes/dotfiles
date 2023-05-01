@@ -61,15 +61,17 @@ local leader_normal_mappings = {
 
 	d = {
 		name = "+debugger",
+		C = {
+			"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+			"Conditional breakpoint",
+		},
 		U = { "<cmd>lua require('dapui').toggle({reset = true})<cr>", "Toggle UI" },
 		b = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
 		c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-		d = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect" },
 		i = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
 		o = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
 		p = { "<cmd>lua require('dap').pause()<cr>", "Pause" },
 		q = { "<cmd>lua require('dap').close()<cr>", "Quit" },
-		r = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle REPL" },
 		s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
 		t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
 		u = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },

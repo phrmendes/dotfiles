@@ -89,8 +89,6 @@ in {
         command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
         eval "$(pyenv init -)"
 
-        path+=$HOME/.cargo/bin
-
         tere() {
             local result=$(command tere "$@")
             [ -n "$result" ] && cd -- "$result"

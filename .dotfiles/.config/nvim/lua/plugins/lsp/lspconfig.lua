@@ -52,10 +52,6 @@ lspconfig.gopls.setup({
 	capabilities = capabilities,
 })
 
-lspconfig.pylyzer.setup({
-	capabilities = capabilities,
-})
-
 lspconfig.ltex.setup({
 	capabilities = capabilities,
 	settings = {
@@ -66,6 +62,23 @@ lspconfig.ltex.setup({
 			},
 		},
 		filetypes = { "tex", "markdown" },
+	},
+})
+
+lspconfig.pyright.setup({
+	capabilities = capabilities,
+	settings = {
+		python = {
+			analysis = {
+				useLibraryCodeForTypes = true,
+				typeCheckingMode = "basic",
+				diagnosticMode = "workspace",
+				inlayHints = {
+					variableTypes = true,
+					functionReturnTypes = true,
+				},
+			},
+		},
 	},
 })
 

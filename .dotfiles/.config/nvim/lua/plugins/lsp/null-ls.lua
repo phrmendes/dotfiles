@@ -15,6 +15,7 @@ null_ls.setup({
 	sources = {
 		diagnostics.golangci_lint, -- go
 		diagnostics.luacheck, -- lua
+		diagnostics.mypy, --python
 		diagnostics.ruff, -- python
 		diagnostics.shellcheck, -- bash
 		formatting.gofumpt, -- go

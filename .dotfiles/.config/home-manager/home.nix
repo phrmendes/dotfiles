@@ -19,7 +19,6 @@ in {
       ansible
       bitwarden
       btop
-      cargo
       exa
       fd
       gh

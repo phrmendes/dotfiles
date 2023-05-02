@@ -27,13 +27,8 @@ python_debugger() {
 	debugpy/bin/python -m pip install debugpy
 }
 
-rust_packages() {
-	cargo install pylyzer
-}
-
 home_manager_first_generation
 stow_dotfiles
 home_manager_update
 poetry
 python_debugger
-rust_packages

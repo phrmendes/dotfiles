@@ -19,14 +19,15 @@ in {
       ansible
       bitwarden
       btop
+      cargo
       exa
       fd
-      motrix
       gh
       go
       hugo
       lazydocker
       lazygit
+      motrix
       pandoc
       quarto
       ripgrep
@@ -88,6 +89,8 @@ in {
         export PYENV_ROOT="$HOME/.pyenv"
         command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
         eval "$(pyenv init -)"
+
+        path+=$HOME/.cargo/bin
 
         tere() {
             local result=$(command tere "$@")
@@ -175,6 +178,7 @@ in {
         luajitPackages.luacheck
         nixfmt
         rnix-lsp
+        ruff
         shellcheck
         shfmt
         stylua
@@ -184,10 +188,9 @@ in {
         bash-language-server
         dockerfile-language-server-nodejs
         prettier
-        pyright
         vscode-json-languageserver
         yaml-language-server
-      ]) ++ (with pkgs.python3Packages; [ pylint mypy black isort ]);
+      ]);
     };
     starship = {
       enable = true;

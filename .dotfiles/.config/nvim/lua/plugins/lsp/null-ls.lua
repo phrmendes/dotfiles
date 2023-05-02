@@ -15,17 +15,15 @@ null_ls.setup({
 	sources = {
 		diagnostics.golangci_lint, -- go
 		diagnostics.luacheck, -- lua
-		diagnostics.mypy, -- python
-		diagnostics.pylint, -- python
+		diagnostics.ruff, -- python
 		diagnostics.shellcheck, -- bash
-		formatting.black, -- python
 		formatting.gofumpt, -- go
 		formatting.goimports, -- go
 		formatting.golines, -- go
-		formatting.isort, -- python
 		formatting.jq, -- json
 		formatting.nixfmt, -- nix
 		formatting.prettier, -- markdown
+		formatting.ruff, -- python
 		formatting.shfmt, -- bash
 		formatting.stylua, -- lua
 	},

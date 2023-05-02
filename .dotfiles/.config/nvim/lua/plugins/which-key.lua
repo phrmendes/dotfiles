@@ -127,7 +127,6 @@ local leader_normal_mappings = {
 	l = {
 		name = "+lsp",
 		["R"] = { "<cmd>Telescope lsp_references<cr>", "References" },
-		["S"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Dynamic workspace symbols" },
 		["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
 		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 		["i"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },

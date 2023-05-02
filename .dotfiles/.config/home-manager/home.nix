@@ -190,6 +190,7 @@ in {
         prettier
         vscode-json-languageserver
         yaml-language-server
+        pyright
       ]);
     };
     starship = {

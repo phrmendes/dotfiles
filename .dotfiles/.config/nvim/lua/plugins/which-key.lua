@@ -134,7 +134,7 @@ local leader_normal_mappings = {
 		["l"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
 		["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
-		["w"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols" },
+		["w"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
 
 		t = {
 			name = "+trouble",

@@ -210,7 +210,13 @@ in {
       prefix = "C-Space";
       sensibleOnTop = true;
       shell = "${pkgs.zsh}/bin/zsh";
-      plugins = with pkgs.tmuxPlugins; [ gruvbox vim-tmux-navigator yank ];
+      plugins = with pkgs.tmuxPlugins; [
+        continuum
+        gruvbox
+        resurrect
+        vim-tmux-navigator
+        yank
+      ];
       extraConfig = builtins.readFile /home/${user}/.config/tmux/custom.conf;
     };
   };

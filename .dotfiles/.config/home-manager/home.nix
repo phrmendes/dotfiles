@@ -25,7 +25,6 @@ in {
       go
       hugo
       lazydocker
-      lazygit
       motrix
       pandoc
       quarto
@@ -36,7 +35,6 @@ in {
       tere
       vlc
       zotero
-      zoxide
     ];
     stateVersion = "22.11";
     sessionVariables = {
@@ -57,6 +55,14 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    lazygit = {
+      enable = true;
+      settings = { gui.showIcons = true; };
     };
     zsh = {
       enable = true;

@@ -167,7 +167,7 @@ in {
         vimwiki # notes
         which-key-nvim # keybindings
       ];
-      extraPackages = (with pkgs; [
+      extraPackages = (with pkgs.unstable; [
         ansible-language-server
         delve
         gofumpt
@@ -187,13 +187,15 @@ in {
         stylua
         terraform-ls
         universal-ctags
-      ]) ++ (with pkgs.nodePackages; [
+        yamlfmt
+        yamllint
+      ]) ++ (with pkgs.unstable.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
+        jsonlint
         prettier
-        vscode-json-languageserver
-        yaml-language-server
         pyright
+        fixjson
       ]);
     };
     starship = {

@@ -20,18 +20,6 @@ end
 -- config language servers
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-lspconfig.ansiblels.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.jsonls.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.yamlls.setup({
-	capabilities = capabilities,
-})
-
 lspconfig.rnix.setup({
 	capabilities = capabilities,
 })

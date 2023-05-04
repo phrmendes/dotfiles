@@ -14,10 +14,12 @@ null_ls.setup({
 	-- linters and formatters
 	sources = {
 		diagnostics.golangci_lint, -- go
+		diagnostics.jsonlint, -- json
 		diagnostics.luacheck, -- lua
 		diagnostics.mypy, --python
 		diagnostics.ruff, -- python
 		diagnostics.shellcheck, -- bash
+		diagnostics.yamllint, -- yaml
 		formatting.gofumpt, -- go
 		formatting.goimports, -- go
 		formatting.golines, -- go
@@ -27,6 +29,7 @@ null_ls.setup({
 		formatting.ruff, -- python
 		formatting.shfmt, -- bash
 		formatting.stylua, -- lua
+		formatting.yamlfmt, -- yaml
 	},
 	on_attach = function(current_client, bufnr)
 		if current_client.supports_method("textDocument/formatting") then

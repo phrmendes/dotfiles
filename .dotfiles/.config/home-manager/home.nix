@@ -167,7 +167,7 @@ in {
         vimwiki # notes
         which-key-nvim # keybindings
       ];
-      extraPackages = (with pkgs.unstable; [
+      extraPackages = (with pkgs; [
         ansible-language-server
         delve
         gofumpt
@@ -189,7 +189,7 @@ in {
         universal-ctags
         yamlfmt
         yamllint
-      ]) ++ (with pkgs.unstable.nodePackages; [
+      ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
         jsonlint

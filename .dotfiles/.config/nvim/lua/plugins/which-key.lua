@@ -19,9 +19,64 @@ local leader_normal_opts = {
 	nowait = false,
 }
 
+local local_leader_visual_opts = {
+	mode = "v",
+	prefix = "<localleader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+
+local g_normal_opts = {
+	mode = "n",
+	prefix = "g",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+
+local local_leader_normal_opts = {
+	mode = "n",
+	prefix = "<localleader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+
+local local_leader_visual_mappings = {
+	["p"] = { "<cmd>lua require('dap-python').debug_selection()", "DAP - Debug python region" },
+}
+
+local local_leader_normal_mappings = {
+	["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki - Follow link" },
+	["<Backspace>"] = { "<cmd>VimwikiGoBackLink<cr>", "Vimwiki - Go back" },
+	["<Tab>"] = { "<cmd>VimwikiNextLink<cr>", "Vimwiki - Next link" },
+	["c"] = { "<cmd>VimwikiToggleListItem<cr>", "Vimwiki - Toggle list item" },
+	["n"] = { "<cmd>VimwikiNextTask<cr>", "Vimwiki - Next task" },
+	["Left"] = { "<cmd>VimwikiTableMoveColumnLeft<cr>", "Move table column to left" },
+	["Right"] = { "<cmd>VimwikiTableMoveColumnRight<cr>", "Move table column to right" },
+}
+
+local g_normal_mappings = {
+	["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "LSP - Declaration" },
+	["R"] = { "<cmd>lua vim.lsp.buf.references()<cr>", "LSP - References" },
+	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
+	["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "LSP - Definition" },
+	["f"] = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP - Formatting" },
+	["h"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP - Hover" },
+	["i"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "LSP - Implementation" },
+	["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
+	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
+	["t"] = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "LSP - Type definition" },
+}
+
 local leader_normal_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
 	["H"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+	["T"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
@@ -126,12 +181,9 @@ local leader_normal_mappings = {
 
 	l = {
 		name = "+lsp",
-		["R"] = { "<cmd>Telescope lsp_references<cr>", "References" },
-		["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
-		["b"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 		["i"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
-		["l"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
-		["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+		["c"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
+		["r"] = { "<cmd>Telescope lsp_references<cr>", "References" },
 		["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
 		["w"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
 
@@ -196,4 +248,7 @@ local leader_normal_mappings = {
 }
 
 which_key.setup(conf)
+which_key.register(g_normal_mappings, g_normal_opts)
 which_key.register(leader_normal_mappings, leader_normal_opts)
+which_key.register(local_leader_normal_mappings, local_leader_normal_opts)
+which_key.register(local_leader_visual_mappings, local_leader_visual_opts)

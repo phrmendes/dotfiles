@@ -118,6 +118,35 @@ in {
           "cljoly/telescope-repo.nvim") # navigate between git repos
         (fromGitHub "HEAD"
           "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+        (nvim-treesitter.withPlugins (p: [
+          p.bash
+          p.bibtex
+          p.dockerfile
+          p.git_config
+          p.git_rebase
+          p.gitattributes
+          p.gitcommit
+          p.gitignore
+          p.go
+          p.hcl
+          p.html
+          p.json
+          p.latex
+          p.lua
+          p.make
+          p.markdown
+          p.markdown_inline
+          p.nix
+          p.python
+          p.r
+          p.sql
+          p.terraform
+          p.todotxt
+          p.toml
+          p.vim
+          p.vimdoc
+          p.yaml
+        ])) # treesitter
         alpha-nvim # dashboard
         autoclose-nvim # auto close pairs
         bufferline-nvim # manage buffers
@@ -147,7 +176,6 @@ in {
         nvim-lspconfig # lsp
         nvim-spectre # search and replace
         nvim-tree-lua # file explorer
-        nvim-treesitter.withAllGrammars # treesitter
         nvim-web-devicons # icons
         plenary-nvim # lua utils
         tagbar # browse tags

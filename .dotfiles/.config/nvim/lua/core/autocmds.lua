@@ -1,5 +1,15 @@
-local cmd = vim.cmd
+local api = vim.api
 
-cmd([[ autocmd BufRead,BufNewFile *.qmd set ft=markdown ]])
-cmd([[ autocmd BufRead,BufNewFile tarefas.md set ft=todo ]])
-cmd([[ autocmd TermOpen * setlocal nonumber norelativenumber ]])
+local ft_group = api.nvim_create_augroup("customFileTypes", { clear = true })
+local term_group = api.nvim_create_augroup("customTermSettings", { clear = true })
+
+api.nvim_create_autocmd("BufRead,BufNewFile", {
+	pattern = "*.qmd",
+	command = "set filetype=markdown",
+	group = ft_group,
+})
+
+api.nvim_create_autocmd("TermOpen", {
+	command = "setlocal nonumber norelativenumber",
+	group = term_group,
+})

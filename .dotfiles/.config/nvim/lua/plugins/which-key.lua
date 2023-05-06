@@ -64,7 +64,6 @@ local g_normal_mappings = {
 	["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "LSP - Declaration" },
 	["R"] = { "<cmd>lua vim.lsp.buf.references()<cr>", "LSP - References" },
 	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
-	["c"] = { "<cmd>Comentary<cr>", "Comment" },
 	["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "LSP - Definition" },
 	["f"] = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP - Formatting" },
 	["h"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP - Hover" },

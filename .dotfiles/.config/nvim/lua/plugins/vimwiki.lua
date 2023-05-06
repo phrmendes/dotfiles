@@ -15,7 +15,7 @@ g.vimwiki_list = {
 	},
 	{
 		path = "~/pCloudDrive/notes/thesis",
-		name = "THesis",
+		name = "Thesis",
 		syntax = "markdown",
 		ext = ".md",
 		auto_tags = 1,

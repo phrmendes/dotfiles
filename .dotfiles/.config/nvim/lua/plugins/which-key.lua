@@ -51,13 +51,14 @@ local local_leader_visual_mappings = {
 }
 
 local local_leader_normal_mappings = {
-	["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki - Follow link" },
 	["<Backspace>"] = { "<cmd>VimwikiGoBackLink<cr>", "Vimwiki - Go back" },
+	["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki - Follow link" },
 	["<Tab>"] = { "<cmd>VimwikiNextLink<cr>", "Vimwiki - Next link" },
-	["c"] = { "<cmd>VimwikiToggleListItem<cr>", "Vimwiki - Toggle list item" },
-	["n"] = { "<cmd>VimwikiNextTask<cr>", "Vimwiki - Next task" },
 	["Left"] = { "<cmd>VimwikiTableMoveColumnLeft<cr>", "Move table column to left" },
 	["Right"] = { "<cmd>VimwikiTableMoveColumnRight<cr>", "Move table column to right" },
+	["c"] = { "<cmd>VimwikiToggleListItem<cr>", "Vimwiki - Toggle list item" },
+	["n"] = { "<cmd>VimwikiNextTask<cr>", "Vimwiki - Next task" },
+	["t"] = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
 }
 
 local g_normal_mappings = {

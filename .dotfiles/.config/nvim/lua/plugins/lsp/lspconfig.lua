@@ -36,10 +36,6 @@ lspconfig.dockerls.setup({
 	capabilities = capabilities,
 })
 
-lspconfig.gopls.setup({
-	capabilities = capabilities,
-})
-
 lspconfig.ltex.setup({
 	capabilities = capabilities,
 	settings = {
@@ -82,6 +78,20 @@ lspconfig.lua_ls.setup({
 					[fn.expand("$VIMRUNTIME/lua")] = true,
 					[fn.stdpath("config") .. "/lua"] = true,
 				},
+			},
+		},
+	},
+})
+
+lspconfig.gopls.setup({
+	capabilities = capabilities,
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+				shadow = true,
 			},
 		},
 	},

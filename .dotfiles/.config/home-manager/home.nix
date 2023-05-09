@@ -178,6 +178,7 @@ in {
         nvim-tree-lua # file explorer
         nvim-web-devicons # icons
         plenary-nvim # lua utils
+        project-nvim # project management
         tagbar # browse tags
         telescope-file-browser-nvim # telescope file browser
         telescope-fzf-native-nvim # telescope fzf integration

@@ -28,8 +28,8 @@ REQUIRED_PROGRAMS=(
 )
 
 APT_PACKAGES=(
-	file-roller celluloid python3 stow alacritty
-	rename open-fprintd fprintd-clients python3-validity
+	file-roller python3 stow alacritty podman rename
+	open-fprintd fprintd-clients python3-validity
 )
 
 PPAS=(
@@ -47,7 +47,7 @@ FLATPAK_PACKAGES=(
 
 # ------------------------------------- #
 # ------------- FUNCTIONS ------------- #
-# ------------------------------------- W
+# ------------------------------------- #
 
 clean() {
 	echo -e "${BOLD_GREEN}Cleaning up...${END_COLOR}"
@@ -178,6 +178,12 @@ python_debugger() {
 	cd "$MAIN_DIR" || exit
 }
 
+python_packages() {
+	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
+	python -m pip install --upgrade pip
+	python -m pip install podman-compose
+}
+
 # ------------------------------------- #
 # ------------- EXECUTION ------------- #
 # ------------------------------------- #
@@ -199,6 +205,7 @@ home_manager_update
 python_setup
 poetry
 python_debugger
+python_packages
 
 echo -e "Configure fingerprint? [y/n]"
 read -r fingerprint

@@ -27,8 +27,6 @@ in {
       lazydocker
       motrix
       pandoc
-      podman
-      podman-compose
       quarto
       ripgrep
       spotify

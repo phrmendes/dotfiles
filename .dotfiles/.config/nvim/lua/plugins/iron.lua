@@ -14,8 +14,8 @@ core.setup({
 		exit = "<localleader>sq",
 		send_file = "<localleader>sf",
 		send_line = "<localleader>sl",
-		send_motion = "<localleader>ss",
 		visual_send = "<localleader>ss",
+		interrupt = "<localleader>si",
 	},
 	highlight = {
 		italic = true,

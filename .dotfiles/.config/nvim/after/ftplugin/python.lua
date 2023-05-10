@@ -30,7 +30,7 @@ local normal_mappings = {
 		name = "+debugger",
 		P = {
 			name = "+python",
-			["c"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test method" },
+			["c"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test class" },
 			["m"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test method" },
 		},
 	},

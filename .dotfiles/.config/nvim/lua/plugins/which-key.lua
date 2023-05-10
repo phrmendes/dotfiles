@@ -24,14 +24,14 @@ local g_normal_opts = {
 
 local g_normal_mappings = {
 	["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "LSP - Declaration" },
-	["R"] = { "<cmd>lua vim.lsp.buf.references()<cr>", "LSP - References" },
+	["R"] = { "<cmd>Telescope lsp_references<cr>", "LSP - References" },
 	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
-	["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "LSP - Definition" },
+	["d"] = { "<cmd>Telescope lsp_definitions<cr>", "LSP - Definition" },
 	["h"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP - Hover" },
-	["i"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "LSP - Implementation" },
+	["i"] = { "<cmd>Telescope lsp_implementations<cr>", "LSP - Implementation" },
 	["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
-	["t"] = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "LSP - Type definition" },
+	["t"] = { "<cmd>Telescope lsp_type_definition()<cr>", "LSP - Type definition" },
 }
 
 which_key.register(g_normal_mappings, g_normal_opts)
@@ -48,7 +48,6 @@ local leader_normal_opts = {
 
 local leader_normal_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["T"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["o"] = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
@@ -144,23 +143,13 @@ local leader_normal_mappings = {
 
 	l = {
 		name = "+lsp",
-		["i"] = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
+		["S"] = { "<cmd>SymbolsOutline<cr>", "Symbols tree" },
 		["c"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
-		["r"] = { "<cmd>Telescope lsp_references<cr>", "References" },
+		["d"] = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+		["q"] = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix window" },
 		["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
+		["t"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
 		["w"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
-
-		t = {
-			name = "+trouble",
-			["a"] = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "LSP type definitions" },
-			["d"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
-			["f"] = { "<cmd>TroubleToggle lsp_definitions<cr>", "LSP definitions" },
-			["l"] = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-			["q"] = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-			["r"] = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
-			["t"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
-			["w"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
-		},
 	},
 
 	m = {

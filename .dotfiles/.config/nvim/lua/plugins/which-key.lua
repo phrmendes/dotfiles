@@ -66,10 +66,10 @@ local leader_normal_mappings = {
 		name = "+buffers",
 		["b"] = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
 		["d"] = { "<cmd>bd!<cr>", "Delete buffer" },
-		["l"] = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+		["h"] = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
 		["n"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
 		["p"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-		["r"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
+		["l"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
 		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find" },
 
 		c = {

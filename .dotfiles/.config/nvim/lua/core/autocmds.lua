@@ -1,15 +1,18 @@
-local api = vim.api
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
-local ft_group = api.nvim_create_augroup("customFileTypes", { clear = true })
-local term_group = api.nvim_create_augroup("customTermSettings", { clear = true })
+-- autogroups
+local ft_group = augroup("customFiletypes", { clear = true })
+local term_group = augroup("customTermSettings", { clear = true })
 
-api.nvim_create_autocmd("BufRead,BufNewFile", {
+-- autocmds
+autocmd("BufRead,BufNewFile", {
 	pattern = "*.qmd",
 	command = "set filetype=markdown",
 	group = ft_group,
 })
 
-api.nvim_create_autocmd("TermOpen", {
+autocmd("TermOpen", {
 	command = "setlocal nonumber norelativenumber",
 	group = term_group,
 })

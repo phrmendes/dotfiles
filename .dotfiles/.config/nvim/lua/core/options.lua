@@ -21,6 +21,9 @@ opt.breakindent = true
 -- line wrapping
 opt.wrap = true
 
+-- global status line
+opt.laststatus = 3
+
 -- search settings
 opt.ignorecase = true
 opt.smartcase = true
@@ -66,6 +69,3 @@ opt.shell = "zsh"
 
 -- colorscheme
 cmd([[ colorscheme gruvbox ]])
-
--- global status bar
-cmd([[ set laststatus=3 ]])

@@ -179,7 +179,7 @@ in {
         nvim-web-devicons # icons
         plenary-nvim # lua utils
         project-nvim # project management
-        tagbar # browse tags
+        symbols-outline-nvim # symbols outline
         telescope-file-browser-nvim # telescope file browser
         telescope-fzf-native-nvim # telescope fzf integration
         telescope-nvim # fuzzy finder

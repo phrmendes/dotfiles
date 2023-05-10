@@ -66,3 +66,6 @@ opt.shell = "zsh"
 
 -- colorscheme
 cmd([[ colorscheme gruvbox ]])
+
+-- global status bar
+cmd([[ set laststatus=3 ]])

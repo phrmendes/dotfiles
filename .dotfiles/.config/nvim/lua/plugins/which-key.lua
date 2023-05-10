@@ -12,57 +12,7 @@ local conf = {
 
 which_key.setup(conf)
 
--- local leader normal mappings
-
-local local_leader_normal_opts = {
-	mode = "n",
-	prefix = "<localleader>",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = false,
-}
-
-local local_leader_normal_mappings = {
-	["<Backspace>"] = { "<cmd>VimwikiGoBackLink<cr>", "Vimwiki - Go back" },
-	["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki - Follow link" },
-	["<Left>"] = { "<cmd>VimwikiTableMoveColumnLeft<cr>", "Vimwiki - Move table column to left" },
-	["<Right>"] = { "<cmd>VimwikiTableMoveColumnRight<cr>", "Vimwiki - Move table column to right" },
-	["<S-Tab>"] = { "<cmd>VimwikiPrevLink<cr>", "Vimwiki - Next link" },
-	["<Tab>"] = { "<cmd>VimwikiNextLink<cr>", "Vimwiki - Next link" },
-	["a"] = { "<cmd>VimwikiTableAlignQ<cr>", "Vimwiki - Align table" },
-	["b"] = { "<cmd>VimwikiBacklinks<cr>", "Vimwiki - Backlinks" },
-	["c"] = { "<cmd>VimwikiCheckLinks<cr>", "Vimwiki - Check links" },
-	["d"] = { "<cmd>VimwikiDeleteFile<cr>", "Vimwiki - Delete file" },
-	["e"] = { "<cmd>Vimwiki2HTMLBrowse<cr>", "Vimwiki - Export wiki to HTML" },
-	["g"] = { "<cmd>VimwikiGoto<cr>", "Vimwiki - Go to or create new wiki page" },
-	["n"] = { "<cmd>VimwikiNextTask<cr>", "Vimwiki - Next task" },
-	["r"] = { "<cmd>VimwikiRenameFile<cr>", "Vimwiki - Rename file" },
-	["t"] = { "<cmd>VimwikiTOC<cr>", "Vimwiki - Table of contents" },
-	["x"] = { "<cmd>VimwikiToggleListItem<cr>", "Vimwiki - Toggle list item" },
-}
-
-which_key.register(local_leader_normal_mappings, local_leader_normal_opts)
-
--- local leader visual mappings
-
-local local_leader_visual_opts = {
-	mode = "v",
-	prefix = "<localleader>",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = false,
-}
-
-local local_leader_visual_mappings = {
-	["p"] = { "<cmd>lua require('dap-python').debug_selection()", "DAP - Debug python region" },
-}
-
-which_key.register(local_leader_visual_mappings, local_leader_visual_opts)
-
 -- g prefix normal mappings
-
 local g_normal_opts = {
 	mode = "n",
 	prefix = "g",
@@ -77,7 +27,6 @@ local g_normal_mappings = {
 	["R"] = { "<cmd>lua vim.lsp.buf.references()<cr>", "LSP - References" },
 	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
 	["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "LSP - Definition" },
-	["f"] = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "LSP - Formatting" },
 	["h"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP - Hover" },
 	["i"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "LSP - Implementation" },
 	["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
@@ -88,7 +37,6 @@ local g_normal_mappings = {
 which_key.register(g_normal_mappings, g_normal_opts)
 
 -- leader normal mappings
-
 local leader_normal_opts = {
 	mode = "n",
 	prefix = "<leader>",
@@ -100,9 +48,9 @@ local leader_normal_opts = {
 
 local leader_normal_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["H"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["T"] = { "<cmd>TagbarToggle<cr>", "Toggle Tagbar" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["o"] = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
 
@@ -156,18 +104,6 @@ local leader_normal_mappings = {
 		s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
 		t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
 		u = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-
-		G = {
-			name = "+go",
-			["t"] = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug test" },
-			["l"] = { "<cmd>lua require('dap-go').debug_latest_test()<cr>", "Debug latest test" },
-		},
-
-		P = {
-			name = "+python",
-			["c"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test method" },
-			["m"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test method" },
-		},
 	},
 
 	f = {

@@ -188,7 +188,6 @@ in {
         trouble-nvim # lsp diagnostics
         undotree # undo history
         vim-commentary # comment lines
-        vim-gitgutter # git indicators
         vim-illuminate # highlight word under cursor
         vim-nix # nix syntax
         vim-tmux-navigator # tmux-like navigation

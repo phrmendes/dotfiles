@@ -4,10 +4,10 @@
 # ------------- VARIABLES ------------- #
 # ------------------------------------- #
 
-MAIN_DIR="$(pwd)"
-
 BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
+MAIN_DIR="$(pwd)"
+PYTHON_PATH="$HOME/.pyenv/bin"
 
 DEB_PACKAGES=(
 	https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb
@@ -43,6 +43,13 @@ FLATPAK_PACKAGES=(
 	com.stremio.stremio
 	org.onlyoffice.desktopeditors
 	io.podman_desktop.PodmanDesktop
+)
+
+PYTHON_PACKAGES=(
+	mypy
+	podman-compose
+	poetry
+	ptipython
 )
 
 # ------------------------------------- #
@@ -158,30 +165,29 @@ stow_dotfiles() {
 	stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
 }
 
-python_setup() {
+setup_python() {
 	curl https://pyenv.run | bash
-	"$HOME/.pyenv/bin/pyenv" install 3.11.3
-	"$HOME/.pyenv/bin/pyenv" global 3.11.3
+	"$PYTHON_PATH/pyenv" install 3.11.3
+	"$PYTHON_PATH/pyenv" global 3.11.3
 }
 
-poetry() {
-	python -m pip install --upgrade pip
-	python -m pip install poetry
-	"$HOME/.pyenv/shims/poetry" config virtualenvs.in-project true
+install_py_packages() {
+	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
+	"$PYTHON_PATH/python" -m pip install --upgrade pip
+	"$PYTHON_PATH/python" -m pip install "${PYTHON_PACKAGES[@]}"
 }
 
-python_debugger() {
+setup_poetry() {
+	"$PYTHON_PATH/poetry" config virtualenvs.in-project true
+}
+
+setup_python_debugger() {
 	mkdir "$HOME/.virtualenvs"
 	cd "$HOME/.virtualenvs" || exit
-	python3 -m venv debugpy
-	debugpy/bin/python -m pip install debugpy
+	"$PYTHON_PATH/python" -m venv debugpy
+	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install --upgrade pip
+	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install debugpy
 	cd "$MAIN_DIR" || exit
-}
-
-python_packages() {
-	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
-	python -m pip install --upgrade pip
-	python -m pip install podman-compose
 }
 
 # ------------------------------------- #
@@ -202,10 +208,10 @@ stow_dotfiles
 home_manager_setup
 home_manager_first_generation
 home_manager_update
-python_setup
-poetry
-python_debugger
-python_packages
+setup_python
+install_py_packages
+setup_poetry
+setup_python_debugger
 
 echo -e "Configure fingerprint? [y/n]"
 read -r fingerprint

@@ -29,7 +29,7 @@ null_ls.setup({
 		formatting.ruff, -- python
 		formatting.shfmt, -- bash
 		formatting.stylua, -- lua
-		formatting.yamlfmt, -- yaml
+		formatting.yq, -- yaml
 	},
 	on_attach = function(current_client, bufnr)
 		if current_client.supports_method("textDocument/formatting") then

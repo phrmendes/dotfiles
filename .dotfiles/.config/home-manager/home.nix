@@ -215,8 +215,8 @@ in {
         stylua
         terraform-ls
         universal-ctags
-        yamlfmt
         yamllint
+        yq
       ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs

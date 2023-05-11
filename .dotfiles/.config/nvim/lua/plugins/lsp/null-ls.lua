@@ -16,7 +16,6 @@ null_ls.setup({
 		diagnostics.golangci_lint, -- go
 		diagnostics.jsonlint, -- json
 		diagnostics.luacheck, -- lua
-		diagnostics.mypy, --python
 		diagnostics.ruff, -- python
 		diagnostics.shellcheck, -- bash
 		diagnostics.yamllint, -- yaml

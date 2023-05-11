@@ -43,6 +43,7 @@ FLATPAK_PACKAGES=(
 	com.stremio.stremio
 	org.onlyoffice.desktopeditors
 	io.podman_desktop.PodmanDesktop
+	org.gnome.Boxes
 )
 
 PYTHON_PACKAGES=(

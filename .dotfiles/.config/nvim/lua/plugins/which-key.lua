@@ -64,19 +64,15 @@ local leader_normal_mappings = {
 
 	b = {
 		name = "+buffers",
+		["D"] = { "<cmd>BufferLinePickClose<cr>", "Pick and close" },
 		["b"] = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
+		["c"] = { "<cmd>BufferLinePick<cr>", "Pick" },
 		["d"] = { "<cmd>bd!<cr>", "Delete buffer" },
+		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find" },
 		["h"] = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+		["l"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
 		["n"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
 		["p"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-		["l"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
-		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find" },
-
-		c = {
-			name = "+pick",
-			["c"] = { "<cmd>BufferLinePick<cr>", "Pick" },
-			["d"] = { "<cmd>BufferLinePickClose<cr>", "Pick and close" },
-		},
 
 		s = {
 			name = "+sort",

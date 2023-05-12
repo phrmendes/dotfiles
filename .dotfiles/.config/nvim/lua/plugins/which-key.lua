@@ -174,8 +174,8 @@ local leader_normal_mappings = {
 
 	t = {
 		name = "+todo",
-		["t"] = { "<cmd>TodoTrouble", "All todos" },
-		["s"] = { "<cmd>TodoTelescope", "Search todos" },
+		["t"] = { "<cmd>TodoTrouble<cr>", "All todos" },
+		["s"] = { "<cmd>TodoTelescope<cr>", "Search todos" },
 	},
 
 	T = {

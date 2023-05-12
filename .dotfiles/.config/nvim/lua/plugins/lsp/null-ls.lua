@@ -22,13 +22,11 @@ null_ls.setup({
 		formatting.gofumpt, -- go
 		formatting.goimports, -- go
 		formatting.golines, -- go
-		formatting.jq, -- json
 		formatting.nixfmt, -- nix
-		formatting.prettier, -- markdown
+		formatting.prettier.with({ filetypes = { "markdown", "json", "yaml" } }),
 		formatting.ruff, -- python
 		formatting.shfmt, -- bash
 		formatting.stylua, -- lua
-		formatting.yq, -- yaml
 	},
 	on_attach = function(current_client, bufnr)
 		if current_client.supports_method("textDocument/formatting") then

@@ -203,7 +203,6 @@ in {
         golines
         gopls
         gotools
-        jq
         ltex-ls
         lua-language-server
         luajitPackages.luacheck
@@ -216,14 +215,13 @@ in {
         terraform-ls
         universal-ctags
         yamllint
-        yq
       ]) ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
+        fixjson
         jsonlint
         prettier
         pyright
-        fixjson
       ]);
     };
     starship = {

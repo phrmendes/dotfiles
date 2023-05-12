@@ -185,6 +185,7 @@ in {
         telescope-fzf-native-nvim # telescope fzf integration
         telescope-nvim # fuzzy finder
         telescope-ui-select-nvim # telescope ui
+        todo-comments-nvim # todo comments
         todo-txt-vim # tasks
         trouble-nvim # lsp diagnostics
         undotree # undo history

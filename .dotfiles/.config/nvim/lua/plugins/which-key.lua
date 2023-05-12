@@ -165,6 +165,12 @@ local leader_normal_mappings = {
 	},
 
 	t = {
+		name = "+todo",
+		["t"] = { "<cmd>TodoTrouble", "All todos" },
+		["s"] = { "<cmd>TodoTelescope", "Search todos" },
+	},
+
+	T = {
 		name = "+tabs",
 		["d"] = { "<cmd>tabclose<cr>", "Close" },
 		["n"] = { "<cmd>tabnext<cr>", "Next" },

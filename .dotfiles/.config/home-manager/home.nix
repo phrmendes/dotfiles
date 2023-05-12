@@ -156,6 +156,7 @@ in {
         copilot-vim # github copilot
         friendly-snippets # snippets
         gitsigns-nvim # git indicators
+        goto-preview # preview definition
         gruvbox # colorscheme
         indent-blankline-nvim # indent lines
         lazygit-nvim # lazygit integration

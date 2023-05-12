@@ -24,15 +24,23 @@ local g_normal_opts = {
 
 local g_normal_mappings = {
 	["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "LSP - Declaration" },
-	["R"] = { "<cmd>lua require('goto-preview').goto_preview_references()<cr>", "LSP - References" },
+	["R"] = { "<cmd>Telescope lsp_references<cr>", "LSP - References" },
 	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
-	["c"] = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "LSP - Close all windows" },
-	["d"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "LSP - Definition" },
+	["d"] = { "<cmd>Telescope lsp_definitions<cr>", "LSP - Definition" },
 	["h"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP - Hover" },
-	["i"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", "LSP - Implementation" },
+	["i"] = { "<cmd>Telescope lsp_implementations<cr>", "LSP - Implementation" },
 	["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
-	["t"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>", "LSP - Type definition" },
+	["t"] = { "<cmd>Telescope lsp_type_definition()<cr>", "LSP - Type definition" },
+
+	g = {
+		name = "+LSP - go to",
+		["d"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "Definition" },
+		["i"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", "Implementation" },
+		["q"] = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "Close all windows" },
+		["r"] = { "<cmd>lua require('goto-preview').goto_preview_references()<cr>", "References" },
+		["t"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>", "Type definition" },
+	},
 }
 
 which_key.register(g_normal_mappings, g_normal_opts)

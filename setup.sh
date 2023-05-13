@@ -8,6 +8,7 @@ BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
 PYTHON_PATH="$HOME/.pyenv/bin"
+NIX_PATH="/nix/var/nix/profiles/default/bin/"
 
 DEB_PACKAGES=(
 	https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb
@@ -147,13 +148,13 @@ fingerprint_setup() {
 }
 
 home_manager_setup() {
-	/nix/var/nix/profiles/default/bin/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-	/nix/var/nix/profiles/default/bin/nix-channel --update
+	"$NIX_PATH/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+	"$NIX_PATH/nix-channel" --update
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
 }
 
 home_manager_first_generation() {
-	/nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
+	"$NIX_PATH/nix-shell" '<home-manager>' -A install
 }
 
 home_manager_update() {

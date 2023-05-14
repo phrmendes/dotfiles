@@ -280,7 +280,7 @@ in {
         vim-tmux-navigator
         yank
       ];
-      extraConfig = builtins.readFile /home/${user}/.config/tmux/custom.conf;
+      extraConfig = builtins.readFile /home/${user}/.config/tmux/settings.conf;
     };
   };
   xdg = {

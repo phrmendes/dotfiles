@@ -22,7 +22,6 @@ in {
       delta
       exa
       fd
-      gh
       go
       hugo
       motrix
@@ -59,6 +58,11 @@ in {
     zoxide = {
       enable = true;
       enableZshIntegration = true;
+    };
+    gh = {
+      enable = true;
+      enableGitCredentialHelper = true;
+      settings.git_protocol = "ssh";
     };
     git = {
       enable = true;

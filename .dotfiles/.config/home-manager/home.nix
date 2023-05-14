@@ -19,12 +19,12 @@ in {
       ansible
       bitwarden
       btop
+      delta
       exa
       fd
       gh
       go
       hugo
-      lazydocker
       motrix
       pandoc
       quarto
@@ -60,9 +60,38 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+    git = {
+      enable = true;
+      aliases = {
+        co = "checkout";
+        st = "status";
+        rc = "rebase --continue";
+        lg = "log";
+      };
+      delta = {
+        enable = true;
+        options = {
+          core.pager = "delta";
+          diff.colorMoved = "default";
+          interactive.diffFilter = "delta --color-only";
+          merge.conflictStyle = "diff3";
+          delta = {
+            light = false;
+            navigate = true;
+            side-by-side = true;
+          };
+        };
+      };
+    };
     lazygit = {
       enable = true;
-      settings = { gui.showIcons = true; };
+      settings = {
+        gui.showIcons = true;
+        git.paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
+      };
     };
     zsh = {
       enable = true;

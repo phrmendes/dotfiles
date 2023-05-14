@@ -190,7 +190,7 @@ in {
         friendly-snippets # snippets
         gitsigns-nvim # git indicators
         goto-preview # preview definition
-        gruvbox # colorscheme
+        gruvbox-nvim # colorscheme
         indent-blankline-nvim # indent lines
         lazygit-nvim # lazygit integration
         leap-nvim # jump to any line

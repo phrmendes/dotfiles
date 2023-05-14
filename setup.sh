@@ -11,7 +11,8 @@ PYTHON_PATH="$HOME/.pyenv/bin"
 NIX_PATH="/nix/var/nix/profiles/default/bin/"
 
 DEB_PACKAGES=(
-	https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb
+	"proton:https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
+	"wezterm:https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
 )
 
 TO_REMOVE=(
@@ -29,8 +30,8 @@ REQUIRED_PROGRAMS=(
 )
 
 APT_PACKAGES=(
-	file-roller python3 stow alacritty podman rename
-	open-fprintd fprintd-clients python3-validity
+	file-roller python3 stow podman rename open-fprintd
+	fprintd-clients python3-validity
 )
 
 PPAS=(
@@ -96,17 +97,6 @@ install_nix() {
 	export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 }
 
-install_fonts() {
-	echo -e "${BOLD_GREEN}Installing fonts...${END_COLOR}"
-	mkdir -p "$HOME/.local/share/fonts/"
-	cp "$MAIN_DIR/resources/SauceCodePro.zip" "$HOME/.local/share/fonts/"
-	cd "$HOME/.local/share/fonts/" || exit
-	unzip SauceCodePro.zip
-	rm SauceCodePro.zip
-	fc-cache -f -v
-	cd "$MAIN_DIR" || exit
-}
-
 add_ppas() {
 	echo -e "${BOLD_GREEN}Adding PPAs...${END_COLOR}"
 
@@ -134,11 +124,12 @@ install_deb() {
 	echo -e "${BOLD_GREEN}Installing .deb packages...${END_COLOR}"
 
 	for program in "${DEB_PACKAGES[@]}"; do
-		wget -O /tmp/"${program}" "$program"
-		sudo dpkg -i /tmp/"${program}"
-	done
+		key="${program%%:*}"   # deletes after ":"
+		value="${program##*:}" # deletes before ":"
 
-	sudo dpkg-reconfigure --all
+		wget -O /tmp/"${key}" "$value"
+		sudo apt install /tmp/"${key} -y"
+	done
 }
 
 fingerprint_setup() {
@@ -200,7 +191,6 @@ update
 remove_locks
 install_required_programs
 remove_programs
-install_fonts
 install_nix
 add_ppas
 install_apt

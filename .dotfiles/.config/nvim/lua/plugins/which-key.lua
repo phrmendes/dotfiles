@@ -33,7 +33,7 @@ local g_normal_mappings = {
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
 	["t"] = { "<cmd>Telescope lsp_type_definition()<cr>", "LSP - Type definition" },
 
-	g = {
+	p = {
 		name = "+LSP - go to",
 		["d"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "Definition" },
 		["i"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", "Implementation" },

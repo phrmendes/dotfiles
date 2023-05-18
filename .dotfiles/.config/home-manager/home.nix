@@ -24,6 +24,7 @@ in {
       fd
       go
       hugo
+      lazydocker
       motrix
       pandoc
       quarto

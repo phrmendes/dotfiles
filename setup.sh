@@ -4,11 +4,14 @@
 # ------------- VARIABLES ------------- #
 # ------------------------------------- #
 
+ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
-PYTHON_PATH="$HOME/.pyenv/bin"
 NIX_PATH="/nix/var/nix/profiles/default/bin/"
+PYTHON_PATH="$HOME/.pyenv/bin"
+UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_CODENAME")
+USER=$(whoami)
 
 DEB_PACKAGES=(
 	"proton:https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
@@ -30,8 +33,9 @@ REQUIRED_PROGRAMS=(
 )
 
 APT_PACKAGES=(
-	file-roller python3 stow podman rename open-fprintd
-	fprintd-clients python3-validity
+	file-roller python3 stow rename open-fprintd
+	fprintd-clients python3-validity docker-ce docker-ce-cli
+	containerd.io docker-buildx-plugin docker-compose-plugin
 )
 
 PPAS=(
@@ -44,13 +48,10 @@ FLATPAK_PACKAGES=(
 	com.mattjakeman.extensionmanager
 	com.stremio.stremio
 	org.onlyoffice.desktopeditors
-	io.podman_desktop.PodmanDesktop
 	org.gnome.Boxes
 )
 
 PYTHON_PACKAGES=(
-	mypy
-	podman-compose
 	poetry
 	ptipython
 )
@@ -89,6 +90,16 @@ remove_programs() {
 	apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
 	sudo apt remove "${TO_REMOVE[@]}" -y
 	clean
+}
+
+setup_docker() {
+	echo -e "${BOLD_GREEN}Setting up Docker...${END_COLOR}"
+	sudo install -m 0755 -d /etc/apt/keyrings
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+	sudo chmod a+r /etc/apt/keyrings/docker.gpg
+	echo "deb [arch=$ARCHITECTURE signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $UBUNTU_VERSION stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+	sudo usermod -aG docker "$USER"
+	update
 }
 
 install_nix() {
@@ -191,6 +202,7 @@ update
 remove_locks
 install_required_programs
 remove_programs
+setup_docker
 install_nix
 add_ppas
 install_apt

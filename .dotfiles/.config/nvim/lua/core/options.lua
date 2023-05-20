@@ -17,6 +17,7 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 opt.breakindent = true
+opt.showtabline = 1
 
 -- line wrapping
 opt.wrap = true

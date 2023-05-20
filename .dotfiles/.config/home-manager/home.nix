@@ -148,10 +148,9 @@ in {
       plugins = with pkgs.vimPlugins; [
         (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
         (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
-        (fromGitHub "HEAD"
-          "cljoly/telescope-repo.nvim") # navigate between git repos
-        (fromGitHub "HEAD"
-          "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+        (fromGitHub "HEAD" "cljoly/telescope-repo.nvim") # git repos
+        (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
+        (fromGitHub "HEAD" "stevearc/oil.nvim") # file management
         (nvim-treesitter.withPlugins (p: [
           p.bash
           p.bibtex

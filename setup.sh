@@ -43,10 +43,8 @@ PPAS=(
 )
 
 FLATPAK_PACKAGES=(
-	com.github.muriloventuroso.easyssh
 	com.github.tchx84.flatseal
 	com.mattjakeman.extensionmanager
-	com.stremio.stremio
 	org.onlyoffice.desktopeditors
 	org.gnome.Boxes
 )

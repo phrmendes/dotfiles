@@ -22,6 +22,7 @@ in {
       delta
       exa
       fd
+      gh
       go
       hugo
       lazydocker
@@ -59,11 +60,6 @@ in {
     zoxide = {
       enable = true;
       enableZshIntegration = true;
-    };
-    gh = {
-      enable = true;
-      enableGitCredentialHelper = true;
-      settings.git_protocol = "ssh";
     };
     git = {
       enable = true;

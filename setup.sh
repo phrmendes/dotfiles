@@ -62,7 +62,7 @@ clean() {
 	echo -e "${BOLD_GREEN}Cleaning up...${END_COLOR}"
 	sudo apt clean
 	sudo apt autoclean
-	sudo apt autoremove
+	sudo apt autoremove -y
 }
 
 update() {

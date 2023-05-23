@@ -137,7 +137,7 @@ install_deb() {
 		value="${program##*:}" # deletes before ":"
 
 		wget -O /tmp/"${key}.deb" "https://${value}"
-		sudo dpkg --install /tmp/"${key}.deb -y"
+		sudo dpkg --install /tmp/"${key}.deb" -y
 	done
 
 	sudo apt --fix-broken install -y

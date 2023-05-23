@@ -8,35 +8,35 @@ ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
 MAIN_DIR="$(pwd)"
-NIX_PATH="/nix/var/nix/profiles/default/bin/"
-PYTHON_PATH="$HOME/.pyenv/bin"
+NIX_BIN="/nix/var/nix/profiles/default/bin/"
+PYENV_PATH="$HOME/.pyenv"
+PYENV_BIN="$PYENV_PATH/bin/pyenv"
+PYTHON_BIN="$PYENV_PATH/shims/python"
 UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_CODENAME")
 USER=$(whoami)
 
 DEB_PACKAGES=(
-	"proton:https://proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
-	"wezterm:https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
+	"proton:proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
+	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
 )
 
 TO_REMOVE=(
-	gnome-contacts gnome-calendar totem geary
-	gnome-terminal gnome-orca evince totem xterm
-	fprintd
+	gnome-contacts gnome-calendar totem geary gnome-terminal
+	gnome-orca evince totem xterm fprintd simple-scan
 )
 
 REQUIRED_PROGRAMS=(
 	wget git zip sqlite unzip gzip curl file build-essential
-	procps libssl-dev zlib1g-dev libbz2-dev libreadline-dev
-	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev
-	libxmlsec1-dev libffi-dev liblzma-dev llvm fonts-dejavu
 	ca-certificates gnupg
 )
 
 APT_PACKAGES=(
-	file-roller python3 stow rename open-fprintd
-	fprintd-clients python3-validity docker-ce docker-ce-cli
-	containerd.io docker-buildx-plugin docker-compose-plugin
+	file-roller python3 stow rename sqlite docker-ce
+	docker-ce-cli containerd.io docker-buildx-plugin
+	docker-compose-plugin
 )
+
+FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 
 PPAS=(
 	ppa:uunicorn/open-fprintd
@@ -136,9 +136,11 @@ install_deb() {
 		key="${program%%:*}"   # deletes after ":"
 		value="${program##*:}" # deletes before ":"
 
-		wget -O /tmp/"${key}" "$value"
-		sudo apt install /tmp/"${key} -y"
+		wget -O /tmp/"${key}.deb" "https://${value}"
+		sudo dpkg --install /tmp/"${key}.deb -y"
 	done
+
+	sudo apt --fix-broken install -y
 }
 
 fingerprint_setup() {
@@ -148,13 +150,13 @@ fingerprint_setup() {
 }
 
 home_manager_setup() {
-	"$NIX_PATH/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-	"$NIX_PATH/nix-channel" --update
+	"$NIX_BIN/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+	"$NIX_BIN/nix-channel" --update
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
 }
 
 home_manager_first_generation() {
-	"$NIX_PATH/nix-shell" '<home-manager>' -A install
+	"$NIX_BIN/nix-shell" '<home-manager>' -A install
 }
 
 home_manager_update() {
@@ -169,27 +171,35 @@ stow_dotfiles() {
 
 setup_python() {
 	curl https://pyenv.run | bash
-	"$PYTHON_PATH/pyenv" install 3.11.3
-	"$PYTHON_PATH/pyenv" global 3.11.3
+	"$PYENV_BIN" install 3.11.3
+	"$PYENV_BIN" global 3.11.3
 }
 
 install_py_packages() {
 	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
-	"$PYTHON_PATH/python" -m pip install --upgrade pip
-	"$PYTHON_PATH/python" -m pip install "${PYTHON_PACKAGES[@]}"
+	"$PYTHON_BIN" -m pip install --upgrade pip
+	"$PYTHON_BIN" -m pip install "${PYTHON_PACKAGES[@]}"
 }
 
 setup_poetry() {
-	"$PYTHON_PATH/poetry" config virtualenvs.in-project true
+	"$PYTHON_BIN" -m poetry config virtualenvs.in-project true
 }
 
 setup_python_debugger() {
 	mkdir "$HOME/.virtualenvs"
 	cd "$HOME/.virtualenvs" || exit
-	"$PYTHON_PATH/python" -m venv debugpy
+	"$PYTHON_BIN" -m venv debugpy
 	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install --upgrade pip
 	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install debugpy
 	cd "$MAIN_DIR" || exit
+}
+
+fingerprint_setup() {
+	echo -e "${BOLD_GREEN}Setting up fingerprint...${END_COLOR}"
+	update
+	sudo apt install "${FINGERPRINT_PACKAGES[@]}" -y
+	clean
+	fprintd-enroll
 }
 
 # ------------------------------------- #
@@ -206,9 +216,9 @@ add_ppas
 install_apt
 install_flatpaks
 install_deb
-stow_dotfiles
 home_manager_setup
 home_manager_first_generation
+stow_dotfiles
 home_manager_update
 setup_python
 install_py_packages

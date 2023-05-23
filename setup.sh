@@ -142,13 +142,6 @@ install_deb() {
 	sudo apt --fix-broken install -y
 }
 
-fingerprint_setup() {
-	echo -e "${BOLD_GREEN}Setting up fingerprint...${END_COLOR}"
-	sudo apt install "${FINGERPRINT_PACKAGES[@]}" -y
-	clean
-	fprintd-enroll
-}
-
 home_manager_setup() {
 	"$NIX_BIN/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 	"$NIX_BIN/nix-channel" --update

@@ -38,8 +38,6 @@ APT_PACKAGES=(
 	docker-compose-plugin
 )
 
-FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-
 PPAS=(
 	ppa:uunicorn/open-fprintd
 )
@@ -51,10 +49,9 @@ FLATPAK_PACKAGES=(
 	org.gnome.Boxes
 )
 
-PYTHON_PACKAGES=(
-	poetry
-	ptipython
-)
+FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
+
+PYTHON_PACKAGES=(poetry ptipython)
 
 # ------------------------------------- #
 # ------------- FUNCTIONS ------------- #

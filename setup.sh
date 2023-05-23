@@ -27,7 +27,9 @@ TO_REMOVE=(
 
 REQUIRED_PROGRAMS=(
 	wget git zip sqlite unzip gzip curl file build-essential
-	ca-certificates gnupg
+	libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
+	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev
+	libffi-dev liblzma-dev fonts-dejavu ca-certificates gnupg
 )
 
 APT_PACKAGES=(

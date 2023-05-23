@@ -161,10 +161,6 @@ home_manager_first_generation() {
 	"$NIX_BIN/nix-shell" '<home-manager>' -A install
 }
 
-home_manager_update() {
-	"$HOME/.nix-profile/bin/home-manager" switch
-}
-
 stow_dotfiles() {
 	rm "$HOME/.config/home-manager/home.nix"
 	rm "$HOME/.profile"
@@ -221,7 +217,6 @@ install_deb
 home_manager_setup
 home_manager_first_generation
 stow_dotfiles
-home_manager_update
 setup_python
 install_py_packages
 setup_poetry

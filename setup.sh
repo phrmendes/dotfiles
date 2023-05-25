@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# ------------------------------------- #
-# ------------- VARIABLES ------------- #
-# ------------------------------------- #
-
 ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
@@ -14,6 +10,9 @@ PYENV_BIN="$PYENV_PATH/bin/pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
 UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_CODENAME")
 USER=$(whoami)
+FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
+PPAS=(ppa:uunicorn/open-fprintd)
+PYTHON_PACKAGES=(poetry ptipython)
 
 DEB_PACKAGES=(
 	"proton:proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
@@ -21,25 +20,20 @@ DEB_PACKAGES=(
 )
 
 TO_REMOVE=(
-	gnome-contacts gnome-calendar totem geary gnome-terminal
+	gnome-contacts gnome-calendar totem gnome-terminal
 	gnome-orca evince totem xterm fprintd simple-scan
 )
 
 REQUIRED_PROGRAMS=(
-	wget git zip sqlite unzip gzip curl file build-essential
-	libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
-	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev
-	libffi-dev liblzma-dev fonts-dejavu ca-certificates gnupg
+	wget git zip unzip gzip curl file gnupg build-essential fonts-dejavu
+	gdebi-core ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev
+	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev
+	libffi-dev liblzma-dev
 )
 
 APT_PACKAGES=(
-	file-roller python3 stow rename sqlite docker-ce
-	docker-ce-cli containerd.io docker-buildx-plugin
-	docker-compose-plugin xclip locate
-)
-
-PPAS=(
-	ppa:uunicorn/open-fprintd
+	file-roller stow docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+	docker-compose-plugin
 )
 
 FLATPAK_PACKAGES=(
@@ -48,14 +42,6 @@ FLATPAK_PACKAGES=(
 	org.onlyoffice.desktopeditors
 	org.gnome.Boxes
 )
-
-FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-
-PYTHON_PACKAGES=(poetry ptipython)
-
-# ------------------------------------- #
-# ------------- FUNCTIONS ------------- #
-# ------------------------------------- #
 
 clean() {
 	echo -e "${BOLD_GREEN}Cleaning up...${END_COLOR}"
@@ -136,7 +122,7 @@ install_deb() {
 		value="${program##*:}" # deletes before ":"
 
 		wget -O /tmp/"${key}.deb" "https://${value}"
-		sudo dpkg --install /tmp/"${key}.deb" -y
+		sudo gdebi /tmp/"${key}.deb" -y
 	done
 
 	sudo apt --fix-broken install -y
@@ -190,10 +176,6 @@ fingerprint_setup() {
 	clean
 	fprintd-enroll
 }
-
-# ------------------------------------- #
-# ------------- EXECUTION ------------- #
-# ------------------------------------- #
 
 update
 remove_locks

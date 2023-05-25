@@ -221,6 +221,7 @@ in {
         vim-commentary # comment lines
         vim-illuminate # highlight word under cursor
         vim-nix # nix syntax
+        vim-surrround # surround text
         vim-tmux-navigator # tmux-like navigation
         vim-visual-multi # multiple cursors
         vimwiki # notes

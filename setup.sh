@@ -35,7 +35,7 @@ REQUIRED_PROGRAMS=(
 APT_PACKAGES=(
 	file-roller python3 stow rename sqlite docker-ce
 	docker-ce-cli containerd.io docker-buildx-plugin
-	docker-compose-plugin
+	docker-compose-plugin xclip locate
 )
 
 PPAS=(

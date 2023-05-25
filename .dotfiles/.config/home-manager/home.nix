@@ -229,6 +229,7 @@ in {
       extraPackages = (with pkgs; [
         ansible-language-server
         delve
+        glow
         gofumpt
         golangci-lint
         golines

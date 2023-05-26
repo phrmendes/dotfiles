@@ -28,7 +28,6 @@ null_ls.setup({
 		formatting.gofumpt, -- go
 		formatting.goimports, -- go
 		formatting.golines, -- go
-		formatting.nixfmt, -- nix
 		formatting.prettier.with({ filetypes = { "markdown", "json", "yaml" } }),
 		formatting.ruff, -- python
 		formatting.shfmt, -- bash

@@ -1,14 +1,17 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   user = "phrmendes";
   fromGitHub = ref: repo:
     pkgs.vimUtils.buildVimPluginFrom2Nix {
       pname = "${lib.strings.sanitizeDerivationName repo}";
       version = ref;
       src = builtins.fetchGit {
+        inherit ref;
         url = "https://github.com/${repo}.git";
-        ref = ref;
       };
     };
 in {
@@ -19,7 +22,6 @@ in {
       ansible
       bitwarden
       btop
-      delta
       exa
       fd
       gh
@@ -36,7 +38,6 @@ in {
       sqlite
       tealdeer
       tectonic
-      tere
       vlc
       xclip
       zathura
@@ -45,7 +46,7 @@ in {
     stateVersion = "22.11";
     sessionVariables = {
       VISUAL = "nvim";
-      TERMINAL = "alacritty";
+      TERMINAL = "wezterm";
       SUDO_EDITOR = "nvim";
     };
   };
@@ -60,7 +61,6 @@ in {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      nix-direnv.enable = true;
     };
     zoxide = {
       enable = true;
@@ -120,20 +120,13 @@ in {
         tldr = "${pkgs.tealdeer}/bin/tldr";
         stow_dotfiles = ''
           stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
-        system_clean =
-          "sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y";
-        system_update =
-          "sudo apt update && sudo apt upgrade -y && flatpak update -y";
+        system_clean = "sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y";
+        system_update = "sudo apt update && sudo apt upgrade -y && flatpak update -y";
       };
       initExtra = ''
         export PYENV_ROOT="$HOME/.pyenv"
         command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
         eval "$(pyenv init -)"
-
-        tere() {
-            local result=$(command tere "$@")
-            [ -n "$result" ] && cd -- "$result"
-        }
       '';
     };
     neovim = {
@@ -182,8 +175,7 @@ in {
           p.yaml
         ])) # treesitter
         alpha-nvim # dashboard
-        autoclose-nvim # auto close pairs
-        bufferline-nvim # manage buffers
+        bufdelete-nvim # better buffer deletion
         cmp-nvim-lsp # lsp completion
         cmp-path # path completion
         cmp_luasnip # snippets completion
@@ -194,7 +186,6 @@ in {
         gruvbox-nvim # colorscheme
         indent-blankline-nvim # indent lines
         lazygit-nvim # lazygit integration
-        leap-nvim # jump to any line
         lspkind-nvim # vscode-like pictograms
         lualine-nvim # statusline
         luasnip # snippets
@@ -215,7 +206,6 @@ in {
         plenary-nvim # lua utils
         project-nvim # project management
         symbols-outline-nvim # symbols outline
-        telescope-file-browser-nvim # telescope file browser
         telescope-fzf-native-nvim # telescope fzf integration
         telescope-nvim # fuzzy finder
         telescope-ui-select-nvim # telescope ui
@@ -223,44 +213,44 @@ in {
         todo-txt-vim # tasks
         trouble-nvim # lsp diagnostics
         undotree # undo history
-        vim-commentary # comment lines
-        vim-illuminate # highlight word under cursor
-        vim-nix # nix syntax
-        vim-surround # surround text
         vim-tmux-navigator # tmux-like navigation
         vim-visual-multi # multiple cursors
         vimwiki # notes
         which-key-nvim # keybindings
       ];
-      extraPackages = (with pkgs; [
-        ansible-language-server
-        delve
-        glow
-        gofumpt
-        golangci-lint
-        golines
-        gopls
-        gotools
-        ltex-ls
-        lua-language-server
-        luajitPackages.luacheck
-        nixfmt
-        rnix-lsp
-        ruff
-        shellcheck
-        shfmt
-        stylua
-        terraform-ls
-        universal-ctags
-        yamllint
-      ]) ++ (with pkgs.nodePackages; [
-        bash-language-server
-        dockerfile-language-server-nodejs
-        fixjson
-        jsonlint
-        prettier
-        pyright
-      ]);
+      extraPackages =
+        (with pkgs; [
+          alejandra
+          ansible-language-server
+          delve
+          glow
+          gofumpt
+          golangci-lint
+          golines
+          gomodifytags
+          gopls
+          gotools
+          ltex-ls
+          lua-language-server
+          luajitPackages.luacheck
+          rnix-lsp
+          ruff
+          shellcheck
+          shfmt
+          statix
+          stylua
+          terraform-ls
+          universal-ctags
+          yamllint
+        ])
+        ++ (with pkgs.nodePackages; [
+          bash-language-server
+          dockerfile-language-server-nodejs
+          fixjson
+          jsonlint
+          prettier
+          pyright
+        ]);
     };
     starship = {
       enable = true;

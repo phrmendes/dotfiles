@@ -3,6 +3,7 @@ local g = vim.g
 g.vimwiki_global_ext = 0
 g.vimwiki_filetypes = { "markdown" }
 g.vimwiki_listsyms = "x "
+g.vimwiki_key_mappings = { all_maps = 0 }
 g.vimwiki_list = {
 	{
 		path = "~/pCloudDrive/notes/personal",

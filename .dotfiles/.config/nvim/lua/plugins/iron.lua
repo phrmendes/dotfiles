@@ -10,12 +10,12 @@ core.setup({
 		},
 	},
 	keymaps = {
-		clear = "<localleader>sc",
-		exit = "<localleader>sq",
-		send_file = "<localleader>sf",
-		send_line = "<localleader>sl",
-		visual_send = "<localleader>ss",
-		interrupt = "<localleader>si",
+		clear = "<localleader>rc",
+		exit = "<localleader>rq",
+		send_file = "<localleader>rf",
+		send_line = "<localleader>rl",
+		visual_send = "<localleader>rs",
+		interrupt = "<localleader>ri",
 	},
 	highlight = {
 		italic = true,

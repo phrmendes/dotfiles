@@ -73,22 +73,18 @@ local leader_normal_mappings = {
 
 	b = {
 		name = "+buffers",
-		["D"] = { "<cmd>BufferLinePickClose<cr>", "Pick and close" },
 		["b"] = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
-		["c"] = { "<cmd>BufferLinePick<cr>", "Pick" },
-		["d"] = { "<cmd>bd!<cr>", "Delete buffer" },
+		["d"] = { "<cmd>Bdelete<cr>", "Delete buffer" },
 		["f"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find" },
-		["h"] = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-		["l"] = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
-		["n"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-		["p"] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+		["p"] = { "<cmd>bp<cr>", "Previous buffer" },
+		["n"] = { "<cmd>bn<cr>", "Next buffer" },
+		["g"] = { "<cmd>bf<cr>", "First buffer" },
+		["G"] = { "<cmd>bl<cr>", "Last buffer" },
 
 		s = {
-			name = "+sort",
-			["d"] = { "<cmd>BufferLineSortByDirectory<cr>", "Sort by directory" },
-			["e"] = { "<cmd>BufferLineSortByExtension<cr>", "Sort by extension" },
-			["r"] = { "<cmd>BufferLineSortByRelativeDirectory<cr>", "By relative directory" },
-			["t"] = { "<cmd>BufferLineSortByTabs<cr>", "By tabs" },
+			name = "+split",
+			["p"] = { "<cmd>sbp<cr>", "Previous buffer" },
+			["n"] = { "<cmd>sbn<cr>", "Next buffer" },
 		},
 	},
 
@@ -118,10 +114,6 @@ local leader_normal_mappings = {
 		["p"] = { "<cmd>Telescope file_browser hidden=true<cr>", "File browser (project)" },
 		["r"] = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 		["s"] = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
-		["b"] = {
-			"<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
-			"File browser (current buffer)",
-		},
 
 		["S"] = {
 			name = "+spectre",

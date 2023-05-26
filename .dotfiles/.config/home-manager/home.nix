@@ -23,8 +23,8 @@ in {
       bitwarden
       btop
       exa
-      fd
       gh
+      fd
       go
       hugo
       lazydocker
@@ -143,7 +143,6 @@ in {
         (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
         (fromGitHub "HEAD" "cljoly/telescope-repo.nvim") # git repos
         (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
-        (fromGitHub "HEAD" "stevearc/oil.nvim") # file management
         (nvim-treesitter.withPlugins (p: [
           p.bash
           p.bibtex
@@ -178,6 +177,7 @@ in {
         cmp-nvim-lsp # lsp completion
         cmp-path # path completion
         cmp_luasnip # snippets completion
+        comment-nvim # better comments
         copilot-vim # github copilot
         friendly-snippets # snippets
         gitsigns-nvim # git indicators
@@ -216,6 +216,7 @@ in {
         vim-visual-multi # multiple cursors
         vimwiki # notes
         which-key-nvim # keybindings
+        oil-nvim # file management
       ];
       extraPackages =
         (with pkgs; [

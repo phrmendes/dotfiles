@@ -137,8 +137,7 @@ in {
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
-      extraLuaConfig =
-        builtins.readFile /home/${user}/.config/nvim/settings.lua;
+      extraConfig = "luafile /home/${user}/.config/nvim/settings.lua";
       plugins = with pkgs.vimPlugins; [
         (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
         (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows

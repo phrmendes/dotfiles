@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
+APPIMAGES=("pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud")
 ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
+FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 MAIN_DIR="$(pwd)"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
-PYENV_PATH="$HOME/.pyenv"
+PPAS=(ppa:uunicorn/open-fprintd)
 PYENV_BIN="$PYENV_PATH/bin/pyenv"
+PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
+PYTHON_PACKAGES=(poetry ptipython)
 UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_CODENAME")
 USER=$(whoami)
-FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-PPAS=(ppa:uunicorn/open-fprintd)
-PYTHON_PACKAGES=(poetry ptipython)
 
 DEB_PACKAGES=(
 	"proton:proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
@@ -121,11 +122,25 @@ install_deb() {
 		key="${program%%:*}"   # deletes after ":"
 		value="${program##*:}" # deletes before ":"
 
-		wget -O /tmp/"${key}.deb" "https://${value}"
-		sudo gdebi /tmp/"${key}.deb" -n
+		wget -O "/tmp/${key}.deb" "https://${value}"
+		sudo gdebi "/tmp/${key}.deb" -n
 	done
 
 	sudo apt --fix-broken install -y
+}
+
+download_appimages() {
+	echo -e "${BOLD_GREEN}Downloading AppImages...${END_COLOR}"
+
+	for program in "${APPIMAGES[@]}"; do
+		key="${program%%:*}"   # deletes after ":"
+		value="${program##*:}" # deletes before ":"
+
+		wget -O "/tmp/${key}.AppImage" "https://${value}"
+		chmod +x "/tmp/${key}.AppImage"
+		mkdir -p "$HOME/AppImage"
+		mv "/tmp/${key}.AppImage" "$HOME/AppImage"
+	done
 }
 
 home_manager_setup() {
@@ -194,6 +209,7 @@ setup_python
 install_py_packages
 setup_poetry
 setup_python_debugger
+download_appimages
 
 echo -e "Configure fingerprint? [y/n]"
 read -r fingerprint

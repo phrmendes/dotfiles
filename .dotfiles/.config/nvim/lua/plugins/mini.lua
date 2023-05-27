@@ -1,5 +1,4 @@
 local hicursorword = require("mini.cursorword")
-local jump = require("mini.jump")
 local jump2d = require("mini.jump2d")
 local move = require("mini.move")
 local pairs = require("mini.pairs")
@@ -9,7 +8,6 @@ local surround = require("mini.surround")
 local tabline = require("mini.tabline")
 
 hicursorword.setup()
-jump.setup()
 pairs.setup()
 statusline.setup()
 tabline.setup()

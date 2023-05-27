@@ -212,7 +212,6 @@ in {
         todo-txt-vim # tasks
         trouble-nvim # lsp diagnostics
         undotree # undo history
-        vim-tmux-navigator # tmux-like navigation
         vim-visual-multi # multiple cursors
         vimwiki # notes
         which-key-nvim # keybindings

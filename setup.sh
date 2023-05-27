@@ -149,7 +149,7 @@ home_manager_setup() {
 	"$NIX_BIN/nix-channel" --update
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
 	"$NIX_BIN/nix-shell" '<home-manager>' -A install
-	rm "$HOME/.config/home-manager/*"
+	rm "$HOME"/.config/home-manager/*
 	ln -s "$CWD/home-manager/home.nix" "$HOME/.config/home-manager/home.nix"
 	"$HOME/.nix-profile/bin/home-manager" switch
 }
@@ -204,7 +204,6 @@ install_apt
 install_flatpaks
 install_deb
 home_manager_setup
-home_manager_first_generation
 stow_dotfiles
 setup_python
 install_py_packages

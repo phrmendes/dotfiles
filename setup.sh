@@ -154,12 +154,6 @@ home_manager_setup() {
 	"$HOME/.nix-profile/bin/home-manager" switch
 }
 
-stow_dotfiles() {
-	rm "$HOME/.config/home-manager/home.nix"
-	rm "$HOME/.profile"
-	stow --target="$HOME" --dir="$HOME/Projects/bkps" --stow .dotfiles
-}
-
 setup_python() {
 	curl https://pyenv.run | bash
 	"$PYENV_BIN" install 3.11.3
@@ -204,7 +198,6 @@ install_apt
 install_flatpaks
 install_deb
 home_manager_setup
-stow_dotfiles
 setup_python
 install_py_packages
 setup_poetry

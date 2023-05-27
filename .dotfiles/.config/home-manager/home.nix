@@ -256,24 +256,27 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
-    tmux = {
+    zellij = {
       enable = true;
-      baseIndex = 1;
-      disableConfirmationPrompt = true;
-      escapeTime = 0;
-      keyMode = "vi";
-      mouse = true;
-      prefix = "C-Space";
-      sensibleOnTop = true;
-      shell = "${pkgs.zsh}/bin/zsh";
-      plugins = with pkgs.tmuxPlugins; [
-        continuum
-        gruvbox
-        resurrect
-        vim-tmux-navigator
-        yank
-      ];
-      extraConfig = builtins.readFile /home/${user}/.config/tmux/settings.conf;
+      settings = {
+        default_shell = "zsh";
+        theme = "grubvox";
+        themes = {
+          grubvox = {
+            fg = "#D5C4A1";
+            bg = "#282828";
+            black = "#3C3836";
+            red = "#CC241D";
+            green = "#98971A";
+            yellow = "#D79921";
+            blue = "#3C8588";
+            magenta = "#B16286";
+            cyan = "#689D6A";
+            white = "#FBF1C7";
+            orange = "#D65D0E";
+          };
+        };
+      };
     };
   };
   xdg = {

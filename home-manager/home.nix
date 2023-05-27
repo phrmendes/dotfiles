@@ -127,7 +127,6 @@ in {
         mkdir = "mkdir -p";
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
-        stow_dotfiles = ''stow --target="/home/${user}" --dir="/home/${user}/Projects/bkps/" --stow .dotfiles'';
         system_clean = "sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y";
         system_update = "sudo apt update && sudo apt upgrade -y && flatpak update -y";
         tldr = "${pkgs.tealdeer}/bin/tldr";

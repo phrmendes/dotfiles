@@ -9,7 +9,6 @@ local tabline = require("mini.tabline")
 
 hicursorword.setup()
 pairs.setup()
-statusline.setup()
 tabline.setup()
 
 surround.setup({
@@ -24,6 +23,10 @@ surround.setup({
 		suffix_last = "l", -- suffix to search with "prev" method
 		suffix_next = "n", -- suffix to search with "next" method
 	},
+})
+
+statusline.setup({
+	set_vim_settings = false,
 })
 
 splitjoin.setup({

@@ -252,6 +252,9 @@ in {
           jsonlint
           prettier
           pyright
+        ])
+        ++ (with pkgs.python3Packages; [
+          debugpy
         ]);
     };
     starship = {

@@ -170,15 +170,6 @@ setup_poetry() {
 	"$PYTHON_BIN" -m poetry config virtualenvs.in-project true
 }
 
-setup_python_debugger() {
-	mkdir "$HOME/.virtualenvs"
-	cd "$HOME/.virtualenvs" || exit
-	"$PYTHON_BIN" -m venv debugpy
-	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install --upgrade pip
-	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install debugpy
-	cd "$MAIN_DIR" || exit
-}
-
 fingerprint_setup() {
 	echo -e "${BOLD_GREEN}Setting up fingerprint...${END_COLOR}"
 	update

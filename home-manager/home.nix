@@ -50,6 +50,16 @@ in {
       SUDO_EDITOR = "nvim";
     };
   };
+  home.file = {
+    ".config/nix/nix.conf".source = ./config_files/nix.conf;
+    ".config/nixpkgs/config.nix".source = ./config_files/config.nix;
+    ".config/wezterm/wezterm.lua".source = ./config_files/wezterm.lua;
+    ".profile".source = ./config_files/.profile;
+    ".config/nvim" = {
+      source = ./config_files/nvim;
+      recursive = true;
+    };
+  };
   programs = {
     home-manager.enable = true;
     bat.enable = true;
@@ -123,11 +133,7 @@ in {
         tldr = "${pkgs.tealdeer}/bin/tldr";
         zl = "${pkgs.zellij}/bin/zellij";
       };
-      initExtra = ''
-        export PYENV_ROOT="$HOME/.pyenv"
-        command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
-      '';
+      initExtra = builtins.readFile ./config_files/extra.zsh;
     };
     neovim = {
       enable = true;
@@ -137,10 +143,8 @@ in {
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
-      extraConfig = "luafile /home/${user}/.config/nvim/settings.lua";
       plugins = with pkgs.vimPlugins; [
         (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
-        (fromGitHub "HEAD" "beauwilliams/focus.nvim") # manage windows
         (fromGitHub "HEAD" "cljoly/telescope-repo.nvim") # git repos
         (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
         (nvim-treesitter.withPlugins (p: [

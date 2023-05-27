@@ -14,6 +14,7 @@ PYTHON_BIN="$PYENV_PATH/shims/python"
 PYTHON_PACKAGES=(poetry ptipython)
 UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_CODENAME")
 USER=$(whoami)
+CWD=$(pwd)
 
 DEB_PACKAGES=(
 	"proton:proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
@@ -33,7 +34,7 @@ REQUIRED_PROGRAMS=(
 )
 
 APT_PACKAGES=(
-	file-roller stow docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+	file-roller docker-ce docker-ce-cli containerd.io docker-buildx-plugin
 	docker-compose-plugin
 )
 
@@ -147,10 +148,10 @@ home_manager_setup() {
 	"$NIX_BIN/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 	"$NIX_BIN/nix-channel" --update
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
-}
-
-home_manager_first_generation() {
 	"$NIX_BIN/nix-shell" '<home-manager>' -A install
+	rm "$HOME/.config/home-manager/*"
+	ln -s "$CWD/home-manager/home.nix" "$HOME/.config/home-manager/home.nix"
+	"$HOME/.nix-profile/bin/home-manager" switch
 }
 
 stow_dotfiles() {

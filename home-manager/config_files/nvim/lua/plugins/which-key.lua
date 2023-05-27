@@ -187,13 +187,11 @@ local leader_normal_mappings = {
 	w = {
 		name = "+windows",
 		["d"] = { "<C-w>q", "Close" },
-		["e"] = { "<cmd>FocusEqualise<cr>", "Equalize" },
-		["h"] = { "<cmd>FocusSplitLeft<cr>", "Split left" },
-		["j"] = { "<cmd>FocusSplitDown<cr>", "Split down" },
-		["k"] = { "<cmd>FocusSplitUp<cr>", "Split up" },
-		["l"] = { "<cmd>FocusSplitRight<cr>", "Split right" },
-		["m"] = { "<cmd>FocusMaximise<cr>", "Maximize" },
-		["s"] = { "<cmd>FocusSplitNicely<cr>", "Auto split" },
+		["v"] = { "<C-w>s", "Vertical split" },
+		["s"] = { "<C-w>v", "Split" },
+		["n"] = { "<C-w>w", "Next" },
+		["p"] = { "<C-w>p", "Previous" },
+		["x"] = { "<C-w>x", "Swap" },
 	},
 }
 

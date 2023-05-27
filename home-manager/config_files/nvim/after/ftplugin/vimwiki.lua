@@ -1,4 +1,7 @@
 local setup, which_key = pcall(require, "which-key")
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
 if not setup then
 	return
 end
@@ -13,12 +16,6 @@ local normal_opts = {
 }
 
 local normal_mappings = {
-	["<Backspace>"] = { "<cmd>VimwikiGoBackLink<cr>", "Vimwiki - Go back" },
-	["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki - Follow link" },
-	["<Left>"] = { "<cmd>VimwikiTableMoveColumnLeft<cr>", "Vimwiki - Move table column to left" },
-	["<Right>"] = { "<cmd>VimwikiTableMoveColumnRight<cr>", "Vimwiki - Move table column to right" },
-	["<S-Tab>"] = { "<cmd>VimwikiPrevLink<cr>", "Vimwiki - Next link" },
-	["<Tab>"] = { "<cmd>VimwikiNextLink<cr>", "Vimwiki - Next link" },
 	["a"] = { "<cmd>VimwikiTableAlignQ<cr>", "Vimwiki - Align table" },
 	["b"] = { "<cmd>VimwikiBacklinks<cr>", "Vimwiki - Backlinks" },
 	["c"] = { "<cmd>VimwikiCheckLinks<cr>", "Vimwiki - Check links" },
@@ -30,5 +27,12 @@ local normal_mappings = {
 	["t"] = { "<cmd>VimwikiTOC<cr>", "Vimwiki - Table of contents" },
 	["x"] = { "<cmd>VimwikiToggleListItem<cr>", "Vimwiki - Toggle list item" },
 }
+
+map("n", "<Backspace>", "<cmd>VimwikiGoBackLink<cr>", opts)
+map("n", "<CR>", "<cmd>VimwikiFollowLink<cr>", opts)
+map("n", "<S-Left>", "<cmd>VimwikiTableMoveColumnLeft<cr>", opts)
+map("n", "<S-Right>", "<cmd>VimwikiTableMoveColumnRight<cr>", opts)
+map("n", "<S-Tab>", "<cmd>VimwikiPrevLink<cr>", opts)
+map("n", "<Tab>", "<cmd>VimwikiNextLink<cr>", opts)
 
 which_key.register(normal_mappings, normal_opts)

@@ -149,7 +149,7 @@ home_manager_setup() {
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
 	"$NIX_BIN/nix-shell" '<home-manager>' -A install
 	rm "$HOME"/.config/home-manager/*
-	ln -s "$CWD/home-manager/home.nix" "$HOME/.config/home-manager/home.nix"
+	ln -s "$CWD/nix/home.nix" "$HOME/.config/home-manager/home.nix"
 	"$HOME/.nix-profile/bin/home-manager" switch
 }
 

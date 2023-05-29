@@ -146,35 +146,6 @@ in {
         (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
         (fromGitHub "HEAD" "cljoly/telescope-repo.nvim") # git repos
         (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
-        (nvim-treesitter.withPlugins (p: [
-          p.bash
-          p.bibtex
-          p.dockerfile
-          p.git_config
-          p.git_rebase
-          p.gitattributes
-          p.gitcommit
-          p.gitignore
-          p.go
-          p.hcl
-          p.html
-          p.json
-          p.latex
-          p.lua
-          p.make
-          p.markdown
-          p.markdown_inline
-          p.nix
-          p.python
-          p.r
-          p.sql
-          p.terraform
-          p.todotxt
-          p.toml
-          p.vim
-          p.vimdoc
-          p.yaml
-        ])) # treesitter
         alpha-nvim # dashboard
         bufdelete-nvim # better buffer deletion
         cmp-nvim-lsp # lsp completion
@@ -204,7 +175,9 @@ in {
         nvim-lspconfig # lsp
         nvim-spectre # search and replace
         nvim-tree-lua # file explorer
+        nvim-treesitter.withAllGrammars # treesitter
         nvim-web-devicons # icons
+        oil-nvim # file management
         plenary-nvim # lua utils
         project-nvim # project management
         symbols-outline-nvim # symbols outline
@@ -218,7 +191,6 @@ in {
         vim-visual-multi # multiple cursors
         vimwiki # notes
         which-key-nvim # keybindings
-        oil-nvim # file management
       ];
       extraPackages =
         (with pkgs; [

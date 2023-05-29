@@ -65,15 +65,16 @@ in {
     bat.enable = true;
     fzf = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
     direnv = {
       enable = true;
       enableBashIntegration = true;
+      enableZshIntegration = true;
     };
     zoxide = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
     git = {
       enable = true;
@@ -108,8 +109,11 @@ in {
         };
       };
     };
-    fish = {
+    zsh = {
       enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
       shellAliases = {
         cat = "${pkgs.bat}/bin/bat --theme=gruvbox-dark";
         catr = "/usr/bin/cat";
@@ -120,16 +124,15 @@ in {
         lla = "${pkgs.exa}/bin/exa --icons -la";
         ls = "${pkgs.exa}/bin/exa --icons";
         lt = "${pkgs.exa}/bin/exa --icons --tree";
-        zl = "${pkgs.zellij}/bin/zellij";
-      };
-      shellAbbrs = {
         mkdir = "mkdir -p";
         nix_clean = "nix-collect-garbage";
         nix_update = "home-manager switch";
         system_clean = "sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y";
         system_update = "sudo apt update && sudo apt upgrade -y && flatpak update -y";
+        tldr = "${pkgs.tealdeer}/bin/tldr";
+        zl = "${pkgs.zellij}/bin/zellij";
       };
-      shellInit = builtins.readFile ./config_files/init.fish;
+      initExtra = builtins.readFile ./config_files/extra.zsh;
     };
     neovim = {
       enable = true;
@@ -253,12 +256,12 @@ in {
     };
     starship = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
     zellij = {
       enable = true;
       settings = {
-        default_shell = "${pkgs.fish}/bin/fish}";
+        default_shell = "zsh";
         theme = "grubvox";
         themes = {
           grubvox = {

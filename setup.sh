@@ -5,7 +5,6 @@ ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
 END_COLOR="\e[0m"
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-MAIN_DIR="$(pwd)"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
 PPAS=(ppa:uunicorn/open-fprintd)
 PYENV_BIN="$PYENV_PATH/bin/pyenv"

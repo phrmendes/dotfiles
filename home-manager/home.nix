@@ -261,7 +261,7 @@ in {
     zellij = {
       enable = true;
       settings = {
-        default_shell = "zsh";
+        default_shell = "${pkgs.zsh}/bin/zsh";
         theme = "grubvox";
         themes = {
           grubvox = {

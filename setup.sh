@@ -172,11 +172,9 @@ setup_poetry() {
 
 setup_python_debugger() {
 	mkdir "$HOME/.virtualenvs"
-	cd "$HOME/.virtualenvs" || exit
 	"$PYTHON_BIN" -m venv debugpy
 	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install --upgrade pip
 	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install debugpy
-	cd "$MAIN_DIR" || exit
 }
 
 fingerprint_setup() {

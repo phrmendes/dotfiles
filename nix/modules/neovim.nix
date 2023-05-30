@@ -68,6 +68,8 @@ in {
       todo-txt-vim # tasks
       trouble-nvim # lsp diagnostics
       undotree # undo history
+      vim-nix # nix stuff
+      vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       vimwiki # notes
       which-key-nvim # keybindings

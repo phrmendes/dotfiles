@@ -15,6 +15,8 @@
     pandoc
     quarto
     rename
+    podman
+    podman-compose
     ripgrep
     spotify
     sqlite

@@ -15,6 +15,7 @@ in {
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix
+    ./modules/zoxide.nix
     ./modules/zsh.nix
   ];
   programs.home-manager.enable = true;

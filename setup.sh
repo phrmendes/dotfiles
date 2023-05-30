@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 APPIMAGES=("pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud")
-ARCHITECTURE=$(dpkg --print-architecture)
+APT_PACKAGES=(file-roller)
 BOLD_GREEN="\e[1;32m"
+CWD=$(pwd)
 END_COLOR="\e[0m"
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
@@ -11,9 +12,7 @@ PYENV_BIN="$PYENV_PATH/bin/pyenv"
 PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
 PYTHON_PACKAGES=(poetry ptipython)
-UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_CODENAME")
 USER=$(whoami)
-CWD=$(pwd)
 
 DEB_PACKAGES=(
 	"proton:proton.me/download/bridge/protonmail-bridge_3.0.21-1_amd64.deb"
@@ -30,11 +29,6 @@ REQUIRED_PROGRAMS=(
 	gdebi-core ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev
 	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev
 	libffi-dev liblzma-dev
-)
-
-APT_PACKAGES=(
-	file-roller docker-ce docker-ce-cli containerd.io docker-buildx-plugin
-	docker-compose-plugin
 )
 
 FLATPAK_PACKAGES=(
@@ -74,16 +68,6 @@ remove_programs() {
 	apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
 	sudo apt remove "${TO_REMOVE[@]}" -y
 	clean
-}
-
-setup_docker() {
-	echo -e "${BOLD_GREEN}Setting up Docker...${END_COLOR}"
-	sudo install -m 0755 -d /etc/apt/keyrings
-	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-	sudo chmod a+r /etc/apt/keyrings/docker.gpg
-	echo "deb [arch=$ARCHITECTURE signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $UBUNTU_VERSION stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
-	sudo usermod -aG docker "$USER"
-	update
 }
 
 install_nix() {
@@ -190,7 +174,6 @@ update
 remove_locks
 install_required_programs
 remove_programs
-setup_docker
 install_nix
 add_ppas
 install_apt

@@ -1,5 +1,5 @@
-local opt = vim.opt
 local cmd = vim.cmd
+local opt = vim.opt
 
 -- syntax
 opt.syntax = "on"

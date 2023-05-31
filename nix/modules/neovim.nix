@@ -36,7 +36,7 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       goto-preview # preview definition
-      gruvbox # colorscheme
+      gruvbox-material # colorscheme
       indent-blankline-nvim # indent lines
       lazygit-nvim # lazygit integration
       lspkind-nvim # vscode-like pictograms

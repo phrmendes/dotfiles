@@ -1,4 +1,5 @@
 local cmd = vim.cmd
+local g = vim.g
 local opt = vim.opt
 
 -- syntax
@@ -69,4 +70,5 @@ opt.iskeyword:append("-")
 opt.shell = "zsh"
 
 -- colorscheme
-cmd([[ colorscheme gruvbox ]])
+g.gruvbox_material_background = "medium"
+cmd([[ colorscheme gruvbox-material ]])

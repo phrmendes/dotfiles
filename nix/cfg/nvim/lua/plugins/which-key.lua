@@ -34,10 +34,10 @@ local g_normal_mappings = {
 	["t"] = { "<cmd>Telescope lsp_type_definition()<cr>", "LSP - Type definition" },
 
 	p = {
-		name = "+LSP - go to",
+		name = "+LSP - Preview",
+		["D"] = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "Close all windows" },
 		["d"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "Definition" },
 		["i"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", "Implementation" },
-		["q"] = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "Close all windows" },
 		["r"] = { "<cmd>lua require('goto-preview').goto_preview_references()<cr>", "References" },
 		["t"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>", "Type definition" },
 	},

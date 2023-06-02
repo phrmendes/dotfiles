@@ -16,6 +16,7 @@ local normal_opts = {
 }
 
 local normal_mappings = {
+	["R"] = { "<cmd>VimwikiRenameFile<cr>", "Vimwiki - Rename file" },
 	["a"] = { "<cmd>VimwikiTableAlignQ<cr>", "Vimwiki - Align table" },
 	["b"] = { "<cmd>VimwikiBacklinks<cr>", "Vimwiki - Backlinks" },
 	["c"] = { "<cmd>VimwikiCheckLinks<cr>", "Vimwiki - Check links" },
@@ -23,7 +24,6 @@ local normal_mappings = {
 	["e"] = { "<cmd>Vimwiki2HTMLBrowse<cr>", "Vimwiki - Export wiki to HTML" },
 	["g"] = { "<cmd>VimwikiGoto<cr>", "Vimwiki - Go to or create new wiki page" },
 	["n"] = { "<cmd>VimwikiNextTask<cr>", "Vimwiki - Next task" },
-	["r"] = { "<cmd>VimwikiRenameFile<cr>", "Vimwiki - Rename file" },
 	["t"] = { "<cmd>VimwikiTOC<cr>", "Vimwiki - Table of contents" },
 	["x"] = { "<cmd>VimwikiToggleListItem<cr>", "Vimwiki - Toggle list item" },
 }

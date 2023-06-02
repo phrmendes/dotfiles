@@ -12,6 +12,28 @@ local conf = {
 
 which_key.setup(conf)
 
+-- local leader prefix normal mappings
+local localleader_prefix_normal_opts = {
+	mode = "n",
+	prefix = "<leader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+}
+
+local localleader_normal_mappings = {
+	r = {
+		name = "+REPL",
+		["F"] = { "<cmd>IronFocus<cr>", "Focus" },
+		["R"] = { "<cmd>IronRestart<cr>", "Restart" },
+		["h"] = { "<cmd>IronHide<cr>", "Hide" },
+		["o"] = { "<cmd>IronRepl<cr>", "Open" },
+	},
+}
+
+which_key.register(localleader_normal_mappings, localleader_prefix_normal_opts)
+
 -- g prefix normal mappings
 local g_normal_opts = {
 	mode = "n",
@@ -154,14 +176,6 @@ local leader_normal_mappings = {
 		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
-	},
-
-	r = {
-		name = "+REPL",
-		["R"] = { "<cmd>IronRestart<cr>", "Restart" },
-		["f"] = { "<cmd>IronFocus<cr>", "Focus" },
-		["h"] = { "<cmd>IronHide<cr>", "Hide" },
-		["o"] = { "<cmd>IronRepl<cr>", "Open" },
 	},
 
 	t = {

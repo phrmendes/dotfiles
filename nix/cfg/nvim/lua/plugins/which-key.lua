@@ -15,7 +15,7 @@ which_key.setup(conf)
 -- local leader prefix normal mappings
 local localleader_prefix_normal_opts = {
 	mode = "n",
-	prefix = "<leader>",
+	prefix = "<localleader>",
 	buffer = nil,
 	silent = true,
 	noremap = true,

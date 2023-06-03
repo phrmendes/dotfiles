@@ -9,14 +9,14 @@
     gh
     go
     hugo
-    lazydocker
     mlocate
     motrix
+    onlyoffice-bin
     pandoc
-    quarto
-    rename
     podman
     podman-compose
+    quarto
+    rename
     ripgrep
     spotify
     sqlite

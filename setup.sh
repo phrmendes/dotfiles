@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 APPIMAGES=("pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud")
-APT_PACKAGES=(file-roller)
 BOLD_GREEN="\e[1;32m"
 CWD=$(pwd)
 END_COLOR="\e[0m"
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
+FLATPAK_PACKAGES=(com.mattjakeman.extensionmanager)
+FPRINT_PPA=ppa:uunicorn/open-fprintd
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
-PPAS=(ppa:uunicorn/open-fprintd)
 PYENV_BIN="$PYENV_PATH/bin/pyenv"
 PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
@@ -28,14 +28,7 @@ REQUIRED_PROGRAMS=(
 	wget git zip unzip gzip curl file gnupg build-essential fonts-dejavu
 	gdebi-core ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev
 	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev
-	libffi-dev liblzma-dev
-)
-
-FLATPAK_PACKAGES=(
-	com.github.tchx84.flatseal
-	com.mattjakeman.extensionmanager
-	org.onlyoffice.desktopeditors
-	org.gnome.Boxes
+	libffi-dev liblzma-dev file-roller
 )
 
 clean() {
@@ -74,21 +67,6 @@ install_nix() {
 	echo -e "${BOLD_GREEN}Installing Nix package manager...${END_COLOR}"
 	sh <(curl -L https://nixos.org/nix/install) --daemon
 	export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
-}
-
-add_ppas() {
-	echo -e "${BOLD_GREEN}Adding PPAs...${END_COLOR}"
-
-	for ppa in "${PPAS[@]}"; do
-		sudo add-apt-repository "$ppa" -y
-	done
-
-	update
-}
-
-install_apt() {
-	echo -e "${BOLD_GREEN}Installing apt packages...${END_COLOR}"
-	sudo apt install "${APT_PACKAGES[@]}" -y
 }
 
 install_flatpaks() {
@@ -164,6 +142,7 @@ setup_python_debugger() {
 
 fingerprint_setup() {
 	echo -e "${BOLD_GREEN}Setting up fingerprint...${END_COLOR}"
+	sudo add-apt-repository "$FPRINT_PPA" -y
 	update
 	sudo apt install "${FINGERPRINT_PACKAGES[@]}" -y
 	clean
@@ -175,8 +154,6 @@ remove_locks
 install_required_programs
 remove_programs
 install_nix
-add_ppas
-install_apt
 install_flatpaks
 install_deb
 home_manager_setup

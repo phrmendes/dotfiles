@@ -55,6 +55,8 @@ lspconfig.pyright.setup({
 		python = {
 			analysis = {
 				useLibraryCodeForTypes = true,
+				autoSearchPaths = true,
+				reportMissingImports = true,
 				typeCheckingMode = "basic",
 				diagnosticMode = "workspace",
 				inlayHints = {

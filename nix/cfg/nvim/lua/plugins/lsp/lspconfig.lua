@@ -54,11 +54,10 @@ lspconfig.pyright.setup({
 	settings = {
 		python = {
 			analysis = {
-				useLibraryCodeForTypes = true,
 				autoSearchPaths = true,
-				reportMissingImports = true,
-				typeCheckingMode = "basic",
 				diagnosticMode = "workspace",
+				typeCheckingMode = "basic",
+				useLibraryCodeForTypes = true,
 				inlayHints = {
 					variableTypes = true,
 					functionReturnTypes = true,

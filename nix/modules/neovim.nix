@@ -96,7 +96,6 @@ in {
         statix
         stylua
         terraform-ls
-        universal-ctags
         yamllint
       ])
       ++ (with pkgs.nodePackages; [

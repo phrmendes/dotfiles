@@ -7,7 +7,6 @@
     exa
     fd
     gh
-    go
     hugo
     mlocate
     motrix

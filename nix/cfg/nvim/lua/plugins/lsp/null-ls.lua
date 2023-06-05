@@ -14,10 +14,8 @@ local augroup = api.nvim_create_augroup("LspFormatting", {}) -- to setup format 
 null_ls.setup({
 	-- linters and formatters
 	sources = {
-		code_actions.gomodifytags, -- go
 		code_actions.shellcheck, -- bash
 		code_actions.statix, -- nix
-		diagnostics.golangci_lint, -- go
 		diagnostics.jsonlint, -- json
 		diagnostics.luacheck, -- lua
 		diagnostics.ruff, -- python
@@ -25,9 +23,6 @@ null_ls.setup({
 		diagnostics.statix, -- nix
 		diagnostics.yamllint, -- yaml
 		formatting.alejandra, -- nix
-		formatting.gofumpt, -- go
-		formatting.goimports, -- go
-		formatting.golines, -- go
 		formatting.prettier.with({ filetypes = { "markdown", "json", "yaml" } }),
 		formatting.ruff, -- python
 		formatting.shfmt, -- bash

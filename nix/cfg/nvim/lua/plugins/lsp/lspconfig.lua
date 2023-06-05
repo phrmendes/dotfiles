@@ -83,17 +83,3 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
-
-lspconfig.gopls.setup({
-	capabilities = capabilities,
-	settings = {
-		gopls = {
-			completeUnimported = true,
-			usePlaceholders = true,
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-			},
-		},
-	},
-})

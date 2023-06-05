@@ -48,7 +48,6 @@ in {
       null-ls-nvim # lsp actions
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
-      nvim-dap-go # go dap support
       nvim-dap-python # python dap support
       nvim-dap-ui # ui for dap
       nvim-dap-virtual-text # virtual text for dap
@@ -78,14 +77,7 @@ in {
       (with pkgs; [
         alejandra
         ansible-language-server
-        delve
         glow
-        gofumpt
-        golangci-lint
-        golines
-        gomodifytags
-        gopls
-        gotools
         ltex-ls
         lua-language-server
         luajitPackages.luacheck

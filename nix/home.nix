@@ -17,10 +17,9 @@ in {
     ./modules/tmux.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
-    ./modules/home-manager.nix
-    ./modules/xdg.nix
-    ./modules/targets.nix
   ];
+  programs.home-manager.enable = true;
+  targets.genericLinux.enable = true;
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
@@ -30,5 +29,9 @@ in {
       TERMINAL = "/usr/bin/wezterm";
       SUDO_EDITOR = "${pkgs.neovim}/bin/nvim";
     };
+  };
+  xdg = {
+    enable = true;
+    mime.enable = true;
   };
 }

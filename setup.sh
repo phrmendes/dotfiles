@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
+APPIMAGES=("pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud")
 BOLD_GREEN="\e[1;32m"
 CWD=$(pwd)
 END_COLOR="\e[0m"
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-FLATPAK_PACKAGES=(com.mattjakeman.extensionmanager)
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
 LOCAL_BIN="$HOME/.local/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
@@ -14,14 +14,9 @@ PYTHON_BIN="$PYENV_PATH/shims/python"
 PYTHON_PACKAGES=(poetry ptipython)
 USER=$(whoami)
 
-APPIMAGES=(
-	"pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud"
-	"wezterm:https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage"
-)
-
 TO_REMOVE=(
 	gnome-contacts gnome-calendar totem gnome-terminal geary
-	gnome-orca evince totem xterm fprintd simple-scan gparted
+	evince totem xterm fprintd simple-scan gparted
 )
 
 REQUIRED_PROGRAMS=(
@@ -29,6 +24,13 @@ REQUIRED_PROGRAMS=(
 	ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev
 	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev
 	libxmlsec1-dev libffi-dev liblzma-dev file-roller uidmap rar unrar
+)
+
+FLATPAK_PACKAGES=(
+	ch.protonmail.protonmail-bridge
+	com.github.tchx84.Flatseal
+	com.mattjakeman.extensionmanager
+	org.wezfurlong.wezterm
 )
 
 clean() {
@@ -77,19 +79,6 @@ install_flatpaks() {
 	done
 }
 
-download_appimages() {
-	echo -e "${BOLD_GREEN}Downloading AppImages...${END_COLOR}"
-
-	for program in "${APPIMAGES[@]}"; do
-		key="${program%%:*}"   # deletes after ":"
-		value="${program##*:}" # deletes before ":"
-
-		mkdir -p "$LOCAL_BIN"
-		wget -O "$LOCAL_BIN/${key}" "https://${value}"
-		chmod +x "$LOCAL_BIN/${key}"
-	done
-}
-
 home_manager_setup() {
 	"$NIX_BIN/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 	"$NIX_BIN/nix-channel" --update
@@ -134,6 +123,19 @@ fingerprint_setup() {
 	fprintd-enroll
 }
 
+download_appimages() {
+	echo -e "${BOLD_GREEN}Downloading AppImages...${END_COLOR}"
+
+	for program in "${APPIMAGES[@]}"; do
+		key="${program%%:*}"   # deletes after ":"
+		value="${program##*:}" # deletes before ":"
+
+		mkdir -p "$LOCAL_BIN"
+		wget -O "$LOCAL_BIN/${key}" "https://${value}"
+		chmod +x "$LOCAL_BIN/${key}"
+	done
+}
+
 update
 remove_locks
 install_required_programs
@@ -143,6 +145,7 @@ install_flatpaks
 download_appimages
 home_manager_setup
 setup_python
+download_appimages
 
 read -rp "Configure fingerprint? [y/n] " fingerprint
 [[ "$fingerprint" == "y" ]] && fingerprint_setup

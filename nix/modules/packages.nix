@@ -4,12 +4,11 @@
     baobab
     bat
     bitwarden
-    btop
-    electron-mail
     exa
     fd
     fragments
     gh
+    gnome.geary
     hugo
     mlocate
     onlyoffice-bin

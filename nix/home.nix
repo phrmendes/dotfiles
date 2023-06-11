@@ -17,6 +17,7 @@ in {
     ./modules/tmux.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
+    ./modules/btop.nix
   ];
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;

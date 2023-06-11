@@ -5,6 +5,7 @@
     bat
     bitwarden
     btop
+    electron-mail
     exa
     fd
     fragments

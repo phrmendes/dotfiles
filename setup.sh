@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-APPIMAGES=("pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud")
 BOLD_GREEN="\e[1;32m"
 CWD=$(pwd)
 END_COLOR="\e[0m"
@@ -28,9 +27,12 @@ REQUIRED_PROGRAMS=(
 
 FLATPAK_PACKAGES=(
 	ch.protonmail.protonmail-bridge
-	com.github.tchx84.Flatseal
 	com.mattjakeman.ExtensionManager
-	org.wezfurlong.wezterm
+)
+
+APPIMAGES=(
+	"pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud"
+	"wezterm:https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage"
 )
 
 clean() {

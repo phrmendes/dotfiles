@@ -70,5 +70,4 @@ opt.iskeyword:append("-")
 opt.shell = "zsh"
 
 -- colorscheme
-g.gruvbox_material_background = "medium"
-cmd([[ colorscheme gruvbox-material ]])
+cmd([[ colorscheme catppuccin-macchiato ]])

@@ -28,6 +28,7 @@ in {
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       alpha-nvim # dashboard
       bufdelete-nvim # better buffer deletion
+      catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
       cmp_luasnip # snippets completion
@@ -36,7 +37,6 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       goto-preview # preview definition
-      gruvbox-material # colorscheme
       indent-blankline-nvim # indent lines
       lazygit-nvim # lazygit integration
       lspkind-nvim # vscode-like pictograms

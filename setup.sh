@@ -7,9 +7,9 @@ FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
 LOCAL_BIN="$HOME/.local/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
-PYENV_BIN="$PYENV_PATH/bin/pyenv"
 PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
+PYENV_BIN="$PYENV_PATH/bin/pyenv"
 PYTHON_PACKAGES=(poetry ptipython)
 USER=$(whoami)
 
@@ -23,6 +23,7 @@ REQUIRED_PROGRAMS=(
 	ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev
 	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev
 	libxmlsec1-dev libffi-dev liblzma-dev file-roller uidmap rar unrar
+	libfuse2
 )
 
 FLATPAK_PACKAGES=(

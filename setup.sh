@@ -31,8 +31,8 @@ FLATPAK_PACKAGES=(
 )
 
 APPIMAGES=(
-	"pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud"
-	"wezterm:https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage"
+	"pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZhq1do7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZiH3dGJDvi3zvgvVdjGzzPJ3ppHLk/pcloud"
+	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage"
 )
 
 clean() {

@@ -94,7 +94,7 @@ home_manager_setup() {
 
 setup_python() {
 	echo -e "${BOLD_GREEN}Setting up python...${END_COLOR}"
-	sudo zypper install "${PYTHON_REQUIREMENTS[@]}"
+	curl https://pyenv.run | bash
 	"$PYENV_BIN" install 3.11.3
 	"$PYENV_BIN" global 3.11.3
 

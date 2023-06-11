@@ -29,7 +29,7 @@ REQUIRED_PROGRAMS=(
 FLATPAK_PACKAGES=(
 	ch.protonmail.protonmail-bridge
 	com.github.tchx84.Flatseal
-	com.mattjakeman.extensionmanager
+	com.mattjakeman.ExtensionManager
 	org.wezfurlong.wezterm
 )
 

@@ -88,6 +88,7 @@ home_manager_setup() {
 	export NIXPKGS_ALLOW_UNFREE=1
 
 	rm "$HOME"/.config/home-manager/*
+	rm "$HOME/.profile"
 	ln -s "$CWD/nix/home.nix" "$HOME/.config/home-manager/home.nix"
 	"$HOME/.nix-profile/bin/home-manager" switch
 }

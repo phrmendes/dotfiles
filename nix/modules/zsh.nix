@@ -18,7 +18,7 @@
       nix_clean = "nix-collect-garbage";
       nix_update = "home-manager switch";
       system_clean = "sudo apt autoremove -y && sudo apt autoclean -y && flatpak uninstall --unused -y";
-      system_update = "sudo apt update && sudo apt upgrade -y && flatpak update -y";
+      system_update = "sudo apt update && sudo apt dist-upgrade -y && flatpak update -y";
       tldr = "${pkgs.tealdeer}/bin/tldr";
     };
     initExtra = builtins.readFile ../cfg/init.zsh;

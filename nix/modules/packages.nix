@@ -1,15 +1,16 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     ansible
+    baobab
     bat
     bitwarden
     btop
     exa
     fd
+    fragments
     gh
     hugo
     mlocate
-    motrix
     onlyoffice-bin
     pandoc
     podman

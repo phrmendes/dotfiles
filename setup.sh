@@ -3,35 +3,21 @@
 BOLD_GREEN="\e[1;32m"
 CWD=$(pwd)
 END_COLOR="\e[0m"
-FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
 LOCAL_BIN="$HOME/.local/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
+USER=$(whoami)
 PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
 PYENV_BIN="$PYENV_PATH/bin/pyenv"
+
+FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
+FLATPAK_PACKAGES=(ch.protonmail.protonmail-bridge com.mattjakeman.ExtensionManager)
+PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
-USER=$(whoami)
+REQUIRED_PACKAGES=(wget zip unzip gzip curl file gnupg build-essential fonts-dejavu ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev file-roller uidmap rar unrar libfuse2)
 
-TO_REMOVE=(
-	gnome-contacts gnome-calendar totem gnome-terminal geary
-	evince totem xterm fprintd simple-scan gparted
-)
-
-REQUIRED_PROGRAMS=(
-	wget zip unzip gzip curl file gnupg build-essential fonts-dejavu
-	ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev
-	libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev
-	libxmlsec1-dev libffi-dev liblzma-dev file-roller uidmap rar unrar
-	libfuse2
-)
-
-FLATPAK_PACKAGES=(
-	ch.protonmail.protonmail-bridge
-	com.mattjakeman.ExtensionManager
-)
-
-APPIMAGES=(
+APPIMAGES_PACKAGES=(
 	"pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZOhQUo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZV6pnruPPPKYpSXC8JvainzaokmRk/pcloud"
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage"
 )
@@ -58,13 +44,13 @@ remove_locks() {
 
 install_required_programs() {
 	echo -e "${BOLD_GREEN}Installing required programs...${END_COLOR}"
-	sudo apt install "${REQUIRED_PROGRAMS[@]}" -y
+	sudo apt install "${REQUIRED_PACKAGES[@]}" -y
 }
 
 remove_programs() {
 	echo -e "${BOLD_GREEN}Removing programs...${END_COLOR}"
 	apt list --installed | grep libreoffice | cut -d "/" -f 1 | tr '\n' ' ' | xargs sudo apt remove -y
-	sudo apt remove "${TO_REMOVE[@]}" -y
+	sudo apt remove "${PACKAGES_TO_REMOVE[@]}" -y
 	clean
 }
 
@@ -130,7 +116,7 @@ fingerprint_setup() {
 download_appimages() {
 	echo -e "${BOLD_GREEN}Downloading AppImages...${END_COLOR}"
 
-	for program in "${APPIMAGES[@]}"; do
+	for program in "${APPIMAGES_PACKAGES[@]}"; do
 		key="${program%%:*}"   # deletes after ":"
 		value="${program##*:}" # deletes before ":"
 

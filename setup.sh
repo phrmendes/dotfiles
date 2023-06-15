@@ -11,6 +11,7 @@ PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
 PYENV_BIN="$PYENV_PATH/bin/pyenv"
 USER_THEME_URL="https://github.com/catppuccin/gtk/releases/download/v0.6.0/Catppuccin-Macchiato-Standard-Blue-Dark.zip"
+USER_THEME="Catppuccin-Macchiato-Standard-Blue-Dark"
 
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FLATPAK_PACKAGES=(ch.protonmail.protonmail-bridge com.mattjakeman.ExtensionManager)
@@ -144,6 +145,12 @@ install_theme() {
 	wget -O "$HOME/.themes/theme.zip" $USER_THEME_URL
 	unzip "$HOME/.themes/theme.zip" -d "$HOME/.themes"
 	rm "$HOME/.themes/theme.zip"
+
+	echo -e "${BOLD_GREEN}Configuring gtk-4.0 themes...${END_COLOR}"
+	mkdir -p "${HOME}/.config/gtk-4.0"
+	ln -sf "${HOME}/${USER_THEME}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
+	ln -sf "${HOME}/${USER_THEME}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
+	ln -sf "${HOME}/${USER_THEME}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 }
 
 update

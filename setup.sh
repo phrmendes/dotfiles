@@ -79,7 +79,7 @@ home_manager_setup() {
 	"$HOME/.nix-profile/bin/home-manager" switch
 }
 
-setup_python() {
+python_setup() {
 	echo -e "${BOLD_GREEN}Setting up python...${END_COLOR}"
 	curl https://pyenv.run | bash
 	"$PYENV_BIN" install 3.11.3
@@ -143,7 +143,7 @@ install_nix
 install_flatpaks
 download_appimages
 home_manager_setup
-setup_python
+python_setup
 download_appimages
 
 read -rp "Configure fingerprint? [y/n] " fingerprint

@@ -15,12 +15,9 @@ FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FLATPAK_PACKAGES=(ch.protonmail.protonmail-bridge com.mattjakeman.ExtensionManager)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
-REQUIRED_PACKAGES=(wget zip unzip gzip curl file gnupg build-essential fonts-dejavu ca-certificates libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev file-roller uidmap rar unrar libfuse2)
-
-APPIMAGES_PACKAGES=(
-	"pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZOhQUo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZV6pnruPPPKYpSXC8JvainzaokmRk/pcloud"
-	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage"
-)
+REQUIRED_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev)
+DEB_PACKAGES=("wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb")
+APPIMAGES_PACKAGES=("pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZZZOhQUo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZV6pnruPPPKYpSXC8JvainzaokmRk/pcloud")
 
 clean() {
 	echo -e "${BOLD_GREEN}Cleaning up...${END_COLOR}"
@@ -123,6 +120,18 @@ download_appimages() {
 		mkdir -p "$LOCAL_BIN"
 		wget -O "$LOCAL_BIN/${key}" "https://${value}"
 		chmod +x "$LOCAL_BIN/${key}"
+	done
+}
+
+install_deb() {
+	echo -e "${BOLD_GREEN}Installing deb packages...${END_COLOR}"
+
+	for program in "${DEB_PACKAGES[@]}"; do
+		key="${program%%:*}"   # deletes after ":"
+		value="${program##*:}" # deletes before ":"
+
+		wget -O "$LOCAL_BIN/${key}.deb" "https://${value}"
+		sudo gdebi "$LOCAL_BIN/${key}.deb"
 	done
 }
 

@@ -10,6 +10,7 @@ USER=$(whoami)
 PYENV_PATH="$HOME/.pyenv"
 PYTHON_BIN="$PYENV_PATH/shims/python"
 PYENV_BIN="$PYENV_PATH/bin/pyenv"
+USER_THEME_URL="https://github.com/catppuccin/gtk/releases/download/v0.6.0/Catppuccin-Macchiato-Standard-Blue-Dark.zip"
 
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FLATPAK_PACKAGES=(ch.protonmail.protonmail-bridge com.mattjakeman.ExtensionManager)
@@ -63,6 +64,8 @@ install_flatpaks() {
 	for program in "${FLATPAK_PACKAGES[@]}"; do
 		flatpak install "$program" -y
 	done
+
+	sudo flatpak override --filesystem="$HOME/.themes"
 }
 
 home_manager_setup() {
@@ -133,6 +136,14 @@ install_deb() {
 		wget -O "$LOCAL_BIN/${key}.deb" "https://${value}"
 		sudo gdebi "$LOCAL_BIN/${key}.deb"
 	done
+}
+
+install_theme() {
+	echo -e "${BOLD_GREEN}Installing theme...${END_COLOR}"
+	mkdir -p "$HOME/.themes"
+	wget -O "$HOME/.themes/theme.zip" $USER_THEME_URL
+	unzip "$HOME/.themes/theme.zip" -d "$HOME/.themes"
+	rm "$HOME/.themes/theme.zip"
 }
 
 update

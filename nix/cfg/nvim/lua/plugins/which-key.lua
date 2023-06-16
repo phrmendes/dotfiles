@@ -57,9 +57,9 @@ local g_normal_mappings = {
 
 	T = {
 		name = "+trouble",
-		["L"] = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
+		["L"] = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
 		["d"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
-		["l"] = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+		["l"] = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
 		["q"] = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
 		["w"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
 	},

@@ -53,7 +53,7 @@ local g_normal_mappings = {
 	["i"] = { "<cmd>Telescope lsp_implementations<cr>", "LSP - Implementation" },
 	["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
-	["t"] = { "<cmd>Telescope lsp_type_definition()<cr>", "LSP - Type definition" },
+	["t"] = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" },
 
 	T = {
 		name = "+trouble",

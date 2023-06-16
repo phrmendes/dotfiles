@@ -55,6 +55,15 @@ local g_normal_mappings = {
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
 	["t"] = { "<cmd>Telescope lsp_type_definition()<cr>", "LSP - Type definition" },
 
+	T = {
+		name = "+trouble",
+		["L"] = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
+		["d"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
+		["l"] = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+		["q"] = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+		["w"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
+	},
+
 	p = {
 		name = "+LSP - Preview",
 		["D"] = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "Close all windows" },
@@ -166,9 +175,7 @@ local leader_normal_mappings = {
 		["S"] = { "<cmd>SymbolsOutline<cr>", "Symbols tree" },
 		["c"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
 		["d"] = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-		["q"] = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix window" },
 		["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
-		["t"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
 		["w"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
 	},
 

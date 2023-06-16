@@ -125,6 +125,8 @@ local leader_normal_mappings = {
 		q = { "<cmd>lua require('dap').close()<cr>", "Quit" },
 		s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
 		u = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
+		r = { "<cmd>lua require('dapui').open({reset = true})<cr>", "Reset UI panes" },
+		t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" },
 	},
 
 	f = {

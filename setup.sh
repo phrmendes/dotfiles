@@ -155,6 +155,10 @@ install_theme() {
 	ln -sf "${HOME}/.themes/${USER_THEME}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
 	ln -sf "${HOME}/.themes/${USER_THEME}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
 	ln -sf "${HOME}/.themes/${USER_THEME}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+
+	echo -e "${BOLD_GREEN}Configuring flatpaks...${END_COLOR}"
+	sudo flatpak override --filesystem="$HOME/.themes"
+	sudo flatpak override --env=GTK_THEME="${USER_THEME}"
 }
 
 update

@@ -6,8 +6,6 @@ END_COLOR="\e[0m"
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
 LOCAL_BIN="$HOME/.local/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
-ASDF_BIN="$HOME/.nix-profile/bin/asdf"
-PYTHON_BIN="$HOME/.asdf/shims/python"
 USER=$(whoami)
 USER_THEME="Catppuccin-Macchiato-Standard-Blue-Dark"
 USER_THEME_URL="https://github.com/catppuccin/gtk/releases/download/v0.6.0/$USER_THEME.zip"
@@ -89,21 +87,23 @@ home_manager_setup() {
 
 python_setup() {
 	echo -e "${BOLD_GREEN}Setting up python...${END_COLOR}"
-	"$ASDF_BIN" plugin add python
-	"$ASDF_BIN" install python 3.11.3
-	"$ASDF_BIN" global python 3.11.3
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+	source "$HOME/.asdf/asdf.sh"
+	asdf plugin add python
+	asdf install python 3.11.3
+	asdf global python 3.11.3
 
 	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
-	"$PYTHON_BIN" -m pip install --upgrade pip
-	"$PYTHON_BIN" -m pip install "${PYTHON_PACKAGES[@]}"
+	python -m pip install --upgrade pip
+	python -m pip install "${PYTHON_PACKAGES[@]}"
 
 	echo -e "${BOLD_GREEN}Setting up poetry...${END_COLOR}"
-	"$PYTHON_BIN" -m poetry config virtualenvs.in-project true
+	python -m poetry config virtualenvs.in-project true
 
 	echo -e "${BOLD_GREEN}Setting up python debugger...${END_COLOR}"
 	mkdir "$HOME/.virtualenvs"
 	cd "$HOME/.virtualenvs" || exit
-	"$PYTHON_BIN" -m venv debugpy
+	python -m venv debugpy
 	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install --upgrade pip
 	"$HOME/.virtualenvs/debugpy/bin/python" -m pip install debugpy
 	cd "$CWD" || exit

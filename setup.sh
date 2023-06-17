@@ -138,8 +138,8 @@ install_deb() {
 		key="${program%%:*}"   # deletes after ":"
 		value="${program##*:}" # deletes before ":"
 
-		wget -O "$LOCAL_BIN/${key}.deb" "https://${value}"
-		sudo gdebi "$LOCAL_BIN/${key}.deb"
+		wget -O "/tmp/${key}.deb" "https://${value}"
+		sudo gdebi "/tmp/${key}.deb"
 	done
 }
 

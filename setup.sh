@@ -18,7 +18,7 @@ FLATPAK_PACKAGES=(com.mattjakeman.ExtensionManager io.github.realmazharhussain.G
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
 REQUIRED_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev)
-APPIMAGES_PACKAGES=("pcloud:https://p-def8.pcloud.com/cBZYvCrtdZgNj4RoZSRFj7Z7ZibYAo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZOHixUKea1luCC5wSxpIicXnmIry7/pcloud")
+APPIMAGES_PACKAGES=("pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZSRFj7Z7ZibYAo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZOHixUKea1luCC5wSxpIicXnmIry7/pcloud")
 
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"

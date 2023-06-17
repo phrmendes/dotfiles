@@ -6,9 +6,8 @@ END_COLOR="\e[0m"
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
 LOCAL_BIN="$HOME/.local/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
-PYENV_BIN="$PYENV_PATH/bin/pyenv"
-PYENV_PATH="$HOME/.pyenv"
-PYTHON_BIN="$PYENV_PATH/shims/python"
+ASDF_BIN="$HOME/.nix-profile/bin/asdf"
+PYTHON_BIN="$HOME/.asdf/shims/python"
 USER=$(whoami)
 USER_THEME="Catppuccin-Macchiato-Standard-Blue-Dark"
 USER_THEME_URL="https://github.com/catppuccin/gtk/releases/download/v0.6.0/$USER_THEME.zip"
@@ -90,9 +89,9 @@ home_manager_setup() {
 
 python_setup() {
 	echo -e "${BOLD_GREEN}Setting up python...${END_COLOR}"
-	curl https://pyenv.run | bash
-	"$PYENV_BIN" install 3.11.3
-	"$PYENV_BIN" global 3.11.3
+	"$ASDF_BIN" plugin add python
+	"$ASDF_BIN" install python 3.11.3
+	"$ASDF_BIN" global python 3.11.3
 
 	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
 	"$PYTHON_BIN" -m pip install --upgrade pip

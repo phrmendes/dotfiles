@@ -11,7 +11,7 @@ USER_THEME="Catppuccin-Macchiato-Standard-Blue-Dark"
 USER_THEME_URL="https://github.com/catppuccin/gtk/releases/download/v0.6.0/$USER_THEME.zip"
 
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-FLATPAK_PACKAGES=(com.mattjakeman.ExtensionManager io.github.realmazharhussain.GdmSettings)
+FLATPAK_PACKAGES=(com.mattjakeman.ExtensionManager)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
 REQUIRED_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks)

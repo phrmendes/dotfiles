@@ -166,7 +166,6 @@ install_flatpaks
 download_appimages
 home_manager_setup
 python_setup
-download_appimages
 
 read -rp "Configure fingerprint? [y/n] " fingerprint
 [[ "$fingerprint" == "y" ]] && fingerprint_setup

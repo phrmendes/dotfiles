@@ -9,13 +9,12 @@ NIX_BIN="/nix/var/nix/profiles/default/bin/"
 USER=$(whoami)
 USER_THEME="Catppuccin-Macchiato-Standard-Blue-Dark"
 USER_THEME_URL="https://github.com/catppuccin/gtk/releases/download/v0.6.0/$USER_THEME.zip"
-
+APPIMAGES_PACKAGES=("pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZSRFj7Z7ZibYAo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZOHixUKea1luCC5wSxpIicXnmIry7/pcloud")
+APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale)
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FLATPAK_PACKAGES=(com.mattjakeman.ExtensionManager)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
-REQUIRED_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks)
-APPIMAGES_PACKAGES=("pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZSRFj7Z7ZibYAo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZOHixUKea1luCC5wSxpIicXnmIry7/pcloud")
 
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
@@ -42,9 +41,9 @@ remove_locks() {
 	sudo dpkg --add-architecture i386
 }
 
-install_required_programs() {
+install_apt() {
 	echo -e "${BOLD_GREEN}Installing required programs...${END_COLOR}"
-	sudo apt install "${REQUIRED_PACKAGES[@]}" -y
+	sudo apt install "${APT_PACKAGES[@]}" -y
 }
 
 remove_programs() {
@@ -161,10 +160,18 @@ install_theme() {
 	sudo flatpak override --env=GTK_THEME="${USER_THEME}"
 }
 
+tailscale_repo() {
+	echo -e "${BOLD_GREEN}Adding Tailscale repository...${END_COLOR}"
+	sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+	sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list >/dev/null
+	update
+}
+
 update
 remove_locks
-install_required_programs
 remove_programs
+tailscale_repo
+install_apt
 install_nix
 install_flatpaks
 install_deb

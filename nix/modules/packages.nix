@@ -20,7 +20,6 @@
     ripgrep
     spotify
     sqlite
-    tailscale
     tealdeer
     tectonic
     vlc

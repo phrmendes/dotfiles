@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     ansible
+    asdf-vm
     baobab
     bat
     bitwarden

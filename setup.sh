@@ -163,9 +163,11 @@ install_required_programs
 remove_programs
 install_nix
 install_flatpaks
+install_deb
 download_appimages
 home_manager_setup
 python_setup
+install_theme
 
 read -rp "Configure fingerprint? [y/n] " fingerprint
 [[ "$fingerprint" == "y" ]] && fingerprint_setup

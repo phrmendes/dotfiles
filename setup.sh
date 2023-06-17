@@ -74,12 +74,13 @@ install_flatpaks() {
 }
 
 home_manager_setup() {
+	export NIXPKGS_ALLOW_UNFREE=1
+
 	"$NIX_BIN/nix-channel" --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 	"$NIX_BIN/nix-channel" --update
 	"$NIX_BIN/nix-shell" '<home-manager>' -A install
 
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
-	export NIXPKGS_ALLOW_UNFREE=1
 
 	rm "$HOME"/.config/home-manager/*
 	rm "$HOME/.profile"

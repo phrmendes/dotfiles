@@ -8,6 +8,7 @@
     fd
     fragments
     gh
+    gnome-extensions-cli
     gnome.geary
     hugo
     mlocate

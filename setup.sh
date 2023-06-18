@@ -15,6 +15,7 @@ FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FLATPAK_PACKAGES=(com.mattjakeman.ExtensionManager)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
+GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev expresso@coadmunkee.github.com gsconnect@andyholmes.github.iovitals@CoreCoding.com)
 
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
@@ -142,29 +143,19 @@ install_deb() {
 	done
 }
 
-install_theme() {
-	echo -e "${BOLD_GREEN}Installing theme...${END_COLOR}"
-	mkdir -p "$HOME/.themes"
-	wget -O "$HOME/.themes/theme.zip" $USER_THEME_URL
-	unzip "$HOME/.themes/theme.zip" -d "$HOME/.themes"
-	rm "$HOME/.themes/theme.zip"
-
-	echo -e "${BOLD_GREEN}Configuring gtk-4.0 themes...${END_COLOR}"
-	mkdir -p "${HOME}/.config/gtk-4.0"
-	ln -sf "${HOME}/.themes/${USER_THEME}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
-	ln -sf "${HOME}/.themes/${USER_THEME}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
-	ln -sf "${HOME}/.themes/${USER_THEME}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
-
-	echo -e "${BOLD_GREEN}Configuring flatpaks...${END_COLOR}"
-	sudo flatpak override --filesystem="$HOME/.themes"
-	sudo flatpak override --env=GTK_THEME="${USER_THEME}"
-}
-
 tailscale_repo() {
 	echo -e "${BOLD_GREEN}Adding Tailscale repository...${END_COLOR}"
 	sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
 	sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list >/dev/null
 	update
+}
+
+install_gnome_extensions() {
+	echo -e "${BOLD_GREEN}Installing gnome extensions...${END_COLOR}"
+
+	for program in "${GNOME_EXTENSIONS[@]}"; do
+		gext install "${value}"
+	done
 }
 
 update
@@ -178,7 +169,7 @@ install_deb
 download_appimages
 home_manager_setup
 python_setup
-install_theme
+install_gnome_extensions
 
 read -rp "Configure fingerprint? [y/n] " fingerprint
 [[ "$fingerprint" == "y" ]] && fingerprint_setup

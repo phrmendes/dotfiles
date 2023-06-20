@@ -10,8 +10,7 @@ USER=$(whoami)
 APPIMAGES_PACKAGES=("pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZSRFj7Z7ZibYAo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZOHixUKea1luCC5wSxpIicXnmIry7/pcloud")
 APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server)
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-FLATPAK_PACKAGES=(com.mattjakeman.ExtensionManager)
-PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem gnome-terminal geary evince totem xterm fprintd simple-scan gparted)
+PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
 GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev expresso@coadmunkee.github.com gsconnect@andyholmes.github.iovitals@CoreCoding.com)
 
@@ -58,16 +57,6 @@ install_nix() {
 	export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
 }
 
-install_flatpaks() {
-	echo -e "${BOLD_GREEN}Installing flatpaks...${END_COLOR}"
-
-	for program in "${FLATPAK_PACKAGES[@]}"; do
-		flatpak install "$program" -y
-	done
-
-	sudo flatpak override --filesystem="$HOME/.themes"
-}
-
 home_manager_setup() {
 	export NIXPKGS_ALLOW_UNFREE=1
 
@@ -77,8 +66,10 @@ home_manager_setup() {
 
 	export NIX_PATH="$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
 
-	rm "$HOME"/.config/home-manager/*
-	rm "$HOME/.profile"
+	[[ -d "$HOME/.config/home-manager" ]] && rm -r "$HOME/.config/home-manager/"
+	[[ -f "$HOME/.profile" ]] && rm "$HOME/.profile"
+
+	mkdir "$HOME/.config/home-manager"
 	ln -s "$CWD/nix/home.nix" "$HOME/.config/home-manager/home.nix"
 	"$HOME/.nix-profile/bin/home-manager" switch
 }

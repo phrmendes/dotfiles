@@ -14,6 +14,7 @@
     mlocate
     onlyoffice-bin
     pandoc
+    pipr
     podman
     podman-compose
     quarto

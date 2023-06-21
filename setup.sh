@@ -143,8 +143,8 @@ tailscale_repo() {
 install_gnome_extensions() {
 	echo -e "${BOLD_GREEN}Installing gnome extensions...${END_COLOR}"
 
-	for program in "${GNOME_EXTENSIONS[@]}"; do
-		"$HM_BIN/gext" install "${value}"
+	for extension in "${GNOME_EXTENSIONS[@]}"; do
+		"$HM_BIN/gext" install "${extension}"
 	done
 }
 

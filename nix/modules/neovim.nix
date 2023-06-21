@@ -36,6 +36,7 @@ in {
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
+      vim-fugitive # git integration
       goto-preview # preview definition
       indent-blankline-nvim # indent lines
       lazygit-nvim # lazygit integration

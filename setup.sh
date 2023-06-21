@@ -13,6 +13,7 @@ FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
 GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev expresso@coadmunkee.github.com gsconnect@andyholmes.github.iovitals@CoreCoding.com)
+HM_BIN="$HOME/.nix-profile/bin"
 
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
@@ -71,7 +72,7 @@ home_manager_setup() {
 
 	mkdir "$HOME/.config/home-manager"
 	ln -s "$CWD/nix/home.nix" "$HOME/.config/home-manager/home.nix"
-	"$HOME/.nix-profile/bin/home-manager" switch
+	"$HM_BIN/home-manager" switch
 }
 
 python_setup() {
@@ -143,7 +144,7 @@ install_gnome_extensions() {
 	echo -e "${BOLD_GREEN}Installing gnome extensions...${END_COLOR}"
 
 	for program in "${GNOME_EXTENSIONS[@]}"; do
-		gext install "${value}"
+		"$HM_BIN/gext" install "${value}"
 	done
 }
 

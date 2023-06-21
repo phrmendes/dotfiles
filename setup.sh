@@ -12,7 +12,7 @@ APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
-GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev expresso@coadmunkee.github.com gsconnect@andyholmes.github.iovitals@CoreCoding.com)
+GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev espresso@coadmunkee.github.com gsconnect@andyholmes.github.io vitals@CoreCoding.com)
 HM_BIN="$HOME/.nix-profile/bin"
 
 DEB_PACKAGES=(

@@ -183,7 +183,9 @@ local leader_normal_mappings = {
 		name = "+markdown",
 		["b"] = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
 		["p"] = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
+		["r"] = { "<cmd>lua require('nabla').popup()<cr>", "Preview equation" },
 		["s"] = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
+		["v"] = { "<cmd>lua require('nabla').toggle_virt()<cr>", "Toggle equation preview" },
 	},
 
 	t = {

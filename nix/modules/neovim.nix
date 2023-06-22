@@ -25,6 +25,7 @@ in {
     plugins = with pkgs.vimPlugins; [
       (fromGitHub "HEAD" "Vigemus/iron.nvim") # REPLs
       (fromGitHub "HEAD" "cljoly/telescope-repo.nvim") # git repos
+      (fromGitHub "HEAD" "jbyuki/nabla.nvim") # math rendering
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       alpha-nvim # dashboard
       bufdelete-nvim # better buffer deletion

@@ -20,7 +20,6 @@
     quarto
     rename
     ripgrep
-    spotify
     sqlite
     tealdeer
     tectonic

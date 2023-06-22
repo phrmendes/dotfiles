@@ -4,16 +4,14 @@ BOLD_GREEN="\e[1;32m"
 CWD=$(pwd)
 END_COLOR="\e[0m"
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
-LOCAL_BIN="$HOME/.local/bin"
+HM_BIN="$HOME/.nix-profile/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
 USER=$(whoami)
-APPIMAGES_PACKAGES=("pcloud:p-def8.pcloud.com/cBZYvCrtdZgNj4RoZSRFj7Z7ZibYAo7Z2ZZSzRZkZW10DVZAZHkZppZ94ZJ7ZfzZR4ZNVZX5ZGRZ8VZqzZeFZlHZecm6VZOHixUKea1luCC5wSxpIicXnmIry7/pcloud")
 APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server)
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
+GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev espresso@coadmunkee.github.com gsconnect@andyholmes.github.io vitals@CoreCoding.com)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince totem xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
-GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev espresso@coadmunkee.github.com gsconnect@andyholmes.github.io vitals@CoreCoding.com)
-HM_BIN="$HOME/.nix-profile/bin"
 
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
@@ -108,19 +106,6 @@ fingerprint_setup() {
 	fprintd-enroll
 }
 
-download_appimages() {
-	echo -e "${BOLD_GREEN}Downloading AppImages...${END_COLOR}"
-
-	for program in "${APPIMAGES_PACKAGES[@]}"; do
-		key="${program%%:*}"   # deletes after ":"
-		value="${program##*:}" # deletes before ":"
-
-		mkdir -p "$LOCAL_BIN"
-		wget -O "$LOCAL_BIN/${key}" "https://${value}"
-		chmod +x "$LOCAL_BIN/${key}"
-	done
-}
-
 install_deb() {
 	echo -e "${BOLD_GREEN}Installing deb packages...${END_COLOR}"
 
@@ -156,10 +141,12 @@ install_apt
 install_nix
 install_flatpaks
 install_deb
-download_appimages
 home_manager_setup
 python_setup
 install_gnome_extensions
 
 read -rp "Configure fingerprint? [y/n] " fingerprint
 [[ "$fingerprint" == "y" ]] && fingerprint_setup
+
+echo -e "${BOLD_GREEN}Done!${END_COLOR}"
+echo -e "${BOLD_GREEN}pCloud download link: https://www.pcloud.com/pt/how-to-install-pcloud-drive-linux.html?download=electron-64${END_COLOR}"

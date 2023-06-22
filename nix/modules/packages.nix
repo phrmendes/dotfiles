@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     ansible
-    baobab
     bat
+    ncdu
     bitwarden
     exa
     fd

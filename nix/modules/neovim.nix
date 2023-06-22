@@ -82,6 +82,7 @@ in {
         ltex-ls
         lua-language-server
         luajitPackages.luacheck
+        marksman
         rnix-lsp
         ruff
         shellcheck

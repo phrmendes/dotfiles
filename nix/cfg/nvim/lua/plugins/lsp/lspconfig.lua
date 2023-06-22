@@ -36,6 +36,10 @@ lspconfig.dockerls.setup({
 	capabilities = capabilities,
 })
 
+lspconfig.marksman.setup({
+	capabilities = capabilities,
+})
+
 lspconfig.ltex.setup({
 	capabilities = capabilities,
 	settings = {

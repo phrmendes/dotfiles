@@ -74,7 +74,7 @@ home_manager_setup() {
 }
 
 python_setup() {
-	echo -e "${BOLD_GREEN}Setting up python...${END_COLOR}"
+	echo -e "${BOLD_GREEN}Setting up asdf...${END_COLOR}"
 	source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 	asdf plugin add python
 	asdf install python 3.11.3

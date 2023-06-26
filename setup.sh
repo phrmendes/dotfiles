@@ -75,8 +75,7 @@ home_manager_setup() {
 
 python_setup() {
 	echo -e "${BOLD_GREEN}Setting up python...${END_COLOR}"
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
-	source "$HOME/.asdf/asdf.sh"
+	source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 	asdf plugin add python
 	asdf install python 3.11.3
 	asdf global python 3.11.3

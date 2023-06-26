@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     ansible
+    asdf-vm
     bat
-    ncdu
     bitwarden
     exa
     fd
@@ -12,6 +12,7 @@
     gnome.geary
     hugo
     mlocate
+    ncdu
     onlyoffice-bin
     pandoc
     pipr

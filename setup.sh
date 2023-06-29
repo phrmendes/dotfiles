@@ -10,7 +10,7 @@ USER=$(whoami)
 APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server)
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev espresso@coadmunkee.github.com gsconnect@andyholmes.github.io vitals@CoreCoding.com)
-PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince totem xterm fprintd simple-scan gparted)
+PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince xterm fprintd simple-scan gparted)
 PYTHON_PACKAGES=(poetry ptipython)
 
 DEB_PACKAGES=(

@@ -97,7 +97,7 @@ fingerprint_setup() {
 	update
 	sudo apt install "${FINGERPRINT_PACKAGES[@]}" -y
 	clean
-	fprintd-enroll
+	echo -e "${BOLD_GREEN}Run 'fprintd-enroll' to config your fingerprint${END_COLOR}"
 }
 
 install_deb() {

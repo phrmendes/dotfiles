@@ -133,7 +133,6 @@ remove_programs
 tailscale_repo
 install_apt
 install_nix
-install_flatpaks
 install_deb
 home_manager_setup
 python_setup

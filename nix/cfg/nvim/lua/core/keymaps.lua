@@ -11,10 +11,10 @@ map("i", "jk", "<ESC>", opts) -- exit insert mode pressing 'jk'
 map("t", "jk", "<C-\\><C-n>", opts) -- exit terminal mode pressing 'jk'
 
 -- resize with arrows
-map("n", "<C-Down>", ":resize +2<CR>", opts)
-map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-map("n", "<C-Up>", ":resize -2<CR>", opts)
+map("n", "<C-}>", ":resize +2<CR>", opts)
+map("n", "<C-[>", ":vertical resize -2<CR>", opts)
+map("n", "<C-]>", ":vertical resize +2<CR>", opts)
+map("n", "<C-{>", ":resize -2<CR>", opts)
 
 -- better indenting
 map("v", "<", "<gv", opts)

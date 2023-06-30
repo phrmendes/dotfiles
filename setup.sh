@@ -11,8 +11,6 @@ APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 GNOME_EXTENSIONS=(clipboard-history@alexsaveau.dev espresso@coadmunkee.github.com gsconnect@andyholmes.github.io vitals@CoreCoding.com)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince xterm fprintd simple-scan gparted)
-PYTHON_PACKAGES=(poetry ptipython)
-
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
 	"protonbridge:proton.me/download/bridge/protonmail-bridge_3.2.0-1_amd64.deb"
@@ -79,10 +77,7 @@ python_setup() {
 	asdf plugin add python
 	asdf install python 3.11.3
 	asdf global python 3.11.3
-
-	echo -e "${BOLD_GREEN}Installing python packages...${END_COLOR}"
 	python -m pip install --upgrade pip
-	python -m pip install "${PYTHON_PACKAGES[@]}"
 
 	echo -e "${BOLD_GREEN}Setting up poetry...${END_COLOR}"
 	python -m poetry config virtualenvs.in-project true
@@ -148,4 +143,4 @@ read -rp "Configure fingerprint? [y/n] " fingerprint
 [[ "$fingerprint" == "y" ]] && fingerprint_setup
 
 echo -e "${BOLD_GREEN}Done!${END_COLOR}"
-echo -e "${BOLD_GREEN}pCloud download link: https://www.pcloud.com/pt/how-to-install-pcloud-drive-linux.html?download=electron-64${END_COLOR}"
+echo -e "${BOLD_GREEN}pCloud download link: <https://www.pcloud.com/pt/how-to-install-pcloud-drive-linux.html?download=electron-64>${END_COLOR}"

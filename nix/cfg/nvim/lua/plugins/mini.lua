@@ -13,14 +13,14 @@ tabline.setup()
 
 surround.setup({
 	mappings = {
-		add = "<localleader>sa", -- add surrounding in normal and visual modes
-		delete = "<localleader>sd", -- delete surrounding
-		find = "<localleader>sf", -- find surrounding (to the right)
-		find_left = "<localleader>sf", -- find surrounding (to the left)
-		highlight = "<localleader>sh", -- highlight surrounding
-		replace = "<localleader>sr", -- replace surrounding
-		update_n_lines = "<localleader>sn", -- update `n_lines`
-		suffix_last = "l", -- suffix to search with "prev" method
+		add = "sa", -- add surrounding in normal and visual modes
+		delete = "sd", -- delete surrounding
+		find = "sf", -- find surrounding (to the right)
+		find_left = "sF", -- find surrounding (to the left)
+		highlight = "sh", -- highlight surrounding
+		replace = "sr", -- replace surrounding
+		update_n_lines = "sn", -- update `n_lines`
+		suffix_last = "p", -- suffix to search with "prev" method
 		suffix_next = "n", -- suffix to search with "next" method
 	},
 })

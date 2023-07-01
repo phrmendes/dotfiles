@@ -4,6 +4,8 @@
     asdf-vm
     bat
     bitwarden
+    caffeine-ng
+    copyq
     exa
     fd
     fragments
@@ -12,7 +14,6 @@
     gnome.geary
     hugo
     mlocate
-    scala-cli
     ncdu
     onlyoffice-bin
     pandoc
@@ -24,6 +25,7 @@
     ripgrep
     sbt
     scala
+    scala-cli
     sqlite
     tealdeer
     tectonic

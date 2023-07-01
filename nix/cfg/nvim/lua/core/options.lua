@@ -70,4 +70,4 @@ opt.iskeyword:append("-")
 opt.shell = "zsh"
 
 -- colorscheme
-cmd([[ colorscheme catppuccin-macchiato ]])
+cmd([[ colorscheme catppuccin-mocha ]])

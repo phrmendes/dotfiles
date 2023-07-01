@@ -1,6 +1,6 @@
 # Backups
 
-Scripts and dotfiles files for my personal computer. Run `setup.sh` to config everything except gnome extensions.
+Scripts and dotfiles files for my personal computer.
 
 ## References
 

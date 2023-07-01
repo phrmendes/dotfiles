@@ -12,6 +12,7 @@
     gnome.geary
     hugo
     mlocate
+    scala-cli
     ncdu
     onlyoffice-bin
     pandoc
@@ -21,6 +22,8 @@
     quarto
     rename
     ripgrep
+    sbt
+    scala
     sqlite
     tealdeer
     tectonic

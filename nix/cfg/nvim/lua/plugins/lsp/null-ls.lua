@@ -25,6 +25,7 @@ null_ls.setup({
 		formatting.alejandra, -- nix
 		formatting.prettier.with({ filetypes = { "markdown", "json", "yaml" } }),
 		formatting.ruff, -- python
+		formatting.scalafmt, -- scala
 		formatting.shfmt, -- bash
 		formatting.stylua, -- lua
 	},

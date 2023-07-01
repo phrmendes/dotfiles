@@ -92,6 +92,8 @@ in {
         stylua
         terraform-ls
         yamllint
+        metals
+        scalafmt
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server

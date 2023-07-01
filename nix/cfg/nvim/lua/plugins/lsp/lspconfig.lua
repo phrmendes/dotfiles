@@ -40,6 +40,10 @@ lspconfig.marksman.setup({
 	capabilities = capabilities,
 })
 
+lspconfig.metals.setup({
+	capabilities = capabilities,
+})
+
 lspconfig.ltex.setup({
 	capabilities = capabilities,
 	settings = {

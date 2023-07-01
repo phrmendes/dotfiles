@@ -6,12 +6,11 @@
     bitwarden
     caffeine-ng
     copyq
+    deluge
     exa
     fd
-    fragments
     gh
     gnome-extensions-cli
-    gnome.geary
     hugo
     mlocate
     ncdu
@@ -29,6 +28,7 @@
     sqlite
     tealdeer
     tectonic
+    thunderbird
     vlc
     xclip
     zathura

@@ -3,8 +3,9 @@
     enable = true;
     settings = {
       General = {
-        disabledTrayIcon = true;
         contrastUiColor = "#E8CF9C";
+        disabledTrayIcon = true;
+        showDesktopNotification = false;
         showHelp = false;
         showStartupLaunchMessage = false;
         uiColor = "#1E1E2E";

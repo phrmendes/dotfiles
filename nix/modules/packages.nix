@@ -19,6 +19,7 @@
     pipr
     podman
     podman-compose
+    podman-tui
     quarto
     rename
     ripgrep

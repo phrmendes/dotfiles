@@ -9,7 +9,6 @@
     deluge
     exa
     fd
-    flameshot
     gh
     gnome-extensions-cli
     hugo

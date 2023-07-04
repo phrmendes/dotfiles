@@ -10,15 +10,8 @@ g.maplocalleader = ","
 map("i", "jk", "<ESC>", opts) -- exit insert mode pressing 'jk'
 map("t", "jk", "<C-\\><C-n>", opts) -- exit terminal mode pressing 'jk'
 
--- resize with arrows
-map("n", "<C-}>", ":resize +2<CR>", opts)
-map("n", "<C-[>", ":vertical resize -2<CR>", opts)
-map("n", "<C-]>", ":vertical resize +2<CR>", opts)
-map("n", "<C-{>", ":resize -2<CR>", opts)
-
--- better indenting
-map("v", "<", "<gv", opts)
-map("v", ">", ">gv", opts)
-
--- oil.nvim
-map("n", "-", require("oil").open, opts) -- open oil.nvim
+-- resize
+map("n", "+", ":resize +2<CR>", opts)
+map("n", "-", ":vertical resize -2<CR>", opts)
+map("n", "=", ":vertical resize +2<CR>", opts)
+map("n", "_", ":resize -2<CR>", opts)

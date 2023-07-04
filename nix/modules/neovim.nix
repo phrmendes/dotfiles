@@ -37,7 +37,6 @@ in {
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
-      vim-fugitive # git integration
       goto-preview # preview definition
       indent-blankline-nvim # indent lines
       lazygit-nvim # lazygit integration
@@ -56,6 +55,7 @@ in {
       nvim-lspconfig # lsp
       nvim-spectre # search and replace
       nvim-tree-lua # file explorer
+      nvim-treesitter-context # treesitter context
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
       oil-nvim # file management
@@ -68,12 +68,15 @@ in {
       todo-comments-nvim # todo comments
       todo-txt-vim # tasks
       trouble-nvim # lsp diagnostics
+      twilight-nvim # dim inactive code
       undotree # undo history
+      vim-fugitive # git integration
       vim-nix # nix stuff
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       vimwiki # notes
       which-key-nvim # keybindings
+      zen-mode-nvim # zen mode
     ];
     extraPackages =
       (with pkgs; [

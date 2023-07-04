@@ -88,10 +88,11 @@ local leader_normal_opts = {
 
 local leader_normal_mappings = {
 	["."] = { "<cmd>Alpha<cr>", "Dashboard" },
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "File explorer tree" },
 	["h"] = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	["o"] = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
 	["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
+	["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
 
 	a = {
 		name = "+actions",
@@ -99,7 +100,7 @@ local leader_normal_mappings = {
 		["W"] = { "<cmd>wq<cr>", "Save and quit" },
 		["n"] = { "<cmd>noh<cr>", "Clear highlights" },
 		["q"] = { "<cmd>confirm q<cr>", "Quit" },
-		["w"] = { "<cmd>w<cr>", "Save" },
+		["w"] = { "<cmd>w<cr>", "save" },
 	},
 
 	b = {
@@ -140,6 +141,7 @@ local leader_normal_mappings = {
 
 	f = {
 		name = "+files",
+		["."] = { "<cmd>lua require('oil').open()<cr>", "File explorer" },
 		["G"] = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
 		["f"] = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
 		["g"] = { "<cmd>Telescope git_files<cr>", "Find (git files)" },

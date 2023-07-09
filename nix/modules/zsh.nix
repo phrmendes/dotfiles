@@ -8,7 +8,6 @@
       cat = "${pkgs.bat}/bin/bat --theme=catppuccin";
       catr = "/usr/bin/cat";
       la = "${pkgs.exa}/bin/exa --icons -a";
-      ld = "${pkgs.lazydocker}/bin/lazydocker";
       lg = "${pkgs.lazygit}/bin/lazygit";
       ll = "${pkgs.exa}/bin/exa --icons -l";
       lla = "${pkgs.exa}/bin/exa --icons -la";

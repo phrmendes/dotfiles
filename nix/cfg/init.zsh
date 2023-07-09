@@ -1,10 +1,9 @@
 #!/bin/bash
 
+source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 export WEZTERM_CONFIG_FILE="$HOME/.wezterm.lua"
-
 path+=("$HOME/.local/bin")
 
-. "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 
 nix_update() {
     rm -rf $HOME/.config/gtk-3.0/settings.ini.backup

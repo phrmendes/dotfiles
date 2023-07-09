@@ -2,12 +2,12 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Compact-Yellow-Rimless";
+      name = "Catppuccin-Mocha-Standard-Yellow-Normal";
       package = pkgs.catppuccin-gtk.override {
         variant = "mocha";
-        size = "compact";
+        size = "standard";
         accents = ["yellow"];
-        tweaks = ["rimless"];
+        tweaks = ["normal"];
       };
     };
   };

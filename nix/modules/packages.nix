@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     ansible
     asdf-vm
-    pipx
     bitwarden
     caffeine-ng
     copyq

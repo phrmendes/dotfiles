@@ -20,6 +20,7 @@ in {
     ./modules/tmux.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
+    ./modules/gtk.nix
   ];
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;

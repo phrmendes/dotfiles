@@ -5,7 +5,7 @@
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     shellAliases = {
-      cat = "${pkgs.bat}/bin/bat --theme=gruvbox-dark";
+      cat = "${pkgs.bat}/bin/bat --theme=catppuccin";
       catr = "/usr/bin/cat";
       la = "${pkgs.exa}/bin/exa --icons -a";
       ld = "${pkgs.lazydocker}/bin/lazydocker";

@@ -6,11 +6,13 @@
   user = "phrmendes";
 in {
   imports = [
+    ./modules/bat.nix
     ./modules/btop.nix
     ./modules/direnv.nix
     ./modules/flameshot.nix
     ./modules/fzf.nix
     ./modules/git.nix
+    ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix
@@ -20,7 +22,6 @@ in {
     ./modules/tmux.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
-    ./modules/gtk.nix
   ];
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;

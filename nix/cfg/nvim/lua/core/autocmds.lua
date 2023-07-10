@@ -16,3 +16,9 @@ autocmd("TermOpen", {
 	command = "setlocal nonumber norelativenumber",
 	group = term_group,
 })
+
+autocmd("BufEnter", {
+	pattern = "*.pdf",
+	command = "!zathura % | bd %",
+	group = ft_group,
+})

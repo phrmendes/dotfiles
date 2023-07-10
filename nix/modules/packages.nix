@@ -30,6 +30,7 @@
     tectonic
     thunderbird
     vlc
+    vscode
     xclip
     zotero
   ];

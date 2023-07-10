@@ -8,17 +8,17 @@ local term_group = augroup("customTermSettings", { clear = true })
 -- autocmds
 autocmd("BufRead,BufNewFile", {
 	pattern = "*.qmd",
-	command = "set filetype=markdown",
+	command = [[set filetype=markdown]],
 	group = ft_group,
 })
 
 autocmd("TermOpen", {
-	command = "setlocal nonumber norelativenumber",
+	command = [[setlocal nonumber norelativenumber]],
 	group = term_group,
 })
 
 autocmd("BufEnter", {
 	pattern = "*.pdf",
-	command = "!zathura % | bd %",
+	command = [[execute "!zathura '%'" | bdelete %]],
 	group = ft_group,
 })

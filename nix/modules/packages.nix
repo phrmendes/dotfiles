@@ -31,7 +31,6 @@
     thunderbird
     vlc
     xclip
-    zathura
     zotero
   ];
 }

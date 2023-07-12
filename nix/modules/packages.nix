@@ -15,6 +15,8 @@
     jdk19
     mlocate
     ncdu
+    nixpkgs-fmt
+    obsidian
     onlyoffice-bin
     pandoc
     pipr
@@ -24,11 +26,16 @@
     quarto
     rename
     ripgrep
+    rnix-lsp
+    ruff
+    shellcheck
+    shfmt
     sqlite
     tealdeer
     tectonic
     thunderbird
     vlc
+    vscode
     xclip
     zotero
   ];

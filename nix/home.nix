@@ -15,14 +15,13 @@ in {
     ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
-    ./modules/neovim.nix
     ./modules/packages.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix
+    ./modules/zathura.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
-    ./modules/zathura.nix
   ];
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;

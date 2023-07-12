@@ -9,6 +9,7 @@ local config = {
 	enable_tab_bar = false,
 	font_size = 12.0,
 	window_decorations = "NONE",
+	check_for_updates = false,
 	font = wezterm.font("JetBrains Mono"),
 	window_padding = {
 		left = 10,

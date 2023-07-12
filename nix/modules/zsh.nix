@@ -16,6 +16,6 @@
       tldr = "${pkgs.tealdeer}/bin/tldr";
       mkdir = "mkdir -p";
     };
-    initExtra = builtins.readFile ../cfg/init.zsh;
+    initExtra = builtins.readFile ../cfg/init.sh;
   };
 }

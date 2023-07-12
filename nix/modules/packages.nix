@@ -12,6 +12,7 @@
     gh
     gnome-extensions-cli
     hugo
+    jdk19
     mlocate
     ncdu
     onlyoffice-bin

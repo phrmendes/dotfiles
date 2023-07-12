@@ -22,9 +22,6 @@
     quarto
     rename
     ripgrep
-    sbt
-    scala
-    scala-cli
     sqlite
     tealdeer
     tectonic
@@ -32,5 +29,6 @@
     vlc
     xclip
     zotero
+    cousier
   ];
 }

@@ -5,6 +5,7 @@
     bitwarden
     caffeine-ng
     copyq
+    coursier
     deluge
     exa
     fd
@@ -29,6 +30,5 @@
     vlc
     xclip
     zotero
-    cousier
   ];
 }

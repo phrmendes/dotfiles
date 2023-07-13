@@ -139,7 +139,7 @@ python_setup
 install_gnome_extensions
 
 read -rp "Configure fingerprint? [y/n] " fingerprint
-[[ "$fingerprint" == "y" ]] && fingerprint_setup
+[[ $fingerprint == "y" ]] && fingerprint_setup
 
 echo -e "${BOLD_GREEN}Done!${END_COLOR}"
 echo -e "${BOLD_GREEN}pCloud download link: <https://www.pcloud.com/pt/how-to-install-pcloud-drive-linux.html?download=electron-64>${END_COLOR}"

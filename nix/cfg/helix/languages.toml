@@ -10,7 +10,7 @@ config = { lint = true }
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt" }
+formatter = { command = "shfmt", args = ["-"] }
 roots = [ "pyproject.toml", "poetry.lock" ]
 
 [[language]]

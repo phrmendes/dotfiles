@@ -15,7 +15,7 @@ roots = [ "pyproject.toml", "setup.py", "poetry.lock", ".git" ]
 language-server = { command = "pyright-langserver", args = ["--stdio"] }
 # language-servers = ["pyright", "ruff-lsp"]
 auto-format = true
-formatter = { command = "ruff", args = ["--quiet", "-"] }
+formatter = { command = "ruff", args = ["--quiet"] }
 config = ""
 
 [[language]]

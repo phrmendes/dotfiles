@@ -24,6 +24,7 @@
     sqlite
     tealdeer
     tectonic
+    tesseract4
     xclip
     zellij
     # GUI

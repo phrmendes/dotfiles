@@ -11,6 +11,8 @@ APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu
 FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 GNOME_EXTENSIONS=(gsconnect@andyholmes.github.io vitals@CoreCoding.com user-theme@gnome-shell-extensions.gcampax.github.com)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince xterm fprintd simple-scan gparted)
+ARCHITECTURE=$(dpkg --print-architecture)
+CODENAME=$(. /etc/os-release && echo "$VERSION_CODENAME")
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
 	"protonbridge:proton.me/download/bridge/protonmail-bridge_3.2.0-1_amd64.deb"
@@ -73,6 +75,7 @@ home_manager_setup() {
 
 python_setup() {
 	echo -e "${BOLD_GREEN}Setting up asdf...${END_COLOR}"
+	# shellcheck source=/dev/null
 	source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 	asdf plugin add python
 	asdf install python 3.11.3
@@ -125,6 +128,16 @@ install_gnome_extensions() {
 	for extension in "${GNOME_EXTENSIONS[@]}"; do
 		"$HM_BIN/gext" install "${extension}"
 	done
+}
+
+install_docker() {
+	sudo install -m 0755 -d /etc/apt/keyrings
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+	sudo chmod a+r /etc/apt/keyrings/docker.gpg
+	echo "deb [arch=$ARCHITECTURE signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $CODENAME) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	update
+	sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 }
 
 update

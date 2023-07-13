@@ -38,24 +38,18 @@
     vlc
     vscode
     zotero
-    # language servers
-    ltex-ls
+    # language servers/formatters
     marksman
     nil
-    ruff-lsp
-    taplo
-    terraform-ls
-    nodePackages.pyright
-    nodePackages.bash-language-server
-    nodePackages.dockerfile-language-server-nodejs
-    nodePackages.vscode-json-languageserver
-    nodePackages.yaml-language-server
-    # formatters
-    ruff
-    jsonfmt
     nixpkgs-fmt
     shfmt
+    taplo
+    terraform-ls
     yamlfmt
+    nodePackages.bash-language-server
+    nodePackages.dockerfile-language-server-nodejs
     nodePackages.prettier
+    nodePackages.vscode-json-languageserver
+    nodePackages.yaml-language-server
   ];
 }

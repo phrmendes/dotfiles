@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
+APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server)
+ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
+CODENAME=$(. /etc/os-release && echo "$VERSION_CODENAME")
 CWD=$(pwd)
 END_COLOR="\e[0m"
+FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
 FPRINT_PPA="ppa:uunicorn/open-fprintd"
+GNOME_EXTENSIONS=(gsconnect@andyholmes.github.io vitals@CoreCoding.com user-theme@gnome-shell-extensions.gcampax.github.com)
 HM_BIN="$HOME/.nix-profile/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
-USER=$(whoami)
-APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server)
-FINGERPRINT_PACKAGES=(open-fprintd fprintd-clients python3-validity)
-GNOME_EXTENSIONS=(gsconnect@andyholmes.github.io vitals@CoreCoding.com user-theme@gnome-shell-extensions.gcampax.github.com)
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince xterm fprintd simple-scan gparted)
-ARCHITECTURE=$(dpkg --print-architecture)
-CODENAME=$(. /etc/os-release && echo "$VERSION_CODENAME")
+USER=$(whoami)
 DEB_PACKAGES=(
 	"wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
 	"protonbridge:proton.me/download/bridge/protonmail-bridge_3.2.0-1_amd64.deb"
@@ -134,7 +134,7 @@ install_docker() {
 	sudo install -m 0755 -d /etc/apt/keyrings
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 	sudo chmod a+r /etc/apt/keyrings/docker.gpg
-	echo "deb [arch=$ARCHITECTURE signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $CODENAME) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	echo "deb [arch=$ARCHITECTURE signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $CODENAME stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 	sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 	update
 	sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y

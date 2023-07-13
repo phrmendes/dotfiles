@@ -1,8 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ pkgs, ...}: 
+
+let
   user = "phrmendes";
 in {
   imports = [
@@ -29,6 +27,7 @@ in {
     homeDirectory = "/home/${user}";
     stateVersion = "23.05";
     sessionVariables = {
+      EDITOR = "${pkgs.helix}/bin/hx";
       VISUAL = "${pkgs.helix}/bin/hx";
       TERMINAL = "/usr/bin/wezterm";
       SUDO_EDITOR = "${pkgs.helix}/bin/hx";

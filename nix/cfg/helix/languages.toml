@@ -1,19 +1,59 @@
+[language-server.ltex]
+command = "ltex-ls"
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config = { lint = true, inlayHint = true }
+
+[language-server.ruff]
+command = "ruff-lsp"
+
 [[language]]
 name = "python"
+roots = [ "pyproject.toml", "setup.py", "poetry.lock", ".git" ]
+language-server = "pyright"
+# language-servers = ["pyright", "ruff-lsp"]
 auto-format = true
-indent = { tab-width = 4, unit = " " }
-formatter = { command = "ruff", args = ["--fix", "--exit-non-zero-on-fix"] }
-roots = [ "pyproject.toml", "poetry.lock" ]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = { lint = true }
+formatter = {command = "ruff", args = ["--quiet", "-"]}
+config = ""
 
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = ["-"] }
-roots = [ "pyproject.toml", "poetry.lock" ]
+formatter = { command = "shfmt", args = ["-filename", "$FILENAME"] }
 
 [[language]]
 name = "nix"
 auto-format = true
 formatter = { command = "nixpkgs-fmt" }
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt", args = ["-"] }
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettier", args = [ "--parser", "json"] }
+
+[[language]]
+name = "markdown"
+auto-format = true
+# language-servers = ["marksman", "ltex"]
+formatter = { command = "prettier", args = [ "--parser", "markdown"] }
+
+[[language]]
+name = "hcl"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
+
+[[language]]
+name = "tfvars"
+formatter = { command = "terraform", args = ["fmt", "-"] }
+auto-format = true
+
+[[language]]
+name = "html"
+formatter = { command = 'prettier', args = ["--parser", "html"] }

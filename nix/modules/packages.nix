@@ -12,6 +12,7 @@
     hugo
     jdk20
     lazydocker
+    lf
     mlocate
     ncdu
     pandoc
@@ -19,6 +20,7 @@
     quarto
     rename
     ripgrep
+    slides
     sqlite
     tealdeer
     tectonic
@@ -36,18 +38,23 @@
     vscode
     zotero
     # language servers
+    ltex-ls
     marksman
     nil
+    ruff-lsp
     taplo
     terraform-ls
+    nodePackages.pyright
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
-    nodePackages.pyright
+    nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
-    # linters/formatters
-    nixpkgs-fmt
+    # formatters
     ruff
+    jsonfmt
+    nixpkgs-fmt
     shfmt
-    tflint
+    yamlfmt
+    nodePackages.prettier
   ];
 }

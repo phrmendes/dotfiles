@@ -10,7 +10,7 @@
     gnome-extensions-cli
     helix
     hugo
-    jdk19
+    jdk20
     lazydocker
     mlocate
     ncdu

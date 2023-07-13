@@ -49,7 +49,5 @@
     ruff
     shfmt
     tflint
-    yamlfmt
-    nodePackages.fixjson
   ];
 }

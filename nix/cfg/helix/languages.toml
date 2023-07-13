@@ -17,13 +17,3 @@ roots = [ "pyproject.toml", "poetry.lock" ]
 name = "nix"
 auto-format = true
 formatter = { command = "nixpkgs-fmt" }
-
-[[language]]
-name = "json"
-auto-format = true
-formatter = { command = "nixpkgs-fmt" }
-
-[[language]]
-name = "yaml"
-auto-format = true
-formatter = { command = "yamlfmt" }

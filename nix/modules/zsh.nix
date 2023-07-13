@@ -14,6 +14,7 @@
       ls = "${pkgs.exa}/bin/exa --icons";
       lt = "${pkgs.exa}/bin/exa --icons --tree";
       tldr = "${pkgs.tealdeer}/bin/tldr";
+      zl = "${pkgs.zellij}/bin/zellij";
       mkdir = "mkdir -p";
     };
     initExtra = builtins.readFile ../cfg/init.sh;

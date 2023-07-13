@@ -1,0 +1,29 @@
+[[language]]
+name = "python"
+auto-format = true
+indent = { tab-width = 4, unit = " " }
+formatter = { command = "ruff", args = ["--fix", "--exit-non-zero-on-fix"] }
+roots = [ "pyproject.toml", "poetry.lock" ]
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+config = { lint = true }
+
+[[language]]
+name = "bash"
+auto-format = true
+formatter = { command = "shfmt", args = ["-d"] }
+roots = [ "pyproject.toml", "poetry.lock" ]
+
+[[language]]
+name = "nix"
+auto-format = true
+formatter = { command = "nixpkgs-fmt" }
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "nixpkgs-fmt" }
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt" }

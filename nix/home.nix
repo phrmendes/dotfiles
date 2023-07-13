@@ -18,7 +18,6 @@ in {
     ./modules/packages.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
-    ./modules/tmux.nix
     ./modules/zathura.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
@@ -30,9 +29,9 @@ in {
     homeDirectory = "/home/${user}";
     stateVersion = "23.05";
     sessionVariables = {
-      VISUAL = "${pkgs.neovim}/bin/nvim";
+      VISUAL = "${pkgs.helix}/bin/hx";
       TERMINAL = "/usr/bin/wezterm";
-      SUDO_EDITOR = "${pkgs.neovim}/bin/nvim";
+      SUDO_EDITOR = "${pkgs.helix}/bin/hx";
     };
   };
   xdg = {

@@ -1,42 +1,55 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
+    # CLI 
     ansible
     asdf-vm
-    bitwarden
-    caffeine-ng
-    copyq
     coursier
-    deluge
     exa
     fd
     gh
     gnome-extensions-cli
+    helix
     hugo
     jdk19
+    lazydocker
     mlocate
     ncdu
-    nixpkgs-fmt
-    obsidian
-    onlyoffice-bin
     pandoc
     pipr
-    podman
-    podman-compose
-    podman-tui
     quarto
     rename
     ripgrep
-    rnix-lsp
-    ruff
-    shellcheck
-    shfmt
     sqlite
     tealdeer
     tectonic
+    xclip
+    zellij
+    # GUI
+    bitwarden
+    copyq
+    caffeine-ng
+    deluge
+    obsidian
+    onlyoffice-bin
     thunderbird
     vlc
     vscode
-    xclip
     zotero
+    # language servers
+    marksman
+    nil
+    taplo
+    terraform-ls
+    nodePackages.bash-language-server
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.pyright
+    nodePackages.yaml-language-server
+    # linters/formatters
+    nixpkgs-fmt
+    ruff
+    shfmt
+    tflint
+    yamlfmt
+    nodePackages.fixjson
   ];
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
-export WEZTERM_CONFIG_FILE="$HOME/.wezterm.lua"
+
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"

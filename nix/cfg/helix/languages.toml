@@ -1,10 +1,10 @@
 # TODO: setup DAP
 # TODO: setup multiples language servers
 
-[language-server.pyright]
-command = "pyright-lang-server"
-args = [ "--stdio" ]
-config = { lint = true, inlayHint.enable = true }
+# [language-server.pyright]
+# command = "pyright-lang-server"
+# args = [ "--stdio" ]
+# config = { lint = true, inlayHint.enable = true }
 
 [language-server.ruff]
 command = "ruff-lsp"

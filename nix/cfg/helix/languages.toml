@@ -15,7 +15,7 @@ command = "ltex-ls"
 [[python]]
 name = "python"
 auto-format = true
-language-server = { command = "pyright-lang-server", args = [ "--stdio" ] }
+language-server = { command = "pyright-langserver", args = [ "--stdio" ] }
 # language-servers = [ "pyright", "ruff" ]
 formatter = { command = "ruff", args = [ "--quiet", "--fix" ] }
 roots = ["pyproject.toml", "poetry.lock"]

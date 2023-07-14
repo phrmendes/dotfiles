@@ -17,7 +17,7 @@ name = "python"
 auto-format = true
 language-server = { command = "pyright-lang-server", args = [ "--stdio" ] }
 # language-servers = [ "pyright", "ruff" ]
-formatter = { command = "ruff", args = [ "--quiet", "-" ] }
+formatter = { command = "ruff", args = [ "--quiet", "--fix" ] }
 roots = ["pyproject.toml", "poetry.lock"]
 
 [[language]]

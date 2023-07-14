@@ -1,8 +1,4 @@
 # TODO: setup DAP
-# TODO: setup multiples language servers for markdown and python
-
-[language-server.ltex]
-command = "ltex-ls"
 
 [[language]]
 name = "python"
@@ -36,7 +32,7 @@ formatter = { command = "prettier", args = [ "--parser", "json" ] }
 [[language]]
 name = "markdown"
 auto-format = true
-# language-servers = ["marksman", "ltex"]
+language-server = { command = "ltex-ls" }
 formatter = { command = "prettier", args = [ "--parser", "markdown"] }
 
 [[language]]
@@ -52,3 +48,13 @@ formatter = { command = "terraform", args = [ "fmt", "-" ] }
 name = "tfvars"
 auto-format = true
 formatter = { command = "terraform", args = [ "fmt", "-" ] }
+
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "lua-format", args = [ "-i" ] }
+
+[[language]]
+name = "scala"
+auto-format = true
+formatter = { command = "scalafmt", args = [ "--stdin" ] }

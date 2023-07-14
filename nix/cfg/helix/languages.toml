@@ -6,6 +6,17 @@ zk = { command = "zk", args = [ "lsp" ]}
 ltex = { command = "ltex-ls" }
 
 [[language]]
+name = "todotxt"
+scope = "source.sway"
+injection-regex = "todotxt"
+file-types = [ "todotxt" ]
+roots = [ "todo.todotxt" ]
+
+[[grammar]]
+name = "todotxt"
+source = { git = "https://github.com/arnarg/tree-sitter-todotxt", rev = "0207f6a4ab6aeafc4b091914d31d8235049a2578"}
+
+[[language]]
 name = "python"
 auto-format = true
 roots = ["pyproject.toml", "poetry.lock"]

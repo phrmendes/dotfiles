@@ -56,6 +56,7 @@
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.prettier
+    nodePackages.pyright
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
     python311Packages.pudb

@@ -1,10 +1,18 @@
 # TODO: setup DAP
-# TODO: setup multiples language servers for markdown
+# TODO: setup multiples language servers for markdown and python
+# TODO: setup pyright with ruff-lsp and ruff
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = [ "--stdio" ]
+
+[language-server.ruff]
+command = "ruff-lsp"
 
 [language-server.ltex]
 command = "ltex-ls"
 
-[[python]]
+[[language]]
 name = "python"
 auto-format = true
 roots = ["pyproject.toml", "poetry.lock"]
@@ -37,8 +45,8 @@ formatter = { command = "prettier", args = [ "--parser", "json" ] }
 [[language]]
 name = "markdown"
 auto-format = true
+# language-servers = ["marksman", "ltex"]
 formatter = { command = "prettier", args = [ "--parser", "markdown"] }
-# language-servers = [ "marksman", "ltex" ]
 
 [[language]]
 name = "html"
@@ -53,18 +61,3 @@ formatter = { command = "terraform", args = [ "fmt", "-" ] }
 name = "tfvars"
 auto-format = true
 formatter = { command = "terraform", args = [ "fmt", "-" ] }
-
-[[language]]
-name = "make"
-auto-format = true
-formatter = { command = "checkmake" }
-
-[[language]]
-name = "scala"
-auto-format = true
-formatter = { command = "scalafmt", args = [ "--stdin" ] }
-
-[[language]]
-name = "lua"
-auto-format = true
-formatter = { command = "lua-format", args = [ "-i" ] }

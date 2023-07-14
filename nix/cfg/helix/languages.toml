@@ -28,7 +28,11 @@ pylsp-mypy = { enable = true, strict = true }
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = [ "-i", "4"] }
+formatter = { command = "shfmt", args = [ "-i", "2"] }
+
+[[grammar]]
+name = "bash"
+source = { git = "https://github.com/tree-sitter/tree-sitter-bash", rev = "1b0321ee85701d5036c334a6f04761cdc672e64c" }
 
 [[language]]
 name = "nix"

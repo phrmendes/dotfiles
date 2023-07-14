@@ -27,6 +27,7 @@
     tesseract4
     xclip
     zellij
+    zk
     # GUI
     bitwarden
     copyq
@@ -43,6 +44,7 @@
     ltex-ls
     luaformatter
     lua-language-server
+    marksman
     nil
     nixpkgs-fmt
     ruff

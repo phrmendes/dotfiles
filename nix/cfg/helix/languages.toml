@@ -1,4 +1,9 @@
 # TODO: setup DAP
+# TODO: setup markdown with marksman/ltex-ls/zk
+
+[language-servers]
+zk = { command = "zk", args = [ "lsp" ]}
+ltex = { command = "ltex-ls" }
 
 [[language]]
 name = "python"

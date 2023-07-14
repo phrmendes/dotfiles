@@ -12,14 +12,17 @@ select = "underline"
 
 [editor.lsp]
 display-messages = true
+display-inlay-hints = true
 
 [editor.indent-guides]
-render = true
 character = "┊"
+render = true
 skip-levels = 1
 
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+right = ["diagnostics", "position", "version-control", "file-encoding", "file-type"]
+
 [keys.normal.space]
+W = ":w"
 Q = ":q"
-q = ":bc"
-space = "file_picker"
-w = ":w"

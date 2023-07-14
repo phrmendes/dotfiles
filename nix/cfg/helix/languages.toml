@@ -1,7 +1,29 @@
+# TODO: setup DAP
+# TODO: setup multiples language servers
+
+[language-server.pyright]
+command = "pyright-lang-server"
+args = [ "--stdio" ]
+config = { lint = true, inlayHint.enable = true }
+
+[language-server.ruff]
+command = "ruff-lsp"
+
+[language-server.ltex]
+command = "ltex-ls"
+
+[[python]]
+name = "python"
+auto-format = true
+language-server = { command = "pyright-lang-server", args = [ "--stdio" ] }
+# language-servers = [ "pyright", "ruff" ]
+formatter = { command = "ruff", args = [ "--quiet", "-" ] }
+roots = ["pyproject.toml", "poetry.lock"]
+
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = ["-filename", "$FILENAME"] }
+formatter = { command = "shfmt", args = [ "-i", "4"] }
 
 [[language]]
 name = "nix"
@@ -11,28 +33,44 @@ formatter = { command = "nixpkgs-fmt" }
 [[language]]
 name = "yaml"
 auto-format = true
-formatter = { command = "yamlfmt", args = ["-"] }
+formatter = { command = "prettier", args = [ "--parser", "yaml" ] }
 
 [[language]]
 name = "json"
 auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "json"] }
+formatter = { command = "prettier", args = [ "--parser", "json" ] }
 
 [[language]]
 name = "markdown"
 auto-format = true
 formatter = { command = "prettier", args = [ "--parser", "markdown"] }
+# language-servers = [ "marksman", "ltex" ]
+
+[[language]]
+name = "html"
+formatter = { command = 'prettier', args = [ "--parser", "html" ] }
 
 [[language]]
 name = "hcl"
 auto-format = true
-formatter = { command = "terraform", args = ["fmt", "-"] }
+formatter = { command = "terraform", args = [ "fmt", "-" ] }
 
 [[language]]
 name = "tfvars"
-formatter = { command = "terraform", args = ["fmt", "-"] }
 auto-format = true
+formatter = { command = "terraform", args = [ "fmt", "-" ] }
 
 [[language]]
-name = "html"
-formatter = { command = 'prettier', args = ["--parser", "html"] }
+name = "make"
+auto-format = true
+formatter = { command = "checkmake" }
+
+[[language]]
+name = "scala"
+auto-format = true
+formatter = { command = "scalafmt", args = [ "--stdin" ] }
+
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "lua-format", args = [ "-i" ] }

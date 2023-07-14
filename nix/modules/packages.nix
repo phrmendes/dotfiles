@@ -39,13 +39,21 @@
     vscode
     zotero
     # language servers/formatters
+    bibtex-tidy
+    checkmake
+    ltex-ls
+    luaformatter
+    lua-language-server
     marksman
     nil
     nixpkgs-fmt
+    ruff
+    scalafmt
     shfmt
     taplo
     terraform-ls
-    yamlfmt
+    texlab
+    nodePackages.pyright
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.prettier

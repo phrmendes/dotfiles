@@ -53,11 +53,15 @@
     taplo
     terraform-ls
     texlab
-    nodePackages.pyright
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.prettier
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
+    python311Packages.pudb
+    python311Packages.pylsp-mypy
+    python311Packages.pylsp-rope
+    python311Packages.python-lsp-ruff
+    python311Packages.python-lsp-server
   ];
 }

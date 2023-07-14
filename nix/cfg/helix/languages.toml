@@ -1,13 +1,5 @@
 # TODO: setup DAP
-# TODO: setup multiples language servers
-
-# [language-server.pyright]
-# command = "pyright-lang-server"
-# args = [ "--stdio" ]
-# config = { lint = true, inlayHint.enable = true }
-
-[language-server.ruff]
-command = "ruff-lsp"
+# TODO: setup multiples language servers for markdown
 
 [language-server.ltex]
 command = "ltex-ls"
@@ -15,10 +7,12 @@ command = "ltex-ls"
 [[python]]
 name = "python"
 auto-format = true
-language-server = { command = "pyright-langserver", args = [ "--stdio" ] }
-# language-servers = [ "pyright", "ruff" ]
-formatter = { command = "ruff", args = [ "--quiet", "--fix" ] }
 roots = ["pyproject.toml", "poetry.lock"]
+
+[[python.config.pylsp.plugins]]
+ruff.enable = true
+rope.enable = true
+mypy = { enable = true, strict = true }
 
 [[language]]
 name = "bash"

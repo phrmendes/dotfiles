@@ -1,13 +1,5 @@
 # TODO: setup DAP
 # TODO: setup multiples language servers for markdown and python
-# TODO: setup pyright with ruff-lsp and ruff
-
-[language-server.pyright]
-command = "pyright-langserver"
-args = [ "--stdio" ]
-
-[language-server.ruff]
-command = "ruff-lsp"
 
 [language-server.ltex]
 command = "ltex-ls"
@@ -19,8 +11,7 @@ roots = ["pyproject.toml", "poetry.lock"]
 
 [[python.config.pylsp.plugins]]
 ruff.enable = true
-rope.enable = true
-mypy = { enable = true, strict = true }
+pylsp-mypy = { enable = true, strict = true }
 
 [[language]]
 name = "bash"

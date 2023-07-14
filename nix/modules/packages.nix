@@ -59,10 +59,11 @@
     nodePackages.pyright
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
+    python311Packages.mypy
     python311Packages.pudb
     python311Packages.pylsp-mypy
-    python311Packages.pylsp-rope
     python311Packages.python-lsp-ruff
     python311Packages.python-lsp-server
+    python311Packages.rope
   ];
 }

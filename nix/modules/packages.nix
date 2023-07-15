@@ -24,45 +24,45 @@
     sqlite
     tealdeer
     tectonic
-    tesseract4
+    terraform
     xclip
-    zellij
-    zk
     # GUI
     bitwarden
     copyq
     caffeine-ng
     deluge
-    obsidian
     onlyoffice-bin
     thunderbird
     vlc
-    vscode
     zotero
-    # language servers/formatters
-    bibtex-tidy
-    ltex-ls
-    luaformatter
+    # language-servers
+    ansible-language-server
+    efm-langserver # generic
+    ltex-ls # language tool
     lua-language-server
-    marksman
-    nil
-    nixpkgs-fmt
-    ruff
-    scalafmt
-    shfmt
-    taplo
+    marksman # markdown
+    metals # scala
+    nil # nix
+    ruff-lsp # python
+    taplo # toml
     terraform-ls
-    texlab
+    texlab # latex
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
-    nodePackages.prettier
+    nodePackages.pyright
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
-    python311Packages.mypy
-    python311Packages.pudb
-    python311Packages.pylsp-mypy
-    python311Packages.python-lsp-ruff
-    python311Packages.python-lsp-server
-    python311Packages.rope
+    # linters
+    shellcheck
+    statix # nix
+    yamllint
+    nodePackages.jsonlint
+    # formatters
+    alejandra # nix
+    ruff # python
+    scalafmt
+    shfmt
+    luaformatter
+    nodePackages.prettier # yaml, json, markdown
   ];
 }

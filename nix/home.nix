@@ -1,8 +1,9 @@
-{ pkgs, ...}: 
+{ pkgs, ... }:
 
 let
   user = "phrmendes";
-in {
+in
+{
   imports = [
     ./modules/bat.nix
     ./modules/btop.nix
@@ -13,6 +14,7 @@ in {
     ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
+    ./modules/neovim.nix
     ./modules/packages.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
@@ -27,10 +29,10 @@ in {
     homeDirectory = "/home/${user}";
     stateVersion = "23.05";
     sessionVariables = {
-      EDITOR = "${pkgs.helix}/bin/hx";
-      VISUAL = "${pkgs.helix}/bin/hx";
-      TERMINAL = "/usr/bin/wezterm";
-      SUDO_EDITOR = "${pkgs.helix}/bin/hx";
+      EDITOR = "${pkgs.neovim}/bin/nvim";
+      VISUAL = "${pkgs.neovim}/bin/nvim";
+      TERMINAL = "flatpak run org.wezfurlong.wezterm";
+      SUDO_EDITOR = "${pkgs.neovim}/bin/nvim";
     };
   };
   xdg = {

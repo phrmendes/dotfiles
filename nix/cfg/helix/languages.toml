@@ -1,9 +1,7 @@
-# TODO: setup DAP
-# TODO: setup markdown with marksman/ltex-ls/zk
-
 [language-servers]
-zk = { command = "zk", args = [ "lsp" ]}
 ltex = { command = "ltex-ls" }
+pyright = { command = "pyright-langserver", args = [ "--stdio" ] }
+ruff = { command = "ruff-lsp" }
 
 [[language]]
 name = "todotxt"
@@ -19,25 +17,19 @@ source = { git = "https://github.com/arnarg/tree-sitter-todotxt", rev = "0207f6a
 [[language]]
 name = "python"
 auto-format = true
-roots = ["pyproject.toml", "poetry.lock"]
-
-[[python.config.pylsp.plugins]]
-ruff.enable = true
-pylsp-mypy = { enable = true, strict = true }
+language-servers = [ "pyright", "ruff-lsp" ]
+formatter = { command = "ruff", args = [ "--fix" ] }
+roots = [ "pyproject.toml", "poetry.lock" ]
 
 [[language]]
 name = "bash"
 auto-format = true
 formatter = { command = "shfmt", args = [ "-i", "2"] }
 
-[[grammar]]
-name = "bash"
-source = { git = "https://github.com/tree-sitter/tree-sitter-bash", rev = "1b0321ee85701d5036c334a6f04761cdc672e64c" }
-
 [[language]]
 name = "nix"
 auto-format = true
-formatter = { command = "nixpkgs-fmt" }
+formatter = { command = "alejandra" }
 
 [[language]]
 name = "yaml"
@@ -52,12 +44,12 @@ formatter = { command = "prettier", args = [ "--parser", "json" ] }
 [[language]]
 name = "markdown"
 auto-format = true
-language-server = { command = "ltex-ls" }
+language-servers = [ "ltex", "marksman" ]
 formatter = { command = "prettier", args = [ "--parser", "markdown"] }
 
 [[language]]
 name = "html"
-formatter = { command = 'prettier', args = [ "--parser", "html" ] }
+formatter = { command = "prettier", args = [ "--parser", "html" ] }
 
 [[language]]
 name = "hcl"
@@ -78,3 +70,8 @@ formatter = { command = "lua-format", args = [ "-i" ] }
 name = "scala"
 auto-format = true
 formatter = { command = "scalafmt", args = [ "--stdin" ] }
+
+[[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = [ "--format", "i" ] }

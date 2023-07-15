@@ -1,0 +1,68 @@
+---
+version: 2
+root-markers:
+  - .git/
+tools:
+  nix-alejandra: &nix-alejandra
+    format-command: "alejandra --quiet"
+    format-stdin: true
+  json-prettier: &json-prettier
+    format-command: "prettier --parser json"
+  yaml-prettier: &yaml-prettier
+    format-command: "prettier --parser yaml"
+  markdown-prettier: &markdown-prettier
+    format-command: "prettier --parser markdown"
+  python-ruff: &python-ruff
+    format-command: "ruff --fix -e -n --stdin-filename ${INPUT} -"
+    format-stdin: true
+  sh-shfmt: &sh-shfmt
+    format-command: "shfmt -ci -s -bn"
+    format-stdin: true
+  scala-scalafmt: &scala-scalafmt
+    format-command: "scalafmt --stdin"
+    format-stdin: true
+  lua-lua-format: &lua-lua-format
+    format-command: "lua-format -i"
+    format-stdin: true
+  toml-taplo: &toml-taplo
+    format-command: "taplo format -"
+    format-stdin: true
+  sh-shellcheck: &sh-shellcheck
+    lint-command: "shellcheck -f gcc -x"
+    lint-source: "shellcheck"
+    lint-formats:
+      - "%f:%l:%c: %trror: %m"
+      - "%f:%l:%c: %tarning: %m"
+      - "%f:%l:%c: %tote: %m"
+  yaml-yamllint: &yaml-yamllint
+    lint-command: "yamllint -f parsable -"
+    lint-stdin: true
+  json-jsonlint: &json-jsonlint
+    lint-command: "jsonlint --compact"
+    lint-stdin: true
+  nix-statix: &nix-statix
+    lint-command: "statix check --stdin --format=errfmt"
+    lint-stdin: true
+  languages:
+    json:
+      - <<: *json-prettier
+      - <<: *json-jsonlint
+    lua:
+      - <<: *lua-lua-format
+    markdown:
+      - <<: *markdown-prettier
+    nix:
+      - <<: *nix-alejandra
+      - <<: *nix-statix
+    python:
+      - <<: *python-ruff
+    sh:
+      - <<: *sh-shellcheck
+      - <<: *sh-shfmt
+    yaml:
+      - <<: *yaml-prettier
+      - <<: *yaml-yamllint
+    toml:
+      - <<: *toml-taplo
+    scala:
+      - <<: *scala-scalafmt

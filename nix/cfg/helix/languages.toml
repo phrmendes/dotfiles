@@ -7,10 +7,10 @@ ltex = { command = "ltex-ls" }
 
 [[language]]
 name = "todotxt"
-scope = "source.sway"
+scope = "source.todo.txt"
 injection-regex = "todotxt"
-file-types = [ "todotxt" ]
-roots = [ "todo.todotxt" ]
+file-types = [ "todo.txt" ]
+roots = [ "todo.txt" ]
 
 [[grammar]]
 name = "todotxt"

@@ -13,8 +13,16 @@ HM_BIN="$HOME/.nix-profile/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince xterm fprintd simple-scan gparted)
 USER=$(whoami)
+
+FLATPAK_PACKAGES=(
+  ch.protonmail.protonmail-bridge
+  com.github.ransome1.sleek
+  com.github.tchx84.Flatseal
+  com.protonvpn.www
+  org.wezfurlong.wezterm
+)
+
 DEB_PACKAGES=(
-  "wezterm:github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408-112425-69ae8472.Ubuntu22.04.deb"
   "protonbridge:proton.me/download/bridge/protonmail-bridge_3.2.0-1_amd64.deb"
 )
 
@@ -36,6 +44,11 @@ remove_locks() {
   sudo rm /var/lib/dpkg/lock-frontend
   sudo rm /var/cache/apt/archives/lock
   sudo dpkg --add-architecture i386
+}
+
+install_flatpak() {
+  echo -e "${BOLD_GREEN}Installing flatpak programs...${END_COLOR}"
+  flatpak install "${FLATPAK_PACKAGES[@]}" -y
 }
 
 install_apt() {

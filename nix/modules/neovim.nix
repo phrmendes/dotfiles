@@ -14,7 +14,6 @@ in
 {
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     package = pkgs.neovim-unwrapped;
     vimAlias = true;
     vimdiffAlias = true;
@@ -50,7 +49,7 @@ in
       oil-nvim # file management
       plenary-nvim # lua utils
       project-nvim # project management
-      telescope-fzf-native-nvim # telescope fzf integration
+      telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui
       todo-comments-nvim # todo comments

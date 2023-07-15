@@ -62,27 +62,27 @@ local leader_normal_opts = {
 }
 
 local leader_normal_mappings = {
+    Q = {"<cmd>q!<cr>", "Quit withoust saving"},
     c = {"<cmd>noh<cr>", "Clear highlights"},
     e = {"<cmd>NvimTreeToggle<cr>", "File explorer tree"},
     h = {"<cmd>Telescope help_tags<cr>", "Help tags"},
     o = {"<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "todo.txt"},
     q = {"<cmd>confirm q<cr>", "Quit"},
-    Q = {"<cmd>q!<cr>", "Quit withoust saving"},
-    s = {"<cmd>Telescope treesitter", "Treesitter"},
-    u = {"<cmd>UndotreeToggle<cr>", "Undo tree"},
+    s = {"<cmd>Telescope treesitter<cr>", "Treesitter"},
     t = {"<cmd>TodoTelescope<cr>", "Search TODOs"},
+    u = {"<cmd>UndotreeToggle<cr>", "Undo tree"},
     z = {"<cmd>ZenMode<cr>", "Zen mode"},
 
     b = {
         name = "+buffers",
+        G = {"<cmd>bl<cr>", "Last buffer"},
         b = {"<cmd>Telescope buffers previewer=false<cr>", "Buffers"},
         d = {"<cmd>MiniBufremove.delete()<cr>", "Delete buffer"},
         f = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find"},
         g = {"<cmd>bf<cr>", "First buffer"},
-        G = {"<cmd>bl<cr>", "Last buffer"},
         n = {"<cmd>bn<cr>", "Next buffer"},
         p = {"<cmd>bp<cr>", "Previous buffer"},
-        w = {"<cmd>MiniBufremove.wipeout()", "Wipeout buffers"},
+        w = {"<cmd>MiniBufremove.wipeout()<cr>", "Wipeout buffers"},
 
         s = {
             name = "+split",
@@ -93,36 +93,36 @@ local leader_normal_mappings = {
 
     d = {
         name = "+debugger",
-        C = {
-            "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-            "Conditional breakpoint"
-        },
         B = {"<cmd>lua require('dap').step_back()<cr>", "Step back"},
-        b = {
-            "<cmd>lua require('dap').toggle_breakpoint()<cr>",
-            "Toggle breakpoint"
-        },
         c = {"<cmd>lua require('dap').continue()<cr>", "Continue"},
         i = {"<cmd>lua require('dap').step_into()<cr>", "Step into"},
         o = {"<cmd>lua require('dap').step_over()<cr>", "Step over"},
         p = {"<cmd>lua require('dap').pause()<cr>", "Pause"},
         q = {"<cmd>lua require('dap').close()<cr>", "Quit"},
         s = {"<cmd>lua require('dap').continue()<cr>", "Start"},
+        t = {"<cmd>lua require('dapui').toggle()<cr>", "Toggle UI"},
         u = {"<cmd>lua require('dap').step_out()<cr>", "Step out"},
+        C = {
+            "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+            "Conditional breakpoint"
+        },
+        b = {
+            "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+            "Toggle breakpoint"
+        },
         r = {
             "<cmd>lua require('dapui').open({reset = true})<cr>",
             "Reset UI panes"
         },
-        t = {"<cmd>lua require('dapui').toggle()<cr>", "Toggle UI"}
     },
 
     f = {
         name = "+files",
         ["."] = {"<cmd>lua require('oil').open()<cr>", "File explorer"},
+        G = {"<cmd>Telescope live_grep<cr>", "Live grep in project"},
         c = {"<cmd>Telescope grep_string<cr>", "Find string in cursor"},
         f = {"<cmd>Telescope find_files hidden=true<cr>", "Find"},
         g = {"<cmd>Telescope git_files<cr>", "Find (git files)"},
-        G = {"<cmd>Telescope live_grep<cr>", "Live grep in project"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open recent file"},
         w = {"<cmd>w<cr>", "Save"},
         S = {
@@ -133,18 +133,18 @@ local leader_normal_mappings = {
 
     g = {
         name = "+git",
-        C = {
-            "<cmd>Telescope git_bcommits<cr>",
-            "Checkout commit (for current file)"
-        },
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
         d = {"<cmd>Gitsigns diffthis HEAD<cr>", "Diff"},
         g = {"<cmd>LazyGit<cr>", "LazyGit"},
         l = {"<cmd>lua require('gitsigns').blame_line()<cr>", "Blame"},
-        s = {"<cmd>Telescope git_status<cr>", "Open changed file"},
         p = {"<cmd>Telescope projects<cr>", "List projects"},
-        r = {"<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer"}
+        r = {"<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer"},
+        s = {"<cmd>Telescope git_status<cr>", "Open changed file"},
+        C = {
+            "<cmd>Telescope git_bcommits<cr>",
+            "Checkout commit (for current file)"
+        },
     },
 
     l = {
@@ -152,6 +152,7 @@ local leader_normal_mappings = {
         c = {"<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action"},
         d = {"<cmd>Telescope diagnostics<cr>", "Diagnostics"},
         s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document symbols"},
+        q = {"<cmd>Telescope quickfix<cr>", "Quickfix"},
         w = {
             "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
             "Workspace symbols"
@@ -181,10 +182,10 @@ local leader_normal_mappings = {
     w = {
         name = "+windows",
         d = {"<C-w>q", "Close"},
-        v = {"<C-w>s", "Vertical split"},
-        s = {"<C-w>v", "Split"},
         n = {"<C-w>w", "Next"},
         p = {"<C-w>p", "Previous"},
+        s = {"<C-w>v", "Split"},
+        v = {"<C-w>s", "Vertical split"},
         x = {"<C-w>x", "Swap"}
     }
 }

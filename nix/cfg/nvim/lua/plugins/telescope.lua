@@ -22,9 +22,17 @@ telescope.setup({
             }
         }
     },
-    extensions = {["ui-select"] = {themes.get_dropdown({})}}
+    extensions = {
+        ["ui-select"] = {
+            themes.get_dropdown()
+        },
+        ["fzy_native"] = {
+            override_generic_sorter = false,
+            override_file_sorter = true
+        }
+    }
 })
 
 telescope.load_extension("bibtex")
-telescope.load_extension("fzf")
+telescope.load_extension("fzy_native")
 telescope.load_extension("ui-select")

@@ -29,10 +29,10 @@ in
     homeDirectory = "/home/${user}";
     stateVersion = "23.05";
     sessionVariables = {
-      EDITOR = "${pkgs.neovim}/bin/nvim";
-      VISUAL = "${pkgs.neovim}/bin/nvim";
+      EDITOR = "${pkgs.neovim-unwrapped}/bin/nvim";
+      VISUAL = "${pkgs.neovim-unwrapped}/bin/nvim";
       TERMINAL = "flatpak run org.wezfurlong.wezterm";
-      SUDO_EDITOR = "${pkgs.neovim}/bin/nvim";
+      SUDO_EDITOR = "${pkgs.neovim-unwrapped}/bin/nvim";
     };
   };
   xdg = {

@@ -26,7 +26,7 @@
     tectonic
     terraform
     xclip
-    zk
+    obsidian
     # GUI
     bitwarden
     copyq

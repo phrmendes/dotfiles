@@ -21,6 +21,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      (fromGitHub "HEAD" "epwalsh/obsidian.nvim") # obsidian
       (fromGitHub "HEAD" "jbyuki/nabla.nvim") # math rendering
       (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
@@ -66,7 +67,6 @@ in {
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
-      zk-nvim # zettelkasten
     ];
   };
 }

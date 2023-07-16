@@ -17,7 +17,7 @@ source = { git = "https://github.com/arnarg/tree-sitter-todotxt", rev = "0207f6a
 [[language]]
 name = "python"
 auto-format = true
-language-servers = [ "pyright", "ruff-lsp" ]
+# language-servers = [ "pyright", "ruff-lsp" ]
 formatter = { command = "ruff", args = [ "--fix" ] }
 roots = [ "pyproject.toml", "poetry.lock" ]
 
@@ -44,7 +44,7 @@ formatter = { command = "prettier", args = [ "--parser", "json" ] }
 [[language]]
 name = "markdown"
 auto-format = true
-language-servers = [ "ltex", "marksman" ]
+# language-servers = [ "ltex", "marksman" ]
 formatter = { command = "prettier", args = [ "--parser", "markdown"] }
 
 [[language]]

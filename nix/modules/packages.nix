@@ -15,7 +15,6 @@
     joshuto
     lazydocker
     ncdu
-    obsidian
     pandoc
     pipr
     quarto
@@ -40,6 +39,7 @@
     efm-langserver # generic
     ltex-ls # language tool
     lua-language-server
+    marksman # markdown
     metals # scala
     nil # nix
     ruff-lsp # python

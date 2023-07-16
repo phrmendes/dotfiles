@@ -188,18 +188,6 @@ local leader_normal_mappings = {
         v = { "<C-w>s", "Vertical split" },
         x = { "<C-w>x", "Swap" }
     },
-
-    o = {
-        name = "+obsidian",
-        N = { "<cmd>ObsidianLinkNew<cr>", "New link" },
-        b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-        f = { "<cmd>ObsidianFollowLink<cr>", "Follow link" },
-        l = { "<cmd>ObsidianLink<cr>", "Links" },
-        n = { "<cmd>ObsidianNew<cr>", "New note" },
-        o = { "<cmd>ObsidianOpen<cr>", "Open note" },
-        q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
-        s = { "<cmd>ObsidianSearch<cr>", "Search notes" }
-    }
 }
 
 which_key.register(leader_normal_mappings, leader_normal_opts)

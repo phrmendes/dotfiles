@@ -1,30 +1,31 @@
 [language-servers]
 ltex = { command = "ltex-ls" }
-pyright = { command = "pyright-langserver", args = [ "--stdio" ] }
+pyright = { command = "pyright-langserver", args = ["--stdio"] }
 ruff = { command = "ruff-lsp" }
+zk = { command = "zk", args = ["lsp"] }
 
 [[language]]
 name = "todotxt"
 scope = "source.todo.txt"
 injection-regex = "todotxt"
-file-types = [ "todo.txt" ]
-roots = [ "todo.txt" ]
+file-types = ["todo.txt"]
+roots = ["todo.txt"]
 
 [[grammar]]
 name = "todotxt"
-source = { git = "https://github.com/arnarg/tree-sitter-todotxt", rev = "0207f6a4ab6aeafc4b091914d31d8235049a2578"}
+source = { git = "https://github.com/arnarg/tree-sitter-todotxt", rev = "0207f6a4ab6aeafc4b091914d31d8235049a2578" }
 
 [[language]]
 name = "python"
 auto-format = true
 # language-servers = [ "pyright", "ruff-lsp" ]
-formatter = { command = "ruff", args = [ "--fix" ] }
-roots = [ "pyproject.toml", "poetry.lock" ]
+formatter = { command = "ruff", args = ["--fix"] }
+roots = ["pyproject.toml", "poetry.lock"]
 
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = [ "-i", "2"] }
+formatter = { command = "shfmt", args = ["-i", "2"] }
 
 [[language]]
 name = "nix"
@@ -34,44 +35,45 @@ formatter = { command = "alejandra" }
 [[language]]
 name = "yaml"
 auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "yaml" ] }
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
 
 [[language]]
 name = "json"
 auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "json" ] }
+formatter = { command = "prettier", args = ["--parser", "json"] }
 
 [[language]]
 name = "markdown"
 auto-format = true
-# language-servers = [ "ltex", "marksman" ]
-formatter = { command = "prettier", args = [ "--parser", "markdown"] }
+# language-servers = ["ltex", "zk"]
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
 
 [[language]]
 name = "html"
-formatter = { command = "prettier", args = [ "--parser", "html" ] }
+formatter = { command = "prettier", args = ["--parser", "html"] }
 
 [[language]]
 name = "hcl"
 auto-format = true
-formatter = { command = "terraform", args = [ "fmt", "-" ] }
+formatter = { command = "terraform", args = ["fmt", "-"] }
 
 [[language]]
 name = "tfvars"
 auto-format = true
-formatter = { command = "terraform", args = [ "fmt", "-" ] }
+formatter = { command = "terraform", args = ["fmt", "-"] }
 
 [[language]]
 name = "lua"
 auto-format = true
-formatter = { command = "lua-format", args = [ "-i" ] }
+formatter = { command = "lua-format", args = ["-i"] }
 
 [[language]]
 name = "scala"
 auto-format = true
-formatter = { command = "scalafmt", args = [ "--stdin" ] }
+formatter = { command = "scalafmt", args = ["--stdin"] }
 
 [[language]]
 name = "toml"
 auto-format = true
-formatter = { command = "taplo", args = [ "--format", "i" ] }
+formatter = { command = "taplo", args = ["--format", "i"] }
+

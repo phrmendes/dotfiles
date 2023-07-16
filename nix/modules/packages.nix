@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
-    # CLI 
+    # CLI
     ansible
     asdf-vm
     coursier
@@ -26,6 +26,7 @@
     tectonic
     terraform
     xclip
+    zk
     # GUI
     bitwarden
     copyq
@@ -40,7 +41,6 @@
     efm-langserver # generic
     ltex-ls # language tool
     lua-language-server
-    marksman # markdown
     metals # scala
     nil # nix
     ruff-lsp # python

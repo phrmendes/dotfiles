@@ -2,6 +2,8 @@
 
 source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 
+export ZK_NOTEBOOK_DIR="$HOME/pCloudDrive/notes"
+
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"

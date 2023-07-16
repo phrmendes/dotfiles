@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   fromGitHub = ref: repo:
     pkgs.vimUtils.buildVimPluginFrom2Nix {
       pname = "${lib.strings.sanitizeDerivationName repo}";
@@ -10,8 +12,7 @@ let
         url = "https://github.com/${repo}.git";
       };
     };
-in
-{
+in {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
@@ -23,11 +24,12 @@ in
       (fromGitHub "HEAD" "jbyuki/nabla.nvim") # math rendering
       (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
+      (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
       (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto
       catppuccin-nvim # colorscheme
-      cmp_luasnip # snippets completion
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
+      cmp_luasnip # snippets completion
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
@@ -64,6 +66,7 @@ in
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
+      zk-nvim # zettelkasten
     ];
   };
 }

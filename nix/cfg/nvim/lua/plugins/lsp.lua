@@ -16,21 +16,8 @@ end
 local autocmd = vim.api.nvim_create_autocmd
 local capabilities = cmp_nvim_lsp.default_capabilities()
 local clear = vim.api.nvim_clear_autocmds
-local formatting = vim.api.nvim_create_augroup("LspFormatting", {})
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
--- on_attach function for formatting
-local on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-        clear({ group = formatting, buffer = bufnr })
-        autocmd("BufWritePre", {
-            group = formatting,
-            buffer = bufnr,
-            callback = function() vim.lsp.buf.format({ bufnr = bufnr }) end
-        })
-    end
-end
-
--- language servers configs
 lspconfig.ansiblels.setup({ capabilities = capabilities })
 lspconfig.bashls.setup({ capabilities = capabilities })
 lspconfig.dockerls.setup({ capabilities = capabilities })
@@ -45,7 +32,18 @@ lspconfig.yamlls.setup({ capabilities = capabilities })
 lspconfig.jsonls.setup({ capabilities = capabilities })
 
 lspconfig.efm.setup {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            clear({ group = augroup, buffer = bufnr })
+            autocmd("BufWritePost", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ async = false, timeout_ms = 1000 })
+                end
+            })
+        end
+    end,
     capabilities = capabilities,
     cmd = { "efm-langserver" },
     args = { "-c", "~/.config/efm-langserver/config.yaml" },

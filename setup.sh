@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server fonts-jetbrains-mono)
+APT_PACKAGES=(build-essential ca-certificates curl file file-roller fonts-dejavu gdebi-core gnupg gzip libbz2-dev libffi-dev libfuse2 liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev rar tk-dev uidmap unrar unzip wget xz-utils zip zlib1g-dev gnome-tweaks tailscale openssh-server fonts-jetbrains-mono mlocate xclip atool w3m xlsx2csv jq catdoc exiftool mediainfo)
 ARCHITECTURE=$(dpkg --print-architecture)
 BOLD_GREEN="\e[1;32m"
 CODENAME=$(. /etc/os-release && echo "$VERSION_CODENAME")
@@ -12,6 +12,7 @@ GNOME_EXTENSIONS=(gsconnect@andyholmes.github.io vitals@CoreCoding.com user-them
 HM_BIN="$HOME/.nix-profile/bin"
 NIX_BIN="/nix/var/nix/profiles/default/bin/"
 PACKAGES_TO_REMOVE=(gnome-contacts gnome-calendar totem geary evince xterm fprintd simple-scan gparted)
+DOCKER_PACKAGES=(docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin)
 
 FLATPAK_PACKAGES=(
 	ch.protonmail.protonmail-bridge
@@ -144,7 +145,7 @@ install_docker() {
 	echo "deb [arch=$ARCHITECTURE signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $CODENAME stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 	sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 	update
-	sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+	sudo apt install "${DOCKER_PACKAGES[@]}" -y
 }
 
 update

@@ -1,20 +1,21 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
-    ansible
     asdf-vm
+    ansible
     coursier
     exa
     fd
+    feh
     gh
     gnome-extensions-cli
     helix
     hugo
     jdk20
+    joshuto
     lazydocker
-    lf
-    mlocate
     ncdu
+    obsidian
     pandoc
     pipr
     quarto
@@ -25,8 +26,6 @@
     tealdeer
     tectonic
     terraform
-    xclip
-    obsidian
     # GUI
     bitwarden
     copyq

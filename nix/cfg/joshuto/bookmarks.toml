@@ -1,0 +1,7 @@
+bookmark = [
+  { key = "h", path = "~/" },
+  { key = "n", path = "~/pCloudDrive/notes" },
+  { key = "p", path = "~/Projects/" },
+  { key = "r", path = "/" },
+  { key = "z", path = "~/pCloudDrive/zotero" },
+]

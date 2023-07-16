@@ -1,9 +1,6 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   user = "phrmendes";
-in
-{
+in {
   imports = [
     ./modules/bat.nix
     ./modules/btop.nix

@@ -7,6 +7,10 @@
     ".profile".source = ../cfg/.profile;
     ".wezterm.lua".source = ../cfg/wezterm.lua;
     ".config/efm-langserver/config.yaml".source = ../cfg/efm.yaml;
+    ".config/helix" = {
+      source = ../cfg/helix;
+      recursive = true;
+    };
     ".config/nvim" = {
       source = ../cfg/nvim;
       recursive = true;

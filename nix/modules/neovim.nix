@@ -21,7 +21,9 @@ in
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       (fromGitHub "HEAD" "jbyuki/nabla.nvim") # math rendering
+      (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
+      (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto
       catppuccin-nvim # colorscheme
       cmp_luasnip # snippets completion
       cmp-nvim-lsp # lsp completion

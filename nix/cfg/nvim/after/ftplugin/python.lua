@@ -20,7 +20,7 @@ local normal_opts = {
 }
 
 local visual_mappings = {
-    ["p"] = {
+    p = {
         "<cmd>lua require('dap-python').debug_selection()<cr>",
         "DAP - Debug python region"
     }
@@ -31,10 +31,10 @@ local normal_mappings = {
         name = "+debugger",
         P = {
             name = "+python",
-            ["c"] = {
+            c = {
                 "<cmd>lua require('dap-python').test_class()<cr>", "Test class"
             },
-            ["m"] = {
+            m = {
                 "<cmd>lua require('dap-python').test_method()<cr>",
                 "Test method"
             }

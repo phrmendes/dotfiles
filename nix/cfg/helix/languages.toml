@@ -2,7 +2,6 @@
 ltex = { command = "ltex-ls" }
 pyright = { command = "pyright-langserver", args = ["--stdio"] }
 ruff = { command = "ruff-lsp" }
-zk = { command = "zk", args = ["lsp"] }
 
 [[language]]
 name = "todotxt"
@@ -45,7 +44,7 @@ formatter = { command = "prettier", args = ["--parser", "json"] }
 [[language]]
 name = "markdown"
 auto-format = true
-# language-servers = ["ltex", "zk"]
+# language-servers = ["ltex", "marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 
 [[language]]
@@ -76,4 +75,3 @@ formatter = { command = "scalafmt", args = ["--stdin"] }
 name = "toml"
 auto-format = true
 formatter = { command = "taplo", args = ["--format", "i"] }
-

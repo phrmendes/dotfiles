@@ -1,16 +1,16 @@
 local core = require("iron.core")
-local view = require("iron.view")
+local pythonft = require("iron.fts.python")
 local scalaft = require("iron.fts.scala")
 local shft = require("iron.fts.sh")
-local pythonft = require("iron.fts.python")
+local view = require("iron.view")
 
 core.setup({
     config = {
         repl_open_cmd = view.split("25%"),
         repl_definition = {
-            python = { pythonft.ptipython },
-            scala = { scalaft.scala },
-            sh = { shft.sh }
+            python = pythonft.ptipython,
+            scala = scalaft.scala,
+            sh = shft.sh
         }
     },
     keymaps = {

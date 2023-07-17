@@ -1,3 +1,0 @@
-pipx
-poetry
-ptipython

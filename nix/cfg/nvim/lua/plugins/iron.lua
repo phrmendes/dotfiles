@@ -2,7 +2,7 @@ local core = require("iron.core")
 local view = require("iron.view")
 local scalaft = require("iron.fts.scala")
 local shft = require("iron.fts.sh")
-local pythonft = require("iron.fts.ptipython")
+local pythonft = require("iron.fts.python")
 
 core.setup({
     config = {

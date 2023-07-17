@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
-    asdf-vm
     ansible
+    asdf-vm
     coursier
     exa
     fd
@@ -13,10 +13,11 @@
     hugo
     jdk20
     joshuto
-    lazydocker
     ncdu
     pandoc
     pipr
+    podman
+    podman-compose
     quarto
     rename
     ripgrep

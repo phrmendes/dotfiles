@@ -6,7 +6,7 @@ watch_files = true
 
 [preview]
 max_preview_size = 2097152
-preview_script = "~/.config/joshuto/preview.sh"
+preview_script = "~/.local/bin/preview.sh"
 
 [display]
 show_hiden = true

@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
-
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"
+	"$HOME/.pyenv/shims"
 )
 
 nix_update() {

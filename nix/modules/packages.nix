@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     # CLI
     ansible
-    asdf-vm
     coursier
     exa
     fd
@@ -28,7 +27,6 @@
     terraform
     # GUI
     bitwarden
-    copyq
     caffeine-ng
     deluge
     onlyoffice-bin

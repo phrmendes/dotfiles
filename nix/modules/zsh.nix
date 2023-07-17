@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       cat = "${pkgs.bat}/bin/bat --theme=catppuccin";
       catr = "/usr/bin/cat";

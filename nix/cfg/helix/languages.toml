@@ -4,20 +4,9 @@ pyright = { command = "pyright-langserver", args = ["--stdio"] }
 ruff = { command = "ruff-lsp" }
 
 [[language]]
-name = "todotxt"
-scope = "source.todo.txt"
-injection-regex = "todotxt"
-file-types = ["todo.txt"]
-roots = ["todo.txt"]
-
-[[grammar]]
-name = "todotxt"
-source = { git = "https://github.com/arnarg/tree-sitter-todotxt", rev = "0207f6a4ab6aeafc4b091914d31d8235049a2578" }
-
-[[language]]
 name = "python"
 auto-format = true
-# language-servers = [ "pyright", "ruff-lsp" ]
+# language-servers = ["pyright", "ruff-lsp"]
 formatter = { command = "ruff", args = ["--fix"] }
 roots = ["pyproject.toml", "poetry.lock"]
 

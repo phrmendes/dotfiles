@@ -2,14 +2,15 @@ local core = require("iron.core")
 local view = require("iron.view")
 local scalaft = require("iron.fts.scala")
 local shft = require("iron.fts.sh")
+local pythonft = require("iron.fts.ptipython")
 
 core.setup({
     config = {
         repl_open_cmd = view.split("25%"),
         repl_definition = {
-            python = {command = {"ptipython", "-i", "-vi", "--dark-bg"}},
-            scala = {scalaft.scala},
-            sh = {shft.sh}
+            python = { pythonft.ptipython },
+            scala = { scalaft.scala },
+            sh = { shft.sh }
         }
     },
     keymaps = {
@@ -20,6 +21,6 @@ core.setup({
         visual_send = "<localleader>rs",
         interrupt = "<localleader>ri"
     },
-    highlight = {italic = true},
+    highlight = { italic = true },
     ignore_blank_lines = true
 })

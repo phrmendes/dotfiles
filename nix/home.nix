@@ -8,7 +8,6 @@ in {
     ./modules/flameshot.nix
     ./modules/fzf.nix
     ./modules/git.nix
-    ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix

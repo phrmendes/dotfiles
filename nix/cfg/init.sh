@@ -8,8 +8,6 @@ path+=(
 )
 
 nix_update() {
-	rm -rf "$HOME/.config/gtk-3.0/settings.ini.backup"
-	rm -rf "$HOME/.config/gtk-4.0/settings.ini.backup"
 	home-manager switch -b backup
 }
 

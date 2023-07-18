@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     # CLI
     ansible
+    caffeine-ng
     coursier
     exa
     fd

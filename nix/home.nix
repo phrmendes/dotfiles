@@ -5,7 +5,6 @@ in {
     ./modules/bat.nix
     ./modules/btop.nix
     ./modules/copyq.nix
-    ./modules/caffeine.nix
     ./modules/direnv.nix
     ./modules/flameshot.nix
     ./modules/fzf.nix

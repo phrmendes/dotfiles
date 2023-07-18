@@ -9,6 +9,7 @@
     feh
     gh
     gnome-extensions-cli
+    gnome-solanum
     helix
     hugo
     jdk

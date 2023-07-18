@@ -68,8 +68,11 @@ lspconfig.pyright.setup({
             analysis = {
                 autoSearchPaths = true,
                 diagnosticMode = "workspace",
+                strictDictionaryInference = true,
+                strictListInference = true,
+                strictSetInference = true,
                 typeCheckingMode = "strict",
-                useLibraryCodeForTypes = true,
+                useLibraryCodeForTypes = false,
                 inlayHints = { variableTypes = true, functionReturnTypes = true }
             }
         }

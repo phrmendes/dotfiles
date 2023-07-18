@@ -51,6 +51,21 @@ local g_normal_mappings = {
 
 which_key.register(g_normal_mappings, g_normal_opts)
 
+-- leader visual mappings
+
+local leader_visual_opts = {
+    mode = "v",
+    prefix = "<leader>",
+    buffer = nil,
+    silent = true,
+    noremap = true,
+    nowait = false
+}
+
+local leader_visual_mappings = { e = { "<cmd>lua require('dapui').eval()" } }
+
+which_key.register(leader_visual_mappings, leader_visual_opts)
+
 -- leader normal mappings
 local leader_normal_opts = {
     mode = "n",
@@ -187,7 +202,7 @@ local leader_normal_mappings = {
         s = { "<C-w>v", "Split" },
         v = { "<C-w>s", "Vertical split" },
         x = { "<C-w>x", "Swap" }
-    },
+    }
 }
 
 which_key.register(leader_normal_mappings, leader_normal_opts)

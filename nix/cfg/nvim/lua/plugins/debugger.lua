@@ -14,7 +14,7 @@ if not setup_txt then return end
 dap_ui.setup()
 dap_virtual_text.setup()
 dap_python.setup("~/.virtualenvs/debugpy/bin/python")
-dap_python.test_runner = "pytest"
+dap_python.test_runner = "unittest"
 
 dap.listeners.after.event_initialized["dapui_config"] =
     function() dap_ui.open() end

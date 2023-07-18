@@ -64,6 +64,7 @@ lspconfig.ltex.setup({
 lspconfig.pyright.setup({
     capabilities = capabilities,
     settings = {
+        single_file_support = true,
         python = {
             analysis = {
                 autoSearchPaths = true,

@@ -10,7 +10,7 @@
     gnome-extensions-cli
     helix
     hugo
-    jdk20
+    jdk
     joshuto
     ncdu
     pandoc
@@ -27,7 +27,6 @@
     terraform
     # GUI
     bitwarden
-    caffeine-ng
     deluge
     onlyoffice-bin
     thunderbird

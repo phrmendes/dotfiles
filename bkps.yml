@@ -1,43 +1,50 @@
+---
+# TODO: Create fact to check if computer is desktop
+# Command: dmidecode --string chassis-type
+
 - name: Backup configuration for linux computers running PopOS 22.04
   hosts: localhost
+  become: true
+  become_user: phrmendes
 
   tasks:
-    - name: Remove packages with apt
-      become: yes
-      ansible.builtin.apt:
+    - name: Remove packages
+      apt:
+        autoclean: true
+        autoremove: true
+        clean: true
         state: absent
         name:
           - evince
           - fprintd
           - geary
+          - gedit
           - gnome-calendar
           - gnome-contacts
           - gnome-terminal
           - gparted
+          - libreoffice-core
           - simple-scan
           - totem
           - xterm
 
-    - name: Add the flathub flatpak repository remote to the user installation
-      community.general.flatpak_remote:
-        name: flathub
-        state: present
-        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-        method: user
+    - name: Update system
+      apt:
+        update_cache: true
+        upgrade: full
 
-    - name: Install packages with flatpak
-      community.general.flatpak:
-        state: present
-        name:
-          - ch.protonmail.protonmail-bridge
-          - com.github.ransome1.sleek
-          - com.github.tchx84.Flatseal
-          - com.protonvpn.www
-          - org.wezfurlong.wezterm
+    - name: Installing tailscale repo
+      get_url:
+        url: "{{ items.url }}"
+        dest: "{{ items.dest }}"
+        with_items:
+          - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+            dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+          - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
+            dest: /etc/apt/sources.list.d/tailscale.list
 
     - name: Install packages with apt
-      become: yes
-      ansible.builtin.apt:
+      apt:
         state: present
         name:
           - atool
@@ -83,3 +90,79 @@
           - xz-utils
           - zip
           - zlib1g-dev
+
+    - name: Add the flathub remote repository
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: user
+
+    - name: Install packages with flatpak
+      community.general.flatpak:
+        state: present
+        name:
+          - ch.protonmail.protonmail-bridge
+          - com.github.ransome1.sleek
+          - com.protonvpn.www
+          - org.wezfurlong.wezterm
+
+    - name: Give WezTerm permissions to read home directory
+      command:
+        cmd: flatpak override --user --filesystem=home org.wezfurlong.wezterm"
+
+    - name: Install python packages
+      pip:
+        become: false
+        executable: ~/.pyenv/shims/pip
+        name:
+          - poetry
+          - ptipython
+
+    - name: Config poetry to use virtualenvs inside projects
+      become: false
+      command:
+        cmd: python -m poetry virtualenvs.in-project true
+
+    - name: Install python debugger
+      pip:
+        become: false
+        executable: ~/.pyenv/shims/pip
+        name: debugpy
+        virtualenv: ~/.virtualenvs/debugpy
+
+    - block:
+        - name: Adding fingerprint repository
+          apt_repository:
+            repo: "ppa:uunicorn/open-fprintd"
+
+        - name: Installing packages
+          apt:
+            state: present
+            names:
+              - open-fprintd
+              - fprintd-clients
+              - python3-validity
+      when: custom_facts['computer_type'] != "desktop"
+
+    - name: Installing nix package manager
+    - name: Installing home-manager
+    - name: Download AppImages
+
+    - name: Installing Gnome extensions
+    - become: false
+      command:
+        cmd: gext install {{ item }}
+        with_items:
+          - gsconnect@andyholmes.github.io
+          - vitals@CoreCoding.com
+
+    - name: Enable services
+      systemd:
+        state: started
+        enabled: true
+        name: "{{ item }}"
+        with_item:
+          - copyq.service
+          - flameshot.service
+          - home-manager-auto-upgrade.service

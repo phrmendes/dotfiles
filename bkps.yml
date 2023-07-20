@@ -11,6 +11,13 @@
     nix_bin: /nix/var/nix/profiles/default/bin/
     home_manager_bin: ~/.nix-profile/bin
 
+  pre_tasks:
+    - name: Update system
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+        upgrade: full
+
   tasks:
     - name: Remove packages
       apt:
@@ -31,11 +38,6 @@
           - simple-scan
           - totem
           - xterm
-
-    - name: Update system
-      apt:
-        update_cache: true
-        upgrade: full
 
     - name: Installing tailscale repo
       get_url:
@@ -136,6 +138,13 @@
         virtualenv: ~/.virtualenvs/debugpy
 
     - block:
+        - name: Get software for apt repository management
+          apt:
+            state: present
+            name:
+              - python3-apt
+              - python3-pycurl
+
         - name: Adding fingerprint repository
           apt_repository:
             repo: "ppa:uunicorn/open-fprintd"
@@ -149,6 +158,7 @@
               - python3-validity
       when: custom_facts['computer_type'] != "desktop"
 
+    - name: Clone bkps repo
     - name: Installing nix package manager
     - name: Installing home-manager
     - name: Download AppImages

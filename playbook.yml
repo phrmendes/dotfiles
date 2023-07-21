@@ -1,15 +1,10 @@
 ---
-# TODO: Create fact to check if computer is desktop
-# Command: dmidecode --string chassis-type
-
 - name: Backup configuration for linux computers running PopOS 22.04
   hosts: localhost
   become: true
-  become_user: phrmendes
 
-  vars:
-    nix_bin: /nix/var/nix/profiles/default/bin/
-    home_manager_bin: ~/.nix-profile/bin
+  vars_files:
+    - vars.yml
 
   pre_tasks:
     - name: Update system
@@ -19,6 +14,10 @@
         upgrade: full
 
   tasks:
+    - name: Check if device is desktop
+      shell: dmidecode --string chassis-type
+      register: device
+
     - name: Remove packages
       apt:
         autoclean: true
@@ -99,6 +98,7 @@
 
     - name: Add the flathub remote repository
       community.general.flatpak_remote:
+        become_user: "{{ user }}"
         name: flathub
         state: present
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -106,6 +106,7 @@
 
     - name: Install packages with flatpak
       community.general.flatpak:
+        become_user: "{{ user }}"
         state: present
         name:
           - ch.protonmail.protonmail-bridge
@@ -119,23 +120,24 @@
 
     - name: Install python packages
       pip:
-        become: false
-        executable: ~/.pyenv/shims/pip
+        become_user: "{{ user }}"
+        executable: "/home/{{ user }}/.pyenv/shims/pip"
         name:
           - poetry
           - ptipython
 
     - name: Config poetry to use virtualenvs inside projects
-      become: false
+      become_user: "{{ user }}"
       command:
         cmd: python -m poetry virtualenvs.in-project true
 
     - name: Install python debugger
+      become_user: "{{ user }}"
       pip:
         become: false
-        executable: ~/.pyenv/shims/pip
+        executable: "/home/{{ user }}/.pyenv/shims/pip"
         name: debugpy
-        virtualenv: ~/.virtualenvs/debugpy
+        virtualenv: "/home/{{ user }}/.virtualenvs/debugpy"
 
     - block:
         - name: Get software for apt repository management
@@ -156,15 +158,37 @@
               - open-fprintd
               - fprintd-clients
               - python3-validity
-      when: custom_facts['computer_type'] != "desktop"
+      when: device.stdout != "desktop"
 
-    - name: Clone bkps repo
+    - name: Clone backups repo
+      ansible.builtin.git:
+        repo: https://github.com/phrmendes/bkps.git
+        dest: "home/{{ user }}/bkps"
+
     - name: Installing nix package manager
+      become_user: "{{ user }}"
+      command:
+        cmd: sh <(curl -L https://nixos.org/nix/install) --daemon
+        creates: "{{ nix_path }}/nix"
+
+    - name: Check if home-manager is installed
+      become_user: "{{ user }}"
+      command: "{{ nix_pat }}/nix-env --query"
+      register: nix_pkgs_list
+
     - name: Installing home-manager
-    - name: Download AppImages
+      become_user: "{{ user }}"
+      command:
+        cmd: |-
+          {{ nix_path }}/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+          {{ nix_path }}/nix-channel --update
+          {{ nix_path }}/nix-shell '<home-manager>' -A install
+      changed_when: "'home-manager' not in nix_pkgs_list.stdout"
+      environment:
+        NIXPKGS_ALLOW_UNFREE: "1"
 
     - name: Installing Gnome extensions
-    - become: false
+      become_user: "{{ user }}"
       command:
         cmd: gext install {{ item }}
         with_items:
@@ -173,6 +197,7 @@
 
     - name: Enable services
       systemd:
+        become_user: "{{ user }}"
         state: started
         enabled: true
         name: "{{ item }}"
@@ -180,3 +205,5 @@
           - copyq.service
           - flameshot.service
           - home-manager-auto-upgrade.service
+
+    - name: Download AppImages

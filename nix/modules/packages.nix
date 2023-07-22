@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
-    ansible
     caffeine-ng
     coursier
     exa
@@ -52,10 +51,11 @@
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
     # linters
+    ansible-lint
+    nodePackages.jsonlint
     shellcheck
     statix # nix
     yamllint
-    nodePackages.jsonlint
     # formatters
     alejandra # nix
     ruff # python

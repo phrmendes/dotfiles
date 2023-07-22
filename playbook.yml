@@ -1,0 +1,219 @@
+---
+- name: Backup configuration for PopOS 22.04
+  become: true
+  hosts: localhost
+  connection: local
+
+  vars:
+    home_manager_path: ~/.nix-profile/bin
+    nix_path: /nix/var/nix/profiles/default/bin/
+    user: phrmendes
+
+  handlers:
+    - name: Update system
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+        upgrade: full
+
+  tasks:
+    - name: Remove packages
+      apt:
+        autoclean: true
+        autoremove: true
+        clean: true
+        state: absent
+        name:
+          - evince
+          - fprintd
+          - geary
+          - gedit
+          - gnome-calendar
+          - gnome-contacts
+          - gnome-terminal
+          - gparted
+          - libreoffice-core
+          - simple-scan
+          - totem
+          - xterm
+      notify:
+        - Update system
+
+    - name: Installing tailscale repo
+      get_url:
+        url: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+          dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+        - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
+          dest: /etc/apt/sources.list.d/tailscale.list
+      notify:
+        - Update system
+
+    - name: Install packages with apt
+      apt:
+        state: present
+        name:
+          - atool
+          - build-essential
+          - ca-certificates
+          - catdoc
+          - curl
+          - exiftool
+          - file
+          - file-roller
+          - flatpak
+          - fonts-dejavu
+          - fonts-jetbrains-mono
+          - gdebi-core
+          - git
+          - gnome-tweaks
+          - gnupg
+          - gzip
+          - jq
+          - libbz2-dev
+          - libffi-dev
+          - libfuse2
+          - liblzma-dev
+          - libncursesw5-dev
+          - libreadline-dev
+          - libsqlite3-dev
+          - libssl-dev
+          - libxml2-dev
+          - libxmlsec1-dev
+          - mediainfo
+          - mlocate
+          - openssh-server
+          - rar
+          - tailscale
+          - tk-dev
+          - uidmap
+          - unrar
+          - unzip
+          - w3m
+          - wget
+          - xclip
+          - xlsx2csv
+          - xz-utils
+          - zip
+          - zlib1g-dev
+
+    - name: Add the flathub remote repository
+      community.general.flatpak_remote:
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: user
+        name: flathub
+        state: present
+
+    - name: Install packages with flatpak
+      become_user: "{{ user }}"
+      community.general.flatpak:
+        state: present
+        name:
+          - ch.protonmail.protonmail-bridge
+          - com.github.ransome1.sleek
+          - com.protonvpn.www
+          - org.wezfurlong.wezterm
+
+    - name: Give WezTerm permissions to read home directory
+      command:
+        cmd: flatpak override --filesystem=home org.wezfurlong.wezterm
+
+    - block:
+        - name: Get software for apt repository management
+          apt:
+            state: present
+            name:
+              - python3-apt
+              - python3-pycurl
+
+        - name: Adding fingerprint repository
+          apt_repository:
+            repo: "ppa:uunicorn/open-fprintd"
+          notify:
+            - Update system
+
+        - name: Installing packages
+          apt:
+            state: present
+            names:
+              - open-fprintd
+              - fprintd-clients
+              - python3-validity
+      when: ansible_form_factor != "Desktop"
+
+    - name: Clone backups repo
+      ansible.builtin.git:
+        repo: https://github.com/phrmendes/bkps.git
+        dest: ~/.bkps
+
+    - name: Installing nix package manager
+      become_user: "{{ user }}"
+      command:
+        cmd: sh <(curl -L https://nixos.org/nix/install) --daemon
+        creates: "{{ nix_path }}/nix"
+
+    - name: Check if home-manager is installed
+      become_user: "{{ user }}"
+      command: "{{ nix_path }}/nix-env --query"
+      register: nix_pkgs_list
+
+    - name: Installing home-manager
+      become_user: "{{ user }}"
+      command:
+        cmd: |-
+          {{ nix_path }}/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+          {{ nix_path }}/nix-channel --update
+          {{ nix_path }}/nix-shell '<home-manager>' -A install
+      changed_when: "'home-manager' not in nix_pkgs_list.stdout"
+      environment:
+        NIXPKGS_ALLOW_UNFREE: "1"
+
+    - name: home-manager symlinks
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+      with_items:
+        - src: ~/.bkps/nix/home.nix
+          dest: ~/.config/home-manager/home.nix
+        - src: ~/.bkps/nix/config.nix
+          dest: ~/.config/nixpkgs/config.nix
+
+    - name: Install python packages
+      become_user: "{{ user }}"
+      pip:
+        executable: ~/.pyenv/shims/pip
+        name:
+          - pipx
+          - poetry
+          - ptipython
+
+    - name: Config poetry to use virtualenvs inside projects
+      become_user: "{{ user }}"
+      command:
+        cmd: python -m poetry virtualenvs.in-project true
+
+    - name: Install python debugger
+      become_user: "{{ user }}"
+      become: false
+      pip:
+        name: debugpy
+        virtualenv: ~/.virtualenvs/debugpy
+
+    - name: Check if extensions are installed
+      become_user: "{{ user }}"
+      command: gext
+      register: gnome_extensions
+
+    - name: Installing Gnome extensions
+      become_user: "{{ user }}"
+      command:
+        cmd: "{{ home_manager_path }}/gext install {{ item }}"
+      changed_when: "{{ item }} not in gnome_extensions.stdout"
+      with_items:
+        - gsconnect@andyholmes.github.io
+        - vitals@CoreCoding.com
+
+    # - name: Download AppImages

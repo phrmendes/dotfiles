@@ -13,19 +13,19 @@ g.loaded_netrwPlugin = 1
 nvim_tree.setup({
     sync_root_with_cwd = true,
     respect_buf_cwd = true,
-    update_focused_file = {enable = true, update_root = true},
+    update_focused_file = { enable = true, update_root = true },
     renderer = {
         icons = {
             glyphs = {
                 folder = {
-                    arrow_closed = "", -- arrow when folder is closed
-                    arrow_open = "" -- arrow when folder is open
+                    arrow_closed = "", -- arrow when folder is closed
+                    arrow_open = ""  -- arrow when folder is open
                 }
             }
         }
     },
     -- disable window_picker
-    actions = {open_file = {window_picker = {enable = false}}}
+    actions = { open_file = { window_picker = { enable = false } } }
 })
 
 -- open nvim-tree on setup
@@ -43,4 +43,4 @@ local function open_nvim_tree(data)
     require("nvim-tree.api").tree.open()
 end
 
-api.nvim_create_autocmd({"VimEnter"}, {callback = open_nvim_tree})
+api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })

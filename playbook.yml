@@ -6,7 +6,8 @@
 
   vars:
     home_manager_path: ~/.nix-profile/bin
-    nix_path: /nix/var/nix/profiles/default/bin/
+    nix_path: /nix/var/nix/profiles/default/bin
+    python_path: ~/.pyenv/shims
     user: phrmendes
 
   handlers:
@@ -39,7 +40,7 @@
       notify:
         - Update system
 
-    - name: Installing tailscale repo
+    - name: Install tailscale repo
       get_url:
         url: "{{ item.url }}"
         dest: "{{ item.dest }}"
@@ -143,10 +144,15 @@
               - python3-validity
       when: ansible_form_factor != "Desktop"
 
+    - name: Create "~/Projects" directory
+      file:
+        path: ~/Projects
+        state: directory
+
     - name: Clone backups repo
       ansible.builtin.git:
         repo: https://github.com/phrmendes/bkps.git
-        dest: ~/.bkps
+        dest: ~/Projects/bkps
 
     - name: Installing nix package manager
       become_user: "{{ user }}"
@@ -156,44 +162,45 @@
 
     - name: Check if home-manager is installed
       become_user: "{{ user }}"
-      command: "{{ nix_path }}/nix-env --query"
+      shell: "{{ nix_path }}/nix-env --query"
       register: nix_pkgs_list
 
-    - name: Installing home-manager
+    - name: Create home-manager symlinks
       become_user: "{{ user }}"
-      command:
-        cmd: |-
-          {{ nix_path }}/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-          {{ nix_path }}/nix-channel --update
-          {{ nix_path }}/nix-shell '<home-manager>' -A install
-      changed_when: "'home-manager' not in nix_pkgs_list.stdout"
-      environment:
-        NIXPKGS_ALLOW_UNFREE: "1"
-
-    - name: home-manager symlinks
       file:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
         state: link
       with_items:
-        - src: ~/.bkps/nix/home.nix
+        - src: ~/Projects/bkps/nix/home.nix
           dest: ~/.config/home-manager/home.nix
-        - src: ~/.bkps/nix/config.nix
+        - src: ~/Projects/bkps/nix/config.nix
           dest: ~/.config/nixpkgs/config.nix
+
+    - name: Install home-manager
+      become_user: "{{ user }}"
+      command:
+        cmd: |
+          {{ nix_path }}/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+          {{ nix_path }}/nix-channel --update
+          {{ nix_path }}/nix-shell '<home-manager>' -A install
+      when: "'home-manager' not in nix_pkgs_list.stdout"
+      environment:
+        NIXPKGS_ALLOW_UNFREE: "1"
 
     - name: Install python packages
       become_user: "{{ user }}"
       pip:
-        executable: ~/.pyenv/shims/pip
+        executable: "{{ python_path }}/pip"
         name:
-          - pipx
           - poetry
           - ptipython
 
-    - name: Config poetry to use virtualenvs inside projects
+    - name: Configure poetry to use virtualenvs inside projects
       become_user: "{{ user }}"
       command:
-        cmd: python -m poetry virtualenvs.in-project true
+        cmd: "{{ python_path }}/python -m poetry config virtualenvs.in-project true"
+      changed_when: false
 
     - name: Install python debugger
       become_user: "{{ user }}"
@@ -201,19 +208,3 @@
       pip:
         name: debugpy
         virtualenv: ~/.virtualenvs/debugpy
-
-    - name: Check if extensions are installed
-      become_user: "{{ user }}"
-      command: gext
-      register: gnome_extensions
-
-    - name: Installing Gnome extensions
-      become_user: "{{ user }}"
-      command:
-        cmd: "{{ home_manager_path }}/gext install {{ item }}"
-      changed_when: "{{ item }} not in gnome_extensions.stdout"
-      with_items:
-        - gsconnect@andyholmes.github.io
-        - vitals@CoreCoding.com
-
-    # - name: Download AppImages

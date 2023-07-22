@@ -4,6 +4,8 @@ root-markers:
   - .git/
 
 tools:
+  ansible: &ansible-lint
+    format-command: "ansible-lint"
   alejandra: &alejandra
     format-command: "alejandra --quiet"
     format-stdin: true
@@ -46,6 +48,8 @@ tools:
     lint-stdin: true
 
 languages:
+  ansible:
+    - <<: *ansible-lint
   json:
     - <<: *json-prettier
     - <<: *jsonlint

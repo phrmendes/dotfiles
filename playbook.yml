@@ -1,12 +1,15 @@
 ---
-- name: Backup configuration for linux computers running PopOS 22.04
-  hosts: localhost
+- name: Backup configuration for PopOS 22.04
   become: true
+  hosts: localhost
+  connection: local
 
-  vars_files:
-    - vars.yml
+  vars:
+    home_manager_path: ~/.nix-profile/bin
+    nix_path: /nix/var/nix/profiles/default/bin/
+    user: phrmendes
 
-  pre_tasks:
+  handlers:
     - name: Update system
       apt:
         update_cache: true
@@ -14,10 +17,6 @@
         upgrade: full
 
   tasks:
-    - name: Check if device is desktop
-      shell: dmidecode --string chassis-type
-      register: device
-
     - name: Remove packages
       apt:
         autoclean: true
@@ -37,16 +36,20 @@
           - simple-scan
           - totem
           - xterm
+      notify:
+        - Update system
 
     - name: Installing tailscale repo
       get_url:
-        url: "{{ items.url }}"
-        dest: "{{ items.dest }}"
-        with_items:
-          - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
-            dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
-          - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
-            dest: /etc/apt/sources.list.d/tailscale.list
+        url: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+          dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+        - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
+          dest: /etc/apt/sources.list.d/tailscale.list
+      notify:
+        - Update system
 
     - name: Install packages with apt
       apt:
@@ -98,15 +101,14 @@
 
     - name: Add the flathub remote repository
       community.general.flatpak_remote:
-        become_user: "{{ user }}"
-        name: flathub
-        state: present
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
         method: user
+        name: flathub
+        state: present
 
     - name: Install packages with flatpak
+      become_user: "{{ user }}"
       community.general.flatpak:
-        become_user: "{{ user }}"
         state: present
         name:
           - ch.protonmail.protonmail-bridge
@@ -116,28 +118,7 @@
 
     - name: Give WezTerm permissions to read home directory
       command:
-        cmd: flatpak override --user --filesystem=home org.wezfurlong.wezterm"
-
-    - name: Install python packages
-      pip:
-        become_user: "{{ user }}"
-        executable: "/home/{{ user }}/.pyenv/shims/pip"
-        name:
-          - poetry
-          - ptipython
-
-    - name: Config poetry to use virtualenvs inside projects
-      become_user: "{{ user }}"
-      command:
-        cmd: python -m poetry virtualenvs.in-project true
-
-    - name: Install python debugger
-      become_user: "{{ user }}"
-      pip:
-        become: false
-        executable: "/home/{{ user }}/.pyenv/shims/pip"
-        name: debugpy
-        virtualenv: "/home/{{ user }}/.virtualenvs/debugpy"
+        cmd: flatpak override --filesystem=home org.wezfurlong.wezterm
 
     - block:
         - name: Get software for apt repository management
@@ -150,6 +131,8 @@
         - name: Adding fingerprint repository
           apt_repository:
             repo: "ppa:uunicorn/open-fprintd"
+          notify:
+            - Update system
 
         - name: Installing packages
           apt:
@@ -158,12 +141,12 @@
               - open-fprintd
               - fprintd-clients
               - python3-validity
-      when: device.stdout != "desktop"
+      when: ansible_form_factor != "Desktop"
 
     - name: Clone backups repo
       ansible.builtin.git:
         repo: https://github.com/phrmendes/bkps.git
-        dest: "home/{{ user }}/bkps"
+        dest: ~/.bkps
 
     - name: Installing nix package manager
       become_user: "{{ user }}"
@@ -173,7 +156,7 @@
 
     - name: Check if home-manager is installed
       become_user: "{{ user }}"
-      command: "{{ nix_pat }}/nix-env --query"
+      command: "{{ nix_path }}/nix-env --query"
       register: nix_pkgs_list
 
     - name: Installing home-manager
@@ -187,23 +170,50 @@
       environment:
         NIXPKGS_ALLOW_UNFREE: "1"
 
+    - name: home-manager symlinks
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+      with_items:
+        - src: ~/.bkps/nix/home.nix
+          dest: ~/.config/home-manager/home.nix
+        - src: ~/.bkps/nix/config.nix
+          dest: ~/.config/nixpkgs/config.nix
+
+    - name: Install python packages
+      become_user: "{{ user }}"
+      pip:
+        executable: ~/.pyenv/shims/pip
+        name:
+          - pipx
+          - poetry
+          - ptipython
+
+    - name: Config poetry to use virtualenvs inside projects
+      become_user: "{{ user }}"
+      command:
+        cmd: python -m poetry virtualenvs.in-project true
+
+    - name: Install python debugger
+      become_user: "{{ user }}"
+      become: false
+      pip:
+        name: debugpy
+        virtualenv: ~/.virtualenvs/debugpy
+
+    - name: Check if extensions are installed
+      become_user: "{{ user }}"
+      command: gext
+      register: gnome_extensions
+
     - name: Installing Gnome extensions
       become_user: "{{ user }}"
       command:
-        cmd: gext install {{ item }}
-        with_items:
-          - gsconnect@andyholmes.github.io
-          - vitals@CoreCoding.com
+        cmd: "{{ home_manager_path }}/gext install {{ item }}"
+      changed_when: "{{ item }} not in gnome_extensions.stdout"
+      with_items:
+        - gsconnect@andyholmes.github.io
+        - vitals@CoreCoding.com
 
-    - name: Enable services
-      systemd:
-        become_user: "{{ user }}"
-        state: started
-        enabled: true
-        name: "{{ item }}"
-        with_item:
-          - copyq.service
-          - flameshot.service
-          - home-manager-auto-upgrade.service
-
-    - name: Download AppImages
+    # - name: Download AppImages

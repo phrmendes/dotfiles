@@ -1,4 +1,0 @@
----
-home_manager_path: ~/.nix-profile/bin
-nix_path: /nix/var/nix/profiles/default/bin/
-user: phrmendes

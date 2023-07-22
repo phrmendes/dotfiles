@@ -7,7 +7,7 @@
   vars:
     home_manager_path: ~/.nix-profile/bin
     nix_path: /nix/var/nix/profiles/default/bin
-    python_path: ~/.pyenv/shims
+    python_version: 3.11.3
     user: phrmendes
 
   handlers:
@@ -101,6 +101,7 @@
           - zlib1g-dev
 
     - name: Add the flathub remote repository
+      become_user: "{{ user }}"
       community.general.flatpak_remote:
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
         method: user
@@ -111,6 +112,7 @@
       become_user: "{{ user }}"
       community.general.flatpak:
         state: present
+        method: user
         name:
           - ch.protonmail.protonmail-bridge
           - com.github.ransome1.sleek
@@ -135,10 +137,10 @@
           notify:
             - Update system
 
-        - name: Installing packages
+        - name: Installing fingerprint packages
           apt:
             state: present
-            names:
+            name:
               - open-fprintd
               - fprintd-clients
               - python3-validity
@@ -188,10 +190,33 @@
       environment:
         NIXPKGS_ALLOW_UNFREE: "1"
 
+    - name: Check if python is installed
+      become_user: "{{ user }}"
+      shell: "{{ home_manager_path }}/pyenv version"
+      register: pyenv_versions
+
+    - name: Install python
+      become_user: "{{ user }}"
+      command:
+        cmd: |
+          {{ home_manager_path }}/pyenv install {{ python_version }}
+          {{ home_manager_path }}/pyenv global {{ python_version }}
+      when: python_version not in pyenv_versions.stdout
+
+    - name: Get python bin
+      become_user: "{{ user }}"
+      shell: "{{ home_manager_path }}/pyenv which python"
+      register: python_bin
+
+    - name: Get pip bin
+      become_user: "{{ user }}"
+      shell: "{{ home_manager_path }}/pyenv which pip"
+      register: pip_bin
+
     - name: Install python packages
       become_user: "{{ user }}"
       pip:
-        executable: "{{ python_path }}/pip"
+        executable: "{{ pip_bin.stdout }}"
         name:
           - poetry
           - ptipython
@@ -199,7 +224,7 @@
     - name: Configure poetry to use virtualenvs inside projects
       become_user: "{{ user }}"
       command:
-        cmd: "{{ python_path }}/python -m poetry config virtualenvs.in-project true"
+        cmd: "{{ python_bin.stdout }} -m poetry config virtualenvs.in-project true"
       changed_when: false
 
     - name: Install python debugger

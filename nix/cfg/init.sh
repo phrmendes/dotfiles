@@ -17,7 +17,7 @@ nix_clear() {
 system_update() {
 	sudo apt update
 	sudo apt full-upgrade
-    flatpak update
+	flatpak update
 }
 
 system_clear() {

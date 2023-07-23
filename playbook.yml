@@ -20,9 +20,7 @@
   tasks:
     - name: Remove packages
       apt:
-        autoclean: true
         autoremove: true
-        clean: true
         state: absent
         name:
           - evince
@@ -31,14 +29,10 @@
           - gedit
           - gnome-calendar
           - gnome-contacts
-          - gnome-terminal
           - gparted
           - libreoffice-core
           - simple-scan
           - totem
-          - xterm
-      notify:
-        - Update system
 
     - name: Install tailscale repo
       get_url:
@@ -122,6 +116,7 @@
     - name: Give WezTerm permissions to read home directory
       command:
         cmd: flatpak override --filesystem=home org.wezfurlong.wezterm
+      changed_when: false
 
     - block:
         - name: Get software for apt repository management
@@ -166,6 +161,7 @@
       become_user: "{{ user }}"
       shell: "{{ nix_path }}/nix-env --query"
       register: nix_pkgs_list
+      changed_when: false
 
     - name: Create home-manager symlinks
       become_user: "{{ user }}"
@@ -194,6 +190,7 @@
       become_user: "{{ user }}"
       shell: "{{ home_manager_path }}/pyenv version"
       register: pyenv_versions
+      changed_when: false
 
     - name: Install python
       become_user: "{{ user }}"
@@ -209,11 +206,13 @@
       become_user: "{{ user }}"
       shell: "{{ home_manager_path }}/pyenv which python"
       register: python_bin
+      changed_when: false
 
     - name: Get pip bin
       become_user: "{{ user }}"
       shell: "{{ home_manager_path }}/pyenv which pip"
       register: pip_bin
+      changed_when: false
 
     - name: Install python packages
       become_user: "{{ user }}"

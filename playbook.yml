@@ -197,11 +197,13 @@
 
     - name: Install python
       become_user: "{{ user }}"
-      command:
-        cmd: |
-          {{ home_manager_path }}/pyenv install {{ python_version }}
-          {{ home_manager_path }}/pyenv global {{ python_version }}
+      command: "{{ home_manager_path }}/pyenv install {{ python_version }}"
       when: python_version not in pyenv_versions.stdout
+
+    - name: Set python global version
+      become_user: "{{ user }}"
+      command: "{{ home_manager_path }}/pyenv global {{ python_version }}"
+      changed_when: false
 
     - name: Get python bin
       become_user: "{{ user }}"

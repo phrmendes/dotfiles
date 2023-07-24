@@ -119,13 +119,6 @@
       changed_when: false
 
     - block:
-        - name: Get software for apt repository management
-          apt:
-            state: present
-            name:
-              - python3-apt
-              - python3-pycurl
-
         - name: Adding fingerprint repository
           apt_repository:
             repo: "ppa:uunicorn/open-fprintd"

@@ -5,6 +5,7 @@ Scripts and dotfiles files for my personal computer.
 ## How to use
 
 ```sh
+sudo apt install python3-apt python3-pycurl python3-setuptools
 /usr/bin/pip -m pip install ansible
 curl https://raw.githubusercontent.com/phrmendes/bkps/popOS/playbook.yml > /tmp/playbook.yml
 ansible-playbook /tmp/playbook.yml --ask-become-pass

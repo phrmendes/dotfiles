@@ -147,7 +147,7 @@
         state: directory
 
     - name: Clone backups repo
-      ansible.builtin.git:
+      git:
         repo: https://github.com/phrmendes/bkps.git
         dest: ~/Projects/bkps
 

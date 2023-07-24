@@ -5,9 +5,8 @@ Scripts and dotfiles files for my personal computer.
 ## How to use
 
 ```sh
-sudo apt install pipx wget
-pipx install --include-deps ansible
-wget -O /tmp/playbook.yml https://raw.githubusercontent.com/phrmendes/bkps/popOS/playbook.yml
+/usr/bin/pip -m pip install ansible
+curl https://raw.githubusercontent.com/phrmendes/bkps/popOS/playbook.yml > /tmp/playbook.yml
 ansible-playbook /tmp/playbook.yml --ask-become-pass
 ```
 

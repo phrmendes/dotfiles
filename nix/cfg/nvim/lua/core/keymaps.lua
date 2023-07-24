@@ -10,9 +10,6 @@ g.maplocalleader = ","
 map("i", "jk", "<ESC>", opts)       -- exit insert mode pressing 'jk'
 map("t", "jk", "<C-\\><C-n>", opts) -- exit terminal mode pressing 'jk'
 
--- toggle checkboxes
-map("n", "<C-x>", "<cmd>lua require('toggle-checkbox').toggle()<cr>", opts)
-
 -- resize
 map("n", "+", "<cmd>resize +2<cr>", opts)
 map("n", "-", "<cmd>vertical resize -2<cr>", opts)

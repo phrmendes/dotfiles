@@ -10,6 +10,7 @@
     gnome-extensions-cli
     gnome-solanum
     helix
+    helix
     hugo
     jdk
     joshuto

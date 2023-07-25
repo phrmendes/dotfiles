@@ -15,8 +15,7 @@ nix_clear() {
 }
 
 system_update() {
-	sudo nala update
-	sudo nala full-upgrade
+	sudo nala upgrade
 	flatpak update
 }
 

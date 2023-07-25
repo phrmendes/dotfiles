@@ -139,7 +139,7 @@ local leader_normal_mappings = {
         g = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
         t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
-        w = { "<cmd>w<cr>", "Save" },
+        s = { "<cmd>w<cr>", "Save" },
         S = {
             "<cmd>lua require('spectre').open()<cr>",
             "Spectre - Search in project"

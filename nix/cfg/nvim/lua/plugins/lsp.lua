@@ -21,7 +21,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 lspconfig.ansiblels.setup({ capabilities = capabilities })
 lspconfig.bashls.setup({ capabilities = capabilities })
 lspconfig.dockerls.setup({ capabilities = capabilities })
-lspconfig.jsonls.setup({ capabilities = capabilities })
 lspconfig.marksman.setup({ capabilities = capabilities })
 lspconfig.metals.setup({ capabilities = capabilities })
 lspconfig.nil_ls.setup({ capabilities = capabilities })
@@ -30,6 +29,11 @@ lspconfig.taplo.setup({ capabilities = capabilities })
 lspconfig.terraformls.setup({ capabilities = capabilities })
 lspconfig.texlab.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({ capabilities = capabilities })
+
+lspconfig.jsonls.setup({
+    cmd = { "vscode-json-languageserver", "--stdio" },
+    capabilities = capabilities
+})
 
 lspconfig.efm.setup {
     on_attach = function(client, bufnr)

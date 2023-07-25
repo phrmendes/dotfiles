@@ -79,6 +79,7 @@
           - libxmlsec1-dev
           - mediainfo
           - mlocate
+          - nala
           - openssh-server
           - rar
           - tailscale

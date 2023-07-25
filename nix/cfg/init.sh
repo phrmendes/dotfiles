@@ -7,7 +7,7 @@ path+=(
 )
 
 nix_update() {
-	home-manager switch -b backup
+	home-manager switch
 }
 
 nix_clear() {
@@ -15,12 +15,14 @@ nix_clear() {
 }
 
 system_update() {
-	sudo apt update
-	sudo apt full-upgrade
+	sudo nala update
+	sudo nala full-upgrade
 	flatpak update
 }
 
 system_clear() {
-	sudo apt autoremove
-	sudo apt autoclean
+	sudo nala autopurge
+	sudo nala autoremove
+	sudo nala clean
+	sudo nala fetch
 }

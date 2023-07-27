@@ -1,6 +1,8 @@
 {
   programs.git = {
     enable = true;
+    userName = "Pedro Mendes";
+    userEmail = "pedrohrmendes@proton.me";
     aliases = {
       co = "checkout";
       st = "status";

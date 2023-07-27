@@ -83,6 +83,7 @@
           - openssh-server
           - rar
           - tailscale
+          - timeshift
           - tk-dev
           - uidmap
           - unrar

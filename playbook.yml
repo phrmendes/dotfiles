@@ -7,7 +7,7 @@
   vars:
     home_manager_path: ~/.nix-profile/bin
     nix_path: /nix/var/nix/profiles/default/bin
-    python_version: 3.11.3
+    python_version: 3.11.4
     user: phrmendes
 
   handlers:

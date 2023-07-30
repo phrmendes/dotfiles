@@ -14,11 +14,10 @@
     hugo
     jdk
     joshuto
+    lazydocker
     ncdu
     pandoc
     pipr
-    podman
-    podman-compose
     quarto
     rename
     ripgrep

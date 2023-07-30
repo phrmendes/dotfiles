@@ -7,18 +7,8 @@ Scripts and dotfiles files for my personal computer.
 Install requirements:
 
 ```sh
-sudo apt install python3-pip python3-apt python3-pycurl python3-setuptools
-```
-
-Install nix package manager:
-
-```sh
-sh <(curl -L https://nixos.org/nix/install) --daemon
-```
-
-Install ansible:
-
-```sh
+sudo apt update
+sudo apt install aptitude build-essential ca-certificates flatpak git gnupg python3-apt python3-apt python3-pip python3-pycurl python3-setuptools
 /usr/bin/pip -m pip install ansible
 ```
 

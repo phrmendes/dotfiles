@@ -5,23 +5,29 @@
   connection: local
 
   vars:
-    home_manager_path: ~/.nix-profile/bin
-    nix_path: /nix/var/nix/profiles/default/bin
-    python_version: 3.11.4
     user: phrmendes
+    python_version: 3.11.4
+    nix_version: 2.17.0
+    nix_build: nix-{{ nix_version }}-x86_64-linux
+    nix_path: /nix/var/nix/profiles/default/bin
+    home_manager_path: ~/.nix-profile/bin
+    docker_keyring_path: /etc/apt/keyrings/docker.gpg
+    tailscale_keyring_path: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    installer_checksum: sha256:1596ed46efae091388ed6db626c31f14fc1b703e5a552b00a9e68419edb8172d
+    nix_installer_url: https://releases.nixos.org/nix/nix-{{ nix_version }}/{{ nix_build }}.tar.xz
 
   handlers:
-    - name: update_system
-      apt:
-        update_cache: true
-        upgrade: full
-
-    - name: update_nix_channels
+    - name: Update nix channels
       become_user: "{{ user }}"
       command: "{{ nix_path }}/nix-channel --update"
       changed_when: false
 
   tasks:
+    - name: Custom facts
+      set_fact:
+        dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+        based_distribution: "{{ 'ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
+
     - name: Remove packages
       apt:
         autoremove: true
@@ -40,37 +46,43 @@
           - simple-scan
           - totem
 
-    - name: Install tailscale repo
+    - name: Add tailscale GPG apt key
       get_url:
-        url: "{{ item.url }}"
-        dest: "{{ item.dest }}"
+        url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+        dest: "{{ tailscale_keyring_path }}"
+
+    - name: Add docker GPG apt key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add repos
+      apt_repository:
+        state: present
+        repo: "{{ item }}"
       with_items:
-        - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
-          dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
-        - url: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
-          dest: /etc/apt/sources.list.d/tailscale.list
-      notify:
-        - update_system
+        - "deb https://download.docker.com/{{ ansible_system | lower }}/{{ based_distribution }} {{ ansible_distribution_release }} stable"
+        - "deb [signed-by={{ tailscale_keyring_path }}] https://pkgs.tailscale.com/stable/{{ based_distribution }} {{ ansible_distribution_release }} main"
 
     - name: Install packages with apt
       apt:
+        update_cache: true
         state: present
         name:
           - atool
-          - build-essential
-          - ca-certificates
           - catdoc
+          - containerd.io
           - curl
+          - docker-buildx-plugin
+          - docker-ce
+          - docker-ce-cli
+          - docker-compose-plugin
           - exiftool
           - file
           - file-roller
-          - flatpak
           - fonts-dejavu
           - fonts-jetbrains-mono
-          - gdebi-core
-          - git
           - gnome-tweaks
-          - gnupg
           - gzip
           - jq
           - libbz2-dev
@@ -130,11 +142,10 @@
         - name: Adding fingerprint repository
           apt_repository:
             repo: "ppa:uunicorn/open-fprintd"
-          notify:
-            - update_system
 
         - name: Installing fingerprint packages
           apt:
+            update_cache: true
             state: present
             name:
               - open-fprintd
@@ -151,6 +162,27 @@
       git:
         repo: https://github.com/phrmendes/bkps.git
         dest: ~/Projects/bkps
+
+    - name: Install nix package manager
+      block:
+        - name: Download installer
+          get_url:
+            url: "{{ nix_installer_url }}"
+            dest: /tmp
+            checksum: "{{ installer_checksum }}"
+
+        - name: Extract installer
+          unarchive:
+            src: /tmp/{{ nix_build }}.tar.xz
+            remote_src: true
+            dest: /tmp
+
+        - name: Run the installer
+          become: true
+          command:
+            cmd: ./install --daemon </dev/null
+            chdir: /tmp/{{ nix_build }}
+            creates: "{{ nix_path }}/nix"
 
     - name: Check if home-manager is installed
       become_user: "{{ user }}"
@@ -174,7 +206,7 @@
       become_user: "{{ user }}"
       command: "{{ nix_path }}/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager"
       when: "'home-manager' not in nix_pkgs_list.stdout"
-      notify: update_nix_channels
+      notify: Update nix channels
 
     - name: Install home-manager
       become_user: "{{ user }}"

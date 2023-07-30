@@ -114,6 +114,16 @@
           - zip
           - zlib1g-dev
 
+    - name: Ensure group "docker" exists with correct gid
+      group:
+        name: docker
+        state: present
+
+    - name: Adding user to docker group
+      user:
+        name: phrmendes
+        groups: docker
+
     - name: Add the flathub remote repository
       become_user: "{{ user }}"
       community.general.flatpak_remote:
@@ -263,3 +273,13 @@
       pip:
         name: debugpy
         virtualenv: ~/.virtualenvs/debugpy
+
+    - name: Enable systemd services
+      systemd:
+        name: "{{ item }}"
+        state: started
+      with_items:
+        - containerd.service
+        - copyq.service
+        - docker.service
+        - home-manager-auto-upgrade.service

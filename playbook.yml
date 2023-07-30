@@ -279,7 +279,5 @@
         name: "{{ item }}"
         state: started
       with_items:
-        - containerd.service
-        - copyq.service
         - docker.service
-        - home-manager-auto-upgrade.service
+        - containerd.service

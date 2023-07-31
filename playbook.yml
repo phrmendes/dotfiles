@@ -123,6 +123,8 @@
       user:
         name: phrmendes
         groups: docker
+        append: yes
+        state: present
 
     - name: Add the flathub remote repository
       become_user: "{{ user }}"

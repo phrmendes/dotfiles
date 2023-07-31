@@ -34,4 +34,3 @@ telescope.setup({
 telescope.load_extension("bibtex")
 telescope.load_extension("fzy_native")
 telescope.load_extension("ui-select")
-telescope.load_extension("projects")

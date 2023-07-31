@@ -83,7 +83,7 @@ local leader_normal_mappings = {
     h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
     q = { "<cmd>confirm q<cr>", "Quit" },
     s = { "<cmd>Telescope treesitter<cr>", "Treesitter" },
-    t = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "todo.txt" },
+    t = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
     u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
     z = { "<cmd>ZenMode<cr>", "Zen mode" },
 
@@ -148,18 +148,19 @@ local leader_normal_mappings = {
 
     g = {
         name = "+git",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+        C = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+        D = { "<cmd>Gdiff<cr>", "Diff file (editor)" },
+        L = { "<cmd>Gllog<cr>", "LazyGit" },
+        P = { "<cmd>G push<cr>", "Push" },
+        b = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (buffer)" },
+        c = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+        d = { "<cmd>G diff %<cr>", "Diff file" },
         g = { "<cmd>LazyGit<cr>", "LazyGit" },
-        l = { "<cmd>lua require('gitsigns').blame_line()<cr>", "Blame" },
-        p = { "<cmd>Telescope projects<cr>", "List projects" },
+        l = { "<cmd>G blame<cr>", "Blame" },
+        p = { "<cmd>G pull<cr>", "Pull" },
         r = { "<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer" },
-        s = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        C = {
-            "<cmd>Telescope git_bcommits<cr>",
-            "Checkout commit (for current file)"
-        }
+        s = { "<cmd>G<cr>", "Status" }
+
     },
 
     l = {
@@ -167,7 +168,6 @@ local leader_normal_mappings = {
         c = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
         d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
-        q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
         w = {
             "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
             "Workspace symbols"

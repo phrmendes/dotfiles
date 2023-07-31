@@ -37,6 +37,7 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
+      nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
       nvim-dap-python # python dap support
@@ -50,7 +51,6 @@ in {
       nvim-web-devicons # icons
       oil-nvim # file management
       plenary-nvim # lua utils
-      project-nvim # project management
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui

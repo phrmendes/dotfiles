@@ -8,11 +8,13 @@ local themes_setup, themes = pcall(require, "telescope.themes")
 if not themes_setup then return end
 
 telescope.setup({
-    pickers = {
-        live_grep = { additional_args = function(opts) return { "--hidden" } end }
-    },
     defaults = {
         hidden = true,
+        vimgrep_arguments = {
+            "rg", "--color=never", "--no-heading", "--with-filename",
+            "--line-number", "--column", "--smart-case", "--hidden", "-g",
+            "!**/.git", "-g", "!**/.venv"
+        },
         mappings = {
             i = {
                 ["<C-p>"] = actions.move_selection_previous, -- move to prev result

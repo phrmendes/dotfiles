@@ -82,7 +82,6 @@ local leader_normal_mappings = {
     e = { "<cmd>NvimTreeToggle<cr>", "File explorer tree" },
     h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
     q = { "<cmd>confirm q<cr>", "Quit" },
-    s = { "<cmd>Telescope treesitter<cr>", "Treesitter" },
     t = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
     u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
     z = { "<cmd>ZenMode<cr>", "Zen mode" },
@@ -133,13 +132,13 @@ local leader_normal_mappings = {
     f = {
         name = "+files",
         ["."] = { "<cmd>lua require('oil').open()<cr>", "File explorer" },
-        G = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
+        G = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
         c = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
         f = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
-        g = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
+        g = { "<cmd>Telescope live_grep<cr>", "Live grep in project" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
-        t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
         s = { "<cmd>w<cr>", "Save" },
+        t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
         S = {
             "<cmd>lua require('spectre').open()<cr>",
             "Spectre - Search in project"

@@ -10,8 +10,8 @@ core.setup({
         repl_definition = {
             python = pythonft.ptipython,
             scala = scalaft.scala,
-            sh = shft.sh
-        }
+            sh = shft.sh,
+        },
     },
     keymaps = {
         clear = "<localleader>rc",
@@ -19,8 +19,8 @@ core.setup({
         send_file = "<localleader>rf",
         send_line = "<localleader>rl",
         visual_send = "<localleader>rs",
-        interrupt = "<localleader>ri"
+        interrupt = "<localleader>ri",
     },
     highlight = { italic = true },
-    ignore_blank_lines = true
+    ignore_blank_lines = true,
 })

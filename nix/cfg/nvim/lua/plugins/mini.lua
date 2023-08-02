@@ -25,14 +25,14 @@ statusline.setup({ set_vim_settings = false })
 
 surround.setup({
     mappings = {
-        add = "sa",           -- add surrounding in normal and visual modes
-        delete = "sd",        -- delete surrounding
-        find = "sf",          -- find surrounding (to the right)
-        find_left = "sF",     -- find surrounding (to the left)
-        highlight = "sh",     -- highlight surrounding
-        replace = "sr",       -- replace surrounding
-        update_n_lines = "sn" -- update `n_lines`
-    }
+        add = "sa",      -- add surrounding in normal and visual modes
+        delete = "sd",   -- delete surrounding
+        find = "sf",     -- find surrounding (to the right)
+        find_left = "sF", -- find surrounding (to the left)
+        highlight = "sh", -- highlight surrounding
+        replace = "sr",  -- replace surrounding
+        update_n_lines = "sn", -- update `n_lines`
+    },
 })
 
 move.setup({
@@ -46,6 +46,6 @@ move.setup({
         line_left = "<S-h>",
         line_right = "<S-l>",
         line_down = "<S-j>",
-        line_up = "<S-k>"
-    }
+        line_up = "<S-k>",
+    },
 })

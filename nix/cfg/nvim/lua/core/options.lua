@@ -1,5 +1,4 @@
 local cmd = vim.cmd
-local g = vim.g
 local opt = vim.opt
 
 -- syntax

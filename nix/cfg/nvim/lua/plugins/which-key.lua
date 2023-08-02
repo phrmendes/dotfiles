@@ -97,6 +97,7 @@ local leader_normal_mappings = {
         g = { "<cmd>bf<cr>", "First buffer" },
         n = { "<cmd>bn<cr>", "Next buffer" },
         p = { "<cmd>bp<cr>", "Previous buffer" },
+        o = { "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", "Close all other buffers" },
         w = { "<cmd>lua MiniBufremove.wipeout()<cr>", "Wipeout buffers" },
 
         s = {

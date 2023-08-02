@@ -47,7 +47,7 @@ lspconfig.efm.setup({
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    vim.lsp.buf.format({ async = false, timeout_ms = 250 })
+                    vim.lsp.buf.format({ async = false, timeout_ms = 500 })
                 end,
             })
         end

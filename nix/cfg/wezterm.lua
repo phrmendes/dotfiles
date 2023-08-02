@@ -16,8 +16,9 @@ local config = {
         {
             key = "C",
             mods = "CTRL",
-            action = act.CopyTo("ClipboardAndPrimarySelection")
-        }, { key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") }
+            action = act.CopyTo("ClipboardAndPrimarySelection"),
+        },
+        { key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
     },
 
     wezterm.on("user-var-changed", function(window, pane, name, value)
@@ -41,7 +42,7 @@ local config = {
             end
         end
         window:set_config_overrides(overrides)
-    end)
+    end),
 }
 
 return config

@@ -1,8 +1,12 @@
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then return end
+if not lspconfig_status then
+    return
+end
 
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then return end
+if not cmp_nvim_lsp_status then
+    return
+end
 
 -- set signs for diagnostics
 local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
@@ -32,10 +36,10 @@ lspconfig.yamlls.setup({ capabilities = capabilities })
 
 lspconfig.jsonls.setup({
     cmd = { "vscode-json-languageserver", "--stdio" },
-    capabilities = capabilities
+    capabilities = capabilities,
 })
 
-lspconfig.efm.setup {
+lspconfig.efm.setup({
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
             clear({ group = augroup, buffer = bufnr })
@@ -44,7 +48,7 @@ lspconfig.efm.setup {
                 buffer = bufnr,
                 callback = function()
                     vim.lsp.buf.format({ async = false, timeout_ms = 500 })
-                end
+                end,
             })
         end
     end,
@@ -52,17 +56,24 @@ lspconfig.efm.setup {
     cmd = { "efm-langserver" },
     args = { "-c", "~/.config/efm-langserver/config.yaml" },
     filetypes = {
-        "json", "lua", "markdown", "nix", "python", "sh", "yaml", "toml",
-        "scala"
-    }
-}
+        "json",
+        "lua",
+        "markdown",
+        "nix",
+        "python",
+        "sh",
+        "yaml",
+        "toml",
+        "scala",
+    },
+})
 
 lspconfig.ltex.setup({
     capabilities = capabilities,
     settings = {
         ltex = { language = "en", additionalRules = { motherTongue = "pt-BR" } },
-        filetypes = { "tex", "markdown", "quarto" }
-    }
+        filetypes = { "tex", "markdown", "quarto" },
+    },
 })
 
 lspconfig.pyright.setup({
@@ -75,10 +86,10 @@ lspconfig.pyright.setup({
                 diagnosticMode = "workspace",
                 typeCheckingMode = "strict",
                 useLibraryCodeForTypes = false,
-                inlayHints = { variableTypes = true, functionReturnTypes = true }
-            }
-        }
-    }
+                inlayHints = { variableTypes = true, functionReturnTypes = true },
+            },
+        },
+    },
 })
 
 lspconfig.lua_ls.setup({
@@ -89,9 +100,9 @@ lspconfig.lua_ls.setup({
             workspace = {
                 library = {
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true
-                }
-            }
-        }
-    }
+                    [vim.fn.stdpath("config") .. "/lua"] = true,
+                },
+            },
+        },
+    },
 })

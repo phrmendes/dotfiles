@@ -17,7 +17,6 @@
     lazydocker
     ncdu
     pandoc
-    pipr
     quarto
     rename
     ripgrep
@@ -51,7 +50,6 @@
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
     # linters
-    ansible-lint
     nodePackages.jsonlint
     shellcheck
     statix # nix
@@ -61,7 +59,7 @@
     ruff # python
     scalafmt
     shfmt
-    luaformatter
+    stylua # lua
     nodePackages.prettier # yaml, json, markdown
   ];
 }

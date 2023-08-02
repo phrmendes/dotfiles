@@ -1,5 +1,7 @@
 local setup, which_key = pcall(require, "which-key")
-if not setup then return end
+if not setup then
+    return
+end
 
 local conf = { window = { border = "single", position = "bottom" } }
 
@@ -12,7 +14,7 @@ local localleader_prefix_normal_opts = {
     buffer = nil,
     silent = true,
     noremap = true,
-    nowait = false
+    nowait = false,
 }
 
 local localleader_normal_mappings = {
@@ -21,8 +23,8 @@ local localleader_normal_mappings = {
         F = { "<cmd>IronFocus<cr>", "Focus" },
         R = { "<cmd>IronRestart<cr>", "Restart" },
         h = { "<cmd>IronHide<cr>", "Hide" },
-        o = { "<cmd>IronRepl<cr>", "Open" }
-    }
+        o = { "<cmd>IronRepl<cr>", "Open" },
+    },
 }
 
 which_key.register(localleader_normal_mappings, localleader_prefix_normal_opts)
@@ -34,7 +36,7 @@ local g_normal_opts = {
     buffer = nil,
     silent = true,
     noremap = true,
-    nowait = false
+    nowait = false,
 }
 
 local g_normal_mappings = {
@@ -46,7 +48,7 @@ local g_normal_mappings = {
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
     R = { "<cmd>Telescope lsp_references<cr>", "LSP - References" },
     s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
-    t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" }
+    t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" },
 }
 
 which_key.register(g_normal_mappings, g_normal_opts)
@@ -59,7 +61,7 @@ local leader_visual_opts = {
     buffer = nil,
     silent = true,
     noremap = true,
-    nowait = false
+    nowait = false,
 }
 
 local leader_visual_mappings = { e = { "<cmd>lua require('dapui').eval()" } }
@@ -73,7 +75,7 @@ local leader_normal_opts = {
     buffer = nil,
     silent = true,
     noremap = true,
-    nowait = false
+    nowait = false,
 }
 
 local leader_normal_mappings = {
@@ -100,8 +102,8 @@ local leader_normal_mappings = {
         s = {
             name = "+split",
             p = { "<cmd>sbp<cr>", "Previous buffer" },
-            n = { "<cmd>sbn<cr>", "Next buffer" }
-        }
+            n = { "<cmd>sbn<cr>", "Next buffer" },
+        },
     },
 
     d = {
@@ -115,18 +117,14 @@ local leader_normal_mappings = {
         s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
         t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" },
         u = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
-        C = {
-            "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-            "Conditional breakpoint"
-        },
         b = {
             "<cmd>lua require('dap').toggle_breakpoint()<cr>",
-            "Toggle breakpoint"
+            "Toggle breakpoint",
         },
         r = {
             "<cmd>lua require('dapui').open({reset = true})<cr>",
-            "Reset UI panes"
-        }
+            "Reset UI panes",
+        },
     },
 
     f = {
@@ -141,25 +139,23 @@ local leader_normal_mappings = {
         t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
         S = {
             "<cmd>lua require('spectre').open()<cr>",
-            "Spectre - Search in project"
-        }
+            "Spectre - Search in project",
+        },
     },
 
     g = {
         name = "+git",
+        B = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (buffer)" },
         C = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
         D = { "<cmd>Gdiff<cr>", "Diff file (editor)" },
-        L = { "<cmd>Gllog<cr>", "LazyGit" },
+        L = { "<cmd>Gllog<cr>", "Log" },
         P = { "<cmd>G push<cr>", "Push" },
-        b = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (buffer)" },
+        b = { "<cmd>G blame<cr>", "Blame" },
         c = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         d = { "<cmd>G diff %<cr>", "Diff file" },
-        g = { "<cmd>LazyGit<cr>", "LazyGit" },
-        l = { "<cmd>G blame<cr>", "Blame" },
+        g = { "<cmd>G<cr>", "Git" },
         p = { "<cmd>G pull<cr>", "Pull" },
         r = { "<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer" },
-        s = { "<cmd>G<cr>", "Status" }
-
     },
 
     l = {
@@ -169,20 +165,15 @@ local leader_normal_mappings = {
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
         w = {
             "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-            "Workspace symbols"
-        }
+            "Workspace symbols",
+        },
     },
 
     m = {
         name = "+markdown",
         b = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
         p = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
-        r = { "<cmd>lua require('nabla').popup()<cr>", "Preview equation" },
         s = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
-        v = {
-            "<cmd>lua require('nabla').toggle_virt()<cr>",
-            "Toggle equation preview"
-        }
     },
 
     T = {
@@ -190,7 +181,7 @@ local leader_normal_mappings = {
         d = { "<cmd>tabclose<cr>", "Close" },
         n = { "<cmd>tabnext<cr>", "Next" },
         p = { "<cmd>tabprevious<cr>", "Previous" },
-        t = { "<cmd>tabnew<cr>", "New" }
+        t = { "<cmd>tabnew<cr>", "New" },
     },
 
     w = {
@@ -200,8 +191,8 @@ local leader_normal_mappings = {
         p = { "<C-w>p", "Previous" },
         s = { "<C-w>v", "Split" },
         v = { "<C-w>s", "Vertical split" },
-        x = { "<C-w>x", "Swap" }
-    }
+        x = { "<C-w>x", "Swap" },
+    },
 }
 
 which_key.register(leader_normal_mappings, leader_normal_opts)

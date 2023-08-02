@@ -21,7 +21,6 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      (fromGitHub "HEAD" "jbyuki/nabla.nvim") # math rendering
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
       catppuccin-nvim # colorscheme
@@ -32,12 +31,10 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs
-      lazygit-nvim # lazygit integration
       lspkind-nvim # vscode-like pictograms
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
-      nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
       nvim-dap-python # python dap support
@@ -51,19 +48,17 @@ in {
       nvim-web-devicons # icons
       oil-nvim # file management
       plenary-nvim # lua utils
+      sniprun # REPL
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui
       todo-comments-nvim # todo comments
       todo-txt-vim # tasks
-      twilight-nvim # dim inactive code
       undotree # undo history
       vim-fugitive # git integration
-      vim-nix # nix stuff
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
-      zen-mode-nvim # zen mode
     ];
   };
 }

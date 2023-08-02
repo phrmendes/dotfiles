@@ -9,27 +9,27 @@ tools:
   alejandra: &alejandra
     format-command: "alejandra --quiet"
     format-stdin: true
-  json-prettier: &json-prettier
-    format-command: "prettier --parser json"
-  yaml-prettier: &yaml-prettier
-    format-command: "prettier --parser yaml"
-  markdown-prettier: &markdown-prettier
-    format-command: "prettier --parser markdown"
   ruff: &ruff
     format-command: "ruff --fix -e -n --stdin-filename ${INPUT} -"
     format-stdin: true
   shfmt: &shfmt
     format-command: "shfmt -ci -s -bn"
     format-stdin: true
-  scala-scalafmt: &scala-scalafmt
+  scalafmt: &scalafmt
     format-command: "scalafmt --stdin"
     format-stdin: true
-  lua-lua-format: &lua-lua-format
-    format-command: "lua-format -i"
+  stylua: &stylua
+    format-command: "stylua --search-parent-directories --stdin-filepath ${INPUT} -"
     format-stdin: true
-  toml-taplo: &toml-taplo
+  taplo: &taplo
     format-command: "taplo format -"
     format-stdin: true
+  json-prettier: &json-prettier
+    format-command: "prettier --parser json"
+  yaml-prettier: &yaml-prettier
+    format-command: "prettier --parser yaml"
+  markdown-prettier: &markdown-prettier
+    format-command: "prettier --parser markdown"
   shellcheck: &shellcheck
     lint-command: "shellcheck -f gcc -x"
     lint-source: "shellcheck"
@@ -48,13 +48,11 @@ tools:
     lint-stdin: true
 
 languages:
-  ansible:
-    - <<: *ansible-lint
   json:
     - <<: *json-prettier
     - <<: *jsonlint
   lua:
-    - <<: *lua-lua-format
+    - <<: *stylua
   markdown:
     - <<: *markdown-prettier
   nix:
@@ -69,6 +67,6 @@ languages:
     - <<: *yaml-prettier
     - <<: *yamllint
   toml:
-    - <<: *toml-taplo
+    - <<: *taplo
   scala:
-    - <<: *scala-scalafmt
+    - <<: *scalafmt

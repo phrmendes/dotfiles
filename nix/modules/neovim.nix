@@ -48,7 +48,6 @@ in {
       nvim-web-devicons # icons
       oil-nvim # file management
       plenary-nvim # lua utils
-      sniprun # REPL
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui

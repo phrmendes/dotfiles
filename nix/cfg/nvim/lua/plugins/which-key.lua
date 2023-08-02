@@ -7,28 +7,6 @@ local conf = { window = { border = "single", position = "bottom" } }
 
 which_key.setup(conf)
 
--- local leader prefix normal mappings
-local localleader_prefix_normal_opts = {
-    mode = "n",
-    prefix = "<localleader>",
-    buffer = nil,
-    silent = true,
-    noremap = true,
-    nowait = false,
-}
-
-local localleader_normal_mappings = {
-    r = {
-        name = "+REPL",
-        F = { "<cmd>IronFocus<cr>", "Focus" },
-        R = { "<cmd>IronRestart<cr>", "Restart" },
-        h = { "<cmd>IronHide<cr>", "Hide" },
-        o = { "<cmd>IronRepl<cr>", "Open" },
-    },
-}
-
-which_key.register(localleader_normal_mappings, localleader_prefix_normal_opts)
-
 -- g prefix normal mappings
 local g_normal_opts = {
     mode = "n",

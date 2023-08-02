@@ -9,7 +9,7 @@ if not cmp_nvim_lsp_status then
 end
 
 -- set signs for diagnostics
-local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = "󱍄 ", Info = " " }
 
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type

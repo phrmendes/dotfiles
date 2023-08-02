@@ -12,7 +12,7 @@
     helix
     helix
     hugo
-    jdk
+    jdk20
     joshuto
     lazydocker
     ncdu

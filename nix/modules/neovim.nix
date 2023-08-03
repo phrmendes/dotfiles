@@ -27,6 +27,7 @@ in {
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
       cmp_luasnip # snippets completion
+      vim-nix # nix syntax
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators

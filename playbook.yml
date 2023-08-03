@@ -141,7 +141,6 @@
         method: user
         name:
           - ch.protonmail.protonmail-bridge
-          - com.github.ransome1.sleek
           - com.protonvpn.www
           - org.wezfurlong.wezterm
 

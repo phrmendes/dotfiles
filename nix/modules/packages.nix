@@ -8,8 +8,6 @@
     feh
     gh
     gnome-extensions-cli
-    gnome-solanum
-    helix
     helix
     hugo
     jdk20

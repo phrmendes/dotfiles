@@ -15,7 +15,7 @@
     lazydocker
     ncdu
     pandoc
-    quarto
+    # quarto
     rename
     ripgrep
     slides

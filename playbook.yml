@@ -6,8 +6,9 @@
 
   vars:
     user: phrmendes
-    python_version: 3.11.4
     nix_version: 2.17.0
+    python_version: 3.11.4
+    quarto_version: 1.3.433
     nix_build: nix-{{ nix_version }}-x86_64-linux
     nix_path: /nix/var/nix/profiles/default/bin
     home_manager_path: ~/.nix-profile/bin
@@ -113,6 +114,12 @@
           - xz-utils
           - zip
           - zlib1g-dev
+
+    - name: Install .deb packages with apt
+      apt:
+        deb: "{{ item }}"
+      with_items:
+        - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ dpkg_arch }}.deb"
 
     - name: Ensure group "docker" exists with correct gid
       group:
@@ -260,7 +267,7 @@
         executable: "{{ pip_bin.stdout }}"
         name:
           - poetry
-          - ptipython
+          - ipython
 
     - name: Configure poetry to use virtualenvs inside projects
       become_user: "{{ user }}"

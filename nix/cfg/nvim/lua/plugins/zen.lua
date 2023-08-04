@@ -5,8 +5,8 @@ end
 
 zen.setup({
   plugins = {
-    gitsigns = { enabled = false }, -- disables git signs
-    tmux = { enabled = false },   -- disables the tmux statusline
+    gitsigns = { enabled = true }, -- disables git signs
+    tmux = { enabled = true },   -- disables the tmux statusline
     wezterm = {
       enabled = false,
       font = "+4",

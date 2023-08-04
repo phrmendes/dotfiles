@@ -27,7 +27,6 @@ in {
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
       cmp_luasnip # snippets completion
-      vim-nix # nix syntax
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
@@ -57,9 +56,11 @@ in {
       todo-txt-vim # tasks
       undotree # undo history
       vim-fugitive # git integration
+      vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
+      zen-mode-nvim # zen mode
     ];
   };
 }

@@ -1,1 +1,1 @@
-vim.cmd([[ setfiletype markdown ]])
+vim.cmd([[ set ft=markdown ]])

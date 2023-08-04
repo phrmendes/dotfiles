@@ -16,25 +16,11 @@ end
 telescope.setup({
     defaults = {
         hidden = true,
-        vimgrep_arguments = {
-            "rg",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "--hidden",
-            "-g",
-            "!**/.git",
-            "-g",
-            "!**/.venv",
-        },
         mappings = {
             i = {
-                ["<C-p>"] = actions.move_selection_previous,           -- move to prev result
-                ["<C-n>"] = actions.move_selection_next,               -- move to next result
-                ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+                ["<C-p>"] = actions.move_selection_previous,        -- move to prev result
+                ["<C-n>"] = actions.move_selection_next,            -- move to next result
+                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- send selected to quickfixlist
             },
         },
     },

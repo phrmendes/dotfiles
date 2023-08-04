@@ -31,8 +31,27 @@ local g_normal_mappings = {
 
 which_key.register(g_normal_mappings, g_normal_opts)
 
--- leader visual mappings
+-- local leader normal mappings
+local local_leader_normal_opts = {
+    mode = "n",
+    prefix = ",",
+    buffer = nil,
+    silent = true,
+    noremap = true,
+    nowait = false,
+}
 
+local local_leader_mappings = {
+    q = {
+        name = "+quickfix",
+        o = { "<cmd>copen<cr>", "Open" },
+        q = { "<cmd>cclose<cr>", "Close" },
+    },
+}
+
+which_key.register(local_leader_mappings, local_leader_normal_opts)
+
+-- leader visual mappings
 local leader_visual_opts = {
     mode = "v",
     prefix = "<leader>",

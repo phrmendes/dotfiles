@@ -14,7 +14,7 @@
     home_manager_path: ~/.nix-profile/bin
     docker_keyring_path: /etc/apt/keyrings/docker.gpg
     tailscale_keyring_path: /usr/share/keyrings/tailscale-archive-keyring.gpg
-    installer_checksum: sha256:1596ed46efae091388ed6db626c31f14fc1b703e5a552b00a9e68419edb8172d
+    nix_installer_checksum: sha256:1596ed46efae091388ed6db626c31f14fc1b703e5a552b00a9e68419edb8172d
     nix_installer_url: https://releases.nixos.org/nix/nix-{{ nix_version }}/{{ nix_build }}.tar.xz
 
   handlers:
@@ -121,7 +121,7 @@
       with_items:
         - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ dpkg_arch }}.deb"
 
-    - name: Ensure group "docker" exists with correct gid
+    - name: Ensure group "docker" exists
       group:
         name: docker
         state: present
@@ -187,7 +187,7 @@
           get_url:
             url: "{{ nix_installer_url }}"
             dest: /tmp
-            checksum: "{{ installer_checksum }}"
+            checksum: "{{ nix_installer_checksum }}"
 
         - name: Extract installer
           unarchive:

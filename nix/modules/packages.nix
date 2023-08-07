@@ -8,7 +8,6 @@
     feh
     gh
     gnome-extensions-cli
-    helix
     hugo
     jdk20
     joshuto

@@ -31,6 +31,7 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs
+      lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
       luasnip # snippets
       markdown-preview-nvim # markdown preview

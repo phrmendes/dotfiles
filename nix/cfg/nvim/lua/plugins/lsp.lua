@@ -1,19 +1,27 @@
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
-	return
+  return
 end
 
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
-	return
+  return
 end
+
+local lsp_signature_status, lsp_signature = pcall(require, "lsp_signature")
+if not lsp_signature_status then
+  return
+end
+
+-- set up lsp_signature
+lsp_signature.setup()
 
 -- set signs for diagnostics
 local signs = { Error = " ", Warn = " ", Hint = "󱍄 ", Info = " " }
 
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 -- config language servers
@@ -35,74 +43,74 @@ lspconfig.texlab.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({ capabilities = capabilities })
 
 lspconfig.jsonls.setup({
-	cmd = { "vscode-json-languageserver", "--stdio" },
-	capabilities = capabilities,
+  cmd = { "vscode-json-languageserver", "--stdio" },
+  capabilities = capabilities,
 })
 
 lspconfig.efm.setup({
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			clear({ group = augroup, buffer = bufnr })
-			autocmd("BufWritePost", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({ async = false, timeout_ms = 500 })
-				end,
-			})
-		end
-	end,
-	capabilities = capabilities,
-	cmd = { "efm-langserver" },
-	args = { "-c", "~/.config/efm-langserver/config.yaml" },
-	filetypes = {
-		"json",
-		"lua",
-		"markdown",
-		"nix",
-		"python",
-		"sh",
-		"yaml",
-		"toml",
-		"scala",
-	},
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      clear({ group = augroup, buffer = bufnr })
+      autocmd("BufWritePost", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ async = false, timeout_ms = 500 })
+        end,
+      })
+    end
+  end,
+  capabilities = capabilities,
+  cmd = { "efm-langserver" },
+  args = { "-c", "~/.config/efm-langserver/config.yaml" },
+  filetypes = {
+    "json",
+    "lua",
+    "markdown",
+    "nix",
+    "python",
+    "sh",
+    "yaml",
+    "toml",
+    "scala",
+  },
 })
 
 lspconfig.ltex.setup({
-	capabilities = capabilities,
-	settings = {
-		ltex = { language = "en", additionalRules = { motherTongue = "pt-BR" } },
-		filetypes = { "tex", "markdown", "quarto" },
-	},
+  capabilities = capabilities,
+  settings = {
+    ltex = { language = "en", additionalRules = { motherTongue = "pt-BR" } },
+    filetypes = { "tex", "markdown", "quarto" },
+  },
 })
 
 lspconfig.pyright.setup({
-	capabilities = capabilities,
-	settings = {
-		single_file_support = true,
-		python = {
-			analysis = {
-				autoSearchPaths = true,
-				diagnosticMode = "workspace",
-				typeCheckingMode = "strict",
-				useLibraryCodeForTypes = false,
-				inlayHints = { variableTypes = true, functionReturnTypes = true },
-			},
-		},
-	},
+  capabilities = capabilities,
+  settings = {
+    single_file_support = true,
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "strict",
+        useLibraryCodeForTypes = false,
+        inlayHints = { variableTypes = true, functionReturnTypes = true },
+      },
+    },
+  },
 })
 
 lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim" } },
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim" } },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
+        },
+      },
+    },
+  },
 })

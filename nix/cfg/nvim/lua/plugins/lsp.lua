@@ -87,7 +87,6 @@ lspconfig.ltex.setup({
                 enablePickyRules = true,
                 motherTongue = "pt-BR",
             },
-            filetypes = { "bib", "markdown", "quarto" },
             flags = { debounce_text_changes = 300 },
             language = "auto",
         },

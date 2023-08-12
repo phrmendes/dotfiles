@@ -21,10 +21,8 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      (fromGitHub "HEAD" "jmbuhr/otter.nvim") # code completion embedded in documents
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
-      (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion

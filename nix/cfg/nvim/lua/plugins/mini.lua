@@ -20,18 +20,18 @@ starter.setup()
 tabline.setup()
 
 jump2d.setup({ mappings = { start_jumping = "<localleader>j" } })
-splitjoin.setup({ mappings = { toggle = "<localleader>s" } })
+splitjoin.setup({ mappings = { toggle = "<localleader>t" } })
 statusline.setup({ set_vim_settings = false })
 
 surround.setup({
     mappings = {
-        add = "sa",      -- add surrounding in normal and visual modes
-        delete = "sd",   -- delete surrounding
-        find = "sf",     -- find surrounding (to the right)
-        find_left = "sF", -- find surrounding (to the left)
-        highlight = "sh", -- highlight surrounding
-        replace = "sr",  -- replace surrounding
-        update_n_lines = "sn", -- update `n_lines`
+        add = "<localleader>Sa",      -- add surrounding in normal and visual modes
+        delete = "<localleader>Sd",   -- delete surrounding
+        find = "<localleader>Sl",     -- find surrounding (to the right)
+        find_left = "<localleader>Sh", -- find surrounding (to the left)
+        highlight = "<localleader>SH", -- highlight surrounding
+        replace = "<localleader>Sr",  -- replace surrounding
+        update_n_lines = "<localleader>Sn", -- update `n_lines`
     },
 })
 

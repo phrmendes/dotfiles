@@ -42,6 +42,7 @@ local local_leader_normal_opts = {
 }
 
 local local_leader_mappings = {
+    S = { name = "+surround" },
     q = {
         name = "+quickfix",
         o = { "<cmd>copen<cr>", "Open" },

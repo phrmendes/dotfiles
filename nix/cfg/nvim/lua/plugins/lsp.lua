@@ -82,8 +82,15 @@ lspconfig.efm.setup({
 lspconfig.ltex.setup({
     capabilities = capabilities,
     settings = {
-        ltex = { language = "en", additionalRules = { motherTongue = "pt-BR" } },
-        filetypes = { "tex", "markdown", "quarto" },
+        ltex = {
+            additionalRules = {
+                enablePickyRules = true,
+                motherTongue = "pt-BR",
+            },
+            filetypes = { "bib", "markdown", "quarto" },
+            flags = { debounce_text_changes = 300 },
+            language = "auto",
+        },
     },
 })
 

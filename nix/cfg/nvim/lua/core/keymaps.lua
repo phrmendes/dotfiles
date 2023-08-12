@@ -7,7 +7,7 @@ g.mapleader = " "
 g.maplocalleader = ","
 
 -- general keymaps
-map("i", "jk", "<ESC>", opts)       -- exit insert mode pressing 'jk'
+map("i", "jk", "<ESC>", opts) -- exit insert mode pressing 'jk'
 map("t", "jk", "<C-\\><C-n>", opts) -- exit terminal mode pressing 'jk'
 
 -- resize

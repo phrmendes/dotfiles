@@ -3,17 +3,17 @@ local fn = vim.fn
 local dap = require("dap")
 local setup_ui, dap_ui = pcall(require, "dapui")
 if not setup_ui then
-    return
+	return
 end
 
 local setup_py, dap_python = pcall(require, "dap-python")
 if not setup_py then
-    return
+	return
 end
 
 local setup_txt, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
 if not setup_txt then
-    return
+	return
 end
 
 -- dap settings
@@ -23,10 +23,10 @@ dap_python.setup("~/.virtualenvs/debugpy/bin/python")
 dap_python.test_runner = "unittest"
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-    dap_ui.open()
+	dap_ui.open()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-    dap_ui.close()
+	dap_ui.close()
 end
 
 -- nicer breakpoints

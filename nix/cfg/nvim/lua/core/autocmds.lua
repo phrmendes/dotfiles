@@ -9,7 +9,7 @@ local term = augroup("CustomTermSettings", { clear = true })
 autocmd("TermOpen", { command = [[setlocal nonumber norelativenumber]], group = term })
 
 autocmd("BufEnter", {
-    pattern = "*.pdf",
-    command = [[execute "!zathura '%'" | bdelete %]],
-    group = ft,
+	pattern = "*.pdf",
+	command = [[execute "!zathura '%'" | bdelete %]],
+	group = ft,
 })

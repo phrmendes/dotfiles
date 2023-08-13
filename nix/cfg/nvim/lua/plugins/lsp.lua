@@ -88,7 +88,7 @@ lspconfig.efm.setup({
 })
 
 ltex_extra.setup({
-    load_langs = { "en-US", "pt-BR" },
+    load_langs = { "en", "pt", "pt-BR" },
     init_check = true,
     path = ".ltex",
     server_opts = {

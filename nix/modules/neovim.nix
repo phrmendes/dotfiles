@@ -33,6 +33,7 @@ in {
       iron-nvim # REPLs
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
+      ltex_extra-nvim # ltex
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins

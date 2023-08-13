@@ -11,6 +11,16 @@ if not lsp_signature_status then
     return
 end
 
+local ltex_extra_status, ltex_extra = pcall(require, "ltex_extra")
+if not ltex_extra_status then
+    return
+end
+
+local lightbulb_status, lightbulb = pcall(require, "nvim-lightbulb")
+if not lightbulb_status then
+    return
+end
+
 -- set up lsp_signature
 lsp_signature.setup()
 
@@ -23,21 +33,28 @@ for type, icon in pairs(signs) do
 end
 
 -- config language servers
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local autocmd = vim.api.nvim_create_autocmd
 local capabilities = cmp_nvim_lsp.default_capabilities()
 local clear = vim.api.nvim_clear_autocmds
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local servers = {
+    "ansiblels",
+    "bashls",
+    "dockerls",
+    "metals",
+    "nil_ls",
+    "ruff_lsp",
+    "taplo",
+    "terraformls",
+    "texlab",
+    "yamlls",
+}
 
-lspconfig.ansiblels.setup({ capabilities = capabilities })
-lspconfig.bashls.setup({ capabilities = capabilities })
-lspconfig.dockerls.setup({ capabilities = capabilities })
-lspconfig.metals.setup({ capabilities = capabilities })
-lspconfig.nil_ls.setup({ capabilities = capabilities })
-lspconfig.ruff_lsp.setup({ capabilities = capabilities })
-lspconfig.taplo.setup({ capabilities = capabilities })
-lspconfig.terraformls.setup({ capabilities = capabilities })
-lspconfig.texlab.setup({ capabilities = capabilities })
-lspconfig.yamlls.setup({ capabilities = capabilities })
+for _, server in ipairs(servers) do
+    lspconfig[server].setup({
+        capabilities = capabilities,
+    })
+end
 
 lspconfig.marksman.setup({
     filetypes = { "markdown", "quarto" },
@@ -81,14 +98,21 @@ lspconfig.efm.setup({
 
 lspconfig.ltex.setup({
     capabilities = capabilities,
+    on_attach = function()
+        ltex_extra.setup({
+            load_langs = { "en-US", "pt-BR" },
+            path = vim.fn.expand("~") .. "/.local/share/ltex",
+        })
+    end,
     settings = {
         ltex = {
+            filetypes = { "markdown", "quarto" },
+            language = "auto",
+            checkFrequency = "save",
             additionalRules = {
                 enablePickyRules = true,
                 motherTongue = "pt-BR",
             },
-            flags = { debounce_text_changes = 300 },
-            language = "auto",
         },
     },
 })
@@ -103,7 +127,10 @@ lspconfig.pyright.setup({
                 diagnosticMode = "workspace",
                 typeCheckingMode = "strict",
                 useLibraryCodeForTypes = false,
-                inlayHints = { variableTypes = true, functionReturnTypes = true },
+                inlayHints = {
+                    variableTypes = true,
+                    functionReturnTypes = true,
+                },
             },
         },
     },

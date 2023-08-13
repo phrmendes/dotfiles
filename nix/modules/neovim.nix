@@ -19,7 +19,7 @@ in {
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-    withPython3 = true;
+withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes

@@ -16,11 +16,6 @@ if not ltex_extra_status then
     return
 end
 
-local lightbulb_status, lightbulb = pcall(require, "nvim-lightbulb")
-if not lightbulb_status then
-    return
-end
-
 -- set up lsp_signature
 lsp_signature.setup()
 

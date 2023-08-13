@@ -96,7 +96,8 @@ lspconfig.ltex.setup({
     on_attach = function()
         ltex_extra.setup({
             load_langs = { "en-US", "pt-BR" },
-            path = vim.fn.expand("~") .. "/.local/share/ltex",
+            init_check = true,
+            path = ".ltex",
         })
     end,
     settings = {

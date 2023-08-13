@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
+local ltex_extra = require("ltex_extra")
 
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
@@ -8,11 +9,6 @@ end
 
 local lsp_signature_status, lsp_signature = pcall(require, "lsp_signature")
 if not lsp_signature_status then
-    return
-end
-
-local ltex_extra_status, ltex_extra = pcall(require, "ltex_extra")
-if not ltex_extra_status then
     return
 end
 
@@ -91,23 +87,20 @@ lspconfig.efm.setup({
     },
 })
 
-lspconfig.ltex.setup({
-    capabilities = capabilities,
-    on_attach = function()
-        ltex_extra.setup({
-            load_langs = { "en-US", "pt-BR" },
-            init_check = true,
-            path = ".ltex",
-        })
-    end,
-    settings = {
-        ltex = {
-            filetypes = { "markdown", "quarto" },
-            language = "auto",
-            checkFrequency = "save",
-            additionalRules = {
-                enablePickyRules = true,
-                motherTongue = "pt-BR",
+ltex_extra.setup({
+    load_langs = { "en-US", "pt-BR" },
+    init_check = true,
+    path = ".ltex",
+    server_opts = {
+        capabilities = capabilities,
+        settings = {
+            ltex = {
+                filetypes = { "markdown", "quarto" },
+                language = "auto",
+                additionalRules = {
+                    enablePickyRules = true,
+                    motherTongue = "pt-BR",
+                },
             },
         },
     },

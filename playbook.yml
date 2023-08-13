@@ -150,6 +150,7 @@
           - ch.protonmail.protonmail-bridge
           - com.protonvpn.www
           - org.wezfurlong.wezterm
+          - com.uploadedlobster.peek
 
     - name: Give WezTerm permissions to read home directory
       command:

@@ -1,7 +1,4 @@
-local setup, oil = pcall(require, "oil")
-if not setup then
-	return
-end
+local oil = require("oil")
 
 oil.setup({
 	default_file_explorer = true,

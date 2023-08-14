@@ -1,38 +1,30 @@
-local telescope_setup, telescope = pcall(require, "telescope")
-if not telescope_setup then
-	return
-end
-
-local actions_setup, actions = pcall(require, "telescope.actions")
-if not actions_setup then
-	return
-end
-
-local themes_setup, themes = pcall(require, "telescope.themes")
-if not themes_setup then
-	return
-end
+local telescope = require("telescope")
+local actions = require("telescope.actions")
+local themes = require("telescope.themes")
 
 telescope.setup({
-	defaults = {
-		hidden = true,
-		mappings = {
-			i = {
-				["<C-n>"] = actions.move_selection_next, -- move to next result
-				["<C-p>"] = actions.move_selection_previous, -- move to prev result
-				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- send selected to quickfixlist
-			},
-		},
-	},
-	extensions = {
-		["ui-select"] = { themes.get_dropdown() },
-		["fzy_native"] = {
-			override_generic_sorter = false,
-			override_file_sorter = true,
-		},
-	},
+    defaults = {
+        hidden = true,
+        mappings = {
+            i = {
+                ["<C-n>"] = actions.move_selection_next,            -- move to next result
+                ["<C-p>"] = actions.move_selection_previous,        -- move to prev result
+                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+            },
+        },
+    },
+    extensions = {
+        ["ui-select"] = { themes.get_dropdown() },
+        ["fzy_native"] = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        },
+    },
 })
 
-telescope.load_extension("bibtex")
-telescope.load_extension("fzy_native")
-telescope.load_extension("ui-select")
+-- load extensions
+local extensions = { "bibtex", "fzy_native", "ui-select", "zoxide" }
+
+for _, ext in ipairs(extensions) do
+    telescope.load_extension(ext)
+end

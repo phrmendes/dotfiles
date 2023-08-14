@@ -1,22 +1,19 @@
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
-
-local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then
-    return
-end
-
-local lsp_signature_status, lsp_signature = pcall(require, "lsp_signature")
-if not lsp_signature_status then
-    return
-end
 
 -- set up lsp_signature
 lsp_signature.setup()
 
 -- set signs for diagnostics
-local signs = { Error = " ", Warn = " ", Hint = "󱍄 ", Info = " " }
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = "󱍄 ",
+    Info = " ",
+}
 
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
@@ -47,6 +44,7 @@ for _, server in ipairs(servers) do
     })
 end
 
+-- special config for some language servers
 lspconfig.marksman.setup({
     filetypes = { "markdown", "quarto" },
     capabilities = capabilities,

@@ -19,7 +19,7 @@ in {
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-withPython3 = true;
+    withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
@@ -51,9 +51,11 @@ withPython3 = true;
       nvim-web-devicons # icons
       oil-nvim # file management
       plenary-nvim # lua utils
+      popup-nvim # zoxide dependency
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui
+      telescope-zoxide # zoxide integration
       todo-comments-nvim # todo comments
       todo-txt-vim # tasks
       undotree # undo history

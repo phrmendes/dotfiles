@@ -1,6 +1,3 @@
-local setup, todo_comments = pcall(require, "todo-comments")
-if not setup then
-	return
-end
+local todo_comments = require("todo-comments")
 
 todo_comments.setup()

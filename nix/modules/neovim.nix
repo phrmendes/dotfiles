@@ -67,6 +67,7 @@ in {
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
+      vim-helm # helm
     ];
   };
 }

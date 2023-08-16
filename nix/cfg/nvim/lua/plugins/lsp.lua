@@ -3,6 +3,7 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
+local configs = require("lspconfig.configs")
 
 -- set up lsp_signature
 lsp_signature.setup()
@@ -136,4 +137,21 @@ lspconfig.lua_ls.setup({
             },
         },
     },
+})
+
+if not configs.helm_ls then
+    configs.helm_ls = {
+        default_config = {
+            cmd = { "helm_ls", "serve" },
+            filetypes = { "helm" },
+            root_dir = function(fname)
+                return lspconfig_utils.root_pattern("Chart.yaml")(fname)
+            end,
+        },
+    }
+end
+
+lspconfig.helm_ls.setup({
+    filetypes = { "helm" },
+    cmd = { "helm_ls", "serve" },
 })

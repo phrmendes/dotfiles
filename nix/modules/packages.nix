@@ -32,6 +32,7 @@
     # language-servers
     ansible-language-server
     efm-langserver # generic
+    helm-ls
     ltex-ls # language tool
     lua-language-server
     marksman # markdown

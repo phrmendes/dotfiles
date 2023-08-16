@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-OPENAI_API_KEY=$(cat ~/.openai_api_key)
-export OPENAI_API_KEY
-
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"

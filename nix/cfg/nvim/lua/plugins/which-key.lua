@@ -92,6 +92,32 @@ local local_leader = {
 
 -- leader mappings
 local leader = {
+    visual = {
+        options = {
+            mode = "v",
+            prefix = "<leader>",
+            buffer = nil,
+            silent = true,
+            noremap = true,
+            nowait = false,
+        },
+        mappings = {
+            c = {
+                name = "+chatGPT",
+                E = { "<cmd>ChatGPTRun explain<cr>", "Explain code" },
+                T = { "<cmd>ChatGPTRun translate<cr>", "Translate text" },
+                d = { "<cmd>ChatGPTRun docstring<cr>", "Add docstring" },
+                e = { "<cmd>chatgpteditwithinstruction<cr><cr>", "Edit with instruction" },
+                g = { "<cmd>ChatGPTRun grammar_correction<cr>", "Grammar correction" },
+                k = { "<cmd>ChatGPTRun keywords<cr>", "Extract keywords" },
+                l = { "<cmd>ChatGPTRun code_readability_analysis<CR><cr>", "Code Readability Analysis" },
+                o = { "<cmd>ChatGPTRun optimize<cr>", "Optimize code" },
+                s = { "<cmd>ChatGPTRun summarize<cr>", "Summarize text" },
+                t = { "<cmd>ChatGPTRun add_test<cr>", "Add tests" },
+                f = { "<cmd>ChatGPTRun fix_bugs<cr>", "Fix bugs" },
+            },
+        },
+    },
     normal = {
         options = {
             mode = "n",
@@ -228,9 +254,10 @@ local leader = {
 
 -- apply mappings
 wk.setup(conf)
+wk.register(leader.normal.mappings, leader.normal.options)
+wk.register(leader.visual.mappings, leader.visual.options)
 wk.register(local_leader.normal.mappings, local_leader.normal.options)
 wk.register(local_leader.visual.mappings, local_leader.visual.options)
-wk.register(leader.normal.mappings, leader.normal.options)
 
 autocmd("LspAttach", {
     group = augroup("UserLspConfig", { clear = true }),

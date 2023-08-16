@@ -23,6 +23,7 @@ in {
     plugins = with pkgs.vimPlugins; [
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
+      ChatGPT-nvim # chatgpt
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -37,6 +38,7 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
+      nui-nvim # neovim ui library
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol

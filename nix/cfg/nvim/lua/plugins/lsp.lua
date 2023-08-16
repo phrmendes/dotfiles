@@ -138,20 +138,3 @@ lspconfig.lua_ls.setup({
         },
     },
 })
-
-if not configs.helm_ls then
-    configs.helm_ls = {
-        default_config = {
-            cmd = { "helm_ls", "serve" },
-            filetypes = { "helm" },
-            root_dir = function(fname)
-                return lspconfig_utils.root_pattern("Chart.yaml")(fname)
-            end,
-        },
-    }
-end
-
-lspconfig.helm_ls.setup({
-    filetypes = { "helm" },
-    cmd = { "helm_ls", "serve" },
-})

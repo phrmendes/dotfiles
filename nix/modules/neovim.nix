@@ -21,9 +21,9 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      (fromGitHub "HEAD" "Bryley/neoai.nvim") # ai completion
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
       (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
-      ChatGPT-nvim # chatgpt
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion

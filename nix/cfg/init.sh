@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+OPENAI_API_KEY=$(gpg --decrypt ~/.openai-chatgpt-api-key 2> /dev/null)
+export OPENAI_API_KEY
+
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"

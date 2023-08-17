@@ -13,7 +13,6 @@
     lazydocker
     ncdu
     pandoc
-    pass
     # quarto
     rename
     ripgrep

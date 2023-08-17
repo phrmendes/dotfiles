@@ -1,6 +1,7 @@
 require("core.autocmds")
 require("core.keymaps")
 require("core.options")
+require("plugins.chatgpt")
 require("plugins.debugger")
 require("plugins.gitsigns")
 require("plugins.iron")

@@ -102,19 +102,10 @@ local leader = {
             nowait = false,
         },
         mappings = {
-            c = {
+            a = {
                 name = "+chatGPT",
-                E = { "<cmd>ChatGPTRun explain<cr>", "Explain code" },
-                T = { "<cmd>ChatGPTRun translate<cr>", "Translate text" },
-                d = { "<cmd>ChatGPTRun docstring<cr>", "Add docstring" },
-                e = { "<cmd>chatgpteditwithinstruction<cr><cr>", "Edit with instruction" },
-                g = { "<cmd>ChatGPTRun grammar_correction<cr>", "Grammar correction" },
-                k = { "<cmd>ChatGPTRun keywords<cr>", "Extract keywords" },
-                l = { "<cmd>ChatGPTRun code_readability_analysis<CR><cr>", "Code Readability Analysis" },
-                o = { "<cmd>ChatGPTRun optimize<cr>", "Optimize code" },
-                s = { "<cmd>ChatGPTRun summarize<cr>", "Summarize text" },
-                t = { "<cmd>ChatGPTRun add_test<cr>", "Add tests" },
-                f = { "<cmd>ChatGPTRun fix_bugs<cr>", "Fix bugs" },
+                c = { "<cmd>NeoAIContext", "Context" },
+                i = { "<cmd>NeoAIInject", "Inject" },
             },
         },
     },
@@ -136,6 +127,11 @@ local leader = {
             u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
             z = { "<cmd>ZenMode<cr>", "Zen mode" },
             Z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
+
+            a = {
+                name = "+chatGPT",
+                t = { "<cmd>NeoAIToggle<cr>", "Toggle chat" },
+            },
 
             b = {
                 name = "+buffers",

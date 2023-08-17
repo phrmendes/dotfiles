@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
+    caffeine-ng
     coursier
     exa
     fd

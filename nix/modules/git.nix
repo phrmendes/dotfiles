@@ -3,6 +3,9 @@
     enable = true;
     userName = "Pedro Mendes";
     userEmail = "pedrohrmendes@proton.me";
+    extraConfig = {
+      push.autoSetupRemote = true;
+    };
     aliases = {
       co = "checkout";
       st = "status";

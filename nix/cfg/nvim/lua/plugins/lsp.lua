@@ -3,7 +3,6 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
-local configs = require("lspconfig.configs")
 
 -- set up lsp_signature
 lsp_signature.setup()

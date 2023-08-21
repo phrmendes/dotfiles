@@ -6,12 +6,13 @@
 
   vars:
     user: phrmendes
+    home: /home/{{ user }}
     nix_version: 2.17.0
     python_version: 3.11.4
     quarto_version: 1.3.433
     nix_build: nix-{{ nix_version }}-x86_64-linux
     nix_path: /nix/var/nix/profiles/default/bin
-    home_manager_path: ~/.nix-profile/bin
+    home_manager_path: "{{ home }}/.nix-profile/bin"
     docker_keyring_path: /etc/apt/keyrings/docker.gpg
     tailscale_keyring_path: /usr/share/keyrings/tailscale-archive-keyring.gpg
     nix_installer_checksum: sha256:1596ed46efae091388ed6db626c31f14fc1b703e5a552b00a9e68419edb8172d
@@ -166,13 +167,13 @@
 
     - name: Create "~/Projects" directory
       file:
-        path: ~/Projects
+        path: "{{ home }}/Projects"
         state: directory
 
     - name: Clone backups repo
       git:
         repo: https://github.com/phrmendes/bkps.git
-        dest: ~/Projects/bkps
+        dest: "{{ home }}/Projects/bkps"
 
     - name: Install nix package manager
       block:
@@ -208,10 +209,10 @@
         dest: "{{ item.dest }}"
         state: link
       with_items:
-        - src: ~/Projects/bkps/nix/home.nix
-          dest: ~/.config/home-manager/home.nix
-        - src: ~/Projects/bkps/nix/config.nix
-          dest: ~/.config/nixpkgs/config.nix
+        - src: "{{ home }}/Projects/bkps/nix/home.nix"
+          dest: "{{ home }}/.config/home-manager/home.nix"
+        - src: "{{ home }}/Projects/bkps/nix/config.nix"
+          dest: "{{ home }}/.config/nixpkgs/config.nix"
 
     - name: Add home-manager channel
       become_user: "{{ user }}"
@@ -273,7 +274,7 @@
       become: false
       pip:
         name: debugpy
-        virtualenv: ~/.virtualenvs/debugpy
+        virtualenv: "{{ home }}/.virtualenvs/debugpy"
 
     - name: Enable systemd services
       systemd:

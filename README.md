@@ -8,7 +8,7 @@ Install requirements:
 
 ```sh
 sudo apt update
-sudo apt install aptitude build-essential ca-certificates flatpak git gnupg python3-apt python3-apt python3-pip python3-pycurl python3-setuptools
+sudo apt install aptitude build-essential ca-certificates flatpak git gnupg python3-apt python3-pip python3-pycurl python3-setuptools
 /usr/bin/pip -m pip install ansible
 ```
 

@@ -25,7 +25,7 @@ tools:
   jq: &jq
     format-command: "jq"
   yq: &yq
-  format-command: ". ${INPUT}"
+    format-command: ". ${INPUT}"
   shellcheck: &shellcheck
     lint-command: "shellcheck -f gcc -x"
     lint-source: "shellcheck"

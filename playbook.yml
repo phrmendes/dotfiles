@@ -70,22 +70,19 @@
         update_cache: true
         state: present
         name:
-          - atool
-          - catdoc
+          - 7zip
           - containerd.io
           - curl
           - docker-buildx-plugin
           - docker-ce
           - docker-ce-cli
           - docker-compose-plugin
-          - exiftool
           - file
           - file-roller
           - fonts-dejavu
           - fonts-jetbrains-mono
           - gnome-tweaks
           - gzip
-          - jq
           - libbz2-dev
           - libffi-dev
           - libfuse2
@@ -96,21 +93,16 @@
           - libssl-dev
           - libxml2-dev
           - libxmlsec1-dev
-          - mediainfo
           - mlocate
           - nala
           - openssh-server
           - rar
           - tailscale
-          - timeshift
           - tk-dev
           - uidmap
           - unrar
           - unzip
-          - w3m
           - wget
-          - xclip
-          - xlsx2csv
           - xz-utils
           - zip
           - zlib1g-dev

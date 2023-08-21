@@ -22,12 +22,10 @@ tools:
   taplo: &taplo
     format-command: "taplo format -"
     format-stdin: true
-  json-prettier: &json-prettier
-    format-command: "prettier --parser json"
-  yaml-prettier: &yaml-prettier
-    format-command: "prettier --parser yaml"
-  markdown-prettier: &markdown-prettier
-    format-command: "prettier --parser markdown"
+  jq: &jq
+    format-command: "jq"
+  yq: &yq
+  format-command: ". ${INPUT}"
   shellcheck: &shellcheck
     lint-command: "shellcheck -f gcc -x"
     lint-source: "shellcheck"
@@ -47,12 +45,10 @@ tools:
 
 languages:
   json:
-    - <<: *json-prettier
+    - <<: *jq
     - <<: *jsonlint
   lua:
     - <<: *stylua
-  markdown:
-    - <<: *markdown-prettier
   nix:
     - <<: *alejandra
     - <<: *statix
@@ -62,7 +58,7 @@ languages:
     - <<: *shellcheck
     - <<: *shfmt
   yaml:
-    - <<: *yaml-prettier
+    - <<: *yq
     - <<: *yamllint
   toml:
     - <<: *taplo

@@ -75,13 +75,12 @@ lspconfig.efm.setup({
     filetypes = {
         "json",
         "lua",
-        "markdown",
         "nix",
         "python",
-        "sh",
-        "yaml",
-        "toml",
         "scala",
+        "sh",
+        "toml",
+        "yaml",
     },
 })
 

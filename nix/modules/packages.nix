@@ -1,11 +1,12 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
-    caffeine-ng
+    # quarto
+    atool
     coursier
     exa
+    exiftool
     fd
-    feh
     gh
     gnome-extensions-cli
     hugo
@@ -14,7 +15,7 @@
     lazydocker
     ncdu
     pandoc
-    # quarto
+    poppler_utils
     rename
     ripgrep
     slides
@@ -22,7 +23,10 @@
     tealdeer
     tectonic
     terraform
+    xclip
+    xlsx2csv
     # GUI
+    caffeine-ng
     bitwarden
     deluge
     onlyoffice-bin
@@ -57,6 +61,7 @@
     scalafmt
     shfmt
     stylua # lua
-    nodePackages.prettier # yaml, json, markdown
+    jq # json
+    yq-go # yaml
   ];
 }

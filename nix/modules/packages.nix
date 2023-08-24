@@ -3,6 +3,7 @@
     # CLI
     # quarto
     atool
+    chromedriver
     coursier
     exa
     exiftool
@@ -26,8 +27,9 @@
     xclip
     xlsx2csv
     # GUI
-    caffeine-ng
     bitwarden
+    caffeine-ng
+    chromium
     deluge
     onlyoffice-bin
     thunderbird

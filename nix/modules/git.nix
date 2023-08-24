@@ -12,6 +12,12 @@
       rc = "rebase --continue";
       lg = "log";
     };
+    init = {
+      defaultBranch = "main";
+    };
+    pull = {
+      rebase = true;
+    };
     delta = {
       enable = true;
       options = {

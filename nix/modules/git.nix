@@ -4,6 +4,8 @@
     userName = "Pedro Mendes";
     userEmail = "pedrohrmendes@proton.me";
     extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
       push.autoSetupRemote = true;
     };
     aliases = {
@@ -11,12 +13,6 @@
       st = "status";
       rc = "rebase --continue";
       lg = "log";
-    };
-    init = {
-      defaultBranch = "main";
-    };
-    pull = {
-      rebase = true;
     };
     delta = {
       enable = true;

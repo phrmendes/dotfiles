@@ -1,5 +1,4 @@
 local bufremove = require("mini.bufremove")
-local comment = require("mini.comment")
 local hicursorword = require("mini.cursorword")
 local indentscope = require("mini.indentscope")
 local jump2d = require("mini.jump2d")
@@ -12,7 +11,6 @@ local surround = require("mini.surround")
 local tabline = require("mini.tabline")
 
 bufremove.setup()
-comment.setup()
 hicursorword.setup()
 indentscope.setup()
 pairs.setup()

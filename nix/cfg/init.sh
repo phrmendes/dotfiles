@@ -26,5 +26,4 @@ system_clear() {
 	sudo nala autopurge
 	sudo nala autoremove
 	sudo nala clean
-	sudo nala fetch
 }

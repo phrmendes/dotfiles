@@ -3,7 +3,6 @@
     # CLI
     # quarto
     atool
-    chromedriver
     coursier
     exa
     exiftool
@@ -53,10 +52,8 @@
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
     # linters
-    nodePackages.jsonlint
     shellcheck
     statix # nix
-    yamllint
     # formatters
     alejandra # nix
     ruff # python

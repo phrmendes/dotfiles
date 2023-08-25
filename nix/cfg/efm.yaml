@@ -33,12 +33,6 @@ tools:
       - "%f:%l:%c: %trror: %m"
       - "%f:%l:%c: %tarning: %m"
       - "%f:%l:%c: %tote: %m"
-  yamllint: &yamllint
-    lint-command: "yamllint -f parsable -"
-    lint-stdin: true
-  jsonlint: &jsonlint
-    lint-command: "jsonlint --compact"
-    lint-stdin: true
   statix: &statix
     lint-command: "statix check --stdin --format=errfmt"
     lint-stdin: true
@@ -46,7 +40,6 @@ tools:
 languages:
   json:
     - <<: *jq
-    - <<: *jsonlint
   lua:
     - <<: *stylua
   nix:
@@ -59,7 +52,6 @@ languages:
     - <<: *shfmt
   yaml:
     - <<: *yq
-    - <<: *yamllint
   toml:
     - <<: *taplo
   scala:

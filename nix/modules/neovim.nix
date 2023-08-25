@@ -39,7 +39,7 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
-      nui-nvim # neovim ui library
+      nui-nvim # ui library
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol

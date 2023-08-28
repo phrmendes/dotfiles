@@ -21,9 +21,9 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      (fromGitHub "HEAD" "Bryley/neoai.nvim") # ai completion
-      (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex
-      (fromGitHub "HEAD" "opdavies/toggle-checkbox.nvim") # toggle checkboxes
+      (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto dependency
+      (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+      (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -39,7 +39,6 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
-      nui-nvim # ui library
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
@@ -50,6 +49,7 @@ in {
       nvim-spectre # search and replace
       nvim-tree-lua # file explorer
       nvim-treesitter-context # treesitter context
+      nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
       oil-nvim # file management
@@ -61,9 +61,10 @@ in {
       telescope-zoxide # zoxide integration
       todo-comments-nvim # todo comments
       todo-txt-vim # tasks
+      twilight-nvim # zen-mode dependency
       undotree # undo history
       vim-fugitive # git integration
-      vim-helm # helm
+      vim-helm # helm syntax
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors

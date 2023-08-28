@@ -26,6 +26,9 @@ tools:
     format-command: "jq"
   yq: &yq
     format-command: ". ${INPUT}"
+  ansiblelint: &ansiblelint
+    lint-commant: "ansible-lint -f codeclimate -q --nocolor ${INPUT}"
+    lint-source: "ansible-lint"
   shellcheck: &shellcheck
     lint-command: "shellcheck -f gcc -x"
     lint-source: "shellcheck"
@@ -38,6 +41,8 @@ tools:
     lint-stdin: true
 
 languages:
+  ansible:
+    - <<: *ansiblelint
   json:
     - <<: *jq
   lua:

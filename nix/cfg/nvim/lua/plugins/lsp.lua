@@ -9,15 +9,15 @@ lsp_signature.setup()
 
 -- set signs for diagnostics
 local signs = {
-	Error = " ",
-	Warn = " ",
-	Hint = "󱍄 ",
-	Info = " ",
+    Error = " ",
+    Warn = " ",
+    Hint = "󱍄 ",
+    Info = " ",
 }
 
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 -- config language servers
@@ -26,113 +26,112 @@ local autocmd = vim.api.nvim_create_autocmd
 local capabilities = cmp_nvim_lsp.default_capabilities()
 local clear = vim.api.nvim_clear_autocmds
 local servers = {
-	"ansiblels",
-	"bashls",
-	"dockerls",
-	"metals",
-	"nil_ls",
-	"ruff_lsp",
-	"taplo",
-	"terraformls",
-	"texlab",
-	"yamlls",
+    "ansiblels",
+    "bashls",
+    "dockerls",
+    "metals",
+    "nil_ls",
+    "ruff_lsp",
+    "taplo",
+    "terraformls",
+    "texlab",
+    "yamlls",
 }
 
 for _, server in ipairs(servers) do
-	lspconfig[server].setup({
-		capabilities = capabilities,
-	})
+    lspconfig[server].setup({
+        capabilities = capabilities,
+    })
 end
 
 -- special config for some language servers
 lspconfig.marksman.setup({
-	filetypes = { "markdown", "quarto" },
-	capabilities = capabilities,
-	root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml", "_quarto.yml"),
+    filetypes = { "markdown", "quarto" },
+    capabilities = capabilities,
+    root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml", "_quarto.yml"),
 })
 
 lspconfig.jsonls.setup({
-	cmd = { "vscode-json-languageserver", "--stdio" },
-	capabilities = capabilities,
+    cmd = { "vscode-json-languageserver", "--stdio" },
+    capabilities = capabilities,
 })
 
 lspconfig.efm.setup({
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			clear({ group = augroup, buffer = bufnr })
-			autocmd("BufWritePost", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({ async = false, timeout_ms = 500 })
-				end,
-			})
-		end
-	end,
-	capabilities = capabilities,
-	cmd = { "efm-langserver" },
-	args = { "-c", "~/.config/efm-langserver/config.yaml" },
-	filetypes = {
-		"json",
-		"lua",
-		"nix",
-		"python",
-		"scala",
-		"sh",
-		"toml",
-		"yaml",
-	},
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            clear({ group = augroup, buffer = bufnr })
+            autocmd("BufWritePost", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ async = false, timeout_ms = 500 })
+                end,
+            })
+        end
+    end,
+    capabilities = capabilities,
+    cmd = { "efm-langserver" },
+    args = { "-c", "~/.config/efm-langserver/config.yaml" },
+    filetypes = {
+        "json",
+        "lua",
+        "nix",
+        "python",
+        "scala",
+        "sh",
+        "toml",
+        "yaml",
+    },
 })
 
 ltex_extra.setup({
-	load_langs = { "en", "pt", "pt-BR" },
-	init_check = true,
-	path = ".ltex",
-	server_opts = {
-		capabilities = capabilities,
-		settings = {
-			ltex = {
-				filetypes = { "markdown", "quarto" },
-				language = "auto",
-				additionalRules = {
-					enablePickyRules = true,
-					motherTongue = "pt-BR",
-				},
-			},
-		},
-	},
+    load_langs = { "en", "pt", "pt-BR" },
+    init_check = true,
+    path = ".ltex",
+    server_opts = {
+        capabilities = capabilities,
+        settings = {
+            ltex = {
+                language = "auto",
+                additionalRules = {
+                    enablePickyRules = true,
+                    motherTongue = "pt-BR",
+                },
+            },
+        },
+    },
 })
 
 lspconfig.pyright.setup({
-	capabilities = capabilities,
-	settings = {
-		single_file_support = true,
-		python = {
-			analysis = {
-				autoSearchPaths = true,
-				diagnosticMode = "workspace",
-				typeCheckingMode = "strict",
-				useLibraryCodeForTypes = false,
-				inlayHints = {
-					variableTypes = true,
-					functionReturnTypes = true,
-				},
-			},
-		},
-	},
+    capabilities = capabilities,
+    settings = {
+        single_file_support = true,
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "workspace",
+                typeCheckingMode = "strict",
+                useLibraryCodeForTypes = false,
+                inlayHints = {
+                    variableTypes = true,
+                    functionReturnTypes = true,
+                },
+            },
+        },
+    },
 })
 
 lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim" } },
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = { globals = { "vim" } },
+            workspace = {
+                library = {
+                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.stdpath("config") .. "/lua"] = true,
+                },
+            },
+        },
+    },
 })

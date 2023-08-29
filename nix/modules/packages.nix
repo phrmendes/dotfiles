@@ -52,6 +52,7 @@
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
     # linters
+    ansible-lint
     shellcheck
     statix # nix
     # formatters

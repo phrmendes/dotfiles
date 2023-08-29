@@ -1,4 +1,21 @@
 local quarto = require("quarto")
+local wk = require("which-key")
+
+local localleader = {
+    normal = {
+        options = {
+            mode = "n",
+            prefix = "<localleader>",
+            buffer = nil,
+            silent = true,
+            noremap = true,
+            nowait = false,
+        },
+        mappings = {
+            b = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
+        },
+    },
+}
 
 quarto.setup({
     closePreviewOnExit = true,
@@ -15,3 +32,5 @@ quarto.setup({
         },
     },
 })
+
+wk.register(localleader.normal.mappings, localleader.normal.options)

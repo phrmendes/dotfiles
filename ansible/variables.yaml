@@ -1,0 +1,89 @@
+---
+user: phrmendes
+home: /home/{{ user }}
+version:
+  nix: 2.17.0
+  python: 3.11.4
+  quarto: 1.3.433
+  droidcam: 2.0.0
+droidcam:
+  url: "https://files.dev47apps.net/linux/droidcam_{{ version.droidcam }}.zip"
+nix:
+  build: "nix-{{ version.nix }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
+  installer:
+    url: "https://releases.nixos.org/nix/nix-{{ version.nix }}/nix-{{ version.nix }}-{{ ansible_architecture }}-{{ ansible_system | lower }}.tar.xz"
+    checksum: sha256:1596ed46efae091388ed6db626c31f14fc1b703e5a552b00a9e68419edb8172d
+  path: 
+    pkgs: /nix/var/nix/profiles/default/bin
+    home_manager: "{{ home }}/.nix-profile/bin"
+flatpak:
+  flathub:
+    url: https://dl.flathub.org/repo/flathub.flatpakrepo 
+  install:
+    - ch.protonmail.protonmail-bridge
+    - com.protonvpn.www
+    - org.wezfurlong.wezterm
+    - com.uploadedlobster.peek
+keyring:
+  docker:
+    url: https://download.docker.com/linux/ubuntu/gpg
+  tailscale:
+    url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+    dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+apt:
+  remove:
+    - baobab
+    - evince
+    - fprintd
+    - geary
+    - gedit
+    - gnome-calendar
+    - gnome-contacts
+    - gparted
+    - libreoffice-common
+    - libreoffice-core
+    - simple-scan
+    - totem
+  install:
+    - 7zip
+    - build-essential
+    - ca-certificates
+    - containerd.io
+    - curl
+    - docker-buildx-plugin
+    - docker-ce
+    - docker-ce-cli
+    - docker-compose-plugin
+    - file
+    - file-roller
+    - flatpak 
+    - fonts-dejavu
+    - fonts-jetbrains-mono
+    - gnome-tweaks
+    - gnupg
+    - gzip
+    - libbz2-dev
+    - libffi-dev
+    - libfuse2
+    - liblzma-dev
+    - libncursesw5-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - libssl-dev
+    - libxml2-dev
+    - libxmlsec1-dev
+    - mlocate
+    - nala
+    - openssh-server
+    - rar
+    - tailscale
+    - tk-dev
+    - uidmap
+    - unrar
+    - unzip
+    - wget
+    - xz-utils
+    - zip
+    - zlib1g-dev
+  deb:
+    - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ version.quarto }}/quarto-{{ version.quarto }}-{{ ansible_system | lower }}-{{ custom_facts.dpkg_arch }}.deb"

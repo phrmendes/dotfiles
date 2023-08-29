@@ -1,0 +1,22 @@
+---
+- name: Backup configuration for PopOS 22.04
+  become: true
+  hosts: all
+  connection: local
+
+  vars_files:
+    - ./ansible/variables.yaml
+
+  handlers:
+    - import_tasks: ./ansible/handlers/update_nix_channels.yaml
+
+  tasks:
+    - import_tasks: ./ansible/tasks/custom_facts.yaml
+    - import_tasks: ./ansible/tasks/apt_packages.yaml
+    - import_tasks: ./ansible/tasks/docker_groups.yaml
+    - import_tasks: ./ansible/tasks/flatpak_packages.yaml
+    - import_tasks: ./ansible/tasks/fingerprint.yaml
+    - import_tasks: ./ansible/tasks/nix_package_manager.yaml
+    - import_tasks: ./ansible/tasks/home_manager.yaml
+    - import_tasks: ./ansible/tasks/python.yaml
+    - import_tasks: ./ansible/tasks/services.yaml

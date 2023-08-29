@@ -1,0 +1,21 @@
+---
+- name: Add the flathub remote repository
+  become_user: "{{ user }}"
+  community.general.flatpak_remote:
+    flatpakrepo_url: "{{ flatpak.flathub.url }}"
+    method: user
+    name: flathub
+    state: present
+
+- name: Install packages with flatpak
+  become_user: "{{ user }}"
+  community.general.flatpak:
+    state: present
+    method: user
+    name: "{{ item }}"
+  with_items: "{{ flatpak.install }}"
+
+- name: Give WezTerm permissions to read home directory
+  command:
+    cmd: flatpak override --filesystem=home org.wezfurlong.wezterm
+  changed_when: false

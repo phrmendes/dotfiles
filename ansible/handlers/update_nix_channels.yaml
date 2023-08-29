@@ -1,0 +1,5 @@
+---
+- name: Update nix channels
+  become_user: "{{ user }}"
+  command: "{{ nix.path.pkgs }}/nix-channel --update"
+  changed_when: false

@@ -1,0 +1,16 @@
+---
+- name: Enable fingerprint support
+  block:
+  - name: Adding fingerprint repository
+    apt_repository:
+      repo: "ppa:uunicorn/open-fprintd"
+
+  - name: Installing fingerprint packages
+    apt:
+      update_cache: true
+      state: present
+      name:
+        - open-fprintd
+        - fprintd-clients
+        - python3-validity
+  when: ansible_form_factor != "Desktop"

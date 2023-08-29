@@ -1,0 +1,49 @@
+---
+- name: Check if python is installed
+  become_user: "{{ user }}"
+  shell: "{{ nix.path.home_manager }}/pyenv version"
+  register: pyenv_versions
+  changed_when: false
+
+- name: Install python
+  become_user: "{{ user }}"
+  command: "{{ nix.path.home_manager }}/pyenv install {{ version.python }}"
+  when: version.python not in pyenv_versions.stdout
+
+- name: Set python global version
+  become_user: "{{ user }}"
+  command: "{{ nix.path.home_manager }}/pyenv global {{ version.python }}"
+  changed_when: false
+
+- name: Get python bin
+  become_user: "{{ user }}"
+  shell: "{{ nix.path.home_manager }}/pyenv which python"
+  register: python_bin
+  changed_when: false
+
+- name: Get pip bin
+  become_user: "{{ user }}"
+  shell: "{{ nix.path.home_manager }}/pyenv which pip"
+  register: pip_bin
+  changed_when: false
+
+- name: Install python packages
+  become_user: "{{ user }}"
+  pip:
+    executable: "{{ pip_bin.stdout }}"
+    name:
+      - poetry
+      - ipython
+
+- name: Configure poetry to use virtualenvs inside projects
+  become_user: "{{ user }}"
+  command:
+    cmd: "{{ python_bin.stdout }} -m poetry config virtualenvs.in-project true"
+  changed_when: false
+
+- name: Install python debugger
+  become_user: "{{ user }}"
+  become: false
+  pip:
+    name: debugpy
+    virtualenv: "{{ home }}/.virtualenvs/debugpy"

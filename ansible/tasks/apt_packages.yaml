@@ -1,0 +1,37 @@
+---
+- name: Remove packages
+  apt:
+    autoremove: true
+    state: absent
+    name: "{{ item }}"
+  with_items: "{{ apt.remove }}"
+
+- name: Add tailscale GPG apt key
+  get_url:
+    url: "{{ keyring.tailscale.url }}"
+    dest: "{{ keyring.tailscale.dest }}"
+
+- name: Add docker GPG apt key
+  apt_key:
+    url: "{{ keyring.docker.url }}"
+    state: present
+
+- name: Add repos
+  apt_repository:
+    state: present
+    repo: "{{ item }}"
+  with_items:
+    - "deb https://download.docker.com/{{ ansible_system | lower }}/{{ custom_facts.based_distribution }} {{ ansible_distribution_release }} stable"
+    - "deb [signed-by={{ keyring.tailscale.dest }}] https://pkgs.tailscale.com/stable/{{ custom_facts.based_distribution }} {{ ansible_distribution_release }} main"
+
+- name: Install packages with apt
+  apt:
+    update_cache: true
+    state: present
+    name: "{{ item }}"
+  with_items: "{{ apt.install }}"
+
+- name: Install .deb packages with apt
+  apt:
+    deb: "{{ item }}"
+  with_items: "{{ apt.deb }}"

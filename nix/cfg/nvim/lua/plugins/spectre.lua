@@ -1,4 +1,4 @@
-spectre = require("spectre")
+local spectre = require("spectre")
 
 spectre.setup({
     mapping = {

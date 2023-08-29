@@ -16,11 +16,15 @@ local leader = {
                 P = {
                     name = "+python",
                     c = {
-                        "<cmd>lua require('dap-python').test_class()<cr>",
+                        function()
+                            require("dap-python").test_class()
+                        end,
                         "Test class",
                     },
                     m = {
-                        "<cmd>lua require('dap-python').test_method()<cr>",
+                        function()
+                            require("dap-python").test_method()
+                        end,
                         "Test method",
                     },
                 },
@@ -38,7 +42,9 @@ local leader = {
         },
         mappings = {
             p = {
-                "<cmd>lua require('dap-python').debug_selection()<cr>",
+                function()
+                    require("dap-python").debug_selection()
+                end,
                 "DAP - Debug python region",
             },
         },

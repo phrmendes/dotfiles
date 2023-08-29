@@ -23,20 +23,60 @@ local lsp = {
                 nowait = false,
             },
             mappings = {
-                a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
-                D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "LSP - Declaration" },
+                a = {
+                    function()
+                        vim.lsp.buf.code_action()
+                    end,
+                    "LSP - Code action",
+                },
+                D = {
+                    function()
+                        vim.lsp.buf.declaration()
+                    end,
+                    "LSP - Declaration",
+                },
                 d = { "<cmd>Telescope lsp_definitions<cr>", "LSP - Definitions" },
-                h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP - Hover" },
+                h = {
+                    function()
+                        vim.lsp.buf.hover()
+                    end,
+                    "LSP - Hover",
+                },
                 i = { "<cmd>Telescope lsp_implementations<cr>", "LSP - Implementation" },
-                r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "LSP - Rename" },
+                r = {
+                    function()
+                        vim.lsp.buf.rename()
+                    end,
+                    "LSP - Rename",
+                },
                 R = { "<cmd>Telescope lsp_references<cr>", "LSP - References" },
-                s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP - Signature help" },
+                s = {
+                    function()
+                        vim.lsp.buf.signature_help()
+                    end,
+                    "LSP - Signature help",
+                },
                 t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" },
                 f = {
                     name = "+folders (LSP)",
-                    a = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", "Add folder" },
-                    r = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", "Remove folder" },
-                    l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", "List folders" },
+                    a = {
+                        function()
+                            vim.lsp.buf.add_workspace_folder()
+                        end,
+                        "Add folder",
+                    },
+                    r = {
+                        function()
+                            vim.lsp.buf.remove_workspace_folder()
+                        end,
+                        "Remove folder",
+                    },
+                    l = {
+                        function()
+                            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                        end,
+                        "List folders",
+                    },
                 },
             },
         },
@@ -50,7 +90,12 @@ local lsp = {
                 nowait = false,
             },
             mappings = {
-                a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "LSP - Code action" },
+                a = {
+                    function()
+                        vim.lsp.buf.code_action()
+                    end,
+                    "LSP - Code action",
+                },
             },
         },
     },
@@ -67,32 +112,106 @@ local lsp = {
             mappings = {
                 d = {
                     name = "+debugger",
-                    B = { "<cmd>lua require('dap').step_back()<cr>", "Step back" },
-                    c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
-                    i = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
-                    o = { "<cmd>lua require('dap').step_over()<cr>", "Step over" },
-                    p = { "<cmd>lua require('dap').pause()<cr>", "Pause" },
-                    q = { "<cmd>lua require('dap').close()<cr>", "Quit" },
-                    s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
-                    t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" },
-                    u = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
+                    B = {
+                        function()
+                            require("dap").step_back()
+                        end,
+                        "Step back",
+                    },
+                    c = {
+                        function()
+                            require("dap").continue()
+                        end,
+                        "Continue",
+                    },
+                    i = {
+                        function()
+                            require("dap").step_into()
+                        end,
+                        "Step into",
+                    },
+                    o = {
+                        function()
+                            require("dap").step_over()
+                        end,
+                        "Step over",
+                    },
+                    p = {
+                        function()
+                            require("dap").pause()
+                        end,
+                        "Pause",
+                    },
+                    q = {
+                        function()
+                            require("dap").close()
+                        end,
+                        "Quit",
+                    },
+                    s = {
+                        function()
+                            require("dap").continue()
+                        end,
+                        "Start",
+                    },
+                    t = {
+                        function()
+                            require("dapui").toggle()
+                        end,
+                        "Toggle UI",
+                    },
+                    u = {
+                        function()
+                            require("dap").step_out()
+                        end,
+                        "Step out",
+                    },
                     b = {
-                        "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+                        function()
+                            require("dap").toggle_breakpoint()
+                        end,
                         "Toggle breakpoint",
                     },
                     r = {
-                        "<cmd>lua require('dapui').open({reset = true})<cr>",
+                        function()
+                            require("dapui").open({ reset = true })
+                        end,
                         "Reset UI panes",
                     },
                 },
                 l = {
                     name = "+lsp",
-                    c = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens action" },
+                    c = {
+                        function()
+                            vim.lsp.codelens.run()
+                        end,
+                        "CodeLens action",
+                    },
                     d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-                    l = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Loclist" },
-                    n = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
-                    o = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Open float" },
-                    p = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous diagnostic" },
+                    l = {
+                        function()
+                            vim.diagnostic.setloclist()
+                        end,
+                        "Loclist",
+                    },
+                    n = {
+                        function()
+                            vim.diagnostic.goto_next()
+                        end,
+                        "Next diagnostic",
+                    },
+                    o = {
+                        function()
+                            vim.diagnostic.open_float()
+                        end,
+                        "Open float",
+                    },
+                    p = {
+                        function()
+                            vim.diagnostic.goto_prev()
+                        end,
+                        "Previous diagnostic",
+                    },
                     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
                     w = {
                         "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -113,7 +232,12 @@ local lsp = {
                 nowait = false,
             },
             mappings = {
-                e = { "<cmd>lua require('dapui').eval()<cr>", "Debugger - Evaluate" },
+                e = {
+                    function()
+                        require("dapui").eval()
+                    end,
+                    "Debugger - Evaluate",
+                },
             },
         },
     },
@@ -178,13 +302,23 @@ local leader = {
                 name = "+buffers",
                 G = { "<cmd>bl<cr>", "Last buffer" },
                 b = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
-                d = { "<cmd>lua MiniBufremove.delete()<cr>", "Delete buffer" },
+                d = {
+                    function()
+                        require("mini.bufremove").delete()
+                    end,
+                    "Delete buffer",
+                },
                 f = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find" },
                 g = { "<cmd>bf<cr>", "First buffer" },
                 n = { "<cmd>bn<cr>", "Next buffer" },
                 p = { "<cmd>bp<cr>", "Previous buffer" },
                 o = { "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", "Close all other buffers" },
-                w = { "<cmd>lua MiniBufremove.wipeout()<cr>", "Wipeout buffers" },
+                w = {
+                    function()
+                        require("mini.bufremove").wipeout()
+                    end,
+                    "Wipeout buffers",
+                },
                 s = {
                     name = "+split",
                     p = { "<cmd>sbp<cr>", "Previous buffer" },
@@ -193,7 +327,12 @@ local leader = {
             },
             f = {
                 name = "+files",
-                ["."] = { "<cmd>lua require('oil').open()<cr>", "File explorer" },
+                ["."] = {
+                    function()
+                        require("oil").open()
+                    end,
+                    "File explorer",
+                },
                 G = { "<cmd>Telescope git_files<cr>", "Find (git files)" },
                 c = { "<cmd>Telescope grep_string<cr>", "Find string in cursor" },
                 f = { "<cmd>Telescope find_files hidden=true<cr>", "Find" },
@@ -202,7 +341,9 @@ local leader = {
                 s = { "<cmd>w<cr>", "Save" },
                 t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
                 S = {
-                    "<cmd>lua require('spectre').open()<cr>",
+                    function()
+                        require("spectre").open()
+                    end,
                     "Spectre - Search in project",
                 },
             },
@@ -219,7 +360,12 @@ local leader = {
                 d = { "<cmd>G diff %<cr>", "Diff file" },
                 g = { "<cmd>G<cr>", "Git" },
                 p = { "<cmd>G pull<cr>", "Pull" },
-                r = { "<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset buffer" },
+                r = {
+                    function()
+                        require("gitsigns").reset_buffer()
+                    end,
+                    "Reset buffer",
+                },
             },
             T = {
                 name = "+tabs",

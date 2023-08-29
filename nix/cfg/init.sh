@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-OPENAI_API_KEY=$(gpg --decrypt ~/.openai-chatgpt-api-key 2> /dev/null)
-export OPENAI_API_KEY
-
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"
@@ -19,6 +16,10 @@ nix_clear() {
 
 system_update() {
 	sudo nala upgrade
+	sudo pop-upgrade recovery upgrade from-release
+	sudo fwupdmgr get-devices >/dev/null
+	sudo fwupdmgr get-updates
+	sudo fwupdmgr update
 	flatpak update
 }
 

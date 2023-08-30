@@ -12,8 +12,7 @@
   community.general.flatpak:
     state: present
     method: user
-    name: "{{ item }}"
-  with_items: "{{ flatpak.install }}"
+    name: "{{ flatpak.install }}"
 
 - name: Give WezTerm permissions to read home directory
   command:

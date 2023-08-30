@@ -25,15 +25,18 @@
     terraform
     xclip
     xlsx2csv
+
     # GUI
     bitwarden
     caffeine-ng
     chromium
     deluge
+    droidcam
     onlyoffice-bin
     thunderbird
     vlc
     zotero
+
     # language-servers
     ansible-language-server
     efm-langserver # generic
@@ -51,10 +54,12 @@
     nodePackages.pyright
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
+
     # linters
     ansible-lint
     shellcheck
     statix # nix
+
     # formatters
     alejandra # nix
     ruff # python

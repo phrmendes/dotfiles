@@ -1,0 +1,9 @@
+---
+- name: Check if v4l2loopback is enabled 
+  shell: "lsmod | grep -i v4l2loopback"
+  register: v4l2loopback_status
+  changed_when: false
+
+- name: Enable v4l2loopback module
+  command: "modprobe v4l2loopback"
+  when: "'v4l2loopback' not in v4l2loopback_status.stdout"

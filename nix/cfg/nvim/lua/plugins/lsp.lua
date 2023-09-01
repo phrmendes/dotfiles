@@ -57,18 +57,6 @@ lspconfig.jsonls.setup({
 })
 
 lspconfig.efm.setup({
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            clear({ group = augroup, buffer = bufnr })
-            autocmd("BufWritePost", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.format({ async = false, timeout_ms = 500 })
-                end,
-            })
-        end
-    end,
     capabilities = capabilities,
     cmd = { "efm-langserver" },
     args = { "-c", "~/.config/efm-langserver/config.yaml" },

@@ -190,8 +190,9 @@ local lsp = {
                     d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
                     f = {
                         function()
-                            vim.lsp.buf.format({ async = true, timeout_ms = 500 })
+                            vim.lsp.buf.format({ async = true })
                         end,
+                        "Format",
                     },
                     l = {
                         function()

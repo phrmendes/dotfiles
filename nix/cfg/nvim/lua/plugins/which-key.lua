@@ -191,6 +191,7 @@ local lsp = {
                     f = {
                         function()
                             vim.lsp.buf.format({ async = true })
+                            vim.cmd([[write]])
                         end,
                         "Format",
                     },

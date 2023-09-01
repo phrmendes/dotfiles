@@ -1,9 +1,4 @@
 ---
-version: 2
-root-markers:
-  - .git/
-  - pyproject.toml
-
 tools:
   alejandra: &alejandra
     format-command: "alejandra --quiet"
@@ -24,9 +19,9 @@ tools:
     format-command: "taplo format -"
     format-stdin: true
   jq: &jq
-    format-command: "jq"
+    format-command: "jq ."
   yq: &yq
-    format-command: ". ${INPUT}"
+    format-command: "yq . ${INPUT}"
   ansiblelint: &ansiblelint
     lint-commant: "ansible-lint -f codeclimate -q --nocolor ${INPUT}"
     lint-source: "ansible-lint"

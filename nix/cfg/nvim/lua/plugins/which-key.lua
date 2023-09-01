@@ -57,7 +57,7 @@ local lsp = {
                     "LSP - Signature help",
                 },
                 t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" },
-                f = {
+                F = {
                     name = "+folders (LSP)",
                     a = {
                         function()

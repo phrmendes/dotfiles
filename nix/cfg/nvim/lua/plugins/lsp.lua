@@ -21,10 +21,7 @@ for type, icon in pairs(signs) do
 end
 
 -- config language servers
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local autocmd = vim.api.nvim_create_autocmd
 local capabilities = cmp_nvim_lsp.default_capabilities()
-local clear = vim.api.nvim_clear_autocmds
 local servers = {
     "ansiblels",
     "bashls",
@@ -58,8 +55,6 @@ lspconfig.jsonls.setup({
 
 lspconfig.efm.setup({
     capabilities = capabilities,
-    cmd = { "efm-langserver" },
-    args = { "-c", "~/.config/efm-langserver/config.yaml" },
     filetypes = {
         "json",
         "lua",

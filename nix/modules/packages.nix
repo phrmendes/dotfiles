@@ -15,6 +15,7 @@
     lazydocker
     ncdu
     pandoc
+    parallel
     poppler_utils
     rename
     ripgrep

@@ -3,6 +3,7 @@ local pythonft = require("iron.fts.python")
 local scalaft = require("iron.fts.scala")
 local shft = require("iron.fts.sh")
 local view = require("iron.view")
+local leader = "<C-c>"
 
 core.setup({
 	config = {
@@ -14,8 +15,11 @@ core.setup({
 		},
 	},
 	keymaps = {
-		send_line = "<shift><space>",
-		visual_send = "<shift><space>",
+		send_line = leader .. "<C-c>",
+        exit = leader .. "<C-q>",
+        send_file = leader .. "<C-f>",
+        visual_send = leader .. "<C-c>",
+        cr = leader .. "<cr>",
 	},
 	highlight = { italic = false },
 	ignore_blank_lines = true,

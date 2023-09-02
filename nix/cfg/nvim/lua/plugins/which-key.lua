@@ -354,16 +354,10 @@ local leader = {
             },
             r = {
                 name = "+REPL",
-                f = { "<cmd>IronFocus", "Focus" },
-                h = { "<cmd>IronHide", "Hide" },
+                f = { "<cmd>IronFocus<cr>", "Focus" },
+                h = { "<cmd>IronHide<cr>", "Hide" },
                 o = { "<cmd>IronRepl<cr>", "Open" },
                 r = { "<cmd>IronRestart<cr>", "Restart" },
-                q = {
-                    function()
-                        require("iron").core.exit()
-                    end,
-                    "Quit",
-                },
             },
             T = {
                 name = "+tabs",

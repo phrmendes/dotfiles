@@ -1,6 +1,8 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local wk = require("which-key")
+local dap = require("dap")
+local dap_ui = require("dapui")
 
 -- which-key configuration
 local conf = {
@@ -23,6 +25,10 @@ local lsp = {
                 nowait = false,
             },
             mappings = {
+                R = { "<cmd>Telescope lsp_references<cr>", "LSP - References" },
+                d = { "<cmd>Telescope lsp_definitions<cr>", "LSP - Definitions" },
+                i = { "<cmd>Telescope lsp_implementations<cr>", "LSP - Implementation" },
+                t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" },
                 a = {
                     function()
                         vim.lsp.buf.code_action()
@@ -35,48 +41,23 @@ local lsp = {
                     end,
                     "LSP - Declaration",
                 },
-                d = { "<cmd>Telescope lsp_definitions<cr>", "LSP - Definitions" },
                 h = {
                     function()
                         vim.lsp.buf.hover()
                     end,
                     "LSP - Hover",
                 },
-                i = { "<cmd>Telescope lsp_implementations<cr>", "LSP - Implementation" },
                 r = {
                     function()
                         vim.lsp.buf.rename()
                     end,
                     "LSP - Rename",
                 },
-                R = { "<cmd>Telescope lsp_references<cr>", "LSP - References" },
                 s = {
                     function()
                         vim.lsp.buf.signature_help()
                     end,
                     "LSP - Signature help",
-                },
-                t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP - Type definition" },
-                F = {
-                    name = "+folders (LSP)",
-                    a = {
-                        function()
-                            vim.lsp.buf.add_workspace_folder()
-                        end,
-                        "Add folder",
-                    },
-                    r = {
-                        function()
-                            vim.lsp.buf.remove_workspace_folder()
-                        end,
-                        "Remove folder",
-                    },
-                    l = {
-                        function()
-                            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                        end,
-                        "List folders",
-                    },
                 },
             },
         },
@@ -114,80 +95,82 @@ local lsp = {
                     name = "+debugger",
                     B = {
                         function()
-                            require("dap").step_back()
+                            dap.step_back()
                         end,
                         "Step back",
                     },
                     c = {
                         function()
-                            require("dap").continue()
+                            dap.continue()
                         end,
                         "Continue",
                     },
                     i = {
                         function()
-                            require("dap").step_into()
+                            dap.step_into()
                         end,
                         "Step into",
                     },
                     o = {
                         function()
-                            require("dap").step_over()
+                            dap.step_over()
                         end,
                         "Step over",
                     },
                     p = {
                         function()
-                            require("dap").pause()
+                            dap.pause()
                         end,
                         "Pause",
                     },
                     q = {
                         function()
-                            require("dap").close()
+                            dap.close()
                         end,
                         "Quit",
                     },
                     s = {
                         function()
-                            require("dap").continue()
+                            dap.continue()
                         end,
                         "Start",
                     },
                     t = {
                         function()
-                            require("dapui").toggle()
+                            dap_ui.toggle()
                         end,
                         "Toggle UI",
                     },
                     u = {
                         function()
-                            require("dap").step_out()
+                            dap.step_out()
                         end,
                         "Step out",
                     },
                     b = {
                         function()
-                            require("dap").toggle_breakpoint()
+                            dap.toggle_breakpoint()
                         end,
                         "Toggle breakpoint",
                     },
                     r = {
                         function()
-                            require("dapui").open({ reset = true })
+                            dap_ui.open({ reset = true })
                         end,
                         "Reset UI panes",
                     },
                 },
                 l = {
                     name = "+lsp",
+                    d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+                    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
+                    w = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
                     c = {
                         function()
                             vim.lsp.codelens.run()
                         end,
                         "CodeLens action",
                     },
-                    d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
                     f = {
                         function()
                             vim.lsp.buf.format({ async = true })
@@ -219,11 +202,6 @@ local lsp = {
                         end,
                         "Previous diagnostic",
                     },
-                    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
-                    w = {
-                        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-                        "Workspace symbols",
-                    },
                 },
             },
         },
@@ -241,7 +219,7 @@ local lsp = {
             mappings = {
                 e = {
                     function()
-                        require("dapui").eval()
+                        dap_ui.eval()
                     end,
                     "Debugger - Evaluate",
                 },
@@ -297,14 +275,14 @@ local leader = {
             nowait = false,
         },
         mappings = {
-            e = { "<cmd>NvimTreeToggle<cr>", "Explorer (tree)" },
+            Z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
             c = { "<cmd>noh<cr>", "Clear highlights" },
+            e = { "<cmd>NvimTreeToggle<cr>", "Explorer (tree)" },
             h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
             q = { "<cmd>confirm q<cr>", "Quit" },
             t = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
             u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
             z = { "<cmd>ZenMode<cr>", "Zen mode" },
-            Z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
             b = {
                 name = "+buffers",
                 G = { "<cmd>bl<cr>", "Last buffer" },
@@ -372,6 +350,19 @@ local leader = {
                         require("gitsigns").reset_buffer()
                     end,
                     "Reset buffer",
+                },
+            },
+            r = {
+                name = "+REPL",
+                f = { "<cmd>IronFocus", "Focus" },
+                h = { "<cmd>IronHide", "Hide" },
+                o = { "<cmd>IronRepl<cr>", "Open" },
+                r = { "<cmd>IronRestart<cr>", "Restart" },
+                q = {
+                    function()
+                        require("iron").core.exit()
+                    end,
+                    "Quit",
                 },
             },
             T = {

@@ -1,7 +1,5 @@
 local checked_character = "x"
 local checked_checkbox = "%[" .. checked_character .. "%]"
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 local unchecked_checkbox = "%[ %]"
 local wk = require("which-key")
 
@@ -49,10 +47,14 @@ local localleader = {
         mappings = {
             p = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
             s = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
+            x = {
+                function()
+                    toggle()
+                end,
+                "Toggle checkbox",
+            },
         },
     },
 }
-
-map("n", "<C-c>", toggle, opts)
 
 wk.register(localleader.normal.mappings, localleader.normal.options)

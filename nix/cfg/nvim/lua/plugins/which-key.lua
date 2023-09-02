@@ -1,8 +1,12 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local wk = require("which-key")
 local dap = require("dap")
 local dap_ui = require("dapui")
+local gitsigns = require("gitsigns")
+local bufremove = require("mini.bufremove")
+local oil = require("oil")
+local spectre = require("spectre")
+local wk = require("which-key")
 
 -- which-key configuration
 local conf = {
@@ -165,6 +169,7 @@ local lsp = {
                     d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
                     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
                     w = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
+                    r = { "<cmd>LspRestart<cr>", "Restart" },
                     c = {
                         function()
                             vim.lsp.codelens.run()
@@ -289,7 +294,7 @@ local leader = {
                 b = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
                 d = {
                     function()
-                        require("mini.bufremove").delete()
+                        bufremove.delete()
                     end,
                     "Delete buffer",
                 },
@@ -300,7 +305,7 @@ local leader = {
                 o = { "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", "Close all other buffers" },
                 w = {
                     function()
-                        require("mini.bufremove").wipeout()
+                        bufremove.wipeout()
                     end,
                     "Wipeout buffers",
                 },
@@ -314,7 +319,7 @@ local leader = {
                 name = "+files",
                 ["."] = {
                     function()
-                        require("oil").open()
+                        oil.open()
                     end,
                     "File explorer",
                 },
@@ -327,7 +332,7 @@ local leader = {
                 t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
                 S = {
                     function()
-                        require("spectre").open()
+                        spectre.open()
                     end,
                     "Spectre - Search in project",
                 },
@@ -347,7 +352,7 @@ local leader = {
                 p = { "<cmd>G pull<cr>", "Pull" },
                 r = {
                     function()
-                        require("gitsigns").reset_buffer()
+                        gitsigns.reset_buffer()
                     end,
                     "Reset buffer",
                 },

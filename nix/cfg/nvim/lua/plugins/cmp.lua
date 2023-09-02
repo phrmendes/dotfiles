@@ -19,7 +19,7 @@ cmp.setup({
         ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- scroll documentation up
         ["<C-d>"] = cmp.mapping.scroll_docs(4), -- scroll documentation down
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-        ["<C-q>"] = cmp.mapping.abort(),        -- close completion window
+        ["<C-q>"] = cmp.mapping.abort(), -- close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
     }),
     -- sources for autocompletion

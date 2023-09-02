@@ -1,3 +1,4 @@
+local dap_python = require("dap-python")
 local wk = require("which-key")
 
 local leader = {
@@ -17,13 +18,13 @@ local leader = {
                     name = "+python",
                     c = {
                         function()
-                            require("dap-python").test_class()
+                            dap_python.test_class()
                         end,
                         "Test class",
                     },
                     m = {
                         function()
-                            require("dap-python").test_method()
+                            dap_python.test_method()
                         end,
                         "Test method",
                     },
@@ -43,7 +44,7 @@ local leader = {
         mappings = {
             p = {
                 function()
-                    require("dap-python").debug_selection()
+                    dap_python.debug_selection()
                 end,
                 "DAP - Debug python region",
             },

@@ -3,6 +3,7 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
+
 local efmls = {
     json = {
         linter = { jq = require("efmls-configs.linters.jq") },
@@ -49,18 +50,17 @@ local efmls_languages = {
     yaml = { efmls.yaml.linter.ansible_lint, efmls.yaml.formatter.yq },
 }
 
--- set up lsp_signature
-lsp_signature.setup()
-
--- set signs for diagnostics
-local signs = {
+local diagnostics_signs = {
     Error = " ",
     Warn = " ",
     Hint = "󱍄 ",
     Info = " ",
 }
 
-for type, icon in pairs(signs) do
+-- set up lsp_signature
+lsp_signature.setup()
+
+for type, icon in pairs(diagnostics_signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
@@ -97,22 +97,6 @@ lspconfig.jsonls.setup({
     cmd = { "vscode-json-languageserver", "--stdio" },
     capabilities = capabilities,
 })
-
-local efmls_config = {
-    filetypes = vim.tbl_keys(efmls_languages),
-    settings = {
-        rootMarkers = { ".git/" },
-        languages = efmls_languages,
-    },
-    init_options = {
-        documentFormatting = true,
-        documentRangeFormatting = true,
-    },
-}
-
-lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
-    capabilities = capabilities,
-}))
 
 ltex_extra.setup({
     load_langs = { "en", "pt", "pt-BR" },
@@ -165,3 +149,20 @@ lspconfig.lua_ls.setup({
         },
     },
 })
+
+-- linters and formatters
+local efmls_config = {
+    filetypes = vim.tbl_keys(efmls_languages),
+    settings = {
+        rootMarkers = { ".git/" },
+        languages = efmls_languages,
+    },
+    init_options = {
+        documentFormatting = true,
+        documentRangeFormatting = true,
+    },
+}
+
+lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
+    capabilities = capabilities,
+}))

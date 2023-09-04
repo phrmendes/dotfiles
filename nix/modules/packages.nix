@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
-    # quarto
     atool
     coursier
     exa
@@ -26,7 +25,6 @@
     terraform
     xclip
     xlsx2csv
-
     # GUI
     bitwarden
     caffeine-ng
@@ -37,37 +35,5 @@
     thunderbird
     vlc
     zotero
-
-    # language-servers
-    ansible-language-server
-    efm-langserver # generic
-    ltex-ls # language tool
-    lua-language-server
-    marksman # markdown
-    metals # scala
-    nil # nix
-    ruff-lsp # python
-    taplo # toml
-    terraform-ls
-    texlab # latex
-    nodePackages.bash-language-server
-    nodePackages.dockerfile-language-server-nodejs
-    nodePackages.pyright
-    nodePackages.vscode-json-languageserver
-    nodePackages.yaml-language-server
-
-    # linters
-    ansible-lint
-    shellcheck
-    statix # nix
-
-    # formatters
-    alejandra # nix
-    ruff # python
-    scalafmt
-    shfmt
-    stylua # lua
-    jq # json
-    yq-go # yaml
   ];
 }

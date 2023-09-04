@@ -3,6 +3,51 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
+local efmls = {
+    json = {
+        linter = { jq = require("efmls-configs.linters.jq") },
+formatter = { jq = require("efmls-configs.formatters.jq") },
+    },
+    lua = {
+        formatter = { stylua = require("efmls-configs.formatters.stylua") },
+    },
+    nix = {
+        linter = { statix = require("efmls-configs.linters.statix") },
+        formatter = { alejandra = require("efmls-configs.formatters.alejandra") },
+    },
+    python = {
+        formatter = { ruff = require("efmls-configs.formatters.ruff") },
+    },
+    scala = {
+        formatter = { scalafmt = { formatCommand = "scalafmt --stdin", formatStdin = true } },
+    },
+    sh = {
+        linter = { shellcheck = require("efmls-configs.linters.shellcheck") },
+        formatter = { shfmt = require("efmls-configs.formatters.shfmt") },
+    },
+    terraform = {
+        formatter = { terraform_fmt = require("efmls-configs.formatters.terraform_fmt") },
+    },
+    toml = {
+        formatter = { taplo = { formatCommand = "taplo format -", formatStdin = true } },
+    },
+    yaml = {
+        linter = { ansible_lint = require("efmls-configs.linters.ansible_lint") },
+        formatter = { yq = { formatCommand = "yq . ${INPUT}" } },
+    },
+}
+
+local efmls_languages = {
+    json = { efmls.json.linter.jq, efmls.json.formatter.jq },
+    lua = { efmls.lua.formatter.stylua },
+    nix = { efmls.nix.linter.statix, efmls.nix.formatter.alejandra },
+    python = { efmls.python.formatter.ruff },
+    scala = { efmls.scala.formatter.scalafmt },
+    sh = { efmls.sh.linter.shellcheck, efmls.sh.formatter.shfmt },
+    terraform = { efmls.terraform.formatter.terraform_fmt },
+    toml = { efmls.toml.formatter.taplo },
+    yaml = { efmls.yaml.linter.ansible_lint, efmls.yaml.formatter.yq },
+}
 
 -- set up lsp_signature
 lsp_signature.setup()
@@ -53,19 +98,21 @@ lspconfig.jsonls.setup({
     capabilities = capabilities,
 })
 
-lspconfig.efm.setup({
-    capabilities = capabilities,
-    filetypes = {
-        "json",
-        "lua",
-        "nix",
-        "python",
-        "scala",
-        "sh",
-        "toml",
-        "yaml",
+local efmls_config = {
+    filetypes = vim.tbl_keys(efmls_languages),
+    settings = {
+        rootMarkers = { ".git/" },
+        languages = efmls_languages,
     },
-})
+    init_options = {
+        documentFormatting = true,
+        documentRangeFormatting = true,
+    },
+}
+
+lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
+    capabilities = capabilities,
+}))
 
 ltex_extra.setup({
     load_langs = { "en", "pt", "pt-BR" },

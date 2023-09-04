@@ -21,7 +21,6 @@
     slides
     sqlite
     tealdeer
-    tectonic
     terraform
     xclip
     xlsx2csv

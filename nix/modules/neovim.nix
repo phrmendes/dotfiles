@@ -72,34 +72,36 @@ in {
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
     ];
-    extraPackages = (with pkgs; [
-      alejandra
-      ansible-language-server
-      ansible-lint
-      efm-langserver
-      jq
-      ltex-ls
-      lua-language-server
-      marksman
-      metals
-      nil
-      ruff
-      ruff-lsp
-      scalafmt
-      shellcheck
-      shfmt
-      statix
-      stylua
-      taplo
-      terraform-ls
-      texlab
-      yq-go
-    ]) ++ (with pkgs.nodePackages; [
-      bash-language-server
-      dockerfile-language-server-nodejs
-      pyright
-      vscode-json-languageserver
-      yaml-language-server
-    ]);
+    extraPackages =
+      (with pkgs; [
+        alejandra
+        ansible-language-server
+        ansible-lint
+        efm-langserver
+        jq
+        ltex-ls
+        lua-language-server
+        marksman
+        metals
+        nil
+        ruff
+        ruff-lsp
+        scalafmt
+        shellcheck
+        shfmt
+        statix
+        stylua
+        taplo
+        terraform-ls
+        texlab
+        yq-go
+      ])
+      ++ (with pkgs.nodePackages; [
+        bash-language-server
+        dockerfile-language-server-nodejs
+        pyright
+        vscode-json-languageserver
+        yaml-language-server
+      ]);
   };
 }

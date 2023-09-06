@@ -21,7 +21,6 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      (fromGitHub "HEAD" "creativenull/efmls-configs-nvim") # efm lang server configs
       (fromGitHub "HEAD" "jmbuhr/otter.nvim") # quarto dependency
       (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
       (fromGitHub "HEAD" "quarto-dev/quarto-nvim") # quarto integration

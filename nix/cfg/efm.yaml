@@ -25,7 +25,7 @@ tools:
   jq: &jq
     format-command: "jq"
   yq: &yq
-    format-command: ". ${INPUT}"
+    format-command: "yq . ${INPUT}"
   ansiblelint: &ansiblelint
     lint-commant: "ansible-lint -f codeclimate -q --nocolor ${INPUT}"
     lint-source: "ansible-lint"
@@ -52,12 +52,12 @@ languages:
     - <<: *statix
   python:
     - <<: *ruff
+  scala:
+    - <<: *scalafmt
   sh:
     - <<: *shellcheck
     - <<: *shfmt
-  yaml:
-    - <<: *yq
   toml:
     - <<: *taplo
-  scala:
-    - <<: *scalafmt
+  yaml:
+    - <<: *yq

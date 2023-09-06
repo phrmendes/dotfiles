@@ -1,0 +1,63 @@
+---
+root-markers:
+  - .git/
+  - pyproject.toml
+
+tools:
+  alejandra: &alejandra
+    format-command: "alejandra --quiet"
+    format-stdin: true
+  ruff: &ruff
+    format-command: "ruff --fix -e -n --stdin-filename ${INPUT} -"
+    format-stdin: true
+  shfmt: &shfmt
+    format-command: "shfmt -ci -s -bn"
+    format-stdin: true
+  scalafmt: &scalafmt
+    format-command: "scalafmt --stdin"
+    format-stdin: true
+  stylua: &stylua
+    format-command: "stylua --search-parent-directories --stdin-filepath ${INPUT} -"
+    format-stdin: true
+  taplo: &taplo
+    format-command: "taplo format -"
+    format-stdin: true
+  jq: &jq
+    format-command: "jq"
+  yq: &yq
+    format-command: ". ${INPUT}"
+  ansiblelint: &ansiblelint
+    lint-commant: "ansible-lint -f codeclimate -q --nocolor ${INPUT}"
+    lint-source: "ansible-lint"
+  shellcheck: &shellcheck
+    lint-command: "shellcheck -f gcc -x"
+    lint-source: "shellcheck"
+    lint-formats:
+      - "%f:%l:%c: %trror: %m"
+      - "%f:%l:%c: %tarning: %m"
+      - "%f:%l:%c: %tote: %m"
+  statix: &statix
+    lint-command: "statix check --stdin --format=errfmt"
+    lint-stdin: true
+
+languages:
+  ansible:
+    - <<: *ansiblelint
+  json:
+    - <<: *jq
+  lua:
+    - <<: *stylua
+  nix:
+    - <<: *alejandra
+    - <<: *statix
+  python:
+    - <<: *ruff
+  sh:
+    - <<: *shellcheck
+    - <<: *shfmt
+  yaml:
+    - <<: *yq
+  toml:
+    - <<: *taplo
+  scala:
+    - <<: *scalafmt

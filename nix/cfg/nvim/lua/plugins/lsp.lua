@@ -4,51 +4,11 @@ local lspconfig = require("lspconfig")
 local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
 
-local efmls = {
-	json = {
-		linter = { jq = require("efmls-configs.linters.jq") },
-		formatter = { jq = require("efmls-configs.formatters.jq") },
-	},
-	lua = {
-		formatter = { stylua = require("efmls-configs.formatters.stylua") },
-	},
-	nix = {
-		linter = { statix = require("efmls-configs.linters.statix") },
-		formatter = { alejandra = require("efmls-configs.formatters.alejandra") },
-	},
-	python = {
-		formatter = { ruff = require("efmls-configs.formatters.ruff") },
-	},
-	scala = {
-		formatter = { scalafmt = { require("efmls-configs.formatters.scalafmt") } },
-	},
-	sh = {
-		linter = { shellcheck = require("efmls-configs.linters.shellcheck") },
-		formatter = { shfmt = require("efmls-configs.formatters.shfmt") },
-	},
-	terraform = {
-		formatter = { terraform_fmt = require("efmls-configs.formatters.terraform_fmt") },
-	},
-	toml = {
-		formatter = { taplo = require("efmls-configs.formatters.taplo") },
-	},
-	yaml = {
-		linter = { ansible_lint = require("efmls-configs.linters.ansible_lint") },
-		formatter = { yq = require("efmls-configs.formatters.yq") },
-	},
-}
+-- lsp capabilities function
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
-local efmls_languages = {
-	json = { efmls.json.linter.jq, efmls.json.formatter.jq },
-	lua = { efmls.lua.formatter.stylua },
-	nix = { efmls.nix.linter.statix, efmls.nix.formatter.alejandra },
-	python = { efmls.python.formatter.ruff },
-	scala = { efmls.scala.formatter.scalafmt },
-	sh = { efmls.sh.linter.shellcheck, efmls.sh.formatter.shfmt },
-	terraform = { efmls.terraform.formatter.terraform_fmt },
-	toml = { efmls.toml.formatter.taplo },
-	yaml = { efmls.yaml.linter.ansible_lint, efmls.yaml.formatter.yq },
-}
+-- set up lsp_signature
+lsp_signature.setup()
 
 local diagnostics_signs = {
 	Error = " ",
@@ -57,16 +17,12 @@ local diagnostics_signs = {
 	Info = " ",
 }
 
--- set up lsp_signature
-lsp_signature.setup()
-
 for type, icon in pairs(diagnostics_signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 -- config language servers
-local capabilities = cmp_nvim_lsp.default_capabilities()
 local servers = {
 	"ansiblels",
 	"bashls",
@@ -88,14 +44,14 @@ end
 
 -- special config for some language servers
 lspconfig.marksman.setup({
-	filetypes = { "markdown", "quarto" },
 	capabilities = capabilities,
+	filetypes = { "markdown", "quarto" },
 	root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml", "_quarto.yml"),
 })
 
 lspconfig.jsonls.setup({
-	cmd = { "vscode-json-languageserver", "--stdio" },
 	capabilities = capabilities,
+	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
 ltex_extra.setup({
@@ -150,19 +106,21 @@ lspconfig.lua_ls.setup({
 	},
 })
 
--- linters and formatters
-local efmls_config = {
-	filetypes = vim.tbl_keys(efmls_languages),
-	settings = {
-		rootMarkers = { ".git/" },
-		languages = efmls_languages,
-	},
+lspconfig.efm.setup({
+	capabilities = capabilities,
+	filetypes = {
+        "json",
+        "lua",
+        "nix",
+        "python",
+        "scala",
+        "sh",
+        "terraform",
+        "toml",
+        "yaml",
+    },
 	init_options = {
 		documentFormatting = true,
 		documentRangeFormatting = true,
 	},
-}
-
-lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
-	capabilities = capabilities,
-}))
+})

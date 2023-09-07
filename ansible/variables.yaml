@@ -19,8 +19,9 @@ flatpak:
   install:
     - ch.protonmail.protonmail-bridge
     - com.protonvpn.www
-    - org.wezfurlong.wezterm
     - com.uploadedlobster.peek
+    - com.zettlr.Zettlr
+    - org.wezfurlong.wezterm
 keyring:
   docker:
     url: https://download.docker.com/linux/ubuntu/gpg

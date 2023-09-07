@@ -45,8 +45,8 @@ end
 -- special config for some language servers
 lspconfig.marksman.setup({
 	capabilities = capabilities,
-	filetypes = { "markdown", "quarto" },
-	root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml", "_quarto.yml"),
+	filetypes = { "markdown" },
+	root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml"),
 })
 
 lspconfig.jsonls.setup({

@@ -18,6 +18,7 @@
     poppler_utils
     rename
     ripgrep
+    scala_3
     slides
     sqlite
     tealdeer

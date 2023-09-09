@@ -20,7 +20,7 @@ local lsp_formatting = function()
 		end,
 	})
 
-    vim.cmd([[write]])
+	vim.cmd([[write]])
 end
 
 -- which-key configuration
@@ -259,25 +259,11 @@ local local_leader = {
 			nowait = false,
 		},
 		mappings = {
-			S = { name = "+surround" },
 			q = {
 				name = "+quickfix",
 				o = { "<cmd>copen<cr>", "Open" },
 				q = { "<cmd>cclose<cr>", "Close" },
 			},
-		},
-	},
-	visual = {
-		options = {
-			mode = "v",
-			prefix = ",",
-			buffer = nil,
-			silent = true,
-			noremap = true,
-			nowait = false,
-		},
-		mappings = {
-			S = { name = "+surround" },
 		},
 	},
 }
@@ -298,10 +284,11 @@ local leader = {
 			c = { "<cmd>noh<cr>", "Clear highlights" },
 			e = { "<cmd>NvimTreeToggle<cr>", "Explorer (tree)" },
 			h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+			o = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
 			q = { "<cmd>confirm q<cr>", "Quit" },
-			t = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
 			u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
 			z = { "<cmd>ZenMode<cr>", "Zen mode" },
+			s = { name = "+surround" },
 			b = {
 				name = "+buffers",
 				G = { "<cmd>bl<cr>", "Last buffer" },
@@ -396,13 +383,26 @@ local leader = {
 			},
 		},
 	},
+	visual = {
+		options = {
+			mode = "v",
+			prefix = "<leader>",
+			buffer = nil,
+			silent = true,
+			noremap = true,
+			nowait = false,
+		},
+		mappings = {
+			s = { name = "+surround" },
+		},
+	},
 }
 
 -- apply mappings
 wk.setup(conf)
 wk.register(leader.normal.mappings, leader.normal.options)
+wk.register(leader.visual.mappings, leader.visual.options)
 wk.register(local_leader.normal.mappings, local_leader.normal.options)
-wk.register(local_leader.visual.mappings, local_leader.visual.options)
 
 autocmd("LspAttach", {
 	group = augroup("UserLspConfig", { clear = true }),

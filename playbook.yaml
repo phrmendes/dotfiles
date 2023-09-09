@@ -20,4 +20,3 @@
     - import_tasks: ./ansible/tasks/home_manager.yaml
     - import_tasks: ./ansible/tasks/python.yaml
     - import_tasks: ./ansible/tasks/services.yaml
-    - import_tasks: ./ansible/tasks/v4l2loopback.yaml

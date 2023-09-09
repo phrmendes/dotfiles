@@ -30,3 +30,7 @@ system_clear() {
 	sudo nala autoremove
 	sudo nala clean
 }
+
+enable_droidcam() {
+    sudo modprobe v4l2loopback exclusive_caps=1
+}

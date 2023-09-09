@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+eval "$(micromamba shell hook --shell=zsh)"
+
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"

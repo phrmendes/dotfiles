@@ -3,6 +3,7 @@
     # CLI
     atool
     coursier
+    duckdb
     exa
     exiftool
     fd
@@ -12,6 +13,7 @@
     jdk20
     joshuto
     lazydocker
+    micromamba
     ncdu
     pandoc
     parallel
@@ -23,6 +25,7 @@
     sqlite
     tealdeer
     terraform
+    weylus
     xclip
     xlsx2csv
     # GUI
@@ -34,6 +37,7 @@
     onlyoffice-bin
     thunderbird
     vlc
+    xournalpp
     zotero
   ];
 }

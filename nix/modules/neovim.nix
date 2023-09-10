@@ -1,18 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  fromGitHub = ref: repo:
-    pkgs.vimUtils.buildVimPluginFrom2Nix {
-      pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
-      src = builtins.fetchGit {
-        inherit ref;
-        url = "https://github.com/${repo}.git";
-      };
-    };
-in {
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;

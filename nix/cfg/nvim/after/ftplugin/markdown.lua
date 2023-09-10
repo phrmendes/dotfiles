@@ -34,27 +34,31 @@ local toggle = function()
     vim.api.nvim_win_set_cursor(0, cursor)
 end
 
-local localleader = {
+local leader = {
     normal = {
         options = {
             mode = "n",
-            prefix = "<localleader>",
+            prefix = "<leader>",
             buffer = nil,
             silent = true,
             noremap = true,
             nowait = false,
         },
         mappings = {
-            p = { "<cmd>MarkdownPreview<cr>", "Preview markdown document" },
-            s = { "<cmd>MarkdownPreviewStop<cr>", "Stop markdown preview" },
-            x = {
+            ["<space>"] = {
                 function()
                     toggle()
                 end,
                 "Toggle checkbox",
             },
+            m = {
+                name = "+markdown",
+                b = { "<cmd>Telescope bibtex<cr>", "Insert bibliography" },
+                p = { "<cmd>MarkdownPreview<cr>", "Preview document" },
+                s = { "<cmd>MarkdownPreviewStop<cr>", "Stop preview" },
+            }
         },
     },
 }
 
-wk.register(localleader.normal.mappings, localleader.normal.options)
+wk.register(leader.normal.mappings, leader.normal.options)

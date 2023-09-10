@@ -45,7 +45,7 @@ end
 -- special config for some language servers
 lspconfig.marksman.setup({
 	capabilities = capabilities,
-	filetypes = { "markdown" },
+	filetypes = { "markdown", "quarto" },
 	root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml"),
 })
 
@@ -53,6 +53,12 @@ lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
+
+local language_id_mapping = {
+	tex = "latex",
+	quarto = "markdown",
+	pandoc = "markdown",
+}
 
 ltex_extra.setup({
 	load_langs = { "en", "pt", "pt-BR" },
@@ -62,6 +68,15 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		settings = {
 			ltex = {
+				filetypes = vim.tbl_keys(language_id_mapping),
+				get_language_id = function(_, filetype)
+					local language_id = language_id_mapping[filetype]
+					if language_id then
+						return language_id
+					else
+						return filetype
+					end
+				end,
 				language = "auto",
 				additionalRules = {
 					enablePickyRules = true,
@@ -109,16 +124,16 @@ lspconfig.lua_ls.setup({
 lspconfig.efm.setup({
 	capabilities = capabilities,
 	filetypes = {
-        "json",
-        "lua",
-        "nix",
-        "python",
-        "scala",
-        "sh",
-        "terraform",
-        "toml",
-        "yaml",
-    },
+		"json",
+		"lua",
+		"nix",
+		"python",
+		"scala",
+		"sh",
+		"terraform",
+		"toml",
+		"yaml",
+	},
 	init_options = {
 		documentFormatting = true,
 		documentRangeFormatting = true,

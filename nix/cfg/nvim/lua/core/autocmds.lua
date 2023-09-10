@@ -12,3 +12,9 @@ autocmd("BufEnter", {
 	command = [[execute "!zathura '%'" | bdelete %]],
 	group = ft,
 })
+
+autocmd("BufRead,BufNewFile", {
+    pattern = "*.qmd",
+    command = [[set filetype=markdown]],
+    group = ft,
+})

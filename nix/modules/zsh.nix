@@ -18,6 +18,7 @@
       tldr = "${pkgs.tealdeer}/bin/tldr";
       tx = "${pkgs.tmux}/bin/tmux";
       zt = "${pkgs.zathura}/bin/zathura --fork";
+      mb = "micromamba";
       mkdir = "mkdir -p";
       of = "fzf_open_with_nvim";
       sys_cat = "/usr/bin/cat";

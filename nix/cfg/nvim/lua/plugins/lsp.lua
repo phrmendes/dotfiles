@@ -61,6 +61,7 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		settings = {
 			ltex = {
+                language = "auto",
 				additionalRules = {
 					enablePickyRules = true,
 					motherTongue = "pt-BR",

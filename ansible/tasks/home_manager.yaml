@@ -14,17 +14,11 @@
         dest: "{{ item.dest }}"
         state: link
       with_items:
-        - src: "{{ home }}/Projects/bkps/nix/home.nix"
-          dest: "{{ home }}/.config/home-manager/home.nix"
         - src: "{{ home }}/Projects/bkps/nix/config.nix"
           dest: "{{ home }}/.config/nixpkgs/config.nix"
 
-    - name: Add channel
-      command: "{{ nix.path.pkgs }}/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager"
-      notify: Update nix channels
-
     - name: Install
-      command: "{{ nix.path.pkgs }}/nix-shell '<home-manager>' -A install"
+      command: "{{ nix.path.pkgs }} run nixpkgs#home-manager --switch --flake nix/#phrmendes"
       environment:
         NIXPKGS_ALLOW_UNFREE: "1"
   when: not home_manager.stat.exists

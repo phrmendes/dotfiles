@@ -4,12 +4,15 @@
     atool
     coursier
     duckdb
-    exa
     exiftool
+    eza
     fd
     gh
     gnome-extensions-cli
     hugo
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.pt_BR
     jdk20
     joshuto
     lazydocker
@@ -18,6 +21,7 @@
     pandoc
     parallel
     poppler_utils
+    quarto
     rename
     ripgrep
     scala_3
@@ -34,7 +38,7 @@
     chromium
     deluge
     droidcam
-    onlyoffice-bin
+    libreoffice
     thunderbird
     vlc
     xournalpp

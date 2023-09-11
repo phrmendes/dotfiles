@@ -3,15 +3,16 @@
   lib,
   ...
 }: let
-  fromGitHub = ref: repo:
+  fromGitHub = rev: ref: repo:
     pkgs.vimUtils.buildVimPluginFrom2Nix {
       pname = "${lib.strings.sanitizeDerivationName repo}";
       version = ref;
       src = builtins.fetchGit {
-        inherit ref;
+        inherit ref rev;
         url = "https://github.com/${repo}.git";
       };
     };
+    telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -21,7 +22,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      (fromGitHub "HEAD" "nvim-telescope/telescope-bibtex.nvim") # bibtex integration
+      telescope-bibtex # bibtex integration
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion

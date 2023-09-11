@@ -41,6 +41,7 @@
     libreoffice
     thunderbird
     vlc
+    vscode
     xournalpp
     zotero
   ];

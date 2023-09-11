@@ -83,6 +83,3 @@ apt:
     - xz-utils
     - zip
     - zlib1g-dev
-  deb:
-    - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ version.quarto }}/quarto-{{ version.quarto }}-{{ ansible_system | lower }}-{{ custom_facts.dpkg_arch }}.deb"
-    - "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"

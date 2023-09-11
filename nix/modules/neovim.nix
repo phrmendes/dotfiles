@@ -76,7 +76,6 @@ in {
         ansible-language-server
         ansible-lint
         efm-langserver
-        jq
         ltex-ls
         lua-language-server
         marksman
@@ -92,11 +91,11 @@ in {
         taplo
         terraform-ls
         texlab
-        yq-go
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
+        prettier
         pyright
         vscode-json-languageserver
         yaml-language-server

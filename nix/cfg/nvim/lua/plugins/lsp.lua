@@ -61,7 +61,7 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		settings = {
 			ltex = {
-                language = "auto",
+				language = "auto",
 				additionalRules = {
 					enablePickyRules = true,
 					motherTongue = "pt-BR",
@@ -117,6 +117,7 @@ lspconfig.efm.setup({
 		"terraform",
 		"toml",
 		"yaml",
+        "markdown",
 	},
 	init_options = {
 		documentFormatting = true,

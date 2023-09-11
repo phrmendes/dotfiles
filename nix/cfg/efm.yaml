@@ -25,7 +25,7 @@ tools:
     format-command: "stylua --color Never -"
     format-stdin: true
     root-markers:
-      - .stylua.toml 
+      - .stylua.toml
       - stylua.toml
   taplo: &taplo
     format-command: "taplo format -"
@@ -90,4 +90,4 @@ languages:
   toml:
     - <<: *taplo
   yaml:
-    - <<: *pretter
+    - <<: *prettier

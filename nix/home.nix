@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  user = "phrmendes";
+  username = "phrmendes";
 in {
   imports = [
     ./modules/bat.nix
@@ -26,8 +26,8 @@ in {
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
   home = {
-    username = "${user}";
-    homeDirectory = "/home/${user}";
+    inherit username;
+    homeDirectory = "/home/${username}";
     stateVersion = "23.05";
     sessionVariables = {
       EDITOR = "${pkgs.neovim-unwrapped}/bin/nvim";

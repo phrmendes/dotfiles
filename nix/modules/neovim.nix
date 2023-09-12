@@ -64,6 +64,7 @@ in {
       undotree # undo history
       vim-fugitive # git integration
       vim-helm # helm syntax
+      vim-jinja # jinja syntax
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors

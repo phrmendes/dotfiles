@@ -1,7 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-local notes = os.getenv("NOTES_DIR")
+local notes = os.getenv("NOTES_DIR") or "~/Documents/notes"
 
 telescope.setup({
 	defaults = {

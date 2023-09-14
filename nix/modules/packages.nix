@@ -28,6 +28,7 @@
     slides
     sqlite
     tealdeer
+    tectonic
     terraform
     weylus
     xclip

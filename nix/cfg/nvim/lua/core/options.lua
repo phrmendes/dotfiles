@@ -70,3 +70,14 @@ opt.shell = "zsh"
 
 -- colorscheme
 cmd([[ colorscheme catppuccin-mocha ]])
+
+-- locale
+cmd([[ language en_US.utf8 ]])
+
+-- conceal links
+opt.conceallevel = 2
+opt.concealcursor = "nc"
+
+-- shell slash
+opt.shellslash = true
+

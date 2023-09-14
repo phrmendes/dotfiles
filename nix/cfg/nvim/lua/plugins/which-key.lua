@@ -360,7 +360,7 @@ local leader = {
 			},
 			o = {
 				name = "Orgmode",
-				f = { "<cmd>Telescope orgmode search_headings<cr>", "Search headings" },
+				f = { "<cmd>Telescope orgmode search_headings<cr>", "org search headings" },
 			},
 			r = {
 				name = "+REPL",

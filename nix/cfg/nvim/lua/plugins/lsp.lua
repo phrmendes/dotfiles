@@ -1,7 +1,6 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local lspconfig_utils = require("lspconfig.util")
 local ltex_extra = require("ltex_extra")
 
 -- lsp capabilities function

@@ -3,7 +3,7 @@ local pythonft = require("iron.fts.python")
 local scalaft = require("iron.fts.scala")
 local shft = require("iron.fts.sh")
 local view = require("iron.view")
-local leader = "<C-c>"
+local leader = "<C-i>"
 
 core.setup({
 	config = {

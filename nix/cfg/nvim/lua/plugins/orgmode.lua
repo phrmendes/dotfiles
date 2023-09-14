@@ -14,7 +14,7 @@ local pandoc_tectonic_export = function(exporter)
 		vim.api.nvim_echo({ { table.concat(err, "\n"), "ErrorMsg" } }, true, {})
 	end
 
-    return exporter(command, target_file, on_success, on_error)
+	return exporter(command, target_file, on_success, on_error)
 end
 
 orgmode.setup_ts_grammar()
@@ -29,23 +29,18 @@ orgmode.setup({
 	org_log_done = "time",
 	org_todo_keywords = { "TODO(t)", "NEXT(n)", "|", "DONE(d)", "CANCELLED(c)" },
 	win_split_mode = { "float", "0.5" },
-	org_agenda_files = {
-		notes .. "/agenda.org",
-		notes .. "/tarefas.org",
-	},
+	org_agenda_files = { notes .. "/agenda/*" },
 	org_capture_templates = {
 		a = "Agenda",
 		ao = {
 			description = "One-time",
-			template = "** %?\n   SCHEDULED: <%<%Y-%m-%d %A>>",
-			target = notes .. "/agenda.org",
-			headline = "Eventuais",
+			template = "* %?\n  SCHEDULED: <%<%Y-%m-%d %A>>",
+			target = notes .. "/agenda/eventual.org",
 		},
 		ar = {
 			description = "Recurrent",
-			template = "** %?\n   SCHEDULED: <%<%Y-%m-%d %A> +%^{Frequency}>",
-			target = notes .. "/agenda.org",
-			headline = "Recorrentes",
+			template = "* %?\n  SCHEDULED: <%<%Y-%m-%d %A> +%^{Frequency}>",
+			target = notes .. "/agenda/recorrente.org",
 		},
 		t = "Task",
 		tn = {
@@ -74,12 +69,12 @@ orgmode.setup({
 			headine = "Ideias",
 		},
 	},
-    org_custom_exports = {
-        p = {
-            label = "Export to PDF file (pandoc/tectonic)",
-            action = pandoc_tectonic_export,
-        }
-    },
+	org_custom_exports = {
+		p = {
+			label = "Export to PDF file (pandoc/tectonic)",
+			action = pandoc_tectonic_export,
+		},
+	},
 	mappings = {
 		global = {
 			org_agenda = "<leader>oa",

@@ -27,7 +27,7 @@ telescope.setup({
 })
 
 -- load extensions
-local extensions = { "bibtex", "fzy_native", "ui-select", "zoxide" }
+local extensions = { "bibtex", "fzy_native", "ui-select", "zoxide", "orgmode" }
 
 for _, ext in ipairs(extensions) do
 	telescope.load_extension(ext)

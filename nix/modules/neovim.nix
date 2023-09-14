@@ -12,8 +12,8 @@
         url = "https://github.com/${repo}.git";
       };
     };
-    org-bullets = fromGitHub "6e0d60e901bb939eb526139cb1f8d59065132fd9" "HEAD" "akinsho/org-bullets.nvim";
     telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+    telescope-orgmode = fromGitHub "eabff061c3852a9aa94e672a7d2fa4a1ef63f9e2" "HEAD" "joaomsa/telescope-orgmode.nvim";
     headlines-nvim = fromGitHub "74a083a3c32a08be24f7dfcc6f448ecf47857f46" "HEAD" "lukas-reineke/headlines.nvim";
 in {
   programs.neovim = {
@@ -55,7 +55,6 @@ in {
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
       oil-nvim # file management
-      org-bullets # orgmode bullets
       orgmode # orgmode support
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
@@ -63,6 +62,7 @@ in {
       telescope-bibtex # bibtex integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
+      telescope-orgmode # orgmode integration
       telescope-ui-select-nvim # telescope ui
       telescope-zoxide # zoxide integration
       todo-comments-nvim # todo comments
@@ -72,7 +72,6 @@ in {
       vim-helm # helm syntax
       vim-jinja # jinja syntax
       vim-nix # nix syntax
-      vim-table-mode # on the fly table support
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings

@@ -1,6 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
+local notes = os.getenv("NOTES_DIR")
 
 telescope.setup({
 	defaults = {
@@ -20,7 +21,7 @@ telescope.setup({
 			override_file_sorter = true,
 		},
 		bibtex = {
-			global_files = { vim.fn.expand("~/pCloudDrive/notes/references.bib") },
+			global_files = { notes .. "/references.bib" },
 		},
 	},
 })

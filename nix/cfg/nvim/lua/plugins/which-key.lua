@@ -284,7 +284,7 @@ local leader = {
 			c = { "<cmd>noh<cr>", "Clear highlights" },
 			e = { "<cmd>NvimTreeToggle<cr>", "Explorer (tree)" },
 			h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-			o = { "<cmd>split ~/pCloudDrive/notes/todo.txt<cr>", "Open todo.txt" },
+			o = { name = "Orgmode" },
 			q = { "<cmd>confirm q<cr>", "Quit" },
 			u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
 			z = { "<cmd>ZenMode<cr>", "Zen mode" },

@@ -28,6 +28,7 @@ in {
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
+      conflict-marker-vim # conflict markers
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
@@ -52,6 +53,7 @@ in {
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
       oil-nvim # file management
+      orgmode # orgmode support
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
       telescope-fzy-native-nvim # telescope fzy integration
@@ -59,7 +61,6 @@ in {
       telescope-ui-select-nvim # telescope ui
       telescope-zoxide # zoxide integration
       todo-comments-nvim # todo comments
-      todo-txt-vim # tasks
       twilight-nvim # zen-mode dependency
       undotree # undo history
       vim-fugitive # git integration

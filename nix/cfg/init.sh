@@ -9,6 +9,8 @@ export FZF_DEFAULT_OPTS=" \
 
 export FLAKE_PATH="$HOME/Projects/bkps/nix#phrmendes"
 
+export NOTES_DIR="$HOME/pCloudDrive/notes"
+
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"

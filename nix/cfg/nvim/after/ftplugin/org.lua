@@ -12,7 +12,9 @@ local leader = {
 		},
 		mappings = {
 			o = {
-				b = { "<cmd>Telescope bibtex<cr>", "org insert bibliography" },
+				i = {
+                    b = { "<cmd>Telescope bibtex<cr>", "org insert bibliography" },
+                },
 			},
 		},
 	},

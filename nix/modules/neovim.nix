@@ -12,7 +12,9 @@
         url = "https://github.com/${repo}.git";
       };
     };
+    org-bullets = fromGitHub "6e0d60e901bb939eb526139cb1f8d59065132fd9" "HEAD" "akinsho/org-bullets.nvim";
     telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+    headlines-nvim = fromGitHub "74a083a3c32a08be24f7dfcc6f448ecf47857f46" "HEAD" "lukas-reineke/headlines.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -22,7 +24,6 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      telescope-bibtex # bibtex integration
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -32,6 +33,7 @@ in {
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
+      headlines-nvim # headlines for md and org files
       iron-nvim # REPLs
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
@@ -53,9 +55,12 @@ in {
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
       oil-nvim # file management
+      org-bullets # orgmode bullets
       orgmode # orgmode support
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
+      sniprun # neovim code runner
+      telescope-bibtex # bibtex integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui
@@ -67,6 +72,7 @@ in {
       vim-helm # helm syntax
       vim-jinja # jinja syntax
       vim-nix # nix syntax
+      vim-table-mode # on the fly table support
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
@@ -80,7 +86,6 @@ in {
         efm-langserver
         ltex-ls
         lua-language-server
-        marksman
         metals
         nil
         ruff

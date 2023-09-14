@@ -63,5 +63,7 @@ fzf_open_with_nvim() {
 }
 
 get_repo_ref() {
-    git ls-remote "$1" "$2" | cut -f1
+    gh_repo="$1"
+    branch="$2"
+    git ls-remote "https://github.com/$gh_repo" "$branch" | cut -f1
 }

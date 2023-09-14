@@ -7,6 +7,7 @@ local dap_ui = require("dapui")
 local diag = vim.diagnostic
 local gitsigns = require("gitsigns")
 local oil = require("oil")
+local sniprun = require("sniprun")
 local spectre = require("spectre")
 local wk = require("which-key")
 
@@ -394,6 +395,12 @@ local leader = {
 		},
 		mappings = {
 			s = { name = "+surround" },
+			r = {
+				function()
+					sniprun.run("v")
+				end,
+				"Run code",
+			},
 		},
 	},
 }

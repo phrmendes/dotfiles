@@ -1,7 +1,9 @@
 local orgmode = require("orgmode")
+local orgbullets = require("org-bullets")
 local notes = os.getenv("NOTES_DIR") or os.getenv("HOME") .. "/Documents/notes"
 
 orgmode.setup_ts_grammar()
+orgbullets.setup()
 
 orgmode.setup({
 	org_agenda_files = { notes .. "/agenda/*" },

@@ -43,11 +43,6 @@ for _, server in ipairs(servers) do
 end
 
 -- special config for some language servers
-lspconfig.marksman.setup({
-	capabilities = capabilities,
-	root_dir = lspconfig_utils.root_pattern(".git", ".marksman.toml"),
-})
-
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	cmd = { "vscode-json-languageserver", "--stdio" },

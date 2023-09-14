@@ -28,7 +28,7 @@ orgmode.setup({
 	org_hide_emphasis_markers = true,
 	org_log_done = "time",
 	org_todo_keywords = { "TODO(t)", "NEXT(n)", "|", "DONE(d)", "CANCELLED(c)" },
-	win_split_mode = { "float", "0.5" },
+	win_split_mode = { "float", "0.75" },
 	org_agenda_files = { notes .. "/agenda/*" },
 	org_capture_templates = {
 		a = "Agenda",

@@ -58,7 +58,6 @@ in {
       orgmode # orgmode support
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
-      sniprun # neovim code runner
       telescope-bibtex # bibtex integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder

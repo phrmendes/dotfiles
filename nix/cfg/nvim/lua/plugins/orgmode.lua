@@ -58,7 +58,7 @@ orgmode.setup({
 			description = "Note",
 			template = "** %?",
 			target = notes .. "/quick-notes.org",
-			headine = "Ideias",
+			headine = "Notes",
 		},
 		ql = {
 			description = "Link",

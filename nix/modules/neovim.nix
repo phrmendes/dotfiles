@@ -14,7 +14,6 @@
     };
     telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
     telescope-orgmode = fromGitHub "eabff061c3852a9aa94e672a7d2fa4a1ef63f9e2" "HEAD" "joaomsa/telescope-orgmode.nvim";
-    headlines-nvim = fromGitHub "74a083a3c32a08be24f7dfcc6f448ecf47857f46" "HEAD" "lukas-reineke/headlines.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -26,6 +25,7 @@ in {
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
+      cmp-pandoc-nvim # bibtex autocompletion
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
@@ -33,7 +33,6 @@ in {
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
-      headlines-nvim # headlines for md and org files
       iron-nvim # REPLs
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
@@ -41,6 +40,7 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
+      nabla-nvim # math preview
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol

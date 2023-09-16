@@ -13,32 +13,41 @@ treesitter.setup({
 			enable = true,
 			lookahead = true,
 			keymaps = {
-				["of"] = "@function.outer",
-				["if"] = "@function.inner",
-				["oc"] = "@class.outer",
+				["aC"] = "@comment.outer",
+				["aa"] = "@parameter.outer",
+				["ac"] = "@class.outer",
+				["af"] = "@function.outer",
+				["ai"] = "@conditional.outer",
+				["al"] = "@loop.outer",
+				["iC"] = "@comment.inner",
+				["ia"] = "@parameter.inner",
 				["ic"] = "@class.inner",
+				["if"] = "@function.inner",
+				["ii"] = "@conditional.inner",
+				["il"] = "@loop.inner",
 			},
 		},
 		move = {
 			enable = true,
 			set_jumps = true,
-			goto_next_start = {
-				["]o"] = "@function.outer",
-				["]i"] = "@class.inner",
+			goto_next = {
+				["]f"] = "@function.outer",
+				["]c"] = "@class.outer",
 			},
-			goto_next_end = {
-				["]O"] = "@function.outer",
-				["]I"] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[o"] = "@function.outer",
-				["[i"] = "@class.inner",
-			},
-			goto_previous_end = {
-				["[O"] = "@function.outer",
-				["[I"] = "@class.outer",
+			goto_previous = {
+				["[f"] = "@function.outer",
+				["[c"] = "@class.outer",
 			},
 		},
+        swap = {
+            enable = true,
+            swap_next = {
+                ["<localleader>sn"] = "@parameter.inner",
+            },
+            swap_previous = {
+                ["<localleader>sp"] = "@parameter.inner",
+            },
+        },
 	},
 })
 

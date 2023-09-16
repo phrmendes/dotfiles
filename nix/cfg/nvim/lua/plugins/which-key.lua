@@ -259,6 +259,7 @@ local local_leader = {
 			nowait = false,
 		},
 		mappings = {
+            s = { name = "+swap" },
 			q = {
 				name = "+quickfix",
 				o = { "<cmd>copen<cr>", "Open" },

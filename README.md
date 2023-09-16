@@ -29,6 +29,7 @@ ansible-playbook playbook.yml --ask-become-pass
 - <https://docs.ansible.com/>
 - <https://github.com/uunicorn/python-validity>
 - <https://mutschler.dev/linux/pop-os-btrfs-22-04/>
+- <https://nixos.wiki/wiki/Flakes>
 - <https://nixos.wiki/wiki/Home_Manager>
 - <https://nixos.wiki/wiki/Nix_package_manager>
 - <https://pop.system76.com/>

@@ -29,7 +29,6 @@ in {
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
-      conflict-marker-vim # conflict markers
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators

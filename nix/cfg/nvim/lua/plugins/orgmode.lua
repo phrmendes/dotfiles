@@ -27,10 +27,10 @@ orgmode.setup({
 	org_edit_src_content_indentation = 2,
 	org_hide_emphasis_markers = true,
 	org_log_done = "time",
-    org_agenda_files = notes .. "/**/*.org",
+	org_agenda_files = notes .. "/**/*.org",
 	org_todo_keywords = { "TODO(t)", "NEXT(n)", "|", "DONE(d)", "CANCELLED(c)" },
 	win_split_mode = { "float", "0.8" },
-    org_capture_templates = {
+	org_capture_templates = {
 		a = "Agenda",
 		ao = {
 			description = "One-time",

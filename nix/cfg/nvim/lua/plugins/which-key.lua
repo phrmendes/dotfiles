@@ -331,12 +331,6 @@ local leader = {
 				r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
 				s = { "<cmd>w<cr>", "Save" },
 				t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
-				S = {
-					function()
-						spectre.open()
-					end,
-					"Spectre - Search in project",
-				},
 			},
 			g = {
 				name = "+git",

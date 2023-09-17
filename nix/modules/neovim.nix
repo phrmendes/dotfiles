@@ -48,7 +48,6 @@ in {
       nvim-dap-ui # ui for dap
       nvim-dap-virtual-text # virtual text for dap
       nvim-lspconfig # lsp
-      nvim-spectre # search and replace
       nvim-tree-lua # file explorer
       nvim-treesitter-context # treesitter context
       nvim-treesitter-textobjects # treesitter textobjects

@@ -7,7 +7,6 @@ local dap_ui = require("dapui")
 local diag = vim.diagnostic
 local gitsigns = require("gitsigns")
 local oil = require("oil")
-local spectre = require("spectre")
 local wk = require("which-key")
 
 -- formatting function

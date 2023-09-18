@@ -39,7 +39,7 @@ tools:
       - .prettierrc.toml
       - .prettierrc.yaml
   latex-indent: &latex-indent
-    format-command: "latexindent -"
+    format-command: "latexindent.pl -g /dev/null -"
     format-stdin: true
   ansible-lint: &ansible-lint
     lint-commant: "ansible-lint --nocolor -"

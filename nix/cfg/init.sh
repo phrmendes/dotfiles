@@ -14,7 +14,7 @@ path+=(
 )
 
 nix_update() {
-    nix run nixpkgs#home-manager -- switch --flake "$FLAKE_PATH"
+	nix run nixpkgs#home-manager -- switch --flake "$FLAKE_PATH"
 }
 
 nix_clear() {
@@ -50,16 +50,16 @@ fzf_open_with_nvim() {
 		return
 	fi
 
-    selection=$(fzf_preview_file)
-    if [ -z "$selection" ]; then
-        return
-    else
-        nvim "$selection"
-    fi
+	selection=$(fzf_preview_file)
+	if [ -z "$selection" ]; then
+		return
+	else
+		nvim "$selection"
+	fi
 }
 
 get_repo_ref() {
-    gh_repo="$1"
-    branch="$2"
-    git ls-remote "https://github.com/$gh_repo" "$branch" | cut -f1
+	gh_repo="$1"
+	branch="$2"
+	git ls-remote "https://github.com/$gh_repo" "$branch" | cut -f1
 }

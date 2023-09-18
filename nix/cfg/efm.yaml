@@ -26,14 +26,6 @@ tools:
   taplo: &taplo
     format-command: "taplo format -"
     format-stdin: true
-  prettier: &prettier
-    format-command: "prettier --stdin --stdin-filepath '${INPUT}' ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}"
-    format-stdin: true
-    root-markers:
-      - .prettierrc
-      - .prettierrc.json
-      - .prettierrc.toml
-      - .prettierrc.yaml
   latex-indent: &latex-indent
     format-command: "latexindent.pl -g /dev/null -"
     format-stdin: true
@@ -64,12 +56,8 @@ tools:
 languages:
   ansible:
     - <<: *ansible-lint
-  json:
-    - <<: *prettier
   lua:
     - <<: *stylua
-  markdown:
-    - <<: *prettier
   nix:
     - <<: *alejandra
     - <<: *statix
@@ -82,7 +70,5 @@ languages:
     - <<: *shfmt
   toml:
     - <<: *taplo
-  yaml:
-    - <<: *prettier
   tex:
-   - <<: *latex-indent
+    - <<: *latex-indent

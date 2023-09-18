@@ -102,7 +102,6 @@ lspconfig.lua_ls.setup({
 lspconfig.efm.setup({
 	capabilities = capabilities,
 	filetypes = {
-		"json",
 		"lua",
 		"nix",
 		"python",
@@ -110,8 +109,6 @@ lspconfig.efm.setup({
 		"sh",
 		"terraform",
 		"toml",
-		"yaml",
-        "markdown",
         "tex"
 	},
 	init_options = {

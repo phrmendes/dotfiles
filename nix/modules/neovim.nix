@@ -12,8 +12,8 @@
         url = "https://github.com/${repo}.git";
       };
     };
-    telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
-    telescope-orgmode = fromGitHub "eabff061c3852a9aa94e672a7d2fa4a1ef63f9e2" "HEAD" "joaomsa/telescope-orgmode.nvim";
+  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+  telescope-orgmode = fromGitHub "eabff061c3852a9aa94e672a7d2fa4a1ef63f9e2" "HEAD" "joaomsa/telescope-orgmode.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -102,7 +102,8 @@ in {
         pyright
         vscode-json-languageserver
         yaml-language-server
-      ]) ++ (with pkgs.perl538Packages; [
+      ])
+      ++ (with pkgs.perl538Packages; [
         LatexIndent
       ]);
   };

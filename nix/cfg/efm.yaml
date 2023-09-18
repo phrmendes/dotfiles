@@ -11,10 +11,7 @@ tools:
     format-stdin: true
     root-markers:
       - .ruff.toml
-      - environment.yaml
       - pyproject.toml
-      - requirements.txt
-      - setup.py
   shfmt: &shfmt
     format-command: "shfmt -filename '${INPUT}' -"
     format-stdin: true
@@ -26,7 +23,6 @@ tools:
     format-stdin: true
     root-markers:
       - .stylua.toml
-      - stylua.toml
   taplo: &taplo
     format-command: "taplo format -"
     format-stdin: true
@@ -48,8 +44,6 @@ tools:
     lint-formats:
       - "stdin:%l:%c [%tRROR]: %m"
       - "stdin:%l:%c [%tARNING]: %m"
-    root-markers:
-      - ".ansible-lint"
   shellcheck: &shellcheck
     lint-command: "shellcheck --color=never --format gcc -"
     lint-ignore-exit-code: true
@@ -66,10 +60,6 @@ tools:
     lint-stdin: true
     lint-formats:
       - "<stdin>>%l:%c:%t:%n:%m"
-    root-markers:
-      - default.nix
-      - flake.nix
-      - shell.nix
 
 languages:
   ansible:

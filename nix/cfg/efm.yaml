@@ -38,6 +38,9 @@ tools:
       - .prettierrc.json
       - .prettierrc.toml
       - .prettierrc.yaml
+  latex-indent: &latex-indent
+    format-command: "latexindent -"
+    format-stdin: true
   ansible-lint: &ansible-lint
     lint-commant: "ansible-lint --nocolor -"
     lint-source: "ansible-lint"
@@ -91,3 +94,5 @@ languages:
     - <<: *taplo
   yaml:
     - <<: *prettier
+  tex:
+   - <<: *latex-indent

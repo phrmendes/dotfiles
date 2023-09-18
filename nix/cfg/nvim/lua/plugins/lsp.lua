@@ -112,6 +112,7 @@ lspconfig.efm.setup({
 		"toml",
 		"yaml",
         "markdown",
+        "tex"
 	},
 	init_options = {
 		documentFormatting = true,

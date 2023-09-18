@@ -102,6 +102,8 @@ in {
         pyright
         vscode-json-languageserver
         yaml-language-server
+      ]) ++ (with pkgs.perl538Packages; [
+        LatexIndent
       ]);
   };
 }

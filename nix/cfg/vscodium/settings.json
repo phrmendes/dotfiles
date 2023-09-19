@@ -43,6 +43,9 @@
     "workbench.editor.showTabs": true,
     "workbench.iconTheme": "catppuccin-mocha",
     "workbench.startupEditor": "none",
+    "extensions.experimental.affinity": {
+      "vscodevim.vim": 1
+    },
     "[python]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
@@ -103,305 +106,68 @@
         {
             "before": ["g", "h"],
             "commands": ["editor.action.showHover"]
-        }
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
+        },
         {
-            "before": ["<space>"],
-            "commands": ["whichkey.show"]
+            "before": ["<space>", "c"],
+            "after": [":nohl"]
+        },
+        {
+            "before": ["<space>", "z"],
+            "commands": ["workbench.action.toggleZenMode"]
+        },
+        {
+            "before": ["<space>", "f", "s"],
+            "after": [":write"]
+        },
+        {
+            "before": ["<space>", "l", "f"],
+            "commands": ["editor.action.formatDocument"]
+        },
+        {
+            "before": ["<space>", "b", "b"],
+            "commands": ["editor.action.showAllEditorsByMostRecentlyUsed"]
+        },
+        {
+            "before": ["<space>", "b", "d"],
+            "after": [":bdelete"]
+        },
+        {
+            "before": ["<space>", "b", "p"],
+            "after": [":bprevious"]
+        },
+        {
+            "before": ["<space>", "b", "n"],
+            "after": [":bnext"]
+        },
+        {
+            "before": ["<space>", "w", "s"],
+            "after": [":split"]
+        },
+        {
+            "before": ["<space>", "w", "v"],
+            "after": [":vsplit"]
+        },
+        {
+            "before": ["<space>", "w", "d"],
+            "after": ["<C-w>", "q"]
+        },
+        {
+            "before": ["<space>", "w", "p"],
+            "after": ["<C-w>", "w"]
+        },
+        {
+            "before": ["<space>", "w", "n"],
+            "after": ["<C-w>", "n"]
+        },
+        {
+            "before": ["<space>", "g", "g"],
+            "command": ["magit.status"]
         }
     ],
     "vim.insertModeKeyBindingsNonRecursive": [
         {
             "before": ["j", "k"],
             "after": ["<ESC>"]
-        }
-    ],
-    "whichkey.bindings": [
-        {
-            "key": ".",
-            "name": "Commands",
-            "type": "command",
-            "command": "workbench.action.showCommands"
-        },
-        {
-            "key": "e",
-            "name": "Explorer",
-            "type": "command",
-            "command": "workbench.view.explorer"
-        },
-        {
-            "key": "z",
-            "name": "Zen mode",
-            "type": "command",
-            "command": "workbench.action.toggleZenMode"
-        },
-        {
-            "key": "f",
-            "name": "+file",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "f",
-                    "name": "Search",
-                    "type": "command",
-                    "command": "workbench.action.quickOpen"
-                },
-                {
-                    "key": "o",
-                    "name": "Open",
-                    "type": "command",
-                    "command": "workbench.action.files.openFileFolder"
-                },
-                {
-                    "key": "s",
-                    "name": "Save",
-                    "type": "command",
-                    "command": "workbench.action.files.save"
-                },
-                {
-                    "key": "F",
-                    "name": "Format",
-                    "type": "command",
-                    "command": "editor.action.formatDocument"
-                }
-            ]
-        },
-        {
-            "key": "b",
-            "name": "+buffers/editors",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "b",
-                    "name": "Show all",
-                    "type": "command",
-                    "command": "workbench.action.showAllEditorsByMostRecentlyUsed"
-                },
-                {
-                    "key": "d",
-                    "name": "Delete current",
-                    "type": "command",
-                    "command": "workbench.action.closeActiveEditor"
-                },
-                {
-                    "key": "p",
-                    "name": "Previous",
-                    "type": "command",
-                    "command": "workbench.action.previousEditor"
-                },
-                {
-                    "key": "n",
-                    "name": "Next",
-                    "type": "command",
-                    "command": "workbench.action.nextEditor"
-                },
-                {
-                    "key": "y",
-                    "name": "Copy buffer to clipboard",
-                    "type": "commands",
-                    "commands": [
-                        "editor.action.selectAll",
-                        "editor.action.clipboardCopyAction",
-                        "cancelSelection"
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "w",
-            "name": "+windows",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "s",
-                    "name": "Split",
-                    "type": "command",
-                    "command": "workbench.action.splitEditor"
-                },
-                {
-                    "key": "v",
-                    "name": "Split vertical",
-                    "type": "command",
-                    "command": "workbench.action.splitEditorOrthogonal"
-                },
-                {
-                    "key": "d",
-                    "name": "Close",
-                    "type": "command",
-                    "command": "workbench.action.closeActiveEditor"
-                },
-                {
-                    "key": "p",
-                    "name": "Previous",
-                    "type": "command",
-                    "command": "workbench.action.previousEditor"
-                },
-                {
-                    "key": "n",
-                    "name": "Next",
-                    "type": "command",
-                    "command": "workbench.action.nextEditor"
-                }
-            ]
-        },
-        {
-            "key": "g",
-            "name": "+git",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "g",
-                    "name": "Status",
-                    "type": "command",
-                    "command": "magit.status"
-                },
-                {
-                    "key": "C",
-                    "name": "Checkout",
-                    "type": "command",
-                    "command": "git.checkout"
-                },
-                {
-                    "key": "c",
-                    "name": "Commit",
-                    "type": "command",
-                    "command": "git.commit"
-                },
-                {
-                    "key": "d",
-                    "name": "Delete branch",
-                    "type": "command",
-                    "command": "git.deleteBranch"
-                },
-                {
-                    "key": "f",
-                    "name": "Fetch",
-                    "type": "command",
-                    "command": "git.fetch"
-                },
-                {
-                    "key": "i",
-                    "name": "Init",
-                    "type": "command",
-                    "command": "git.init"
-                },
-                {
-                    "key": "m",
-                    "name": "Merge",
-                    "type": "command",
-                    "command": "git.merge"
-                },
-                {
-                    "key": "s",
-                    "name": "Stash",
-                    "type": "command",
-                    "command": "workbench.view.scm"
-                },
-                {
-                    "key": "S",
-                    "name": "Stage",
-                    "type": "command",
-                    "command": "git.stage"
-                },
-                {
-                    "key": "U",
-                    "name": "Unstage",
-                    "type": "command",
-                    "command": "git.unstage"
-                }
-            ]
-        },
-        {
-            "key": "d",
-            "name": "+debug",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "d",
-                    "name": "Start",
-                    "type": "command",
-                    "command": "workbench.action.debug.start"
-                },
-                {
-                    "key": "S",
-                    "name": "Stop",
-                    "type": "command",
-                    "command": "workbench.action.debug.stop"
-                },
-                {
-                    "key": "c",
-                    "name": "Continue",
-                    "type": "command",
-                    "command": "workbench.action.debug.continue"
-                },
-                {
-                    "key": "p",
-                    "name": "Pause",
-                    "type": "command",
-                    "command": "workbench.action.debug.pause"
-                },
-                {
-                    "key": "r",
-                    "name": "Restart",
-                    "type": "command",
-                    "command": "workbench.action.debug.restart"
-                },
-                {
-                    "key": "i",
-                    "name": "Step into",
-                    "type": "command",
-                    "command": "workbench.action.debug.stepInto"
-                },
-                {
-                    "key": "s",
-                    "name": "Step over",
-                    "type": "command",
-                    "command": "workbench.action.debug.stepOver"
-                },
-                {
-                    "key": "o",
-                    "name": "Step out",
-                    "type": "command",
-                    "command": "workbench.action.debug.stepOut"
-                },
-                {
-                    "key": "t",
-                    "name": "Toggle breakpoint",
-                    "type": "command",
-                    "command": "editor.debug.action.toggleBreakpoint"
-                },
-                {
-                    "key": "b",
-                    "name": "Toggle inline breakpoint",
-                    "type": "command",
-                    "command": "editor.debug.action.toggleInlineBreakpoint"
-                },
-                {
-                    "key": "j",
-                    "name": "Jump to cursor",
-                    "type": "command",
-                    "command": "debug.jumpToCursor"
-                },
-                {
-                    "key": "v",
-                    "name": "REPL",
-                    "type": "command",
-                    "command": "workbench.debug.action.toggleRepl"
-                },
-                {
-                    "key": "w",
-                    "name": "Focus on watch window",
-                    "type": "command",
-                    "command": "workbench.debug.action.focusWatchView"
-                },
-                {
-                    "key": "W",
-                    "name": "Add to watch",
-                    "type": "command",
-                    "command": "editor.debug.action.selectionToWatch"
-                }
-            ]
         }
     ]
 }

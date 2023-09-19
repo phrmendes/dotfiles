@@ -43,7 +43,6 @@ in {
       tomoki1207.pdf
       valentjn.vscode-ltex
       vscodevim.vim
-      vspacecode.whichkey
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       quarto.quarto
       corker.micromamba

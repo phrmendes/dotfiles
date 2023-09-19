@@ -71,107 +71,53 @@
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<ESC>"
-      ]
+      "before": ["j", "k"],
+      "after": ["<ESC>"]
     }
   ],
   "vim.visualModeKeyBindings": [
     {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     },
     {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
     }
   ],
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "<C-h>"
-      ],
-      "after": [
-        "<C-w>",
-        "h"
-      ]
+      "before": ["<C-h>"],
+      "after": ["<C-w>", "h"]
     },
     {
-      "before": [
-        "<C-j>"
-      ],
-      "after": [
-        "<C-w>",
-        "j"
-      ]
+      "before": ["<C-j>"],
+      "after": ["<C-w>", "j"]
     },
     {
-      "before": [
-        "<C-k>"
-      ],
-      "after": [
-        "<C-w>",
-        "k"
-      ]
+      "before": ["<C-k>"],
+      "after": ["<C-w>", "k"]
     },
     {
-      "before": [
-        "<C-l>"
-      ],
-      "after": [
-        "<C-w>",
-        "l"
-      ]
+      "before": ["<C-l>"],
+      "after": ["<C-w>", "l"]
     },
     {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.rename"
-      ],
+      "before": ["g", "r"],
+      "commands": ["editor.action.rename"],
       "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
     },
     {
-      "before": [
-        "g",
-        "D"
-      ],
-      "commands": [
-        "editor.action.goToDeclaration"
-      ]
+      "before": ["g", "D"],
+      "commands": ["editor.action.goToDeclaration"]
     },
     {
-      "before": [
-        "<leader>",
-        "c"
-      ],
-      "after": [
-        ":nohl"
-      ]
+      "before": ["<leader>", "c"],
+      "after": [":nohl"]
     },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.files.save"
-      ]
+      "before": ["<leader>", "f", "s"],
+      "commands": ["workbench.action.files.save"]
     }
   ]
 }

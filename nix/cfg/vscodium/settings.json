@@ -1,174 +1,307 @@
 {
-    "editor.cursorBlinking": "solid",
-    "editor.fontFamily": "JetBrains Mono",
-    "editor.fontLigatures": true,
-    "editor.fontSize": 18,
-    "editor.formatOnType": true,
-    "editor.guides.indentation": false,
-    "editor.inlineSuggest.enabled": true,
-    "editor.lineNumbers": "relative",
-    "editor.minimap.enabled": false,
-    "editor.renderWhitespace": "none",
-    "editor.scrollbar.horizontal": "hidden",
-    "editor.scrollbar.vertical": "hidden",
-    "editor.suggestSelection": "first",
-    "explorer.confirmDelete": false,
-    "files.hotExit": "off",
-    "git.autofetch": true,
-    "git.confirmSync": false,
-    "indentRainbow.indicatorStyle": "light",
-    "indentRainbow.lightIndicatorStyleLineWidth": 2,
-    "python.analysis.diagnosticMode": "workspace",
-    "python.analysis.typeCheckingMode": "strict",
-    "python.terminal.activateEnvironment": false,
-    "security.workspace.trust.untrustedFiles": "open",
-    "terminal.external.linuxExec": "/usr/bin/wezterm",
-    "terminal.external.osxExec": "WezTerm.app",
-    "terminal.integrated.defaultProfile.linux": "zsh",
-    "terminal.integrated.enablePersistentSessions": false,
-    "terminal.integrated.fontFamily": "'JetBrains Mono'",
-    "vim.easymotion": true,
-    "vim.hlsearch": true,
-    "vim.incsearch": true,
-    "vim.leader": "<Space>",
-    "vim.surround": true,
-    "vim.useSystemClipboard": true,
-    "whichkey.showButtons": true,
-    "whichkey.showIcons": true,
-    "window.menuBarVisibility": "hidden",
-    "window.restoreWindows": "none",
-    "workbench.activityBar.visible": true,
-    "workbench.colorTheme": "Catppuccin Mocha",
-    "workbench.editor.restoreViewState": false,
-    "workbench.editor.showTabs": true,
-    "workbench.iconTheme": "catppuccin-mocha",
-    "workbench.startupEditor": "none",
-    "extensions.experimental.affinity": {
-      "vscodevim.vim": 1
+  "editor.cursorBlinking": "solid",
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 18,
+  "editor.formatOnType": true,
+  "editor.guides.indentation": false,
+  "editor.inlineSuggest.enabled": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.suggestSelection": "first",
+  "explorer.confirmDelete": false,
+  "files.hotExit": "off",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "indentRainbow.indicatorStyle": "light",
+  "indentRainbow.lightIndicatorStyleLineWidth": 2,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.typeCheckingMode": "strict",
+  "python.terminal.activateEnvironment": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.external.linuxExec": "/usr/bin/wezterm",
+  "terminal.external.osxExec": "WezTerm.app",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.fontFamily": "'JetBrains Mono'",
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.leader": "<Space>",
+  "vim.surround": true,
+  "vim.useSystemClipboard": true,
+  "whichkey.showButtons": true,
+  "whichkey.showIcons": true,
+  "window.menuBarVisibility": "hidden",
+  "window.restoreWindows": "none",
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.editor.restoreViewState": false,
+  "workbench.editor.showTabs": true,
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.startupEditor": "none",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": true,
+      "source.organizeImports.ruff": true
+    }
+  },
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
     },
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.fixAll.ruff": true,
-            "source.organizeImports.ruff": true
-        }
+    "zsh": {
+      "path": "zsh",
+      "icon": "terminal-bash"
+    }
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<space>"
+      ],
+      "commands": [
+        "whichkey.show"
+      ]
     },
-    "files.exclude": {
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
+    {
+      "before": [
+        "<C-h>"
+      ],
+      "after": [
+        "<C-w>",
+        "h"
+      ]
     },
-    "terminal.integrated.profiles.linux": {
-        "bash": {
-            "path": "bash",
-            "icon": "terminal-bash"
-        },
-        "zsh": {
-            "path": "zsh",
-            "icon": "terminal-bash"
-        }
+    {
+      "before": [
+        "<C-j>"
+      ],
+      "after": [
+        "<C-w>",
+        "j"
+      ]
     },
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["<space>"],
-            "commands": ["whichkey.show"]
-        },
-        {
-            "before": ["<C-h>"],
-            "after": ["<C-w>", "h"]
-        },
-        {
-            "before": ["<C-j>"],
-            "after": ["<C-w>", "j"]
-        },
-        {
-            "before": ["<C-k>"],
-            "after": ["<C-w>", "k"]
-        },
-        {
-            "before": ["<C-l>"],
-            "after": ["<C-w>", "l"]
-        },
-        {
-            "before": ["g", "r"],
-            "commands": ["editor.action.rename"],
-            "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-        },
-        {
-            "before": ["g", "d"],
-            "commands": ["editor.action.goToDefinition"]
-        },
-        {
-            "before": ["g", "D"],
-            "commands": ["editor.action.goToDeclaration"]
-        },
-        {
-            "before": ["g", "h"],
-            "commands": ["editor.action.showHover"]
-        },
-        {
-            "before": ["<space>", "c"],
-            "after": [":nohl"]
-        },
-        {
-            "before": ["<space>", "z"],
-            "commands": ["workbench.action.toggleZenMode"]
-        },
-        {
-            "before": ["<space>", "f", "s"],
-            "after": [":write"]
-        },
-        {
-            "before": ["<space>", "l", "f"],
-            "commands": ["editor.action.formatDocument"]
-        },
-        {
-            "before": ["<space>", "b", "b"],
-            "commands": ["editor.action.showAllEditorsByMostRecentlyUsed"]
-        },
-        {
-            "before": ["<space>", "b", "d"],
-            "after": [":bdelete"]
-        },
-        {
-            "before": ["<space>", "b", "p"],
-            "after": [":bprevious"]
-        },
-        {
-            "before": ["<space>", "b", "n"],
-            "after": [":bnext"]
-        },
-        {
-            "before": ["<space>", "w", "s"],
-            "after": [":split"]
-        },
-        {
-            "before": ["<space>", "w", "v"],
-            "after": [":vsplit"]
-        },
-        {
-            "before": ["<space>", "w", "d"],
-            "after": ["<C-w>", "q"]
-        },
-        {
-            "before": ["<space>", "w", "p"],
-            "after": ["<C-w>", "w"]
-        },
-        {
-            "before": ["<space>", "w", "n"],
-            "after": ["<C-w>", "n"]
-        },
-        {
-            "before": ["<space>", "g", "g"],
-            "command": ["magit.status"]
-        }
-    ],
-    "vim.insertModeKeyBindingsNonRecursive": [
-        {
-            "before": ["j", "k"],
-            "after": ["<ESC>"]
-        }
-    ]
+    {
+      "before": [
+        "<C-k>"
+      ],
+      "after": [
+        "<C-w>",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "<C-l>"
+      ],
+      "after": [
+        "<C-w>",
+        "l"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.rename"
+      ],
+      "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "commands": [
+        "editor.action.goToDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "D"
+      ],
+      "commands": [
+        "editor.action.goToDeclaration"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "commands": [
+        "editor.action.showHover"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "c"
+      ],
+      "after": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "z"
+      ],
+      "commands": [
+        "workbench.action.toggleZenMode"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "f",
+        "s"
+      ],
+      "after": [
+        ":write"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "l",
+        "f"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "b",
+        "b"
+      ],
+      "commands": [
+        "editor.action.showAllEditorsByMostRecentlyUsed"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "b",
+        "d"
+      ],
+      "after": [
+        ":bdelete"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "b",
+        "p"
+      ],
+      "after": [
+        ":bprevious"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "b",
+        "n"
+      ],
+      "after": [
+        ":bnext"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "w",
+        "s"
+      ],
+      "after": [
+        ":split"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "w",
+        "v"
+      ],
+      "after": [
+        ":vsplit"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "w",
+        "d"
+      ],
+      "after": [
+        "<C-w>",
+        "q"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "w",
+        "p"
+      ],
+      "after": [
+        "<C-w>",
+        "w"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "w",
+        "n"
+      ],
+      "after": [
+        "<C-w>",
+        "n"
+      ]
+    },
+    {
+      "before": [
+        "<space>",
+        "g",
+        "g"
+      ],
+      "command": [
+        "magit.status"
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<ESC>"
+      ]
+    }
+  ]
 }
-

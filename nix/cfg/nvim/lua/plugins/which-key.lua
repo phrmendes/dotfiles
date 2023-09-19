@@ -8,6 +8,7 @@ local diag = vim.diagnostic
 local gitsigns = require("gitsigns")
 local oil = require("oil")
 local wk = require("which-key")
+local formatters = require("conform")
 
 -- which-key configuration
 local conf = {
@@ -171,6 +172,15 @@ local lsp = {
 					s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
 					w = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
 					r = { "<cmd>LspRestart<cr>", "Restart" },
+					f = {
+						function()
+							formatters.format({
+								timeout_ms = 500,
+								lsp_fallback = true,
+							})
+						end,
+						"Format",
+					},
 					c = {
 						function()
 							vim.lsp.codelens.run()
@@ -239,7 +249,7 @@ local local_leader = {
 			nowait = false,
 		},
 		mappings = {
-            s = { name = "+swap" },
+			s = { name = "+swap" },
 			q = {
 				name = "+quickfix",
 				o = { "<cmd>copen<cr>", "Open" },

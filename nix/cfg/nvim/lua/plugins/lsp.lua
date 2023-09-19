@@ -7,6 +7,9 @@ local formatters = require("conform")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- lsp augroup
+local lsp_augroup = augroup("LspSettings", { clear = true })
+
 -- lsp capabilities function
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -109,31 +112,23 @@ linters.linters_by_ft = {
 	ansible = { "ansible_lint" },
 }
 
-local linter_group = augroup("LinterSettings", { clear = true })
-
 autocmd({ "BufWritePost" }, {
-	group = linter_group,
+	group = lsp_augroup,
 	callback = function()
 		linters.try_lint()
 	end,
 })
 
 -- formatters
-formatters.setup({
-	formatters_by_ft = {
-		nix = { "alejandra" },
-		lua = { "stylua" },
-		python = { "ruff" },
-		json = { "jq" },
-		yaml = { "yamlfmt" },
-		scala = { "scalafmt" },
-		sh = { "shfmt" },
-		toml = { "taplo" },
-		terraform = { "terraform_fmt" },
-		tex = { "latexindent" },
-	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_fallback = true,
-	},
-})
+formatters.formatters_by_ft = {
+	json = { "prettier" },
+	lua = { "stylua" },
+	nix = { "alejandra" },
+	python = { "ruff" },
+	scala = { "scalafmt" },
+	sh = { "shfmt" },
+	terraform = { "terraform_fmt" },
+	tex = { "latexindent" },
+	toml = { "taplo" },
+	yaml = { "prettier" },
+}

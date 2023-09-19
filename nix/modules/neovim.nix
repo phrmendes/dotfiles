@@ -96,12 +96,11 @@ in {
         taplo
         terraform-ls
         texlab
-        jq
-        yamlfmt
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
+        prettier
         pyright
         vscode-json-languageserver
         yaml-language-server

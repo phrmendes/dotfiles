@@ -72,14 +72,6 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
-        "<space>"
-      ],
-      "commands": [
-        "whichkey.show"
-      ]
-    },
-    {
-      "before": [
         "<C-h>"
       ],
       "after": [

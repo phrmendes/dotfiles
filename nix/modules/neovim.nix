@@ -14,6 +14,7 @@
     };
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
   telescope-orgmode = fromGitHub "eabff061c3852a9aa94e672a7d2fa4a1ef63f9e2" "HEAD" "joaomsa/telescope-orgmode.nvim";
+  conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -29,6 +30,7 @@ in {
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
+      conform-nvim # formatting
       copilot-vim # github copilot
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
@@ -46,6 +48,7 @@ in {
       nvim-dap-python # python dap support
       nvim-dap-ui # ui for dap
       nvim-dap-virtual-text # virtual text for dap
+      nvim-lint # linting
       nvim-lspconfig # lsp
       nvim-tree-lua # file explorer
       nvim-treesitter-context # treesitter context
@@ -79,7 +82,6 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
-        efm-langserver
         ltex-ls
         lua-language-server
         metals
@@ -94,6 +96,8 @@ in {
         taplo
         terraform-ls
         texlab
+        jq
+        yamlfmt
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server

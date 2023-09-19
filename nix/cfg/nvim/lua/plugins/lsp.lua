@@ -1,7 +1,11 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex_extra = require("ltex_extra")
+local ltex = require("ltex_extra")
+local linters = require("lint")
+local formatters = require("conform")
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- lsp capabilities function
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -41,13 +45,12 @@ for _, server in ipairs(servers) do
 	})
 end
 
--- special config for some language servers
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
-ltex_extra.setup({
+ltex.setup({
 	load_langs = { "en", "pt", "pt-BR" },
 	init_check = true,
 	path = ".ltex",
@@ -99,20 +102,38 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-lspconfig.efm.setup({
-	capabilities = capabilities,
-	filetypes = {
-		"lua",
-		"nix",
-		"python",
-		"scala",
-		"sh",
-		"terraform",
-		"toml",
-        "tex"
+-- linters
+linters.linters_by_ft = {
+	sh = { "shellcheck" },
+	nix = { "statix" },
+	ansible = { "ansible_lint" },
+}
+
+local linter_group = augroup("LinterSettings", { clear = true })
+
+autocmd({ "BufWritePost" }, {
+	group = linter_group,
+	callback = function()
+		linters.try_lint()
+	end,
+})
+
+-- formatters
+formatters.setup({
+	formatters_by_ft = {
+		nix = { "alejandra" },
+		lua = { "stylua" },
+		python = { "ruff" },
+		json = { "jq" },
+		yaml = { "yamlfmt" },
+		scala = { "scalafmt" },
+		sh = { "shfmt" },
+		toml = { "taplo" },
+		terraform = { "terraform_fmt" },
+		tex = { "latexindent" },
 	},
-	init_options = {
-		documentFormatting = true,
-		documentRangeFormatting = true,
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_fallback = true,
 	},
 })

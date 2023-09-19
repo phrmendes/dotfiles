@@ -9,19 +9,6 @@ local gitsigns = require("gitsigns")
 local oil = require("oil")
 local wk = require("which-key")
 
--- formatting function
-local lsp_formatting = function()
-	buf.format({
-		timeout_ms = 500,
-		async = true,
-		filter = function(client)
-			return client.name == "efm"
-		end,
-	})
-
-	vim.cmd([[write]])
-end
-
 -- which-key configuration
 local conf = {
 	window = {
@@ -213,12 +200,6 @@ local lsp = {
 							diag.goto_prev()
 						end,
 						"Previous diagnostic",
-					},
-					f = {
-						function()
-							lsp_formatting()
-						end,
-						"Format",
 					},
 				},
 			},

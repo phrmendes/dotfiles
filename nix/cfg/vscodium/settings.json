@@ -69,7 +69,36 @@
       "icon": "terminal-bash"
     }
   },
-  "vim.normalModeKeyBindingsNonRecursive": [
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<ESC>"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
     {
       "before": [
         "<C-h>"
@@ -119,15 +148,6 @@
     {
       "before": [
         "g",
-        "d"
-      ],
-      "commands": [
-        "editor.action.goToDefinition"
-      ]
-    },
-    {
-      "before": [
-        "g",
         "D"
       ],
       "commands": [
@@ -136,16 +156,7 @@
     },
     {
       "before": [
-        "g",
-        "h"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
+        "<leader>",
         "c"
       ],
       "after": [
@@ -154,145 +165,12 @@
     },
     {
       "before": [
-        "<space>",
-        "z"
-      ],
-      "commands": [
-        "workbench.action.toggleZenMode"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
+        "<leader>",
         "f",
         "s"
       ],
-      "after": [
-        ":write"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "l",
-        "f"
-      ],
       "commands": [
-        "editor.action.formatDocument"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "b",
-        "b"
-      ],
-      "commands": [
-        "editor.action.showAllEditorsByMostRecentlyUsed"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "b",
-        "d"
-      ],
-      "after": [
-        ":bdelete"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "b",
-        "p"
-      ],
-      "after": [
-        ":bprevious"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "b",
-        "n"
-      ],
-      "after": [
-        ":bnext"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "w",
-        "s"
-      ],
-      "after": [
-        ":split"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "w",
-        "v"
-      ],
-      "after": [
-        ":vsplit"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "w",
-        "d"
-      ],
-      "after": [
-        "<C-w>",
-        "q"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "w",
-        "p"
-      ],
-      "after": [
-        "<C-w>",
-        "w"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "w",
-        "n"
-      ],
-      "after": [
-        "<C-w>",
-        "n"
-      ]
-    },
-    {
-      "before": [
-        "<space>",
-        "g",
-        "g"
-      ],
-      "command": [
-        "magit.status"
-      ]
-    }
-  ],
-  "vim.insertModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<ESC>"
+        "workbench.action.files.save"
       ]
     }
   ]

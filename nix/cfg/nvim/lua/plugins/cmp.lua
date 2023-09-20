@@ -2,7 +2,6 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
-local cmp_pandoc = require("cmp_pandoc")
 
 -- load vscode like snippets from plugins
 vscode_loaders.lazy_load()
@@ -26,7 +25,6 @@ cmp.setup({
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "buffer" }, -- text within current buffer
-		{ name = "cmp_pandoc" }, -- bibtex autocompletion 
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "orgmode" }, -- orgmode headings
@@ -36,10 +34,4 @@ cmp.setup({
 	formatting = {
 		format = lspkind.cmp_format({ maxwidth = 50, ellipsis_char = "..." }),
 	},
-})
-
-cmp_pandoc.setup({
-    crossref = {
-        enable_nabla = true,
-    }
 })

@@ -16,6 +16,9 @@ map("n", "-", "<cmd>vertical resize -2<cr>", opts)
 map("n", "=", "<cmd>vertical resize +2<cr>", opts)
 map("n", "_", "<cmd>resize -2<cr>", opts)
 
+-- insert bibliography in insert mode
+map("i", "<C-b>", "<cmd>Telescope bibtex<cr>", opts)
+
 -- multiple cursors
 g.multi_cursor_use_default_mapping = 0
 g.VM_mouse_mappings = 1

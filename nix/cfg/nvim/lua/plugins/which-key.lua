@@ -98,7 +98,7 @@ local lsp = {
 			},
 			mappings = {
 				d = {
-					name = "+debugger",
+					name = "debugger",
 					B = {
 						function()
 							dap.step_back()
@@ -167,7 +167,7 @@ local lsp = {
 					},
 				},
 				l = {
-					name = "+lsp",
+					name = "lsp",
 					d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
 					s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
 					w = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols" },
@@ -249,9 +249,9 @@ local local_leader = {
 			nowait = false,
 		},
 		mappings = {
-			s = { name = "+swap" },
+			s = { name = "swap" },
 			q = {
-				name = "+quickfix",
+				name = "quickfix",
 				o = { "<cmd>copen<cr>", "Open" },
 				q = { "<cmd>cclose<cr>", "Close" },
 			},
@@ -272,15 +272,15 @@ local leader = {
 		},
 		mappings = {
 			Z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
-			c = { "<cmd>noh<cr>", "Clear highlights" },
+			c = { "<cmd>nohl<cr>", "Clear highlights" },
 			e = { "<cmd>NvimTreeToggle<cr>", "Explorer (tree)" },
 			h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 			q = { "<cmd>confirm q<cr>", "Quit" },
 			u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
 			z = { "<cmd>ZenMode<cr>", "Zen mode" },
-			s = { name = "+surround" },
+			s = { name = "surround" },
 			b = {
-				name = "+buffers",
+				name = "buffers",
 				G = { "<cmd>bl<cr>", "Last buffer" },
 				b = { "<cmd>Telescope buffers previewer=false<cr>", "Buffers" },
 				d = {
@@ -301,13 +301,13 @@ local leader = {
 					"Wipeout buffers",
 				},
 				s = {
-					name = "+split",
+					name = "split",
 					p = { "<cmd>sbp<cr>", "Previous buffer" },
 					n = { "<cmd>sbn<cr>", "Next buffer" },
 				},
 			},
 			f = {
-				name = "+files",
+				name = "files",
 				["."] = {
 					function()
 						oil.open()
@@ -323,45 +323,107 @@ local leader = {
 				t = { "<cmd>TodoTelescope<cr>", "Search TODOs" },
 			},
 			g = {
-				name = "+git",
-				B = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit (buffer)" },
-				C = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-				D = { "<cmd>Gdiff<cr>", "Diff file (editor)" },
-				L = { "<cmd>Gllog<cr>", "Log (project)" },
-				l = { "<cmd>G log %<cr>", "Log (file)" },
-				P = { "<cmd>G push<cr>", "Push" },
-				b = { "<cmd>G blame<cr>", "Blame" },
-				c = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-				d = { "<cmd>G diff %<cr>", "Diff file" },
-				g = { "<cmd>G<cr>", "Git" },
-				p = { "<cmd>G pull<cr>", "Pull" },
+				name = "git",
+				g = { "<cmd>LazyGit<cr>", "LazyGit" },
+				c = {
+					name = "checkout",
+					c = { "<cmd>Telescope git_commits<cr>", "Commit" },
+					B = { "<cmd>Telescope git_bcommits<cr>", "Commit (buffer)" },
+					b = { "<cmd>Telescope git_branches<cr>", "Branch" },
+				},
+				s = {
+					name = "stage",
+					h = {
+						function()
+							gitsigns.stage_hunk()
+						end,
+						"Hunk",
+					},
+					b = {
+						function()
+							gitsigns.stage_buffer()
+						end,
+						"Buffer",
+					},
+					u = {
+						function()
+							gitsigns.undo_stage_hunk()
+						end,
+						"Undo stage hunk",
+					},
+				},
 				r = {
+					name = "reset",
+					h = {
+						function()
+							gitsigns.reset_hunk()
+						end,
+						"Hunk",
+					},
+					b = {
+						function()
+							gitsigns.reset_buffer()
+						end,
+						"Buffer",
+					},
+				},
+				b = {
 					function()
-						gitsigns.reset_buffer()
+						gitsigns.blame_line()
 					end,
-					"Reset buffer",
+					"Blame line",
+				},
+				p = {
+					function()
+						gitsigns.prev_hunk()
+					end,
+					"Previous hunk",
+				},
+				n = {
+					function()
+						gitsigns.next_hunk()
+					end,
+					"Next hunk",
+				},
+				d = {
+					function()
+						gitsigns.diffthis()
+					end,
+					"Diff this",
+				},
+				D = {
+					function()
+						gitsigns.toggle_delete()
+					end,
+					"Toggle delete",
+				},
+				P = {
+					function()
+						gitsigns.preview_hunk()
+					end,
+					"Preview hunk",
 				},
 			},
 			o = {
-				name = "Orgmode",
+				name = "orgmode",
 				f = { "<cmd>Telescope orgmode search_headings<cr>", "org search headings" },
 			},
 			r = {
-				name = "+REPL",
+				name = "REPL",
 				f = { "<cmd>IronFocus<cr>", "Focus" },
 				h = { "<cmd>IronHide<cr>", "Hide" },
 				o = { "<cmd>IronRepl<cr>", "Open" },
 				r = { "<cmd>IronRestart<cr>", "Restart" },
 			},
 			T = {
-				name = "+tabs",
+				name = "tabs",
 				d = { "<cmd>tabclose<cr>", "Close" },
 				n = { "<cmd>tabnext<cr>", "Next" },
 				p = { "<cmd>tabprevious<cr>", "Previous" },
 				t = { "<cmd>tabnew<cr>", "New" },
 			},
 			w = {
-				name = "+windows",
+				name = "windows",
 				d = { "<C-w>q", "Close" },
 				n = { "<C-w>w", "Next" },
 				p = { "<C-w>p", "Previous" },
@@ -381,7 +443,22 @@ local leader = {
 			nowait = false,
 		},
 		mappings = {
-			s = { name = "+surround" },
+			s = { name = "surround" },
+			g = {
+				name = "git",
+				s = {
+					function()
+						gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					"Stage hunk",
+				},
+				r = {
+					function()
+						gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					"Reset hunk",
+				},
+			},
 		},
 	},
 }

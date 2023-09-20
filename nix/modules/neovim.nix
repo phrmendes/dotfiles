@@ -26,7 +26,6 @@ in {
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
-      cmp-pandoc-nvim # bibtex autocompletion
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
@@ -35,6 +34,7 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs
+      lazygit-nvim # git ui
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
       ltex_extra-nvim # ltex
@@ -68,7 +68,6 @@ in {
       todo-comments-nvim # todo comments
       twilight-nvim # zen-mode dependency
       undotree # undo history
-      vim-fugitive # git integration
       vim-helm # helm syntax
       vim-jinja # jinja syntax
       vim-nix # nix syntax

@@ -3,6 +3,10 @@ local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
 
+-- luasnip
+require("luasnip.loaders.from_vscode").lazy_load()
+luasnip.config.setup()
+
 -- load vscode like snippets from plugins
 vscode_loaders.lazy_load()
 
@@ -14,13 +18,34 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-		["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
-		["<C-u>"] = cmp.mapping.scroll_docs(-4), -- scroll documentation up
 		["<C-d>"] = cmp.mapping.scroll_docs(4), -- scroll documentation down
+		["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
+		["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+		["<C-u>"] = cmp.mapping.scroll_docs(-4), -- scroll documentation up
 		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 		["<C-q>"] = cmp.mapping.abort(), -- close completion window
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = false,
+		}),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({

@@ -8,6 +8,15 @@ treesitter.setup({
 	},
 	indent = { enable = true },
 	autotag = { enable = true },
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<C-Space>",
+			node_incremental = "<C-Space>",
+			scope_incremental = "<C-s>",
+			node_decremental = "<M-Space>",
+		},
+	},
 	textobjects = {
 		select = {
 			enable = true,
@@ -39,15 +48,15 @@ treesitter.setup({
 				["[c"] = "@class.outer",
 			},
 		},
-        swap = {
-            enable = true,
-            swap_next = {
-                ["<localleader>sn"] = "@parameter.inner",
-            },
-            swap_previous = {
-                ["<localleader>sp"] = "@parameter.inner",
-            },
-        },
+		swap = {
+			enable = true,
+			swap_next = {
+				["<localleader>sn"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["<localleader>sp"] = "@parameter.inner",
+			},
+		},
 	},
 })
 

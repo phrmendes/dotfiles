@@ -1,17 +1,57 @@
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local buf = vim.lsp.buf
+local diag = vim.diagnostic
+local lsp = vim.lsp
+local map = vim.keymap.set
+
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local fidget = require("fidget")
+local formatters = require("conform")
+local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local ltex = require("ltex_extra")
-local linters = require("lint")
-local formatters = require("conform")
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
+local telescope_builtin = require("telescope.builtin")
+local wk = require("which-key")
 
--- lsp augroup
+-- lsp utils
+fidget.setup()
+
+-- augroups
 local lsp_augroup = augroup("LspSettings", { clear = true })
 
--- lsp capabilities function
+-- default capabilities and on_attach functions
 local capabilities = cmp_nvim_lsp.default_capabilities()
+
+local on_attach = function()
+    local wk_section = function(key, name, prefix, mode)
+        wk.register({
+            [key] = { name = name },
+        }, { prefix = prefix, mode = mode })
+    end
+
+	map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
+	map("n", "gR", telescope_builtin.lsp_references, { desc = "Go to references [LSP]" })
+	map("n", "gd", telescope_builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
+	map("n", "gi", telescope_builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
+	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
+	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
+	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
+	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
+	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Code action [LSP]" })
+	map("n", "K", buf.hover, { desc = "Show hover [LSP]" })
+
+    wk_section("l", "lsp", "<localleader>", "n")
+	map("n", "<leader>ld", telescope_builtin.diagnostics, { desc = "Diagnostics" })
+	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
+	map("n", "<leader>ls", telescope_builtin.lsp_document_symbols, { desc = "Document symbols" })
+	map("n", "<leader>lw", telescope_builtin.lsp_document_symbols, { desc = "Workspace symbols" })
+	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
+	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
+	map("n", "<leader>ll", diag.loclist, { desc = "Loclist" })
+	map("n", "<leader>lo", diag.open_float, { desc = "Open floating diagnostic message" })
+end
 
 -- set up lsp_signature
 lsp_signature.setup()
@@ -45,33 +85,18 @@ local servers = {
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({
 		capabilities = capabilities,
+		on_attach = on_attach,
 	})
 end
 
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
+	on_attach = on_attach,
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
-ltex.setup({
-	load_langs = { "en", "pt", "pt-BR" },
-	init_check = true,
-	path = ".ltex",
-	server_opts = {
-		capabilities = capabilities,
-		settings = {
-			ltex = {
-				language = "auto",
-				additionalRules = {
-					enablePickyRules = true,
-					motherTongue = "pt-BR",
-				},
-			},
-		},
-	},
-})
-
 lspconfig.pyright.setup({
+	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
 		single_file_support = true,
@@ -91,6 +116,7 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.lua_ls.setup({
+	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -99,6 +125,25 @@ lspconfig.lua_ls.setup({
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.stdpath("config") .. "/lua"] = true,
+				},
+			},
+		},
+	},
+})
+
+ltex.setup({
+	load_langs = { "en", "pt", "pt-BR" },
+	init_check = true,
+	path = ".ltex",
+	server_opts = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		settings = {
+			ltex = {
+				language = "auto",
+				additionalRules = {
+					enablePickyRules = true,
+					motherTongue = "pt-BR",
 				},
 			},
 		},

@@ -31,6 +31,7 @@ in {
       comment-nvim # comments
       conform-nvim # formatting
       copilot-vim # github copilot
+      fidget-nvim # lsp utils
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs

@@ -325,12 +325,9 @@ local leader = {
 			g = {
 				name = "git",
 				g = { "<cmd>LazyGit<cr>", "LazyGit" },
-				c = {
-					name = "checkout",
-					c = { "<cmd>Telescope git_commits<cr>", "Commit" },
-					B = { "<cmd>Telescope git_bcommits<cr>", "Commit (buffer)" },
-					b = { "<cmd>Telescope git_branches<cr>", "Branch" },
-				},
+                B = { "<cmd>Telescope git_bcommits<cr>", "Commits (buffer)" },
+                b = { "<cmd>Telescope git_branches<cr>", "Branches" },
+                c = { "<cmd>Telescope git_commits<cr>", "Commits" },
 				s = {
 					name = "stage",
 					h = {
@@ -367,7 +364,7 @@ local leader = {
 						"Buffer",
 					},
 				},
-				b = {
+				l = {
 					function()
 						gitsigns.blame_line()
 					end,
@@ -390,12 +387,6 @@ local leader = {
 						gitsigns.diffthis()
 					end,
 					"Diff this",
-				},
-				D = {
-					function()
-						gitsigns.toggle_delete()
-					end,
-					"Toggle delete",
 				},
 				P = {
 					function()

@@ -34,7 +34,7 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs
-      lazygit-nvim # git ui
+      lazygit-nvim # lazygit
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
       ltex_extra-nvim # ltex

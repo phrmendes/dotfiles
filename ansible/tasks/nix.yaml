@@ -5,7 +5,7 @@
 
 - name: Use fallback default for ~/.config folder
   set_fact:
-    dot_config: "/home/{{ user }}/.config"
+    dot_config: "{{ home }}/.config"
   when: dot_config == ""
 
 - name: Check if Nix directory exists
@@ -41,16 +41,16 @@
   become_user: "{{ user }}"
   block:
     - name: Get Nix version
-      shell: "nix --version | cut -f3 --delimiter=' '"
+      shell: "nix --version | cut -f 3 -d ' '"
       changed_when: false
       register: nix_version
 
     - name: Update Nix
-      shell: "nix upgrade-nix --profile /home/{{ user }}/.local/state/nix/profiles/{{ user }}/"
+      shell: "nix upgrade-nix --profile {{ home }}/.local/state/nix/profiles/{{ user }}/"
       when: nix.version != nix_version.stdout
   when: nix_directory.stat.exists
 
-- name: Set up Nix Flakes
+- name: Enable Nix Flakes
   become_user: "{{ user }}"
   block:
     - name: Ensure Nix user config dir exists

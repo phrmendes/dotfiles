@@ -1,8 +1,8 @@
 ---
 - name: Backup configuration for PopOS 22.04
   become: true
-  hosts: all
   connection: local
+  hosts: localhost
 
   vars_files:
     - ./ansible/variables.yaml

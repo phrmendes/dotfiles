@@ -2,18 +2,23 @@
 - name: Config python via pyenv
   become_user: "{{ user }}"
   block:
-    - name: Check python version 
-      shell: "pyenv versions"
-      register: pyenv_versions
+    - name: Check all available python versions
+      command: "pyenv versions"
+      register: all_python_versions
+      changed_when: false
+
+    - name: Check active python version
+      shell: "pyenv version | cut -d ' ' -f 1"
+      register: active_python_version
       changed_when: false
 
     - name: Install python
       command: "pyenv install {{ python.version }}"
-      when: python.version not in pyenv_versions.stdout
+      when: python.version not in all_python_versions.stdout
 
     - name: Set python global version
       command: "pyenv global {{ python.version }}"
-      when: python.version != pyenv_versions.stdout
+      when: python.version != active_python_version.stdout
 
     - name: Get pip bin
       command: "pyenv which pip"
@@ -33,4 +38,4 @@
     - name: Install python debugger
       pip:
         name: debugpy
-        virtualenv: "/home/{{ user }}/.virtualenvs/debugpy"
+        virtualenv: "{{ home }}/.virtualenvs/debugpy"

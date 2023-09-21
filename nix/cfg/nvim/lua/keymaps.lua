@@ -174,7 +174,7 @@ map("n", "<leader>ws", "<C-w>s", { desc = "Split" })
 map("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap" })
 
--- random
+-- general keymaps
 map("n", "<leader>Z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })

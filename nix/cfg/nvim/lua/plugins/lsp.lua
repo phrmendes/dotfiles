@@ -42,8 +42,8 @@ local on_attach = function()
 	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
 	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
 
-	section("ca", "code action [LSP]", "<localleader>", { "n", "v" })
-	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available code actions" })
+	section("c", "code action [LSP]", "<localleader>", { "n", "v" })
+	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available" })
 
 	section("l", "lsp", "<localleader>", "n")
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })

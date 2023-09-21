@@ -236,14 +236,14 @@ surround.setup({
 move.setup({
 	mappings = {
 		-- visual mode
-		left = "<M-h>",
-		right = "<M-l>",
-		down = "<M-j>",
-		up = "<M-k>",
+		left = "<S-h>",
+		right = "<S-l>",
+		down = "<S-j>",
+		up = "<S-k>",
 		-- normal mode
-		line_left = "<M-h>",
-		line_right = "<M-l>",
-		line_down = "<M-j>",
-		line_up = "<M-k>",
+		line_left = "<S-h>",
+		line_right = "<S-l>",
+		line_down = "<S-j>",
+		line_up = "<S-k>",
 	},
 })

@@ -13,7 +13,6 @@ local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
 local move = require("mini.move")
 local nabla = require("nabla")
-local oil = require("oil")
 local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
 local telescope = require("telescope")
@@ -37,13 +36,31 @@ g.VM_mouse_mappings = 1
 -- [[ which-key settings ]] ---------------------------------------------
 wk.setup({ window = { border = "single", position = "bottom" } })
 
+-- [[ copilot settings ]] -----------------------------------------------
+g.copilot_no_tab_map = true
+
+local copilot_opts = {
+	noremap = true,
+	silent = true,
+	expr = true,
+	replace_keycodes = false,
+}
+
+map("i", "<C-l>", [[ copilot#Accept("<CR>") ]], copilot_opts)
+
 -- [[ functions ]] ------------------------------------------------------
-local buffer = {
+local telescope_dropdown = function(fun)
+	fun(telescope_themes.get_dropdown({
+		previewer = false,
+	}))
+end
+
+local buffers = {
 	search = function()
-		telescope_builtin.current_buffer_fuzzy_find(telescope_themes.get_dropdown({
-			previewer = false,
-			winblend = 10,
-		}))
+		telescope_dropdown(telescope_builtin.current_buffer_fuzzy_find)
+	end,
+	list = function()
+		telescope_dropdown(telescope_builtin.buffers)
 	end,
 	format = function()
 		formatters.format({
@@ -63,14 +80,9 @@ local git = {
 	blame_line = function()
 		gitsigns.blame_line({ full = true })
 	end,
-}
-
-local files = {
-	find = function()
-		telescope_builtin.find_files({
-			hidden = true,
-		})
-	end,
+	branches = function()
+		telescope_dropdown(telescope_builtin.git_branches)
+    end,
 }
 
 local section = function(key, name, prefix, mode)
@@ -110,8 +122,8 @@ map("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next" })
 map("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous" })
 map("n", "<leader>bw", bufremove.wipeout, { desc = "Wipeout" })
 map("n", "<leader>bo", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all other buffers" })
-map("n", "<leader><space>", telescope_builtin.buffers, { desc = "List buffers" })
-map("n", "<leader>/", buffer.search, { desc = "Search in current buffer" })
+map("n", "<leader><space>", buffers.list, { desc = "List buffers" })
+map("n", "<leader>/", buffers.search, { desc = "Search in current buffer" })
 
 -- DAP
 map("n", "<F1>", dap.step_over, { desc = "Step over [DAP]" })
@@ -131,7 +143,7 @@ map("n", "<leader>dt", dap_ui.toggle, { desc = "See last session result" })
 
 -- files
 section("f", "files", "<leader>", "n")
-map("n", "<leader>ff", files.find, { desc = "Find all files" })
+map("n", "<leader>ff", telescope_builtin.find_files, { desc = "Find all files" })
 map("n", "<leader>fg", telescope_builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
@@ -142,7 +154,7 @@ section("g", "git", "<leader>", { "n", "v" })
 map("n", "<leader>gB", telescope_builtin.git_bcommits, { desc = "Commits (buffer)" })
 map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "Reset buffer" })
 map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Stage buffer" })
-map("n", "<leader>gb", telescope_builtin.git_branches, { desc = "Branches" })
+map("n", "<leader>gb", git.branches, { desc = "Branches" })
 map("n", "<leader>gc", telescope_builtin.git_commits, { desc = "Commits" })
 map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff this" })
 map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
@@ -182,14 +194,14 @@ map("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap" })
 
 -- general keymaps
+map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
 map("n", "<leader>Z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
-map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
-map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
-map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
-map("n", "<leader>h", "<cmd>Telescope help_tags<cr>", { desc = "Help tags" })
-map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer (tree)" })
 map("n", "<leader>c", "<cmd>nohl<cr>", { desc = "Clear highlights" })
-map("n", "<leader>.", oil.open, { desc = "File manager" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer (tree)" })
+map("n", "<leader>h", "<cmd>Telescope help_tags<cr>", { desc = "Help tags" })
+map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
+map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
+map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 -- markdown
 autocmd("FileType", {

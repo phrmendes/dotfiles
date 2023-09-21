@@ -3,7 +3,7 @@
   become_user: "{{ user }}"
   block:
     - name: Check python version 
-      shell: "pyenv versions | cut -f1 --delimiter=' '"
+      shell: "pyenv versions"
       register: pyenv_versions
       changed_when: false
 

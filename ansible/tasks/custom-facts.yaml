@@ -2,5 +2,4 @@
 - name: Custom facts
   set_fact:
     custom_facts:
-      dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
       based_distribution: "{{ 'ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"

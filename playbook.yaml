@@ -8,7 +8,7 @@
     - ./ansible/variables.yaml
 
   pre_tasks:
-    - import_tasks: ./ansible/tasks/custom_facts.yaml
+    - import_tasks: ./ansible/tasks/custom-facts.yaml
 
   tasks:
     - import_tasks: ./ansible/tasks/apt.yaml

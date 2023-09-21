@@ -7,6 +7,7 @@
     exiftool
     eza
     fd
+    feh
     gh
     gnome-extensions-cli
     hugo

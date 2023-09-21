@@ -45,7 +45,7 @@ local on_attach = function()
 	section("c", "code action [LSP]", "<localleader>", { "n", "v" })
 	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available" })
 
-	section("l", "lsp", "<localleader>", "n")
+	section("l", "LSP", "<localleader>", "n")
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
 	map("n", "<leader>ld", telescope_builtin.diagnostics, { desc = "Diagnostics" })
 	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
@@ -167,7 +167,7 @@ formatters.formatters_by_ft = {
 	yaml = { "prettier" },
 }
 
--- [[ lsp utils ]] ------------------------------------------------------
+-- [[ LSP utils ]] ------------------------------------------------------
 -- nvim-lsp progress
 fidget.setup()
 

@@ -39,7 +39,7 @@ opt.laststatus = 3
 -- search settings
 opt.ignorecase = true
 opt.smartcase = true
-opt.hlsearch = true
+opt.hlsearch = false
 
 -- config cursor line
 opt.cursorline = true

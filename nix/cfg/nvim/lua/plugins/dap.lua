@@ -10,12 +10,9 @@ dap_virtual_text.setup()
 dap_python.setup("~/.virtualenvs/debugpy/bin/python")
 dap_python.test_runner = "unittest"
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-    dap_ui.open()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-    dap_ui.close()
-end
+dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
+dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close
+dap.listeners.before.event_exited["dapui_config"] = dap_ui.close
 
 -- nicer breakpoints
 fn.sign_define("DapBreakpoint", { text = "" })

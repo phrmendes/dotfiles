@@ -1,6 +1,6 @@
 require("plugins.cmp")
 require("plugins.comment")
-require("plugins.debugger")
+require("plugins.dap")
 require("plugins.filetree")
 require("plugins.gitsigns")
 require("plugins.iron")

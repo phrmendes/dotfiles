@@ -79,6 +79,10 @@ local section = function(key, name, prefix, mode)
 	}, { prefix = prefix, mode = mode })
 end
 
+local conditional_breakpoint = function()
+	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end
+
 -- [[ keymaps ]] --------------------------------------------------------
 -- remap for dealing with word wrap
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -109,18 +113,21 @@ map("n", "<leader>bo", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = 
 map("n", "<leader><space>", telescope_builtin.buffers, { desc = "List buffers" })
 map("n", "<leader>/", buffer.search, { desc = "Search in current buffer" })
 
--- debugger
-section("d", "debugger", "<leader>", "n")
+-- DAP
+map("n", "<F1>", dap.step_over, { desc = "Step over [DAP]" })
+map("n", "<F2>", dap.step_into, { desc = "Step into [DAP]" })
+map("n", "<F3>", dap.step_back, { desc = "Step back [DAP]" })
+map("n", "<F4>", dap.step_out, { desc = "Step out [DAP]" })
+map("n", "<F5>", dap.continue, { desc = "Continue [DAP]" })
+
+map("v", "<localleader>e", dap_ui.eval, { desc = "Evaluate [DAP]" })
+
+section("d", "DAP", "<leader>", "n")
 map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-map("n", "<leader>dB", dap.step_back, { desc = "Step back" })
-map("n", "<leader>dc", dap.continue, { desc = "Continue" })
-map("n", "<leader>di", dap.step_back, { desc = "Step into" })
-map("n", "<leader>do", dap.step_over, { desc = "Step over" })
+map("n", "<leader>dc", conditional_breakpoint, { desc = "Conditional breakpoint" })
 map("n", "<leader>dp", dap.pause, { desc = "Pause" })
 map("n", "<leader>dq", dap.close, { desc = "Quit" })
-map("n", "<leader>dt", dap_ui.toggle, { desc = "Toggle UI" })
-map("n", "<leader>du", dap.step_out, { desc = "Step out" })
-map("n", "<localleader>e", dap_ui.eval, { desc = "Evaluate [DAP]" })
+map("n", "<leader>dt", dap_ui.toggle, { desc = "See last session result" })
 
 -- files
 section("f", "files", "<leader>", "n")

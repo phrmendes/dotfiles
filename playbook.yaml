@@ -7,16 +7,15 @@
   vars_files:
     - ./ansible/variables.yaml
 
-  handlers:
-    - import_tasks: ./ansible/handlers/update_nix_channels.yaml
+  pre_tasks:
+    - import_tasks: ./ansible/tasks/custom_facts.yaml
 
   tasks:
-    - import_tasks: ./ansible/tasks/custom_facts.yaml
-    - import_tasks: ./ansible/tasks/apt_packages.yaml
-    - import_tasks: ./ansible/tasks/docker_groups.yaml
-    - import_tasks: ./ansible/tasks/flatpak_packages.yaml
+    - import_tasks: ./ansible/tasks/apt.yaml
+    - import_tasks: ./ansible/tasks/docker.yaml
+    - import_tasks: ./ansible/tasks/flatpak.yaml
     - import_tasks: ./ansible/tasks/fingerprint.yaml
-    - import_tasks: ./ansible/tasks/nix_package_manager.yaml
-    - import_tasks: ./ansible/tasks/home_manager.yaml
-    - import_tasks: ./ansible/tasks/python.yaml
+    - import_tasks: ./ansible/tasks/nix.yaml
+    - import_tasks: ./ansible/tasks/home-manager.yaml
+    - import_tasks: ./ansible/tasks/pyenv.yaml
     - import_tasks: ./ansible/tasks/services.yaml

@@ -1,0 +1,73 @@
+---
+- name: Set fact for ~/.config folder
+  set_fact:
+    dot_config: "{{ lookup('env', 'XDG_CONFIG_HOME') }}"
+
+- name: Use fallback default for ~/.config folder
+  set_fact:
+    dot_config: "/home/{{ user }}/.config"
+  when: dot_config == ""
+
+- name: Check if Nix directory exists
+  stat:
+    path: "/nix"
+  register: nix_directory
+
+- name: Install Nix
+  block:
+    - name: Set Nix tarball name
+      set_fact:
+        nix_tarball: nix-{{ nix.version }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
+
+    - name: Download tarball
+      get_url:
+        url: "https://releases.nixos.org/nix/nix-{{ nix.version }}/{{ nix_tarball }}.tar.xz"
+        dest: /tmp
+
+    - name: Extract tarball
+      unarchive:
+        src: "/tmp/{{ nix_tarball }}.tar.xz"
+        remote_src: true
+        dest: /tmp
+
+    - name: Run installer
+      become: true
+      command:
+        cmd: ./install --daemon --yes </dev/null
+        chdir: "/tmp/{{ nix_tarball }}"
+  when: not nix_directory.stat.exists
+
+- name: Update Nix version
+  become_user: "{{ user }}"
+  block:
+    - name: Get Nix version
+      shell: "nix --version | cut -f3 --delimiter=' '"
+      changed_when: false
+      register: nix_version
+
+    - name: Update Nix
+      shell: "nix upgrade-nix --profile /home/{{ user }}/.local/state/nix/profiles/{{ user }}/"
+      when: nix.version != nix_version.stdout
+  when: nix_directory.stat.exists
+
+- name: Set up Nix Flakes
+  become_user: "{{ user }}"
+  block:
+    - name: Ensure Nix user config dir exists
+      file:
+        path: "{{ dot_config }}/nix"
+        state: directory
+        owner: "{{ user }}"
+        mode: "0755"
+      register: nix_config_dir
+
+    - name: Enable Nix Flakes
+      blockinfile:
+        path: "{{ nix_config_dir.path }}/nix.conf"
+        owner: "{{ user }}"
+        mode: "0755"
+        create: true
+        state: present
+        block: |
+          experimental-features = nix-command flakes
+          max-jobs = auto

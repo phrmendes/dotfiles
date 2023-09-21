@@ -2,7 +2,7 @@
 - name: Add the flathub remote repository
   become_user: "{{ user }}"
   community.general.flatpak_remote:
-    flatpakrepo_url: "{{ flatpak.flathub.url }}"
+    flatpakrepo_url: "{{ flatpak.flathub }}"
     method: user
     name: flathub
     state: present

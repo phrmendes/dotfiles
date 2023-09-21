@@ -1,0 +1,7 @@
+---
+- name: Run home-manager
+  become_user: "{{ user }}"
+  shell: nix run nixpkgs#home-manager -- switch --experimental-features 'nix-command flakes' --flake nix/#phrmendes
+  environment:
+    NIXPKGS_ALLOW_UNFREE: "1"
+  changed_when: false

@@ -31,26 +31,28 @@ local on_attach = function()
         }, { prefix = prefix, mode = mode })
     end
 
+	map("n", "K", buf.hover, { desc = "Show hover [LSP]" })
+	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
+	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
 	map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
 	map("n", "gR", telescope_builtin.lsp_references, { desc = "Go to references [LSP]" })
 	map("n", "gd", telescope_builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
 	map("n", "gi", telescope_builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
 	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
 	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
-	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
-	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
-	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Code action [LSP]" })
-	map("n", "K", buf.hover, { desc = "Show hover [LSP]" })
+
+    wk_section("c", "lsp", "<localleader>", "n")
+	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Code action" })
 
     wk_section("l", "lsp", "<localleader>", "n")
-	map("n", "<leader>ld", telescope_builtin.diagnostics, { desc = "Diagnostics" })
-	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
-	map("n", "<leader>ls", telescope_builtin.lsp_document_symbols, { desc = "Document symbols" })
-	map("n", "<leader>lw", telescope_builtin.lsp_document_symbols, { desc = "Workspace symbols" })
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
+	map("n", "<leader>ld", telescope_builtin.diagnostics, { desc = "Diagnostics" })
 	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
 	map("n", "<leader>ll", diag.loclist, { desc = "Loclist" })
 	map("n", "<leader>lo", diag.open_float, { desc = "Open floating diagnostic message" })
+	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
+	map("n", "<leader>ls", telescope_builtin.lsp_document_symbols, { desc = "Document symbols" })
+	map("n", "<leader>lw", telescope_builtin.lsp_document_symbols, { desc = "Workspace symbols" })
 end
 
 -- set up lsp_signature

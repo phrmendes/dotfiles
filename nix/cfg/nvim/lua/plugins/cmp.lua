@@ -1,16 +1,17 @@
+-- [[ imports ]] --------------------------------------------------------
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
 
--- luasnip
+-- [[ luasnip ]] --------------------------------------------------------
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup()
 
 -- load vscode like snippets from plugins
 vscode_loaders.lazy_load()
 
--- completion setup
+-- [[ completion setup ]] -----------------------------------------------
 cmp.setup({
 	snippet = {
 		expand = function(args)

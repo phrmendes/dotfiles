@@ -1,3 +1,4 @@
+-- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local buf = vim.lsp.buf
@@ -5,6 +6,7 @@ local diag = vim.diagnostic
 local lsp = vim.lsp
 local map = vim.keymap.set
 
+-- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local fidget = require("fidget")
 local formatters = require("conform")
@@ -15,22 +17,21 @@ local ltex = require("ltex_extra")
 local telescope_builtin = require("telescope.builtin")
 local wk = require("which-key")
 
--- lsp utils
-fidget.setup()
-
--- augroups
+-- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("LspSettings", { clear = true })
 
--- default capabilities and on_attach functions
+-- [[ functions ]] ------------------------------------------------------
+local section = function(key, name, prefix, mode)
+    wk.register({
+        [key] = { name = name },
+    }, { prefix = prefix, mode = mode })
+end
+
+-- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+-- [[ on attatch ]] -----------------------------------------------------
 local on_attach = function()
-    local wk_section = function(key, name, prefix, mode)
-        wk.register({
-            [key] = { name = name },
-        }, { prefix = prefix, mode = mode })
-    end
-
 	map("n", "K", buf.hover, { desc = "Show hover [LSP]" })
 	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
 	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
@@ -41,10 +42,10 @@ local on_attach = function()
 	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
 	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
 
-    wk_section("c", "lsp", "<localleader>", "n")
-	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Code action" })
+	section("ca", "code action [LSP]", "<localleader>", { "n", "v" })
+	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available code actions" })
 
-    wk_section("l", "lsp", "<localleader>", "n")
+	section("l", "lsp", "<localleader>", "n")
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
 	map("n", "<leader>ld", telescope_builtin.diagnostics, { desc = "Diagnostics" })
 	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
@@ -55,22 +56,7 @@ local on_attach = function()
 	map("n", "<leader>lw", telescope_builtin.lsp_document_symbols, { desc = "Workspace symbols" })
 end
 
--- set up lsp_signature
-lsp_signature.setup()
-
-local diagnostics_signs = {
-	Error = " ",
-	Warn = " ",
-	Hint = "󱍄 ",
-	Info = " ",
-}
-
-for type, icon in pairs(diagnostics_signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
--- config language servers
+-- [[ general servers configuration ]] ----------------------------------
 local servers = {
 	"ansiblels",
 	"bashls",
@@ -91,6 +77,7 @@ for _, server in ipairs(servers) do
 	})
 end
 
+-- [[ specific servers configuration ]] ---------------------------------
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -152,7 +139,7 @@ ltex.setup({
 	},
 })
 
--- linters
+-- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {
 	sh = { "shellcheck" },
 	nix = { "statix" },
@@ -166,7 +153,7 @@ autocmd({ "BufWritePost" }, {
 	end,
 })
 
--- formatters
+-- [[ formatters ]] -----------------------------------------------------
 formatters.formatters_by_ft = {
 	json = { "prettier" },
 	lua = { "stylua" },
@@ -179,3 +166,22 @@ formatters.formatters_by_ft = {
 	toml = { "taplo" },
 	yaml = { "prettier" },
 }
+
+-- [[ lsp utils ]] ------------------------------------------------------
+-- nvim-lsp progress
+fidget.setup()
+
+-- set up lsp_signature
+lsp_signature.setup()
+
+local diagnostics_signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = "󱍄 ",
+	Info = " ",
+}
+
+for type, icon in pairs(diagnostics_signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end

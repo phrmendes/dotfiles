@@ -1,6 +1,8 @@
+-- [[ variables ]] ------------------------------------------------------
 local cmd = vim.cmd
 local opt = vim.opt
 
+-- [[ imports ]] --------------------------------------------------------
 local bufremove = require("mini.bufremove")
 local hicursorword = require("mini.cursorword")
 local indentscope = require("mini.indentscope")
@@ -9,6 +11,7 @@ local starter = require("mini.starter")
 local statusline = require("mini.statusline")
 local tabline = require("mini.tabline")
 
+-- [[ options ]] --------------------------------------------------------
 -- syntax
 opt.syntax = "on"
 
@@ -89,7 +92,7 @@ opt.concealcursor = "nc"
 -- shell slash
 opt.shellslash = true
 
--- mini stuff
+-- [[ mini stuff ]] -----------------------------------------------------
 bufremove.setup()
 hicursorword.setup()
 indentscope.setup()

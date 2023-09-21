@@ -1,8 +1,10 @@
+-- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local g = vim.g
 local map = vim.keymap.set
 
+-- [[ imports ]] --------------------------------------------------------
 local bufremove = require("mini.bufremove")
 local dap = require("dap")
 local dap_ui = require("dapui")
@@ -20,27 +22,22 @@ local telescope_themes = require("telescope.themes")
 local todos = require("todo-comments")
 local wk = require("which-key")
 
--- augroups
+-- [[ augroups ]] -------------------------------------------------------
 local ft_group = augroup("UserFiletypeKeymaps", { clear = true })
 
--- leader keys
+-- [[ leader key ]] -----------------------------------------------------
 g.mapleader = " "
 g.maplocalleader = ","
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
--- multiple cursors
+-- [[ multi cursor ]] ---------------------------------------------------
 g.multi_cursor_use_default_mapping = 0
 g.VM_mouse_mappings = 1
 
--- which-key
-wk.setup({
-	window = {
-		border = "single",
-		position = "bottom",
-	},
-})
+-- [[ which-key settings ]] ---------------------------------------------
+wk.setup({ window = { border = "single", position = "bottom" } })
 
--- functions
+-- [[ functions ]] ------------------------------------------------------
 local buffer = {
 	search = function()
 		telescope_builtin.current_buffer_fuzzy_find(telescope_themes.get_dropdown({
@@ -56,12 +53,15 @@ local buffer = {
 	end,
 }
 
-local hunk = {
-	stage = function()
+local git = {
+	stage_hunk = function()
 		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
-	reset = function()
+	reset_hunk = function()
 		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end,
+	blame_line = function()
+		gitsigns.blame_line({ full = true })
 	end,
 }
 
@@ -73,12 +73,13 @@ local files = {
 	end,
 }
 
-local wk_section = function(key, name, prefix, mode)
+local section = function(key, name, prefix, mode)
 	wk.register({
 		[key] = { name = name },
 	}, { prefix = prefix, mode = mode })
 end
 
+-- [[ keymaps ]] --------------------------------------------------------
 -- remap for dealing with word wrap
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -94,12 +95,12 @@ map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true })
 
 -- quickfix
-wk_section("q", "quickfix", "<localleader>", "n")
+section("q", "quickfix", "<localleader>", "n")
 map("n", "<localleader>qo", "<cmd>copen<cr>", { desc = "Open" })
 map("n", "<localleader>qq", "<cmd>cclose<cr>", { desc = "Close" })
 
 -- buffers
-wk_section("b", "buffers", "<leader>", "n")
+section("b", "buffers", "<leader>", "n")
 map("n", "<leader>bd", bufremove.delete, { desc = "Delete" })
 map("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next" })
 map("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous" })
@@ -109,7 +110,7 @@ map("n", "<leader><space>", telescope_builtin.buffers, { desc = "List buffers" }
 map("n", "<leader>/", buffer.search, { desc = "Search in current buffer" })
 
 -- debugger
-wk_section("d", "debugger", "<leader>", "n")
+section("d", "debugger", "<leader>", "n")
 map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
 map("n", "<leader>dB", dap.step_back, { desc = "Step back" })
 map("n", "<leader>dc", dap.continue, { desc = "Continue" })
@@ -122,7 +123,7 @@ map("n", "<leader>du", dap.step_out, { desc = "Step out" })
 map("n", "<localleader>e", dap_ui.eval, { desc = "Evaluate [DAP]" })
 
 -- files
-wk_section("f", "files", "<leader>", "n")
+section("f", "files", "<leader>", "n")
 map("n", "<leader>ff", files.find, { desc = "Find all files" })
 map("n", "<leader>fg", telescope_builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
@@ -130,8 +131,7 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
 map("n", "<leader>fG", telescope_builtin.git_files, { desc = "Git files" })
 
 -- git
-wk_section("g", "git", "<leader>", "n")
-wk_section("g", "git", "<leader>", "v")
+section("g", "git", "<leader>", { "n", "v" })
 map("n", "<leader>gB", telescope_builtin.git_bcommits, { desc = "Commits (buffer)" })
 map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "Reset buffer" })
 map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Stage buffer" })
@@ -139,13 +139,14 @@ map("n", "<leader>gb", telescope_builtin.git_branches, { desc = "Branches" })
 map("n", "<leader>gc", telescope_builtin.git_commits, { desc = "Commits" })
 map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff this" })
 map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-map("n", "<leader>gl", gitsigns.blame_line, { desc = "Blame line" })
+map("n", "<leader>gl", git.blame_line, { desc = "Blame line" })
 map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
 map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
 map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage hunk" })
+map("n", "<leader>gt", gitsigns.toggle_current_line_blame, { desc = "Toggle current line blame" })
 map("n", "<leader>gu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
-map("v", "<leader>gr", hunk.reset, { desc = "Reset hunk" })
-map("v", "<leader>gs", hunk.stage, { desc = "Stage hunk" })
+map("v", "<leader>gr", git.reset_hunk, { desc = "Reset hunk" })
+map("v", "<leader>gs", git.stage_hunk, { desc = "Stage hunk" })
 map("n", "]h", gitsigns.next_hunk, { desc = "Next hunk" })
 map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
 
@@ -154,18 +155,18 @@ vim.keymap.set("n", "]t", todos.jump_next, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", todos.jump_prev, { desc = "Previous todo comment" })
 
 -- orgmode
-wk_section("o", "orgmode", "<leader>", "n")
+section("o", "orgmode", "<leader>", "n")
 map("n", "<leader>of", telescope.extensions.orgmode.search_headings, { desc = "org search headings" })
 
 -- repl
-wk_section("r", "REPL", "<leader>", "n")
+section("r", "REPL", "<leader>", "n")
 map("n", "<space>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
 map("n", "<space>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
 map("n", "<space>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
 map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 
 -- windows
-wk_section("w", "windows", "<leader>", "n")
+section("w", "windows", "<leader>", "n")
 map("n", "<leader>wd", "<C-w>q", { desc = "Close" })
 map("n", "<leader>wn", "<C-w>w", { desc = "Next" })
 map("n", "<leader>wp", "<C-w>p", { desc = "Previous" })
@@ -203,15 +204,15 @@ autocmd("FileType", {
 	end,
 })
 
--- moving around text
+-- [[ mini stuff ]] -----------------------------------------------------
+-- moving around buffer
 jump2d.setup({ mappings = { start_jumping = "<leader>j" } })
 
 -- split and join arguments
 splitjoin.setup({ mappings = { toggle = "<leader>t" } })
 
 -- surround text objects
-wk_section("s", "surround", "<leader>", "n")
-wk_section("s", "surround", "<leader>", "v")
+section("s", "surround", "<leader>", { "n", "v" })
 surround.setup({
 	mappings = {
 		add = "<leader>sa", -- add surrounding in normal and visual modes

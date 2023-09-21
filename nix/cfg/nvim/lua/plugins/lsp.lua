@@ -32,12 +32,12 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- [[ on attatch ]] -----------------------------------------------------
 local on_attach = function()
-	map("n", "<C-k>", buf.hover, { desc = "Show hover [LSP]" })
 	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
 	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
 	map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
 	map("n", "gR", telescope_builtin.lsp_references, { desc = "Go to references [LSP]" })
 	map("n", "gd", telescope_builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
+	map("n", "gh", buf.hover, { desc = "Show hover [LSP]" })
 	map("n", "gi", telescope_builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
 	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
 	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })

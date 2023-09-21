@@ -21,14 +21,7 @@ git clone https://github.com/phrmendes/bkps.git
 Run playbook inside the `bkps` repository:
 
 ```sh
-ansible-galaxy install -r requirements.yaml
 ansible-playbook playbook.yml --ask-become-pass
-```
-
-Restart the shell and run home-manager:
-
-```sh
-nix run nixpkgs#home-manager -- switch --experimental-features 'nix-command flakes' --flake nix/#phrmendes
 ```
 
 ## References

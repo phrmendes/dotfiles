@@ -54,12 +54,14 @@ function fzf_open_with_nvim() {
 }
 
 function fzf_search_notes() {
+    cwd=$(pwd)
 	cd "$NOTES_DIR" || return
 	fzf_open_with_nvim
+    cd "$cwd" || return
 }
 
 function get_gh_repo_ref() {
-	local gh_repo="$1"
-	local branch="$2"
+	gh_repo="$1"
+	branch="$2"
 	git ls-remote "https://github.com/$gh_repo" "$branch" | cut -f1
 }

@@ -21,6 +21,7 @@
       mb = "micromamba";
       mkdir = "mkdir -p";
       of = "fzf_open_with_nvim";
+      on = "fzf_search_notes";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

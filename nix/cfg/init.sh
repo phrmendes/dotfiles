@@ -4,8 +4,8 @@ eval "$(micromamba shell hook --shell=zsh)"
 
 export FLAKE_PATH="$HOME/Projects/bkps/nix#phrmendes"
 export FZF_DEFAULT_COMMAND="fd --type f"
-export NOTES_DIR="$HOME/pCloudDrive/notes"
 export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+export NOTES_DIR="$HOME/pCloudDrive/notes"
 
 path+=(
 	"$HOME/.local/bin"
@@ -13,53 +13,53 @@ path+=(
 	"$HOME/.pyenv/shims"
 )
 
-nix_update() {
+function nix_update() {
 	nix run nixpkgs#home-manager -- switch --flake "$FLAKE_PATH"
 }
 
-nix_clear() {
+function nix_clear() {
 	nix-collect-garbage
 }
 
-system_update() {
+function system_update() {
 	sudo nala upgrade
 	sudo pop-upgrade recovery upgrade from-release
-	sudo fwupdmgr get-devices >/dev/null
-	sudo fwupdmgr get-updates
-	sudo fwupdmgr update
 	flatpak update
 }
 
-system_clear() {
+function system_clear() {
 	sudo nala autopurge
 	sudo nala autoremove
 	sudo nala clean
 }
 
-enable_droidcam() {
+function enable_droidcam() {
 	sudo modprobe v4l2loopback exclusive_caps=1
 }
 
-fzf_preview_file() {
+function fzf_preview_file() {
 	fzf --preview "bat --theme=catppuccin --color=always --style=header,grid --line-range :400 {}"
 }
 
-fzf_open_with_nvim() {
-	nvim_exists=$(which nvim)
-	if [ -z "$nvim_exists" ]; then
+function fzf_open_with_nvim() {
+	if ! command -v nvim &>/dev/null; then
 		return
 	fi
 
 	selection=$(fzf_preview_file)
-	if [ -z "$selection" ]; then
-		return
-	else
+
+	if [ -n "$selection" ]; then
 		nvim "$selection"
 	fi
 }
 
-get_repo_ref() {
-	gh_repo="$1"
-	branch="$2"
+function fzf_search_notes() {
+	cd "$NOTES_DIR" || return
+	fzf_open_with_nvim
+}
+
+function get_gh_repo_ref() {
+	local gh_repo="$1"
+	local branch="$2"
 	git ls-remote "https://github.com/$gh_repo" "$branch" | cut -f1
 }

@@ -64,7 +64,7 @@ in {
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-orgmode # orgmode integration
-      telescope-symbols # undo integration
+      telescope-symbols-nvim # undo integration
       telescope-ui-select-nvim # telescope ui
       telescope-undo-nvim # undo integration
       telescope-zoxide # zoxide integration

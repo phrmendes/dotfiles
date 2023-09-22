@@ -45,7 +45,7 @@ local on_attach = function()
 	section("c", "code action [LSP]", "<localleader>", { "n", "v" })
 	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available" })
 
-	section("l", "LSP", "<localleader>", "n")
+	section("l", "LSP", "<leader>", "n")
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
 	map("n", "<leader>ld", telescope.diagnostics, { desc = "Diagnostics" })
 	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
@@ -56,8 +56,8 @@ local on_attach = function()
 	map("n", "<leader>ll", diag.loclist, { desc = "Loclist" })
 	map("n", "<leader>lo", diag.open_float, { desc = "Open floating diagnostic message" })
 	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
-	map("n", "<leader>ls", telescope_builtin.lsp_document_symbols, { desc = "Document symbols" })
-	map("n", "<leader>lw", telescope_builtin.lsp_document_symbols, { desc = "Workspace symbols" })
+	map("n", "<leader>ls", telescope.lsp_document_symbols, { desc = "Document symbols" })
+	map("n", "<leader>lw", telescope.lsp_document_symbols, { desc = "Workspace symbols" })
 end
 
 -- [[ general servers configuration ]] ----------------------------------

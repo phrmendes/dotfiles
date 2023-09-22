@@ -200,10 +200,6 @@ map("n", "<leader>ws", "<C-w>s", { desc = "Split" })
 map("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap" })
 
--- symbols
-section("s", "symbols", "<localleader>", "n")
-map("n", "<localleader>s", telescope.builtin.symbols, { desc = "Symbols" })
-
 -- general keymaps
 map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
 map("n", "<leader>c", "<cmd>nohl<cr>", { desc = "Clear highlights" })
@@ -212,6 +208,7 @@ map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<leader>u", telescope.extensions.undo.undo, { desc = "Undo tree" })
 map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
+map("n", "<localleader>s", telescope.builtin.symbols, { desc = "Symbols" })
 
 -- markdown
 autocmd("FileType", {

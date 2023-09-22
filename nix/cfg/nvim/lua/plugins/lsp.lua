@@ -14,7 +14,7 @@ local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local ltex = require("ltex_extra")
-local telescope_builtin = require("telescope.builtin")
+local telescope = require("telescope.builtin")
 local wk = require("which-key")
 
 -- [[ augroups ]] -------------------------------------------------------
@@ -22,9 +22,9 @@ local lsp_augroup = augroup("LspSettings", { clear = true })
 
 -- [[ functions ]] ------------------------------------------------------
 local section = function(key, name, prefix, mode)
-    wk.register({
-        [key] = { name = name },
-    }, { prefix = prefix, mode = mode })
+	wk.register({
+		[key] = { name = name },
+	}, { prefix = prefix, mode = mode })
 end
 
 -- [[ capabilities ]] ---------------------------------------------------
@@ -35,10 +35,10 @@ local on_attach = function()
 	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
 	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
 	map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
-	map("n", "gR", telescope_builtin.lsp_references, { desc = "Go to references [LSP]" })
-	map("n", "gd", telescope_builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
+	map("n", "gR", telescope.lsp_references, { desc = "Go to references [LSP]" })
+	map("n", "gd", telescope.lsp_definitions, { desc = "Go to definition [LSP]" })
 	map("n", "gh", buf.hover, { desc = "Show hover [LSP]" })
-	map("n", "gi", telescope_builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
+	map("n", "gi", telescope.lsp_implementations, { desc = "Go to implementation [LSP]" })
 	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
 	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
 
@@ -47,7 +47,11 @@ local on_attach = function()
 
 	section("l", "LSP", "<localleader>", "n")
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
-	map("n", "<leader>ld", telescope_builtin.diagnostics, { desc = "Diagnostics" })
+	map("n", "<leader>ld", telescope.diagnostics, { desc = "Diagnostics" })
+	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
+	map("n", "<leader>ls", telescope.lsp_document_symbols, { desc = "Document symbols" })
+	map("n", "<leader>lw", telescope.lsp_document_symbols, { desc = "Workspace symbols" })
+	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
 	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
 	map("n", "<leader>ll", diag.loclist, { desc = "Loclist" })
 	map("n", "<leader>lo", diag.open_float, { desc = "Open floating diagnostic message" })
@@ -174,6 +178,7 @@ fidget.setup()
 -- set up lsp_signature
 lsp_signature.setup()
 
+-- setup diagnostic icons
 local diagnostics_signs = {
 	Error = " ",
 	Warn = " ",

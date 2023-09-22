@@ -56,26 +56,25 @@ in {
       nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
-      oil-nvim # file management
       orgmode # orgmode support
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
       telescope-bibtex # bibtex integration
+      telescope-dap-nvim # dap integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-orgmode # orgmode integration
+      telescope-symbols # undo integration
       telescope-ui-select-nvim # telescope ui
+      telescope-undo-nvim # undo integration
       telescope-zoxide # zoxide integration
       todo-comments-nvim # todo comments
-      twilight-nvim # zen-mode dependency
-      undotree # undo history
       vim-helm # helm syntax
       vim-jinja # jinja syntax
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
-      zen-mode-nvim # zen mode
     ];
     extraPackages =
       (with pkgs; [

@@ -51,10 +51,10 @@ treesitter.setup({
 		swap = {
 			enable = true,
 			swap_next = {
-				["<localleader>sn"] = "@parameter.inner",
+				["<localleader>a"] = "@parameter.inner",
 			},
 			swap_previous = {
-				["<localleader>sp"] = "@parameter.inner",
+				["<localleader>A"] = "@parameter.inner",
 			},
 		},
 	},

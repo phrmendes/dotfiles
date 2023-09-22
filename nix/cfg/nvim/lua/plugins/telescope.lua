@@ -23,11 +23,26 @@ telescope.setup({
 		bibtex = {
 			global_files = { notes .. "/references.bib" },
 		},
+		undo = {
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.8,
+			},
+		},
 	},
 })
 
 -- load extensions
-local extensions = { "bibtex", "fzy_native", "ui-select", "zoxide", "orgmode" }
+local extensions = {
+	"bibtex",
+	"fzy_native",
+	"ui-select",
+	"zoxide",
+	"orgmode",
+	"undo",
+	"dap",
+}
 
 for _, ext in ipairs(extensions) do
 	telescope.load_extension(ext)

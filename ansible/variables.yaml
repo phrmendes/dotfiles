@@ -20,9 +20,8 @@ python:
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
-    - ch.protonmail.protonmail-bridge
-    - com.protonvpn.www
     - com.uploadedlobster.peek
+    - com.zettlr.Zettlr
     - org.wezfurlong.wezterm
 apt:
   remove:

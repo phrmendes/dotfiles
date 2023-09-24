@@ -1,7 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-local notes = os.getenv("NOTES_DIR") or "~/Documents/notes"
+local references = os.getenv("REFERENCES")
 
 telescope.setup({
 	defaults = {
@@ -21,7 +21,7 @@ telescope.setup({
 			override_file_sorter = true,
 		},
 		bibtex = {
-			global_files = { notes .. "/references.bib" },
+			global_files = { references },
 		},
 	},
 })
@@ -32,7 +32,6 @@ local extensions = {
 	"fzy_native",
 	"ui-select",
 	"zoxide",
-	"orgmode",
 	"undo",
 	"dap",
 }

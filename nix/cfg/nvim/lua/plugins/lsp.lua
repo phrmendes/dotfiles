@@ -72,6 +72,7 @@ local servers = {
 	"terraformls",
 	"texlab",
 	"yamlls",
+    "marksman",
 }
 
 for _, server in ipairs(servers) do
@@ -161,6 +162,7 @@ autocmd({ "BufWritePost" }, {
 formatters.formatters_by_ft = {
 	json = { "prettier" },
 	lua = { "stylua" },
+	markdown = { "prettier" },
 	nix = { "alejandra" },
 	python = { "ruff" },
 	scala = { "scalafmt" },

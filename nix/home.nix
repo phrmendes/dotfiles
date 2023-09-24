@@ -10,7 +10,6 @@ in {
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/home-manager.nix
-    ./modules/joshuto.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix
@@ -18,7 +17,6 @@ in {
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix
-    ./modules/vscodium.nix
     ./modules/zathura.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix

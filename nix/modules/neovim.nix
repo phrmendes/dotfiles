@@ -13,7 +13,6 @@
       };
     };
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
-  telescope-orgmode = fromGitHub "eabff061c3852a9aa94e672a7d2fa4a1ef63f9e2" "HEAD" "joaomsa/telescope-orgmode.nvim";
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
 in {
   programs.neovim = {
@@ -40,7 +39,6 @@ in {
       lspkind-nvim # vscode-like pictograms
       ltex_extra-nvim # ltex
       luasnip # snippets
-      markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
       nabla-nvim # math preview
       nvim-bqf # quickfix
@@ -56,14 +54,12 @@ in {
       nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
-      orgmode # orgmode support
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
       telescope-bibtex # bibtex integration
       telescope-dap-nvim # dap integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
-      telescope-orgmode # orgmode integration
       telescope-symbols-nvim # undo integration
       telescope-ui-select-nvim # telescope ui
       telescope-undo-nvim # undo integration
@@ -83,6 +79,7 @@ in {
         ansible-lint
         ltex-ls
         lua-language-server
+        marksman
         metals
         nil
         ruff

@@ -1,13 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # CLI
-    atool
+    bitwarden-cli
     coursier
     duckdb
-    exiftool
     eza
     fd
-    feh
     gh
     gnome-extensions-cli
     hugo
@@ -15,25 +13,19 @@
     hunspellDicts.en_US
     hunspellDicts.pt_BR
     jdk20
-    joshuto
     lazydocker
     micromamba
     ncdu
     pandoc
     parallel
-    poppler_utils
     quarto
-    rename
     ripgrep
     scala_3
-    slides
     sqlite
     tealdeer
     tectonic
     terraform
-    weylus
     xclip
-    xlsx2csv
     # GUI
     bitwarden
     caffeine-ng
@@ -41,9 +33,10 @@
     deluge
     droidcam
     libreoffice
-    thunderbird
+    logseq
+    syncthing
+    syncthingtray
     vlc
-    xournalpp
     zotero
   ];
 }

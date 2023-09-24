@@ -52,6 +52,40 @@ local copilot_opts = {
 map("i", "<C-l>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 
 -- [[ functions ]] ------------------------------------------------------
+local md_toggle = function()
+	local checked_character = "x"
+	local checked_checkbox = "%[" .. checked_character .. "%]"
+	local unchecked_checkbox = "%[ %]"
+
+	local line_contains_an_unchecked_checkbox = function(line)
+		return string.find(line, unchecked_checkbox)
+	end
+
+	local checkbox = {
+		check = function(line)
+			return line:gsub(unchecked_checkbox, checked_checkbox)
+		end,
+		uncheck = function(line)
+			return line:gsub(checked_checkbox, unchecked_checkbox)
+		end,
+	}
+
+	local bufnr = vim.api.nvim_buf_get_number(0)
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local start_line = cursor[1] - 1
+	local current_line = vim.api.nvim_buf_get_lines(bufnr, start_line, start_line + 1, false)[1] or ""
+
+	local new_line = ""
+	if line_contains_an_unchecked_checkbox(current_line) then
+		new_line = checkbox.check(current_line)
+	else
+		new_line = checkbox.uncheck(current_line)
+	end
+
+	vim.api.nvim_buf_set_lines(bufnr, start_line, start_line + 1, false, { new_line })
+	vim.api.nvim_win_set_cursor(0, cursor)
+end
+
 local telescope_no_previewer = function(fun)
 	fun(telescope.themes.get_dropdown({
 		previewer = false,
@@ -180,10 +214,6 @@ map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
 vim.keymap.set("n", "]t", todos.jump_next, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", todos.jump_prev, { desc = "Previous todo comment" })
 
--- orgmode
-section("o", "orgmode", "<leader>", "n")
-map("n", "<leader>of", telescope.extensions.orgmode.search_headings, { desc = "org search headings" })
-
 -- repl
 section("r", "REPL", "<leader>", "n")
 map("n", "<space>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
@@ -210,23 +240,14 @@ map("n", "<leader>u", telescope.extensions.undo.undo, { desc = "Undo tree" })
 map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 map("n", "<localleader>s", telescope.builtin.symbols, { desc = "Symbols" })
 
--- markdown
+-- markdown/quarto
 autocmd("FileType", {
 	pattern = "markdown",
 	group = ft_group,
 	callback = function()
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
-		map("n", "<localleader>p", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview markdown file" })
 		map("n", "<localleader>e", nabla.toggle_virt, { desc = "Toggle equation preview" })
-	end,
-})
-
--- orgmode
-autocmd("FileType", {
-	pattern = "org",
-	group = ft_group,
-	callback = function()
-		map({ "n", "i" }, "<C-b>", "<cmd>Telescope bibtex<cr>", { desc = "Insert reference" })
+		map("n", "<localleader>x", md_toggle, { desc = "Toggle check" })
 	end,
 })
 

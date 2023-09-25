@@ -147,6 +147,7 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- exit mode pressing 'jk'
 map("i", "jk", "<ESC>", { noremap = true, silent = true })
+map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- resize windows
 map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true })

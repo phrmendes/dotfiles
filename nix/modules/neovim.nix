@@ -23,6 +23,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      FTerm-nvim # terminal
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -34,7 +35,6 @@ in {
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs
-      lazygit-nvim # lazygit
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
       ltex_extra-nvim # ltex

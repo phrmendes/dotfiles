@@ -17,6 +17,7 @@ local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
 local todos = require("todo-comments")
 local wk = require("which-key")
+local terminal = require("FTerm")
 
 local telescope = {
 	builtin = require("telescope.builtin"),
@@ -56,12 +57,17 @@ local md_toggle = function()
 	local checked_character = "x"
 	local checked_checkbox = "%[" .. checked_character .. "%]"
 	local unchecked_checkbox = "%[ %]"
+	local bufnr = vim.api.nvim_buf_get_number(0)
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local start_line = cursor[1] - 1
+	local new_line = ""
 
-	local line_contains_an_unchecked_checkbox = function(line)
-		return string.find(line, unchecked_checkbox)
-	end
+	local current_line = vim.api.nvim_buf_get_lines(bufnr, start_line, start_line + 1, false)[1] or ""
 
 	local checkbox = {
+		contains_unchecked = function(line)
+			return string.find(line, unchecked_checkbox)
+		end,
 		check = function(line)
 			return line:gsub(unchecked_checkbox, checked_checkbox)
 		end,
@@ -70,13 +76,7 @@ local md_toggle = function()
 		end,
 	}
 
-	local bufnr = vim.api.nvim_buf_get_number(0)
-	local cursor = vim.api.nvim_win_get_cursor(0)
-	local start_line = cursor[1] - 1
-	local current_line = vim.api.nvim_buf_get_lines(bufnr, start_line, start_line + 1, false)[1] or ""
-
-	local new_line = ""
-	if line_contains_an_unchecked_checkbox(current_line) then
+	if checkbox.contains_unchecked(current_line) then
 		new_line = checkbox.check(current_line)
 	else
 		new_line = checkbox.uncheck(current_line)
@@ -120,6 +120,14 @@ local git = {
 	branches = function()
 		telescope_no_previewer(telescope.builtin.git_branches)
 	end,
+	ui = terminal:new({
+		ft = "gitui",
+		cmd = "gitui",
+		dimensions = {
+			height = 0.9,
+			width = 0.9,
+		},
+	}),
 }
 
 local section = function(key, name, prefix, mode)
@@ -198,7 +206,6 @@ map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Stage buffer" })
 map("n", "<leader>gb", git.branches, { desc = "Branches" })
 map("n", "<leader>gc", telescope.builtin.git_commits, { desc = "Commits" })
 map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff this" })
-map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 map("n", "<leader>gl", git.blame_line, { desc = "Blame line" })
 map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
 map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
@@ -209,6 +216,10 @@ map("v", "<leader>gr", git.reset_hunk, { desc = "Reset hunk" })
 map("v", "<leader>gs", git.stage_hunk, { desc = "Stage hunk" })
 map("n", "]h", gitsigns.next_hunk, { desc = "Next hunk" })
 map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
+
+map("n", "<leader>gg", function()
+	git.ui:toggle()
+end, { desc = "UI" })
 
 -- todos
 vim.keymap.set("n", "]t", todos.jump_next, { desc = "Next todo comment" })

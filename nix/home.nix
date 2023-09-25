@@ -9,8 +9,8 @@ in {
     ./modules/flameshot.nix
     ./modules/fzf.nix
     ./modules/git.nix
+    ./modules/gitui.nix
     ./modules/home-manager.nix
-    ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix
     ./modules/pyenv.nix

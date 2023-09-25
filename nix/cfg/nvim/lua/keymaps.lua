@@ -121,8 +121,8 @@ local git = {
 		telescope_no_previewer(telescope.builtin.git_branches)
 	end,
 	ui = terminal:new({
-		ft = "gitui",
-		cmd = "gitui",
+		ft = "lazygit",
+		cmd = "lazygit",
 		dimensions = {
 			height = 0.9,
 			width = 0.9,
@@ -147,7 +147,6 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- exit mode pressing 'jk'
 map("i", "jk", "<ESC>", { noremap = true, silent = true })
-map("t", "jk", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- resize windows
 map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true })
@@ -219,7 +218,7 @@ map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
 
 map("n", "<leader>gg", function()
 	git.ui:toggle()
-end, { desc = "UI" })
+end, { desc = "Lazygit" })
 
 -- todos
 vim.keymap.set("n", "]t", todos.jump_next, { desc = "Next todo comment" })

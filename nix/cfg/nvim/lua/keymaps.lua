@@ -161,12 +161,12 @@ map("n", "<localleader>qq", "<cmd>cclose<cr>", { desc = "Close" })
 
 -- buffers
 section("b", "buffers", "<leader>", "n")
+map("n", "<leader>bb", buffers.list, { desc = "List buffers" })
 map("n", "<leader>bd", bufremove.delete, { desc = "Delete" })
 map("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next" })
+map("n", "<leader>bo", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all other buffers" })
 map("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous" })
 map("n", "<leader>bw", bufremove.wipeout, { desc = "Wipeout" })
-map("n", "<leader>bo", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all other buffers" })
-map("n", "<leader><space>", buffers.list, { desc = "List buffers" })
 map("n", "<leader>/", buffers.search, { desc = "Search in current buffer" })
 
 -- DAP
@@ -191,11 +191,11 @@ map("n", "<leader>dlb", telescope.extensions.dap.list_breakpoints, { desc = "Bre
 
 -- files
 section("f", "files", "<leader>", "n")
-map("n", "<leader>ff", telescope.builtin.find_files, { desc = "Find all files" })
+map("n", "<leader><space>", telescope.builtin.find_files, { desc = "Find files" })
+map("n", "<leader>fG", telescope.builtin.git_files, { desc = "Git files" })
 map("n", "<leader>fg", telescope.builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
-map("n", "<leader>fG", telescope.builtin.git_files, { desc = "Git files" })
 
 -- git
 section("g", "git", "<leader>", { "n", "v" })

@@ -10,18 +10,10 @@
     url: "{{ keyring.tailscale.url }}"
     dest: "{{ keyring.tailscale.dest }}"
 
-- name: Add docker GPG apt key
-  apt_key:
-    url: "{{ keyring.docker.url }}"
-    state: present
-
-- name: Add repos
+- name: Add tailscale repo
   apt_repository:
     state: present
-    repo: "{{ item }}"
-  with_items:
-    - "deb https://download.docker.com/{{ ansible_system | lower }}/{{ custom_facts.based_distribution }} {{ ansible_distribution_release }} stable"
-    - "deb [signed-by={{ keyring.tailscale.dest }}] https://pkgs.tailscale.com/stable/{{ custom_facts.based_distribution }} {{ ansible_distribution_release }} main"
+    repo: "deb [signed-by={{ keyring.tailscale.dest }}] https://pkgs.tailscale.com/stable/{{ custom_facts.based_distribution }} {{ ansible_distribution_release }} main"
 
 - name: Install packages with apt
   apt:

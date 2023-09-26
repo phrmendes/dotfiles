@@ -2,14 +2,14 @@
 user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 home_prefix: "{{ '/home' if ansible_system == 'Linux' else '/Users'}}"
 home: "{{ home_prefix }}/{{ user }}"
+docker_users:
+  - "{{ user }}"
 pcloud:
   code: XZecm6VZIz4VKYBrUbzzhcfNW9boSfrfhgaV
   version: 1.14.0
 nix:
   version: 2.17.0
 keyring:
-  docker:
-    url: https://download.docker.com/linux/ubuntu/gpg
   tailscale:
     url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
     dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
@@ -44,12 +44,6 @@ apt:
     - 7zip
     - build-essential
     - ca-certificates
-    - containerd.io
-    - curl
-    - docker-buildx-plugin
-    - docker-ce
-    - docker-ce-cli
-    - docker-compose-plugin
     - file
     - file-roller
     - flatpak

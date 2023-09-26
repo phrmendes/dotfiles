@@ -10,6 +10,9 @@
   pre_tasks:
     - import_tasks: ./ansible/tasks/custom-facts.yaml
 
+  roles:
+    - geerlingguy.docker
+
   tasks:
     - import_tasks: ./ansible/tasks/apt.yaml
     - import_tasks: ./ansible/tasks/docker.yaml

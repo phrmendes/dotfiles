@@ -21,7 +21,8 @@ git clone https://github.com/phrmendes/bkps.git
 Run playbook inside the `bkps` repository:
 
 ```sh
-ansible-playbook playbook.yml --ask-become-pass
+ansible-galaxy install -r requirements.yaml
+ansible-playbook playbook.yaml --ask-become-pass
 ```
 
 ## References

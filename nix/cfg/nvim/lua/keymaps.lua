@@ -56,11 +56,7 @@ map("i", "<C-l>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 local md_toggle = function()
 	local checked_character = "x"
 	local checked_checkbox = "%[" .. checked_character .. "%]"
-	local new_line = ""
 	local unchecked_checkbox = "%[ %]"
-	local bufnr = vim.api.nvim_buf_get_number(0)
-	local cursor = vim.api.nvim_win_get_cursor(0)
-	local start_line = cursor[1] - 1
 	local new_line = ""
 
 	local bufnr = vim.api.nvim_buf_get_number(0)

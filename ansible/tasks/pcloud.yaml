@@ -1,0 +1,18 @@
+- name: Get stats of a file
+  stat:
+    path: "{{ home }}/.local/bin/pcloud"
+  register: pcloud_file
+
+- name: Download pCloud
+  block:
+    - name: Download zip
+      get_url:
+        url: "https://api.pcloud.com/getpubzip?code={{ pcloud.code }}&filename=pcloud-{{ pcloud.version }}.zip"
+        dest: /tmp/pcloud.zip
+
+    - name: Extract zip
+      unarchive:
+        src: /tmp/pcloud.zip
+        remote_src: true
+        dest: "{{ home }}/.local/bin"
+  when: not pcloud_file.stat.exists

@@ -17,16 +17,16 @@
   block:
     - name: Set Nix tarball name
       set_fact:
-        nix_tarball: nix-{{ nix.version }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
+        nix_tarball: "nix-{{ nix.version }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
 
     - name: Download tarball
       get_url:
         url: "https://releases.nixos.org/nix/nix-{{ nix.version }}/{{ nix_tarball }}.tar.xz"
-        dest: /tmp
+        dest: /tmp/nix.tar.xz
 
     - name: Extract tarball
       unarchive:
-        src: "/tmp/{{ nix_tarball }}.tar.xz"
+        src: /tmp/nix.tar.xz
         remote_src: true
         dest: /tmp
 

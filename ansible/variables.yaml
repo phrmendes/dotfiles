@@ -2,6 +2,9 @@
 user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 home_prefix: "{{ '/home' if ansible_system == 'Linux' else '/Users'}}"
 home: "{{ home_prefix }}/{{ user }}"
+pcloud:
+  code: XZecm6VZIz4VKYBrUbzzhcfNW9boSfrfhgaV
+  version: 1.14.0
 nix:
   version: 2.17.0
 keyring:

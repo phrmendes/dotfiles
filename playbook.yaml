@@ -19,3 +19,4 @@
     - import_tasks: ./ansible/tasks/home-manager.yaml
     - import_tasks: ./ansible/tasks/pyenv.yaml
     - import_tasks: ./ansible/tasks/services.yaml
+    - import_tasks: ./ansible/tasks/pcloud.yaml

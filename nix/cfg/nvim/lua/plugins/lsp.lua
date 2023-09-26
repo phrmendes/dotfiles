@@ -72,7 +72,7 @@ local servers = {
 	"terraformls",
 	"texlab",
 	"yamlls",
-    "marksman",
+	"marksman",
 }
 
 for _, server in ipairs(servers) do

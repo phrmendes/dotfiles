@@ -34,8 +34,3 @@
       command:
         cmd: "pyenv exec poetry config virtualenvs.in-project true"
       changed_when: false
-
-    - name: Install python debugger
-      pip:
-        name: debugpy
-        virtualenv: "{{ home }}/.virtualenvs/debugpy"

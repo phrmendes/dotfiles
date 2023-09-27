@@ -13,7 +13,6 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex = require("ltex_extra")
 local telescope = require("telescope.builtin")
 local wk = require("which-key")
 
@@ -65,14 +64,10 @@ local servers = {
 	"ansiblels",
 	"bashls",
 	"dockerls",
-	"metals",
 	"nil_ls",
-	"ruff_lsp",
 	"taplo",
 	"terraformls",
-	"texlab",
 	"yamlls",
-	"marksman",
 }
 
 for _, server in ipairs(servers) do
@@ -125,25 +120,6 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex.setup({
-	load_langs = { "en", "pt", "pt-BR" },
-	init_check = true,
-	path = ".ltex",
-	server_opts = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		settings = {
-			ltex = {
-				language = "auto",
-				additionalRules = {
-					enablePickyRules = true,
-					motherTongue = "pt-BR",
-				},
-			},
-		},
-	},
-})
-
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {
 	sh = { "shellcheck" },
@@ -164,11 +140,8 @@ formatters.formatters_by_ft = {
 	lua = { "stylua" },
 	markdown = { "prettier" },
 	nix = { "alejandra" },
-	python = { "ruff" },
-	scala = { "scalafmt" },
 	sh = { "shfmt" },
 	terraform = { "terraform_fmt" },
-	tex = { "latexindent" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
 }

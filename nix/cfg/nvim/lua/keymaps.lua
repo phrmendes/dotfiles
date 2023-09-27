@@ -163,13 +163,13 @@ map("n", "<localleader>qq", "<cmd>cclose<cr>", { desc = "Close" })
 
 -- buffers
 section("b", "buffers", "<leader>", "n")
+map("n", "<leader>/", buffers.search, { desc = "Search in current buffer" })
+map("n", "<S-l>", "<cmd>bn<cr>", { desc = "Next buffer" })
+map("n", "<S-h>", "<cmd>bp<cr>", { desc = "Previous buffer" })
 map("n", "<leader>bb", buffers.list, { desc = "List buffers" })
 map("n", "<leader>bd", bufremove.delete, { desc = "Delete" })
-map("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next" })
 map("n", "<leader>bo", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all other buffers" })
-map("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous" })
 map("n", "<leader>bw", bufremove.wipeout, { desc = "Wipeout" })
-map("n", "<leader>/", buffers.search, { desc = "Search in current buffer" })
 
 -- DAP
 map("n", "<F1>", dap.step_over, { desc = "Step over [DAP]" })
@@ -286,13 +286,13 @@ surround.setup({
 move.setup({
 	mappings = {
 		-- visual mode
-		left = "<S-h>",
-		right = "<S-l>",
+		left = "<",
+		right = ">",
 		down = "<S-j>",
 		up = "<S-k>",
 		-- normal mode
-		line_left = "<S-h>",
-		line_right = "<S-l>",
+		line_left = "<",
+		line_right = ">",
 		line_down = "<S-j>",
 		line_up = "<S-k>",
 	},

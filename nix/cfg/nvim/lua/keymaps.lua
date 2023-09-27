@@ -55,7 +55,7 @@ map("i", "<C-l>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 
 -- [[ functions ]] ------------------------------------------------------
 local md_toggle = function()
-	local checked_character = "X"
+	local checked_character = "x"
 	local checked_checkbox = "%[" .. checked_character .. "%]"
 	local unchecked_checkbox = "%[ %]"
 	local new_line = ""

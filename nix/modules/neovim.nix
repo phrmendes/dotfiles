@@ -12,6 +12,7 @@
         url = "https://github.com/${repo}.git";
       };
     };
+  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
 in {
   programs.neovim = {
@@ -22,7 +23,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      lazygit-nvim # git ui
+      FTerm-nvim # terminal
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -33,12 +34,19 @@ in {
       fidget-nvim # lsp utils
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
+      iron-nvim # REPLs
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
+      ltex_extra-nvim # ltex
       luasnip # snippets
       mini-nvim # set of small plugins
+      nabla-nvim # math preview
       nvim-bqf # quickfix
       nvim-cmp # completion
+      nvim-dap # debug adapter protocol
+      nvim-dap-python # python dap support
+      nvim-dap-ui # ui for dap
+      nvim-dap-virtual-text # virtual text for dap
       nvim-lint # linting
       nvim-lspconfig # lsp
       nvim-tree-lua # file explorer
@@ -48,6 +56,8 @@ in {
       nvim-web-devicons # icons
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
+      telescope-bibtex # bibtex integration
+      telescope-dap-nvim # dap integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
       telescope-symbols-nvim # undo integration
@@ -67,21 +77,32 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
+        ltex-ls
         lua-language-server
+        marksman
+        metals
         nil
+        ruff
+        ruff-lsp
+        scalafmt
         shellcheck
         shfmt
         statix
         stylua
         taplo
         terraform-ls
+        texlab
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
         prettier
+        pyright
         vscode-json-languageserver
         yaml-language-server
+      ])
+      ++ (with pkgs.perl538Packages; [
+        LatexIndent
       ]);
   };
 }

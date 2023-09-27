@@ -33,8 +33,6 @@
       droidcam
       libreoffice
       logseq
-      syncthing
-      syncthingtray
       vlc
       zotero
     ])

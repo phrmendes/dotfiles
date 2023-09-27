@@ -65,6 +65,7 @@ local servers = {
 	"ansiblels",
 	"bashls",
 	"dockerls",
+	"marksman",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",
@@ -72,7 +73,6 @@ local servers = {
 	"terraformls",
 	"texlab",
 	"yamlls",
-	"marksman",
 }
 
 for _, server in ipairs(servers) do

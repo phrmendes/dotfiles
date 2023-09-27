@@ -11,13 +11,14 @@ local dap_ui = require("dapui")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
+local luasnip = require("luasnip")
 local move = require("mini.move")
 local nabla = require("nabla")
 local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
+local terminal = require("FTerm")
 local todos = require("todo-comments")
 local wk = require("which-key")
-local terminal = require("FTerm")
 
 local telescope = {
 	builtin = require("telescope.builtin"),
@@ -297,3 +298,16 @@ move.setup({
 		line_up = "<S-k>",
 	},
 })
+
+-- [[ snippets ]] -------------------------------------------------------
+map({ "i", "s" }, "<C-k>", function()
+	if luasnip.choice_active() then
+        return luasnip.change_choice(-1)
+    end
+end)
+
+map({ "i", "s" }, "<C-j>", function()
+	if luasnip.choice_active() then
+        return luasnip.change_choice(1)
+    end
+end)

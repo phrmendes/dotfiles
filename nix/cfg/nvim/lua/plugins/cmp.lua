@@ -5,7 +5,6 @@ local lspkind = require("lspkind")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
 
 -- [[ luasnip ]] --------------------------------------------------------
-require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup()
 
 -- load vscode like snippets from plugins

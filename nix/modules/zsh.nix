@@ -20,7 +20,10 @@
       zt = "${pkgs.zathura}/bin/zathura --fork";
       mb = "micromamba";
       mkdir = "mkdir -p";
+      cn = "create_note";
       of = "fzf_open_with_nvim";
+      oj = "open_journal";
+      on = "open_note";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

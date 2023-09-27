@@ -6,6 +6,7 @@ export FLAKE_PATH="$HOME/Projects/bkps/nix#phrmendes"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 export REFERENCES="$HOME/.references.bib"
+export NOTES="$HOME/pCloudDrive/notes"
 
 path+=(
 	"$HOME/.local/bin"
@@ -51,6 +52,23 @@ function fzf_open_with_nvim() {
 	if [ -n "$selection" ]; then
 		nvim "$selection"
 	fi
+}
+
+function open_note() {
+    cd "$NOTES" || return
+    fzf_preview_file
+}
+
+function create_note() {
+    note_name="$1.md"
+    cd "$NOTES" || return
+    touch "$note_name"
+    nvim "$note_name"
+}
+
+function open_journal() {
+    cd "$NOTES" || return
+    nvim journal.md
 }
 
 function get_gh_repo_ref() {

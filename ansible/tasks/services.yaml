@@ -1,8 +1,0 @@
----
-- name: Enable systemd services
-  systemd:
-    name: "{{ item }}"
-    state: started
-  with_items:
-    - docker.service
-    - containerd.service

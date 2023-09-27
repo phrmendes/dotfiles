@@ -236,8 +236,6 @@ map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 -- windows
 section("w", "windows", "<leader>", "n")
 map("n", "<leader>wd", "<C-w>q", { desc = "Close" })
-map("n", "<leader>wn", "<C-w>w", { desc = "Next" })
-map("n", "<leader>wp", "<C-w>p", { desc = "Previous" })
 map("n", "<leader>ws", "<C-w>s", { desc = "Split" })
 map("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap" })

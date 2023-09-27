@@ -36,6 +36,7 @@
       syncthing
       syncthingtray
       vlc
+      vscode
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

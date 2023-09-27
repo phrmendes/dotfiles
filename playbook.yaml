@@ -15,7 +15,6 @@
 
   tasks:
     - import_tasks: ./ansible/tasks/apt.yaml
-    - import_tasks: ./ansible/tasks/docker.yaml
     - import_tasks: ./ansible/tasks/flatpak.yaml
     - import_tasks: ./ansible/tasks/fingerprint.yaml
     - import_tasks: ./ansible/tasks/nix.yaml

@@ -13,7 +13,7 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex = require("ltex_extra")
+local ltex_extra = require("ltex_extra")
 local telescope = require("telescope.builtin")
 local wk = require("which-key")
 
@@ -125,7 +125,7 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex.setup({
+ltex_extra.setup({
 	load_langs = { "en", "pt", "pt-BR" },
 	init_check = true,
 	path = ".ltex",

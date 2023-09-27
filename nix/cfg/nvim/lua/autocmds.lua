@@ -16,7 +16,7 @@ autocmd("TermOpen", {
 autocmd("BufEnter", {
 	pattern = "*.pdf",
 	group = ft_group,
-	command = [[execute "!zathura '%'" | bdelete %]],
+	command = [[silent ! zathura "%" | bdelete %]],
 })
 
 autocmd("FileType", {

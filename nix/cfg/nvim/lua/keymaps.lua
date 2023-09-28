@@ -109,6 +109,20 @@ local buffers = {
 	end,
 }
 
+local files = {
+	find = function()
+		telescope.builtins.find_file({
+			find_command = {
+				"rg",
+				"--files",
+				"--hidden",
+				"-g",
+				"!.git",
+			},
+		})
+	end,
+}
+
 local git = {
 	stage_hunk = function()
 		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
@@ -194,7 +208,7 @@ map("n", "<leader>dlb", telescope.extensions.dap.list_breakpoints, { desc = "Bre
 
 -- files
 section("f", "files", "<leader>", "n")
-map("n", "<leader><space>", telescope.builtin.find_files, { desc = "Find files" })
+map("n", "<leader><space>", files.find, { desc = "Find files" })
 map("n", "<leader>fG", telescope.builtin.git_files, { desc = "Git files" })
 map("n", "<leader>fg", telescope.builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
@@ -302,12 +316,12 @@ move.setup({
 -- [[ snippets ]] -------------------------------------------------------
 map({ "i", "s" }, "<C-k>", function()
 	if luasnip.choice_active() then
-        return luasnip.change_choice(-1)
-    end
+		return luasnip.change_choice(-1)
+	end
 end)
 
 map({ "i", "s" }, "<C-j>", function()
 	if luasnip.choice_active() then
-        return luasnip.change_choice(1)
-    end
+		return luasnip.change_choice(1)
+	end
 end)

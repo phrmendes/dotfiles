@@ -15,6 +15,7 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local ltex_extra = require("ltex_extra")
 local telescope = require("telescope.builtin")
+local util = require("lspconfig.util")
 local wk = require("which-key")
 
 -- [[ augroups ]] -------------------------------------------------------
@@ -134,7 +135,7 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		settings = {
 			ltex = {
-				root_dir = { ".ltex", ".git" },
+				root_dir = util.root_pattern(".ltex", ".git"),
 				language = "auto",
 				additionalRules = {
 					enablePickyRules = true,

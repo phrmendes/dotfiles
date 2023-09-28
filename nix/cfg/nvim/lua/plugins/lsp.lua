@@ -134,7 +134,7 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		settings = {
 			ltex = {
-                root_dir = { ".ltex", ".git" },
+				root_dir = { ".ltex", ".git" },
 				language = "auto",
 				additionalRules = {
 					enablePickyRules = true,
@@ -169,9 +169,14 @@ formatters.formatters_by_ft = {
 	scala = { "scalafmt" },
 	sh = { "shfmt" },
 	terraform = { "terraform_fmt" },
-	tex = { "latexindent" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
+}
+
+formatters.formatters.tex = {
+	command = "latexindent.pl",
+	args = { "-" },
+	stdin = true,
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------

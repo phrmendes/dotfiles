@@ -2,7 +2,7 @@
 local luasnip = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 local id = os.date("%d%m%Y%H%M%S")
-local current_date = os.date("%A, %d %B %Y")
+local current_date = os.date("%a, %d %b %y")
 local c = luasnip.choice_node
 local i = luasnip.insert_node
 local s = luasnip.snippet
@@ -20,7 +20,7 @@ id: {}
 ]]
 
 local paper_metadata = s(
-	"paper_metadata",
+	"paperHeader",
 	fmt(paper_metadata_template, {
 		i(1, "title"),
 		i(2, "citekey"),
@@ -39,7 +39,7 @@ id: {}
 ]]
 
 local std_metadata = s(
-	"std_metadata",
+	"stdHeader",
 	fmt(std_metadata_template, {
 		i(1, "title"),
 		i(2, "tags"),
@@ -53,7 +53,7 @@ local journal_entry_template = [[
 ]]
 
 local journal_entry = s(
-	"journal_entry",
+	"journalEntry",
 	fmt(journal_entry_template, {
 		t(current_date),
 	})
@@ -61,16 +61,15 @@ local journal_entry = s(
 
 -- task entry
 local task_entry_template = [[
-- [ ] {} {} {} {}
+- [ ] [{}] {} {}
 ]]
 
 local task_entry = s(
-	"task_entry",
+	"todoEntry",
 	fmt(task_entry_template, {
-		c(1, { t("🔥"), t("⚠️"), t("🌴") }),
+		c(1, { t("#A"), t("#B"), t("#C") }),
 		i(2, "task"),
-		c(3, { t("📅"), t("") }),
-		i(4, "dd-mm-yyyy"),
+		c(3, { t("due:"), t("") }),
 	})
 )
 

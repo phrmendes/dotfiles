@@ -54,6 +54,7 @@ cmp.setup({
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "orgmode" }, -- orgmode headings
 		{ name = "path" }, -- file system paths
+        { name = "cmp_zotcite"} -- zotcite
 	}),
 	-- configure lspkind for vscode like icons
 	formatting = {

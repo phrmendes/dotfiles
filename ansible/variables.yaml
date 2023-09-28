@@ -65,6 +65,9 @@ apt:
     - mlocate
     - nala
     - openssh-server
+    - python3-poppler-qt5
+    - python3-pyqt5
+    - python3-yaml
     - rar
     - tailscale
     - tk-dev

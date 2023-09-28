@@ -56,7 +56,7 @@ function fzf_open_with_nvim() {
 
 function open_note() {
     cd "$NOTES" || return
-    fzf_preview_file
+    fzf_open_with_nvim
 }
 
 function create_note() {
@@ -68,7 +68,7 @@ function create_note() {
 
 function open_journal() {
     cd "$NOTES" || return
-    nvim journal.md
+    nvim diario.md
 }
 
 function get_gh_repo_ref() {

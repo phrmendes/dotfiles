@@ -9,11 +9,22 @@ local s = luasnip.snippet
 local t = luasnip.text_node
 
 -- [[ snippets ]] --------------------------------------------------------
--- id field
-local id_template = [[id: {}]]
-local id_field = s(
-	"stdHeader",
-	fmt(id_template, {
+-- paper metdata
+local paper_metadata_template = [[
+---
+title: {}
+citekey: {}
+tags: [{}]
+id: {}
+---
+]]
+
+local paper_metadata = s(
+	"paperHeader",
+	fmt(paper_metadata_template, {
+		i(1, "title"),
+		i(2, "citekey"),
+		i(3, "tags"),
 		t(id),
 	})
 )
@@ -32,7 +43,7 @@ local std_metadata = s(
 	fmt(std_metadata_template, {
 		i(1, "title"),
 		i(2, "tags"),
-		t(id_field),
+		t(id),
 	})
 )
 
@@ -64,7 +75,7 @@ local task_entry = s(
 
 -- apply snippets
 luasnip.add_snippets("markdown", {
-    id_field,
+	paper_metadata,
 	std_metadata,
 	journal_entry,
 	task_entry,

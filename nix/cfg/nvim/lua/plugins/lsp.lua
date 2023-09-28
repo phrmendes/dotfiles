@@ -134,6 +134,7 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		settings = {
 			ltex = {
+                root_dir = { ".ltex", ".git" },
 				language = "auto",
 				additionalRules = {
 					enablePickyRules = true,

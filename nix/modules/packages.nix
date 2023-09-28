@@ -32,7 +32,9 @@
       deluge
       droidcam
       libreoffice
+      logseq
       vlc
+      vscode
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

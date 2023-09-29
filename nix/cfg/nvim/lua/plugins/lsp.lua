@@ -87,19 +87,17 @@ lspconfig.lua_ls.setup({
 
 lspconfig.ltex.setup({
 	on_attach = function()
+		utils.on_attach()
 		ltex_extra.setup({
 			load_langs = { "en-US", "pt-BR" },
 			init_check = false,
 			path = "./.ltex/",
 			log_level = "none",
 		})
-
-		utils.on_attach()
 	end,
 	settings = {
 		ltex = {
-			root_dir = lsp_util.root_pattern(".ltex", ".git"),
-            checkFrequency = "save",
+			checkFrequency = "save",
 			additionalRules = {
 				motherTongue = "pt-BR",
 			},

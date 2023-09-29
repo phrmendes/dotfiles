@@ -4,7 +4,7 @@ local notes = os.getenv("NOTES")
 obsidian.setup({
 	dir = notes,
 	daily_notes = {
-		folder = notes .. "/diary",
+		folder = "diary",
 		date_dormat = "%Y-%m-%d",
 		alias_format = "%a, %d %b %Y",
 	},

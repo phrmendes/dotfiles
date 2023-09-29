@@ -42,6 +42,7 @@ wk.setup({ window = { border = "single", position = "bottom" } })
 
 -- [[ copilot settings ]] -----------------------------------------------
 g.copilot_no_tab_map = true
+g.copilot_filetypes = { markdown = false }
 
 local copilot_opts = {
 	noremap = true,
@@ -140,14 +141,6 @@ map("n", "<leader>gg", function()
 end, { desc = "LazyGit" })
 
 -- obsidian
-map("n", "gf", function()
-	if obsidian.util.cursor_on_markdown_link() then
-		return "<cmd>ObsidianFollowLink<CR>"
-	else
-		return "gf"
-	end
-end, { noremap = false, expr = true })
-
 utils.section("o", "obsidian", "<leader>", { "n", "v" })
 map("n", "<leader>o<space>", "<cmd>ObsidianSearch<CR>", { desc = "Search" })
 map("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" })

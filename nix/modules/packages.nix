@@ -32,6 +32,7 @@
       deluge
       droidcam
       libreoffice
+      obsidian
       vlc
       zotero
     ])

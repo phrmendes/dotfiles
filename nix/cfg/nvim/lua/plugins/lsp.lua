@@ -26,7 +26,6 @@ local servers = {
 	"ansiblels",
 	"bashls",
 	"dockerls",
-	"marksman",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",
@@ -96,7 +95,7 @@ ltex_extra.setup({
 		settings = {
 			ltex = {
 				root_dir = lsp_util.root_pattern(".ltex", ".git"),
-				language = "auto",
+				language = "en-US",
 				additionalRules = {
 					enablePickyRules = true,
 					motherTongue = "pt-BR",

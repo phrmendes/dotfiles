@@ -13,6 +13,7 @@ local jump2d = require("mini.jump2d")
 local luasnip = require("luasnip")
 local move = require("mini.move")
 local nabla = require("nabla")
+local obsidian = require("obsidian")
 local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
 local todos = require("todo-comments")
@@ -138,6 +139,25 @@ map("n", "<leader>gg", function()
 	utils.git.ui:toggle()
 end, { desc = "LazyGit" })
 
+-- obsidian
+map("n", "gf", function()
+	if obsidian.util.cursor_on_markdown_link() then
+		return "<cmd>ObsidianFollowLink<CR>"
+	else
+		return "gf"
+	end
+end, { noremap = false, expr = true })
+
+utils.section("o", "obsidian", "<leader>", { "n", "v" })
+map("n", "<leader>o<space>", "<cmd>ObsidianSearch<CR>", { desc = "Search" })
+map("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" })
+map("n", "<leader>of", "<cmd>ObsidianFollowLink<CR>", { desc = "Follow link under cursor" })
+map("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New note" })
+map("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open note" })
+map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick switch to another note" })
+map("v", "<leader>oL", "<cmd>ObsidianLinkNew<CR>", { desc = "Create new note and insert link" })
+map("v", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Insert link" })
+
 -- todos
 map("n", "]t", todos.jump_next, { desc = "Next todo comment" })
 map("n", "[t", todos.jump_prev, { desc = "Previous todo comment" })
@@ -148,20 +168,6 @@ map("n", "<space>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
 map("n", "<space>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
 map("n", "<space>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
 map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
-
--- vimwiki
-utils.section("w", "wiki", "<leader>", "n")
-map("n", "<leader>ws", "<Plug>VimwikiUISelect", { desc = "Select wiki" })
-map("n", "<leader>wt", "<Plug>VimwikiTabIndex", { desc = "Index in new tab" })
-map("n", "<leader>ww", "<Plug>VimwikiIndex", { desc = "Index" })
-
-utils.section("wd", "diary", "<leader>", "n")
-map("n", "<leader>wdd", "<Plug>VimwikiMakeDiaryNote", { desc = "Make note" })
-map("n", "<leader>wdi", "<Plug>VimwikiDiaryIndex", { desc = "Index" })
-map("n", "<leader>wdl", "<Plug>VimwikiDiaryGenerateLinks", { desc = "Generate links" })
-map("n", "<leader>wds", "<Plug>VimwikiTabMakeDiaryNote", { desc = "Make note in new tab" })
-map("n", "<leader>wdt", "<Plug>VimwikiMakeTomorrowDiaryNote", { desc = "Make tomorrow note" })
-map("n", "<leader>wdy", "<Plug>VimwikiMakeYesterdayDiaryNote", { desc = "Make yesterday note" })
 
 -- general keymaps
 map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })

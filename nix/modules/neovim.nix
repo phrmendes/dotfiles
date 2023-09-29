@@ -14,6 +14,7 @@
     };
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+  obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -56,6 +57,7 @@ in {
       nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
+      obsidian-nvim # obsidian
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
       telescope-bibtex # bibtex integration
@@ -72,7 +74,6 @@ in {
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
-      vimwiki # vimwiki
       which-key-nvim # keybindings
     ];
     extraPackages =
@@ -82,7 +83,6 @@ in {
         ansible-lint
         ltex-ls
         lua-language-server
-        marksman
         metals
         nil
         ruff

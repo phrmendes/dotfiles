@@ -26,7 +26,7 @@ in {
       FTerm-nvim # terminal
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
-      cmp-pandoc-nvim # bibtex completion 
+      cmp-pandoc-nvim # bibtex completion
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
@@ -40,6 +40,7 @@ in {
       lspkind-nvim # vscode-like pictograms
       ltex_extra-nvim # ltex
       luasnip # snippets
+      markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
       nabla-nvim # math preview
       nvim-bqf # quickfix

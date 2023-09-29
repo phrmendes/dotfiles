@@ -151,16 +151,17 @@ map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 
 -- vimwiki
 utils.section("w", "wiki", "<leader>", "n")
-map("n", "<leader>ww", "<cmd>VimwikiIndex<cr>", { desc = "Index" })
-map("n", "<leader>wt", "<cmd>VimwikiTabIndex<cr>", { desc = "Index in new tab" })
-map("n", "<leader>ws", "<cmd>VimwikiUISelect<cr>", { desc = "Select wiki" })
+map("n", "<leader>ws", "<Plug>VimwikiUISelect", { desc = "Select wiki" })
+map("n", "<leader>wt", "<Plug>VimwikiTabIndex", { desc = "Index in new tab" })
+map("n", "<leader>ww", "<Plug>VimwikiIndex", { desc = "Index" })
 
 utils.section("wd", "diary", "<leader>", "n")
-map("n", "<leader>wdi", "<cmd>VimwikiDiaryIndex<cr>", { desc = "Diary index" })
-map("n", "<leader>wdd", "<cmd>VimwikiMakeDiaryNote<cr>", { desc = "Make diary note" })
-map("n", "<leader>wds", "<cmd>VimwikiTabMakeDiaryNote<cr>", { desc = "Make diary note in new tab" })
-map("n", "<leader>wdy", "<cmd>VimwikiMakeYesterdayDiaryNote<cr>", { desc = "Make yesterday diary note" })
-map("n", "<leader>wdt", "<cmd>VimwikiMakeTomorrowDiaryNote<cr>", { desc = "Make tomorrow diary note" })
+map("n", "<leader>wdd", "<Plug>VimwikiMakeDiaryNote", { desc = "Make note" })
+map("n", "<leader>wdi", "<Plug>VimwikiDiaryIndex", { desc = "Index" })
+map("n", "<leader>wdl", "<Plug>VimwikiDiaryGenerateLinks", { desc = "Generate links" })
+map("n", "<leader>wds", "<Plug>VimwikiTabMakeDiaryNote", { desc = "Make note in new tab" })
+map("n", "<leader>wdt", "<Plug>VimwikiMakeTomorrowDiaryNote", { desc = "Make tomorrow note" })
+map("n", "<leader>wdy", "<Plug>VimwikiMakeYesterdayDiaryNote", { desc = "Make yesterday note" })
 
 -- general keymaps
 map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })
@@ -184,6 +185,7 @@ autocmd("FileType", {
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
 		map("n", "<localleader>e", nabla.toggle_virt, { desc = "Toggle equation preview" })
 		map("n", "<localleader>x", utils.md_toggle, { desc = "Toggle check" })
+		map("n", "<localleader>p", "<Plug>MarkdownPreviewToggle", { desc = "Markdown preview" })
 	end,
 })
 

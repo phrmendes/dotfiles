@@ -32,7 +32,6 @@
       deluge
       droidcam
       libreoffice
-      logseq
       vlc
       zotero
     ])

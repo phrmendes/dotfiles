@@ -56,7 +56,7 @@ g.maplocalleader = ","
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- accept copilot suggestion
-map("i", "<C-l>", [[ copilot#Accept("<CR>") ]], copilot_opts)
+map("i", "<C-CR>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 
 -- remap for dealing with word wrap
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -149,7 +149,21 @@ map("n", "<space>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
 map("n", "<space>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
 map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 
+-- vimwiki
+utils.section("w", "wiki", "<leader>", "n")
+map("n", "<leader>ww", "<cmd>VimwikiIndex<cr>", { desc = "Index" })
+map("n", "<leader>wt", "<cmd>VimwikiTabIndex<cr>", { desc = "Index in new tab" })
+map("n", "<leader>ws", "<cmd>VimwikiUISelect<cr>", { desc = "Select wiki" })
+
+utils.section("wd", "diary", "<leader>", "n")
+map("n", "<leader>wdi", "<cmd>VimwikiDiaryIndex<cr>", { desc = "Diary index" })
+map("n", "<leader>wdd", "<cmd>VimwikiMakeDiaryNote<cr>", { desc = "Make diary note" })
+map("n", "<leader>wds", "<cmd>VimwikiTabMakeDiaryNote<cr>", { desc = "Make diary note in new tab" })
+map("n", "<leader>wdy", "<cmd>VimwikiMakeYesterdayDiaryNote<cr>", { desc = "Make yesterday diary note" })
+map("n", "<leader>wdt", "<cmd>VimwikiMakeTomorrowDiaryNote<cr>", { desc = "Make tomorrow diary note" })
+
 -- general keymaps
+map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })
 map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
 map("n", "<leader>c", "<cmd>nohl<cr>", { desc = "Clear highlights" })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer (tree)" })

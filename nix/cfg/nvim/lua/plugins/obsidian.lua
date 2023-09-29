@@ -5,7 +5,7 @@ obsidian.setup({
 	dir = notes,
 	daily_notes = {
 		folder = notes .. "/diary",
-		date_dormat = "%Y_%m_%d",
+		date_dormat = "%Y-%m-%d",
 		alias_format = "%a, %d %b %Y",
 	},
 	completion = {

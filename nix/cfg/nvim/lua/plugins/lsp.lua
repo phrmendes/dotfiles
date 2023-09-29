@@ -85,21 +85,23 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex_extra.setup({
-	load_langs = { "en", "pt", "pt-BR" },
-	init_check = true,
-	path = ".ltex",
-	server_opts = {
-		on_attach = utils.on_attach,
-		capabilities = capabilities,
-		settings = {
-			ltex = {
-				root_dir = lsp_util.root_pattern(".ltex", ".git"),
-				language = "en-US",
-				additionalRules = {
-					enablePickyRules = true,
-					motherTongue = "pt-BR",
-				},
+lspconfig.ltex.setup({
+	on_attach = function()
+		ltex_extra.setup({
+			load_langs = { "en-US", "pt-BR" },
+			init_check = false,
+			path = "./.ltex/",
+			log_level = "none",
+		})
+
+		utils.on_attach()
+	end,
+	settings = {
+		ltex = {
+			root_dir = lsp_util.root_pattern(".ltex", ".git"),
+            checkFrequency = "save",
+			additionalRules = {
+				motherTongue = "pt-BR",
 			},
 		},
 	},

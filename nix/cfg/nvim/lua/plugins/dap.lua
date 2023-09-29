@@ -7,7 +7,7 @@ local dap_virtual_text = require("nvim-dap-virtual-text")
 
 dap_ui.setup()
 dap_virtual_text.setup()
-dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+dap_python.setup(fn.expand("~/.virtualenvs/debugpy/bin/python"))
 dap_python.test_runner = "unittest"
 
 dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open

@@ -1,6 +1,7 @@
 -- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local lang = os.getenv("PROJECT_LANG") or "en"
 
 -- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -9,8 +10,7 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex_extra = require("ltex_extra")
-local lsp_util = require("lspconfig.util")
+local ltex = require("ltex_extra")
 local utils = require("utils")
 
 -- [[ augroups ]] -------------------------------------------------------
@@ -18,8 +18,6 @@ local lsp_augroup = augroup("LspSettings", { clear = true })
 
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
-
--- [[ on attatch ]] -----------------------------------------------------
 
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
@@ -85,19 +83,17 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex_extra.setup({
+ltex.setup({
 	load_langs = { "en-US", "pt-BR" },
-	init_check = false,
-	path = "./.ltex/",
-	log_level = "none",
+	path = vim.fn.expand("~/.local/share/ltex"),
 	server_opts = {
 		on_attach = utils.on_attach,
+		capabilities = capabilities,
 		settings = {
 			ltex = {
-				language = "pt-BR",
-				checkFrequency = "save",
+				filetypes = { "markdown" },
+				language = lang,
 				additionalRules = {
-					enablePickyRules = true,
 					motherTongue = "pt-BR",
 				},
 			},
@@ -109,7 +105,7 @@ ltex_extra.setup({
 linters.linters_by_ft = {
 	sh = { "shellcheck" },
 	nix = { "statix" },
-	ansible = { "ansible_lint" },
+	yaml = { "ansible_lint" },
 }
 
 autocmd({ "BufWritePost" }, {
@@ -120,6 +116,12 @@ autocmd({ "BufWritePost" }, {
 })
 
 -- [[ formatters ]] -----------------------------------------------------
+formatters.formatters.tex = {
+	command = "latexindent.pl",
+	args = { "-" },
+	stdin = true,
+}
+
 formatters.formatters_by_ft = {
 	json = { "prettier" },
 	lua = { "stylua" },
@@ -131,12 +133,6 @@ formatters.formatters_by_ft = {
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
-}
-
-formatters.formatters.tex = {
-	command = "latexindent.pl",
-	args = { "-" },
-	stdin = true,
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------

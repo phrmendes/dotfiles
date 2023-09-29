@@ -31,6 +31,7 @@
       chromium
       deluge
       droidcam
+      languagetool
       libreoffice
       obsidian
       vlc

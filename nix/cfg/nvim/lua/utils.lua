@@ -109,12 +109,6 @@ M.buffers = {
 	list = function()
 		telescope_no_previewer(telescope.builtin.buffers)
 	end,
-	format = function()
-		formatters.format({
-			timeout_ms = 500,
-			lsp_fallback = true,
-		})
-	end,
 }
 
 M.files = {

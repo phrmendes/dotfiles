@@ -10,7 +10,6 @@ local dap = require("dap")
 local dap_ui = require("dapui")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
-local luasnip = require("luasnip")
 local move = require("mini.move")
 local nabla = require("nabla")
 local splitjoin = require("mini.splitjoin")
@@ -18,7 +17,6 @@ local surround = require("mini.surround")
 local todos = require("todo-comments")
 local utils = require("utils")
 local wk = require("which-key")
-local ltex = require("ltex-client.server")
 
 local telescope = {
 	builtin = require("telescope.builtin"),
@@ -166,7 +164,7 @@ map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })
 map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
 map("n", "<leader>c", "<cmd>nohl<cr>", { desc = "Clear highlights" })
-map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer (tree)" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
 map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<leader>s", "<C-w>s", { desc = "Split window" })
@@ -175,6 +173,7 @@ map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
 map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 map("n", "<localleader>s", telescope.builtin.symbols, { desc = "Symbols" })
+map("n", "<localleader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 -- markdown/quarto
 autocmd("FileType", {
@@ -190,10 +189,10 @@ autocmd("FileType", {
 
 -- [[ mini stuff ]] -----------------------------------------------------
 -- moving around buffer
-jump2d.setup({ mappings = { start_jumping = "<leader>j" } })
+jump2d.setup({ mappings = { start_jumping = "<localleader>j" } })
 
 -- split and join arguments
-splitjoin.setup({ mappings = { toggle = "<leader>t" } })
+splitjoin.setup({ mappings = { toggle = "<localleader>t" } })
 
 -- surround text objects
 utils.section("s", "surround", "<localleader>", { "n", "v" })
@@ -224,16 +223,3 @@ move.setup({
 		line_up = "<S-k>",
 	},
 })
-
--- [[ snippets ]] -------------------------------------------------------
-map({ "i", "s" }, "<C-k>", function()
-	if luasnip.choice_active() then
-		return luasnip.change_choice(-1)
-	end
-end)
-
-map({ "i", "s" }, "<C-j>", function()
-	if luasnip.choice_active() then
-		return luasnip.change_choice(1)
-	end
-end)

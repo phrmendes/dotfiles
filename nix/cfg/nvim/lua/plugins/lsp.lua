@@ -1,6 +1,7 @@
 -- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local lang = os.getenv("LTEX_LANG") or "en-US"
 
 -- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -10,7 +11,7 @@ local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local utils = require("utils")
-local ltex_client = require("ltex-client")
+local ltex_ls = require("ltex-ls")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("LspSettings", { clear = true })
@@ -23,7 +24,6 @@ local servers = {
 	"ansiblels",
 	"bashls",
 	"dockerls",
-	"ltex",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",
@@ -83,8 +83,21 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex_client.setup({
-	user_dictionaries_path = vim.fn.expand("~/.local/share/ltex"),
+ltex_ls.setup({
+	on_attach = utils.on_attach,
+	capabilities = capabilities,
+	use_spellfile = true,
+	filetypes = { "markdown" },
+	settings = {
+		ltex = {
+			enabled = { "markdown" },
+			language = lang,
+			additionalRules = {
+				enablePickyRules = true,
+				motherTongue = "pt-BR",
+			},
+		},
+	},
 })
 
 -- [[ linters ]] --------------------------------------------------------
@@ -115,7 +128,7 @@ formatters.formatters_by_ft = {
 	nix = { "alejandra" },
 	python = { "ruff" },
 	scala = { "scalafmt" },
-	sh = { "shfmt" },
+	sh = { "shellharden" },
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },

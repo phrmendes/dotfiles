@@ -15,7 +15,7 @@
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
   obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
-  ltex-client = fromGitHub "54cd91e8bbe7a4f054c274dde0bf821b15f79b05" "HEAD" "icewind/ltex-client.nvim";
+  ltex-ls-nvim = fromGitHub "c8139ea6b7f3d71adcff121e16ee8726037ffebd" "HEAD" "vigoux/ltex-ls.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -39,7 +39,7 @@ in {
       iron-nvim # REPLs
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
-      ltex-client # ltex-ls utils
+      ltex-ls-nvim # ltex-ls settings
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
@@ -75,6 +75,7 @@ in {
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
+      zen-mode-nvim # zen mode
     ];
     extraPackages =
       (with pkgs; [
@@ -89,7 +90,7 @@ in {
         ruff-lsp
         scalafmt
         shellcheck
-        shfmt
+        shellharden
         statix
         stylua
         taplo

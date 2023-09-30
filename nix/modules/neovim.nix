@@ -15,6 +15,7 @@
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
   obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
+  ltex-client = fromGitHub "54cd91e8bbe7a4f054c274dde0bf821b15f79b05" "HEAD" "icewind/ltex-client.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -38,7 +39,7 @@ in {
       iron-nvim # REPLs
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
-      ltex_extra-nvim # ltex
+      ltex-client # ltex-ls utils
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins

@@ -1,8 +1,6 @@
 -- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local lang = os.getenv("PROJECT_LANG") or "en-US"
-local ltex_path = os.getenv("LTEX_PATH") or vim.fn.expand("~/.local/share/ltex")
 
 -- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -11,8 +9,8 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex = require("ltex_extra")
 local utils = require("utils")
+local ltex_client = require("ltex-client")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("LspSettings", { clear = true })
@@ -25,6 +23,7 @@ local servers = {
 	"ansiblels",
 	"bashls",
 	"dockerls",
+	"ltex",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",
@@ -84,22 +83,8 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex.setup({
-	load_langs = { "en-US", "pt-BR" },
-	path = ltex_path,
-	server_opts = {
-		on_attach = utils.on_attach,
-		capabilities = capabilities,
-		settings = {
-			ltex = {
-				filetypes = { "markdown" },
-				language = lang,
-				additionalRules = {
-					motherTongue = "pt-BR",
-				},
-			},
-		},
-	},
+ltex_client.setup({
+	user_dictionaries_path = vim.fn.expand("~/.local/share/ltex"),
 })
 
 -- [[ linters ]] --------------------------------------------------------

@@ -18,6 +18,7 @@ local surround = require("mini.surround")
 local todos = require("todo-comments")
 local utils = require("utils")
 local wk = require("which-key")
+local ltex = require("ltex-client.server")
 
 local telescope = {
 	builtin = require("telescope.builtin"),

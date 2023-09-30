@@ -1,6 +1,7 @@
 -- [[ variables ]] ------------------------------------------------------
 local cmd = vim.cmd
 local opt = vim.opt
+local lang = os.getenv("SPELL_LANG") or "en_us"
 
 -- [[ imports ]] --------------------------------------------------------
 local bufremove = require("mini.bufremove")
@@ -15,14 +16,14 @@ local tabline = require("mini.tabline")
 -- syntax
 opt.syntax = "on"
 
--- filetype plugin
-cmd([[ filetype plugin on ]])
+-- file type plugin
+cmd("filetype plugin on")
 
 -- line numbers
 opt.relativenumber = true
 opt.number = true
 
--- tabs and identation
+-- tabs and indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
@@ -50,7 +51,7 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 
 -- backspace
-opt.backspace = "indent,eol,start"
+opt.backspace = { "indent", "eol", "start" }
 
 -- clipboard
 opt.clipboard:append("unnamedplus")
@@ -71,16 +72,13 @@ opt.timeout = true
 opt.timeoutlen = 300
 
 -- better completion experience
-opt.completeopt = "noinsert,menuone,noselect"
+opt.completeopt = { "noinsert", "menuone", "noselect" }
 
 -- random
 opt.iskeyword:append("-")
 
 -- default terminal
 opt.shell = "zsh"
-
--- colorscheme
-cmd([[ colorscheme catppuccin-mocha ]])
 
 -- conceal links
 opt.conceallevel = 2

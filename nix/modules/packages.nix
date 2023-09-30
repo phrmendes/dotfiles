@@ -17,7 +17,6 @@
       ncdu
       pandoc
       parallel
-      quarto
       ripgrep
       scala_3
       sqlite
@@ -26,6 +25,7 @@
       terraform
       xclip
       # GUI
+      vscode
       bitwarden
       caffeine-ng
       chromium

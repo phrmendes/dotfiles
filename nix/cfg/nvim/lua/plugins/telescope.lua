@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 local telescope = require("telescope")
 local themes = require("telescope.themes")
 local undo_actions = require("telescope-undo.actions")
-local references = os.getenv("REFERENCES")
+local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
 
 telescope.setup({
 	defaults = {

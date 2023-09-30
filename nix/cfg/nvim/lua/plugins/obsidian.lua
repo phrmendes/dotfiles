@@ -1,8 +1,13 @@
 local obsidian = require("obsidian")
-local notes = os.getenv("NOTES")
+local notes = os.getenv("NOTES") or vim.fn.expand("~/pCloudDrive/notes")
 
 obsidian.setup({
 	dir = notes,
+	finder = "telescope.nvim",
+	open_notes_in = "current",
+	overwrite_mappings = true,
+	sort_by = "modified",
+	sort_reversed = true,
 	daily_notes = {
 		folder = "diary",
 		date_dormat = "%Y-%m-%d",
@@ -22,9 +27,4 @@ obsidian.setup({
 			opts = { noremap = false, expr = true, buffer = true },
 		},
 	},
-	overwrite_mappings = true,
-	finder = "telescope.nvim",
-	open_notes_in = "current",
-	sort_by = "modified",
-	sort_reversed = true,
 })

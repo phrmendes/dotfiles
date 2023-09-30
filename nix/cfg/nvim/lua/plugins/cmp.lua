@@ -3,20 +3,12 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
-local pandoc = require("cmp_pandoc")
 
 -- [[ luasnip ]] --------------------------------------------------------
 luasnip.config.setup()
 
 -- load vscode like snippets from plugins
 vscode_loaders.lazy_load()
-
--- [[ pandoc ]] ---------------------------------------------------------
-pandoc.setup({
-	crossref = {
-		enable_nabla = true,
-	},
-})
 
 -- [[ completion setup ]] -----------------------------------------------
 cmp.setup({
@@ -61,7 +53,6 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "path" }, -- file system paths
-		{ name = "cmp_pandoc" }, -- bibtex references
 	}),
 	-- configure lspkind for vscode like icons
 	formatting = {

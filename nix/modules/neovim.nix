@@ -27,7 +27,6 @@ in {
       FTerm-nvim # terminal
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
-      cmp-pandoc-nvim # bibtex completion
       cmp-path # path completion
       cmp_luasnip # snippets completion
       comment-nvim # comments

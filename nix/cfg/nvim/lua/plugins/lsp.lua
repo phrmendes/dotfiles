@@ -1,7 +1,8 @@
 -- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local lang = os.getenv("PROJECT_LANG") or "en"
+local lang = os.getenv("PROJECT_LANG") or "en-US"
+local ltex_path = os.getenv("LTEX_PATH") or vim.fn.expand("~/.local/share/ltex")
 
 -- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -85,7 +86,7 @@ lspconfig.lua_ls.setup({
 
 ltex.setup({
 	load_langs = { "en-US", "pt-BR" },
-	path = vim.fn.expand("~/.local/share/ltex"),
+	path = ltex_path,
 	server_opts = {
 		on_attach = utils.on_attach,
 		capabilities = capabilities,

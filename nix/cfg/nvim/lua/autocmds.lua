@@ -13,12 +13,6 @@ autocmd("TermOpen", {
 	command = [[setlocal nonumber norelativenumber]],
 })
 
-autocmd("BufEnter", {
-	pattern = "*.pdf",
-	group = ft_group,
-	command = [[silent ! zathura "%" --fork | bdelete %]],
-})
-
 autocmd("FileType", {
 	pattern = "quarto",
 	group = ft_group,

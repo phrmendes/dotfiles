@@ -9,8 +9,6 @@ pcloud:
   version: 1.14.0
 nix:
   version: 2.17.0
-quarto:
-  version: 1.3.450
 keyring:
   tailscale:
     url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
@@ -29,8 +27,6 @@ flatpak:
     - com.zettlr.Zettlr
     - org.wezfurlong.wezterm
 apt:
-  deb:
-    - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ quarto.version }}/quarto-{{ quarto.version }}-{{ ansible_system | lower }}-amd64.deb"
   remove:
     - baobab
     - evince

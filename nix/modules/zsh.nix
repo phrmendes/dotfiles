@@ -15,7 +15,9 @@
       ls = "${pkgs.eza}/bin/eza --icons";
       lt = "${pkgs.eza}/bin/eza --icons --tree";
       ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
-      on = "${pkgs.neovim-unwrapped}/bin/nvim +VimwikiIndex";
+      on = "${pkgs.neovim-unwrapped}/bin/nvim +ObsidianNew";
+      os = "${pkgs.neovim-unwrapped}/bin/nvim +ObsidianSearch";
+      ot = "${pkgs.neovim-unwrapped}/bin/nvim +ObsidianToday";
       tldr = "${pkgs.tealdeer}/bin/tldr";
       tx = "${pkgs.tmux}/bin/tmux";
       zt = "${pkgs.zathura}/bin/zathura --fork";

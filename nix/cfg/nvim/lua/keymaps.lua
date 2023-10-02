@@ -1,7 +1,10 @@
 -- [[ variables ]] ------------------------------------------------------
-local g = vim.g
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local buf = vim.lsp.buf
+local diag = vim.diagnostic
+local g = vim.g
+local lsp = vim.lsp
 local map = vim.keymap.set
 
 -- [[ imports ]] --------------------------------------------------------
@@ -9,6 +12,7 @@ local bufremove = require("mini.bufremove")
 local dap = require("dap")
 local dap_ui = require("dapui")
 local dial = require("dial.map")
+local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
 local move = require("mini.move")
@@ -27,6 +31,7 @@ local telescope = {
 
 -- [[ augroups ]] -------------------------------------------------------
 local ft_group = augroup("UserFiletypeKeymaps", { clear = true })
+local lsp_augroup = augroup("UserLspConfig", { clear = true })
 
 -- [[ leader key ]] -----------------------------------------------------
 g.mapleader = " "
@@ -209,6 +214,35 @@ autocmd("FileType", {
 		map("n", "<localleader>e", nabla.toggle_virt, { desc = "Toggle equation preview" })
 		map("n", "<localleader>x", utils.md_toggle, { desc = "Toggle check" })
 		map("n", "<localleader>p", "<Plug>MarkdownPreviewToggle", { desc = "Markdown preview" })
+	end,
+})
+
+-- lsp
+autocmd("LspAttach", {
+	group = lsp_augroup,
+	callback = function(ev)
+		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+		map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
+		map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
+		map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
+		map("n", "gR", telescope.builtin.lsp_references, { desc = "Go to references [LSP]" })
+		map("n", "gd", telescope.builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
+		map("n", "gh", buf.hover, { desc = "Show hover [LSP]" })
+		map("n", "gi", telescope.builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
+		map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
+		map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
+
+		utils.section("c", "code action [LSP]", "<localleader>", { "n", "v" })
+		map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available" })
+
+		utils.section("l", "LSP", "<leader>", "n")
+		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
+		map("n", "<leader>ld", telescope.builtin.diagnostics, { desc = "Diagnostics" })
+		map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
+		map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
+		map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
+		map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 	end,
 })
 

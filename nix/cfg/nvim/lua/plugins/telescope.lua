@@ -8,10 +8,6 @@ telescope.setup({
 	defaults = {
 		hidden = true,
 		layout_strategy = "vertical",
-		layout_config = {
-            preview_height = 0.3,
-			prompt_position = "bottom",
-		},
 		mappings = {
 			i = {
 				["<C-n>"] = actions.move_selection_next,
@@ -25,8 +21,14 @@ telescope.setup({
 			find_command = { "rg", "--files", "--hidden", "--glob", "!.git" },
 			previewer = false,
 		},
-		buffers = { previewer = false },
-		current_buffer_fuzzy_find = { previewer = false },
+		buffers = {
+			previewer = false,
+			theme = "dropdown",
+		},
+		current_buffer_fuzzy_find = {
+			previewer = false,
+			theme = "dropdown",
+		},
 		git_branches = { previewer = false },
 		commands = { previewer = false },
 		help_tags = { previewer = false },

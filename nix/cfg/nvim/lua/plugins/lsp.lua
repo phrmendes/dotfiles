@@ -1,6 +1,7 @@
 -- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local fn = vim.fn
 local lang = os.getenv("LTEX_LANG") or "en-US"
 
 -- [[ imports ]] --------------------------------------------------------
@@ -10,11 +11,10 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local utils = require("utils")
 local ltex_ls = require("ltex-ls")
 
 -- [[ augroups ]] -------------------------------------------------------
-local lsp_augroup = augroup("LspSettings", { clear = true })
+local lsp_augroup = augroup("UserLspConfig", { clear = true })
 
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -36,19 +36,16 @@ local servers = {
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({
 		capabilities = capabilities,
-		on_attach = utils.on_attach,
 	})
 end
 
 -- [[ specific servers configuration ]] ---------------------------------
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
-	on_attach = utils.on_attach,
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
 lspconfig.pyright.setup({
-	on_attach = utils.on_attach,
 	capabilities = capabilities,
 	settings = {
 		single_file_support = true,
@@ -68,15 +65,14 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.lua_ls.setup({
-	on_attach = utils.on_attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
 			diagnostics = { globals = { "vim" } },
 			workspace = {
 				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
+					[fn.expand("$VIMRUNTIME/lua")] = true,
+					[fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
 		},
@@ -84,7 +80,6 @@ lspconfig.lua_ls.setup({
 })
 
 ltex_ls.setup({
-	on_attach = utils.on_attach,
 	capabilities = capabilities,
 	use_spellfile = true,
 	filetypes = { "markdown" },
@@ -107,7 +102,7 @@ linters.linters_by_ft = {
 	yaml = { "ansible_lint" },
 }
 
-autocmd({ "BufWritePost" }, {
+autocmd("BufWritePost", {
 	group = lsp_augroup,
 	callback = function()
 		linters.try_lint()
@@ -115,6 +110,12 @@ autocmd({ "BufWritePost" }, {
 })
 
 -- [[ formatters ]] -----------------------------------------------------
+formatters.setup({
+	format_after_save = {
+		lsp_fallback = true,
+	},
+})
+
 formatters.formatters.tex = {
 	command = "latexindent.pl",
 	args = { "-" },

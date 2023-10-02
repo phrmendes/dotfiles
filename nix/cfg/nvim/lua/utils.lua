@@ -1,9 +1,5 @@
 -- [[ variables ]] ------------------------------------------------------
-local buf = vim.lsp.buf
-local diag = vim.diagnostic
 local fn = vim.fn
-local lsp = vim.lsp
-local map = vim.keymap.set
 local get_cursor = vim.api.nvim_win_get_cursor
 local get_lines = vim.api.nvim_buf_get_lines
 local get_number = vim.api.nvim_buf_get_number
@@ -12,15 +8,8 @@ local set_lines = vim.api.nvim_buf_set_lines
 
 -- [[ imports ]] --------------------------------------------------------
 local dap = require("dap")
-local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local wk = require("which-key")
-
-local telescope = {
-	builtin = require("telescope.builtin"),
-	extensions = require("telescope").extensions,
-	themes = require("telescope.themes"),
-}
 
 -- [[ module functions ]] -----------------------------------------------
 local M = {}
@@ -29,31 +18,6 @@ M.section = function(key, name, prefix, mode)
 	wk.register({
 		[key] = { name = name },
 	}, { prefix = prefix, mode = mode })
-end
-
-M.on_attach = function()
-	map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
-	map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
-	map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
-	map("n", "gR", telescope.builtin.lsp_references, { desc = "Go to references [LSP]" })
-	map("n", "gd", telescope.builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
-	map("n", "gh", buf.hover, { desc = "Show hover [LSP]" })
-	map("n", "gi", telescope.builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
-	map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
-	map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
-
-	M.section("c", "code action [LSP]", "<localleader>", { "n", "v" })
-	map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available" })
-
-	M.section("l", "LSP", "<leader>", "n")
-	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
-	map("n", "<leader>ld", telescope.builtin.diagnostics, { desc = "Diagnostics" })
-	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
-	map("n", "<leader>ll", diag.loclist, { desc = "Loclist" })
-	map("n", "<leader>lo", diag.open_float, { desc = "Open floating diagnostic message" })
-	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
-	map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
-	map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 end
 
 M.md_toggle = function()

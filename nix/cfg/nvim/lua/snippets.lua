@@ -4,6 +4,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 local f = luasnip.function_node
 local i = luasnip.insert_node
 local s = luasnip.snippet
+local t = luasnip.text_node
 
 -- [[ snippets ]] --------------------------------------------------------
 -- creating unique IDs
@@ -54,7 +55,7 @@ local journal_template = [[
 local journal = s(
 	"journal",
 	fmt(journal_template, {
-		i(1, os.date("%a, %d %b %Y")),
+		t(os.date("%a, %d %b %Y")),
 	})
 )
 

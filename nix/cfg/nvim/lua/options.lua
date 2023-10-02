@@ -1,7 +1,6 @@
 -- [[ variables ]] ------------------------------------------------------
 local cmd = vim.cmd
 local opt = vim.opt
-local lang = os.getenv("SPELL_LANG") or "en_us"
 
 -- [[ imports ]] --------------------------------------------------------
 local bufremove = require("mini.bufremove")
@@ -60,8 +59,10 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
--- disable swap files
-opt.swapfile = false
+-- disable backup files
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false
 
 -- save undo history
 opt.undofile = true

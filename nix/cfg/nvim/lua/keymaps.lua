@@ -11,7 +11,6 @@ local map = vim.keymap.set
 local bufremove = require("mini.bufremove")
 local dap = require("dap")
 local dap_ui = require("dapui")
-local dial = require("dial.map")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
@@ -59,8 +58,6 @@ local copilot_opts = {
 -- [[ keymaps ]] --------------------------------------------------------
 -- unbind keys
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-map({ "n", "v" }, "<", "<Nop>", { silent = true })
-map({ "n", "v" }, ">", "<Nop>", { silent = true })
 
 -- leader keys
 g.mapleader = " "
@@ -76,14 +73,6 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- exit mode pressing 'jk'
 map("i", "jk", "<ESC>", { noremap = true, silent = true })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
-
--- increment/decrement
-map("n", "<C-a>", dial.inc_normal(), { noremap = true })
-map("n", "<C-x>", dial.dec_normal(), { noremap = true })
-map("v", "<C-a>", dial.inc_visual(), { noremap = true })
-map("v", "<C-x>", dial.dec_visual(), { noremap = true })
-map("v", "g<C-a>", dial.inc_gvisual(), { noremap = true })
-map("v", "g<C-x>", dial.dec_gvisual(), { noremap = true })
 
 -- resize windows
 map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true })
@@ -155,14 +144,15 @@ map("n", "]h", gitsigns.next_hunk, { desc = "Next hunk" })
 
 -- obsidian
 utils.section("o", "obsidian", "<leader>", { "n", "v" })
-map("n", "<leader>o<space>", "<cmd>ObsidianSearch<CR>", { desc = "Search" })
-map("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" })
-map("n", "<leader>of", "<cmd>ObsidianFollowLink<CR>", { desc = "Follow link under cursor" })
-map("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New note" })
-map("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open note" })
-map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick switch to another note" })
-map("v", "<leader>oL", "<cmd>ObsidianLinkNew<CR>", { desc = "Create new note and insert link" })
-map("v", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Insert link" })
+map("n", "<leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
+map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
+map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
+map("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "New note" })
+map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open note" })
+map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+map("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
+map("v", "<leader>oL", "<cmd>ObsidianLinkNew<cr>", { desc = "Create new note and insert link" })
+map("v", "<leader>ol", "<cmd>ObsidianLink<cr>", { desc = "Insert link" })
 
 -- todos
 map("n", "]t", todos.jump_next, { desc = "Next todo comment" })
@@ -233,13 +223,13 @@ autocmd("LspAttach", {
 })
 
 -- snippets
-map({ "i", "s" }, "<C-k>", function()
+map({ "i", "s" }, "<C-p>", function()
 	if luasnip.choice_active() then
 		return luasnip.change_choice(-1)
 	end
 end)
 
-map({ "i", "s" }, "<C-j>", function()
+map({ "i", "s" }, "<C-n>", function()
 	if luasnip.choice_active() then
 		return luasnip.change_choice(1)
 	end

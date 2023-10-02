@@ -8,16 +8,17 @@ obsidian.setup({
 	overwrite_mappings = true,
 	sort_by = "modified",
 	sort_reversed = true,
+	disable_frontmatter = true,
 	daily_notes = {
 		folder = "diary",
-		date_dormat = "%Y-%m-%d",
+		date_format = "%Y-%m-%d",
 		alias_format = "%a, %d %b %Y",
 	},
 	completion = {
-		nvim_cmp = true,
 		min_chars = 2,
-		new_notes_location = "current_dir",
-		prepend_note_id = true,
+		new_notes_location = "notes_subdir",
+		nvim_cmp = true,
+		prepend_note_id = false,
 	},
 	mappings = {
 		["gf"] = {

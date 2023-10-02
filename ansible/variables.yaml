@@ -2,17 +2,12 @@
 user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 home_prefix: "{{ '/home' if ansible_system == 'Linux' else '/Users'}}"
 home: "{{ home_prefix }}/{{ user }}"
-docker_users:
-  - "{{ user }}"
+docker_users: ["{{ user }}"]
 pcloud:
   code: XZecm6VZIz4VKYBrUbzzhcfNW9boSfrfhgaV
   version: 1.14.0
 nix:
   version: 2.17.0
-keyring:
-  tailscale:
-    url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
-    dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
 python:
   version: 3.11.5
   install:
@@ -20,11 +15,16 @@ python:
     - ipykernel
     - ipython
     - poetry
+keyring:
+  tailscale:
+    url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+    dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
     - com.uploadedlobster.peek
     - com.zettlr.Zettlr
+    - md.obsidian.Obsidian
     - org.wezfurlong.wezterm
 apt:
   remove:

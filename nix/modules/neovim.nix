@@ -33,7 +33,6 @@ in {
       comment-nvim # comments
       conform-nvim # formatting
       copilot-vim # github copilot
-      dial-nvim # increment/decrement
       fidget-nvim # lsp utils
       friendly-snippets # snippets
       gitsigns-nvim # git indicators

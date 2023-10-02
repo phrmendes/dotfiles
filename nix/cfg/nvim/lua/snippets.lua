@@ -10,8 +10,19 @@ local s = luasnip.snippet
 local generate_id = function()
 	local bufname = vim.api.nvim_buf_get_name(0)
 	local filename = vim.fn.fnamemodify(bufname, ":t:r")
+	local sanitized_filename = filename:gsub("[^%w]", "")
+	local parent_folder = vim.fn.fnamemodify(bufname, ":h:t")
+	local include_parent_folder = parent_folder ~= "notes"
 	local date = os.date("%d%m%Y%H%M%S")
-	return string.upper(filename .. date)
+	local id
+
+	if include_parent_folder then
+		id = parent_folder .. "-" .. sanitized_filename .. "-" .. date
+	else
+		id = sanitized_filename .. "-" .. date
+	end
+
+	return string.upper(id)
 end
 
 -- standard metadata

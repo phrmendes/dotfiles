@@ -33,6 +33,7 @@
       droidcam
       languagetool
       libreoffice
+      mathpix-snipping-tool
       obsidian
       vlc
       zotero

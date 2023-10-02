@@ -3,9 +3,17 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
+local latex_snippets = require("luasnip-latex-snippets")
 
 -- [[ luasnip ]] --------------------------------------------------------
 luasnip.config.setup()
+
+-- load latex snippets
+latex_snippets.setup({
+	enable_autosnippets = true,
+	use_treesitter = true,
+	allow_on_markdown = true,
+})
 
 -- load vscode like snippets from plugins
 vscode_loaders.lazy_load()

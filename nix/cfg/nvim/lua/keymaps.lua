@@ -15,6 +15,7 @@ local dial = require("dial.map")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
+local luasnip = require("luasnip")
 local move = require("mini.move")
 local nabla = require("nabla")
 local neogen = require("neogen")
@@ -36,7 +37,6 @@ local lsp_augroup = augroup("UserLspConfig", { clear = true })
 -- [[ leader key ]] -----------------------------------------------------
 g.mapleader = " "
 g.maplocalleader = ","
-map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- [[ multi cursor ]] ---------------------------------------------------
 g.multi_cursor_use_default_mapping = 0
@@ -57,10 +57,14 @@ local copilot_opts = {
 }
 
 -- [[ keymaps ]] --------------------------------------------------------
+-- unbind keys
+map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+map({ "n", "v" }, "<", "<Nop>", { silent = true })
+map({ "n", "v" }, ">", "<Nop>", { silent = true })
+
 -- leader keys
 g.mapleader = " "
 g.maplocalleader = ","
-map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- accept copilot suggestion
 map("i", "<C-CR>", [[ copilot#Accept("<CR>") ]], copilot_opts)
@@ -74,30 +78,12 @@ map("i", "jk", "<ESC>", { noremap = true, silent = true })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- increment/decrement
-map("n", "<C-a>", function()
-	dial.manipulate("increment", "normal")
-end)
-map("n", "<C-x>", function()
-	dial.manipulate("decrement", "normal")
-end)
-map("n", "g<C-a>", function()
-	dial.manipulate("increment", "gnormal")
-end)
-map("n", "g<C-x>", function()
-	dial.manipulate("decrement", "gnormal")
-end)
-map("v", "<C-a>", function()
-	dial.manipulate("increment", "visual")
-end)
-map("v", "<C-x>", function()
-	dial.manipulate("decrement", "visual")
-end)
-map("v", "g<C-a>", function()
-	dial.manipulate("increment", "gvisual")
-end)
-map("v", "g<C-x>", function()
-	dial.manipulate("decrement", "gvisual")
-end)
+map("n", "<C-a>", dial.inc_normal(), { noremap = true })
+map("n", "<C-x>", dial.dec_normal(), { noremap = true })
+map("v", "<C-a>", dial.inc_visual(), { noremap = true })
+map("v", "<C-x>", dial.dec_visual(), { noremap = true })
+map("v", "g<C-a>", dial.inc_gvisual(), { noremap = true })
+map("v", "g<C-x>", dial.dec_gvisual(), { noremap = true })
 
 -- resize windows
 map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true })
@@ -245,6 +231,19 @@ autocmd("LspAttach", {
 		map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 	end,
 })
+
+-- snippets
+map({ "i", "s" }, "<C-k>", function()
+	if luasnip.choice_active() then
+		return luasnip.change_choice(-1)
+	end
+end)
+
+map({ "i", "s" }, "<C-j>", function()
+	if luasnip.choice_active() then
+		return luasnip.change_choice(1)
+	end
+end)
 
 -- [[ mini stuff ]] -----------------------------------------------------
 -- moving around buffer

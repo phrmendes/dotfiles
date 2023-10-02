@@ -103,8 +103,4 @@ M.conditional_breakpoint = function()
 	dap.set_breakpoint(fn.input("Breakpoint condition: "))
 end
 
-M.round = function(number)
-    return math.floor(number + 0.5)
-end
-
 return M

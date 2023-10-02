@@ -3,15 +3,12 @@ local telescope = require("telescope")
 local themes = require("telescope.themes")
 local undo_actions = require("telescope-undo.actions")
 local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
-local utils = require("utils")
 
 telescope.setup({
 	defaults = {
 		hidden = true,
 		layout_strategy = "vertical",
 		layout_config = {
-			height = utils.round(vim.o.lines * 0.8),
-			width = utils.round(vim.o.columns * 0.5),
             preview_height = 0.3,
 			prompt_position = "bottom",
 		},

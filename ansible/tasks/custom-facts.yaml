@@ -2,3 +2,4 @@
 - name: Override "ansible_distribution" fact
   set_fact:
     ansible_distribution: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
+    ansible_arch_alias: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"

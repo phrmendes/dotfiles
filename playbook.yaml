@@ -20,5 +20,5 @@
     - import_tasks: ./ansible/tasks/nix.yaml
     - import_tasks: ./ansible/tasks/home-manager.yaml
     - import_tasks: ./ansible/tasks/pyenv.yaml
-    - import_tasks: ./ansible/tasks/pcloud.yaml
+    - import_tasks: ./ansible/tasks/bin.yaml
     - import_tasks: ./ansible/tasks/nerd-font.yaml

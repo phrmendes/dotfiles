@@ -1,0 +1,19 @@
+- name: Download archives
+  get_url:
+    url: "{{ item.url }}"
+    dest: "/tmp/{{ item.file }}"
+  with_items:
+    - url: "https://api.pcloud.com/getpubzip?code={{ pcloud.code }}&filename=pcloud-{{ pcloud.version }}.zip"
+      file: pcloud.zip
+    - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json.version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
+      file: pdfannots2json.tar.gz
+
+- name: Extract archives
+  unarchive:
+    src: "/tmp/{{ item }}"
+    remote_src: true
+    dest: "{{ home }}/.local/bin"
+    creates: "{{ home }}/.local/bin/{{ item }}"
+  with_items:
+    - pcloud.zip
+    - pdfannots2json.tar.gz

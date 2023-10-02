@@ -10,6 +10,8 @@ nix:
   version: 2.17.0
 obsidian:
   version: 1.4.14
+pdfannots2json:
+  version: 1.0.16
 python:
   version: 3.11.5
   install:
@@ -30,7 +32,7 @@ flatpak:
     - org.wezfurlong.wezterm
 apt:
   deb:
-    - "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/obsidian_{{ obsidian.version }}_amd64.deb"
+    - "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/obsidian_{{ obsidian.version }}_{{ ansible_arch_alias }}.deb"
   remove:
     - baobab
     - evince

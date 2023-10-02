@@ -28,7 +28,7 @@ local journal_template = [[# {}]]
 local journal = s(
 	"journal",
 	fmt(journal_template, {
-		t(os.date("%d-%m-%Y")),
+		t(os.date("%a, %d %b %Y")),
 	})
 )
 

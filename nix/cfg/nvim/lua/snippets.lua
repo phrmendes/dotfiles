@@ -1,12 +1,9 @@
 -- [[ imports ]] --------------------------------------------------------
 local luasnip = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
-local c = luasnip.choice_node
 local f = luasnip.function_node
 local i = luasnip.insert_node
 local s = luasnip.snippet
-local sn = luasnip.snippet_node
-local t = luasnip.text_node
 
 -- [[ snippets ]] --------------------------------------------------------
 -- creating unique IDs
@@ -47,7 +44,22 @@ local metadata = s(
 	})
 )
 
+-- journal entry
+local journal_template = [[
+# {}
+
+## Tarefas
+]]
+
+local journal = s(
+	"journal",
+	fmt(journal_template, {
+		i(1, os.date("%a, %d %b %Y")),
+	})
+)
+
 -- apply snippets
 luasnip.add_snippets("markdown", {
 	metadata,
+	journal,
 })

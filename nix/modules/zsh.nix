@@ -15,15 +15,14 @@
       ls = "${pkgs.eza}/bin/eza --icons";
       lt = "${pkgs.eza}/bin/eza --icons --tree";
       ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
-      od = "${pkgs.neovim-unwrapped}/bin/nvim +ObsidianToday";
-      on = "${pkgs.neovim-unwrapped}/bin/nvim +ObsidianNew";
-      os = "${pkgs.neovim-unwrapped}/bin/nvim +ObsidianSearch";
       tldr = "${pkgs.tealdeer}/bin/tldr";
       tx = "${pkgs.tmux}/bin/tmux";
       zt = "${pkgs.zathura}/bin/zathura --fork";
       mb = "micromamba";
       mkdir = "mkdir -p";
+      od = "nvim +ObsidianToday";
       of = "fzf_open_with_nvim";
+      os = "nvim +ObsidianSearch";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

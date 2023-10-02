@@ -19,7 +19,7 @@ obsidian.setup({
 		return out
 	end,
 	daily_notes = {
-		alias_format = "%d-%m-%Y",
+		alias_format = "%a, %d %b %Y",
 		date_format = "%d-%m-%Y",
 		folder = "daily",
 	},

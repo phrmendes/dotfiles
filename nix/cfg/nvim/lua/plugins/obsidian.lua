@@ -8,11 +8,25 @@ obsidian.setup({
 	overwrite_mappings = true,
 	sort_by = "modified",
 	sort_reversed = true,
-	disable_frontmatter = true,
+	disable_frontmatter = false,
+	note_frontmatter_func = function(note)
+		local out = { aliases = note.aliases, tags = note.tags }
+		if note.metadata ~= nil and obsidian.util.table_length(note.metadata) > 0 then
+			for k, v in pairs(note.metadata) do
+				out[k] = v
+			end
+		end
+		return out
+	end,
 	daily_notes = {
-		folder = "diary",
-		date_format = "%Y-%m-%d",
-		alias_format = "%a, %d %b %Y",
+		alias_format = "%d-%m-%Y",
+		date_format = "%d-%m-%Y",
+		folder = "daily",
+	},
+	templates = {
+		date_format = "%d-%m-%Y",
+		subdir = "templates",
+		time_format = "%d%m%Y%H%M",
 	},
 	completion = {
 		min_chars = 2,

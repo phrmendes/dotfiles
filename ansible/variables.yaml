@@ -8,6 +8,8 @@ pcloud:
   version: 1.14.0
 nix:
   version: 2.17.0
+obsidian:
+  version: 1.4.14
 python:
   version: 3.11.5
   install:
@@ -27,6 +29,8 @@ flatpak:
     - md.obsidian.Obsidian
     - org.wezfurlong.wezterm
 apt:
+  deb:
+    - "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/obsidian_{{ obsidian.version }}_amd64.deb"
   remove:
     - baobab
     - evince

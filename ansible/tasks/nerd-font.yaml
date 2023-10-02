@@ -8,7 +8,7 @@
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
         dest: /tmp/jetbrainsmono.zip
 
-    - name: Ensure ~/.fonts exist 
+    - name: Ensure ~/.fonts exist
       file:
         path: ~/.fonts
         state: directory
@@ -25,3 +25,4 @@
       command:
         cmd: fc-cache -fv
         chdir: ~/.fonts
+      changed_when: false

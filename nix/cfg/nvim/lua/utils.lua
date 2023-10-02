@@ -14,7 +14,6 @@ local set_lines = vim.api.nvim_buf_set_lines
 local dap = require("dap")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
-local terminal = require("FTerm")
 local wk = require("which-key")
 
 local telescope = {
@@ -22,13 +21,6 @@ local telescope = {
 	extensions = require("telescope").extensions,
 	themes = require("telescope.themes"),
 }
-
--- [[ local functions ]] ------------------------------------------------
-local telescope_no_previewer = function(fun)
-	fun(telescope.themes.get_dropdown({
-		previewer = false,
-	}))
-end
 
 -- [[ module functions ]] -----------------------------------------------
 local M = {}
@@ -56,16 +48,12 @@ M.on_attach = function()
 	M.section("l", "LSP", "<leader>", "n")
 	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
 	map("n", "<leader>ld", telescope.builtin.diagnostics, { desc = "Diagnostics" })
-	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
-	map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
-	map("n", "<leader>lw", telescope.builtin.lsp_document_symbols, { desc = "Workspace symbols" })
-	map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
 	map("n", "<leader>lf", formatters.format, { desc = "Format buffer" })
 	map("n", "<leader>ll", diag.loclist, { desc = "Loclist" })
 	map("n", "<leader>lo", diag.open_float, { desc = "Open floating diagnostic message" })
 	map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart" })
 	map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
-	map("n", "<leader>lw", telescope.builtin.lsp_document_symbols, { desc = "Workspace symbols" })
+	map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 end
 
 M.md_toggle = function()
@@ -102,29 +90,6 @@ M.md_toggle = function()
 	set_cursor(0, cursor)
 end
 
-M.buffers = {
-	search = function()
-		telescope_no_previewer(telescope.builtin.current_buffer_fuzzy_find)
-	end,
-	list = function()
-		telescope_no_previewer(telescope.builtin.buffers)
-	end,
-}
-
-M.files = {
-	find = function()
-		telescope.builtin.find_files({
-			find_command = {
-				"rg",
-				"--files",
-				"--hidden",
-				"-g",
-				"!.git",
-			},
-		})
-	end,
-}
-
 M.git = {
 	stage_hunk = function()
 		gitsigns.stage_hunk({ fn.line("."), fn.line("v") })
@@ -132,24 +97,14 @@ M.git = {
 	reset_hunk = function()
 		gitsigns.reset_hunk({ fn.line("."), fn.line("v") })
 	end,
-	blame_line = function()
-		gitsigns.blame_line({ full = true })
-	end,
-	branches = function()
-		telescope_no_previewer(telescope.builtin.git_branches)
-	end,
-	ui = terminal:new({
-		ft = "lazygit",
-		cmd = "lazygit",
-		dimensions = {
-			height = 0.9,
-			width = 0.9,
-		},
-	}),
 }
 
 M.conditional_breakpoint = function()
 	dap.set_breakpoint(fn.input("Breakpoint condition: "))
+end
+
+M.round = function(number)
+    return math.floor(number + 0.5)
 end
 
 return M

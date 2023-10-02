@@ -25,7 +25,6 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      FTerm-nvim # terminal
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -33,10 +32,12 @@ in {
       comment-nvim # comments
       conform-nvim # formatting
       copilot-vim # github copilot
+      dial-nvim # increment/decrement
       fidget-nvim # lsp utils
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs
+      lazygit-nvim # git ui
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
       ltex-ls-nvim # ltex-ls settings
@@ -44,6 +45,7 @@ in {
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
       nabla-nvim # math preview
+      neogen # annotations
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
@@ -74,6 +76,7 @@ in {
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
+      wilder-nvim # wildmenu
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
     ];

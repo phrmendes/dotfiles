@@ -88,10 +88,10 @@ in {
         ansible-lint
         delve
         gofumpt
-        goimports
         golangci-lint
         golines
         gopls
+        gotools
         ltex-ls
         lua-language-server
         metals

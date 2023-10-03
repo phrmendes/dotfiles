@@ -34,7 +34,6 @@
       languagetool
       libreoffice
       mathpix-snipping-tool
-      postman
       vlc
       zotero
     ])

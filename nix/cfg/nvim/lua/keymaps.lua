@@ -57,7 +57,11 @@ local copilot_opts = {
 
 -- [[ keymaps ]] --------------------------------------------------------
 -- unbind keys
-map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+local keys = { "<Space>", "<", ">" }
+
+for _, key in ipairs(keys) do
+	map({ "n", "v" }, key, "<Nop>", { noremap = true, silent = true })
+end
 
 -- leader keys
 g.mapleader = " "

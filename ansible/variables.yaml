@@ -3,9 +3,7 @@ user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 home_prefix: "{{ '/home' if ansible_system == 'Linux' else '/Users'}}"
 home: "{{ home_prefix }}/{{ user }}"
 docker_users: ["{{ user }}"]
-pcloud:
-  code: XZecm6VZIz4VKYBrUbzzhcfNW9boSfrfhgaV
-  version: 1.14.0
+pcloud_code: XZpL8AVZAqfCXz5TebJ2gcvAiHi15pYFKPey
 nix:
   version: 2.17.0
 obsidian:
@@ -28,7 +26,6 @@ flatpak:
   install:
     - com.uploadedlobster.peek
     - com.zettlr.Zettlr
-    - md.obsidian.Obsidian
     - org.wezfurlong.wezterm
 apt:
   deb:
@@ -53,7 +50,6 @@ apt:
     - file
     - file-roller
     - flatpak
-    - fonts-dejavu
     - fonts-jetbrains-mono
     - gnome-tweaks
     - gnupg
@@ -71,9 +67,6 @@ apt:
     - mlocate
     - nala
     - openssh-server
-    - python3-poppler-qt5
-    - python3-pyqt5
-    - python3-yaml
     - rar
     - tailscale
     - tk-dev

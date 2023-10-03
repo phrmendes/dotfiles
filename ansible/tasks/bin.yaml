@@ -1,19 +1,35 @@
-- name: Download archives
-  get_url:
-    url: "{{ item.url }}"
-    dest: "/tmp/{{ item.file }}"
-  with_items:
-    - url: "https://api.pcloud.com/getpubzip?code={{ pcloud.code }}&filename=pcloud-{{ pcloud.version }}.zip"
-      file: pcloud.zip
-    - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json.version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
-      file: pdfannots2json.tar.gz
+- name: Install binaries
+  become_user: "{{ user }}"
+  tags: [bin]
+  block:
+    - name: Get pCloud download link
+      uri:
+        url: "https://api.pcloud.com/getpublinkdownload?code={{ pcloud_code }}"
+        return_content: true
+      register: pcloud_response
 
-- name: Extract archives
-  unarchive:
-    src: "/tmp/{{ item }}"
-    remote_src: true
-    dest: "{{ home }}/.local/bin"
-    creates: "{{ home }}/.local/bin/{{ item }}"
-  with_items:
-    - pcloud.zip
-    - pdfannots2json.tar.gz
+    - name: Download bin archives
+      get_url:
+        url: "{{ item.url }}"
+        dest: "{{ item.file }}"
+      with_items:
+        - url: "https://{{ pcloud_response['json']['hosts'][0] }}{{ pcloud_response['json']['path'] }}"
+          file: "{{ home }}/.local/bin/pcloud"
+        - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json.version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
+          file: /tmp/pdfannots2json.tar.gz
+
+    - name: Extract pdfannots2json
+      unarchive:
+        src: /tmp/pdfannots2json.tar.gz
+        remote_src: true
+        dest: "{{ home }}/.local/bin"
+        creates: "{{ home }}/.local/bin/pdfannots2json.tar.gz"
+
+    - name: Set permission for bin files
+      file:
+        path: "{{ home }}/.local/bin/{{ item }}"
+        mode: "0755"
+        state: file
+      with_items:
+        - pcloud
+        - pdfannots2json

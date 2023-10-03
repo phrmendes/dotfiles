@@ -3,6 +3,8 @@
   become: true
   connection: local
   hosts: localhost
+  collections:
+    - community.general
 
   vars_files:
     - ./ansible/variables.yaml

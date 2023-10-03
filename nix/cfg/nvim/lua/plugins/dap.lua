@@ -2,11 +2,13 @@ local fn = vim.fn
 
 local dap = require("dap")
 local dap_python = require("dap-python")
+local dap_go = require("dap-go")
 local dap_ui = require("dapui")
 local dap_virtual_text = require("nvim-dap-virtual-text")
 
 dap_ui.setup()
 dap_virtual_text.setup()
+dap_go.setup()
 dap_python.setup(fn.expand("~/.virtualenvs/debugpy/bin/python"))
 dap_python.test_runner = "unittest"
 

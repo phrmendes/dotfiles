@@ -9,9 +9,9 @@
       fd
       gh
       gnome-extensions-cli
+      go
       hugo
       hunspell
-      jdk20
       lazydocker
       micromamba
       ncdu
@@ -19,7 +19,6 @@
       parallel
       quarto
       ripgrep
-      scala_3
       sqlite
       tealdeer
       tectonic

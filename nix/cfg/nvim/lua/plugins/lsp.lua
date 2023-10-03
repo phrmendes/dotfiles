@@ -97,8 +97,9 @@ ltex_ls.setup({
 
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {
-	sh = { "shellcheck" },
+	go = { "golangcilint" },
 	nix = { "statix" },
+	sh = { "shellcheck" },
 	yaml = { "ansible_lint" },
 }
 
@@ -128,11 +129,11 @@ formatters.formatters_by_ft = {
 	markdown = { "prettier" },
 	nix = { "alejandra" },
 	python = { "ruff" },
-	scala = { "scalafmt" },
 	sh = { "shellharden" },
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
+	go = { "gofumpt", "goimports", "golines" },
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------

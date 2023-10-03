@@ -50,6 +50,7 @@ in {
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
+      nvim-dap-go # go dap support
       nvim-dap-python # python dap support
       nvim-dap-ui # ui for dap
       nvim-dap-virtual-text # virtual text for dap
@@ -85,13 +86,18 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
+        delve
+        gofumpt
+        goimports
+        golangci-lint
+        golines
+        gopls
         ltex-ls
         lua-language-server
         metals
         nil
         ruff
         ruff-lsp
-        scalafmt
         shellcheck
         shellharden
         statix

@@ -1,5 +1,5 @@
 local obsidian = require("obsidian")
-local notes = os.getenv("NOTES") or vim.fn.expand("~/pCloudDrive/notes")
+local notes = os.getenv("NOTES") or vim.fn.expand("~/Documents/notes")
 
 obsidian.setup({
 	dir = notes,

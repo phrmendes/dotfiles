@@ -13,10 +13,10 @@
       };
     };
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
-  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
-  obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
-  ltex-ls-nvim = fromGitHub "c8139ea6b7f3d71adcff121e16ee8726037ffebd" "HEAD" "vigoux/ltex-ls.nvim";
   latex-snippets = fromGitHub "ffb4cc7bef68f0c3e0e1a079375b8fede2be5176" "HEAD" "iurimateus/luasnip-latex-snippets.nvim";
+  ltex-ls-nvim = fromGitHub "c8139ea6b7f3d71adcff121e16ee8726037ffebd" "HEAD" "vigoux/ltex-ls.nvim";
+  obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
+  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -26,6 +26,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      ChatGPT-nvim # chatgpt integration
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -47,6 +48,7 @@ in {
       mini-nvim # set of small plugins
       nabla-nvim # math preview
       neogen # annotations
+      nui-nvim # neovim ui component lib
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol

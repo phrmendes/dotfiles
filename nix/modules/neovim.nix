@@ -94,6 +94,7 @@ in {
         golines
         gopls
         gotools
+        hadolint
         ltex-ls
         lua-language-server
         metals
@@ -110,7 +111,6 @@ in {
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server
-        dockerfile-language-server-nodejs
         prettier
         pyright
         vscode-json-languageserver

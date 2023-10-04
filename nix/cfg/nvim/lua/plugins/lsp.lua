@@ -33,7 +33,6 @@ ltex_utils.setup({
 local servers = {
 	"ansiblels",
 	"bashls",
-	"dockerls",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",
@@ -99,6 +98,7 @@ lspconfig.ltex.setup({
 
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {
+	dockerfile = { "hadolint" },
 	go = { "golangcilint" },
 	nix = { "statix" },
 	sh = { "shellcheck" },

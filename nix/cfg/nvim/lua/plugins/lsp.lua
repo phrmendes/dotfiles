@@ -41,7 +41,6 @@ local servers = {
 	"terraformls",
 	"texlab",
 	"yamlls",
-	"ltex",
 }
 
 for _, server in ipairs(servers) do

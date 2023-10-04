@@ -15,6 +15,7 @@
       lazydocker
       micromamba
       ncdu
+      openjdk
       pandoc
       parallel
       quarto

@@ -11,13 +11,23 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex_ls = require("ltex-ls")
+local ltex_utils = require("ltex-utils")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
 
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
+
+-- [[ ltex settings ]] --------------------------------------------------
+ltex_utils.setup({
+	opts = {
+		dictionary = {
+			use_vim_dict = true,
+			vim_cmd_output = false,
+		},
+	},
+})
 
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
@@ -31,6 +41,7 @@ local servers = {
 	"terraformls",
 	"texlab",
 	"yamlls",
+	"ltex",
 }
 
 for _, server in ipairs(servers) do
@@ -79,20 +90,12 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex_ls.setup({
+lspconfig.ltex.setup({
 	capabilities = capabilities,
-	use_spellfile = true,
-	filetypes = { "markdown" },
-	settings = {
-		ltex = {
-			enabled = { "markdown" },
-			language = lang,
-			additionalRules = {
-				enablePickyRules = true,
-				motherTongue = "pt-BR",
-			},
-		},
-	},
+	on_attach = function(_, bufnr)
+		ltex_utils.on_attach(bufnr)
+	end,
+	settings = { ltex = { language = lang } },
 })
 
 -- [[ linters ]] --------------------------------------------------------

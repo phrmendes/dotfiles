@@ -22,6 +22,7 @@ local neogen = require("neogen")
 local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
 local todos = require("todo-comments")
+local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 local utils = require("utils")
 local wk = require("which-key")
 
@@ -75,6 +76,10 @@ map("i", "<C-CR>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- remap to move the current line/block horizontally
+map("n", "<", "<<", { nowait = true, noremap = true, silent = true })
+map("n", ">", ">>", { nowait = true, noremap = true, silent = true })
+
 -- exit mode pressing 'jk'
 map("i", "jk", "<ESC>", { noremap = true, silent = true })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
@@ -84,6 +89,16 @@ map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true })
 map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true })
 map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true })
+
+-- ";" goes to the direction you were moving
+map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+
+-- make builtin f, F, t, T also repeatable with ";" and ","
+map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
+map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
+map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
+map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
 -- quickfix
 utils.section("q", "quickfix", "<localleader>", "n")
@@ -191,9 +206,9 @@ map("n", "<leader>a", neogen.generate, { desc = "Generate annotations", noremap 
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
 map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
-map("n", "<leader>s", "<C-w>s", { desc = "Split window" })
+map("n", "<leader>-", "<C-w>s", { desc = "Split window" })
 map("n", "<leader>u", telescope.extensions.undo.undo, { desc = "Undo tree" })
-map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>\\", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
 map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 map("n", "<localleader>s", telescope.builtin.symbols, { desc = "Symbols" })
@@ -284,8 +299,6 @@ move.setup({
 		down = "<S-j>",
 		up = "<S-k>",
 		-- normal mode
-		line_left = "<",
-		line_right = ">",
 		line_down = "<S-j>",
 		line_up = "<S-k>",
 	},

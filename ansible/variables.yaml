@@ -38,6 +38,7 @@ apt:
     - 7zip
     - build-essential
     - ca-certificates
+    - curl
     - file
     - file-roller
     - flatpak

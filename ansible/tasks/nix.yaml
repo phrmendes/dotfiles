@@ -17,11 +17,11 @@
   block:
     - name: Set Nix tarball name
       set_fact:
-        nix_tarball: "nix-{{ nix.version }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
+        nix_tarball: "nix-{{ nix_version }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
 
     - name: Download tarball
       get_url:
-        url: "https://releases.nixos.org/nix/nix-{{ nix.version }}/{{ nix_tarball }}.tar.xz"
+        url: "https://releases.nixos.org/nix/nix-{{ nix_version }}/{{ nix_tarball }}.tar.xz"
         dest: /tmp/nix.tar.xz
 
     - name: Extract tarball
@@ -43,11 +43,11 @@
     - name: Get Nix version
       shell: "nix --version | cut -f 3 -d ' '"
       changed_when: false
-      register: nix_version
+      register: local_nix_version
 
     - name: Update Nix
       shell: "nix upgrade-nix --profile {{ home }}/.local/state/nix/profiles/{{ user }}/"
-      when: nix.version != nix_version.stdout
+      when: nix_version != local_nix_version.stdout
   when: nix_directory.stat.exists
 
 - name: Enable Nix Flakes

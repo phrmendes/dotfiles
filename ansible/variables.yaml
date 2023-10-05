@@ -4,19 +4,10 @@ home_prefix: "{{ '/home' if ansible_system == 'Linux' else '/Users'}}"
 home: "{{ home_prefix }}/{{ user }}"
 docker_users: ["{{ user }}"]
 pcloud_code: XZpL8AVZAqfCXz5TebJ2gcvAiHi15pYFKPey
-nix:
-  version: 2.17.0
-obsidian:
-  version: 1.4.14
-pdfannots2json:
-  version: 1.0.16
-python:
-  version: 3.11.5
-  install:
-    - ansible
-    - ipykernel
-    - ipython
-    - poetry
+hadolint_version: 2.12.0
+nix_version: 2.17.0
+obsidian_version: 1.4.14
+pdfannots2json_version: 1.0.16
 keyring:
   tailscale:
     url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
@@ -29,7 +20,7 @@ flatpak:
     - org.wezfurlong.wezterm
 apt:
   deb:
-    - "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/obsidian_{{ obsidian.version }}_{{ ansible_arch_alias }}.deb"
+    - "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/obsidian_{{ obsidian_version }}_{{ ansible_arch_alias }}.deb"
   remove:
     - baobab
     - evince

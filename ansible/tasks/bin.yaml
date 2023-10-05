@@ -15,7 +15,7 @@
       with_items:
         - url: "https://{{ pcloud_response['json']['hosts'][0] }}{{ pcloud_response['json']['path'] }}"
           file: "{{ home }}/.local/bin/pcloud"
-        - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json.version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
+        - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json_version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
           file: /tmp/pdfannots2json.tar.gz
         - url: "https://github.com/hadolint/hadolint/releases/download/v{{ hadolint_version }}/hadolint-{{ ansible_system }}-{{ ansible_architecture }}"
           file: "{{ home }}/.local/bin/hadolint"

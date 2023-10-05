@@ -2,14 +2,15 @@
   home.packages =
     (with pkgs; [
       # CLI
+      asdf-vm
       bitwarden-cli
       coursier
+      docker-slim
       duckdb
       eza
       fd
       gh
       gnome-extensions-cli
-      go
       hugo
       hunspell
       lazydocker

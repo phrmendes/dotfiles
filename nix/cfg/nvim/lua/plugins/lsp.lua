@@ -105,7 +105,7 @@ linters.linters_by_ft = {
 	yaml = { "ansible_lint" },
 }
 
-autocmd("BufWritePost", {
+autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 	group = lsp_augroup,
 	callback = function()
 		linters.try_lint()

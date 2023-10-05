@@ -4,6 +4,10 @@ if [ -f "$HOME/.bw" ]; then
     source "$HOME/.bw"
 fi
 
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+    source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
+fi
+
 eval "$(micromamba shell hook --shell=zsh)"
 
 export FLAKE_PATH="$HOME/Projects/bkps/nix#phrmendes"
@@ -12,9 +16,9 @@ export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38b
 export NOTES="$HOME/notes"
 
 path+=(
+	"$HOME/.asdf/shims"
 	"$HOME/.local/bin"
 	"$HOME/.local/share/coursier/bin"
-	"$HOME/.pyenv/shims"
 )
 
 function nix_update() {

@@ -3,7 +3,9 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
+    enableVteIntegration = true;
     syntaxHighlighting.enable = true;
+    initExtra = builtins.readFile ../cfg/init.sh;
     shellAliases = {
       cat = "${pkgs.bat}/bin/bat --theme=catppuccin";
       fm = "${pkgs.joshuto}/bin/joshuto";
@@ -28,6 +30,5 @@
       sys_pip = "/usr/bin/pip";
       sys_python = "/usr/bin/python3";
     };
-    initExtra = builtins.readFile ../cfg/init.sh;
   };
 }

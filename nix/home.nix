@@ -13,7 +13,6 @@ in {
     ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix
-    ./modules/pyenv.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix

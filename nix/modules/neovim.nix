@@ -94,7 +94,6 @@ in {
         golines
         gopls
         gotools
-        hadolint
         ltex-ls
         lua-language-server
         metals

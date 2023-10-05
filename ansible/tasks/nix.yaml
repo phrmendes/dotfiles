@@ -17,7 +17,7 @@
   block:
     - name: Set Nix tarball name
       set_fact:
-        nix_tarball: "nix-{{ nix_version }}-{{ ansible_architecture }}-{{ ansible_system | lower }}"
+        nix_tarball: "nix-{{ nix_version }}-{{ ansible_arch_alias }}-{{ ansible_system | lower }}"
 
     - name: Download tarball
       get_url:

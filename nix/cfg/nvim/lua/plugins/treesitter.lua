@@ -60,15 +60,6 @@ treesitter.setup({
 				["[m"] = { query = "@function.outer", desc = "Previous method/function def" },
 			},
 		},
-		swap = {
-			enable = true,
-			swap_next = {
-				["<localleader>a"] = "@parameter.inner",
-			},
-			swap_previous = {
-				["<localleader>A"] = "@parameter.inner",
-			},
-		},
 	},
 })
 

@@ -35,9 +35,12 @@ local telescope = {
 local ft_group = augroup("UserFiletypeKeymaps", { clear = true })
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
 
--- [[ leader key ]] -----------------------------------------------------
-g.mapleader = " "
-g.maplocalleader = ","
+-- [[ unbind keys ]] ----------------------------------------------------
+local keys = { "<Space>", "<", ">" }
+
+for _, key in ipairs(keys) do
+	map({ "n", "v" }, key, "<Nop>", { noremap = true, silent = true })
+end
 
 -- [[ multi cursor ]] ---------------------------------------------------
 g.multi_cursor_use_default_mapping = 0
@@ -58,27 +61,12 @@ local copilot_opts = {
 }
 
 -- [[ keymaps ]] --------------------------------------------------------
--- unbind keys
-local keys = { "<Space>", "<", ">" }
-
-for _, key in ipairs(keys) do
-	map({ "n", "v" }, key, "<Nop>", { noremap = true, silent = true })
-end
-
--- leader keys
-g.mapleader = " "
-g.maplocalleader = ","
-
 -- accept copilot suggestion
 map("i", "<C-CR>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 
 -- remap for dealing with word wrap
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- remap to move the current line/block horizontally
-map("n", "<", "<<", { nowait = true, noremap = true, silent = true })
-map("n", ">", ">>", { nowait = true, noremap = true, silent = true })
 
 -- exit mode pressing 'jk'
 map("i", "jk", "<ESC>", { noremap = true, silent = true })
@@ -99,11 +87,6 @@ map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
 map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
 map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
 map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
-
--- quickfix
-utils.section("q", "quickfix", "<localleader>", "n")
-map("n", "<localleader>qo", "<cmd>copen<cr>", { desc = "Open" })
-map("n", "<localleader>qq", "<cmd>cclose<cr>", { desc = "Close" })
 
 -- buffers
 utils.section("b", "buffers", "<leader>", "n")
@@ -136,9 +119,9 @@ map("n", "<F2>", dap.step_into, { desc = "Step into [DAP]" })
 map("n", "<F3>", dap.step_back, { desc = "Step back [DAP]" })
 map("n", "<F4>", dap.step_out, { desc = "Step out [DAP]" })
 map("n", "<F5>", dap.continue, { desc = "Continue [DAP]" })
-map("v", "<localleader>e", dap_ui.eval, { desc = "Evaluate [DAP]" })
 
-utils.section("d", "DAP", "<leader>", "n")
+utils.section("d", "DAP", "<leader>", { "n", "v" })
+map("v", "<leader>de", dap_ui.eval, { desc = "Evaluate [DAP]" })
 map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
 map("n", "<leader>dc", utils.conditional_breakpoint, { desc = "Conditional breakpoint" })
 map("n", "<leader>dp", dap.pause, { desc = "Pause" })
@@ -158,23 +141,33 @@ map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
 
 -- git
-utils.section("g", "git", "<leader>", { "n", "v" })
-map("n", "<leader>gB", telescope.builtin.git_bcommits, { desc = "Commits (buffer)" })
-map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "Reset buffer" })
-map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Stage buffer" })
-map("n", "<leader>gb", telescope.builtin.git_branches, { desc = "Branches" })
-map("n", "<leader>gc", telescope.builtin.git_commits, { desc = "Commits" })
-map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff this" })
-map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-map("n", "<leader>gl", gitsigns.toggle_current_line_blame, { desc = "Toggle current line blame" })
-map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
-map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
-map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage hunk" })
-map("n", "<leader>gu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
-map("v", "<leader>gr", utils.git.reset_hunk, { desc = "Reset hunk" })
-map("v", "<leader>gs", utils.git.stage_hunk, { desc = "Stage hunk" })
 map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
 map("n", "]h", gitsigns.next_hunk, { desc = "Next hunk" })
+
+utils.section("g", "git", "<leader>", { "n", "v" })
+map("n", "<leader>gB", telescope.builtin.git_branches, { desc = "Branches" })
+map("n", "<leader>gC", "<cmd>Git commit %<cr>", { desc = "Commit (project)" })
+map("n", "<leader>gL", "<cmd>Git log<cr>", { desc = "Log (project)" })
+map("n", "<leader>gb", gitsigns.toggle_current_line_blame, { desc = "Toggle blame" })
+map("n", "<leader>gc", "<cmd>Git commit %<cr>", { desc = "Commit (file)" })
+map("n", "<leader>gd", "<cmd>Git difftool<cr>", { desc = "Diff tool" })
+map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+map("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Log (file)" })
+map("n", "<leader>gm", "<cmd>Git mergetool<cr>", { desc = "Merge tool" })
+map("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Status" })
+
+utils.section("gb", "buffer", "<leader>", { "n", "v" })
+map("n", "<leader>gbd", "<cmd>Gvdiffsplit<cr>", { desc = "Diff buffer" })
+map("n", "<leader>gbr", gitsigns.reset_buffer, { desc = "Reset buffer" })
+map("n", "<leader>gbs", gitsigns.stage_buffer, { desc = "Stage buffer" })
+
+utils.section("gh", "hunk", "<leader>", { "n", "v" })
+map("n", "<leader>ghp", gitsigns.preview_hunk, { desc = "Preview hunk" })
+map("n", "<leader>ghr", gitsigns.reset_hunk, { desc = "Reset hunk" })
+map("n", "<leader>ghs", gitsigns.stage_hunk, { desc = "Stage hunk" })
+map("n", "<leader>ghu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
+map("v", "<leader>ghr", utils.git.reset_hunk, { desc = "Reset hunk" })
+map("v", "<leader>ghs", utils.git.stage_hunk, { desc = "Stage hunk" })
 
 -- obsidian
 utils.section("o", "obsidian", "<leader>", { "n", "v" })
@@ -194,25 +187,25 @@ map("n", "[t", todos.jump_prev, { desc = "Previous todo comment" })
 
 -- repl
 utils.section("r", "REPL", "<leader>", "n")
-map("n", "<space>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
-map("n", "<space>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
-map("n", "<space>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
-map("n", "<space>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
+map("n", "<leader>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
+map("n", "<leader>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
+map("n", "<leader>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
+map("n", "<leader>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 
 -- general keymaps
+map("n", "<leader>,", telescope.builtin.symbols, { desc = "Symbols" })
+map("n", "<leader>-", "<C-w>s", { desc = "Split window" })
 map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })
 map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
+map("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
+map("n", "<leader>\\", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>a", neogen.generate, { desc = "Generate annotations", noremap = true, silent = true })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
 map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
-map("n", "<leader>-", "<C-w>s", { desc = "Split window" })
-map("n", "<leader>u", telescope.extensions.undo.undo, { desc = "Undo tree" })
-map("n", "<leader>\\", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
 map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
-map("n", "<localleader>s", telescope.builtin.symbols, { desc = "Symbols" })
-map("n", "<localleader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 -- markdown/quarto
 autocmd("FileType", {
@@ -220,9 +213,11 @@ autocmd("FileType", {
 	group = ft_group,
 	callback = function()
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
-		map("n", "<localleader>e", nabla.toggle_virt, { desc = "Toggle equation preview" })
-		map("n", "<localleader>x", utils.md_toggle, { desc = "Toggle check" })
-		map("n", "<localleader>p", "<Plug>MarkdownPreviewToggle", { desc = "Markdown preview" })
+		map("n", "<C-x>", utils.md_toggle, { desc = "Toggle check" })
+
+		utils.section("m", "markdown", "<leader>", "n")
+		map("n", "<leader>me", nabla.toggle_virt, { desc = "Toggle equation preview" })
+		map("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Markdown preview" })
 	end,
 })
 
@@ -241,9 +236,7 @@ autocmd("LspAttach", {
 		map("n", "gi", telescope.builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
 		map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
 		map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
-
-		utils.section("c", "code action [LSP]", "<localleader>", { "n", "v" })
-		map({ "n", "v" }, "<localleader>ca", buf.code_action, { desc = "Show available" })
+		map({ "n", "v" }, "ga", buf.code_action, { desc = "Code actions [LSP]" })
 
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
 		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
@@ -271,22 +264,22 @@ end)
 
 -- [[ mini stuff ]] -----------------------------------------------------
 -- moving around buffer
-jump2d.setup({ mappings = { start_jumping = "<localleader>j" } })
+jump2d.setup({ mappings = { start_jumping = "<leader>j" } })
 
 -- split and join arguments
-splitjoin.setup({ mappings = { toggle = "<localleader>t" } })
+splitjoin.setup({ mappings = { toggle = "<leader>t" } })
 
 -- surround text objects
-utils.section("s", "surround", "<localleader>", { "n", "v" })
+utils.section("s", "surround", "<leader>", { "n", "v" })
 surround.setup({
 	mappings = {
-		add = "<localleader>sa", -- add surrounding in normal and visual modes
-		delete = "<localleader>sd", -- delete surrounding
-		find = "<localleader>sl", -- find surrounding (to the right)
-		find_left = "<localleader>sh", -- find surrounding (to the left)
-		highlight = "<localleader>sH", -- highlight surrounding
-		replace = "<localleader>sr", -- replace surrounding
-		update_n_lines = "<localleader>sn", -- update `n_lines`
+		add = "<leader>sa", -- add surrounding in normal and visual modes
+		delete = "<leader>sd", -- delete surrounding
+		find = "<leader>sl", -- find surrounding (to the right)
+		find_left = "<leader>sh", -- find surrounding (to the left)
+		highlight = "<leader>sH", -- highlight surrounding
+		replace = "<leader>sr", -- replace surrounding
+		update_n_lines = "<leader>sn", -- update `n_lines`
 	},
 })
 
@@ -299,6 +292,8 @@ move.setup({
 		down = "<S-j>",
 		up = "<S-k>",
 		-- normal mode
+		line_left = "<",
+		line_right = ">",
 		line_down = "<S-j>",
 		line_up = "<S-k>",
 	},

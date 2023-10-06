@@ -1,7 +1,6 @@
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 local themes = require("telescope.themes")
-local undo_actions = require("telescope-undo.actions")
 local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
 
 telescope.setup({
@@ -42,15 +41,6 @@ telescope.setup({
 		bibtex = {
 			global_files = { references },
 		},
-		undo = {
-			mappings = {
-				i = {
-					["<C-CR>"] = undo_actions.yank_additions,
-					["<S-CR>"] = undo_actions.yank_deletions,
-					["<CR>"] = undo_actions.restore,
-				},
-			},
-		},
 	},
 })
 
@@ -60,7 +50,6 @@ local extensions = {
 	"fzy_native",
 	"ui-select",
 	"zoxide",
-	"undo",
 	"dap",
 }
 

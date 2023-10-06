@@ -1,5 +1,6 @@
 -- [[ variables ]] ------------------------------------------------------
 local cmd = vim.cmd
+local g = vim.g
 local opt = vim.opt
 
 -- [[ imports ]] --------------------------------------------------------
@@ -12,6 +13,10 @@ local statusline = require("mini.statusline")
 local tabline = require("mini.tabline")
 
 -- [[ options ]] --------------------------------------------------------
+-- leader keys
+g.mapleader = " "
+g.maplocalleader = " "
+
 -- syntax
 opt.syntax = "on"
 

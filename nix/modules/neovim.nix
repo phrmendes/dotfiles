@@ -72,9 +72,10 @@ in {
       telescope-nvim # fuzzy finder
       telescope-symbols-nvim # undo integration
       telescope-ui-select-nvim # telescope ui
-      telescope-undo-nvim # undo integration
       telescope-zoxide # zoxide integration
       todo-comments-nvim # todo comments
+      undotree # undo tree
+      vim-fugitive # git integration
       vim-helm # helm syntax
       vim-jinja # jinja syntax
       vim-nix # nix syntax

@@ -4,7 +4,6 @@
       # CLI
       asdf-vm
       bitwarden-cli
-      coursier
       docker-slim
       duckdb
       eza
@@ -16,7 +15,6 @@
       lazydocker
       micromamba
       ncdu
-      openjdk
       pandoc
       parallel
       quarto

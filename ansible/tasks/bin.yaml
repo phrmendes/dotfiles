@@ -1,6 +1,5 @@
 - name: Install binaries
   become_user: "{{ user }}"
-  tags: [bin]
   block:
     - name: Get pCloud download link
       uri:

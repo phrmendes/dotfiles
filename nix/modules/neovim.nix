@@ -16,7 +16,6 @@
   latex-snippets = fromGitHub "ffb4cc7bef68f0c3e0e1a079375b8fede2be5176" "HEAD" "iurimateus/luasnip-latex-snippets.nvim";
   obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
-  ltex-ls-utils = fromGitHub "8c6ef83d5ba059725265825f72a329757216991c" "HEAD" "jhofscheier/ltex-utils.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -42,7 +41,7 @@ in {
       lazygit-nvim # git ui
       lsp_signature-nvim # lsp signature
       lspkind-nvim # vscode-like pictograms
-      ltex-ls-utils # ltex-ls settings
+      ltex_extra-nvim # ltex-ls utils
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins

@@ -2,7 +2,6 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local fn = vim.fn
-local lang = os.getenv("LTEX_LANG") or "en-US"
 
 -- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -11,23 +10,13 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex_utils = require("ltex-utils")
+local ltex_extra = require("ltex_extra")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
 
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
-
--- [[ ltex settings ]] --------------------------------------------------
-ltex_utils.setup({
-	opts = {
-		dictionary = {
-			use_vim_dict = true,
-			vim_cmd_output = false,
-		},
-	},
-})
 
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
@@ -88,12 +77,13 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-lspconfig.ltex.setup({
-	capabilities = capabilities,
-	on_attach = function(_, bufnr)
-		ltex_utils.on_attach(bufnr)
-	end,
-	settings = { ltex = { language = lang } },
+ltex_extra.setup({
+	load_langs = { "en-US", "pt-BR" },
+	init_check = true,
+	path = ".ltex",
+	server_opts = {
+		capabilities = capabilities,
+	},
 })
 
 -- [[ linters ]] --------------------------------------------------------

@@ -215,11 +215,14 @@ autocmd("FileType", {
 	group = ft_group,
 	callback = function()
 		local preview_command
+		local stop_preview_command
 
 		if vim.bo.filetype == "quarto" then
 			preview_command = "<cmd>QuartoPreview<cr>"
+			stop_preview_command = "<cmd>QuartoClosePreview<cr>"
 		else
-			preview_command = "<Plug>MarkdownPreviewToggle"
+			preview_command = "<cmd>MarkdownPreview<cr>"
+			stop_preview_command = "<cmd>MarkdownPreviewStop<cr>"
 		end
 
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
@@ -228,6 +231,7 @@ autocmd("FileType", {
 		utils.section("w", "writing", "<leader>", "n")
 		map("n", "<leader>we", nabla.toggle_virt, { desc = "Toggle equation preview" })
 		map("n", "<leader>wp", preview_command, { desc = "Preview" })
+		map("n", "<leader>wq", stop_preview_command, { desc = "Stop preview" })
 	end,
 })
 

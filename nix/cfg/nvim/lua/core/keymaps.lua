@@ -114,14 +114,14 @@ map({ "n", "v" }, "<leader>ct", "<cmd>ChatGPTRun translate<cr>", { desc = "Trans
 map({ "n", "v" }, "<leader>cx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "Explain code" })
 
 -- DAP
-map("n", "<F1>", dap.step_over, { desc = "Step over [DAP]" })
-map("n", "<F2>", dap.step_into, { desc = "Step into [DAP]" })
-map("n", "<F3>", dap.step_back, { desc = "Step back [DAP]" })
-map("n", "<F4>", dap.step_out, { desc = "Step out [DAP]" })
-map("n", "<F5>", dap.continue, { desc = "Continue [DAP]" })
+map("n", "<F1>", dap.step_over, { desc = "Debugger: step over" })
+map("n", "<F2>", dap.step_into, { desc = "Debugger: step into" })
+map("n", "<F3>", dap.step_back, { desc = "Debugger: step back" })
+map("n", "<F4>", dap.step_out, { desc = "Debugger: step out" })
+map("n", "<F5>", dap.continue, { desc = "Debugger: continue" })
 
-utils.section("d", "DAP", "<leader>", { "n", "v" })
-map("v", "<leader>de", dap_ui.eval, { desc = "Evaluate [DAP]" })
+utils.section("d", "debugger", "<leader>", { "n", "v" })
+map("v", "<leader>de", dap_ui.eval, { desc = "Evaluate" })
 map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
 map("n", "<leader>dc", utils.conditional_breakpoint, { desc = "Conditional breakpoint" })
 map("n", "<leader>dp", dap.pause, { desc = "Pause" })
@@ -211,15 +211,23 @@ map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 
 -- markdown/quarto
 autocmd("FileType", {
-	pattern = "markdown",
+	pattern = { "quarto", "markdown" },
 	group = ft_group,
 	callback = function()
+		local preview_command
+
+		if vim.bo.filetype == "quarto" then
+			preview_command = "<cmd>QuartoPreview<cr>"
+		else
+			preview_command = "<Plug>MarkdownPreviewToggle"
+		end
+
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
 		map("n", "<C-x>", utils.md_toggle, { desc = "Toggle check" })
 
-		utils.section("m", "markdown", "<leader>", "n")
-		map("n", "<leader>me", nabla.toggle_virt, { desc = "Toggle equation preview" })
-		map("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Markdown preview" })
+		utils.section("w", "writing", "<leader>", "n")
+		map("n", "<leader>we", nabla.toggle_virt, { desc = "Toggle equation preview" })
+		map("n", "<leader>wp", preview_command, { desc = "Preview" })
 	end,
 })
 
@@ -229,16 +237,16 @@ autocmd("LspAttach", {
 	callback = function(ev)
 		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-		map("n", "[d", diag.goto_prev, { desc = "Previous diagnostic message" })
-		map("n", "]d", diag.goto_next, { desc = "Next diagnostic message" })
-		map("n", "gD", buf.declaration, { desc = "Go to declaration [LSP]" })
-		map("n", "gR", telescope.builtin.lsp_references, { desc = "Go to references [LSP]" })
-		map("n", "gd", telescope.builtin.lsp_definitions, { desc = "Go to definition [LSP]" })
-		map("n", "gh", buf.hover, { desc = "Show hover [LSP]" })
-		map("n", "gi", telescope.builtin.lsp_implementations, { desc = "Go to implementation [LSP]" })
-		map("n", "gr", buf.rename, { desc = "Rename [LSP]" })
-		map("n", "gs", buf.signature_help, { desc = "Signature help [LSP]" })
-		map({ "n", "v" }, "ga", buf.code_action, { desc = "Code actions [LSP]" })
+		map("n", "[d", diag.goto_prev, { desc = "LSP: previous diagnostic message" })
+		map("n", "]d", diag.goto_next, { desc = "LSP: next diagnostic message" })
+		map("n", "gD", buf.declaration, { desc = "LSP: go to declaration" })
+		map("n", "gR", telescope.builtin.lsp_references, { desc = "LSP: go to references" })
+		map("n", "gd", telescope.builtin.lsp_definitions, { desc = "LSP: go to definition" })
+		map("n", "gh", buf.hover, { desc = "LSP: show hover" })
+		map("n", "gi", telescope.builtin.lsp_implementations, { desc = "LSP: go to implementation" })
+		map("n", "gr", buf.rename, { desc = "LSP: rename" })
+		map("n", "gs", buf.signature_help, { desc = "LSP: signature help" })
+		map({ "n", "v" }, "ga", buf.code_action, { desc = "LSP: code actions" })
 
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
 		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })

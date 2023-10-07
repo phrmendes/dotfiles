@@ -63,8 +63,10 @@ in {
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
       obsidian-nvim # obsidian
+      otter-nvim # quarto dependency
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
+      quarto-nvim # quarto integration
       telescope-bibtex # bibtex integration
       telescope-dap-nvim # dap integration
       telescope-fzy-native-nvim # telescope fzy integration

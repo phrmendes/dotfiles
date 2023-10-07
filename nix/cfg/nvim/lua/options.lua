@@ -3,15 +3,6 @@ local cmd = vim.cmd
 local g = vim.g
 local opt = vim.opt
 
--- [[ imports ]] --------------------------------------------------------
-local bufremove = require("mini.bufremove")
-local hicursorword = require("mini.cursorword")
-local indentscope = require("mini.indentscope")
-local pairs = require("mini.pairs")
-local starter = require("mini.starter")
-local statusline = require("mini.statusline")
-local tabline = require("mini.tabline")
-
 -- [[ options ]] --------------------------------------------------------
 -- leader keys
 g.mapleader = " "
@@ -92,12 +83,3 @@ opt.concealcursor = "nc"
 
 -- shell slash
 opt.shellslash = true
-
--- [[ mini stuff ]] -----------------------------------------------------
-bufremove.setup()
-hicursorword.setup()
-indentscope.setup()
-pairs.setup()
-starter.setup()
-tabline.setup()
-statusline.setup({ set_vim_settings = false })

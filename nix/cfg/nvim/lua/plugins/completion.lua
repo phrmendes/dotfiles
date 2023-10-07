@@ -1,29 +1,12 @@
 -- [[ imports ]] --------------------------------------------------------
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 local lspkind = require("lspkind")
-local vscode_loaders = require("luasnip.loaders.from_vscode")
-local latex_snippets = require("luasnip-latex-snippets")
-
--- [[ luasnip ]] --------------------------------------------------------
-luasnip.config.setup()
-
--- load latex snippets
-latex_snippets.setup({
-	enable_autosnippets = true,
-	use_treesitter = true,
-	allow_on_markdown = true,
-})
-
--- load vscode like snippets from plugins
-vscode_loaders.lazy_load()
+local utils = require("core.utils")
 
 -- [[ completion setup ]] -----------------------------------------------
 cmp.setup({
 	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
+		expand = utils.luasnip.expand,
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-d>"] = cmp.mapping.scroll_docs(4), -- scroll documentation down
@@ -36,24 +19,8 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
 		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_locally_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.locally_jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		["<Tab>"] = cmp.mapping(utils.luasnip.tab, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(utils.luasnip.s_tab, { "i", "s" }),
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({

@@ -219,7 +219,7 @@ autocmd("FileType", {
 		utils.section("m", "markdown", "<leader>", "n")
 		map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
 
-		utils.section("wq", "quarto", "<leader>", "n")
+		utils.section("mq", "quarto", "<leader>", "n")
 		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })
 		map("n", "<leader>mqq", "<cmd>QuartoClosePreview<cr>", { desc = "Stop preview" })
 	end,

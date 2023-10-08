@@ -8,7 +8,7 @@ local s = luasnip.snippet
 local t = luasnip.text_node
 
 -- [[ luasnip settings ]] -----------------------------------------------
-luasnip.config.setup()
+luasnip.config.setup({ enable_autosnippets = true })
 
 -- latex snippets
 latex_snippets.setup({

@@ -46,7 +46,6 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
-      nabla-nvim # math preview
       neogen # annotations
       nui-nvim # neovim ui component lib
       nvim-bqf # quickfix

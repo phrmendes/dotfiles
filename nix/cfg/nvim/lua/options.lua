@@ -83,3 +83,6 @@ opt.concealcursor = "nc"
 
 -- shell slash
 opt.shellslash = true
+
+-- markdown preview
+g.mkdp_filetyes = { "markdown", "quarto" }

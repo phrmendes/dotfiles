@@ -17,7 +17,6 @@ local jump2d = require("mini.jump2d")
 local linters = require("lint")
 local luasnip = require("luasnip")
 local move = require("mini.move")
-local nabla = require("nabla")
 local neogen = require("neogen")
 local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
@@ -214,24 +213,13 @@ autocmd("FileType", {
 	pattern = { "quarto", "markdown" },
 	group = ft_group,
 	callback = function()
-		local preview_command
-		local stop_preview_command
-
-		if vim.bo.filetype == "quarto" then
-			preview_command = "<cmd>QuartoPreview<cr>"
-			stop_preview_command = "<cmd>QuartoClosePreview<cr>"
-		else
-			preview_command = "<cmd>MarkdownPreview<cr>"
-			stop_preview_command = "<cmd>MarkdownPreviewStop<cr>"
-		end
-
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
 		map("n", "<C-x>", utils.md_toggle, { desc = "Toggle check" })
 
 		utils.section("w", "writing", "<leader>", "n")
-		map("n", "<leader>we", nabla.toggle_virt, { desc = "Toggle equation preview" })
-		map("n", "<leader>wp", preview_command, { desc = "Preview" })
-		map("n", "<leader>wq", stop_preview_command, { desc = "Stop preview" })
+		map("n", "<leader>wp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
+		map("n", "<leader>wq", "<cmd>QuartoPreview<cr>", { desc = "Quarto preview" })
+		map("n", "<leader>ws", "<cmd>QuartoPreviewStop<cr>", { desc = "Stop quarto preview" })
 	end,
 })
 

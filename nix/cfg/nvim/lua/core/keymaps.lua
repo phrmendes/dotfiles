@@ -216,10 +216,12 @@ autocmd("FileType", {
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
 		map("n", "<C-x>", utils.md_toggle, { desc = "Toggle check" })
 
-		utils.section("w", "writing", "<leader>", "n")
-		map("n", "<leader>wp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
-		map("n", "<leader>wq", "<cmd>QuartoPreview<cr>", { desc = "Quarto preview" })
-		map("n", "<leader>ws", "<cmd>QuartoPreviewStop<cr>", { desc = "Stop quarto preview" })
+		utils.section("m", "markdown", "<leader>", "n")
+		map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
+
+		utils.section("wq", "quarto", "<leader>", "n")
+		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })
+		map("n", "<leader>mqq", "<cmd>QuartoClosePreview<cr>", { desc = "Stop preview" })
 	end,
 })
 

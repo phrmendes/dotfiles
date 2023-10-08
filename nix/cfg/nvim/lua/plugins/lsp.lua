@@ -84,6 +84,11 @@ ltex_extra.setup({
 	server_opts = {
 		filetypes = { "markdown", "quarto" },
 		capabilities = capabilities,
+		settings = {
+			ltex = {
+				language = "auto",
+			},
+		},
 	},
 })
 

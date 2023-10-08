@@ -16,11 +16,13 @@
       lla = "${pkgs.eza}/bin/eza --icons -la";
       ls = "${pkgs.eza}/bin/eza --icons";
       lt = "${pkgs.eza}/bin/eza --icons --tree";
+      mb = "${pkgs.micromamba}/bin/micromamba";
+      mba = "${pkgs.micromamba}/bin/micromamba activate";
+      mbd = "${pkgs.micromamba}/bin/micromamba deactivate";
       ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
       tldr = "${pkgs.tealdeer}/bin/tldr";
       tx = "${pkgs.tmux}/bin/tmux";
       zt = "${pkgs.zathura}/bin/zathura --fork";
-      mb = "micromamba";
       mkdir = "mkdir -p";
       od = "nvim +ObsidianToday";
       of = "fzf_open_with_nvim";

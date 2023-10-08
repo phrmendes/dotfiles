@@ -13,7 +13,6 @@ luasnip.config.setup({ enable_autosnippets = true })
 -- latex snippets
 latex_snippets.setup({
 	enable_autosnippets = true,
-	use_treesitter = true,
 	allow_on_markdown = true,
 })
 

@@ -82,6 +82,7 @@ in {
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
+      vimtex # latex
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
     ];

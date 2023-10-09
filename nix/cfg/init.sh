@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.bw" ]; then
-    source "$HOME/.bw"
+if [ -f "$HOME/.openai" ]; then
+    source "$HOME/.openai"
 fi
 
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
@@ -19,7 +19,6 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 path+=(
 	"$HOME/.asdf/shims"
 	"$HOME/.local/bin"
-	"$HOME/.local/share/coursier/bin"
 )
 
 function nix_update() {

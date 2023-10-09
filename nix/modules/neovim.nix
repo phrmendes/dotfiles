@@ -33,7 +33,6 @@ in {
       conform-nvim # formatting
       copilot-vim # github copilot
       executor-nvim # async jobs
-      fidget-nvim # lsp utils
       friendly-snippets # snippets
       gitsigns-nvim # git indicators
       iron-nvim # REPLs

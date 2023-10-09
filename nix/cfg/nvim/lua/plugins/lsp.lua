@@ -135,9 +135,6 @@ formatters.formatters_by_ft = {
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------
--- nvim-lsp progress
-fidget.setup()
-
 -- enable lsp_signature
 lsp_signature.setup()
 

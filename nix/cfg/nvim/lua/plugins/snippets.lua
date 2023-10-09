@@ -100,7 +100,7 @@ local equation_snippets = {
 	parse_snippet({ trig = ">>", name = ">>" }, "\\gg"),
 	parse_snippet({ trig = "\\\\\\", name = "setminus" }, "\\setminus"),
 	parse_snippet({ trig = "__", name = "subscript" }, "_{$1}$0"),
-	parse_snippet({ trig = "inline_math", name = "inline math" }, "${1:equation}$"),
+	parse_snippet({ trig = "inline_math", name = "inline math" }, "$${1:equation}$"),
 	parse_snippet({ trig = "math", name = "block math" }, "$$\n${1:equation}\n$$"),
 	parse_snippet({ trig = "||", name = "mid" }, " \\mid "),
 	parse_snippet({ trig = "~~", name = "~" }, "\\sim "),

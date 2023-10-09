@@ -26,6 +26,7 @@
       xclip
       # GUI
       bitwarden
+      bruno
       caffeine-ng
       chromium
       deluge

@@ -1,40 +1,35 @@
+- name: Get pCloud info
+  import_tasks: ./pcloud.yaml
+
 - name: Install binaries
   become_user: "{{ user }}"
-  tags: [bin]
   block:
-    - name: Get pCloud download link
-      uri:
-        url: "https://api.pcloud.com/getpublinkdownload?code={{ pcloud_code }}"
-        return_content: true
-      register: pcloud_response
+    - name: Set list to iterate
+      set_fact:
+        binaries: "{{ bin + pcloud_bin }}"
 
     - name: Download bin archives
       get_url:
         url: "{{ item.url }}"
-        dest: "{{ item.file }}"
-      with_items:
-        - url: "https://{{ pcloud_response['json']['hosts'][0] }}{{ pcloud_response['json']['path'] }}"
-          file: "{{ home }}/.local/bin/pcloud"
-        - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json_version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
-          file: /tmp/pdfannots2json.tar.gz
-        - url: "https://github.com/hadolint/hadolint/releases/download/v{{ hadolint_version }}/hadolint-{{ ansible_system }}-{{ ansible_architecture }}"
-          file: "{{ home }}/.local/bin/hadolint"
-        - url: "https://github.com/usebruno/bruno/releases/download/v{{ bruno_version }}/bruno_{{ bruno_version }}_{{ ansible_architecture }}_{{ ansible_system | lower }}.AppImage"
-          file: "{{ home }}/.local/bin/bruno"
-    - name: Extract pdfannots2json
+        dest: "{{ home }}/.local/bin/{{ item.name }}{{ '.' + item.extension if item.extension is defined else '' }}"
+      with_items: "{{ binaries }}"
+
+    - name: Unpack archives
       unarchive:
-        src: /tmp/pdfannots2json.tar.gz
         remote_src: true
+        src: "{{ home }}/.local/bin/{{ item.name }}.{{ item.extension }}"
         dest: "{{ home }}/.local/bin"
-        creates: "{{ home }}/.local/bin/pdfannots2json.tar.gz"
+      with_items: "{{ binaries | selectattr('unpack', 'equalto', true) | list }}"
+
+    - name: Delete compressed archives
+      file:
+        path: "{{ home }}/.local/bin/{{ item.name }}.{{ item.extension }}"
+        state: absent
+      with_items: "{{ binaries | selectattr('unpack', 'equalto', true) | list }}"
 
     - name: Set permission for bin files
       file:
-        path: "{{ home }}/.local/bin/{{ item }}"
+        path: "{{ home }}/.local/bin/{{ item.name }}"
         mode: "0755"
         state: file
-      with_items:
-        - pcloud
-        - pdfannots2json
-        - hadolint
-        - bruno
+      with_items: "{{ binaries }}"

@@ -14,7 +14,5 @@
     method: user
     name: "{{ flatpak.install }}"
 
-- name: Give WezTerm permissions to read home directory
-  command:
-    cmd: flatpak override --filesystem=home org.wezfurlong.wezterm
-  changed_when: false
+- name: WezTerm settings
+  import_tasks: ./wezterm.yaml

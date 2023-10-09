@@ -5,7 +5,6 @@ local fn = vim.fn
 
 -- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local fidget = require("fidget")
 local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")

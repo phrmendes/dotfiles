@@ -82,6 +82,8 @@ local equation_snippets = {
     parse_snippet({ trig = "dots", name = "dots", priority = 100 }, "\\dots "),
     parse_snippet({ trig = "frac", name = "fraction" }, "\\frac{$1}{$2}$0"),
     parse_snippet({ trig = "text", name = "text" }, "\\text{$1}$0"),
+	parse_snippet({ trig = "inline_math", name = "inline math" }, "$${1:equation}$"),
+	parse_snippet({ trig = "math", name = "block math" }, "$$\n${1:equation}\n$$"),
 	parse_snippet({ trig = "!=", name = "not equals" }, "\\neq "),
 	parse_snippet({ trig = "!>", name = "mapsto" }, "\\mapsto "),
 	parse_snippet({ trig = "**", name = "cdot", priority = 100 }, "\\cdot "),
@@ -89,7 +91,6 @@ local equation_snippets = {
 	parse_snippet({ trig = ":=", name = "colon equals (lhs defined as rhs)" }, "\\coloneqq "),
 	parse_snippet({ trig = "<!", name = "normal" }, "\\triangleleft "),
 	parse_snippet({ trig = "<->", name = "leftrightarrow", priority = 200 }, "\\leftrightarrow"),
-	parse_snippet({ trig = "<<", name = "<<" }, "\\ll"),
 	parse_snippet({ trig = "<<", name = "<<" }, "\\ll"),
 	parse_snippet({ trig = "<=", name = "leq" }, "\\le "),
 	parse_snippet({ trig = "<>", name = "hokje" }, "\\diamond "),
@@ -100,9 +101,8 @@ local equation_snippets = {
 	parse_snippet({ trig = ">>", name = ">>" }, "\\gg"),
 	parse_snippet({ trig = "\\\\\\", name = "setminus" }, "\\setminus"),
 	parse_snippet({ trig = "__", name = "subscript" }, "_{$1}$0"),
-	parse_snippet({ trig = "inline_math", name = "inline math" }, "$${1:equation}$"),
-	parse_snippet({ trig = "math", name = "block math" }, "$$\n${1:equation}\n$$"),
 	parse_snippet({ trig = "||", name = "mid" }, " \\mid "),
+	parse_snippet({ trig = "~=", name = "approx" }, "\\approx "),
 	parse_snippet({ trig = "~~", name = "~" }, "\\sim "),
 }
 -- stylua: ignore end

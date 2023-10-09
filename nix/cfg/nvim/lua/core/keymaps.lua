@@ -254,13 +254,13 @@ autocmd("LspAttach", {
 })
 
 -- snippets
-map({ "i", "s" }, "<C-p>", function()
+map({ "i", "s" }, "<C-k>", function()
 	if luasnip.choice_active() then
 		return luasnip.change_choice(-1)
 	end
 end)
 
-map({ "i", "s" }, "<C-n>", function()
+map({ "i", "s" }, "<C-j>", function()
 	if luasnip.choice_active() then
 		return luasnip.change_choice(1)
 	end

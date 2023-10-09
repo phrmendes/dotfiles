@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.openai" ]; then
-    source "$HOME/.openai"
-fi
-
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
     source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
 fi

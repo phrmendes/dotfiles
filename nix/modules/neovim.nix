@@ -24,7 +24,6 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      ChatGPT-nvim # chatgpt integration
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
@@ -43,7 +42,6 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
-      neogen # annotations
       nui-nvim # neovim ui component lib
       nvim-bqf # quickfix
       nvim-cmp # completion
@@ -79,7 +77,6 @@ in {
       vim-nix # nix syntax
       vim-tmux-navigator # tmux keybindings
       vim-visual-multi # multiple cursors
-      vimtex # latex
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
     ];

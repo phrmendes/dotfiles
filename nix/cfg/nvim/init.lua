@@ -1,6 +1,4 @@
 require("options")
-require("plugins.annotations")
-require("plugins.chatgpt")
 require("plugins.comments")
 require("plugins.completion")
 require("plugins.debugger")

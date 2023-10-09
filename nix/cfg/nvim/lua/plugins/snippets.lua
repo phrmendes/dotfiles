@@ -20,33 +20,29 @@ latex_snippets.setup({
 vscode_loaders.lazy_load()
 
 -- [[ snippets ]] --------------------------------------------------------
--- standard metadata
-local metadata_template = [[
+local metadata = s(
+	"metadata",
+	fmt(
+		[[
 ---
 aliases: [{}]
 tags: [{}]
 ---
-]]
-
-local metadata = s(
-	"metadata",
-	fmt(metadata_template, {
-		i(1, "alias"),
-		i(2, "tag"),
-	})
+]],
+		{
+			i(1, "alias"),
+			i(2, "tag"),
+		}
+	)
 )
-
--- journal entry
-local journal_template = [[# {}]]
 
 local journal = s(
 	"journal",
-	fmt(journal_template, {
+	fmt([[# {}]], {
 		t(os.date("%a, %d %b %Y")),
 	})
 )
 
--- apply snippets
 luasnip.add_snippets("markdown", {
 	metadata,
 	journal,

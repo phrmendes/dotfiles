@@ -15,16 +15,8 @@ tailscale_keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
-    - com.bitwarden.desktop
-    - com.github.tchx84.Flatseal
-    - com.uploadedlobster.peek
-    - de.haeckerfelix.Fragments
-    - info.febvre.Komikku
     - io.github.celluloid_player.Celluloid
-    - md.obsidian.Obsidian
-    - org.libreoffice.LibreOffice
     - org.wezfurlong.wezterm
-    - org.zotero.Zotero
 
 bin:
   - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json_version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"

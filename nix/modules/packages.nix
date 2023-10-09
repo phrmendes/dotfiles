@@ -30,7 +30,6 @@
       peek
       fragments
       komikku
-      celluloid
       obsidian
       libreoffice
       zotero

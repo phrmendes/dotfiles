@@ -1,5 +1,6 @@
 - name: Install binaries
   become_user: "{{ user }}"
+  tags: [bin]
   block:
     - name: Get pCloud download link
       uri:
@@ -18,7 +19,8 @@
           file: /tmp/pdfannots2json.tar.gz
         - url: "https://github.com/hadolint/hadolint/releases/download/v{{ hadolint_version }}/hadolint-{{ ansible_system }}-{{ ansible_architecture }}"
           file: "{{ home }}/.local/bin/hadolint"
-
+        - url: "https://github.com/usebruno/bruno/releases/download/v{{ bruno_version }}/bruno_{{ bruno_version }}_{{ ansible_architecture }}_{{ ansible_system | lower }}.AppImage"
+          file: "{{ home }}/.local/bin/bruno"
     - name: Extract pdfannots2json
       unarchive:
         src: /tmp/pdfannots2json.tar.gz
@@ -35,3 +37,4 @@
         - pcloud
         - pdfannots2json
         - hadolint
+        - bruno

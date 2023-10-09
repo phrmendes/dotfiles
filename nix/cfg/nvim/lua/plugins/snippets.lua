@@ -1,48 +1,27 @@
 -- [[ imports ]] --------------------------------------------------------
-local fmt = require("luasnip.extras.fmt").fmt
-local latex_snippets = require("luasnip-latex-snippets")
 local luasnip = require("luasnip")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
-local i = luasnip.insert_node
-local s = luasnip.snippet
-local t = luasnip.text_node
+local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, {
+	wordTrig = false,
+})
 
 -- [[ luasnip settings ]] -----------------------------------------------
 luasnip.config.setup({ enable_autosnippets = true })
-
--- latex snippets
-latex_snippets.setup({
-	enable_autosnippets = true,
-	allow_on_markdown = true,
-})
-
--- load snippets from vscode
 vscode_loaders.lazy_load()
 
 -- [[ snippets ]] --------------------------------------------------------
-local metadata = s(
-	"metadata",
-	fmt(
-		[[
----
-aliases: [{}]
-tags: [{}]
----
-]],
-		{
-			i(1, "alias"),
-			i(2, "tag"),
-		}
-	)
-)
+-- general
+local metadata = parse_snippet({
+	trig = "metadata",
+	name = "metadata",
+}, "\n---\naliases: [{}]\ntags: [{}]\n---")
 
-local journal = s(
-	"journal",
-	fmt([[# {}]], {
-		t(os.date("%a, %d %b %Y")),
-	})
-)
+local journal = parse_snippet({
+	trig = "journal",
+	name = "journal",
+}, "# " .. os.date("%a, %d %b %Y") .. "\n")
 
+-- apply snippets
 luasnip.add_snippets("markdown", {
 	metadata,
 	journal,

@@ -22,6 +22,7 @@ flatpak:
   install:
     - io.github.celluloid_player.Celluloid
     - org.wezfurlong.wezterm
+    - net.cozic.joplin_desktop
 
 bin:
   - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json_version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"

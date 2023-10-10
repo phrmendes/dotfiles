@@ -13,7 +13,6 @@
       gnome-extensions-cli
       hugo
       hunspell
-      joplin
       micromamba
       ncdu
       pandoc
@@ -29,7 +28,6 @@
       caffeine-ng
       droidcam
       fragments
-      joplin-desktop
       komikku
       libreoffice
       peek

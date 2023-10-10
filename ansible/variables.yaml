@@ -70,6 +70,7 @@ apt:
     - nala
     - openssh-server
     - rar
+    - seahorse-nautilus
     - tailscale
     - tk-dev
     - uidmap

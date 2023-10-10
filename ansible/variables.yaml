@@ -13,6 +13,7 @@ mathpix_version: 03.00.0104
 nix_version: 2.17.0
 pdfannots2json_version: 1.0.16
 quarto_version: 1.3.450
+joplin: 2.12.18
 
 pcloud_code: XZpL8AVZAqfCXz5TebJ2gcvAiHi15pYFKPey
 tailscale_keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
@@ -22,7 +23,6 @@ flatpak:
   install:
     - io.github.celluloid_player.Celluloid
     - org.wezfurlong.wezterm
-    - net.cozic.joplin_desktop
 
 bin:
   - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json_version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
@@ -37,6 +37,9 @@ bin:
     unpack: false
   - url: "https://github.com/hadolint/hadolint/releases/download/v{{ hadolint_version }}/hadolint-{{ ansible_system }}-{{ ansible_architecture }}"
     name: hadolint
+    unpack: false
+  - url: "https://github.com/laurent22/joplin/releases/download/v{{ joplin_version }}/Joplin-{{ joplin_version }}.AppImage"
+    name: joplin
     unpack: false
 
 apt:

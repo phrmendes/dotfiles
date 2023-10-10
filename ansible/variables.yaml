@@ -46,13 +46,13 @@ desktop_entries:
   - name: Joplin
     icon: https://joplinapp.org/images/Icon512.png
     comment: Open source note-taking app
-    categories: Office
-    terminal: false
+    terminal: "false"
+    single_window: "true"
   - name: bruno
     icon: https://raw.githubusercontent.com/usebruno/bruno/main/assets/images/logo.png
     comment: Open source API client
-    categories: Programming
-    terminal: false
+    terminal: "false"
+    single_window: "false"
 
 apt:
   remove:

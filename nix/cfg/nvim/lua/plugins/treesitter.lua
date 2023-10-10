@@ -4,7 +4,7 @@ local context = require("treesitter-context")
 treesitter.setup({
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = { "markdown", "org" },
+		additional_vim_regex_highlighting = { "markdown" },
 	},
 	indent = { enable = true },
 	autotag = { enable = true },

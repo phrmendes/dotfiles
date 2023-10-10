@@ -13,7 +13,6 @@
       };
     };
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
-  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
 in {
   programs.neovim = {
     enable = true;
@@ -56,11 +55,8 @@ in {
       nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
-      otter-nvim # quarto dependency
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency
-      quarto-nvim # quarto integration
-      telescope-bibtex # bibtex integration
       telescope-dap-nvim # dap integration
       telescope-fzy-native-nvim # telescope fzy integration
       telescope-nvim # fuzzy finder
@@ -82,7 +78,6 @@ in {
       (with pkgs; [
         alejandra
         ansible-language-server
-        ansible-lint
         delve
         gofumpt
         golangci-lint

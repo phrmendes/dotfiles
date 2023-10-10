@@ -9,17 +9,18 @@
   vars_files:
     - ./ansible/variables.yaml
 
-  pre_tasks:
-    - import_tasks: ./ansible/tasks/custom-facts.yaml
-
   roles:
     - geerlingguy.docker
 
   tasks:
-    - import_tasks: ./ansible/tasks/apt.yaml
-    - import_tasks: ./ansible/tasks/flatpak.yaml
-    - import_tasks: ./ansible/tasks/fingerprint.yaml
-    - import_tasks: ./ansible/tasks/nix.yaml
-    - import_tasks: ./ansible/tasks/home-manager.yaml
-    - import_tasks: ./ansible/tasks/bin.yaml
-    - import_tasks: ./ansible/tasks/nerd-fonts.yaml
+    - name: Import tasks
+      import_tasks: 
+        file: "{{ item }}"
+      with_items:   
+        - ./ansible/tasks/apt.yaml
+        - ./ansible/tasks/flatpak.yaml
+        - ./ansible/tasks/fingerprint.yaml
+        - ./ansible/tasks/nix.yaml
+        - ./ansible/tasks/home-manager.yaml
+        - ./ansible/tasks/bin.yaml
+        - ./ansible/tasks/nerd-fonts.yaml

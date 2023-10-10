@@ -1,7 +1,6 @@
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 local themes = require("telescope.themes")
-local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
 
 telescope.setup({
 	defaults = {
@@ -38,15 +37,11 @@ telescope.setup({
 			override_generic_sorter = false,
 			override_file_sorter = true,
 		},
-		bibtex = {
-			global_files = { references },
-		},
 	},
 })
 
 -- load extensions
 local extensions = {
-	"bibtex",
 	"fzy_native",
 	"ui-select",
 	"zoxide",

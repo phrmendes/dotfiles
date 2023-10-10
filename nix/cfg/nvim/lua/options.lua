@@ -85,4 +85,4 @@ opt.concealcursor = "nc"
 opt.shellslash = true
 
 -- markdown preview
-g.mkdp_filetyes = { "markdown", "quarto" }
+g.mkdp_filetyes = { "markdown" }

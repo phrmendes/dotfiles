@@ -179,20 +179,13 @@ map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
 map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 
--- markdown/quarto
+-- markdown
 autocmd("FileType", {
-	pattern = { "quarto", "markdown" },
+	pattern = { "markdown" },
 	group = ft_group,
 	callback = function()
-		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
 		map("n", "<C-x>", utils.md_toggle, { desc = "Toggle check" })
-
-		utils.section("m", "markdown", "<leader>", "n")
-		map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
-
-		utils.section("mq", "quarto", "<leader>", "n")
-		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })
-		map("n", "<leader>mqq", "<cmd>QuartoClosePreview<cr>", { desc = "Stop preview" })
+		map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview markdown" })
 	end,
 })
 

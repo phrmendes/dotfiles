@@ -13,3 +13,8 @@
     update_cache: true
     state: present
     name: "{{ apt.install }}"
+
+- name: Install .deb packages
+  apt:
+    deb: "{{ item }}"
+  with_items: "{{ apt.deb }}"

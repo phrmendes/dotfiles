@@ -2,6 +2,7 @@
   home.packages =
     (with pkgs; [
       # CLI
+      ansible-lint
       asdf-vm
       bitwarden-cli
       docker-slim
@@ -12,11 +13,11 @@
       gnome-extensions-cli
       hugo
       hunspell
+      joplin
       micromamba
       ncdu
       pandoc
       parallel
-      quarto
       ripgrep
       sqlite
       tealdeer
@@ -28,6 +29,7 @@
       caffeine-ng
       droidcam
       fragments
+      joplin-desktop
       komikku
       libreoffice
       peek

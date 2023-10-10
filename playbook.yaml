@@ -14,9 +14,9 @@
 
   tasks:
     - name: Import tasks
-      import_tasks: 
-        file: "{{ item }}"
-      with_items:   
+      include_tasks:
+        file: "{{ file }}"
+      loop:
         - ./ansible/tasks/apt.yaml
         - ./ansible/tasks/flatpak.yaml
         - ./ansible/tasks/fingerprint.yaml
@@ -24,3 +24,6 @@
         - ./ansible/tasks/home-manager.yaml
         - ./ansible/tasks/bin.yaml
         - ./ansible/tasks/nerd-fonts.yaml
+        - ./ansible/tasks/desktop_entries.yaml
+      loop_control:
+        loop_var: file

@@ -1,0 +1,19 @@
+---
+- name: Set desktop entries
+  become_user: "{{ user }}"
+  block:
+    - name: Get icons
+      become_user: "{{ user }}"
+      get_url:
+        url: "{{ item.icon }}"
+        dest: "{{ home }}/.local/share/icons/hicolor/512x512/apps/{{ item.name | lower }}.png"
+      with_items: "{{ desktop_entries }}"
+
+    - name: Create desktop entry
+      template:
+        src: ../templates/app.desktop.j2
+        dest: "{{ home }}/.local/share/applications/{{ item.name | lower }}.desktop"
+      with_items: "{{ desktop_entries }}"
+
+    - name: Update desktop database
+      command: update-desktop-database

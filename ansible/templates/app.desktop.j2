@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name={{ item.name }}
+Comment={{ item.comment }}
+Path=${HOME}/.local/bin
+Exec={{ item.name | lower }}
+Icon={{ item.name | lower }}
+Categories={{ item.categories }};
+X-GNOME-SingleWindow=true
+SingleMainWindow=true
+Terminal={{ item.terminal }}

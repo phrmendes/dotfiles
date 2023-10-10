@@ -2,7 +2,6 @@
   home.packages =
     (with pkgs; [
       # CLI
-      ansible-lint
       asdf-vm
       bitwarden-cli
       docker-slim
@@ -17,6 +16,7 @@
       ncdu
       pandoc
       parallel
+      quarto
       ripgrep
       sqlite
       tealdeer

@@ -81,6 +81,7 @@ ltex_extra.setup({
 	init_check = true,
 	path = ".ltex",
 	server_opts = {
+		filetypes = { "markdown", "quarto" },
 		capabilities = capabilities,
 		settings = {
 			ltex = {

@@ -24,9 +24,7 @@
       tx = "${pkgs.tmux}/bin/tmux";
       zt = "${pkgs.zathura}/bin/zathura --fork";
       mkdir = "mkdir -p";
-      od = "nvim +ObsidianToday";
       of = "fzf_open_with_nvim";
-      os = "nvim +ObsidianSearch";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

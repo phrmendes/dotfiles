@@ -13,7 +13,6 @@
       };
     };
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
-  obsidian-nvim = fromGitHub "52c06a056c62cc38a461cde603842af8a533bf63" "HEAD" "epwalsh/obsidian.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
 in {
   programs.neovim = {
@@ -57,7 +56,6 @@ in {
       nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
-      obsidian-nvim # obsidian
       otter-nvim # quarto dependency
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency

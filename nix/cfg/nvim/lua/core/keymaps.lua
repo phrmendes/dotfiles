@@ -154,18 +154,6 @@ map("n", "<leader>ghu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
 map("v", "<leader>ghr", utils.git.reset_hunk, { desc = "Reset hunk" })
 map("v", "<leader>ghs", utils.git.stage_hunk, { desc = "Stage hunk" })
 
--- obsidian
-utils.section("o", "obsidian", "<leader>", { "n", "v" })
-map("n", "<leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
-map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
-map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
-map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
-map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open note" })
-map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
-map("n", "<leader>ot", "<cmd>ObsidianTemplate<cr>", { desc = "Insert template" })
-map("v", "<leader>oL", "<cmd>ObsidianLinkNew<cr>", { desc = "Create new note and insert link" })
-map("v", "<leader>ol", "<cmd>ObsidianLink<cr>", { desc = "Insert link" })
-
 -- todos
 map("n", "]t", todos.jump_next, { desc = "Next todo comment" })
 map("n", "[t", todos.jump_prev, { desc = "Previous todo comment" })

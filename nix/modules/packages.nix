@@ -24,14 +24,13 @@
       terraform
       xclip
       # GUI
+      bitwarden
       caffeine-ng
       droidcam
-      bitwarden
-      peek
       fragments
       komikku
-      obsidian
       libreoffice
+      peek
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

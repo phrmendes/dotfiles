@@ -42,6 +42,7 @@ in {
       luasnip # snippets
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
+      nabla-nvim # colorscheme
       nui-nvim # neovim ui component lib
       nvim-bqf # quickfix
       nvim-cmp # completion

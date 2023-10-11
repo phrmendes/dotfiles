@@ -27,5 +27,6 @@
         - ./ansible/tasks/bin.yaml
         - ./ansible/tasks/nerd-fonts.yaml
         - ./ansible/tasks/desktop_entries.yaml
+        - ./ansible/tasks/python.yaml
       loop_control:
         loop_var: file

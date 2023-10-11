@@ -85,6 +85,8 @@ apt:
     - mlocate
     - nala
     - openssh-server
+    - python3-venv
+    - python3-virtualenv
     - rar
     - seahorse-nautilus
     - tailscale

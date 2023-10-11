@@ -9,7 +9,7 @@
 
     - name: Ensure ~/.fonts exist
       file:
-        path: ~/.fonts
+        path: "{{ home }}/.fonts"
         state: directory
         owner: "{{ user }}"
         mode: "0755"
@@ -25,3 +25,4 @@
         cmd: fc-cache -fv
         chdir: ~/.fonts
       changed_when: false
+

@@ -1,0 +1,33 @@
+---
+- name: Install python packages in virtualenvs
+  become_user: "{{ user }}"
+  block:
+    - name: Ensure ~/.virtualenvs exist
+      file:
+        path: "{{ home }}/.virtualenvs"
+        state: directory
+        owner: "{{ user }}"
+        mode: "0755"
+
+    - name: Create debugpy virtualenv
+      command:
+        cmd: "python3 -m venv debugpy"
+        chdir: "{{ home }}/.virtualenvs"
+        creates: "{{ home }}/.virtualenvs/debugpy"
+
+    - name: Install debugpy in virtualenv
+      pip:
+        extra_args: --upgrade
+        virtualenv: "{{ home }}/.virtualenvs/debugpy"
+        state: latest
+        name: debugpy
+
+    - name: Install neovim dependencies
+      pip:
+        extra_args: --upgrade
+        state: latest
+        name:
+          - PyQt5
+          - PyYAML
+          - pynvim
+          - python-poppler-qt5

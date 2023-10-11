@@ -1,11 +1,12 @@
 -- [[ variables ]] ------------------------------------------------------
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
 local buf = vim.lsp.buf
 local diag = vim.diagnostic
 local g = vim.g
 local lsp = vim.lsp
 local map = vim.keymap.set
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local buf_keymap = vim.api.nvim_buf_set_keymap
 
 -- [[ imports ]] --------------------------------------------------------
 local bufremove = require("mini.bufremove")
@@ -237,6 +238,15 @@ map({ "i", "s" }, "<C-j>", function()
 		return luasnip.change_choice(1)
 	end
 end)
+
+autocmd("FileType", {
+	pattern = "python",
+	group = ft_group,
+	callback = function()
+		buf_keymap(0, "n", "<C-a>", dial.inc_normal("python"), { noremap = true })
+		buf_keymap(0, "n", "<C-x>", dial.dec_normal("python"), { noremap = true })
+	end,
+})
 
 -- dial
 map("n", "<C-a>", function()

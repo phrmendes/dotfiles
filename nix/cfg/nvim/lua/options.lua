@@ -86,3 +86,8 @@ opt.shellslash = true
 
 -- markdown preview
 g.mkdp_filetyes = { "markdown", "quarto" }
+
+-- python path
+g.loaded_python3_provider = 1
+g.python3_host_prog = "/usr/bin/python3"
+g.python_host_prog = "/usr/bin/python3"

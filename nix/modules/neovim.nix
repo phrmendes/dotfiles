@@ -14,6 +14,8 @@
     };
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+  zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
+  cmp-zotcite = fromGitHub "431c720a73fb84c8b1a51b4f123e2a7cc8a58bfd" "HEAD" "jalvesaq/cmp-zotcite";
 in {
   programs.neovim = {
     enable = true;
@@ -21,8 +23,9 @@ in {
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-    withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      zotcite # zotero integration
+      cmp-zotcite # zotero completion
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion

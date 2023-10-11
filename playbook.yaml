@@ -9,8 +9,10 @@
   vars_files:
     - ./ansible/variables.yaml
 
-  roles:
-    - geerlingguy.docker
+  pre_tasks:
+    - name: Fix ansible variable
+      set_fact:
+        ansible_distribution: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
 
   tasks:
     - name: Import tasks

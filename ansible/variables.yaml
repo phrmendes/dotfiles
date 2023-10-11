@@ -1,11 +1,9 @@
 ---
-ansible_distribution_fix: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
 ansible_arch_alias: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 
 user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 home_prefix: "{{ '/home' if ansible_system == 'Linux' else '/Users'}}"
 home: "{{ home_prefix }}/{{ user }}"
-docker_users: ["{{ user }}"]
 
 bruno_version: 0.22.0
 hadolint_version: 2.12.0
@@ -24,10 +22,6 @@ flatpak:
     - org.wezfurlong.wezterm
 
 bin:
-  - url: "https://github.com/mgmeyers/pdfannots2json/releases/download/{{ pdfannots2json_version }}/pdfannots2json.{{ ansible_system }}.x{{ ansible_userspace_bits }}.tar.gz"
-    name: pdfannots2json
-    unpack: true
-    extension: tar.gz
   - url: "https://github.com/usebruno/bruno/releases/download/v{{ bruno_version }}/bruno_{{ bruno_version }}_{{ ansible_architecture }}_{{ ansible_system | lower }}.AppImage"
     name: bruno
     unpack: false
@@ -91,6 +85,10 @@ apt:
     - mlocate
     - nala
     - openssh-server
+    - python3-poppler-qt5
+    - python3-pynvim
+    - python3-pyqt5
+    - python3-yaml
     - rar
     - seahorse-nautilus
     - tailscale

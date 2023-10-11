@@ -4,7 +4,6 @@
       # CLI
       asdf-vm
       bitwarden-cli
-      docker-slim
       duckdb
       eza
       fd
@@ -16,6 +15,8 @@
       ncdu
       pandoc
       parallel
+      podman
+      podman-compose
       quarto
       ripgrep
       sqlite

@@ -35,6 +35,7 @@ function system_clear() {
 	sudo nala autopurge
 	sudo nala autoremove
 	sudo nala clean
+    flatpak remove --unused
 }
 
 function enable_droidcam() {

@@ -10,7 +10,6 @@
       cat = "${pkgs.bat}/bin/bat --theme=catppuccin";
       fm = "${pkgs.joshuto}/bin/joshuto";
       la = "${pkgs.eza}/bin/eza --icons -a";
-      ld = "${pkgs.lazydocker}/bin/lazydocker";
       lg = "${pkgs.lazygit}/bin/lazygit";
       ll = "${pkgs.eza}/bin/eza --icons -l";
       lla = "${pkgs.eza}/bin/eza --icons -la";

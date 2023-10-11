@@ -52,7 +52,10 @@ wk.setup({ window = { border = "single", position = "bottom" } })
 
 -- [[ copilot settings ]] -----------------------------------------------
 g.copilot_no_tab_map = true
-g.copilot_filetypes = { markdown = false }
+g.copilot_filetypes = {
+	markdown = false,
+	quarto = false,
+}
 
 local copilot_opts = {
 	noremap = true,
@@ -188,7 +191,7 @@ autocmd("FileType", {
 	group = ft_group,
 	callback = function()
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
-		map("n", "<C-X>", utils.md_toggle, { desc = "Toggle check" })
+		map("n", "<C-CR>", utils.md_toggle, { desc = "Toggle check" })
 		map("n", "<C-e>", nabla.popup, { desc = "Popup equation preview" })
 
 		utils.section("m", "markdown", "<leader>", "n")

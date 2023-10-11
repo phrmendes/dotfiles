@@ -8,17 +8,17 @@ config.augends:register_group({
 		augend.date.alias["%d/%m/%Y"],
 		augend.date.alias["%Y-%m-%d"],
 		augend.date.alias["%Y/%m/%d"],
-		augend.integer.alias.decimal,
-		augend.semver.alias.semver,
 		augend.constant.alias.bool,
+		augend.integer.alias.decimal_int,
+		augend.semver.alias.semver,
 	},
 	visual = {
 		augend.constant.alias.Alpha,
 		augend.constant.alias.alpha,
-		augend.integer.alias.decimal,
+		augend.integer.alias.decimal_int,
 	},
 	python = {
-		augend.integer.alias.decimal,
+		augend.integer.alias.decimal_int,
 		augend.constant.new({
 			elements = { "True", "False" },
 			word = false,

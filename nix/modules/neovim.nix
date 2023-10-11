@@ -30,6 +30,7 @@ in {
       comment-nvim # comments
       conform-nvim # formatting
       copilot-vim # github copilot
+      dial-nvim # increment/decrement
       executor-nvim # async jobs
       friendly-snippets # snippets
       gitsigns-nvim # git indicators

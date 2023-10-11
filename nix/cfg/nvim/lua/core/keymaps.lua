@@ -11,6 +11,7 @@ local map = vim.keymap.set
 local bufremove = require("mini.bufremove")
 local dap = require("dap")
 local dap_ui = require("dapui")
+local dial = require("dial.map")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
@@ -185,7 +186,7 @@ autocmd("FileType", {
 	group = ft_group,
 	callback = function()
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
-		map("n", "<C-x>", utils.md_toggle, { desc = "Toggle check" })
+		map("n", "<C-X>", utils.md_toggle, { desc = "Toggle check" })
 
 		utils.section("m", "markdown", "<leader>", "n")
 		map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
@@ -235,6 +236,32 @@ map({ "i", "s" }, "<C-j>", function()
 	if luasnip.choice_active() then
 		return luasnip.change_choice(1)
 	end
+end)
+
+-- dial
+map("n", "<C-a>", function()
+	dial.manipulate("increment", "normal")
+end)
+map("n", "<C-x>", function()
+	dial.manipulate("decrement", "normal")
+end)
+map("n", "g<C-a>", function()
+	dial.manipulate("increment", "gnormal")
+end)
+map("n", "g<C-x>", function()
+	dial.manipulate("decrement", "gnormal")
+end)
+map("v", "<C-a>", function()
+	dial.manipulate("increment", "visual")
+end)
+map("v", "<C-x>", function()
+	dial.manipulate("decrement", "visual")
+end)
+map("v", "g<C-a>", function()
+	dial.manipulate("increment", "gvisual")
+end)
+map("v", "g<C-x>", function()
+	dial.manipulate("decrement", "gvisual")
 end)
 
 -- [[ mini stuff ]] -----------------------------------------------------

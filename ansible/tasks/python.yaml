@@ -21,13 +21,3 @@
         virtualenv: "{{ home }}/.virtualenvs/debugpy"
         state: latest
         name: debugpy
-
-    - name: Install neovim dependencies
-      pip:
-        extra_args: --upgrade
-        state: latest
-        name:
-          - PyQt5
-          - PyYAML
-          - pynvim
-          - python-poppler-qt5

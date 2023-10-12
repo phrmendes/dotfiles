@@ -128,6 +128,7 @@ map("n", "<leader>fG", telescope.builtin.git_files, { desc = "Git files" })
 map("n", "<leader>fg", telescope.builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
+map("n", "<leader>fz", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 
 -- git
 map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
@@ -183,7 +184,6 @@ map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
-map("n", "<leader>z", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 
 -- markdown/quarto
 autocmd("FileType", {
@@ -195,20 +195,32 @@ autocmd("FileType", {
 		map("n", "<C-e>", nabla.popup, { desc = "Popup equation preview" })
 
 		utils.section("m", "markdown", "<leader>", "n")
-		map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview" })
+		map("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Preview" })
 
 		utils.section("mq", "quarto", "<leader>", "n")
 		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })
 		map("n", "<leader>mqq", "<cmd>QuartoClosePreview<cr>", { desc = "Stop preview" })
+
+		utils.section("z", "zotero", "<leader>", "z")
+		map("n", "<leader>za", [[ zotcite#GetReferenceData("raw") ]], { desc = "Insert reference (raw)" })
+		map("n", "<leader>zi", [[ zotcite#GetReferenceData("ayt") ]], { desc = "Insert reference" })
+		map("n", "<leader>zo", [[ zotcite#OpenAttachment() ]], { desc = "Open attachment" })
+		map("n", "<leader>zv", [[ zotcite#ViewDocument() ]], { desc = "View document" })
+		map("n", "<leader>zy", [[ zotcite#GetYamlRef() ]], { desc = "View document" })
+		map("n", "<leader>zn", "<cmd>Zpdfnote<cr>", { desc = "Get notes" })
+
+		utils.section("z", "zotero", "g", "z")
+		map("n", "gzC", "<Plug>ZCitationCompleteInfo", { desc = "Get citation complete info" })
+		map("n", "gzc", "<Plug>ZCitationInfo", { desc = "Citation info" })
+		map("n", "gzo", "<Plug>ZOpenAttachment", { desc = "Open attachment" })
+		map("n", "gzv", "<Plug>ZViewDocument", { desc = "View document" })
 	end,
 })
 
 -- lsp
 autocmd("LspAttach", {
 	group = lsp_augroup,
-	callback = function(ev)
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
+	callback = function()
 		map("n", "[d", diag.goto_prev, { desc = "LSP: previous diagnostic message" })
 		map("n", "]d", diag.goto_next, { desc = "LSP: next diagnostic message" })
 		map("n", "gD", buf.declaration, { desc = "LSP: go to declaration" })

@@ -25,11 +25,10 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      zotcite # zotero integration
-      cmp-zotcite # zotero completion
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
+      cmp-zotcite # zotero completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
       conform-nvim # formatting
@@ -83,6 +82,7 @@ in {
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
+      zotcite # zotero integration
     ];
     extraPython3Packages = pyPkgs:
       with pyPkgs; [

@@ -47,7 +47,6 @@ telescope.setup({
 -- load extensions
 local extensions = {
 	"bibtex",
-	"cmp_zotcite",
 	"dap",
 	"fzy_native",
 	"ui-select",

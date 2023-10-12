@@ -201,19 +201,12 @@ autocmd("FileType", {
 		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })
 		map("n", "<leader>mqq", "<cmd>QuartoClosePreview<cr>", { desc = "Stop preview" })
 
-		utils.section("z", "zotero", "<leader>", "z")
-		map("n", "<leader>za", [[ zotcite#GetReferenceData("raw") ]], { desc = "Insert reference (raw)" })
-		map("n", "<leader>zi", [[ zotcite#GetReferenceData("ayt") ]], { desc = "Insert reference" })
-		map("n", "<leader>zo", [[ zotcite#OpenAttachment() ]], { desc = "Open attachment" })
-		map("n", "<leader>zv", [[ zotcite#ViewDocument() ]], { desc = "View document" })
-		map("n", "<leader>zy", [[ zotcite#GetYamlRef() ]], { desc = "View document" })
-		map("n", "<leader>zn", "<cmd>Zpdfnote<cr>", { desc = "Get notes" })
-
-		utils.section("z", "zotero", "g", "z")
-		map("n", "gzC", "<Plug>ZCitationCompleteInfo", { desc = "Get citation complete info" })
-		map("n", "gzc", "<Plug>ZCitationInfo", { desc = "Citation info" })
-		map("n", "gzo", "<Plug>ZOpenAttachment", { desc = "Open attachment" })
-		map("n", "gzv", "<Plug>ZViewDocument", { desc = "View document" })
+		utils.section("z", "zotero", "<leader>", "n")
+		map("n", "<leader>zC", "<Plug>ZCitationCompleteInfo", { desc = "Get citation complete info" })
+		map("n", "<leader>zc", "<Plug>ZCitationInfo", { desc = "Citation info" })
+		map("n", "<leader>zo", "<Plug>ZOpenAttachment", { desc = "Open attachment" })
+		map("n", "<leader>zv", "<Plug>ZViewDocument", { desc = "View document" })
+		map("n", "<leader>zy", "<Plug>ZGetYamlRef", { desc = "Get YAML reference" })
 	end,
 })
 

@@ -20,6 +20,7 @@ local equation_snippets = {
 	parse_snippet({ trig = "!=", name = "not equals" }, "\\neq "),
 	parse_snippet({ trig = "!>", name = "mapsto" }, "\\mapsto "),
 	parse_snippet({ trig = "**", name = "cdot", priority = 100 }, "\\cdot "),
+	parse_snippet({ trig = "+-", name = "+-" }, "\\pm"),
 	parse_snippet({ trig = "->", name = "to", priority = 100 }, "\\to "),
 	parse_snippet({ trig = ":=", name = "colon equals (lhs defined as rhs)" }, "\\coloneqq "),
 	parse_snippet({ trig = "<!", name = "normal" }, "\\triangleleft "),

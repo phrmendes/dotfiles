@@ -207,7 +207,6 @@ autocmd("FileType", {
 		map("n", "<leader>zo", "<Plug>ZOpenAttachment", { desc = "Open attachment" })
 		map("n", "<leader>zv", "<Plug>ZViewDocument", { desc = "View document" })
 		map("n", "<leader>zy", "<Plug>ZGetYamlRef", { desc = "Get YAML reference" })
-		map("n", "<leader>zp", "<Plug>Zpdfnote", { desc = "Get .pdf notes" })
 	end,
 })
 

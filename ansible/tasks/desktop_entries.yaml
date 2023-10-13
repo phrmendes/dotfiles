@@ -6,7 +6,7 @@
       become_user: "{{ user }}"
       get_url:
         url: "{{ item.icon }}"
-        dest: "{{ home }}/.local/share/icons/hicolor/512x512/apps/{{ item.name | lower }}.png"
+        dest: "{{ home }}/.local/share/icons/hicolor/{{ item.icon_size }}/apps/{{ item.name | lower }}.png"
       with_items: "{{ desktop_entries }}"
 
     - name: Create desktop entry

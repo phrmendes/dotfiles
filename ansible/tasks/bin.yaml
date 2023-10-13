@@ -8,24 +8,28 @@
       set_fact:
         binaries: "{{ bin + pcloud_bin }}"
 
-    - name: Download bin archives
+    - name: Get binaries
       get_url:
         url: "{{ item.url }}"
-        dest: "{{ home }}/.local/bin/{{ item.name }}{{ '.' + item.extension if item.extension is defined else '' }}"
-      with_items: "{{ binaries }}"
+        dest: "{{ home }}/.local/bin/{{ item.name }}"
+      with_items: "{{ binaries | selectattr('unpack', 'equalto', false) | list }}"
 
-    - name: Unpack archives
-      unarchive:
-        remote_src: true
-        src: "{{ home }}/.local/bin/{{ item.name }}.{{ item.extension }}"
-        dest: "{{ home }}/.local/bin"
-      with_items: "{{ binaries | selectattr('unpack', 'equalto', true) | list }}"
+    - name: Get archived binary files
+      block:
+        - name: Download archived binaries
+          unarchive:
+            list_files: true
+            remote_src: true
+            src: "{{ item.url }}"
+            dest: "/tmp"
+          with_items: "{{ binaries | selectattr('unpack', 'equalto', true) | list }}"
+          register: archives
 
-    - name: Delete compressed archives
-      file:
-        path: "{{ home }}/.local/bin/{{ item.name }}.{{ item.extension }}"
-        state: absent
-      with_items: "{{ binaries | selectattr('unpack', 'equalto', true) | list }}"
+        - name: Rename the extracted binaries
+          copy:
+            src: "/tmp/{{ item.files[0] }}"
+            dest: "{{ home }}/.local/bin/{{ item.item.name }}"
+          with_items: "{{ archives.results }}"
 
     - name: Set permission for bin files
       file:

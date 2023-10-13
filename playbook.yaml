@@ -24,9 +24,9 @@
         - ./ansible/tasks/fingerprint.yaml
         - ./ansible/tasks/nix.yaml
         - ./ansible/tasks/home-manager.yaml
-        - ./ansible/tasks/bin.yaml
         - ./ansible/tasks/nerd-fonts.yaml
-        - ./ansible/tasks/desktop_entries.yaml
         - ./ansible/tasks/python.yaml
+        - ./ansible/tasks/bin.yaml
+        - ./ansible/tasks/desktop_entries.yaml
       loop_control:
         loop_var: file

@@ -29,9 +29,9 @@
       caffeine-ng
       droidcam
       fragments
-      komikku
       libreoffice
       peek
+      vlc
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

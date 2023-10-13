@@ -18,7 +18,6 @@ tailscale_keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
-    - io.github.celluloid_player.Celluloid
     - org.wezfurlong.wezterm
 
 bin:
@@ -38,11 +37,13 @@ bin:
 desktop_entries:
   - name: Joplin
     icon: https://joplinapp.org/images/Icon512.png
-    comment: Open source note-taking app
+    icon_size: 512x512
+    comment: The secure note taking and to-do app with synchronisation capabilities
     terminal: "false"
     single_window: "true"
-  - name: bruno
-    icon: https://raw.githubusercontent.com/usebruno/bruno/main/assets/images/logo.png
+  - name: Bruno
+    icon: https://raw.githubusercontent.com/usebruno/bruno/main/assets/images/logo-transparent.png
+    icon_size: 512x512
     comment: Open source API client
     terminal: "false"
     single_window: "false"
@@ -88,8 +89,6 @@ apt:
     - mlocate
     - nala
     - openssh-server
-    - python3-venv
-    - python3-virtualenv
     - rar
     - seahorse-nautilus
     - tailscale

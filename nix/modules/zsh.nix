@@ -22,6 +22,7 @@
       tldr = "${pkgs.tealdeer}/bin/tldr";
       tx = "${pkgs.tmux}/bin/tmux";
       zt = "${pkgs.zathura}/bin/zathura --fork";
+      code = "${pkgs.vscodium}/bin/code";
       mkdir = "mkdir -p";
       of = "fzf_open_with_nvim";
       sys_cat = "/usr/bin/cat";

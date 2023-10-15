@@ -61,7 +61,6 @@ local equation_snippets = {
 	parse_snippet({ trig = "iff", name = "iff" }, "\\iff"),
 	parse_snippet({ trig = "inline_math", name = "inline math" }, "$${1:equation}$"),
 	parse_snippet({ trig = "invs", name = "inverse" }, "^{-1}"),
-	parse_snippet({ trig = "letw", name = "let omega" }, "Let $\\Omega \\subset \\C$ be open."),
 	parse_snippet({ trig = "lim", name = "limit" }, "\\lim_{${1:n} \\to ${2:\\infty}} "),
 	parse_snippet({ trig = "limsup", name = "limsup" }, "\\limsup_{${1:n} \\to ${2:\\infty}} "),
 	parse_snippet({ trig = "lll", name = "l" }, "\\ell"),

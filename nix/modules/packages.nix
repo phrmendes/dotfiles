@@ -17,6 +17,7 @@
       parallel
       podman
       podman-compose
+      quarto
       ripgrep
       sqlite
       tealdeer
@@ -28,8 +29,6 @@
       caffeine-ng
       droidcam
       fragments
-      joplin
-      joplin-desktop
       libreoffice
       peek
       vlc

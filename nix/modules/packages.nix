@@ -11,6 +11,7 @@
       gnome-extensions-cli
       hugo
       hunspell
+      jre_minimal
       micromamba
       ncdu
       pandoc

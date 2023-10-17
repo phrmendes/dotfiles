@@ -9,6 +9,7 @@ bruno_version: 0.24.0
 hadolint_version: 2.12.0
 neovide_version: 0.11.2
 nix_version: 2.17.0
+quarto_version: 1.3.450
 
 pcloud_code: XZpL8AVZAqfCXz5TebJ2gcvAiHi15pYFKPey
 tailscale_keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg

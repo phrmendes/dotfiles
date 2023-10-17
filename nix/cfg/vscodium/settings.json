@@ -16,7 +16,7 @@
   "explorer.confirmDelete": false,
   "files.hotExit": "off",
   "indentRainbow.indicatorStyle": "light",
-  "joplin.token": "d28e5b85c63268007646874ab49c5cd6a2f4982ed0ebc436cefaed229ca73f60b7c58937b63abda13b82aa62cb65737c79b5e71861c67289ffe031e75275d924",
+  "joplin.token": "4e7d26f60216d674fa14b0d27edccddde82888646181b02d48cf90db7b362fc2071865bbfd2061b0bc9e55c02a53961415d825c56282ab1bedd05475255a22c3",
   "ltex.additionalRules.enablePickyRules": true,
   "ltex.additionalRules.motherTongue": "pt-BR",
   "ltex.enabled": ["quarto", "latex", "markdown"],

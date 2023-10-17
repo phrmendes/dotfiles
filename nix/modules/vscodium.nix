@@ -23,12 +23,6 @@
     version = "0.1.10";
     sha256 = "XwlvVJ0gMR/rN3lgZchUUhB4mVk7X6ucfaSafnLClFE=";
   };
-  ms-vscode.wordcount = {
-    name = "wordcount";
-    publisher = "ms-vscode";
-    version = "0.1.0";
-    sha256 = "Qb4KU3K0NsU7U2GWZscA6WAk406RbnAOpIIvvII4mpg=";
-  };
 in {
   programs.vscode = {
     enable = true;
@@ -54,7 +48,6 @@ in {
         rxliuli.joplin
         goessner.mdmath
         mblode.zotero
-        ms-vscode.wordcount
       ];
   };
 }

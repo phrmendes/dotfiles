@@ -1,5 +1,5 @@
 let
-  username = "phrmendes";
+  inherit (import ./parameters.nix) username;
 in {
   imports = [
     ./modules/bat.nix

@@ -28,7 +28,6 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "path" }, -- file system paths
-		{ name = "cmp_zotcite" }, -- zotcite
 	}),
 	-- configure lspkind for vscode like icons
 	formatting = {

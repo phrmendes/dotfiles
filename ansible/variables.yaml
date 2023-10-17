@@ -7,7 +7,6 @@ home: "{{ home_prefix }}/{{ user }}"
 
 bruno_version: 0.24.0
 hadolint_version: 2.12.0
-joplin_version: 2.12.18
 neovide_version: 0.11.2
 nix_version: 2.17.0
 
@@ -26,20 +25,11 @@ bin:
   - url: "https://github.com/hadolint/hadolint/releases/download/v{{ hadolint_version }}/hadolint-{{ ansible_system }}-{{ ansible_architecture }}"
     name: hadolint
     unpack: false
-  - url: "https://github.com/laurent22/joplin/releases/download/v{{ joplin_version }}/Joplin-{{ joplin_version }}.AppImage"
-    name: joplin
-    unpack: false
   - url: "https://github.com/neovide/neovide/releases/download/{{ neovide_version }}/neovide.AppImage"
     name: neovide
     unpack: false
 
 desktop_entries:
-  - name: Joplin
-    icon: https://joplinapp.org/images/Icon512.png
-    icon_size: 512x512
-    comment: The secure note taking and to-do app with synchronisation capabilities
-    terminal: "false"
-    single_window: "true"
   - name: Bruno
     icon: https://raw.githubusercontent.com/usebruno/bruno/main/assets/images/logo-transparent.png
     icon_size: 512x512
@@ -48,6 +38,8 @@ desktop_entries:
     single_window: "false"
 
 apt:
+  deb:
+    - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ ansible_arch_alias }}.deb"
   remove:
     - baobab
     - evince

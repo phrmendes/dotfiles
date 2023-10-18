@@ -21,6 +21,9 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 local servers = {
 	"ansiblels",
 	"bashls",
+	"docker_compose_language_service",
+	"dockerls",
+	"marksman",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",
@@ -93,8 +96,6 @@ ltex_extra.setup({
 
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {
-	dockerfile = { "hadolint" },
-	go = { "golangcilint" },
 	nix = { "statix" },
 	sh = { "shellcheck" },
 	yaml = { "ansible_lint" },
@@ -130,7 +131,6 @@ formatters.formatters_by_ft = {
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
-	go = { "gofumpt", "goimports", "golines" },
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------

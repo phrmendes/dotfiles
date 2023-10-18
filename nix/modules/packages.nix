@@ -31,7 +31,6 @@
       dbeaver
       droidcam
       fragments
-      joplin
       joplin-desktop
       libreoffice
       neovim-qt

@@ -1,5 +1,5 @@
 ---
-- name: Install python packages in virtualenvs
+- name: Install debugpy
   become_user: "{{ user }}"
   block:
     - name: Ensure ~/.virtualenvs exist

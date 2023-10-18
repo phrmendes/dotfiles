@@ -1,4 +1,8 @@
 ---
+- name: Set tailscale keyring
+  set_fact:
+    tailscale_keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
+
 - name: Add tailscale GPG apt key
   get_url:
     url: https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}.noarmor.gpg

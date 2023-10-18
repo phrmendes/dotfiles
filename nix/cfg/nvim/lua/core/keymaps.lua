@@ -194,11 +194,9 @@ autocmd("FileType", {
 		map("n", "<C-CR>", utils.md_toggle, { desc = "Toggle check" })
 
 		utils.section("m", "markdown", "<leader>", "n")
+		map("n", "<leader>me", nabla.popup, { desc = "Equation preview popup" })
 		map("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Preview" })
-
-		utils.section("me", "equation", "<leader>", "n")
-		map("n", "<leader>mep", nabla.toggle_virt, { desc = "Popup preview" })
-		map("n", "<leader>met", nabla.toggle_virt, { desc = "Toggle preview" })
+		map("n", "<leader>mt", nabla.toggle_virt, { desc = "Toggle equation preview" })
 
 		utils.section("mq", "quarto", "<leader>", "n")
 		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })

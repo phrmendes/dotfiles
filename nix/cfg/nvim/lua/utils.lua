@@ -1,4 +1,3 @@
--- [[ variables ]] ------------------------------------------------------
 local fn = vim.fn
 local get_cursor = vim.api.nvim_win_get_cursor
 local get_lines = vim.api.nvim_buf_get_lines
@@ -6,7 +5,6 @@ local get_number = vim.api.nvim_buf_get_number
 local set_cursor = vim.api.nvim_win_set_cursor
 local set_lines = vim.api.nvim_buf_set_lines
 
--- [[ imports ]] --------------------------------------------------------
 local cmp = require("cmp")
 local dap = require("dap")
 local gitsigns = require("gitsigns")

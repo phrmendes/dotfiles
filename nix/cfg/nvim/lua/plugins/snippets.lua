@@ -1,4 +1,3 @@
--- [[ imports ]] --------------------------------------------------------
 local luasnip = require("luasnip")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
 local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, {

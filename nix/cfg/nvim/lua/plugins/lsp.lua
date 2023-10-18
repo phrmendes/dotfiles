@@ -1,9 +1,7 @@
--- [[ variables ]] ------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local fn = vim.fn
 
--- [[ imports ]] --------------------------------------------------------
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local formatters = require("conform")
 local linters = require("lint")
@@ -23,7 +21,6 @@ local servers = {
 	"bashls",
 	"docker_compose_language_service",
 	"dockerls",
-	"marksman",
 	"metals",
 	"nil_ls",
 	"ruff_lsp",

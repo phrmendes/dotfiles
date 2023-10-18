@@ -23,6 +23,7 @@
       tealdeer
       tectonic
       terraform
+      vimv-rs
       xclip
       # GUI
       bitwarden
@@ -33,9 +34,9 @@
       joplin
       joplin-desktop
       libreoffice
+      neovim-qt
       peek
       vlc
-      vscode
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

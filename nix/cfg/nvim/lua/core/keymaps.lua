@@ -1,4 +1,3 @@
--- [[ variables ]] ------------------------------------------------------
 local buf = vim.lsp.buf
 local diag = vim.diagnostic
 local g = vim.g
@@ -8,7 +7,6 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local buf_keymap = vim.api.nvim_buf_set_keymap
 
--- [[ imports ]] --------------------------------------------------------
 local bufremove = require("mini.bufremove")
 local dap = require("dap")
 local dap_ui = require("dapui")

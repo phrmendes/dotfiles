@@ -17,7 +17,7 @@ flatpak:
 
 apt:
   deb:
-    - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_sistem | lower }}-{{ ansible_arch_alias }}.deb"
+    - "https://github.com/quarto-dev/quarto-cli/releases/download/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ ansible_arch_alias }}.deb"
   remove:
     - baobab
     - evince

@@ -196,7 +196,7 @@ autocmd("FileType", {
 		utils.section("m", "markdown", "<leader>", "n")
 		map("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Preview" })
 
-		utils.section("e", "equation", "<leader>", "n")
+		utils.section("me", "equation", "<leader>", "n")
 		map("n", "<leader>mep", nabla.toggle_virt, { desc = "Popup preview" })
 		map("n", "<leader>met", nabla.toggle_virt, { desc = "Toggle preview" })
 

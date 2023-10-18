@@ -14,8 +14,6 @@
     };
   conform-nvim = fromGitHub "43d2b5c6a254f60cbd2142345d2f903e04f9db07" "HEAD" "stevearc/conform.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
-  zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
-  cmp-zotcite = fromGitHub "431c720a73fb84c8b1a51b4f123e2a7cc8a58bfd" "HEAD" "jalvesaq/cmp-zotcite";
 in {
   programs.neovim = {
     enable = true;
@@ -28,7 +26,6 @@ in {
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-path # path completion
-      cmp-zotcite # zotero completion
       cmp_luasnip # snippets completion
       comment-nvim # comments
       conform-nvim # formatting
@@ -50,7 +47,6 @@ in {
       nvim-bqf # quickfix
       nvim-cmp # completion
       nvim-dap # debug adapter protocol
-      nvim-dap-go # go dap support
       nvim-dap-python # python dap support
       nvim-dap-ui # ui for dap
       nvim-dap-virtual-text # virtual text for dap
@@ -82,7 +78,6 @@ in {
       vim-visual-multi # multiple cursors
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
-      zotcite # zotero integration
     ];
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
@@ -96,14 +91,10 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
-        delve
-        gofumpt
-        golangci-lint
-        golines
-        gopls
-        gotools
+        docker-compose-language-service
         ltex-ls
         lua-language-server
+        marksman
         metals
         nil
         ruff
@@ -118,6 +109,7 @@ in {
       ])
       ++ (with pkgs.nodePackages; [
         bash-language-server
+        dockerfile-language-server-nodejs
         prettier
         pyright
         vscode-json-languageserver

@@ -18,7 +18,6 @@
       parallel
       podman
       podman-compose
-      quarto
       ripgrep
       sqlite
       tealdeer

@@ -28,6 +28,7 @@
       # GUI
       bitwarden
       caffeine-ng
+      dbeaver
       droidcam
       fragments
       libreoffice

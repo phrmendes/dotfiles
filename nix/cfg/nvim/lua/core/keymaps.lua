@@ -192,10 +192,10 @@ autocmd("FileType", {
 	callback = function()
 		map({ "n", "i" }, "<C-b>", telescope.extensions.bibtex.bibtex, { desc = "Insert reference" })
 		map("n", "<C-CR>", utils.md_toggle, { desc = "Toggle check" })
-		map("n", "<C-e>", nabla.popup, { desc = "Popup equation preview" })
 
 		utils.section("m", "markdown", "<leader>", "n")
 		map("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Preview" })
+		map("n", "<leader>mt", nabla.toggle_virt, { desc = "Toggle equation preview" })
 
 		utils.section("mq", "quarto", "<leader>", "n")
 		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })

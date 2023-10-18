@@ -79,13 +79,6 @@ in {
       which-key-nvim # keybindings
       zen-mode-nvim # zen mode
     ];
-    extraPython3Packages = pyPkgs:
-      with pyPkgs; [
-        poppler-qt5
-        pynvim
-        pyqt5
-        pyyaml
-      ];
     extraPackages =
       (with pkgs; [
         alejandra

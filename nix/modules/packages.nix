@@ -31,9 +31,12 @@
       dbeaver
       droidcam
       fragments
+      joplin
+      joplin-desktop
       libreoffice
       peek
       vlc
+      vscode
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

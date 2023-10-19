@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+let
   inherit (import ./parameters.nix) username;
 in {
   imports = [
@@ -36,9 +36,5 @@ in {
   xdg = {
     enable = true;
     mime.enable = true;
-  };
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = ["nix-command" "flakes"];
   };
 }

@@ -36,6 +36,7 @@
       neovim-qt
       peek
       vlc
+      vscode
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

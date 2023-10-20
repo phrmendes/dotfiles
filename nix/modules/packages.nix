@@ -18,6 +18,7 @@
       parallel
       podman
       podman-compose
+      quarto
       ripgrep
       sqlite
       tealdeer
@@ -36,7 +37,6 @@
       neovim-qt
       peek
       vlc
-      vscode
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [

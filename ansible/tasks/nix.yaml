@@ -8,29 +8,29 @@
     dot_config: "{{ home }}/.config"
   when: dot_config == ""
 
-- name: Check if Nix directory exists
+- name: Check if /nix directory exists
   stat:
     path: "/nix"
   register: nix_directory
 
 - name: Install Nix
   block:
-    - name: Set Nix tarball name
+    - name: Set fact for Nix tarball
       set_fact:
         nix_tarball: "nix-{{ nix_version }}-{{ ansible_arch_alias }}-{{ ansible_system | lower }}"
 
-    - name: Download tarball
+    - name: Download Nix tarball
       get_url:
         url: "https://releases.nixos.org/nix/nix-{{ nix_version }}/{{ nix_tarball }}.tar.xz"
         dest: /tmp/nix.tar.xz
 
-    - name: Extract tarball
+    - name: Extract Nix tarball
       unarchive:
         src: /tmp/nix.tar.xz
         remote_src: true
         dest: /tmp
 
-    - name: Run installer
+    - name: Run Nix installer
       become: true
       command:
         cmd: ./install --daemon --yes </dev/null
@@ -71,3 +71,9 @@
         block: |
           experimental-features = nix-command flakes
           max-jobs = auto
+
+    - name: Run home-manager
+      command: "nix run nixpkgs#home-manager --experimental-features 'nix-command flakes' -- switch --flake nix/#{{ user }}"
+      environment:
+        NIXPKGS_ALLOW_UNFREE: "1"
+      changed_when: false

@@ -7,14 +7,14 @@
     name: flathub
     state: present
 
-- name: Install packages with flatpak
+- name: Install flatpak packages
   become_user: "{{ user }}"
   community.general.flatpak:
     state: present
     method: user
     name: "{{ flatpak.install }}"
 
-- name: Give permissions to read home directory
+- name: Give flatpak package permissions to read home directory
   command:
     cmd: "flatpak override --filesystem=home {{ item }}"
   changed_when: false

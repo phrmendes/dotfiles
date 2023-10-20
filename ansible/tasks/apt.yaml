@@ -2,19 +2,20 @@
 - name: Add tailscale repository
   import_tasks: ./tailscale.yaml
 
-- name: Remove packages
+- name: Remove apt packages
   apt:
     autoremove: true
     state: absent
     name: "{{ apt.remove }}"
 
-- name: Install packages with apt
+- name: Install apt packages
   apt:
     update_cache: true
     state: present
     name: "{{ apt.install }}"
 
-- name: Install .deb packages with apt
+- name: Install .deb packages
   apt:
     deb: "{{ item }}"
   with_items: "{{ apt.deb }}"
+  when: apt.deb is defined

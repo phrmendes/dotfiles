@@ -178,9 +178,6 @@ map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
 map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
 map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open note" })
 map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
-map("n", "<leader>ot", "<cmd>ObsidianTemplate<cr>", { desc = "Insert template" })
-map("v", "<leader>oL", "<cmd>ObsidianLinkNew<cr>", { desc = "Create new note and insert link" })
-map("v", "<leader>ol", "<cmd>ObsidianLink<cr>", { desc = "Insert link" })
 
 -- general keymaps
 map("n", "<leader>-", "<C-w>s", { desc = "Split window" })

@@ -1,5 +1,6 @@
 local obsidian = require("obsidian")
 local notes = os.getenv("NOTES") or vim.fn.expand("~/notes")
+local normalize = require("utils").normalize
 
 obsidian.setup({
 	dir = notes,
@@ -10,7 +11,7 @@ obsidian.setup({
 	sort_reversed = true,
 	disable_frontmatter = false,
 	note_id_func = function(title)
-		return title:gsub(" ", "_"):gsub("[^A-Za-z0-9-]", ""):lower()
+		return normalize(title)
 	end,
 	note_frontmatter_func = function(note)
 		local out = { aliases = note.aliases, tags = note.tags }

@@ -183,7 +183,6 @@ map("v", "<leader>oL", "<cmd>ObsidianLinkNew<cr>", { desc = "Create new note and
 map("v", "<leader>ol", "<cmd>ObsidianLink<cr>", { desc = "Insert link" })
 
 -- general keymaps
-map("n", "<leader>,", telescope.builtin.symbols, { desc = "Symbols" })
 map("n", "<leader>-", "<C-w>s", { desc = "Split window" })
 map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })
 map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
@@ -194,6 +193,7 @@ map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
+map({ "n", "v", "i" }, "<C-,>", telescope.builtin.symbols, { desc = "Symbols" })
 
 -- markdown/quarto
 autocmd("FileType", {

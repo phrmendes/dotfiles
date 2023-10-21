@@ -9,6 +9,9 @@ obsidian.setup({
 	sort_by = "modified",
 	sort_reversed = true,
 	disable_frontmatter = false,
+	note_id_func = function(title)
+		return title:gsub(" ", "_"):gsub("[^A-Za-z0-9-]", ""):lower()
+	end,
 	note_frontmatter_func = function(note)
 		local out = { aliases = note.aliases, tags = note.tags }
 		if note.metadata ~= nil and obsidian.util.table_length(note.metadata) > 0 then

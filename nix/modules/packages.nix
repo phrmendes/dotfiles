@@ -32,9 +32,9 @@
       dbeaver
       droidcam
       fragments
-      joplin-desktop
       libreoffice
       neovim-qt
+      obsidian
       peek
       vlc
       zotero

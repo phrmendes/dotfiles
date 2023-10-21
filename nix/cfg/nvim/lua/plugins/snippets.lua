@@ -1,8 +1,7 @@
 local luasnip = require("luasnip")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
-local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, {
-	wordTrig = true,
-})
+local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, { wordTrig = true })
+local today = os.date("%Y-%m-%d")
 
 -- [[ luasnip settings ]] -----------------------------------------------
 luasnip.config.setup({ enable_autosnippets = true })
@@ -10,8 +9,15 @@ vscode_loaders.lazy_load()
 
 -- [[ snippets ]] --------------------------------------------------------
 local markdown_snippets = {
-	parse_snippet({ trig = "journal", name = "journal" }, "# " .. os.date("%a, %d %b %Y") .. "\n"),
+	parse_snippet({ trig = "journal", name = "journal" }, "# " .. today .. "\n"),
 	parse_snippet({ trig = "metadata", name = "metadata" }, "\n---\naliases: [{$1}]\ntags: [{$2}]\n---\n$0"),
+	parse_snippet({ trig = "todo", name = "TODO", "- [ ] @TODO: $0" }),
+	parse_snippet({ trig = "due", name = "due", " 📅 $0" }),
+	parse_snippet({ trig = "scheduled", name = "scheduled", " ⌛ $0" }),
+	parse_snippet({ trig = "done", name = "done", " ✅ " .. today .. " $0" }),
+	parse_snippet({ trig = "low", name = "low priority", " 🔽" }),
+	parse_snippet({ trig = "medium", name = "medium priority", " 🔼" }),
+	parse_snippet({ trig = "high", name = "high priority", " ⏫" }),
 }
 
 local equation_snippets = {

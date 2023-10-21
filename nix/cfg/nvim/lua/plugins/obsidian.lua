@@ -11,6 +11,7 @@ obsidian.setup({
 	sort_reversed = true,
 	disable_frontmatter = false,
 	note_id_func = function(title)
+		title = title:gsub(" ", "_"):lower()
 		return normalize(title)
 	end,
 	note_frontmatter_func = function(note)

@@ -29,8 +29,9 @@ in {
     sessionVariables = {
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
-      VISUAL = "nvim";
+      TERM = "wezterm";
       TERMINAL = "flatpak run org.wezfurlong.wezterm";
+      VISUAL = "nvim";
     };
   };
   xdg = {

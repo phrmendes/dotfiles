@@ -26,6 +26,7 @@ in {
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      ChatGPT-nvim # chatgpt
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
       cmp-pandoc-nvim
@@ -48,6 +49,7 @@ in {
       markdown-preview-nvim # markdown preview
       mini-nvim # set of small plugins
       nabla-nvim # colorscheme
+      neogen # auto-generate docs
       nui-nvim # neovim ui component lib
       nvim-bqf # quickfix
       nvim-cmp # completion
@@ -62,7 +64,7 @@ in {
       nvim-treesitter-textobjects # treesitter textobjects
       nvim-treesitter.withAllGrammars # treesitter
       nvim-web-devicons # icons
-      obsidian-nvim
+      obsidian-nvim # obsidian integration
       otter-nvim # quarto dependency
       plenary-nvim # lua utils
       popup-nvim # zoxide dependency

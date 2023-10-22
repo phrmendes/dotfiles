@@ -1,5 +1,5 @@
 local obsidian = require("obsidian")
-local notes = os.getenv("NOTES") or vim.fn.expand("~/notes")
+local notes = os.getenv("NOTES") or vim.fn.expand("~/Documents/notes")
 local normalize = require("utils").normalize
 
 obsidian.setup({

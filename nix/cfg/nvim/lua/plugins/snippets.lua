@@ -72,7 +72,7 @@ local equation_snippets = {
 	parse_snippet({ trig = "pderiv", name = "partial derivative" }, "\\frac{\\partial ${1:F}}{\\partial ${2:x}} $0"),
 	parse_snippet({ trig = "pow", name = "to the ... power ^{}" }, "^{$1}$0 "),
 	parse_snippet({ trig = "prod", name = "product" }, "\\prod_{${1:n=${2:1}}}^{${3:\\infty}} ${4:F} $0"),
-	parse_snippet({ trig = "set", name = "set" }, "\\{${1}\\} $0"),
+	parse_snippet({ trig = "set", name = "set" }, "\\{$1\\} $0"),
 	parse_snippet({ trig = "sqr", name = "square ^2" }, "^2"),
 	parse_snippet({ trig = "ss", name = "subset" }, "\\subset "),
 	parse_snippet({ trig = "stt", name = "text subscript" }, "_\\text{$1} $0"),

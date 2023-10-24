@@ -18,6 +18,7 @@
       parallel
       podman
       podman-compose
+      poetry
       quarto
       ripgrep
       sqlite

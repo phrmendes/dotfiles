@@ -9,6 +9,7 @@ local buf_keymap = vim.api.nvim_buf_set_keymap
 
 local bufremove = require("mini.bufremove")
 local dap = require("dap")
+local dap_python = require("dap-python")
 local dap_ui = require("dapui")
 local dial = require("dial.map")
 local formatters = require("conform")
@@ -273,6 +274,11 @@ autocmd("FileType", {
 	callback = function()
 		buf_keymap(0, "n", "<C-a>", dial.inc_normal("python"), { noremap = true })
 		buf_keymap(0, "n", "<C-x>", dial.dec_normal("python"), { noremap = true })
+
+		utils.section("dp", "python", "<leader>", { "n", "v" })
+		map("n", "<leader>dpm", dap_python.test_method, { desc = "Test method" })
+		map("n", "<leader>dpc", dap_python.test_class, { desc = "Test class" })
+		map("v", "<leader>dps", dap_python.debug_selection, { desc = "Debug selection" })
 	end,
 })
 

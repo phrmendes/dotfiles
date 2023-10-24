@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -7,23 +7,22 @@
     syntaxHighlighting.enable = true;
     initExtra = builtins.readFile ../cfg/init.sh;
     shellAliases = {
-      cat = "${pkgs.bat}/bin/bat --theme=catppuccin";
-      fm = "${pkgs.joshuto}/bin/joshuto";
-      la = "${pkgs.eza}/bin/eza --icons -a";
-      lg = "${pkgs.lazygit}/bin/lazygit";
-      ll = "${pkgs.eza}/bin/eza --icons -l";
-      lla = "${pkgs.eza}/bin/eza --icons -la";
-      ls = "${pkgs.eza}/bin/eza --icons";
-      lt = "${pkgs.eza}/bin/eza --icons --tree";
-      mb = "${pkgs.micromamba}/bin/micromamba";
-      mba = "${pkgs.micromamba}/bin/micromamba activate";
-      mbd = "${pkgs.micromamba}/bin/micromamba deactivate";
-      ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
-      tldr = "${pkgs.tealdeer}/bin/tldr";
-      tx = "${pkgs.tmux}/bin/tmux";
-      zt = "${pkgs.zathura}/bin/zathura --fork";
+      cat = "bat --theme=catppuccin";
+      la = "eza --icons -a";
+      lg = "lazygit";
+      ll = "eza --icons -l";
+      lla = "eza --icons -la";
+      ls = "eza --icons";
+      lt = "eza --icons --tree";
+      mb = "micromamba";
+      mba = "micromamba activate";
+      mbd = "micromamba deactivate";
+      mbf = "micromamba install -f";
       mkdir = "mkdir -p";
+      ncdu = "ncdu --color dark";
       of = "fzf_open_with_nvim";
+      tx = "tmux";
+      zt = "zathura --fork";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

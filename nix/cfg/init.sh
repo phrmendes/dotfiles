@@ -14,6 +14,7 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 path+=(
 	"$HOME/.asdf/shims"
 	"$HOME/.local/bin"
+	"$HOME/.nix-profile/bin"
 )
 
 function nix_update() {

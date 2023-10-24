@@ -16,8 +16,9 @@
       lt = "eza --icons --tree";
       mb = "micromamba";
       mba = "micromamba activate";
+      mbc = "micromamba create";
       mbd = "micromamba deactivate";
-      mbf = "micromamba install -f";
+      mbi = "micromamba install";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
       of = "fzf_open_with_nvim";

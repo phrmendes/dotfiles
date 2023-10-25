@@ -79,7 +79,7 @@ lspconfig.lua_ls.setup({
 ltex_extra.setup({
 	load_langs = { "en-US", "pt-BR" },
 	init_check = true,
-	path = ".ltex",
+	path = fn.expand("~") .. "/.local/state/.ltex",
 	server_opts = {
 		filetypes = { "markdown", "quarto" },
 		capabilities = capabilities,

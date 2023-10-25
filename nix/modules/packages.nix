@@ -2,9 +2,9 @@
   home.packages =
     (with pkgs; [
       # CLI
+      ansible
       asdf-vm
       bitwarden-cli
-      duckdb
       eza
       fd
       gh
@@ -37,6 +37,7 @@
       neovim-qt
       obsidian
       peek
+      podman-desktop
       vlc
       zotero
     ])

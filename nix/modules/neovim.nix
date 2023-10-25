@@ -29,7 +29,7 @@ in {
       ChatGPT-nvim # chatgpt
       catppuccin-nvim # colorscheme
       cmp-nvim-lsp # lsp completion
-      cmp-pandoc-nvim
+      cmp-pandoc-nvim # pandoc completion
       cmp-path # path completion
       cmp-zotcite # zotero completion
       cmp_luasnip # snippets completion

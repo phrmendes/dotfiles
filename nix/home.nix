@@ -19,6 +19,7 @@ in {
     ./modules/zathura.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
+    ./modules/xdg.nix
   ];
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
@@ -33,9 +34,5 @@ in {
       TERMINAL = "flatpak run org.wezfurlong.wezterm";
       VISUAL = "nvim";
     };
-  };
-  xdg = {
-    enable = true;
-    mime.enable = true;
   };
 }

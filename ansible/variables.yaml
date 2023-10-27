@@ -13,6 +13,8 @@ pcloud_code: XZ5iuiVZQsuexQaMmmLAS7FGWNh1TkXRWJR7
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
+    - ch.protonmail.protonmail-bridge
+    - com.protonvpn.www
     - org.wezfurlong.wezterm
 
 apt:

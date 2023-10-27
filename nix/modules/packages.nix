@@ -32,12 +32,13 @@
       caffeine-ng
       dbeaver
       droidcam
-      fragments
       libreoffice
       neovim-qt
       obsidian
       peek
       podman-desktop
+      qbittorrent
+      sylpheed
       vlc
       zotero
     ])

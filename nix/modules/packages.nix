@@ -38,7 +38,7 @@
       peek
       podman-desktop
       qbittorrent
-      sylpheed
+      thunderbird
       vlc
       zotero
     ])

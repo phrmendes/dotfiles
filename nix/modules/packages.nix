@@ -32,6 +32,7 @@
       caffeine-ng
       dbeaver
       droidcam
+      evince
       libreoffice
       neovim-qt
       obsidian

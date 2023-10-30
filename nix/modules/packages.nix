@@ -7,6 +7,7 @@
   cli = with pkgs; [
     ansible
     asdf-vm
+    bashly
     bitwarden-cli
     eza
     fd
@@ -31,13 +32,13 @@
     bitwarden
     caffeine-ng
     dbeaver
+    deluge
     droidcam
     evince
     libreoffice
     obsidian
     peek
     podman-desktop
-    qbittorrent
     thunderbird
     vlc
     zotero
@@ -50,5 +51,9 @@
     hunspellDicts.pt-br
   ];
 in {
-  home.packages = concat [gui cli dependencies];
+  home.packages = concat [
+    gui
+    cli
+    dependencies
+  ];
 }

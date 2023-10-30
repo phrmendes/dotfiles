@@ -23,7 +23,6 @@
       ncdu = "ncdu --color dark";
       of = "fzf_open_with_nvim";
       tx = "tmux";
-      zt = "zathura --fork";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

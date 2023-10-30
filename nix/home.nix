@@ -16,7 +16,6 @@ in {
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix
-    ./modules/zathura.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
     ./modules/xdg.nix

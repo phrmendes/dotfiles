@@ -69,10 +69,10 @@ local copilot_opts = {
 map("i", "<C-CR>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 
 -- remap for dealing with word wrap
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true })
+map("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, silent = true })
 
--- exit mode pressing 'jk'
+-- exit mode pressing "jk"
 map("i", "jk", "<ESC>", { noremap = true, silent = true })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
 
@@ -226,6 +226,13 @@ autocmd("FileType", {
 		utils.section("mq", "quarto", "<leader>", "n")
 		map("n", "<leader>mqp", "<cmd>QuartoPreview<cr>", { desc = "Preview" })
 		map("n", "<leader>mqq", "<cmd>QuartoClosePreview<cr>", { desc = "Stop preview" })
+
+		utils.section("z", "zotero", "<leader>", "n")
+		map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", { desc = "Citation info (complete)" })
+		map("n", "<leader>zi", "<Plug>ZCitationInfo", { desc = "Citation info" })
+		map("n", "<leader>zo", "<Plug>ZOpenAttachment", { desc = "Open attachment" })
+		map("n", "<leader>zv", "<Plug>ZViewDocument", { desc = "View exported document" })
+		map("n", "<leader>zy", "<Plug>ZCitationYamlRef", { desc = "Citation info (yaml)" })
 	end,
 })
 

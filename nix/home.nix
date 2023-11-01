@@ -9,6 +9,7 @@ in {
     ./modules/flameshot.nix
     ./modules/fzf.nix
     ./modules/git.nix
+    ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix
@@ -16,9 +17,9 @@ in {
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix
+    ./modules/xdg.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
-    ./modules/xdg.nix
   ];
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;

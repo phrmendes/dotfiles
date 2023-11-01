@@ -66,7 +66,7 @@ local copilot_opts = {
 
 -- [[ keymaps ]] --------------------------------------------------------
 -- accept copilot suggestion
-map("i", "<C-CR>", [[ copilot#Accept("<CR>") ]], copilot_opts)
+map("i", "<C-a>", [[ copilot#Accept("<CR>") ]], copilot_opts)
 
 -- remap for dealing with word wrap
 map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true })

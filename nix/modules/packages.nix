@@ -30,6 +30,7 @@
   ];
   gui = with pkgs; [
     bitwarden
+    bruno
     caffeine-ng
     dbeaver
     deluge

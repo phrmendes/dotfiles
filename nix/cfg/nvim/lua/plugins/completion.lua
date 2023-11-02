@@ -19,8 +19,8 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
 		}),
-		["<Tab>"] = cmp.mapping(utils.luasnip.tab, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(utils.luasnip.s_tab, { "i", "s" }),
+		["<C-Left>"] = cmp.mapping(utils.luasnip.tab, { "i", "s" }),
+		["<C-Right>"] = cmp.mapping(utils.luasnip.s_tab, { "i", "s" }),
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({

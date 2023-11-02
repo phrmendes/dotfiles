@@ -50,24 +50,7 @@ g.VM_mouse_mappings = 1
 -- [[ which-key settings ]] ---------------------------------------------
 wk.setup({ window = { border = "single", position = "bottom" } })
 
--- [[ copilot settings ]] -----------------------------------------------
-g.copilot_no_tab_map = true
-g.copilot_filetypes = {
-	markdown = false,
-	quarto = false,
-}
-
-local copilot_opts = {
-	noremap = true,
-	silent = true,
-	expr = true,
-	replace_keycodes = false,
-}
-
 -- [[ keymaps ]] --------------------------------------------------------
--- accept copilot suggestion
-map("i", "<C-a>", [[ copilot#Accept("<CR>") ]], copilot_opts)
-
 -- remap for dealing with word wrap
 map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true })
 map("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, silent = true })

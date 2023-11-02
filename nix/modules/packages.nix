@@ -5,6 +5,7 @@
 let
   concat = lib.lists.concatLists;
   cli = with pkgs; [
+    ansible-lint
     asdf-vm
     bashly
     bitwarden-cli
@@ -13,6 +14,7 @@ let
     gh
     gnome-extensions-cli
     hugo
+    joshuto
     micromamba
     ncdu
     pandoc
@@ -22,9 +24,6 @@ let
     tealdeer
     tectonic
     terraform
-    ansible-lint
-    nil
-    nixpkgs-fmt
   ];
   gui = with pkgs; [
     bitwarden
@@ -42,19 +41,27 @@ let
     vscode
     zotero
   ];
-  language-servers = (with pkgs; [
+  language-servers = with pkgs; [
     ansible-language-server
     ltex-ls
     marksman
     nil
     taplo
+    terraform-ls
     texlab
-  ]) ++ (with pkgs.nodePackages; [
-    bash-language-server
-    dockerfile-language-server-nodejs
-    vscode-json-languageserver
-    yaml-language-server
-  ]);
+    ruff-lsp
+    nodePackages.bash-language-server
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.pyright
+    nodePackages.vscode-json-languageserver
+    nodePackages.yaml-language-server
+  ];
+  formatters = with pkgs; [
+    nixpkgs-fmt
+    ruff
+    shellharden
+    nodePackages.prettier
+  ];
   dependencies = with pkgs; [
     jre_minimal
     xclip
@@ -69,5 +76,6 @@ in
     cli
     dependencies
     language-servers
+    formatters
   ];
 }

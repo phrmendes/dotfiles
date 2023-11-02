@@ -1,22 +1,7 @@
-{pkgs, ...}: {
+{
   programs.helix = {
     enable = true;
-    settings = {
-      theme = "catppuccin_mocha";
-      editor = {
-        bufferline = "always";
-        line-number = "relative";
-        cursorline = true;
-        color-modes = true;
-        indent-guides = {
-          render = true;
-        };
-        cursor-shape = {
-          insert = "bar";
-          normal = "block";
-          select = "underline";
-        };
-      };
-    };
-  };
+    settings = builtins.fromTOML (builtins.readFile ../cfg/helix/config.toml);
+    languages = builtins.fromTOML (builtins.readFile ../cfg/helix/languages.toml);
+   };
 }

@@ -40,22 +40,6 @@ function enable_droidcam() {
 	sudo modprobe v4l2loopback exclusive_caps=1
 }
 
-function fzf_preview_file() {
-	fzf --preview "bat --theme=catppuccin --color=always --style=header,grid --line-range :400 {}"
-}
-
-function fzf_open_with_nvim() {
-	if ! command -v nvim &>/dev/null; then
-		return
-	fi
-
-	selection=$(fzf_preview_file)
-
-	if [ "$selection" != "" ]; then
-		nvim "$selection"
-	fi
-}
-
 function get_gh_repo_ref() {
 	gh_repo="$1"
 	branch="$2"

@@ -3,6 +3,7 @@
   become: true
   connection: local
   hosts: localhost
+
   collections:
     - community.general
 
@@ -11,12 +12,15 @@
 
   pre_tasks:
     - name: Fix ansible variable
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_distribution: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
+
+  roles:
+    - geerlingguy.docker
 
   tasks:
     - name: Import tasks
-      include_tasks:
+      ansible.builtin.include_tasks:
         file: "{{ file }}"
       loop:
         - ./ansible/tasks/apt.yaml

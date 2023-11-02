@@ -1,6 +1,7 @@
 let
   inherit (import ./parameters.nix) username;
-in {
+in
+{
   imports = [
     ./modules/bat.nix
     ./modules/btop.nix
@@ -10,13 +11,12 @@ in {
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
+    ./modules/helix.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
-    ./modules/neovim.nix
     ./modules/packages.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
-    ./modules/tmux.nix
     ./modules/xdg.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
@@ -28,9 +28,9 @@ in {
     homeDirectory = "/home/${username}";
     stateVersion = "23.05";
     sessionVariables = {
-      EDITOR = "nvim";
-      SUDO_EDITOR = "nvim";
-      VISUAL = "nvim";
+      EDITOR = "hx";
+      SUDO_EDITOR = "hx";
+      VISUAL = "hx";
     };
   };
 }

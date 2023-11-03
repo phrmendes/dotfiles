@@ -14,7 +14,6 @@ let
     gh
     gnome-extensions-cli
     hugo
-    joshuto
     micromamba
     ncdu
     pandoc
@@ -36,6 +35,7 @@ let
     libreoffice
     obsidian
     peek
+    qview
     thunderbird
     vlc
     vscode

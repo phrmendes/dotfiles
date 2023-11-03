@@ -13,6 +13,7 @@ in
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/home-manager.nix
+    ./modules/joshuto.nix
     ./modules/lazygit.nix
     ./modules/packages.nix
     ./modules/starship.nix

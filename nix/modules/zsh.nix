@@ -8,7 +8,6 @@
     initExtra = builtins.readFile ../cfg/init.sh;
     shellAliases = {
       cat = "bat --theme=catppuccin";
-      js = "joshuto";
       la = "eza --icons -a";
       lg = "lazygit";
       lla = "eza --icons -la";
@@ -22,11 +21,11 @@
       mb = "micromamba";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
+      zl = "zellij";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";
       sys_python = "/usr/bin/python3";
-      zl = "zellij";
     };
   };
 }

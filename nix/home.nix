@@ -18,6 +18,7 @@ in
     ./modules/packages.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
+    ./modules/vscode.nix
     ./modules/xdg.nix
     ./modules/zellij.nix
     ./modules/zoxide.nix

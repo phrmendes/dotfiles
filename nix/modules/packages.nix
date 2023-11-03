@@ -39,7 +39,6 @@ let
     qview
     thunderbird
     vlc
-    vscode
     zotero
   ];
   language-servers = with pkgs; [

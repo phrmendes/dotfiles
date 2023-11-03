@@ -1,0 +1,321 @@
+{
+  "editor.cursorBlinking": "solid",
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 18,
+  "editor.formatOnType": true,
+  "editor.guides.indentation": false,
+  "editor.inlayHints.enabled": "on",
+  "editor.inlineSuggest.enabled": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.suggestSelection": "first",
+  "explorer.confirmDelete": false,
+  "files.hotExit": "off",
+  "indentRainbow.indicatorStyle": "light",
+  "ltex.additionalRules.enablePickyRules": true,
+  "ltex.additionalRules.motherTongue": "pt-BR",
+  "ltex.enabled": ["quarto", "bibtex", "html", "latex", "markdown"],
+  "ltex.language": "pt-BR",
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.external.linuxExec": "/usr/bin/wezterm",
+  "terminal.external.osxExec": "WezTerm.app",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font'",
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "vim.inccommand": "replace",
+  "vim.incsearch": true,
+  "vim.leader": "<Space>",
+  "vim.smartcase": true,
+  "vim.surround": true,
+  "vim.timeout": 2000,
+  "vim.useSystemClipboard": true,
+  "window.menuBarVisibility": "hidden",
+  "window.restoreWindows": "none",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.editor.restoreViewState": false,
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.startupEditor": "none",
+  "workbench.activityBar.visible": false,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": ["nixpkgs-fmt"]
+      }
+    }
+  },
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+    }
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "zsh",
+      "icon": "terminal-bash"
+    }
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["leader", "-"],
+      "commands": [":split"]
+    },
+    {
+      "before": ["leader", "\\"],
+      "commands": [":vsplit"]
+    },
+    {
+      "before": ["leader", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["leader", "q"],
+      "commands": [":q!"]
+    },
+    {
+      "before": ["leader", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["leader", "b", "b"],
+      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"]
+    },
+    {
+      "before": ["leader", "b", "d"],
+      "commands": [":bd"]
+    },
+    {
+      "before": ["leader", "b", "n"],
+      "commands": [":enew"]
+    },
+    {
+      "before": ["leader", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["leader", "c", "h"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["leader", "f", "f"],
+      "commands": ["actions.find"]
+    },
+    {
+      "before": ["leader", "f", "r"],
+      "commands": ["editor.action.startFindReplaceAction"]
+    },
+    {
+      "before": ["leader", "f", "F"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["leader", "f", "R"],
+      "commands": ["workbench.action.replaceInFiles"]
+    },
+    {
+      "before": ["leader", "f", "s"],
+      "commands": [":w!"]
+    },
+    {
+      "before": ["leader", "f", "d"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"],
+      "when": "editorTextFocus"
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.rename"],
+      "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.goToDefinition"],
+      "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+      "before": ["g", "D"],
+      "commands": ["editor.action.goToDeclaration"]
+    },
+    {
+      "before": ["g", "p", "d"],
+      "commands": ["editor.action.peekDefinition"],
+      "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+      "before": ["g", "p", "i"],
+      "commands": ["editor.action.peekImplementation"],
+      "when": "editorHasImplementationProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["="],
+      "commands": ["workbench.action.increaseViewSize"]
+    },
+    {
+      "before": ["-"],
+      "commands": ["workbench.action.decreaseViewSize"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<S-j>"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<S-j>"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j", "k"],
+      "after": ["<ESC>"]
+    }
+  ],
+  "mdmath.macros": {
+    "!=": "\\neq ",
+    "**": "\\cdot ",
+    "+-": "\\pm",
+    "->": "\\to ",
+    ":=": "\\coloneqq ",
+    "<->": "\\leftrightarrow",
+    "<<": "\\ll",
+    "<=": "\\le ",
+    "<==": "\\impliedby",
+    "<=>": "\\iff",
+    "=>": "\\implies",
+    ">=": "\\ge ",
+    ">>": "\\gg",
+    "__": "_{$1}$0",
+    "bar": "\\overline{$1}$0",
+    "bcap": "\\bigcap_{${1:i \\in ${2: I}}} $0",
+    "bcup": "\\bigcup_{${1:i \\in ${2: I}}} $0",
+    "cancel": "\\cancel{$1}$0",
+    "cap": "\\cap ",
+    "compl": "^{c}",
+    "cube": "^3 ",
+    "cup": "\\cup ",
+    "deriv": "\\frac{d${1:F}}{d${2:x}} $0",
+    "dots": "\\dots ",
+    "empty": "\\emptyset",
+    "ext": "\\exists ",
+    "forall": "\\forall ",
+    "frac": "\\frac{$1}{$2}$0",
+    "inf": "\\infty",
+    "inline_math": "$${1:equation}$",
+    "int": "\\int_{${1:-\\infty}}^{${2:\\infty}} ${3:F} $0",
+    "invs": "^{-1}",
+    "lim": "\\lim_{${1:n} \\to ${2:\\infty}} ",
+    "liminf": "\\liminf_{${1:n} \\to ${2:\\infty}} ",
+    "limsup": "\\limsup_{${1:n} \\to ${2:\\infty}} ",
+    "lr(": "\\left( $1 \\right) $0",
+    "lr<": "\\left< $1 \\right>$0",
+    "lr[": "\\left[ $1 \\right] $0",
+    "lr{": "\\left\\{ $1 \\right\\\\} $0",
+    "lr|": "\\left| $1 \\right| $0",
+    "math": "$$\n${1:equation}\n$$",
+    "mbb": "\\mathbb{$1}$0",
+    "mcal": "\\mathcal{$1}$0",
+    "mean": "\\bar{X}",
+    "nabl": "\\nabla ",
+    "norm": "\\|$1\\|$0",
+    "notin": "\\not\\in ",
+    "pderiv": "\\frac{\\partial ${1:F}}{\\partial ${2:x}} $0",
+    "pow": "^{$1}$0 ",
+    "prod": "\\prod_{${1:n=${2:1}}}^{${3:\\infty}} ${4:F} $0",
+    "set": "\\{${1}\\} $0",
+    "sqr": "^2",
+    "ss": "\\subset ",
+    "stt": "_\\text{$1} $0",
+    "sum": "\\sum_{n=${1:1}}^{${2:\\infty}} ${3:a_n z^n}",
+    "taylor": "\\sum_{${1:k}=${2:0}}^{${3:\\infty}} ${4:c_$1} (x-a)^$1 $0",
+    "text": "\\text{$1}$0",
+    "tt": "\\text{$1}$0",
+    "x": "\\times ",
+    "xii": "x_{i}",
+    "xjj": "x_{j}",
+    "xmm": "x_{m}",
+    "xnn": "x_{n}",
+    "xp1": "x_{n+1}",
+    "xx": "\\times ",
+    "yii": "y_{i}",
+    "yjj": "y_{j}",
+    "ynn": "y_{n}",
+    "|->": "\\mapsto ",
+    "||": " \\mid ",
+    "~=": "\\approx ",
+    "~~": "\\sim "
+  }
+}

@@ -314,6 +314,7 @@
     }
   ],
   "window.restoreWindows": "none",
+  "workbench.activityBar.location": "top",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.restoreViewState": false,
   "workbench.iconTheme": "catppuccin-mocha",

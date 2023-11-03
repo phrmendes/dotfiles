@@ -11,6 +11,7 @@ let
     bitwarden-cli
     eza
     fd
+    flutter
     gh
     gnome-extensions-cli
     hugo

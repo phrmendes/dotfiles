@@ -198,78 +198,72 @@
       "commands": ["editor.action.marker.next"]
     },
     {
-      "before": ["leader", "-"],
-      "commands": [":split"]
+      "before": ["leader", "a"],
+      "commands": ["editor.action.quickFix"]
     },
     {
-      "before": ["leader", "\\"],
-      "commands": [":vsplit"]
+      "before": ["leader", "b"],
+      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"]
     },
     {
-      "before": ["leader", "x"],
-      "commands": ["workbench.action.closeActiveEditor"]
+      "before": ["leader", "c"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["leader", "d"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["leader", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["editor.action.showHover"],
+      "when": "editorTextFocus"
+    },
+    {
+      "before": ["leader", "k"],
+      "command": "editor.debug.action.showDebugHover",
+      "when": "editorTextFocus && inDebugMode"
     },
     {
       "before": ["leader", "q"],
       "commands": [":q!"]
     },
     {
+      "before": ["leader", "r"],
+      "commands": ["editor.action.rename"],
+      "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+      "before": ["leader", "x"],
+      "commands": [":bd"]
+    },
+    {
       "before": ["leader", "z"],
       "commands": ["workbench.action.toggleZenMode"]
     },
     {
-      "before": ["leader", "b", "b"],
-      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"]
+      "before": ["leader", "g", "b"],
+      "commands": ["editor.debug.action.toggleInlineBreakpoint"]
     },
     {
-      "before": ["leader", "b", "d"],
-      "commands": [":bd"]
+      "before": ["leader", "g", "b"],
+      "command": ["debug.toggleBreakpoint"],
+      "when": "breakpointsFocused && !inputFocus"
     },
     {
-      "before": ["leader", "b", "n"],
-      "commands": [":enew"]
+      "before": ["leader", "w", "s"],
+      "commands": [":split"]
     },
     {
-      "before": ["leader", "c", "a"],
-      "commands": ["editor.action.quickFix"]
+      "before": ["leader", "w", "v"],
+      "commands": [":vsplit"]
     },
     {
-      "before": ["leader", "c", "h"],
-      "commands": [":nohl"]
-    },
-    {
-      "before": ["leader", "f", "f"],
-      "commands": ["actions.find"]
-    },
-    {
-      "before": ["leader", "f", "r"],
-      "commands": ["editor.action.startFindReplaceAction"]
-    },
-    {
-      "before": ["leader", "f", "F"],
-      "commands": ["workbench.action.findInFiles"]
-    },
-    {
-      "before": ["leader", "f", "R"],
-      "commands": ["workbench.action.replaceInFiles"]
-    },
-    {
-      "before": ["leader", "f", "s"],
-      "commands": [":w!"]
-    },
-    {
-      "before": ["leader", "f", "d"],
-      "commands": ["editor.action.formatDocument"]
-    },
-    {
-      "before": ["g", "h"],
-      "commands": ["editor.action.showDefinitionPreviewHover"],
-      "when": "editorTextFocus"
-    },
-    {
-      "before": ["g", "r"],
-      "commands": ["editor.action.rename"],
-      "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+      "before": ["leader", "w", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
     },
     {
       "before": ["g", "d"],
@@ -281,6 +275,26 @@
       "commands": ["editor.action.goToDeclaration"]
     },
     {
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["g", "y"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["g", "b", "p"],
+      "commands": ["editor.action.goToPreviousBreakpoint"]
+    },
+    {
+      "before": ["g", "b", "n"],
+      "commands": ["editor.action.goToNextBreakpoint"]
+    },
+    {
       "before": ["g", "p", "d"],
       "commands": ["editor.action.peekDefinition"],
       "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
@@ -288,6 +302,16 @@
     {
       "before": ["g", "p", "i"],
       "commands": ["editor.action.peekImplementation"],
+      "when": "editorHasImplementationProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+      "before": ["g", "p", "D"],
+      "commands": ["editor.action.peekDeclaration"],
+      "when": "editorHasImplementationProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+      "before": ["g", "p", "y"],
+      "commands": ["editor.action.peekTypeDefinition"],
       "when": "editorHasImplementationProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     }
   ],
@@ -313,8 +337,8 @@
       "commands": ["editor.action.moveLinesUpAction"]
     }
   ],
-  "window.restoreWindows": "none",
   "window.menuBarVisibility": "hidden",
+  "window.restoreWindows": "none",
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.restoreViewState": false,

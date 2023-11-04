@@ -15,6 +15,7 @@ let
     gh
     gnome-extensions-cli
     hugo
+    lazydocker
     micromamba
     ncdu
     pandoc

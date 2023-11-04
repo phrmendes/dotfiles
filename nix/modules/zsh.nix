@@ -9,6 +9,7 @@
     shellAliases = {
       cat = "bat --theme=catppuccin";
       la = "eza --icons -a";
+      ld = "lazydocker";
       lg = "lazygit";
       lla = "eza --icons -la";
       ll = "eza --icons -l";

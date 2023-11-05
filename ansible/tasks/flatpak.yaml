@@ -1,6 +1,5 @@
 ---
 - name: Add the flathub remote repository
-  become_user: "{{ user }}"
   community.general.flatpak_remote:
     flatpakrepo_url: "{{ flatpak.flathub }}"
     method: user
@@ -8,14 +7,13 @@
     state: present
 
 - name: Install flatpak packages
-  become_user: "{{ user }}"
   community.general.flatpak:
     state: present
     method: user
     name: "{{ flatpak.install }}"
 
 - name: Give flatpak package permissions to read home directory
-  command:
-    cmd: "flatpak override --filesystem=home {{ item }}"
+  become: true
+  ansible.builtin.command: "flatpak override --filesystem=home {{ item }}"
   changed_when: false
   with_items: "{{ flatpak.install }}"

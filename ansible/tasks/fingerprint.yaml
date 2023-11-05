@@ -1,16 +1,17 @@
 ---
 - name: Enable fingerprint support
+  become: true
+  when: ansible_form_factor != "Desktop"
   block:
     - name: Adding fingerprint repository
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: "ppa:uunicorn/open-fprintd"
 
     - name: Installing fingerprint packages
-      apt:
+      ansible.builtin.apt:
         update_cache: true
         state: present
         name:
           - open-fprintd
           - fprintd-clients
           - python3-validity
-  when: ansible_form_factor != "Desktop"

@@ -1,21 +1,24 @@
 ---
-- name: Add tailscale repository
-  import_tasks: ./tailscale.yaml
+- name: Add Ubuntu packages
+  become: true
+  block:
+    - name: Add tailscale repository
+      ansible.builtin.include_tasks: ./tailscale.yaml
 
-- name: Remove apt packages
-  apt:
-    autoremove: true
-    state: absent
-    name: "{{ apt.remove }}"
+    - name: Remove apt packages
+      ansible.builtin.apt:
+        autoremove: true
+        state: absent
+        name: "{{ apt.remove }}"
 
-- name: Install apt packages
-  apt:
-    update_cache: true
-    state: present
-    name: "{{ apt.install }}"
+    - name: Install apt packages
+      ansible.builtin.apt:
+        update_cache: true
+        state: present
+        name: "{{ apt.install }}"
 
-- name: Install .deb packages
-  apt:
-    deb: "{{ item }}"
-  with_items: "{{ apt.deb }}"
-  when: apt.deb is defined
+    - name: Install .deb packages
+      ansible.builtin.apt:
+        deb: "{{ item }}"
+      with_items: "{{ apt.deb }}"
+      when: apt.deb is defined

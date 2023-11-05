@@ -9,20 +9,19 @@
     shellAliases = {
       cat = "bat --theme=catppuccin";
       la = "eza --icons -a";
-      ld = "lazydocker";
       lg = "lazygit";
-      lla = "eza --icons -la";
       ll = "eza --icons -l";
+      lla = "eza --icons -la";
       ls = "eza --icons";
       lt = "eza --icons --tree";
+      mb = "micromamba";
       mba = "micromamba activate";
       mbc = "micromamba create";
       mbd = "micromamba deactivate";
       mbi = "micromamba install";
-      mb = "micromamba";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
-      zl = "zellij";
+      tx = "tmux";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

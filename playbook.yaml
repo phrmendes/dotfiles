@@ -11,9 +11,6 @@
       ansible.builtin.set_fact:
         ansible_distribution: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
 
-  roles:
-    - geerlingguy.docker
-
   tasks:
     - name: Import tasks
       ansible.builtin.include_tasks:

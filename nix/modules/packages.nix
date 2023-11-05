@@ -1,8 +1,8 @@
-{ pkgs
-, lib
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   concat = lib.lists.concatLists;
   cli = with pkgs; [
     ansible-lint
@@ -15,11 +15,12 @@ let
     gh
     gnome-extensions-cli
     hugo
-    lazydocker
     micromamba
     ncdu
     pandoc
     parallel
+    podman
+    podman-compose
     poetry
     ripgrep
     tealdeer
@@ -37,31 +38,11 @@ let
     libreoffice
     obsidian
     peek
+    podman-desktop
     qview
     thunderbird
     vlc
     zotero
-  ];
-  language-servers = with pkgs; [
-    ansible-language-server
-    ltex-ls
-    marksman
-    nil
-    taplo
-    terraform-ls
-    texlab
-    ruff-lsp
-    nodePackages.bash-language-server
-    nodePackages.dockerfile-language-server-nodejs
-    nodePackages.pyright
-    nodePackages.vscode-json-languageserver
-    nodePackages.yaml-language-server
-  ];
-  formatters = with pkgs; [
-    nixpkgs-fmt
-    ruff
-    shellharden
-    nodePackages.prettier
   ];
   dependencies = with pkgs; [
     jre_minimal
@@ -70,13 +51,10 @@ let
     hunspellDicts.en-us
     hunspellDicts.pt-br
   ];
-in
-{
+in {
   home.packages = concat [
     gui
     cli
     dependencies
-    language-servers
-    formatters
   ];
 }

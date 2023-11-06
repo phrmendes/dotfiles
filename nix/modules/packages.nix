@@ -21,10 +21,8 @@
     podman
     podman-compose
     poetry
-    quarto
     ripgrep
     tealdeer
-    tectonic
     terraform
   ];
   gui = with pkgs; [

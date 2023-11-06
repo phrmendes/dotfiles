@@ -164,13 +164,6 @@ map("v", "<leader>ghs", utils.git.stage_hunk, { desc = "Stage hunk" })
 map("n", "]t", todos.jump_next, { desc = "Next todo comment" })
 map("n", "[t", todos.jump_prev, { desc = "Previous todo comment" })
 
--- repl
-utils.section("r", "REPL", "<leader>", "n")
-map("n", "<leader>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
-map("n", "<leader>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
-map("n", "<leader>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
-map("n", "<leader>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
-
 -- obsidian
 utils.section("o", "obsidian", "<leader>", { "n", "v" })
 map("n", "<leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
@@ -179,6 +172,13 @@ map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
 map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
 map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
 map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+
+-- repl
+utils.section("r", "REPL", "<leader>", "n")
+map("n", "<leader>rs", "<cmd>IronRepl<cr>", { desc = "Open" })
+map("n", "<leader>rr", "<cmd>IronRestart<cr>", { desc = "Restart" })
+map("n", "<leader>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
+map("n", "<leader>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
 
 -- tests
 utils.section("t", "tests", "<leader>", "n")

@@ -100,11 +100,11 @@ map({ "n", "v" }, "<leader>ct", "<cmd>ChatGPTRun translate<cr>", { desc = "Trans
 map({ "n", "v" }, "<leader>cx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "Explain code" })
 
 -- DAP
-map("n", "<F1>", dap.step_over, { desc = "Debugger: step over" })
-map("n", "<F2>", dap.step_into, { desc = "Debugger: step into" })
-map("n", "<F3>", dap.step_back, { desc = "Debugger: step back" })
-map("n", "<F4>", dap.step_out, { desc = "Debugger: step out" })
-map("n", "<F5>", dap.continue, { desc = "Debugger: continue" })
+map("n", "<F1>", dap.continue, { desc = "Debugger: continue" })
+map("n", "<F2>", dap.step_over, { desc = "Debugger: step over" })
+map("n", "<F3>", dap.step_into, { desc = "Debugger: step into" })
+map("n", "<F4>", dap.step_back, { desc = "Debugger: step back" })
+map("n", "<F5>", dap.step_out, { desc = "Debugger: step out" })
 
 utils.section("d", "debugger", "<leader>", { "n", "v" })
 map("v", "<leader>de", dap_ui.eval, { desc = "Evaluate" })
@@ -236,9 +236,7 @@ autocmd("LspAttach", {
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
 		map("n", "<leader>lD", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
 		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
-		map("n", "<leader>ld", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Diagnostics" })
-		map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Loclist" })
-		map("n", "<leader>lq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix" })
+		map("n", "<leader>ld", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
 		map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
 		map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Document symbols" })
 		map({ "n", "v" }, "<leader>lf", formatters.format, { desc = "Format file or range" })

@@ -20,6 +20,7 @@ local metals = require("metals")
 local move = require("mini.move")
 local nabla = require("nabla")
 local neogen = require("neogen")
+local neotest = require("neotest")
 local splitjoin = require("mini.splitjoin")
 local surround = require("mini.surround")
 local todos = require("todo-comments")
@@ -178,6 +179,19 @@ map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
 map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
 map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
 map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+
+-- tests
+utils.section("t", "tests", "<leader>", "n")
+map("n", "<leader>tt", neotest.run.run, { desc = "Run nearest test" })
+map("n", "<leader>ts", neotest.run.stop, { desc = "Stop nearest test" })
+map("n", "<leader>ta", neotest.run.attach, { desc = "Attach nearest test" })
+
+map("n", "<leader>tT", function()
+	neotest.run.run(vim.fn.expand("%"))
+end, { desc = "Run current file" })
+map("n", "<leader>td", function()
+	neotest.run.run({ strategy = "dap" })
+end, { desc = "Debug nearest test" })
 
 -- general keymaps
 map("n", "<leader>-", "<C-w>s", { desc = "Split window" })

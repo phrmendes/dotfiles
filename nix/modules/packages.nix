@@ -5,7 +5,6 @@
 }: let
   concat = lib.lists.concatLists;
   cli = with pkgs; [
-    ansible-lint
     asdf-vm
     bashly
     bitwarden-cli
@@ -22,6 +21,7 @@
     podman
     podman-compose
     poetry
+    quarto
     ripgrep
     tealdeer
     tectonic

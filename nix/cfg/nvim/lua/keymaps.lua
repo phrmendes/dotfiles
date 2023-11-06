@@ -16,6 +16,7 @@ local formatters = require("conform")
 local gitsigns = require("gitsigns")
 local jump2d = require("mini.jump2d")
 local luasnip = require("luasnip")
+local metals = require("metals")
 local move = require("mini.move")
 local nabla = require("nabla")
 local neogen = require("neogen")
@@ -234,12 +235,16 @@ autocmd("LspAttach", {
 		map({ "n", "v" }, "ga", buf.code_action, { desc = "LSP: code actions" })
 
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
-		map("n", "<leader>lD", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
 		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
-		map("n", "<leader>ld", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
-		map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
-		map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Document symbols" })
 		map({ "n", "v" }, "<leader>lf", formatters.format, { desc = "Format file or range" })
+
+		utils.section("ld", "diagnostics", "<leader>", "n")
+		map("n", "<leader>ldd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
+		map("n", "<leader>ldw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
+
+		utils.section("ls", "symbols", "<leader>", "n")
+		map("n", "<leader>lsd", telescope.builtin.lsp_document_symbols, { desc = "Document" })
+		map("n", "<leader>lsw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace" })
 	end,
 })
 
@@ -256,6 +261,7 @@ map({ "i", "s" }, "<C-j>", function()
 	end
 end)
 
+-- language specific keymaps
 autocmd("FileType", {
 	pattern = "python",
 	group = ft_group,
@@ -267,6 +273,15 @@ autocmd("FileType", {
 		map("n", "<leader>dpm", dap_python.test_method, { desc = "Test method" })
 		map("n", "<leader>dpc", dap_python.test_class, { desc = "Test class" })
 		map("v", "<leader>dps", dap_python.debug_selection, { desc = "Debug selection" })
+	end,
+})
+
+autocmd("FileType", {
+	pattern = { "scala", "sbt", "java" },
+	group = ft_group,
+	callback = function()
+		utils.section("lS", "scala", "<leader>", "n")
+		map("n", "<leader>lSw", metals.hover_worksheet, { desc = "Worksheet" })
 	end,
 })
 

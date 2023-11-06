@@ -7,7 +7,6 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
-local ltex_extra = require("ltex_extra")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
@@ -76,21 +75,6 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-ltex_extra.setup({
-	load_langs = { "en-US", "pt-BR" },
-	init_check = true,
-	path = fn.expand("~") .. "/.local/state/.ltex",
-	server_opts = {
-		filetypes = { "markdown", "quarto" },
-		capabilities = capabilities,
-		settings = {
-			ltex = {
-				language = "auto",
-			},
-		},
-	},
-})
-
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {
 	nix = { "statix" },
@@ -127,6 +111,7 @@ formatters.formatters_by_ft = {
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
+	scala = { "scalafmt" },
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------

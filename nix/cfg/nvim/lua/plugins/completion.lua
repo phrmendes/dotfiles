@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-local utils = require("core.utils")
+local utils = require("utils")
 
 -- [[ completion setup ]] -----------------------------------------------
 cmp.setup({

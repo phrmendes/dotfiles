@@ -83,9 +83,10 @@
     neogen # auto-generate docs
   ];
   languages-support = with pkgs.vimPlugins; [
+    nvim-metals
+    vim-helm
     vim-jinja
     vim-nix
-    vim-helm
     gh.vim-ansible
   ];
   text = with pkgs.vimPlugins; [
@@ -93,6 +94,11 @@
     dial-nvim # increment/decrement text objects
     todo-comments-nvim # highlight todo comments
     vim-illuminate # highlight word under cursor
+  ];
+  tests = with pkgs.vimPlugins; [
+    neotest
+    neotest-python
+    neotest-scala
   ];
   utils = with pkgs.vimPlugins; [
     executor-nvim # run async jobs
@@ -135,6 +141,7 @@
   formatters = with pkgs; [
     alejandra
     ruff
+    scalafmt
     shellharden
     stylua
     nodePackages.prettier
@@ -159,6 +166,7 @@ in {
       snippets
       style
       telescope
+      tests
       text
       treesitter
       utils

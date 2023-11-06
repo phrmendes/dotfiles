@@ -8,6 +8,7 @@
     asdf-vm
     bashly
     bitwarden-cli
+    coursier
     eza
     fd
     flutter

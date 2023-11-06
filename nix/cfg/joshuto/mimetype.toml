@@ -20,8 +20,7 @@ image_default = [
 ]
 
 text_default = [
-  { command = "hx" },
-  { command = "code" },
+  { command = "nvim" },
   { command = "bat", args = [
     "--paging=always",
   ] },

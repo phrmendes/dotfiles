@@ -91,47 +91,4 @@ M.luasnip = {
 	end,
 }
 
-M.normalize = function(str)
-	local tableAccents = {}
-	tableAccents["À"] = "A"
-	tableAccents["Á"] = "A"
-	tableAccents["Â"] = "A"
-	tableAccents["Ã"] = "A"
-	tableAccents["Ä"] = "A"
-	tableAccents["Ç"] = "C"
-	tableAccents["È"] = "E"
-	tableAccents["É"] = "E"
-	tableAccents["Ê"] = "E"
-	tableAccents["Ì"] = "I"
-	tableAccents["Í"] = "I"
-	tableAccents["Î"] = "I"
-	tableAccents["Ò"] = "O"
-	tableAccents["Ó"] = "O"
-	tableAccents["Ô"] = "O"
-	tableAccents["Õ"] = "O"
-	tableAccents["Ù"] = "U"
-	tableAccents["Ú"] = "U"
-	tableAccents["Û"] = "U"
-	tableAccents["à"] = "a"
-	tableAccents["á"] = "a"
-	tableAccents["â"] = "a"
-	tableAccents["ã"] = "a"
-	tableAccents["ç"] = "c"
-	tableAccents["è"] = "e"
-	tableAccents["é"] = "e"
-	tableAccents["ê"] = "e"
-	tableAccents["ì"] = "i"
-	tableAccents["í"] = "i"
-	tableAccents["î"] = "i"
-	tableAccents["ò"] = "o"
-	tableAccents["ó"] = "o"
-	tableAccents["ô"] = "o"
-	tableAccents["õ"] = "o"
-	tableAccents["ù"] = "u"
-	tableAccents["ú"] = "u"
-	tableAccents["û"] = "u"
-
-	return str:gsub("[%z\1-\127\194-\244][\128-\191]*", tableAccents)
-end
-
 return M

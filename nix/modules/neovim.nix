@@ -22,7 +22,6 @@
   };
   completion = with pkgs.vimPlugins; [
     cmp-nvim-lsp
-    cmp-pandoc-nvim
     cmp-path
     cmp_luasnip
     nvim-cmp

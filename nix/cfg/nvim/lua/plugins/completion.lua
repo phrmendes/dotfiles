@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local utils = require("core.utils")
-local cmp_pandoc = require("cmp_pandoc")
 
 -- [[ completion setup ]] -----------------------------------------------
 cmp.setup({
@@ -25,7 +24,6 @@ cmp.setup({
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "buffer" }, -- text within current buffer
-		{ name = "cmp_pandoc" }, -- pandoc citations
 		{ name = "cmp_zotcite" }, -- zotcite
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
@@ -34,11 +32,5 @@ cmp.setup({
 	-- configure lspkind for vscode like icons
 	formatting = {
 		format = lspkind.cmp_format({ maxwidth = 50, ellipsis_char = "..." }),
-	},
-})
-
-cmp_pandoc.setup({
-	crossref = {
-		enable_nabla = true,
 	},
 })

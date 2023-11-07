@@ -122,6 +122,7 @@
     docker-compose-language-service
     ltex-ls
     lua-language-server
+    metals
     nil
     ruff-lsp
     taplo

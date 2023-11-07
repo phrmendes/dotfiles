@@ -300,18 +300,10 @@ autocmd("FileType", {
 })
 
 -- dial
-map("n", "<C-a>", function()
-	dial.manipulate("increment", "normal")
-end)
-map("n", "<C-x>", function()
-	dial.manipulate("decrement", "normal")
-end)
-map("v", "<C-a>", function()
-	dial.manipulate("increment", "visual")
-end)
-map("v", "<C-x>", function()
-	dial.manipulate("decrement", "visual")
-end)
+map("n", "<C-a>", dial.inc_normal(), { noremap = true })
+map("n", "<C-x>", dial.dec_normal(), { noremap = true })
+map("v", "<C-a>", dial.inc_visual(), { noremap = true })
+map("v", "<C-x>", dial.dec_visual(), { noremap = true })
 
 -- [[ mini stuff ]] -----------------------------------------------------
 -- moving around buffer

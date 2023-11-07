@@ -1,0 +1,11 @@
+[env]
+POETRY_VIRTUALENVS_IN_PROJECT = true
+
+[tools]
+node = "latest"
+poetry = "latest"
+python = "latest"
+go = "latest"
+java = "openjdk-21"
+scala = "latest"
+coursier = "latest"

@@ -24,7 +24,7 @@ reverse = false
 
 [preview]
 max_preview_size = 2097152
-preview_script = "~/.local/bin/joshuto_preview.sh"
+preview_script = "~/.local/bin/preview"
 
 [search]
 string_case_sensitivity = "insensitive"

@@ -36,6 +36,10 @@ apt:
     - totem
   install:
     - 7zip
+    - autoconf
+    - automake
+    - binutils
+    - bison
     - build-essential
     - ca-certificates
     - chromium-browser
@@ -45,6 +49,8 @@ apt:
     - file-roller
     - flatpak
     - fonts-jetbrains-mono
+    - g++
+    - gcc
     - gnome-tweaks
     - gnupg
     - gparted
@@ -57,16 +63,19 @@ apt:
     - libreadline-dev
     - libsqlite3-dev
     - libssl-dev
+    - libtool
     - libxml2-dev
     - libxmlsec1-dev
+    - make
     - mlocate
     - nala
     - openssh-server
+    - patch
+    - pkg-config
     - python3-apt
     - python3-openssl
     - python3-pip
     - python3-pycurl
-    - python3-setuptools
     - python3-setuptools
     - rar
     - seahorse-nautilus

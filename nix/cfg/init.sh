@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME"/.asdf/asdf.sh ]; then
-	source "$HOME"/.nix-profile/share/asdf-vm/asdf.sh
-fi
-
 eval "$(micromamba shell hook --shell=zsh)"
 
 export FLAKE_PATH="$HOME"/Projects/bkps/nix#phrmendes
-export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 path+=(
-	"$HOME"/.asdf/shims
 	"$HOME"/.local/bin
-	"$HOME"/.nix-profile/bin
 	"$HOME"/.local/share/coursier/bin
+	"$HOME"/.nix-profile/bin
 )
 
 function nix_update() {
@@ -34,7 +28,7 @@ function system_clear() {
 	sudo nala autopurge
 	sudo nala autoremove
 	sudo nala clean
-  flatpak remove --unused
+	flatpak remove --unused
 }
 
 function enable_droidcam() {

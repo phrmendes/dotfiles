@@ -1,6 +1,5 @@
 local core = require("iron.core")
 local python_ft = require("iron.fts.python")
-local scala_ft = require("iron.fts.sbt")
 local view = require("iron.view")
 
 core.setup({
@@ -8,7 +7,7 @@ core.setup({
 		repl_open_cmd = view.split("25%"),
 		repl_definition = {
 			python = python_ft.ipython,
-			scala = scala_ft.sbt,
+			scala = { command = { "amm" } },
 		},
 	},
 	keymaps = {

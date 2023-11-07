@@ -5,16 +5,15 @@
 }: let
   concat = lib.lists.concatLists;
   cli = with pkgs; [
-    asdf-vm
     bashly
     bitwarden-cli
-    coursier
     eza
     fd
     flutter
     gh
     gnome-extensions-cli
     hugo
+    joshuto
     micromamba
     ncdu
     pandoc
@@ -23,6 +22,7 @@
     podman-compose
     poetry
     ripgrep
+    rtx
     tealdeer
     tectonic
     terraform

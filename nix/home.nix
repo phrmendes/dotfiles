@@ -5,16 +5,15 @@ in {
     ./modules/bat.nix
     ./modules/btop.nix
     ./modules/copyq.nix
-    ./modules/direnv.nix
     ./modules/flameshot.nix
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/home-manager.nix
-    ./modules/joshuto.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix
+    ./modules/rtx.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix

@@ -10,6 +10,9 @@ lualine.setup({
 		component_separators = "|",
 		section_separators = "",
 	},
+	disabled_filetypes = { "starter" },
+	ignore_focus = { "NvimTree" },
+	globalstatus = true,
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },

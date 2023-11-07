@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.asdf/asdf.sh" ]; then
-    source "$HOME/.nix-profile/share/asdf-vm/asdf.sh"
+if [ -f "$HOME"/.asdf/asdf.sh ]; then
+	source "$HOME"/.nix-profile/share/asdf-vm/asdf.sh
 fi
 
 eval "$(micromamba shell hook --shell=zsh)"
 
-export FLAKE_PATH="$HOME/Projects/bkps/nix#phrmendes"
+export FLAKE_PATH="$HOME"/Projects/bkps/nix#phrmendes
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 path+=(
-	"$HOME/.asdf/shims"
-	"$HOME/.local/bin"
-	"$HOME/.nix-profile/bin"
+	"$HOME"/.asdf/shims
+	"$HOME"/.local/bin
+	"$HOME"/.nix-profile/bin
+	"$HOME"/.local/share/coursier/bin
 )
 
 function nix_update() {
@@ -58,7 +59,7 @@ function js() {
 			;;
 		101)
 			JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
-			cd "$JOSHUTO_CWD"
+			cd "$JOSHUTO_CWD" || exit
 			;;
 		102)
 			;;

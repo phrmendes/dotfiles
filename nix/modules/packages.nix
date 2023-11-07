@@ -24,6 +24,7 @@
     poetry
     ripgrep
     tealdeer
+    tectonic
     terraform
   ];
   gui = with pkgs; [

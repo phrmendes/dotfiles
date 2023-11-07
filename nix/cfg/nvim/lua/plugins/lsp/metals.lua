@@ -10,11 +10,9 @@ metals_config.init_options.statusBarProvider = "on"
 
 -- LSP
 metals_config.settings = {
+	useGlobalExecutable = true,
+	showInferredType = true,
 	showImplicitArguments = true,
-	excludedPackages = {
-		"akka.actor.typed.javadsl",
-		"com.github.swagger.akka.javadsl",
-	},
 }
 
 metals_config.capabilities = cmp_nvim_lsp.default_capabilities()

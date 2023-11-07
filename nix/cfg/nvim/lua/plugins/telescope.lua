@@ -9,6 +9,8 @@ telescope.setup({
 		layout_strategy = "vertical",
 		mappings = {
 			i = {
+				["<C-u>"] = false,
+				["<C-d>"] = false,
 				["<C-n>"] = actions.move_selection_next,
 				["<C-p>"] = actions.move_selection_previous,
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,

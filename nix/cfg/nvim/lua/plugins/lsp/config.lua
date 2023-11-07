@@ -7,6 +7,7 @@ local formatters = require("conform")
 local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
+local neodev = require("neodev")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
@@ -64,8 +65,11 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
+			completion = { callSnippet = "Replace" },
 			diagnostics = { globals = { "vim" } },
+			telemetry = { enable = false },
 			workspace = {
+				checkThirdParty = false,
 				library = {
 					[fn.expand("$VIMRUNTIME/lua")] = true,
 					[fn.stdpath("config") .. "/lua"] = true,
@@ -74,6 +78,9 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
+
+-- [[ neodev ]] ---------------------------------------------------------
+neodev.setup()
 
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {

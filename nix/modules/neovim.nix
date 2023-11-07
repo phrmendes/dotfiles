@@ -34,6 +34,7 @@
     ltex_extra-nvim # ltex-ls aditional options
     nvim-lint # linting
     trouble-nvim # lsp diagnostics
+    neodev-nvim # lua lsp dev tools
     nvim-lspconfig
   ];
   telescope = with pkgs.vimPlugins; [
@@ -101,6 +102,7 @@
     neotest-scala
   ];
   utils = with pkgs.vimPlugins; [
+    lualine-nvim # statusline
     executor-nvim # run async jobs
     iron-nvim # REPLs
     mini-nvim # set of small plugins
@@ -110,6 +112,7 @@
     vim-tmux-navigator # tmux keybindings
     vim-visual-multi # multiple cursors
     zen-mode-nvim # zen mode
+    vim-sleuth # auto detect indentation
   ];
   dependencies = with pkgs.vimPlugins; [
     nui-nvim # ui component lib

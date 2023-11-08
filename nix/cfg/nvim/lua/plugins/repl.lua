@@ -1,6 +1,6 @@
 local core = require("iron.core")
-local python_ft = require("iron.fts.python")
 local view = require("iron.view")
+local python_ft = require("iron.fts.python")
 
 core.setup({
 	config = {

@@ -19,6 +19,7 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 local servers = {
 	"ansiblels",
 	"bashls",
+	"dartls",
 	"docker_compose_language_service",
 	"dockerls",
 	"nil_ls",
@@ -27,7 +28,6 @@ local servers = {
 	"terraformls",
 	"texlab",
 	"yamlls",
-	"dartls",
 }
 
 for _, server in ipairs(servers) do
@@ -109,16 +109,17 @@ formatters.formatters.tex = {
 }
 
 formatters.formatters_by_ft = {
+	dart = { "dart_format" },
 	json = { "prettier" },
 	lua = { "stylua" },
 	markdown = { "prettier" },
 	nix = { "alejandra" },
 	python = { "ruff" },
+	scala = { "scalafmt" },
 	sh = { "shellharden" },
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
-	scala = { "scalafmt" },
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------

@@ -5,19 +5,30 @@ user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
 nix_version: 2.18.0
 
+pcloud_version: 1.14.1
 pcloud_code: XZ5iuiVZQsuexQaMmmLAS7FGWNh1TkXRWJR7
 
 quarto_version: 1.3.450
 quarto_base_url: "https://github.com/quarto-dev/quarto-cli/releases/download"
 
-venv_path: ~/.virtualenvs
-
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
     - ch.protonmail.protonmail-bridge
+    - com.bitwarden.desktop
     - com.protonvpn.www
+    - com.transmissionbt.Transmission
+    - com.uploadedlobster.peek
+    - io.dbeaver.DBeaverCommunity
+    - io.github.celluloid_player.Celluloid
+    - io.podman_desktop.PodmanDesktop
+    - md.obsidian.Obsidian
+    - net.cozic.joplin_desktop
+    - org.kde.okular
+    - org.libreoffice.LibreOffice
+    - org.mozilla.Thunderbird
     - org.wezfurlong.wezterm
+    - org.zotero.Zotero
 
 apt:
   deb:
@@ -72,6 +83,9 @@ apt:
     - openssh-server
     - patch
     - pkg-config
+    - podman
+    - podman-docker
+    - podman-toolbox
     - python3-apt
     - python3-openssl
     - python3-pip
@@ -86,6 +100,7 @@ apt:
     - unzip
     - v4l2loopback-utils
     - wget
+    - xclip
     - xz-utils
     - zip
     - zlib1g-dev

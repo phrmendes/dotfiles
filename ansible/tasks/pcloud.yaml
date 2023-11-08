@@ -1,18 +1,14 @@
-- name: Get pCloud download link
-  ansible.builtin.uri:
-    url: "https://api.pcloud.com/getpublinkdownload?code={{ pcloud_code }}"
-    return_content: true
-  register: pcloud_response
-
-- name: Set pCloud url and name variables
-  ansible.builtin.set_fact:
-    pcloud_bin: "https://{{ pcloud_response['json']['hosts'][0] }}{{ pcloud_response['json']['path'] }}"
-
-- name: Get pCloud binary
+- name: Get pCloud zip file
   ansible.builtin.get_url:
-    url: "{{ pcloud_bin }}"
-    dest: ~/.local/bin/pcloud
+    url: "https://api.pcloud.com/getpubzip?code={{ pcloud_code }}&filename=pcloud-{{ pcloud_version }}.zip"
+    dest: /tmp/pcloud.zip
     mode: "0755"
+
+- name: Unarchive pCloud zip file
+  ansible.builtin.unarchive:
+    src: /tmp/pcloud.zip
+    remote_src: true
+    dest: ~/.local/bin
 
 - name: Set permission for pCloud binary
   ansible.builtin.file:

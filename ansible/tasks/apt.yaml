@@ -3,7 +3,10 @@
   become: true
   block:
     - name: Add tailscale repository
-      ansible.builtin.include_tasks: ./tailscale.yaml
+      ansible.builtin.include_tasks: "{{ item }}"
+      with_items:
+        - tailscale.yaml
+        - vscode.yaml
 
     - name: Remove apt packages
       ansible.builtin.apt:

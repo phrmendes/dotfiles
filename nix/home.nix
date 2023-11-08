@@ -9,15 +9,15 @@ in {
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
+    ./modules/helix.nix
     ./modules/home-manager.nix
     ./modules/lazygit.nix
-    ./modules/neovim.nix
     ./modules/packages.nix
     ./modules/rtx.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
-    ./modules/tmux.nix
     ./modules/xdg.nix
+    ./modules/zellij.nix
     ./modules/zoxide.nix
     ./modules/zsh.nix
   ];
@@ -28,9 +28,9 @@ in {
     homeDirectory = "/home/${username}";
     stateVersion = "23.05";
     sessionVariables = {
-      EDITOR = "nvim";
-      SUDO_EDITOR = "nvim";
-      VISUAL = "nvim";
+      EDITOR = "hx";
+      SUDO_EDITOR = "hx";
+      VISUAL = "hx";
     };
   };
 }

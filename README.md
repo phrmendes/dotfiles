@@ -4,12 +4,13 @@ Scripts and dotfiles files for my personal computer.
 
 ## How to use
 
-Install requirements:
+Install ansible:
 
 ```sh
 sudo apt update
-sudo apt install git python3-apt python3-pip python3-pycurl python3-setuptools python3-openssl
-pip install --user ansible
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
 ```
 
 Clone `bkps` repository:

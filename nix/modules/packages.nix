@@ -22,7 +22,6 @@
     podman-compose
     poetry
     ripgrep
-    rtx
     tealdeer
     tectonic
     terraform

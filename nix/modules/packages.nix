@@ -21,7 +21,6 @@
     ncdu
     pandoc
     parallel
-    quarto
     ripgrep
     tealdeer
     tectonic

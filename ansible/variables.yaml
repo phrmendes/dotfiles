@@ -24,7 +24,7 @@ flatpak:
     - io.podman_desktop.PodmanDesktop
     - md.obsidian.Obsidian
     - net.cozic.joplin_desktop
-    - org.gnome.Evince
+    - org.kde.okular
     - org.libreoffice.LibreOffice
     - org.mozilla.Thunderbird
     - org.wezfurlong.wezterm

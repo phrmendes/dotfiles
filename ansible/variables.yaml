@@ -1,27 +1,30 @@
 ---
 ansible_arch_alias: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+ansible_dist_alias: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
 
 user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
 nix_version: 2.18.0
 
+pcloud_version: 1.14.1
 pcloud_code: XZ5iuiVZQsuexQaMmmLAS7FGWNh1TkXRWJR7
 
 quarto_version: 1.3.450
 quarto_base_url: "https://github.com/quarto-dev/quarto-cli/releases/download"
 
-venv_path: ~/.virtualenvs
+wezterm_version: 20230712-072601-f4abf8fd
+wezterm_base_url: "https://github.com/wez/wezterm/releases/download"
 
-flatpak:
-  flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
-  install:
-    - ch.protonmail.protonmail-bridge
-    - com.protonvpn.www
-    - org.wezfurlong.wezterm
+electronmail_version: 5.2.1
+electronmail_base_url: "https://github.com/vladimiry/ElectronMail/releases/download"
+
+venv_path: ~/.virtualenvs
 
 apt:
   deb:
     - "{{ quarto_base_url }}/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ ansible_arch_alias }}.deb"
+    - "{{ wezterm_base_url }}/{{ wezterm_version }}/wezterm-{{ wezterm_version }}.{{ ansible_dist_alias }}{{ ansible_distribution_version }}.deb"
+    - "{{ electronmail_base_url }}/v{{ electronmail_version }}/electron-mail-{{ electronmail_version }}-{{ ansible_system | lower }}-{{ ansible_arch_alias }}.deb"
   remove:
     - baobab
     - evince
@@ -72,6 +75,9 @@ apt:
     - openssh-server
     - patch
     - pkg-config
+    - podman
+    - podman-docker
+    - podman-toolbox
     - python3-apt
     - python3-openssl
     - python3-pip
@@ -86,6 +92,7 @@ apt:
     - unzip
     - v4l2loopback-utils
     - wget
+    - xclip
     - xz-utils
     - zip
     - zlib1g-dev

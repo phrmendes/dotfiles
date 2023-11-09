@@ -22,6 +22,7 @@ local servers = {
 	"dartls",
 	"docker_compose_language_service",
 	"dockerls",
+	"helm_ls",
 	"nil_ls",
 	"ruff_lsp",
 	"taplo",

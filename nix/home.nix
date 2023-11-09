@@ -10,6 +10,7 @@ in {
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/home-manager.nix
+    ./modules/joshuto.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix

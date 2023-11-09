@@ -8,11 +8,12 @@
 
     - name: Add tailscale GPG apt key
       ansible.builtin.get_url:
-        url: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}.noarmor.gpg"
+        url: "https://pkgs.tailscale.com/stable/{{ ansible_dist_alias | lower }}/{{ ansible_distribution_release }}.noarmor.gpg"
         dest: "{{ tailscale_keyring }}"
         mode: "0755"
 
     - name: Add tailscale repo
       ansible.builtin.apt_repository:
         state: present
-        repo: "deb [signed-by={{ tailscale_keyring }}] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+        repo: "deb [signed-by={{ tailscale_keyring }}] https://pkgs.tailscale.com/stable/{{ ansible_dist_alias | lower }} {{ ansible_distribution_release }} main"
+        filename: tailscale

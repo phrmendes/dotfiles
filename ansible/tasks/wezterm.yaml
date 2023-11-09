@@ -1,6 +1,5 @@
 ---
 - name: Enable underline colors in WezTerm
   ansible.builtin.shell:
-    cmd: |
-      tempfile=$(mktemp) && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo && tic -x -o ~/.terminfo $tempfile && rm $tempfile
+    cmd: "tempfile=$(mktemp) && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo && tic -x -o ~/.terminfo $tempfile && rm $tempfile"
     creates: ~/.terminfo/w/wezterm

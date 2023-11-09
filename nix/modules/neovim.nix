@@ -123,6 +123,7 @@
   language-servers = with pkgs; [
     ansible-language-server
     docker-compose-language-service
+    helm-ls
     ltex-ls
     lua-language-server
     metals

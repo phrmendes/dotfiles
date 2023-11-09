@@ -14,13 +14,14 @@
     gnome-extensions-cli
     hugo
     joshuto
+    kubectl
+    kubernetes-helm
     micromamba
+    minikube
     ncdu
     pandoc
     parallel
-    podman
-    podman-compose
-    poetry
+    quarto
     ripgrep
     tealdeer
     tectonic
@@ -37,9 +38,8 @@
     libreoffice
     obsidian
     peek
-    podman-desktop
+    protonvpn-gui
     qview
-    thunderbird
     vlc
     zotero
   ];

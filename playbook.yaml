@@ -6,23 +6,17 @@
   vars_files:
     - ./ansible/variables.yaml
 
-  pre_tasks:
-    - name: Fix ansible variable
-      ansible.builtin.set_fact:
-        ansible_distribution: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansible_distribution }}"
-
   tasks:
     - name: Import tasks
       ansible.builtin.include_tasks:
         file: "{{ file }}"
       loop:
-        - ./ansible/tasks/apt.yaml
-        - ./ansible/tasks/flatpak.yaml
-        - ./ansible/tasks/fingerprint.yaml
-        - ./ansible/tasks/nix.yaml
-        - ./ansible/tasks/nerd-fonts.yaml
-        - ./ansible/tasks/debugpy.yaml
-        - ./ansible/tasks/pcloud.yaml
-        - ./ansible/tasks/wezterm.yaml
+        - ansible/tasks/apt.yaml
+        - ansible/tasks/fingerprint.yaml
+        - ansible/tasks/nix.yaml
+        - ansible/tasks/nerd-fonts.yaml
+        - ansible/tasks/debugpy.yaml
+        - ansible/tasks/pcloud.yaml
+        - ansible/tasks/wezterm.yaml
       loop_control:
         loop_var: file

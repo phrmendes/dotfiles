@@ -8,7 +8,6 @@
     initExtra = builtins.readFile ../cfg/init.sh;
     shellAliases = {
       cat = "bat --theme=catppuccin";
-      docker = "podman";
       la = "eza --icons -a";
       lg = "lazygit";
       ll = "eza --icons -l";
@@ -22,6 +21,7 @@
       mbi = "micromamba install";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
+      tx = "tmux";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

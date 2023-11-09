@@ -7,6 +7,10 @@
       source = ../cfg/joshuto-preview.sh;
       executable = true;
     };
+    ".config/nvim" = {
+      source = ../cfg/nvim;
+      recursive = true;
+    };
     ".config/joshuto" = {
       source = ../cfg/joshuto;
       recursive = true;

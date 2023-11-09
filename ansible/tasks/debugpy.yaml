@@ -1,0 +1,22 @@
+---
+- name: Install debugpy
+  block:
+    - name: Ensure ~/.virtualenvs directory exist
+      ansible.builtin.file:
+        path: "{{ venv_path }}"
+        state: directory
+        owner: "{{ user }}"
+        mode: "0755"
+
+    - name: Create debugpy virtualenv
+      ansible.builtin.command:
+        cmd: "python3 -m venv debugpy"
+        chdir: "{{ venv_path }}"
+        creates: "{{ venv_path }}/debugpy"
+
+    - name: Install debugpy in virtualenv
+      ansible.builtin.pip:
+        extra_args: --upgrade
+        virtualenv: "{{ venv_path }}/debugpy"
+        state: present
+        name: debugpy

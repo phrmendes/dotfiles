@@ -1,14 +1,12 @@
-{ pkgs
-, lib
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   concat = lib.lists.concatLists;
-  packages = with pkgs; [
-    ansible-lint
+  cli = with pkgs; [
     bashly
-    caffeine-ng
-    droidcam
+    bitwarden-cli
     eza
     fd
     flutter
@@ -16,43 +14,46 @@ let
     gnome-extensions-cli
     hugo
     joshuto
-    kubectl
-    kubernetes-helm
     micromamba
-    minikube
     ncdu
     pandoc
     parallel
-    qview
+    podman
+    podman-compose
+    poetry
     ripgrep
     tealdeer
     tectonic
     terraform
   ];
-  language-servers = with pkgs; [
-    ansible-language-server
-    lua-language-server
-    marksman
-    nil
-    taplo
-    terraform-ls
-    texlab
-    nodePackages.bash-language-server
-    nodePackages.dockerfile-language-server-nodejs
-    nodePackages.pyright
-    nodePackages.vscode-json-languageserver
-    nodePackages.yaml-language-server
+  gui = with pkgs; [
+    bitwarden
+    bruno
+    caffeine-ng
+    dbeaver
+    deluge
+    droidcam
+    evince
+    libreoffice
+    obsidian
+    peek
+    podman-desktop
+    qview
+    thunderbird
+    vlc
+    zotero
   ];
-  formatters = with pkgs; [
-    nixpkgs-fmt
-    shellharden
-    nodePackages.prettier
+  dependencies = with pkgs; [
+    jre_minimal
+    xclip
+    hunspell
+    hunspellDicts.en-us
+    hunspellDicts.pt-br
   ];
-in
-{
+in {
   home.packages = concat [
-    formatters
-    language-servers
-    packages
+    gui
+    cli
+    dependencies
   ];
 }

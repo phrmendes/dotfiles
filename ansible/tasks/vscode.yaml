@@ -1,5 +1,0 @@
-- name: Add VSCode repo
-  ansible.builtin.apt_repository:
-    state: present
-    repo: "deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main"
-    filename: vscode

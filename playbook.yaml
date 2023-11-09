@@ -18,8 +18,10 @@
       loop:
         - ./ansible/tasks/apt.yaml
         - ./ansible/tasks/flatpak.yaml
+        - ./ansible/tasks/fingerprint.yaml
         - ./ansible/tasks/nix.yaml
         - ./ansible/tasks/nerd-fonts.yaml
+        - ./ansible/tasks/debugpy.yaml
         - ./ansible/tasks/pcloud.yaml
         - ./ansible/tasks/wezterm.yaml
       loop_control:

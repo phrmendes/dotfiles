@@ -37,6 +37,7 @@
     libreoffice
     obsidian
     peek
+    pods
     protonvpn-gui
     qview
     vlc

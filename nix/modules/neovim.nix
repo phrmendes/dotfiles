@@ -13,19 +13,18 @@
         url = "https://github.com/${repo}.git";
       };
     };
-  gh = {
-    cmp-zotcite = fromGitHub "431c720a73fb84c8b1a51b4f123e2a7cc8a58bfd" "HEAD" "jalvesaq/cmp-zotcite";
-    obsidian-nvim = fromGitHub "630c92045f0595123031b598c624dbad3b5f6dbc" "HEAD" "epwalsh/obsidian.nvim";
-    telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
-    vim-ansible = fromGitHub "afc739e505053a6143a1fc6cedac6fb4d7a1d4db" "HEAD" "pearofducks/ansible-vim";
-    zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
-  };
+  cmp-zotcite = fromGitHub "431c720a73fb84c8b1a51b4f123e2a7cc8a58bfd" "HEAD" "jalvesaq/cmp-zotcite";
+  obsidian-nvim = fromGitHub "630c92045f0595123031b598c624dbad3b5f6dbc" "HEAD" "epwalsh/obsidian.nvim";
+  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+  vim-ansible = fromGitHub "afc739e505053a6143a1fc6cedac6fb4d7a1d4db" "HEAD" "pearofducks/ansible-vim";
+  zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
+  # fidget_nvim = fromGitHub "a67951793619a5827d3d08681926e4fa309c21aa" "HEAD" "j-gui/fidget.nvim";
   completion = with pkgs.vimPlugins; [
     cmp-nvim-lsp
     cmp-path
     cmp_luasnip
     nvim-cmp
-    gh.cmp-zotcite
+    cmp-zotcite
   ];
   lsp = with pkgs.vimPlugins; [
     conform-nvim # formatting
@@ -44,7 +43,7 @@
     telescope-symbols-nvim
     telescope-ui-select-nvim
     telescope-zoxide
-    gh.telescope-bibtex
+    telescope-bibtex
   ];
   treesitter = with pkgs.vimPlugins; [
     nvim-treesitter-context
@@ -66,8 +65,8 @@
     quarto-nvim
     markdown-preview-nvim
     nabla-nvim # math symbols
-    gh.zotcite
-    gh.obsidian-nvim
+    zotcite
+    obsidian-nvim
   ];
   ia = with pkgs.vimPlugins; [
     copilot-vim
@@ -88,7 +87,7 @@
     vim-helm
     vim-jinja
     vim-nix
-    gh.vim-ansible
+    vim-ansible
   ];
   text = with pkgs.vimPlugins; [
     comment-nvim
@@ -102,17 +101,18 @@
     neotest-scala
   ];
   utils = with pkgs.vimPlugins; [
-    lualine-nvim # statusline
+    clipboard-image-nvim # paste images
     executor-nvim # run async jobs
     iron-nvim # REPLs
+    lualine-nvim # statusline
     mini-nvim # set of small plugins
     nvim-bqf # better quickfix
     nvim-tree-lua # file explorer
     undotree # undo tree
+    vim-sleuth # auto detect indentation
     vim-tmux-navigator # tmux keybindings
     vim-visual-multi # multiple cursors
     zen-mode-nvim # zen mode
-    vim-sleuth # auto detect indentation
   ];
   dependencies = with pkgs.vimPlugins; [
     nui-nvim # ui component lib

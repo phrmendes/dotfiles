@@ -6,7 +6,7 @@ user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
 nix_version: 2.18.0
 
-pcloud_version: 1.14.1
+pcloud_version: 1.14.2
 pcloud_code: XZ5iuiVZQsuexQaMmmLAS7FGWNh1TkXRWJR7
 
 quarto_version: 1.3.450

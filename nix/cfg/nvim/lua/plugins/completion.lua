@@ -8,18 +8,23 @@ cmp.setup({
 		expand = utils.luasnip.expand,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-d>"] = cmp.mapping.scroll_docs(4), -- scroll documentation down
-		["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
-		["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-		["<C-u>"] = cmp.mapping.scroll_docs(-4), -- scroll documentation up
-		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-		["<C-q>"] = cmp.mapping.abort(), -- close completion window
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = false,
-		}),
 		["<C-Left>"] = cmp.mapping(utils.luasnip.tab, { "i", "s" }),
 		["<C-Right>"] = cmp.mapping(utils.luasnip.s_tab, { "i", "s" }),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<S-CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		}),
+		["<C-CR>"] = function(fallback)
+			cmp.abort()
+			fallback()
+		end,
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({

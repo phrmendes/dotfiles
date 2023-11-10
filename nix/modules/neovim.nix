@@ -48,6 +48,7 @@
   treesitter = with pkgs.vimPlugins; [
     nvim-treesitter-context
     nvim-treesitter-textobjects
+    nvim-ts-context-commentstring
     nvim-treesitter.withAllGrammars
   ];
   dap = with pkgs.vimPlugins; [
@@ -72,10 +73,11 @@
     copilot-vim
     ChatGPT-nvim
   ];
-  style = with pkgs.vimPlugins; [
+  ui = with pkgs.vimPlugins; [
     catppuccin-nvim
     nvim-web-devicons
     which-key-nvim
+    dressing-nvim
   ];
   snippets = with pkgs.vimPlugins; [
     friendly-snippets
@@ -90,7 +92,6 @@
     vim-ansible
   ];
   text = with pkgs.vimPlugins; [
-    comment-nvim
     dial-nvim # increment/decrement text objects
     todo-comments-nvim # highlight todo comments
     vim-illuminate # highlight word under cursor
@@ -169,7 +170,7 @@ in {
       languages-support
       lsp
       snippets
-      style
+      ui
       telescope
       tests
       text

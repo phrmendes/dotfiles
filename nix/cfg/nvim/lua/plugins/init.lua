@@ -1,7 +1,6 @@
 require("plugins.chatgpt")
 require("plugins.clipboard")
 require("plugins.colorscheme")
-require("plugins.comments")
 require("plugins.completion")
 require("plugins.debugger")
 require("plugins.dial")

@@ -14,17 +14,12 @@ local dap_ui = require("dapui")
 local dial = require("dial.map")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
-local jump2d = require("mini.jump2d")
 local luasnip = require("luasnip")
 local metals = require("metals")
-local move = require("mini.move")
 local nabla = require("nabla")
 local neogen = require("neogen")
 local neotest = require("neotest")
-local splitjoin = require("mini.splitjoin")
-local surround = require("mini.surround")
 local todos = require("todo-comments")
-local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 local utils = require("utils")
 local wk = require("which-key")
 
@@ -65,16 +60,6 @@ map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true })
 map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true })
 map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true })
-
--- ";" goes to the direction you were moving
-map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
--- make builtin f, F, t, T also repeatable with ";" and ","
-map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
 -- buffers
 utils.section("b", "buffers", "<leader>", "n")
@@ -125,8 +110,6 @@ utils.section("f", "files", "<leader>", "n")
 map("n", "<leader><space>", telescope.builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fG", telescope.builtin.git_files, { desc = "Git files" })
 map("n", "<leader>fg", telescope.builtin.live_grep, { desc = "Live grep" })
-map("n", "<leader>fq", "<cmd>wq<cr>", { desc = "Save and quit" })
-map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
 map("n", "<leader>fz", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 
@@ -198,6 +181,7 @@ end, { desc = "Debug nearest test" })
 map("n", "<leader>-", "<C-w>s", { desc = "Split window" })
 map("n", "<leader>.", telescope.builtin.commands, { desc = "Commands" })
 map("n", "<leader>S", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
+map("n", "<leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
 map("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 map("n", "<leader>\\", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>a", neogen.generate, { desc = "Generate annotations", noremap = true, silent = true })
@@ -206,7 +190,9 @@ map("n", "<leader>h", telescope.builtin.help_tags, { desc = "Help tags" })
 map("n", "<leader>p", "<cmd>PasteImg<cr>", { desc = "Paste image" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
+map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
+map({ "n", "v" }, "<leader>F", formatters.format, { desc = "Format file or range" })
 map({ "n", "v", "i" }, "<C-,>", telescope.builtin.symbols, { desc = "Symbols" })
 
 -- markdown/quarto
@@ -251,16 +237,13 @@ autocmd("LspAttach", {
 		map({ "n", "v" }, "ga", buf.code_action, { desc = "LSP: code actions" })
 
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
+		map("n", "<leader>lD", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
+		map("n", "<leader>lS", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
-		map({ "n", "v" }, "<leader>lf", formatters.format, { desc = "Format file or range" })
-
-		utils.section("ld", "diagnostics", "<leader>", "n")
-		map("n", "<leader>ldd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
-		map("n", "<leader>ldw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
-
-		utils.section("ls", "symbols", "<leader>", "n")
-		map("n", "<leader>lsd", telescope.builtin.lsp_document_symbols, { desc = "Document" })
-		map("n", "<leader>lsw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace" })
+		map("n", "<leader>ld", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
+		map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Location list (Trouble)" })
+		map("n", "<leader>lq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix list (Trouble)" })
+		map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
 	end,
 })
 
@@ -307,39 +290,5 @@ map("n", "<C-x>", dial.dec_normal(), { noremap = true })
 map("v", "<C-a>", dial.inc_visual(), { noremap = true })
 map("v", "<C-x>", dial.dec_visual(), { noremap = true })
 
--- [[ mini stuff ]] -----------------------------------------------------
--- moving around buffer
-jump2d.setup({ mappings = { start_jumping = "<leader>j" } })
-
--- split and join arguments
-splitjoin.setup({ mappings = { toggle = "T" } })
-
--- surround text objects
-utils.section("s", "surround", "<leader>", { "n", "v" })
-surround.setup({
-	mappings = {
-		add = "<leader>sa", -- add surrounding in normal and visual modes
-		delete = "<leader>sd", -- delete surrounding
-		find = "<leader>sl", -- find surrounding (to the right)
-		find_left = "<leader>sh", -- find surrounding (to the left)
-		highlight = "<leader>sH", -- highlight surrounding
-		replace = "<leader>sr", -- replace surrounding
-		update_n_lines = "<leader>sn", -- update `n_lines`
-	},
-})
-
--- move text around
-move.setup({
-	mappings = {
-		-- visual mode
-		left = "<",
-		right = ">",
-		down = "<S-j>",
-		up = "<S-k>",
-		-- normal mode
-		line_left = "<",
-		line_right = ">",
-		line_down = "<S-j>",
-		line_up = "<S-k>",
-	},
-})
+-- mini stuff
+utils.section("s", "surround", "g", { "n", "v" })

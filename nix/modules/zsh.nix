@@ -22,6 +22,7 @@
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
       tx = "tmux";
+      wezterm = "flatpak run org.wezfurlong.wezterm";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
       sys_pip = "/usr/bin/pip";

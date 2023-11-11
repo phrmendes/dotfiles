@@ -12,6 +12,7 @@
         file: "{{ file }}"
       loop:
         - ansible/tasks/apt.yaml
+        - ansible/tasks/flatpak.yaml
         - ansible/tasks/fingerprint.yaml
         - ansible/tasks/nix.yaml
         - ansible/tasks/nerd-fonts.yaml

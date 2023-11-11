@@ -2,7 +2,6 @@ local ai = require("mini.ai")
 local bufremove = require("mini.bufremove")
 local comment = require("mini.comment")
 local indentscope = require("mini.indentscope")
-local jump = require("mini.jump")
 local jump2d = require("mini.jump2d")
 local move = require("mini.move")
 local pairs = require("mini.pairs")
@@ -16,7 +15,6 @@ bufremove.setup()
 pairs.setup()
 starter.setup()
 tabline.setup()
-jump.setup()
 
 -- comment text objects
 comment.setup({

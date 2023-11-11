@@ -8,6 +8,7 @@ local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local neodev = require("neodev")
+local trouble = require("trouble")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
@@ -129,13 +130,17 @@ lsp_signature.setup()
 
 -- diagnostic icons
 local diagnostics_signs = {
-	Error = " ",
-	Warn = " ",
-	Hint = "󱍄 ",
-	Info = " ",
+	Error = "",
+	Warn = "",
+	Hint = "",
+	Info = "",
 }
 
 for type, icon in pairs(diagnostics_signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+trouble.setup({
+	use_diagnostic_signs = true,
+})

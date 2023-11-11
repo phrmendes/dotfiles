@@ -19,6 +19,7 @@ local metals = require("metals")
 local nabla = require("nabla")
 local neogen = require("neogen")
 local neotest = require("neotest")
+local spectre = require("spectre")
 local todos = require("todo-comments")
 local utils = require("utils")
 local wk = require("which-key")
@@ -112,6 +113,7 @@ map("n", "<leader>fG", telescope.builtin.git_files, { desc = "Git files" })
 map("n", "<leader>fg", telescope.builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" })
 map("n", "<leader>fz", telescope.extensions.zoxide.list, { desc = "Zoxide" })
+map("n", "<leader>fs", spectre.toggle, { desc = "Search and replace" })
 
 -- git
 map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
@@ -193,7 +195,6 @@ map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo tree" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
 map({ "n", "v" }, "<leader>F", formatters.format, { desc = "Format file or range" })
-map({ "n", "v", "i" }, "<C-,>", telescope.builtin.symbols, { desc = "Symbols" })
 
 -- markdown/quarto
 autocmd("FileType", {
@@ -244,6 +245,7 @@ autocmd("LspAttach", {
 		map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Location list (Trouble)" })
 		map("n", "<leader>lq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix list (Trouble)" })
 		map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
+		map("n", "<leader>lt", "<cmd>SymbolsOutline<cr>", { desc = "Symbols outline" })
 	end,
 })
 

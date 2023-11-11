@@ -2,7 +2,6 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local utils = require("utils")
 
--- [[ completion setup ]] -----------------------------------------------
 cmp.setup({
 	snippet = {
 		expand = utils.luasnip.expand,
@@ -26,15 +25,15 @@ cmp.setup({
 			fallback()
 		end,
 	}),
-	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "buffer" }, -- text within current buffer
-		{ name = "cmp_zotcite" }, -- zotcite
-		{ name = "luasnip" }, -- snippets
-		{ name = "nvim_lsp" }, -- lsp
-		{ name = "path" }, -- file system paths
+		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
+		{ name = "path" },
+	}, {
+		{ name = "buffer" },
+		{ name = "emoji" },
+		{ name = "cmp_zotcite" },
 	}),
-	-- configure lspkind for vscode like icons
 	formatting = {
 		format = lspkind.cmp_format({ maxwidth = 50, ellipsis_char = "..." }),
 	},

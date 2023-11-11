@@ -55,9 +55,11 @@ telescope.setup({
 	},
 	extensions = {
 		["ui-select"] = { themes.get_dropdown() },
-		["fzy_native"] = {
-			override_generic_sorter = false,
+		["fzf"] = {
+			fuzzy = true,
+			override_generic_sorter = true,
 			override_file_sorter = true,
+			case_mode = "smart_case",
 		},
 		bibtex = {
 			global_files = { references },
@@ -69,7 +71,7 @@ telescope.setup({
 local extensions = {
 	"bibtex",
 	"dap",
-	"fzy_native",
+	"fzf",
 	"ui-select",
 	"zoxide",
 }

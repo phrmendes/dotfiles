@@ -18,32 +18,35 @@
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
   vim-ansible = fromGitHub "afc739e505053a6143a1fc6cedac6fb4d7a1d4db" "HEAD" "pearofducks/ansible-vim";
   zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
-  # fidget_nvim = fromGitHub "a67951793619a5827d3d08681926e4fa309c21aa" "HEAD" "j-gui/fidget.nvim";
+  lsp-progress = fromGitHub "b2d2aaf10fadf58d299a33b6ba057ffe4c458762" "HEAD" "linrongbin16/lsp-progress.nvim";
   completion = with pkgs.vimPlugins; [
+    cmp-buffer
+    cmp-git
     cmp-nvim-lsp
     cmp-path
+    cmp-zotcite
     cmp_luasnip
     nvim-cmp
-    cmp-zotcite
   ];
   lsp = with pkgs.vimPlugins; [
     conform-nvim # formatting
+    lsp-progress
     lsp_signature-nvim # lsp signature hint as you type
     lspkind-nvim # vscode-like pictograms
     ltex_extra-nvim # ltex-ls aditional options
-    nvim-lint # linting
-    trouble-nvim # lsp diagnostics
     neodev-nvim # lua lsp dev tools
+    nvim-lint # linting
     nvim-lspconfig
+    symbols-outline-nvim # tree view of symbols
+    trouble-nvim # lsp diagnostics
   ];
   telescope = with pkgs.vimPlugins; [
+    telescope-bibtex
     telescope-dap-nvim
-    telescope-fzy-native-nvim
+    telescope-fzf-native-nvim
     telescope-nvim
-    telescope-symbols-nvim
     telescope-ui-select-nvim
     telescope-zoxide
-    telescope-bibtex
   ];
   treesitter = with pkgs.vimPlugins; [
     nvim-treesitter-context
@@ -108,6 +111,7 @@
     lualine-nvim # statusline
     mini-nvim # set of small plugins
     nvim-bqf # better quickfix
+    nvim-spectre # search and replace
     nvim-tree-lua # file explorer
     undotree # undo tree
     vim-sleuth # auto detect indentation

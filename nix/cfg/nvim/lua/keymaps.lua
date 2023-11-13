@@ -231,13 +231,13 @@ autocmd("LspAttach", {
 
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
 		map("n", "<leader>lD", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
-		map("n", "<leader>lS", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 		map("n", "<leader>lc", lsp.codelens.run, { desc = "Code lens" })
 		map("n", "<leader>ld", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
 		map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Location list (Trouble)" })
 		map("n", "<leader>lq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix list (Trouble)" })
 		map("n", "<leader>ls", telescope.builtin.lsp_document_symbols, { desc = "Document symbols" })
 		map("n", "<leader>lt", "<cmd>SymbolsOutline<cr>", { desc = "Symbols outline" })
+		map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 
 		utils.section("r", "REPL", "<leader>", "n")
 		map("n", "<leader>rR", "<cmd>IronRestart<cr>", { desc = "Restart" })

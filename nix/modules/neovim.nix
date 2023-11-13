@@ -42,7 +42,6 @@
   ];
   telescope = with pkgs.vimPlugins; [
     telescope-bibtex
-    telescope-dap-nvim
     telescope-fzf-native-nvim
     telescope-nvim
     telescope-ui-select-nvim
@@ -63,7 +62,6 @@
   git = with pkgs.vimPlugins; [
     lazygit-nvim
     gitsigns-nvim
-    vim-fugitive
   ];
   writing = with pkgs.vimPlugins; [
     quarto-nvim

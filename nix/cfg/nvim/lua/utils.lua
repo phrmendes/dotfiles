@@ -1,4 +1,3 @@
-local fn = vim.fn
 local get_cursor = vim.api.nvim_win_get_cursor
 local get_lines = vim.api.nvim_buf_get_lines
 local get_number = vim.api.nvim_buf_get_number
@@ -6,8 +5,6 @@ local set_cursor = vim.api.nvim_win_set_cursor
 local set_lines = vim.api.nvim_buf_set_lines
 
 local cmp = require("cmp")
-local dap = require("dap")
-local gitsigns = require("gitsigns")
 local luasnip = require("luasnip")
 local wk = require("which-key")
 
@@ -52,19 +49,6 @@ M.md_toggle = function()
 
 	set_lines(bufnr, start_line, start_line + 1, false, { new_line })
 	set_cursor(0, cursor)
-end
-
-M.git = {
-	stage_hunk = function()
-		gitsigns.stage_hunk({ fn.line("."), fn.line("v") })
-	end,
-	reset_hunk = function()
-		gitsigns.reset_hunk({ fn.line("."), fn.line("v") })
-	end,
-}
-
-M.conditional_breakpoint = function()
-	dap.set_breakpoint(fn.input("Breakpoint condition: "))
 end
 
 M.luasnip = {

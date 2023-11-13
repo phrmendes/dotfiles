@@ -34,13 +34,15 @@ indentscope.setup({
 -- surround text objects
 surround.setup({
 	mappings = {
-		add = "gsa", -- add surrounding in normal and visual modes
-		delete = "gsd", -- delete surrounding
-		find = "gsf", -- find surrounding (to the right)
-		find_left = "gsF", -- find surrounding (to the left)
-		highlight = "gsh", -- highlight surrounding
-		replace = "gsr", -- replace surrounding
-		update_n_lines = "gsn", -- update `n_lines`
+		add = "sa",
+		delete = "sd",
+		find = "sf",
+		find_left = "sF",
+		highlight = "sh",
+		replace = "sr",
+		update_n_lines = "sn",
+		suffix_last = "l",
+		suffix_next = "n",
 	},
 })
 

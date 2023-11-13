@@ -70,7 +70,6 @@ telescope.setup({
 -- load extensions
 local extensions = {
 	"bibtex",
-	"dap",
 	"fzf",
 	"ui-select",
 	"zoxide",

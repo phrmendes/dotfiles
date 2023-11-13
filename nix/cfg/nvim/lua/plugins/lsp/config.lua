@@ -82,7 +82,9 @@ lspconfig.lua_ls.setup({
 })
 
 -- [[ neodev ]] ---------------------------------------------------------
-neodev.setup()
+neodev.setup({
+	library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 
 -- [[ linters ]] --------------------------------------------------------
 linters.linters_by_ft = {

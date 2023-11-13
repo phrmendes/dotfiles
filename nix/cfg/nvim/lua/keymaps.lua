@@ -63,10 +63,11 @@ map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true })
 
 -- buffers
+map("n", "]]", "<cmd>bn<cr>", { desc = "Next buffer" })
+map("n", "[[", "<cmd>bp<cr>", { desc = "Previous buffer" })
+
 utils.section("b", "buffers", "<leader>", "n")
 map("n", "<leader>/", telescope.builtin.current_buffer_fuzzy_find, { desc = "Search in current buffer" })
-map("n", "<S-l>", "<cmd>bn<cr>", { desc = "Next buffer" })
-map("n", "<S-h>", "<cmd>bp<cr>", { desc = "Previous buffer" })
 map("n", "<leader>bb", telescope.builtin.buffers, { desc = "List buffers" })
 map("n", "<leader>bd", bufremove.delete, { desc = "Delete" })
 map("n", "<leader>bo", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all other buffers" })
@@ -116,8 +117,8 @@ map("n", "<leader>fz", telescope.extensions.zoxide.list, { desc = "Zoxide" })
 map("n", "<leader>fs", spectre.toggle, { desc = "Search and replace" })
 
 -- git
-map("n", "[h", gitsigns.prev_hunk, { desc = "Previous hunk" })
-map("n", "]h", gitsigns.next_hunk, { desc = "Next hunk" })
+map("n", "[h", gitsigns.prev_hunk, { desc = "Git: Previous hunk" })
+map("n", "]h", gitsigns.next_hunk, { desc = "Git: Next hunk" })
 
 utils.section("g", "git", "<leader>", { "n", "v" })
 map("n", "<leader>gB", telescope.builtin.git_branches, { desc = "Branches" })
@@ -175,6 +176,7 @@ map("n", "<leader>ta", neotest.run.attach, { desc = "Attach nearest test" })
 map("n", "<leader>tT", function()
 	neotest.run.run(vim.fn.expand("%"))
 end, { desc = "Run current file" })
+
 map("n", "<leader>td", function()
 	neotest.run.run({ strategy = "dap" })
 end, { desc = "Debug nearest test" })
@@ -240,7 +242,7 @@ autocmd("LspAttach", {
 		utils.section("l", "LSP", "<leader>", { "n", "v" })
 		map("n", "<leader>lD", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
 		map("n", "<leader>lS", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
-		map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens" })
+		map("n", "<leader>lc", lsp.codelens.run, { desc = "Code lens" })
 		map("n", "<leader>ld", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document diagnostics" })
 		map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Location list (Trouble)" })
 		map("n", "<leader>lq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix list (Trouble)" })

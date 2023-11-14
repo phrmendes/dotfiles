@@ -11,9 +11,3 @@
     state: present
     method: user
     name: "{{ flatpak.install }}"
-
-- name: Give flatpak package permissions to read home directory
-  become: true
-  ansible.builtin.command: "flatpak override --filesystem=host {{ item }}"
-  changed_when: false
-  with_items: "{{ flatpak.install }}"

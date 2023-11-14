@@ -28,6 +28,7 @@ in {
     homeDirectory = "/home/${username}";
     stateVersion = "23.05";
     sessionVariables = {
+      TERM = "wezterm";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";

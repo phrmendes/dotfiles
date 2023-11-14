@@ -4,7 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 local metals_status = function()
-	return vim.g["metals_status"] or ""
+	return vim.g.metals_status or ""
 end
 
 lsp_progress.setup()

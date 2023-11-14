@@ -239,12 +239,6 @@ autocmd("LspAttach", {
 		map("n", "<leader>lt", "<cmd>SymbolsOutline<cr>", { desc = "Symbols outline" })
 		map("n", "<leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
 
-		utils.section("r", "REPL", "<leader>", "n")
-		map("n", "<leader>rR", "<cmd>IronRestart<cr>", { desc = "Restart" })
-		map("n", "<leader>rf", "<cmd>IronFocus<cr>", { desc = "Focus" })
-		map("n", "<leader>rh", "<cmd>IronHide<cr>", { desc = "Hide" })
-		map("n", "<leader>rr", "<cmd>IronRepl<cr>", { desc = "Open" })
-
 		utils.section("t", "tests", "<leader>", "n")
 		map("n", "<leader>tt", neotest.run.run, { desc = "Run nearest test" })
 		map("n", "<leader>ts", neotest.run.stop, { desc = "Stop nearest test" })

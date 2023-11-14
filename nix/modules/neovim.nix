@@ -105,7 +105,7 @@
   utils = with pkgs.vimPlugins; [
     clipboard-image-nvim # paste images
     executor-nvim # run async jobs
-    iron-nvim # REPLs
+    vim-slime # REPLs
     lualine-nvim # statusline
     mini-nvim # set of small plugins
     nvim-bqf # better quickfix

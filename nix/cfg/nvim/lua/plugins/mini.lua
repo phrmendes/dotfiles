@@ -19,7 +19,6 @@ local tabline = require("mini.tabline")
 local trailspace = require("mini.trailspace")
 
 local ts_commentstring = require("ts_context_commentstring.internal")
-local lsp_progress = require("lsp-progress")
 
 -- extend and create a/i textobjects
 ai.setup({
@@ -154,8 +153,6 @@ splitjoin.setup({ mappings = { toggle = "T" } })
 starter.setup()
 
 -- statusline
-lsp_progress.setup()
-
 local metals_status = function()
 	return vim.g.metals_status or ""
 end
@@ -170,14 +167,13 @@ statusline.setup({
 			local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
 			local location = statusline.section_location({ trunc_width = 75 })
 			local metals = metals_status()
-			local lsp = lsp_progress.progress()
 
 			return statusline.combine_groups({
 				{ hl = mode_hl, strings = { mode } },
-				{ hl = "MiniStatusLineDevinfo", strings = { git, diagnostics, lsp } },
+				{ hl = "MiniStatusLineDevinfo", strings = { git, diagnostics } },
 				"%<", -- mark general truncate point
-				{ hl = "MiniStatusLineFilename", strings = { filename } },
 				{ hl = "MiniStatusLineDevinfo", strings = { metals } },
+				{ hl = "MiniStatusLineFilename", strings = { filename } },
 				"%=", -- end left alignment
 				{ hl = "MiniStatusLineFileinfo", strings = { fileinfo } },
 				{ hl = mode_hl, strings = { location } },

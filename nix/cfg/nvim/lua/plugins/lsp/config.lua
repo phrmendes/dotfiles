@@ -10,6 +10,7 @@ local lspconfig = require("lspconfig")
 local neodev = require("neodev")
 local trouble = require("trouble")
 local lightbulb = require("nvim-lightbulb")
+local fidget = require("fidget")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
@@ -128,8 +129,9 @@ formatters.formatters_by_ft = {
 }
 
 -- [[ LSP utils ]] ------------------------------------------------------
--- enable lsp_signature
 lsp_signature.setup()
+fidget.setup()
+trouble.setup({ use_diagnostic_signs = true })
 
 -- diagnostic icons
 local diagnostics_signs = {
@@ -143,10 +145,6 @@ for type, icon in pairs(diagnostics_signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
-trouble.setup({
-	use_diagnostic_signs = true,
-})
 
 -- [[ code actions ]] ---------------------------------------------------
 lightbulb.setup({

@@ -31,7 +31,6 @@ cmp.setup({
 		{ name = "path" },
 	}, {
 		{ name = "buffer" },
-		{ name = "emoji" },
 		{ name = "cmp_zotcite" },
 	}),
 	formatting = {

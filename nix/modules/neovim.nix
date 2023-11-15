@@ -98,11 +98,9 @@
     clipboard-image-nvim # paste images
     dial-nvim # increment/decrement text objects
     executor-nvim # run async jobs
-    lualine-nvim # statusline
     mini-nvim # set of small plugins
     nvim-bqf # better quickfix
     nvim-spectre # search and replace
-    nvim-tree-lua # file explorer
     undotree # undo tree
     vim-sleuth # auto detect indentation
     vim-slime # REPLs

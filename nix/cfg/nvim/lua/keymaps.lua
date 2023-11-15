@@ -78,7 +78,7 @@ map("n", "<Leader><space>", telescope.builtin.find_files, { desc = "Find files" 
 map("n", "<Leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
 map("n", "<Leader>\\", "<C-w>v", { desc = "Split window (V)" })
 map("n", "<Leader>a", neogen.generate, { desc = "Generate annotations", noremap = true, silent = true })
-map("n", "<Leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
+map("n", "<Leader>e", "<cmd>lua MiniFiles.open()<cr>", { desc = "File explorer" })
 map("n", "<Leader>h", telescope.builtin.help_tags, { desc = "Help" })
 map("n", "<Leader>p", "<cmd>PasteImg<cr>", { desc = "Paste image" })
 map("n", "<Leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })

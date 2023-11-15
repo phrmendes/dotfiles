@@ -35,14 +35,13 @@
     lspkind-nvim # vscode-like pictograms
     ltex_extra-nvim # ltex-ls aditional options
     neodev-nvim # lua lsp dev tools
+    nvim-lightbulb # show code actions
     nvim-lint # linting
     nvim-lspconfig
-    symbols-outline-nvim # tree view of symbols
     trouble-nvim # lsp diagnostics
   ];
   telescope = with pkgs.vimPlugins; [
     telescope-bibtex
-    telescope-fzf-native-nvim
     telescope-nvim
     telescope-ui-select-nvim
     telescope-zoxide
@@ -66,7 +65,6 @@
   writing = with pkgs.vimPlugins; [
     quarto-nvim
     markdown-preview-nvim
-    nabla-nvim # math symbols
     zotcite
     obsidian-nvim
   ];
@@ -77,7 +75,6 @@
   ui = with pkgs.vimPlugins; [
     catppuccin-nvim
     nvim-web-devicons
-    which-key-nvim
     dressing-nvim
   ];
   snippets = with pkgs.vimPlugins; [
@@ -92,11 +89,6 @@
     vim-nix
     vim-ansible
   ];
-  text = with pkgs.vimPlugins; [
-    dial-nvim # increment/decrement text objects
-    todo-comments-nvim # highlight todo comments
-    vim-illuminate # highlight word under cursor
-  ];
   tests = with pkgs.vimPlugins; [
     neotest
     neotest-python
@@ -104,8 +96,8 @@
   ];
   utils = with pkgs.vimPlugins; [
     clipboard-image-nvim # paste images
+    dial-nvim # increment/decrement text objects
     executor-nvim # run async jobs
-    vim-slime # REPLs
     lualine-nvim # statusline
     mini-nvim # set of small plugins
     nvim-bqf # better quickfix
@@ -113,6 +105,7 @@
     nvim-tree-lua # file explorer
     undotree # undo tree
     vim-sleuth # auto detect indentation
+    vim-slime # REPLs
     vim-tmux-navigator # tmux keybindings
     vim-visual-multi # multiple cursors
     zen-mode-nvim # zen mode
@@ -175,7 +168,6 @@ in {
       ui
       telescope
       tests
-      text
       treesitter
       utils
       writing

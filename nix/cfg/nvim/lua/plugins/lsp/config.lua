@@ -9,6 +9,7 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local neodev = require("neodev")
 local trouble = require("trouble")
+local lightbulb = require("nvim-lightbulb")
 
 -- [[ augroups ]] -------------------------------------------------------
 local lsp_augroup = augroup("UserLspConfig", { clear = true })
@@ -145,4 +146,9 @@ end
 
 trouble.setup({
 	use_diagnostic_signs = true,
+})
+
+-- [[ code actions ]] ---------------------------------------------------
+lightbulb.setup({
+	autocmd = { enabled = true },
 })

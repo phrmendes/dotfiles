@@ -3,6 +3,7 @@ local telescope = require("telescope")
 local themes = require("telescope.themes")
 local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
 local trouble_telescope = require("trouble.providers.telescope")
+local fuzzy = require("mini.fuzzy")
 
 local open_with_trouble = function(...)
 	return trouble_telescope.open_with_trouble(...)
@@ -17,6 +18,7 @@ telescope.setup({
 		layout_strategy = "vertical",
 		prompt_prefix = " ",
 		selection_caret = " ",
+		generic_sorter = fuzzy.get_telescope_sorter,
 		mappings = {
 			i = {
 				["<C-u>"] = false,
@@ -55,12 +57,6 @@ telescope.setup({
 	},
 	extensions = {
 		["ui-select"] = { themes.get_dropdown() },
-		["fzf"] = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-			case_mode = "smart_case",
-		},
 		bibtex = {
 			global_files = { references },
 		},
@@ -70,7 +66,6 @@ telescope.setup({
 -- load extensions
 local extensions = {
 	"bibtex",
-	"fzf",
 	"ui-select",
 	"zoxide",
 }

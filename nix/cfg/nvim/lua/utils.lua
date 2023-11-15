@@ -6,16 +6,9 @@ local set_lines = vim.api.nvim_buf_set_lines
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local wk = require("which-key")
 
 -- [[ module functions ]] -----------------------------------------------
 local M = {}
-
-M.section = function(key, name, prefix, mode)
-	wk.register({
-		[key] = { name = name },
-	}, { prefix = prefix, mode = mode })
-end
 
 M.md_toggle = function()
 	local checked_character = "x"

@@ -48,7 +48,7 @@ local on_attach = function(_, bufnr)
 	map("n", "gr", vim.lsp.buf.rename, opts)
 
 	description("code actions")
-	map({ "n", "x" }, "<Leader>a<cr>", vim.lsp.buf.code_action, opts)
+	map({ "n", "x" }, "<Leader>a", vim.lsp.buf.code_action, opts)
 
 	description("document diagnostics")
 	map("n", "<Leader>dd", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)

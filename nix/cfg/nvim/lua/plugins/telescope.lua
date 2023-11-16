@@ -70,5 +70,5 @@ map("n", "<Leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "
 map("n", "<Leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 map("n", "<Leader>bb", "<cmd>Telescope buffers<cr>", { desc = "List" })
 map("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-map("n", "<Leader>fz", "<cmd>Telescope zoxite list<cr>", { desc = "Zoxide" })
+map("n", "<Leader>fz", "<cmd>Telescope zoxide list<cr>", { desc = "Zoxide" })
 map("n", "<Leader>h", "<cmd>Telescope help_tags<cr>", { desc = "Help" })

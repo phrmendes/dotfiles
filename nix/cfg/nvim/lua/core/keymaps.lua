@@ -25,9 +25,9 @@ map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true, de
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (V)" })
 
 map("n", "<Leader>-", "<C-w>s", { desc = "Split window (H)" })
-map("n", "<Leader>Q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<Leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
 map("n", "<Leader>\\", "<C-w>v", { desc = "Split window (V)" })
 map("n", "<Leader>bq", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all unfocused" })
+map("n", "<Leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<Leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<Leader>x", "<C-w>q", { desc = "Close window" })

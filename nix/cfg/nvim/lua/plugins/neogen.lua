@@ -14,4 +14,4 @@ neogen.setup({
 	},
 })
 
-map("n", "<Leader>a", "<cmd>Neogen<cr>", { desc = "Generate annotations", noremap = true, silent = true })
+map("n", "<Leader>n", "<cmd>Neogen<cr>", { desc = "Generate annotations", noremap = true, silent = true })

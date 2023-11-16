@@ -30,25 +30,25 @@ local on_attach = function(_, bufnr)
 	end
 
 	description("references")
-	map("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+	map("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
 
 	description("go to declaration")
 	map("n", "gD", vim.lsp.buf.declaration, opts)
 
 	description("definitions")
-	map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
 	description("implementations")
-	map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
 	description("type definitions")
-	map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 
 	description("rename symbol")
 	map("n", "gr", vim.lsp.buf.rename, opts)
 
 	description("code actions")
-	map({ "n", "x" }, "<Leader>a", vim.lsp.buf.code_action, opts)
+	map({ "n", "x" }, "<Leader>a<cr>", vim.lsp.buf.code_action, opts)
 
 	description("document diagnostics")
 	map("n", "<Leader>dd", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)

@@ -1,5 +1,7 @@
 local neogen = require("neogen")
 
+local map = vim.keymap.set
+
 neogen.setup({
 	snippet_engine = "luasnip",
 	enabled = true,
@@ -11,3 +13,5 @@ neogen.setup({
 		},
 	},
 })
+
+map("n", "<Leader>a", "<cmd>Neogen<cr>", { desc = "Generate annotations", noremap = true, silent = true })

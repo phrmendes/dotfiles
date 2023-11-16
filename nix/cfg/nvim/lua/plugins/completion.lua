@@ -1,25 +1,25 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-local utils = require("utils")
+local luasnip = require("luasnip")
 
 cmp.setup({
 	snippet = {
-		expand = utils.luasnip.expand,
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-J>"] = cmp.mapping(utils.luasnip.next_cmp, { "i", "s" }),
-		["<C-K>"] = cmp.mapping(utils.luasnip.prev_cmp, { "i", "s" }),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-c>"] = cmp.mapping.abort(),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
 		{ name = "path" },
 	}, {
 		{ name = "buffer" },

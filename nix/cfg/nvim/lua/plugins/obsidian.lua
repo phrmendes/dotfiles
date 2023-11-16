@@ -1,6 +1,7 @@
 local obsidian = require("obsidian")
+local utils = require("core.utils")
+local map = vim.keymap.set
 local notes = os.getenv("NOTES") or vim.fn.expand("~/Documents/notes")
-local normalize = require("utils").normalize
 
 obsidian.setup({
 	dir = notes,
@@ -12,7 +13,7 @@ obsidian.setup({
 	disable_frontmatter = true,
 	note_id_func = function(title)
 		title = title:gsub(" ", "_"):lower()
-		return normalize(title)
+		return utils.normalize(title)
 	end,
 	daily_notes = {
 		alias_format = "%Y-%m-%d",
@@ -39,3 +40,10 @@ obsidian.setup({
 		},
 	},
 })
+
+map("n", "<Leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
+map("n", "<Leader>ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
+map("n", "<Leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
+map("n", "<Leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
+map("n", "<Leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
+map("n", "<Leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })

@@ -1,11 +1,25 @@
 local luasnip = require("luasnip")
 local vscode_loaders = require("luasnip.loaders.from_vscode")
+
 local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, { wordTrig = true })
 local today = os.date("%Y-%m-%d")
+local map = vim.keymap.set
 
 -- [[ luasnip settings ]] -----------------------------------------------
 luasnip.config.setup({ enable_autosnippets = true })
 vscode_loaders.lazy_load()
+
+map({ "i", "s" }, "<C-k>", function()
+	if luasnip.choice_active() then
+		return luasnip.change_choice(-1)
+	end
+end, { desc = "Snippets: Previous choice" })
+
+map({ "i", "s" }, "<C-j>", function()
+	if luasnip.choice_active() then
+		return luasnip.change_choice(1)
+	end
+end, { desc = "Snippets: Next choice" })
 
 -- [[ snippets ]] --------------------------------------------------------
 local markdown_snippets = {

@@ -1,22 +1,76 @@
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-local fn = vim.fn
-
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local formatters = require("conform")
-local linters = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local neodev = require("neodev")
-local trouble = require("trouble")
 local lightbulb = require("nvim-lightbulb")
 local fidget = require("fidget")
+local tests = require("plugins.lsp.tests")
+local debugger = require("plugins.lsp.debugger")
 
--- [[ augroups ]] -------------------------------------------------------
-local lsp_augroup = augroup("UserLspConfig", { clear = true })
+local fn = vim.fn
+local map = vim.keymap.set
+
+-- [[ tests ]] ----------------------------------------------------------
+tests.config()
+
+-- [[ debug ]] ----------------------------------------------------------
+debugger.config()
 
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
+
+-- [[ on_attach ]] ------------------------------------------------------
+local opts = { noremap = true, silent = true }
+
+local on_attach = function(_, bufnr)
+	opts.buffer = bufnr
+
+	local description = function(desc)
+		opts.desc = "LSP: " .. desc
+	end
+
+	description("references")
+	map("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+
+	description("go to declaration")
+	map("n", "gD", vim.lsp.buf.declaration, opts)
+
+	description("definitions")
+	map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+
+	description("implementations")
+	map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+
+	description("type definitions")
+	map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+
+	description("rename symbol")
+	map("n", "gr", vim.lsp.buf.rename, opts)
+
+	description("code actions")
+	map({ "n", "x" }, "<Leader>a", vim.lsp.buf.code_action, opts)
+
+	description("document diagnostics")
+	map("n", "<Leader>dd", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
+
+	description("workspace diagnostics")
+	map("n", "<Leader>dw", "<cmd>Telescope diagnostics<cr>", opts)
+
+	description("document symbols")
+	map("n", "<Leader>s", "<cmd>Telescope lsp_document_symbols", opts)
+
+	description("workspace symbols")
+	map("n", "<Leader>S", "<cmd>Telescope lsp_workspace_symbols", opts)
+
+	description("restart")
+	map("n", "<Leader>r", "<cmd>LspRestart<cr>", opts)
+
+	description("show documentation for what is under cursor")
+	map("n", "K", vim.lsp.buf.hover, opts)
+
+	tests.keymaps()
+	debugger.keymaps()
+end
 
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
@@ -37,17 +91,20 @@ local servers = {
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({
 		capabilities = capabilities,
+		on_attach = on_attach,
 	})
 end
 
 -- [[ specific servers configuration ]] ---------------------------------
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
+	on_attach = on_attach,
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
 lspconfig.pyright.setup({
 	capabilities = capabilities,
+	on_attach = on_attach,
 	settings = {
 		single_file_support = true,
 		python = {
@@ -67,6 +124,7 @@ lspconfig.pyright.setup({
 
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
+	on_attach = on_attach,
 	settings = {
 		Lua = {
 			completion = { callSnippet = "Replace" },
@@ -88,50 +146,9 @@ neodev.setup({
 	library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
--- [[ linters ]] --------------------------------------------------------
-linters.linters_by_ft = {
-	nix = { "statix" },
-	sh = { "shellcheck" },
-}
-
-autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-	group = lsp_augroup,
-	callback = function()
-		linters.try_lint()
-	end,
-})
-
--- [[ formatters ]] -----------------------------------------------------
-formatters.setup({
-	format_after_save = {
-		lsp_fallback = true,
-	},
-})
-
-formatters.formatters.tex = {
-	command = "latexindent.pl",
-	args = { "-" },
-	stdin = true,
-}
-
-formatters.formatters_by_ft = {
-	dart = { "dart_format" },
-	json = { "prettier" },
-	lua = { "stylua" },
-	markdown = { "prettier" },
-	nix = { "alejandra" },
-	python = { "ruff" },
-	scala = { "scalafmt" },
-	sh = { "shellharden" },
-	terraform = { "terraform_fmt" },
-	toml = { "taplo" },
-	yaml = { "prettier" },
-}
-
 -- [[ LSP utils ]] ------------------------------------------------------
 lsp_signature.setup()
 fidget.setup()
-trouble.setup({ use_diagnostic_signs = true })
 
 -- diagnostic icons
 local diagnostics_signs = {

@@ -37,7 +37,6 @@
     nvim-lightbulb # show code actions
     nvim-lint # linting
     nvim-lspconfig
-    trouble-nvim # lsp diagnostics
   ];
   telescope = with pkgs.vimPlugins; [
     telescope-bibtex

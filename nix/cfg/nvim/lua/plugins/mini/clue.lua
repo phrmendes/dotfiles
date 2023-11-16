@@ -1,0 +1,43 @@
+local clue = require("mini.clue")
+
+clue.setup({
+	triggers = {
+		{ mode = "n", keys = "'" },
+		{ mode = "n", keys = "<C-w>" },
+		{ mode = "n", keys = "<Leader>" },
+		{ mode = "n", keys = "[" },
+		{ mode = "n", keys = "]" },
+		{ mode = "n", keys = "`" },
+		{ mode = "n", keys = "g" },
+		{ mode = "n", keys = "z" },
+		{ mode = "n", keys = '"' },
+		{ mode = "x", keys = "'" },
+		{ mode = "x", keys = "<Leader>" },
+		{ mode = "x", keys = "`" },
+		{ mode = "x", keys = "g" },
+		{ mode = "x", keys = "z" },
+		{ mode = "x", keys = '"' },
+	},
+	clues = {
+		clue.gen_clues.builtin_completion(),
+		clue.gen_clues.g(),
+		clue.gen_clues.marks(),
+		clue.gen_clues.registers(),
+		clue.gen_clues.windows(),
+		clue.gen_clues.z(),
+		{ mode = "n", keys = "<Leader>b", desc = "+buffers" },
+		{ mode = "n", keys = "<Leader>i", desc = "+IA" },
+		{ mode = "n", keys = "<Leader>d", desc = "+debug" },
+		{ mode = "n", keys = "<Leader>f", desc = "+files" },
+		{ mode = "n", keys = "<Leader>g", desc = "+git" },
+		{ mode = "n", keys = "<Leader>o", desc = "+obsidian" },
+		{ mode = "n", keys = "<Leader>t", desc = "+tests" },
+		{ mode = "n", keys = "<Leader>z", desc = "+zotero" },
+		{ mode = "x", keys = "<Leader>d", desc = "+debug" },
+		{ mode = "x", keys = "<Leader>f", desc = "+files" },
+		{ mode = "x", keys = "<Leader>g", desc = "+git" },
+	},
+	window = {
+		delay = 500,
+	},
+})

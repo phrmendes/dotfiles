@@ -1,5 +1,6 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
 
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local metals = require("metals")
@@ -29,6 +30,7 @@ autocmd("FileType", {
 	pattern = { "scala", "sbt", "java" },
 	callback = function()
 		metals.initialize_or_attach(metals_config)
+		map("n", "<Leader>m", metals.hover_worksheet, { desc = "Metals: Worksheet" })
 	end,
 	group = group,
 })

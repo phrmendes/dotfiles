@@ -57,10 +57,10 @@ local on_attach = function(_, bufnr)
 	map("n", "<Leader>dw", "<cmd>Telescope diagnostics<cr>", opts)
 
 	description("document symbols")
-	map("n", "<Leader>s", "<cmd>Telescope lsp_document_symbols", opts)
+	map("n", "<Leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 	description("workspace symbols")
-	map("n", "<Leader>S", "<cmd>Telescope lsp_workspace_symbols", opts)
+	map("n", "<Leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
 
 	description("restart")
 	map("n", "<Leader>r", "<cmd>LspRestart<cr>", opts)

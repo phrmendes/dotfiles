@@ -7,8 +7,8 @@ cmp.setup({
 		expand = utils.luasnip.expand,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-Left>"] = cmp.mapping(utils.luasnip.tab, { "i", "s" }),
-		["<C-Right>"] = cmp.mapping(utils.luasnip.s_tab, { "i", "s" }),
+		["<C-Left>"] = cmp.mapping(utils.luasnip.prev_cmp, { "i", "s" }),
+		["<C-Right>"] = cmp.mapping(utils.luasnip.next_cmp, { "i", "s" }),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-e>"] = cmp.mapping.abort(),

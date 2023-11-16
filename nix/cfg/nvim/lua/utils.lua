@@ -5,7 +5,10 @@ local set_cursor = vim.api.nvim_win_set_cursor
 local set_lines = vim.api.nvim_buf_set_lines
 
 local cmp = require("cmp")
+local dap = require("dap")
+local gitsigns = require("gitsigns")
 local luasnip = require("luasnip")
+local neotest = require("neotest")
 
 -- [[ module functions ]] -----------------------------------------------
 local M = {}
@@ -48,7 +51,7 @@ M.luasnip = {
 	expand = function(args)
 		luasnip.lsp_expand(args.body)
 	end,
-	tab = function(fallback)
+	next_cmp = function(fallback)
 		if cmp.visible() then
 			cmp.select_next_item()
 		elseif luasnip.expand_or_locally_jumpable() then
@@ -57,7 +60,7 @@ M.luasnip = {
 			fallback()
 		end
 	end,
-	s_tab = function(fallback)
+	prev_cmp = function(fallback)
 		if cmp.visible() then
 			cmp.select_prev_item()
 		elseif luasnip.locally_jumpable(-1) then
@@ -65,6 +68,38 @@ M.luasnip = {
 		else
 			fallback()
 		end
+	end,
+	prev_choice = function()
+		if luasnip.choice_active() then
+			return luasnip.change_choice(-1)
+		end
+	end,
+	next_choice = function()
+		if luasnip.choice_active() then
+			return luasnip.change_choice(1)
+		end
+	end,
+}
+
+M.dap_conditional_breakpoint = function()
+	dap.set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))
+end
+
+M.git = {
+	stage_hunk = function()
+		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("x") })
+	end,
+	reset_hunk = function()
+		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("x") })
+	end,
+}
+
+M.tests = {
+	file = function()
+		neotest.run.run(vim.fn.expand("%"))
+	end,
+	debug = function()
+		neotest.run.run({ strategy = "dap" })
 	end,
 }
 

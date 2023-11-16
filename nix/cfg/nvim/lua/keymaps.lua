@@ -13,7 +13,6 @@ local dap_ui = require("dapui")
 local dial = require("dial.map")
 local formatters = require("conform")
 local gitsigns = require("gitsigns")
-local luasnip = require("luasnip")
 local metals = require("metals")
 local neogen = require("neogen")
 local neotest = require("neotest")
@@ -40,17 +39,8 @@ g.multi_cursor_use_default_mapping = 0
 g.VM_mouse_mappings = 1
 
 -- [[ keymaps ]] --------------------------------------------------------
-map({ "i", "s" }, "<C-k>", function()
-	if luasnip.choice_active() then
-		return luasnip.change_choice(-1)
-	end
-end, { desc = "Snippets: Previous choice" })
-
-map({ "i", "s" }, "<C-j>", function()
-	if luasnip.choice_active() then
-		return luasnip.change_choice(1)
-	end
-end, { desc = "Snippets: Next choice" })
+map({ "i", "s" }, "<C-k>", utils.luasnip.prev_choice, { desc = "Snippets: Previous choice" })
+map({ "i", "s" }, "<C-j>", utils.luasnip.next_choice, { desc = "Snippets: Next choice" })
 
 map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true, desc = "Word wrap" })
 map("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, silent = true, desc = "Word wrap" })
@@ -76,6 +66,7 @@ map("n", "<Leader>.", telescope.builtin.commands, { desc = "ListcCommands" })
 map("n", "<Leader>/", telescope.builtin.current_buffer_fuzzy_find, { desc = "Search in current buffer" })
 map("n", "<Leader><space>", telescope.builtin.find_files, { desc = "Find files" })
 map("n", "<Leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
+map("n", "<Leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 map("n", "<Leader>\\", "<C-w>v", { desc = "Split window (V)" })
 map("n", "<Leader>a", neogen.generate, { desc = "Generate annotations", noremap = true, silent = true })
 map("n", "<Leader>e", "<cmd>lua MiniFiles.open()<cr>", { desc = "File explorer" })
@@ -86,7 +77,6 @@ map("n", "<Leader>s", "<cmd>Copilot panel<cr>", { desc = "Copilot sugestions" })
 map("n", "<Leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
 map("n", "<Leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<Leader>x", "<C-w>q", { desc = "Close window" })
-map("n", "<Leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 -- buffers
 map("n", "<Leader>bb", telescope.builtin.buffers, { desc = "List" })
@@ -109,13 +99,10 @@ map({ "n", "x" }, "<Leader>cx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "Ex
 
 -- debugger
 map("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+map("n", "<Leader>dc", utils.dap_conditional_breakpoint, { desc = "Conditional breakpoint" })
 map("n", "<Leader>dl", dap.run_last, { desc = "Run last" })
 map("n", "<Leader>dt", dap_ui.toggle, { desc = "See last session result" })
 map("x", "<Leader>dp", dap_python.debug_selection, { desc = "Python: Debug selection" })
-
-map("n", "<Leader>dc", function()
-	dap.set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))
-end, { desc = "Conditional breakpoint" })
 
 map("n", "<F1>", dap.continue, { desc = "Debugger: continue" })
 map("n", "<F2>", dap.step_over, { desc = "Debugger: step over" })
@@ -129,22 +116,15 @@ map("n", "<Leader>fs", spectre.toggle, { desc = "Search and replace" })
 map({ "n", "x" }, "<Leader>ff", formatters.format, { desc = "Format file or range" })
 
 -- git
-map("n", "<Leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 map("n", "<Leader>gb", gitsigns.toggle_current_line_blame, { desc = "Toggle blame" })
-map("n", "<Leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
 map("n", "<Leader>gd", gitsigns.diffthis, { desc = "Diff" })
-
-map("n", "<Leader>gsu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
-map("n", "<Leader>gsb", gitsigns.stage_buffer, { desc = "Buffer" })
+map("n", "<Leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+map("n", "<Leader>gp", gitsigns.preview_hunk, { desc = "Preview hunk" })
 map("n", "<Leader>grb", gitsigns.reset_buffer, { desc = "Buffer" })
-
-map("x", "<Leader>gsh", function()
-	gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("x") })
-end, { desc = "Hunk" })
-
-map("x", "<Leader>grh", function()
-	gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("x") })
-end, { desc = "Hunk" })
+map("n", "<Leader>gsb", gitsigns.stage_buffer, { desc = "Buffer" })
+map("n", "<Leader>gsu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
+map("x", "<Leader>grh", utils.git.reset_hunk, { desc = "Hunk" })
+map("x", "<Leader>gsh", utils.git.stage_hunk, { desc = "Hunk" })
 
 -- obsidian
 map("n", "<Leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
@@ -175,6 +155,8 @@ map("n", "<Leader>lw", telescope.builtin.lsp_workspace_symbols, { desc = "Worksp
 
 -- tests
 map("n", "<Leader>ta", neotest.run.attach, { desc = "Attach nearest test" })
+map("n", "<Leader>td", utils.tests.debug, { desc = "Debug nearest test" })
+map("n", "<Leader>tf", utils.tests.file, { desc = "Run current file" })
 map("n", "<Leader>ts", neotest.run.stop, { desc = "Stop nearest test" })
 map("n", "<Leader>tt", neotest.run.run, { desc = "Run nearest test" })
 

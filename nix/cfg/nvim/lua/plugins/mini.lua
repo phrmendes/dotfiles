@@ -8,6 +8,7 @@ local files = require("mini.files")
 local fuzzy = require("mini.fuzzy")
 local hipatterns = require("mini.hipatterns")
 local indentscope = require("mini.indentscope")
+local jump = require("mini.jump")
 local jump2d = require("mini.jump2d")
 local move = require("mini.move")
 local pairs = require("mini.pairs")
@@ -123,6 +124,9 @@ indentscope.setup({
 	symbol = "│",
 	options = { try_as_border = true },
 })
+
+-- jump to next/previous single character
+jump.setup()
 
 -- jump within visible lines
 jump2d.setup({ mappings = { start_jumping = "<leader>j" } })

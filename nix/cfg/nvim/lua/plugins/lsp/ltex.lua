@@ -8,7 +8,7 @@ ltex_extra.setup({
 	init_check = true,
 	path = vim.fn.expand("~") .. "/.local/state/ltex",
 	server_opts = {
-		filetypes = { "markdown", "quarto" },
+		filetypes = { "markdown" },
 		capabilities = capabilities,
 		settings = {
 			ltex = {

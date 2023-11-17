@@ -4,7 +4,7 @@ local luasnip = require("luasnip")
 local cmp_pandoc = require("cmp_pandoc")
 
 cmp_pandoc.setup({
-	filetypes = { "pandoc", "markdown", "quarto" },
+	filetypes = { "pandoc", "markdown" },
 	crossref = {
 		enable_nabla = true,
 	},
@@ -37,7 +37,7 @@ cmp.setup({
 	},
 })
 
-cmp.setup.filetype({ "markdown", "quarto" }, {
+cmp.setup.filetype("markdown", {
 	sources = cmp.config.sources({
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },

@@ -4,7 +4,7 @@ local luasnip = require("luasnip")
 local cmp_pandoc = require("cmp_pandoc")
 
 cmp_pandoc.setup({
-	filetypes = { "pandoc", "markdown", "quarto" },
+	filetypes = { "markdown", "quarto" },
 	crossref = {
 		enable_nabla = true,
 	},
@@ -42,12 +42,7 @@ cmp.setup.filetype({ "markdown", "quarto" }, {
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
 		{ name = "luasnip" },
-		{
-			name = "latex_symbols",
-			option = {
-				strategy = 2,
-			},
-		},
+		{ name = "latex_symbols", option = { strategy = 2 } },
 	}, {
 		{ name = "buffer" },
 	}),

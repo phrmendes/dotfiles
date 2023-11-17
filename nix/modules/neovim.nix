@@ -14,7 +14,6 @@
       };
     };
   cmp-zotcite = fromGitHub "431c720a73fb84c8b1a51b4f123e2a7cc8a58bfd" "HEAD" "jalvesaq/cmp-zotcite";
-  fidget-nvim = fromGitHub "f10103f8f30fed80a7ab07fff5756164fea87c70" "HEAD" "j-hui/fidget.nvim";
   obsidian-nvim = fromGitHub "630c92045f0595123031b598c624dbad3b5f6dbc" "HEAD" "epwalsh/obsidian.nvim";
   telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
   vim-ansible = fromGitHub "afc739e505053a6143a1fc6cedac6fb4d7a1d4db" "HEAD" "pearofducks/ansible-vim";
@@ -31,7 +30,6 @@
   ];
   lsp = with pkgs.vimPlugins; [
     conform-nvim # formatting
-    fidget-nvim # lsp status
     lsp_signature-nvim # lsp signature hint as you type
     lspkind-nvim # vscode-like pictograms
     ltex_extra-nvim # ltex-ls aditional options

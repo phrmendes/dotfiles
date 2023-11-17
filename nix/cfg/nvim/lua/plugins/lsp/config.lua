@@ -3,71 +3,12 @@ local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local neodev = require("neodev")
 local lightbulb = require("nvim-lightbulb")
-local fidget = require("fidget")
-local tests = require("plugins.lsp.tests")
-local dap = require("plugins.lsp.dap")
 
 local fn = vim.fn
 local map = vim.keymap.set
 
--- [[ tests ]] ----------------------------------------------------------
-tests.config()
-
--- [[ debug ]] ----------------------------------------------------------
-dap.config()
-
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
-
--- [[ on_attach ]] ------------------------------------------------------
-local opts = { noremap = true, silent = true }
-
-local on_attach = function(_, bufnr)
-	opts.buffer = bufnr
-
-	local description = function(desc)
-		opts.desc = "LSP: " .. desc
-	end
-
-	description("go to references")
-	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
-
-	description("go to declaration")
-	map("n", "gD", vim.lsp.buf.declaration, opts)
-
-	description("go to definitions")
-	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
-
-	description("go to implementations")
-	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
-
-	description("go to type definitions")
-	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
-
-	description("code actions")
-	map({ "n", "x" }, "<Leader>a", vim.lsp.buf.code_action, opts)
-
-	description("document diagnostics")
-	map("n", "<Leader>dd", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
-
-	description("workspace diagnostics")
-	map("n", "<Leader>dw", "<cmd>Telescope diagnostics<cr>", opts)
-
-	description("show documentation for what is under cursor")
-	map("n", "<Leader>k", vim.lsp.buf.hover, opts)
-
-	description("rename symbol")
-	map("n", "<Leader>r", vim.lsp.buf.rename, opts)
-
-	description("document symbols")
-	map("n", "<Leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
-
-	description("workspace symbols")
-	map("n", "<Leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
-
-	tests.keymaps()
-	dap.keymaps()
-end
 
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
@@ -88,20 +29,17 @@ local servers = {
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({
 		capabilities = capabilities,
-		on_attach = on_attach,
 	})
 end
 
 -- [[ specific servers configuration ]] ---------------------------------
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
 lspconfig.pyright.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
 	settings = {
 		single_file_support = true,
 		python = {
@@ -121,7 +59,6 @@ lspconfig.pyright.setup({
 
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
 	settings = {
 		Lua = {
 			completion = { callSnippet = "Replace" },
@@ -145,7 +82,6 @@ neodev.setup({
 
 -- [[ LSP utils ]] ------------------------------------------------------
 lsp_signature.setup()
-fidget.setup()
 
 -- diagnostic icons
 local diagnostics_signs = {
@@ -164,3 +100,46 @@ end
 lightbulb.setup({
 	autocmd = { enabled = true },
 })
+
+-- [[ keybindings ]] ----------------------------------------------------
+local opts = { noremap = true, silent = true }
+
+local description = function(desc)
+	opts.desc = "LSP: " .. desc
+end
+
+description("go to references")
+map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+
+description("go to declaration")
+map("n", "gD", vim.lsp.buf.declaration, opts)
+
+description("go to definitions")
+map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+
+description("go to implementations")
+map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+
+description("go to type definitions")
+map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
+
+description("code actions")
+map({ "n", "x" }, "<Leader>a", vim.lsp.buf.code_action, opts)
+
+description("document diagnostics")
+map("n", "<Leader>dd", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
+
+description("workspace diagnostics")
+map("n", "<Leader>dw", "<cmd>Telescope diagnostics<cr>", opts)
+
+description("show documentation for what is under cursor")
+map("n", "<Leader>k", vim.lsp.buf.hover, opts)
+
+description("rename symbol")
+map("n", "<Leader>r", vim.lsp.buf.rename, opts)
+
+description("document symbols")
+map("n", "<Leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+
+description("workspace symbols")
+map("n", "<Leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)

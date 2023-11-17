@@ -1,3 +1,5 @@
 require("plugins.lsp.config")
 require("plugins.lsp.ltex")
 require("plugins.lsp.metals")
+require("plugins.lsp.dap")
+require("plugins.lsp.tests")

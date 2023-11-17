@@ -21,6 +21,7 @@
   zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
   completion = with pkgs.vimPlugins; [
     cmp-buffer
+    cmp-latex-symbols
     cmp-nvim-lsp
     cmp-path
     cmp-zotcite

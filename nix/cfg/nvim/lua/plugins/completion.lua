@@ -28,3 +28,12 @@ cmp.setup({
 		format = lspkind.cmp_format({ maxwidth = 50, ellipsis_char = "..." }),
 	},
 })
+
+cmp.setup.filetype("markdown", {
+	sources = cmp.config.sources({
+		{ name = "luasnip" },
+		{ name = "latex_symbols" },
+	}, {
+		{ name = "buffer" },
+	}),
+})

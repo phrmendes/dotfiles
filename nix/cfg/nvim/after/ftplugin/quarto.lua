@@ -4,4 +4,4 @@ local map = vim.keymap.set
 
 quarto.setup()
 
-map({ "n", "i" }, "<C-b>", "<cmd>Telescope bibtex", { desc = "Insert bibtex reference" })
+map({ "n", "i" }, "<C-b>", "<cmd>Telescope bibtex<cr>", { desc = "Insert bibtex reference" })

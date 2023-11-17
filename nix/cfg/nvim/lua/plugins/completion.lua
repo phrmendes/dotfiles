@@ -4,11 +4,9 @@ local luasnip = require("luasnip")
 local cmp_pandoc = require("cmp_pandoc")
 
 cmp_pandoc.setup({
-	{
-		filetypes = { "pandoc", "markdown", "quarto" },
-		crossref = {
-			enable_nabla = true,
-		},
+	filetypes = { "pandoc", "markdown", "quarto" },
+	crossref = {
+		enable_nabla = true,
 	},
 })
 

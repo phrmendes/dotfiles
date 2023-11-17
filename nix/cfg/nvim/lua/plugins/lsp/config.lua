@@ -5,7 +5,7 @@ local neodev = require("neodev")
 local lightbulb = require("nvim-lightbulb")
 local fidget = require("fidget")
 local tests = require("plugins.lsp.tests")
-local debugger = require("plugins.lsp.debugger")
+local dap = require("plugins.lsp.dap")
 
 local fn = vim.fn
 local map = vim.keymap.set
@@ -14,7 +14,7 @@ local map = vim.keymap.set
 tests.config()
 
 -- [[ debug ]] ----------------------------------------------------------
-debugger.config()
+dap.config()
 
 -- [[ capabilities ]] ---------------------------------------------------
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -29,23 +29,20 @@ local on_attach = function(_, bufnr)
 		opts.desc = "LSP: " .. desc
 	end
 
-	description("references")
-	map("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
+	description("go to references")
+	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
 	description("go to declaration")
 	map("n", "gD", vim.lsp.buf.declaration, opts)
 
-	description("definitions")
+	description("go to definitions")
 	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
-	description("implementations")
+	description("go to implementations")
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-	description("type definitions")
+	description("go to type definitions")
 	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
-
-	description("rename symbol")
-	map("n", "gr", vim.lsp.buf.rename, opts)
 
 	description("code actions")
 	map({ "n", "x" }, "<Leader>a", vim.lsp.buf.code_action, opts)
@@ -56,20 +53,20 @@ local on_attach = function(_, bufnr)
 	description("workspace diagnostics")
 	map("n", "<Leader>dw", "<cmd>Telescope diagnostics<cr>", opts)
 
+	description("show documentation for what is under cursor")
+	map("n", "<Leader>k", vim.lsp.buf.hover, opts)
+
+	description("rename symbol")
+	map("n", "<Leader>r", vim.lsp.buf.rename, opts)
+
 	description("document symbols")
 	map("n", "<Leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 	description("workspace symbols")
 	map("n", "<Leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
 
-	description("restart")
-	map("n", "<Leader>r", "<cmd>LspRestart<cr>", opts)
-
-	description("show documentation for what is under cursor")
-	map("n", "K", vim.lsp.buf.hover, opts)
-
 	tests.keymaps()
-	debugger.keymaps()
+	dap.keymaps()
 end
 
 -- [[ general servers configuration ]] ----------------------------------

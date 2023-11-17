@@ -6,6 +6,7 @@ local dap_virtual_text = require("nvim-dap-virtual-text")
 local map = vim.keymap.set
 
 local M = {}
+local opts = { noremap = true, silent = true }
 
 M.config = function()
 	dap_ui.setup()
@@ -45,18 +46,38 @@ M.config = function()
 end
 
 M.keymaps = function()
-	map("n", "<F1>", dap.continue, { desc = "DAP: continue", silent = true })
-	map("n", "<F2>", dap.step_over, { desc = "DAP: step over", silent = true })
-	map("n", "<F3>", dap.step_into, { desc = "DAP: step into", silent = true })
-	map("n", "<F5>", dap.step_out, { desc = "DAP: step out", silent = true })
-	map("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-	map("n", "<Leader>dl", dap.run_last, { desc = "Run last" })
-	map("n", "<Leader>dt", dap_ui.toggle, { desc = "See last session result" })
-	map("x", "<Leader>dp", dap_python.debug_selection, { desc = "Python: debug selection" })
+	local description = function(desc)
+		opts.desc = "DAP: " .. desc
+	end
 
+	description("continue")
+	map("n", "<F1>", dap.continue, opts)
+
+	description("step over")
+	map("n", "<F2>", dap.step_over, opts)
+
+	description("step into")
+	map("n", "<F3>", dap.step_into, opts)
+
+	description("step out")
+	map("n", "<F5>", dap.step_out, opts)
+
+	description("toggle breakpoint")
+	map("n", "<Leader>db", dap.toggle_breakpoint, opts)
+
+	description("run last")
+	map("n", "<Leader>dl", dap.run_last, opts)
+
+	description("see last session result")
+	map("n", "<Leader>dt", dap_ui.toggle, opts)
+
+	description("(python) debug selection")
+	map("x", "<Leader>dp", dap_python.debug_selection, opts)
+
+	description("conditional breakpoint")
 	map("x", "<Leader>dc", function()
 		dap.set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))
-	end, { desc = "Condition breakpoint" })
+	end, opts)
 end
 
 return M

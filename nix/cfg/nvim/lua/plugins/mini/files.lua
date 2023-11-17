@@ -1,15 +1,26 @@
 local files = require("mini.files")
+local utils = require("core.utils")
 
 local map = vim.keymap.set
 
-files.setup()
-
-vim.api.nvim_create_autocmd("User", {
-	pattern = "MiniFilesBufferCreate",
-	callback = function(args)
-		local buf_id = args.data.buf_id
-		map("n", "<Leader>e", "<cmd>lua MiniFiles.close()<cr>", { buffer = buf_id })
-	end,
+files.setup({
+	mappings = {
+		go_in_plus = "<CR>",
+	},
 })
 
-map("n", "<Leader>e", "<cmd>lua MiniFiles.open(vim.loop.cwd(), true)<cr>", { desc = "File explorer" })
+local files_toggle = function(...)
+	if not files.close() then
+		files.open(...)
+	end
+end
+
+map("n", "<Leader>e", function()
+	local buffer_name = vim.api.nvim_buf_get_name(0)
+
+	if utils.match_pattern(buffer_name, "Starter") then
+		files_toggle(vim.loop.cwd(), true)
+	else
+		files_toggle(buffer_name, true)
+	end
+end, { desc = "File explorer" })

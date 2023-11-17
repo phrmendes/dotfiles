@@ -3,14 +3,14 @@ local move = require("mini.move")
 move.setup({
 	mappings = {
 		-- visual mode
-		down = "<M-j>",
-		left = "<M-h>",
-		right = "<M-l>",
-		up = "<M-k>",
+		down = "<S-j>",
+		left = "<S-h>",
+		right = "<S-l>",
+		up = "<S-k>",
 		-- normal mode
-		line_down = "<M-j>",
-		line_left = "<M-h>",
-		line_right = "<M-l>",
-		line_up = "<M-k>",
+		line_down = "<S-j>",
+		line_left = "<S-h>",
+		line_right = "<S-l>",
+		line_up = "<S-k>",
 	},
 })

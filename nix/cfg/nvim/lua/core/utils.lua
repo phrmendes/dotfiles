@@ -83,4 +83,14 @@ M.normalize = function(str)
 	return str:gsub("[%z\1-\127\194-\244][\128-\191]*", tableAccents)
 end
 
+M.match_pattern = function(string, pattern)
+	local match = string:match(pattern)
+
+	if match then
+		return true
+	else
+		return false
+	end
+end
+
 return M

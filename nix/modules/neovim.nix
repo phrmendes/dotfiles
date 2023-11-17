@@ -63,10 +63,10 @@
     gitsigns-nvim
   ];
   writing = with pkgs.vimPlugins; [
+    quarto-nvim
     markdown-preview-nvim
-    obsidian-nvim
-    vim-pandoc
     zotcite
+    obsidian-nvim
   ];
   ia = with pkgs.vimPlugins; [
     copilot-vim
@@ -84,11 +84,10 @@
   ];
   languages-support = with pkgs.vimPlugins; [
     nvim-metals
-    vim-ansible
     vim-helm
     vim-jinja
     vim-nix
-    vim-pandoc-syntax
+    vim-ansible
   ];
   tests = with pkgs.vimPlugins; [
     neotest
@@ -111,6 +110,7 @@
   ];
   dependencies = with pkgs.vimPlugins; [
     nui-nvim # ui component lib
+    otter-nvim # code completion for code embedded in documents
     plenary-nvim # lua utils
     popup-nvim
   ];
@@ -120,7 +120,6 @@
     helm-ls
     ltex-ls
     lua-language-server
-    marksman
     metals
     nil
     ruff-lsp

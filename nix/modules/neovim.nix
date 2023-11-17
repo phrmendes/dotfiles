@@ -23,6 +23,7 @@
     cmp-buffer
     cmp-latex-symbols
     cmp-nvim-lsp
+    cmp-pandoc-nvim
     cmp-path
     cmp-zotcite
     cmp_luasnip

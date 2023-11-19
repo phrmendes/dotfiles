@@ -1,10 +1,10 @@
 local actions = require("telescope.actions")
+local fuzzy = require("mini.fuzzy")
+local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
 local telescope = require("telescope")
 local themes = require("telescope.themes")
-local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
-local fuzzy = require("mini.fuzzy")
-
-local map = vim.keymap.set
+local trouble = require("trouble.providers.telescope")
+local wk = require("which-key")
 
 telescope.setup({
 	defaults = {
@@ -23,10 +23,11 @@ telescope.setup({
 				["<C-f>"] = actions.preview_scrolling_down,
 				["<C-n>"] = actions.move_selection_next,
 				["<C-p>"] = actions.move_selection_previous,
-				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+				["<C-q>"] = trouble.open_with_trouble,
 			},
 			n = {
 				["q"] = actions.close,
+				["<C-q>"] = trouble.open_with_trouble,
 			},
 		},
 	},
@@ -65,10 +66,21 @@ for _, ext in ipairs(extensions) do
 	telescope.load_extension(ext)
 end
 
-map("n", "<Leader>.", "<cmd>Telescope commands<cr>", { desc = "List commands" })
-map("n", "<Leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Search in current buffer" })
-map("n", "<Leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-map("n", "<Leader>bb", "<cmd>Telescope buffers<cr>", { desc = "List" })
-map("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-map("n", "<Leader>fz", "<cmd>Telescope zoxide list<cr>", { desc = "Zoxide" })
-map("n", "<Leader>h", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
+wk.register({
+	["."] = { "<cmd>Telescope commands<cr>", "List commands" },
+	["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search in current buffer" },
+	["?"] = { "<cmd>Telescope help_tags<cr>", "Help" },
+	["<space>"] = { "<cmd>Telescope find_files<cr>", "Find files" },
+}, { prefix = "<leader>", mode = "n" })
+
+wk.register({
+	name = "buffers",
+	b = { "<cmd>Telescope buffers<cr>", "List" },
+}, { prefix = "<leader>b", mode = "n" })
+
+wk.register({
+	name = "files",
+	g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
+	r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
+	z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
+}, { prefix = "<leader>f", mode = "n" })

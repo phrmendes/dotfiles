@@ -1,6 +1,5 @@
+local wk = require("which-key")
 local zen = require("zen-mode")
-
-local map = vim.keymap.set
 
 zen.setup({
 	plugins = {
@@ -12,4 +11,6 @@ zen.setup({
 	},
 })
 
-map("n", "<Leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
+wk.register({
+	Z = { "<cmd>ZenMode<cr>", "Zen mode" },
+}, { prefix = "<leader>", mode = "n" })

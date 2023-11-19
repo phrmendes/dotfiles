@@ -1,7 +1,6 @@
 local files = require("mini.files")
 local utils = require("core.utils")
-
-local map = vim.keymap.set
+local wk = require("which-key")
 
 files.setup({
 	mappings = {
@@ -15,7 +14,7 @@ local files_toggle = function(...)
 	end
 end
 
-map("n", "<Leader>e", function()
+local file_explorer = function()
 	local buffer_name = vim.api.nvim_buf_get_name(0)
 
 	if utils.match_pattern(buffer_name, "Starter") then
@@ -23,4 +22,9 @@ map("n", "<Leader>e", function()
 	else
 		files_toggle(buffer_name, true)
 	end
-end, { desc = "File explorer" })
+end
+
+wk.register({
+	name = "files",
+	e = { file_explorer, "File explorer" },
+}, { prefix = "<leader>", mode = "n" })

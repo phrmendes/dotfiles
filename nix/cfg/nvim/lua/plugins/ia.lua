@@ -1,21 +1,24 @@
 local home = os.getenv("HOME")
 local chatgpt = require("chatgpt")
-local map = vim.keymap.set
+local wk = require("which-key")
 
 chatgpt.setup({
 	api_key_cmd = "gpg --decrypt " .. home .. "/.openai-token.gpg",
 })
 
-map("n", "<Leader>is", "<cmd>Copilot panel<cr>", { desc = "Copilot: sugestions" })
-map({ "n", "x" }, "<Leader>iS", "<cmd>ChatGPTRun summarize<cr>", { desc = "Summarize" })
-map({ "n", "x" }, "<Leader>ia", "<cmd>ChatGPTRun add_tests<cr>", { desc = "Add tests" })
-map({ "n", "x" }, "<Leader>ic", "<cmd>ChatGPT<cr>", { desc = "ChatGPT" })
-map({ "n", "x" }, "<Leader>id", "<cmd>ChatGPTRun docstring<cr>", { desc = "Docstring" })
-map({ "n", "x" }, "<Leader>ie", "<cmd>ChatGPTEditWithInstruction<cr>", { desc = "Edit with instruction" })
-map({ "n", "x" }, "<Leader>if", "<cmd>ChatGPTRun fix_bugs<cr>", { desc = "Fix bugs" })
-map({ "n", "x" }, "<Leader>ig", "<cmd>ChatGPTRun grammar_correction<cr>", { desc = "Grammar correction" })
-map({ "n", "x" }, "<Leader>ik", "<cmd>ChatGPTRun keywords<cr>", { desc = "Keywords" })
-map({ "n", "x" }, "<Leader>il", "<cmd>ChatGPTRun code_readability_analysis<cr>", { desc = "Code readability analysis" })
-map({ "n", "x" }, "<Leader>io", "<cmd>ChatGPTRun optimize_code<cr>", { desc = "Optimize code" })
-map({ "n", "x" }, "<Leader>it", "<cmd>ChatGPTRun translate<cr>", { desc = "Translate" })
-map({ "n", "x" }, "<Leader>ix", "<cmd>ChatGPTRun explain_code<cr>", { desc = "Explain code" })
+wk.register({
+	name = "IA",
+	{ s = "<cmd>Copilot panel<cr>", "Copilot: sugestions" },
+	{ S = "<cmd>ChatGPTRun summarize<cr>", "Summarize" },
+	{ a = "<cmd>ChatGPTRun add_tests<cr>", "Add tests" },
+	{ c = "<cmd>ChatGPT<cr>", "ChatGPT" },
+	{ d = "<cmd>ChatGPTRun docstring<cr>", "Docstring" },
+	{ e = "<cmd>ChatGPTEditWithInstruction<cr>", "Edit with instruction" },
+	{ f = "<cmd>ChatGPTRun fix_bugs<cr>", "Fix bugs" },
+	{ g = "<cmd>ChatGPTRun grammar_correction<cr>", "Grammar correction" },
+	{ k = "<cmd>ChatGPTRun keywords<cr>", "Keywords" },
+	{ l = "<cmd>ChatGPTRun code_readability_analysis<cr>", "Code readability analysis" },
+	{ o = "<cmd>ChatGPTRun optimize_code<cr>", "Optimize code" },
+	{ t = "<cmd>ChatGPTRun translate<cr>", "Translate" },
+	{ x = "<cmd>ChatGPTRun explain_code<cr>", "Explain code" },
+}, { prefix = "<leader>i", mode = { "n", "x" } })

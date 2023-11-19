@@ -112,3 +112,4 @@ local equation_snippets = {
 
 luasnip.add_snippets("markdown", markdown_snippets)
 luasnip.add_snippets("markdown", equation_snippets)
+luasnip.add_snippets("quarto", equation_snippets)

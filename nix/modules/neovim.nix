@@ -37,6 +37,7 @@
     nvim-lightbulb # show code actions
     nvim-lint # linting
     nvim-lspconfig
+    trouble-nvim # lsp diagnostics
   ];
   telescope = with pkgs.vimPlugins; [
     telescope-bibtex
@@ -72,8 +73,9 @@
   ];
   ui = with pkgs.vimPlugins; [
     catppuccin-nvim
-    nvim-web-devicons
     dressing-nvim
+    nvim-web-devicons
+    which-key-nvim
   ];
   snippets = with pkgs.vimPlugins; [
     friendly-snippets
@@ -97,7 +99,6 @@
     dial-nvim # increment/decrement text objects
     executor-nvim # run async jobs
     mini-nvim # set of small plugins
-    nvim-bqf # better quickfix
     nvim-spectre # search and replace
     undotree # undo tree
     vim-sleuth # auto detect indentation

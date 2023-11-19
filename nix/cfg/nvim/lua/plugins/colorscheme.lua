@@ -10,7 +10,6 @@ catppuccin.setup({
 	},
 	integrations = {
 		treesitter_context = true,
-		which_key = true,
 		fidget = true,
 	},
 })

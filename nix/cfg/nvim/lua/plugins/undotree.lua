@@ -1,3 +1,5 @@
-local map = vim.keymap.set
+local wk = require("which-key")
 
-map("n", "<Leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
+wk.register({
+	u = { "<cmd>UndotreeToggle<cr>", "Toggle undo tree" },
+}, { prefix = "<leader>", mode = "n" })

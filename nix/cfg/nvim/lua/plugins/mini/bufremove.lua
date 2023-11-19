@@ -1,8 +1,10 @@
 local bufremove = require("mini.bufremove")
-
-local map = vim.keymap.set
+local wk = require("which-key")
 
 bufremove.setup()
 
-map("n", "<Leader>bd", bufremove.delete, { desc = "Delete" })
-map("n", "<Leader>bw", bufremove.wipeout, { desc = "Wipeout" })
+wk.register({
+	name = "buffers",
+	d = { bufremove.delete, "Delete" },
+	w = { bufremove.wipeout, "Wipeout" },
+}, { prefix = "<leader>b", mode = "n" })

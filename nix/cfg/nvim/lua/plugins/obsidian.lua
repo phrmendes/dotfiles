@@ -1,7 +1,7 @@
 local obsidian = require("obsidian")
 local utils = require("core.utils")
-local map = vim.keymap.set
 local notes = os.getenv("NOTES") or vim.fn.expand("~/Documents/notes")
+local wk = require("which-key")
 
 obsidian.setup({
 	dir = notes,
@@ -41,9 +41,12 @@ obsidian.setup({
 	},
 })
 
-map("n", "<Leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
-map("n", "<Leader>ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
-map("n", "<Leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
-map("n", "<Leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
-map("n", "<Leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
-map("n", "<Leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+wk.register({
+	name = "obsidian",
+	["<space>"] = { "<cmd>ObsidianSearch<cr>", "Search" },
+	b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
+	d = { "<cmd>ObsidianToday<cr>", "Diary (today)" },
+	f = { "<cmd>ObsidianFollowLink<cr>", "Follow link under cursor" },
+	o = { "<cmd>ObsidianOpen<cr>", "Open Obsidian" },
+	s = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch to another note" },
+}, { prefix = "<leader>o", mode = "n" })

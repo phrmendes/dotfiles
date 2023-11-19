@@ -1,5 +1,6 @@
 local g = vim.g
 local map = vim.keymap.set
+local wk = require("which-key")
 
 -- [[ unbind keys ]] ----------------------------------------------------
 local keys = { "<Space>", "<", ">" }
@@ -24,10 +25,18 @@ map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true, de
 map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (H)" })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (V)" })
 
-map("n", "<Leader>-", "<C-w>s", { desc = "Split window (H)" })
-map("n", "<Leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
-map("n", "<Leader>\\", "<C-w>v", { desc = "Split window (V)" })
-map("n", "<Leader>bq", "<cmd>w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all unfocused" })
-map("n", "<Leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
-map("n", "<Leader>w", "<cmd>w<cr>", { desc = "Save" })
-map("n", "<Leader>x", "<C-w>q", { desc = "Close window" })
+wk.register({
+	["-"] = { "<C-w>s", "Split window (H)" },
+	["W"] = { "<cmd>wq<cr>", "Save and quit" },
+	["\\"] = { "<C-w>v", "Split window (V)" },
+	Q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+	l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+	q = { "<cmd>confirm q<cr>", "Quit" },
+	w = { "<cmd>w<cr>", "Save" },
+	x = { "<C-w>q", "Close window" },
+}, { prefix = "<leader>", mode = "n" })
+
+wk.register({
+	name = "buffers",
+	q = { "<cmd> w <bar> %bd <bar> e# <bar> bd# <cr><cr>", "Close all unfocused" },
+}, { prefix = "<leader>b", mode = "n" })

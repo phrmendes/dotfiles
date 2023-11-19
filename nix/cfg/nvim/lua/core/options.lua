@@ -5,7 +5,7 @@ local opt = vim.opt
 -- [[ options ]] --------------------------------------------------------
 -- leader keys
 g.mapleader = " "
-g.maplocalleader = " "
+g.maplocalleader = ","
 
 -- syntax
 opt.syntax = "on"

@@ -1,6 +1,5 @@
 local neogen = require("neogen")
-
-local map = vim.keymap.set
+local wk = require("which-key")
 
 neogen.setup({
 	snippet_engine = "luasnip",
@@ -14,4 +13,6 @@ neogen.setup({
 	},
 })
 
-map("n", "<Leader>n", "<cmd>Neogen<cr>", { desc = "Generate annotations", noremap = true, silent = true })
+wk.register({
+	n = { "<cmd>Neogen<cr>", "Generate annotations" },
+}, { prefix = "<leader>", mode = "n" })

@@ -297,11 +297,6 @@ ltex_extra.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 		filetypes = { "markdown", "quarto" },
-		settings = {
-			ltex = {
-				language = "auto",
-			},
-		},
 	},
 })
 

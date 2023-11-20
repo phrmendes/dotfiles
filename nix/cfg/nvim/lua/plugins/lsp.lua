@@ -302,7 +302,7 @@ ltex_extra.setup({
 
 -- [[ metals ]] ---------------------------------------------------------
 local metals_config = metals.bare_config()
-metals_config.init_options.statusBarProvider = "on"
+metals_config.init_options.statusBarProvider = false
 metals_config.capatibilities = capabilities
 
 metals_config.on_attach = function()
@@ -311,9 +311,11 @@ metals_config.on_attach = function()
 end
 
 metals_config.settings = {
-	useGlobalExecutable = true,
-	showInferredType = true,
 	showImplicitArguments = true,
+	showImplicitConversionsAndClasses = true,
+	showInferredType = true,
+	superMethodLensesEnabled = true,
+	excludedPackages = {},
 }
 
 autocmd("FileType", {

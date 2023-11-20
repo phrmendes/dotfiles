@@ -1,4 +1,3 @@
-require("plugins.clipboard")
 require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.dial")

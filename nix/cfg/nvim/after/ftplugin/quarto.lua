@@ -1,7 +1,9 @@
+local nabla = require("nabla")
 local quarto = require("quarto")
-
-local map = vim.keymap.set
+local wk = require("which-key")
 
 quarto.setup()
 
-map({ "n", "i" }, "<C-b>", "<cmd>Telescope bibtex<cr>", { desc = "Insert bibtex reference" })
+wk.register({
+	p = { nabla.popup, "Preview equation" },
+}, { prefix = "<localleader>", mode = "n" })

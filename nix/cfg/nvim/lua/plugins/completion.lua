@@ -2,12 +2,17 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_pandoc = require("cmp_pandoc")
+local cmp_zotcite = require("cmp_zotcite")
 
 cmp_pandoc.setup({
-	filetypes = { "markdown", "quarto" },
+	filetypes = { "markdown" },
 	crossref = {
 		enable_nabla = true,
 	},
+})
+
+cmp_zotcite.setup({
+	filetypes = { "markdown" },
 })
 
 cmp.setup({
@@ -37,9 +42,18 @@ cmp.setup({
 	},
 })
 
-cmp.setup.filetype({ "markdown", "quarto" }, {
+cmp.setup.filetype("quarto", {
 	sources = cmp.config.sources({
 		{ name = "cmp_pandoc" },
+		{ name = "luasnip" },
+		{ name = "latex_symbols", option = { strategy = 2 } },
+	}, {
+		{ name = "buffer" },
+	}),
+})
+
+cmp.setup.filetype("markdown", {
+	sources = cmp.config.sources({
 		{ name = "cmp_zotcite" },
 		{ name = "luasnip" },
 		{ name = "latex_symbols", option = { strategy = 2 } },

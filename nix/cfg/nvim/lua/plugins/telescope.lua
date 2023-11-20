@@ -1,6 +1,5 @@
 local actions = require("telescope.actions")
 local fuzzy = require("mini.fuzzy")
-local references = os.getenv("REFERENCES") or vim.fn.expand("~/.references.bib")
 local telescope = require("telescope")
 local themes = require("telescope.themes")
 local trouble = require("trouble.providers.telescope")
@@ -50,14 +49,10 @@ telescope.setup({
 	},
 	extensions = {
 		["ui-select"] = { themes.get_dropdown() },
-		bibtex = {
-			global_files = { references },
-		},
 	},
 })
 
 local extensions = {
-	"bibtex",
 	"ui-select",
 	"zoxide",
 }

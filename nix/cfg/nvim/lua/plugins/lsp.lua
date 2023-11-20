@@ -290,12 +290,17 @@ lspconfig.lua_ls.setup({
 -- [[ ltex ]] -----------------------------------------------------------
 ltex_extra.setup({
 	load_langs = { "en-US", "pt-BR" },
-	init_check = true,
+	init_check = false,
 	path = vim.fn.expand("~") .. "/.local/state/ltex",
 	server_opts = {
 		capabilities = capabilities,
 		on_attach = on_attach,
 		filetypes = { "markdown", "quarto" },
+		settings = {
+			ltex = {
+				language = "auto",
+			},
+		},
 	},
 })
 

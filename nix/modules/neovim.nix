@@ -13,11 +13,10 @@
         url = "https://github.com/${repo}.git";
       };
     };
-  cmp-zotcite = fromGitHub "431c720a73fb84c8b1a51b4f123e2a7cc8a58bfd" "HEAD" "jalvesaq/cmp-zotcite";
-  obsidian-nvim = fromGitHub "630c92045f0595123031b598c624dbad3b5f6dbc" "HEAD" "epwalsh/obsidian.nvim";
-  telescope-bibtex = fromGitHub "e4dcf64d351db23b14be3563190cf68d5cd49e90" "HEAD" "nvim-telescope/telescope-bibtex.nvim";
+  cmp-zotcite = fromGitHub "fd83f05495c14ed7d3d1ae898400622137b01fa2" "HEAD" "jalvesaq/cmp-zotcite";
+  obsidian-nvim = fromGitHub "16d780e23eccfe73395b5ae94293d28ad8c53a32" "HEAD" "epwalsh/obsidian.nvim";
   vim-ansible = fromGitHub "afc739e505053a6143a1fc6cedac6fb4d7a1d4db" "HEAD" "pearofducks/ansible-vim";
-  zotcite = fromGitHub "442519a20a80b9ccc8a2baa0607080a21c4ecee0" "HEAD" "jalvesaq/zotcite";
+  zotcite = fromGitHub "c93519e681a08ff29fdc8910b96aee9a99100f07" "HEAD" "jalvesaq/zotcite";
   completion = with pkgs.vimPlugins; [
     cmp-buffer
     cmp-latex-symbols
@@ -40,7 +39,6 @@
     trouble-nvim # lsp diagnostics
   ];
   telescope = with pkgs.vimPlugins; [
-    telescope-bibtex
     telescope-nvim
     telescope-ui-select-nvim
     telescope-zoxide
@@ -95,10 +93,10 @@
     neotest-scala
   ];
   utils = with pkgs.vimPlugins; [
-    clipboard-image-nvim # paste images
     dial-nvim # increment/decrement text objects
     executor-nvim # run async jobs
     mini-nvim # set of small plugins
+    nabla-nvim # equation preview
     nvim-spectre # search and replace
     undotree # undo tree
     vim-sleuth # auto detect indentation

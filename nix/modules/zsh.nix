@@ -19,6 +19,7 @@
       mbc = "micromamba create";
       mbd = "micromamba deactivate";
       mbi = "micromamba install";
+      mbu = "micromamba update";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
       tx = "tmux";

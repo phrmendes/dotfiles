@@ -139,7 +139,6 @@
   formatters = with pkgs; [
     alejandra
     ruff
-    scalafmt
     shellharden
     stylua
     nodePackages.prettier

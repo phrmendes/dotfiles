@@ -132,7 +132,6 @@ conform.formatters_by_ft = {
 	markdown = { "prettier" },
 	nix = { "alejandra" },
 	python = { "ruff" },
-	scala = { "scalafmt" },
 	sh = { "shellharden" },
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },

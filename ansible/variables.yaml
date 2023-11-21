@@ -25,6 +25,10 @@ flatpak:
     - org.wezfurlong.wezterm
     - org.zotero.Zotero
 
+snap:
+  install:
+    - chromium
+
 apt:
   remove:
     - baobab
@@ -38,7 +42,6 @@ apt:
     - simple-scan
     - totem
   install:
-    - chromium-browser
     - chromium-chromedriver
     - gnome-tweaks
     - nala

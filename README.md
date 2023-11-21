@@ -28,7 +28,6 @@ ansible-playbook playbook.yaml --ask-become-pass
 ## References
 
 - <https://docs.ansible.com/>
-- <https://github.com/uunicorn/python-validity>
 - <https://mutschler.dev/linux/pop-os-btrfs-22-04/>
 - <https://nixos.wiki/wiki/Flakes>
 - <https://nixos.wiki/wiki/Home_Manager>

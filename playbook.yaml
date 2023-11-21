@@ -16,7 +16,6 @@
         - ansible/tasks/nix.yaml
         - ansible/tasks/nerd-fonts.yaml
         - ansible/tasks/debugpy.yaml
-        - ansible/tasks/pcloud.yaml
         - ansible/tasks/wezterm.yaml
       loop_control:
         loop_var: file

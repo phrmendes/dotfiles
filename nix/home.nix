@@ -25,7 +25,7 @@ in {
     homeDirectory = "/home/${username}";
     stateVersion = "23.05";
     sessionVariables = {
-      TERM = "flatpak run org.wezfurlong.wezterm";
+      TERM = "wezterm";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";

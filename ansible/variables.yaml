@@ -32,7 +32,6 @@ flatpak:
 apt:
   deb:
     - "{{ quarto_base_url }}/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ ansible_arch_alias }}.deb"
-    - "{{ wezterm_base_url }}/{{ wezterm_version }}/wezterm-{{ wezterm_version }}.{{ ansible_dist_alias }}{{ ansible_distribution_version }}.deb"
   remove:
     - baobab
     - evince

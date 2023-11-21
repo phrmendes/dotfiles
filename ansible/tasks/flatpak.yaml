@@ -9,3 +9,10 @@
   community.general.flatpak:
     state: present
     name: "{{ flatpak.install }}"
+
+- name: Give permissions to read home directory
+  become: true
+  ansible.builtin.command:
+    cmd: "flatpak override --filesystem=home {{ item }}"
+  changed_when: false
+  with_items: "{{ flatpak.install }}"

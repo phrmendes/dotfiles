@@ -6,35 +6,28 @@ user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
 nix_version: 2.18.0
 
-quarto_version: 1.3.450
-quarto_base_url: "https://github.com/quarto-dev/quarto-cli/releases/download"
-
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
     - ch.protonmail.protonmail-bridge
     - com.bitwarden.desktop
-    - com.github.ahrm.sioyek
     - com.github.hluk.copyq
-    - com.hunterwittenborn.Celeste
     - com.protonvpn.www
     - com.uploadedlobster.peek
     - de.haeckerfelix.Fragments
     - io.dbeaver.DBeaverCommunity
     - io.podman_desktop.PodmanDesktop
     - md.obsidian.Obsidian
-    - org.flameshot.Flameshot
     - org.gnome.Boxes
     - org.libreoffice.LibreOffice
+    - org.mozilla.Thunderbird
     - org.videolan.VLC
     - org.wezfurlong.wezterm
+    - org.zotero.Zotero
 
 apt:
-  deb:
-    - "{{ quarto_base_url }}/v{{ quarto_version }}/quarto-{{ quarto_version }}-{{ ansible_system | lower }}-{{ ansible_arch_alias }}.deb"
   remove:
     - baobab
-    - evince
     - fprintd
     - geary
     - gedit
@@ -45,61 +38,20 @@ apt:
     - simple-scan
     - totem
   install:
-    - 7zip
-    - autoconf
-    - automake
-    - binutils
-    - bison
-    - build-essential
-    - ca-certificates
     - chromium-browser
     - chromium-chromedriver
-    - curl
-    - file
     - file-roller
-    - flatpak
-    - fonts-jetbrains-mono
-    - g++
-    - gcc
     - gnome-tweaks
     - gnupg
     - gparted
-    - gzip
-    - libbz2-dev
-    - libffi-dev
-    - libfuse2
-    - liblzma-dev
-    - libncursesw5-dev
-    - libreadline-dev
-    - libsqlite3-dev
-    - libssl-dev
-    - libtool
-    - libxml2-dev
-    - libxmlsec1-dev
-    - make
-    - mlocate
     - nala
     - openssh-server
-    - patch
-    - pkg-config
     - podman
     - podman-docker
     - podman-toolbox
-    - python3-apt
-    - python3-openssl
-    - python3-pip
-    - python3-pycurl
-    - python3-setuptools
-    - rar
     - seahorse-nautilus
     - tailscale
-    - tk-dev
-    - uidmap
-    - unrar
     - unzip
+    - v4l2loopback-dkms
     - v4l2loopback-utils
-    - wget
-    - xclip
-    - xz-utils
     - zip
-    - zlib1g-dev

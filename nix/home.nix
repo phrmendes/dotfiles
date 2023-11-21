@@ -10,7 +10,6 @@ in {
     ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix
-    ./modules/rtx.nix
     ./modules/starship.nix
     ./modules/symlinks.nix
     ./modules/tmux.nix

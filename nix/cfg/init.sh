@@ -31,8 +31,9 @@ function system_clear() {
 	flatpak remove --unused
 }
 
-function enable_droidcam() {
+function dcam() {
 	sudo modprobe v4l2loopback exclusive_caps=1
+	droidcam
 }
 
 function get_gh_repo_ref() {

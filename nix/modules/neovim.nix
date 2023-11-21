@@ -107,6 +107,7 @@ in {
         helm-ls
         ltex-ls
         lua-language-server
+        metals
         nil
         perl538Packages.LatexIndent
         ruff

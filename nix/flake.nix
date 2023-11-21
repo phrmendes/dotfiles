@@ -17,7 +17,6 @@
       system = "x86_64-linux";
       config = {
         allowUnfree = true;
-        permittedInsecurePackages = ["zotero-6.0.27"];
       };
     };
   in {

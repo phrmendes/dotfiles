@@ -1,21 +1,29 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    ansible
     bashly
+    bruno
+    coursier
     eza
     fd
     gh
     gnome-extensions-cli
+    go
     hugo
+    jdk21
     kubectl
     kubernetes-helm
     micromamba
     minikube
     ncdu
+    nodejs_21
     parallel
+    podman-compose
+    quarto
     ripgrep
     tealdeer
     terraform
     xclip
-    bruno
+    droidcam
   ];
 }

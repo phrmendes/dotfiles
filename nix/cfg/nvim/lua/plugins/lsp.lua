@@ -11,14 +11,12 @@ local lspconfig = require("lspconfig")
 local ltex_extra = require("ltex_extra")
 local metals = require("metals")
 local neodev = require("neodev")
-local neotest = require("neotest")
-local neotest_python = require("neotest-python")
-local neotest_scala = require("neotest-scala")
 local wk = require("which-key")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local metals_group = augroup("MetalsLspConfig", { clear = true })
+local scala_group = augroup("ScalaLspConfig", { clear = true })
+local python_group = augroup("PythonLspConfig", { clear = true })
 local lint_group = augroup("LintersConfig", { clear = true })
 
 -- [[ neodev ]] ---------------------------------------------------------
@@ -83,21 +81,7 @@ dap.configurations.scala = {
 	},
 }
 
--- [[ tests ]] ----------------------------------------------------------
-neotest.setup({
-	adapters = {
-		neotest_python({
-			dap = { justMyCode = false },
-			runner = "pytest",
-		}),
-		neotest_scala({
-			runner = "sbt",
-		}),
-	},
-})
-
 -- [[ linters ]] --------------------------------------------------------
-
 lint.linters_by_ft = {
 	nix = { "statix" },
 	sh = { "shellcheck" },
@@ -126,7 +110,6 @@ conform.formatters.tex = {
 }
 
 conform.formatters_by_ft = {
-	dart = { "dart_format" },
 	json = { "prettier" },
 	lua = { "stylua" },
 	markdown = { "prettier" },
@@ -197,32 +180,29 @@ local on_attach = function(_, bufnr)
 			"DAP: conditional breakpoint",
 		},
 	}, { prefix = "<leader>d", mode = "n", buffer = bufnr })
-
-	wk.register({
-		name = "tests",
-		a = { neotest.run.attach, "Attach nearest test" },
-		s = { neotest.run.stop, "Stop nearest test" },
-		t = { neotest.run.run, "Run nearest test" },
-		f = {
-			function()
-				neotest.run.run(vim.fn.expand("%"))
-			end,
-			"Run current file",
-		},
-		d = {
-			function()
-				neotest.run.run({ strategy = "dap" })
-			end,
-			"Debug nearest test",
-		},
-	}, { prefix = "<leader>t", mode = "n", buffer = bufnr })
 end
+
+autocmd("FileType", {
+	pattern = "python",
+	group = python_group,
+	callback = function()
+		wk.register({
+			name = "python",
+			m = { dap_python.test_method, "DAP: test method" },
+			c = { dap_python.test_class, "DAP: test class" },
+		}, { prefix = "<leader>dp", mode = "n" })
+
+		wk.register({
+			name = "debug/diagnostics",
+			d = { dap_python.debug_selection, "DAP: (python) debug selection" },
+		}, { prefix = "<leader>d", mode = "x" })
+	end,
+})
 
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
 	"ansiblels",
 	"bashls",
-	"dartls",
 	"docker_compose_language_service",
 	"dockerls",
 	"helm_ls",
@@ -324,7 +304,7 @@ metals_config.settings = {
 
 autocmd("FileType", {
 	pattern = { "scala", "sbt", "java" },
-	group = metals_group,
+	group = scala_group,
 	callback = function()
 		metals.initialize_or_attach(metals_config)
 

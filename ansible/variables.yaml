@@ -6,21 +6,28 @@ user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
 nix_version: 2.18.0
 
-pcloud_version: 1.14.2
-pcloud_code: XZ5iuiVZQsuexQaMmmLAS7FGWNh1TkXRWJR7
-
 quarto_version: 1.3.450
 quarto_base_url: "https://github.com/quarto-dev/quarto-cli/releases/download"
-
-wezterm_version: 20230712-072601-f4abf8fd
-wezterm_base_url: "https://github.com/wez/wezterm/releases/download"
 
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
-    - com.github.vladimiry.ElectronMail
+    - ch.protonmail.protonmail-bridge
+    - com.bitwarden.desktop
+    - com.github.ahrm.sioyek
+    - com.github.hluk.copyq
+    - com.hunterwittenborn.Celeste
+    - com.protonvpn.www
+    - com.uploadedlobster.peek
+    - de.haeckerfelix.Fragments
+    - io.dbeaver.DBeaverCommunity
     - io.podman_desktop.PodmanDesktop
+    - md.obsidian.Obsidian
+    - org.flameshot.Flameshot
     - org.gnome.Boxes
+    - org.libreoffice.LibreOffice
+    - org.videolan.VLC
+    - org.wezfurlong.wezterm
 
 apt:
   deb:

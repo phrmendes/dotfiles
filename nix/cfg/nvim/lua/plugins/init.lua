@@ -1,6 +1,5 @@
 require("plugins.colorscheme")
 require("plugins.completion")
-require("plugins.dial")
 require("plugins.git")
 require("plugins.ia")
 require("plugins.lsp")

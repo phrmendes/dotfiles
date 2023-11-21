@@ -40,25 +40,3 @@ function get_gh_repo_ref() {
 	branch="$2"
 	git ls-remote "https://github.com/$gh_repo" "$branch" | cut -f1
 }
-
-function js() {
-	ID="$$"
-	mkdir -p /tmp/"$USER"
-	OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
-	env joshuto --output-file "$OUTPUT_FILE" "$@"
-	exit_code=$?
-
-	case "$exit_code" in
-		0)
-			;;
-		101)
-			JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
-			cd "$JOSHUTO_CWD" || exit
-			;;
-		102)
-			;;
-		*)
-			echo "Exit code: $exit_code"
-			;;
-	esac
-}

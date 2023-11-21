@@ -1,56 +1,21 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  concat = lib.lists.concatLists;
-  cli = with pkgs; [
+{pkgs, ...}: {
+  home.packages = with pkgs; [
     bashly
-    bitwarden-cli
     eza
     fd
-    flutter
     gh
     gnome-extensions-cli
     hugo
-    joshuto
     kubectl
     kubernetes-helm
     micromamba
     minikube
     ncdu
-    pandoc
     parallel
     ripgrep
     tealdeer
     terraform
-  ];
-  gui = with pkgs; [
-    bitwarden
-    bruno
-    caffeine-ng
-    dbeaver
-    deluge
-    droidcam
-    evince
-    libreoffice
-    obsidian
-    peek
-    qview
-    vlc
-    zotero
-  ];
-  dependencies = with pkgs; [
-    jre_minimal
     xclip
-    hunspell
-    hunspellDicts.en-us
-    hunspellDicts.pt-br
-  ];
-in {
-  home.packages = concat [
-    gui
-    cli
-    dependencies
+    bruno
   ];
 }

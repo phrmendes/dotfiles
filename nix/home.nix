@@ -4,12 +4,9 @@ in {
   imports = [
     ./modules/bat.nix
     ./modules/btop.nix
-    ./modules/copyq.nix
-    ./modules/flameshot.nix
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/home-manager.nix
-    ./modules/joshuto.nix
     ./modules/lazygit.nix
     ./modules/neovim.nix
     ./modules/packages.nix
@@ -28,7 +25,7 @@ in {
     homeDirectory = "/home/${username}";
     stateVersion = "23.05";
     sessionVariables = {
-      TERM = "wezterm";
+      TERM = "flatpak run org.wezfurlong.wezterm";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";

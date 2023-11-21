@@ -40,10 +40,7 @@ apt:
   install:
     - chromium-browser
     - chromium-chromedriver
-    - file-roller
     - gnome-tweaks
-    - gnupg
-    - gparted
     - nala
     - openssh-server
     - podman
@@ -51,7 +48,5 @@ apt:
     - podman-toolbox
     - seahorse-nautilus
     - tailscale
-    - unzip
     - v4l2loopback-dkms
     - v4l2loopback-utils
-    - zip

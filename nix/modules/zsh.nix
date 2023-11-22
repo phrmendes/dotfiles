@@ -25,8 +25,6 @@
       tx = "tmux";
       sys_cat = "/usr/bin/cat";
       sys_ls = "/usr/bin/ls";
-      sys_pip = "/usr/bin/pip";
-      sys_python = "/usr/bin/python3";
     };
   };
 }

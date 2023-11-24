@@ -22,6 +22,6 @@
 
     - name: Install font
       ansible.builtin.command:
-        cmd: "fc-cache -fv"
+        cmd: fc-cache -fv
         chdir: ~/.fonts
       changed_when: false

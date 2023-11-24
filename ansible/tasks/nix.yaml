@@ -1,67 +1,27 @@
 ---
-- name: Set fact for ~/.config folder
-  ansible.builtin.set_fact:
-    dot_config: "{{ lookup('env', 'XDG_CONFIG_HOME') }}"
-
-- name: Use fallback default for ~/.config folder
-  ansible.builtin.set_fact:
-    dot_config: ~/.config
-  when: dot_config == ""
-
 - name: Check if /nix directory exists
   ansible.builtin.stat:
-    path: "/nix"
+    path: /nix
   register: nix_directory
 
-- name: Install Nix
+- name: Install nix
   become: true
   when: not nix_directory.stat.exists
   block:
-    - name: Set fact for Nix tarball
-      ansible.builtin.set_fact:
-        nix_tarball_path: "nix-{{ nix_version }}-{{ ansible_arch_alias }}-{{ ansible_system | lower }}"
-
-    - name: Download Nix tarball
+    - name: Get installation script
       ansible.builtin.get_url:
-        url: "https://releases.nixos.org/nix/nix-{{ nix_version }}/{{ nix_tarball_path }}.tar.xz"
-        dest: /tmp/nix.tar.xz
-        mode: "0700"
+        url: https://install.determinate.systems/nix
+        dest: /tmp/nix_installer.sh
+        mode: "0755"
 
-    - name: Extract Nix tarball
-      ansible.builtin.unarchive:
-        src: /tmp/nix.tar.xz
-        remote_src: true
-        dest: /tmp
-
-    - name: Run Nix installer
+    - name: Run installation script
       ansible.builtin.command:
-        cmd: ./install --daemon --yes </dev/null
-        chdir: "/tmp/{{ nix_tarball_path }}"
-        creates: "/nix"
+        cmd: "./nix-installer.sh install --no-confirm"
+        chdir: /tmp
+        creates: /nix
 
-- name: Enable Nix Flakes
-  block:
-    - name: Ensure Nix user config dir exists
-      ansible.builtin.file:
-        path: "{{ dot_config }}/nix"
-        state: directory
-        owner: "{{ user }}"
-        mode: "0755"
-      register: nix_config_dir
-
-    - name: Enable Flakes
-      ansible.builtin.blockinfile:
-        path: "{{ nix_config_dir.path }}/nix.conf"
-        owner: "{{ user }}"
-        mode: "0755"
-        create: true
-        state: present
-        block: |
-          experimental-features = nix-command flakes
-          max-jobs = auto
-
-    - name: Run home-manager
-      ansible.builtin.command: "nix run nixpkgs#home-manager --experimental-features 'nix-command flakes' -- switch --flake nix/#{{ user }}"
-      environment:
-        NIXPKGS_ALLOW_UNFREE: "1"
-      changed_when: false
+- name: Run home-manager
+  ansible.builtin.command: "nix run nixpkgs#home-manager --experimental-features 'nix-command flakes' -- switch --flake nix/#{{ user }}"
+  environment:
+    NIXPKGS_ALLOW_UNFREE: "1"
+  changed_when: false

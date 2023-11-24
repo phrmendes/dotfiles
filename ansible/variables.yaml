@@ -4,30 +4,11 @@ ansible_dist_alias: "{{ 'Ubuntu' if ansible_distribution == 'Pop!_OS' else ansib
 
 user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
-nix_version: 2.18.0
-
 flatpak:
   flathub: https://dl.flathub.org/repo/flathub.flatpakrepo
   install:
-    - ch.protonmail.protonmail-bridge
-    - com.bitwarden.desktop
-    - com.github.hluk.copyq
-    - com.protonvpn.www
-    - com.uploadedlobster.peek
-    - de.haeckerfelix.Fragments
-    - io.dbeaver.DBeaverCommunity
     - io.podman_desktop.PodmanDesktop
-    - md.obsidian.Obsidian
-    - org.gnome.Boxes
-    - org.libreoffice.LibreOffice
-    - org.mozilla.Thunderbird
-    - org.videolan.VLC
     - org.wezfurlong.wezterm
-    - org.zotero.Zotero
-
-snap:
-  install:
-    - chromium
 
 apt:
   remove:
@@ -42,7 +23,7 @@ apt:
     - simple-scan
     - totem
   install:
-    - chromium-chromedriver
+    - font-jetbrains-mono
     - gnome-tweaks
     - nala
     - openssh-server
@@ -50,6 +31,5 @@ apt:
     - podman-docker
     - podman-toolbox
     - seahorse-nautilus
-    - tailscale
     - v4l2loopback-dkms
     - v4l2loopback-utils

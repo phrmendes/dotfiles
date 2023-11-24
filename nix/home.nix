@@ -4,6 +4,7 @@ in {
   imports = [
     ./modules/bat.nix
     ./modules/btop.nix
+    ./modules/copyq.nix
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/home-manager.nix

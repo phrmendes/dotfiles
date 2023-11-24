@@ -1,4 +1,0 @@
-- name: Install snap packages
-  community.general.snap:
-    state: present
-    name: "{{ snap.install }}"

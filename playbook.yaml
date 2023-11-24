@@ -13,9 +13,7 @@
       loop:
         - ansible/tasks/apt.yaml
         - ansible/tasks/flatpak.yaml
-        - ansible/tasks/snap.yaml
         - ansible/tasks/nix.yaml
-        - ansible/tasks/nerd-fonts.yaml
         - ansible/tasks/debugpy.yaml
         - ansible/tasks/wezterm.yaml
         - ansible/tasks/pcloud.yaml

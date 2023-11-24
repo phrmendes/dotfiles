@@ -15,7 +15,7 @@ function nix_update() {
 }
 
 function nix_clear() {
-	nix-collect-garbage
+    nix store gc --debug
 }
 
 function system_update() {

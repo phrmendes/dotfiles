@@ -13,8 +13,7 @@
       };
     };
   cmp-zotcite = fromGitHub "fd83f05495c14ed7d3d1ae898400622137b01fa2" "HEAD" "jalvesaq/cmp-zotcite";
-  obsidian-nvim = fromGitHub "16d780e23eccfe73395b5ae94293d28ad8c53a32" "HEAD" "epwalsh/obsidian.nvim";
-  vim-ansible = fromGitHub "afc739e505053a6143a1fc6cedac6fb4d7a1d4db" "HEAD" "pearofducks/ansible-vim";
+  obsidian-nvim = fromGitHub "5d022cc1d53a40f09902f2e34df3d604d2f2707b" "HEAD" "epwalsh/obsidian.nvim";
   zotcite = fromGitHub "c93519e681a08ff29fdc8910b96aee9a99100f07" "HEAD" "jalvesaq/zotcite";
 in {
   programs.neovim = {
@@ -26,6 +25,7 @@ in {
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       ChatGPT-nvim
+      ansible-vim
       catppuccin-nvim
       cmp-buffer
       cmp-latex-symbols
@@ -62,6 +62,7 @@ in {
       nvim-lightbulb # show code actions
       nvim-lint
       nvim-lspconfig
+      nvim-luadev # lua REPL
       nvim-metals
       nvim-spectre # search and replace
       nvim-treesitter-context
@@ -79,7 +80,6 @@ in {
       telescope-zoxide
       trouble-nvim # lsp diagnostics
       undotree
-      vim-ansible
       vim-helm
       vim-jinja
       vim-nix

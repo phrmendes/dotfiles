@@ -6,4 +6,4 @@ quarto.setup()
 
 wk.register({
 	p = { nabla.popup, "Preview equation" },
-}, { prefix = "<localleader>", mode = "n" })
+}, { prefix = "<localleader>", mode = "n", buffer = 0 })

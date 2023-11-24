@@ -2,18 +2,8 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_pandoc = require("cmp_pandoc")
-local cmp_zotcite = require("cmp_zotcite")
 
-cmp_pandoc.setup({
-	filetypes = { "markdown" },
-	crossref = {
-		enable_nabla = true,
-	},
-})
-
-cmp_zotcite.setup({
-	filetypes = { "markdown" },
-})
+cmp_pandoc.setup({ crossref = { enable_nabla = true } })
 
 cmp.setup({
 	snippet = {

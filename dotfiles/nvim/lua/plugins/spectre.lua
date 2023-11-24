@@ -44,11 +44,10 @@ spectre.setup({
 })
 
 wk.register({
-	name = "files",
-	s = { spectre.toggle, "Search and replace" },
-}, { prefix = "<localleader>f", mode = "n" })
+	s = { spectre.toggle, "Spectre" },
+}, { prefix = "<localleader>", mode = "n" })
 
 wk.register({
 	name = "files",
-	s = { spectre.open_visual, "Search and replace selection" },
-}, { prefix = "<localleader>f", mode = "x" })
+	s = { spectre.open_visual, "Spectre" },
+}, { prefix = "<localleader>", mode = "x" })

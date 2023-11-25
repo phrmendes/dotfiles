@@ -1,8 +1,8 @@
 {
   home.file = {
-    ".wezterm.lua".source = ../../dotfiles/wezterm.lua;
+    ".wezterm.lua".source = ../../../dotfiles/wezterm.lua;
     ".config/nvim" = {
-      source = ../../dotfiles/nvim;
+      source = ../../../dotfiles/nvim;
       recursive = true;
     };
   };

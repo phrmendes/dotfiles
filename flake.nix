@@ -31,7 +31,7 @@
       specialArgs = inputs;
       modules = [
         ./machines/macos
-        home-manager.nixosModules.home-manager
+        home-manager.darwinModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
@@ -50,6 +50,7 @@
       specialArgs = inputs;
       modules = [
         ./machines/nixos
+        home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;

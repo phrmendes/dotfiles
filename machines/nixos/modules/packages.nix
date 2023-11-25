@@ -8,6 +8,7 @@
       binutils
       bitwarden
       bruno
+      celeste
       chromium
       cmake
       coursier

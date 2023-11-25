@@ -31,6 +31,17 @@
       specialArgs = inputs;
       modules = [
         ./machines/macos
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            extraSpecialArgs = {inherit inputs;};
+            backupFileExtension = "bak";
+            users.prochame.imports = [
+              ./machines/macos/home.nix
+            ];
+          };
+        }
       ];
     };
 
@@ -39,6 +50,16 @@
       specialArgs = inputs;
       modules = [
         ./machines/nixos
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            extraSpecialArgs = {inherit inputs;};
+            backupFileExtension = "bak";
+            users.prochame.imports = [
+              ./machines/nixos/home.nix
+            ];
+          };
+        }
       ];
     };
   };

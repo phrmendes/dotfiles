@@ -56,7 +56,7 @@
             useGlobalPkgs = true;
             extraSpecialArgs = {inherit inputs;};
             backupFileExtension = "bak";
-            users.prochame.imports = [
+            users.phrmendes.imports = [
               ./machines/nixos/home.nix
             ];
           };

@@ -5,15 +5,10 @@
         disable-user-extensions = false;
         enabled-extensions = [
           "appindicatorsupport@rgcjonas.gmail.com"
+          "clipboard-indicator@tudmotu.com"
+          "espresso@coadmunkee.github.com"
           "forge@jmmaranan.com"
-          "gsconnect@andyholmes.github.io"
-          "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
-        favourite-apps = ["Wezterm.desktop" "firefox.desktop"];
-      };
-      "org/gnome/desktop/peripherals/touchpad" = {
-        tap-to-click = true;
-        two-finger-scrolling-enabled = true;
       };
     };
   };

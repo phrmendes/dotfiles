@@ -2,7 +2,8 @@
 
 eval "$(micromamba shell hook --shell=zsh)"
 
-export FLAKE_PATH="$HOME"/Projects/bkps#phrmendes
+export FLAKE_PATH="$HOME"/Projects/bkps
+export NOTES="$HOME"/pCloud/notes
 
 path+=(
 	"$HOME"/.local/bin
@@ -11,17 +12,11 @@ path+=(
 )
 
 function nix_update() {
-	nix flake update
 	sudo nixos-rebuild switch --flake "$FLAKE_PATH"
 }
 
 function nix_clear() {
 	nix store gc --debug
-}
-
-function dcam() {
-	sudo modprobe v4l2loopback exclusive_caps=1
-	droidcam
 }
 
 function get_gh_repo_ref() {

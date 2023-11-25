@@ -103,7 +103,7 @@
     isNormalUser = true;
     home = "/home/phrmendes";
     uid = 1000;
-    extraGroups = ["wheel" "video" "audio" "networkmanager" "docker"];
+    extraGroups = ["wheel" "video" "audio" "networkmanager"];
     initialPassword = "password";
     shell = pkgs.zsh;
   };
@@ -112,10 +112,7 @@
     dconf.enable = true;
     seahorse.enable = true;
     zsh.enable = true;
-    kdeconnect = {
-      enable = true;
-      package = pkgs.gnomeExtensions.gsconnect;
-    };
+    kdeconnect.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -130,6 +127,9 @@
       dates = "weekly";
       options = "--delete-older-than 1w";
     };
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   system = {
@@ -137,12 +137,11 @@
     autoUpgrade.enable = true;
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    dockerSocket.enable = true;
-    enableNvidia = true;
-    defaultNetwork.settings.dns_enabled = true;
+  virtualisation.docker = {
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
     autoPrune = {
       enable = true;
       dates = "weekly";

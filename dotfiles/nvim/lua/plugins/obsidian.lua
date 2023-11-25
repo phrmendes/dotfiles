@@ -1,6 +1,6 @@
 local obsidian = require("obsidian")
 local utils = require("core.utils")
-local notes = os.getenv("NOTES") or vim.fn.expand("~/Documents/notes")
+local notes = os.getenv("NOTES")
 local wk = require("which-key")
 
 local id = function(title)

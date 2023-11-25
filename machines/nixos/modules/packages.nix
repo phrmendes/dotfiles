@@ -8,7 +8,6 @@
       binutils
       bitwarden
       bruno
-      caffeine-ng
       chromium
       cmake
       coursier
@@ -24,24 +23,21 @@
       gh
       git
       gnumake
+      gnupg
       gzip
       hugo
-      hunspell
       jdk21
       kubectl
       kubernetes-helm
-      libreoffice
+      lazydocker
       micromamba
       minikube
       ncdu
-      neovide
       nodejs_21
       obsidian
+      onlyoffice-bin
       parallel
       peek
-      podman-compose
-      podman-desktop
-      podman-tui
       python312
       quarto
       ripgrep
@@ -50,16 +46,12 @@
       unrar
       unzip
       vlc
-      vscode
+      wezterm
       wget
       xclip
       zip
       zlib
       zotero
-    ])
-    ++ (with pkgs.hunspellDicts; [
-      en-us
-      pt-br
     ])
     ++ (with pkgs.gnome; [
       file-roller
@@ -71,8 +63,8 @@
     ])
     ++ (with pkgs.gnomeExtensions; [
       appindicator
+      clipboard-indicator
+      espresso
       forge
-      space-bar
-      user-themes
     ]);
 }

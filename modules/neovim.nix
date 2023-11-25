@@ -121,10 +121,11 @@ in {
         texlab
       ])
       ++ (with pkgs.nodePackages; [
-        bash-language-server
+        # TODO use stable packages
+        # bash-language-server
         dockerfile-language-server-nodejs
         pyright
-        vscode-json-languageserver
+        # vscode-json-languageserver
         yaml-language-server
         prettier
       ]);

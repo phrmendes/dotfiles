@@ -11,10 +11,8 @@
     ../../modules/zoxide.nix
     ../../modules/zsh.nix
     ./modules/btop.nix
-    ./modules/copyq.nix
     ./modules/dconf.nix
     ./modules/dotfiles.nix
-    ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/packages.nix
     ./modules/xdg.nix

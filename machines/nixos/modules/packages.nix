@@ -2,20 +2,29 @@
   home.packages =
     (with pkgs; [
       ansible
+      appimage-run
       bashly
       beekeeper-studio
+      binutils
       bitwarden
       bruno
       caffeine-ng
       chromium
+      cmake
       coursier
+      curl
+      docker-compose
       droidcam
       evince
       eza
       fd
+      firefox
       fragments
+      gcc
       gh
-      gnome-extensions-cli
+      git
+      gnumake
+      gzip
       hugo
       hunspell
       jdk21
@@ -25,21 +34,45 @@
       micromamba
       minikube
       ncdu
+      neovide
       nodejs_21
       obsidian
       parallel
       peek
       podman-compose
+      podman-desktop
+      podman-tui
+      python11
       quarto
       ripgrep
       tealdeer
       terraform
+      unrar
+      unzip
       vlc
+      vscode
+      wget
       xclip
+      zip
+      zlib
       zotero
     ])
     ++ (with pkgs.hunspellDicts; [
       en-us
       pt-br
+    ])
+    ++ (with pkgs.gnome; [
+      file-roller
+      gnome-calculator
+      gnome-disk-utility
+      gnome-screenshot
+      gnome-tweaks
+      nautilus
+    ])
+    ++ (with pkgs.gnomeExtensions; [
+      appindicator
+      forge
+      space-bar
+      user-themes
     ]);
 }

@@ -2,7 +2,7 @@
 
 eval "$(micromamba shell hook --shell=zsh)"
 
-export FLAKE_PATH="$HOME"/Projects/bkps/nix#phrmendes
+export FLAKE_PATH="$HOME"/Projects/bkps#phrmendes
 
 path+=(
 	"$HOME"/.local/bin
@@ -11,24 +11,12 @@ path+=(
 )
 
 function nix_update() {
-	nix run nixpkgs#home-manager -- switch --flake "$FLAKE_PATH"
+	nix flake update
+	sudo nixos-rebuild switch --flake "$FLAKE_PATH"
 }
 
 function nix_clear() {
-    nix store gc --debug
-}
-
-function system_update() {
-	sudo nala upgrade
-	sudo pop-upgrade recovery upgrade from-release
-	flatpak update
-}
-
-function system_clear() {
-	sudo nala autopurge
-	sudo nala autoremove
-	sudo nala clean
-	flatpak remove --unused
+	nix store gc --debug
 }
 
 function dcam() {

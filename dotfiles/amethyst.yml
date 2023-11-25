@@ -1,0 +1,90 @@
+---
+mod1:
+  - option
+mod2:
+  - option
+  - shift
+mod3:
+  - option
+  - control
+  - shift
+
+enables-layout-hud: true
+layouts:
+  - tall
+  - bsp
+  - fullscreen
+
+window-margins: true
+window-margin-size: 10
+float-small-windows: true
+follow-space-thrown-windows: false
+
+screen-padding-left: 3
+screen-padding-bottom: 3
+screen-padding-right: 3
+screen-padding-top: 3
+
+mouse-follows-focus: false
+focus-follows-mouse: false
+mouse-resizes-windows: true
+
+ignore-menu-bar: false
+
+reevaluate-windows:
+  mod: mod1
+  key: r
+relaunch-amethyst:
+  mod: mod2
+  key: r
+cycle-layout:
+  mod: mod2
+  key: >
+cycle-layout-backward:
+  mod: mod2
+  key: <
+focus-cw:
+  mod: mod1
+  key: k
+focus-ccw:
+  mod: mod1
+  key: j
+shrink-main:
+  mod: mod2
+  key: s
+expand-main:
+  mod: mod2
+  key: e
+swap-cw:
+  mod: mod2
+  key: k
+swap-ccw:
+  mod: mod2
+  key: j
+toggle-float:
+  mod: mod2
+  key: f
+throw-space-left:
+  mod: mod3
+  key: h
+throw-space-right:
+  mod: mod3
+  key: l
+throw-screen-1:
+  mod: mod2
+  key: 1
+throw-screen-2:
+  mod: mod2
+  key: 2
+throw-screen-3:
+  mod: mod2
+  key: 3
+throw-screen-4:
+  mod: mod2
+  key: 4
+throw-screen-5:
+  mod: mod2
+  key: 5
+throw-screen-6:
+  mod: mod2
+  key: 6

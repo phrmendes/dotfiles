@@ -5,7 +5,7 @@
     enableCompletion = true;
     enableVteIntegration = true;
     syntaxHighlighting.enable = true;
-    initExtra = builtins.readFile ../cfg/init.sh;
+    initExtra = builtins.readFile ../dotfiles/init.sh;
     shellAliases = {
       cat = "bat --theme=catppuccin";
       la = "eza --icons -a";
@@ -23,8 +23,7 @@
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
       tx = "tmux";
-      sys_cat = "/usr/bin/cat";
-      sys_ls = "/usr/bin/ls";
+      vim = "nvim";
     };
   };
 }

@@ -1,8 +1,8 @@
-{
+{lib, ...}: {
   programs.git = {
     enable = true;
     userName = "Pedro Mendes";
-    userEmail = "pedrohrmendes@proton.me";
+    userEmail = lib.mkDefault "pedrohrmendes@proton.me";
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;

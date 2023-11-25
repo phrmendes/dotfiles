@@ -42,7 +42,7 @@
       podman-compose
       podman-desktop
       podman-tui
-      python11
+      python312
       quarto
       ripgrep
       tealdeer

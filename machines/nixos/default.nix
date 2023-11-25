@@ -41,9 +41,8 @@
   };
 
   fonts = {
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
-      cantarell-fonts
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
     ];
     fontconfig.defaultFonts = {

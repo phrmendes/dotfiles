@@ -22,7 +22,7 @@
   targets.genericLinux.enable = true;
   home = {
     username = "phrmendes";
-    homeDirectory = "/Users/phrmendes";
+    homeDirectory = "/home/phrmendes";
     stateVersion = "23.05";
     sessionVariables = {
       EDITOR = "nvim";

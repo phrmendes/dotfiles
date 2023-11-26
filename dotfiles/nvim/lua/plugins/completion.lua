@@ -2,8 +2,10 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_pandoc = require("cmp_pandoc")
+local cmp_copilot = require("copilot_cmp")
 
 cmp_pandoc.setup({ crossref = { enable_nabla = true } })
+cmp_copilot.setup()
 
 cmp.setup({
 	snippet = {
@@ -21,6 +23,7 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
 	sources = cmp.config.sources({
+		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
@@ -28,7 +31,12 @@ cmp.setup({
 		{ name = "buffer" },
 	}),
 	formatting = {
-		format = lspkind.cmp_format({ maxwidth = 50, ellipsis_char = "..." }),
+		format = lspkind.cmp_format({
+			ellipsis_char = "...",
+			maxwidth = 50,
+			mode = "symbol",
+			symbol_map = { Copilot = "" },
+		}),
 	},
 })
 

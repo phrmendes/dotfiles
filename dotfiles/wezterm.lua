@@ -1,13 +1,12 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-local home = os.getenv("HOME")
 
 local config = {
 	allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
 	bold_brightens_ansi_colors = true,
 	check_for_updates = false,
 	color_scheme = "Catppuccin Mocha",
-	default_prog = { home .. "/.nix-profile/bin/zsh" },
+	default_prog = { "zsh" },
 	enable_tab_bar = false,
 	font = wezterm.font("JetBrains Mono"),
 	font_size = 12.0,

@@ -8,7 +8,6 @@ chatgpt.setup({
 
 wk.register({
 	name = "IA",
-	s = { "<cmd>Copilot panel<cr>", "Copilot: sugestions" },
 	S = { "<cmd>ChatGPTRun summarize<cr>", "Summarize" },
 	a = { "<cmd>ChatGPTRun add_tests<cr>", "Add tests" },
 	c = { "<cmd>ChatGPT<cr>", "ChatGPT" },

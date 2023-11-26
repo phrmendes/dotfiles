@@ -1,6 +1,5 @@
 local obsidian = require("obsidian")
 local utils = require("core.utils")
-local notes = os.getenv("NOTES")
 local wk = require("which-key")
 
 local id = function(title)
@@ -30,7 +29,7 @@ obsidian.setup({
 		date_format = "%Y-%m-%d",
 		folder = "daily",
 	},
-	dir = notes,
+	dir = vim.fn.expand("~/Documents/notes"),
 	finder = "telescope.nvim",
 	note_frontmatter_func = metadata,
 	note_id_func = id,

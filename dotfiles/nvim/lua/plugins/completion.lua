@@ -1,10 +1,8 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-local cmp_pandoc = require("cmp_pandoc")
 local cmp_copilot = require("copilot_cmp")
 
-cmp_pandoc.setup({ crossref = { enable_nabla = true } })
 cmp_copilot.setup()
 
 cmp.setup({
@@ -44,6 +42,10 @@ cmp.setup({
 })
 
 if vim.fn.has("mac") == 0 then
+	local cmp_pandoc = require("cmp_pandoc")
+
+	cmp_pandoc.setup({ crossref = { enable_nabla = true } })
+
 	cmp.setup.filetype("quarto", {
 		sources = cmp.config.sources({
 			{ name = "otter" },

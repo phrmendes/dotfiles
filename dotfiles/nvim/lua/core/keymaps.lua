@@ -1,5 +1,4 @@
 local wk = require("which-key")
-local nabla = require("nabla")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
@@ -51,6 +50,8 @@ if vim.fn.has("mac") == 0 then
 		pattern = { "markdown", "quarto" },
 		group = group,
 		callback = function()
+			local nabla = require("nabla")
+
 			wk.register({
 				name = "preview",
 				e = { nabla.popup, "Equation preview" },

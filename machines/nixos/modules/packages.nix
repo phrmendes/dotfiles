@@ -55,6 +55,5 @@
       clipboard-indicator
       espresso
       forge
-      transparent-top-bar-adjustable-transparency
     ]);
 }

@@ -13,7 +13,7 @@ end
 
 if result:match("Darwin") then
 	size = 16.0
-	decoration = "TITLE"
+	decoration = "TITLE | RESIZE"
 else
 	size = 12.0
 	decoration = "NONE"

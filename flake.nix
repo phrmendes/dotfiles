@@ -15,6 +15,7 @@
   };
 
   outputs = inputs @ {
+    self,
     darwin,
     home-manager,
     nixpkgs,

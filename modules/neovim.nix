@@ -119,6 +119,7 @@ in {
         perl538Packages.LatexIndent
         ruff
         ruff-lsp
+        scalafmt
         shellcheck
         shellharden
         statix
@@ -127,15 +128,13 @@ in {
         terraform-ls
         texlab
       ])
-      ++ (with pkgs.nodePackages; [
-        dockerfile-language-server-nodejs
-        pyright
-        yaml-language-server
-        prettier
-      ])
       ++ (with pkgs-stable.nodePackages; [
         bash-language-server
+        dockerfile-language-server-nodejs
+        prettier
+        pyright
         vscode-json-languageserver
+        yaml-language-server
       ]);
   };
 }

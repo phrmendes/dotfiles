@@ -228,6 +228,25 @@ lspconfig.jsonls.setup({
 	cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
+lspconfig.lua_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			completion = { callSnippet = "Replace" },
+			diagnostics = { globals = { "vim" } },
+			telemetry = { enable = false },
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
+				},
+			},
+		},
+	},
+})
+
 lspconfig.pyright.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -242,25 +261,6 @@ lspconfig.pyright.setup({
 				inlayHints = {
 					variableTypes = true,
 					functionReturnTypes = true,
-				},
-			},
-		},
-	},
-})
-
-lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {
-		Lua = {
-			completion = { callSnippet = "Replace" },
-			diagnostics = { globals = { "vim" } },
-			telemetry = { enable = false },
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
 		},

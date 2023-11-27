@@ -1,6 +1,11 @@
-local g = vim.g
-local map = vim.keymap.set
 local wk = require("which-key")
+local nabla = require("nabla")
+
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
+local g = vim.g
+local group = augroup("WrittingSettings", { clear = true })
 
 -- [[ unbind keys ]] ----------------------------------------------------
 local keys = { "<Space>", "<", ">" }
@@ -40,3 +45,31 @@ wk.register({
 	name = "buffers",
 	q = { "<cmd> w <bar> %bd <bar> e# <bar> bd# <cr><cr>", "Close all unfocused" },
 }, { prefix = "<leader>b", mode = "n" })
+
+if vim.fn.has("mac") == 0 then
+	autocmd("FileType", {
+		pattern = { "markdown", "quarto" },
+		group = group,
+		callback = function()
+			wk.register({
+				name = "preview",
+				e = { nabla.popup, "Equation preview" },
+				m = { "<Plug>MarkdownPreviewToggle", "Markdown preview" },
+				q = { "<cmd>QuartoPreview<cr>", "Quarto preview" },
+			}, { prefix = "<localleader>p", mode = "n", buffer = 0 })
+
+			wk.register({
+				name = "zotero",
+				c = { "<Plug>ZCitationCompleteInfo", "Citation info (complete)" },
+				i = { "<Plug>ZCitationInfo", "Citation info" },
+				o = { "<Plug>ZOpenAttachment", "Open attachment" },
+				v = { "<Plug>ZViewDocument", "View exported document" },
+				y = { "<Plug>ZCitationYamlRef", "Citation info (yaml)" },
+			}, { prefix = "<leader>z", mode = "n", buffer = 0 })
+		end,
+	})
+else
+	wk.register({
+		m = { "<Plug>MarkdownPreviewToggle", "Markdown preview" },
+	}, { prefix = "<localleader>", mode = "n", buffer = 0 })
+end

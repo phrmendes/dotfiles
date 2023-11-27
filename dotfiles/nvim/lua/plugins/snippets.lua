@@ -111,5 +111,8 @@ local equation_snippets = {
 }
 
 luasnip.add_snippets("markdown", markdown_snippets)
-luasnip.add_snippets("markdown", equation_snippets)
-luasnip.add_snippets("quarto", equation_snippets)
+
+if vim.fn.has("mac") == 0 then
+	luasnip.add_snippets("markdown", equation_snippets)
+	luasnip.add_snippets("quarto", equation_snippets)
+end

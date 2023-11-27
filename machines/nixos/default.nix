@@ -24,7 +24,10 @@
     networkmanager.enable = true;
   };
 
-  time.timeZone = "America/Sao_Paulo";
+  time = {
+    timeZone = "America/Sao_Paulo";
+    hardwareClockInLocalTime = true;
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -53,6 +56,7 @@
   };
 
   services = {
+    pcscd.enable = true;
     openssh.enable = true;
     gnome = {
       gnome-keyring.enable = true;
@@ -112,7 +116,11 @@
     dconf.enable = true;
     seahorse.enable = true;
     zsh.enable = true;
-    kdeconnect.enable = true;
+    gnupg.agent = {
+      enable = true;
+      pinentryFlavor = "gnome3";
+      enableSSHSupport = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -147,4 +155,25 @@
       dates = "weekly";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    appimage-run
+    binutils
+    cmake
+    curl
+    fd
+    gcc
+    gnumake
+    gzip
+    jdk21
+    nodejs_20
+    python312
+    ripgrep
+    unrar
+    unzip
+    wget
+    xclip
+    zip
+    zlib
+  ];
 }

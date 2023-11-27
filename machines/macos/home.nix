@@ -1,4 +1,6 @@
-{lib, ...}: {
+{lib, ...}: let
+  path = "~/Projects/bkps";
+in {
   imports = [
     ../../modules/bat.nix
     ../../modules/direnv.nix
@@ -23,5 +25,8 @@
       VISUAL = "nvim";
     };
   };
-  programs.git.userEmail = lib.mkForce "pedrohrmendes@proton.me";
+  programs = {
+    git.userEmail = lib.mkForce "pedrohrmendes@proton.me";
+    zsh.shellAlias.nix_update = lib.mkForce "nix run nix-darwin -- switch --flake ${path}";
+  };
 }

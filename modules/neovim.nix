@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   ...
 }: let
@@ -34,61 +35,63 @@ in {
       cmp-path
       cmp-zotcite
       cmp_luasnip
-      conform-nvim # formatting
-      copilot-vim
+      conform-nvim
+      copilot-cmp
+      copilot-lua
       dressing-nvim
-      executor-nvim # run async jobs
+      executor-nvim
       friendly-snippets
       gitsigns-nvim
+      image-nvim
       lazygit-nvim
-      lsp_signature-nvim # lsp signature hint as you type
-      lspkind-nvim # vscode-like pictograms
-      ltex_extra-nvim # ltex-ls aditional options
+      lsp_signature-nvim
+      lspkind-nvim
+      ltex_extra-nvim
       luasnip
       markdown-preview-nvim
       mini-nvim
-      nabla-nvim # equation preview
-      neodev-nvim # lua lsp dev tools
-      neogen # auto-generate docs
+      nabla-nvim
+      neodev-nvim
+      neogen
       neotest
       neotest-python
       neotest-scala
-      nui-nvim # ui component lib
+      nui-nvim
       nvim-cmp
       nvim-dap
       nvim-dap-python
       nvim-dap-ui
       nvim-dap-virtual-text
-      nvim-lightbulb # show code actions
+      nvim-lightbulb
       nvim-lint
       nvim-lspconfig
-      nvim-luadev # lua REPL
+      nvim-luadev
       nvim-metals
-      nvim-spectre # search and replace
+      nvim-spectre
       nvim-treesitter-context
       nvim-treesitter-textobjects
       nvim-treesitter.withAllGrammars
       nvim-ts-context-commentstring
       nvim-web-devicons
       obsidian-nvim
-      otter-nvim # code completion for code embedded in documents
-      plenary-nvim # lua utils
+      otter-nvim
+      plenary-nvim
       popup-nvim
       quarto-nvim
       telescope-nvim
       telescope-ui-select-nvim
       telescope-zoxide
-      trouble-nvim # lsp diagnostics
+      trouble-nvim
       undotree
       vim-helm
       vim-jinja
       vim-nix
-      vim-sleuth # auto detect indentation
-      vim-slime # REPLs
-      vim-tmux-navigator # tmux keybindings
-      vim-visual-multi # multiple cursors
+      vim-sleuth
+      vim-slime
+      vim-tmux-navigator
+      vim-visual-multi
       which-key-nvim
-      zen-mode-nvim # zen mode
+      zen-mode-nvim
       zotcite
     ];
     extraPython3Packages = pyPkgs:
@@ -97,6 +100,10 @@ in {
         pynvim
         pyqt5
         pyyaml
+      ];
+    extraLuaPackages = luaPkgs:
+      with luaPkgs; [
+        magick
       ];
     extraPackages =
       (with pkgs; [
@@ -121,13 +128,14 @@ in {
         texlab
       ])
       ++ (with pkgs.nodePackages; [
-        # TODO use stable packages
-        # bash-language-server
         dockerfile-language-server-nodejs
         pyright
-        # vscode-json-languageserver
         yaml-language-server
         prettier
+      ])
+      ++ (with pkgs-stable.nodePackages; [
+        bash-language-server
+        vscode-json-languageserver
       ]);
   };
 }

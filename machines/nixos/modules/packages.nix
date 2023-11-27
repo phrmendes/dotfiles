@@ -2,56 +2,44 @@
   home.packages =
     (with pkgs; [
       ansible
-      appimage-run
       bashly
       beekeeper-studio
-      binutils
       bitwarden
       bruno
-      celeste
+      celluloid
       chromium
-      cmake
       coursier
-      curl
       docker-compose
       droidcam
       evince
       eza
-      fd
       firefox
       fragments
-      gcc
       gh
       git
-      gnumake
-      gnupg
-      gzip
+      gthumb
       hugo
-      jdk21
+      imagemagick
+      insync
       kubectl
       kubernetes-helm
       lazydocker
       micromamba
       minikube
       ncdu
-      nodejs_21
+      neovide
       obsidian
       onlyoffice-bin
       parallel
-      peek
-      python312
       quarto
-      ripgrep
+      spot
       tealdeer
+      tectonic
       terraform
-      unrar
-      unzip
-      vlc
+      ueberzugpp
+      ventoy
+      veracrypt
       wezterm
-      wget
-      xclip
-      zip
-      zlib
       zotero
     ])
     ++ (with pkgs.gnome; [
@@ -67,5 +55,6 @@
       clipboard-indicator
       espresso
       forge
+      transparent-top-bar-adjustable-transparency
     ]);
 }

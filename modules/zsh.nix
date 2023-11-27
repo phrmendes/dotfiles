@@ -1,4 +1,6 @@
-{
+{lib, ...}: let
+  path = "~/Projects/bkps";
+in {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -22,6 +24,9 @@
       mbu = "micromamba update";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
+      nix_clear = "nix store gc --debug";
+      nix_hash = "nix-hash --flat --base64 --type sha256";
+      nix_update = lib.mkDefault "sudo nixos-rebuild switch --flake ${path}";
       tx = "tmux";
       vim = "nvim";
     };

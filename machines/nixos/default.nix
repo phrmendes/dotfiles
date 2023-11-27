@@ -56,8 +56,9 @@
   };
 
   services = {
-    pcscd.enable = true;
     openssh.enable = true;
+    pcscd.enable = true;
+    tailscale.enable = true;
     gnome = {
       gnome-keyring.enable = true;
       core-utilities.enable = false;

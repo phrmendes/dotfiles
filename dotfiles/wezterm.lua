@@ -1,6 +1,24 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local size
+local decoration
+
+local handle = io.popen("uname")
+local result = handle and handle:read("*a")
+
+if handle then
+	handle:close()
+end
+
+if result:match("Darwin") then
+	size = 16.0
+	decoration = "TITLE"
+else
+	size = 12.0
+	decoration = "NONE"
+end
+
 local config = {
 	allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
 	bold_brightens_ansi_colors = true,
@@ -9,9 +27,14 @@ local config = {
 	default_prog = { "zsh" },
 	enable_tab_bar = false,
 	font = wezterm.font("JetBrains Mono"),
-	font_size = 12.0,
-	window_decorations = "NONE",
-	window_padding = { left = 10, right = 10, top = 5, bottom = 5 },
+	font_size = size,
+	window_decorations = decoration,
+	window_padding = {
+		left = 10,
+		right = 10,
+		top = 5,
+		bottom = 5,
+	},
 	keys = {
 		{
 			key = "C",

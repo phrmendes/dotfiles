@@ -21,6 +21,7 @@
       "keepingyouawake"
       "maccy"
       "slack"
+      "tailscale"
       "wezterm"
     ];
   };

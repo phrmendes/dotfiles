@@ -56,7 +56,6 @@ if vim.fn.has("mac") == 0 then
 
 			wk.register({
 				e = { nabla.popup, "Equation preview" },
-				m = { "<cmd>ComposerOpen<cr>", "Markdown preview" },
 			}, { prefix = "<localleader>", mode = "n", buffer = 0 })
 
 			wk.register({

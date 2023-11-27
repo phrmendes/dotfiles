@@ -22,7 +22,7 @@
     nixpkgs-stable,
     ...
   }: {
-    darwinConfigurations.macos = let
+    darwinConfigurations."SAO-QQ4FN0YXVT" = let
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;

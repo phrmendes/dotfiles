@@ -1,6 +1,7 @@
 local image = require("image")
 
 image.setup({
+	backend = "ueberzug",
 	integrations = {
 		markdown = {
 			enabled = true,

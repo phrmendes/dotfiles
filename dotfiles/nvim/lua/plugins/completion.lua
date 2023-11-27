@@ -35,27 +35,43 @@ cmp.setup({
 			ellipsis_char = "...",
 			maxwidth = 50,
 			mode = "symbol",
-			symbol_map = { Copilot = "" },
+			symbol_map = {
+				otter = "🦦",
+				Copilot = "",
+			},
 		}),
 	},
 })
 
-cmp.setup.filetype("quarto", {
-	sources = cmp.config.sources({
-		{ name = "cmp_pandoc" },
-		{ name = "luasnip" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-	}, {
-		{ name = "buffer" },
-	}),
-})
+if vim.fn.has("mac") == 0 then
+	cmp.setup.filetype("quarto", {
+		sources = cmp.config.sources({
+			{ name = "otter" },
+			{ name = "cmp_pandoc" },
+			{ name = "luasnip" },
+			{ name = "path" },
+			{ name = "latex_symbols", option = { strategy = 2 } },
+		}, {
+			{ name = "buffer" },
+		}),
+	})
 
-cmp.setup.filetype("markdown", {
-	sources = cmp.config.sources({
-		{ name = "cmp_zotcite" },
-		{ name = "luasnip" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-	}, {
-		{ name = "buffer" },
-	}),
-})
+	cmp.setup.filetype("markdown", {
+		sources = cmp.config.sources({
+			{ name = "cmp_zotcite" },
+			{ name = "luasnip" },
+			{ name = "path" },
+			{ name = "latex_symbols", option = { strategy = 2 } },
+		}, {
+			{ name = "buffer" },
+		}),
+	})
+else
+	cmp.setup.filetype("markdown", {
+		sources = cmp.config.sources({
+			{ name = "luasnip" },
+			{ name = "path" },
+			{ name = "buffer" },
+		}),
+	})
+end

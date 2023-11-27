@@ -85,7 +85,7 @@ in {
         undotree
         vim-helm
         vim-jinja
-        vim-markdown-compose
+        vim-markdown-composer
         vim-nix
         vim-sleuth
         vim-slime

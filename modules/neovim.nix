@@ -56,7 +56,6 @@ in {
         lspkind-nvim
         ltex_extra-nvim
         luasnip
-        markdown-preview-nvim
         mini-nvim
         neodev-nvim
         neogen
@@ -86,6 +85,7 @@ in {
         undotree
         vim-helm
         vim-jinja
+        vim-markdown-compose
         vim-nix
         vim-sleuth
         vim-slime

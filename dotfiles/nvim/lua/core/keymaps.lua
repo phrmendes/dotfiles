@@ -52,12 +52,12 @@ if vim.fn.has("mac") == 0 then
 		callback = function()
 			local nabla = require("nabla")
 
+			vim.g.markdown_composer_autostart = 0
+
 			wk.register({
-				name = "preview",
 				e = { nabla.popup, "Equation preview" },
-				m = { "<Plug>MarkdownPreviewToggle", "Markdown preview" },
-				q = { "<cmd>QuartoPreview<cr>", "Quarto preview" },
-			}, { prefix = "<localleader>p", mode = "n", buffer = 0 })
+				m = { "<cmd>ComposerOpen<cr>", "Markdown preview" },
+			}, { prefix = "<localleader>", mode = "n", buffer = 0 })
 
 			wk.register({
 				name = "zotero",
@@ -69,8 +69,4 @@ if vim.fn.has("mac") == 0 then
 			}, { prefix = "<leader>z", mode = "n", buffer = 0 })
 		end,
 	})
-else
-	wk.register({
-		m = { "<Plug>MarkdownPreviewToggle", "Markdown preview" },
-	}, { prefix = "<localleader>", mode = "n", buffer = 0 })
 end

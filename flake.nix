@@ -21,56 +21,74 @@
     nixpkgs-stable,
     ...
   }: {
-    darwinConfigurations.macos = darwin.lib.darwinSystem rec {
+    darwinConfigurations.macos = let
       system = "aarch64-darwin";
-      specialArgs = inputs;
-      modules = [
-        ./machines/macos
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              inherit inputs;
-              pkgs-stable = import nixpkgs-stable {
-                inherit system;
-                config.allowUnfree = true;
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-stable = import nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+      darwin.lib.darwinSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs pkgs;
+        };
+        modules = [
+          ./machines/macos
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs pkgs pkgs-stable;
               };
+              backupFileExtension = "bak";
+              users.prochame.imports = [
+                ./machines/macos/home.nix
+              ];
             };
-            backupFileExtension = "bak";
-            users.prochame.imports = [
-              ./machines/macos/home.nix
-            ];
-          };
-        }
-      ];
-    };
+          }
+        ];
+      };
 
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.nixos = let
       system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./machines/nixos
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              inherit inputs;
-              pkgs-stable = import nixpkgs-stable {
-                inherit system;
-                config.allowUnfree = true;
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-stable = import nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs pkgs;
+        };
+        modules = [
+          ./machines/nixos
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs pkgs pkgs-stable;
               };
+              backupFileExtension = "bak";
+              users.phrmendes.imports = [
+                ./machines/nixos/home.nix
+              ];
             };
-            backupFileExtension = "bak";
-            users.phrmendes.imports = [
-              ./machines/nixos/home.nix
-            ];
-          };
-        }
-      ];
-    };
+          }
+        ];
+      };
   };
 }

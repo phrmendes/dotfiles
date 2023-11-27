@@ -123,8 +123,6 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   nix = {
     settings = {
       trusted-users = ["root" "@wheel"];

@@ -1,6 +1,4 @@
-{lib, ...}: let
-  path = "~/Projects/bkps";
-in {
+{lib, ...}: {
   imports = [
     ../../modules/bat.nix
     ../../modules/direnv.nix
@@ -27,6 +25,5 @@ in {
   };
   programs = {
     git.userEmail = lib.mkForce "pedrohrmendes@proton.me";
-    zsh.shellAlias.nix_update = lib.mkForce "nix run nix-darwin -- switch --flake ${path}";
   };
 }

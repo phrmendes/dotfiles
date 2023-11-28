@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "cmp-zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700421251,
+        "narHash": "sha256-eTlJ3Y3BRsjBKwuMYvKG8M8G7LSu7rTQ8PtVrlSweZg=",
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "rev": "fd83f05495c14ed7d3d1ae898400622137b01fa2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -72,12 +88,47 @@
         "type": "github"
       }
     },
+    "obsidian-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700960623,
+        "narHash": "sha256-qkcUJKXXAxktc0x+99db+R6nuGv1Iu/+MMDomTLfJho=",
+        "owner": "epwalsh",
+        "repo": "obsidian.nvim",
+        "rev": "2ef0a24d4bd3d0f5e890634369852054c59e8129",
+        "type": "github"
+      },
+      "original": {
+        "owner": "epwalsh",
+        "repo": "obsidian.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable",
+        "obsidian-nvim": "obsidian-nvim",
+        "zotcite": "zotcite"
+      }
+    },
+    "zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700413568,
+        "narHash": "sha256-DYEUBcEu7JJyXcSEkywWuKnsfC2Avttrbl6E1lHBfSI=",
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "rev": "c93519e681a08ff29fdc8910b96aee9a99100f07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "type": "github"
       }
     }
   },

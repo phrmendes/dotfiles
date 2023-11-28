@@ -1,21 +1,17 @@
 {
+  inputs,
   pkgs,
   pkgs-stable,
-  lib,
   ...
 }: let
-  fromGitHub = rev: ref: repo:
+  pluginFromGitHub = pname: src:
     pkgs.vimUtils.buildVimPlugin {
-      pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
-      src = builtins.fetchGit {
-        inherit ref rev;
-        url = "https://github.com/${repo}.git";
-      };
+      inherit pname src;
+      version = src.rev;
     };
-  cmp-zotcite = fromGitHub "fd83f05495c14ed7d3d1ae898400622137b01fa2" "HEAD" "jalvesaq/cmp-zotcite";
-  obsidian-nvim = fromGitHub "5d022cc1d53a40f09902f2e34df3d604d2f2707b" "HEAD" "epwalsh/obsidian.nvim";
-  zotcite = fromGitHub "c93519e681a08ff29fdc8910b96aee9a99100f07" "HEAD" "jalvesaq/zotcite";
+  cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
+  obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
+  zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-latex-symbols

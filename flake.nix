@@ -12,6 +12,19 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+
+    cmp-zotcite = {
+      flake = false;
+      url = "github:jalvesaq/cmp-zotcite";
+    };
+    obsidian-nvim = {
+      flake = false;
+      url = "github:epwalsh/obsidian.nvim";
+    };
+    zotcite = {
+      flake = false;
+      url = "github:jalvesaq/zotcite";
+    };
   };
 
   outputs = inputs @ {

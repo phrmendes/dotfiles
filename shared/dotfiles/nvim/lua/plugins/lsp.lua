@@ -64,6 +64,12 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dap_ui.close()
 end
 
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpoint" })
+vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped" })
+
 -- [[ linters ]] --------------------------------------------------------
 lint.linters_by_ft = {
 	nix = { "statix" },
@@ -138,13 +144,6 @@ local on_attach = function(_, bufnr)
 	}, { prefix = "<leader>", mode = "n", buffer = bufnr })
 
 	wk.register({
-		c = { dap.continue, "DAP: continue" },
-		i = { dap.step_into, "DAP: step into" },
-		o = { dap.step_over, "DAP: step over" },
-		q = { dap.step_out, "DAP: step out" },
-	}, { prefix = "<localleader>", mode = "n", buffer = bufnr })
-
-	wk.register({
 		name = "code",
 		a = { vim.lsp.buf.code_action, "Actions" },
 		l = { vim.lsp.codelens.run, "Lens" },
@@ -156,6 +155,7 @@ local on_attach = function(_, bufnr)
 		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "LSP: document diagnostics" },
 		f = { vim.diagnostic.open_float, "LSP: floating diagnostics message" },
 		l = { dap.run_last, "DAP: run last" },
+		r = { dap.repl.open, "DAP: open REPL" },
 		t = { dap_ui.toggle, "DAP: toggle UI" },
 		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "LSP: workspace diagnostics" },
 		B = {
@@ -165,6 +165,13 @@ local on_attach = function(_, bufnr)
 			"DAP: conditional breakpoint",
 		},
 	}, { prefix = "<leader>d", mode = "n", buffer = bufnr })
+
+	wk.register({
+		["<F1>"] = { dap.continue, "DAP: continue" },
+		["<F2>"] = { dap.step_over, "DAP: step over" },
+		["<F3>"] = { dap.step_into, "DAP: step into" },
+		["<F4>"] = { dap.step_out, "DAP: step out" },
+	}, { prefix = "<localleader>", mode = "n", buffer = bufnr })
 end
 
 autocmd("FileType", {

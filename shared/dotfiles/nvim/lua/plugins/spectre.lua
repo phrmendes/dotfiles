@@ -6,39 +6,44 @@ spectre.setup({
 	is_block_ui_break = true,
 	mapping = {
 		["send_to_qf"] = {
-			map = "<C-s><C-q>",
+			map = "<localleader>q",
 			cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-			desc = "Send all items to quickfix",
+			desc = "Spectre: send all items to quickfix",
 		},
 		["replace_cmd"] = {
-			map = "<C-s><C-c>",
+			map = "<localleader>c",
 			cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
-			desc = "input replace command",
+			desc = "Spectre: input replace command",
 		},
 		["show_option_menu"] = {
-			map = "<C-s><C-o>",
+			map = "<localleader>?",
 			cmd = "<cmd>lua require('spectre').show_options()<CR>",
-			desc = "show options",
+			desc = "Spectre: show options",
 		},
 		["run_current_replace"] = {
-			map = "<C-s><C-r>",
+			map = "<localleader>r",
 			cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
-			desc = "replace current line",
+			desc = "Spectre: replace current line",
 		},
 		["run_replace"] = {
-			map = "<C-s><C-a>",
+			map = "<localleader>a",
 			cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
-			desc = "replace all",
+			desc = "Spectre: replace all",
 		},
 		["change_view_mode"] = {
-			map = "<C-s><C-v>",
+			map = "<localleader>v",
 			cmd = "<cmd>lua require('spectre').change_view()<CR>",
-			desc = "change result view mode",
+			desc = "Spectre: change result view mode",
 		},
 		["resume_last_search"] = {
-			map = "<C-s><C-l>",
+			map = "<localleader>l",
 			cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
-			desc = "repeat last search",
+			desc = "Spectre: repeat last search",
+		},
+		["select_template"] = {
+			map = "<localleader>p",
+			cmd = "<cmd>lua require('spectre.actions').select_template()<CR>",
+			desc = "Spectre: pick template",
 		},
 	},
 })

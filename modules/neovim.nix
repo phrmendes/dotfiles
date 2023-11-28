@@ -58,6 +58,7 @@ in {
         nui-nvim
         nvim-cmp
         nvim-dap
+        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -65,7 +66,6 @@ in {
         nvim-lint
         nvim-lspconfig
         nvim-luadev
-        nvim-metals
         nvim-spectre
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -111,16 +111,19 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
+        delve
         docker-compose-language-service
+        gofumpt
+        goimports-reviser
+        golangci-lint
+        golines
+        gopls
         helm-ls
         ltex-ls
         lua-language-server
-        metals
         nil
-        perl538Packages.LatexIndent
         ruff
         ruff-lsp
-        scalafmt
         shellcheck
         shellharden
         statix
@@ -128,6 +131,9 @@ in {
         taplo
         terraform-ls
         texlab
+      ])
+      ++ (with pkgs.perl538Packages; [
+        LatexIndent
       ])
       ++ (with pkgs-stable.nodePackages; [
         bash-language-server

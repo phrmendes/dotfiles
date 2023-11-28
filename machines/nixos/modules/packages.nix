@@ -8,7 +8,6 @@
       bruno
       celluloid
       chromium
-      coursier
       csvkit
       docker-compose
       droidcam
@@ -18,6 +17,7 @@
       fragments
       gh
       git
+      go
       gthumb
       hugo
       imagemagick

@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    coursier
     eza
     fd
     gcc
     gh
     gnumake
     gnupg
+    go
     jdk21
     kubectl
     kubernetes-helm

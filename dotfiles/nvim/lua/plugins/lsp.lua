@@ -1,6 +1,7 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local conform = require("conform")
 local dap = require("dap")
+local dap_go = require("dap-go")
 local dap_python = require("dap-python")
 local dap_ui = require("dapui")
 local dap_virtual_text = require("nvim-dap-virtual-text")
@@ -9,14 +10,13 @@ local lint = require("lint")
 local lsp_signature = require("lsp_signature")
 local lspconfig = require("lspconfig")
 local ltex_extra = require("ltex_extra")
-local metals = require("metals")
 local neodev = require("neodev")
 local wk = require("which-key")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local scala_group = augroup("ScalaLspConfig", { clear = true })
-local python_group = augroup("PythonLspConfig", { clear = true })
+local python_group = augroup("PythonKeymapConfig", { clear = true })
+local go_group = augroup("GoKeymapConfig", { clear = true })
 local lint_group = augroup("LintersConfig", { clear = true })
 
 -- [[ neodev ]] ---------------------------------------------------------
@@ -52,6 +52,8 @@ dap_virtual_text.setup()
 dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/debugpy/bin/python")
 dap_python.test_runner = "pytest"
 
+dap_go.setup()
+
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dap_ui.open()
 end
@@ -62,29 +64,11 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dap_ui.close()
 end
 
-dap.configurations.scala = {
-	{
-		type = "scala",
-		request = "launch",
-		name = "Run or test",
-		metals = {
-			runType = "runOrTestFile",
-		},
-	},
-	{
-		type = "scala",
-		request = "launch",
-		name = "Test target",
-		metals = {
-			runType = "testTarget",
-		},
-	},
-}
-
 -- [[ linters ]] --------------------------------------------------------
 lint.linters_by_ft = {
 	nix = { "statix" },
 	sh = { "shellcheck" },
+	go = { "golangci_lint" },
 }
 
 autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -119,6 +103,7 @@ conform.formatters_by_ft = {
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
+	go = { "gofumpt", "golines", "goimports-reviser" },
 }
 
 -- [[ capabilities ]] ---------------------------------------------------
@@ -199,6 +184,17 @@ autocmd("FileType", {
 	end,
 })
 
+autocmd("FileType", {
+	pattern = "go",
+	group = go_group,
+	callback = function()
+		wk.register({
+			name = "go",
+			m = { dap_go.debug_test, "DAP: debug test" },
+		}, { prefix = "<leader>dg", mode = "n", buffer = 0 })
+	end,
+})
+
 -- [[ general servers configuration ]] ----------------------------------
 local servers = {
 	"ansiblels",
@@ -267,6 +263,20 @@ lspconfig.pyright.setup({
 	},
 })
 
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
+})
+
 -- [[ ltex ]] -----------------------------------------------------------
 ltex_extra.setup({
 	load_langs = { "en-US", "pt-BR" },
@@ -282,34 +292,4 @@ ltex_extra.setup({
 			},
 		},
 	},
-})
-
--- [[ metals ]] ---------------------------------------------------------
-local metals_config = metals.bare_config()
-metals_config.init_options.statusBarProvider = false
-metals_config.capatibilities = capabilities
-
-metals_config.on_attach = function()
-	metals.setup_dap()
-	on_attach()
-end
-
-metals_config.settings = {
-	showImplicitArguments = true,
-	showImplicitConversionsAndClasses = true,
-	showInferredType = true,
-	superMethodLensesEnabled = true,
-	excludedPackages = {},
-}
-
-autocmd("FileType", {
-	pattern = { "scala", "sbt", "java" },
-	group = scala_group,
-	callback = function()
-		metals.initialize_or_attach(metals_config)
-
-		wk.register({
-			m = { metals.hover_worksheet, "Metals: worksheet" },
-		}, { prefix = "<leader>", mode = "n", buffer = 0 })
-	end,
 })

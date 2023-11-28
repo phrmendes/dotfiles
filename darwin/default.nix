@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./modules/apple.nix
-    ./modules/homebrew.nix
+    ./apple.nix
+    ./homebrew.nix
   ];
   environment.systemPackages = [pkgs.home-manager];
   security.pam.enableSudoTouchIdAuth = true;

@@ -16,12 +16,6 @@ in {
       lla = "eza --icons -la";
       ls = "eza --icons";
       lt = "eza --icons --tree";
-      mb = "micromamba";
-      mba = "micromamba activate";
-      mbc = "micromamba create";
-      mbd = "micromamba deactivate";
-      mbi = "micromamba install";
-      mbu = "micromamba update";
       mkdir = "mkdir -p";
       ncdu = "ncdu --color dark";
       tx = "tmux";

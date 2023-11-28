@@ -26,7 +26,7 @@ spectre.setup({
 			desc = "replace current line",
 		},
 		["run_replace"] = {
-			map = "<C-s><C-R>",
+			map = "<C-s><C-a>",
 			cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
 			desc = "replace all",
 		},
@@ -45,9 +45,9 @@ spectre.setup({
 
 wk.register({
 	s = { spectre.toggle, "Spectre" },
-}, { prefix = "<localleader>", mode = "n" })
+}, { prefix = "<leader>f", mode = "n" })
 
 wk.register({
 	name = "files",
 	s = { spectre.open_visual, "Spectre" },
-}, { prefix = "<localleader>", mode = "x" })
+}, { prefix = "<leader>f", mode = "x" })

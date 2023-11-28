@@ -25,7 +25,6 @@
       kubectl
       kubernetes-helm
       lazydocker
-      micromamba
       minikube
       ncdu
       neovide
@@ -47,7 +46,6 @@
       file-roller
       gnome-calculator
       gnome-disk-utility
-      gnome-screenshot
       gnome-tweaks
       nautilus
     ])

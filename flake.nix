@@ -52,7 +52,7 @@
           inherit inputs pkgs;
         };
         modules = [
-          ./machines/macos
+          ./darwin
           home-manager.darwinModules.home-manager
           {
             home-manager = {
@@ -63,7 +63,7 @@
               };
               backupFileExtension = "bak";
               users.prochame.imports = [
-                ./machines/macos/home.nix
+                ./darwin/home
               ];
             };
           }
@@ -87,7 +87,7 @@
           inherit inputs pkgs;
         };
         modules = [
-          ./machines/nixos
+          ./nixos
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -98,7 +98,7 @@
               };
               backupFileExtension = "bak";
               users.phrmendes.imports = [
-                ./machines/nixos/home.nix
+                ./nixos/home
               ];
             };
           }

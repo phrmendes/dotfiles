@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-eval "$(micromamba shell hook --shell=zsh)"
-
 path+=(
 	"$HOME"/.local/bin
 	/etc/profiles/per-user/"$USER"/bin

@@ -1,7 +1,5 @@
 if not vim.g.neovide then
-	local image = require("image")
-
-	image.setup({
+	require("image").setup({
 		backend = "ueberzug",
 		integrations = {
 			markdown = {

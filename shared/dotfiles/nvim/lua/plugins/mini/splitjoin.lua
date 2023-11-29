@@ -1,3 +1,1 @@
-local splitjoin = require("mini.splitjoin")
-
-splitjoin.setup({ mappings = { toggle = "T" } })
+require("mini.splitjoin").setup({ mappings = { toggle = "T" } })

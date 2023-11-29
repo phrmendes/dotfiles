@@ -41,10 +41,10 @@ in {
         cmp-path
         cmp_luasnip
         conform-nvim
-        copilot-cmp
-        copilot-lua
+        copilot-vim
         dressing-nvim
         executor-nvim
+        flash-nvim
         friendly-snippets
         gitsigns-nvim
         lazygit-nvim
@@ -77,6 +77,7 @@ in {
         telescope-nvim
         telescope-ui-select-nvim
         telescope-zoxide
+        todo-comments-nvim
         trouble-nvim
         undotree
         vim-helm

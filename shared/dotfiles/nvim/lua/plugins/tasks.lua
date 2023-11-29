@@ -1,3 +1,1 @@
-local executor = require("executor")
-
-executor.setup({})
+require("executor").setup({})

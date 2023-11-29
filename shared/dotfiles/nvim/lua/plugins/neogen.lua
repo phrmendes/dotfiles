@@ -1,7 +1,6 @@
-local neogen = require("neogen")
 local wk = require("which-key")
 
-neogen.setup({
+require("neogen").setup({
 	snippet_engine = "luasnip",
 	enabled = true,
 	languages = {

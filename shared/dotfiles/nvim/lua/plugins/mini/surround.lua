@@ -1,7 +1,6 @@
-local surround = require("mini.surround")
 local wk = require("which-key")
 
-surround.setup({
+require("mini.surround").setup({
 	mappings = {
 		add = "gsa",
 		delete = "gsd",

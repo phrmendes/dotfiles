@@ -1,7 +1,6 @@
 local wk = require("which-key")
-local zen = require("zen-mode")
 
-zen.setup({
+require("zen-mode").setup({
 	plugins = {
 		twilight = false,
 		wezterm = {

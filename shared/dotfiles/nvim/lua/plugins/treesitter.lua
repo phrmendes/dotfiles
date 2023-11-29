@@ -1,7 +1,4 @@
-local treesitter = require("nvim-treesitter.configs")
-local context = require("treesitter-context")
-
-treesitter.setup({
+require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = { "markdown" },
@@ -28,4 +25,4 @@ treesitter.setup({
 	},
 })
 
-context.setup()
+require("treesitter-context").setup()

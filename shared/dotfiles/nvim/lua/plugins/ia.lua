@@ -1,8 +1,7 @@
 local home = os.getenv("HOME")
-local chatgpt = require("chatgpt")
 local wk = require("which-key")
 
-chatgpt.setup({
+require("chatgpt").setup({
 	api_key_cmd = "gpg --decrypt " .. home .. "/.openai-token.gpg",
 })
 

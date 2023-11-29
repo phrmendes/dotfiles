@@ -1,4 +1,32 @@
 ---
+cycle-layout:
+  key: >
+  mod: mod2
+cycle-layout-backward:
+  key: <
+  mod: mod2
+enables-layout-hud: true
+expand-main:
+  key: e
+  mod: mod2
+float-small-windows: true
+focus-ccw:
+  key: j
+  mod: mod1
+focus-cw:
+  key: k
+  mod: mod1
+
+focus-follows-mouse: false
+follow-space-thrown-windows: false
+
+ignore-menu-bar: false
+
+layouts:
+  - tall
+  - bsp
+  - fullscreen
+
 mod1:
   - option
 mod2:
@@ -9,82 +37,57 @@ mod3:
   - control
   - shift
 
-enables-layout-hud: true
-layouts:
-  - tall
-  - bsp
-  - fullscreen
+mouse-follows-focus: false
+mouse-resizes-windows: true
 
-window-margins: true
-window-margin-size: 10
-float-small-windows: true
-follow-space-thrown-windows: false
+reevaluate-windows:
+  key: r
+  mod: mod1
+relaunch-amethyst:
+  key: r
+  mod: mod2
 
-screen-padding-left: 3
 screen-padding-bottom: 3
+screen-padding-left: 3
 screen-padding-right: 3
 screen-padding-top: 3
 
-mouse-follows-focus: false
-focus-follows-mouse: false
-mouse-resizes-windows: true
-
-ignore-menu-bar: false
-
-reevaluate-windows:
-  mod: mod1
-  key: r
-relaunch-amethyst:
-  mod: mod2
-  key: r
-cycle-layout:
-  mod: mod2
-  key: >
-cycle-layout-backward:
-  mod: mod2
-  key: <
-focus-cw:
-  mod: mod1
-  key: k
-focus-ccw:
-  mod: mod1
-  key: j
 shrink-main:
-  mod: mod2
   key: s
-expand-main:
   mod: mod2
-  key: e
-swap-cw:
-  mod: mod2
-  key: k
 swap-ccw:
-  mod: mod2
   key: j
-toggle-float:
   mod: mod2
-  key: f
-throw-space-left:
-  mod: mod3
-  key: h
-throw-space-right:
-  mod: mod3
-  key: l
+swap-cw:
+  key: k
+  mod: mod2
 throw-screen-1:
-  mod: mod2
   key: 1
+  mod: mod2
 throw-screen-2:
-  mod: mod2
   key: 2
+  mod: mod2
 throw-screen-3:
-  mod: mod2
   key: 3
+  mod: mod2
 throw-screen-4:
-  mod: mod2
   key: 4
+  mod: mod2
 throw-screen-5:
-  mod: mod2
   key: 5
-throw-screen-6:
   mod: mod2
+throw-screen-6:
   key: 6
+  mod: mod2
+throw-space-left:
+  key: h
+  mod: mod3
+throw-space-right:
+  key: l
+  mod: mod3
+toggle-float:
+  key: f
+  mod: mod2
+
+window-margin-size: 10
+window-margins: true

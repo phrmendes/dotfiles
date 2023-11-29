@@ -1,9 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-local cmp_copilot = require("copilot_cmp")
-
-cmp_copilot.setup()
 
 cmp.setup({
 	snippet = {
@@ -21,7 +18,6 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
@@ -35,7 +31,6 @@ cmp.setup({
 			mode = "symbol",
 			symbol_map = {
 				otter = "🦦",
-				Copilot = "",
 			},
 		}),
 	},

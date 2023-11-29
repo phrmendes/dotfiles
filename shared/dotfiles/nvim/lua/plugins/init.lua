@@ -1,6 +1,6 @@
 require("plugins.colorscheme")
 require("plugins.completion")
-require("plugins.copilot")
+require("plugins.flash")
 require("plugins.git")
 require("plugins.lsp")
 require("plugins.mini")
@@ -19,5 +19,4 @@ if vim.fn.has("mac") == 0 then
 	require("plugins.ia")
 	require("plugins.obsidian")
 	require("plugins.image")
-	require("plugins.quarto")
 end

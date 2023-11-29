@@ -1,6 +1,4 @@
-local indentscope = require("mini.indentscope")
-
-indentscope.setup({
+require("mini.indentscope").setup({
 	symbol = "│",
 	options = { try_as_border = true },
 })

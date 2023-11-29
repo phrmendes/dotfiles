@@ -1,6 +1,4 @@
-local move = require("mini.move")
-
-move.setup({
+require("mini.move").setup({
 	mappings = {
 		-- visual mode
 		down = "<S-j>",

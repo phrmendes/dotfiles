@@ -1,6 +1,4 @@
-local catppuccin = require("catppuccin")
-
-catppuccin.setup({
+require("catppuccin").setup({
 	flavour = "mocha",
 	background = { dark = "mocha" },
 	dim_inactive = {

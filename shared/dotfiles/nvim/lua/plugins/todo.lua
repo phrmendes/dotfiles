@@ -12,8 +12,6 @@ map("n", "[t", function()
 end, { desc = "Previous todo comment" })
 
 wk.register({
-	name = "todo",
-	p = { "<cmd>TodoQuickfix<cr>", "Todos (project)" },
-	d = { "<cmd>TodoQuickfix<cr>", "Todos (document)" },
-	s = { "<cmd>TodoTelescope<cr>", "Search todos" },
+	T = { "<cmd>TodoQuickFix<cr>", "Workspace todos" },
+	t = { "<cmd>TodoLocList<cr>", "Document todos" },
 }, { prefix = "<leader>t", mode = "n" })

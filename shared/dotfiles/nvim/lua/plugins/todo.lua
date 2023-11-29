@@ -1,7 +1,7 @@
 local todo = require("todo-comments")
 local wk = require("which-key")
 
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 map("n", "]t", function()
 	todo.jump_next()
@@ -16,4 +16,4 @@ wk.register({
 	p = { "<cmd>TodoQuickfix<cr>", "Todos (project)" },
 	d = { "<cmd>TodoQuickfix<cr>", "Todos (document)" },
 	s = { "<cmd>TodoTelescope<cr>", "Search todos" },
-}, { prefix = "<leader>", mode = "n" })
+}, { prefix = "<leader>t", mode = "n" })

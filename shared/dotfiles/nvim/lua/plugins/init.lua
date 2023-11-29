@@ -14,6 +14,7 @@ require("plugins.treesitter")
 require("plugins.undotree")
 require("plugins.which-key")
 require("plugins.zen")
+require("plugins.todo")
 
 if vim.fn.has("mac") == 0 then
 	require("plugins.ia")

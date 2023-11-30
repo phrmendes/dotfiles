@@ -84,5 +84,4 @@ vim.g.markdown_composer_autostart = 0
 -- nvim server
 if vim.fn.executable("nvr") then
 	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end

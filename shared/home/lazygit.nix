@@ -4,9 +4,9 @@
     settings = {
       gui.nerdFontsVersion = "3";
       os = {
-        edit = "nvim --server $NVIM --remote-tab {{filename}}";
-        editAtLine = "nvim --server $NVIM --remote-tab {{filename}}";
-        editAtLineAndWait = "nvim --server $NVIM --remote-tab {{filename}}";
+        edit = ''nvim --server $NVIM --remote-tab "$(pwd)/{{filename}}"'';
+        editAtLine = ''nvim --server $NVIM --remote-tab "$(pwd)/{{filename}}"'';
+        editAtLineAndWait = ''nvim --server $NVIM --remote-tab "$(pwd)/{{filename}}"'';
       };
       git.paging = {
         colorArg = "always";

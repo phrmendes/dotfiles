@@ -21,6 +21,7 @@
       hugo
       imagemagick
       insync
+      just
       kubectl
       kubernetes-helm
       lazydocker

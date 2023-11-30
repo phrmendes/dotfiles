@@ -82,14 +82,17 @@ in {
         undotree
         vim-helm
         vim-jinja
-        vim-markdown-composer
         vim-nix
         vim-sleuth
         vim-slime
+        vim-just
         vim-tmux-navigator
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim
+      ])
+      ++ (with pkgs-stable.vimPlugins; [
+        markdown-preview-nvim
       ])
       ++ (
         if pkgs.stdenv.isDarwin
@@ -122,6 +125,7 @@ in {
         helm-ls
         ltex-ls
         lua-language-server
+        marksman
         neovim-remote
         nil
         ruff

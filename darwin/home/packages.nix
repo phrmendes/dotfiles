@@ -8,6 +8,7 @@
     gnupg
     go
     jdk21
+    just
     kubectl
     kubernetes-helm
     maven

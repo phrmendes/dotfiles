@@ -79,7 +79,7 @@ vim.opt.concealcursor = "nc"
 vim.opt.shellslash = true
 
 -- markdown preview
-vim.g.markdown_composer_autostart = 0
+vim.g.mkdp_filetypes = { "markdown", "quarto", "pandoc" }
 
 -- nvim server
 if vim.fn.executable("nvr") then

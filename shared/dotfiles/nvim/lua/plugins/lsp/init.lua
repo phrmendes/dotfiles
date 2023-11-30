@@ -31,6 +31,7 @@ local servers = {
 	"docker_compose_language_service",
 	"dockerls",
 	"helm_ls",
+	"marksman",
 	"nil_ls",
 	"ruff_lsp",
 	"taplo",

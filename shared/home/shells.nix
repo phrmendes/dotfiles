@@ -1,5 +1,9 @@
-let
+{pkgs, ...}: let
   path = "~/Projects/bkps";
+  update_command =
+    if pkgs.stdenv.isDarwin
+    then "nix run nix-darwin -- switch --flake ${path}"
+    else "sudo nixos-rebuild switch --flake ${path}";
 in {
   programs = {
     bash.enable = true;
@@ -20,12 +24,11 @@ in {
         lt = "eza --icons --tree";
         mkdir = "mkdir -p";
         ncdu = "ncdu --color dark";
-        tx = "tmux";
-        vim = "nvim";
         nix_clear = "nix store gc --debug";
         nix_hash = "nix-hash --flat --base64 --type sha256";
-        nix_update = "sudo nixos-rebuild switch --flake ${path}";
-        darwin_update = "nix run nix-darwin -- switch --flake ${path}";
+        nix_update = update_command;
+        tx = "tmux";
+        v = "nvim";
       };
     };
   };

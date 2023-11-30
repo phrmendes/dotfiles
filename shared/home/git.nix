@@ -1,8 +1,9 @@
 {lib, ...}: {
   programs.git = {
+    delta.enable = true;
     enable = true;
-    userName = "Pedro Mendes";
     userEmail = lib.mkDefault "pedrohrmendes@proton.me";
+    userName = "Pedro Mendes";
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
@@ -14,12 +15,6 @@
       st = "status";
       rc = "rebase --continue";
       lg = "log";
-    };
-    difftastic = {
-      enable = true;
-      background = "dark";
-      color = "always";
-      display = "inline";
     };
   };
 }

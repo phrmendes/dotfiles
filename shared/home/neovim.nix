@@ -122,6 +122,7 @@ in {
         helm-ls
         ltex-ls
         lua-language-server
+        neovim-remote
         nil
         ruff
         ruff-lsp

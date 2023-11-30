@@ -2,6 +2,8 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 
+vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -15,7 +17,15 @@ cmp.setup({
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-c>"] = cmp.mapping.abort(),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<S-CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		}),
+		["<C-CR>"] = function(fallback)
+			cmp.abort()
+			fallback()
+		end,
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
@@ -33,6 +43,11 @@ cmp.setup({
 				otter = "🦦",
 			},
 		}),
+		experimental = {
+			ghost_text = {
+				hl_group = "CmpGhostText",
+			},
+		},
 	},
 })
 

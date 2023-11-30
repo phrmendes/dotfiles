@@ -36,4 +36,5 @@ wk.register({
 	b = { gitsigns.toggle_current_line_blame, "Blame line" },
 	d = { gitsigns.diffthis, "Diff" },
 	g = { "<cmd>LazyGit<cr>", "LazyGit" },
+	s = { "<cmd>Telescope lazygit<cr>", "Repos" },
 }, { prefix = "<leader>g", mode = "n" })

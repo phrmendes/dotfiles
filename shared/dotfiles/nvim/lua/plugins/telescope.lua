@@ -55,6 +55,7 @@ telescope.setup({
 local extensions = {
 	"ui-select",
 	"zoxide",
+	"lazygit",
 }
 
 for _, ext in ipairs(extensions) do

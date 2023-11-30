@@ -1,87 +1,88 @@
-local cmd = vim.cmd
-local g = vim.g
-local opt = vim.opt
-
--- [[ options ]] --------------------------------------------------------
 -- leader keys
-g.mapleader = " "
-g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- syntax
-opt.syntax = "on"
+vim.opt.syntax = "on"
 
 -- file type plugin
-cmd("filetype plugin on")
+vim.cmd("filetype plugin on")
 
 -- line numbers
-opt.relativenumber = true
-opt.number = true
+vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- tabs and indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.autoindent = true
-opt.breakindent = true
-opt.showtabline = 1
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.breakindent = true
+vim.opt.showtabline = 1
 
 -- line wrapping
-opt.wrap = true
+vim.opt.wrap = true
 
 -- global status line
-opt.laststatus = 3
+vim.opt.laststatus = 3
 
 -- search settings
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = false
 
 -- config cursor line
-opt.cursorline = true
+vim.opt.cursorline = true
 
 -- appearance
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.signcolumn = "yes"
 
 -- backspace
-opt.backspace = { "indent", "eol", "start" }
+vim.opt.backspace = { "indent", "eol", "start" }
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+vim.opt.clipboard:append("unnamedplus")
 
 -- split windows
-opt.splitright = true
-opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- disable backup files
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
 
 -- save undo history
-opt.undofile = true
+vim.opt.undofile = true
 
 -- decrease update time
-opt.updatetime = 250
-opt.timeout = true
-opt.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
 
 -- better completion experience
-opt.completeopt = { "noinsert", "menuone", "noselect" }
+vim.opt.completeopt = { "noinsert", "menuone", "noselect" }
 
 -- random
-opt.iskeyword:append("-")
+vim.opt.iskeyword:append("-")
 
 -- default terminal
-opt.shell = "zsh"
+vim.opt.shell = "zsh"
 
 -- conceal links
-opt.conceallevel = 2
-opt.concealcursor = "nc"
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "nc"
 
 -- shell slash
-opt.shellslash = true
+vim.opt.shellslash = true
 
 -- markdown preview
-g.mkdp_filetyes = { "markdown", "quarto" }
+vim.g.markdown_composer_autostart = 0
+
+-- nvim server
+if vim.fn.executable("nvr") then
+	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end

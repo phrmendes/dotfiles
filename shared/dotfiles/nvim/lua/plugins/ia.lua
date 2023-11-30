@@ -1,4 +1,4 @@
-local home = os.getenv("HOME")
+local home = vim.env.HOME
 local wk = require("which-key")
 
 require("chatgpt").setup({

@@ -29,6 +29,14 @@ map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true, de
 map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (H)" })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (V)" })
 
+map("n", "[<TAB>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "]<TAB>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+
+wk.register({
+	n = { "<cmd>tabnew<cr>", "New tab" },
+	q = { "<cmd> bd <bar> tabclose <bar> startinsert<cr>", "Close tab" },
+}, { prefix = "<TAB>", mode = "n" })
+
 wk.register({
 	["-"] = { "<C-w>s", "Split window (H)" },
 	["W"] = { "<cmd>wq<cr>", "Save and quit" },
@@ -51,8 +59,6 @@ if vim.fn.has("mac") == 0 then
 		group = group,
 		callback = function()
 			local nabla = require("nabla")
-
-			vim.g.markdown_composer_autostart = 0
 
 			wk.register({
 				e = { nabla.popup, "Equation preview" },

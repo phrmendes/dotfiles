@@ -11,7 +11,6 @@
       csvkit
       docker-compose
       droidcam
-      evince
       eza
       firefox
       fragments

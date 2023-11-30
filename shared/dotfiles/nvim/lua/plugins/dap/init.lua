@@ -17,27 +17,27 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 wk.register({
-	name = "debug/diagnostics",
-	b = { dap.toggle_breakpoint, "DAP: toggle breakpoint" },
-	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "LSP: document diagnostics" },
-	f = { vim.diagnostic.open_float, "LSP: floating diagnostics message" },
-	l = { dap.run_last, "DAP: run last" },
-	r = { dap.repl.open, "DAP: open REPL" },
-	t = { dap_ui.toggle, "DAP: toggle UI" },
-	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "LSP: workspace diagnostics" },
-	B = {
-		function()
-			dap.set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))
-		end,
-		"DAP: conditional breakpoint",
-	},
-}, { prefix = "<leader>d", mode = "n", buffer = 0 })
-
-wk.register({
 	["<F1>"] = { dap.continue, "DAP: continue" },
 	["<F2>"] = { dap.step_over, "DAP: step over" },
 	["<F3>"] = { dap.step_into, "DAP: step into" },
 	["<F4>"] = { dap.step_out, "DAP: step out" },
+	["<F5>"] = { dap.step_back, "DAP: step back" },
+	["<F6>"] = { dap.pause, "DAP: pause" },
+	["<F7>"] = { dap.close, "DAP: quit" },
+	b = { dap.toggle_breakpoint, "DAP: toggle breakpoint" },
+	B = {
+		function()
+			local condition = ""
+			vim.ui.select({
+				prompt = "Condition: ",
+			}, function(input)
+				condition = input
+			end)
+			dap.set_breakpoint(condition)
+		end,
+		"DAP: conditional breakpoint",
+	},
+	t = { dap_ui.toggle, "DAP: toggle UI" },
 }, { prefix = "<localleader>", mode = "n", buffer = 0 })
 
 require("plugins.dap.icons")

@@ -6,4 +6,4 @@ dap_go.setup()
 wk.register({
 	name = "go",
 	m = { dap_go.debug_test, "DAP: debug test" },
-}, { prefix = "<leader>dg", mode = "n", buffer = 0 })
+}, { prefix = "<localleader>", mode = "n", buffer = 0 })

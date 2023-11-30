@@ -8,6 +8,7 @@
     ./home-manager.nix
     ./packages.nix
     ./xdg.nix
+    ./sioyek.nix
   ];
   targets.genericLinux.enable = true;
   home = {

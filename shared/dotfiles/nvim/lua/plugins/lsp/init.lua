@@ -13,25 +13,16 @@ local on_attach = function(_, bufnr)
 	}, { prefix = "g", mode = "n", buffer = bufnr })
 
 	wk.register({
+		D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "LSP: workspace diagnostics" },
+		F = { vim.diagnostic.open_float, "LSP: floating diagnostics message" },
 		K = { vim.lsp.buf.signature_help, "LSP: show signature help" },
 		S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "LSP: workspace symbols" },
+		a = { vim.lsp.buf.code_action, "LSP: code actions" },
+		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "LSP: document diagnostics" },
 		k = { vim.lsp.buf.hover, "LSP: show hover documentation" },
 		r = { vim.lsp.buf.rename, "LSP: rename symbol" },
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "LSP: document symbols" },
 	}, { prefix = "<leader>", mode = "n", buffer = bufnr })
-
-	wk.register({
-		name = "code",
-		a = { vim.lsp.buf.code_action, "Actions" },
-		l = { vim.lsp.codelens.run, "Lens" },
-	}, { prefix = "<leader>c", mode = { "n", "x" }, buffer = bufnr })
-
-	wk.register({
-		name = "debug/diagnostics",
-		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "LSP: document diagnostics" },
-		f = { vim.diagnostic.open_float, "LSP: floating diagnostics message" },
-		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "LSP: workspace diagnostics" },
-	}, { prefix = "<leader>d", mode = "n", buffer = 0 })
 end
 
 local servers = {

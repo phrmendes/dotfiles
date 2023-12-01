@@ -8,42 +8,42 @@ spectre.setup({
 		["send_to_qf"] = {
 			map = "<C-s><C-q>",
 			cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-			desc = "Spectre: send all items to quickfix",
+			desc = "send all items to quickfix",
 		},
 		["replace_cmd"] = {
 			map = "<C-s><C-c>",
 			cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
-			desc = "Spectre: input replace command",
+			desc = "input replace command",
 		},
 		["show_option_menu"] = {
 			map = "<C-s><C-?>",
 			cmd = "<cmd>lua require('spectre').show_options()<CR>",
-			desc = "Spectre: show options",
+			desc = "show options",
 		},
 		["run_current_replace"] = {
 			map = "<C-s><C-r>",
 			cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
-			desc = "Spectre: replace current line",
+			desc = "replace current line",
 		},
 		["run_replace"] = {
 			map = "<C-s><C-a>",
 			cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
-			desc = "Spectre: replace all",
+			desc = "replace all",
 		},
 		["change_view_mode"] = {
 			map = "<C-s><C-v>",
 			cmd = "<cmd>lua require('spectre').change_view()<CR>",
-			desc = "Spectre: change result view mode",
+			desc = "change result view mode",
 		},
 		["resume_last_search"] = {
 			map = "<C-s><C-l>",
 			cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
-			desc = "Spectre: repeat last search",
+			desc = "repeat last search",
 		},
 		["select_template"] = {
 			map = "<C-s><C-p>",
 			cmd = "<cmd>lua require('spectre.actions').select_template()<CR>",
-			desc = "Spectre: pick template",
+			desc = "pick template",
 		},
 	},
 })

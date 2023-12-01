@@ -1,5 +1,3 @@
-local wk = require("which-key")
-
 require("neogen").setup({
 	snippet_engine = "luasnip",
 	enabled = true,
@@ -12,6 +10,4 @@ require("neogen").setup({
 	},
 })
 
-wk.register({
-	n = { "<cmd>Neogen<cr>", "Generate annotations" },
-}, { prefix = "<leader>", mode = "n" })
+vim.keymap.set("n", "<leader>n", "<cmd>Neogen<cr>", { desc = "Generate annotations" })

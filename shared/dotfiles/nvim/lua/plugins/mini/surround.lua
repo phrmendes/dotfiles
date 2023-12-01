@@ -1,5 +1,3 @@
-local wk = require("which-key")
-
 require("mini.surround").setup({
 	mappings = {
 		add = "gsa",
@@ -13,7 +11,3 @@ require("mini.surround").setup({
 		suffix_next = "n",
 	},
 })
-
-wk.register({
-	name = "surround",
-}, { prefix = "gs", mode = { "n", "x" } })

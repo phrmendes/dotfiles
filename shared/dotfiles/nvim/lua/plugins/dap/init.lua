@@ -1,6 +1,5 @@
 local dap = require("dap")
 local dap_ui = require("dapui")
-local wk = require("which-key")
 local dap_virtual_text = require("nvim-dap-virtual-text")
 
 dap_ui.setup()
@@ -16,29 +15,30 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dap_ui.close()
 end
 
-wk.register({
-	["<F1>"] = { dap.continue, "DAP: continue" },
-	["<F2>"] = { dap.step_over, "DAP: step over" },
-	["<F3>"] = { dap.step_into, "DAP: step into" },
-	["<F4>"] = { dap.step_out, "DAP: step out" },
-	["<F5>"] = { dap.step_back, "DAP: step back" },
-	["<F6>"] = { dap.pause, "DAP: pause" },
-	["<F7>"] = { dap.close, "DAP: quit" },
-	b = { dap.toggle_breakpoint, "DAP: toggle breakpoint" },
-	B = {
-		function()
-			local condition = ""
-			vim.ui.select({
-				prompt = "Condition: ",
-			}, function(input)
-				condition = input
-			end)
-			dap.set_breakpoint(condition)
-		end,
-		"DAP: conditional breakpoint",
-	},
-	t = { dap_ui.toggle, "DAP: toggle UI" },
-}, { prefix = "<localleader>", mode = "n", buffer = 0 })
+local map = function(key, value, desc)
+	vim.keymap.set("n", "<localleader>" .. key, value, { buffer = true, desc = "DAP: " .. desc })
+end
+
+local conditional_breakpoint = function()
+	local condition = ""
+	vim.ui.select({
+		prompt = "Condition: ",
+	}, function(input)
+		condition = input
+	end)
+	dap.set_breakpoint(condition)
+end
+
+map("<F1>", dap.continue, "continue")
+map("<F2>", dap.step_over, "step over")
+map("<F3>", dap.step_into, "step into")
+map("<F4>", dap.step_out, "step out")
+map("<F5>", dap.step_back, "step back")
+map("<F6>", dap.pause, "pause")
+map("<F7>", dap.close, "quit")
+map("b", dap.toggle_breakpoint, "toggle breakpoint")
+map("B", conditional_breakpoint, "conditional breakpoint")
+map("t", dap_ui.toggle, "toggle UI")
 
 require("plugins.dap.icons")
 require("plugins.dap.go")

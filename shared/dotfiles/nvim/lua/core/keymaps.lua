@@ -1,5 +1,3 @@
-local wk = require("which-key")
-
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
@@ -29,50 +27,39 @@ map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true, de
 map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (H)" })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (V)" })
 
-map("n", "[<TAB>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
-map("n", "]<TAB>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<TAB>[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "<TAB>]", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<TAB>n", "<cmd>tabnext<cr>", { desc = "New tab" })
+map("n", "<TAB>q", "<cmd> bd <bar> tabclose <bar> startinsert<cr>", { desc = "Close tab" })
 
-wk.register({
-	n = { "<cmd>tabnew<cr>", "New tab" },
-	q = { "<cmd> bd <bar> tabclose <bar> startinsert<cr>", "Close tab" },
-}, { prefix = "<TAB>", mode = "n" })
-
-wk.register({
-	["-"] = { "<C-w>s", "Split window (H)" },
-	["W"] = { "<cmd>wq<cr>", "Save and quit" },
-	["\\"] = { "<C-w>v", "Split window (V)" },
-	Q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-	l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-	q = { "<cmd>confirm q<cr>", "Quit" },
-	w = { "<cmd>w<cr>", "Save" },
-	x = { "<C-w>q", "Close window" },
-}, { prefix = "<leader>", mode = "n" })
-
-wk.register({
-	name = "buffers",
-	q = { "<cmd> w <bar> %bd <bar> e# <bar> bd# <cr><cr>", "Close all unfocused" },
-}, { prefix = "<leader>b", mode = "n" })
+map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
+map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split window (H)" })
+map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split window (V)" })
+map("n", "<leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
+map("n", "<leader>Q", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix" })
+map("n", "<leader>l", "<cmd>TroubleToggle loclist<cr>", { desc = "Loclist" })
+map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
+map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
+map("n", "<leader>bq", "<cmd> w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all unfocused" })
 
 if vim.fn.has("mac") == 0 then
 	autocmd("FileType", {
 		pattern = { "markdown", "quarto" },
 		group = group,
 		callback = function()
-			local nabla = require("nabla")
+			map("n", "<localleader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown preview", buffer = true })
+			map("n", "<localleader>e", require("nabla").popup, { desc = "Markdown preview", buffer = true })
 
-			wk.register({
-				e = { nabla.popup, "Equation preview" },
-				m = { "<cmd>MarkdownPreviewToggle<cr>", "Markdown preview" },
-			}, { prefix = "<localleader>", mode = "n", buffer = 0 })
+			require("which-key").register({
+				["<leader>z"] = { name = "+zotero" },
+			}, { mode = "n", buffer = true })
 
-			wk.register({
-				name = "zotero",
-				c = { "<Plug>ZCitationCompleteInfo", "Citation info (complete)" },
-				i = { "<Plug>ZCitationInfo", "Citation info" },
-				o = { "<Plug>ZOpenAttachment", "Open attachment" },
-				v = { "<Plug>ZViewDocument", "View exported document" },
-				y = { "<Plug>ZCitationYamlRef", "Citation info (yaml)" },
-			}, { prefix = "<leader>z", mode = "n", buffer = 0 })
+			map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", { desc = "Citation info (complete)", buffer = true })
+			map("n", "<leader>zi", "<Plug>ZCitationInfo", { desc = "Citation info", buffer = true })
+			map("n", "<leader>zo", "<Plug>ZOpenAttachment", { desc = "Open attachment", buffer = true })
+			map("n", "<leader>zv", "<Plug>ZViewDocument", { desc = "View exported document", buffer = true })
+			map("n", "<leader>zy", "<Plug>ZCitationYamlRef", { desc = "Citation info (yaml)", buffer = true })
 		end,
 	})
 end

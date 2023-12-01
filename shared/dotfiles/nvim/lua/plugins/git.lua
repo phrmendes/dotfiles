@@ -1,5 +1,4 @@
 local gitsigns = require("gitsigns")
-local wk = require("which-key")
 
 gitsigns.setup()
 
@@ -23,18 +22,9 @@ local next_hunk = function()
 	return "<Ignore>"
 end
 
-wk.register({
-	h = { next_hunk, "Next hunk" },
-}, { prefix = "]", mode = "n", expr = true })
-
-wk.register({
-	h = { prev_hunk, "Previous hunk" },
-}, { prefix = "[", mode = "n", expr = true })
-
-wk.register({
-	name = "git",
-	b = { gitsigns.toggle_current_line_blame, "Blame line" },
-	d = { gitsigns.diffthis, "Diff" },
-	g = { "<cmd>LazyGit<cr>", "LazyGit" },
-	s = { "<cmd>Telescope lazygit<cr>", "Repos" },
-}, { prefix = "<leader>g", mode = "n" })
+vim.keymap.set("n", "]h", next_hunk, { desc = "Next hunk", expr = true })
+vim.keymap.set("n", "[h", prev_hunk, { desc = "Previous hunk", expr = true })
+vim.keymap.set("n", "<leader>gb", gitsigns.toggle_current_line_blame, { desc = "Blame line" })
+vim.keymap.set("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff" })
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+vim.keymap.set("n", "<leader>gs", "<cmd>Telescope lazygit<cr>", { desc = "Repos" })

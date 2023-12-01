@@ -1,5 +1,3 @@
-local wk = require("which-key")
-
 require("zen-mode").setup({
 	plugins = {
 		twilight = false,
@@ -10,6 +8,4 @@ require("zen-mode").setup({
 	},
 })
 
-wk.register({
-	Z = { "<cmd>ZenMode<cr>", "Zen mode" },
-}, { prefix = "<leader>", mode = "n" })
+vim.keymap.set("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })

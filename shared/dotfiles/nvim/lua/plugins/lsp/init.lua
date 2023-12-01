@@ -1,28 +1,30 @@
 local lspconfig = require("lspconfig")
-local wk = require("which-key")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function(_, bufnr)
-	wk.register({
-		D = { vim.lsp.buf.declaration, "LSP: go to declaration" },
-		d = { "<cmd>Telescope lsp_definitions<cr>", "LSP: go to definitions" },
-		i = { "<cmd>Telescope lsp_implementations<cr>", "LSP: go to implementations" },
-		r = { "<cmd>Telescope lsp_references<cr>", "LSP: go to references" },
-		t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP: go to type definitions" },
-	}, { prefix = "g", mode = "n", buffer = bufnr })
+	local map = function(key, value, desc, type)
+		if type == nil then
+			type = "n"
+		end
 
-	wk.register({
-		D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "LSP: workspace diagnostics" },
-		F = { vim.diagnostic.open_float, "LSP: floating diagnostics message" },
-		K = { vim.lsp.buf.signature_help, "LSP: show signature help" },
-		S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "LSP: workspace symbols" },
-		a = { vim.lsp.buf.code_action, "LSP: code actions" },
-		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "LSP: document diagnostics" },
-		k = { vim.lsp.buf.hover, "LSP: show hover documentation" },
-		r = { vim.lsp.buf.rename, "LSP: rename symbol" },
-		s = { "<cmd>Telescope lsp_document_symbols<cr>", "LSP: document symbols" },
-	}, { prefix = "<leader>", mode = "n", buffer = bufnr })
+		vim.keymap.set(type, key, value, { buffer = bufnr, desc = "LSP: " .. desc })
+	end
+
+	map("<leader>D", "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace diagnostics")
+	map("<leader>F", vim.diagnostic.open_float, "floating diagnostics")
+	map("<leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", "workspace symbols")
+	map("<leader>a", vim.lsp.buf.code_action, "code actions", { "n", "x" })
+	map("<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", "document diagnostics")
+	map("<leader>h", vim.lsp.buf.signature_help, "show signature help")
+	map("<leader>k", vim.lsp.buf.hover, "show hover documentation")
+	map("<leader>r", vim.lsp.buf.rename, "rename symbol")
+	map("<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", "document symbols")
+	map("gD", vim.lsp.buf.declaration, "go to declaration")
+	map("gd", "<cmd>Telescope lsp_definitions<CR>", "go to definition")
+	map("gi", "<cmd>Telescope lsp_implementations<cr>", "go to implementations")
+	map("gr", "<cmd>Telescope lsp_references<cr>", "go to references")
+	map("gt", "<cmd>Telescope lsp_type_definitions<cr>", "go to type definition")
 end
 
 local servers = {

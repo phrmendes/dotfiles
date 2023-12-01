@@ -1,9 +1,2 @@
-local wk = require("which-key")
-
-wk.register({
-	s = { "<Plug>(Luadev-RunLine)", "Lua: send to REPL" },
-}, { prefix = "<localleader>", mode = "n", buffer = 0 })
-
-wk.register({
-	s = { "<Plug>(Luadev-Run)", "Lua: send to REPL" },
-}, { prefix = "<localleader>", mode = "x", buffer = 0 })
+vim.keymap.set("n", "<localleader>s", "<Plug>(Luadev-RunLine)", { desc = "Lua: send to REPL" })
+vim.keymap.set("x", "<localleader>s", "<Plug>(Luadev-Run)", { desc = "Lua: send to REPL" })

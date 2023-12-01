@@ -1,5 +1,4 @@
 local spectre = require("spectre")
-local wk = require("which-key")
 
 spectre.setup({
 	open_cmd = "noswapfile vnew",
@@ -48,11 +47,5 @@ spectre.setup({
 	},
 })
 
-wk.register({
-	s = { spectre.toggle, "Spectre" },
-}, { prefix = "<leader>f", mode = "n" })
-
-wk.register({
-	name = "files",
-	s = { spectre.open_visual, "Spectre" },
-}, { prefix = "<leader>f", mode = "x" })
+vim.keymap.set("n", "<leader>fs", spectre.toggle, { desc = "Spectre" })
+vim.keymap.set("x", "<leader>fs", spectre.open_visual, { desc = "Spectre" })

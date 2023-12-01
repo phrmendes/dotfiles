@@ -1,6 +1,5 @@
 local obsidian = require("obsidian")
 local utils = require("core.utils")
-local wk = require("which-key")
 
 local id = function(title)
 	return utils.normalize(title)
@@ -57,13 +56,10 @@ obsidian.setup({
 	},
 })
 
-wk.register({
-	name = "obsidian",
-	["<space>"] = { "<cmd>ObsidianSearch<cr>", "Search" },
-	b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-	d = { "<cmd>ObsidianToday<cr>", "Diary (today)" },
-	f = { "<cmd>ObsidianFollowLink<cr>", "Follow link under cursor" },
-	o = { "<cmd>ObsidianOpen<cr>", "Open Obsidian" },
-	s = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch to another note" },
-	p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
-}, { prefix = "<leader>o", mode = "n" })
+vim.keymap.set("n", "<leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
+vim.keymap.set("n", "<leader>ob<cr>", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
+vim.keymap.set("n", "<leader>od<cr>", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
+vim.keymap.set("n", "<leader>of<cr>", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
+vim.keymap.set("n", "<leader>oo<cr>", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
+vim.keymap.set("n", "<leader>op<cr>", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
+vim.keymap.set("n", "<leader>os<cr>", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })

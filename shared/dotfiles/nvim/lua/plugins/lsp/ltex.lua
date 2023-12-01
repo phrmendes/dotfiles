@@ -1,17 +1,16 @@
-local wk = require("which-key")
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function(_, bufnr)
-	wk.register({
-		name = "code",
-		a = { vim.lsp.buf.code_action, "Actions" },
-	}, { prefix = "<leader>", mode = { "n", "x" }, buffer = bufnr })
+	local map = function(key, value, desc, type)
+		if key == nil then
+			type = "n"
+		end
 
-	wk.register({
-		name = "debug/diagnostics",
-		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "LSP: document diagnostics" },
-	}, { prefix = "<leader>d", mode = "n", buffer = 0 })
+		vim.keymap.set(type, key, value, { buffer = bufnr, desc = "LSP: " .. desc })
+	end
+
+	map("<leader>a", vim.lsp.buf.code_action, "code actions", { "n", "x" })
+	map("<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", "document diagnostics")
 end
 
 require("ltex_extra").setup({

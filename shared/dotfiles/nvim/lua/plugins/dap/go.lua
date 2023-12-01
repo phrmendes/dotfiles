@@ -1,9 +1,5 @@
 local dap_go = require("dap-go")
-local wk = require("which-key")
 
 dap_go.setup()
 
-wk.register({
-	name = "go",
-	m = { dap_go.debug_test, "DAP: debug test" },
-}, { prefix = "<localleader>", mode = "n", buffer = 0 })
+vim.keymap.set("n", "<localleader>m", dap_go.debug_test, { buffer = true, desc = "DAP: debug test" })

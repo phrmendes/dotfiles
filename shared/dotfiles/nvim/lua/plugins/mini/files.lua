@@ -14,7 +14,7 @@ local files_toggle = function(...)
 	end
 end
 
-local file_explorer = function()
+local files_buffer = function()
 	local buffer_name = vim.api.nvim_buf_get_name(0)
 
 	if utils.match_pattern(buffer_name, "Starter") then
@@ -24,7 +24,11 @@ local file_explorer = function()
 	end
 end
 
+local files_cwd = function()
+	files_toggle(vim.loop.cwd(), true)
+end
+
 wk.register({
-	name = "files",
-	e = { file_explorer, "File explorer" },
+	E = { files_cwd, "File explorer (cwd)" },
+	e = { files_buffer, "File explorer (buffer)" },
 }, { prefix = "<leader>", mode = "n" })

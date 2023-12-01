@@ -5,6 +5,7 @@
     enableZshIntegration = true;
     changeDirWidgetCommand = "fd --type d";
     fileWidgetCommand = "fd --type f";
+    tmux.enableShellIntegration = true;
     colors = {
       "bg+" = "#313244";
       "bg" = "#1e1e2e";

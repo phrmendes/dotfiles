@@ -15,6 +15,13 @@
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
       yank
+      tmux-fzf
+      {
+        plugin = tmux-fzf;
+        extraConfig = ''
+          set -g @fzf-tmux-bindings 'C-f'
+        '';
+      }
       {
         plugin = catppuccin;
         extraConfig = ''

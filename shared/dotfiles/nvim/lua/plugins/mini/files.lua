@@ -6,9 +6,6 @@ files.setup({
 	mappings = {
 		go_in_plus = "<CR>",
 	},
-	windows = {
-		preview = true,
-	},
 })
 
 local files_toggle = function(...)

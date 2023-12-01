@@ -6,7 +6,7 @@ local on_attach = function(_, bufnr)
 	wk.register({
 		name = "code",
 		a = { vim.lsp.buf.code_action, "Actions" },
-	}, { prefix = "<leader>c", mode = { "n", "x" }, buffer = bufnr })
+	}, { prefix = "<leader>", mode = { "n", "x" }, buffer = bufnr })
 
 	wk.register({
 		name = "debug/diagnostics",

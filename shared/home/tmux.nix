@@ -19,7 +19,7 @@
       {
         plugin = tmux-fzf;
         extraConfig = ''
-          set -g @fzf-tmux-bindings 'C-f'
+          TMUX_FZF_LAUNCH_KEY="f"
         '';
       }
       {

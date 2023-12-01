@@ -51,7 +51,6 @@
     ])
     ++ (with pkgs.gnomeExtensions; [
       appindicator
-      clipboard-indicator
       espresso
       forge
     ]);

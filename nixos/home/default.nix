@@ -2,13 +2,14 @@
   imports = [
     ../../shared/home
     ./btop.nix
+    ./copyq.nix
     ./dconf.nix
-    ./symlinks.nix
     ./flameshot.nix
     ./home-manager.nix
     ./packages.nix
-    ./xdg.nix
     ./sioyek.nix
+    ./symlinks.nix
+    ./xdg.nix
   ];
   targets.genericLinux.enable = true;
   home = {

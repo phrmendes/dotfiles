@@ -16,7 +16,11 @@
     homeDirectory = "/home/phrmendes";
     stateVersion = "23.05";
     sessionVariables = {
+      EDITOR = "nvim";
+      GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
+      TERM = "wezterm";
+      VISUAL = "nvim";
     };
   };
 }

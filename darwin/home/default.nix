@@ -9,7 +9,10 @@
     homeDirectory = "/Users/prochame";
     stateVersion = "23.05";
     sessionVariables = {
+      EDITOR = "nvim";
+      GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
+      VISUAL = "nvim";
     };
   };
   programs = {

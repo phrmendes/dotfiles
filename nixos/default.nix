@@ -164,6 +164,7 @@
     gnumake
     gzip
     jdk21
+    libuv
     nodejs_20
     python312
     ripgrep

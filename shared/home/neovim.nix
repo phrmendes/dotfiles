@@ -53,6 +53,7 @@ in {
         ltex_extra-nvim
         luasnip
         mini-nvim
+        neo-tree-nvim
         neodev-nvim
         neogen
         nui-nvim
@@ -82,10 +83,10 @@ in {
         undotree
         vim-helm
         vim-jinja
+        vim-just
         vim-nix
         vim-sleuth
         vim-slime
-        vim-just
         vim-tmux-navigator
         vim-visual-multi
         which-key-nvim

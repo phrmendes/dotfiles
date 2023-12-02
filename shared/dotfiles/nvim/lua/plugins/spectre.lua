@@ -47,5 +47,5 @@ spectre.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>fs", spectre.toggle, { desc = "Spectre" })
-vim.keymap.set("x", "<leader>fs", spectre.open_visual, { desc = "Spectre" })
+vim.keymap.set("n", "<leader>fs", spectre.toggle, { desc = "Find and replace (Spectre)" })
+vim.keymap.set("x", "<leader>fs", spectre.open_visual, { desc = "Find and replace (Spectre)" })

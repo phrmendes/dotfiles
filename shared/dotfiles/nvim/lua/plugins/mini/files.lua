@@ -12,6 +12,6 @@ local files_toggle = function(...)
 	end
 end
 
-vim.keymap.set("n", "<leader>fe", function()
+vim.keymap.set("n", "<leader>e", function()
 	files_toggle(vim.loop.cwd(), true)
 end, { noremap = true, desc = "Explorer" })

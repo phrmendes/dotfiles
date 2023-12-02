@@ -85,3 +85,7 @@ vim.g.mkdp_filetypes = { "markdown", "quarto", "pandoc" }
 if vim.fn.executable("nvr") then
 	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
+
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

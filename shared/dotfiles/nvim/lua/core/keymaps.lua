@@ -53,7 +53,7 @@ if vim.fn.has("mac") == 0 then
 
 			require("which-key").register({
 				["<leader>z"] = { name = "+zotero" },
-			}, { mode = "n", buffer = true })
+			}, { mode = "n" })
 
 			map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", { desc = "Citation info (complete)", buffer = true })
 			map("n", "<leader>zi", "<Plug>ZCitationInfo", { desc = "Citation info", buffer = true })

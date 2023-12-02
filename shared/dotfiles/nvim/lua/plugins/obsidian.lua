@@ -56,7 +56,10 @@ obsidian.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>o<space>", "<cmd>ObsidianSearch<cr>", { desc = "Search" })
+require("which-key").register({
+	["<leader>o"] = { name = "+obsidian" },
+}, { mode = "n" })
+
 vim.keymap.set("n", "<leader>ob<cr>", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
 vim.keymap.set("n", "<leader>od<cr>", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
 vim.keymap.set("n", "<leader>of<cr>", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })

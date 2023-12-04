@@ -22,6 +22,7 @@
       hugo
       imagemagick
       insync
+      jdk21
       just
       kubectl
       kubernetes-helm
@@ -29,10 +30,12 @@
       minikube
       ncdu
       neovide
+      nodejs_21
       obsidian
       onlyoffice-bin
       parallel
       pop-launcher
+      python312
       quarto
       spot
       tealdeer

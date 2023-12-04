@@ -5,6 +5,7 @@
     ./copyq.nix
     ./dconf.nix
     ./flameshot.nix
+    ./gtk.nix
     ./home-manager.nix
     ./packages.nix
     ./sioyek.nix

@@ -14,8 +14,10 @@
       eza
       firefox
       fragments
+      gcolor3
       gh
       git
+      gnome-extensions-cli
       go
       gthumb
       hugo
@@ -31,6 +33,7 @@
       obsidian
       onlyoffice-bin
       parallel
+      pop-launcher
       quarto
       spot
       tealdeer
@@ -52,6 +55,6 @@
     ++ (with pkgs.gnomeExtensions; [
       appindicator
       espresso
-      forge
+      pop-shell
     ]);
 }

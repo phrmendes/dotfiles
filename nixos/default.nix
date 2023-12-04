@@ -49,8 +49,6 @@
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
     ];
     fontconfig.defaultFonts = {
-      serif = ["JetBrainsMono"];
-      sansSerif = ["JetBrainsMono"];
       monospace = ["JetBrainsMono"];
     };
   };

@@ -6,7 +6,7 @@
         enabled-extensions = [
           "appindicatorsupport@rgcjonas.gmail.com"
           "espresso@coadmunkee.github.com"
-          "forge@jmmaranan.com"
+          "pop-shell@system76.com"
         ];
       };
     };

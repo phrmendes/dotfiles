@@ -41,5 +41,4 @@ map("B", conditional_breakpoint, "conditional breakpoint")
 map("t", dap_ui.toggle, "toggle UI")
 
 require("plugins.dap.icons")
-require("plugins.dap.go")
 require("plugins.dap.python")

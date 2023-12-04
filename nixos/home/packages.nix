@@ -18,7 +18,6 @@
       gh
       git
       gnome-extensions-cli
-      go
       gthumb
       hugo
       imagemagick

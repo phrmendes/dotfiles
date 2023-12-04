@@ -94,20 +94,6 @@ lspconfig.pyright.setup({
 	},
 })
 
-lspconfig.gopls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		gopls = {
-			completeUnimported = true,
-			usePlaceholders = true,
-			analyses = {
-				unusedparams = true,
-			},
-		},
-	},
-})
-
 require("plugins.lsp.icons")
 require("plugins.lsp.linters")
 require("plugins.lsp.formatters")

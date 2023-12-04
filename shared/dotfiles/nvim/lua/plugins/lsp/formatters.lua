@@ -24,5 +24,4 @@ conform.formatters_by_ft = {
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
-	go = { "gofumpt", "golines", "goimports-reviser" },
 }

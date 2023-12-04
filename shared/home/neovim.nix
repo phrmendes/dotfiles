@@ -59,7 +59,6 @@ in {
         nui-nvim
         nvim-cmp
         nvim-dap
-        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -116,13 +115,7 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
-        delve
         docker-compose-language-service
-        gofumpt
-        goimports-reviser
-        golangci-lint
-        golines
-        gopls
         helm-ls
         ltex-ls
         lua-language-server

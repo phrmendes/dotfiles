@@ -6,7 +6,6 @@ local autocmd = vim.api.nvim_create_autocmd
 lint.linters_by_ft = {
 	nix = { "statix" },
 	sh = { "shellcheck" },
-	go = { "golangci_lint" },
 }
 
 autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

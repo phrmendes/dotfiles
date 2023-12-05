@@ -16,10 +16,11 @@
     ];
     casks = [
       "amethyst"
-      "bruno"
       "firefox"
+      "flameshot"
       "keepingyouawake"
       "maccy"
+      "postman"
       "slack"
       "tailscale"
       "wezterm"

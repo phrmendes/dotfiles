@@ -66,6 +66,7 @@ in {
         nvim-lint
         nvim-lspconfig
         nvim-luadev
+        nvim-metals
         nvim-spectre
         nvim-treesitter-context
         nvim-treesitter-textobjects

@@ -1,8 +1,10 @@
 local dap_python = require("dap-python")
 
-dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/debugpy/bin/python")
+local map = vim.keymap.set
+
+dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/tools/bin/python")
 dap_python.test_runner = "pytest"
 
-vim.keymap.set("n", "<localleader>m", dap_python.test_method, { buffer = true, desc = "DAP: test method" })
-vim.keymap.set("n", "<localleader>c", dap_python.test_class, { buffer = true, desc = "DAP: thest class" })
-vim.keymap.set("x", "<localleader>d", dap_python.debug_selection, { buffer = true, desc = "DAP: debug region" })
+map("n", "<localleader>m", dap_python.test_method, { buffer = 0, desc = "DAP: test method" })
+map("n", "<localleader>c", dap_python.test_class, { buffer = 0, desc = "DAP: thest class" })
+map("x", "<localleader>s", dap_python.debug_selection, { buffer = 0, desc = "DAP: debug region" })

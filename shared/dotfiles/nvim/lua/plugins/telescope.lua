@@ -4,6 +4,8 @@ local telescope = require("telescope")
 local themes = require("telescope.themes")
 local trouble = require("trouble.providers.telescope")
 
+local map = vim.keymap.set
+
 telescope.setup({
 	defaults = {
 		hidden = true,
@@ -61,11 +63,11 @@ for _, ext in ipairs(extensions) do
 	telescope.load_extension(ext)
 end
 
-vim.keymap.set("n", "<leader>.", "<cmd>Telescope commands<cr>", { desc = "List commands" })
-vim.keymap.set("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Search in current buffer" })
-vim.keymap.set("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-vim.keymap.set("n", "<leader>?", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
-vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "List" })
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files" })
-vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<cr>", { desc = "Zoxide" })
+map("n", "<leader>.", "<cmd>Telescope commands<cr>", { desc = "List commands" })
+map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Search in current buffer" })
+map("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
+map("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "List" })
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
+map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files" })
+map("n", "<leader>fz", "<cmd>Telescope zoxide list<cr>", { desc = "Zoxide" })

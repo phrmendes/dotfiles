@@ -5,6 +5,12 @@ require("chatgpt").setup({
 	api_key_cmd = "gpg --decrypt " .. home .. "/.openai-token.gpg",
 })
 
+require("which-key").register({
+	mode = { "n", "v" },
+	buffer = 0,
+	["<leader>i"] = { name = "IA" },
+})
+
 map({ "n", "x" }, "<leader>iS", "<cmd>ChatGPTRun summarize<cr>", { desc = "Summarize" })
 map({ "n", "x" }, "<leader>ia", "<cmd>ChatGPTRun add_tests<cr>", { desc = "Add tests" })
 map({ "n", "x" }, "<leader>ic", "<cmd>ChatGPT<cr>", { desc = "ChatGPT" })

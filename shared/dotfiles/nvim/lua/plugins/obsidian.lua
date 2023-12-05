@@ -1,6 +1,8 @@
 local obsidian = require("obsidian")
 local utils = require("core.utils")
 
+local map = vim.keymap.set
+
 local id = function(title)
 	return utils.normalize(title)
 end
@@ -45,24 +47,25 @@ obsidian.setup({
 			action = function()
 				return obsidian.util.gf_passthrough()
 			end,
-			opts = { noremap = false, expr = true, buffer = true },
+			opts = { noremap = false, expr = true, buffer = 0 },
 		},
 		["<C-CR>"] = {
 			action = function()
 				return obsidian.util.toggle_checkbox()
 			end,
-			opts = { buffer = true },
+			opts = { buffer = 0 },
 		},
 	},
 })
 
 require("which-key").register({
-	["<leader>o"] = { name = "+obsidian" },
-}, { mode = "n" })
+	mode = "n",
+	["<leader>o"] = { name = "obsidian" },
+})
 
-vim.keymap.set("n", "<leader>ob<cr>", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
-vim.keymap.set("n", "<leader>od<cr>", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
-vim.keymap.set("n", "<leader>of<cr>", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
-vim.keymap.set("n", "<leader>oo<cr>", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
-vim.keymap.set("n", "<leader>op<cr>", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
-vim.keymap.set("n", "<leader>os<cr>", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+map("n", "<leader>ob<cr>", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
+map("n", "<leader>od<cr>", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
+map("n", "<leader>of<cr>", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
+map("n", "<leader>oo<cr>", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
+map("n", "<leader>op<cr>", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
+map("n", "<leader>os<cr>", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })

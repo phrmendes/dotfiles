@@ -42,9 +42,6 @@ vim.opt.signcolumn = "yes"
 -- backspace
 vim.opt.backspace = { "indent", "eol", "start" }
 
--- clipboard
-vim.opt.clipboard:append("unnamedplus")
-
 -- split windows
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -89,3 +86,24 @@ end
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- clipboard
+if vim.fn.has("clipboard") == 1 then
+	if vim.fn.has("wsl") == 1 then
+		vim.g.clipboard = {
+			name = "WslClipboard",
+			copy = {
+				["+"] = "clip.exe",
+				["*"] = "clip.exe",
+			},
+			paste = {
+				["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+				["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			},
+			cache_enabled = 0,
+		}
+		vim.opt.clipboard:append({ "unnamedplus" })
+	else
+		vim.opt.clipboard:append({ "unnamedplus" })
+	end
+end

@@ -1,8 +1,4 @@
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
-local g = vim.g
-local group = augroup("WrittingSettings", { clear = true })
 
 -- [[ unbind keys ]] ----------------------------------------------------
 local keys = { "<Space>", "<", ">" }
@@ -12,8 +8,8 @@ for _, key in ipairs(keys) do
 end
 
 -- [[ multi cursor ]] ---------------------------------------------------
-g.multi_cursor_use_default_mapping = 0
-g.VM_mouse_mappings = 1
+vim.g.multi_cursor_use_default_mapping = 0
+vim.g.VM_mouse_mappings = 1
 
 -- [[ keymaps ]] --------------------------------------------------------
 map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true, desc = "Word wrap" })
@@ -27,10 +23,8 @@ map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true, de
 map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (H)" })
 map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (V)" })
 
-map("n", "<TAB>[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
-map("n", "<TAB>]", "<cmd>tabnext<cr>", { desc = "Next tab" })
-map("n", "<TAB>n", "<cmd>tabnext<cr>", { desc = "New tab" })
-map("n", "<TAB>q", "<cmd> bd <bar> tabclose <bar> startinsert<cr>", { desc = "Close tab" })
+map("n", "[<TAB>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "]<TAB>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split window (H)" })
@@ -41,25 +35,12 @@ map("n", "<leader>l", "<cmd>TroubleToggle loclist<cr>", { desc = "Loclist" })
 map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
-map("n", "<leader>bq", "<cmd> w <bar> %bd <bar> e# <bar> bd# <cr><cr>", { desc = "Close all unfocused" })
+map("n", "<leader>=", "<C-w>=", { desc = "Resize and make windows equal" })
 
-if vim.fn.has("mac") == 0 then
-	autocmd("FileType", {
-		pattern = { "markdown", "quarto" },
-		group = group,
-		callback = function()
-			map("n", "<localleader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown preview", buffer = true })
-			map("n", "<localleader>e", require("nabla").popup, { desc = "Markdown preview", buffer = true })
+map("n", "<leader><TAB>d", "<cmd> bd <bar> tabclose <bar> startinsert<cr>", { desc = "Close tab" })
+map("n", "<leader><TAB>n", "<cmd>tabnext<cr>", { desc = "New tab" })
+map("n", "<leader><TAB>q", "<cmd>tabonly<cr>", { desc = "Close tab" })
 
-			require("which-key").register({
-				["<leader>z"] = { name = "+zotero" },
-			}, { mode = "n" })
-
-			map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", { desc = "Citation info (complete)", buffer = true })
-			map("n", "<leader>zi", "<Plug>ZCitationInfo", { desc = "Citation info", buffer = true })
-			map("n", "<leader>zo", "<Plug>ZOpenAttachment", { desc = "Open attachment", buffer = true })
-			map("n", "<leader>zv", "<Plug>ZViewDocument", { desc = "View exported document", buffer = true })
-			map("n", "<leader>zy", "<Plug>ZCitationYamlRef", { desc = "Citation info (yaml)", buffer = true })
-		end,
-	})
-end
+map("n", "<leader>bG", "<cmd>blast<cr>", { desc = "Go to last buffer" })
+map("n", "<leader>bg", "<cmd>bfirst<cr>", { desc = "Go to last buffer" })
+map("n", "<leader>bq", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", { desc = "Close all unfocused" })

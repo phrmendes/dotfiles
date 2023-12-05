@@ -1,5 +1,7 @@
 local gitsigns = require("gitsigns")
 
+local map = vim.keymap.set
+
 gitsigns.setup()
 
 local prev_hunk = function()
@@ -22,9 +24,9 @@ local next_hunk = function()
 	return "<Ignore>"
 end
 
-vim.keymap.set("n", "]h", next_hunk, { desc = "Next hunk", expr = true })
-vim.keymap.set("n", "[h", prev_hunk, { desc = "Previous hunk", expr = true })
-vim.keymap.set("n", "<leader>gb", gitsigns.toggle_current_line_blame, { desc = "Blame line" })
-vim.keymap.set("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff" })
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-vim.keymap.set("n", "<leader>gs", "<cmd>Telescope lazygit<cr>", { desc = "Repos" })
+map("n", "]h", next_hunk, { desc = "Next hunk", expr = true })
+map("n", "[h", prev_hunk, { desc = "Previous hunk", expr = true })
+map("n", "<leader>gb", gitsigns.toggle_current_line_blame, { desc = "Blame line" })
+map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff" })
+map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+map("n", "<leader>gs", "<cmd>Telescope lazygit<cr>", { desc = "Repos" })

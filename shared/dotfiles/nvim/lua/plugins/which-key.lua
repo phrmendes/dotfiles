@@ -9,11 +9,11 @@ wk.setup({
 
 wk.register({
 	mode = { "n", "v" },
-	["gs"] = { name = "+surround" },
-	["<leader><tab>"] = { name = "+tabs" },
-	["<leader>b"] = { name = "+buffers" },
-	["<leader>f"] = { name = "+files/find" },
-	["<leader>g"] = { name = "+git" },
-	["<leader>i"] = { name = "+IA" },
-	["<leader>t"] = { name = "+todo" },
+	["gs"] = { name = "surround" },
+	["<leader><tab>"] = { name = "tabs" },
+	["<leader>b"] = { name = "buffers" },
+	["<leader>f"] = { name = "files/find" },
+	["<leader>g"] = { name = "git" },
+	["<leader>i"] = { name = "IA" },
+	["<leader>t"] = { name = "todo" },
 })

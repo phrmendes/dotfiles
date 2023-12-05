@@ -28,12 +28,12 @@
       kubectl
       kubernetes-helm
       lazydocker
+      libreoffice
       minikube
       ncdu
       neovide
       nodejs_21
       obsidian
-      onlyoffice-bin
       parallel
       pop-launcher
       python312

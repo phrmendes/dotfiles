@@ -51,6 +51,22 @@ cmp.setup({
 	},
 })
 
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})
+
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+
 if vim.fn.has("mac") == 0 then
 	local cmp_pandoc = require("cmp_pandoc")
 

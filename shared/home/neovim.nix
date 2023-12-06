@@ -40,6 +40,7 @@ in {
         cmp-nvim-lsp
         cmp-path
         cmp_luasnip
+        cmp-cmdline
         conform-nvim
         copilot-vim
         dressing-nvim

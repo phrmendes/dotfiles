@@ -110,11 +110,14 @@
     initialPassword = "password";
     shell = pkgs.zsh;
   };
-
   programs = {
     dconf.enable = true;
     seahorse.enable = true;
     zsh.enable = true;
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
     gnupg.agent = {
       enable = true;
       pinentryFlavor = "gnome3";

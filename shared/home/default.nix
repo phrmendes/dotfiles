@@ -1,7 +1,6 @@
 {
   imports = [
     ./bat.nix
-    ./direnv.nix
     ./fzf.nix
     ./git.nix
     ./lazygit.nix

@@ -17,7 +17,6 @@
     casks = [
       "amethyst"
       "firefox"
-      "flameshot"
       "keepingyouawake"
       "maccy"
       "postman"

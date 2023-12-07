@@ -165,6 +165,7 @@
     gnumake
     gzip
     libuv
+    psmisc
     ripgrep
     unrar
     unzip

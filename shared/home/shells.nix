@@ -23,11 +23,13 @@ in {
         ls = "eza --icons";
         lt = "eza --icons --tree";
         mkdir = "mkdir -p";
+        nc = "nix store gc --debug";
         ncdu = "ncdu --color dark";
-        nix_clear = "nix store gc --debug";
-        nix_hash = "nix-hash --flat --base64 --type sha256";
-        nix_update = update_command;
-        tx = "tmux";
+        nh = "nix-hash --flat --base64 --type sha256";
+        nu = update_command;
+        t = "tmux";
+        tn = "tmux new -s $(pwd | sed 's/.*\///g')";
+        tka = "tmux kill-session -a";
         v = "nvim";
       };
     };

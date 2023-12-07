@@ -8,7 +8,6 @@
       bruno
       celluloid
       chromium
-      coursier
       csvkit
       docker-compose
       droidcam

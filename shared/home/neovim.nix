@@ -37,15 +37,13 @@ in {
         ansible-vim
         catppuccin-nvim
         cmp-buffer
+        cmp-cmdline
         cmp-nvim-lsp
         cmp-path
         cmp_luasnip
-        cmp-cmdline
         conform-nvim
         copilot-vim
-        dressing-nvim
         executor-nvim
-        flash-nvim
         friendly-snippets
         gitsigns-nvim
         lazygit-nvim
@@ -122,6 +120,7 @@ in {
         ltex-ls
         lua-language-server
         marksman
+        metals
         neovim-remote
         nil
         ruff

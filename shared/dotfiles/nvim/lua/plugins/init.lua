@@ -1,6 +1,5 @@
 require("plugins.colorscheme")
 require("plugins.completion")
-require("plugins.flash")
 require("plugins.git")
 require("plugins.lsp")
 require("plugins.mini")

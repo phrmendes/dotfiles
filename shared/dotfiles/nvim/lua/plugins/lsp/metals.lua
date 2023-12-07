@@ -11,11 +11,10 @@ autocmd("FileType", {
 		local config = metals.bare_config()
 		local utils = require("plugins.lsp.utils")
 
-		config.init_options.statusBarProvider = false
+		config.init_options.statusBarProvider = "on"
 
 		config.settings = {
 			showImplicitArguments = true,
-			excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
 		}
 
 		config.capabilities = utils.capabilities

@@ -20,6 +20,9 @@ M.on_attach = function(_, bufnr)
 	map("<leader>k", vim.lsp.buf.hover, "show hover documentation")
 	map("<leader>r", vim.lsp.buf.rename, "rename symbol")
 	map("<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", "document symbols")
+
+	map("<localleader>f", vim.lsp.buf.format, "format document")
+
 	map("gD", vim.lsp.buf.declaration, "go to declaration")
 	map("gd", "<cmd>Telescope lsp_definitions<CR>", "go to definition")
 	map("gi", "<cmd>Telescope lsp_implementations<cr>", "go to implementations")

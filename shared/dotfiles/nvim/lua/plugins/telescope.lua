@@ -48,13 +48,9 @@ telescope.setup({
 		commands = { previewer = false },
 		help_tags = { previewer = false },
 	},
-	extensions = {
-		["ui-select"] = { themes.get_dropdown() },
-	},
 })
 
 local extensions = {
-	"ui-select",
 	"zoxide",
 	"lazygit",
 }

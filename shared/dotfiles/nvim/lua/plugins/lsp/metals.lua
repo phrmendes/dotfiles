@@ -11,7 +11,7 @@ autocmd("FileType", {
 		local config = metals.bare_config()
 		local utils = require("plugins.lsp.utils")
 
-		config.init_options.statusBarProvider = "on"
+		config.init_options.statusBarProvider = false
 
 		config.settings = {
 			showImplicitArguments = true,

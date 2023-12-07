@@ -43,6 +43,7 @@ in {
         cmp_luasnip
         conform-nvim
         copilot-vim
+        dressing-nvim
         executor-nvim
         friendly-snippets
         gitsigns-nvim
@@ -75,7 +76,6 @@ in {
         plenary-nvim
         popup-nvim
         telescope-nvim
-        telescope-ui-select-nvim
         telescope-zoxide
         todo-comments-nvim
         trouble-nvim

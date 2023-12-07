@@ -25,7 +25,6 @@ autocmd("FileType", {
 		end
 
 		vim.keymap.set("n", "<leader>m", metals.hover_worksheet, { desc = "Metals: hover worksheet" })
-		vim.keymap.set("n", "<leader>c", "<cmd>Telescope metals commands<cr>", { desc = "Metals: commands" })
 
 		metals.initialize_or_attach(config)
 	end,

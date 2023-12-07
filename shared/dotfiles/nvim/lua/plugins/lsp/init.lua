@@ -23,7 +23,6 @@ local servers = {
 	"taplo",
 	"terraformls",
 	"texlab",
-	"yamlls",
 }
 
 for _, server in ipairs(servers) do
@@ -74,6 +73,16 @@ lspconfig.pyright.setup({
 					functionReturnTypes = true,
 				},
 			},
+		},
+	},
+})
+
+lspconfig.yamlls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		yaml = {
+			keyOrdering = false,
 		},
 	},
 })

@@ -6,7 +6,6 @@
     settings = {
       docker_context.disabled = true;
       conda.symbol = "󱔎 ";
-      scala.symbol = " ";
     };
   };
 }

@@ -66,7 +66,6 @@ in {
         nvim-lint
         nvim-lspconfig
         nvim-luadev
-        nvim-metals
         nvim-spectre
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -120,7 +119,6 @@ in {
         ltex-ls
         lua-language-server
         marksman
-        metals
         neovim-remote
         nil
         ruff

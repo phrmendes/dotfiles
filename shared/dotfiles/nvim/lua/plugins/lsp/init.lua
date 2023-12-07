@@ -2,7 +2,6 @@ require("plugins.lsp.icons")
 require("plugins.lsp.formatters")
 require("plugins.lsp.linters")
 require("plugins.lsp.ltex")
-require("plugins.lsp.metals")
 
 require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 require("lsp_signature").setup()

@@ -1,5 +1,4 @@
 require("plugins.dap.icons")
-require("plugins.dap.scala")
 require("plugins.dap.python")
 
 local dap = require("dap")

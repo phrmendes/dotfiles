@@ -1,7 +1,6 @@
 local actions = require("telescope.actions")
 local fuzzy = require("mini.fuzzy")
 local telescope = require("telescope")
-local themes = require("telescope.themes")
 local trouble = require("trouble.providers.telescope")
 
 local map = vim.keymap.set

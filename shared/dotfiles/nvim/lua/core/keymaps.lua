@@ -16,6 +16,7 @@ map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true, desc 
 map("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, silent = true, desc = "Word wrap" })
 
 map("i", "jk", "<ESC>", { noremap = true, silent = true, desc = "Exit insert mode" })
+map("i", "kj", "<ESC>", { noremap = true, silent = true, desc = "Exit insert mode" })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Exit terminal mode" })
 
 map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (V)" })
@@ -25,6 +26,10 @@ map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Dec
 
 map("n", "[<TAB>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 map("n", "]<TAB>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+
+map("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
+map("n", "<C-s>", "<cmd>sort<cr>", { desc = "Sort" })
 
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split window (H)" })

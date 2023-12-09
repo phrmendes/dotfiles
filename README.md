@@ -1,6 +1,6 @@
-# Backups
+# Dotfiles
 
-Scripts and dotfiles files for my personal computer.
+Dotfiles files for my personal computer.
 
 Install Nix package manager:
 

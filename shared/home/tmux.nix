@@ -10,23 +10,33 @@
     mouse = true;
     prefix = "C-Space";
     sensibleOnTop = true;
-    terminal = "tmux-256color";
     shell = "${pkgs.zsh}/bin/zsh";
+    terminal = "screen-256color";
+    tmuxp.enable = true;
+    historyLimit = 1000000;
     plugins = with pkgs.tmuxPlugins; [
+      tmux-fzf
+      tmux-thumbs
       vim-tmux-navigator
       yank
-      tmux-fzf
+      {
+        plugin = tmux-thumbs;
+        extraConfig = ''
+          set -g @thumbs-key 'C-f'
+        '';
+      }
       {
         plugin = tmux-fzf;
         extraConfig = ''
-          TMUX_FZF_LAUNCH_KEY="C-Space"
+          TMUX_FZF_LAUNCH_KEY='C-Space'
         '';
       }
       {
         plugin = catppuccin;
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
-          set -g @catppuccin_status_left_separator "█"
+          set -g @catppuccin_status_left_separator '█'
+          set -g @catppuccin_window_current_text '#W#{?window_zoomed_flag,(),}'
         '';
       }
       {
@@ -43,8 +53,16 @@
       }
     ];
     extraConfig = ''
-      set -ag terminal-overrides ',xterm-256color:RGB'
+      set-option -g terminal-overrides ',xterm-256color:RGB'
+
+      set -g detach-on-destroy off
+      set -g pane-active-border-style 'fg=magenta,bg=default'
+      set -g pane-border-style 'fg=brightblack,bg=default'
+      set -g renumber-windows on
+      set -g set-clipboard on
       set -g status-position top
+
+      setw -g mode-keys vi
 
       unbind '"'
       unbind %

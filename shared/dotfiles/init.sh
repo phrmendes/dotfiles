@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export SUDO_EDITOR="nvim"
+export TERM="wezterm"
+export VISUAL="nvim"
+
 path+=(
     "$HOME"/.local/bin
     /etc/profiles/per-user/"$USER"/bin

@@ -38,7 +38,6 @@
       python312
       quarto
       spot
-      syncthing
       tealdeer
       tectonic
       terraform

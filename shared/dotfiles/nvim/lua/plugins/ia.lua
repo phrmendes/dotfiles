@@ -2,12 +2,11 @@ local home = vim.env.HOME
 local map = vim.keymap.set
 
 require("chatgpt").setup({
-	api_key_cmd = "gpg --decrypt " .. home .. "/.openai-token.gpg",
+	api_key_cmd = "gpg --decrypt " .. home .. "/.openai_api_key.gpg",
 })
 
 require("which-key").register({
 	mode = { "n", "v" },
-	buffer = 0,
 	["<leader>i"] = { name = "IA" },
 })
 

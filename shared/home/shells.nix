@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  path = "~/Projects/bkps";
+  path = "~/Projects/dotfiles";
   update_command =
     if pkgs.stdenv.isDarwin
     then "nix run nix-darwin -- switch --flake ${path}"

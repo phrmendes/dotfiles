@@ -63,9 +63,9 @@ require("which-key").register({
 	["<leader>o"] = { name = "obsidian" },
 })
 
-map("n", "<leader>ob<cr>", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
-map("n", "<leader>od<cr>", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
-map("n", "<leader>of<cr>", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
-map("n", "<leader>oo<cr>", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
-map("n", "<leader>op<cr>", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
-map("n", "<leader>os<cr>", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
+map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
+map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
+map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
+map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
+map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })

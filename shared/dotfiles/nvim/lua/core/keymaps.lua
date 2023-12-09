@@ -29,7 +29,6 @@ map("n", "]<TAB>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
 map("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
-map("n", "<C-s>", "<cmd>'<,'>sort<cr>", { desc = "Sort" })
 
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
 map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split window (H)" })

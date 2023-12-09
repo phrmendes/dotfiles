@@ -9,6 +9,7 @@
       celluloid
       chromium
       csvkit
+      deja-dup
       docker-compose
       droidcam
       eza
@@ -21,7 +22,6 @@
       gthumb
       hugo
       imagemagick
-      insync
       jdk21
       just
       kubectl
@@ -38,12 +38,12 @@
       python312
       quarto
       spot
+      syncthing
       tealdeer
       tectonic
       terraform
       ueberzugpp
       ventoy
-      veracrypt
       wezterm
       zotero
     ])
@@ -58,5 +58,6 @@
       appindicator
       espresso
       pop-shell
+      syncthing-indicator
     ]);
 }

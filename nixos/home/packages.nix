@@ -38,6 +38,7 @@
       python312
       quarto
       spot
+      syncthingtray
       tealdeer
       tectonic
       terraform
@@ -57,6 +58,5 @@
       appindicator
       espresso
       pop-shell
-      syncthing-indicator
     ]);
 }

@@ -5,6 +5,7 @@
       bashly
       beekeeper-studio
       bitwarden
+      bitwarden-cli
       bruno
       celluloid
       chromium
@@ -19,7 +20,6 @@
       gh
       git
       gnome-extensions-cli
-      gthumb
       hugo
       imagemagick
       jdk21
@@ -28,7 +28,9 @@
       kubernetes-helm
       lazydocker
       libreoffice
+      mc
       minikube
+      nautilus-open-any-terminal
       ncdu
       neovide
       nodejs_21
@@ -37,6 +39,7 @@
       pop-launcher
       python312
       quarto
+      qview
       spot
       syncthingtray
       tealdeer
@@ -48,6 +51,7 @@
       zotero
     ])
     ++ (with pkgs.gnome; [
+      adwaita-icon-theme
       file-roller
       gnome-calculator
       gnome-disk-utility

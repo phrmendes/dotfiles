@@ -13,6 +13,7 @@
     brews = [
       "gnu-sed"
       "openssl"
+      "qview"
     ];
     casks = [
       "amethyst"

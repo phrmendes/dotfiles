@@ -12,6 +12,7 @@
     kubectl
     kubernetes-helm
     maven
+    mc
     minikube
     ncdu
     nodejs_21

@@ -13,7 +13,6 @@
     brews = [
       "gnu-sed"
       "openssl"
-      "qview"
     ];
     casks = [
       "amethyst"
@@ -21,6 +20,7 @@
       "keepingyouawake"
       "maccy"
       "postman"
+      "qview"
       "slack"
       "tailscale"
       "wezterm"

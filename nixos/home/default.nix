@@ -9,6 +9,7 @@
     ./home-manager.nix
     ./packages.nix
     ./sioyek.nix
+    ./symlinks.nix
   ];
 
   targets.genericLinux.enable = true;

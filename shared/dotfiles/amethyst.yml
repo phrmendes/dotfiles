@@ -5,10 +5,6 @@ float-small-windows: true
 focus-follows-mouse: false
 follow-space-thrown-windows: false
 ignore-menu-bar: false
-layouts: [bsp]
-mod1: [option]
-mod2: [option, shift]
-mod3: [option, control, shift]
 mouse-follows-focus: false
 mouse-resizes-windows: true
 mouse-swaps-windows: true
@@ -19,6 +15,12 @@ screen-padding-right: 3
 screen-padding-top: 3
 window-margin-size: 10
 window-margins: true
+
+layouts: [tall, column, fullscreen]
+
+mod1: [option]
+mod2: [option, shift]
+mod3: [option, control, shift]
 
 reevaluate-windows:
   key: r
@@ -34,16 +36,16 @@ cycle-layout-backward:
   mod: mod3
 expand-main:
   key: e
-  mod: mod2
+  mod: mod1
+shrink-main:
+  key: s
+  mod: mod1
 focus-ccw:
   key: k
   mod: mod1
 focus-cw:
   key: j
   mod: mod1
-shrink-main:
-  key: s
-  mod: mod2
 swap-ccw:
   key: k
   mod: mod2
@@ -76,7 +78,7 @@ throw-space-right:
   mod: mod3
 toggle-float:
   key: f
-  mod: mod3
+  mod: mod2
 select-fullscreen-layout:
   key: f
-  mod: mod2
+  mod: mod1

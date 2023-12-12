@@ -3,8 +3,15 @@
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export SUDO_EDITOR="nvim"
-export TERM="wezterm"
 export VISUAL="nvim"
+
+SYSTEM=$(uname -av|awk '{print $1;}')
+
+if [[ $SYSTEM  == "Linux" ]]; then
+    export TERM="wezterm"
+else
+    export TERM="xterm-256color"
+fi
 
 path+=(
     "$HOME"/.local/bin

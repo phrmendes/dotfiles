@@ -1,44 +1,24 @@
 ---
-cycle-layout:
-  key: >
-  mod: mod2
-cycle-layout-backward:
-  key: <
-  mod: mod2
+disable-padding-on-builtin-display: true
 enables-layout-hud: true
-expand-main:
-  key: e
-  mod: mod2
 float-small-windows: true
-focus-ccw:
-  key: j
-  mod: mod1
-focus-cw:
-  key: k
-  mod: mod1
-
 focus-follows-mouse: false
 follow-space-thrown-windows: false
-
 ignore-menu-bar: false
-
-layouts:
-  - tall
-  - bsp
-  - fullscreen
-
-mod1:
-  - option
-mod2:
-  - option
-  - shift
-mod3:
-  - option
-  - control
-  - shift
-
+layouts: [bsp]
+mod1: [option]
+mod2: [option, shift]
+mod3: [option, control, shift]
 mouse-follows-focus: false
 mouse-resizes-windows: true
+mouse-swaps-windows: true
+new-windows-to-main: false
+screen-padding-bottom: 3
+screen-padding-left: 3
+screen-padding-right: 3
+screen-padding-top: 3
+window-margin-size: 10
+window-margins: true
 
 reevaluate-windows:
   key: r
@@ -46,20 +26,29 @@ reevaluate-windows:
 relaunch-amethyst:
   key: r
   mod: mod2
-
-screen-padding-bottom: 3
-screen-padding-left: 3
-screen-padding-right: 3
-screen-padding-top: 3
-
+cycle-layout:
+  key: space
+  mod: mod2
+cycle-layout-backward:
+  key: space
+  mod: mod3
+expand-main:
+  key: e
+  mod: mod2
+focus-ccw:
+  key: k
+  mod: mod1
+focus-cw:
+  key: j
+  mod: mod1
 shrink-main:
   key: s
   mod: mod2
 swap-ccw:
-  key: j
+  key: k
   mod: mod2
 swap-cw:
-  key: k
+  key: j
   mod: mod2
 throw-screen-1:
   key: 1
@@ -88,6 +77,6 @@ throw-space-right:
 toggle-float:
   key: f
   mod: mod2
-
-window-margin-size: 10
-window-margins: true
+select-fullscreen-layout:
+  key: f
+  mod: mod1

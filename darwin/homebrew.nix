@@ -24,6 +24,7 @@
       "slack"
       "tailscale"
       "wezterm"
+      "whichspace"
     ];
   };
 }

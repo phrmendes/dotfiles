@@ -22,10 +22,10 @@ window-margins: true
 
 reevaluate-windows:
   key: r
-  mod: mod1
+  mod: mod2
 relaunch-amethyst:
   key: r
-  mod: mod2
+  mod: mod3
 cycle-layout:
   key: space
   mod: mod2

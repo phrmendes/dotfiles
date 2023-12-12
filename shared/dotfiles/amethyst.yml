@@ -76,7 +76,7 @@ throw-space-right:
   mod: mod3
 toggle-float:
   key: f
-  mod: mod2
+  mod: mod3
 select-fullscreen-layout:
   key: f
-  mod: mod1
+  mod: mod2

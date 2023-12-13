@@ -5,7 +5,6 @@ local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippe
 local today = os.date("%Y-%m-%d")
 local map = require("utils").map
 
--- [[ luasnip settings ]] -----------------------------------------------
 luasnip.config.setup({ enable_autosnippets = true })
 vscode_loaders.lazy_load()
 
@@ -31,7 +30,6 @@ map({
 	desc = "Next snippet choice",
 })
 
--- [[ snippets ]] --------------------------------------------------------
 local markdown_snippets = {
 	parse_snippet({ trig = "journal", name = "journal" }, "# " .. today .. "\n"),
 	parse_snippet({ trig = "metadata", name = "metadata" }, "\n---\naliases: [{$1}]\ntags: [{$2}]\n---\n$0"),
@@ -122,8 +120,5 @@ local equation_snippets = {
 }
 
 luasnip.add_snippets("markdown", markdown_snippets)
-
-if vim.fn.has("mac") == 0 then
-	luasnip.add_snippets("markdown", equation_snippets)
-	luasnip.add_snippets("quarto", equation_snippets)
-end
+luasnip.add_snippets("markdown", equation_snippets)
+luasnip.filetype_extend("quarto", { "markdown" })

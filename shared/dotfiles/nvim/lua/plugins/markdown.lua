@@ -73,11 +73,6 @@ autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
 	group = group,
 	callback = function()
-		vim.wo.breakindent = true
-		vim.wo.linebreak = true
-		vim.wo.showbreak = "|"
-		vim.wo.wrap = true
-
 		section({
 			key = "<leader>m",
 			name = "markdown",

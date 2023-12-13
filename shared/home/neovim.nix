@@ -34,8 +34,10 @@ in {
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
+        cmp-emoji
         cmp-latex-symbols
         cmp-nvim-lsp
+        cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp-path
         cmp_luasnip

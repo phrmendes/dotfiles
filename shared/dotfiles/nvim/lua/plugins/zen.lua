@@ -8,7 +8,7 @@ require("zen-mode").setup({
 	},
 })
 
-require("utils").section({
+require("utils").map({
 	key = "<leader>Z",
 	command = "<cmd>ZenMode<cr>",
 	desc = "Zen mode",

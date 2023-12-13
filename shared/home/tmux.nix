@@ -11,7 +11,7 @@
     prefix = "C-Space";
     sensibleOnTop = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = "screen-256color";
+    terminal = "xterm-256color";
     tmuxp.enable = true;
     historyLimit = 1000000;
     plugins = with pkgs.tmuxPlugins; [

@@ -9,6 +9,6 @@ require("aerial").setup({
 
 map({
 	key = "<localleader>a",
-	command = "<cmd>AerialToggle!<cr>",
+	command = "<cmd>AerialToggle<cr>",
 	desc = "Aerial",
 })

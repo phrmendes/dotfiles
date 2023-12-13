@@ -5,10 +5,7 @@ require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true 
 require("lsp_signature").setup()
 require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
 
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
 local capabilities = require("plugins.lsp.utils").capabilities
-local helm_group = augroup("HelmLspConfig", { clear = true })
 local lspconfig = require("lspconfig")
 local on_attach = require("plugins.lsp.utils").on_attach
 
@@ -106,16 +103,4 @@ lspconfig.yamlls.setup({
 			keyOrdering = false,
 		},
 	},
-})
-
-autocmd("LspAttach", {
-	pattern = { "helm" },
-	group = helm_group,
-	callback = function()
-		local server = vim.lsp.get_active_clients({ name = "yamlls", bufnr = 0 })
-
-		for _, client in ipairs(server) do
-			vim.lsp.stop_client(client.id)
-		end
-	end,
 })

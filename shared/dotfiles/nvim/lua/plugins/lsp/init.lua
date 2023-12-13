@@ -108,7 +108,7 @@ lspconfig.yamlls.setup({
 	},
 })
 
-autocmd("FileType", {
+autocmd("LspAttach", {
 	pattern = { "helm" },
 	group = helm_group,
 	callback = function()

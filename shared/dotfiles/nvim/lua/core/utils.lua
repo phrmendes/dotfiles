@@ -26,4 +26,6 @@ M.match_pattern = function(string, pattern)
 	end
 end
 
+M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+
 return M

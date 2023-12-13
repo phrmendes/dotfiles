@@ -10,6 +10,7 @@ wk.setup({
 wk.register({
 	mode = { "n", "v" },
 	["gs"] = { name = "surround" },
+	["<leader><space>"] = { name = "local leader" },
 	["<leader><tab>"] = { name = "tabs" },
 	["<leader>b"] = { name = "buffers" },
 	["<leader>f"] = { name = "files/find" },

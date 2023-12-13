@@ -41,9 +41,9 @@ map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
 map("n", "<leader>=", "<C-w>=", { desc = "Resize and make windows equal" })
 
-map("n", "<leader><TAB>d", "<cmd> bd <bar> tabclose <bar> startinsert<cr>", { desc = "Close tab" })
-map("n", "<leader><TAB>n", "<cmd>tabnext<cr>", { desc = "New tab" })
-map("n", "<leader><TAB>q", "<cmd>tabonly<cr>", { desc = "Close tab" })
+map("n", "<leader><TAB>d", "<cmd> bd <bar> tabclose <bar> startinsert<cr>", { desc = "Close" })
+map("n", "<leader><TAB>n", "<cmd>tabnext<cr>", { desc = "New" })
+map("n", "<leader><TAB>q", "<cmd>tabonly<cr>", { desc = "Close" })
 
 map("n", "<leader>bG", "<cmd>blast<cr>", { desc = "Go to last buffer" })
 map("n", "<leader>bg", "<cmd>bfirst<cr>", { desc = "Go to last buffer" })

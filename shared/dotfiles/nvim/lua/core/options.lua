@@ -1,6 +1,6 @@
 -- leader keys
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.mapleader = [[ ]]
+vim.g.maplocalleader = [[  ]]
 
 -- syntax
 vim.opt.syntax = "on"
@@ -35,9 +35,10 @@ vim.opt.hlsearch = false
 vim.opt.cursorline = true
 
 -- appearance
-vim.opt.termguicolors = true
+vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
+vim.opt.termguicolors = true
 
 -- backspace
 vim.opt.backspace = { "indent", "eol", "start" }
@@ -88,22 +89,4 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- clipboard
-if vim.fn.has("clipboard") == 1 then
-	if vim.fn.has("wsl") == 1 then
-		vim.g.clipboard = {
-			name = "WslClipboard",
-			copy = {
-				["+"] = "clip.exe",
-				["*"] = "clip.exe",
-			},
-			paste = {
-				["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-				["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-			},
-			cache_enabled = 0,
-		}
-		vim.opt.clipboard:append({ "unnamedplus" })
-	else
-		vim.opt.clipboard:append({ "unnamedplus" })
-	end
-end
+vim.opt.clipboard:append({ "unnamedplus" })

@@ -12,6 +12,7 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
+  jupytext-vim = pluginFromGitHub "jupytext-vim" inputs.jupytext-vim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-latex-symbols
@@ -34,6 +35,7 @@ in {
     withPython3 = true;
     plugins =
       (with pkgs.vimPlugins; [
+        aerial-nvim
         ansible-vim
         catppuccin-nvim
         cmp-buffer
@@ -47,6 +49,7 @@ in {
         executor-nvim
         friendly-snippets
         gitsigns-nvim
+        jupytext-vim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
@@ -137,10 +140,11 @@ in {
       ++ (with pkgs-stable.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
-        prettier
         pyright
+        sql-formatter
         vscode-json-languageserver
         yaml-language-server
+        prettier
       ]);
   };
 }

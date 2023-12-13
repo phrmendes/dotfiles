@@ -26,7 +26,9 @@ end
 
 map("n", "]h", next_hunk, { desc = "Next hunk", expr = true })
 map("n", "[h", prev_hunk, { desc = "Previous hunk", expr = true })
+map("n", "<leader>gR", "<cmd>Telescope lazygit<cr>", { desc = "Repos" })
+map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 map("n", "<leader>gb", gitsigns.toggle_current_line_blame, { desc = "Blame line" })
 map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff" })
-map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-map("n", "<leader>gs", "<cmd>Telescope lazygit<cr>", { desc = "Repos" })
+map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
+map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage hunk" })

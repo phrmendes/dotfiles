@@ -56,6 +56,22 @@
         "type": "github"
       }
     },
+    "jupytext-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696563517,
+        "narHash": "sha256-XNL3HLOgCNKEM5PBRaqPXlRhVPKSRXCy+ENk8+iH+nw=",
+        "owner": "goerz",
+        "repo": "jupytext.vim",
+        "rev": "ec8f337bd5799e16a02816d04b7c91b9555d79c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "goerz",
+        "repo": "jupytext.vim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1702272962,
@@ -109,6 +125,7 @@
         "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
         "home-manager": "home-manager",
+        "jupytext-vim": "jupytext-vim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "obsidian-nvim": "obsidian-nvim",

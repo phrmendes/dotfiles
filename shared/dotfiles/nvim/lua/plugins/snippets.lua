@@ -32,6 +32,7 @@ local markdown_snippets = {
 	parse_snippet({ trig = "low", name = "low priority" }, " 🔽"),
 	parse_snippet({ trig = "medium", name = "medium priority" }, " 🔼"),
 	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
+	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
 }
 
 local equation_snippets = {

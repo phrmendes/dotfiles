@@ -21,6 +21,7 @@ conform.formatters_by_ft = {
 	nix = { "alejandra" },
 	python = { "ruff" },
 	sh = { "shellharden" },
+	sql = { "sqlfluff" },
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },

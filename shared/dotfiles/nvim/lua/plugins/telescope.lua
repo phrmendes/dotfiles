@@ -60,9 +60,9 @@ end
 
 map("n", "<leader>.", "<cmd>Telescope commands<cr>", { desc = "List commands" })
 map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Search in current buffer" })
-map("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "List" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find" })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files" })
 map("n", "<leader>fz", "<cmd>Telescope zoxide list<cr>", { desc = "Zoxide" })

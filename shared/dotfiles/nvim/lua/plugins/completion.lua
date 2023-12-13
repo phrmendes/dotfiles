@@ -49,6 +49,11 @@ cmp.setup({
 			},
 		},
 	},
+	window = {
+		documentation = {
+			border = require("core.utils").border,
+		},
+	},
 })
 
 cmp.setup.cmdline(":", {
@@ -86,6 +91,7 @@ if vim.fn.has("mac") == 0 then
 
 	cmp.setup.filetype("markdown", {
 		sources = cmp.config.sources({
+			{ name = "otter" },
 			{ name = "cmp_zotcite" },
 			{ name = "luasnip" },
 			{ name = "path" },

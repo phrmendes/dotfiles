@@ -29,6 +29,11 @@
       flake = false;
       url = "github:jalvesaq/zotcite";
     };
+
+    jupytext-vim = {
+      flake = false;
+      url = "github:goerz/jupytext.vim";
+    };
   };
 
   outputs = inputs @ {
@@ -43,7 +48,9 @@
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+        };
       };
       pkgs-stable = import nixpkgs-stable {
         inherit system;
@@ -78,7 +85,12 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-25.9.0"
+          ];
+        };
       };
       pkgs-stable = import nixpkgs-stable {
         inherit system;

@@ -10,4 +10,8 @@ require("neogen").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>n", "<cmd>Neogen<cr>", { desc = "Generate annotations" })
+require("utils").map({
+	key = "<localleader>n",
+	command = "<cmd>Neogen<cr>",
+	desc = "Generate annotations",
+})

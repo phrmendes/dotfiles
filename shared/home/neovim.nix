@@ -15,14 +15,8 @@
   jupytext-vim = pluginFromGitHub "jupytext-vim" inputs.jupytext-vim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
-    cmp-latex-symbols
-    cmp-pandoc-nvim
     cmp-zotcite
-    image-nvim
-    nabla-nvim
     obsidian-nvim
-    otter-nvim
-    quarto-nvim
     zotcite
   ];
 in {
@@ -40,7 +34,9 @@ in {
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
+        cmp-latex-symbols
         cmp-nvim-lsp
+        cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
         conform-nvim
@@ -49,6 +45,7 @@ in {
         executor-nvim
         friendly-snippets
         gitsigns-nvim
+        image-nvim
         jupytext-vim
         lazygit-nvim
         lsp_signature-nvim
@@ -56,6 +53,7 @@ in {
         ltex_extra-nvim
         luasnip
         mini-nvim
+        nabla-nvim
         neo-tree-nvim
         neodev-nvim
         neogen
@@ -75,8 +73,10 @@ in {
         nvim-treesitter.withAllGrammars
         nvim-ts-context-commentstring
         nvim-web-devicons
+        otter-nvim
         plenary-nvim
         popup-nvim
+        quarto-nvim
         telescope-nvim
         telescope-zoxide
         todo-comments-nvim

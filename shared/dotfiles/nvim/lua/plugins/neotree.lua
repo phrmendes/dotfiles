@@ -2,7 +2,7 @@ local command = require("neo-tree.command")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local map = vim.keymap.set
+local map = require("utils").map
 
 require("neo-tree").setup({
 	sources = { "filesystem", "buffers", "git_status", "document_symbols" },
@@ -41,14 +41,28 @@ autocmd("TermClose", {
 	end,
 })
 
-map("n", "<leader>e", function()
-	command.execute({ toggle = true, dir = vim.loop.cwd() })
-end, { desc = "Explorer", remap = true })
+map({
+	key = "<leader>e",
+	command = function()
+		command.execute({ toggle = true, dir = vim.loop.cwd() })
+	end,
+	desc = "Explorer",
+}, {
+	remap = true,
+})
 
-map("n", "<leader>ge", function()
-	command.execute({ source = "git_status", toggle = true })
-end, { desc = "Git explorer" })
+map({
+	key = "<leader>ge",
+	command = function()
+		command.execute({ source = "git_status", toggle = true })
+	end,
+	desc = "Explorer",
+})
 
-map("n", "<leader>be", function()
-	command.execute({ source = "buffers", toggle = true })
-end, { desc = "Buffer explorer" })
+map({
+	key = "<leader>be",
+	command = function()
+		command.execute({ source = "buffers", toggle = true })
+	end,
+	desc = "Explorer",
+})

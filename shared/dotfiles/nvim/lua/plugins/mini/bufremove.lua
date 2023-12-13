@@ -1,6 +1,16 @@
 local bufremove = require("mini.bufremove")
+local map = require("utils").map
 
 bufremove.setup()
 
-vim.keymap.set("n", "<leader>bd", bufremove.delete, { desc = "Delete" })
-vim.keymap.set("n", "<leader>bw", bufremove.wipeout, { desc = "Wipeout" })
+map({
+	key = "<leader>bd",
+	command = bufremove.delete,
+	desc = "Delete",
+})
+
+map({
+	key = "<leader>bw",
+	command = bufremove.wipeout,
+	desc = "Wipeout",
+})

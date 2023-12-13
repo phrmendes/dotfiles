@@ -2,14 +2,7 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 local group = augroup("DapConfig", { clear = true })
-
-local map = function(key, value, desc, type)
-	if type == nil then
-		type = "n"
-	end
-
-	vim.keymap.set(type, key, value, { buffer = 0, desc = "DAP: " .. desc })
-end
+local map = require("utils").map
 
 local dap_settings = function()
 	local dap = require("dap")
@@ -33,22 +26,77 @@ local dap_settings = function()
 	dap.listeners.after.event_initialized["dapui_config"] = function()
 		dap_ui.open()
 	end
+
 	dap.listeners.before.event_terminated["dapui_config"] = function()
 		dap_ui.close()
 	end
+
 	dap.listeners.before.event_exited["dapui_config"] = function()
 		dap_ui.close()
 	end
 
-	map("<F3>", dap.step_back, "step back")
-	map("<F4>", dap.step_into, "step into")
-	map("<F6>", dap.continue, "continue")
-	map("<F7>", dap.step_over, "step over")
-	map("<F8>", dap.step_out, "step out")
-	map("<S-F6>", dap.pause, "pause")
-	map("<localleader>b", dap.toggle_breakpoint, "toggle breakpoint")
-	map("<localleader>q", dap.close, "quit")
-	map("<localleader>t", dap_ui.toggle, "toggle UI")
+	map({
+		key = "<F3>",
+		cmd = dap.step_back,
+		buffer = 0,
+		description = "DAP: step back",
+	})
+
+	map({
+		key = "<F4>",
+		cmd = dap.step_into,
+		buffer = 0,
+		description = "DAP: step into",
+	})
+
+	map({
+		key = "<F6>",
+		cmd = dap.continue,
+		buffer = 0,
+		description = "DAP: continue",
+	})
+
+	map({
+		key = "<F7>",
+		cmd = dap.step_over,
+		buffer = 0,
+		description = "DAP: step over",
+	})
+
+	map({
+		key = "<F8>",
+		cmd = dap.step_out,
+		buffer = 0,
+		description = "DAP: step out",
+	})
+
+	map({
+		key = "<S-F6>",
+		cmd = dap.pause,
+		buffer = 0,
+		description = "DAP: pause",
+	})
+
+	map({
+		key = "<localleader>b",
+		cmd = dap.toggle_breakpoint,
+		buffer = 0,
+		description = "DAP: toggle breakpoint",
+	})
+
+	map({
+		key = "<localleader>q",
+		cmd = dap.close,
+		buffer = 0,
+		description = "DAP: quit",
+	})
+
+	map({
+		key = "<localleader>t",
+		cmd = dap_ui.toggle,
+		buffer = 0,
+		description = "DAP: toggle UI",
+	})
 end
 
 local dap_python_settings = function()
@@ -59,9 +107,26 @@ local dap_python_settings = function()
 	dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/tools/bin/python")
 	dap_python.test_runner = "pytest"
 
-	map("<localleader>c", dap_python.test_class, "thest class")
-	map("<localleader>m", dap_python.test_method, "test method")
-	map("<localleader>s", dap_python.debug_selection, "debug region")
+	map({
+		key = "<localleader>c",
+		cmd = dap_python.test_class,
+		buffer = 0,
+		description = "DAP: test last",
+	})
+
+	map({
+		key = "<localleader>m",
+		cmd = dap_python.test_method,
+		buffer = 0,
+		description = "DAP: test method/function",
+	})
+
+	map({
+		key = "<localleader>s",
+		cmd = dap_python.debug_selection,
+		buffer = 0,
+		description = "DAP: debug selection",
+	})
 end
 
 autocmd("FileType", {

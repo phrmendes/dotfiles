@@ -1,3 +1,9 @@
+require("utils").section({
+	mode = { "n", "v" },
+	key = "gs",
+	name = "surround",
+})
+
 require("mini.surround").setup({
 	mappings = {
 		add = "gsa",

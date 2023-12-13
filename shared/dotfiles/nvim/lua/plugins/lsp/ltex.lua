@@ -1,10 +1,21 @@
 local capabilities = require("plugins.lsp.utils").capabilities
+local map = require("utils").map
 
-local map = vim.keymap.set
+local on_attach = function(_, bufnr)
+	map({
+		mode = { "n", "x" },
+		key = "<leader>a",
+		command = vim.lsp.buf.code_action,
+		buffer = bufnr,
+		desc = "LSP: code actions",
+	})
 
-local on_attach = function()
-	map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, { desc = "LSP: code actions" })
-	map("n", "<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "LSP: document diagnostics" })
+	map({
+		key = "<leader>d",
+		command = "<cmd>TroubleToggle document_diagnostics<cr>",
+		buffer = bufnr,
+		desc = "LSP: document diagnostics",
+	})
 end
 
 require("ltex_extra").setup({

@@ -8,4 +8,8 @@ require("zen-mode").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
+require("utils").section({
+	key = "<leader>Z",
+	command = "<cmd>ZenMode<cr>",
+	desc = "Zen mode",
+})

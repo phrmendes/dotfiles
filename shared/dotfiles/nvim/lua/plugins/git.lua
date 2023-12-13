@@ -1,6 +1,7 @@
 local gitsigns = require("gitsigns")
 
-local map = vim.keymap.set
+local map = require("utils").map
+local section = require("utils").section
 
 gitsigns.setup()
 
@@ -24,11 +25,59 @@ local next_hunk = function()
 	return "<Ignore>"
 end
 
-map("n", "]h", next_hunk, { desc = "Next hunk", expr = true })
-map("n", "[h", prev_hunk, { desc = "Previous hunk", expr = true })
-map("n", "<leader>gR", "<cmd>Telescope lazygit<cr>", { desc = "Repos" })
-map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-map("n", "<leader>gb", gitsigns.toggle_current_line_blame, { desc = "Blame line" })
-map("n", "<leader>gd", gitsigns.diffthis, { desc = "Diff" })
-map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
-map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage hunk" })
+section({
+	key = "<leader>g",
+	name = "git",
+})
+
+map({
+	key = "]h",
+	command = next_hunk,
+	desc = "Next hunk",
+}, {
+	expr = true,
+})
+
+map({
+	key = "[h",
+	command = prev_hunk,
+	desc = "Previous hunk",
+}, {
+	expr = true,
+})
+
+map({
+	key = "<leader>gR",
+	command = "<cmd>Telescope lazygit<cr>",
+	desc = "Repos",
+})
+
+map({
+	key = "<leader>gg",
+	command = "<cmd>LazyGit<cr>",
+	desc = "LazyGit",
+})
+
+map({
+	key = "<leader>gb",
+	command = gitsigns.toggle_current_line_blame,
+	desc = "Blame line",
+})
+
+map({
+	key = "<leader>gd",
+	command = gitsigns.diffthis,
+	desc = "Diff",
+})
+
+map({
+	key = "<leader>gr",
+	command = gitsigns.reset_hunk,
+	desc = "Reset hunk",
+})
+
+map({
+	key = "<leader>gs",
+	command = gitsigns.stage_hunk,
+	desc = "Stage hunk",
+})

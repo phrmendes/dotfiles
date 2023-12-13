@@ -1,7 +1,8 @@
 local obsidian = require("obsidian")
-local utils = require("core.utils")
+local utils = require("utils")
 
-local map = vim.keymap.set
+local map = require("utils").map
+local section = require("utils").section
 
 local id = function(title)
 	return utils.normalize(title)
@@ -58,14 +59,43 @@ obsidian.setup({
 	},
 })
 
-require("which-key").register({
-	mode = "n",
-	["<leader>o"] = { name = "obsidian" },
+section({
+	key = "<leader>o",
+	name = "obsidian",
 })
 
-map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", { desc = "Backlinks" })
-map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Diary (today)" })
-map("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Follow link under cursor" })
-map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
-map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
-map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Quick switch to another note" })
+map({
+	key = "<leader>ob",
+	command = "<cmd>ObsidianBacklinks<cr>",
+	desc = "Backlinks",
+})
+
+map({
+	key = "<leader>od",
+	command = "<cmd>ObsidianToday<cr>",
+	desc = "Diary (today)",
+})
+
+map({
+	key = "<leader>of",
+	command = "<cmd>ObsidianFollowLink<cr>",
+	desc = "Follow link under cursor",
+})
+
+map({
+	key = "<leader>oo",
+	command = "<cmd>ObsidianOpen<cr>",
+	desc = "Open Obsidian",
+})
+
+map({
+	key = "<leader>op",
+	command = "<cmd>ObsidianPasteImg<cr>",
+	desc = "Paste image",
+})
+
+map({
+	key = "<leader>os",
+	command = "<cmd>ObsidianQuickSwitch<cr>",
+	desc = "Quick switch to another note",
+})

@@ -3,6 +3,7 @@ require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.dap")
 require("plugins.git")
+require("plugins.image")
 require("plugins.jupytext")
 require("plugins.lsp")
 require("plugins.markdown")
@@ -22,5 +23,4 @@ require("plugins.zen")
 if vim.fn.has("mac") == 0 then
 	require("plugins.ia")
 	require("plugins.obsidian")
-	require("plugins.image")
 end

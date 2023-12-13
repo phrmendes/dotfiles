@@ -1,4 +1,5 @@
 local spectre = require("spectre")
+local map = require("utils").map
 
 spectre.setup({
 	open_cmd = "noswapfile vnew",
@@ -47,5 +48,9 @@ spectre.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>fs", spectre.toggle, { desc = "Find and replace (Spectre)" })
-vim.keymap.set("x", "<leader>fs", spectre.open_visual, { desc = "Find and replace (Spectre)" })
+map({
+	mode = { "n", "x" },
+	key = "<C-k>",
+	command = spectre.toggle,
+	desc = "Spectre: find and replace",
+})

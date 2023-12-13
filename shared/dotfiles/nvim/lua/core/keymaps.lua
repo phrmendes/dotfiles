@@ -1,50 +1,237 @@
-local map = vim.keymap.set
+local map = require("utils").map
+local section = require("utils").section
 
--- [[ unbind keys ]] ----------------------------------------------------
 local keys = { "<Space>", "<", ">" }
 
 for _, key in ipairs(keys) do
-	map({ "n", "x" }, key, "<Nop>", { noremap = true, silent = true })
+	vim.keymap.set({ "n", "x" }, key, "<Nop>", { noremap = true, silent = true })
 end
 
--- [[ multi cursor ]] ---------------------------------------------------
 vim.g.multi_cursor_use_default_mapping = 0
 vim.g.VM_mouse_mappings = 1
 
--- [[ keymaps ]] --------------------------------------------------------
-map("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true, desc = "Word wrap" })
-map("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, silent = true, desc = "Word wrap" })
+section({
+	mode = { "n", "v" },
+	key = "<leader><space>",
+	name = "local leader",
+})
 
-map("i", "jk", "<ESC>", { noremap = true, silent = true, desc = "Exit insert mode" })
-map("i", "kj", "<ESC>", { noremap = true, silent = true, desc = "Exit insert mode" })
-map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Exit terminal mode" })
+section({
+	key = "<leader><tab>",
+	name = "tabs",
+})
 
-map("n", "+", "<cmd>resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (V)" })
-map("n", "-", "<cmd>vertical resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (H)" })
-map("n", "=", "<cmd>vertical resize +2<cr>", { noremap = true, silent = true, desc = "Increase window (H)" })
-map("n", "_", "<cmd>resize -2<cr>", { noremap = true, silent = true, desc = "Decrease window (V)" })
+section({
+	key = "<leader>b",
+	name = "buffers",
+})
 
-map("n", "[<TAB>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
-map("n", "]<TAB>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+section({
+	mode = { "n", "v" },
+	key = "<leader>f",
+	name = "files/find",
+})
 
-map("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
+map({
+	key = "k",
+	command = [[v:count == 0 ? "gk" : "k"]],
+	desc = "Word wrap",
+}, {
+	expr = true,
+	silent = true,
+})
 
-map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
-map("n", "<leader>-", "<cmd>split<cr>", { desc = "Split window (H)" })
-map("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split window (V)" })
-map("n", "<leader>W", "<cmd>wq<cr>", { desc = "Save and quit" })
-map("n", "<leader>Q", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix" })
-map("n", "<leader>l", "<cmd>TroubleToggle loclist<cr>", { desc = "Loclist" })
-map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
-map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
-map("n", "<leader>x", "<C-w>q", { desc = "Close window" })
-map("n", "<leader>=", "<C-w>=", { desc = "Resize and make windows equal" })
+map({
+	key = "j",
+	command = [[v:count == 0 ? "gj" : "j"]],
+	desc = "Word wrap",
+}, {
+	expr = true,
+	silent = true,
+})
 
-map("n", "<leader><TAB>d", "<cmd> bd <bar> tabclose <bar> startinsert<cr>", { desc = "Close" })
-map("n", "<leader><TAB>n", "<cmd>tabnext<cr>", { desc = "New" })
-map("n", "<leader><TAB>q", "<cmd>tabonly<cr>", { desc = "Close" })
+map({
+	mode = "i",
+	key = "jk",
+	command = "<ESC>",
+	desc = "Exit insert mode",
+}, {
+	noremap = true,
+	silent = true,
+})
 
-map("n", "<leader>bG", "<cmd>blast<cr>", { desc = "Go to last buffer" })
-map("n", "<leader>bg", "<cmd>bfirst<cr>", { desc = "Go to last buffer" })
-map("n", "<leader>bq", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", { desc = "Close all unfocused" })
+map({
+	mode = "i",
+	key = "kj",
+	command = "<ESC>",
+	desc = "Exit insert mode",
+}, {
+	noremap = true,
+	silent = true,
+})
+
+map({
+	mode = "t",
+	key = "<ESC><ESC>",
+	command = "<C-\\><C-n>",
+	desc = "Exit terminal mode",
+}, {
+	noremap = true,
+	silent = true,
+})
+
+map({
+	key = "+",
+	command = "<cmd>resize +2<cr>",
+	desc = "Increase window (V)",
+}, {
+	noremap = true,
+	silent = true,
+})
+
+map({
+	key = "-",
+	command = "<cmd>vertical resize -2<cr>",
+	desc = "Decrease window (H)",
+}, {
+	noremap = true,
+	silent = true,
+})
+
+map({
+	key = "=",
+	command = "<cmd>vertical resize +2<cr>",
+	desc = "Increase window (H)",
+}, {
+	noremap = true,
+	silent = true,
+})
+
+map({
+	key = "_",
+	command = "<cmd>resize -2<cr>",
+	desc = "Decrease window (V)",
+}, {
+	noremap = true,
+	silent = true,
+})
+
+map({
+	key = "[<TAB>",
+	command = "<cmd>tabprevious<cr>",
+	desc = "Previous tab",
+})
+
+map({
+	key = "]<TAB>",
+	command = "<cmd>tabnext<cr>",
+	desc = "Next tab",
+})
+
+map({
+	key = "<C-d>",
+	command = "<C-d>zz",
+	desc = "Page down",
+})
+
+map({
+	key = "<C-u>",
+	command = "<C-u>zz",
+	desc = "Page up",
+})
+
+map({
+	key = "<leader>u",
+	command = "<cmd>UndotreeToggle<cr>",
+	desc = "Toggle undo tree",
+})
+
+map({
+	key = "<leader>-",
+	command = "<cmd>split<cr>",
+	desc = "Split window (H)",
+})
+
+map({
+	key = "<leader>\\",
+	command = "<cmd>vsplit<cr>",
+	desc = "Split window (V)",
+})
+
+map({
+	key = "<leader>W",
+	command = "<cmd>wq<cr>",
+	desc = "Save and quit",
+})
+
+map({
+	key = "<leader>Q",
+	command = "<cmd>TroubleToggle quickfix<cr>",
+	desc = "Quickfix",
+})
+
+map({
+	key = "<leader>l",
+	command = "<cmd>TroubleToggle loclist<cr>",
+	desc = "Loclist",
+})
+
+map({
+	key = "<leader>q",
+	command = "<cmd>confirm q<cr>",
+	desc = "Quit",
+})
+
+map({
+	key = "<leader>w",
+	command = "<cmd>w<cr>",
+	desc = "Save",
+})
+
+map({
+	key = "<leader>x",
+	command = "<C-w>q",
+	desc = "Close window",
+})
+
+map({
+	key = "<leader>=",
+	command = "<C-w>=",
+	desc = "Resize and make windows equal",
+})
+
+map({
+	key = "<leader><TAB>d",
+	command = "<cmd> bd <bar> tabclose <bar> startinsert<cr>",
+	desc = "Close",
+})
+
+map({
+	key = "<leader><TAB>n",
+	command = "<cmd>tabnext<cr>",
+	desc = "New",
+})
+
+map({
+	key = "<leader><TAB>q",
+	command = "<cmd>tabonly<cr>",
+	desc = "Close",
+})
+
+map({
+	key = "<leader>bG",
+	command = "<cmd>blast<cr>",
+	desc = "Go to last buffer",
+})
+
+map({
+	key = "<leader>bg",
+	command = "<cmd>bfirst<cr>",
+	desc = "Go to last buffer",
+})
+
+map({
+	key = "<leader>bq",
+	command = "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>",
+	desc = "Close all unfocused",
+})

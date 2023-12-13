@@ -1,11 +1,34 @@
 local todo = require("todo-comments")
-
-local map = vim.keymap.set
+local map = require("utils").map
+local section = require("utils").section
 
 todo.setup()
 
-map("n", "[t", todo.jump_prev, { desc = "Previous todo comment" })
-map("n", "]t", todo.jump_next, { desc = "Next todo comment" })
+section({
+	key = "<leader>t",
+	name = "todo",
+})
 
-map("n", "<leader>T", "<cmd>TodoQuickFix<cr>", { desc = "Document todos" })
-map("n", "<leader>t", "<cmd>TodoLocList<cr>", { desc = "Workspace todos" })
+map({
+	key = "[t",
+	command = todo.jump_prev,
+	desc = "Previous todo comment",
+})
+
+map({
+	key = "]t",
+	command = todo.jump_next,
+	desc = "Next todo comment",
+})
+
+map({
+	key = "<leader>T",
+	command = "<cmd>TodoQuickFix<cr>",
+	desc = "Document todos",
+})
+
+map({
+	key = "<leader>t",
+	command = "<cmd>TodoLocList<cr>",
+	desc = "Workspace todos",
+})

@@ -1,6 +1,7 @@
 local cmp = require("cmp")
-local lspkind = require("lspkind")
 local luasnip = require("luasnip")
+
+require("cmp_pandoc").setup({ crossref = { enable_nabla = true } })
 
 vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
@@ -35,7 +36,7 @@ cmp.setup({
 		{ name = "buffer" },
 	}),
 	formatting = {
-		format = lspkind.cmp_format({
+		format = require("lspkind").cmp_format({
 			ellipsis_char = "...",
 			maxwidth = 50,
 			mode = "symbol",
@@ -51,7 +52,7 @@ cmp.setup({
 	},
 	window = {
 		documentation = {
-			border = require("core.utils").border,
+			border = require("utils").border,
 		},
 	},
 })
@@ -72,40 +73,20 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
+local md_sources = {
+	{ name = "otter" },
+	{ name = "luasnip" },
+	{ name = "path" },
+	{ name = "cmp_pandoc" },
+	{ name = "latex_symbols", option = { strategy = 2 } },
+}
+
 if vim.fn.has("mac") == 0 then
-	local cmp_pandoc = require("cmp_pandoc")
-
-	cmp_pandoc.setup({ crossref = { enable_nabla = true } })
-
-	cmp.setup.filetype("quarto", {
-		sources = cmp.config.sources({
-			{ name = "otter" },
-			{ name = "cmp_pandoc" },
-			{ name = "luasnip" },
-			{ name = "path" },
-			{ name = "latex_symbols", option = { strategy = 2 } },
-		}, {
-			{ name = "buffer" },
-		}),
-	})
-
-	cmp.setup.filetype("markdown", {
-		sources = cmp.config.sources({
-			{ name = "otter" },
-			{ name = "cmp_zotcite" },
-			{ name = "luasnip" },
-			{ name = "path" },
-			{ name = "latex_symbols", option = { strategy = 2 } },
-		}, {
-			{ name = "buffer" },
-		}),
-	})
-else
-	cmp.setup.filetype("markdown", {
-		sources = cmp.config.sources({
-			{ name = "luasnip" },
-			{ name = "path" },
-			{ name = "buffer" },
-		}),
-	})
+	md_sources = table.insert(md_sources, { name = "cmp_zotcite" })
 end
+
+cmp.setup.filetype({ "markdown", "quarto" }, {
+	sources = cmp.config.sources(md_sources, {
+		{ name = "buffer" },
+	}),
+})

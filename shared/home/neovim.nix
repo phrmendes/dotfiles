@@ -128,6 +128,7 @@ in {
         ruff-lsp
         shellcheck
         shellharden
+        sqlfluff
         statix
         stylua
         taplo

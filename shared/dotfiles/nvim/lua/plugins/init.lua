@@ -1,4 +1,3 @@
-require("plugins.aerial")
 require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.dap")

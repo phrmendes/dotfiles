@@ -29,12 +29,10 @@ in {
     withPython3 = true;
     plugins =
       (with pkgs.vimPlugins; [
-        aerial-nvim
         ansible-vim
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
-        cmp-emoji
         cmp-latex-symbols
         cmp-nvim-lsp
         cmp-nvim-lsp-signature-help

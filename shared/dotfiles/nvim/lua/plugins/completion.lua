@@ -1,8 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-
 require("cmp_pandoc").setup({
 	filetypes = { "pandoc", "markdown", "quarto" },
 	crossref = { enable_nabla = true },
@@ -39,9 +37,8 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
-		{ name = "latex_symbols" },
-		{ name = "emoji" },
 	}, {
+		{ name = "latex_symbols" },
 		{ name = "buffer" },
 	}),
 	formatting = {
@@ -53,11 +50,6 @@ cmp.setup({
 				otter = "🦦",
 			},
 		}),
-		experimental = {
-			ghost_text = {
-				hl_group = "CmpGhostText",
-			},
-		},
 	},
 	window = {
 		documentation = {

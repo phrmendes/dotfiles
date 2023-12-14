@@ -5,69 +5,7 @@ local section = require("utils").section
 
 local group = augroup("MarkdownQuartoConfig", { clear = true })
 
-local quarto_settings = function()
-	require("otter").setup({
-		opts = {
-			lsp = {
-				hover = {
-					border = require("utils").border,
-				},
-			},
-			buffers = {
-				set_filetype = true,
-			},
-		},
-	})
-
-	require("quarto").setup({
-		lspFeatures = {
-			languages = { "python", "bash", "lua" },
-		},
-	})
-end
-
-local zotero_settings = function()
-	section({
-		key = "<leader>z",
-		name = "zotero",
-		buffer = 0,
-	})
-
-	map({
-		key = "<leader>zc",
-		command = "<Plug>ZCitationCompleteInfo",
-		buffer = 0,
-		desc = "Citation info (complete)",
-	})
-
-	map({
-		key = "<leader>zi",
-		command = "<Plug>ZCitationInfo",
-		desc = "Citation info",
-		buffer = 0,
-	})
-
-	map({
-		key = "<leader>zo",
-		command = "<Plug>ZOpenAttachment",
-		desc = "Open attachment",
-		buffer = 0,
-	})
-
-	map({
-		key = "<leader>zv",
-		command = "<Plug>ZViewDocument",
-		desc = "View exported document",
-		buffer = 0,
-	})
-
-	map({
-		key = "<leader>zy",
-		command = "<Plug>ZCitationYamlRef",
-		desc = "Citation info (yaml)",
-		buffer = 0,
-	})
-end
+vim.g.mkdp_filetypes = { "markdown", "quarto" }
 
 autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
@@ -92,11 +30,5 @@ autocmd("FileType", {
 			desc = "Equation preview",
 			buffer = 0,
 		})
-
-		quarto_settings()
-
-		if vim.fn.has("mac") == 0 then
-			zotero_settings()
-		end
 	end,
 })

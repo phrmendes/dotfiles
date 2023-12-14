@@ -71,6 +71,13 @@ local dap_settings = function()
 	})
 
 	map({
+		key = "<F11>",
+		cmd = dap.close,
+		buffer = 0,
+		description = "DAP: quit",
+	})
+
+	map({
 		key = "<S-F6>",
 		cmd = dap.pause,
 		buffer = 0,
@@ -82,13 +89,6 @@ local dap_settings = function()
 		cmd = dap.toggle_breakpoint,
 		buffer = 0,
 		description = "DAP: toggle breakpoint",
-	})
-
-	map({
-		key = "<localleader>q",
-		cmd = dap.close,
-		buffer = 0,
-		description = "DAP: quit",
 	})
 
 	map({
@@ -122,10 +122,11 @@ local dap_python_settings = function()
 	})
 
 	map({
-		key = "<localleader>s",
+		mode = "x",
+		key = "<localleader>r",
 		cmd = dap_python.debug_selection,
 		buffer = 0,
-		description = "DAP: debug selection",
+		description = "DAP: debug region",
 	})
 end
 

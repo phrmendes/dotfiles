@@ -79,9 +79,6 @@ vim.opt.concealcursor = "nc"
 -- shell slash
 vim.opt.shellslash = true
 
--- markdown preview
-vim.g.mkdp_filetypes = { "markdown", "quarto", "pandoc" }
-
 -- nvim server
 if vim.fn.executable("nvr") then
 	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

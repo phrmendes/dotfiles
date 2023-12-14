@@ -165,18 +165,6 @@ map({
 })
 
 map({
-	key = "<leader>Q",
-	command = "<cmd>TroubleToggle quickfix<cr>",
-	desc = "Quickfix",
-})
-
-map({
-	key = "<leader>l",
-	command = "<cmd>TroubleToggle loclist<cr>",
-	desc = "Loclist",
-})
-
-map({
 	key = "<leader>q",
 	command = "<cmd>confirm q<cr>",
 	desc = "Quit",
@@ -234,4 +222,16 @@ map({
 	key = "<leader>bq",
 	command = "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>",
 	desc = "Close all unfocused",
+})
+
+map({
+	key = "<localleader>q",
+	command = "<cmd>TroubleToggle quickfix<cr>",
+	desc = "Quickfix",
+})
+
+map({
+	key = "<localleader>l",
+	command = "<cmd>TroubleToggle loclist<cr>",
+	desc = "Loclist",
 })

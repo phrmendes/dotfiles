@@ -10,6 +10,7 @@ require("plugins.markdown")
 require("plugins.mini")
 require("plugins.neogen")
 require("plugins.neotree")
+require("plugins.quarto")
 require("plugins.slime")
 require("plugins.snippets")
 require("plugins.spectre")
@@ -23,4 +24,5 @@ require("plugins.zen")
 if vim.fn.has("mac") == 0 then
 	require("plugins.ia")
 	require("plugins.obsidian")
+	require("plugins.zotero")
 end

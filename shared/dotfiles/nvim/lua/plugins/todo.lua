@@ -22,13 +22,13 @@ map({
 })
 
 map({
-	key = "<leader>T",
-	command = "<cmd>TodoQuickFix<cr>",
+	key = "<leader>t",
+	command = "<cmd>TodoLocList<cr>",
 	desc = "Document todos",
 })
 
 map({
-	key = "<leader>t",
-	command = "<cmd>TodoLocList<cr>",
+	key = "<leader>T",
+	command = "<cmd>TodoQuickFix<cr>",
 	desc = "Workspace todos",
 })

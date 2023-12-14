@@ -49,8 +49,7 @@ spectre.setup({
 })
 
 map({
-	mode = { "n", "x" },
-	key = "<C-k>",
+	key = "<leader>fs",
 	command = spectre.toggle,
-	desc = "Spectre: find and replace",
+	desc = "Find and replace",
 })

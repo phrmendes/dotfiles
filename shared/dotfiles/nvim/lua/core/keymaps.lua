@@ -11,7 +11,7 @@ vim.g.multi_cursor_use_default_mapping = 0
 vim.g.VM_mouse_mappings = 1
 
 section({
-	mode = { "n", "v" },
+	mode = { "n", "x" },
 	key = "<leader><space>",
 	name = "local leader",
 })
@@ -27,7 +27,7 @@ section({
 })
 
 section({
-	mode = { "n", "v" },
+	mode = { "n", "x" },
 	key = "<leader>f",
 	name = "files/find",
 })

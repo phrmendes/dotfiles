@@ -1,11 +1,9 @@
-local augroup = vim.api.nvim_create_augroup
+local augroup = require("utils").augroup
+
 local autocmd = vim.api.nvim_create_autocmd
 
-local hl_group = augroup("YankHighlight", { clear = true })
-local term_group = augroup("UserTermSettings", { clear = true })
-
 autocmd({ "TermOpen" }, {
-	group = term_group,
+	group = augroup,
 	pattern = { "*" },
 	callback = function()
 		vim.wo.number = false
@@ -15,7 +13,7 @@ autocmd({ "TermOpen" }, {
 })
 
 autocmd({ "TermClose" }, {
-	group = term_group,
+	group = augroup,
 	pattern = { "*" },
 	callback = function()
 		vim.wo.number = true
@@ -25,8 +23,29 @@ autocmd({ "TermClose" }, {
 
 autocmd("TextYankPost", {
 	pattern = "*",
-	group = hl_group,
+	group = augroup,
 	callback = function()
 		vim.highlight.on_yank()
+	end,
+})
+
+autocmd("BufEnter", {
+	pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg" },
+	group = augroup,
+	callback = function()
+		local filename = vim.api.nvim_buf_get_name(0)
+		filename = vim.fn.shellescape(filename)
+
+		if vim.fn.has("mac") == 1 then
+			vim.cmd["!"]({ "open", filename })
+		else
+			vim.cmd["!"]({ "xdg-open", filename })
+		end
+
+		vim.cmd.redraw()
+
+		vim.defer_fn(function()
+			vim.cmd.bdelete({ bang = true })
+		end, 1000)
 	end,
 })

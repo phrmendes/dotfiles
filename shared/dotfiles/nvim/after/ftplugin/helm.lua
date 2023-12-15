@@ -1,8 +1,8 @@
-local augroup = vim.api.nvim_create_augroup
+local augroup = require("utils").augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("LspAttach", {
-	group = augroup("HelmLspConfig", { clear = true }),
+	group = augroup,
 	callback = function()
 		local server = vim.lsp.get_active_clients({ name = "yamlls", bufnr = 0 })
 

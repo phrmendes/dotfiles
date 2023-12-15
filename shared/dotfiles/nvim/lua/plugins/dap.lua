@@ -1,8 +1,7 @@
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
-local group = augroup("DapConfig", { clear = true })
+local augroup = require("utils").augroup
 local map = require("utils").map
+
+local autocmd = vim.api.nvim_create_autocmd
 
 local dap_settings = function()
 	local dap = require("dap")
@@ -132,8 +131,6 @@ end
 
 autocmd("FileType", {
 	pattern = "python",
-	group = group,
-	callback = function()
-		dap_python_settings()
-	end,
+	group = augroup,
+	callback = dap_python_settings,
 })

@@ -2,8 +2,10 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 require("cmp_pandoc").setup({
-	filetypes = { "pandoc", "markdown", "quarto" },
-	crossref = { enable_nabla = true },
+	filetypes = { "quarto" },
+	crossref = {
+		enable_nabla = true,
+	},
 })
 
 cmp.setup({
@@ -30,15 +32,11 @@ cmp.setup({
 		end,
 	}),
 	sources = cmp.config.sources({
-		{ name = "otter" },
-		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
-		{ name = "cmp_pandoc" },
-		{ name = "cmp_zotcite" },
 	}, {
-		{ name = "latex_symbols" },
+		{ name = "path" },
 		{ name = "buffer" },
 	}),
 	formatting = {
@@ -71,4 +69,29 @@ cmp.setup.cmdline({ "/", "?" }, {
 	sources = {
 		{ name = "buffer" },
 	},
+})
+
+cmp.setup.filetype("quarto", {
+	sources = cmp.config.sources({
+		{ name = "otter" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "luasnip" },
+		{ name = "cmp_pandoc" },
+	}, {
+		{ name = "latex_symbols" },
+		{ name = "path" },
+		{ name = "buffer" },
+	}),
+})
+
+cmp.setup.filetype("markdown", {
+	sources = cmp.config.sources({
+		{ name = "luasnip" },
+		{ name = "cmp_zotcite" },
+	}, {
+		{ name = "latex_symbols" },
+		{ name = "path" },
+		{ name = "buffer" },
+	}),
 })

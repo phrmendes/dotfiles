@@ -88,6 +88,7 @@ in {
         vim-nix
         vim-sleuth
         vim-slime
+        vim-table-mode
         vim-tmux-navigator
         vim-visual-multi
         which-key-nvim

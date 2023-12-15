@@ -1,5 +1,6 @@
 local map = require("utils").map
 local section = require("utils").section
+local open_uri = require("utils").open_uri_under_cursor
 
 local keys = { "<Space>", "<", ">" }
 
@@ -138,6 +139,12 @@ map({
 	key = "<C-u>",
 	command = "<C-u>zz",
 	desc = "Page up",
+})
+
+map({
+	key = "go",
+	command = open_uri,
+	desc = "Open URI under cursor",
 })
 
 map({

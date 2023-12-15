@@ -1,5 +1,9 @@
 local quarto = require("quarto")
+
 local map = require("utils").map
+local augroup = require("utils").augroup
+
+local autocmd = vim.api.nvim_create_autocmd
 
 quarto.setup({
 	lspFeatures = {
@@ -28,4 +32,14 @@ map({
 }, {
 	silent = true,
 	noremap = true,
+})
+
+autocmd("FileType", {
+	pattern = "quarto",
+	group = augroup,
+	callback = function()
+		vim.defer_fn(function()
+			require("otter").activate({ "python", "sh" }, true)
+		end, 500)
+	end,
 })

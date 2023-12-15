@@ -51,4 +51,41 @@ M.map = function(args, opts)
 	vim.keymap.set(args.mode or "n", args.key, args.command, options)
 end
 
+M.open_uri_under_cursor = function()
+	local function open_uri(uri)
+		if type(uri) ~= "nil" then
+			uri = string.gsub(uri, "#", "\\#")
+			uri = '"' .. uri .. '"'
+
+			if vim.fn.has("mac") == 1 then
+				vim.cmd["!"]({ "open", uri })
+				vim.cmd.redraw()
+			else
+				vim.cmd["!"]({ "xdg-open", uri })
+				vim.cmd.redraw()
+			end
+
+			return true
+		else
+			return false
+		end
+	end
+
+	local word_under_cursor = vim.fn.expand("<cWORD>")
+
+	local regex_protocol_uri = "%a*:%/%/[%a%d%#%[%]%-%%+:;!$@/?&=_.,~*()]*[^%)]"
+
+	if open_uri(string.match(word_under_cursor, regex_protocol_uri)) then
+		return
+	end
+
+	local regex_plugin_url = "[%a%d%-%.%_]*%/[%a%d%-%.%_]*"
+
+	if open_uri("https://github.com/" .. string.match(word_under_cursor, regex_plugin_url)) then
+		return
+	end
+end
+
+M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
+
 return M

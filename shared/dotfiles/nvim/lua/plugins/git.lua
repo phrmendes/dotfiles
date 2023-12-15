@@ -59,15 +59,15 @@ map({
 })
 
 map({
-	key = "<leader>gb",
-	command = gitsigns.toggle_current_line_blame,
-	desc = "Blame line",
+	key = "<leader>ga",
+	command = "<cmd>Gitsigns<cr>",
+	desc = "Gitsigns",
 })
 
 map({
-	key = "<leader>gd",
-	command = gitsigns.diffthis,
-	desc = "Diff",
+	key = "<leader>gb",
+	command = gitsigns.toggle_current_line_blame,
+	desc = "Blame line",
 })
 
 map({

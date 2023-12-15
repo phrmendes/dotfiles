@@ -1,6 +1,6 @@
 local lint = require("lint")
+local augroup = require("utils").augroup
 
-local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 lint.linters_by_ft = {
@@ -10,7 +10,7 @@ lint.linters_by_ft = {
 }
 
 autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-	group = augroup("LintersConfig", { clear = true }),
+	group = augroup,
 	callback = function()
 		lint.try_lint()
 	end,

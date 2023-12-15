@@ -1,8 +1,8 @@
 local command = require("neo-tree.command")
-
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
+local augroup = require("utils").augroup
 local map = require("utils").map
+
+local autocmd = vim.api.nvim_create_autocmd
 
 require("neo-tree").setup({
 	sources = { "filesystem", "buffers", "git_status", "document_symbols" },
@@ -32,7 +32,7 @@ require("neo-tree").setup({
 })
 
 autocmd("TermClose", {
-	group = augroup("GitNeoTree", { clear = true }),
+	group = augroup,
 	pattern = "*lazygit",
 	callback = function()
 		if package.loaded["neo-tree.sources.git_status"] then

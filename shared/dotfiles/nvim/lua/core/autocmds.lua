@@ -21,14 +21,6 @@ autocmd({ "TermClose" }, {
 	end,
 })
 
-autocmd("TextYankPost", {
-	pattern = "*",
-	group = augroup,
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
 autocmd("BufEnter", {
 	pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg" },
 	group = augroup,

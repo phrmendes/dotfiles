@@ -50,12 +50,6 @@ obsidian.setup({
 			end,
 			opts = { noremap = false, expr = true, buffer = 0 },
 		},
-		["<C-CR>"] = {
-			action = function()
-				return obsidian.util.toggle_checkbox()
-			end,
-			opts = { buffer = 0 },
-		},
 	},
 })
 

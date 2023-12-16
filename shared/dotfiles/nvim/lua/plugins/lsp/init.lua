@@ -1,9 +1,10 @@
 require("plugins.lsp.formatters")
 require("plugins.lsp.linters")
 require("plugins.lsp.ltex")
-require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 require("lsp_signature").setup()
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
+require("barbecue").setup({ exclude_filetypes = { "neo-tree", "starter" } })
 
 local capabilities = require("plugins.lsp.utils").capabilities
 local lspconfig = require("lspconfig")

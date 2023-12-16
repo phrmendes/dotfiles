@@ -1,5 +1,4 @@
 local quarto = require("quarto")
-local runner = require("quarto.runner")
 
 local map = require("utils").map
 
@@ -23,22 +22,4 @@ map({
 }, {
 	silent = true,
 	noremap = true,
-})
-
-map({
-	key = "<leader>ms",
-	command = runner.run_cell,
-	desc = "Run cell",
-	buffer = 0,
-}, {
-	silent = true,
-})
-
-map({
-	key = "<leader>ma",
-	command = runner.run_all,
-	desc = "Run all cells",
-	buffer = 0,
-}, {
-	silent = true,
 })

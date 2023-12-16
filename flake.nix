@@ -34,6 +34,11 @@
       flake = false;
       url = "github:goerz/jupytext.vim";
     };
+
+    lsp-progress-nvim = {
+      flake = false;
+      url = "github:linrongbin16/lsp-progress.nvim";
+    };
   };
 
   outputs = inputs @ {

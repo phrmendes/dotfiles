@@ -13,6 +13,7 @@
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
   jupytext-vim = pluginFromGitHub "jupytext-vim" inputs.jupytext-vim;
+  lsp-progress-nvim = pluginFromGitHub "lsp-progress.nvim" inputs.lsp-progress-nvim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-zotcite
@@ -30,6 +31,8 @@ in {
     plugins =
       (with pkgs.vimPlugins; [
         ansible-vim
+        barbecue-nvim
+        bullets-vim
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
@@ -48,16 +51,17 @@ in {
         image-nvim
         jupytext-vim
         lazygit-nvim
+        lsp-progress-nvim
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
+        lualine-nvim
         luasnip
         mini-nvim
         nabla-nvim
         neo-tree-nvim
         neodev-nvim
         neogen
-        nui-nvim
         nvim-cmp
         nvim-dap
         nvim-dap-python
@@ -75,8 +79,8 @@ in {
         nvim-web-devicons
         otter-nvim
         plenary-nvim
-        popup-nvim
         quarto-nvim
+        smartyank-nvim
         telescope-nvim
         telescope-zoxide
         todo-comments-nvim

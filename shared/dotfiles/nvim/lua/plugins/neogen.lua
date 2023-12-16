@@ -11,7 +11,7 @@ require("neogen").setup({
 })
 
 require("utils").map({
-	key = "<localleader>n",
+	key = "<leader>n",
 	command = "<cmd>Neogen<cr>",
 	desc = "Generate annotations",
 })

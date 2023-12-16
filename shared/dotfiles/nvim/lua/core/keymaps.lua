@@ -8,7 +8,6 @@ for _, key in ipairs(keys) do
 	vim.keymap.set({ "n", "x" }, key, "<Nop>", { noremap = true, silent = true })
 end
 
-vim.g.multi_cursor_use_default_mapping = 0
 vim.g.VM_mouse_mappings = 1
 
 section({

@@ -5,7 +5,6 @@ require("plugins.mini.indentscope")
 require("plugins.mini.jump")
 require("plugins.mini.move")
 require("plugins.mini.splitjoin")
-require("plugins.mini.statusline")
 require("plugins.mini.surround")
 
 require("mini.bracketed").setup()

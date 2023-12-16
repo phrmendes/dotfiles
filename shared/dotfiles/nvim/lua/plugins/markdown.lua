@@ -4,9 +4,13 @@ local augroup = require("utils").augroup
 
 local autocmd = vim.api.nvim_create_autocmd
 
+vim.g.bullets_checkbox_markers = " x"
+vim.g.bullets_checkbox_partials_toggle = 1
+vim.g.bullets_enabled_file_types = { "markdown", "quarto" }
+vim.g.bullets_set_mappings = 0
 vim.g.mkdp_filetypes = { "markdown", "quarto" }
-vim.g.table_mode_disable_mappings = 1
 vim.g.table_mode_delimiter = ","
+vim.g.table_mode_disable_mappings = 1
 
 autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
@@ -63,7 +67,7 @@ autocmd("FileType", {
 			mode = { "n", "v" },
 			key = "<leader>mtT",
 			command = "<cmd>Tableize<cr>",
-			desc = "Toggle mode",
+			desc = "Tableize",
 			buffer = 0,
 		})
 
@@ -107,6 +111,52 @@ autocmd("FileType", {
 			key = "<leader>mtdr",
 			command = "<Plug>(table-mode-delete-row-map)",
 			desc = "Row",
+			buffer = 0,
+		})
+
+		map({
+			mode = "i",
+			key = "<cr>",
+			command = "<Plug>(bullets-newline)",
+			desc = "New item",
+			buffer = 0,
+		})
+
+		map({
+			key = "o",
+			command = "<Plug>(bullets-newline)",
+			desc = "New item",
+			buffer = 0,
+		})
+
+		map({
+			mode = { "n", "v" },
+			key = "gN",
+			command = "<Plug>(bullets-renumber)",
+			desc = "Renumber item",
+			buffer = 0,
+		})
+
+		map({
+			key = "<C-CR>",
+			command = "<Plug>(bullets-toggle-checkbox)",
+			desc = "Toggle checkbox",
+			buffer = 0,
+		})
+
+		map({
+			mode = { "n", "v" },
+			key = ">>",
+			command = "<Plug>(bullets-demote)",
+			desc = "Demote item",
+			buffer = 0,
+		})
+
+		map({
+			mode = { "n", "v" },
+			key = "<<",
+			command = "<Plug>(bullets-promote)",
+			desc = "Promote item",
 			buffer = 0,
 		})
 	end,

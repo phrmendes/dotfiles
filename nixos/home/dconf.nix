@@ -9,6 +9,14 @@
           "gsconnect@andyholmes.github.io"
           "pop-shell@system76.com"
         ];
+        favorite-apps = [
+          "firefox.desktop"
+          "org.gnome.Nautilus.desktop"
+          "org.wezfurlong.wezterm.desktop"
+          "bitwarden.desktop"
+          "org.gnome.DejaDup.desktop"
+          "obsidian.desktop"
+        ];
       };
     };
   };

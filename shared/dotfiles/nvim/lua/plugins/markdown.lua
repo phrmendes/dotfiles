@@ -5,7 +5,6 @@ local augroup = require("utils").augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 vim.g.mkdp_filetypes = { "markdown", "quarto" }
-vim.g.table_mode_map_prefix = "<leader>mt"
 vim.g.table_mode_disable_mappings = 1
 vim.g.table_mode_delimiter = ","
 

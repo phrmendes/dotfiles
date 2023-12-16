@@ -1,7 +1,7 @@
 local augroup = require("utils").augroup
 local map = require("utils").map
 
-local autocmd = vim.api.nvim_create_autocmd
+local autocommand = vim.api.nvim_create_autocmd
 
 local dap_settings = function()
 	local dap = require("dap")
@@ -36,63 +36,63 @@ local dap_settings = function()
 
 	map({
 		key = "<F3>",
-		cmd = dap.step_back,
+		command = dap.step_back,
 		buffer = 0,
 		description = "DAP: step back",
 	})
 
 	map({
 		key = "<F4>",
-		cmd = dap.step_into,
+		command = dap.step_into,
 		buffer = 0,
 		description = "DAP: step into",
 	})
 
 	map({
 		key = "<F6>",
-		cmd = dap.continue,
+		command = dap.continue,
 		buffer = 0,
 		description = "DAP: continue",
 	})
 
 	map({
 		key = "<F7>",
-		cmd = dap.step_over,
+		command = dap.step_over,
 		buffer = 0,
 		description = "DAP: step over",
 	})
 
 	map({
 		key = "<F8>",
-		cmd = dap.step_out,
+		command = dap.step_out,
 		buffer = 0,
 		description = "DAP: step out",
 	})
 
 	map({
 		key = "<F11>",
-		cmd = dap.close,
+		command = dap.close,
 		buffer = 0,
 		description = "DAP: quit",
 	})
 
 	map({
 		key = "<S-F6>",
-		cmd = dap.pause,
+		command = dap.pause,
 		buffer = 0,
 		description = "DAP: pause",
 	})
 
 	map({
 		key = "<localleader>b",
-		cmd = dap.toggle_breakpoint,
+		command = dap.toggle_breakpoint,
 		buffer = 0,
 		description = "DAP: toggle breakpoint",
 	})
 
 	map({
 		key = "<localleader>t",
-		cmd = dap_ui.toggle,
+		command = dap_ui.toggle,
 		buffer = 0,
 		description = "DAP: toggle UI",
 	})
@@ -108,14 +108,14 @@ local dap_python_settings = function()
 
 	map({
 		key = "<localleader>c",
-		cmd = dap_python.test_class,
+		command = dap_python.test_class,
 		buffer = 0,
 		description = "DAP: test last",
 	})
 
 	map({
 		key = "<localleader>m",
-		cmd = dap_python.test_method,
+		command = dap_python.test_method,
 		buffer = 0,
 		description = "DAP: test method/function",
 	})
@@ -123,13 +123,13 @@ local dap_python_settings = function()
 	map({
 		mode = "x",
 		key = "<localleader>r",
-		cmd = dap_python.debug_selection,
+		command = dap_python.debug_selection,
 		buffer = 0,
 		description = "DAP: debug region",
 	})
 end
 
-autocmd("FileType", {
+autocommand("FileType", {
 	pattern = "python",
 	group = augroup,
 	callback = dap_python_settings,

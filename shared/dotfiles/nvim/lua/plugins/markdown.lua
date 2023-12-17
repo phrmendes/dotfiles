@@ -11,6 +11,7 @@ vim.g.bullets_set_mappings = 0
 vim.g.mkdp_filetypes = { "markdown", "quarto" }
 vim.g.table_mode_delimiter = ","
 vim.g.table_mode_disable_mappings = 1
+vim.g.table_mode_disable_tableize_mappings = 1
 
 autocmd("FileType", {
 	pattern = { "markdown", "quarto" },

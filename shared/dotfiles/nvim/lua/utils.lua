@@ -5,11 +5,11 @@ M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 M.normalize = function(word)
 	word = word:lower()
 	local normalized_word = word:gsub("[%z\1-\127\194-\244][\128-\191]*", function(c)
-		return c:gsub("[áàâä]", "a")
-			:gsub("[éèêë]", "e")
-			:gsub("[íìîï]", "i")
-			:gsub("[óòôö]", "o")
-			:gsub("[úùûü]", "u")
+		return c:gsub("[áàâ]", "a")
+			:gsub("[éèê]", "e")
+			:gsub("[íìî]", "i")
+			:gsub("[óòô]", "o")
+			:gsub("[úùû]", "u")
 			:gsub("[ç]", "c")
 	end)
 
@@ -87,5 +87,17 @@ M.open_uri_under_cursor = function()
 end
 
 M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
+
+M.venv = function()
+	if vim.env.CONDA_DEFAULT_ENV then
+		return string.format(" %s (conda)", vim.env.CONDA_DEFAULT_ENV)
+	end
+
+	if vim.env.VIRTUAL_ENV then
+		return string.format(" %s (venv)", vim.fn.fnamemodify(vim.env.VIRTUAL_ENV, ":t"))
+	end
+
+	return ""
+end
 
 return M

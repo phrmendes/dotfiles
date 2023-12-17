@@ -1,13 +1,7 @@
 local todo = require("todo-comments")
 local map = require("utils").map
-local section = require("utils").section
 
 todo.setup()
-
-section({
-	key = "<leader>t",
-	name = "todo",
-})
 
 map({
 	key = "[t",

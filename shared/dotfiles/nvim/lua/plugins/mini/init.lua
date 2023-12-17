@@ -7,6 +7,7 @@ require("plugins.mini.move")
 require("plugins.mini.splitjoin")
 require("plugins.mini.surround")
 
+require("mini.align").setup()
 require("mini.bracketed").setup()
 require("mini.cursorword").setup()
 require("mini.fuzzy").setup()

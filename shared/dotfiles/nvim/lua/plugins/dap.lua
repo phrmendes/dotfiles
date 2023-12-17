@@ -1,9 +1,8 @@
-local augroup = require("utils").augroup
 local map = require("utils").map
 
-local autocommand = vim.api.nvim_create_autocmd
+local M = {}
 
-local dap_settings = function()
+M.setup = function()
 	local dap = require("dap")
 	local dap_ui = require("dapui")
 	local dap_virtual_text = require("nvim-dap-virtual-text")
@@ -38,69 +37,67 @@ local dap_settings = function()
 		key = "<F3>",
 		command = dap.step_back,
 		buffer = 0,
-		description = "DAP: step back",
+		desc = "DAP: step back",
 	})
 
 	map({
 		key = "<F4>",
 		command = dap.step_into,
 		buffer = 0,
-		description = "DAP: step into",
+		desc = "DAP: step into",
 	})
 
 	map({
 		key = "<F6>",
 		command = dap.continue,
 		buffer = 0,
-		description = "DAP: continue",
+		desc = "DAP: continue",
 	})
 
 	map({
 		key = "<F7>",
 		command = dap.step_over,
 		buffer = 0,
-		description = "DAP: step over",
+		desc = "DAP: step over",
 	})
 
 	map({
 		key = "<F8>",
 		command = dap.step_out,
 		buffer = 0,
-		description = "DAP: step out",
+		desc = "DAP: step out",
 	})
 
 	map({
 		key = "<F11>",
 		command = dap.close,
 		buffer = 0,
-		description = "DAP: quit",
+		desc = "DAP: quit",
 	})
 
 	map({
 		key = "<S-F6>",
 		command = dap.pause,
 		buffer = 0,
-		description = "DAP: pause",
+		desc = "DAP: pause",
 	})
 
 	map({
 		key = "<localleader>b",
 		command = dap.toggle_breakpoint,
 		buffer = 0,
-		description = "DAP: toggle breakpoint",
+		desc = "DAP: toggle breakpoint",
 	})
 
 	map({
 		key = "<localleader>t",
 		command = dap_ui.toggle,
 		buffer = 0,
-		description = "DAP: toggle UI",
+		desc = "DAP: toggle UI",
 	})
 end
 
-local dap_python_settings = function()
-	dap_settings()
-
+M.python = function()
 	local dap_python = require("dap-python")
 
 	dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/tools/bin/python")
@@ -110,14 +107,14 @@ local dap_python_settings = function()
 		key = "<localleader>c",
 		command = dap_python.test_class,
 		buffer = 0,
-		description = "DAP: test last",
+		desc = "DAP: test last",
 	})
 
 	map({
 		key = "<localleader>m",
 		command = dap_python.test_method,
 		buffer = 0,
-		description = "DAP: test method/function",
+		desc = "DAP: test method/function",
 	})
 
 	map({
@@ -125,12 +122,8 @@ local dap_python_settings = function()
 		key = "<localleader>r",
 		command = dap_python.debug_selection,
 		buffer = 0,
-		description = "DAP: debug region",
+		desc = "DAP: debug region",
 	})
 end
 
-autocommand("FileType", {
-	pattern = "python",
-	group = augroup,
-	callback = dap_python_settings,
-})
+return M

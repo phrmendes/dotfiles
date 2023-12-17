@@ -1,6 +1,5 @@
 local quarto = require("quarto")
-
-local map = require("utils").map
+local mappings = require("plugins.writing")
 
 quarto.setup({
 	lspFeatures = {
@@ -14,12 +13,5 @@ quarto.setup({
 	},
 })
 
-map({
-	key = "<leader>mq",
-	command = quarto.quartoPreview,
-	desc = "Quarto preview",
-	buffer = 0,
-}, {
-	silent = true,
-	noremap = true,
-})
+mappings.markdown()
+mappings.bullets()

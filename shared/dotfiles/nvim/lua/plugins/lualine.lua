@@ -6,20 +6,32 @@ require("lualine").setup({
 	options = {
 		theme = "catppuccin",
 		component_separators = "|",
-		section_separators = { left = "█", right = "█" },
+		section_separators = {
+			right = "█",
+			left = "",
+		},
 	},
 	sections = {
-		lualine_a = {
-			{ "mode", separator = { left = "█" }, right_padding = 2 },
+		lualine_a = { { "mode", icon = { " ", align = "left" } } },
+		lualine_b = {
+			"branch",
+			{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
+			"diagnostics",
 		},
-		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { lsp_progress.progress },
-		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = {
-			{ "location", separator = { right = "█" }, left_padding = 2 },
+		lualine_c = {
+			{
+				"buffers",
+				symbols = { modified = "", alternate_file = "", directory = "" },
+			},
 		},
+		lualine_x = { lsp_progress.progress, "encoding", "fileformat", "filetype" },
+		lualine_y = { { "progress", separator = { left = "", right = "" } } },
+		lualine_z = { { "location", separator = { left = "", right = "" } } },
 	},
-	disabled_filetypes = { "starter", "neo-tree" },
+	disabled_filetypes = { "starter" },
 	globalstatus = true,
+	extensions = {
+		"neo-tree",
+		"nvim-dap-ui",
+	},
 })

@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  pkgs-stable,
   ...
 }: let
   pluginFromGitHub = pname: src:
@@ -13,7 +12,6 @@
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
   jupytext-vim = pluginFromGitHub "jupytext-vim" inputs.jupytext-vim;
-  lsp-progress-nvim = pluginFromGitHub "lsp-progress.nvim" inputs.lsp-progress-nvim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-zotcite
@@ -51,12 +49,12 @@ in {
         image-nvim
         jupytext-vim
         lazygit-nvim
-        lsp-progress-nvim
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
         lualine-nvim
         luasnip
+        markdown-preview-nvim
         mini-nvim
         nabla-nvim
         neo-tree-nvim
@@ -96,9 +94,6 @@ in {
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim
-      ])
-      ++ (with pkgs-stable.vimPlugins; [
-        markdown-preview-nvim
       ])
       ++ (
         if pkgs.stdenv.isDarwin
@@ -142,14 +137,14 @@ in {
       ++ (with pkgs.perl538Packages; [
         LatexIndent
       ])
-      ++ (with pkgs-stable.nodePackages; [
+      ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
+        prettier
         pyright
         sql-formatter
         vscode-json-languageserver
         yaml-language-server
-        prettier
       ]);
   };
 }

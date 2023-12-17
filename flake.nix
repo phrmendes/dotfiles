@@ -2,7 +2,7 @@
   description = "My personal nixOS/nix-darwin configuration";
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
@@ -33,11 +33,6 @@
     jupytext-vim = {
       flake = false;
       url = "github:goerz/jupytext.vim";
-    };
-
-    lsp-progress-nvim = {
-      flake = false;
-      url = "github:linrongbin16/lsp-progress.nvim";
     };
   };
 

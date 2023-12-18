@@ -1,8 +1,6 @@
 local lualine = require("lualine")
 
 local venv = require("utils").venv
-local augroup = require("utils").augroup
-local autocmd = vim.api.nvim_create_autocmd
 
 lualine.setup({
 	options = {
@@ -41,10 +39,4 @@ lualine.setup({
 		"neo-tree",
 		"nvim-dap-ui",
 	},
-})
-
-autocmd("User", {
-	group = augroup,
-	pattern = "LspProgressStatusUpdated",
-	callback = lualine.refresh,
 })

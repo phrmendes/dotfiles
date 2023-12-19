@@ -28,6 +28,7 @@ in {
     withPython3 = true;
     plugins =
       (with pkgs.vimPlugins; [
+        SchemaStore-nvim
         ansible-vim
         barbecue-nvim
         bullets-vim

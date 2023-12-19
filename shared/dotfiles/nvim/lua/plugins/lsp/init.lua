@@ -55,6 +55,12 @@ lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = { "vscode-json-languageserver", "--stdio" },
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
 })
 
 lspconfig.lua_ls.setup({
@@ -102,6 +108,11 @@ lspconfig.yamlls.setup({
 	settings = {
 		yaml = {
 			keyOrdering = false,
+			schemas = require("schemastore").yaml.schemas(),
+			schemaStore = {
+				enable = false,
+				url = "",
+			},
 		},
 	},
 })

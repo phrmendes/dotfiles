@@ -11,7 +11,7 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
-  jupytext-vim = pluginFromGitHub "jupytext.vim" inputs.jupytext-vim;
+  jupytext-vim = pluginFromGitHub "jupytext-vim" inputs.jupytext-vim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-zotcite
@@ -85,7 +85,6 @@ in {
         todo-comments-nvim
         trouble-nvim
         undotree
-        vim-eunuch
         vim-helm
         vim-jinja
         vim-just

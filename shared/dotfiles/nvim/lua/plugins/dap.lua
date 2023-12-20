@@ -111,10 +111,10 @@ M.python = function()
 	})
 
 	map({
-		key = "<localleader>f",
+		key = "<localleader>m",
 		command = dap_python.test_method,
 		buffer = 0,
-		desc = "DAP: test function/method",
+		desc = "DAP: test method/function",
 	})
 
 	map({

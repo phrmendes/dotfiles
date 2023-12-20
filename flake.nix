@@ -30,9 +30,9 @@
       url = "github:jalvesaq/zotcite";
     };
 
-    diagflow-nvim = {
+    jupytext-vim = {
       flake = false;
-      url = "github:dgagn/diagflow.nvim";
+      url = "github:goerz/jupytext.vim";
     };
   };
 

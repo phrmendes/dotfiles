@@ -11,7 +11,7 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
-  diagflow-nvim = pluginFromGitHub "diagflow.nvim" inputs.diagflow-nvim;
+  jupytext-vim = pluginFromGitHub "jupytext.vim" inputs.jupytext-vim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-zotcite
@@ -21,6 +21,7 @@
 in {
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-unwrapped;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
@@ -36,20 +37,19 @@ in {
         cmp-cmdline
         cmp-latex-symbols
         cmp-nvim-lsp
+        cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
+        conform-nvim
         copilot-vim
-        diagflow-nvim
         dressing-nvim
-        efmls-configs-nvim
         executor-nvim
         friendly-snippets
         gitsigns-nvim
         image-nvim
-        indent-blankline-nvim
+        jupytext-vim
         lazygit-nvim
-        lsp-format-nvim
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
@@ -67,6 +67,7 @@ in {
         nvim-dap-ui
         nvim-dap-virtual-text
         nvim-lightbulb
+        nvim-lint
         nvim-lspconfig
         nvim-luadev
         nvim-spectre
@@ -118,7 +119,6 @@ in {
         ansible-language-server
         ansible-lint
         docker-compose-language-service
-        efm-langserver
         helm-ls
         ltex-ls
         lua-language-server

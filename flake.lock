@@ -36,6 +36,22 @@
         "type": "github"
       }
     },
+    "diagflow-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702408502,
+        "narHash": "sha256-Eu39p3HumJaT01McgDPk6nXYslENsrqS6JawoDOj2Ik=",
+        "owner": "dgagn",
+        "repo": "diagflow.nvim",
+        "rev": "6882a91ec0473fbc4a04881c9bf7eaeb08185cac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dgagn",
+        "repo": "diagflow.nvim",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -43,42 +59,26 @@
         ]
       },
       "locked": {
-        "lastModified": 1702735279,
-        "narHash": "sha256-SztEzDOE/6bDNnWWvnRbSHPVrgewLwdSei1sxoZFejM=",
+        "lastModified": 1703072477,
+        "narHash": "sha256-I2g7o+J26iK3sGk53iuaYiMWryzAYx0zhNQUFzTID/A=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e9b9ecef4295a835ab073814f100498716b05a96",
+        "rev": "433120e47d016c9960dd9c2b1821e97d223a6a39",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "jupytext-vim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696563517,
-        "narHash": "sha256-XNL3HLOgCNKEM5PBRaqPXlRhVPKSRXCy+ENk8+iH+nw=",
-        "owner": "goerz",
-        "repo": "jupytext.vim",
-        "rev": "ec8f337bd5799e16a02816d04b7c91b9555d79c2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "goerz",
-        "repo": "jupytext.vim",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1702539185,
-        "narHash": "sha256-KnIRG5NMdLIpEkZTnN5zovNYc0hhXjAgv6pfd5Z4c7U=",
+        "lastModified": 1703063446,
+        "narHash": "sha256-e59l84kPNX+clUJUvHJ6+0C3Tw+gYeJn/QaH1dr/3kg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "aa9d4729cbc99dabacb50e3994dcefb3ea0f7447",
+        "rev": "7c33cd6bf01cf09f77bfdf6741cddfffa2cd5640",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1702645756,
-        "narHash": "sha256-qKI6OR3TYJYQB3Q8mAZ+DG4o/BR9ptcv9UnRV2hzljc=",
+        "lastModified": 1702921762,
+        "narHash": "sha256-O/rP7gulApQAB47u6szEd8Pn8Biw0d84j5iuP2tcxzY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "40c3c94c241286dd2243ea34d3aef8a488f9e4d0",
+        "rev": "d02ffbbe834b5599fc5f134e644e49397eb07188",
         "type": "github"
       },
       "original": {
@@ -107,11 +107,11 @@
     "obsidian-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1702667497,
-        "narHash": "sha256-dhAOJmuICqKvX0bb0lLmuNmcZpOeP1ROH7FA0VqVHSE=",
+        "lastModified": 1703089789,
+        "narHash": "sha256-tgo36JlvBsGGFO42EdtS8WcR+KFOm7S3Q7OQu/WtJyo=",
         "owner": "epwalsh",
         "repo": "obsidian.nvim",
-        "rev": "6a3ce7ae1d1748a8ae7f699b9ef446067946d7c0",
+        "rev": "aa1fd911839af25b6443bd3908af73bfdf1174f6",
         "type": "github"
       },
       "original": {
@@ -124,8 +124,8 @@
       "inputs": {
         "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
+        "diagflow-nvim": "diagflow-nvim",
         "home-manager": "home-manager",
-        "jupytext-vim": "jupytext-vim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "obsidian-nvim": "obsidian-nvim",

@@ -33,7 +33,6 @@ cmp.setup({
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 	}, {
 		{ name = "path" },
@@ -75,7 +74,6 @@ cmp.setup.filetype("quarto", {
 	sources = cmp.config.sources({
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 	}, {

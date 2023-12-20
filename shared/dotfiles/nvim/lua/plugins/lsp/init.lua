@@ -1,34 +1,18 @@
-require("plugins.lsp.formatters")
-require("plugins.lsp.linters")
-require("plugins.lsp.ltex")
+require("barbecue").setup({ exclude_filetypes = { "neo-tree", "starter" } })
+require("lsp-format").setup()
 require("lsp_signature").setup()
 require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
-require("barbecue").setup({ exclude_filetypes = { "neo-tree", "starter" } })
+require("diagflow").setup()
+require("plugins.lsp.handlers").setup()
+require("plugins.lsp.ltex").setup()
 
+local lsp_format = require("lsp-format")
 local capabilities = require("plugins.lsp.utils").capabilities
 local lspconfig = require("lspconfig")
 local on_attach = require("plugins.lsp.utils").on_attach
 
-local diagnostics_signs = {
-	Error = "",
-	Warn = "",
-	Hint = "",
-	Info = "",
-}
-
-for type, icon in pairs(diagnostics_signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = require("utils").border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = require("utils").border,
-})
+lsp_format.setup()
 
 local servers = {
 	"ansiblels",
@@ -44,24 +28,42 @@ local servers = {
 	"texlab",
 }
 
+local linters = {
+	shellcheck = require("efmls-configs.linters.shellcheck"),
+	sqlfluff = require("efmls-configs.linters.sqlfluff"),
+	statix = require("efmls-configs.linters.statix"),
+}
+
+local formatters = {
+	alejandra = require("efmls-configs.formatters.alejandra"),
+	prettier = require("efmls-configs.formatters.prettier"),
+	ruff = require("efmls-configs.formatters.ruff"),
+	shellharden = require("efmls-configs.formatters.shellharden"),
+	sql_formatter = require("efmls-configs.formatters.sql-formatter"),
+	stylua = require("efmls-configs.formatters.stylua"),
+	taplo = require("efmls-configs.formatters.taplo"),
+	terraform_fmt = require("efmls-configs.formatters.terraform_fmt"),
+}
+
+local efm_languages = {
+	json = { formatters.prettier },
+	lua = { formatters.stylua },
+	markdown = { formatters.prettier },
+	nix = { linters.statix, formatters.alejandra },
+	python = { formatters.ruff },
+	sh = { linters.shellcheck, formatters.shellharden },
+	sql = { linters.sqlfluff, formatters.sql_formatter },
+	terraform = { formatters.terraform_fmt },
+	toml = { formatters.taplo },
+	yaml = { formatters.prettier },
+}
+
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 	})
 end
-
-lspconfig.jsonls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	cmd = { "vscode-json-languageserver", "--stdio" },
-	settings = {
-		json = {
-			schemas = require("schemastore").json.schemas(),
-			validate = { enable = true },
-		},
-	},
-})
 
 lspconfig.lua_ls.setup({
 	capabilities = capabilities,
@@ -102,6 +104,18 @@ lspconfig.pyright.setup({
 	},
 })
 
+lspconfig.jsonls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "vscode-json-languageserver", "--stdio" },
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
+
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -114,5 +128,23 @@ lspconfig.yamlls.setup({
 				url = "",
 			},
 		},
+	},
+})
+
+lspconfig.efm.setup({
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		lsp_format.on_attach(client, bufnr)
+		on_attach(client, bufnr)
+	end,
+	filetypes = vim.tbl_keys(efm_languages),
+	init_options = {
+		documentFormatting = true,
+		codeAction = true,
+		documentRangeFormatting = true,
+	},
+	settings = {
+		rootMarkers = { ".git/" },
+		languages = efm_languages,
 	},
 })

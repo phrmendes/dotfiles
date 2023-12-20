@@ -15,14 +15,12 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-q>"] = cmp.mapping.abort(),
-		["<C-a>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<S-CR>"] = cmp.mapping.confirm({
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete({}),
+		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
@@ -33,7 +31,6 @@ cmp.setup({
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 	}, {
 		{ name = "path" },
@@ -75,7 +72,6 @@ cmp.setup.filetype("quarto", {
 	sources = cmp.config.sources({
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 	}, {

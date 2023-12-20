@@ -11,7 +11,7 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
-  jupytext-vim = pluginFromGitHub "jupytext.vim" inputs.jupytext-vim;
+  diagflow-nvim = pluginFromGitHub "diagflow.nvim" inputs.diagflow-nvim;
   desktop_packages = with pkgs.vimPlugins; [
     ChatGPT-nvim
     cmp-zotcite
@@ -37,18 +37,17 @@ in {
         cmp-cmdline
         cmp-latex-symbols
         cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
         conform-nvim
         copilot-vim
+        diagflow-nvim
         dressing-nvim
         executor-nvim
         friendly-snippets
         gitsigns-nvim
         image-nvim
-        jupytext-vim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
@@ -144,7 +143,6 @@ in {
         dockerfile-language-server-nodejs
         prettier
         pyright
-        sql-formatter
         vscode-json-languageserver
         yaml-language-server
       ]);

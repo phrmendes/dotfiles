@@ -13,18 +13,15 @@ telescope.setup({
 		generic_sorter = fuzzy.get_telescope_sorter,
 		mappings = {
 			i = {
-				["<C-u>"] = false,
-				["<C-d>"] = false,
-				["<C-Down>"] = actions.cycle_history_next,
-				["<C-Up>"] = actions.cycle_history_prev,
-				["<C-b>"] = actions.preview_scrolling_up,
-				["<C-f>"] = actions.preview_scrolling_down,
+				["<C-c>"] = actions.close,
+				["<C-u>"] = actions.preview_scrolling_up,
+				["<C-d>"] = actions.preview_scrolling_down,
 				["<C-n>"] = actions.move_selection_next,
 				["<C-p>"] = actions.move_selection_previous,
 				["<C-q>"] = trouble.open_with_trouble,
 			},
 			n = {
-				["q"] = actions.close,
+				["<C-c>"] = actions.close,
 				["<C-q>"] = trouble.open_with_trouble,
 			},
 		},

@@ -1,8 +1,5 @@
 local map = require("utils").map
 local section = require("utils").section
-local augroup = require("utils").augroup
-
-local autocmd = vim.api.nvim_create_autocmd
 
 vim.g.bullets_checkbox_markers = " x"
 vim.g.bullets_checkbox_partials_toggle = 1

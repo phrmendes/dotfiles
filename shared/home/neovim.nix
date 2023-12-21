@@ -79,6 +79,7 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
+        telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
         todo-comments-nvim

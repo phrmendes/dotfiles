@@ -30,7 +30,6 @@
       libreoffice
       mc
       minikube
-      nautilus-open-any-terminal
       ncdu
       neovide
       nodejs_21

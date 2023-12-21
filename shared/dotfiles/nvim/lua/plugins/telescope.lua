@@ -1,5 +1,4 @@
 local actions = require("telescope.actions")
-local fuzzy = require("mini.fuzzy")
 local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
 local map = require("utils").map
@@ -10,7 +9,6 @@ telescope.setup({
 		layout_strategy = "vertical",
 		prompt_prefix = " ",
 		selection_caret = " ",
-		generic_sorter = fuzzy.get_telescope_sorter,
 		mappings = {
 			i = {
 				["<C-c>"] = actions.close,
@@ -43,11 +41,20 @@ telescope.setup({
 		commands = { previewer = false },
 		help_tags = { previewer = false },
 	},
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		},
+	},
 })
 
 local extensions = {
 	"zoxide",
 	"lazygit",
+	"fzf",
 }
 
 for _, ext in ipairs(extensions) do

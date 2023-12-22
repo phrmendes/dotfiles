@@ -27,7 +27,6 @@ map({
 })
 
 map({
-	mode = { "n", "v" },
 	key = "<leader>ic",
 	command = "<cmd>ChatGPT<cr>",
 	desc = "ChatGPT",

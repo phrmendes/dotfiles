@@ -26,6 +26,7 @@ M.on_attach = function(_, bufnr)
 	})
 
 	map({
+		mode = { "n", "x" },
 		key = "<leader>a",
 		command = vim.lsp.buf.code_action,
 		buffer = bufnr,

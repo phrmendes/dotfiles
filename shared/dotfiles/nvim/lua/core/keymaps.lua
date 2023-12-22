@@ -11,12 +11,6 @@ end
 vim.g.VM_mouse_mappings = 1
 
 section({
-	mode = { "n", "x" },
-	key = "<leader><space>",
-	name = "local leader",
-})
-
-section({
 	key = "<leader><tab>",
 	name = "tabs",
 })

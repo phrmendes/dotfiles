@@ -8,6 +8,7 @@
           "espresso@coadmunkee.github.com"
           "gsconnect@andyholmes.github.io"
           "pop-shell@system76.com"
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
         favorite-apps = [
           "firefox.desktop"
@@ -21,12 +22,15 @@
       "org/gnome/desktop/applications/terminal" = {
         exec = "${pkgs.wezterm}/bin/wezterm";
       };
+      "org/gnome/shell/extensions/user-theme" = {
+        name = "Catppuccin-Mocha-Standard-Blue-Dark";
+      };
       "org/gnome/shell/extensions/pop-shell" = {
         active-hint = true;
         active-hint-border-radius = 10;
         gap-inner = 2;
         gap-outer = 2;
-        hint-color-rgba = "rgb(166, 227, 161)";
+        hint-color-rgba = "rgb(137, 180, 250)";
         show-skip-taskbar = true;
         smart-gaps = false;
         snap-to-grid = true;

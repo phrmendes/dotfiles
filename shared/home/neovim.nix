@@ -70,7 +70,6 @@ in {
         nvim-lspconfig
         nvim-luadev
         nvim-spectre
-        nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
         nvim-ts-context-commentstring

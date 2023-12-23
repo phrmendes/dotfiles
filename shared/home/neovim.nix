@@ -74,6 +74,7 @@ in {
         nvim-treesitter.withAllGrammars
         nvim-ts-context-commentstring
         nvim-web-devicons
+        octo-nvim
         otter-nvim
         plenary-nvim
         quarto-nvim

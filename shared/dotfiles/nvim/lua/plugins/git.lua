@@ -1,3 +1,5 @@
+require("octo").setup()
+
 local gitsigns = require("gitsigns")
 
 local map = require("utils").map
@@ -68,6 +70,18 @@ map({
 	key = "<leader>gb",
 	command = gitsigns.toggle_current_line_blame,
 	desc = "Blame line",
+})
+
+map({
+	key = "<leader>gC",
+	command = "<cmd>LazyGitFilter<cr>",
+	desc = "Commits (repo)",
+})
+
+map({
+	key = "<leader>gc",
+	command = "<cmd>LazyGitFilterCurrentFile<cr>",
+	desc = "Commits (file)",
 })
 
 map({

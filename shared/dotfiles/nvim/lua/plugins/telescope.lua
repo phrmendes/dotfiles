@@ -108,3 +108,9 @@ map({
 	command = "<cmd>Telescope zoxide list<cr>",
 	desc = "Zoxide",
 })
+
+map({
+	key = "<leader>gD",
+	command = "<cmd>Telescope git_status<cr>",
+	desc = "Diff (repo)",
+})

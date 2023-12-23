@@ -118,7 +118,7 @@ M.python = function()
 	})
 
 	map({
-		mode = "x",
+		mode = "v",
 		key = "<localleader>r",
 		command = dap_python.debug_selection,
 		buffer = 0,

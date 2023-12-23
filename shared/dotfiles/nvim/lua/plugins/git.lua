@@ -28,6 +28,7 @@ local next_hunk = function()
 end
 
 section({
+	mode = { "n", "v" },
 	key = "<leader>g",
 	name = "git",
 })
@@ -49,18 +50,6 @@ map({
 })
 
 map({
-	key = "<leader>gR",
-	command = "<cmd>Telescope lazygit<cr>",
-	desc = "Repos",
-})
-
-map({
-	key = "<leader>gg",
-	command = "<cmd>LazyGit<cr>",
-	desc = "LazyGit",
-})
-
-map({
 	key = "<leader>ga",
 	command = "<cmd>Gitsigns<cr>",
 	desc = "Gitsigns",
@@ -68,8 +57,10 @@ map({
 
 map({
 	key = "<leader>gb",
-	command = gitsigns.toggle_current_line_blame,
-	desc = "Blame line",
+	command = function()
+		gitsigns.blame_line({ full = true })
+	end,
+	desc = "Toggle blame line",
 })
 
 map({
@@ -85,13 +76,73 @@ map({
 })
 
 map({
+	key = "<leader>gd",
+	command = gitsigns.diffthis,
+	desc = "Diff (file)",
+})
+
+map({
+	key = "<leader>gg",
+	command = "<cmd>LazyGit<cr>",
+	desc = "LazyGit",
+})
+
+map({
+	key = "<leader>gl",
+	command = "<cmd>Telescope lazygit<cr>",
+	desc = "List repos",
+})
+
+map({
+	key = "<leader>gp",
+	command = gitsigns.preview_hunk,
+	desc = "Preview hunk",
+})
+
+map({
+	key = "<leader>gR",
+	command = gitsigns.reset_buffer,
+	desc = "Reset buffer",
+})
+
+map({
 	key = "<leader>gr",
 	command = gitsigns.reset_hunk,
 	desc = "Reset hunk",
 })
 
 map({
+	mode = "v",
+	key = "<leader>gr",
+	command = function()
+		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end,
+	desc = "Reset hunk",
+})
+
+map({
+	key = "<leader>gS",
+	command = gitsigns.stage_buffer,
+	desc = "Stage buffer",
+})
+
+map({
 	key = "<leader>gs",
 	command = gitsigns.stage_hunk,
 	desc = "Stage hunk",
+})
+
+map({
+	mode = "v",
+	key = "<leader>gs",
+	command = function()
+		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end,
+	desc = "Stage hunk",
+})
+
+map({
+	key = "<leader>gu",
+	command = gitsigns.undo_stage_hunk,
+	desc = "Undo stage hunk",
 })

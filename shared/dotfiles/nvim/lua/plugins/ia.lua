@@ -33,63 +33,63 @@ map({
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>id",
 	command = "<cmd>ChatGPTRun docstring<cr>",
 	desc = "Docstring",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>ie",
 	command = "<cmd>ChatGPTEditWithInstruction<cr>",
 	desc = "Edit with instruction",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>if",
 	command = "<cmd>ChatGPTRun fix_bugs<cr>",
 	desc = "Fix bugs",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>ig",
 	command = "<cmd>ChatGPTRun grammar_correction<cr>",
 	desc = "Grammar correction",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>ik",
 	command = "<cmd>ChatGPTRun keywords<cr>",
 	desc = "Keywords",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>il",
 	command = "<cmd>ChatGPTRun code_readability_analysis<cr>",
 	desc = "Code readability analysis",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>io",
 	command = "<cmd>ChatGPTRun optimize_code<cr>",
 	desc = "Optimize code",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>it",
 	command = "<cmd>ChatGPTRun translate<cr>",
 	desc = "Translate",
 })
 
 map({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>ix",
 	command = "<cmd>ChatGPTRun explain_code<cr>",
 	desc = "Explain code",

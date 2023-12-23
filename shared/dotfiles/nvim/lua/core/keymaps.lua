@@ -5,7 +5,7 @@ local open_uri = require("utils").open_uri_under_cursor
 local keys = { "<Space>", "<", ">" }
 
 for _, key in ipairs(keys) do
-	vim.keymap.set({ "n", "x" }, key, "<Nop>", { noremap = true, silent = true })
+	vim.keymap.set({ "n", "v" }, key, "<Nop>", { noremap = true, silent = true })
 end
 
 vim.g.VM_mouse_mappings = 1
@@ -21,7 +21,7 @@ section({
 })
 
 section({
-	mode = { "n", "x" },
+	mode = { "n", "v" },
 	key = "<leader>f",
 	name = "files/find",
 })

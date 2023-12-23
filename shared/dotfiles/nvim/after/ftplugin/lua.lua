@@ -8,7 +8,7 @@ map({
 })
 
 map({
-	mode = "x",
+	mode = "v",
 	key = "<localleader>s",
 	command = "<Plug>(Luadev-Run)",
 	desc = "Lua: send to REPL",

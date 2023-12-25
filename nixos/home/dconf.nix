@@ -14,7 +14,6 @@
           "org.gnome.Nautilus.desktop"
           "org.wezfurlong.wezterm.desktop"
           "bitwarden.desktop"
-          "org.gnome.DejaDup.desktop"
           "obsidian.desktop"
         ];
       };

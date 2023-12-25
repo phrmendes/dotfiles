@@ -246,8 +246,11 @@ in {
     gnumake
     gnused
     gzip
+    jdk21
     libuv
+    nodejs_21
     psmisc
+    python312
     rar
     ripgrep
     unrar

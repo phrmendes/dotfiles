@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   dconf = {
     settings = {
       "org/gnome/shell" = {
@@ -8,7 +8,6 @@
           "espresso@coadmunkee.github.com"
           "gsconnect@andyholmes.github.io"
           "pop-shell@system76.com"
-          "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
         favorite-apps = [
           "firefox.desktop"
@@ -18,12 +17,6 @@
           "org.gnome.DejaDup.desktop"
           "obsidian.desktop"
         ];
-      };
-      "org/gnome/desktop/applications/terminal" = {
-        exec = "${pkgs.wezterm}/bin/wezterm";
-      };
-      "org/gnome/shell/extensions/user-theme" = {
-        name = "Catppuccin-Mocha-Standard-Blue-Dark";
       };
       "org/gnome/shell/extensions/pop-shell" = {
         active-hint = true;

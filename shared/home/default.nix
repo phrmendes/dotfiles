@@ -1,6 +1,7 @@
 {
   imports = [
     ./bat.nix
+    ./eza.nix
     ./fzf.nix
     ./git.nix
     ./lazygit.nix
@@ -8,6 +9,7 @@
     ./shells.nix
     ./starship.nix
     ./symlinks.nix
+    ./tealdeer.nix
     ./tmux.nix
     ./zoxide.nix
   ];

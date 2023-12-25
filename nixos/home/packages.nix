@@ -7,22 +7,19 @@
       bitwarden
       bitwarden-cli
       bruno
-      celluloid
       chromium
-      csvkit
-      deja-dup
+      deluge
+      denaro
       docker-compose
       droidcam
-      eza
+      duplicati
       firefox
-      fragments
       gcolor3
       gh
       git
       gnome-extensions-cli
       hugo
       imagemagick
-      jdk21
       just
       kubectl
       kubernetes-helm
@@ -32,20 +29,18 @@
       minikube
       ncdu
       neovide
-      nodejs_21
       obsidian
       parallel
       pop-launcher
-      python312
       quarto
       qview
-      spot
+      spotify
       syncthingtray
-      tealdeer
       tectonic
       terraform
       ueberzugpp
       ventoy
+      vlc
       wezterm
       zotero
     ])

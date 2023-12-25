@@ -12,11 +12,9 @@
         file = "/Catppuccin-mocha.tmTheme";
       };
     };
-    extraPackages = with pkgs.bat-extras; [
-      batman
-      batpipe
-      batdiff
-      batgrep
-    ];
+    config = {
+      theme = "catppuccin";
+      pager = "less -FR";
+    };
   };
 }

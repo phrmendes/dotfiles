@@ -1,24 +1,25 @@
 {pkgs, ...}: let
+  inherit (pkgs.stdenv) isDarwin;
   path = "~/Projects/dotfiles";
   nixos = {
-    update = "nix run nixpkgs.nixos-rebuild -- switch --flake ${path}";
+    update_cmd = "sudo nixos-rebuild switch --flake ${path}";
     aliases = {
       ld = "lazydocker";
-      bkp = "duplicati-server";
+      dpct = "duplicati-cli";
     };
   };
   darwin = {
-    update = "nix run nixpkgs.nix-darwin -- switch --flake ${path}";
+    update_cmd = "nix run nixpkgs.nix-darwin -- switch --flake ${path}";
     aliases = {
       docker = "podman";
     };
   };
   update_cmd =
-    if pkgs.stdenv.isDarwin
-    then nixos.update
-    else darwin.update;
+    if isDarwin
+    then darwin.update_cmd
+    else nixos.update_cmd;
   aliases =
-    if pkgs.stdenv.isDarwin
+    if isDarwin
     then darwin.aliases
     else nixos.aliases;
 in {

@@ -2,6 +2,7 @@
   home.packages =
     (with pkgs; [
       ansible
+      backblaze-b2
       bashly
       beekeeper-studio
       bitwarden
@@ -11,7 +12,6 @@
       deluge
       docker-compose
       droidcam
-      duplicati
       firefox
       gcolor3
       gh

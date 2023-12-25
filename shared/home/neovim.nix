@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: let
+  inherit (pkgs.stdenv) isDarwin;
   pluginFromGitHub = pname: src:
     pkgs.vimUtils.buildVimPlugin {
       inherit pname src;
@@ -12,12 +13,17 @@
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
   diagflow-nvim = pluginFromGitHub "diagflow.nvim" inputs.diagflow-nvim;
-  desktop_packages = with pkgs.vimPlugins; [
-    ChatGPT-nvim
-    cmp-zotcite
-    obsidian-nvim
-    zotcite
-  ];
+  desktop_packages = (
+    if ! isDarwin
+    then
+      (with pkgs.vimPlugins; [
+        ChatGPT-nvim
+        cmp-zotcite
+        obsidian-nvim
+        zotcite
+      ])
+    else []
+  );
 in {
   programs.neovim = {
     enable = true;
@@ -97,11 +103,7 @@ in {
         which-key-nvim
         zen-mode-nvim
       ])
-      ++ (
-        if pkgs.stdenv.isDarwin
-        then []
-        else desktop_packages
-      );
+      ++ desktop_packages;
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
         poppler-qt5

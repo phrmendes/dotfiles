@@ -9,7 +9,6 @@
       bruno
       chromium
       deluge
-      denaro
       docker-compose
       droidcam
       duplicati

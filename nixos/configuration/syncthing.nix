@@ -58,7 +58,7 @@ in {
       };
       devices = {
         "phone" = {
-          id = "BQ7RBNB-E7JHGKK-BNO7JTS-B4YWY7B-B6GB77X-WG6KH5A-F5SM24Z-ZDERGQ7";
+          id = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
           autoAcceptFolders = true;
         };
         "tablet" = {

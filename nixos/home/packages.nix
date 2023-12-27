@@ -44,7 +44,6 @@
       zotero
     ])
     ++ (with pkgs.gnome; [
-      adwaita-icon-theme
       file-roller
       gnome-calculator
       gnome-disk-utility

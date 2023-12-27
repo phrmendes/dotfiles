@@ -10,13 +10,8 @@
       package = pkgs.gnome.adwaita-icon-theme;
     };
     theme = {
-      name = "Catppuccin-Mocha-Compact-Blue-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["blue"];
-        size = "standard";
-        tweaks = ["normal"];
-        variant = "mocha";
-      };
+      name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
     };
     gtk3 = {
       extraConfig = {

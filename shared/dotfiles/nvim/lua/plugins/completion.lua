@@ -1,11 +1,16 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local tailwindcss_colorizer_cmp = require("tailwindcss-colorizer-cmp")
 
 require("cmp_pandoc").setup({
 	filetypes = { "quarto" },
 	crossref = {
 		enable_nabla = true,
 	},
+})
+
+tailwindcss_colorizer_cmp.setup({
+	color_square_width = 2,
 })
 
 cmp.setup({
@@ -91,3 +96,7 @@ cmp.setup.filetype("markdown", {
 		{ name = "buffer" },
 	}),
 })
+
+cmp.config.formatting = {
+	format = tailwindcss_colorizer_cmp.formatter,
+}

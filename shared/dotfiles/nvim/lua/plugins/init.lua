@@ -1,3 +1,4 @@
+require("plugins.colorizer")
 require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.git")

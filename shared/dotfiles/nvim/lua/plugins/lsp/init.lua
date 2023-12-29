@@ -12,6 +12,9 @@ require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
 local capabilities = require("plugins.lsp.utils").capabilities
 local lspconfig = require("lspconfig")
 local on_attach = require("plugins.lsp.utils").on_attach
+local html_capabilities = vim.lsp.protocol.make_client_capabilities()
+
+html_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local servers = {
 	"ansiblels",
@@ -22,6 +25,7 @@ local servers = {
 	"marksman",
 	"nil_ls",
 	"ruff_lsp",
+	"tailwindcss",
 	"taplo",
 	"terraformls",
 	"texlab",
@@ -98,4 +102,8 @@ lspconfig.yamlls.setup({
 			},
 		},
 	},
+})
+
+lspconfig.html.setup({
+	capabilities = html_capabilities,
 })

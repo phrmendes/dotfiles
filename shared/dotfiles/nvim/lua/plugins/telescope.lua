@@ -11,16 +11,16 @@ telescope.setup({
 		selection_caret = " ",
 		mappings = {
 			i = {
-				["<C-c>"] = actions.close,
+				["<C-q>"] = actions.close,
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
 				["<C-n>"] = actions.move_selection_next,
 				["<C-p>"] = actions.move_selection_previous,
-				["<C-q>"] = trouble.open_with_trouble,
+				["<C-t>"] = trouble.open_with_trouble,
 			},
 			n = {
-				["<C-c>"] = actions.close,
-				["<C-q>"] = trouble.open_with_trouble,
+				["<C-q>"] = actions.close,
+				["<C-t>"] = trouble.open_with_trouble,
 			},
 		},
 	},

@@ -13,6 +13,7 @@
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
   diagflow-nvim = pluginFromGitHub "diagflow.nvim" inputs.diagflow-nvim;
+  tailwindcss-colorizer-cmp-nvim = pluginFromGitHub "tailwindcss-colorizer-cmp.nvim" inputs.tailwindcss-colorizer-cmp-nvim;
   desktop_packages = (
     if ! isDarwin
     then
@@ -67,6 +68,7 @@ in {
         neodev-nvim
         neogen
         nvim-cmp
+        nvim-colorizer-lua
         nvim-dap
         nvim-dap-python
         nvim-dap-ui
@@ -85,6 +87,7 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
+        tailwindcss-colorizer-cmp-nvim
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
@@ -134,6 +137,7 @@ in {
         sqlfluff
         statix
         stylua
+        tailwindcss-language-server
         taplo
         terraform-ls
         texlab
@@ -147,6 +151,7 @@ in {
         prettier
         pyright
         vscode-json-languageserver
+        vscode-langservers-extracted
         yaml-language-server
       ]);
   };

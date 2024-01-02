@@ -1,3 +1,8 @@
+require("barbecue").setup({ exclude_filetypes = { "Starter", "Trouble", "neo-tree" } })
+require("lsp_signature").setup()
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
+require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
+
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
 
 for type, icon in pairs(signs) do
@@ -12,12 +17,4 @@ vim.diagnostic.config({
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
-})
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "rounded",
 })

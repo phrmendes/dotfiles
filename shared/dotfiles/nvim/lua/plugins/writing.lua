@@ -1,10 +1,6 @@
 local map = require("utils").map
 local section = require("utils").section
 
-vim.g.bullets_checkbox_markers = " x"
-vim.g.bullets_checkbox_partials_toggle = 1
-vim.g.bullets_enabled_file_types = { "markdown", "quarto" }
-vim.g.bullets_set_mappings = 0
 vim.g.mkdp_filetypes = { "markdown", "quarto" }
 
 local M = {}
@@ -28,54 +24,6 @@ M.markdown = function()
 		key = "<leader>me",
 		command = require("nabla").popup,
 		desc = "Equation preview",
-		buffer = 0,
-	})
-end
-
-M.bullets = function()
-	map({
-		mode = "i",
-		key = "<cr>",
-		command = "<Plug>(bullets-newline)",
-		desc = "New item",
-		buffer = 0,
-	})
-
-	map({
-		key = "o",
-		command = "<Plug>(bullets-newline)",
-		desc = "New item",
-		buffer = 0,
-	})
-
-	map({
-		mode = { "n", "v" },
-		key = "gN",
-		command = "<Plug>(bullets-renumber)",
-		desc = "Renumber item",
-		buffer = 0,
-	})
-
-	map({
-		key = "<C-CR>",
-		command = "<Plug>(bullets-toggle-checkbox)",
-		desc = "Toggle checkbox",
-		buffer = 0,
-	})
-
-	map({
-		mode = { "n", "v" },
-		key = ">>",
-		command = "<Plug>(bullets-demote)",
-		desc = "Demote item",
-		buffer = 0,
-	})
-
-	map({
-		mode = { "n", "v" },
-		key = "<<",
-		command = "<Plug>(bullets-promote)",
-		desc = "Promote item",
 		buffer = 0,
 	})
 end

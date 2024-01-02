@@ -29,11 +29,6 @@
       flake = false;
       url = "github:jalvesaq/zotcite";
     };
-
-    tailwindcss-colorizer-cmp-nvim = {
-      flake = false;
-      url = "github:roobert/tailwindcss-colorizer-cmp.nvim";
-    };
   };
 
   outputs = inputs @ {

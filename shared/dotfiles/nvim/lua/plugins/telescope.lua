@@ -1,6 +1,7 @@
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
+local undo_actions = require("telescope-undo.actions")
 local map = require("utils").map
 
 telescope.setup({
@@ -44,22 +45,10 @@ telescope.setup({
 		},
 	},
 	pickers = {
-		commands = { theme = "dropdown" },
-		help_tags = { theme = "dropdown" },
-		live_grep = { theme = "dropdown" },
-
-		lsp_declarations = { theme = "dropdown", initial_mode = "normal" },
-		lsp_definitions = { theme = "dropdown", initial_mode = "normal" },
-		lsp_implementations = { theme = "dropdown", initial_mode = "normal" },
-		lsp_references = { theme = "dropdown", initial_mode = "normal" },
-		lsp_type_definitions = { theme = "dropdown", initial_mode = "normal" },
-
-		current_buffer_fuzzy_find = { theme = "dropdown", previewer = false },
-		find_files = { theme = "dropdown", previewer = false },
-		git_branches = { theme = "dropdown", previewer = false },
-
+		current_buffer_fuzzy_find = { previewer = false },
+		find_files = { previewer = false },
+		git_branches = { previewer = false },
 		buffers = {
-			theme = "dropdown",
 			previewer = false,
 			i = { ["<C-d>"] = actions.delete_buffer },
 			n = { ["dd"] = actions.delete_buffer },
@@ -72,12 +61,29 @@ telescope.setup({
 			override_file_sorter = true,
 			case_mode = "smart_case",
 		},
+		undo = {
+			side_by_side = true,
+			layout_config = { preview_height = 0.6 },
+			mappings = {
+				i = {
+					["<C-y>"] = undo_actions.yank_additions,
+					["<C-Y>"] = undo_actions.yank_deletions,
+					["<CR>"] = undo_actions.restore,
+				},
+				n = {
+					["y"] = undo_actions.yank_additions,
+					["Y"] = undo_actions.yank_deletions,
+					["<CR>"] = undo_actions.restore,
+				},
+			},
+		},
 	},
 })
 
 local extensions = {
 	"fzf",
 	"lazygit",
+	"undo",
 	"zoxide",
 }
 
@@ -136,11 +142,17 @@ map({
 map({
 	key = "<leader>gB",
 	command = "<cmd>Telescope git_branches<cr>",
-	desc = "Diff (repo)",
+	desc = "Branches",
 })
 
 map({
 	key = "<leader>gD",
 	command = "<cmd>Telescope git_status<cr>",
 	desc = "Diff (repo)",
+})
+
+map({
+	key = "<leader>u",
+	command = "<cmd>Telescope undo<cr>",
+	desc = "Toggle undo tree",
 })

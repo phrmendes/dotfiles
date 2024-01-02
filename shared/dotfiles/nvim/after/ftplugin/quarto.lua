@@ -14,4 +14,3 @@ quarto.setup({
 })
 
 mappings.markdown()
-mappings.bullets()

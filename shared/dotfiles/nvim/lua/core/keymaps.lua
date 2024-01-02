@@ -134,12 +134,6 @@ map({
 })
 
 map({
-	key = "<leader>u",
-	command = "<cmd>UndotreeToggle<cr>",
-	desc = "Toggle undo tree",
-})
-
-map({
 	key = "<leader>-",
 	command = "<cmd>split<cr>",
 	desc = "Split window (H)",

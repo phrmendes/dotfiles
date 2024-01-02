@@ -12,7 +12,6 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
-  tailwindcss-colorizer-cmp-nvim = pluginFromGitHub "tailwindcss-colorizer-cmp.nvim" inputs.tailwindcss-colorizer-cmp-nvim;
   desktop_packages = (
     if ! isDarwin
     then
@@ -37,7 +36,6 @@ in {
         SchemaStore-nvim
         ansible-vim
         barbecue-nvim
-        bullets-vim
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
@@ -86,13 +84,12 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
-        tailwindcss-colorizer-cmp-nvim
         telescope-fzf-native-nvim
         telescope-nvim
+        telescope-undo-nvim
         telescope-zoxide
         todo-comments-nvim
         trouble-nvim
-        undotree
         vim-eunuch
         vim-helm
         vim-jinja

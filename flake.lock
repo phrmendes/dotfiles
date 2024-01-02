@@ -36,6 +36,22 @@
         "type": "github"
       }
     },
+    "hlargs-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702317151,
+        "narHash": "sha256-AgHETTIsDOLgEnEaFWq1kXY+Ye/DUU6W+95M37VNOVw=",
+        "owner": "m-demare",
+        "repo": "hlargs.nvim",
+        "rev": "872c332dcc65324604011fa6056c4d71253e399b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "m-demare",
+        "repo": "hlargs.nvim",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -108,6 +124,7 @@
       "inputs": {
         "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
+        "hlargs-nvim": "hlargs-nvim",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",

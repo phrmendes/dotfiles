@@ -41,6 +41,7 @@
       ueberzugpp
       ventoy
       vlc
+      vscode
       wezterm
       zotero
     ])

@@ -12,6 +12,7 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
+  hlargs-nvim = pluginFromGitHub "hlargs.nvim" inputs.hlargs-nvim;
   desktop_packages = (
     if ! isDarwin
     then
@@ -50,6 +51,7 @@ in {
         executor-nvim
         friendly-snippets
         gitsigns-nvim
+        hlargs-nvim
         image-nvim
         lazygit-nvim
         lsp_signature-nvim
@@ -121,6 +123,7 @@ in {
         ansible-lint
         docker-compose-language-service
         helm-ls
+        htmx-lsp
         ltex-ls
         lua-language-server
         marksman

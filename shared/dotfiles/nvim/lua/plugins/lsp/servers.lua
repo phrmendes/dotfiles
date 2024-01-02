@@ -15,7 +15,6 @@ local servers = {
 	{ server = "taplo" },
 	{ server = "terraformls" },
 	{ server = "texlab" },
-	{ server = "html" },
 	{
 		server = "lua_ls",
 		settings = {
@@ -81,6 +80,12 @@ local servers = {
 		server = "html",
 		capabilities = utils.lsp.simple.capabilities(),
 		on_attach = utils.lsp.simple.on_attach,
+	},
+	{
+		server = "htmx",
+		capabilities = nil,
+		handlers = nil,
+		on_attach = nil,
 	},
 }
 

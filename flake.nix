@@ -29,6 +29,11 @@
       flake = false;
       url = "github:jalvesaq/zotcite";
     };
+
+    hlargs-nvim = {
+      flake = false;
+      url = "github:m-demare/hlargs.nvim";
+    };
   };
 
   outputs = inputs @ {

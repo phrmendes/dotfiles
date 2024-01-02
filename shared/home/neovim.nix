@@ -86,10 +86,10 @@ in {
         smartyank-nvim
         telescope-fzf-native-nvim
         telescope-nvim
-        telescope-undo-nvim
         telescope-zoxide
         todo-comments-nvim
         trouble-nvim
+        undotree
         vim-eunuch
         vim-helm
         vim-jinja

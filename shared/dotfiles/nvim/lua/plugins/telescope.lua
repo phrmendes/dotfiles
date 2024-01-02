@@ -1,7 +1,6 @@
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
-local undo_actions = require("telescope-undo.actions")
 local map = require("utils").map
 
 telescope.setup({
@@ -61,29 +60,12 @@ telescope.setup({
 			override_file_sorter = true,
 			case_mode = "smart_case",
 		},
-		undo = {
-			side_by_side = true,
-			layout_config = { preview_height = 0.6 },
-			mappings = {
-				i = {
-					["<C-y>"] = undo_actions.yank_additions,
-					["<C-Y>"] = undo_actions.yank_deletions,
-					["<CR>"] = undo_actions.restore,
-				},
-				n = {
-					["y"] = undo_actions.yank_additions,
-					["Y"] = undo_actions.yank_deletions,
-					["<CR>"] = undo_actions.restore,
-				},
-			},
-		},
 	},
 })
 
 local extensions = {
 	"fzf",
 	"lazygit",
-	"undo",
 	"zoxide",
 }
 
@@ -149,10 +131,4 @@ map({
 	key = "<leader>gD",
 	command = "<cmd>Telescope git_status<cr>",
 	desc = "Diff (repo)",
-})
-
-map({
-	key = "<leader>u",
-	command = "<cmd>Telescope undo<cr>",
-	desc = "Toggle undo tree",
 })

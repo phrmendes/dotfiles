@@ -30,11 +30,6 @@
       url = "github:jalvesaq/zotcite";
     };
 
-    diagflow-nvim = {
-      flake = false;
-      url = "github:dgagn/diagflow.nvim";
-    };
-
     tailwindcss-colorizer-cmp-nvim = {
       flake = false;
       url = "github:roobert/tailwindcss-colorizer-cmp.nvim";

@@ -18,9 +18,7 @@
     },
     "darwin": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1703271201,
@@ -36,27 +34,9 @@
         "type": "github"
       }
     },
-    "diagflow-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702408502,
-        "narHash": "sha256-Eu39p3HumJaT01McgDPk6nXYslENsrqS6JawoDOj2Ik=",
-        "owner": "dgagn",
-        "repo": "diagflow.nvim",
-        "rev": "6882a91ec0473fbc4a04881c9bf7eaeb08185cac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dgagn",
-        "repo": "diagflow.nvim",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1703368619,
@@ -124,7 +104,6 @@
       "inputs": {
         "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
-        "diagflow-nvim": "diagflow-nvim",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",

@@ -1,92 +1,69 @@
 local M = {}
 
-M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+M.lsp = {}
+M.lsp.simple = {}
+
+M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
 
 M.normalize = function(word)
-	word = word:lower()
-	local normalized_word = word:gsub("[%z\1-\127\194-\244][\128-\191]*", function(c)
-		return c:gsub("[áàâ]", "a")
+	local normalized_word = word:lower():gsub("[%z\1-\127\194-\244][\128-\191]*", function(c)
+		return c:gsub("[ÁÀÂ]", "A")
+			:gsub("[Ç]", "C")
+			:gsub("[ÉÈÊ]", "E")
+			:gsub("[ÍÌÎ]", "I")
+			:gsub("[ÓÒÔ]", "O")
+			:gsub("[ÚÙÛ]", "U")
+			:gsub("[áàâ]", "a")
+			:gsub("[ç]", "c")
 			:gsub("[éèê]", "e")
 			:gsub("[íìî]", "i")
 			:gsub("[óòô]", "o")
 			:gsub("[úùû]", "u")
-			:gsub("[ç]", "c")
 	end)
 
-	normalized_word = normalized_word:gsub("[%s%W]", "_")
-
-	return normalized_word
+	return normalized_word:gsub("[%s%W]", "_")
 end
 
 M.match_pattern = function(string, pattern)
-	local match = string:match(pattern)
-
-	if match then
+	if string:match(pattern) then
 		return true
-	else
-		return false
 	end
+
+	return false
 end
 
 M.section = function(args)
-	require("which-key").register({
-		mode = args.mode or "n",
+	local opts = {
 		buffer = args.buffer or nil,
-		[args.key] = { name = args.name },
+		key = args.key,
+		mode = args.mode or "n",
+		name = args.name,
+	}
+
+	require("which-key").register({
+		mode = opts.mode,
+		buffer = opts.buffer,
+		[opts.key] = { name = opts.name },
 	})
 end
 
-M.map = function(args, opts)
-	local options
-
-	if opts then
-		options = vim.tbl_extend("force", opts, { buffer = args.buffer or nil, desc = args.desc })
-	else
-		options = {
-			buffer = args.buffer or nil,
+M.map = function(args, user_opts)
+	local opts = {
+		mode = args.mode or "n",
+		key = args.key,
+		command = args.command,
+		keymap_opts = {
 			desc = args.desc,
-		}
+			buffer = args.buffer or nil,
+		},
+	}
+
+	if user_opts then
+		opts.keymap_opts = vim.tbl_extend("force", opts.keymap_opts, user_opts)
 	end
 
-	vim.keymap.set(args.mode or "n", args.key, args.command, options)
+	vim.keymap.set(opts.mode, opts.key, opts.command, opts.keymap_opts)
 end
-
-M.open_uri_under_cursor = function()
-	local function open_uri(uri)
-		if type(uri) ~= "nil" then
-			uri = string.gsub(uri, "#", "\\#")
-			uri = '"' .. uri .. '"'
-
-			if vim.fn.has("mac") == 1 then
-				vim.cmd["!"]({ "open", uri })
-				vim.cmd.redraw()
-			else
-				vim.cmd["!"]({ "xdg-open", uri })
-				vim.cmd.redraw()
-			end
-
-			return true
-		else
-			return false
-		end
-	end
-
-	local word_under_cursor = vim.fn.expand("<cWORD>")
-
-	local regex_protocol_uri = "%a*:%/%/[%a%d%#%[%]%-%%+:;!$@/?&=_.,~*()]*[^%)]"
-
-	if open_uri(string.match(word_under_cursor, regex_protocol_uri)) then
-		return
-	end
-
-	local regex_plugin_url = "[%a%d%-%.%_]*%/[%a%d%-%.%_]*"
-
-	if open_uri("https://github.com/" .. string.match(word_under_cursor, regex_plugin_url)) then
-		return
-	end
-end
-
-M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
 
 M.venv = function()
 	if vim.env.CONDA_DEFAULT_ENV then
@@ -98,6 +75,160 @@ M.venv = function()
 	end
 
 	return ""
+end
+
+M.lsp.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+M.lsp.handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
+M.lsp.on_attach = function(_, bufnr)
+	M.map({
+		key = "<leader>D",
+		command = "<cmd>TroubleToggle workspace_diagnostics<cr>",
+		buffer = bufnr,
+		desc = "LSP: workspace diagnostics",
+	})
+
+	M.map({
+		key = "<leader>F",
+		command = vim.diagnostic.open_float,
+		buffer = bufnr,
+		desc = "LSP: floating diagnostics",
+	})
+
+	M.map({
+		key = "<leader>S",
+		command = "<cmd>Telescope lsp_workspace_symbols<cr>",
+		buffer = bufnr,
+		desc = "LSP: workspace symbols",
+	})
+
+	M.map({
+		mode = { "n", "v" },
+		key = "<leader>a",
+		command = vim.lsp.buf.code_action,
+		buffer = bufnr,
+		desc = "LSP: code actions",
+	})
+
+	M.map({
+		key = "<leader>d",
+		command = "<cmd>TroubleToggle document_diagnostics<cr>",
+		buffer = bufnr,
+		desc = "LSP: document diagnostics",
+	})
+
+	M.map({
+		key = "<leader>h",
+		command = vim.lsp.buf.signature_help,
+		buffer = bufnr,
+		desc = "LSP: show signature help",
+	})
+
+	M.map({
+		key = "<leader>k",
+		command = vim.lsp.buf.hover,
+		buffer = bufnr,
+		desc = "LSP: show hover documentation",
+	})
+
+	M.map({
+		key = "<leader>r",
+		command = vim.lsp.buf.rename,
+		buffer = bufnr,
+		desc = "LSP: rename symbol",
+	})
+
+	M.map({
+		key = "<leader>s",
+		command = "<cmd>Telescope lsp_document_symbols<cr>",
+		buffer = bufnr,
+		desc = "LSP: document symbols",
+	})
+
+	M.map({
+		key = "gD",
+		command = vim.lsp.buf.declaration,
+		buffer = bufnr,
+		desc = "LSP: go to declaration",
+	})
+
+	M.map({
+		key = "gd",
+		command = "<cmd>Telescope lsp_definitions<CR>",
+		buffer = bufnr,
+		desc = "LSP: go to definition",
+	})
+
+	M.map({
+		key = "gi",
+		command = "<cmd>Telescope lsp_implementations<cr>",
+		buffer = bufnr,
+		desc = "LSP: go to implementations",
+	})
+
+	M.map({
+		key = "gr",
+		command = "<cmd>Telescope lsp_references<cr>",
+		buffer = bufnr,
+		desc = "LSP: go to references",
+	})
+
+	M.map({
+		key = "gt",
+		command = "<cmd>Telescope lsp_type_definitions<cr>",
+		buffer = bufnr,
+		desc = "LSP: go to type definition",
+	})
+end
+
+M.lsp.simple.capabilities = function()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+	return capabilities
+end
+
+M.lsp.simple.on_attach = function(_, bufnr)
+	M.map({
+		key = "<leader>F",
+		command = vim.diagnostic.open_float,
+		buffer = bufnr,
+		desc = "LSP: floating diagnostics",
+	})
+
+	M.map({
+		mode = { "n", "v" },
+		key = "<leader>a",
+		command = vim.lsp.buf.code_action,
+		buffer = bufnr,
+		desc = "LSP: code actions",
+	})
+
+	M.map({
+		key = "<leader>d",
+		command = "<cmd>TroubleToggle document_diagnostics<cr>",
+		buffer = bufnr,
+		desc = "LSP: document diagnostics",
+	})
+end
+
+M.lsp.add_server = function(args)
+	local opts = {
+		server = args.server,
+		setup = {
+			capabilities = args.capabilities or M.lsp.capabilities,
+			on_attach = args.on_attach or M.lsp.on_attach,
+			handlers = args.handlers or M.lsp.handlers,
+			settings = args.settings or {},
+		},
+	}
+
+	require("lspconfig")[opts.server].setup(opts.setup)
 end
 
 return M

@@ -12,7 +12,6 @@
   cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
-  diagflow-nvim = pluginFromGitHub "diagflow.nvim" inputs.diagflow-nvim;
   tailwindcss-colorizer-cmp-nvim = pluginFromGitHub "tailwindcss-colorizer-cmp.nvim" inputs.tailwindcss-colorizer-cmp-nvim;
   desktop_packages = (
     if ! isDarwin
@@ -49,7 +48,6 @@ in {
         cmp_luasnip
         conform-nvim
         copilot-vim
-        diagflow-nvim
         dressing-nvim
         executor-nvim
         friendly-snippets
@@ -80,6 +78,7 @@ in {
         nvim-spectre
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
+        nvim-ts-autotag
         nvim-ts-context-commentstring
         nvim-web-devicons
         octo-nvim

@@ -9,37 +9,61 @@ telescope.setup({
 		layout_strategy = "vertical",
 		prompt_prefix = " ",
 		selection_caret = " ",
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--hidden",
+			"--glob=!.git/",
+		},
 		mappings = {
 			i = {
-				["<C-q>"] = actions.close,
-				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
-				["<C-n>"] = actions.move_selection_next,
-				["<C-p>"] = actions.move_selection_previous,
+				["<C-u>"] = actions.preview_scrolling_up,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-n>"] = actions.cycle_history_next,
+				["<C-p>"] = actions.cycle_history_prev,
+				["<C-q>"] = actions.close,
 				["<C-t>"] = trouble.open_with_trouble,
 			},
 			n = {
-				["<C-q>"] = actions.close,
-				["<C-t>"] = trouble.open_with_trouble,
+				["j"] = actions.move_selection_next,
+				["k"] = actions.move_selection_previous,
+				["q"] = actions.close,
+				["t"] = trouble.open_with_trouble,
+				["<C-d>"] = actions.preview_scrolling_down,
+				["<C-u>"] = actions.preview_scrolling_up,
+				["<C-n>"] = actions.cycle_history_next,
+				["<C-p>"] = actions.cycle_history_prev,
 			},
 		},
 	},
 	pickers = {
-		find_files = {
-			find_command = { "rg", "--files", "--hidden", "--glob", "!.git" },
-			previewer = false,
-		},
+		commands = { theme = "dropdown" },
+		help_tags = { theme = "dropdown" },
+		live_grep = { theme = "dropdown" },
+
+		lsp_declarations = { theme = "dropdown", initial_mode = "normal" },
+		lsp_definitions = { theme = "dropdown", initial_mode = "normal" },
+		lsp_implementations = { theme = "dropdown", initial_mode = "normal" },
+		lsp_references = { theme = "dropdown", initial_mode = "normal" },
+		lsp_type_definitions = { theme = "dropdown", initial_mode = "normal" },
+
+		current_buffer_fuzzy_find = { theme = "dropdown", previewer = false },
+		find_files = { theme = "dropdown", previewer = false },
+		git_branches = { theme = "dropdown", previewer = false },
+
 		buffers = {
-			previewer = false,
 			theme = "dropdown",
-		},
-		current_buffer_fuzzy_find = {
 			previewer = false,
-			theme = "dropdown",
+			i = { ["<C-d>"] = actions.delete_buffer },
+			n = { ["dd"] = actions.delete_buffer },
 		},
-		git_branches = { previewer = false },
-		commands = { previewer = false },
-		help_tags = { previewer = false },
 	},
 	extensions = {
 		fzf = {
@@ -52,9 +76,9 @@ telescope.setup({
 })
 
 local extensions = {
-	"zoxide",
-	"lazygit",
 	"fzf",
+	"lazygit",
+	"zoxide",
 }
 
 for _, ext in ipairs(extensions) do
@@ -107,6 +131,12 @@ map({
 	key = "<leader>fz",
 	command = "<cmd>Telescope zoxide list<cr>",
 	desc = "Zoxide",
+})
+
+map({
+	key = "<leader>gB",
+	command = "<cmd>Telescope git_branches<cr>",
+	desc = "Diff (repo)",
 })
 
 map({

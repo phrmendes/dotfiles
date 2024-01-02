@@ -59,7 +59,7 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 
 -- decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 200
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 

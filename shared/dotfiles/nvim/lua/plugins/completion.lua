@@ -1,6 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local tailwindcss_colorizer_cmp = require("tailwindcss-colorizer-cmp")
+local border = cmp.config.window.bordered()
 
 require("cmp_pandoc").setup({
 	filetypes = { "quarto" },
@@ -52,9 +53,8 @@ cmp.setup({
 		}),
 	},
 	window = {
-		documentation = {
-			border = require("utils").border,
-		},
+		completion = border,
+		documentation = border,
 	},
 })
 

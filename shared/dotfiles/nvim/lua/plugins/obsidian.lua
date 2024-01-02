@@ -57,6 +57,9 @@ obsidian.setup({
 			opts = { buffer = true },
 		},
 	},
+	follow_url_func = function(url)
+		vim.fn.jobstart({ "xdg-open", url }) -- linux
+	end,
 })
 
 section({

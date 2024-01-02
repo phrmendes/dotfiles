@@ -30,6 +30,7 @@
       neovide
       obsidian
       parallel
+      phockup
       pop-launcher
       quarto
       qview

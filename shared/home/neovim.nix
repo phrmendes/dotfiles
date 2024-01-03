@@ -135,7 +135,6 @@ in {
         ansible-lint
         docker-compose-language-service
         helm-ls
-        htmx-lsp
         imagemagick
         ltex-ls
         lua-language-server

@@ -20,16 +20,11 @@ local metadata = function(note)
 end
 
 obsidian.setup({
-	attachments = { img_folder = "assets" },
+	attachments = { img_folder = "arquivos" },
 	completion = {
 		new_notes_location = "notes_subdir",
 		nvim_cmp = true,
 		prepend_note_id = true,
-	},
-	daily_notes = {
-		alias_format = "%Y-%m-%d",
-		date_format = "%Y-%m-%d",
-		folder = "daily",
 	},
 	dir = vim.fn.expand("~/Documents/notes"),
 	finder = "telescope.nvim",
@@ -38,11 +33,6 @@ obsidian.setup({
 	open_notes_in = "current",
 	sort_by = "modified",
 	sort_reversed = true,
-	templates = {
-		date_format = "%Y-%m-%d",
-		subdir = "templates",
-		time_format = "%H:%M",
-	},
 	mappings = {
 		["gf"] = {
 			action = function()
@@ -71,12 +61,6 @@ map({
 	key = "<leader>ob",
 	command = "<cmd>ObsidianBacklinks<cr>",
 	desc = "Backlinks",
-})
-
-map({
-	key = "<leader>od",
-	command = "<cmd>ObsidianToday<cr>",
-	desc = "Diary (today)",
 })
 
 map({

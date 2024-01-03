@@ -32,7 +32,7 @@ map({
 local markdown_snippets = {
 	parse_snippet({ trig = "journal", name = "journal" }, "# " .. os.date("%Y-%m-%d") .. "\n"),
 	parse_snippet({ trig = "metadata", name = "metadata" }, "\n---\naliases: [{$1}]\ntags: [{$2}]\n---\n$0"),
-	parse_snippet({ trig = "todo", name = "TODO" }, "- [ ] @TODO $0"),
+	parse_snippet({ trig = "todo", name = "TODO" }, "- [ ] #TODO $0"),
 	parse_snippet({ trig = "due", name = "due" }, " 📅 $0"),
 	parse_snippet({ trig = "scheduled", name = "scheduled" }, " ⌛ $0"),
 	parse_snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%Y-%m-%d") .. " $0"),

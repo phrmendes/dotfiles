@@ -12,7 +12,6 @@
     ./starship.nix
     ./symlinks.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./zoxide.nix
   ];
 }

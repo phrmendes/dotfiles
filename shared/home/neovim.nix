@@ -111,7 +111,7 @@ in {
         vim-nix
         vim-sleuth
         vim-slime
-        vim-tmux-navigator
+        vim-kitty-navigator
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim

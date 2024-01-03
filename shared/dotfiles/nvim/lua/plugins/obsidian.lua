@@ -19,37 +19,48 @@ local metadata = function(note)
 	return out
 end
 
+local follow_url = function(url)
+	vim.fn.jobstart({ "xdg-open", url })
+end
+
 obsidian.setup({
-	attachments = { img_folder = "arquivos" },
-	completion = {
-		new_notes_location = "notes_subdir",
-		nvim_cmp = true,
-		prepend_note_id = true,
-	},
 	dir = vim.fn.expand("~/Documents/notes"),
 	finder = "telescope.nvim",
+	follow_url_func = follow_url,
 	note_frontmatter_func = metadata,
 	note_id_func = id,
 	open_notes_in = "current",
 	sort_by = "modified",
 	sort_reversed = true,
+	attachments = {
+		img_folder = "arquivos",
+	},
+	completion = {
+		new_notes_location = "notes_subdir",
+		nvim_cmp = true,
+		prepend_note_id = true,
+	},
+	daily_notes = {
+		folder = "log",
+		date_format = "%d-%m-%Y",
+		alias_format = "%d-%m-%Y",
+		template = "templates/log.md",
+	},
+	templates = {
+		subdir = "templates",
+		date_format = "%d-%m-%Y",
+		time_format = "%H:%M",
+	},
 	mappings = {
 		["gf"] = {
-			action = function()
-				return obsidian.util.gf_passthrough()
-			end,
+			action = obsidian.util.gf_passthrough,
 			opts = { noremap = false, expr = true, buffer = 0 },
 		},
 		["<C-CR>"] = {
-			action = function()
-				return obsidian.util.toggle_checkbox()
-			end,
+			action = obsidian.util.toggle_checkbox,
 			opts = { buffer = true },
 		},
 	},
-	follow_url_func = function(url)
-		vim.fn.jobstart({ "xdg-open", url }) -- linux
-	end,
 })
 
 section({
@@ -61,6 +72,12 @@ map({
 	key = "<leader>ob",
 	command = "<cmd>ObsidianBacklinks<cr>",
 	desc = "Backlinks",
+})
+
+map({
+	key = "<leader>od",
+	command = "<cmd>ObsidianToday<cr>",
+	desc = "Diary (today)",
 })
 
 map({

@@ -8,7 +8,7 @@ export VISUAL="nvim"
 SYSTEM=$(uname -av|awk '{print $1;}')
 
 if [[ $SYSTEM  == "Linux" ]]; then
-    export TERM="wezterm"
+    export TERM="kitty"
 else
     export TERM="xterm-256color"
 fi

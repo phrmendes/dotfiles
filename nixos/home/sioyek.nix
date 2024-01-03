@@ -26,7 +26,7 @@
         "synctex_highlight_color" = "#a6e3a1";
         "text_highlight_colo" = "#f9e2af";
         "ui_background_color" = "#313244";
-        "ui_font" = "JetBrainsMono Nerd Font";
+        "ui_font" = "FiraCode Nerd Font";
         "ui_selected_background_color" = "#585b70";
         "ui_selected_text_color" = "#cdd6f4";
         "ui_text_color" = "#cdd6f4";

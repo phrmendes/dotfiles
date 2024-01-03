@@ -1,9 +1,10 @@
 require("zen-mode").setup({
 	plugins = {
-		twilight = false,
-		wezterm = {
+		tmux = { enabled = false },
+		twilight = { enabled = false },
+		kitty = {
 			enabled = true,
-			font = "+2",
+			font = "+4",
 		},
 	},
 })

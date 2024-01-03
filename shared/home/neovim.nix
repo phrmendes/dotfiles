@@ -13,6 +13,7 @@
   obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
   zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
   hlargs-nvim = pluginFromGitHub "hlargs.nvim" inputs.hlargs-nvim;
+  img-clip-nvim = pluginFromGitHub "img-clip.nvim" inputs.img-clip-nvim;
   desktop_packages = (
     if ! isDarwin
     then
@@ -53,6 +54,8 @@ in {
         gitsigns-nvim
         hlargs-nvim
         image-nvim
+        img-clip-nvim
+        indent-blankline-nvim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
@@ -86,6 +89,7 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
+        tabular
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
@@ -96,6 +100,7 @@ in {
         vim-helm
         vim-jinja
         vim-just
+        vim-markdown
         vim-nix
         vim-sleuth
         vim-slime
@@ -124,6 +129,7 @@ in {
         docker-compose-language-service
         helm-ls
         htmx-lsp
+        imagemagick
         ltex-ls
         lua-language-server
         marksman

@@ -10,11 +10,11 @@
           "pop-shell@system76.com"
         ];
         favorite-apps = [
-          "firefox.desktop"
-          "org.gnome.Nautilus.desktop"
-          "org.wezfurlong.wezterm.desktop"
           "bitwarden.desktop"
+          "firefox.desktop"
+          "kitty.desktop"
           "obsidian.desktop"
+          "org.gnome.Nautilus.desktop"
         ];
       };
       "org/gnome/shell/extensions/pop-shell" = {

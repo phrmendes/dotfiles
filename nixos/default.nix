@@ -51,10 +51,10 @@ in {
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      fira-code-nerdfont
     ];
     fontconfig.defaultFonts = {
-      monospace = ["JetBrainsMono"];
+      monospace = ["FiraCode Nerd Font Mono"];
     };
   };
 

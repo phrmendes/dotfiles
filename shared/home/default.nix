@@ -1,9 +1,11 @@
 {
   imports = [
     ./bat.nix
+    ./direnv.nix
     ./eza.nix
     ./fzf.nix
     ./git.nix
+    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./shells.nix

@@ -98,4 +98,5 @@ if vim.g.neovide then
 	vim.g.neovide_padding_right = 10
 	vim.g.neovide_padding_left = 10
 	vim.g.neovide_transparency = 0.9
+	vim.o.guifont = "FiraCode Nerd Font Mono:h12"
 end

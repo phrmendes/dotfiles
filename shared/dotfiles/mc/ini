@@ -112,7 +112,7 @@
 
 [Colors]
     base_color=
-    wezterm=
+    kitty=
     color_terminals=
 
 [Panels]

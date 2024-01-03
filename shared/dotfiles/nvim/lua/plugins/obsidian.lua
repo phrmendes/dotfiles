@@ -33,7 +33,7 @@ obsidian.setup({
 	sort_by = "modified",
 	sort_reversed = true,
 	attachments = {
-		img_folder = "arquivos",
+		img_folder = "assets",
 	},
 	completion = {
 		new_notes_location = "notes_subdir",
@@ -90,12 +90,6 @@ map({
 	key = "<leader>oo",
 	command = "<cmd>ObsidianOpen<cr>",
 	desc = "Open Obsidian",
-})
-
-map({
-	key = "<leader>op",
-	command = "<cmd>ObsidianPasteImg<cr>",
-	desc = "Paste image",
 })
 
 map({

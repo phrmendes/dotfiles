@@ -23,7 +23,6 @@
       "qview"
       "slack"
       "tailscale"
-      "wezterm"
       "whichspace"
     ];
   };

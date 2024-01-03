@@ -25,6 +25,5 @@
     tealdeer
     terraform
     terragrunt
-    ueberzugpp
   ];
 }

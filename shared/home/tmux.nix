@@ -62,6 +62,8 @@
       set -g renumber-windows on
       set -g set-clipboard on
       set -g status-position top
+      set -g visual-activity off
+      set -gq allow-passthrough on
 
       setw -g mode-keys vi
 

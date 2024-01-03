@@ -1,4 +1,4 @@
-require("barbecue").setup({ exclude_filetypes = { "Starter", "Trouble", "neo-tree" } })
+require("barbecue").setup({ exclude_filetypes = { "Starter", "Trouble", "neo-tree", "markdown", "quarto" } })
 require("lsp_signature").setup()
 require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 require("nvim-lightbulb").setup({ autocmd = { enabled = true } })

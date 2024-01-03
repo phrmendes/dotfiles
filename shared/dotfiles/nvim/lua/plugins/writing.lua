@@ -1,7 +1,12 @@
+require("plugins.images")
+
 local map = require("utils").map
 local section = require("utils").section
 
 vim.g.mkdp_filetypes = { "markdown", "quarto" }
+vim.g.vim_markdown_folding_disabled = 1
+vim.g.vim_markdown_no_default_key_mappings = 1
+vim.cmd([[set [no]foldenable]])
 
 local M = {}
 
@@ -14,9 +19,30 @@ M.markdown = function()
 	})
 
 	map({
-		key = "<leader>mp",
-		command = "<cmd>MarkdownPreviewToggle<cr>",
-		desc = "Markdown preview",
+		key = "]]",
+		command = "<Plug>Markdown_MoveToNextHeader",
+		desc = "Move to next header",
+		buffer = 0,
+	})
+
+	map({
+		key = "[[",
+		command = "<Plug>Markdown_MoveToPreviousHeader",
+		desc = "Move to previous header",
+		buffer = 0,
+	})
+
+	map({
+		key = "gx",
+		command = "<Plug>Markdown_OpenUrlUnderCursor",
+		desc = "Open URL under cursor",
+		buffer = 0,
+	})
+
+	map({
+		key = "ge",
+		command = "<Plug>Markdown_EditUrlUnderCursor",
+		desc = "Edit URL under cursor",
 		buffer = 0,
 	})
 
@@ -24,6 +50,20 @@ M.markdown = function()
 		key = "<leader>me",
 		command = require("nabla").popup,
 		desc = "Equation preview",
+		buffer = 0,
+	})
+
+	map({
+		key = "<leader>mm",
+		command = "<cmd>MarkdownPreviewToggle<cr>",
+		desc = "Markdown preview",
+		buffer = 0,
+	})
+
+	map({
+		key = "<leader>mp",
+		command = "<cmd>PasteImage<cr>",
+		desc = "Paste image",
 		buffer = 0,
 	})
 end

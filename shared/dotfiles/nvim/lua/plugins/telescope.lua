@@ -23,11 +23,11 @@ telescope.setup({
 		},
 		mappings = {
 			i = {
+				["<C-S-n>"] = actions.cycle_history_next,
+				["<C-S-p>"] = actions.cycle_history_prev,
 				["<C-d>"] = actions.preview_scrolling_down,
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
-				["<C-n>"] = actions.cycle_history_next,
-				["<C-p>"] = actions.cycle_history_prev,
+				["<C-n>"] = actions.move_selection_next,
+				["<C-p>"] = actions.move_selection_previous,
 				["<C-q>"] = actions.close,
 				["<C-s>"] = actions.file_split,
 				["<C-t>"] = trouble.open_with_trouble,

@@ -34,6 +34,11 @@
       flake = false;
       url = "github:m-demare/hlargs.nvim";
     };
+
+    img-clip-nvim = {
+      flake = false;
+      url = "github:HakonHarnes/img-clip.nvim";
+    };
   };
 
   outputs = inputs @ {

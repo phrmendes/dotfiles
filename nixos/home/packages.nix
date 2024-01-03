@@ -18,7 +18,6 @@
       git
       gnome-extensions-cli
       hugo
-      imagemagick
       just
       kubectl
       kubernetes-helm
@@ -38,11 +37,8 @@
       syncthingtray
       tectonic
       terraform
-      ueberzugpp
       ventoy
       vlc
-      vscode
-      wezterm
       zotero
     ])
     ++ (with pkgs.gnome; [

@@ -39,6 +39,11 @@
       flake = false;
       url = "github:HakonHarnes/img-clip.nvim";
     };
+
+    autolist-nvim = {
+      flake = false;
+      url = "github:gaoDean/autolist.nvim";
+    };
   };
 
   outputs = inputs @ {

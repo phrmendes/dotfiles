@@ -1,6 +1,19 @@
 local utils = require("utils")
 local schemastore = require("schemastore")
 
+if vim.fn.has("mac") == 0 then
+	utils.lsp.add_server({
+		server = "htmx",
+		capabilities = nil,
+		handlers = nil,
+		on_attach = nil,
+	})
+
+	utils.lsp.add_server({
+		server = "tailwindcss",
+	})
+end
+
 local servers = {
 	{ server = "ansiblels" },
 	{ server = "bashls" },
@@ -11,7 +24,6 @@ local servers = {
 	{ server = "marksman" },
 	{ server = "nil_ls" },
 	{ server = "ruff_lsp" },
-	{ server = "tailwindcss" },
 	{ server = "taplo" },
 	{ server = "terraformls" },
 	{ server = "texlab" },
@@ -80,12 +92,6 @@ local servers = {
 		server = "html",
 		capabilities = utils.lsp.simple.capabilities(),
 		on_attach = utils.lsp.simple.on_attach,
-	},
-	{
-		server = "htmx",
-		capabilities = nil,
-		handlers = nil,
-		on_attach = nil,
 	},
 }
 

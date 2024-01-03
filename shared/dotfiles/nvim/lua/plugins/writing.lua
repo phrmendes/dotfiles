@@ -1,48 +1,30 @@
 require("plugins.images")
+require("autolist").setup()
 
 local map = require("utils").map
 local section = require("utils").section
 
 vim.g.mkdp_filetypes = { "markdown", "quarto" }
-vim.g.vim_markdown_folding_disabled = 1
-vim.g.vim_markdown_no_default_key_mappings = 1
-vim.cmd([[set [no]foldenable]])
 
 local M = {}
 
 M.markdown = function()
+	vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
+	vim.keymap.set("i", "<S-TAB>", "<cmd>AutolistShiftTab<cr>")
+	vim.keymap.set("i", "<TAB>", "<cmd>AutolistTab<cr>")
+	vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
+	vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
+	vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
+	vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
+	vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
+	vim.keymap.set("n", "dd", "dd<cmd>AutolistRecalculate<cr>")
+	vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
+	vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
+
 	section({
 		mode = { "n", "v" },
 		key = "<leader>m",
 		name = "markdown",
-		buffer = 0,
-	})
-
-	map({
-		key = "]]",
-		command = "<Plug>Markdown_MoveToNextHeader",
-		desc = "Move to next header",
-		buffer = 0,
-	})
-
-	map({
-		key = "[[",
-		command = "<Plug>Markdown_MoveToPreviousHeader",
-		desc = "Move to previous header",
-		buffer = 0,
-	})
-
-	map({
-		key = "gx",
-		command = "<Plug>Markdown_OpenUrlUnderCursor",
-		desc = "Open URL under cursor",
-		buffer = 0,
-	})
-
-	map({
-		key = "ge",
-		command = "<Plug>Markdown_EditUrlUnderCursor",
-		desc = "Edit URL under cursor",
 		buffer = 0,
 	})
 

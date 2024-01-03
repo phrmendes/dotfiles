@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "autolist-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688728312,
+        "narHash": "sha256-lavDbTFidmbYDOxYPumCExkd27sesZ5uFgwHc1xNuW0=",
+        "owner": "gaoDean",
+        "repo": "autolist.nvim",
+        "rev": "5f70a5f99e96c8fe3069de042abd2a8ed2deb855",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gaoDean",
+        "repo": "autolist.nvim",
+        "type": "github"
+      }
+    },
     "cmp-zotcite": {
       "flake": false,
       "locked": {
@@ -23,11 +39,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703990467,
-        "narHash": "sha256-LItEeQVwDfLnavNskwdfRnonbEdq8DYiJlWRtF+bwng=",
+        "lastModified": 1704277720,
+        "narHash": "sha256-meAKNgmh3goankLGWqqpw73pm9IvXjEENJloF0coskE=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "1a41453cba42a3a1af2fff003be455ddbd75386c",
+        "rev": "0dd382b70c351f528561f71a0a7df82c9d2be9a4",
         "type": "github"
       },
       "original": {
@@ -59,11 +75,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1704100519,
-        "narHash": "sha256-SgZC3cxquvwTN07vrYYT9ZkfvuhS5Y1k1F4+AMsuflc=",
+        "lastModified": 1704276313,
+        "narHash": "sha256-4eD4RaAKHLj0ztw5pQcNFs3hGpxrsYb0e9Qir+Ute+w=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6e91c5df192395753d8e6d55a0352109cb559790",
+        "rev": "4d8f90205c6c90be2e81d94d0e5eedf71c1ba34e",
         "type": "github"
       },
       "original": {
@@ -123,11 +139,11 @@
     "obsidian-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1704144068,
-        "narHash": "sha256-kW0yPPc7yeHJF5TTByUAIZi+VA3qRv1V4PYSsJe2wOc=",
+        "lastModified": 1704301437,
+        "narHash": "sha256-uc2qKgIl6Fsvd1HsULMYw6IpwxUlg5V1lreVWDz6JzE=",
         "owner": "epwalsh",
         "repo": "obsidian.nvim",
-        "rev": "1764a8d8c25d7f6de58953362e7de79d3b3d970e",
+        "rev": "f8b6bb95da3087bf5c29fe0acc77c4617895e9b8",
         "type": "github"
       },
       "original": {
@@ -138,6 +154,7 @@
     },
     "root": {
       "inputs": {
+        "autolist-nvim": "autolist-nvim",
         "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
         "hlargs-nvim": "hlargs-nvim",

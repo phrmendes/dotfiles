@@ -3,28 +3,36 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs.stdenv) isDarwin;
-  pluginFromGitHub = pname: src:
+  appendIfNotDarwin = list:
+    if ! pkgs.stdenv.isDarwin
+    then list
+    else [];
+  getNeovimPluginFromGitHub = pkgName: src:
     pkgs.vimUtils.buildVimPlugin {
-      inherit pname src;
+      inherit src;
+      pname = pkgName;
       version = src.rev;
     };
-  cmp-zotcite = pluginFromGitHub "cmp-zotcite" inputs.cmp-zotcite;
-  obsidian-nvim = pluginFromGitHub "obsidian.nvim" inputs.obsidian-nvim;
-  zotcite = pluginFromGitHub "zotcite" inputs.zotcite;
-  hlargs-nvim = pluginFromGitHub "hlargs.nvim" inputs.hlargs-nvim;
-  img-clip-nvim = pluginFromGitHub "img-clip.nvim" inputs.img-clip-nvim;
-  desktop_packages = (
-    if ! isDarwin
-    then
-      (with pkgs.vimPlugins; [
-        ChatGPT-nvim
-        cmp-zotcite
-        obsidian-nvim
-        zotcite
-      ])
-    else []
-  );
+  gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
+    cmp-zotcite = inputs.cmp-zotcite;
+    obsidian-nvim = inputs.obsidian-nvim;
+    zotcite = inputs.zotcite;
+    hlargs-nvim = inputs.hlargs-nvim;
+    img-clip-nvim = inputs.img-clip-nvim;
+    autolist-nvim = inputs.autolist-nvim;
+  };
+  desktop = {
+    packages = with pkgs; [
+      htmx-lsp
+      tailwindcss-language-server
+    ];
+    extensions = with pkgs.vimPlugins; [
+      ChatGPT-nvim
+      gh.cmp-zotcite
+      gh.obsidian-nvim
+      gh.zotcite
+    ];
+  };
 in {
   programs.neovim = {
     enable = true;
@@ -51,10 +59,11 @@ in {
         dressing-nvim
         executor-nvim
         friendly-snippets
+        gh.autolist-nvim
+        gh.hlargs-nvim
+        gh.img-clip-nvim
         gitsigns-nvim
-        hlargs-nvim
         image-nvim
-        img-clip-nvim
         indent-blankline-nvim
         lazygit-nvim
         lsp_signature-nvim
@@ -89,7 +98,6 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
-        tabular
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
@@ -100,7 +108,6 @@ in {
         vim-helm
         vim-jinja
         vim-just
-        vim-markdown
         vim-nix
         vim-sleuth
         vim-slime
@@ -109,7 +116,7 @@ in {
         which-key-nvim
         zen-mode-nvim
       ])
-      ++ desktop_packages;
+      ++ appendIfNotDarwin desktop.extensions;
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
         poppler-qt5
@@ -142,7 +149,6 @@ in {
         sqlfluff
         statix
         stylua
-        tailwindcss-language-server
         taplo
         terraform-ls
         texlab
@@ -158,6 +164,7 @@ in {
         vscode-json-languageserver
         vscode-langservers-extracted
         yaml-language-server
-      ]);
+      ])
+      ++ appendIfNotDarwin desktop.packages;
   };
 }

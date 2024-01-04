@@ -2,7 +2,7 @@ local map = require("utils.keybindings").map
 
 local M = {}
 
-local capabilities = function(type)
+M.capabilities = function(type)
 	local capabilities
 
 	if type == "markup" then
@@ -16,12 +16,12 @@ local capabilities = function(type)
 	return capabilities
 end
 
-local handlers = {
+M.handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
-local on_attach = function(client, bufnr)
+M.on_attach = function(client, bufnr)
 	map({
 		key = "<leader>D",
 		command = "<cmd>TroubleToggle workspace_diagnostics<cr>",
@@ -130,9 +130,9 @@ M.add_language_server = function(args)
 	local opts = {
 		server = args.server,
 		setup = {
-			capabilities = capabilities(capabilities_type),
-			on_attach = args.on_attach or on_attach,
-			handlers = args.handlers or handlers,
+			capabilities = M.capabilities(capabilities_type),
+			on_attach = args.on_attach or M.on_attach,
+			handlers = args.handlers or M.handlers,
 			settings = args.settings or {},
 		},
 	}

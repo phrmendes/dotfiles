@@ -7,5 +7,8 @@ M.normalize = require("utils.string").normalize
 M.section = require("utils.keybindings").section
 M.venv = require("utils.python").venv
 M.add_language_server = require("utils.lsp").add_language_server
+M.capabilities = require("utils.lsp").capabilities
+M.handlers = require("utils.lsp").handlers
+M.on_attach = require("utils.lsp").on_attach
 
 return M

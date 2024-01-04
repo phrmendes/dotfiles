@@ -67,6 +67,7 @@ telescope.setup({
 })
 
 local extensions = {
+	"frecency",
 	"fzf",
 	"lazygit",
 	"zoxide",
@@ -114,7 +115,7 @@ map({
 
 map({
 	key = "<leader>fr",
-	command = "<cmd>Telescope oldfiles<cr>",
+	command = "<cmd>Telescope freceny<cr>",
 	desc = "Recent files",
 })
 

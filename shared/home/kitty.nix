@@ -31,7 +31,7 @@ in {
       term = "xterm-256color";
       undercurl_style = "thin-sparse";
       update_check_interval = 0;
-      window_padding_width = 6;
+      window_padding_width = 4;
       enabled_layouts = "splits:split_axis=horizontal,stack";
     };
     keybindings = {

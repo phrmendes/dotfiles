@@ -45,7 +45,6 @@ in {
       (with pkgs.vimPlugins; [
         SchemaStore-nvim
         ansible-vim
-        barbecue-nvim
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
@@ -64,7 +63,6 @@ in {
         gh.img-clip-nvim
         gitsigns-nvim
         image-nvim
-        indent-blankline-nvim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
@@ -88,6 +86,7 @@ in {
         nvim-lspconfig
         nvim-luadev
         nvim-spectre
+        nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
         nvim-ts-autotag
@@ -98,6 +97,7 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
+        telescope-frecency-nvim
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
@@ -108,10 +108,10 @@ in {
         vim-helm
         vim-jinja
         vim-just
+        vim-kitty-navigator
         vim-nix
         vim-sleuth
         vim-slime
-        vim-kitty-navigator
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim

@@ -33,6 +33,24 @@ section({
 	name = "git",
 })
 
+section({
+	mode = { "n", "v" },
+	key = "<leader>gb",
+	name = "buffer",
+})
+
+section({
+	mode = { "n", "v" },
+	key = "<leader>gh",
+	name = "hunk",
+})
+
+section({
+	mode = { "n", "v" },
+	key = "<leader>gc",
+	name = "commits",
+})
+
 map({
 	key = "]h",
 	command = next_hunk,
@@ -50,12 +68,6 @@ map({
 })
 
 map({
-	key = "<leader>ga",
-	command = "<cmd>Gitsigns<cr>",
-	desc = "Gitsigns",
-})
-
-map({
 	key = "<leader>gb",
 	command = function()
 		gitsigns.blame_line({ full = true })
@@ -64,21 +76,21 @@ map({
 })
 
 map({
-	key = "<leader>gC",
+	key = "<leader>gcr",
 	command = "<cmd>LazyGitFilter<cr>",
-	desc = "Commits (repo)",
+	desc = "Repository",
 })
 
 map({
-	key = "<leader>gc",
+	key = "<leader>gcf",
 	command = "<cmd>LazyGitFilterCurrentFile<cr>",
-	desc = "Commits (file)",
+	desc = "File",
 })
 
 map({
 	key = "<leader>gd",
 	command = gitsigns.diffthis,
-	desc = "Diff (file)",
+	desc = "Diff",
 })
 
 map({
@@ -94,55 +106,55 @@ map({
 })
 
 map({
-	key = "<leader>gp",
+	key = "<leader>ghp",
 	command = gitsigns.preview_hunk,
-	desc = "Preview hunk",
+	desc = "Preview",
 })
 
 map({
-	key = "<leader>gR",
+	key = "<leader>gbr",
 	command = gitsigns.reset_buffer,
-	desc = "Reset buffer",
+	desc = "Reset",
 })
 
 map({
-	key = "<leader>gr",
+	key = "<leader>ghr",
 	command = gitsigns.reset_hunk,
-	desc = "Reset hunk",
+	desc = "Reset",
 })
 
 map({
 	mode = "v",
-	key = "<leader>gr",
+	key = "<leader>ghr",
 	command = function()
 		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
-	desc = "Reset hunk",
+	desc = "Reset",
 })
 
 map({
-	key = "<leader>gS",
+	key = "<leader>gbs",
 	command = gitsigns.stage_buffer,
-	desc = "Stage buffer",
+	desc = "Stage",
 })
 
 map({
-	key = "<leader>gs",
+	key = "<leader>ghs",
 	command = gitsigns.stage_hunk,
-	desc = "Stage hunk",
+	desc = "Stage",
 })
 
 map({
 	mode = "v",
-	key = "<leader>gs",
+	key = "<leader>ghs",
 	command = function()
 		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
-	desc = "Stage hunk",
+	desc = "Stage",
 })
 
 map({
-	key = "<leader>gu",
+	key = "<leader>ghu",
 	command = gitsigns.undo_stage_hunk,
-	desc = "Undo stage hunk",
+	desc = "Undo stage",
 })

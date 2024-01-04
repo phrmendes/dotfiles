@@ -2,14 +2,14 @@ local utils = require("utils")
 local schemastore = require("schemastore")
 
 if vim.fn.has("mac") == 0 then
-	utils.lsp.add_server({
+	utils.add_language_server({
 		server = "htmx",
 		capabilities = nil,
 		handlers = nil,
 		on_attach = nil,
 	})
 
-	utils.lsp.add_server({
+	utils.add_language_server({
 		server = "tailwindcss",
 	})
 end
@@ -64,8 +64,7 @@ local servers = {
 	},
 	{
 		server = "yamlls",
-		capabilities = utils.lsp.simple.capabilities(),
-		on_attach = utils.lsp.simple.on_attach,
+		capabilities = "markup",
 		settings = {
 			yaml = {
 				keyOrdering = false,
@@ -79,8 +78,7 @@ local servers = {
 	},
 	{
 		server = "jsonls",
-		capabilities = utils.lsp.simple.capabilities(),
-		on_attach = utils.lsp.simple.on_attach,
+		capabilities = "markup",
 		settings = {
 			json = {
 				schemas = schemastore.json.schemas(),
@@ -90,11 +88,10 @@ local servers = {
 	},
 	{
 		server = "html",
-		capabilities = utils.lsp.simple.capabilities(),
-		on_attach = utils.lsp.simple.on_attach,
+		capabilities = "markup",
 	},
 }
 
 for _, server in ipairs(servers) do
-	utils.lsp.add_server(server)
+	utils.add_language_server(server)
 end

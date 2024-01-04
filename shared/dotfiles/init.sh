@@ -11,6 +11,9 @@ if [[ $SYSTEM  == "Linux" ]]; then
     export TERM="kitty"
 else
     export TERM="xterm-256color"
+    path+=(
+        /opt/homebrew/opt/gnu-sed/libexec/gnubin
+    )
 fi
 
 path+=(

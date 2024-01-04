@@ -3,7 +3,7 @@
   font_family = "FiraCode Nerd Font Mono";
   font_size =
     if isDarwin
-    then 14
+    then 16
     else 12;
 in {
   programs.kitty = {

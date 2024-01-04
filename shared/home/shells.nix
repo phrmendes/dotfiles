@@ -9,7 +9,7 @@
     };
   };
   darwin = {
-    update_cmd = "nix run nixpkgs.nix-darwin -- switch --flake ${path}";
+    update_cmd = "nix run nix-darwin -- switch --flake ${path}";
     aliases = {
       docker = "podman";
     };

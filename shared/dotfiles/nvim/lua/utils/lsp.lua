@@ -39,7 +39,7 @@ M.on_attach = function(client, bufnr)
 	map({
 		mode = { "n", "v" },
 		key = "<leader>a",
-		command = vim.lsp.buf.code_action,
+		command = require("actions-preview").code_actions,
 		buffer = bufnr,
 		desc = "LSP: code actions",
 	})

@@ -4,7 +4,7 @@
   font_size =
     if isDarwin
     then 16
-    else 12;
+    else 13;
 in {
   programs.kitty = {
     enable = true;

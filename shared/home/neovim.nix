@@ -67,7 +67,6 @@ in {
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
-        lualine-nvim
         luasnip
         markdown-preview-nvim
         mini-nvim
@@ -81,7 +80,6 @@ in {
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
-        nvim-lightbulb
         nvim-lint
         nvim-lspconfig
         nvim-luadev

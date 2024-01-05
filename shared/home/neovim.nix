@@ -24,6 +24,7 @@
   desktop = {
     packages = with pkgs; [
       htmx-lsp
+      marksman
       tailwindcss-language-server
     ];
     extensions = with pkgs.vimPlugins; [
@@ -137,7 +138,6 @@ in {
         imagemagick
         ltex-ls
         lua-language-server
-        marksman
         neovim-remote
         nil
         ruff

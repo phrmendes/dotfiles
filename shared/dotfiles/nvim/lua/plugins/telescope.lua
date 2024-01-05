@@ -115,7 +115,7 @@ map({
 
 map({
 	key = "<leader>fr",
-	command = "<cmd>Telescope freceny<cr>",
+	command = "<cmd>Telescope frecency<cr>",
 	desc = "Recent files",
 })
 

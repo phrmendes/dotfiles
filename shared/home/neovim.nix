@@ -44,6 +44,7 @@ in {
     plugins =
       (with pkgs.vimPlugins; [
         SchemaStore-nvim
+        actions-preview-nvim
         ansible-vim
         catppuccin-nvim
         cmp-buffer

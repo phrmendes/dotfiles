@@ -6,7 +6,6 @@ require("plugins.mini.jumping")
 require("plugins.mini.move")
 require("plugins.mini.splitjoin")
 require("plugins.mini.surround")
-require("plugins.mini.statusline")
 require("plugins.mini.sessions")
 
 -- require("mini.notify").setup()

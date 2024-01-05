@@ -1,5 +1,6 @@
+require("plugins.lsp.ui")
 require("plugins.lsp.servers")
 require("plugins.lsp.ltex")
-require("plugins.lsp.linters")
+require("plugins.lsp.metals")
 require("plugins.lsp.formatters")
-require("plugins.lsp.ui")
+require("plugins.lsp.linters")

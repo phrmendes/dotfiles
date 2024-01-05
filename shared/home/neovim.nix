@@ -72,6 +72,7 @@ in {
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
+        lualine-nvim
         luasnip
         markdown-preview-nvim
         mini-nvim

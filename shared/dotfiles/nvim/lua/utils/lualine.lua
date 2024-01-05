@@ -12,4 +12,12 @@ M.venv = function()
 	return ""
 end
 
+M.metals = function()
+	if vim.g.metals_status then
+		return " " .. vim.g.metals_status
+	end
+
+	return ""
+end
+
 return M

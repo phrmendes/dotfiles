@@ -1,9 +1,9 @@
 local map = require("utils").map
+local dap = require("dap")
 
 local M = {}
 
 M.setup = function()
-	local dap = require("dap")
 	local dap_ui = require("dapui")
 	local dap_virtual_text = require("nvim-dap-virtual-text")
 
@@ -124,6 +124,27 @@ M.python = function()
 		buffer = 0,
 		desc = "DAP: debug region",
 	})
+end
+
+M.scala = function()
+	dap.configurations.scala = {
+		{
+			type = "scala",
+			request = "launch",
+			name = "RunOrTest",
+			metals = {
+				runType = "runOrTestFile",
+			},
+		},
+		{
+			type = "scala",
+			request = "launch",
+			name = "Test Target",
+			metals = {
+				runType = "testTarget",
+			},
+		},
+	}
 end
 
 return M

@@ -13,6 +13,7 @@
     aliases = {
       P = "push";
       a = "add .";
+      r = "restore .";
       co = "checkout";
       lg = "log";
       p = "pull";

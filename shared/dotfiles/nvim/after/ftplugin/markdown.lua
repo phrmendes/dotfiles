@@ -1,7 +1,5 @@
-local mappings = require("plugins.writing")
+local writing = require("plugins.writing")
 
-mappings.markdown()
-
-if vim.fn.has("mac") == 0 then
-	mappings.zotero()
-end
+writing.markdown()
+writing.math()
+writing.zotero()

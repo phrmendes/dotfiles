@@ -25,7 +25,7 @@ in {
       enable_audio_bell = false;
       font_size = font_size;
       italic_font = "${font_family} Italic";
-      listen_on = "unix:/tmp/mykitty";
+      listen_on = "unix:/tmp/kitty";
       open_url_with = "default";
       scrollback_lines = 10000;
       term = "xterm-256color";

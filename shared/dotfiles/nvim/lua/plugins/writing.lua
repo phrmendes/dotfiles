@@ -29,13 +29,6 @@ M.markdown = function()
 	})
 
 	map({
-		key = "<leader>me",
-		command = require("nabla").popup,
-		desc = "Equation preview",
-		buffer = 0,
-	})
-
-	map({
 		key = "<leader>mm",
 		command = "<cmd>MarkdownPreviewToggle<cr>",
 		desc = "Markdown preview",
@@ -47,6 +40,29 @@ M.markdown = function()
 		command = "<cmd>PasteImage<cr>",
 		desc = "Paste image",
 		buffer = 0,
+	})
+end
+
+M.math = function()
+	map({
+		key = "<leader>me",
+		command = require("nabla").popup,
+		desc = "Equation preview",
+		buffer = 0,
+	})
+end
+
+M.quarto = function()
+	require("quarto").setup({
+		lspFeatures = {
+			languages = { "bash", "lua", "python" },
+			chunks = "all",
+		},
+		codeRunner = {
+			enabled = true,
+			default_method = "slime",
+			never_run = { "yaml" },
+		},
 	})
 end
 

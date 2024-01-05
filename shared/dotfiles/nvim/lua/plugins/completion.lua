@@ -25,7 +25,7 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		["<C-CR>"] = function(fallback)
+		["<C-q>"] = function(fallback)
 			cmp.abort()
 			fallback()
 		end,
@@ -70,12 +70,12 @@ cmp.setup.cmdline({ "/", "?" }, {
 
 cmp.setup.filetype("quarto", {
 	sources = cmp.config.sources({
+		{ name = "luasnip" },
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
-	}, {
 		{ name = "latex_symbols" },
+	}, {
 		{ name = "path" },
 		{ name = "buffer" },
 	}),
@@ -85,8 +85,9 @@ cmp.setup.filetype("markdown", {
 	sources = cmp.config.sources({
 		{ name = "luasnip" },
 		{ name = "cmp_zotcite" },
-	}, {
+		{ name = "cmp_pandoc" },
 		{ name = "latex_symbols" },
+	}, {
 		{ name = "path" },
 		{ name = "buffer" },
 	}),

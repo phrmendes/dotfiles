@@ -9,6 +9,7 @@
       bitwarden-cli
       bruno
       chromium
+      coursier
       deluge
       docker-compose
       droidcam

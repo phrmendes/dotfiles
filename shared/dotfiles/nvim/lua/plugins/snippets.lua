@@ -29,7 +29,7 @@ map({
 	desc = "Next snippet choice",
 })
 
-local markdown_snippets = {
+local markdown = {
 	parse_snippet({ trig = "journal", name = "journal" }, "# " .. os.date("%Y-%m-%d") .. "\n"),
 	parse_snippet({ trig = "metadata", name = "metadata" }, "\n---\naliases: [{$1}]\ntags: [{$2}]\n---\n$0"),
 	parse_snippet({ trig = "todo", name = "TODO" }, "- [ ] #TODO $0"),
@@ -42,7 +42,7 @@ local markdown_snippets = {
 	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
 }
 
-local equation_snippets = {
+local math = {
 	parse_snippet({ trig = "!=", name = "not equals" }, "\\neq "),
 	parse_snippet({ trig = "**", name = "cdot" }, "\\cdot "),
 	parse_snippet({ trig = "+-", name = "+-" }, "\\pm"),
@@ -117,6 +117,22 @@ local equation_snippets = {
 	parse_snippet({ trig = "~~", name = "~" }, "\\sim "),
 }
 
-luasnip.add_snippets("markdown", markdown_snippets)
-luasnip.add_snippets("markdown", equation_snippets)
+local lua = {
+	parse_snippet(
+		{ trig = "autocmd", name = "autocmd" },
+		[[
+			vim.api.nvim_create_autocmd({ "${1:event}" }, {
+				group = require("utils").augroup,
+				pattern = { "${3:pattern}" },
+				callback = function()
+				${4:commands}
+				end,
+			})
+		]]
+	),
+}
+
+luasnip.add_snippets("lua", lua)
+luasnip.add_snippets("markdown", markdown)
+luasnip.add_snippets("markdown", math)
 luasnip.filetype_extend("quarto", { "markdown" })

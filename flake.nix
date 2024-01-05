@@ -20,19 +20,9 @@
       url = "github:jalvesaq/cmp-zotcite";
     };
 
-    obsidian-nvim = {
-      flake = false;
-      url = "github:epwalsh/obsidian.nvim";
-    };
-
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";
-    };
-
-    hlargs-nvim = {
-      flake = false;
-      url = "github:m-demare/hlargs.nvim";
     };
 
     img-clip-nvim = {

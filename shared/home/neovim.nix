@@ -15,23 +15,31 @@
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
     cmp-zotcite = inputs.cmp-zotcite;
-    obsidian-nvim = inputs.obsidian-nvim;
     zotcite = inputs.zotcite;
-    hlargs-nvim = inputs.hlargs-nvim;
     img-clip-nvim = inputs.img-clip-nvim;
     autolist-nvim = inputs.autolist-nvim;
   };
-  desktop = {
+  nixOS = {
     packages = with pkgs; [
       htmx-lsp
       marksman
       tailwindcss-language-server
     ];
     extensions = with pkgs.vimPlugins; [
-      ChatGPT-nvim
       gh.cmp-zotcite
-      gh.obsidian-nvim
+      gh.img-clip-nvim
       gh.zotcite
+      nvim-metals
+      ChatGPT-nvim
+      cmp-latex-symbols
+      cmp-pandoc-nvim
+      image-nvim
+      nabla-nvim
+      nvim-colorizer-lua
+      obsidian-nvim
+      otter-nvim
+      quarto-nvim
+      nvim-ts-autotag
     ];
   };
 in {
@@ -44,15 +52,14 @@ in {
     withPython3 = true;
     plugins =
       (with pkgs.vimPlugins; [
+        gh.autolist-nvim
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
-        cmp-latex-symbols
         cmp-nvim-lsp
-        cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
         conform-nvim
@@ -60,11 +67,7 @@ in {
         dressing-nvim
         executor-nvim
         friendly-snippets
-        gh.autolist-nvim
-        gh.hlargs-nvim
-        gh.img-clip-nvim
         gitsigns-nvim
-        image-nvim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
@@ -72,30 +75,24 @@ in {
         luasnip
         markdown-preview-nvim
         mini-nvim
-        nabla-nvim
         neo-tree-nvim
         neodev-nvim
         neogen
         nvim-cmp
-        nvim-colorizer-lua
         nvim-dap
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
         nvim-lint
         nvim-lspconfig
-        nvim-luadev
         nvim-spectre
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
-        nvim-ts-autotag
         nvim-ts-context-commentstring
         nvim-web-devicons
         octo-nvim
-        otter-nvim
         plenary-nvim
-        quarto-nvim
         smartyank-nvim
         telescope-frecency-nvim
         telescope-fzf-native-nvim
@@ -116,7 +113,7 @@ in {
         which-key-nvim
         zen-mode-nvim
       ])
-      ++ appendIfNotDarwin desktop.extensions;
+      ++ appendIfNotDarwin nixOS.extensions;
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
         poppler-qt5
@@ -163,6 +160,6 @@ in {
         vscode-langservers-extracted
         yaml-language-server
       ])
-      ++ appendIfNotDarwin desktop.packages;
+      ++ appendIfNotDarwin nixOS.packages;
   };
 }

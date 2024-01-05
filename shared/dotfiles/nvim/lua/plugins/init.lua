@@ -1,4 +1,3 @@
-require("plugins.colorizer")
 require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.git")
@@ -18,6 +17,8 @@ require("plugins.which-key")
 require("plugins.zen")
 
 if vim.fn.has("mac") == 0 then
+	require("plugins.colorizer")
 	require("plugins.ia")
+	require("plugins.images")
 	require("plugins.obsidian")
 end

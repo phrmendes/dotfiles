@@ -1,14 +1,15 @@
 local utils = require("utils")
 local schemastore = require("schemastore")
-local servers
+local conditional_servers
 
-servers = {
+local servers = {
 	{ server = "ansiblels" },
 	{ server = "bashls" },
 	{ server = "cssls" },
 	{ server = "docker_compose_language_service" },
 	{ server = "dockerls" },
 	{ server = "helm_ls" },
+	{ server = "html" },
 	{ server = "nil_ls" },
 	{ server = "ruff_lsp" },
 	{ server = "taplo" },
@@ -51,7 +52,6 @@ servers = {
 	},
 	{
 		server = "yamlls",
-		capabilities = "markup",
 		settings = {
 			yaml = {
 				keyOrdering = false,
@@ -65,7 +65,6 @@ servers = {
 	},
 	{
 		server = "jsonls",
-		capabilities = "markup",
 		settings = {
 			json = {
 				schemas = schemastore.json.schemas(),
@@ -73,22 +72,20 @@ servers = {
 			},
 		},
 	},
-	{
-		server = "html",
-		capabilities = "markup",
-	},
 }
 
 if vim.fn.has("mac") == 0 then
-	servers = vim.tbl_extend("force", servers, {
+	conditional_servers = {
 		{ server = "tailwindcss" },
 		{ server = "htmx" },
-	})
+	}
 else
-	servers = vim.tbl_extend("force", servers, {
+	conditional_servers = {
 		{ server = "marksman" },
-	})
+	}
 end
+
+servers = vim.tbl_extend("force", servers, conditional_servers)
 
 for _, server in ipairs(servers) do
 	utils.add_language_server(server)

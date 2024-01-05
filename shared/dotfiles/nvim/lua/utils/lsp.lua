@@ -2,20 +2,6 @@ local map = require("utils.keybindings").map
 
 local M = {}
 
-M.capabilities = function(type)
-	local capabilities
-
-	if type == "markup" then
-		capabilities = vim.lsp.protocol.make_client_capabilities()
-
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
-	else
-		capabilities = require("cmp_nvim_lsp").default_capabilities()
-	end
-
-	return capabilities
-end
-
 M.handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
@@ -125,12 +111,10 @@ M.on_attach = function(client, bufnr)
 end
 
 M.add_language_server = function(args)
-	local capabilities_type = args.capabilities or "default"
-
 	local opts = {
 		server = args.server,
 		setup = {
-			capabilities = M.capabilities(capabilities_type),
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			on_attach = args.on_attach or M.on_attach,
 			handlers = args.handlers or M.handlers,
 			settings = args.settings or {},

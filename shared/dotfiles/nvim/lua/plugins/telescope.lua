@@ -124,15 +124,3 @@ map({
 	command = "<cmd>Telescope zoxide list<cr>",
 	desc = "Zoxide",
 })
-
-map({
-	key = "<leader>gB",
-	command = "<cmd>Telescope git_branches<cr>",
-	desc = "Branches",
-})
-
-map({
-	key = "<leader>gD",
-	command = "<cmd>Telescope git_status<cr>",
-	desc = "Diff (repo)",
-})

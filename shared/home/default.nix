@@ -14,4 +14,15 @@
     ./tealdeer.nix
     ./zoxide.nix
   ];
+
+  home = {
+    stateVersion = "23.11";
+    sessionVariables = {
+      EDITOR = "nvim";
+      GIT_EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
+      VISUAL = "nvim";
+      TERM = "xterm-kitty";
+    };
+  };
 }

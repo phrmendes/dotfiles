@@ -11,12 +11,14 @@
       http.sslVerify = true;
     };
     aliases = {
+      P = "push";
       a = "add .";
       co = "checkout";
-      st = "status";
-      rc = "rebase --continue";
-      ra = "rebase --abort";
       lg = "log";
+      p = "pull";
+      ra = "rebase --abort";
+      rc = "rebase --continue";
+      st = "status";
     };
   };
 }

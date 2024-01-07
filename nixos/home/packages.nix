@@ -18,6 +18,7 @@
       gh
       git
       gnome-extensions-cli
+      go
       hugo
       just
       kubectl

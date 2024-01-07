@@ -1,7 +1,7 @@
-local gitsigns = require("gitsigns")
+local gs = require("gitsigns")
 local utils = require("utils")
 
-gitsigns.setup()
+gs.setup()
 
 local hunk = {
 	prev = function()
@@ -9,7 +9,7 @@ local hunk = {
 			return "]h"
 		end
 		vim.schedule(function()
-			gitsigns.next_hunk()
+			gs.next_hunk()
 		end)
 		return "<Ignore>"
 	end,
@@ -18,11 +18,13 @@ local hunk = {
 			return "[h"
 		end
 		vim.schedule(function()
-			gitsigns.prev_hunk()
+			gs.prev_hunk()
 		end)
 		return "<Ignore>"
 	end,
 }
+
+vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "select git hunk" })
 
 utils.map({
 	key = "]h",
@@ -41,40 +43,58 @@ utils.map({
 })
 
 utils.map({
-	key = "<leader>gb",
-	command = function()
-		gitsigns.blame_line({ full = true })
-	end,
-	desc = "Toggle blame line",
+	key = "<leader>gc",
+	command = "<cmd>Telescope git_branches<cr>",
+	desc = "Checkout branch",
 })
 
 utils.map({
 	key = "<leader>gd",
-	command = gitsigns.diffthis,
-	desc = "Diff",
-})
-
-utils.map({
-	key = "<leader>gB",
-	command = "<cmd>Telescope git_branches<cr>",
-	desc = "Branches",
+	command = gs.diffthis,
+	desc = "Diff against index",
 })
 
 utils.map({
 	key = "<leader>gD",
+	command = function()
+		gs.diffthis("~")
+	end,
+	desc = "Diff against last commit",
+})
+
+utils.map({
+	key = "<leader>gs",
 	command = "<cmd>Telescope git_status<cr>",
 	desc = "Diff (repo)",
 })
 
 utils.map({
+	key = "<leader>gt",
+	command = gs.toggle_current_line_blame,
+	desc = "Toggle blame line",
+})
+
+utils.map({
+	key = "<leader>gbr",
+	command = gs.reset_buffer,
+	desc = "Reset",
+})
+
+utils.map({
+	key = "<leader>gbs",
+	command = gs.stage_buffer,
+	desc = "Stage",
+})
+
+utils.map({
 	key = "<leader>ghp",
-	command = gitsigns.preview_hunk,
+	command = gs.preview_hunk,
 	desc = "Preview",
 })
 
 utils.map({
 	key = "<leader>ghr",
-	command = gitsigns.reset_hunk,
+	command = gs.reset_hunk,
 	desc = "Reset",
 })
 
@@ -82,14 +102,14 @@ utils.map({
 	mode = "v",
 	key = "<leader>ghr",
 	command = function()
-		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
 	desc = "Reset",
 })
 
 utils.map({
 	key = "<leader>ghs",
-	command = gitsigns.stage_hunk,
+	command = gs.stage_hunk,
 	desc = "Stage",
 })
 
@@ -97,25 +117,13 @@ utils.map({
 	mode = "v",
 	key = "<leader>ghs",
 	command = function()
-		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
 	desc = "Stage",
 })
 
 utils.map({
 	key = "<leader>ghu",
-	command = gitsigns.undo_stage_hunk,
+	command = gs.undo_stage_hunk,
 	desc = "Undo stage",
-})
-
-utils.map({
-	key = "<leader>gbr",
-	command = gitsigns.reset_buffer,
-	desc = "Reset",
-})
-
-utils.map({
-	key = "<leader>gbs",
-	command = gitsigns.stage_buffer,
-	desc = "Stage",
 })

@@ -1,6 +1,5 @@
 local metals = require("metals")
 local utils = require("utils")
-local dap = require("plugins.dap")
 
 local metals_config = metals.bare_config()
 
@@ -14,8 +13,8 @@ metals_config.settings = {
 metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 metals_config.on_attach = function(client, bufnr)
-	dap.setup()
-	dap.scala()
+	require("plugins.dap.scala")
+
 	metals.setup_dap()
 	utils.on_attach(client, bufnr)
 

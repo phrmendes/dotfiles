@@ -52,7 +52,7 @@ telescope.setup({
 	},
 	pickers = {
 		buffers = { theme = "dropdown", previewer = false },
-		current_buffer_fuzzy_find = { theme = "dropdown", previewer = false },
+		current_buffer_fuzzy_find = { theme = "dropdown", previewer = false, winblend = 10 },
 		find_files = { theme = "dropdown", previewer = false },
 		git_branches = { theme = "dropdown", previewer = false },
 	},

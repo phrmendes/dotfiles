@@ -81,6 +81,7 @@ in {
         neogen
         nvim-cmp
         nvim-dap
+        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -131,7 +132,13 @@ in {
         alejandra
         ansible-language-server
         ansible-lint
+        delve
+        djlint
         docker-compose-language-service
+        gofumpt
+        goimports-reviser
+        golines
+        gopls
         helm-ls
         imagemagick
         ltex-ls

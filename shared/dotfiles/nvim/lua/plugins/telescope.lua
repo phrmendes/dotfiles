@@ -28,7 +28,7 @@ telescope.setup({
 				["<C-d>"] = actions.preview_scrolling_down,
 				["<C-n>"] = actions.move_selection_next,
 				["<C-p>"] = actions.move_selection_previous,
-				["<C-q>"] = actions.close,
+				["<C-c>"] = actions.close,
 				["<C-s>"] = actions.file_split,
 				["<C-t>"] = trouble.open_with_trouble,
 				["<C-u>"] = actions.preview_scrolling_up,

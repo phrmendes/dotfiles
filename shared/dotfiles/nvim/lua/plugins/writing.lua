@@ -8,6 +8,8 @@ vim.g.mkdp_filetypes = { "markdown", "quarto" }
 local M = {}
 
 M.markdown = function()
+	require("autolist").setup()
+
 	vim.opt.showbreak = "|"
 
 	vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")

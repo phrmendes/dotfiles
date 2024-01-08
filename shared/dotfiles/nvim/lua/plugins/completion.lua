@@ -30,7 +30,7 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		["<C-q>"] = function(fallback)
+		["<C-c>"] = function(fallback)
 			cmp.abort()
 			fallback()
 		end,

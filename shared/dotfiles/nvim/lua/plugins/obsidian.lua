@@ -56,10 +56,6 @@ obsidian.setup({
 			action = obsidian.util.gf_passthrough,
 			opts = { noremap = false, expr = true, buffer = 0 },
 		},
-		["<C-CR>"] = {
-			action = obsidian.util.toggle_checkbox,
-			opts = { buffer = true },
-		},
 	},
 })
 

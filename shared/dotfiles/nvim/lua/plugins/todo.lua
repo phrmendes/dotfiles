@@ -16,7 +16,7 @@ map({
 })
 
 map({
-	key = "<localleader>t",
+	key = "<leader>t",
 	command = "<cmd>TodoTelescope<cr>",
 	desc = "Todos",
 })

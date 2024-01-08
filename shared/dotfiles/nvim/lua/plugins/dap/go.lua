@@ -1,12 +1,18 @@
-require("plugins.dap.setup")
+local M = {}
 
-local dap_go = require("dap-go")
+M.setup = function()
+	require("plugins.dap.setup")
 
-dap_go.setup()
+	local dap_go = require("dap-go")
 
-require("utils").map({
-	key = "<localleader>t",
-	command = dap_go.debug_test,
-	buffer = 0,
-	desc = "DAP (go): debug test",
-})
+	dap_go.setup()
+
+	require("utils").map({
+		key = "<localleader>t",
+		command = dap_go.debug_test,
+		buffer = 0,
+		desc = "DAP (go): debug test",
+	})
+end
+
+return M

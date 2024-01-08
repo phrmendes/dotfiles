@@ -1,23 +1,60 @@
 local luasnip = require("luasnip")
-local vscode_loaders = require("luasnip.loaders.from_vscode")
+local utils = require("utils")
 
 local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, { wordTrig = true })
 
 luasnip.config.setup({ enable_autosnippets = true })
-vscode_loaders.lazy_load()
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+utils.map({
+	mode = { "i", "s" },
+	key = "<C-k>",
+	command = function()
+		if luasnip.choice_active() then
+			return luasnip.change_choice(-1)
+		end
+	end,
+	desc = "Previous snippet choice",
+})
+
+utils.map({
+	mode = { "i", "s" },
+	key = "<C-j>",
+	command = function()
+		if luasnip.choice_active() then
+			return luasnip.change_choice(1)
+		end
+	end,
+	desc = "Next snippet choice",
+})
 
 local markdown = {
 	parse_snippet({ trig = "journal", name = "journal" }, "# " .. os.date("%Y-%m-%d") .. "\n"),
-	parse_snippet({ trig = "metadata", name = "metadata" }, "\n---\naliases: [{$1}]\ntags: [{$2}]\n---\n$0"),
-	parse_snippet({ trig = "todo", name = "TODO" }, "- [ ] #TODO $0"),
-	parse_snippet({ trig = "due", name = "due" }, " 📅 $0"),
-	parse_snippet({ trig = "scheduled", name = "scheduled" }, " ⌛ $0"),
 	parse_snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%Y-%m-%d") .. " $0"),
-	parse_snippet({ trig = "low", name = "low priority" }, " 🔽"),
-	parse_snippet({ trig = "medium", name = "medium priority" }, " 🔼"),
-	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
-	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
 	parse_snippet({ trig = "ltex", name = "disable ltex" }, "<!-- LTeX: SETTINGS language=false-->"),
+	parse_snippet(
+		{
+			trig = "todo",
+			name = "TODO",
+		},
+		[[
+			- [ ] #TODO ${1:description} ${2|🛫,⌛, |} ${3|📆, |} ${4|🔼,⏫, |}
+		]]
+	),
+	parse_snippet(
+		{
+			trig = "headers",
+			name = "headers",
+		},
+		[[
+			---
+			aliases: [{$1:aliases}]
+			tags: [{$2:tags}]
+			---
+			$0
+		]]
+	),
 }
 
 local math = {

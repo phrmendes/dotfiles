@@ -18,7 +18,6 @@ vim.opt.breakindent = true
 vim.opt.expandtab = true
 vim.opt.linebreak = true
 vim.opt.shiftwidth = 4
-vim.opt.showbreak = "|"
 vim.opt.showtabline = 1
 vim.opt.tabstop = 4
 vim.opt.wrap = true

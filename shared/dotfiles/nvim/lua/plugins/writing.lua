@@ -1,5 +1,4 @@
 require("plugins.images")
-require("autolist").setup()
 
 local map = require("utils").map
 local section = require("utils").section
@@ -9,6 +8,8 @@ vim.g.mkdp_filetypes = { "markdown", "quarto" }
 local M = {}
 
 M.markdown = function()
+	vim.opt.showbreak = "|"
+
 	vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
 	vim.keymap.set("i", "<S-TAB>", "<cmd>AutolistShiftTab<cr>")
 	vim.keymap.set("i", "<TAB>", "<cmd>AutolistTab<cr>")
@@ -41,29 +42,15 @@ M.markdown = function()
 		desc = "Paste image",
 		buffer = 0,
 	})
-end
 
-M.math = function()
-	map({
-		key = "<leader>me",
-		command = require("nabla").popup,
-		desc = "Equation preview",
-		buffer = 0,
-	})
-end
-
-M.quarto = function()
-	require("quarto").setup({
-		lspFeatures = {
-			languages = { "bash", "lua", "python" },
-			chunks = "all",
-		},
-		codeRunner = {
-			enabled = true,
-			default_method = "slime",
-			never_run = { "yaml" },
-		},
-	})
+	if vim.fn.has("mac") == 0 then
+		map({
+			key = "<leader>me",
+			command = require("nabla").popup,
+			desc = "Equation preview",
+			buffer = 0,
+		})
+	end
 end
 
 M.zotero = function()

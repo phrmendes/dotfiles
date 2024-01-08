@@ -13,7 +13,7 @@ metals_config.settings = {
 metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 metals_config.on_attach = function(client, bufnr)
-	require("plugins.dap.scala")
+	require("plugins.dap").scala()
 
 	metals.setup_dap()
 	utils.on_attach(client, bufnr)
@@ -26,14 +26,14 @@ metals_config.on_attach = function(client, bufnr)
 
 	utils.map({
 		key = "<leader>mh",
-		command = require("metals").hover_worksheet,
+		command = metals.hover_worksheet,
 		desc = "Hover worksheet",
 		buffer = bufnr,
 	})
 
 	utils.map({
 		key = "<leader>mc",
-		command = require("metals").commands,
+		command = metals.commands,
 		desc = "Commands",
 		buffer = bufnr,
 	})

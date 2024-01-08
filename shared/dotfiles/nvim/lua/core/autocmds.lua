@@ -38,6 +38,6 @@ autocmd("BufEnter", {
 
 		vim.defer_fn(function()
 			vim.cmd.bdelete({ bang = true })
-		end, 1000)
+		end, 500)
 	end,
 })

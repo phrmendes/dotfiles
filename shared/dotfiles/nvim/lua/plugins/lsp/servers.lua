@@ -35,15 +35,13 @@ local servers = {
 	{
 		server = "gopls",
 		on_attach = function()
-			require("plugins.dap.go")
-			utils.on_attach()
+			require("plugins.dap").go()
 		end,
 	},
 	{
 		server = "pyright",
 		on_attach = function()
-			require("plugins.dap.python")
-			utils.on_attach()
+			require("plugins.dap").python()
 		end,
 		settings = {
 			single_file_support = true,

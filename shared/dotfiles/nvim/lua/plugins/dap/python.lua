@@ -1,30 +1,36 @@
-require("plugins.dap.setup")
+local M = {}
 
-local map = require("utils").map
+M.setup = function()
+	require("plugins.dap.setup")
 
-local dap_python = require("dap-python")
+	local map = require("utils").map
 
-dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/tools/bin/python")
-dap_python.test_runner = "pytest"
+	local dap_python = require("dap-python")
 
-map({
-	key = "<localleader>c",
-	command = dap_python.test_class,
-	buffer = 0,
-	desc = "DAP (python): test last",
-})
+	dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/tools/bin/python")
+	dap_python.test_runner = "pytest"
 
-map({
-	key = "<localleader>f",
-	command = dap_python.test_method,
-	buffer = 0,
-	desc = "DAP (python): test method/function",
-})
+	map({
+		key = "<localleader>c",
+		command = dap_python.test_class,
+		buffer = 0,
+		desc = "DAP (python): test last",
+	})
 
-map({
-	mode = "v",
-	key = "<localleader>d",
-	command = dap_python.debug_selection,
-	buffer = 0,
-	desc = "DAP (python): debug region",
-})
+	map({
+		key = "<localleader>f",
+		command = dap_python.test_method,
+		buffer = 0,
+		desc = "DAP (python): test method/function",
+	})
+
+	map({
+		mode = "v",
+		key = "<localleader>d",
+		command = dap_python.debug_selection,
+		buffer = 0,
+		desc = "DAP (python): debug region",
+	})
+end
+
+return M

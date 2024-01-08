@@ -10,6 +10,12 @@ require("cmp_pandoc").setup({
 	},
 })
 
+local default = {
+	{ name = "path" },
+	{ name = "emoji" },
+	{ name = "buffer" },
+}
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -49,13 +55,6 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	}),
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-	}, {
-		{ name = "path" },
-		{ name = "buffer" },
-	}),
 	formatting = {
 		format = require("lspkind").cmp_format({
 			ellipsis_char = "...",
@@ -70,6 +69,10 @@ cmp.setup({
 		completion = border,
 		documentation = border,
 	},
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+	}, default),
 })
 
 cmp.setup.cmdline(":", {
@@ -94,10 +97,7 @@ cmp.setup.filetype("quarto", {
 		{ name = "nvim_lsp" },
 		{ name = "cmp_pandoc" },
 		{ name = "latex_symbols" },
-	}, {
-		{ name = "path" },
-		{ name = "buffer" },
-	}),
+	}, default),
 })
 
 cmp.setup.filetype("markdown", {
@@ -106,8 +106,5 @@ cmp.setup.filetype("markdown", {
 		{ name = "cmp_zotcite" },
 		{ name = "cmp_pandoc" },
 		{ name = "latex_symbols" },
-	}, {
-		{ name = "path" },
-		{ name = "buffer" },
-	}),
+	}, default),
 })

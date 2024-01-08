@@ -66,6 +66,7 @@ in {
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
+        cmp-emoji
         cmp-nvim-lsp
         cmp-path
         cmp_luasnip

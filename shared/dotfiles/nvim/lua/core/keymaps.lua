@@ -9,9 +9,6 @@ end
 
 vim.g.VM_mouse_mappings = 1
 
-vim.keymap.set("n", "Q", "@qj")
-vim.keymap.set("v", "Q", "<cmd>norm @q<cr>")
-
 section({
 	key = "<leader><tab>",
 	name = "tabs",
@@ -26,6 +23,27 @@ section({
 	mode = { "n", "v" },
 	key = "<leader>f",
 	name = "files/find",
+})
+
+map({
+	mode = "n",
+	key = "Q",
+	command = "@qj",
+	desc = "Replay macro",
+})
+
+map({
+	mode = "v",
+	key = "Q",
+	command = "<cmd>norm @q<cr>",
+	desc = "Replay macro",
+})
+
+map({
+	mode = "n",
+	key = "gS",
+	command = "<cmd>sort<cr>",
+	desc = "Sort selected lines",
 })
 
 map({

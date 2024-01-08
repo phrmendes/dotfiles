@@ -115,7 +115,13 @@ M.add_language_server = function(args)
 		server = args.server,
 		setup = {
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			on_attach = args.on_attach or M.on_attach,
+			on_attach = function(client, bufnr)
+				if args.on_attach then
+					args.on_attach()
+				end
+
+				M.on_attach(client, bufnr)
+			end,
 			handlers = args.handlers or M.handlers,
 			settings = args.settings or {},
 		},

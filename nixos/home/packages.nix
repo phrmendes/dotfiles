@@ -41,7 +41,7 @@
       terraform
       ventoy
       vlc
-      vscode
+      vscode-fhs
       zotero
     ])
     ++ (with pkgs.gnome; [

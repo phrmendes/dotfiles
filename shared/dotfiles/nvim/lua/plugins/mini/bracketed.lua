@@ -1,3 +1,5 @@
+local map = require("utils").map
+
 require("mini.bracketed").setup({
 	diagnostic = { options = { float = false } },
 	buffer = { suffix = "" },
@@ -5,7 +7,26 @@ require("mini.bracketed").setup({
 	comment = { suffix = "" },
 })
 
-vim.keymap.set("n", "[{", "<Cmd>lua MiniBracketed.buffer('first')<CR>")
-vim.keymap.set("n", "[[", "<Cmd>lua MiniBracketed.buffer('backward')<CR>")
-vim.keymap.set("n", "]]", "<Cmd>lua MiniBracketed.buffer('forward')<CR>")
-vim.keymap.set("n", "]}", "<Cmd>lua MiniBracketed.buffer('last')<CR>")
+map({
+	key = "[{",
+	command = "<Cmd>lua MiniBracketed.buffer('first')<CR>",
+	desc = "First buffer",
+})
+
+map({
+	key = "[[",
+	command = "<Cmd>lua MiniBracketed.buffer('backward')<CR>",
+	desc = "Previous buffer",
+})
+
+map({
+	key = "]]",
+	command = "<Cmd>lua MiniBracketed.buffer('forward')<CR>",
+	desc = "Next buffer",
+})
+
+map({
+	key = "]}",
+	command = "<Cmd>lua MiniBracketed.buffer('last')<CR>",
+	desc = "Last buffer",
+})

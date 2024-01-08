@@ -40,6 +40,7 @@ local markdown = {
 	parse_snippet({ trig = "medium", name = "medium priority" }, " 🔼"),
 	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
 	parse_snippet({ trig = "high", name = "high priority" }, " ⏫"),
+	parse_snippet({ trig = "ltex", name = "disable ltex" }, "<!-- LTeX: SETTINGS language=false-->"),
 }
 
 local math = {

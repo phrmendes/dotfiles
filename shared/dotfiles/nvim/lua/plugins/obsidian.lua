@@ -44,7 +44,7 @@ obsidian.setup({
 		folder = "log",
 		date_format = "%d-%m-%Y",
 		alias_format = "%d-%m-%Y",
-		template = "templates/log.md",
+		template = "log.md",
 	},
 	templates = {
 		subdir = "templates",

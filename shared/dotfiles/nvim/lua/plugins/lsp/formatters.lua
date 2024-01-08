@@ -15,6 +15,8 @@ conform.formatters.tex = {
 }
 
 conform.formatters_by_ft = {
+	go = { "gofumpt", "goimports-reviser", "golines" },
+	jinja = { "djlint" },
 	json = { "prettier" },
 	lua = { "stylua" },
 	markdown = { "prettier" },
@@ -25,5 +27,4 @@ conform.formatters_by_ft = {
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
 	yaml = { "prettier" },
-	go = { "gofumpt", "goimports-reviser", "golines" },
 }

@@ -3,10 +3,13 @@
   pkgs,
   ...
 }: let
-  appendIfNotDarwin = list:
+  appendPackages = {
+    to_nix,
+    to_darwin ? [],
+  }:
     if ! pkgs.stdenv.isDarwin
-    then list
-    else [];
+    then to_nix
+    else to_darwin;
   getNeovimPluginFromGitHub = pkgName: src:
     pkgs.vimUtils.buildVimPlugin {
       inherit src;
@@ -19,10 +22,14 @@
     img-clip-nvim = inputs.img-clip-nvim;
     autolist-nvim = inputs.autolist-nvim;
   };
-  nixOS = {
+  darwin = {
+    packages = with pkgs; [
+      marksman
+    ];
+  };
+  nix = {
     packages = with pkgs; [
       htmx-lsp
-      marksman
       tailwindcss-language-server
     ];
     extensions = with pkgs.vimPlugins; [
@@ -115,7 +122,9 @@ in {
         which-key-nvim
         zen-mode-nvim
       ])
-      ++ appendIfNotDarwin nixOS.extensions;
+      ++ appendPackages {
+        to_nix = nix.extensions;
+      };
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
         poppler-qt5
@@ -133,6 +142,7 @@ in {
         ansible-language-server
         ansible-lint
         delve
+        djlint
         djlint
         docker-compose-language-service
         gofumpt
@@ -168,6 +178,9 @@ in {
         vscode-langservers-extracted
         yaml-language-server
       ])
-      ++ appendIfNotDarwin nixOS.packages;
+      ++ appendPackages {
+        to_nix = nix.packages;
+        to_darwin = darwin.packages;
+      };
   };
 }

@@ -1,8 +1,6 @@
 local M = {}
 
 M.setup = function()
-	require("plugins.dap.setup")
-
 	local dap_go = require("dap-go")
 
 	dap_go.setup()

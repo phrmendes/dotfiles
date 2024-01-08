@@ -1,8 +1,6 @@
 local M = {}
 
 M.setup = function()
-	require("plugins.dap.setup")
-
 	local map = require("utils").map
 
 	local dap_python = require("dap-python")

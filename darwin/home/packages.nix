@@ -1,11 +1,13 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    coreutils
     eza
     fd
     gcc
     gh
     gnumake
     gnupg
+    gnused
     go
     jdk21
     just

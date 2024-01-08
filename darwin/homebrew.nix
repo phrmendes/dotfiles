@@ -11,7 +11,6 @@
       no_quarantine = true;
     };
     brews = [
-      "gnu-sed"
       "openssl"
     ];
     casks = [

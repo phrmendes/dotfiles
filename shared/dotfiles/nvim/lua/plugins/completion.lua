@@ -74,6 +74,11 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 	}, default),
+	experimental = {
+		ghost_text = {
+			hl_group = "CmpGhostText",
+		},
+	},
 })
 
 cmp.setup.cmdline(":", {

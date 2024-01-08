@@ -34,13 +34,11 @@
     ];
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
-      gh.img-clip-nvim
       gh.zotcite
       nvim-metals
       ChatGPT-nvim
       cmp-latex-symbols
       cmp-pandoc-nvim
-      image-nvim
       nabla-nvim
       nvim-colorizer-lua
       obsidian-nvim
@@ -60,6 +58,7 @@ in {
     plugins =
       (with pkgs.vimPlugins; [
         gh.autolist-nvim
+        gh.img-clip-nvim
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim
@@ -76,6 +75,7 @@ in {
         executor-nvim
         friendly-snippets
         gitsigns-nvim
+        image-nvim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim

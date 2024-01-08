@@ -3,13 +3,6 @@ local luasnip = require("luasnip")
 local utils = require("utils")
 local border = cmp.config.window.bordered()
 
-require("cmp_pandoc").setup({
-	filetypes = { "quarto" },
-	crossref = {
-		enable_nabla = true,
-	},
-})
-
 local default = {
 	{ name = "path" },
 	{ name = "emoji" },
@@ -74,11 +67,6 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 	}, default),
-	experimental = {
-		ghost_text = {
-			hl_group = "CmpGhostText",
-		},
-	},
 })
 
 cmp.setup.cmdline(":", {

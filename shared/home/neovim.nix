@@ -21,6 +21,7 @@
     zotcite = inputs.zotcite;
     img-clip-nvim = inputs.img-clip-nvim;
     autolist-nvim = inputs.autolist-nvim;
+    yaml-companion-nvim = inputs.yaml-companion-nvim;
   };
   darwin = {
     packages = with pkgs; [
@@ -34,6 +35,7 @@
     ];
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
+      gh.yaml-companion-nvim
       gh.zotcite
       nvim-metals
       ChatGPT-nvim

@@ -17,11 +17,14 @@ lualine.setup({
 			{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 			"diagnostics",
 		},
-		lualine_c = { utils.metals },
+		lualine_c = {
+			utils.metals,
+		},
 		lualine_x = {
 			utils.venv,
 			"encoding",
 			"fileformat",
+			utils.get_schema,
 			"filetype",
 		},
 		lualine_y = { { "progress", separator = { left = "", right = "" } } },

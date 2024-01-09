@@ -4,8 +4,9 @@
   nixos = {
     update_cmd = "sudo nixos-rebuild switch --flake ${path}";
     aliases = {
-      ld = "lazydocker";
       dpct = "duplicati-cli";
+      ld = "lazydocker";
+      open = "xdg-open";
     };
   };
   darwin = {

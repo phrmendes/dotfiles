@@ -129,7 +129,24 @@
         "img-clip-nvim": "img-clip-nvim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "yaml-companion-nvim": "yaml-companion-nvim",
         "zotcite": "zotcite"
+      }
+    },
+    "yaml-companion-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677877651,
+        "narHash": "sha256-BmX7hyiIMQfcoUl09Y794HrSDq+cj93T+Z5u3e5wqLc=",
+        "owner": "someone-stole-my-name",
+        "repo": "yaml-companion.nvim",
+        "rev": "4de1e1546abc461f62dee02fcac6a02debd6eb9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "someone-stole-my-name",
+        "repo": "yaml-companion.nvim",
+        "type": "github"
       }
     },
     "zotcite": {

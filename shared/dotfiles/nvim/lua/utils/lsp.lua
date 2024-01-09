@@ -111,9 +111,15 @@ M.on_attach = function(client, bufnr)
 end
 
 M.add_language_server = function(args)
-	local opts = {
-		server = args.server,
+	local lspconfig = require("lspconfig")
+	local setup
+
+	if args.setup then
+		setup = args.setup
+	else
 		setup = {
+			handlers = args.handlers or M.handlers,
+			settings = args.settings or {},
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			on_attach = function(client, bufnr)
 				if args.on_attach then
@@ -122,12 +128,10 @@ M.add_language_server = function(args)
 
 				M.on_attach(client, bufnr)
 			end,
-			handlers = args.handlers or M.handlers,
-			settings = args.settings or {},
-		},
-	}
+		}
+	end
 
-	require("lspconfig")[opts.server].setup(opts.setup)
+	lspconfig[args.server].setup(setup)
 end
 
 return M

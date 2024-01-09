@@ -8,13 +8,22 @@ local servers = {
 	{ server = "cssls" },
 	{ server = "docker_compose_language_service" },
 	{ server = "dockerls" },
-	{ server = "helm_ls" },
 	{ server = "html" },
 	{ server = "nil_ls" },
 	{ server = "ruff_lsp" },
 	{ server = "taplo" },
 	{ server = "terraformls" },
 	{ server = "texlab" },
+	{
+		server = "helm_ls",
+		-- settings = {
+		-- 	["helm-ls"] = {
+		-- 		yamlls = {
+		-- 			enable = false,
+		-- 		},
+		-- 	},
+		-- },
+	},
 	{
 		server = "lua_ls",
 		settings = {
@@ -61,22 +70,65 @@ local servers = {
 	},
 	{
 		server = "yamlls",
-		settings = {
-			yaml = {
-				keyOrdering = false,
-				schemaStore = {
-					enable = false,
-					url = "",
-				},
-				schemas = schemastore.yaml.schemas(),
+		setup = require("yaml-companion").setup({
+			builtin_matchers = {
+				kubernetes = { enabled = true },
 			},
-		},
+			schemas = {
+				{
+					name = "Argo CD Application",
+					uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json",
+				},
+				{
+					name = "Kustomization",
+					uri = "https://json.schemastore.org/kustomization.json",
+				},
+				{
+					name = "GitHub Workflow",
+					uri = "https://json.schemastore.org/github-workflow.json",
+				},
+			},
+			lspconfig = {
+				on_attach = function(client, bufnr)
+					utils.on_attach(client, bufnr)
+
+					utils.map({
+						key = "<leader>y",
+						command = "<cmd>Telescope yaml_schema<cr>",
+						desc = "YAML schemas",
+						buffer = bufnr,
+					})
+				end,
+				settings = {
+					yaml = {
+						validate = true,
+						schemaStore = {
+							enable = false,
+							url = "",
+						},
+						schemas = schemastore.yaml.schemas({
+							select = {
+								"kustomization.yaml",
+								"GitHub Workflow",
+								"Helm Chart.lock",
+								"Helm Chart.yaml",
+							},
+						}),
+					},
+				},
+			},
+		}),
 	},
 	{
 		server = "jsonls",
 		settings = {
 			json = {
-				schemas = schemastore.json.schemas(),
+				schemas = schemastore.json.schemas({
+					select = {
+						"kustomization.yaml",
+						"GitHub Workflow",
+					},
+				}),
 				validate = { enable = true },
 			},
 		},

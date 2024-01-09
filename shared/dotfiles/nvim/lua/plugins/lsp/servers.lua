@@ -16,13 +16,13 @@ local servers = {
 	{ server = "texlab" },
 	{
 		server = "helm_ls",
-		-- settings = {
-		-- 	["helm-ls"] = {
-		-- 		yamlls = {
-		-- 			enable = false,
-		-- 		},
-		-- 	},
-		-- },
+		settings = {
+			["helm-ls"] = {
+				yamlls = {
+					enable = false,
+				},
+			},
+		},
 	},
 	{
 		server = "lua_ls",

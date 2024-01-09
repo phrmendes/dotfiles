@@ -34,11 +34,6 @@
       flake = false;
       url = "github:gaoDean/autolist.nvim";
     };
-
-    yaml-companion-nvim = {
-      flake = false;
-      url = "github:someone-stole-my-name/yaml-companion.nvim";
-    };
   };
 
   outputs = inputs @ {

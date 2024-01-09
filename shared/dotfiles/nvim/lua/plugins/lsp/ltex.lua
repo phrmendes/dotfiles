@@ -6,6 +6,7 @@ require("ltex_extra").setup({
 	path = vim.fn.expand("~") .. "/.local/state/ltex",
 	server_opts = {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		handlers = utils.handlers,
 		on_attach = utils.on_attach,
 		filetypes = { "markdown", "quarto" },
 		settings = {

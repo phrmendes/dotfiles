@@ -21,7 +21,6 @@
     zotcite = inputs.zotcite;
     img-clip-nvim = inputs.img-clip-nvim;
     autolist-nvim = inputs.autolist-nvim;
-    yaml-companion-nvim = inputs.yaml-companion-nvim;
   };
   darwin = {
     packages = with pkgs; [
@@ -60,7 +59,6 @@ in {
       (with pkgs.vimPlugins; [
         gh.autolist-nvim
         gh.img-clip-nvim
-        gh.yaml-companion-nvim
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim
@@ -147,6 +145,7 @@ in {
         delve
         djlint
         djlint
+        docker-compose-language-service
         gofumpt
         goimports-reviser
         golines
@@ -156,7 +155,7 @@ in {
         ltex-ls
         lua-language-server
         neovim-remote
-        nil
+        nixd
         ruff
         ruff-lsp
         shellcheck
@@ -167,6 +166,7 @@ in {
         taplo
         terraform-ls
         texlab
+        tflint
       ])
       ++ (with pkgs.perl538Packages; [
         LatexIndent

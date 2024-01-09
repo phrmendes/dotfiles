@@ -112,23 +112,33 @@ end
 
 M.add_language_server = function(args)
 	local lspconfig = require("lspconfig")
+	local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 	local setup
 
 	if args.setup then
 		setup = args.setup
 	else
 		setup = {
+			capabilities = args.capabilities or default_capabilities,
 			handlers = args.handlers or M.handlers,
-			settings = args.settings or {},
-			capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			on_attach = function(client, bufnr)
-				if args.on_attach then
-					args.on_attach()
-				end
-
-				M.on_attach(client, bufnr)
-			end,
 		}
+
+		if args.on_attach then
+			setup.on_attach = function(client, bufnr)
+				args.on_attach()
+				M.on_attach(client, bufnr)
+			end
+		else
+			setup.on_attach = M.on_attach
+		end
+
+		if args.filetypes then
+			setup.filetypes = args.filetypes
+		end
+
+		if args.settings then
+			setup.settings = args.settings
+		end
 	end
 
 	lspconfig[args.server].setup(setup)

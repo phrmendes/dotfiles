@@ -24,7 +24,6 @@ lualine.setup({
 			utils.venv,
 			"encoding",
 			"fileformat",
-			utils.get_schema,
 			"filetype",
 		},
 		lualine_y = { { "progress", separator = { left = "", right = "" } } },

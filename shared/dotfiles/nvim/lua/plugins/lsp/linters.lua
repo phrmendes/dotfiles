@@ -7,7 +7,6 @@ lint.linters_by_ft = {
 	nix = { "statix" },
 	sh = { "shellcheck" },
 	sql = { "sqlfluff" },
-	go = { "golangci-lint" },
 	jinja = { "djlint" },
 }
 

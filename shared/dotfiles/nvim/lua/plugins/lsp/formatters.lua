@@ -15,7 +15,9 @@ conform.formatters.tex = {
 }
 
 conform.formatters_by_ft = {
+	css = { "prettier" },
 	go = { "gofumpt", "goimports-reviser", "golines" },
+	html = { "prettier" },
 	jinja = { "djlint" },
 	json = { "prettier" },
 	lua = { "stylua" },

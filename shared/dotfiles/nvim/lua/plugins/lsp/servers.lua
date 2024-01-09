@@ -2,16 +2,20 @@ local utils = require("utils")
 local schemastore = require("schemastore")
 local conditional_servers
 
+local capabilities_snippets = vim.lsp.protocol.make_client_capabilities()
+capabilities_snippets.textDocument.completion.completionItem.snippetSupport = true
+
 local servers = {
 	{ server = "ansiblels" },
 	{ server = "bashls" },
-	{ server = "cssls" },
+	{ server = "docker_compose_language_service" },
 	{ server = "dockerls" },
-	{ server = "html" },
-	{ server = "nil_ls" },
+	{ server = "golangci_lint_ls" },
+	{ server = "nixd" },
 	{ server = "ruff_lsp" },
 	{ server = "terraformls" },
 	{ server = "texlab" },
+	{ server = "tflint" },
 	{
 		server = "taplo",
 		settings = {
@@ -81,62 +85,33 @@ local servers = {
 	},
 	{
 		server = "yamlls",
-		setup = require("yaml-companion").setup({
-			builtin_matchers = {
-				kubernetes = { enabled = true },
-			},
-			schemas = {
-				{
-					name = "Argo CD Application",
-					uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json",
+		settings = {
+			yaml = {
+				validate = true,
+				schemaStore = {
+					enable = false,
+					url = "",
 				},
-				{
-					name = "Kustomization",
-					uri = "https://json.schemastore.org/kustomization.json",
-				},
-				{
-					name = "GitHub Workflow",
-					uri = "https://json.schemastore.org/github-workflow.json",
-				},
-			},
-			lspconfig = {
-				on_attach = function(client, bufnr)
-					utils.on_attach(client, bufnr)
-
-					utils.map({
-						key = "<leader>y",
-						cmd = "<cmd>Telescope yaml_schema<cr>",
-						desc = "YAML schemas",
-						buffer = bufnr,
-					})
-				end,
-				settings = {
-					yaml = {
-						validate = true,
-						schemaStore = {
-							enable = false,
-							url = "",
-						},
-						schemas = schemastore.yaml.schemas({
-							select = {
-								".pre-commit-hooks.yml",
-								"Azure Pipelines",
-								"GitHub Action",
-								"GitHub Workflow",
-								"Helm Chart.lock",
-								"Helm Chart.yaml",
-								"bashly.yml",
-								"docker-compose.yml",
-								"Hugo",
-							},
-						}),
+				schemas = schemastore.yaml.schemas({
+					select = {
+						".pre-commit-hooks.yml",
+						"Azure Pipelines",
+						"GitHub Action",
+						"GitHub Workflow",
+						"Helm Chart.lock",
+						"Helm Chart.yaml",
+						"Hugo",
+						"bashly.yml",
+						"docker-compose.yml",
 					},
-				},
+				}),
 			},
-		}),
+		},
 	},
 	{
 		server = "jsonls",
+		capabilities = capabilities_snippets,
+		filetypes = { "json" },
 		settings = {
 			json = {
 				schemas = schemastore.json.schemas(),
@@ -148,8 +123,19 @@ local servers = {
 
 if vim.fn.has("mac") == 0 then
 	conditional_servers = {
-		{ server = "tailwindcss" },
 		{ server = "htmx" },
+		{
+			server = "html",
+			capabilities = capabilities_snippets,
+		},
+		{
+			server = "cssls",
+			capabilities = capabilities_snippets,
+		},
+		{
+			server = "tailwindcss",
+			filetypes = { "html", "css" },
+		},
 	}
 else
 	conditional_servers = {

@@ -71,7 +71,6 @@ local extensions = {
 	"fzf",
 	"lazygit",
 	"zoxide",
-	"yaml_schema",
 }
 
 for _, ext in ipairs(extensions) do

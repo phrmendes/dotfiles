@@ -205,7 +205,7 @@ map({
 map({
 	key = "<leader><TAB>d",
 	cmd = "<cmd> bd <bar> tabclose <bar> startinsert<cr>",
-	desc = "Close",
+	desc = "Delete",
 })
 
 map({

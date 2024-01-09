@@ -1,5 +1,24 @@
 local lualine = require("lualine")
-local utils = require("utils")
+
+local venv = function()
+	if vim.env.CONDA_DEFAULT_ENV then
+		return string.format(" %s (conda)", vim.env.CONDA_DEFAULT_ENV)
+	end
+
+	if vim.env.VIRTUAL_ENV then
+		return string.format(" %s (venv)", vim.fn.fnamemodify(vim.env.VIRTUAL_ENV, ":t"))
+	end
+
+	return ""
+end
+
+local metals = function()
+	if vim.g.metals_status then
+		return " " .. vim.g.metals_status
+	end
+
+	return ""
+end
 
 lualine.setup({
 	options = {
@@ -18,10 +37,10 @@ lualine.setup({
 			"diagnostics",
 		},
 		lualine_c = {
-			utils.metals,
+			metals,
 		},
 		lualine_x = {
-			utils.venv,
+			venv,
 			"encoding",
 			"fileformat",
 			"filetype",

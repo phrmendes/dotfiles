@@ -6,14 +6,25 @@ local servers = {
 	{ server = "ansiblels" },
 	{ server = "bashls" },
 	{ server = "cssls" },
-	{ server = "docker_compose_language_service" },
 	{ server = "dockerls" },
 	{ server = "html" },
 	{ server = "nil_ls" },
 	{ server = "ruff_lsp" },
-	{ server = "taplo" },
 	{ server = "terraformls" },
 	{ server = "texlab" },
+	{
+		server = "taplo",
+		settings = {
+			evenBetterToml = {
+				schema = {
+					associations = {
+						["ruff\\.toml$"] = "https://json.schemastore.org/ruff.json",
+						["pyproject\\.toml$"] = "https://json.schemastore.org/pyproject.json",
+					},
+				},
+			},
+		},
+	},
 	{
 		server = "helm_ls",
 		settings = {
@@ -108,10 +119,15 @@ local servers = {
 						},
 						schemas = schemastore.yaml.schemas({
 							select = {
-								"kustomization.yaml",
+								".pre-commit-hooks.yml",
+								"Azure Pipelines",
+								"GitHub Action",
 								"GitHub Workflow",
 								"Helm Chart.lock",
 								"Helm Chart.yaml",
+								"bashly.yml",
+								"docker-compose.yml",
+								"Hugo",
 							},
 						}),
 					},
@@ -123,12 +139,7 @@ local servers = {
 		server = "jsonls",
 		settings = {
 			json = {
-				schemas = schemastore.json.schemas({
-					select = {
-						"kustomization.yaml",
-						"GitHub Workflow",
-					},
-				}),
+				schemas = schemastore.json.schemas(),
 				validate = { enable = true },
 			},
 		},

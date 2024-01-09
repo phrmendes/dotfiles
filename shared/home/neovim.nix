@@ -147,7 +147,6 @@ in {
         delve
         djlint
         djlint
-        docker-compose-language-service
         gofumpt
         goimports-reviser
         golines

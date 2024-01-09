@@ -9,24 +9,24 @@ require("mini.bracketed").setup({
 
 map({
 	key = "[{",
-	command = "<Cmd>lua MiniBracketed.buffer('first')<CR>",
+	cmd = "<Cmd>lua MiniBracketed.buffer('first')<CR>",
 	desc = "First buffer",
 })
 
 map({
 	key = "[[",
-	command = "<Cmd>lua MiniBracketed.buffer('backward')<CR>",
+	cmd = "<Cmd>lua MiniBracketed.buffer('backward')<CR>",
 	desc = "Previous buffer",
 })
 
 map({
 	key = "]]",
-	command = "<Cmd>lua MiniBracketed.buffer('forward')<CR>",
+	cmd = "<Cmd>lua MiniBracketed.buffer('forward')<CR>",
 	desc = "Next buffer",
 })
 
 map({
 	key = "]}",
-	command = "<Cmd>lua MiniBracketed.buffer('last')<CR>",
+	cmd = "<Cmd>lua MiniBracketed.buffer('last')<CR>",
 	desc = "Last buffer",
 })

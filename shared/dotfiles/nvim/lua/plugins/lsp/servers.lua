@@ -105,7 +105,7 @@ local servers = {
 
 					utils.map({
 						key = "<leader>y",
-						command = "<cmd>Telescope yaml_schema<cr>",
+						cmd = "<cmd>Telescope yaml_schema<cr>",
 						desc = "YAML schemas",
 						buffer = bufnr,
 					})

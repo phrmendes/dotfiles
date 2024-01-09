@@ -50,6 +50,6 @@ spectre.setup({
 
 map({
 	key = "<leader>fs",
-	command = spectre.toggle,
-	desc = "Find and replace",
+	cmd = spectre.toggle,
+	desc = "Search and replace",
 })

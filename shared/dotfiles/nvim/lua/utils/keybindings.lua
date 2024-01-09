@@ -19,7 +19,7 @@ M.map = function(args, user_opts)
 	local opts = {
 		mode = args.mode or "n",
 		key = args.key,
-		command = args.command,
+		cmd = args.cmd,
 		keymap_opts = {
 			desc = args.desc,
 			buffer = args.buffer or nil,
@@ -30,7 +30,7 @@ M.map = function(args, user_opts)
 		opts.keymap_opts = vim.tbl_extend("force", opts.keymap_opts, user_opts)
 	end
 
-	vim.keymap.set(opts.mode, opts.key, opts.command, opts.keymap_opts)
+	vim.keymap.set(opts.mode, opts.key, opts.cmd, opts.keymap_opts)
 end
 
 return M

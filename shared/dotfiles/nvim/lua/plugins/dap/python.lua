@@ -10,14 +10,14 @@ M.setup = function()
 
 	map({
 		key = "<localleader>c",
-		command = dap_python.test_class,
+		cmd = dap_python.test_class,
 		buffer = 0,
 		desc = "DAP (python): test last",
 	})
 
 	map({
 		key = "<localleader>f",
-		command = dap_python.test_method,
+		cmd = dap_python.test_method,
 		buffer = 0,
 		desc = "DAP (python): test method/function",
 	})
@@ -25,7 +25,7 @@ M.setup = function()
 	map({
 		mode = "v",
 		key = "<localleader>d",
-		command = dap_python.debug_selection,
+		cmd = dap_python.debug_selection,
 		buffer = 0,
 		desc = "DAP (python): debug region",
 	})

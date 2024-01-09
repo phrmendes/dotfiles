@@ -23,16 +23,16 @@ telescope.setup({
 		},
 		mappings = {
 			i = {
-				["<C-S-n>"] = actions.cycle_history_next,
-				["<C-S-p>"] = actions.cycle_history_prev,
+				["<C-n>"] = actions.cycle_history_next,
+				["<C-p>"] = actions.cycle_history_prev,
 				["<C-d>"] = actions.preview_scrolling_down,
-				["<C-n>"] = actions.move_selection_next,
-				["<C-p>"] = actions.move_selection_previous,
-				["<C-c>"] = actions.close,
-				["<C-s>"] = actions.file_split,
-				["<C-t>"] = trouble.open_with_trouble,
 				["<C-u>"] = actions.preview_scrolling_up,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-s>"] = actions.file_split,
 				["<C-v>"] = actions.file_vsplit,
+				["<C-c>"] = actions.close,
+				["<C-t>"] = trouble.open_with_trouble,
 				["<C-x>"] = actions.delete_buffer,
 			},
 			n = {
@@ -80,48 +80,48 @@ end
 
 map({
 	key = "<leader>.",
-	command = "<cmd>Telescope commands<cr>",
+	cmd = "<cmd>Telescope commands<cr>",
 	desc = "List commands",
 })
 
 map({
-	key = "<leader>/",
-	command = "<cmd>Telescope current_buffer_fuzzy_find<cr>",
-	desc = "Search in current buffer",
-})
-
-map({
 	key = "<leader>?",
-	command = "<cmd>Telescope help_tags<cr>",
+	cmd = "<cmd>Telescope help_tags<cr>",
 	desc = "Help",
 })
 
 map({
 	key = "<leader>bb",
-	command = "<cmd>Telescope buffers<cr>",
+	cmd = "<cmd>Telescope buffers<cr>",
 	desc = "List",
 })
 
 map({
+	key = "<leader>bf",
+	cmd = "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+	desc = "Search in current buffer",
+})
+
+map({
 	key = "<leader>ff",
-	command = "<cmd>Telescope find_files<cr>",
+	cmd = "<cmd>Telescope find_files<cr>",
 	desc = "Find",
 })
 
 map({
 	key = "<leader>fg",
-	command = "<cmd>Telescope live_grep<cr>",
+	cmd = "<cmd>Telescope live_grep<cr>",
 	desc = "Live grep",
 })
 
 map({
 	key = "<leader>fr",
-	command = "<cmd>Telescope frecency<cr>",
+	cmd = "<cmd>Telescope frecency<cr>",
 	desc = "Recent files",
 })
 
 map({
 	key = "<leader>fz",
-	command = "<cmd>Telescope zoxide list<cr>",
+	cmd = "<cmd>Telescope zoxide list<cr>",
 	desc = "Zoxide",
 })

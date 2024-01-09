@@ -43,7 +43,7 @@ autocmd("TermClose", {
 
 map({
 	key = "<leader>e",
-	command = function()
+	cmd = function()
 		command.execute({ toggle = true, dir = vim.loop.cwd() })
 	end,
 	desc = "Explorer",
@@ -53,7 +53,7 @@ map({
 
 map({
 	key = "<leader>ge",
-	command = function()
+	cmd = function()
 		command.execute({ source = "git_status", toggle = true })
 	end,
 	desc = "Explorer",
@@ -61,7 +61,7 @@ map({
 
 map({
 	key = "<leader>be",
-	command = function()
+	cmd = function()
 		command.execute({ source = "buffers", toggle = true })
 	end,
 	desc = "Explorer",

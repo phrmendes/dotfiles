@@ -5,18 +5,18 @@ todo.setup()
 
 map({
 	key = "[t",
-	command = todo.jump_prev,
+	cmd = todo.jump_prev,
 	desc = "Previous todo comment",
 })
 
 map({
 	key = "]t",
-	command = todo.jump_next,
+	cmd = todo.jump_next,
 	desc = "Next todo comment",
 })
 
 map({
 	key = "<leader>t",
-	command = "<cmd>TodoTelescope<cr>",
+	cmd = "<cmd>TodoTelescope<cr>",
 	desc = "Todos",
 })

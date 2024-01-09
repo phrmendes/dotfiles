@@ -28,27 +28,27 @@ section({
 map({
 	mode = "n",
 	key = "Q",
-	command = "@qj",
+	cmd = "@qj",
 	desc = "Replay macro",
 })
 
 map({
 	mode = "v",
 	key = "Q",
-	command = "<cmd>norm @q<cr>",
+	cmd = "<cmd>norm @q<cr>",
 	desc = "Replay macro",
 })
 
 map({
 	mode = "n",
 	key = "gS",
-	command = "<cmd>sort<cr>",
+	cmd = "<cmd>sort<cr>",
 	desc = "Sort selected lines",
 })
 
 map({
 	key = "k",
-	command = [[v:count == 0 ? "gk" : "k"]],
+	cmd = [[v:count == 0 ? "gk" : "k"]],
 	desc = "Word wrap",
 }, {
 	expr = true,
@@ -57,7 +57,7 @@ map({
 
 map({
 	key = "j",
-	command = [[v:count == 0 ? "gj" : "j"]],
+	cmd = [[v:count == 0 ? "gj" : "j"]],
 	desc = "Word wrap",
 }, {
 	expr = true,
@@ -67,7 +67,7 @@ map({
 map({
 	mode = "i",
 	key = "jk",
-	command = "<ESC>",
+	cmd = "<ESC>",
 	desc = "Exit insert mode",
 }, {
 	noremap = true,
@@ -77,7 +77,7 @@ map({
 map({
 	mode = "i",
 	key = "kj",
-	command = "<ESC>",
+	cmd = "<ESC>",
 	desc = "Exit insert mode",
 }, {
 	noremap = true,
@@ -87,7 +87,7 @@ map({
 map({
 	mode = "t",
 	key = "<ESC><ESC>",
-	command = "<C-\\><C-n>",
+	cmd = "<C-\\><C-n>",
 	desc = "Exit terminal mode",
 }, {
 	noremap = true,
@@ -96,7 +96,7 @@ map({
 
 map({
 	key = "+",
-	command = "<cmd>resize +2<cr>",
+	cmd = "<cmd>resize +2<cr>",
 	desc = "Increase window (V)",
 }, {
 	noremap = true,
@@ -105,7 +105,7 @@ map({
 
 map({
 	key = "-",
-	command = "<cmd>vertical resize -2<cr>",
+	cmd = "<cmd>vertical resize -2<cr>",
 	desc = "Decrease window (H)",
 }, {
 	noremap = true,
@@ -114,7 +114,7 @@ map({
 
 map({
 	key = "=",
-	command = "<cmd>vertical resize +2<cr>",
+	cmd = "<cmd>vertical resize +2<cr>",
 	desc = "Increase window (H)",
 }, {
 	noremap = true,
@@ -123,7 +123,7 @@ map({
 
 map({
 	key = "_",
-	command = "<cmd>resize -2<cr>",
+	cmd = "<cmd>resize -2<cr>",
 	desc = "Decrease window (V)",
 }, {
 	noremap = true,
@@ -132,120 +132,120 @@ map({
 
 map({
 	key = "[<TAB>",
-	command = "<cmd>tabprevious<cr>",
+	cmd = "<cmd>tabprevious<cr>",
 	desc = "Previous tab",
 })
 
 map({
 	key = "]<TAB>",
-	command = "<cmd>tabnext<cr>",
+	cmd = "<cmd>tabnext<cr>",
 	desc = "Next tab",
 })
 
 map({
 	key = "<C-d>",
-	command = "<C-d>zz",
+	cmd = "<C-d>zz",
 	desc = "Page down",
 })
 
 map({
 	key = "<C-u>",
-	command = "<C-u>zz",
+	cmd = "<C-u>zz",
 	desc = "Page up",
 })
 
 map({
 	key = "<leader>u",
-	command = "<cmd>UndotreeToggle<cr>",
+	cmd = "<cmd>UndotreeToggle<cr>",
 	desc = "Toggle undo tree",
 })
 
 map({
 	key = "<leader>-",
-	command = "<cmd>split<cr>",
+	cmd = "<cmd>split<cr>",
 	desc = "Split window (H)",
 })
 
 map({
 	key = "<leader>\\",
-	command = "<cmd>vsplit<cr>",
+	cmd = "<cmd>vsplit<cr>",
 	desc = "Split window (V)",
 })
 
 map({
 	key = "<leader>W",
-	command = "<cmd>wq<cr>",
+	cmd = "<cmd>wq<cr>",
 	desc = "Save and quit",
 })
 
 map({
 	key = "<leader>q",
-	command = "<cmd>confirm q<cr>",
+	cmd = "<cmd>confirm q<cr>",
 	desc = "Quit",
 })
 
 map({
 	key = "<leader>w",
-	command = "<cmd>w<cr>",
+	cmd = "<cmd>w<cr>",
 	desc = "Save",
 })
 
 map({
 	key = "<leader>x",
-	command = "<C-w>q",
+	cmd = "<C-w>q",
 	desc = "Close window",
 })
 
 map({
 	key = "<leader>=",
-	command = "<C-w>=",
+	cmd = "<C-w>=",
 	desc = "Resize and make windows equal",
 })
 
 map({
 	key = "<leader><TAB>d",
-	command = "<cmd> bd <bar> tabclose <bar> startinsert<cr>",
+	cmd = "<cmd> bd <bar> tabclose <bar> startinsert<cr>",
 	desc = "Close",
 })
 
 map({
 	key = "<leader><TAB>n",
-	command = "<cmd>tabnext<cr>",
+	cmd = "<cmd>tabnext<cr>",
 	desc = "New",
 })
 
 map({
 	key = "<leader><TAB>q",
-	command = "<cmd>tabonly<cr>",
+	cmd = "<cmd>tabonly<cr>",
 	desc = "Close",
 })
 
 map({
 	key = "<leader>bG",
-	command = "<cmd>blast<cr>",
+	cmd = "<cmd>blast<cr>",
 	desc = "Go to last buffer",
 })
 
 map({
 	key = "<leader>bg",
-	command = "<cmd>bfirst<cr>",
+	cmd = "<cmd>bfirst<cr>",
 	desc = "Go to last buffer",
 })
 
 map({
 	key = "<leader>bq",
-	command = "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>",
+	cmd = "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>",
 	desc = "Close all unfocused",
 })
 
 map({
 	key = "<localleader>q",
-	command = "<cmd>TroubleToggle quickfix<cr>",
+	cmd = "<cmd>TroubleToggle quickfix<cr>",
 	desc = "Quickfix",
 })
 
 map({
 	key = "<localleader>l",
-	command = "<cmd>TroubleToggle loclist<cr>",
+	cmd = "<cmd>TroubleToggle loclist<cr>",
 	desc = "Loclist",
 })

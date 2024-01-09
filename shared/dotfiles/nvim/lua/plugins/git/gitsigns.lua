@@ -28,7 +28,7 @@ vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "s
 
 utils.map({
 	key = "]h",
-	command = hunk.next,
+	cmd = hunk.next,
 	desc = "Next hunk",
 }, {
 	expr = true,
@@ -36,7 +36,7 @@ utils.map({
 
 utils.map({
 	key = "[h",
-	command = hunk.prev,
+	cmd = hunk.prev,
 	desc = "Previous hunk",
 }, {
 	expr = true,
@@ -44,19 +44,19 @@ utils.map({
 
 utils.map({
 	key = "<leader>gc",
-	command = "<cmd>Telescope git_branches<cr>",
+	cmd = "<cmd>Telescope git_branches<cr>",
 	desc = "Checkout branch",
 })
 
 utils.map({
 	key = "<leader>gd",
-	command = gs.diffthis,
+	cmd = gs.diffthis,
 	desc = "Diff against index",
 })
 
 utils.map({
 	key = "<leader>gD",
-	command = function()
+	cmd = function()
 		gs.diffthis("~")
 	end,
 	desc = "Diff against last commit",
@@ -64,44 +64,44 @@ utils.map({
 
 utils.map({
 	key = "<leader>gs",
-	command = "<cmd>Telescope git_status<cr>",
+	cmd = "<cmd>Telescope git_status<cr>",
 	desc = "Diff (repo)",
 })
 
 utils.map({
 	key = "<leader>gt",
-	command = gs.toggle_current_line_blame,
+	cmd = gs.toggle_current_line_blame,
 	desc = "Toggle blame line",
 })
 
 utils.map({
 	key = "<leader>gbr",
-	command = gs.reset_buffer,
+	cmd = gs.reset_buffer,
 	desc = "Reset",
 })
 
 utils.map({
 	key = "<leader>gbs",
-	command = gs.stage_buffer,
+	cmd = gs.stage_buffer,
 	desc = "Stage",
 })
 
 utils.map({
 	key = "<leader>ghp",
-	command = gs.preview_hunk,
+	cmd = gs.preview_hunk,
 	desc = "Preview",
 })
 
 utils.map({
 	key = "<leader>ghr",
-	command = gs.reset_hunk,
+	cmd = gs.reset_hunk,
 	desc = "Reset",
 })
 
 utils.map({
 	mode = "v",
 	key = "<leader>ghr",
-	command = function()
+	cmd = function()
 		gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
 	desc = "Reset",
@@ -109,14 +109,14 @@ utils.map({
 
 utils.map({
 	key = "<leader>ghs",
-	command = gs.stage_hunk,
+	cmd = gs.stage_hunk,
 	desc = "Stage",
 })
 
 utils.map({
 	mode = "v",
 	key = "<leader>ghs",
-	command = function()
+	cmd = function()
 		gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 	end,
 	desc = "Stage",
@@ -124,6 +124,6 @@ utils.map({
 
 utils.map({
 	key = "<leader>ghu",
-	command = gs.undo_stage_hunk,
+	cmd = gs.undo_stage_hunk,
 	desc = "Undo stage",
 })

@@ -26,14 +26,14 @@ metals_config.on_attach = function(client, bufnr)
 
 	utils.map({
 		key = "<leader>mh",
-		command = metals.hover_worksheet,
+		cmd = metals.hover_worksheet,
 		desc = "Hover worksheet",
 		buffer = bufnr,
 	})
 
 	utils.map({
 		key = "<leader>mc",
-		command = metals.commands,
+		cmd = metals.commands,
 		desc = "Commands",
 		buffer = bufnr,
 	})

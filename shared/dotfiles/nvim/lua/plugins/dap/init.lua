@@ -18,63 +18,63 @@ local setup = function()
 
 	map({
 		key = "<F3>",
-		command = dap.step_out,
+		cmd = dap.step_out,
 		buffer = 0,
 		desc = "DAP: step out",
 	})
 
 	map({
 		key = "<F4>",
-		command = dap.step_into,
+		cmd = dap.step_into,
 		buffer = 0,
 		desc = "DAP: step into",
 	})
 
 	map({
 		key = "<F5>",
-		command = dap.step_back,
+		cmd = dap.step_back,
 		buffer = 0,
 		desc = "DAP: step back",
 	})
 
 	map({
 		key = "<F6>",
-		command = dap.continue,
+		cmd = dap.continue,
 		buffer = 0,
 		desc = "DAP: continue",
 	})
 
 	map({
 		key = "<F7>",
-		command = dap.step_over,
+		cmd = dap.step_over,
 		buffer = 0,
 		desc = "DAP: step over",
 	})
 
 	map({
 		key = "<S-F6>",
-		command = dap.pause,
+		cmd = dap.pause,
 		buffer = 0,
 		desc = "DAP: pause",
 	})
 
 	map({
 		key = "<BS>",
-		command = dap.close,
+		cmd = dap.close,
 		buffer = 0,
 		desc = "DAP: quit",
 	})
 
 	map({
 		key = "<leader>t",
-		command = dap.toggle_breakpoint,
+		cmd = dap.toggle_breakpoint,
 		buffer = 0,
 		desc = "DAP: toggle breakpoint",
 	})
 
 	map({
 		key = "<leader>U",
-		command = dap_ui.toggle,
+		cmd = dap_ui.toggle,
 		buffer = 0,
 		desc = "DAP: toggle UI",
 	})

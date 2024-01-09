@@ -9,7 +9,7 @@ conform.setup({
 })
 
 conform.formatters.tex = {
-	command = "latexindent.pl",
+	cmd = "latexindent.pl",
 	args = { "-" },
 	stdin = true,
 }

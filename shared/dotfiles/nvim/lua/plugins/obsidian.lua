@@ -66,30 +66,30 @@ section({
 
 map({
 	key = "<leader>ob",
-	command = "<cmd>ObsidianBacklinks<cr>",
+	cmd = "<cmd>ObsidianBacklinks<cr>",
 	desc = "Backlinks",
 })
 
 map({
 	key = "<leader>od",
-	command = "<cmd>ObsidianToday<cr>",
+	cmd = "<cmd>ObsidianToday<cr>",
 	desc = "Diary (today)",
 })
 
 map({
 	key = "<leader>of",
-	command = "<cmd>ObsidianFollowLink<cr>",
+	cmd = "<cmd>ObsidianFollowLink<cr>",
 	desc = "Follow link under cursor",
 })
 
 map({
 	key = "<leader>oo",
-	command = "<cmd>ObsidianOpen<cr>",
+	cmd = "<cmd>ObsidianOpen<cr>",
 	desc = "Open Obsidian",
 })
 
 map({
 	key = "<leader>os",
-	command = "<cmd>ObsidianQuickSwitch<cr>",
+	cmd = "<cmd>ObsidianQuickSwitch<cr>",
 	desc = "Quick switch to another note",
 })

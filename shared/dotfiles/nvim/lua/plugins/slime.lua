@@ -10,13 +10,13 @@ vim.g.slime_default_config = { window_id = 2, listen_on = vim.env.KITTY_LISTEN_O
 map({
 	mode = { "n", "v" },
 	key = "<C-c><C-c>",
-	command = "<Plug>SlimeParagraphSend",
+	cmd = "<Plug>SlimeParagraphSend",
 	desc = "Send to REPL",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<C-c><C-v>",
-	command = "<Plug>SlimeConfig",
+	cmd = "<Plug>SlimeConfig",
 	desc = "Slime config",
 })

@@ -5,12 +5,12 @@ bufremove.setup()
 
 map({
 	key = "<leader>bd",
-	command = bufremove.delete,
+	cmd = bufremove.delete,
 	desc = "Delete",
 })
 
 map({
 	key = "<leader>bw",
-	command = bufremove.wipeout,
+	cmd = bufremove.wipeout,
 	desc = "Wipeout",
 })

@@ -7,7 +7,7 @@ M.setup = function()
 
 	require("utils").map({
 		key = "<localleader>t",
-		command = dap_go.debug_test,
+		cmd = dap_go.debug_test,
 		buffer = 0,
 		desc = "DAP (go): debug test",
 	})

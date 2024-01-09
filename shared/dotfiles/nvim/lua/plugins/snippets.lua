@@ -10,7 +10,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 utils.map({
 	mode = { "i", "s" },
 	key = "<C-k>",
-	command = function()
+	cmd = function()
 		if luasnip.choice_active() then
 			return luasnip.change_choice(-1)
 		end
@@ -21,7 +21,7 @@ utils.map({
 utils.map({
 	mode = { "i", "s" },
 	key = "<C-j>",
-	command = function()
+	cmd = function()
 		if luasnip.choice_active() then
 			return luasnip.change_choice(1)
 		end

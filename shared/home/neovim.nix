@@ -35,7 +35,6 @@
     ];
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
-      gh.yaml-companion-nvim
       gh.zotcite
       nvim-metals
       ChatGPT-nvim
@@ -61,6 +60,7 @@ in {
       (with pkgs.vimPlugins; [
         gh.autolist-nvim
         gh.img-clip-nvim
+        gh.yaml-companion-nvim
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim

@@ -2,6 +2,12 @@ local map = require("utils.keybindings").map
 
 local M = {}
 
+local provider = function(client, provider, func)
+	if client.server_capabilities[provider .. "Provider"] then
+		func()
+	end
+end
+
 M.handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
@@ -23,91 +29,111 @@ M.on_attach = function(client, bufnr)
 	})
 
 	map({
-		mode = { "n", "v" },
-		key = "<leader>a",
-		cmd = require("actions-preview").code_actions,
-		buffer = bufnr,
-		desc = "LSP: code actions",
-	})
-
-	map({
 		key = "<leader>d",
 		cmd = "<cmd>TroubleToggle document_diagnostics<cr>",
 		buffer = bufnr,
 		desc = "LSP: document diagnostics",
 	})
 
-	map({
-		key = "<leader>h",
-		cmd = vim.lsp.buf.signature_help,
-		buffer = bufnr,
-		desc = "LSP: show signature help",
-	})
-
-	map({
-		key = "<leader>k",
-		cmd = vim.lsp.buf.hover,
-		buffer = bufnr,
-		desc = "LSP: show hover documentation",
-	})
-
-	if client.server_capabilities.documentSymbolProvider then
+	provider(client, "codeAction", function()
 		map({
-			key = "<leader>S",
-			cmd = "<cmd>Telescope lsp_workspace_symbols<cr>",
+			mode = { "n", "v" },
+			key = "<leader>a",
+			cmd = require("actions-preview").code_actions,
 			buffer = bufnr,
-			desc = "LSP: workspace symbols",
+			desc = "LSP: code actions",
 		})
+	end)
 
-		map({
-			key = "<leader>r",
-			cmd = vim.lsp.buf.rename,
-			buffer = bufnr,
-			desc = "LSP: rename symbol",
-		})
-
-		map({
-			key = "<leader>s",
-			cmd = "<cmd>Telescope lsp_document_symbols<cr>",
-			buffer = bufnr,
-			desc = "LSP: document symbols",
-		})
-
+	provider(client, "declaration", function()
 		map({
 			key = "gD",
 			cmd = vim.lsp.buf.declaration,
 			buffer = bufnr,
 			desc = "LSP: go to declaration",
 		})
+	end)
 
+	provider(client, "definition", function()
 		map({
 			key = "gd",
 			cmd = "<cmd>Telescope lsp_definitions<CR>",
 			buffer = bufnr,
 			desc = "LSP: go to definition",
 		})
+	end)
 
+	provider(client, "documentSymbol", function()
+		map({
+			key = "<leader>s",
+			cmd = "<cmd>Telescope lsp_document_symbols<cr>",
+			buffer = bufnr,
+			desc = "LSP: document symbols",
+		})
+	end)
+
+	provider(client, "hover", function()
+		map({
+			key = "<leader>k",
+			cmd = vim.lsp.buf.hover,
+			buffer = bufnr,
+			desc = "LSP: show hover documentation",
+		})
+	end)
+
+	provider(client, "implementation", function()
 		map({
 			key = "gi",
 			cmd = "<cmd>Telescope lsp_implementations<cr>",
 			buffer = bufnr,
 			desc = "LSP: go to implementations",
 		})
+	end)
 
+	provider(client, "signatureHelp", function()
+		map({
+			key = "<C-k>",
+			cmd = vim.lsp.buf.signature_help,
+			buffer = bufnr,
+			desc = "LSP: show signature help",
+		})
+	end)
+
+	provider(client, "references", function()
 		map({
 			key = "gr",
 			cmd = "<cmd>Telescope lsp_references<cr>",
 			buffer = bufnr,
-			desc = "LSP: go to references",
+			desc = "LSP: show references",
 		})
+	end)
 
+	provider(client, "rename", function()
+		map({
+			key = "<leader>r",
+			cmd = vim.lsp.buf.rename,
+			buffer = bufnr,
+			desc = "LSP: rename symbol",
+		})
+	end)
+
+	provider(client, "typeDefinition", function()
 		map({
 			key = "gt",
 			cmd = "<cmd>Telescope lsp_type_definitions<cr>",
 			buffer = bufnr,
 			desc = "LSP: go to type definition",
 		})
-	end
+	end)
+
+	provider(client, "workspaceSymbol", function()
+		map({
+			key = "<leader>S",
+			cmd = "<cmd>Telescope lsp_workspace_symbols<cr>",
+			buffer = bufnr,
+			desc = "LSP: workspace symbols",
+		})
+	end)
 end
 
 M.add_language_server = function(args)

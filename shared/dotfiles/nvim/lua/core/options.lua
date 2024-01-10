@@ -71,10 +71,6 @@ vim.opt.iskeyword:append("-")
 -- default terminal
 vim.opt.shell = "zsh"
 
--- conceal links
-vim.opt.conceallevel = 2
-vim.opt.concealcursor = "nc"
-
 -- shell slash
 vim.opt.shellslash = true
 

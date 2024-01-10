@@ -9,8 +9,5 @@ M.section = require("utils.keybindings").section
 M.match_pattern = require("utils.string").match_pattern
 M.normalize = require("utils.string").normalize
 M.has_words_before = require("utils.string").has_words_before
-M.metals = require("utils.lualine").metals
-M.venv = require("utils.lualine").venv
-M.get_schema = require("utils.lualine").get_schema
 
 return M

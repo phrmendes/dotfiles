@@ -36,6 +36,7 @@ in {
       shellAliases =
         {
           cat = "bat";
+          k = "kubectl";
           lg = "lazygit";
           mkdir = "mkdir -p";
           nc = "nix store gc --debug";

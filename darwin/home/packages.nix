@@ -11,11 +11,11 @@
     go
     jdk21
     just
+    kind
     kubectl
     kubernetes-helm
     maven
     mc
-    minikube
     ncdu
     nodejs_21
     parallel

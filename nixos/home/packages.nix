@@ -21,12 +21,12 @@
       go
       hugo
       just
+      kind
       kubectl
       kubernetes-helm
       lazydocker
       libreoffice
       mc
-      minikube
       ncdu
       neovide
       obsidian

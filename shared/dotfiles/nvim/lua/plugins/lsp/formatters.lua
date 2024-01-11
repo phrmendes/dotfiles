@@ -1,6 +1,7 @@
 local conform = require("conform")
 
 conform.setup({
+	notify_on_error = false,
 	format_on_save = {
 		lsp_fallback = true,
 		async = false,

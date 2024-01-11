@@ -22,7 +22,7 @@
       GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
-      TERM = "xterm-kitty";
+      TERM = "kitty";
     };
   };
 }

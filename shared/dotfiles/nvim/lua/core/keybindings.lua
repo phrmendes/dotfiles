@@ -40,7 +40,7 @@ map({
 })
 
 map({
-	mode = "n",
+	mode = "v",
 	key = "gS",
 	cmd = "<cmd>sort<cr>",
 	desc = "Sort selected lines",
@@ -128,6 +128,18 @@ map({
 }, {
 	noremap = true,
 	silent = true,
+})
+
+map({
+	key = "<S-TAB>",
+	cmd = "<cmd>bprevious<cr>",
+	desc = "Previous buffer",
+})
+
+map({
+	key = "<TAB>",
+	cmd = "<cmd>bnext<cr>",
+	desc = "Next buffer",
 })
 
 map({

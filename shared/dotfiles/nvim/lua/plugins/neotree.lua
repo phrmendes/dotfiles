@@ -19,6 +19,32 @@ require("neo-tree").setup({
 				"toggle_node",
 				nowait = true,
 			},
+			["<leader>-"] = "open_split",
+			["<leade>\\"] = "open_vsplit",
+			["a"] = {
+				"add",
+				config = {
+					show_path = "absolute",
+				},
+			},
+			["A"] = {
+				"add_directory",
+				config = {
+					show_path = "absolute",
+				},
+			},
+			["c"] = {
+				"copy",
+				config = {
+					show_path = "absolute",
+				},
+			},
+			["m"] = {
+				"move",
+				config = {
+					show_path = "absolute",
+				},
+			},
 		},
 	},
 	default_component_configs = {

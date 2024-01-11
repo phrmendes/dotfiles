@@ -57,8 +57,6 @@ in {
     withPython3 = true;
     plugins =
       (with pkgs.vimPlugins; [
-        gh.autolist-nvim
-        gh.img-clip-nvim
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim
@@ -74,6 +72,8 @@ in {
         dressing-nvim
         executor-nvim
         friendly-snippets
+        gh.autolist-nvim
+        gh.img-clip-nvim
         gitsigns-nvim
         image-nvim
         lazygit-nvim
@@ -111,6 +111,7 @@ in {
         todo-comments-nvim
         trouble-nvim
         undotree
+        vim-abolish
         vim-eunuch
         vim-helm
         vim-jinja

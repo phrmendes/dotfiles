@@ -85,11 +85,6 @@ M.python = function()
 	require("plugins.dap.python").setup()
 end
 
-M.scala = function()
-	setup()
-	require("plugins.dap.scala").setup()
-end
-
 M.go = function()
 	setup()
 	require("plugins.dap.go").setup()

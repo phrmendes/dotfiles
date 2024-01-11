@@ -24,8 +24,6 @@ local hunk = {
 	end,
 }
 
-vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "select git hunk" })
-
 utils.map({
 	key = "]h",
 	cmd = hunk.next,

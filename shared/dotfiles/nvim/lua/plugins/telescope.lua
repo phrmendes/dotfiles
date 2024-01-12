@@ -6,7 +6,6 @@ local map = require("utils").map
 telescope.setup({
 	defaults = {
 		hidden = true,
-		layout_strategy = "vertical",
 		prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",

@@ -92,7 +92,7 @@ M.on_attach = function(client, bufnr)
 
 	provider(client, "signatureHelp", function()
 		map({
-			key = "<C-k>",
+			key = "<leader>h",
 			cmd = vim.lsp.buf.signature_help,
 			buffer = bufnr,
 			desc = "LSP: show signature help",

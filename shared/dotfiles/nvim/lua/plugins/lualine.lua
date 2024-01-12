@@ -12,6 +12,14 @@ local venv = function()
 	return ""
 end
 
+local metals = function()
+	if vim.g.metals_status then
+		return " " .. vim.g.metals_status
+	end
+
+	return ""
+end
+
 lualine.setup({
 	options = {
 		theme = "catppuccin",
@@ -27,6 +35,9 @@ lualine.setup({
 			"branch",
 			{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 			"diagnostics",
+		},
+		lualine_c = {
+			metals,
 		},
 		lualine_x = {
 			venv,

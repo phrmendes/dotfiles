@@ -35,6 +35,7 @@
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
       gh.zotcite
+      nvim-metals
       ChatGPT-nvim
       cmp-latex-symbols
       cmp-pandoc-nvim

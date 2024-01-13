@@ -11,8 +11,10 @@
         ];
         favorite-apps = [
           "bitwarden.desktop"
+          "code.desktop"
           "firefox.desktop"
           "kitty.desktop"
+          "logseq.desktop"
           "org.gnome.Nautilus.desktop"
         ];
       };

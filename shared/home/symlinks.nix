@@ -5,9 +5,5 @@
     ".config/mc/ini".source = ../dotfiles/mc/ini;
     ".config/mc/menu".source = ../dotfiles/mc/menu;
     ".local/share/mc/skins/catppuccin.ini".source = ../dotfiles/mc/catppuccin.ini;
-    ".config/nvim" = {
-      source = ../dotfiles/nvim;
-      recursive = true;
-    };
   };
 }

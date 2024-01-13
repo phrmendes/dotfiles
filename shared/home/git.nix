@@ -1,14 +1,19 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.git = {
     delta.enable = true;
     enable = true;
     userEmail = lib.mkDefault "pedrohrmendes@proton.me";
     userName = "Pedro Mendes";
     extraConfig = {
+      core.exitor = "${pkgs.helix}/bin/hx";
+      http.sslVerify = true;
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
-      http.sslVerify = true;
     };
     aliases = {
       P = "push";

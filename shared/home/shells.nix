@@ -43,7 +43,8 @@ in {
           ncdu = "ncdu --color dark";
           nh = "nix-hash --flat --base64 --type sha256";
           nu = update_cmd;
-          v = "nvim";
+          h = "hx";
+          zl = "zellij";
         }
         // aliases;
     };

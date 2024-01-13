@@ -59,6 +59,9 @@ in {
       "ctrl+shift+t" = "new_tab";
       "ctrl+shift+x" = "close_window";
       "ctrl+shift+z" = "toggle_layout stack";
+      "ctrl+shift+c" = "copy_to_clipboard";
+      "ctrl+shift+v" = "paste_from_clipboard";
+      "ctrl+shift+s" = "no_op";
     };
   };
 }

@@ -1,29 +1,27 @@
-{pkgs, ...}: {
+{
   imports = [
     ./bat.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
     ./git.nix
-    ./helix.nix
     ./kitty.nix
     ./lazygit.nix
+    ./neovim.nix
     ./shells.nix
     ./starship.nix
     ./symlinks.nix
     ./tealdeer.nix
-    ./vscode.nix
-    ./zellij.nix
     ./zoxide.nix
   ];
 
   home = {
     stateVersion = "23.11";
     sessionVariables = {
-      EDITOR = "${pkgs.helix}/bin/hx";
-      GIT_EDITOR = "${pkgs.helix}/bin/hx";
-      SUDO_EDITOR = "${pkgs.helix}/bin/hx";
-      VISUAL = "${pkgs.helix}/bin/hx";
+      EDITOR = "nvim";
+      GIT_EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
+      VISUAL = "nvim";
       TERM = "xterm-kitty";
     };
   };

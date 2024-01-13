@@ -26,9 +26,10 @@
       kubernetes-helm
       lazydocker
       libreoffice
-      logseq
       mc
       ncdu
+      neovide
+      obsidian
       parallel
       peek
       phockup
@@ -41,6 +42,7 @@
       terraform
       ventoy
       vlc
+      vscode-fhs
       zotero
     ])
     ++ (with pkgs.gnome; [

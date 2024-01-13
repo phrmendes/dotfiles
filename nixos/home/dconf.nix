@@ -13,6 +13,7 @@
           "bitwarden.desktop"
           "firefox.desktop"
           "kitty.desktop"
+          "obsidian.desktop"
           "org.gnome.Nautilus.desktop"
         ];
       };

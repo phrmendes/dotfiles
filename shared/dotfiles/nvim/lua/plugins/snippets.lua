@@ -30,29 +30,37 @@ utils.map({
 })
 
 local markdown = {
-	parse_snippet({ trig = "journal", name = "journal" }, "# " .. os.date("%Y-%m-%d") .. "\n"),
 	parse_snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%Y-%m-%d") .. " $0"),
 	parse_snippet({ trig = "ltex", name = "disable ltex" }, "<!-- LTeX: SETTINGS language=false-->"),
 	parse_snippet(
-		{
-			trig = "todo",
-			name = "TODO",
-		},
+		{ trig = "entry", name = "journal entry" },
+		string.format(
+			[[
+			## %s
+
+			### Notas
+
+			### Tarefas
+
+			- [ ] ${1:task}
+			]],
+			os.date("%d-%m-%Y")
+		)
+	),
+	parse_snippet(
+		{ trig = "todo", name = "TODO" },
 		[[
-			- [ ] #TODO ${1:description} ${2|🛫,⌛, |} ${3|📆, |} ${4|🔼,⏫, |}
+		- [ ] #TODO ${1:description} ${2|🛫,⌛, |} ${3|📆, |} ${4|🔼,⏫, |}
 		]]
 	),
 	parse_snippet(
-		{
-			trig = "headers",
-			name = "headers",
-		},
+		{ trig = "headers", name = "headers" },
 		[[
-			---
-			aliases: [{$1:aliases}]
-			tags: [{$2:tags}]
-			---
-			$0
+		---
+		aliases: [{$1:aliases}]
+		tags: [{$2:tags}]
+		---
+		$0
 		]]
 	),
 }

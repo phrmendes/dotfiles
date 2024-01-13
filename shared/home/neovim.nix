@@ -17,10 +17,10 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    cmp-zotcite = inputs.cmp-zotcite;
-    zotcite = inputs.zotcite;
-    img-clip-nvim = inputs.img-clip-nvim;
     autolist-nvim = inputs.autolist-nvim;
+    cmp-zotcite = inputs.cmp-zotcite;
+    img-clip-nvim = inputs.img-clip-nvim;
+    zotcite = inputs.zotcite;
   };
   darwin = {
     packages = with pkgs; [
@@ -33,18 +33,18 @@
       tailwindcss-language-server
     ];
     extensions = with pkgs.vimPlugins; [
-      gh.cmp-zotcite
-      gh.zotcite
-      nvim-metals
       ChatGPT-nvim
       cmp-latex-symbols
       cmp-pandoc-nvim
+      gh.cmp-zotcite
+      gh.zotcite
       nabla-nvim
       nvim-colorizer-lua
+      nvim-metals
+      nvim-ts-autotag
       obsidian-nvim
       otter-nvim
       quarto-nvim
-      nvim-ts-autotag
     ];
   };
 in {
@@ -60,6 +60,7 @@ in {
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim
+        better-escape-nvim
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline

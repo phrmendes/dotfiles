@@ -31,6 +31,7 @@
       neovide
       obsidian
       parallel
+      peek
       phockup
       pop-launcher
       quarto

@@ -13,7 +13,7 @@ local venv = function()
 end
 
 local metals = function()
-	if vim.g.metals_status then
+	if vim.g.metals_status ~= "" then
 		return " " .. vim.g.metals_status
 	end
 
@@ -30,7 +30,7 @@ lualine.setup({
 		},
 	},
 	sections = {
-		lualine_a = { { "mode", icon = { " ", align = "left" } } },
+		lualine_a = { { "mode", icon = { "", align = "left" } } },
 		lualine_b = {
 			"branch",
 			{ "diff", symbols = { added = " ", modified = " ", removed = " " } },

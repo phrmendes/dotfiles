@@ -40,13 +40,6 @@ map({
 })
 
 map({
-	mode = "v",
-	key = "gS",
-	cmd = "<cmd>sort<cr>",
-	desc = "Sort selected lines",
-})
-
-map({
 	key = "k",
 	cmd = [[v:count == 0 ? "gk" : "k"]],
 	desc = "Word wrap",
@@ -61,26 +54,6 @@ map({
 	desc = "Word wrap",
 }, {
 	expr = true,
-	silent = true,
-})
-
-map({
-	mode = "i",
-	key = "jk",
-	cmd = "<ESC>",
-	desc = "Exit insert mode",
-}, {
-	noremap = true,
-	silent = true,
-})
-
-map({
-	mode = "i",
-	key = "kj",
-	cmd = "<ESC>",
-	desc = "Exit insert mode",
-}, {
-	noremap = true,
 	silent = true,
 })
 

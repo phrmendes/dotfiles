@@ -15,14 +15,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    autolist-nvim = {
+      flake = false;
+      url = "github:gaoDean/autolist.nvim";
+    };
+
     cmp-zotcite = {
       flake = false;
       url = "github:jalvesaq/cmp-zotcite";
-    };
-
-    zotcite = {
-      flake = false;
-      url = "github:jalvesaq/zotcite";
     };
 
     img-clip-nvim = {
@@ -30,9 +30,9 @@
       url = "github:HakonHarnes/img-clip.nvim";
     };
 
-    autolist-nvim = {
+    zotcite = {
       flake = false;
-      url = "github:gaoDean/autolist.nvim";
+      url = "github:jalvesaq/zotcite";
     };
   };
 

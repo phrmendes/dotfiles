@@ -6,8 +6,8 @@ local map = require("utils").map
 telescope.setup({
 	defaults = {
 		hidden = true,
-		prompt_prefix = "   ",
-		selection_caret = "  ",
+		prompt_prefix = "  ",
+		selection_caret = "  ",
 		entry_prefix = "  ",
 		vimgrep_arguments = {
 			"rg",

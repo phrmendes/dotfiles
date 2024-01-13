@@ -1,3 +1,4 @@
+require("plugins.better-escape")
 require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.dressing")

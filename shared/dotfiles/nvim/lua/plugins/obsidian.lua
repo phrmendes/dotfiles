@@ -40,17 +40,6 @@ obsidian.setup({
 		nvim_cmp = true,
 		prepend_note_id = true,
 	},
-	daily_notes = {
-		folder = "log",
-		date_format = "%d-%m-%Y",
-		alias_format = "%d-%m-%Y",
-		template = "log.md",
-	},
-	templates = {
-		subdir = "templates",
-		date_format = "%d-%m-%Y",
-		time_format = "%H:%M",
-	},
 	mappings = {
 		["gf"] = {
 			action = obsidian.util.gf_passthrough,
@@ -68,12 +57,6 @@ map({
 	key = "<leader>ob",
 	cmd = "<cmd>ObsidianBacklinks<cr>",
 	desc = "Backlinks",
-})
-
-map({
-	key = "<leader>od",
-	cmd = "<cmd>ObsidianToday<cr>",
-	desc = "Diary (today)",
 })
 
 map({

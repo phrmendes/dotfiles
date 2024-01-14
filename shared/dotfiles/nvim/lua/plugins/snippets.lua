@@ -65,7 +65,7 @@ local markdown = {
 	),
 }
 
-local math = {
+local latex = {
 	parse_snippet({ trig = "!=", name = "not equals" }, "\\neq "),
 	parse_snippet({ trig = "**", name = "cdot" }, "\\cdot "),
 	parse_snippet({ trig = "+-", name = "+-" }, "\\pm"),
@@ -157,5 +157,5 @@ local lua = {
 
 luasnip.add_snippets("lua", lua)
 luasnip.add_snippets("markdown", markdown)
-luasnip.add_snippets("markdown", math)
+luasnip.add_snippets("markdown", latex)
 luasnip.filetype_extend("quarto", { "markdown" })

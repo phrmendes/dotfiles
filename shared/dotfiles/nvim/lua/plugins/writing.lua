@@ -18,16 +18,69 @@ local setup = function()
 		},
 	})
 
-	vim.keymap.set("i", "<CR>", "<CR><CMD>AutolistNewBullet<CR>")
-	vim.keymap.set("i", "<S-TAB>", "<CMD>AutolistShiftTab<CR>")
-	vim.keymap.set("i", "<TAB>", "<CMD>AutolistTab<CR>")
-	vim.keymap.set("n", "<<", "<<<CMD>AutolistRecalculate<CR>")
-	vim.keymap.set("n", "<CR>", "<CMD>AutolistToggleCheckbox<CR><CR>")
-	vim.keymap.set("n", ">>", ">><CMD>AutolistRecalculate<CR>")
-	vim.keymap.set("n", "O", "O<CMD>AutolistNewBulletBefore<CR>")
-	vim.keymap.set("n", "dd", "dd<CMD>AutolistRecalculate<CR>")
-	vim.keymap.set("n", "o", "o<CMD>AutolistNewBullet<CR>")
-	vim.keymap.set("v", "d", "d<CMD>AutolistRecalculate<CR>")
+	utils.map({
+		mode = "i",
+		key = "<CR>",
+		cmd = "<CR><CMD>AutolistNewBullet<CR>",
+		desc = "Insert new bullet point",
+	})
+
+	utils.map({
+		mode = "i",
+		key = "<S-TAB>",
+		cmd = "<CMD>AutolistShiftTab<CR>",
+		desc = "Shift tab",
+	})
+
+	utils.map({
+		mode = "i",
+		key = "<TAB>",
+		cmd = "<CMD>AutolistTab<CR>",
+		desc = "Tab",
+	})
+
+	utils.map({
+		key = "<<",
+		cmd = "<<<CMD>AutolistRecalculate<CR>",
+		desc = "Recalculate indentation to the left",
+	})
+
+	utils.map({
+		key = "<CR>",
+		cmd = "<CMD>AutolistToggleCheckbox<CR>",
+		desc = "Toggle checkbox",
+	})
+
+	utils.map({
+		key = ">>",
+		cmd = ">>><CMD>AutolistRecalculate<CR>",
+		desc = "Recalculate indentation to the right",
+	})
+
+	utils.map({
+		key = "O",
+		cmd = "O<CMD>AutolistNewBulletBefore<CR>",
+		desc = "Insert new bullet point before",
+	})
+
+	utils.map({
+		key = "dd",
+		cmd = "dd<CMD>AutolistRecalculate<CR>",
+		desc = "Delete line and recalculate indentation",
+	})
+
+	utils.map({
+		key = "o",
+		cmd = "o<CMD>AutolistNewBullet<CR>",
+		desc = "Insert new bullet point below",
+	})
+
+	utils.map({
+		mode = "v",
+		key = "d",
+		cmd = "d<CMD>AutolistRecalculate<CR>",
+		desc = "Delete selection and recalculate indentation",
+	})
 
 	utils.section({
 		mode = { "n", "v" },
@@ -44,12 +97,6 @@ local setup = function()
 		key = "<leader>me",
 		cmd = require("nabla").popup,
 		desc = "Equation preview",
-	})
-
-	utils.map({
-		key = "<leader>mm",
-		cmd = "<CMD>MarkdownPreviewToggle<CR>",
-		desc = "Markdown preview",
 	})
 
 	utils.map({

@@ -99,7 +99,6 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
-        telescope-frecency-nvim
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide

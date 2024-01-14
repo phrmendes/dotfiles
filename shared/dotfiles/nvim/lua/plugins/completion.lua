@@ -9,11 +9,6 @@ local default = {
 	{ name = "buffer" },
 }
 
-require("cmp_pandoc").setup({
-	filetypes = { "quarto" },
-	crossref = { enable_nabla = true },
-})
-
 cmp.setup({
 	snippet = {
 		expand = function(args)

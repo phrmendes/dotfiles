@@ -4,6 +4,10 @@ require("gitsigns").setup({
 	on_attach = function(bufnr)
 		local gs = package.loaded.gitsigns
 
+		if vim.fn.has("mac") == 0 then
+			require("octo").setup()
+		end
+
 		utils.map({
 			key = "]h",
 			desc = "Next hunk",
@@ -36,6 +40,36 @@ require("gitsigns").setup({
 			end,
 		}, {
 			expr = true,
+		})
+
+		utils.section({
+			mode = { "n", "v" },
+			key = "<leader>g",
+			name = "git",
+		})
+
+		utils.section({
+			mode = { "n", "v" },
+			key = "<leader>gb",
+			name = "buffer",
+		})
+
+		utils.section({
+			mode = { "n", "v" },
+			key = "<leader>gh",
+			name = "hunk",
+		})
+
+		utils.section({
+			mode = { "n", "v" },
+			key = "<leader>gc",
+			name = "commits",
+		})
+
+		utils.map({
+			key = "<leader>gB",
+			cmd = "<CMD>Telescope git_branches<CR>",
+			desc = "Branches",
 		})
 
 		utils.map({
@@ -128,6 +162,30 @@ require("gitsigns").setup({
 			cmd = gs.undo_stage_hunk,
 			desc = "Undo stage",
 			buffer = bufnr,
+		})
+
+		utils.map({
+			key = "<leader>gcr",
+			cmd = "<CMD>LazyGitFilter<CR>",
+			desc = "Repository",
+		})
+
+		utils.map({
+			key = "<leader>gcf",
+			cmd = "<CMD>LazyGitFilterCurrentFile<CR>",
+			desc = "File",
+		})
+
+		utils.map({
+			key = "<leader>gg",
+			cmd = "<CMD>LazyGit<CR>",
+			desc = "LazyGit",
+		})
+
+		utils.map({
+			key = "<leader>gl",
+			cmd = "<CMD>Telescope lazygit<CR>",
+			desc = "List repos",
 		})
 	end,
 })

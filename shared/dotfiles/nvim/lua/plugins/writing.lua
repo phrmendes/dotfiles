@@ -10,6 +10,11 @@ local setup = function()
 
 	require("autolist").setup()
 
+	require("cmp_pandoc").setup({
+		filetypes = { "quarto" },
+		crossref = { enable_nabla = true },
+	})
+
 	require("quarto").setup({
 		codeRunner = {
 			enabled = true,

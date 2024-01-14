@@ -66,7 +66,6 @@ telescope.setup({
 })
 
 local extensions = {
-	"frecency",
 	"fzf",
 	"lazygit",
 	"zoxide",
@@ -110,12 +109,6 @@ map({
 	key = "<leader>fg",
 	cmd = "<CMD>Telescope live_grep<CR>",
 	desc = "Live grep",
-})
-
-map({
-	key = "<leader>fr",
-	cmd = "<CMD>Telescope frecency<CR>",
-	desc = "Recent files",
 })
 
 map({

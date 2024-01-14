@@ -12,6 +12,8 @@
     ./starship.nix
     ./symlinks.nix
     ./tealdeer.nix
+    ./vscode.nix
+    ./zellij.nix
     ./zoxide.nix
   ];
 

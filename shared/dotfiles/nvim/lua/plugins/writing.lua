@@ -1,101 +1,96 @@
-require("plugins.images")
+local utils = require("utils")
 
-local map = require("utils").map
-local section = require("utils").section
+local setup = function()
+	vim.g.mkdp_filetypes = { "markdown", "quarto" }
+	vim.wo.showbreak = "|"
 
-vim.g.mkdp_filetypes = { "markdown", "quarto" }
+	if not vim.g.neovide then
+		require("plugins.images")
+	end
 
-local M = {}
-
-M.markdown = function()
 	require("autolist").setup()
 
-	vim.opt.showbreak = "|"
+	require("quarto").setup({
+		codeRunner = {
+			enabled = true,
+			default_method = "slime",
+			never_run = { "yaml" },
+		},
+	})
 
-	vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
-	vim.keymap.set("i", "<S-TAB>", "<cmd>AutolistShiftTab<cr>")
-	vim.keymap.set("i", "<TAB>", "<cmd>AutolistTab<cr>")
-	vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
-	vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
-	vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
-	vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
-	vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
-	vim.keymap.set("n", "dd", "dd<cmd>AutolistRecalculate<cr>")
-	vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
-	vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
+	vim.keymap.set("i", "<CR>", "<CR><CMD>AutolistNewBullet<CR>")
+	vim.keymap.set("i", "<S-TAB>", "<CMD>AutolistShiftTab<CR>")
+	vim.keymap.set("i", "<TAB>", "<CMD>AutolistTab<CR>")
+	vim.keymap.set("n", "<<", "<<<CMD>AutolistRecalculate<CR>")
+	vim.keymap.set("n", "<CR>", "<CMD>AutolistToggleCheckbox<CR><CR>")
+	vim.keymap.set("n", ">>", ">><CMD>AutolistRecalculate<CR>")
+	vim.keymap.set("n", "O", "O<CMD>AutolistNewBulletBefore<CR>")
+	vim.keymap.set("n", "dd", "dd<CMD>AutolistRecalculate<CR>")
+	vim.keymap.set("n", "o", "o<CMD>AutolistNewBullet<CR>")
+	vim.keymap.set("v", "d", "d<CMD>AutolistRecalculate<CR>")
 
-	section({
+	utils.section({
 		mode = { "n", "v" },
 		key = "<leader>m",
 		name = "markdown",
-		buffer = 0,
 	})
 
-	map({
-		key = "<leader>mm",
-		cmd = "<cmd>MarkdownPreviewToggle<cr>",
-		desc = "Markdown preview",
-		buffer = 0,
-	})
-
-	map({
-		key = "<leader>mp",
-		cmd = "<cmd>PasteImage<cr>",
-		desc = "Paste image",
-		buffer = 0,
-	})
-
-	if vim.fn.has("mac") == 0 then
-		map({
-			key = "<leader>me",
-			cmd = require("nabla").popup,
-			desc = "Equation preview",
-			buffer = 0,
-		})
-	end
-end
-
-M.zotero = function()
-	section({
+	utils.section({
 		key = "<leader>z",
 		name = "zotero",
-		buffer = 0,
 	})
 
-	map({
+	utils.map({
+		key = "<leader>me",
+		cmd = require("nabla").popup,
+		desc = "Equation preview",
+	})
+
+	utils.map({
+		key = "<leader>mm",
+		cmd = "<CMD>MarkdownPreviewToggle<CR>",
+		desc = "Markdown preview",
+	})
+
+	utils.map({
+		key = "<leader>mp",
+		cmd = "<CMD>PasteImage<CR>",
+		desc = "Paste image",
+	})
+
+	utils.map({
 		key = "<leader>zc",
 		cmd = "<Plug>ZCitationCompleteInfo",
-		buffer = 0,
 		desc = "Citation info (complete)",
 	})
 
-	map({
+	utils.map({
 		key = "<leader>zi",
 		cmd = "<Plug>ZCitationInfo",
 		desc = "Citation info",
-		buffer = 0,
 	})
 
-	map({
+	utils.map({
 		key = "<leader>zo",
 		cmd = "<Plug>ZOpenAttachment",
 		desc = "Open attachment",
-		buffer = 0,
 	})
 
-	map({
+	utils.map({
 		key = "<leader>zv",
 		cmd = "<Plug>ZViewDocument",
 		desc = "View exported document",
-		buffer = 0,
 	})
 
-	map({
+	utils.map({
 		key = "<leader>zy",
 		cmd = "<Plug>ZCitationYamlRef",
 		desc = "Citation info (yaml)",
-		buffer = 0,
 	})
 end
 
-return M
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "quarto" },
+	group = utils.augroup,
+	callback = setup,
+})

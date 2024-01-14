@@ -30,6 +30,7 @@
       ncdu
       neovide
       obsidian
+      pandoc
       parallel
       peek
       phockup

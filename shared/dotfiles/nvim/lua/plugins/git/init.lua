@@ -24,6 +24,12 @@ utils.section({
 	name = "commits",
 })
 
+utils.map({
+	key = "<leader>gB",
+	cmd = "<CMD>Telescope git_branches<CR>",
+	desc = "Branches",
+})
+
 require("plugins.git.gitsigns")
 require("plugins.git.lazygit")
 

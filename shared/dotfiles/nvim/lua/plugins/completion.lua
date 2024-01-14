@@ -9,6 +9,11 @@ local default = {
 	{ name = "buffer" },
 }
 
+require("cmp_pandoc").setup({
+	filetypes = { "quarto" },
+	crossref = { enable_nabla = true },
+})
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -28,7 +33,7 @@ cmp.setup({
 			cmp.abort()
 			fallback()
 		end,
-		["<C-n>"] = cmp.mapping(function(fallback)
+		["<C-j>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
@@ -39,7 +44,7 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-p>"] = cmp.mapping(function(fallback)
+		["<C-k>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -84,21 +89,22 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
-cmp.setup.filetype("quarto", {
+cmp.setup.filetype("markdown", {
 	sources = cmp.config.sources({
-		{ name = "luasnip" },
+		{ name = "cmp_zotcite" },
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
-		{ name = "cmp_pandoc" },
-		{ name = "latex_symbols" },
+		{ name = "luasnip" },
+		{ name = "latex_symbols", option = { strategy = 2 } },
 	}, default),
 })
 
-cmp.setup.filetype("markdown", {
+cmp.setup.filetype("quarto", {
 	sources = cmp.config.sources({
-		{ name = "luasnip" },
-		{ name = "cmp_zotcite" },
 		{ name = "cmp_pandoc" },
-		{ name = "latex_symbols" },
+		{ name = "otter" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "latex_symbols", option = { strategy = 2 } },
 	}, default),
 })

@@ -9,5 +9,6 @@ M.section = require("utils.keybindings").section
 M.match_pattern = require("utils.string").match_pattern
 M.normalize = require("utils.string").normalize
 M.has_words_before = require("utils.string").has_words_before
+M.open = require("utils.system").open
 
 return M

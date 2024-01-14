@@ -1,6 +1,5 @@
 local utils = require("utils")
 local schemastore = require("schemastore")
-local conditional_servers
 
 local capabilities_snippets = vim.lsp.protocol.make_client_capabilities()
 capabilities_snippets.textDocument.completion.completionItem.snippetSupport = true
@@ -16,6 +15,8 @@ local servers = {
 	{ server = "terraformls" },
 	{ server = "texlab" },
 	{ server = "tflint" },
+	{ server = "html", capabilities = capabilities_snippets },
+	{ server = "cssls", capabilities = capabilities_snippets },
 	{
 		server = "taplo",
 		settings = {
@@ -122,28 +123,15 @@ local servers = {
 }
 
 if vim.fn.has("mac") == 0 then
-	conditional_servers = {
+	servers = vim.tbl_extend("keep", servers, {
 		{ server = "htmx" },
-		{
-			server = "html",
-			capabilities = capabilities_snippets,
-		},
-		{
-			server = "cssls",
-			capabilities = capabilities_snippets,
-		},
-		{
-			server = "tailwindcss",
-			filetypes = { "html", "css" },
-		},
-	}
+		{ server = "tailwindcss", filetypes = { "html", "css" } },
+	})
 else
-	conditional_servers = {
+	servers = vim.tbl_extend("keep", servers, {
 		{ server = "marksman" },
-	}
+	})
 end
-
-servers = vim.tbl_extend("force", servers, conditional_servers)
 
 for _, server in ipairs(servers) do
 	utils.add_language_server(server)

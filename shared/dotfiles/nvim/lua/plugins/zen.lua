@@ -10,6 +10,6 @@ require("zen-mode").setup({
 
 require("utils").map({
 	key = "<leader>Z",
-	cmd = "<cmd>ZenMode<cr>",
+	cmd = "<CMD>ZenMode<CR>",
 	desc = "Zen mode",
 })

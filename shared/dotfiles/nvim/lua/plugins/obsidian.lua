@@ -4,10 +4,6 @@ local utils = require("utils")
 local map = require("utils").map
 local section = require("utils").section
 
-local id = function(title)
-	return utils.normalize(title)
-end
-
 local metadata = function(note)
 	local out = { aliases = note.aliases, tags = note.tags }
 	if note.metadata ~= nil and obsidian.util.table_length(note.metadata) > 0 then
@@ -19,16 +15,12 @@ local metadata = function(note)
 	return out
 end
 
-local follow_url = function(url)
-	vim.fn.jobstart({ "xdg-open", url })
-end
-
 obsidian.setup({
 	dir = vim.fn.expand("~/Documents/notes"),
 	finder = "telescope.nvim",
-	follow_url_func = follow_url,
+	follow_url_func = utils.open,
 	note_frontmatter_func = metadata,
-	note_id_func = id,
+	note_id_func = utils.normalize,
 	open_notes_in = "current",
 	sort_by = "modified",
 	sort_reversed = true,
@@ -55,24 +47,24 @@ section({
 
 map({
 	key = "<leader>ob",
-	cmd = "<cmd>ObsidianBacklinks<cr>",
+	cmd = "<CMD>ObsidianBacklinks<CR>",
 	desc = "Backlinks",
 })
 
 map({
 	key = "<leader>of",
-	cmd = "<cmd>ObsidianFollowLink<cr>",
+	cmd = "<CMD>ObsidianFollowLink<CR>",
 	desc = "Follow link under cursor",
 })
 
 map({
 	key = "<leader>oo",
-	cmd = "<cmd>ObsidianOpen<cr>",
+	cmd = "<CMD>ObsidianOpen<CR>",
 	desc = "Open Obsidian",
 })
 
 map({
 	key = "<leader>os",
-	cmd = "<cmd>ObsidianQuickSwitch<cr>",
+	cmd = "<CMD>ObsidianQuickSwitch<CR>",
 	desc = "Quick switch to another note",
 })

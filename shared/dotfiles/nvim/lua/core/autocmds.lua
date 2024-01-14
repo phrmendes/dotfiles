@@ -1,4 +1,5 @@
 local augroup = require("utils").augroup
+local open = require("utils").open
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -28,11 +29,7 @@ autocmd("BufEnter", {
 		local filename = vim.api.nvim_buf_get_name(0)
 		filename = vim.fn.shellescape(filename)
 
-		if vim.fn.has("mac") == 1 then
-			vim.cmd["!"]({ "open", filename })
-		else
-			vim.cmd["!"]({ "xdg-open", filename })
-		end
+		open(filename)
 
 		vim.cmd.redraw()
 

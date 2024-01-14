@@ -16,7 +16,7 @@ M.handlers = {
 M.on_attach = function(client, bufnr)
 	map({
 		key = "<leader>D",
-		cmd = "<cmd>TroubleToggle workspace_diagnostics<cr>",
+		cmd = "<CMD>TroubleToggle workspace_diagnostics<CR>",
 		buffer = bufnr,
 		desc = "LSP: workspace diagnostics",
 	})
@@ -30,7 +30,7 @@ M.on_attach = function(client, bufnr)
 
 	map({
 		key = "<leader>d",
-		cmd = "<cmd>TroubleToggle document_diagnostics<cr>",
+		cmd = "<CMD>TroubleToggle document_diagnostics<CR>",
 		buffer = bufnr,
 		desc = "LSP: document diagnostics",
 	})
@@ -57,7 +57,7 @@ M.on_attach = function(client, bufnr)
 	provider(client, "definition", function()
 		map({
 			key = "gd",
-			cmd = "<cmd>Telescope lsp_definitions<CR>",
+			cmd = "<CMD>Telescope lsp_definitions<CR>",
 			buffer = bufnr,
 			desc = "LSP: go to definition",
 		})
@@ -66,7 +66,7 @@ M.on_attach = function(client, bufnr)
 	provider(client, "documentSymbol", function()
 		map({
 			key = "<leader>s",
-			cmd = "<cmd>Telescope lsp_document_symbols<cr>",
+			cmd = "<CMD>Telescope lsp_document_symbols<CR>",
 			buffer = bufnr,
 			desc = "LSP: document symbols",
 		})
@@ -84,7 +84,7 @@ M.on_attach = function(client, bufnr)
 	provider(client, "implementation", function()
 		map({
 			key = "gi",
-			cmd = "<cmd>Telescope lsp_implementations<cr>",
+			cmd = "<CMD>Telescope lsp_implementations<CR>",
 			buffer = bufnr,
 			desc = "LSP: go to implementations",
 		})
@@ -102,7 +102,7 @@ M.on_attach = function(client, bufnr)
 	provider(client, "references", function()
 		map({
 			key = "gr",
-			cmd = "<cmd>Telescope lsp_references<cr>",
+			cmd = "<CMD>Telescope lsp_references<CR>",
 			buffer = bufnr,
 			desc = "LSP: show references",
 		})
@@ -120,7 +120,7 @@ M.on_attach = function(client, bufnr)
 	provider(client, "typeDefinition", function()
 		map({
 			key = "gt",
-			cmd = "<cmd>Telescope lsp_type_definitions<cr>",
+			cmd = "<CMD>Telescope lsp_type_definitions<CR>",
 			buffer = bufnr,
 			desc = "LSP: go to type definition",
 		})
@@ -129,7 +129,7 @@ M.on_attach = function(client, bufnr)
 	provider(client, "workspaceSymbol", function()
 		map({
 			key = "<leader>S",
-			cmd = "<cmd>Telescope lsp_workspace_symbols<cr>",
+			cmd = "<CMD>Telescope lsp_workspace_symbols<CR>",
 			buffer = bufnr,
 			desc = "LSP: workspace symbols",
 		})

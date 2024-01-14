@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 
-export EDITOR="nvim"
-export GIT_EDITOR="nvim"
-export SUDO_EDITOR="nvim"
-export VISUAL="nvim"
-
 SYSTEM=$(uname -av|awk '{print $1;}')
 
 if [[ $SYSTEM  == "Linux" ]]; then
-    export TERM="kitty"
+    export TERM="xterm-kitty"
 else
     export TERM="xterm-256color"
-    path+=(
-        /opt/homebrew/opt/gnu-sed/libexec/gnubin
-    )
+    path+=(/opt/homebrew/opt/gnu-sed/libexec/gnubin)
 fi
 
 path+=(

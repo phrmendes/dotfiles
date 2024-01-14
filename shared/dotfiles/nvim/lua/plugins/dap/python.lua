@@ -5,7 +5,7 @@ M.setup = function()
 
 	local dap_python = require("dap-python")
 
-	dap_python.setup(vim.fn.expand("~") .. "/.virtualenvs/tools/bin/python")
+	dap_python.setup(vim.fn.expand("~/.virtualenvs/tools/bin/python"))
 	dap_python.test_runner = "pytest"
 
 	map({

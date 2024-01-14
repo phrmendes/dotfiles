@@ -4,7 +4,7 @@
   ...
 }: let
   appendPackages = {
-    to_nix,
+    to_nix ? [],
     to_darwin ? [],
   }:
     if ! pkgs.stdenv.isDarwin
@@ -22,11 +22,6 @@
     img-clip-nvim = inputs.img-clip-nvim;
     zotcite = inputs.zotcite;
   };
-  darwin = {
-    packages = with pkgs; [
-      marksman
-    ];
-  };
   nix = {
     packages = with pkgs; [
       htmx-lsp
@@ -34,17 +29,9 @@
     ];
     extensions = with pkgs.vimPlugins; [
       ChatGPT-nvim
-      cmp-latex-symbols
-      cmp-pandoc-nvim
       gh.cmp-zotcite
       gh.zotcite
-      nabla-nvim
-      nvim-colorizer-lua
-      nvim-metals
-      nvim-ts-autotag
       obsidian-nvim
-      otter-nvim
-      quarto-nvim
     ];
   };
 in {
@@ -65,13 +52,14 @@ in {
         cmp-buffer
         cmp-cmdline
         cmp-emoji
+        cmp-latex-symbols
         cmp-nvim-lsp
+        cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
         conform-nvim
         copilot-vim
         dressing-nvim
-        executor-nvim
         friendly-snippets
         gh.autolist-nvim
         gh.img-clip-nvim
@@ -85,10 +73,12 @@ in {
         luasnip
         markdown-preview-nvim
         mini-nvim
+        nabla-nvim
         neo-tree-nvim
         neodev-nvim
         neogen
         nvim-cmp
+        nvim-colorizer-lua
         nvim-dap
         nvim-dap-go
         nvim-dap-python
@@ -96,14 +86,18 @@ in {
         nvim-dap-virtual-text
         nvim-lint
         nvim-lspconfig
+        nvim-metals
         nvim-spectre
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
+        nvim-ts-autotag
         nvim-ts-context-commentstring
         nvim-web-devicons
         octo-nvim
+        otter-nvim
         plenary-nvim
+        quarto-nvim
         smartyank-nvim
         telescope-frecency-nvim
         telescope-fzf-native-nvim
@@ -184,7 +178,6 @@ in {
       ])
       ++ appendPackages {
         to_nix = nix.packages;
-        to_darwin = darwin.packages;
       };
   };
 }

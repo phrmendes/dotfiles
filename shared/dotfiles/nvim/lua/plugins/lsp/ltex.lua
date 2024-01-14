@@ -3,7 +3,7 @@ local utils = require("utils")
 require("ltex_extra").setup({
 	load_langs = { "en-US", "pt-BR" },
 	init_check = false,
-	path = vim.fn.expand("~") .. "/.local/state/ltex",
+	path = vim.fn.expand("~/.local/state/ltex"),
 	server_opts = {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		handlers = utils.handlers,

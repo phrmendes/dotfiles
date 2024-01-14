@@ -35,7 +35,7 @@ map({
 map({
 	mode = "v",
 	key = "Q",
-	cmd = "<cmd>norm @q<cr>",
+	cmd = "<CMD>norm @q<CR>",
 	desc = "Replay macro",
 })
 
@@ -69,7 +69,7 @@ map({
 
 map({
 	key = "+",
-	cmd = "<cmd>resize +2<cr>",
+	cmd = "<CMD>resize +2<CR>",
 	desc = "Increase window (V)",
 }, {
 	noremap = true,
@@ -78,7 +78,7 @@ map({
 
 map({
 	key = "-",
-	cmd = "<cmd>vertical resize -2<cr>",
+	cmd = "<CMD>vertical resize -2<CR>",
 	desc = "Decrease window (H)",
 }, {
 	noremap = true,
@@ -87,7 +87,7 @@ map({
 
 map({
 	key = "=",
-	cmd = "<cmd>vertical resize +2<cr>",
+	cmd = "<CMD>vertical resize +2<CR>",
 	desc = "Increase window (H)",
 }, {
 	noremap = true,
@@ -96,7 +96,7 @@ map({
 
 map({
 	key = "_",
-	cmd = "<cmd>resize -2<cr>",
+	cmd = "<CMD>resize -2<CR>",
 	desc = "Decrease window (V)",
 }, {
 	noremap = true,
@@ -104,26 +104,14 @@ map({
 })
 
 map({
-	key = "<S-TAB>",
-	cmd = "<cmd>bprevious<cr>",
-	desc = "Previous buffer",
-})
-
-map({
-	key = "<TAB>",
-	cmd = "<cmd>bnext<cr>",
-	desc = "Next buffer",
-})
-
-map({
 	key = "[<TAB>",
-	cmd = "<cmd>tabprevious<cr>",
+	cmd = "<CMD>tabprevious<CR>",
 	desc = "Previous tab",
 })
 
 map({
 	key = "]<TAB>",
-	cmd = "<cmd>tabnext<cr>",
+	cmd = "<CMD>tabnext<CR>",
 	desc = "Next tab",
 })
 
@@ -141,37 +129,37 @@ map({
 
 map({
 	key = "<leader>u",
-	cmd = "<cmd>UndotreeToggle<cr>",
+	cmd = "<CMD>UndotreeToggle<CR>",
 	desc = "Toggle undo tree",
 })
 
 map({
 	key = "<leader>-",
-	cmd = "<cmd>split<cr>",
+	cmd = "<CMD>split<CR>",
 	desc = "Split window (H)",
 })
 
 map({
 	key = "<leader>\\",
-	cmd = "<cmd>vsplit<cr>",
+	cmd = "<CMD>vsplit<CR>",
 	desc = "Split window (V)",
 })
 
 map({
 	key = "<leader>W",
-	cmd = "<cmd>wq<cr>",
+	cmd = "<CMD>wq<CR>",
 	desc = "Save and quit",
 })
 
 map({
 	key = "<leader>q",
-	cmd = "<cmd>confirm q<cr>",
+	cmd = "<CMD>confirm q<CR>",
 	desc = "Quit",
 })
 
 map({
 	key = "<leader>w",
-	cmd = "<cmd>w<cr>",
+	cmd = "<CMD>w<CR>",
 	desc = "Save",
 })
 
@@ -189,42 +177,42 @@ map({
 
 map({
 	key = "<leader><TAB>n",
-	cmd = "<cmd>tabnext<cr>",
+	cmd = "<CMD>tabnext<CR>",
 	desc = "New",
 })
 
 map({
 	key = "<leader><TAB>q",
-	cmd = "<cmd>tabonly<cr>",
+	cmd = "<CMD>tabonly<CR>",
 	desc = "Close",
 })
 
 map({
 	key = "<leader>bG",
-	cmd = "<cmd>blast<cr>",
+	cmd = "<CMD>blast<CR>",
 	desc = "Go to last buffer",
 })
 
 map({
 	key = "<leader>bg",
-	cmd = "<cmd>bfirst<cr>",
+	cmd = "<CMD>bfirst<CR>",
 	desc = "Go to last buffer",
 })
 
 map({
 	key = "<leader>bq",
-	cmd = "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>",
+	cmd = "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>",
 	desc = "Close all unfocused",
 })
 
 map({
 	key = "<localleader>q",
-	cmd = "<cmd>TroubleToggle quickfix<cr>",
+	cmd = "<CMD>TroubleToggle quickfix<CR>",
 	desc = "Quickfix",
 })
 
 map({
 	key = "<localleader>l",
-	cmd = "<cmd>TroubleToggle loclist<cr>",
+	cmd = "<CMD>TroubleToggle loclist<CR>",
 	desc = "Loclist",
 })

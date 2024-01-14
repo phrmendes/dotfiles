@@ -78,48 +78,48 @@ end
 
 map({
 	key = "<leader>.",
-	cmd = "<cmd>Telescope commands<cr>",
+	cmd = "<CMD>Telescope commands<CR>",
 	desc = "List commands",
 })
 
 map({
 	key = "<leader>?",
-	cmd = "<cmd>Telescope help_tags<cr>",
+	cmd = "<CMD>Telescope help_tags<CR>",
 	desc = "Help",
 })
 
 map({
 	key = "<leader>bb",
-	cmd = "<cmd>Telescope buffers<cr>",
+	cmd = "<CMD>Telescope buffers<CR>",
 	desc = "List",
 })
 
 map({
 	key = "<leader>bf",
-	cmd = "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+	cmd = "<CMD>Telescope current_buffer_fuzzy_find<CR>",
 	desc = "Search in current buffer",
 })
 
 map({
 	key = "<leader>ff",
-	cmd = "<cmd>Telescope find_files<cr>",
+	cmd = "<CMD>Telescope find_files<CR>",
 	desc = "Find",
 })
 
 map({
 	key = "<leader>fg",
-	cmd = "<cmd>Telescope live_grep<cr>",
+	cmd = "<CMD>Telescope live_grep<CR>",
 	desc = "Live grep",
 })
 
 map({
 	key = "<leader>fr",
-	cmd = "<cmd>Telescope frecency<cr>",
+	cmd = "<CMD>Telescope frecency<CR>",
 	desc = "Recent files",
 })
 
 map({
 	key = "<leader>fz",
-	cmd = "<cmd>Telescope zoxide list<cr>",
+	cmd = "<CMD>Telescope zoxide list<CR>",
 	desc = "Zoxide",
 })

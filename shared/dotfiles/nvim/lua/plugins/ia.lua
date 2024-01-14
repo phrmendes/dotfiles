@@ -15,82 +15,82 @@ section({
 map({
 	mode = { "n", "v" },
 	key = "<leader>iS",
-	cmd = "<cmd>ChatGPTRun summarize<cr>",
+	cmd = "<CMD>ChatGPTRun summarize<CR>",
 	desc = "Summarize",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>ia",
-	cmd = "<cmd>ChatGPTRun add_tests<cr>",
+	cmd = "<CMD>ChatGPTRun add_tests<CR>",
 	desc = "Add tests",
 })
 
 map({
 	key = "<leader>ic",
-	cmd = "<cmd>ChatGPT<cr>",
+	cmd = "<CMD>ChatGPT<CR>",
 	desc = "ChatGPT",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>id",
-	cmd = "<cmd>ChatGPTRun docstring<cr>",
+	cmd = "<CMD>ChatGPTRun docstring<CR>",
 	desc = "Docstring",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>ie",
-	cmd = "<cmd>ChatGPTEditWithInstruction<cr>",
+	cmd = "<CMD>ChatGPTEditWithInstruction<CR>",
 	desc = "Edit with instruction",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>if",
-	cmd = "<cmd>ChatGPTRun fix_bugs<cr>",
+	cmd = "<CMD>ChatGPTRun fix_bugs<CR>",
 	desc = "Fix bugs",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>ig",
-	cmd = "<cmd>ChatGPTRun grammar_correction<cr>",
+	cmd = "<CMD>ChatGPTRun grammar_correction<CR>",
 	desc = "Grammar correction",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>ik",
-	cmd = "<cmd>ChatGPTRun keywords<cr>",
+	cmd = "<CMD>ChatGPTRun keywords<CR>",
 	desc = "Keywords",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>il",
-	cmd = "<cmd>ChatGPTRun code_readability_analysis<cr>",
+	cmd = "<CMD>ChatGPTRun code_readability_analysis<CR>",
 	desc = "Code readability analysis",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>io",
-	cmd = "<cmd>ChatGPTRun optimize_code<cr>",
+	cmd = "<CMD>ChatGPTRun optimize_code<CR>",
 	desc = "Optimize code",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>it",
-	cmd = "<cmd>ChatGPTRun translate<cr>",
+	cmd = "<CMD>ChatGPTRun translate<CR>",
 	desc = "Translate",
 })
 
 map({
 	mode = { "n", "v" },
 	key = "<leader>ix",
-	cmd = "<cmd>ChatGPTRun explain_code<cr>",
+	cmd = "<CMD>ChatGPTRun explain_code<CR>",
 	desc = "Explain code",
 })

@@ -2,24 +2,24 @@ local utils = require("utils")
 
 utils.map({
 	key = "<leader>gcr",
-	cmd = "<cmd>LazyGitFilter<cr>",
+	cmd = "<CMD>LazyGitFilter<CR>",
 	desc = "Repository",
 })
 
 utils.map({
 	key = "<leader>gcf",
-	cmd = "<cmd>LazyGitFilterCurrentFile<cr>",
+	cmd = "<CMD>LazyGitFilterCurrentFile<CR>",
 	desc = "File",
 })
 
 utils.map({
 	key = "<leader>gg",
-	cmd = "<cmd>LazyGit<cr>",
+	cmd = "<CMD>LazyGit<CR>",
 	desc = "LazyGit",
 })
 
 utils.map({
 	key = "<leader>gl",
-	cmd = "<cmd>Telescope lazygit<cr>",
+	cmd = "<CMD>Telescope lazygit<CR>",
 	desc = "List repos",
 })

@@ -20,6 +20,7 @@
       gnome-extensions-cli
       go
       hugo
+      jq
       just
       kind
       kubectl

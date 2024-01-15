@@ -150,6 +150,7 @@ in {
         lua-language-server
         neovim-remote
         nixd
+        prettierd
         ruff
         ruff-lsp
         shellcheck
@@ -168,7 +169,6 @@ in {
       ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
-        prettier
         pyright
         vscode-json-languageserver
         vscode-langservers-extracted

@@ -16,18 +16,18 @@ conform.formatters.tex = {
 }
 
 conform.formatters_by_ft = {
-	css = { "prettier" },
+	css = { "prettierd" },
 	go = { "gofumpt", "goimports-reviser", "golines" },
-	html = { "prettier" },
+	html = { "prettierd" },
 	jinja = { "djlint" },
-	json = { "prettier" },
+	json = { "prettierd" },
 	lua = { "stylua" },
-	markdown = { "prettier" },
+	markdown = { "prettierd" },
 	nix = { "alejandra" },
 	python = { "ruff" },
 	sh = { "shellharden" },
 	sql = { "sqlfluff" },
 	terraform = { "terraform_fmt" },
 	toml = { "taplo" },
-	yaml = { "prettier" },
+	yaml = { "prettierd" },
 }

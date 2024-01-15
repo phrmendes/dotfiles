@@ -139,7 +139,6 @@ in {
         ansible-lint
         delve
         djlint
-        djlint
         docker-compose-language-service
         gofumpt
         goimports-reviser

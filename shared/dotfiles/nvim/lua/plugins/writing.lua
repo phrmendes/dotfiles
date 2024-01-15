@@ -8,7 +8,26 @@ local setup = function()
 		require("plugins.images")
 	end
 
-	require("autolist").setup()
+	local list_patterns = {
+		unordered = "[-+*]",
+		digit = "%d+[.)]",
+		ascii = "%a[.)]",
+	}
+
+	require("autolist").setup({
+		lists = {
+			quarto = {
+				list_patterns.unordered,
+				list_patterns.digit,
+				list_patterns.ascii,
+			},
+			markdown = {
+				list_patterns.unordered,
+				list_patterns.digit,
+				list_patterns.ascii,
+			},
+		},
+	})
 
 	require("cmp_pandoc").setup({
 		filetypes = { "quarto" },
@@ -28,20 +47,6 @@ local setup = function()
 		key = "<CR>",
 		cmd = "<CR><CMD>AutolistNewBullet<CR>",
 		desc = "Insert new bullet point",
-	})
-
-	utils.map({
-		mode = "i",
-		key = "<S-TAB>",
-		cmd = "<CMD>AutolistShiftTab<CR>",
-		desc = "Shift tab",
-	})
-
-	utils.map({
-		mode = "i",
-		key = "<TAB>",
-		cmd = "<CMD>AutolistTab<CR>",
-		desc = "Tab",
 	})
 
 	utils.map({
@@ -87,6 +92,12 @@ local setup = function()
 		desc = "Delete selection and recalculate indentation",
 	})
 
+	utils.map({
+		key = "<leader>p",
+		cmd = "<CMD>PasteImage<CR>",
+		desc = "Paste image",
+	})
+
 	utils.section({
 		mode = { "n", "v" },
 		key = "<leader>m",
@@ -105,9 +116,9 @@ local setup = function()
 	})
 
 	utils.map({
-		key = "<leader>mp",
-		cmd = "<CMD>PasteImage<CR>",
-		desc = "Paste image",
+		key = "<leader>mm",
+		cmd = "<CMD>MarkdownPreviewToggle<CR>",
+		desc = "Markdown preview",
 	})
 
 	utils.map({

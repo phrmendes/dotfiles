@@ -166,17 +166,6 @@ in {
     stateVersion = "23.05";
   };
 
-  # virtualisation.docker = {
-  #   rootless = {
-  #     enable = true;
-  #     setSocketVariable = true;
-  #   };
-  #   autoPrune = {
-  #     enable = true;
-  #     dates = "weekly";
-  #   };
-  # };
-
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;

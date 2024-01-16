@@ -1,6 +1,7 @@
-default_layout "default"
+default_layout "compact"
 default_shell "zsh"
 mouse_mode true
+pane_frame false
 simplified_ui true
 theme "catppuccin-mocha"
 

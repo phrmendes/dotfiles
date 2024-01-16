@@ -44,6 +44,7 @@ in {
           nh = "nix-hash --flat --base64 --type sha256";
           nu = update_cmd;
           v = "nvim";
+          zl = "zellij --config ~/.config/zellij/config.kdl";
         }
         // aliases;
     };

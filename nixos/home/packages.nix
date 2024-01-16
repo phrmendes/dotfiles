@@ -44,6 +44,7 @@
       terraform
       ventoy
       vlc
+      zellij
       zotero
     ])
     ++ (with pkgs.gnome; [

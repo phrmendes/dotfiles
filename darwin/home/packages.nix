@@ -27,5 +27,6 @@
     tealdeer
     terraform
     terragrunt
+    zellij
   ];
 }

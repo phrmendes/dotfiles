@@ -7,7 +7,6 @@
     gh
     gnumake
     gnupg
-    gnused
     go
     jdk21
     just

@@ -12,12 +12,14 @@
     };
     brews = [
       "openssl"
+      "gnu-sed"
     ];
     casks = [
       "amethyst"
       "firefox"
       "keepingyouawake"
       "maccy"
+      "podman-desktop"
       "postman"
       "qview"
       "slack"

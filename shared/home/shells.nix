@@ -2,23 +2,19 @@
   inherit (pkgs.stdenv) isDarwin;
   path = "~/Projects/dotfiles";
   nixos = {
-    update_cmd = "sudo nixos-rebuild switch --flake ${path}";
+    updateCmd = "sudo nixos-rebuild switch --flake ${path}";
     aliases = {
       dpct = "duplicati-cli";
-      ld = "lazydocker";
       open = "xdg-open";
     };
   };
   darwin = {
     update_cmd = "nix run nix-darwin -- switch --flake ${path}";
-    aliases = {
-      docker = "podman";
-    };
   };
-  update_cmd =
+  updateCmd =
     if isDarwin
-    then darwin.update_cmd
-    else nixos.update_cmd;
+    then darwin.updateCmd
+    else nixos.updateCmd;
   aliases =
     if isDarwin
     then darwin.aliases
@@ -35,6 +31,8 @@ in {
       initExtra = builtins.readFile ../dotfiles/init.sh;
       shellAliases =
         {
+          docker-compose = "podman-compose";
+          docker = "podman";
           cat = "bat";
           k = "kubectl";
           lg = "lazygit";
@@ -42,7 +40,7 @@ in {
           nc = "nix store gc --debug";
           ncdu = "ncdu --color dark";
           nh = "nix-hash --flat --base64 --type sha256";
-          nu = update_cmd;
+          nu = updateCmd;
           v = "nvim";
           zl = "zellij --config ~/.config/zellij/config.kdl";
         }

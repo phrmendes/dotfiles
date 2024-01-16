@@ -1,4 +1,4 @@
-default_layout "compact"
+default_layout "default"
 default_shell "zsh"
 mouse_mode true
 pane_frame false
@@ -12,7 +12,7 @@ ui {
 }
 
 keybinds {
-    normal clear-defaults=true {
+    normal {
         bind "Ctrl f" { SwitchToMode "Tmux"; }
         unbind "Ctrl b"
     }
@@ -20,11 +20,12 @@ keybinds {
     tmux clear-defaults=true {
         bind "Ctrl d" { Detach; }
         bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
-        bind "Ctrl n" { GoToNextTab; SwitchToMode "Normal"; }
-        bind "Ctrl p" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "Ctrl p" { SwitchToMode "Pane"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "Backspace" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "Tab" { GoToNextTab; SwitchToMode "Normal"; }
         bind "d" { CloseTab; SwitchToMode "Normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "g" { SwitchToMode "Locked"; }

@@ -18,6 +18,7 @@
     ncdu
     nodejs_21
     parallel
+    pngpaste
     podman
     podman-compose
     qemu

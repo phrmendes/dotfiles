@@ -75,11 +75,11 @@
     "img-clip-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1704550705,
-        "narHash": "sha256-pWGoRJdhFRJOcBx/A72Q6qsvaXRrI8MLQ7PFuvcfb1Q=",
+        "lastModified": 1705162040,
+        "narHash": "sha256-7zzEOG1GuHP979XtqbumdqyI19RfaqAvnHaPyZV4/HQ=",
         "owner": "HakonHarnes",
         "repo": "img-clip.nvim",
-        "rev": "a9b91b3ced6541c2c394ef00619ae4313224b871",
+        "rev": "3682b34906070ff4e6956e8e77e8f5ad08807d26",
         "type": "github"
       },
       "original": {
@@ -135,11 +135,11 @@
     "zotcite": {
       "flake": false,
       "locked": {
-        "lastModified": 1704320280,
-        "narHash": "sha256-9OJg14G+0pWML454mIdk7+5DgKCKEFCQeWtpT5x7CSU=",
+        "lastModified": 1705280579,
+        "narHash": "sha256-psj4C8CB0hTd2J7scYyDYrO8JpLscjqjutTFtb2JFPM=",
         "owner": "jalvesaq",
         "repo": "zotcite",
-        "rev": "f3d87f4671f624e8fd3fb00e6e63ec1cf0f1b652",
+        "rev": "6644c4f6f2456cd923c2a38ce87d0c96e7c8e6e7",
         "type": "github"
       },
       "original": {

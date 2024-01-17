@@ -6,10 +6,15 @@
     aliases = {
       dpct = "duplicati-cli";
       open = "xdg-open";
+      ld = "lazydocker";
     };
   };
   darwin = {
     update_cmd = "nix run nix-darwin -- switch --flake ${path}";
+    aliases = {
+      docker-compose = "podman-compose";
+      docker = "podman";
+    };
   };
   updateCmd =
     if isDarwin
@@ -31,8 +36,6 @@ in {
       initExtra = builtins.readFile ../dotfiles/init.sh;
       shellAliases =
         {
-          docker-compose = "podman-compose";
-          docker = "podman";
           cat = "bat";
           k = "kubectl";
           lg = "lazygit";
@@ -42,7 +45,7 @@ in {
           nh = "nix-hash --flat --base64 --type sha256";
           nu = updateCmd;
           v = "nvim";
-          zl = "zellij --config ~/.config/zellij/config.kdl";
+          zl = "zellij";
         }
         // aliases;
     };

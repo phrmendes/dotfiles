@@ -24,6 +24,7 @@
       kind
       kubectl
       kubernetes-helm
+      lazydocker
       libreoffice
       mc
       ncdu
@@ -33,9 +34,6 @@
       parallel
       peek
       phockup
-      podman-compose
-      podman-desktop
-      podman-tui
       pop-launcher
       quarto
       qview

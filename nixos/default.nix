@@ -107,7 +107,11 @@ in {
 
   hardware = {
     pulseaudio.enable = false;
-    opengl.enable = true;
+
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
 
     bluetooth = {
       enable = true;
@@ -166,10 +170,22 @@ in {
     stateVersion = "23.05";
   };
 
-  virtualisation.podman = {
+  virtualisation.docker = {
     enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
+    enableNvidia = true;
+    liveRestore = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+      flags = ["--all"];
+    };
+    extraPackages = with pkgs; [
+      docker-compose
+    ];
   };
 
   xdg = {

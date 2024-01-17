@@ -1,6 +1,7 @@
 local utils = require("utils")
 
 local setup = function()
+	vim.g.markdown_fenced_languages = { "python", "sh" }
 	vim.g.mkdp_filetypes = { "markdown", "quarto" }
 	vim.wo.showbreak = "|"
 
@@ -13,6 +14,15 @@ local setup = function()
 		digit = "%d+[.)]",
 		ascii = "%a[.)]",
 	}
+
+	require("mdeval").setup({
+		require_confirmation = false,
+		results_label = "**OUTPUT:**",
+		eval_options = {
+			sh = { command = { "bash" } },
+			python = { command = { "python" } },
+		},
+	})
 
 	require("autolist").setup({
 		lists = {
@@ -98,6 +108,15 @@ local setup = function()
 		desc = "Paste image",
 	})
 
+	utils.map({
+		key = "<leader>c",
+		cmd = "<CMD>MdEval<CR>",
+		desc = "Evaluate code block",
+	}, {
+		silent = true,
+		noremap = true,
+	})
+
 	utils.section({
 		mode = { "n", "v" },
 		key = "<leader>m",
@@ -119,6 +138,12 @@ local setup = function()
 		key = "<leader>mm",
 		cmd = "<CMD>MarkdownPreviewToggle<CR>",
 		desc = "Markdown preview",
+	})
+
+	utils.map({
+		key = "<leader>mt",
+		cmd = "<CMD>! md-tangle -f %<CR>",
+		desc = "Tangle code blocks",
 	})
 
 	utils.map({

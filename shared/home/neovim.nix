@@ -21,6 +21,7 @@
     cmp-zotcite = inputs.cmp-zotcite;
     img-clip-nvim = inputs.img-clip-nvim;
     zotcite = inputs.zotcite;
+    mdeval-nvim = inputs.mdeval-nvim;
   };
   nix = {
     packages = with pkgs; [
@@ -63,6 +64,7 @@ in {
         friendly-snippets
         gh.autolist-nvim
         gh.img-clip-nvim
+        gh.mdeval-nvim
         gitsigns-nvim
         image-nvim
         lazygit-nvim
@@ -148,6 +150,7 @@ in {
         imagemagick
         ltex-ls
         lua-language-server
+        md-tangle
         neovim-remote
         nixd
         prettierd

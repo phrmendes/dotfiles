@@ -30,6 +30,11 @@
       url = "github:HakonHarnes/img-clip.nvim";
     };
 
+    mdeval-nvim = {
+      flake = false;
+      url = "github:jubnzv/mdeval.nvim";
+    };
+
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

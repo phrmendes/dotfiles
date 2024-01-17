@@ -88,6 +88,22 @@
         "type": "github"
       }
     },
+    "mdeval-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703516053,
+        "narHash": "sha256-KYWs1/bywPni/MOogs/f+NfnaOakvHdNFh6v4Eyna40=",
+        "owner": "jubnzv",
+        "repo": "mdeval.nvim",
+        "rev": "2c32e2f3e7d8f222e7a4724989f218d036e1081d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jubnzv",
+        "repo": "mdeval.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1704161960,
@@ -127,6 +143,7 @@
         "darwin": "darwin",
         "home-manager": "home-manager",
         "img-clip-nvim": "img-clip-nvim",
+        "mdeval-nvim": "mdeval-nvim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "zotcite": "zotcite"

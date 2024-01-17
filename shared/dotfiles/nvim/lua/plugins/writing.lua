@@ -144,6 +144,9 @@ local setup = function()
 		key = "<leader>mt",
 		cmd = "<CMD>! md-tangle -f %<CR>",
 		desc = "Tangle code blocks",
+	}, {
+		silent = true,
+		noremap = true,
 	})
 
 	utils.map({

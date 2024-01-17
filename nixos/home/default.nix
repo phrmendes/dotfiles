@@ -10,6 +10,7 @@
     ./packages.nix
     ./sioyek.nix
     ./symlinks.nix
+    ./vscode.nix
   ];
 
   targets.genericLinux.enable = true;

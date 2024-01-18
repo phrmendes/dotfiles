@@ -60,6 +60,7 @@ in {
         cmp_luasnip
         conform-nvim
         copilot-vim
+        debugprint-nvim
         dressing-nvim
         friendly-snippets
         gh.autolist-nvim

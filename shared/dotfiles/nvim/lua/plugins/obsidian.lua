@@ -60,7 +60,13 @@ map({
 map({
 	key = "<leader>oo",
 	cmd = "<CMD>ObsidianOpen<CR>",
-	desc = "Open Obsidian",
+	desc = "Open Obsidian app",
+})
+
+map({
+	key = "<leader>op",
+	cmd = "<CMD>ObsidianPasteImg<CR>",
+	desc = "Paste image",
 })
 
 map({

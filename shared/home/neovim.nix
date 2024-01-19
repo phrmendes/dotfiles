@@ -22,6 +22,7 @@
     img-clip-nvim = inputs.img-clip-nvim;
     zotcite = inputs.zotcite;
     mdeval-nvim = inputs.mdeval-nvim;
+    obsidian-nvim = inputs.obsidian-nvim;
   };
   nix = {
     packages = with pkgs; [
@@ -32,7 +33,7 @@
       ChatGPT-nvim
       gh.cmp-zotcite
       gh.zotcite
-      obsidian-nvim
+      gh.obsidian-nvim
     ];
   };
 in {

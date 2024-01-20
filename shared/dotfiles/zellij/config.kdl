@@ -1,7 +1,6 @@
-default_layout "compact"
 default_shell "zsh"
 mouse_mode true
-pane_frame false
+pane_frames false
 simplified_ui true
 theme "catppuccin-mocha"
 
@@ -13,35 +12,37 @@ ui {
 
 keybinds {
     normal clear-defaults=true {
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt n" { NewPane; }
         bind "Ctrl f" { SwitchToMode "Tmux"; }
-        unbind "Ctrl b"
     }
+
     tmux clear-defaults=true {
         bind "Ctrl d" { Detach; }
         bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
         bind "Ctrl r" { SwitchToMode "RenameTab"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
-        bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "Backspace" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "Enter" { SwitchToMode "Resize"; }
-        bind "Space" { NextSwapLayout; }
         bind "Tab" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
+		bind "f" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "d" { CloseTab; SwitchToMode "Normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "n" { FocusNextPane; SwitchToMode "Normal"; }
         bind "p" { FocusPreviousPane; SwitchToMode "Normal"; }
         bind "q" { Quit; }
         bind "r" { SwitchToMode "RenamePane"; }
+        bind "s" { SwitchToMode "Session"; }
         bind "t" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "s" {
-            LaunchOrFocusPlugin "zellij:session-manager" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Normal"
-        }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
     }
 }
-

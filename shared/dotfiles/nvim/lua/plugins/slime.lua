@@ -2,8 +2,6 @@ local map = require("utils").map
 
 vim.g.slime_cell_delimiter = "```"
 vim.g.slime_bracketed_paste = 1
-vim.g.slime_scala_ammonite = 1
-vim.g.slime_python_ipython = 1
 
 if vim.env.ZELLIJ then
 	vim.g.slime_target = "zellij"

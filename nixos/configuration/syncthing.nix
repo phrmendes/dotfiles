@@ -1,58 +1,54 @@
-let
-  user = "phrmendes";
-  home = "/home/${user}";
-  sync = "${home}/Documents";
-in {
+{parameters, ...}: {
   services.syncthing = {
     enable = true;
-    configDir = "${home}/.config/syncthing";
-    dataDir = "${home}/.config/syncthing/db";
+    configDir = "${parameters.home}/.config/syncthing";
+    dataDir = "${parameters.home}/.config/syncthing/db";
     guiAddress = "127.0.0.1:8384";
     openDefaultPorts = true;
     overrideDevices = true;
     overrideFolders = true;
-    user = "${user}";
+    user = parameters.user;
     settings = {
       options.globalAnnounceEnabled = true;
       folders = {
         "camera" = {
-          path = "${sync}/camera";
+          path = "${parameters.home}/Documents/camera";
           devices = ["phone" "server"];
         };
         "documents" = {
-          path = "${sync}/documents";
+          path = "${parameters.home}/Documents/documents";
           devices = ["phone" "server"];
         };
         "images" = {
-          path = "${sync}/images";
+          path = "${parameters.home}/Documents/images";
           devices = ["server"];
         };
         "notes" = {
-          path = "${sync}/notes";
+          path = "${parameters.home}/Documents/notes";
           devices = ["phone" "tablet" "server"];
         };
         "ufabc" = {
-          path = "${sync}/ufabc";
+          path = "${parameters.home}/Documents/ufabc";
           devices = ["server" "tablet"];
         };
         "comics" = {
-          path = "${sync}/library/comics";
+          path = "${parameters.home}/Documents/library/comics";
           devices = ["server"];
         };
         "IT" = {
-          path = "${sync}/library/IT";
+          path = "${parameters.home}/Documents/library/IT";
           devices = ["server"];
         };
         "math" = {
-          path = "${sync}/library/math";
+          path = "${parameters.home}/Documents/library/math";
           devices = ["server"];
         };
         "social_sciences" = {
-          path = "${sync}/library/social_sciences";
+          path = "${parameters.home}/Documents/library/social_sciences";
           devices = ["server"];
         };
         "zotero" = {
-          path = "${sync}/library/zotero";
+          path = "${parameters.home}/Documents/library/zotero";
           devices = ["phone" "server" "tablet"];
         };
       };

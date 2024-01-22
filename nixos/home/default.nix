@@ -1,4 +1,4 @@
-{
+{parameters, ...}: {
   imports = [
     ../../shared/home
     ./btop.nix
@@ -16,7 +16,7 @@
   targets.genericLinux.enable = true;
 
   home = {
-    username = "phrmendes";
-    homeDirectory = "/home/phrmendes";
+    username = parameters.user;
+    homeDirectory = parameters.home;
   };
 }

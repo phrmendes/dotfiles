@@ -1,4 +1,4 @@
-{
+{parameters, ...}: {
   imports = [
     ../../shared/home
     ./symlinks.nix
@@ -7,7 +7,7 @@
   ];
 
   home = {
-    username = "prochame";
-    homeDirectory = "/Users/prochame";
+    username = parameters.user;
+    homeDirectory = parameters.home;
   };
 }

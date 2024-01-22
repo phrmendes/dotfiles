@@ -120,30 +120,14 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1704420045,
-        "narHash": "sha256-C36QmoJd5tdQ5R9MC1jM7fBkZW9zBUqbUCsgwS6j4QU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "c1be43e8e837b8dbee2b3665a007e761680f0c3d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "obsidian-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1705606738,
-        "narHash": "sha256-9HmtumXVl21iQ5SvyoKDArf6m2CWOM/14A922F+AJYw=",
+        "lastModified": 1705770049,
+        "narHash": "sha256-llmByjUSxiKQoTexRhAsw/arifhrqfx0U8VrjCngiWU=",
         "owner": "epwalsh",
         "repo": "obsidian.nvim",
-        "rev": "bf8083fdd9745f32cf2d30e9e16285a46294fd37",
+        "rev": "1c888996fdced99e7a6fae23f4424450c9c91eec",
         "type": "github"
       },
       "original": {
@@ -161,7 +145,6 @@
         "img-clip-nvim": "img-clip-nvim",
         "mdeval-nvim": "mdeval-nvim",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable",
         "obsidian-nvim": "obsidian-nvim",
         "zotcite": "zotcite"
       }

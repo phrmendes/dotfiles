@@ -16,7 +16,6 @@
       gcolor3
       gh
       git
-      gnome-extensions-cli
       go
       hugo
       jq
@@ -30,6 +29,7 @@
       ncdu
       neovide
       obsidian
+      opentofu
       pandoc
       parallel
       peek

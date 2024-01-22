@@ -2,7 +2,6 @@
   description = "My personal nixOS/nix-darwin configuration";
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
@@ -51,26 +50,25 @@
     darwin,
     home-manager,
     nixpkgs,
-    nixpkgs-stable,
     ...
   }: {
     darwinConfigurations."SAO-QQ4FN0YXVT" = let
-      system = "aarch64-darwin";
+      parameters = rec {
+        user = "phrochame";
+        home = "/Users/${user}";
+        system = "aarch64-darwin";
+      };
       pkgs = import nixpkgs {
-        inherit system;
+        inherit (parameters) system;
         config = {
           allowUnfree = true;
         };
       };
-      pkgs-stable = import nixpkgs-stable {
-        inherit system;
-        config.allowUnfree = true;
-      };
     in
       darwin.lib.darwinSystem {
-        inherit system;
+        inherit (parameters) system;
         specialArgs = {
-          inherit inputs pkgs;
+          inherit inputs pkgs parameters;
         };
         modules = [
           ./darwin
@@ -80,10 +78,10 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit inputs pkgs pkgs-stable;
+                inherit inputs pkgs parameters;
               };
               backupFileExtension = "bak";
-              users.prochame.imports = [
+              users.${parameters.user}.imports = [
                 ./darwin/home
               ];
             };
@@ -92,9 +90,13 @@
       };
 
     nixosConfigurations.nixos = let
-      system = "x86_64-linux";
+      parameters = rec {
+        user = "phrmendes";
+        home = "/home/${user}";
+        system = "x86_64-linux";
+      };
       pkgs = import nixpkgs {
-        inherit system;
+        inherit (parameters) system;
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [
@@ -102,15 +104,11 @@
           ];
         };
       };
-      pkgs-stable = import nixpkgs-stable {
-        inherit system;
-        config.allowUnfree = true;
-      };
     in
       nixpkgs.lib.nixosSystem {
-        inherit system;
+        inherit (parameters) system;
         specialArgs = {
-          inherit inputs pkgs;
+          inherit inputs pkgs parameters;
         };
         modules = [
           ./nixos
@@ -120,10 +118,10 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit inputs pkgs pkgs-stable;
+                inherit inputs pkgs parameters;
               };
               backupFileExtension = "bak";
-              users.phrmendes.imports = [
+              users.${parameters.user}.imports = [
                 ./nixos/home
               ];
             };

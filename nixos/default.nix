@@ -1,12 +1,18 @@
-{pkgs, ...}: let
-  user = "phrmendes";
-  home = "/home/${user}";
-in {
+{
+  config,
+  inputs,
+  parameters,
+  pkgs,
+  ...
+}: {
   imports = [
     ./configuration/hardware.nix
     ./configuration/syncthing.nix
     ./configuration/packages.nix
   ];
+
+  sound.enable = true;
+  security.rtkit.enable = true;
 
   boot = {
     loader = {
@@ -51,6 +57,7 @@ in {
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      fira
       fira-code-nerdfont
     ];
     fontconfig.defaultFonts = {
@@ -65,7 +72,7 @@ in {
     tailscale.enable = true;
 
     duplicati = {
-      inherit user;
+      inherit (parameters) user;
       enable = true;
     };
 
@@ -103,8 +110,6 @@ in {
     };
   };
 
-  security.rtkit.enable = true;
-
   hardware = {
     pulseaudio.enable = false;
 
@@ -122,12 +127,16 @@ in {
       };
     };
 
-    nvidia.package = pkgs.linuxKernel.packages.linux_6_6.nvidia_x11;
+    nvidia = {
+      nvidiaSettings = true;
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
   };
 
-  users.users.${user} = {
+  users.users.${parameters.user} = {
     isNormalUser = true;
-    home = "${home}";
+    home = "${parameters.home}";
     uid = 1000;
     extraGroups = ["wheel" "video" "audio" "networkmanager"];
     initialPassword = "password";

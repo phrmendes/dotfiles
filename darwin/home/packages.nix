@@ -17,6 +17,7 @@
     mc
     ncdu
     nodejs_21
+    opentofu
     parallel
     pngpaste
     podman

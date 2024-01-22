@@ -19,8 +19,8 @@ require("neo-tree").setup({
 				"toggle_node",
 				nowait = true,
 			},
-			["<leader>-"] = "open_split",
-			["<leade>\\"] = "open_vsplit",
+			["s"] = "open_split",
+			["v"] = "open_vsplit",
 			["a"] = {
 				"add",
 				config = {

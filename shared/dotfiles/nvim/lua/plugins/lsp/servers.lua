@@ -120,6 +120,17 @@ local servers = {
 			},
 		},
 	},
+	{
+		server = "ltex",
+		filetypes = { "markdown", "quarto" },
+		on_attach = function()
+			require("ltex_extra").setup({
+				init_check = true,
+				load_langs = { "en-US", "pt-BR" },
+				path = vim.fn.expand("~/.local/state/ltex"),
+			})
+		end,
+	},
 }
 
 if vim.fn.has("mac") == 0 then

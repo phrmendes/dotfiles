@@ -20,13 +20,32 @@
     if isDarwin
     then darwin.updateCmd
     else nixos.updateCmd;
-  aliases =
+  condAliases =
     if isDarwin
     then darwin.aliases
     else nixos.aliases;
+  aliases =
+    {
+      cat = "${pkgs.bat}/bin/bat";
+      k = "${pkgs.kubectl}/bin/kubectl";
+      lg = "${pkgs.lazygit}/bin/lazygit";
+      mkdir = "mkdir -p";
+      nc = "nix store gc --debug";
+      ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
+      nh = "nix-hash --flat --base64 --type sha256";
+      nu = updateCmd;
+      v = "${pkgs.neovim-unwrapped}/bin/nvim";
+      zl = "${pkgs.zellij}/bin/zellij";
+    }
+    // condAliases;
 in {
   programs = {
-    bash.enable = true;
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      enableVteIntegration = true;
+      shellAliases = aliases;
+    };
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -34,20 +53,7 @@ in {
       enableVteIntegration = true;
       syntaxHighlighting.enable = true;
       initExtra = builtins.readFile ../dotfiles/init.sh;
-      shellAliases =
-        {
-          cat = "bat";
-          k = "kubectl";
-          lg = "lazygit";
-          mkdir = "mkdir -p";
-          nc = "nix store gc --debug";
-          ncdu = "ncdu --color dark";
-          nh = "nix-hash --flat --base64 --type sha256";
-          nu = updateCmd;
-          v = "nvim";
-          zl = "zellij";
-        }
-        // aliases;
+      shellAliases = aliases;
     };
   };
 }

@@ -54,7 +54,7 @@
   }: {
     darwinConfigurations."SAO-QQ4FN0YXVT" = let
       parameters = rec {
-        user = "phrochame";
+        user = "prochame";
         home = "/Users/${user}";
         system = "aarch64-darwin";
       };

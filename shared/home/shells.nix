@@ -34,7 +34,7 @@
       ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
       nh = "nix-hash --flat --base64 --type sha256";
       nu = updateCmd;
-      v = "${pkgs.neovim-unwrapped}/bin/nvim";
+      v = "nvim";
       zl = "${pkgs.zellij}/bin/zellij";
     }
     // condAliases;

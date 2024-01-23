@@ -43,7 +43,9 @@
       syncthingtray
       tectonic
       terraform
+      vagrant
       ventoy
+      virtualbox
       vlc
       zellij
       zotero

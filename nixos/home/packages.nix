@@ -17,6 +17,7 @@
       gh
       git
       go
+      helix
       hugo
       jq
       just

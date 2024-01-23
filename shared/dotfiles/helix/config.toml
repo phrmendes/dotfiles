@@ -1,0 +1,25 @@
+theme = "catppuccin_mocha"
+
+[editor]
+bufferline = "multiple"
+color-modes = true
+cursorline = true
+line-number = "relative"
+mouse = true
+true-color = true
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "┆"
+
+[editor.soft-wrap]
+enable = true

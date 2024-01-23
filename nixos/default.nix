@@ -134,13 +134,16 @@
     };
   };
 
-  users.users.${parameters.user} = {
-    isNormalUser = true;
-    home = "${parameters.home}";
-    uid = 1000;
-    extraGroups = ["wheel" "video" "audio" "networkmanager"];
-    initialPassword = "password";
-    shell = pkgs.zsh;
+  users = {
+    extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
+    users.${parameters.user} = {
+      isNormalUser = true;
+      home = "${parameters.home}";
+      uid = 1000;
+      extraGroups = ["wheel" "video" "audio" "networkmanager"];
+      initialPassword = "password";
+      shell = pkgs.zsh;
+    };
   };
 
   programs = {
@@ -179,22 +182,25 @@
     stateVersion = "23.05";
   };
 
-  virtualisation.docker = {
-    enable = true;
-    enableNvidia = true;
-    liveRestore = true;
-    rootless = {
+  virtualisation = {
+    virtualbox.host.enable = true;
+    docker = {
       enable = true;
-      setSocketVariable = true;
+      enableNvidia = true;
+      liveRestore = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+      autoPrune = {
+        enable = true;
+        dates = "weekly";
+        flags = ["--all"];
+      };
+      extraPackages = with pkgs; [
+        docker-compose
+      ];
     };
-    autoPrune = {
-      enable = true;
-      dates = "weekly";
-      flags = ["--all"];
-    };
-    extraPackages = with pkgs; [
-      docker-compose
-    ];
   };
 
   xdg = {

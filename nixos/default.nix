@@ -135,7 +135,7 @@
   };
 
   users = {
-    extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
+    extraGroups.vboxusers.members = [parameters.user];
     users.${parameters.user} = {
       isNormalUser = true;
       home = "${parameters.home}";

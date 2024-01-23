@@ -9,15 +9,24 @@
   ];
   boot = {
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
       kernelModules = [];
 
       luks.devices."luks-ab2543df-92ce-477a-ada2-ecfc30c8b152".device = "/dev/disk/by-uuid/ab2543df-92ce-477a-ada2-ecfc30c8b152";
     };
     kernelModules = [
       "kvm-amd"
-      "v4l2loopback"
       "snd-aloop"
+      "v4l2loopback"
+      "vboxdrv"
+      "vboxnetadp"
+      "vboxnetflt"
     ];
     extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
     extraModprobeConfig = ''

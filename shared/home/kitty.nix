@@ -23,16 +23,17 @@ in {
       bold_font = "${font_family} SemBd";
       bold_italic_font = "${font_family} SemBd Italic";
       enable_audio_bell = false;
+      enabled_layouts = "splits:split_axis=horizontal,stack";
       font_size = font_size;
       italic_font = "${font_family} Italic";
       listen_on = "unix:/tmp/kitty";
+      macos_option_as_alt = "no";
       open_url_with = "default";
       scrollback_lines = 10000;
       term = "xterm-256color";
       undercurl_style = "thin-sparse";
       update_check_interval = 0;
       window_padding_width = 4;
-      enabled_layouts = "splits:split_axis=horizontal,stack";
     };
     keybindings = {
       "ctrl+equal" = "change_font_size all +2.0";

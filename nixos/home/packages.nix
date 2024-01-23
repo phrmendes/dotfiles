@@ -10,6 +10,7 @@
       bruno
       chromium
       coursier
+      ctop
       deluge
       droidcam
       firefox

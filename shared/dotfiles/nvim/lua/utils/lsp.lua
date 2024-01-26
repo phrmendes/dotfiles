@@ -99,21 +99,21 @@ M.on_attach = function(client, bufnr)
 		})
 	end)
 
-	provider(client, "references", function()
-		map({
-			key = "gr",
-			cmd = "<CMD>Telescope lsp_references<CR>",
-			buffer = bufnr,
-			desc = "LSP: show references",
-		})
-	end)
-
 	provider(client, "rename", function()
 		map({
 			key = "<leader>r",
 			cmd = vim.lsp.buf.rename,
 			buffer = bufnr,
 			desc = "LSP: rename symbol",
+		})
+	end)
+
+	provider(client, "references", function()
+		map({
+			key = "<leader>R",
+			cmd = "<CMD>Telescope lsp_references<CR>",
+			buffer = bufnr,
+			desc = "LSP: show references",
 		})
 	end)
 

@@ -93,9 +93,9 @@ M.on_attach = function(client, bufnr)
 	provider(client, "signatureHelp", function()
 		map({
 			key = "<leader>h",
-			cmd = vim.lsp.buf.signature_help,
+			cmd = require("lsp_signature").toggle_float_win,
 			buffer = bufnr,
-			desc = "LSP: show signature help",
+			desc = "LSP: toggle signature help",
 		})
 	end)
 

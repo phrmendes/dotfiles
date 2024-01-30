@@ -27,7 +27,7 @@ in {
       font_size = font_size;
       italic_font = "${font_family} Italic";
       listen_on = "unix:/tmp/kitty";
-      macos_option_as_alt = "no";
+      macos_option_as_alt = "yes";
       open_url_with = "default";
       scrollback_lines = 10000;
       term = "xterm-256color";

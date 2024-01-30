@@ -109,9 +109,9 @@ local setup = function()
 	})
 
 	utils.map({
-		key = "<leader>c",
+		key = "<leader>mr",
 		cmd = "<CMD>MdEval<CR>",
-		desc = "Evaluate code block",
+		desc = "Run code block",
 	}, {
 		silent = true,
 		noremap = true,

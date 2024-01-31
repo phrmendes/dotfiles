@@ -20,6 +20,8 @@
       go
       helix
       hugo
+      jellyfin
+      jellyfin-web
       jq
       just
       kind

@@ -33,7 +33,10 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [8010];
+    firewall.allowedTCPPorts = [
+      8010
+      8080
+    ];
   };
 
   time = {

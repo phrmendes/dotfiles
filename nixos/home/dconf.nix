@@ -8,14 +8,18 @@
           "espresso@coadmunkee.github.com"
           "gsconnect@andyholmes.github.io"
           "pop-shell@system76.com"
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
         ];
         favorite-apps = [
-          "bitwarden.desktop"
+          "org.gnome.Nautilus.desktop"
           "firefox.desktop"
           "kitty.desktop"
+          "bitwarden.desktop"
           "obsidian.desktop"
-          "org.gnome.Nautilus.desktop"
         ];
+      };
+      "org/gnome/shell/extensions/user-theme" = {
+        name = "Catppuccin-Mocha-Compact-Blue-Dark";
       };
       "org/gnome/shell/extensions/pop-shell" = {
         active-hint = true;

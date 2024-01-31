@@ -60,5 +60,6 @@
       appindicator
       espresso
       pop-shell
+      user-themes
     ]);
 }

@@ -5,12 +5,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[nix]": {
-    "editor.defaultFormatter": "kamadorueda.alejandra",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": false
-  },
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
@@ -20,7 +14,6 @@
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "alejandra.program": "alejandra",
   "editor.cursorBlinking": "solid",
   "editor.fontFamily": "'FiraCode Nerd Font Mono'",
   "editor.fontLigatures": true,
@@ -50,8 +43,6 @@
     "**/.metals": true
   },
   "indentRainbow.indicatorStyle": "light",
-  "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil",
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
   "shellformat.path": "shfmt",

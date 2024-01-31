@@ -22,7 +22,6 @@
     img-clip-nvim = inputs.img-clip-nvim;
     zotcite = inputs.zotcite;
     mdeval-nvim = inputs.mdeval-nvim;
-    obsidian-nvim = inputs.obsidian-nvim;
   };
   nix = {
     packages = with pkgs; [
@@ -30,10 +29,10 @@
       tailwindcss-language-server
     ];
     extensions = with pkgs.vimPlugins; [
-      ChatGPT-nvim
       gh.cmp-zotcite
       gh.zotcite
-      gh.obsidian-nvim
+      ChatGPT-nvim
+      obsidian-nvim
     ];
   };
 in {

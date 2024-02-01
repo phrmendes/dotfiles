@@ -8,6 +8,7 @@
     gnumake
     gnupg
     go
+    httpie
     jdk21
     just
     kind

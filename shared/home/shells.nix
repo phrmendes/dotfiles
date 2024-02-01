@@ -52,7 +52,7 @@ in {
       enableCompletion = true;
       enableVteIntegration = true;
       syntaxHighlighting.enable = true;
-      initExtra = builtins.readFile ../dotfiles/init.sh;
+      initExtra = builtins.readFile ../../dotfiles/init.sh;
       shellAliases = aliases;
     };
   };

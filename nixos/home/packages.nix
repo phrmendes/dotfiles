@@ -10,7 +10,6 @@
       bruno
       chromium
       coursier
-      ctop
       deluge
       droidcam
       firefox
@@ -19,6 +18,7 @@
       git
       go
       helix
+      httpie
       hugo
       jq
       just
@@ -37,9 +37,9 @@
       peek
       phockup
       pop-launcher
+      qalculate-gtk
       quarto
       qview
-      spotify
       syncthingtray
       tectonic
       terraform
@@ -51,7 +51,6 @@
     ])
     ++ (with pkgs.gnome; [
       file-roller
-      gnome-calculator
       gnome-disk-utility
       gnome-tweaks
       nautilus

@@ -11,8 +11,9 @@
     ./configuration/packages.nix
   ];
 
-  sound.enable = true;
+  console.keyMap = "us";
   security.rtkit.enable = true;
+  sound.enable = true;
 
   boot = {
     loader = {
@@ -53,11 +54,6 @@
     };
   };
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
-
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -87,9 +83,12 @@
 
     pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
       pulse.enable = true;
+      jack.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
     };
 
     udev = {
@@ -120,6 +119,7 @@
     opengl = {
       enable = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [nvidia-vaapi-driver];
     };
 
     bluetooth = {
@@ -168,22 +168,21 @@
   };
 
   nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
     settings = {
-      trusted-users = ["root" "@wheel"];
       auto-optimise-store = true;
+      trusted-users = ["root" "@wheel"];
     };
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 1w";
     };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
   };
 
   system = {
-    stateVersion = "23.05";
+    stateVersion = "23.11";
   };
 
   virtualisation = {
@@ -210,7 +209,9 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [xdg-desktop-portal-gnome];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
     };
   };
 }

@@ -99,7 +99,7 @@
     xserver = {
       enable = true;
       autorun = true;
-      layout = "us,br";
+      xkb.layout = "us,br";
       videoDrivers = ["nvidia"];
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
@@ -206,10 +206,10 @@
     };
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-    };
-  };
+  # xdg = {
+  #   portal = {
+  #     enable = true;
+  #     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+  #   };
+  # };
 }

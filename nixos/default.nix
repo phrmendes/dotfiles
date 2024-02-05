@@ -103,13 +103,6 @@
       videoDrivers = ["nvidia"];
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
-      libinput = {
-        enable = true;
-        touchpad = {
-          tapping = true;
-          naturalScrolling = true;
-        };
-      };
     };
   };
 

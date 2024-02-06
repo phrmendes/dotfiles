@@ -3,8 +3,9 @@
     enable = true;
     package = pkgs.vscode.fhsWithPackages (ps:
       with ps; [
+        alejandra
         ansible-lint
-        micromamba
+        nixd
         shfmt
       ]);
   };

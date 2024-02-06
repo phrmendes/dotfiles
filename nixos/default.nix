@@ -14,6 +14,7 @@
   console.keyMap = "us";
   security.rtkit.enable = true;
   sound.enable = true;
+  xdg.portal.enable = true;
 
   boot = {
     loader = {
@@ -198,11 +199,4 @@
       ];
     };
   };
-
-  # xdg = {
-  #   portal = {
-  #     enable = true;
-  #     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-  #   };
-  # };
 }

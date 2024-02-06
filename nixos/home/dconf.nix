@@ -19,7 +19,7 @@
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {
-        name = "Catppuccin-Mocha-Compact-Blue-Dark";
+        name = "Catppuccin-Mocha-Standard-Blue-Dark";
       };
       "org/gnome/shell/extensions/pop-shell" = {
         active-hint = true;

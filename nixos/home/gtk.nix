@@ -2,15 +2,15 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Pop";
+      package = pkgs.pop-icon-theme;
     };
     iconTheme = {
       name = "Pop";
       package = pkgs.pop-icon-theme;
     };
     theme = {
-      name = "Catppuccin-Mocha-Compact-Blue-Dark";
+      name = "Catppuccin-Mocha-Standard-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = ["blue"];
         size = "standard";

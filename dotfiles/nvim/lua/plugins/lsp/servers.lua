@@ -9,7 +9,6 @@ local servers = {
 	{ server = "bashls" },
 	{ server = "docker_compose_language_service" },
 	{ server = "dockerls" },
-	{ server = "golangci_lint_ls" },
 	{ server = "nixd" },
 	{ server = "ruff_lsp" },
 	{ server = "terraformls" },
@@ -56,12 +55,6 @@ local servers = {
 				},
 			},
 		},
-	},
-	{
-		server = "gopls",
-		on_attach = function()
-			require("plugins.dap").go()
-		end,
 	},
 	{
 		server = "pyright",

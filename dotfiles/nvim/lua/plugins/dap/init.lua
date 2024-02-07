@@ -90,9 +90,4 @@ M.scala = function()
 	require("plugins.dap.scala").setup()
 end
 
-M.go = function()
-	setup()
-	require("plugins.dap.go").setup()
-end
-
 return M

@@ -17,11 +17,7 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    autolist-nvim = inputs.autolist-nvim;
-    cmp-zotcite = inputs.cmp-zotcite;
-    img-clip-nvim = inputs.img-clip-nvim;
-    zotcite = inputs.zotcite;
-    mdeval-nvim = inputs.mdeval-nvim;
+    inherit (inputs) autolist-nvim cmp-zotcite img-clip-nvim zotcite mdeval-nvim;
   };
   nix = {
     packages = with pkgs; [
@@ -83,7 +79,6 @@ in {
         nvim-cmp
         nvim-colorizer-lua
         nvim-dap
-        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -143,10 +138,6 @@ in {
         delve
         djlint
         docker-compose-language-service
-        gofumpt
-        goimports-reviser
-        golines
-        gopls
         helm-ls
         imagemagick
         ltex-ls

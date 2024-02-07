@@ -16,7 +16,6 @@
       gcolor3
       gh
       git
-      go
       helix
       httpie
       hugo

@@ -6,7 +6,8 @@
     settings = {
       command_timeout = 1000;
       docker_context.disabled = true;
-      conda.symbol = "󱔎 ";
+      conda.symbol = "🐍 ";
+      nix_shell.symbol = " ";
       scala.symbol = " ";
     };
   };

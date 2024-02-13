@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import re
 
 from kittens.tui.handler import result_handler

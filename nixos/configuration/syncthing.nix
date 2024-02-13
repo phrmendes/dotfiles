@@ -1,5 +1,6 @@
 {parameters, ...}: {
   services.syncthing = {
+    inherit (parameters) user;
     enable = true;
     configDir = "${parameters.home}/.config/syncthing";
     dataDir = "${parameters.home}/.config/syncthing/db";
@@ -7,9 +8,13 @@
     openDefaultPorts = true;
     overrideDevices = true;
     overrideFolders = true;
-    user = parameters.user;
+    relay.enable = true;
     settings = {
-      options.globalAnnounceEnabled = true;
+      options = {
+        globalAnnounceEnabled = true;
+        relaysEnabled = true;
+        urAccepted = 1;
+      };
       folders = {
         "camera" = {
           path = "${parameters.home}/Documents/camera";

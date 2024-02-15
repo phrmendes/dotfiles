@@ -67,10 +67,13 @@
   };
 
   services = {
-    journald.extraConfig = "SystemMaxUse=1G";
+    flatpak.enable = true;
+    fstrim.enable = true;
     openssh.enable = true;
     pcscd.enable = true;
     tailscale.enable = true;
+
+    journald.extraConfig = "SystemMaxUse=1G";
 
     duplicati = {
       inherit (parameters) user;
@@ -112,6 +115,7 @@
 
     opengl = {
       enable = true;
+      driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [nvidia-vaapi-driver];
     };
@@ -181,21 +185,15 @@
 
   virtualisation = {
     virtualbox.host.enable = true;
-    docker = {
+    podman = {
       enable = true;
       enableNvidia = true;
-      liveRestore = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
-      autoPrune = {
-        enable = true;
-        dates = "weekly";
-        flags = ["--all"];
-      };
+      dockerCompat = true;
+      autoPrune.enable = true;
+      dockerSocket.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
       extraPackages = with pkgs; [
-        docker-compose
+        podman-compose
       ];
     };
   };

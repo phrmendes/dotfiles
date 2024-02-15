@@ -4,13 +4,13 @@
       ansible
       backblaze-b2
       bashly
-      beekeeper-studio
       bitwarden
       bitwarden-cli
       bruno
       chromium
       coursier
       curtail
+      dbeaver
       deluge
       droidcam
       firefox
@@ -25,7 +25,6 @@
       kind
       kubectl
       kubernetes-helm
-      lazydocker
       libreoffice
       mc
       ncdu

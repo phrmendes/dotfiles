@@ -20,10 +20,10 @@ keybinds {
         // panes
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "h" { MoveFocus "Left"; }
-        bind "j" { MoveFocus "Down"; }
-        bind "k" { MoveFocus "Up"; }
-        bind "l" { MoveFocus "Right"; }
+        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
         bind "n" { FocusNextPane; SwitchToMode "Normal"; }
         bind "p" { FocusPreviousPane; SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
@@ -38,7 +38,7 @@ keybinds {
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "Enter" { SwitchToMode "Resize"; }
-        bind "Space" { NextSwapLayout; }
+        bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
         bind "d" { Detach; }
         bind "q" { Quit; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }

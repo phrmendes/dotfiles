@@ -20,10 +20,14 @@ keybinds {
         // panes
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "h" { MoveFocus "Left"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+        bind "l" { MoveFocus "Right"; }
         bind "n" { FocusNextPane; SwitchToMode "Normal"; }
         bind "p" { FocusPreviousPane; SwitchToMode "Normal"; }
+        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
         // tabs
         bind "Ctrl n" { GoToNextTab; SwitchToMode "Normal"; }
         bind "Ctrl p" { GoToPreviousTab; SwitchToMode "Normal"; }

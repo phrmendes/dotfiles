@@ -35,7 +35,7 @@ keybinds {
         bind "Ctrl t" { NewTab; SwitchToMode "Normal"; }
         bind "Ctrl x" { CloseTab; SwitchToMode "Normal"; }
         // random
-        bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
+        bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "Enter" { SwitchToMode "Resize"; }
         bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }

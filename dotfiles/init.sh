@@ -4,14 +4,18 @@ SYSTEM=$(uname -av|awk '{print $1;}')
 
 if [[ $SYSTEM  == "Linux" ]]; then
     export TERM="xterm-kitty"
+
+    path+=("$HOME"/.local/share/coursier/bin)
 else
     export TERM="xterm-256color"
-    path+=(/opt/homebrew/opt/gnu-sed/libexec/gnubin)
+    path+=(
+        /opt/homebrew/opt/gnu-sed/libexec/gnubin
+        /opt/homebrew/bin
+    )
 fi
 
 path+=(
     "$HOME"/.local/bin
-    "$HOME"/.local/share/coursier/bin
     /etc/profiles/per-user/"$USER"/bin
     /run/current-system/sw/bin
 )

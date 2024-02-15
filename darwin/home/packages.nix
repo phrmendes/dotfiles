@@ -20,9 +20,6 @@
     opentofu
     parallel
     pngpaste
-    podman
-    podman-compose
-    qemu
     quarto
     ripgrep
     tealdeer

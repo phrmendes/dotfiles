@@ -11,8 +11,11 @@
       no_quarantine = true;
     };
     brews = [
-      "openssl"
       "gnu-sed"
+      "openssl"
+      "podman"
+      "podman-compose"
+      "qemu"
     ];
     casks = [
       "amethyst"

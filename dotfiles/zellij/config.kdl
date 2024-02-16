@@ -13,34 +13,31 @@ ui {
 
 keybinds {
     normal clear-defaults=true {
+        bind "Alt h" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "Alt j" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "Alt k" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "Alt l" { MoveFocus "Right"; SwitchToMode "Normal"; }
+        bind "Alt ]" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "Alt [" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "Ctrl f" { SwitchToMode "Tmux"; }
     }
 
     tmux clear-defaults=true {
-        // panes
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "n" { FocusNextPane; SwitchToMode "Normal"; }
-        bind "p" { FocusPreviousPane; SwitchToMode "Normal"; }
-        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        // tabs
-        bind "Ctrl n" { GoToNextTab; SwitchToMode "Normal"; }
-        bind "Ctrl p" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
         bind "Ctrl r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "Ctrl t" { NewTab; SwitchToMode "Normal"; }
         bind "Ctrl x" { CloseTab; SwitchToMode "Normal"; }
-        // random
-        bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "Enter" { SwitchToMode "Resize"; }
         bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
         bind "d" { Detach; }
+        bind "n" { FocusNextPane; SwitchToMode "Normal"; }
+        bind "p" { FocusPreviousPane; SwitchToMode "Normal"; }
         bind "q" { Quit; }
+        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "s" { 
             LaunchOrFocusPlugin "zellij:session-manager" {

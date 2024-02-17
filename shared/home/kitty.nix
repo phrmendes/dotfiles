@@ -27,7 +27,7 @@ in {
       enabled_layouts = "splits:split_axis=horizontal,stack";
       italic_font = "${font_family} Italic";
       listen_on = "unix:/tmp/kitty";
-      macos_option_as_alt = "yes";
+      macos_option_as_alt = "right";
       open_url_with = "default";
       scrollback_lines = 10000;
       shell_integration = "enabled";

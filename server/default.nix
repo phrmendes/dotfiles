@@ -8,7 +8,6 @@
   imports = [
     ./configuration/hardware.nix
     ./configuration/syncthing.nix
-    ./configuration/packages.nix
     ./configuration/adguardhome.nix
   ];
 
@@ -69,7 +68,71 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    coreutils-full
+    curl
+    gcc
+    git
+    helix
+    mc
+  ];
+
   programs = {
+    tmux = {
+      enable = true;
+      aggressiveResize = true;
+      baseIndex = 1;
+      clock24 = true;
+      escapeTime = 0;
+      keyMode = "vi";
+      terminal = "xterm-256color";
+      historyLimit = 1000000;
+      customPaneNavigationAndResize = true;
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+          '';
+        }
+        {
+          plugin = resurrect;
+          extraConfig = ''
+            set -g @resurrect-capture-pane-contents 'on'
+          '';
+        }
+      ];
+      extraConfig = ''
+        set-option -g terminal-overrides ',xterm-256color:RGB'
+        set -g detach-on-destroy off
+        set -g renumber-windows on
+        set -g set-clipboard on
+        set -g status-position top
+        set -g visual-activity off
+        set -gq allow-passthrough on
+        setw -g mode-keys vi
+
+        unbind C-b
+        unbind '"'
+        unbind %
+
+        set-option -g prefix C-f
+        bind C-f send-prefix
+
+        bind -n A-h select-pane -R
+        bind -n A-j select-pane -D
+        bind -n A-k select-pane -U
+        bind -n A-l select-pane -L
+        bind '-' split-window -v -c '#{pane_current_path}'
+        bind '\' split-window -h -c '#{pane_current_path}'
+        bind -r h resize-pane -L 5
+        bind -r j resize-pane -D 5
+        bind -r k resize-pane -U 5
+        bind -r l resize-pane -R 5
+        bind -r z resize-pane -Z
+      '';
+    };
+
     zsh = {
       enable = true;
       enableLsColors = true;

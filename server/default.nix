@@ -16,9 +16,11 @@
   system.stateVersion = "23.11";
 
   boot = {
-    grub.enable = false;
     kernelPackages = pkgs.linuxPackages_rpi;
-    loader.generic-extlinux-compatible.enable = true;
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
   };
 
   networking = {

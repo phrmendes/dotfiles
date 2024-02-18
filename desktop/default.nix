@@ -138,8 +138,8 @@
   users = {
     extraGroups.vboxusers.members = [parameters.user];
     users.${parameters.user} = {
+      inherit (parameters) home;
       isNormalUser = true;
-      home = "${parameters.home}";
       uid = 1000;
       extraGroups = ["wheel" "video" "audio" "networkmanager"];
       initialPassword = "password";

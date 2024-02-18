@@ -89,27 +89,19 @@
       historyLimit = 1000000;
       customPaneNavigationAndResize = true;
       plugins = with pkgs.tmuxPlugins; [
-        {
-          plugin = continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-          '';
-        }
-        {
-          plugin = resurrect;
-          extraConfig = ''
-            set -g @resurrect-capture-pane-contents 'on'
-          '';
-        }
+        continuum
+        resurrect
       ];
       extraConfig = ''
-        set-option -g terminal-overrides ',xterm-256color:RGB'
+        set -g @continuum-restore 'on'
+        set -g @resurrect-capture-pane-contents 'on'
         set -g detach-on-destroy off
         set -g renumber-windows on
         set -g set-clipboard on
         set -g status-position top
         set -g visual-activity off
         set -gq allow-passthrough on
+        set-option -g terminal-overrides ',xterm-256color:RGB'
         setw -g mode-keys vi
 
         unbind C-b

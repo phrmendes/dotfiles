@@ -3,6 +3,7 @@
     coreutils-full
     curl
     gcc
+    git
     helix
     mc
     ncdu

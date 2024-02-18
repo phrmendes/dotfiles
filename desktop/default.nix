@@ -33,7 +33,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "desktop";
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [
       8010
@@ -70,7 +70,6 @@
     flatpak.enable = true;
     fstrim.enable = true;
     openssh.enable = true;
-    pcscd.enable = true;
     tailscale.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";

@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-SYSTEM=$(uname -av|awk '{print $1;}')
-
-if [[ $SYSTEM  == "Linux" ]]; then
-    export TERM="xterm-kitty"
-
+if [[ $HOST  == "desktop" ]]; then
     path+=("$HOME"/.local/share/coursier/bin)
-else
-    export TERM="xterm-256color"
+fi
+
+if [[ $HOST == "SAO-QQ4FN0YXVT" ]]; then
     path+=(
         /opt/homebrew/opt/gnu-sed/libexec/gnubin
         /opt/homebrew/bin

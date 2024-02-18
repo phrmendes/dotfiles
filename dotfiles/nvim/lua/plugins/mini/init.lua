@@ -9,7 +9,6 @@ require("plugins.mini.surround")
 
 require("mini.align").setup()
 require("mini.cursorword").setup()
-require("mini.files").setup()
 require("mini.fuzzy").setup()
 require("mini.indentscope").setup()
 require("mini.notify").setup()

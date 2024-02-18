@@ -84,7 +84,7 @@
         ];
       };
 
-    nixosConfigurations.nixos = let
+    nixosConfigurations.desktop = let
       parameters = rec {
         user = "phrmendes";
         home = "/home/${user}";
@@ -106,7 +106,7 @@
           inherit inputs pkgs parameters;
         };
         modules = [
-          ./nixos
+          ./desktop
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -117,7 +117,42 @@
               };
               backupFileExtension = "bak";
               users.${parameters.user}.imports = [
-                ./nixos/home
+                ./desktop/home
+              ];
+            };
+          }
+        ];
+      };
+
+    nixosConfigurations.server = let
+      parameters = rec {
+        user = "phrmendes";
+        home = "/home/${user}";
+        system = "aarch64-linux";
+      };
+      pkgs = import nixpkgs {
+        inherit (parameters) system;
+        config.allowUnfree = true;
+      };
+    in
+      nixpkgs.lib.nixosSystem {
+        inherit (parameters) system;
+        specialArgs = {
+          inherit inputs pkgs parameters;
+        };
+        modules = [
+          ./server
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs pkgs parameters;
+              };
+              backupFileExtension = "bak";
+              users.${parameters.user}.imports = [
+                ./server/home
               ];
             };
           }

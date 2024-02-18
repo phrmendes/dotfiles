@@ -9,7 +9,7 @@
     ./configuration/hardware.nix
     ./configuration/syncthing.nix
     ./configuration/packages.nix
-    ./configuration/adguard.nix
+    ./configuration/adguardhome.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -63,11 +63,6 @@
   };
 
   programs = {
-    ssh = {
-      enable = true;
-      startAgent = true;
-    };
-
     zsh = {
       enable = true;
       enableLsColors = true;

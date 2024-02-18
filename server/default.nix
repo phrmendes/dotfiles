@@ -12,23 +12,9 @@
     ./configuration/adguard.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   security.rtkit.enable = true;
   system.stateVersion = "23.11";
-
-  boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-      };
-      timeout = 5;
-    };
-    kernelPackages = pkgs.linuxPackages_latest;
-  };
 
   networking = {
     hostName = "server";

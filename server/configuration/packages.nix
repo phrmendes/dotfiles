@@ -6,7 +6,6 @@
     git
     helix
     mc
-    ncdu
     psmisc
     zellij
   ];

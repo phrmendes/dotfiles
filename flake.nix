@@ -142,20 +142,6 @@
         };
         modules = [
           ./server
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs pkgs parameters;
-              };
-              backupFileExtension = "bak";
-              users.${parameters.user}.imports = [
-                ./server/home
-              ];
-            };
-          }
         ];
       };
   };

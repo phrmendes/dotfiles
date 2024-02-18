@@ -5,6 +5,7 @@
     gcc
     git
     helix
+    htop
     mc
     psmisc
     zellij

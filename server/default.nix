@@ -12,9 +12,14 @@
     ./configuration/adguardhome.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   security.rtkit.enable = true;
   system.stateVersion = "23.11";
+
+  boot = {
+    grub.enable = false;
+    kernelPackages = pkgs.linuxPackages_rpi;
+    loader.generic-extlinux-compatible.enable = true;
+  };
 
   networking = {
     hostName = "server";

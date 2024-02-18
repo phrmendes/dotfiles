@@ -10,8 +10,8 @@
   environment.systemPackages = [pkgs.home-manager];
   security.pam.enableSudoTouchIdAuth = true;
   services.nix-daemon.enable = true;
-  users.users."${parameters.user}" = {
-    home = parameters.home;
+  users.users.${parameters.user} = {
+    inherit (parameters) home;
     shell = pkgs.zsh;
   };
 }

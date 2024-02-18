@@ -29,7 +29,12 @@
     fsType = "ext4";
   };
 
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 2048;
+    }
+  ];
 
   networking.useDHCP = lib.mkDefault true;
 

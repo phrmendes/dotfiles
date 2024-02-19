@@ -67,7 +67,7 @@
           autoAcceptFolders = true;
         };
         "server" = {
-          id = "Q4OBDSD-FEOKUZG-Y7KT6JO-A5UMSVO-EQVBZIO-DJZERPV-MHUTDAI-J72A7QL";
+          id = "VH6IWI6-D5E666H-4S2D7XJ-AVHD2XW-7UC64AS-APTOCPU-LB3SB52-S5722Q5";
           autoAcceptFolders = true;
         };
       };

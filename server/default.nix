@@ -69,7 +69,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    coreutils-full
+    coreutils
     curl
     gcc
     git

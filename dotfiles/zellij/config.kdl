@@ -28,20 +28,16 @@ keybinds {
     tmux clear-defaults=true {
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "Ctrl f" { SwitchToMode "Normal"; }
-        bind "Ctrl r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
-        bind "Ctrl x" { CloseTab; SwitchToMode "Normal"; }
-        bind "Enter" { SwitchToMode "Resize"; }
         bind "Backspace" { PreviousSwapLayout; SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Resize"; }
+        bind "Esc" { SwitchToMode "Normal"; }
         bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
         bind "d" { Detach; }
         bind "m" { SwitchToMode "Move"; }
-        bind "n" { FocusNextPane; SwitchToMode "Normal"; }
-        bind "p" { FocusPreviousPane; SwitchToMode "Normal"; }
         bind "q" { Quit; }
-        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
-        bind "t" { NewTab; SwitchToMode "Normal"; }
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "s" { 

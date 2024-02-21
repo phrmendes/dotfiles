@@ -16,8 +16,8 @@
         "goto_mark" = "gm";
         "goto_toc" = "gt";
         "move_down" = "j";
-        "move_left" = "h";
-        "move_right" = "l";
+        "move_left" = "l";
+        "move_right" = "h";
         "move_up" = "k";
         "next_item" = "n";
         "next_page" = "<C-j>";

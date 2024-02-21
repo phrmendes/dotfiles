@@ -8,7 +8,6 @@
     ./gtk.nix
     ./home-manager.nix
     ./packages.nix
-    ./sioyek.nix
     ./symlinks.nix
     ./vscode.nix
   ];

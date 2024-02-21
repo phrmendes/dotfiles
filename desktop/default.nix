@@ -155,7 +155,7 @@
     weylus = {
       enable = true;
       openFirewall = true;
-      user = [parameters.user];
+      users = [parameters.user];
     };
 
     kdeconnect = {

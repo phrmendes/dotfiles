@@ -111,6 +111,7 @@
 
   hardware = {
     pulseaudio.enable = false;
+    uinput.enable = true;
 
     opengl = {
       enable = true;

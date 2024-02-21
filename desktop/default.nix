@@ -152,6 +152,12 @@
     seahorse.enable = true;
     zsh.enable = true;
 
+    weylus = {
+      enable = true;
+      openFirewall = true;
+      user = [parameters.user];
+    };
+
     kdeconnect = {
       enable = true;
       package = pkgs.gnomeExtensions.gsconnect;

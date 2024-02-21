@@ -45,6 +45,7 @@
       vagrant
       ventoy
       vlc
+      xournalpp
       zellij
       zotero
     ])

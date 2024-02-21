@@ -13,6 +13,7 @@
       dbeaver
       deluge
       droidcam
+      evince
       firefox
       gcolor3
       gh

@@ -138,6 +138,9 @@ local latex = {
 	parse_snippet({ trig = "||", name = "mid" }, " \\mid "),
 	parse_snippet({ trig = "~=", name = "approx" }, "\\approx "),
 	parse_snippet({ trig = "~~", name = "~" }, "\\sim "),
+	parse_snippet({ trig = "prob", name = "probability" }, "\\mathbb{P}($0)"),
+	parse_snippet({ trig = "exp", name = "expected value" }, "\\mathbb{E}($0)"),
+	parse_snippet({ trig = "var", name = "variance" }, "Var($0)"),
 }
 
 local lua = {

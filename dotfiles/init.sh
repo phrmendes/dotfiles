@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+export EDITOR="nvim";
+export GIT_EDITOR="nvim";
+export SUDO_EDITOR="nvim";
+export VISUAL="nvim";
+
 if [[ $HOST  == "desktop" ]]; then
     path+=("$HOME"/.local/share/coursier/bin)
 fi

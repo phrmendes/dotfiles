@@ -17,7 +17,7 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) autolist-nvim cmp-zotcite img-clip-nvim zotcite mdeval-nvim;
+    inherit (inputs) autolist-nvim cmp-zotcite img-clip-nvim zotcite mdeval-nvim zellij-nvim;
   };
   nix = {
     packages = with pkgs; [
@@ -62,6 +62,7 @@ in {
         gh.autolist-nvim
         gh.img-clip-nvim
         gh.mdeval-nvim
+        gh.zellij-nvim
         gitsigns-nvim
         image-nvim
         lazygit-nvim

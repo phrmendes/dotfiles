@@ -34,6 +34,11 @@
       url = "github:jubnzv/mdeval.nvim";
     };
 
+    zellij-nvim = {
+      flake = false;
+      url = "github:Lilja/zellij.nvim";
+    };
+
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

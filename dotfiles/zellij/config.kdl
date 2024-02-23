@@ -21,7 +21,8 @@ keybinds {
         bind "Alt j" { MoveFocus "Down"; SwitchToMode "Normal"; }
         bind "Alt k" { MoveFocus "Up"; SwitchToMode "Normal"; }
         bind "Alt l" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "Alt n" { NewPane; SwitchToMode "Normal"; }
+        bind "Alt t" { NewTab; SwitchToMode "Normal"; }
+        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
         bind "Ctrl f" { SwitchToMode "Tmux"; }
     }
 
@@ -37,8 +38,6 @@ keybinds {
         bind "m" { SwitchToMode "Move"; }
         bind "q" { Quit; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "n" { NewTab; SwitchToMode "Normal"; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "s" { 
             LaunchOrFocusPlugin "zellij:session-manager" {

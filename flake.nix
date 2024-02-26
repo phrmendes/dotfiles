@@ -39,6 +39,11 @@
       flake = false;
       url = "github:jalvesaq/zotcite";
     };
+
+    zsh-nix-shell = {
+      flake = false;
+      url = "github:chisui/zsh-nix-shell";
+    };
   };
 
   outputs = inputs @ {
@@ -124,27 +129,6 @@
               ];
             };
           }
-        ];
-      };
-
-    nixosConfigurations.server = let
-      parameters = rec {
-        user = "phrmendes";
-        home = "/home/${user}";
-        system = "aarch64-linux";
-      };
-      pkgs = import nixpkgs {
-        inherit (parameters) system;
-        config.allowUnfree = true;
-      };
-    in
-      nixpkgs.lib.nixosSystem {
-        inherit (parameters) system;
-        specialArgs = {
-          inherit inputs pkgs parameters;
-        };
-        modules = [
-          ./server
         ];
       };
   };

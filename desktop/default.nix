@@ -7,8 +7,9 @@
 }: {
   imports = [
     ./configuration/hardware.nix
-    ./configuration/syncthing.nix
+    ./configuration/nix-ld.nix
     ./configuration/packages.nix
+    ./configuration/syncthing.nix
   ];
 
   console.keyMap = "us";

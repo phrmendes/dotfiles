@@ -8,7 +8,7 @@
     ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
-    ./shells.nix
+    ./zsh.nix
     ./starship.nix
     ./symlinks.nix
     ./tealdeer.nix

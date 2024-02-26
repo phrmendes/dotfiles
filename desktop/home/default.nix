@@ -14,8 +14,6 @@
     ./home-manager.nix
     ./packages.nix
     ./symlinks.nix
-    ./vscode.nix
-    ./impermanence.nix
   ];
 
   targets.genericLinux.enable = true;

@@ -4,9 +4,7 @@
     binutils
     cmake
     coreutils-full
-    curl
     fd
-    gcc
     gnumake
     gnused
     gzip
@@ -19,9 +17,7 @@
     ripgrep
     unrar
     unzip
-    wget
     xclip
     zip
-    zlib
   ];
 }

@@ -1,20 +1,21 @@
-{pkgs, ...}: let
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (pkgs.stdenv) isDarwin;
+  inherit (lib) getExe;
   path = "~/Projects/dotfiles";
   nixos = {
     updateCmd = "sudo nixos-rebuild switch --flake ${path}";
     aliases = {
       dpct = "duplicati-cli";
       open = "xdg-open";
-      ld = "lazydocker";
     };
   };
   darwin = {
     updateCmd = "nix run nix-darwin -- switch --flake ${path}";
-    aliases = {
-      docker-compose = "podman-compose";
-      docker = "podman";
-    };
   };
   updateCmd =
     if isDarwin
@@ -24,28 +25,26 @@
     if isDarwin
     then darwin.aliases
     else nixos.aliases;
-  aliases =
+  aliases = with pkgs;
     {
-      cat = "${pkgs.bat}/bin/bat";
-      k = "${pkgs.kubectl}/bin/kubectl";
-      lg = "${pkgs.lazygit}/bin/lazygit";
-      mkdir = "mkdir -p";
+      cat = getExe bat;
+      du = getExe du-dust;
+      grep = getExe ripgrep;
+      lg = getExe lazygit;
+      m = "mkdir -p";
       nc = "nix store gc --debug";
-      ncdu = "${pkgs.ncdu}/bin/ncdu --color dark";
       nh = "nix-hash --flat --base64 --type sha256";
       nu = updateCmd;
+      ps = getExe procs;
+      top = getExe btop;
+      untar = "tar -xvf";
+      untargz = "tar -xzf";
       v = "nvim";
-      zl = "${pkgs.zellij}/bin/zellij";
+      zl = getExe zellij;
     }
     // condAliases;
 in {
   programs = {
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      enableVteIntegration = true;
-      shellAliases = aliases;
-    };
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -54,6 +53,19 @@ in {
       syntaxHighlighting.enable = true;
       initExtra = builtins.readFile ../../dotfiles/init.sh;
       shellAliases = aliases;
+      dirHashes = {
+        docs = "$HOME/Documents";
+        notes = "$HOME/Documents/notes";
+        dots = "$HOME/Projects/dotfiles";
+        dl = "$HOME/download";
+      };
+      plugins = with pkgs; [
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = inputs.zsh-nix-shell;
+        }
+      ];
     };
   };
 }

@@ -23,3 +23,16 @@ character = "┆"
 
 [editor.soft-wrap]
 enable = true
+
+[keys.normal.space]
+"\\" = "vsplit"
+minus = "hsplit"
+q = ":quit"
+w = ":write"
+x = "wclose"
+
+[keys.normal."]"]
+b = "goto_next_buffer"
+
+[keys.normal."["]
+b = "goto_previous_buffer"

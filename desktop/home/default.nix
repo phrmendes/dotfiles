@@ -1,5 +1,10 @@
-{parameters, ...}: {
+{
+  inputs,
+  parameters,
+  ...
+}: {
   imports = [
+    inputs.impermanence.nixosModules.home-manager.impermanence
     ../../shared/home
     ./btop.nix
     ./copyq.nix
@@ -10,6 +15,7 @@
     ./packages.nix
     ./symlinks.nix
     ./vscode.nix
+    ./impermanence.nix
   ];
 
   targets.genericLinux.enable = true;

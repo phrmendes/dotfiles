@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -44,6 +45,7 @@
     self,
     darwin,
     home-manager,
+    impermanence,
     nixpkgs,
     ...
   }: {
@@ -108,6 +110,7 @@
         modules = [
           ./desktop
           home-manager.nixosModules.home-manager
+          impermanence.nixosModules.impermanence
           {
             home-manager = {
               useGlobalPkgs = true;

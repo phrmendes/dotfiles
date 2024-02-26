@@ -7,7 +7,6 @@
 }: {
   imports = [
     ./configuration/hardware.nix
-    ./configuration/nix-ld.nix
     ./configuration/packages.nix
     ./configuration/syncthing.nix
   ];

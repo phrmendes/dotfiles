@@ -1,10 +1,16 @@
 local map = require("utils").map
 local section = require("utils").section
 
-local keys = { "<Space>", "<", ">", "<C-CR>" }
+local unbind = {
+	n = { "<Space>", "<", ">", "<C-CR>", "<C-o>" },
+	i = { "<C-j>", "<C-k>", "<C-l>", "<C-h>" },
+	v = { "<", ">" },
+}
 
-for _, key in ipairs(keys) do
-	vim.keymap.set({ "n", "v" }, key, "<Nop>", { noremap = true, silent = true })
+for mode, keys in pairs(unbind) do
+	for _, key in ipairs(keys) do
+		vim.keymap.set(mode, key, "<Nop>", { noremap = true, silent = true })
+	end
 end
 
 vim.g.VM_mouse_mappings = 1
@@ -56,6 +62,44 @@ map({
 }, {
 	expr = true,
 	silent = true,
+})
+
+map({
+	mode = { "i", "t" },
+	key = "<A-j>",
+	cmd = "<Down>",
+	desc = "Move down",
+}, {
+	noremap = false,
+})
+
+map({
+	mode = { "i", "t" },
+	key = "<A-k>",
+	cmd = "<Up>",
+	desc = "Move up",
+}, {
+	noremap = false,
+})
+
+map({
+	mode = { "i", "t", "c" },
+	key = "<A-l>",
+	cmd = "<Right>",
+	desc = "Move right",
+}, {
+	noremap = false,
+	silent = false,
+})
+
+map({
+	mode = { "i", "t", "c" },
+	key = "<A-h>",
+	cmd = "<Left>",
+	desc = "Move left",
+}, {
+	noremap = false,
+	silent = false,
 })
 
 map({

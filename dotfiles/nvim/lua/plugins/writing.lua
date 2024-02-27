@@ -135,7 +135,7 @@ local setup = function()
 	})
 
 	utils.map({
-		key = "<leader>mm",
+		key = "<leader>mp",
 		cmd = "<CMD>MarkdownPreviewToggle<CR>",
 		desc = "Markdown preview",
 	})

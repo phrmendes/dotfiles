@@ -64,6 +64,7 @@ in {
         gh.mdeval-nvim
         gitsigns-nvim
         image-nvim
+        indent-blankline-nvim
         lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim

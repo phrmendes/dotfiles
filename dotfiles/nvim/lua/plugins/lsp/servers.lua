@@ -95,7 +95,6 @@ local servers = {
 						"Helm Chart.lock",
 						"Helm Chart.yaml",
 						"Hugo",
-						"bashly.yml",
 						"docker-compose.yml",
 					},
 				}),

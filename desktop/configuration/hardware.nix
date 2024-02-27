@@ -2,12 +2,26 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
   boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
+      timeout = 5;
+    };
+    supportedFilesystems = ["ntfs"];
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -34,14 +48,16 @@
     '';
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/6daee98c-1c0d-409d-bab5-bcf67fa89381";
-    fsType = "ext4";
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/6daee98c-1c0d-409d-bab5-bcf67fa89381";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/BA3B-4676";
-    fsType = "vfat";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BA3B-4676";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [

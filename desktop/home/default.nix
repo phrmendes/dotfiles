@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
     ../../shared/home
     ./btop.nix
     ./copyq.nix

@@ -32,7 +32,7 @@
       grep = getExe ripgrep;
       lg = getExe lazygit;
       m = "mkdir -p";
-      nc = "nix store gc --debug";
+      nc = "nix-collect-garbage -d";
       nh = "nix-hash --flat --base64 --type sha256";
       nu = updateCmd;
       ps = getExe procs;

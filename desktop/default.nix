@@ -16,22 +16,6 @@
   sound.enable = true;
   xdg.portal.enable = true;
 
-  boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-      };
-      timeout = 5;
-    };
-    supportedFilesystems = ["ntfs"];
-    kernelPackages = pkgs.linuxPackages_latest;
-  };
-
   networking = {
     hostName = "desktop";
     networkmanager.enable = true;
@@ -192,9 +176,9 @@
 
   virtualisation = {
     virtualbox.host.enable = true;
+    containers.cdi.dynamic.nvidia.enable = true;
     podman = {
       enable = true;
-      enableNvidia = true;
       dockerCompat = true;
       autoPrune.enable = true;
       dockerSocket.enable = true;

@@ -80,7 +80,7 @@ local latex = {
 	parse_snippet({ trig = ">=", name = "greater than or equal" }, "\\geq "),
 	parse_snippet({ trig = ">>", name = ">>" }, "\\gg"),
 	parse_snippet({ trig = "__", name = "subscript" }, "_{$1}$0"),
-	parse_snippet({ trig = "alg", name = "align env" }, "\begin{align*}\n\t$1\nend{align*}"),
+	parse_snippet({ trig = "alg", name = "align env" }, "\\begin{align*}\n\t$1\\nend{align*}"),
 	parse_snippet({ trig = "bar", name = "bar" }, "\\overline{$1}$0"),
 	parse_snippet({ trig = "bcap", name = "bigcap" }, "\\bigcap_{${1:i \\in ${2: I}}} $0"),
 	parse_snippet({ trig = "bcup", name = "bigcup" }, "\\bigcup_{${1:i \\in ${2: I}}} $0"),

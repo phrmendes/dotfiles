@@ -1,13 +1,14 @@
 local map = require("utils").map
 local section = require("utils").section
 
-local keys = { "<Space>", "<", ">" }
+local keys = { "<Space>", "<", ">", "<C-CR>" }
 
 for _, key in ipairs(keys) do
 	vim.keymap.set({ "n", "v" }, key, "<Nop>", { noremap = true, silent = true })
 end
 
 vim.g.VM_mouse_mappings = 1
+vim.g.copilot_no_tab_map = true
 
 section({
 	key = "<leader><tab>",
@@ -54,6 +55,18 @@ map({
 	desc = "Word wrap",
 }, {
 	expr = true,
+	silent = true,
+})
+
+map({
+	mode = "i",
+	key = "<C-CR>",
+	cmd = [[copilot#Accept("<CR>")]],
+	desc = "Accept copilot suggestion",
+}, {
+	expr = true,
+	noremap = true,
+	replace_keycodes = false,
 	silent = true,
 })
 

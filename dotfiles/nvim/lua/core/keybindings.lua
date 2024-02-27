@@ -2,8 +2,7 @@ local map = require("utils").map
 local section = require("utils").section
 
 local unbind = {
-	n = { "<Space>", "<", ">", "<C-CR>", "<C-o>" },
-	i = { "<C-j>", "<C-k>", "<C-l>", "<C-h>" },
+	n = { "<", ">", "<Space>" },
 	v = { "<", ">" },
 }
 
@@ -104,7 +103,7 @@ map({
 
 map({
 	mode = "i",
-	key = "<C-CR>",
+	key = "<C-a>",
 	cmd = [[copilot#Accept("<CR>")]],
 	desc = "Accept copilot suggestion",
 }, {

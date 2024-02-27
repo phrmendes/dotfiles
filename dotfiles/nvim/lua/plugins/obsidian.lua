@@ -27,11 +27,6 @@ obsidian.setup({
 	attachments = {
 		img_folder = "assets",
 	},
-	completion = {
-		new_notes_location = "notes_subdir",
-		nvim_cmp = true,
-		prepend_note_id = true,
-	},
 	mappings = {
 		["gf"] = {
 			action = obsidian.util.gf_passthrough,

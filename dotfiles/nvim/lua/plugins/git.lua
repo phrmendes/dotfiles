@@ -5,7 +5,11 @@ require("gitsigns").setup({
 		local gs = package.loaded.gitsigns
 
 		if vim.fn.has("mac") == 0 then
-			require("octo").setup()
+			require("octo").setup({
+				suppress_missing_scope = {
+					project_v2 = true,
+				},
+			})
 		end
 
 		utils.map({
@@ -48,30 +52,6 @@ require("gitsigns").setup({
 			name = "git",
 		})
 
-		utils.section({
-			mode = { "n", "v" },
-			key = "<leader>gb",
-			name = "buffer",
-		})
-
-		utils.section({
-			mode = { "n", "v" },
-			key = "<leader>gh",
-			name = "hunk",
-		})
-
-		utils.section({
-			mode = { "n", "v" },
-			key = "<leader>gc",
-			name = "commits",
-		})
-
-		utils.map({
-			key = "<leader>gB",
-			cmd = "<CMD>Telescope git_branches<CR>",
-			desc = "Branches",
-		})
-
 		utils.map({
 			key = "<leader>gd",
 			cmd = gs.diffthis,
@@ -103,53 +83,29 @@ require("gitsigns").setup({
 		})
 
 		utils.map({
-			key = "<leader>gbr",
-			cmd = gs.reset_buffer,
-			desc = "Reset",
-			buffer = bufnr,
-		})
-
-		utils.map({
-			key = "<leader>gbs",
+			key = "<leader>gb",
 			cmd = gs.stage_buffer,
-			desc = "Stage",
+			desc = "Stage buffer",
 			buffer = bufnr,
 		})
 
 		utils.map({
-			key = "<leader>ghp",
-			cmd = gs.preview_hunk,
-			desc = "Preview",
+			key = "<leader>gB",
+			cmd = gs.reset_buffer,
+			desc = "Reset buffer",
 			buffer = bufnr,
 		})
 
 		utils.map({
-			key = "<leader>ghr",
-			cmd = gs.reset_hunk,
-			desc = "Reset",
-			buffer = bufnr,
-		})
-
-		utils.map({
-			mode = "v",
-			key = "<leader>ghr",
-			desc = "Reset",
-			buffer = bufnr,
-			cmd = function()
-				gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end,
-		})
-
-		utils.map({
-			key = "<leader>ghs",
+			key = "<leader>gh",
 			cmd = gs.stage_hunk,
-			desc = "Stage",
+			desc = "Stage hunk",
 			buffer = bufnr,
 		})
 
 		utils.map({
 			mode = "v",
-			key = "<leader>ghs",
+			key = "<leader>gh",
 			desc = "Stage",
 			buffer = bufnr,
 			cmd = function()
@@ -158,20 +114,30 @@ require("gitsigns").setup({
 		})
 
 		utils.map({
-			key = "<leader>ghu",
-			cmd = gs.undo_stage_hunk,
-			desc = "Undo stage",
+			key = "<leader>gH",
+			cmd = gs.reset_hunk,
+			desc = "Reset hunk",
 			buffer = bufnr,
 		})
 
 		utils.map({
-			key = "<leader>gcr",
+			mode = "v",
+			key = "<leader>gH",
+			desc = "Reset hunk",
+			buffer = bufnr,
+			cmd = function()
+				gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end,
+		})
+
+		utils.map({
+			key = "<leader>gc",
 			cmd = "<CMD>LazyGitFilter<CR>",
 			desc = "Repository",
 		})
 
 		utils.map({
-			key = "<leader>gcf",
+			key = "<leader>gC",
 			cmd = "<CMD>LazyGitFilterCurrentFile<CR>",
 			desc = "File",
 		})

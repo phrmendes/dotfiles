@@ -1,5 +1,1 @@
-require("dressing").setup({
-	select = {
-		enabled = false,
-	},
-})
+require("dressing").setup()

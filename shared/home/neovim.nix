@@ -17,7 +17,7 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) autolist-nvim cmp-zotcite img-clip-nvim zotcite mdeval-nvim;
+    inherit (inputs) autolist-nvim cmp-zotcite img-clip-nvim zotcite mdeval-nvim obsidian-nvim;
   };
   nix = {
     packages = with pkgs; [
@@ -27,8 +27,8 @@
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
       gh.zotcite
+      gh.obsidian-nvim
       ChatGPT-nvim
-      obsidian-nvim
     ];
   };
 in {

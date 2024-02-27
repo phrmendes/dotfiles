@@ -8,7 +8,6 @@
       bitwarden-cli
       bruno
       chromium
-      coursier
       curtail
       dbeaver
       deluge

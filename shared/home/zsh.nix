@@ -7,24 +7,6 @@
   inherit (pkgs.stdenv) isDarwin;
   inherit (lib) getExe;
   path = "~/Projects/dotfiles";
-  nixos = {
-    updateCmd = "sudo nixos-rebuild switch --flake ${path}";
-    aliases = {
-      dpct = "duplicati-cli";
-      open = "xdg-open";
-    };
-  };
-  darwin = {
-    updateCmd = "nix run nix-darwin -- switch --flake ${path}";
-  };
-  updateCmd =
-    if isDarwin
-    then darwin.updateCmd
-    else nixos.updateCmd;
-  condAliases =
-    if isDarwin
-    then darwin.aliases
-    else nixos.aliases;
   aliases = with pkgs;
     {
       cat = getExe bat;
@@ -34,7 +16,6 @@
       m = "mkdir -p";
       nc = "nix-collect-garbage -d";
       nh = "nix-hash --flat --base64 --type sha256";
-      nu = updateCmd;
       ps = getExe procs;
       top = getExe btop;
       untar = "tar -xvf";
@@ -42,7 +23,17 @@
       v = "nvim";
       zl = getExe zellij;
     }
-    // condAliases;
+    // (
+      if isDarwin
+      then {
+        nu = "nix run nix-darwin -- switch --flake ${path}";
+      }
+      else {
+        nu = "sudo nixos-rebuild switch --flake ${path}";
+        dpct = "duplicati-cli";
+        open = "xdg-open";
+      }
+    );
 in {
   programs = {
     zsh = {

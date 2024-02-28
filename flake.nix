@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -102,11 +103,11 @@
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
+        overlays = [
+          inputs.neovim-nightly.overlay
+        ];
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "electron-25.9.0"
-          ];
         };
       };
     in

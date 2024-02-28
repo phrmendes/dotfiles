@@ -71,9 +71,6 @@ vim.opt.iskeyword:append("-")
 -- default terminal
 vim.opt.shell = "zsh"
 
--- shell slash
-vim.opt.shellslash = true
-
 -- nvim server
 if vim.fn.executable("nvr") then
 	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

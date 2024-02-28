@@ -34,7 +34,7 @@
 in {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped;
+    package = pkgs.neovim-nightly;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
@@ -69,12 +69,10 @@ in {
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
-        lualine-nvim
         luasnip
         markdown-preview-nvim
         mini-nvim
         nabla-nvim
-        neo-tree-nvim
         neodev-nvim
         neogen
         nvim-cmp

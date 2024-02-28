@@ -6,6 +6,8 @@ require("plugins.mini.jumping")
 require("plugins.mini.move")
 require("plugins.mini.splitjoin")
 require("plugins.mini.surround")
+require("plugins.mini.statusline")
+require("plugins.mini.files")
 
 require("mini.align").setup()
 require("mini.cursorword").setup()

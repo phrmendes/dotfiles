@@ -1,6 +1,7 @@
 local map = require("utils").map
 local section = require("utils").section
 
+-- unbind keys -----------------------------------------------------------------
 local unbind = {
 	n = { "<", ">", "<Space>" },
 	v = { "<", ">" },
@@ -12,25 +13,33 @@ for mode, keys in pairs(unbind) do
 	end
 end
 
-vim.g.VM_mouse_mappings = 1
+-- copilot ---------------------------------------------------------------------
 vim.g.copilot_no_tab_map = true
 
-section({
-	key = "<leader><tab>",
-	name = "tabs",
+map({
+	mode = "i",
+	key = "<C-a>",
+	cmd = [[copilot#Accept("<CR>")]],
+	desc = "Accept copilot suggestion",
+}, {
+	expr = true,
+	noremap = true,
+	replace_keycodes = false,
+	silent = true,
 })
 
-section({
-	key = "<leader>b",
-	name = "buffers",
+-- exit terminal mode ----------------------------------------------------------
+map({
+	mode = "t",
+	key = "<ESC><ESC>",
+	cmd = "<C-\\><C-n>",
+	desc = "Exit terminal mode",
+}, {
+	noremap = true,
+	silent = true,
 })
 
-section({
-	mode = { "n", "v" },
-	key = "<leader>f",
-	name = "files/find",
-})
-
+-- macros ----------------------------------------------------------------------
 map({
 	mode = "n",
 	key = "Q",
@@ -45,6 +54,7 @@ map({
 	desc = "Replay macro",
 })
 
+-- word wrap -------------------------------------------------------------------
 map({
 	key = "k",
 	cmd = [[v:count == 0 ? "gk" : "k"]],
@@ -63,6 +73,7 @@ map({
 	silent = true,
 })
 
+-- move in insert mode ---------------------------------------------------------
 map({
 	mode = { "i", "t" },
 	key = "<A-j>",
@@ -101,28 +112,7 @@ map({
 	silent = false,
 })
 
-map({
-	mode = "i",
-	key = "<C-a>",
-	cmd = [[copilot#Accept("<CR>")]],
-	desc = "Accept copilot suggestion",
-}, {
-	expr = true,
-	noremap = true,
-	replace_keycodes = false,
-	silent = true,
-})
-
-map({
-	mode = "t",
-	key = "<ESC><ESC>",
-	cmd = "<C-\\><C-n>",
-	desc = "Exit terminal mode",
-}, {
-	noremap = true,
-	silent = true,
-})
-
+-- resize and split windows ----------------------------------------------------
 map({
 	key = "+",
 	cmd = "<CMD>resize +2<CR>",
@@ -160,36 +150,6 @@ map({
 })
 
 map({
-	key = "[<TAB>",
-	cmd = "<CMD>tabprevious<CR>",
-	desc = "Previous tab",
-})
-
-map({
-	key = "]<TAB>",
-	cmd = "<CMD>tabnext<CR>",
-	desc = "Next tab",
-})
-
-map({
-	key = "<C-d>",
-	cmd = "<C-d>zz",
-	desc = "Page down",
-})
-
-map({
-	key = "<C-u>",
-	cmd = "<C-u>zz",
-	desc = "Page up",
-})
-
-map({
-	key = "<leader>u",
-	cmd = "<CMD>UndotreeToggle<CR>",
-	desc = "Toggle undo tree",
-})
-
-map({
 	key = "<leader>-",
 	cmd = "<CMD>split<CR>",
 	desc = "Split window (H)",
@@ -199,24 +159,6 @@ map({
 	key = "<leader>\\",
 	cmd = "<CMD>vsplit<CR>",
 	desc = "Split window (V)",
-})
-
-map({
-	key = "<leader>W",
-	cmd = "<CMD>wq<CR>",
-	desc = "Save and quit",
-})
-
-map({
-	key = "<leader>q",
-	cmd = "<CMD>confirm q<CR>",
-	desc = "Quit",
-})
-
-map({
-	key = "<leader>w",
-	cmd = "<CMD>w<CR>",
-	desc = "Save",
 })
 
 map({
@@ -231,16 +173,67 @@ map({
 	desc = "Resize and make windows equal",
 })
 
+-- better page up/down ---------------------------------------------------------
 map({
-	key = "<leader><TAB>n",
-	cmd = "<CMD>tabnext<CR>",
-	desc = "New",
+	key = "<C-d>",
+	cmd = "<C-d>zz",
+	desc = "Page down",
 })
 
 map({
-	key = "<leader><TAB>q",
+	key = "<C-u>",
+	cmd = "<C-u>zz",
+	desc = "Page up",
+})
+
+-- tabs ------------------------------------------------------------------------
+map({
+	key = "[<TAB>",
+	cmd = "<CMD>tabprevious<CR>",
+	desc = "Previous tab",
+})
+
+map({
+	key = "]<TAB>",
+	cmd = "<CMD>tabnext<CR>",
+	desc = "Next tab",
+})
+
+map({
+	key = "<TAB>q",
 	cmd = "<CMD>tabonly<CR>",
-	desc = "Close",
+	desc = "Close tab",
+})
+
+map({
+	key = "<TAB>n",
+	cmd = "<CMD>tabnew<CR>",
+	desc = "New tab",
+})
+
+-- save and quit ---------------------------------------------------------------
+map({
+	key = "<leader>w",
+	cmd = "<CMD>w<CR>",
+	desc = "Save",
+})
+
+map({
+	key = "<leader>q",
+	cmd = "<CMD>confirm q<CR>",
+	desc = "Quit",
+})
+
+map({
+	key = "<leader>W",
+	cmd = "<CMD>wq<CR>",
+	desc = "Save and quit",
+})
+
+-- buffers ---------------------------------------------------------------------
+section({
+	key = "<leader>b",
+	name = "buffers",
 })
 
 map({
@@ -261,14 +254,16 @@ map({
 	desc = "Close all unfocused",
 })
 
-map({
-	key = "<localleader>q",
-	cmd = "<CMD>TroubleToggle quickfix<CR>",
-	desc = "Quickfix",
+-- find ------------------------------------------------------------------------
+section({
+	mode = { "n", "v" },
+	key = "<leader>f",
+	name = "files/find",
 })
 
+-- undo tree -------------------------------------------------------------------
 map({
-	key = "<localleader>l",
-	cmd = "<CMD>TroubleToggle loclist<CR>",
-	desc = "Loclist",
+	key = "<leader>u",
+	cmd = "<CMD>UndotreeToggle<CR>",
+	desc = "Toggle undo tree",
 })

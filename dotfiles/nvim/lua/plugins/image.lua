@@ -12,14 +12,3 @@ require("image").setup({
 	max_height = 15,
 	editor_only_render_when_focused = false,
 })
-
-require("img-clip").setup({
-	default = {
-		drag_and_drop = {
-			enabled = true,
-			insert_mode = true,
-			copy_images = false,
-			download_images = true,
-		},
-	},
-})

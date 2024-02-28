@@ -85,6 +85,9 @@ vim.g.loaded_netrwPlugin = 1
 -- clipboard
 vim.opt.clipboard:append({ "unnamedplus" })
 
+-- mouse support
+vim.g.VM_mouse_mappings = 1
+
 -- neovide
 if vim.g.neovide then
 	vim.g.neovide_padding_top = 10

@@ -125,17 +125,6 @@ local servers = {
 	},
 }
 
-if vim.fn.has("mac") == 0 then
-	servers = vim.tbl_extend("keep", servers, {
-		{ server = "htmx" },
-		{ server = "tailwindcss", filetypes = { "html", "css" } },
-	})
-else
-	servers = vim.tbl_extend("keep", servers, {
-		{ server = "marksman" },
-	})
-end
-
 for _, server in ipairs(servers) do
 	utils.add_language_server(server)
 end

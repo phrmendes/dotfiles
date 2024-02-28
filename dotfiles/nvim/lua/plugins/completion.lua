@@ -5,9 +5,13 @@ local border = cmp.config.window.bordered()
 
 local default = {
 	{ name = "path" },
-	{ name = "emoji" },
 	{ name = "buffer" },
 }
+
+require("cmp_pandoc").setup({
+	filetypes = { "quarto" },
+	crossref = { enable_nabla = true },
+})
 
 cmp.setup({
 	snippet = {

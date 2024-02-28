@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "autolist-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1688728312,
-        "narHash": "sha256-lavDbTFidmbYDOxYPumCExkd27sesZ5uFgwHc1xNuW0=",
-        "owner": "gaoDean",
-        "repo": "autolist.nvim",
-        "rev": "5f70a5f99e96c8fe3069de042abd2a8ed2deb855",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gaoDean",
-        "repo": "autolist.nvim",
-        "type": "github"
-      }
-    },
     "cmp-zotcite": {
       "flake": false,
       "locked": {
@@ -170,22 +154,6 @@
         "type": "github"
       }
     },
-    "img-clip-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707432917,
-        "narHash": "sha256-xuOxhHuOnGtvlyd9waz9kDQ23HQNPrzhzXtpl1k3QsA=",
-        "owner": "HakonHarnes",
-        "repo": "img-clip.nvim",
-        "rev": "c93f0d67db424e9e83fe55730aa42dfafa847d8f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "HakonHarnes",
-        "repo": "img-clip.nvim",
-        "type": "github"
-      }
-    },
     "mdeval-nvim": {
       "flake": false,
       "locked": {
@@ -298,11 +266,9 @@
     },
     "root": {
       "inputs": {
-        "autolist-nvim": "autolist-nvim",
         "cmp-zotcite": "cmp-zotcite",
         "darwin": "darwin",
         "home-manager": "home-manager",
-        "img-clip-nvim": "img-clip-nvim",
         "mdeval-nvim": "mdeval-nvim",
         "neovim-nightly": "neovim-nightly",
         "nixpkgs": "nixpkgs_2",

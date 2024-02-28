@@ -4,12 +4,12 @@
   ...
 }: let
   appendPackages = {
-    to_nix ? [],
     to_darwin ? [],
+    to_nix ? [],
   }:
-    if ! pkgs.stdenv.isDarwin
-    then to_nix
-    else to_darwin;
+    if pkgs.stdenv.isDarwin
+    then to_darwin
+    else to_nix;
   getNeovimPluginFromGitHub = pkgName: src:
     pkgs.vimUtils.buildVimPlugin {
       inherit src;
@@ -17,13 +17,9 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) autolist-nvim cmp-zotcite img-clip-nvim zotcite mdeval-nvim obsidian-nvim;
+    inherit (inputs) cmp-zotcite zotcite mdeval-nvim obsidian-nvim;
   };
   nix = {
-    packages = with pkgs; [
-      htmx-lsp
-      tailwindcss-language-server
-    ];
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
       gh.zotcite
@@ -48,7 +44,6 @@ in {
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
-        cmp-emoji
         cmp-latex-symbols
         cmp-nvim-lsp
         cmp-pandoc-nvim
@@ -56,11 +51,8 @@ in {
         cmp_luasnip
         conform-nvim
         copilot-vim
-        debugprint-nvim
         dressing-nvim
         friendly-snippets
-        gh.autolist-nvim
-        gh.img-clip-nvim
         gh.mdeval-nvim
         gitsigns-nvim
         image-nvim
@@ -83,7 +75,6 @@ in {
         nvim-dap-virtual-text
         nvim-lint
         nvim-lspconfig
-        nvim-metals
         nvim-spectre
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -108,6 +99,7 @@ in {
         vim-jinja
         vim-just
         vim-kitty-navigator
+        vim-markdown
         vim-nix
         vim-sleuth
         vim-slime
@@ -141,6 +133,7 @@ in {
         imagemagick
         ltex-ls
         lua-language-server
+        marksman
         md-tangle
         neovim-remote
         nixd
@@ -167,9 +160,6 @@ in {
         vscode-json-languageserver
         vscode-langservers-extracted
         yaml-language-server
-      ])
-      ++ appendPackages {
-        to_nix = nix.packages;
-      };
+      ]);
   };
 }

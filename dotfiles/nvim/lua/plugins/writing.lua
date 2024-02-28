@@ -3,17 +3,8 @@ local utils = require("utils")
 local setup = function()
 	vim.g.markdown_fenced_languages = { "python", "sh" }
 	vim.g.mkdp_filetypes = { "markdown", "quarto" }
+	vim.g.vim_markdown_folding_disabled = 1
 	vim.wo.showbreak = "|"
-
-	if not vim.g.neovide then
-		require("plugins.images")
-	end
-
-	local list_patterns = {
-		unordered = "[-+*]",
-		digit = "%d+[.)]",
-		ascii = "%a[.)]",
-	}
 
 	require("mdeval").setup({
 		require_confirmation = false,
@@ -22,26 +13,6 @@ local setup = function()
 			sh = { command = { "bash" } },
 			python = { command = { "python" } },
 		},
-	})
-
-	require("autolist").setup({
-		lists = {
-			quarto = {
-				list_patterns.unordered,
-				list_patterns.digit,
-				list_patterns.ascii,
-			},
-			markdown = {
-				list_patterns.unordered,
-				list_patterns.digit,
-				list_patterns.ascii,
-			},
-		},
-	})
-
-	require("cmp_pandoc").setup({
-		filetypes = { "quarto" },
-		crossref = { enable_nabla = true },
 	})
 
 	require("quarto").setup({
@@ -53,53 +24,12 @@ local setup = function()
 	})
 
 	utils.map({
-		mode = "i",
-		key = "<CR>",
-		cmd = "<CR><CMD>AutolistNewBullet<CR>",
-		desc = "Insert new bullet point",
-	})
-
-	utils.map({
-		key = "<<",
-		cmd = "<<<CMD>AutolistRecalculate<CR>",
-		desc = "Recalculate indentation to the left",
-	})
-
-	utils.map({
-		key = "<CR>",
-		cmd = "<CMD>AutolistToggleCheckbox<CR>",
-		desc = "Toggle checkbox",
-	})
-
-	utils.map({
-		key = ">>",
-		cmd = ">>><CMD>AutolistRecalculate<CR>",
-		desc = "Recalculate indentation to the right",
-	})
-
-	utils.map({
-		key = "O",
-		cmd = "O<CMD>AutolistNewBulletBefore<CR>",
-		desc = "Insert new bullet point before",
-	})
-
-	utils.map({
-		key = "dd",
-		cmd = "dd<CMD>AutolistRecalculate<CR>",
-		desc = "Delete line and recalculate indentation",
-	})
-
-	utils.map({
-		key = "o",
-		cmd = "o<CMD>AutolistNewBullet<CR>",
-		desc = "Insert new bullet point below",
-	})
-
-	utils.map({
-		mode = "v",
-		key = "d",
-		cmd = "d<CMD>AutolistRecalculate<CR>",
-		desc = "Delete selection and recalculate indentation",
+		key = "<C-c><C-m>",
+		cmd = "<CMD>MdEval<CR>",
+		desc = "Run code block (markdown)",
+	}, {
+		silent = true,
+		noremap = true,
 	})
 
 	utils.map({
@@ -108,24 +38,10 @@ local setup = function()
 		desc = "Paste image",
 	})
 
-	utils.map({
-		key = "<leader>mr",
-		cmd = "<CMD>MdEval<CR>",
-		desc = "Run code block",
-	}, {
-		silent = true,
-		noremap = true,
-	})
-
 	utils.section({
 		mode = { "n", "v" },
 		key = "<leader>m",
 		name = "markdown",
-	})
-
-	utils.section({
-		key = "<leader>z",
-		name = "zotero",
 	})
 
 	utils.map({
@@ -147,6 +63,11 @@ local setup = function()
 	}, {
 		silent = true,
 		noremap = true,
+	})
+
+	utils.section({
+		key = "<leader>z",
+		name = "zotero",
 	})
 
 	utils.map({

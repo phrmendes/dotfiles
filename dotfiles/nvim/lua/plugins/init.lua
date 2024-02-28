@@ -2,7 +2,6 @@ require("plugins.better-escape")
 require("plugins.colorizer")
 require("plugins.colorscheme")
 require("plugins.completion")
-require("plugins.debugprint")
 require("plugins.dressing")
 require("plugins.git")
 require("plugins.ibl")
@@ -23,4 +22,8 @@ require("plugins.zen")
 if vim.fn.has("mac") == 0 then
 	require("plugins.ia")
 	require("plugins.obsidian")
+end
+
+if not vim.g.neovide then
+	require("plugins.image")
 end

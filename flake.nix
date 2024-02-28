@@ -56,6 +56,9 @@
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
+        overlays = [
+          inputs.neovim-nightly.overlay
+        ];
         config = {
           allowUnfree = true;
         };

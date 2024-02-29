@@ -26,6 +26,7 @@
       kubectl
       kubernetes-helm
       libreoffice
+      libusb1
       mc
       ncdu
       neovide

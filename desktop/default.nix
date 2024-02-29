@@ -81,6 +81,9 @@
     udev = {
       enable = true;
       packages = with pkgs.gnome; [gnome-settings-daemon];
+      extraRules = ''
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
+      '';
     };
 
     xserver = {

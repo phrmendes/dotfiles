@@ -19,10 +19,24 @@
   networking = {
     hostName = "desktop";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [
-      8010
-      8080
-    ];
+    firewall = {
+      allowedTCPPorts = [
+        8010
+        8080
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+    };
   };
 
   time = {

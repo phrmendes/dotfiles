@@ -58,9 +58,6 @@ local servers = {
 	},
 	{
 		server = "pyright",
-		on_attach = function()
-			require("plugins.dap").python()
-		end,
 		settings = {
 			single_file_support = true,
 			python = {

@@ -223,26 +223,20 @@ map({ key = "]t", cmd = require("todo-comments").jump_next, desc = "Next todo co
 map({ key = "<leader>Z", cmd = "<CMD>ZenMode<CR>", desc = "Zen mode" })
 
 -- writing ---------------------------------------------------------------------
+section({ key = "<leader>z", name = "zotero" })
+map({ key = "<leader>zi", cmd = "<Plug>ZCitationInfo", desc = "Citation info" })
+map({ key = "<leader>zo", cmd = "<Plug>ZOpenAttachment", desc = "Open attachment" })
+map({ key = "<leader>zv", cmd = "<Plug>ZViewDocument", desc = "View exported document" })
+map({ key = "<leader>zy", cmd = "<Plug>ZCitationYamlRef", desc = "Citation info (yaml)" })
+
 autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
 	group = augroup,
 	callback = function(event)
-		map({ key = "<leader>p", cmd = "<CMD>PasteImage<CR>", desc = "Paste image", buffer = event.buf })
-
-		section({ mode = { "n", "v" }, key = "<leader>m", name = "markdown" })
-		map({ key = "<leader>me", cmd = require("nabla").popup, desc = "Equation preview", buffer = event.buf })
-
-		map({
-			key = "<leader>mp",
-			cmd = "<CMD>MarkdownPreviewToggle<CR>",
-			desc = "Markdown preview",
-			buffer = event.buf,
-		})
-
 		map({
 			key = "<C-c><C-m>",
 			cmd = "<CMD>MdEval<CR>",
-			desc = "Run code block (markdown)",
+			desc = "Md: Run code block",
 			buffer = event.buf,
 		}, {
 			silent = true,
@@ -250,26 +244,20 @@ autocmd("FileType", {
 		})
 
 		map({
-			key = "<leader>mt",
+			key = "<C-c><C-t>",
 			cmd = "<CMD>! md-tangle -f %<CR>",
-			desc = "Tangle code blocks",
+			desc = "Md: Tangle code block",
 			buffer = event.buf,
 		}, {
 			silent = true,
 			noremap = true,
 		})
 
-		section({ key = "<leader>z", name = "zotero" })
-		map({ key = "<leader>zi", cmd = "<Plug>ZCitationInfo", desc = "Citation info", buffer = event.buf })
-		map({ key = "<leader>zo", cmd = "<Plug>ZOpenAttachment", desc = "Open attachment", buffer = event.buf })
-		map({ key = "<leader>zv", cmd = "<Plug>ZViewDocument", desc = "View exported document", buffer = event.buf })
-		map({ key = "<leader>zy", cmd = "<Plug>ZCitationYamlRef", desc = "Citation info (yaml)", buffer = event.buf })
-
 		map({
+			buffer = event.buf,
 			key = "<leader>zc",
 			cmd = "<Plug>ZCitationCompleteInfo",
 			desc = "Citation info (complete)",
-			buffer = event.buf,
 		})
 	end,
 })

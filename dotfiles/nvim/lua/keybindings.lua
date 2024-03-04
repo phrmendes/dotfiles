@@ -4,7 +4,7 @@ local section = require("utils").keys.section
 local autocmd = vim.api.nvim_create_autocmd
 local provider = require("utils").lsp.provider
 
--- unbind keys -----------------------------------------------------------------
+-- unbind keys -------------------------------------------
 local unbind = { n = { "<", ">", "<Space>" }, v = { "<", ">" } }
 
 for mode, keys in pairs(unbind) do
@@ -13,34 +13,34 @@ for mode, keys in pairs(unbind) do
 	end
 end
 
--- exit terminal mode ----------------------------------------------------------
+-- exit terminal mode ------------------------------------
 map({ mode = "t", key = "<ESC><ESC>", cmd = "<C-\\><C-n>", desc = "Exit terminal mode" }, {
 	noremap = true,
 	silent = true,
 })
 
--- macros ----------------------------------------------------------------------
+-- macros ------------------------------------------------
 map({ mode = "n", key = "Q", cmd = "@qj", desc = "Replay macro" })
 map({ mode = "v", key = "Q", cmd = "<CMD>norm @q<CR>", desc = "Replay macro" })
 
--- word wrap -------------------------------------------------------------------
+-- word wrap ---------------------------------------------
 map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, { expr = true, silent = true })
 map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, { expr = true, silent = true })
 
--- move in insert mode ---------------------------------------------------------
+-- move in insert mode -----------------------------------
 map({ mode = { "i", "t" }, key = "<A-j>", cmd = "<Down>", desc = "Move down" }, { noremap = false })
 map({ mode = { "i", "t" }, key = "<A-k>", cmd = "<Up>", desc = "Move up" }, { noremap = false })
 map({ mode = { "i", "t", "c" }, key = "<A-l>", cmd = "<Right>", desc = "Move right" })
 map({ mode = { "i", "t", "c" }, key = "<A-h>", cmd = "<Left>", desc = "Move left" })
 
--- clear highlights ------------------------------------------------------------
+-- clear highlights --------------------------------------
 map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
 
--- better page up/down ---------------------------------------------------------
+-- better page up/down -----------------------------------
 map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
 map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })
 
--- resize and split windows ----------------------------------------------------
+-- resize and split windows ------------------------------
 map({ key = "+", cmd = "<CMD>resize +2<CR>", desc = "Increase window (V)" }, { noremap = true, silent = true })
 map({ key = "-", cmd = "<CMD>vertical resize -2<CR>", desc = "Decrease window (H)" }, { noremap = true, silent = true })
 map({ key = "=", cmd = "<CMD>vertical resize +2<CR>", desc = "Increase window (H)" }, { noremap = true, silent = true })
@@ -50,25 +50,25 @@ map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
 map({ key = "<leader>x", cmd = "<C-w>q", desc = "Close window" })
 map({ key = "<leader>=", cmd = "<C-w>=", desc = "Resize and make windows equal" })
 
--- tabs ------------------------------------------------------------------------
+-- tabs --------------------------------------------------
 map({ key = "<TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New tab" })
 map({ key = "<TAB>q", cmd = "<CMD>tabonly<CR>", desc = "Close tab" })
 map({ key = "[<TAB>", cmd = "<CMD>tabprevious<CR>", desc = "Previous tab" })
 map({ key = "]<TAB>", cmd = "<CMD>tabnext<CR>", desc = "Next tab" })
 
--- save and quit ---------------------------------------------------------------
+-- save and quit -----------------------------------------
 map({ key = "<leader>W", cmd = "<CMD>wq<CR>", desc = "Save and quit" })
 map({ key = "<leader>q", cmd = "<CMD>confirm q<CR>", desc = "Quit" })
 map({ key = "<leader>w", cmd = "<CMD>w<CR>", desc = "Save" })
 
--- help ------------------------------------------------------------------------
+-- help --------------------------------------------------
 map({ key = "<leader>.", cmd = "<CMD>Telescope commands<CR>", desc = "List commands" })
 map({ key = "<leader>?", cmd = "<CMD>Telescope help_tags<CR>", desc = "Help" })
 
--- undo tree -------------------------------------------------------------------
+-- undo tree ---------------------------------------------
 map({ key = "<leader>u", cmd = "<CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" })
 
--- file explorer ---------------------------------------------------------------
+-- file explorer -----------------------------------------
 map({
 	key = "<leader>e",
 	cmd = function()
@@ -79,7 +79,7 @@ map({
 	desc = "Open file explorer",
 })
 
--- buffers ---------------------------------------------------------------------
+-- buffers -----------------------------------------------
 section({ key = "<leader>b", name = "buffers" })
 map({ key = "<leader>bG", cmd = "<CMD>blast<CR>", desc = "Go to last buffer" })
 map({ key = "<leader>bb", cmd = "<CMD>Telescope buffers<CR>", desc = "List" })
@@ -89,14 +89,14 @@ map({ key = "<leader>bg", cmd = "<CMD>bfirst<CR>", desc = "Go to last buffer" })
 map({ key = "<leader>bq", cmd = "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>", desc = "Close all unfocused" })
 map({ key = "<leader>bw", cmd = require("mini.bufremove").wipeout, desc = "Wipeout" })
 
--- find ------------------------------------------------------------------------
+-- find --------------------------------------------------
 section({ mode = { "n", "v" }, key = "<leader>f", name = "files/find" })
 map({ key = "<leader>ff", cmd = "<CMD>Telescope find_files<CR>", desc = "Find" })
 map({ key = "<leader>fg", cmd = "<CMD>Telescope live_grep<CR>", desc = "Live grep" })
 map({ key = "<leader>fz", cmd = "<CMD>Telescope zoxide list<CR>", desc = "Zoxide" })
 map({ key = "<leader>fs", cmd = require("spectre").toggle, desc = "Search and replace" })
 
--- dap -------------------------------------------------------------------------
+-- dap ---------------------------------------------------
 map({ key = "<F3>", cmd = require("dap").step_out, desc = "DAP: step out" })
 map({ key = "<F4>", cmd = require("dap").step_into, desc = "DAP: step into" })
 map({ key = "<F5>", cmd = require("dap").step_back, desc = "DAP: step back" })
@@ -117,7 +117,7 @@ autocmd("FileType", {
 	end,
 })
 
--- git -------------------------------------------------------------------------
+-- git ---------------------------------------------------
 section({ mode = { "n", "v" }, key = "<leader>g", name = "git" })
 map({ key = "<leader>gd", cmd = require("gitsigns").diffthis, desc = "Diff" })
 map({ key = "<leader>gs", cmd = "<CMD>Telescope git_status<CR>", desc = "Diff (repo)" })
@@ -163,7 +163,7 @@ map({
 	expr = true,
 })
 
--- ia --------------------------------------------------------------------------
+-- ia ----------------------------------------------------
 if vim.fn.has("mac") == 0 then
 	section({ mode = { "n", "v" }, key = "<leader>i", name = "IA" })
 	map({ key = "<leader>ic", cmd = "<CMD>ChatGPT<CR>", desc = "ChatGPT" })
@@ -198,7 +198,7 @@ if vim.fn.has("mac") == 0 then
 	})
 end
 
--- obsidian --------------------------------------------------------------------
+-- obsidian ----------------------------------------------
 if vim.fn.has("mac") == 0 then
 	section({ key = "<leader>o", name = "obsidian" })
 	map({ key = "<leader>ob", cmd = "<CMD>ObsidianBacklinks<CR>", desc = "Backlinks" })
@@ -208,21 +208,21 @@ if vim.fn.has("mac") == 0 then
 	map({ key = "<leader>os", cmd = "<CMD>ObsidianQuickSwitch<CR>", desc = "Quick switch to another note" })
 end
 
--- annotations -----------------------------------------------------------------
+-- annotations -------------------------------------------
 map({ key = "<leader>n", cmd = "<CMD>Neogen<CR>", desc = "Generate annotations" })
 
--- repl ------------------------------------------------------------------------
+-- repl --------------------------------------------------
 map({ mode = { "n", "v" }, key = "<C-c><C-c>", cmd = "<Plug>SlimeParagraphSend", desc = "Send to REPL" })
 map({ mode = { "n", "v" }, key = "<C-c><C-v>", cmd = "<Plug>SlimeConfig", desc = "Slime config" })
 
--- todo ------------------------------------------------------------------------
+-- todo --------------------------------------------------
 map({ key = "[t", cmd = require("todo-comments").jump_prev, desc = "Previous todo comment" })
 map({ key = "]t", cmd = require("todo-comments").jump_next, desc = "Next todo comment" })
 
--- zen mode --------------------------------------------------------------------
+-- zen mode ----------------------------------------------
 map({ key = "<leader>Z", cmd = "<CMD>ZenMode<CR>", desc = "Zen mode" })
 
--- writing ---------------------------------------------------------------------
+-- writing -----------------------------------------------
 section({ key = "<leader>z", name = "zotero" })
 map({ key = "<leader>zi", cmd = "<Plug>ZCitationInfo", desc = "Citation info" })
 map({ key = "<leader>zo", cmd = "<Plug>ZOpenAttachment", desc = "Open attachment" })
@@ -262,13 +262,13 @@ autocmd("FileType", {
 	end,
 })
 
--- lsp and dap ----------------------------------------------------------------
+-- lsp and dap -------------------------------------------
 autocmd("LspAttach", {
 	group = augroup,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-		-- lsp
+		-- lsp -------------------------------------------
 		map({
 			key = "<leader>D",
 			cmd = "<CMD>TroubleToggle workspace_diagnostics<CR>",

@@ -1,5 +1,4 @@
 local spectre = require("spectre")
-local map = require("utils").map
 
 spectre.setup({
 	open_cmd = "noswapfile vnew",
@@ -46,10 +45,4 @@ spectre.setup({
 			desc = "pick template",
 		},
 	},
-})
-
-map({
-	key = "<leader>fs",
-	cmd = spectre.toggle,
-	desc = "Search and replace",
 })

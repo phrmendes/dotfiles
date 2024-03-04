@@ -1,6 +1,5 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local utils = require("utils")
 local border = cmp.config.window.bordered()
 
 local default = {
@@ -20,36 +19,20 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-Space>"] = cmp.mapping.complete({}),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete({}),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<S-CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-		["<C-c>"] = function(fallback)
-			cmp.abort()
-			fallback()
-		end,
-		["<TAB>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-l>"] = cmp.mapping(function()
+			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
-			elseif utils.has_words_before() then
-				cmp.complete()
-			else
-				fallback()
 			end
 		end, { "i", "s" }),
-		["<S-TAB>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+		["<C-h>"] = cmp.mapping(function()
+			if luasnip.locally_jumpable(-1) then
 				luasnip.jump(-1)
-			else
-				fallback()
 			end
 		end, { "i", "s" }),
 	}),

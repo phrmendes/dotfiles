@@ -9,9 +9,3 @@ require("neogen").setup({
 		},
 	},
 })
-
-require("utils").map({
-	key = "<leader>n",
-	cmd = "<CMD>Neogen<CR>",
-	desc = "Generate annotations",
-})

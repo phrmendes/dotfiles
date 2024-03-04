@@ -1,33 +1,10 @@
 local luasnip = require("luasnip")
-local utils = require("utils")
 
 local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, { wordTrig = true })
 
 luasnip.config.setup({ enable_autosnippets = true })
 
 require("luasnip.loaders.from_vscode").lazy_load()
-
-utils.map({
-	mode = { "i", "s" },
-	key = "<C-k>",
-	cmd = function()
-		if luasnip.choice_active() then
-			return luasnip.change_choice(-1)
-		end
-	end,
-	desc = "Previous snippet choice",
-})
-
-utils.map({
-	mode = { "i", "s" },
-	key = "<C-j>",
-	cmd = function()
-		if luasnip.choice_active() then
-			return luasnip.change_choice(1)
-		end
-	end,
-	desc = "Next snippet choice",
-})
 
 local markdown = {
 	parse_snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%Y-%m-%d") .. " $0"),

@@ -31,7 +31,7 @@ vim.opt.laststatus = 3
 -- search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 
 -- config cursor line
 vim.opt.cursorline = true
@@ -70,6 +70,9 @@ vim.opt.iskeyword:append("-")
 
 -- default terminal
 vim.opt.shell = "zsh"
+
+-- preview substitutions live
+vim.opt.inccommand = "split"
 
 -- nvim server
 if vim.fn.executable("nvr") then

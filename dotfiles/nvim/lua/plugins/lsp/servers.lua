@@ -126,5 +126,5 @@ local servers = {
 }
 
 for _, server in ipairs(servers) do
-	utils.add_language_server(server)
+	utils.lsp.add_language_server(server)
 end

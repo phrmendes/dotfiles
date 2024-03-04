@@ -1,7 +1,6 @@
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
-local map = require("utils").map
 
 telescope.setup({
 	defaults = {
@@ -73,45 +72,3 @@ local extensions = {
 for _, ext in ipairs(extensions) do
 	telescope.load_extension(ext)
 end
-
-map({
-	key = "<leader>.",
-	cmd = "<CMD>Telescope commands<CR>",
-	desc = "List commands",
-})
-
-map({
-	key = "<leader>?",
-	cmd = "<CMD>Telescope help_tags<CR>",
-	desc = "Help",
-})
-
-map({
-	key = "<leader>bb",
-	cmd = "<CMD>Telescope buffers<CR>",
-	desc = "List",
-})
-
-map({
-	key = "<leader>bf",
-	cmd = "<CMD>Telescope current_buffer_fuzzy_find<CR>",
-	desc = "Search in current buffer",
-})
-
-map({
-	key = "<leader>ff",
-	cmd = "<CMD>Telescope find_files<CR>",
-	desc = "Find",
-})
-
-map({
-	key = "<leader>fg",
-	cmd = "<CMD>Telescope live_grep<CR>",
-	desc = "Live grep",
-})
-
-map({
-	key = "<leader>fz",
-	cmd = "<CMD>Telescope zoxide list<CR>",
-	desc = "Zoxide",
-})

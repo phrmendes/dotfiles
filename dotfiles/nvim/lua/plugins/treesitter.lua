@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,

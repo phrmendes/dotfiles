@@ -40,7 +40,7 @@ map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
 map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
 map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })
 
--- resize and split windows ------------------------------
+-- windows -----------------------------------------------
 map({ key = "+", cmd = "<CMD>resize +2<CR>", desc = "Increase window (V)" }, { noremap = true, silent = true })
 map({ key = "-", cmd = "<CMD>vertical resize -2<CR>", desc = "Decrease window (H)" }, { noremap = true, silent = true })
 map({ key = "=", cmd = "<CMD>vertical resize +2<CR>", desc = "Increase window (H)" }, { noremap = true, silent = true })
@@ -49,6 +49,10 @@ map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
 map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
 map({ key = "<leader>x", cmd = "<C-w>q", desc = "Close window" })
 map({ key = "<leader>=", cmd = "<C-w>=", desc = "Resize and make windows equal" })
+map({ key = "<C-h>", cmd = "<C-w><C-h>", desc = "Move to window left" })
+map({ key = "<C-j>", cmd = "<C-w><C-j>", desc = "Move to window below" })
+map({ key = "<C-k>", cmd = "<C-w><C-k>", desc = "Move to window above" })
+map({ key = "<C-l>", cmd = "<C-w><C-l>", desc = "Move to window right" })
 
 -- tabs --------------------------------------------------
 map({ key = "<TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New tab" })

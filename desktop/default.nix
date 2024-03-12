@@ -95,9 +95,6 @@
     udev = {
       enable = true;
       packages = with pkgs.gnome; [gnome-settings-daemon];
-      extraRules = ''
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
-      '';
     };
 
     xserver = {
@@ -155,12 +152,6 @@
     seahorse.enable = true;
     zsh.enable = true;
 
-    weylus = {
-      enable = true;
-      openFirewall = true;
-      users = [parameters.user];
-    };
-
     kdeconnect = {
       enable = true;
       package = pkgs.gnomeExtensions.gsconnect;
@@ -168,17 +159,15 @@
 
     gnupg.agent = {
       enable = true;
-      pinentryFlavor = "gnome3";
       enableSSHSupport = true;
     };
   };
 
   nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
     settings = {
       auto-optimise-store = true;
       trusted-users = ["root" "@wheel"];
+      experimental-features = ["flakes" "nix-command"];
     };
     gc = {
       automatic = true;
@@ -192,7 +181,6 @@
   };
 
   virtualisation = {
-    virtualbox.host.enable = true;
     containers.cdi.dynamic.nvidia.enable = true;
     podman = {
       enable = true;

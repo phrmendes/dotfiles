@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -34,11 +33,6 @@
       flake = false;
       url = "github:jalvesaq/zotcite";
     };
-
-    zsh-nix-shell = {
-      flake = false;
-      url = "github:chisui/zsh-nix-shell";
-    };
   };
 
   outputs = inputs @ {
@@ -56,9 +50,6 @@
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
-        overlays = [
-          inputs.neovim-nightly.overlay
-        ];
         config = {
           allowUnfree = true;
         };
@@ -96,11 +87,11 @@
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
-        overlays = [
-          inputs.neovim-nightly.overlay
-        ];
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "nix-2.16.2"
+          ];
         };
       };
     in

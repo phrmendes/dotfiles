@@ -1,9 +1,13 @@
-require("zen-mode").setup({
-	plugins = {
-		twilight = { enabled = false },
-		kitty = {
-			enabled = true,
-			font = "+4",
+local later = require("mini.deps").later
+
+later(function()
+	require("zen-mode").setup({
+		plugins = {
+			twilight = { enabled = false },
+			kitty = {
+				enabled = true,
+				font = "+4",
+			},
 		},
-	},
-})
+	})
+end)

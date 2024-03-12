@@ -30,7 +30,7 @@
 in {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim-unwrapped;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;

@@ -14,8 +14,6 @@
       grep = getExe ripgrep;
       lg = getExe lazygit;
       m = "mkdir -p";
-      nc = "nix-collect-garbage -d";
-      nh = "nix-hash --flat --base64 --type sha256";
       ps = getExe procs;
       top = getExe btop;
       untar = "tar -xvf";
@@ -24,15 +22,12 @@
       zl = getExe zellij;
     }
     // (
-      if isDarwin
+      if ! isDarwin
       then {
-        nu = "nix run nix-darwin -- switch --flake ${path}";
-      }
-      else {
-        nu = "sudo nixos-rebuild switch --flake ${path}";
         dpct = "duplicati-cli";
         open = "xdg-open";
       }
+      else {}
     );
 in {
   programs = {
@@ -50,11 +45,11 @@ in {
         dots = "$HOME/Projects/dotfiles";
         dl = "$HOME/download";
       };
-      plugins = with pkgs; [
+      plugins = [
         {
           name = "zsh-nix-shell";
           file = "nix-shell.plugin.zsh";
-          src = inputs.zsh-nix-shell;
+          src = pkgs.zsh-nix-shell;
         }
       ];
     };

@@ -6,6 +6,7 @@ require("plugins.dap")
 require("plugins.dressing")
 require("plugins.git")
 require("plugins.ibl")
+require("plugins.image")
 require("plugins.lsp")
 require("plugins.mini")
 require("plugins.neogen")
@@ -24,8 +25,4 @@ require("plugins.zen")
 if vim.fn.has("mac") == 0 then
 	require("plugins.ia")
 	require("plugins.obsidian")
-end
-
-if not vim.g.neovide then
-	require("plugins.image")
 end

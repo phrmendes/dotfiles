@@ -18,6 +18,11 @@
         variant = "mocha";
       };
     };
+    font = {
+      name = "Fira Sans";
+      package = pkgs.fira;
+      size = 11;
+    };
     gtk3 = {
       extraConfig = {
         gtk-application-prefer-dark-theme = true;

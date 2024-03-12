@@ -11,10 +11,12 @@
     {
       cat = getExe bat;
       du = getExe du-dust;
+      find = getExe fd;
       grep = getExe ripgrep;
       lg = getExe lazygit;
       m = "mkdir -p";
       ps = getExe procs;
+      sed = getExe gnused;
       top = getExe btop;
       untar = "tar -xvf";
       untargz = "tar -xzf";

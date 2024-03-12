@@ -2,11 +2,9 @@
   environment.systemPackages = with pkgs; [
     appimage-run
     binutils
-    cairo
     cmake
     coreutils-full
     curl
-    fd
     gcc
     gnumake
     gnused

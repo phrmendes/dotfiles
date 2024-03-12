@@ -12,10 +12,10 @@
     ./gtk.nix
     ./home-manager.nix
     ./packages.nix
-    ./symlinks.nix
   ];
 
   targets.genericLinux.enable = true;
+  fonts.fontconfig.enable = true;
 
   home = {
     username = parameters.user;

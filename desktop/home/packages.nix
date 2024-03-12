@@ -2,10 +2,8 @@
   home.packages =
     (with pkgs; [
       ansible
-      backblaze-b2
       bashly
       bitwarden
-      bitwarden-cli
       bruno
       chromium
       curtail
@@ -14,22 +12,23 @@
       droidcam
       evince
       firefox
+      fselect
       gcolor3
       gh
       git
-      helix
+      gparted
+      grex
       httpie
       hugo
       jq
       just
-      kind
       kubectl
       kubernetes-helm
       libreoffice
-      libusb1
       mc
+      minikube
+      nautilus-open-any-terminal
       ncdu
-      neovide
       obsidian
       opentofu
       pandoc
@@ -38,12 +37,14 @@
       phockup
       pop-launcher
       qalculate-gtk
+      qemu
       quarto
+      quickemu
       qview
       syncthingtray
       tectonic
       terraform
-      vagrant
+      tokei
       ventoy
       vlc
       zellij
@@ -51,7 +52,6 @@
     ])
     ++ (with pkgs.gnome; [
       file-roller
-      gnome-disk-utility
       gnome-tweaks
       nautilus
     ])

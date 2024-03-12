@@ -14,16 +14,13 @@
   console.keyMap = "us";
   security.rtkit.enable = true;
   sound.enable = true;
+  system.stateVersion = "23.11";
   xdg.portal.enable = true;
 
   networking = {
     hostName = "desktop";
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [
-        8010
-        8080
-      ];
       allowedTCPPortRanges = [
         {
           from = 1714;
@@ -58,9 +55,13 @@
     packages = with pkgs; [
       fira
       fira-code-nerdfont
+      noto-fonts-color-emoji
     ];
     fontconfig.defaultFonts = {
+      emoji = ["Noto Color Emoji"];
       monospace = ["FiraCode Nerd Font Mono"];
+      sansSerif = ["Fira Sans"];
+      serif = ["Fira Sans"];
     };
   };
 
@@ -85,7 +86,6 @@
     pipewire = {
       enable = true;
       pulse.enable = true;
-      jack.enable = true;
       alsa = {
         enable = true;
         support32Bit = true;
@@ -135,7 +135,6 @@
   };
 
   users = {
-    extraGroups.vboxusers.members = [parameters.user];
     users.${parameters.user} = {
       inherit (parameters) home;
       isNormalUser = true;
@@ -174,10 +173,6 @@
       dates = "weekly";
       options = "--delete-older-than 1w";
     };
-  };
-
-  system = {
-    stateVersion = "23.11";
   };
 
   virtualisation = {

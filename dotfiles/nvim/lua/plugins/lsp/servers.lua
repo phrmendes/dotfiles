@@ -114,9 +114,10 @@ local servers = {
 		filetypes = { "markdown", "quarto" },
 		on_attach = function()
 			require("ltex_extra").setup({
-				init_check = true,
+				init_check = false,
 				load_langs = { "en-US", "pt-BR" },
 				path = vim.fn.expand("~/.local/state/ltex"),
+				log_level = "none",
 			})
 		end,
 	},

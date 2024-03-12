@@ -8,7 +8,6 @@ require("mini.pairs").setup()
 require("mini.starter").setup()
 require("mini.tabline").setup()
 require("mini.trailspace").setup()
-require("mini.notify").setup()
 
 require("mini.bracketed").setup({
 	diagnostic = { options = { float = false } },
@@ -95,4 +94,8 @@ require("mini.files").setup({
 	},
 })
 
-vim.notify = require("mini.notify").make_notify()
+require("mini.notify").setup({
+	lsp_progress = {
+		enable = false,
+	},
+})

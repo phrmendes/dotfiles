@@ -33,6 +33,11 @@
       flake = false;
       url = "github:jalvesaq/zotcite";
     };
+
+    zellij-nav = {
+      flake = false;
+      url = "sourcehut:~swaits/zellij-nav.nvim";
+    };
   };
 
   outputs = inputs @ {

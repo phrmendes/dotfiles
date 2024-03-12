@@ -1,3 +1,5 @@
+copy_clipboard "primary"
+copy_on_select true
 default_shell "zsh"
 default_layout "compact"
 mouse_mode true
@@ -17,10 +19,13 @@ keybinds {
         bind "Alt =" { Resize "Increase"; }
         bind "Alt [" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "Alt ]" { GoToNextTab; SwitchToMode "Normal"; }
-        bind "Alt n" { FocusNextPane; SwitchToMode "Normal"; }
-        bind "Alt p" { FocusPreviousPane; SwitchToMode "Normal"; }
         bind "Alt t" { NewTab; SwitchToMode "Normal"; }
         bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt h" { MoveFocusOrTab "Left"; SwitchToMode "Normal"; }
+        bind "Alt j" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "Alt k" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; SwitchToMode "Normal"; }
+        bind "Alt d" { Detach; }
         bind "Ctrl f" { SwitchToMode "Tmux"; }
     }
 
@@ -32,7 +37,6 @@ keybinds {
         bind "Enter" { SwitchToMode "Resize"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
-        bind "d" { Detach; }
         bind "m" { SwitchToMode "Move"; }
         bind "q" { Quit; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
@@ -44,5 +48,10 @@ keybinds {
             };
             SwitchToMode "Normal"
         }
+    }
+
+    renametab {
+        bind "Esc" { UndoRenameTab; SwitchToMode "normal"; }
+        bind "Enter" { SwitchToMode "Normal"; }
     }
 }

@@ -17,7 +17,7 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) cmp-zotcite zotcite mdeval-nvim obsidian-nvim;
+    inherit (inputs) cmp-zotcite zotcite mdeval-nvim obsidian-nvim zellij-nav;
   };
   nix = {
     extensions = with pkgs.vimPlugins; [
@@ -66,6 +66,7 @@ in {
         mini-nvim
         nabla-nvim
         neodev-nvim
+        gh.zellij-nav
         neogen
         nvim-cmp
         nvim-colorizer-lua
@@ -99,7 +100,6 @@ in {
         vim-helm
         vim-jinja
         vim-just
-        vim-kitty-navigator
         vim-markdown
         vim-nix
         vim-sleuth

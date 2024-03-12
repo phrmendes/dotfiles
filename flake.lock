@@ -91,11 +91,11 @@
     "obsidian-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1710099342,
-        "narHash": "sha256-kGQ5K4xnQlD6DUU7OxYlxQr1p6h9GD39s+PcKw8GuoE=",
+        "lastModified": 1710193353,
+        "narHash": "sha256-lXnGgXOYqGMVIt9sdvJJTVJVbMPvblXrI6TLv1y3JHs=",
         "owner": "epwalsh",
         "repo": "obsidian.nvim",
-        "rev": "979f154090099fc6e31f8bb639a30e2e3e5841d3",
+        "rev": "7c9a3374c59154e60297ba96143455024eef4fc0",
         "type": "github"
       },
       "original": {
@@ -112,7 +112,24 @@
         "mdeval-nvim": "mdeval-nvim",
         "nixpkgs": "nixpkgs",
         "obsidian-nvim": "obsidian-nvim",
+        "zellij-nav": "zellij-nav",
         "zotcite": "zotcite"
+      }
+    },
+    "zellij-nav": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706549230,
+        "narHash": "sha256-TUhA6UGwpZuYWDU4j430LMnHVD8cggwrAzQ+HlT5ox8=",
+        "owner": "~swaits",
+        "repo": "zellij-nav.nvim",
+        "rev": "25930804397ef540bd2de62f9897bc2db61f9baa",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~swaits",
+        "repo": "zellij-nav.nvim",
+        "type": "sourcehut"
       }
     },
     "zotcite": {

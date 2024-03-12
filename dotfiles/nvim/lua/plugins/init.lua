@@ -18,6 +18,7 @@ require("plugins.todo")
 require("plugins.treesitter")
 require("plugins.which-key")
 require("plugins.writing")
+require("plugins.zellij")
 require("plugins.zen")
 
 if vim.fn.has("mac") == 0 then

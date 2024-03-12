@@ -53,10 +53,10 @@ in {
       "ctrl+shift+right" = "move_window right";
       "ctrl+shift+enter" = "new_os_window";
       "ctrl+shift+q" = "close_os_window";
-      "ctrl+shift+h" = "previous_tab";
-      "ctrl+shift+j" = "next_window";
-      "ctrl+shift+k" = "previous_window";
-      "ctrl+shift+l" = "next_tab";
+      "ctrl+shift+n" = "next_window";
+      "ctrl+shift+p" = "previous_window";
+      "ctrl+shift+[" = "previous_tab";
+      "ctrl+shift+]" = "next_tab";
       "ctrl+shift+d" = "close_tab";
       "ctrl+shift+m" = "layout_action rotate";
       "ctrl+shift+t" = "new_tab";
@@ -64,10 +64,6 @@ in {
       "ctrl+shift+z" = "toggle_layout stack";
       "ctrl+shift+s" = "show_scrollback";
       "ctrl+shift+g" = "show_last_command_output";
-      "ctrl+h" = "kitten scripts/pass_keys.py left ctrl+h";
-      "ctrl+j" = "kitten scripts/pass_keys.py bottom ctrl+j";
-      "ctrl+k" = "kitten scripts/pass_keys.py top ctrl+k";
-      "ctrl+l" = "kitten scripts/pass_keys.py right ctrl+l";
     };
   };
 }

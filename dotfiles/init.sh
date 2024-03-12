@@ -25,7 +25,7 @@ function repo_ref() {
     git ls-remote "$repo_link" "$branch" | cut -f1
 }
 
-function clear() {
+function gc() {
     sudo nix-collect-garbage --delete-older-than 1d
     nix-collect-garbage --delete-older-than 1d
     nix-store --optimise

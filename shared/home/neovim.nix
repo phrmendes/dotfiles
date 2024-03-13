@@ -4,12 +4,12 @@
   ...
 }: let
   appendPackages = {
-    to_darwin ? [],
-    to_nix ? [],
+    toDarwin ? [],
+    toNix ? [],
   }:
     if pkgs.stdenv.isDarwin
-    then to_darwin
-    else to_nix;
+    then toDarwin
+    else toNix;
   getNeovimPluginFromGitHub = pkgName: src:
     pkgs.vimUtils.buildVimPlugin {
       inherit src;
@@ -17,13 +17,13 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) cmp-zotcite zotcite mdeval-nvim obsidian-nvim zellij-nav;
+    inherit (inputs) cmp-zotcite mdeval-nvim zellij-nav zotcite;
   };
   nix = {
     extensions = with pkgs.vimPlugins; [
       gh.cmp-zotcite
       gh.zotcite
-      gh.obsidian-nvim
+      obsidian-nvim
       ChatGPT-nvim
     ];
   };
@@ -109,7 +109,7 @@ in {
         zen-mode-nvim
       ])
       ++ appendPackages {
-        to_nix = nix.extensions;
+        toNix = nix.extensions;
       };
     extraPython3Packages = pyPkgs:
       with pyPkgs; [

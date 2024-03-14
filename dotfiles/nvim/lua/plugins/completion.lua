@@ -72,8 +72,8 @@ cmp.setup.cmdline({ "/", "?" }, {
 
 cmp.setup.filetype("markdown", {
 	sources = cmp.config.sources({
-		{ name = "cmp_zotcite" },
 		{ name = "otter" },
+		{ name = "cmp_zotcite" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
@@ -82,8 +82,8 @@ cmp.setup.filetype("markdown", {
 
 cmp.setup.filetype("quarto", {
 	sources = cmp.config.sources({
-		{ name = "cmp_pandoc" },
 		{ name = "otter" },
+		{ name = "cmp_pandoc" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "latex_symbols", option = { strategy = 2 } },

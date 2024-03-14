@@ -88,7 +88,6 @@ in {
         plenary-nvim
         quarto-nvim
         smartyank-nvim
-        tabular
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
@@ -100,7 +99,6 @@ in {
         vim-helm
         vim-jinja
         vim-just
-        vim-markdown
         vim-nix
         vim-sleuth
         vim-slime

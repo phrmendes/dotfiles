@@ -119,6 +119,11 @@ local servers = {
 				path = vim.fn.expand("~/.local/state/ltex"),
 			})
 		end,
+		settings = {
+			ltex = {
+				language = "none",
+			},
+		},
 	},
 }
 

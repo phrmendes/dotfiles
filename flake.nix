@@ -24,6 +24,11 @@
       url = "github:jubnzv/mdeval.nvim";
     };
 
+    obsidian-nvim = {
+      flake = false;
+      url = "github:epwalsh/obsidian.nvim";
+    };
+
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

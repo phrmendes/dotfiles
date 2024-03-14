@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710281379,
-        "narHash": "sha256-uFo9hxt982L3nFJeweW4Gip2esiGrIQlbvEGrNTh4AY=",
+        "lastModified": 1709771483,
+        "narHash": "sha256-Hjzu9nCknHLQvhdaRFfCEprH0o15KcaNu1QDr3J88DI=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "d9ea313bc4851670dc99c5cc979cb79750e7d670",
+        "rev": "550340062c16d7ef8c2cc20a3d2b97bcd3c6b6f6",
         "type": "github"
       },
       "original": {
@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710336510,
-        "narHash": "sha256-mT/Z1AseVhhiFooCu2J7wudx+FivkRrlRBW0iBC2V/o=",
+        "lastModified": 1710164657,
+        "narHash": "sha256-l64+ZjaQAVkHDVaK0VHwtXBdjcBD6nLBD+p7IfyBp/w=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "383296ffa45b539c28bf79ec2a272f652838ddd1",
+        "rev": "017b12de5b899ef9b64e2c035ce257bfe95b8ae2",
         "type": "github"
       },
       "original": {
@@ -74,17 +74,33 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1710313540,
-        "narHash": "sha256-HtTTpGe0azsEJVaT9RvbGFGB4idUneraLiUTxFb3ABM=",
+        "lastModified": 1710159071,
+        "narHash": "sha256-CT0WKgcmlcWZPZL/sSSICN/Vbm4Of0ZDgxc0GFf6sYU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4008381882569ab4773f2ba0d7b7bbde8f665672",
+        "rev": "0fbcc4b2e8571f4af39be41752581ea09dd9ab06",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "obsidian-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710193353,
+        "narHash": "sha256-lXnGgXOYqGMVIt9sdvJJTVJVbMPvblXrI6TLv1y3JHs=",
+        "owner": "epwalsh",
+        "repo": "obsidian.nvim",
+        "rev": "7c9a3374c59154e60297ba96143455024eef4fc0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "epwalsh",
+        "repo": "obsidian.nvim",
         "type": "github"
       }
     },
@@ -95,6 +111,7 @@
         "home-manager": "home-manager",
         "mdeval-nvim": "mdeval-nvim",
         "nixpkgs": "nixpkgs",
+        "obsidian-nvim": "obsidian-nvim",
         "zellij-nav": "zellij-nav",
         "zotcite": "zotcite"
       }

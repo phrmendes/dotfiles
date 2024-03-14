@@ -64,6 +64,10 @@ in {
       "ctrl+shift+z" = "toggle_layout stack";
       "ctrl+shift+s" = "show_scrollback";
       "ctrl+shift+g" = "show_last_command_output";
+      "ctrl+shift+h" = "no_op";
+      "ctrl+shift+j" = "no_op";
+      "ctrl+shift+k" = "no_op";
+      "ctrl+shift+l" = "no_op";
     };
   };
 }

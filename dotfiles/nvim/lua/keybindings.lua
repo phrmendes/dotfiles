@@ -28,10 +28,9 @@ map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, { ex
 map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, { expr = true, silent = true })
 
 -- move in insert mode -----------------------------------
-map({ mode = { "i", "t" }, key = "<A-j>", cmd = "<Down>", desc = "Move down" }, { noremap = false })
-map({ mode = { "i", "t" }, key = "<A-k>", cmd = "<Up>", desc = "Move up" }, { noremap = false })
-map({ mode = { "i", "t", "c" }, key = "<A-l>", cmd = "<Right>", desc = "Move right" })
-map({ mode = { "i", "t", "c" }, key = "<A-h>", cmd = "<Left>", desc = "Move left" })
+map({ mode = { "i", "t", "c" }, key = "<C-x>", cmd = "<C-o>dw", desc = "Delete word" })
+map({ mode = { "i", "t", "c" }, key = "<C-i>", cmd = "<C-o>^", desc = "Move to start of line" })
+map({ mode = { "i", "t", "c" }, key = "<C-a>", cmd = "<C-o>$", desc = "Move to end of line" })
 
 -- clear highlights --------------------------------------
 map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })

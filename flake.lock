@@ -88,22 +88,6 @@
         "type": "github"
       }
     },
-    "obsidian-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710193353,
-        "narHash": "sha256-lXnGgXOYqGMVIt9sdvJJTVJVbMPvblXrI6TLv1y3JHs=",
-        "owner": "epwalsh",
-        "repo": "obsidian.nvim",
-        "rev": "7c9a3374c59154e60297ba96143455024eef4fc0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "epwalsh",
-        "repo": "obsidian.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "cmp-zotcite": "cmp-zotcite",
@@ -111,7 +95,6 @@
         "home-manager": "home-manager",
         "mdeval-nvim": "mdeval-nvim",
         "nixpkgs": "nixpkgs",
-        "obsidian-nvim": "obsidian-nvim",
         "zellij-nav": "zellij-nav",
         "zotcite": "zotcite"
       }

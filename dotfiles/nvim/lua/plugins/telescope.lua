@@ -31,6 +31,7 @@ telescope.setup({
 				["<C-v>"] = actions.file_vsplit,
 				["<C-c>"] = actions.close,
 				["<C-t>"] = trouble.open_with_trouble,
+				["<C-x>"] = actions.delete_buffer,
 			},
 			n = {
 				["<C-d>"] = actions.preview_scrolling_down,

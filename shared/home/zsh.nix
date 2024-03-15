@@ -13,7 +13,6 @@
       du = getExe du-dust;
       find = getExe fd;
       grep = getExe ripgrep;
-      lg = getExe lazygit;
       m = "mkdir -p";
       ps = getExe procs;
       sed = getExe gnused;

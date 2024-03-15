@@ -51,13 +51,14 @@ in {
         cmp_luasnip
         conform-nvim
         copilot-vim
+        diffview-nvim
         dressing-nvim
         friendly-snippets
         gh.mdeval-nvim
+        gh.zellij-nav
         gitsigns-nvim
         image-nvim
         indent-blankline-nvim
-        lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
@@ -66,8 +67,8 @@ in {
         mini-nvim
         nabla-nvim
         neodev-nvim
-        gh.zellij-nav
         neogen
+        neogit
         nvim-cmp
         nvim-colorizer-lua
         nvim-dap
@@ -134,7 +135,6 @@ in {
         lua-language-server
         marksman
         md-tangle
-        neovim-remote
         nixd
         prettierd
         ruff

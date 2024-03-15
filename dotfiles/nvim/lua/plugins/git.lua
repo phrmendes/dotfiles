@@ -1,3 +1,5 @@
+require("neogit").setup()
+
 require("gitsigns").setup({
 	on_attach = function()
 		if vim.fn.has("mac") == 0 then

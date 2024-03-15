@@ -6,7 +6,6 @@
     ./fzf.nix
     ./git.nix
     ./kitty.nix
-    ./lazygit.nix
     ./neovim.nix
     ./zsh.nix
     ./starship.nix

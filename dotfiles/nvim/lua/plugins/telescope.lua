@@ -66,7 +66,6 @@ telescope.setup({
 
 local extensions = {
 	"fzf",
-	"lazygit",
 	"zoxide",
 }
 

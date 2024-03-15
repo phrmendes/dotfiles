@@ -74,13 +74,6 @@ vim.opt.shell = "zsh"
 -- preview substitutions live
 vim.opt.inccommand = "split"
 
--- nvim server
-if vim.fn.executable("nvr") then
-	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-	vim.env.VISUAL = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-end
-
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

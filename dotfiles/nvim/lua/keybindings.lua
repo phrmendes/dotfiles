@@ -122,17 +122,13 @@ autocmd("FileType", {
 
 -- git ---------------------------------------------------
 section({ mode = { "n", "v" }, key = "<leader>g", name = "git" })
-map({ key = "<leader>gd", cmd = require("gitsigns").diffthis, desc = "Diff" })
-map({ key = "<leader>gs", cmd = "<CMD>Telescope git_status<CR>", desc = "Diff (repo)" })
-map({ key = "<leader>gt", cmd = require("gitsigns").toggle_current_line_blame, desc = "Blame line" })
-map({ key = "<leader>gb", cmd = require("gitsigns").stage_buffer, desc = "Stage buffer" })
-map({ key = "<leader>gB", cmd = require("gitsigns").reset_buffer, desc = "Reset buffer" })
-map({ key = "<leader>gh", cmd = require("gitsigns").stage_hunk, desc = "Stage hunk" })
-map({ key = "<leader>gH", cmd = require("gitsigns").reset_hunk, desc = "Reset hunk" })
-map({ key = "<leader>gc", cmd = "<CMD>LazyGitFilter<CR>", desc = "Repository" })
-map({ key = "<leader>gC", cmd = "<CMD>LazyGitFilterCurrentFile<CR>", desc = "File" })
-map({ key = "<leader>gg", cmd = "<CMD>LazyGit<CR>", desc = "LazyGit" })
-map({ key = "<leader>gl", cmd = "<CMD>Telescope lazygit<CR>", desc = "List repos" })
+map({ key = "<leader>gB", cmd = require("gitsigns").toggle_current_line_blame, desc = "Blame line" })
+map({ key = "<leader>gP", cmd = "<CMD>Neogit push<CR>", desc = "Push" })
+map({ key = "<leader>gb", cmd = "<CMD>Telescope git_branches<CR>", desc = "Branches" })
+map({ key = "<leader>gc", cmd = "<CMD>Neogit commit<CR>", desc = "Commit" })
+map({ key = "<leader>gd", cmd = "<CMD>DiffviewOpen<CR>", desc = "Diff" })
+map({ key = "<leader>gg", cmd = "<CMD>Neogit<CR>", desc = "Neogit" })
+map({ key = "<leader>gp", cmd = "<CMD>Neogit pull<CR>", desc = "Pull" })
 
 map({
 	key = "]h",

@@ -34,8 +34,8 @@ local markdown = {
 		{ trig = "headers", name = "headers" },
 		[[
 		---
-		aliases: [{$1:aliases}]
-		tags: [{$2:tags}]
+		aliases: [${1:aliases}]
+		tags: [${2:tags}]
 		---
 		$0
 		]]

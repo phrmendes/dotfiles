@@ -43,6 +43,7 @@ local markdown = {
 }
 
 local latex = {
+	parse_snippet({ trig = "def", name = "definition" }, "\\boxed{\\text{def}}"),
 	parse_snippet({ trig = "!=", name = "not equals" }, "\\neq "),
 	parse_snippet({ trig = "**", name = "cdot" }, "\\cdot "),
 	parse_snippet({ trig = "+-", name = "+-" }, "\\pm"),

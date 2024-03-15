@@ -20,7 +20,6 @@
       untar = "tar -xvf";
       untargz = "tar -xzf";
       v = "nvim";
-      zl = getExe zellij;
     }
     // (
       if ! isDarwin
@@ -46,13 +45,6 @@ in {
         dots = "$HOME/Projects/dotfiles";
         dl = "$HOME/download";
       };
-      plugins = [
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.zsh-nix-shell;
-        }
-      ];
     };
   };
 }

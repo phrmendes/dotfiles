@@ -17,14 +17,15 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) cmp-zotcite mdeval-nvim zellij-nav zotcite;
+    inherit (inputs) cmp-pandoc-references telescope-zotero img-clip kitty-scrollback;
   };
   nix = {
     extensions = with pkgs.vimPlugins; [
-      gh.cmp-zotcite
-      gh.zotcite
-      obsidian-nvim
+      gh.telescope-zotero
+      gh.cmp-pandoc-references
       ChatGPT-nvim
+      cmp-latex-symbols
+      obsidian-nvim
     ];
   };
 in {
@@ -44,18 +45,17 @@ in {
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
-        cmp-latex-symbols
         cmp-nvim-lsp
-        cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
         conform-nvim
-        copilot-vim
+        copilot-cmp
+        copilot-lua
         diffview-nvim
         dressing-nvim
         friendly-snippets
-        gh.mdeval-nvim
-        gh.zellij-nav
+        gh.img-clip
+        gh.kitty-scrollback
         gitsigns-nvim
         image-nvim
         indent-blankline-nvim
@@ -65,7 +65,7 @@ in {
         luasnip
         markdown-preview-nvim
         mini-nvim
-        nabla-nvim
+        molten-nvim
         neodev-nvim
         neogen
         neogit
@@ -84,11 +84,12 @@ in {
         nvim-ts-autotag
         nvim-ts-context-commentstring
         nvim-web-devicons
-        octo-nvim
         otter-nvim
         plenary-nvim
         quarto-nvim
+        smart-splits-nvim
         smartyank-nvim
+        sqlite-lua
         telescope-fzf-native-nvim
         telescope-nvim
         telescope-zoxide
@@ -112,10 +113,14 @@ in {
       };
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
-        poppler-qt5
+        cairosvg
+        jupyter-client
+        pillow
+        plotly
+        pnglatex
         pynvim
-        pyqt5
-        pyyaml
+        pyperclip
+        nbformat
       ];
     extraLuaPackages = luaPkgs:
       with luaPkgs; [
@@ -129,6 +134,7 @@ in {
         delve
         djlint
         docker-compose-language-service
+        dot-language-server
         helm-ls
         imagemagick
         ltex-ls

@@ -14,6 +14,7 @@ local servers = {
 	{ server = "terraformls" },
 	{ server = "texlab" },
 	{ server = "tflint" },
+	{ server = "dotls" },
 	{ server = "html", capabilities = capabilities_snippets },
 	{ server = "cssls", capabilities = capabilities_snippets },
 	{

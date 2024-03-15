@@ -68,6 +68,11 @@ M.lsp.handlers = {
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
+M.lsp.flags = {
+	allow_incremental_sync = true,
+	debounce_text_changes = 150,
+}
+
 M.lsp.on_attach = function(client, bufnr)
 	M.keys.map({
 		key = "<leader>D",
@@ -205,6 +210,7 @@ M.lsp.add_language_server = function(args)
 		setup = {
 			capabilities = args.capabilities or default_capabilities,
 			handlers = args.handlers or M.lsp.handlers,
+			flags = args.flags or M.lsp.flags,
 		}
 
 		if args.on_attach then

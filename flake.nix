@@ -14,24 +14,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cmp-zotcite = {
+    cmp-pandoc-references = {
       flake = false;
-      url = "github:jalvesaq/cmp-zotcite";
+      url = "github:jmbuhr/cmp-pandoc-references";
     };
 
-    mdeval-nvim = {
+    img-clip = {
       flake = false;
-      url = "github:jubnzv/mdeval.nvim";
+      url = "github:HakonHarnes/img-clip.nvim";
     };
 
-    zotcite = {
+    kitty-scrollback = {
       flake = false;
-      url = "github:jalvesaq/zotcite";
+      url = "github:mikesmithgh/kitty-scrollback.nvim";
     };
 
-    zellij-nav = {
+    telescope-zotero = {
       flake = false;
-      url = "sourcehut:~swaits/zellij-nav.nvim";
+      url = "github:jmbuhr/telescope-zotero.nvim";
     };
   };
 
@@ -52,9 +52,6 @@
         inherit (parameters) system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "nix-2.16.2"
-          ];
         };
       };
     in

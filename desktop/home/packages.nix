@@ -17,6 +17,7 @@
       gh
       git
       gparted
+      graphviz
       grex
       httpie
       hugo
@@ -47,7 +48,6 @@
       tokei
       ventoy
       vlc
-      zellij
       zotero
     ])
     ++ (with pkgs.gnome; [

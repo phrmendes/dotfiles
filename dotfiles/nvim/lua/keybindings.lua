@@ -48,14 +48,12 @@ map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
 map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
 map({ key = "<leader>x", cmd = "<C-w>q", desc = "Close window" })
 map({ key = "<leader>=", cmd = "<C-w>=", desc = "Resize and make windows equal" })
-map({ key = "<A-h>", cmd = "<CMD>ZellijNavigateRight<CR>", desc = "Navigate right" })
-map({ key = "<A-j>", cmd = "<CMD>ZellijNavigateDown<CR>", desc = "Navigate down" })
-map({ key = "<A-k>", cmd = "<CMD>ZellijNavigateUp<CR>", desc = "Navigate up" })
-map({ key = "<A-l>", cmd = "<CMD>ZellijNavigateLeft<CR>", desc = "Navigate left" })
 
 -- tabs --------------------------------------------------
-map({ key = "<TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New tab" })
-map({ key = "<TAB>q", cmd = "<CMD>tabonly<CR>", desc = "Close tab" })
+section({ key = "<leader><TAB>", name = "tabs" })
+map({ key = "<leader><TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New tab" })
+map({ key = "<leader><TAB>q", cmd = "<CMD>tabclose<CR>", desc = "Close tab" })
+map({ key = "<leader><TAB>o", cmd = "<CMD>tabonly<CR>", desc = "Keep tab" })
 map({ key = "[<TAB>", cmd = "<CMD>tabprevious<CR>", desc = "Previous tab" })
 map({ key = "]<TAB>", cmd = "<CMD>tabnext<CR>", desc = "Next tab" })
 
@@ -219,29 +217,13 @@ map({ key = "[t", cmd = require("todo-comments").jump_prev, desc = "Previous tod
 map({ key = "]t", cmd = require("todo-comments").jump_next, desc = "Next todo comment" })
 
 -- zen mode ----------------------------------------------
-map({ key = "<leader>Z", cmd = "<CMD>ZenMode<CR>", desc = "Zen mode" })
+map({ key = "<leader>z", cmd = "<CMD>ZenMode<CR>", desc = "Zen mode" })
 
 -- writing -----------------------------------------------
-section({ key = "<leader>z", name = "zotero" })
-map({ key = "<leader>zi", cmd = "<Plug>ZCitationInfo", desc = "Citation info" })
-map({ key = "<leader>zo", cmd = "<Plug>ZOpenAttachment", desc = "Open attachment" })
-map({ key = "<leader>zv", cmd = "<Plug>ZViewDocument", desc = "View exported document" })
-map({ key = "<leader>zy", cmd = "<Plug>ZCitationYamlRef", desc = "Citation info (yaml)" })
-
 autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
 	group = augroup,
 	callback = function(event)
-		map({
-			key = "<C-c><C-m>",
-			cmd = "<CMD>MdEval<CR>",
-			desc = "Md: Run code block",
-			buffer = event.buf,
-		}, {
-			silent = true,
-			noremap = true,
-		})
-
 		map({
 			key = "<C-c><C-t>",
 			cmd = "<CMD>! md-tangle -f %<CR>",
@@ -254,9 +236,26 @@ autocmd("FileType", {
 
 		map({
 			buffer = event.buf,
-			key = "<leader>zc",
-			cmd = "<Plug>ZCitationCompleteInfo",
-			desc = "Citation info (complete)",
+			key = "<leader>Z",
+			cmd = "<CMD>Telescope zotero<CR>",
+			desc = "Add source from Zotero",
+		})
+
+		section({ mode = { "n", "v" }, key = "<leader>m", name = "Molten" })
+
+		map({
+			buffer = event.buf,
+			key = "<leader>mi",
+			cmd = "<CMD>MoltenInit<CR>",
+			desc = "Init",
+		})
+
+		map({
+			mode = { "n", "v" },
+			buffer = event.buf,
+			key = "<leader>me",
+			cmd = "<CMD>MoltenReevaluateCell<CR>",
+			desc = "Evaluate",
 		})
 	end,
 })
@@ -416,3 +415,17 @@ autocmd("LspAttach", {
 		})
 	end,
 })
+
+-- smart splits ------------------------------------------
+map({ key = "<A-h>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
+map({ key = "<A-j>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
+map({ key = "<A-k>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
+map({ key = "<A-l>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
+map({ key = "<C-h>", cmd = require("smart-splits").move_cursor_left, desc = "Move cursor left" })
+map({ key = "<C-j>", cmd = require("smart-splits").move_cursor_down, desc = "Move cursor down" })
+map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move cursor up" })
+map({ key = "<C-l>", cmd = require("smart-splits").move_cursor_right, desc = "Move cursor right" })
+map({ key = "<localleader>h", cmd = require("smart-splits").swap_buf_left, desc = "Swap buffer left" })
+map({ key = "<localleader>j", cmd = require("smart-splits").swap_buf_down, desc = "Swap buffer down" })
+map({ key = "<localleader>k", cmd = require("smart-splits").swap_buf_up, desc = "Swap buffer up" })
+map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc = "Swap buffer right" })

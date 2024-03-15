@@ -5,6 +5,7 @@
     cmake
     coreutils-full
     curl
+    fd
     gcc
     gnumake
     gnused

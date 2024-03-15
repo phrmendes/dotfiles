@@ -2,7 +2,12 @@ local luasnip = require("luasnip")
 
 local parse_snippet = luasnip.extend_decorator.apply(luasnip.parser.parse_snippet, { wordTrig = true })
 
-luasnip.config.setup({ enable_autosnippets = true })
+luasnip.config.setup({
+	enable_autosnippets = true,
+	history = true,
+	region_check_events = "InsertEnter",
+	delete_check_events = "TextChanged,InsertLeave",
+})
 
 require("luasnip.loaders.from_vscode").lazy_load()
 

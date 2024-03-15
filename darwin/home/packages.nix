@@ -1,10 +1,12 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     coreutils
+    fd
     gcc
     gh
     gnumake
     gnupg
+    graphviz
     grex
     httpie
     jdk21
@@ -25,6 +27,5 @@
     terraform
     terragrunt
     tokei
-    zellij
   ];
 }

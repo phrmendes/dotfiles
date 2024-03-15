@@ -74,12 +74,15 @@ vim.opt.shell = "zsh"
 -- preview substitutions live
 vim.opt.inccommand = "split"
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- conceal
+vim.opt.conceallevel = 2
 
 -- clipboard
 vim.opt.clipboard:append({ "unnamedplus" })
+
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- mouse support
 vim.g.VM_mouse_mappings = 1

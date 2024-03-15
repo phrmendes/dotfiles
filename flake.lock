@@ -1,18 +1,18 @@
 {
   "nodes": {
-    "cmp-zotcite": {
+    "cmp-pandoc-references": {
       "flake": false,
       "locked": {
-        "lastModified": 1710424484,
-        "narHash": "sha256-Pp2EFHEBIa8x1tAXJd7oIEuKFVbgZZ3boL/VOOphlv8=",
-        "owner": "jalvesaq",
-        "repo": "cmp-zotcite",
-        "rev": "a556ecbd5c7c5906f83a2be49dc5f4034438af6f",
+        "lastModified": 1688994825,
+        "narHash": "sha256-B3KxmQUrYrBxKn/WRjMNSA0P499MUgGyxTi4S8h5W4E=",
+        "owner": "jmbuhr",
+        "repo": "cmp-pandoc-references",
+        "rev": "dd86d3a8acc52a6d0503c3a45ba1bb93f39a3d31",
         "type": "github"
       },
       "original": {
-        "owner": "jalvesaq",
-        "repo": "cmp-zotcite",
+        "owner": "jmbuhr",
+        "repo": "cmp-pandoc-references",
         "type": "github"
       }
     },
@@ -56,19 +56,35 @@
         "type": "github"
       }
     },
-    "mdeval-nvim": {
+    "img-clip": {
       "flake": false,
       "locked": {
-        "lastModified": 1703516053,
-        "narHash": "sha256-KYWs1/bywPni/MOogs/f+NfnaOakvHdNFh6v4Eyna40=",
-        "owner": "jubnzv",
-        "repo": "mdeval.nvim",
-        "rev": "2c32e2f3e7d8f222e7a4724989f218d036e1081d",
+        "lastModified": 1710322128,
+        "narHash": "sha256-stQO1YpTQNEp/h5j+lnIPGhT+GKJP39JbpEfLlFgVTA=",
+        "owner": "HakonHarnes",
+        "repo": "img-clip.nvim",
+        "rev": "5a8efb35dc589c6bf24379c7fd2f5708f4d0c5b8",
         "type": "github"
       },
       "original": {
-        "owner": "jubnzv",
-        "repo": "mdeval.nvim",
+        "owner": "HakonHarnes",
+        "repo": "img-clip.nvim",
+        "type": "github"
+      }
+    },
+    "kitty-scrollback": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710419121,
+        "narHash": "sha256-HkdQAfHhoBZ2Ih+MIEwskb/I0X1t+ipN8rkpWMHfocA=",
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
+        "rev": "af95c02d558216202639609a56123fed9d8fb193",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
         "type": "github"
       }
     },
@@ -90,44 +106,28 @@
     },
     "root": {
       "inputs": {
-        "cmp-zotcite": "cmp-zotcite",
+        "cmp-pandoc-references": "cmp-pandoc-references",
         "darwin": "darwin",
         "home-manager": "home-manager",
-        "mdeval-nvim": "mdeval-nvim",
+        "img-clip": "img-clip",
+        "kitty-scrollback": "kitty-scrollback",
         "nixpkgs": "nixpkgs",
-        "zellij-nav": "zellij-nav",
-        "zotcite": "zotcite"
+        "telescope-zotero": "telescope-zotero"
       }
     },
-    "zellij-nav": {
+    "telescope-zotero": {
       "flake": false,
       "locked": {
-        "lastModified": 1706549230,
-        "narHash": "sha256-TUhA6UGwpZuYWDU4j430LMnHVD8cggwrAzQ+HlT5ox8=",
-        "owner": "~swaits",
-        "repo": "zellij-nav.nvim",
-        "rev": "25930804397ef540bd2de62f9897bc2db61f9baa",
-        "type": "sourcehut"
-      },
-      "original": {
-        "owner": "~swaits",
-        "repo": "zellij-nav.nvim",
-        "type": "sourcehut"
-      }
-    },
-    "zotcite": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710016095,
-        "narHash": "sha256-tPnbNdoJQEG3/6j2a2zfhHMkDstc006z4Xe6LVKjcb0=",
-        "owner": "jalvesaq",
-        "repo": "zotcite",
-        "rev": "18c1d107d5e39e7a453de7902609bc0fa4a54d66",
+        "lastModified": 1710427308,
+        "narHash": "sha256-Zskc5SYYPxS+vf/0szZWowA8xVJsalsP7QWLYWoOBsk=",
+        "owner": "jmbuhr",
+        "repo": "telescope-zotero.nvim",
+        "rev": "35f95ecb2a824fbaccc93fecc1ee03ca16dc0009",
         "type": "github"
       },
       "original": {
-        "owner": "jalvesaq",
-        "repo": "zotcite",
+        "owner": "jmbuhr",
+        "repo": "telescope-zotero.nvim",
         "type": "github"
       }
     }

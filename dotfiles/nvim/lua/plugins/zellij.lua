@@ -1,1 +1,0 @@
-require("zellij-nav").setup()

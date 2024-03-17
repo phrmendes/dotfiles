@@ -56,7 +56,7 @@
         "type": "github"
       }
     },
-    "img-clip": {
+    "img-clip-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1710322128,
@@ -69,6 +69,22 @@
       "original": {
         "owner": "HakonHarnes",
         "repo": "img-clip.nvim",
+        "type": "github"
+      }
+    },
+    "jupytext-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706080485,
+        "narHash": "sha256-x5emW+qfUTUDR72B9QdDgVdrb8wGH9D7AdtRrQm80sI=",
+        "owner": "GCBallesteros",
+        "repo": "jupytext.nvim",
+        "rev": "68fddf28119dbaddfaea6b71f3d6aa1e081afb93",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GCBallesteros",
+        "repo": "jupytext.nvim",
         "type": "github"
       }
     },
@@ -109,7 +125,8 @@
         "cmp-pandoc-references": "cmp-pandoc-references",
         "darwin": "darwin",
         "home-manager": "home-manager",
-        "img-clip": "img-clip",
+        "img-clip-nvim": "img-clip-nvim",
+        "jupytext-nvim": "jupytext-nvim",
         "kitty-scrollback": "kitty-scrollback",
         "nixpkgs": "nixpkgs",
         "telescope-zotero": "telescope-zotero"

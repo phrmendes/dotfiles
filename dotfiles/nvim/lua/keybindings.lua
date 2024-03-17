@@ -240,23 +240,6 @@ autocmd("FileType", {
 			cmd = "<CMD>Telescope zotero<CR>",
 			desc = "Add source from Zotero",
 		})
-
-		section({ mode = { "n", "v" }, key = "<leader>m", name = "Molten" })
-
-		map({
-			buffer = event.buf,
-			key = "<leader>mi",
-			cmd = "<CMD>MoltenInit<CR>",
-			desc = "Init",
-		})
-
-		map({
-			mode = { "n", "v" },
-			buffer = event.buf,
-			key = "<leader>me",
-			cmd = "<CMD>MoltenReevaluateCell<CR>",
-			desc = "Evaluate",
-		})
 	end,
 })
 

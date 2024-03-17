@@ -19,9 +19,14 @@
       url = "github:jmbuhr/cmp-pandoc-references";
     };
 
-    img-clip = {
+    img-clip-nvim = {
       flake = false;
       url = "github:HakonHarnes/img-clip.nvim";
+    };
+
+    jupytext-nvim = {
+      flake = false;
+      url = "github:GCBallesteros/jupytext.nvim";
     };
 
     kitty-scrollback = {

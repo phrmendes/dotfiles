@@ -17,7 +17,7 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) cmp-pandoc-references telescope-zotero img-clip kitty-scrollback;
+    inherit (inputs) cmp-pandoc-references telescope-zotero img-clip-nvim kitty-scrollback jupytext-nvim;
   };
   nix = {
     extensions = with pkgs.vimPlugins; [
@@ -54,7 +54,8 @@ in {
         diffview-nvim
         dressing-nvim
         friendly-snippets
-        gh.img-clip
+        gh.img-clip-nvim
+        gh.jupytext-nvim
         gh.kitty-scrollback
         gitsigns-nvim
         image-nvim
@@ -65,7 +66,6 @@ in {
         luasnip
         markdown-preview-nvim
         mini-nvim
-        molten-nvim
         neodev-nvim
         neogen
         neogit
@@ -113,14 +113,8 @@ in {
       };
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
-        cairosvg
-        jupyter-client
-        pillow
-        plotly
-        pnglatex
         pynvim
-        pyperclip
-        nbformat
+        jupytext
       ];
     extraLuaPackages = luaPkgs:
       with luaPkgs; [

@@ -1,8 +1,8 @@
 * {
-    bg-col:  #1e1e2e;
-    bg-col-light: #1e1e2e;
-    border-col: #1e1e2e;
-    selected-col: #1e1e2e;
+    bg-col:  #313244;
+    bg-col-light: #313244;
+    border-col: #313244;
+    selected-col: #313244;
     blue: #89b4fa;
     fg-col: #cdd6f4;
     fg-col2: #f38ba8;
@@ -54,7 +54,7 @@ entry {
 }
 
 listview {
-    border: 0px 0px 0px;
+    border: 5px 5px 5px;
     padding: 6px 0px 0px;
     margin: 10px 0px 0px 20px;
     columns: 2;

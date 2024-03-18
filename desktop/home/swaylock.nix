@@ -3,7 +3,7 @@
     colors = import ../../shared/catppuccin.nix;
   in {
     enable = true;
-    settings = with colors.catppuccin.pallete; {
+    settings = with colors.catppuccin.palette; {
       daemonize = true;
       font = "Fira Sans";
       ignore-empty-password = true;

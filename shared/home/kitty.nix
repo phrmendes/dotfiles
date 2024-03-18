@@ -25,7 +25,7 @@ in {
       bold_italic_font = "${font_family} SemBd Italic";
       enable_audio_bell = false;
       enabled_layouts = "splits:split_axis=horizontal,stack";
-      inactive_text_alpha = 0.7;
+      inactive_text_alpha = "0.9";
       italic_font = "${font_family} Italic";
       listen_on = "unix:/tmp/kitty";
       macos_option_as_alt = "left";

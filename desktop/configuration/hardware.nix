@@ -62,10 +62,14 @@
   ];
 
   hardware = {
-    pulseaudio.enable = false;
     uinput.enable = true;
 
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    pulseaudio = {
+      enable = false;
+      package = pkgs.pulseaudioFull;
+    };
 
     opengl = {
       enable = true;

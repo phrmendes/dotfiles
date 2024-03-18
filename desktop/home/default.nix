@@ -9,15 +9,15 @@
     ./blueman.nix
     ./btop.nix
     ./copyq.nix
-    ./dconf.nix
     ./dunst.nix
-    ./flameshot.nix
     ./gtk.nix
     ./home-manager.nix
     ./hyprland.nix
     ./network-manager.nix
     ./packages.nix
     ./pasystray.nix
+    ./rofi.nix
+    ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
   ];

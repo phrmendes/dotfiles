@@ -13,18 +13,6 @@ path+=(
     /opt/homebrew/bin
 )
 
-function repo_ref() {
-    repo_link=$1
-
-    if [[ $2 == "" ]]; then
-        branch="main"
-    else
-        branch=$2
-    fi
-
-    git ls-remote "$repo_link" "$branch" | cut -f1
-}
-
 function gc() {
     sudo nix-collect-garbage --delete-older-than 1d
     nix-collect-garbage --delete-older-than 1d

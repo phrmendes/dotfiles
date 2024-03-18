@@ -16,13 +16,17 @@
     ./configuration/services.nix
     ./configuration/syncthing.nix
     ./configuration/virtualisation.nix
-    ./configuration/xserver.nix
   ];
 
   console.keyMap = "us";
   sound.enable = true;
   system.stateVersion = "23.11";
   xdg.portal.enable = true;
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WAYLAND = "1";
+  };
 
   time = {
     timeZone = "America/Sao_Paulo";
@@ -43,7 +47,13 @@
       inherit (parameters) home;
       isNormalUser = true;
       uid = 1000;
-      extraGroups = ["wheel" "video" "audio" "networkmanager"];
+      extraGroups = [
+        "wheel"
+        "video"
+        "audio"
+        "networkmanager"
+        "libvirtd"
+      ];
       initialPassword = "password";
       shell = pkgs.zsh;
     };

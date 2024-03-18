@@ -19,6 +19,7 @@
       gparted
       graphviz
       grex
+      grim
       httpie
       hugo
       jq
@@ -36,13 +37,13 @@
       pandoc
       parallel
       pavucontrol
-      peek
       phockup
-      pulseaudio
       qemu
       quarto
       quickemu
       qview
+      satty
+      slurp
       swaybg
       syncthingtray
       tectonic
@@ -50,7 +51,8 @@
       tokei
       ventoy
       vlc
-      xdgtool
+      wlr-randr
+      xdotool
       zotero
     ]
     ++ (with pkgs.xfce; [

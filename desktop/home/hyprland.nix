@@ -1,24 +1,42 @@
 {pkgs, ...}: {
   wayland.windowManager.hyprland = let
-    wallpaper = ../../dotfiles/background.jpg;
+    wallpaper = ../../dotfiles/wallpaper.png;
     colors = import ../../shared/catppuccin.nix;
-    range = [1 2 3 4 5 6 7 8 9 10];
-    switchToDesktop = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") range;
-    moveToDesktop = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
+    range = [1 2 3 4 5 6 7 8 9];
+    switchToWorkspace = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") range;
+    moveToWorkspaceSilent = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") range;
+    moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
     startupScript = pkgs.writeShellScriptBin "start" ''
-      swaybg -i ${wallpaper}
+      swaybg --image ${wallpaper} --mode fill
+    '';
+    powermenuScript = pkgs.writeShellScriptBin "powermenu" ''
+      lock="  Lock"
+      suspend="󰤄  Suspend"
+      restart="  Restart"
+      poweroff="󰐥  Power off"
+
+      option=$(printf "$lock\n$suspend\n$restart\n$poweroff" | rofi -dmenu -i -p "   Powermenu  ")
+
+      if [ "$option" == "$lock" ]; then
+        swaylock
+      elif [ "$option" == "$suspend" ]; then
+        systemctl suspend
+      elif [ "$option" == "$restart" ]; then
+        systemctl reboot
+      elif [ "$option" == "$poweroff" ]; then
+        systemctl poweroff
+      fi
     '';
   in {
     enable = true;
-    enableNvidiaPatches = true;
-    settings = with colors.catppuccin.pallete.rgba; {
+    settings = with colors.catppuccin.palette; {
       exec-once = "${startupScript}/bin/start";
       input = {
         kb_layout = "us,br";
         kb_model = "pc104";
         kb_options = "grp:alt_space_toggle";
         kb_rules = "evdev";
-        follow_mouse = 0;
+        follow_mouse = 1;
         sensitivity = 0;
       };
       general = {
@@ -28,7 +46,6 @@
         layout = "dwindle";
         resize_on_border = true;
         "col.active_border" = "rgba(${blue}ff) rgba(${green}ff) 60deg";
-        "col.inactive" = "rgba(${base}ff)";
       };
       decoration = {
         active_opacity = 1;
@@ -57,65 +74,78 @@
         disable_hyprland_logo = true;
       };
       monitor = [
-        "HDMI-0, 1920x1080, 1920x0, auto"
-        "DP-3, 1366x768, 0x0, auto"
+        "HDMI-A-1,1920x1080,0x1920,auto"
+        "DP-2,1366x768,0x0,auto"
       ];
-      windowrule = [
-        "float,gcolor3"
-        "float,nwg-displays"
-        "float,nwg-look"
-        "float,rofi"
+      windowrulev2 = [
+        "float,class:(gcolor3)"
+        "float,class:(nwg-displays)"
+        "float,class:(nwg-look)"
+        "float,class:(rofi)"
+        "float,class:(copyq)"
+      ];
+      workspace = [
+        "1,monitor:HDMI-A-1"
+        "2,monitor:HDMI-A-1"
+        "3,monitor:HDMI-A-1"
+        "4,monitor:HDMI-A-1"
+        "5,monitor:HDMI-A-1"
+        "6,monitor:HDMI-A-1"
+        "7,monitor:HDMI-A-1"
+        "8,monitor:HDMI-A-1"
+        "9,monitor:DP-2"
+      ];
+      bindm = [
+        "SUPER,mouse:272,movewindow"
+        "SUPER,mouse:273,resizewindow"
+      ];
+      binde = [
+        # volume keys
+        ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%"
+        # resize
+        "SUPER CTRL,left,resizeactive,-10 0"
+        "SUPER CTRL,right,resizeactive,10 0"
+        "SUPER CTRL,up,resizeactive,0 -10"
+        "SUPER CTRL,down,resizeactive,0 10"
       ];
       bind =
         [
           # apps
           "SUPER,escape,exec,rofi -show power-menu"
-          "SUPER,return,exec,kitty"
           "SUPER,space,exec,rofi -show drun"
+          "SUPER,W,exec,rofi -show window"
+          "SUPER,return,exec,kitty"
           "SUPER,E,exec,thunar"
           "SUPER,C,exec,dunstctl close-all"
-          ",print,flameshot gui"
+          "SUPER,f4,exec,${powermenuScript}/bin/powermenu"
+          "SUPER SHIFT,V,exec,copyq toggle"
+          '',print,exec,grim -g "$(slurp)" - | satty -f -''
           # general operations
-          "SUPER ALT,Q,exec,pkill Hyprland"
           "SUPER,F,togglefloating"
-          "SUPER,M,movewindow"
           "SUPER,P,pseudo"
           "SUPER,Q,killactive"
           "SUPER,T,togglesplit"
           "SUPER,Z,fullscreen"
-          # swaylock
-          "SUPER,L,exec,swaylock"
-          "SUPER SHIFT,L,exec,swaylock; sleep 1; systemctl suspend -i"
-          # resize
-          "SUPER CTRL,left,resizeactive,-10 0"
-          "SUPER CTRL,right,resizeactive,10 0"
-          "SUPER CTRL,up,resizeactive,0 -10"
-          "SUPER CTRL,down,resizeactive,0 10"
           # windows
           "SUPER,H,movefocus,l"
           "SUPER,J,movefocus,d"
           "SUPER,K,movefocus,u"
           "SUPER,L,movefocus,r"
-          # monitors
-          "SUPER ALT,H,focusmonitor,l"
-          "SUPER ALT,L,focusmonitor,r"
-          "SUPER SHIFT ALT,H,movecurrentworkspacetomonitor,l"
-          "SUPER SHIFT ALT,L,movecurrentworkspacetomonitor,r"
           # workspaces
-          "SUPER CTRL,H,movetoworkspace, m-1"
-          "SUPER CTRL,L,movetoworkspace, m+1"
-          "SUPER SHIFT CTRL,H,workspace, m-1"
-          "SUPER SHIFT CTRL,L,workspace, m+1"
+          "SUPER CTRL,H,workspace,e-1"
+          "SUPER CTRL,L,workspace,e+1"
+          "SUPER ALT,H,movetoworkspace,e-1"
+          "SUPER ALT,L,movetoworkspace,e+1"
           # media keys
-          ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%"
-          ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%"
           ",XF86AudioMute,exec,pactl set-sink-mute @DEFAULT_SINK@ toggle"
           ",XF86AudioPlay,exec,playerctl play-pause"
           ",XF86AudioNext,exec,playerctl next"
           ",XF86AudioPrev,exec,playerctl previous"
         ]
-        ++ switchToDesktop
-        ++ moveToDesktop;
+        ++ switchToWorkspace
+        ++ moveToWorkspace
+        ++ moveToWorkspaceSilent;
     };
   };
 }

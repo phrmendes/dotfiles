@@ -8,7 +8,15 @@ require("catppuccin").setup({
 	},
 	integrations = {
 		treesitter_context = true,
-		fidget = true,
+		native_lsp = {
+			enabled = true,
+			underlines = {
+				errors = { "undercurl" },
+				hints = { "undercurl" },
+				warnings = { "undercurl" },
+				information = { "undercurl" },
+			},
+		},
 	},
 })
 

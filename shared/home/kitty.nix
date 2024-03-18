@@ -25,6 +25,7 @@ in {
       bold_italic_font = "${font_family} SemBd Italic";
       enable_audio_bell = false;
       enabled_layouts = "splits:split_axis=horizontal,stack";
+      inactive_text_alpha = 0.7;
       italic_font = "${font_family} Italic";
       listen_on = "unix:/tmp/kitty";
       macos_option_as_alt = "left";
@@ -58,10 +59,10 @@ in {
       "ctrl+shift+t" = "new_tab";
       "ctrl+shift+x" = "close_window";
       "ctrl+shift+z" = "toggle_layout stack";
-      "ctrl+shift+h" = "kitten scrollback.py";
+      "ctrl+shift+s" = "kitten scrollback.py";
       "ctrl+shift+g" = "kitten scrollback.py --config ksb_builtin_last_cmd_output";
-      "alt+[" = "previous_tab";
-      "alt+]" = "next_tab";
+      "ctrl+shift+h" = "previous_tab";
+      "ctrl+shift+l" = "next_tab";
       "alt+left" = "kitten pass_keys.py relative_resize left 3 alt+left";
       "alt+right" = "kitten pass_keys.py relative_resize right 3 alt+right";
       "alt+down" = "kitten pass_keys.py relative_resize down 3 alt+down";

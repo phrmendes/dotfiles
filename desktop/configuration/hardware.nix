@@ -38,9 +38,6 @@
       "kvm-amd"
       "snd-aloop"
       "v4l2loopback"
-      "vboxdrv"
-      "vboxnetadp"
-      "vboxnetflt"
     ];
     extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
     extraModprobeConfig = ''
@@ -64,8 +61,34 @@
     {device = "/dev/disk/by-uuid/7622da1d-0b9d-4882-89d6-f4daf30e004d";}
   ];
 
-  networking.useDHCP = lib.mkDefault true;
+  hardware = {
+    pulseaudio.enable = false;
+    uinput.enable = true;
+
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [nvidia-vaapi-driver];
+    };
+
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+
+    nvidia = {
+      nvidiaSettings = true;
+      modesetting.enable = true;
+      package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -2,7 +2,6 @@ local augroup = require("utils").augroup
 local map = require("utils").keys.map
 local section = require("utils").keys.section
 local autocmd = vim.api.nvim_create_autocmd
-local provider = require("utils").lsp.provider
 
 -- unbind keys -------------------------------------------
 local unbind = { n = { "<", ">", "<Space>" }, v = { "<", ">" } }
@@ -354,7 +353,7 @@ autocmd("LspAttach", {
 			desc = "LSP: code actions",
 		})
 
-		-- dap
+		-- dap -------------------------------------------
 		map({ key = "<F3>", cmd = require("dap").step_out, desc = "DAP: step out" })
 		map({ key = "<F4>", cmd = require("dap").step_into, desc = "DAP: step into" })
 		map({ key = "<F5>", cmd = require("dap").step_back, desc = "DAP: step back" })
@@ -402,3 +401,34 @@ map({ mode = "t", key = "<C-k>", cmd = "<CMD>wincmd k<CR>", desc = "Move up" })
 map({ mode = "t", key = "<C-l>", cmd = "<CMD>wincmd l<CR>", desc = "Move right" })
 map({ mode = "t", key = "<ESC>", cmd = "<C-\\><C-n>", desc = "Exit" })
 map({ mode = "t", key = "jk", cmd = "<C-\\><C-n>", desc = "Exit" })
+
+-- luasnip -----------------------------------------------
+map({
+	mode = "i",
+	key = "<TAB>",
+	cmd = function()
+		return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<TAB>"
+	end,
+	desc = "(Luasnip) next",
+}, {
+	expr = true,
+	silent = true,
+})
+
+map({
+	mode = "s",
+	key = "<TAB>",
+	cmd = function()
+		require("luasnip").jump(1)
+	end,
+	desc = "(Luasnip) next",
+})
+
+map({
+	mode = { "i", "s" },
+	key = "<S-TAB>",
+	cmd = function()
+		require("luasnip").jump(-1)
+	end,
+	desc = "(Luasnip) prev",
+})

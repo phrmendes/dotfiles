@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  home.packages =
-    (with pkgs; [
+  home.packages = with pkgs;
+    [
       ansible
       bashly
       bitwarden
@@ -12,10 +12,10 @@
       droidcam
       evince
       firefox
-      fselect
       gcolor3
       gh
       git
+      gnuplot
       gparted
       graphviz
       grex
@@ -25,40 +25,37 @@
       just
       kubectl
       kubernetes-helm
+      libqalculate
       libreoffice
       mc
       minikube
-      nautilus-open-any-terminal
-      ncdu
+      nwg-displays
+      nwg-look
       obsidian
       opentofu
       pandoc
       parallel
+      pavucontrol
       peek
       phockup
-      pop-launcher
-      qalculate-gtk
+      pulseaudio
       qemu
       quarto
       quickemu
       qview
+      swaybg
       syncthingtray
       tectonic
       terraform
       tokei
       ventoy
       vlc
+      xdgtool
       zotero
-    ])
-    ++ (with pkgs.gnome; [
-      file-roller
-      gnome-tweaks
-      nautilus
-    ])
-    ++ (with pkgs.gnomeExtensions; [
-      appindicator
-      espresso
-      pop-shell
-      user-themes
+    ]
+    ++ (with pkgs.xfce; [
+      thunar
+      thunar-volman
+      thunar-archive-plugin
     ]);
 }

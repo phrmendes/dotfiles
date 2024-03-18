@@ -10,8 +10,9 @@
   aliases = with pkgs;
     {
       cat = getExe bat;
-      du = getExe du-dust;
+      du = getExe ncdu;
       find = getExe fd;
+      fs = getExe fselect;
       grep = getExe ripgrep;
       m = "mkdir -p";
       ps = getExe procs;

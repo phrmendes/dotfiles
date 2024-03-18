@@ -10,19 +10,24 @@
     gnumake
     gnused
     gzip
+    iconv
     icu
     jdk21
+    libnotify
     libuv
+    libxml2
     nodejs_21
+    playerctl
     psmisc
     python312
     rar
+    readline
     ripgrep
     sqlite
     unrar
     unzip
     wget
-    xclip
+    wl-clipboard
     zip
     zlib
   ];

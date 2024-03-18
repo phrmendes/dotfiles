@@ -9,6 +9,17 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-CR>"] = function(fallback)
+			cmp.abort()
+			fallback()
+		end,
 		["<TAB>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
@@ -23,12 +34,6 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<C-y>"] = cmp.mapping.confirm({ select = true }),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
 	}),
 	formatting = {
 		format = require("lspkind").cmp_format({
@@ -46,9 +51,9 @@ cmp.setup({
 		documentation = border,
 	},
 	sources = cmp.config.sources({
+		{ name = "path" },
 		{ name = "copilot" },
 		{ name = "otter" },
-		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip", keyword_length = 3, max_item_count = 3 },
 		{ name = "pandoc_references" },

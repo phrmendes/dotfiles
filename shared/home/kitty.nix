@@ -62,10 +62,10 @@ in {
       "ctrl+shift+g" = "kitten scrollback.py --config ksb_builtin_last_cmd_output";
       "alt+[" = "previous_tab";
       "alt+]" = "next_tab";
-      "alt+h" = "kitten pass_keys.py relative_resize left  3 alt+h";
-      "alt+j" = "kitten pass_keys.py relative_resize down  3 alt+j";
-      "alt+k" = "kitten pass_keys.py relative_resize up    3 alt+k";
-      "alt+l" = "kitten pass_keys.py relative_resize right 3 alt+l";
+      "alt+left" = "kitten pass_keys.py relative_resize left 3 alt+left";
+      "alt+right" = "kitten pass_keys.py relative_resize right 3 alt+right";
+      "alt+down" = "kitten pass_keys.py relative_resize down 3 alt+down";
+      "alt+up" = "kitten pass_keys.py relative_resize up 3 alt+up";
       "ctrl+h" = "kitten pass_keys.py neighboring_window left ctrl+h";
       "ctrl+j" = "kitten pass_keys.py neighboring_window bottom ctrl+j";
       "ctrl+k" = "kitten pass_keys.py neighboring_window top ctrl+k";

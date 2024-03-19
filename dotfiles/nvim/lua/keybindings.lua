@@ -35,10 +35,6 @@ map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
 map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })
 
 -- windows -----------------------------------------------
-map({ key = "+", cmd = "<CMD>resize +2<CR>", desc = "Increase window (V)" }, { noremap = true, silent = true })
-map({ key = "-", cmd = "<CMD>vertical resize -2<CR>", desc = "Decrease window (H)" }, { noremap = true, silent = true })
-map({ key = "=", cmd = "<CMD>vertical resize +2<CR>", desc = "Increase window (H)" }, { noremap = true, silent = true })
-map({ key = "_", cmd = "<CMD>resize -2<CR>", desc = "Decrease window (V)" }, { noremap = true, silent = true })
 map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
 map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
 map({ key = "<leader>x", cmd = "<C-w>q", desc = "Close window" })
@@ -432,10 +428,10 @@ autocmd("LspAttach", {
 })
 
 -- smart splits ------------------------------------------
-map({ key = "<A-h>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
-map({ key = "<A-j>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
-map({ key = "<A-k>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
-map({ key = "<A-l>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
+map({ key = "<A-Left>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
+map({ key = "<A-Right>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
+map({ key = "<A-Up>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
+map({ key = "<A-Down>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
 map({ key = "<C-h>", cmd = require("smart-splits").move_cursor_left, desc = "Move cursor left" })
 map({ key = "<C-j>", cmd = require("smart-splits").move_cursor_down, desc = "Move cursor down" })
 map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move cursor up" })

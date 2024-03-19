@@ -13,12 +13,6 @@ for mode, keys in pairs(unbind) do
 	end
 end
 
--- exit terminal mode ------------------------------------
-map({ mode = "t", key = "<ESC><ESC>", cmd = "<C-\\><C-n>", desc = "Exit terminal mode" }, {
-	noremap = true,
-	silent = true,
-})
-
 -- macros ------------------------------------------------
 map({ mode = "n", key = "Q", cmd = "@qj", desc = "Replay macro" })
 map({ mode = "v", key = "Q", cmd = "<CMD>norm @q<CR>", desc = "Replay macro" })
@@ -271,9 +265,10 @@ autocmd("FileType", {
 autocmd("LspAttach", {
 	group = augroup,
 	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-
 		-- lsp -------------------------------------------
+		map({ key = "<leader>k", cmd = vim.lsp.buf.hover, buffer = event.buf, desc = "LSP: show hover documentation" })
+		map({ key = "<leader>r", cmd = vim.lsp.buf.rename, buffer = event.buf, desc = "LSP: rename symbol" })
+
 		map({
 			key = "<leader>D",
 			cmd = "<CMD>TroubleToggle workspace_diagnostics<CR>",
@@ -289,111 +284,75 @@ autocmd("LspAttach", {
 		})
 
 		map({
+			key = "<leader>R",
+			cmd = "<CMD>Telescope lsp_references<CR>",
+			buffer = event.buf,
+			desc = "LSP: show references",
+		})
+
+		map({
+			key = "<leader>S",
+			cmd = "<CMD>Telescope lsp_workspace_symbols<CR>",
+			buffer = event.buf,
+			desc = "LSP: workspace symbols",
+		})
+
+		map({
 			key = "<leader>d",
 			cmd = "<CMD>TroubleToggle document_diagnostics<CR>",
 			buffer = event.buf,
 			desc = "LSP: document diagnostics",
 		})
 
-		provider(client, "codeAction", function()
-			map({
-				mode = { "n", "v" },
-				key = "<leader>a",
-				cmd = require("actions-preview").code_actions,
-				buffer = event.buf,
-				desc = "LSP: code actions",
-			})
-		end)
+		map({
+			key = "<leader>h",
+			cmd = require("lsp_signature").toggle_float_win,
+			buffer = event.buf,
+			desc = "LSP: toggle signature help",
+		})
 
-		provider(client, "declaration", function()
-			map({
-				key = "gD",
-				cmd = vim.lsp.buf.declaration,
-				buffer = event.buf,
-				desc = "LSP: go to declaration",
-			})
-		end)
+		map({
+			key = "<leader>s",
+			cmd = "<CMD>Telescope lsp_document_symbols<CR>",
+			buffer = event.buf,
+			desc = "LSP: document symbols",
+		})
 
-		provider(client, "definition", function()
-			map({
-				key = "gd",
-				cmd = "<CMD>Telescope lsp_definitions<CR>",
-				buffer = event.buf,
-				desc = "LSP: go to definition",
-			})
-		end)
+		map({
+			key = "gD",
+			cmd = vim.lsp.buf.declaration,
+			buffer = event.buf,
+			desc = "LSP: go to declaration",
+		})
 
-		provider(client, "documentSymbol", function()
-			map({
-				key = "<leader>s",
-				cmd = "<CMD>Telescope lsp_document_symbols<CR>",
-				buffer = event.buf,
-				desc = "LSP: document symbols",
-			})
-		end)
+		map({
+			key = "gd",
+			cmd = "<CMD>Telescope lsp_definitions<CR>",
+			buffer = event.buf,
+			desc = "LSP: go to definition",
+		})
 
-		provider(client, "hover", function()
-			map({
-				key = "<leader>k",
-				cmd = vim.lsp.buf.hover,
-				buffer = event.buf,
-				desc = "LSP: show hover documentation",
-			})
-		end)
+		map({
+			key = "gi",
+			cmd = "<CMD>Telescope lsp_implementations<CR>",
+			buffer = event.buf,
+			desc = "LSP: go to implementations",
+		})
 
-		provider(client, "implementation", function()
-			map({
-				key = "gi",
-				cmd = "<CMD>Telescope lsp_implementations<CR>",
-				buffer = event.buf,
-				desc = "LSP: go to implementations",
-			})
-		end)
+		map({
+			key = "gt",
+			cmd = "<CMD>Telescope lsp_type_definitions<CR>",
+			buffer = event.buf,
+			desc = "LSP: go to type definition",
+		})
 
-		provider(client, "signatureHelp", function()
-			map({
-				key = "<leader>h",
-				cmd = require("lsp_signature").toggle_float_win,
-				buffer = event.buf,
-				desc = "LSP: toggle signature help",
-			})
-		end)
-
-		provider(client, "rename", function()
-			map({
-				key = "<leader>r",
-				cmd = vim.lsp.buf.rename,
-				buffer = event.buf,
-				desc = "LSP: rename symbol",
-			})
-		end)
-
-		provider(client, "references", function()
-			map({
-				key = "<leader>R",
-				cmd = "<CMD>Telescope lsp_references<CR>",
-				buffer = event.buf,
-				desc = "LSP: show references",
-			})
-		end)
-
-		provider(client, "typeDefinition", function()
-			map({
-				key = "gt",
-				cmd = "<CMD>Telescope lsp_type_definitions<CR>",
-				buffer = event.buf,
-				desc = "LSP: go to type definition",
-			})
-		end)
-
-		provider(client, "workspaceSymbol", function()
-			map({
-				key = "<leader>S",
-				cmd = "<CMD>Telescope lsp_workspace_symbols<CR>",
-				buffer = event.buf,
-				desc = "LSP: workspace symbols",
-			})
-		end)
+		map({
+			mode = { "n", "v" },
+			key = "<leader>a",
+			cmd = require("actions-preview").code_actions,
+			buffer = event.buf,
+			desc = "LSP: code actions",
+		})
 
 		-- dap
 		map({ key = "<F3>", cmd = require("dap").step_out, desc = "DAP: step out" })
@@ -434,8 +393,19 @@ map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move 
 map({ key = "<C-l>", cmd = require("smart-splits").move_cursor_right, desc = "Move cursor right" })
 
 -- terminal ----------------------------------------------
-section({ mode = "t", key = "<leader>t", name = "terminal" })
-map({ key = "<leader>tt", cmd = "<CMD>ToggleTerm direction=horizontal size=10<CR>", desc = "Toggle terminal (H)" })
-map({ key = "<leader>tv", cmd = "<CMD>ToggleTerm direction=vertical size=60<CR>", desc = "Toggle terminal (V)" })
+map({ key = "<C-/>", cmd = "<CMD>ToggleTerm<CR>", desc = "Toggle terminal" })
 map({ key = "<C-CR>", cmd = "<CMD>ToggleTermSendCurrentLine<CR>", desc = "Send line to terminal" })
 map({ mode = "v", key = "<C-CR>", cmd = "<CMD>ToggleTermSendVisualLines<CR>", desc = "Send lines to terminal" })
+
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+	group = require("utils").augroup,
+	pattern = { "term://*" },
+	callback = function(event)
+		map({ mode = "t", key = "<C-k>", cmd = "<CMD>wincmd k<CR>", buffer = event.buf, desc = "Move up" })
+		map({ mode = "t", key = "<C-h>", cmd = "<CMD>wincmd h<CR>", buffer = event.buf, desc = "Move left" })
+		map({ mode = "t", key = "<C-j>", cmd = "<CMD>wincmd j<CR>", buffer = event.buf, desc = "Move down" })
+		map({ mode = "t", key = "<C-l>", cmd = "<CMD>wincmd l<CR>", buffer = event.buf, desc = "Move right" })
+		map({ mode = "t", key = "<ESC>", cmd = "<C-\\><C-n>", buffer = event.buf, desc = "Exit" })
+		map({ mode = "t", key = "jk", cmd = "<C-\\><C-n>", buffer = event.buf, desc = "Exit" })
+	end,
+})

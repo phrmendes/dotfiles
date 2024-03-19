@@ -6,9 +6,7 @@ later(function()
 
 	require("quarto").setup({
 		codeRunner = {
-			enabled = true,
-			default_method = "slime",
-			never_run = { "yaml" },
+			enabled = false,
 		},
 	})
 

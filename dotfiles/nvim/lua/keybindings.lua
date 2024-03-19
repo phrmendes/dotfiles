@@ -236,10 +236,6 @@ end
 -- annotations -------------------------------------------
 map({ key = "<leader>n", cmd = "<CMD>Neogen<CR>", desc = "Generate annotations" })
 
--- repl --------------------------------------------------
-map({ mode = { "n", "v" }, key = "<C-c><C-c>", cmd = "<Plug>SlimeParagraphSend", desc = "Send to REPL" })
-map({ mode = { "n", "v" }, key = "<C-c><C-v>", cmd = "<Plug>SlimeConfig", desc = "Slime config" })
-
 -- todo --------------------------------------------------
 map({ key = "[t", cmd = require("todo-comments").jump_prev, desc = "Previous todo comment" })
 map({ key = "]t", cmd = require("todo-comments").jump_next, desc = "Next todo comment" })
@@ -436,7 +432,10 @@ map({ key = "<C-h>", cmd = require("smart-splits").move_cursor_left, desc = "Mov
 map({ key = "<C-j>", cmd = require("smart-splits").move_cursor_down, desc = "Move cursor down" })
 map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move cursor up" })
 map({ key = "<C-l>", cmd = require("smart-splits").move_cursor_right, desc = "Move cursor right" })
-map({ key = "<localleader>h", cmd = require("smart-splits").swap_buf_left, desc = "Swap buffer left" })
-map({ key = "<localleader>j", cmd = require("smart-splits").swap_buf_down, desc = "Swap buffer down" })
-map({ key = "<localleader>k", cmd = require("smart-splits").swap_buf_up, desc = "Swap buffer up" })
-map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc = "Swap buffer right" })
+
+-- terminal ----------------------------------------------
+section({ mode = "t", key = "<leader>t", name = "terminal" })
+map({ key = "<leader>tt", cmd = "<CMD>ToggleTerm direction=horizontal size=10<CR>", desc = "Toggle terminal (H)" })
+map({ key = "<leader>tv", cmd = "<CMD>ToggleTerm direction=vertical size=60<CR>", desc = "Toggle terminal (V)" })
+map({ key = "<C-CR>", cmd = "<CMD>ToggleTermSendCurrentLine<CR>", desc = "Send line to terminal" })
+map({ mode = "v", key = "<C-CR>", cmd = "<CMD>ToggleTermSendVisualLines<CR>", desc = "Send lines to terminal" })

@@ -93,6 +93,7 @@ in {
         telescope-nvim
         telescope-zoxide
         todo-comments-nvim
+        toggleterm-nvim
         trouble-nvim
         undotree
         vim-abolish
@@ -102,7 +103,6 @@ in {
         vim-just
         vim-nix
         vim-sleuth
-        vim-slime
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim

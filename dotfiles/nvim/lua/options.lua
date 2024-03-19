@@ -86,3 +86,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- mouse support
 vim.g.VM_mouse_mappings = 1
+
+-- copilot
+vim.g.copilot_no_tab_map = true

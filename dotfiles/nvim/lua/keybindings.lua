@@ -27,11 +27,6 @@ map({ mode = "v", key = "Q", cmd = "<CMD>norm @q<CR>", desc = "Replay macro" })
 map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, { expr = true, silent = true })
 map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, { expr = true, silent = true })
 
--- move in insert mode -----------------------------------
-map({ mode = { "i", "t", "c" }, key = "<C-x>", cmd = "<C-o>dw", desc = "Delete word" })
-map({ mode = { "i", "t", "c" }, key = "<C-i>", cmd = "<C-o>^", desc = "Move to start of line" })
-map({ mode = { "i", "t", "c" }, key = "<C-a>", cmd = "<C-o>$", desc = "Move to end of line" })
-
 -- clear highlights --------------------------------------
 map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
 
@@ -68,6 +63,43 @@ map({ key = "<leader>?", cmd = "<CMD>Telescope help_tags<CR>", desc = "Help" })
 
 -- undo tree ---------------------------------------------
 map({ key = "<leader>u", cmd = "<CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" })
+
+-- copilot
+map({
+	mode = "i",
+	key = "<C-a>",
+	cmd = [[ copilot#Accept("<CR>") ]],
+	desc = "Accept copilot suggestion",
+}, {
+	noremap = true,
+	silent = true,
+	expr = true,
+	replace_keycodes = false,
+})
+
+map({
+	mode = "i",
+	key = "<C-h>",
+	cmd = [[ copilot#Previous() ]],
+	desc = "Previous copilot suggestion",
+}, {
+	noremap = true,
+	silent = true,
+	expr = true,
+	replace_keycodes = false,
+})
+
+map({
+	mode = "i",
+	key = "<C-l>",
+	cmd = [[ copilot#Next() ]],
+	desc = "Next copilot suggestion",
+}, {
+	noremap = true,
+	silent = true,
+	expr = true,
+	replace_keycodes = false,
+})
 
 -- file explorer -----------------------------------------
 map({

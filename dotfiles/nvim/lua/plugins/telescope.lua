@@ -66,9 +66,12 @@ telescope.setup({
 
 local extensions = {
 	"fzf",
-	"zotero",
 	"zoxide",
 }
+
+if vim.fn.has("mac") == 0 then
+	table.insert(extensions, "zotero")
+end
 
 for _, ext in ipairs(extensions) do
 	telescope.load_extension(ext)

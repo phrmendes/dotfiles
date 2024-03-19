@@ -57,6 +57,9 @@
         inherit (parameters) system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "nix-2.16.2"
+          ];
         };
       };
     in

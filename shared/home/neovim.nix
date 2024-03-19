@@ -49,8 +49,7 @@ in {
         cmp-path
         cmp_luasnip
         conform-nvim
-        copilot-cmp
-        copilot-lua
+        copilot-vim
         diffview-nvim
         dressing-nvim
         friendly-snippets

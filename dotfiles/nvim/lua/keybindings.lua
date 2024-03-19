@@ -400,12 +400,12 @@ map({ mode = "v", key = "<C-CR>", cmd = "<CMD>ToggleTermSendVisualLines<CR>", de
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
 	group = require("utils").augroup,
 	pattern = { "term://*" },
-	callback = function(event)
-		map({ mode = "t", key = "<C-k>", cmd = "<CMD>wincmd k<CR>", buffer = event.buf, desc = "Move up" })
-		map({ mode = "t", key = "<C-h>", cmd = "<CMD>wincmd h<CR>", buffer = event.buf, desc = "Move left" })
-		map({ mode = "t", key = "<C-j>", cmd = "<CMD>wincmd j<CR>", buffer = event.buf, desc = "Move down" })
-		map({ mode = "t", key = "<C-l>", cmd = "<CMD>wincmd l<CR>", buffer = event.buf, desc = "Move right" })
-		map({ mode = "t", key = "<ESC>", cmd = "<C-\\><C-n>", buffer = event.buf, desc = "Exit" })
-		map({ mode = "t", key = "jk", cmd = "<C-\\><C-n>", buffer = event.buf, desc = "Exit" })
+	callback = function()
+		map({ mode = "t", key = "<C-h>", cmd = "<CMD>wincmd h<CR>", buffer = 0, desc = "Move left" })
+		map({ mode = "t", key = "<C-j>", cmd = "<CMD>wincmd j<CR>", buffer = 0, desc = "Move down" })
+		map({ mode = "t", key = "<C-k>", cmd = "<CMD>wincmd k<CR>", buffer = 0, desc = "Move up" })
+		map({ mode = "t", key = "<C-l>", cmd = "<CMD>wincmd l<CR>", buffer = 0, desc = "Move right" })
+		map({ mode = "t", key = "<ESC>", cmd = "<C-\\><C-n>", buffer = 0, desc = "Exit" })
+		map({ mode = "t", key = "jk", cmd = "<C-\\><C-n>", buffer = 0, desc = "Exit" })
 	end,
 })

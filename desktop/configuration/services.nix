@@ -3,9 +3,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  wallpaper = ../../dotfiles/wallpaper.png;
-in {
+}: {
   services = {
     blueman.enable = true;
     devmon.enable = true;
@@ -43,13 +41,7 @@ in {
         options = "grp:alt_space_toggle";
       };
       videoDrivers = ["nvidia"];
-      displayManager = {
-        defaultSession = "hyprland";
-        lightdm = {
-          enable = true;
-          background = "${wallpaper}";
-        };
-      };
+      displayManager.gdm.enable = true;
     };
   };
 }

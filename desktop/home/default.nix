@@ -19,6 +19,7 @@
     ./rofi.nix
     ./swayidle.nix
     ./swaylock.nix
+    ./synching.nix
     ./waybar.nix
   ];
 

@@ -6,13 +6,10 @@
 }: {
   services = {
     blueman.enable = true;
-    devmon.enable = true;
     flatpak.enable = true;
-    gvfs.enable = true;
     openssh.enable = true;
     tailscale.enable = true;
     udev.enable = true;
-    udisks2.enable = true;
 
     gnome.gnome-keyring.enable = true;
 

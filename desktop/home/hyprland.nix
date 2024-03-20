@@ -8,6 +8,7 @@
     moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
     startupScript = pkgs.writeShellScriptBin "start" ''
       swaybg --image ${wallpaper} --mode fill
+      sleep 5
       syncthingtray --wait
     '';
     powermenuScript = pkgs.writeShellScriptBin "powermenu" ''

@@ -3,13 +3,19 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  wallpaper = ../../dotfiles/wallpaper.png;
+in {
   services = {
+    blueman.enable = true;
+    devmon.enable = true;
     flatpak.enable = true;
+    gvfs.enable = true;
     openssh.enable = true;
     tailscale.enable = true;
     udev.enable = true;
-    blueman.enable = true;
+    udisks2.enable = true;
+
     gnome.gnome-keyring.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";
@@ -39,9 +45,9 @@
       videoDrivers = ["nvidia"];
       displayManager = {
         defaultSession = "hyprland";
-        gdm = {
+        lightdm = {
           enable = true;
-          wayland = true;
+          background = "${wallpaper}";
         };
       };
     };

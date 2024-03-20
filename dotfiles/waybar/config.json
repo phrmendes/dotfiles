@@ -36,10 +36,10 @@
       "spacing": 20
     },
     "clock": {
-      "format": "   {:%H:%M}"
+      "format": "   {:%H:%M}  "
     },
     "idle_inhibitor": {
-      "format": "{icon}",
+      "format": "  {icon}  ",
       "format-icons": {
         "activated": "",
         "deactivated": ""

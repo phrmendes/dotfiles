@@ -32,7 +32,10 @@
     xserver = {
       enable = true;
       autorun = true;
-      xkb.layout = "us,br";
+      xkb = {
+        layout = "us,br";
+        options = "grp:alt_space_toggle";
+      };
       videoDrivers = ["nvidia"];
       displayManager = {
         defaultSession = "hyprland";

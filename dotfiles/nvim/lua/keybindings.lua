@@ -125,9 +125,9 @@ map({ key = "<F5>", cmd = require("dap").step_back, desc = "DAP: step back" })
 map({ key = "<F6>", cmd = require("dap").continue, desc = "DAP: continue" })
 map({ key = "<F7>", cmd = require("dap").step_over, desc = "DAP: step over" })
 map({ key = "<S-F6>", cmd = require("dap").pause, desc = "DAP: pause" })
-map({ key = "<BS>", cmd = require("dap").close, desc = "DAP: quit" })
-map({ key = "<leader>t", cmd = require("dap").toggle_breakpoint, desc = "DAP: toggle breakpoint" })
-map({ key = "<leader>U", cmd = require("dapui").toggle, desc = "DAP: toggle UI" })
+map({ key = "<C-c><C-c>", cmd = require("dap").close, desc = "DAP: quit" })
+map({ key = "<C-c><C-b>", cmd = require("dap").toggle_breakpoint, desc = "DAP: toggle breakpoint" })
+map({ key = "<C-c><C-u>", cmd = require("dapui").toggle, desc = "DAP: toggle UI" })
 
 autocmd("FileType", {
 	pattern = { "python" },
@@ -392,15 +392,13 @@ map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move 
 map({ key = "<C-l>", cmd = require("smart-splits").move_cursor_right, desc = "Move cursor right" })
 
 -- terminal ----------------------------------------------
-map({ key = "<C-/>", cmd = "<CMD>ToggleTerm<CR>", desc = "Toggle terminal" })
 map({ key = "<C-CR>", cmd = "<CMD>ToggleTermSendCurrentLine<CR>", desc = "Send line to terminal" })
 map({ mode = "v", key = "<C-CR>", cmd = "<CMD>ToggleTermSendVisualLines<CR>", desc = "Send lines to terminal" })
-map({ mode = "t", key = "<C-h>", cmd = "<CMD>wincmd h<CR>", desc = "Move left" })
-map({ mode = "t", key = "<C-j>", cmd = "<CMD>wincmd j<CR>", desc = "Move down" })
-map({ mode = "t", key = "<C-k>", cmd = "<CMD>wincmd k<CR>", desc = "Move up" })
-map({ mode = "t", key = "<C-l>", cmd = "<CMD>wincmd l<CR>", desc = "Move right" })
+map({ mode = "t", key = "<C-h>", cmd = [[<C-\><C-n><C-w>h]], desc = "Move left" })
+map({ mode = "t", key = "<C-j>", cmd = [[<C-\><C-n><C-w>j]], desc = "Move down" })
+map({ mode = "t", key = "<C-k>", cmd = [[<C-\><C-n><C-w>k]], desc = "Move up" })
+map({ mode = "t", key = "<C-l>", cmd = [[<C-\><C-n><C-w>l]], desc = "Move right" })
 map({ mode = "t", key = "<ESC>", cmd = "<C-\\><C-n>", desc = "Exit" })
-map({ mode = "t", key = "jk", cmd = "<C-\\><C-n>", desc = "Exit" })
 
 -- luasnip -----------------------------------------------
 map({

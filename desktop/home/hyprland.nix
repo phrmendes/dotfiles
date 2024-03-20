@@ -74,8 +74,8 @@
         disable_hyprland_logo = true;
       };
       monitor = [
-        "HDMI-A-1,1920x1080,0x1920,auto"
         "DP-2,1366x768,0x0,auto"
+        "HDMI-A-1,1920x1080,1366x0,auto"
       ];
       windowrulev2 = [
         "float,class:(gcolor3)"
@@ -133,10 +133,10 @@
           "SUPER,K,movefocus,u"
           "SUPER,L,movefocus,r"
           # workspaces
-          "SUPER CTRL,H,workspace,e-1"
-          "SUPER CTRL,L,workspace,e+1"
-          "SUPER ALT,H,movetoworkspace,e-1"
-          "SUPER ALT,L,movetoworkspace,e+1"
+          "SUPER CTRL,H,workspace,r-1"
+          "SUPER CTRL,L,workspace,r+1"
+          "SUPER ALT,H,movetoworkspace,r-1"
+          "SUPER ALT,L,movetoworkspace,r+1"
           # media keys
           ",XF86AudioMute,exec,pactl set-sink-mute @DEFAULT_SINK@ toggle"
           ",XF86AudioPlay,exec,playerctl play-pause"

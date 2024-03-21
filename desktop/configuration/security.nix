@@ -5,7 +5,7 @@
     pam = {
       services = {
         swaylock = {};
-        login.enableGnomeKeyring = true;
+        sddm.enableGnomeKeyring = true;
       };
     };
   };

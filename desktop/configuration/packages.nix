@@ -22,6 +22,7 @@ in {
     libnotify
     libuv
     libxml2
+    lxappearance
     nodejs_21
     playerctl
     psmisc

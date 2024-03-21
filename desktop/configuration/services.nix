@@ -7,7 +7,6 @@
   services = {
     blueman.enable = true;
     flatpak.enable = true;
-    openssh.enable = true;
     tailscale.enable = true;
     udev.enable = true;
 
@@ -18,6 +17,15 @@
     duplicati = {
       inherit (parameters) user;
       enable = true;
+    };
+
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+      };
     };
 
     pipewire = {

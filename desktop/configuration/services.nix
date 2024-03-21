@@ -7,6 +7,7 @@
   services = {
     blueman.enable = true;
     flatpak.enable = true;
+    gvfs.enable = true;
     tailscale.enable = true;
     udev.enable = true;
 

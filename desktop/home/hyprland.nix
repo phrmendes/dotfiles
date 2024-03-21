@@ -85,6 +85,8 @@
         "float,class:(nwg-look)"
         "float,class:(rofi)"
         "float,class:(copyq)"
+        "float,class:(pavucontrol)"
+        "float,class:(syncthingtray)"
       ];
       workspace = [
         "1,monitor:HDMI-A-1"
@@ -106,10 +108,10 @@
         ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%"
         # resize
-        "SUPER CTRL,left,resizeactive,-10 0"
-        "SUPER CTRL,right,resizeactive,10 0"
-        "SUPER CTRL,up,resizeactive,0 -10"
-        "SUPER CTRL,down,resizeactive,0 10"
+        "SUPER ALT,left,resizeactive,-10 0"
+        "SUPER ALT,right,resizeactive,10 0"
+        "SUPER ALT,up,resizeactive,0 -10"
+        "SUPER ALT,down,resizeactive,0 10"
       ];
       bind =
         [
@@ -122,7 +124,8 @@
           "SUPER,C,exec,dunstctl close-all"
           "SUPER,f4,exec,${powermenuScript}/bin/powermenu"
           "SUPER SHIFT,V,exec,copyq toggle"
-          '',print,exec,grim -g "$(slurp)" - | satty -f -''
+          '',print,exec,grim -g "$(slurp)" - | satty --filename -''
+          ''SHIFT,print,exec,grim -g "$(slurp)" - | satty --filename - --output-filename ~/Pictures/Screenshots/"$(date '+%Y%m%d-%H:%M:%S')".png''
           # general operations
           "SUPER,F,togglefloating"
           "SUPER,P,pseudo"
@@ -134,6 +137,10 @@
           "SUPER,J,movefocus,d"
           "SUPER,K,movefocus,u"
           "SUPER,L,movefocus,r"
+          "SUPER SHIFT,H,movewindow,l"
+          "SUPER SHIFT,L,movewindow,r"
+          "SUPER SHIFT,K,movewindow,u"
+          "SUPER SHIFT,J,movewindow,d"
           # workspaces
           "SUPER CTRL,H,workspace,r-1"
           "SUPER CTRL,L,workspace,r+1"

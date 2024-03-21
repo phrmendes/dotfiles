@@ -38,7 +38,11 @@
         options = "grp:alt_space_toggle";
       };
       videoDrivers = ["nvidia"];
-      displayManager.gdm.enable = true;
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+        theme = "Elegant";
+      };
     };
   };
 }

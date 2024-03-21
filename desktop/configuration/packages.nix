@@ -2,7 +2,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  wallpaper = ../../dotfiles/wallpaper.png;
+in {
   environment.systemPackages = with pkgs; [
     appimage-run
     binutils
@@ -34,5 +36,10 @@
     wl-clipboard
     zip
     zlib
+    (elegant-sddm.override {
+      themeConfig.General = {
+        background = "${wallpaper}";
+      };
+    })
   ];
 }

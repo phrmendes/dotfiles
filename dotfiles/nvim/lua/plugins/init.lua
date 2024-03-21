@@ -1,3 +1,4 @@
+require("plugins.auto-session")
 require("plugins.better-escape")
 require("plugins.colorizer")
 require("plugins.colorscheme")

@@ -430,3 +430,6 @@ map({
 	end,
 	desc = "(Luasnip) prev",
 })
+
+-- sessions ----------------------------------------------
+map({ key = "<C-s>", cmd = require("auto-session.session-lens").search_session, desc = "Select session" })

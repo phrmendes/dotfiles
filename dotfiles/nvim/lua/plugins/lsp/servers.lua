@@ -117,7 +117,7 @@ local servers = {
 			require("ltex_extra").setup({
 				init_check = true,
 				load_langs = { "en-US", "pt-BR" },
-				path = vim.fn.expand("~/.local/state/ltex"),
+				path = vim.fn.stdpath("data") .. "/ltex-ls",
 			})
 		end,
 		settings = {

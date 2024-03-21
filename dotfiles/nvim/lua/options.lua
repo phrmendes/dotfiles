@@ -89,3 +89,6 @@ vim.g.VM_mouse_mappings = 1
 
 -- copilot
 vim.g.copilot_no_tab_map = true
+
+-- sessions
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

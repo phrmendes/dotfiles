@@ -41,6 +41,7 @@ in {
         SchemaStore-nvim
         actions-preview-nvim
         ansible-vim
+        auto-session
         better-escape-nvim
         catppuccin-nvim
         cmp-buffer

@@ -27,7 +27,13 @@ obsidian.setup({
 	mappings = {
 		["gf"] = {
 			action = obsidian.util.gf_passthrough,
-			opts = { noremap = false, expr = true, buffer = 0 },
+			opts = { noremap = false, expr = true, buffer = true },
+		},
+		["<CR>"] = {
+			action = function()
+				return obsidian.util.toggle_checkbox()
+			end,
+			opts = { buffer = true },
 		},
 	},
 })

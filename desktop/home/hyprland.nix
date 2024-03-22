@@ -41,6 +41,9 @@
 
       $grab_image -g "$region_selector" - | $annotator --filename - --output-filename "$print_path/$filename".png
     '';
+    volumeScript = pkgs.writeShellScriptBin "volume" ''
+      ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ $1
+    '';
   in {
     enable = true;
     settings = with colors.catppuccin.palette; {
@@ -92,12 +95,13 @@
         "HDMI-A-1,1920x1080,1366x0,auto"
       ];
       windowrulev2 = [
+        "float,class:(copyq)"
         "float,class:(gcolor3)"
         "float,class:(nwg-displays)"
         "float,class:(nwg-look)"
-        "float,class:(${lib.getExe pkgs.rofi})"
-        "float,class:(${lib.getExe pkgs.copyq})"
         "float,class:(pavucontrol)"
+        "float,class:(rofi)"
+        "float,class:(satty)"
       ];
       workspace = [
         "1,monitor:HDMI-A-1"
@@ -119,21 +123,20 @@
         ",XF86AudioRaiseVolume,exec,${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,exec,${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"
         # resize
-        "SUPER ALT,left,resizeactive,-10 0"
-        "SUPER ALT,right,resizeactive,10 0"
-        "SUPER ALT,up,resizeactive,0 -10"
-        "SUPER ALT,down,resizeactive,0 10"
+        "SUPER ALT,left,resizeactive,-20 0"
+        "SUPER ALT,right,resizeactive,20 0"
+        "SUPER ALT,up,resizeactive,0 -20"
+        "SUPER ALT,down,resizeactive,0 20"
       ];
       bind =
         [
           # apps
-          "SUPER,escape,exec,${lib.getExe pkgs.rofi} -show power-menu"
-          "SUPER,space,exec,${lib.getExe pkgs.rofi} -show drun"
-          "SUPER,W,exec,${lib.getExe pkgs.rofi} -show window"
-          "SUPER,return,exec,${lib.getExe pkgs.kitty}"
-          "SUPER,C,exec,${pkgs.dunst}/bin/dunstctl close-all"
-          "SUPER,f4,exec,${powermenuScript}/bin/powermenu"
           "SUPER SHIFT,V,exec,${lib.getExe pkgs.copyq} toggle"
+          "SUPER,C,exec,${pkgs.dunst}/bin/dunstctl close-all"
+          "SUPER,W,exec,${lib.getExe pkgs.rofi} -show window"
+          "SUPER,escape,exec,${powermenuScript}/bin/powermenu"
+          "SUPER,return,exec,${lib.getExe pkgs.kitty}"
+          "SUPER,space,exec,${lib.getExe pkgs.rofi} -show drun"
           ",print,exec,${screenshotScript}/bin/screenshot"
           # general operations
           "SUPER,F,togglefloating"
@@ -153,8 +156,8 @@
           # workspaces
           "SUPER CTRL,H,workspace,r-1"
           "SUPER CTRL,L,workspace,r+1"
-          "SUPER ALT,H,movetoworkspace,r-1"
-          "SUPER ALT,L,movetoworkspace,r+1"
+          "SUPER SHIFT CTRL,H,movetoworkspace,r-1"
+          "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
           # media keys
           ",XF86AudioMute,exec,${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"
           ",XF86AudioPlay,exec,${lib.getExe pkgs.playerctl} play-pause"

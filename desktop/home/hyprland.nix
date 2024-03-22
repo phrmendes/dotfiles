@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   wayland.windowManager.hyprland = let
     wallpaper = ../../dotfiles/wallpaper.png;
     colors = import ../../shared/catppuccin.nix;
@@ -7,9 +11,9 @@
     moveToWorkspaceSilent = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") range;
     moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
     startupScript = pkgs.writeShellScriptBin "start" ''
-      swaybg --image ${wallpaper} --mode fill
+      ${lib.getExe pkgs.swaybg} --image ${wallpaper} --mode fill
       sleep 5
-      syncthingtray --wait
+      ${pkgs.syncthingtray}/bin/syncthingtray --wait
     '';
     powermenuScript = pkgs.writeShellScriptBin "powermenu" ''
       lock="  Lock"
@@ -17,17 +21,26 @@
       restart="  Restart"
       poweroff="󰐥  Power off"
 
-      option=$(printf "$lock\n$suspend\n$restart\n$poweroff" | rofi -dmenu -i -p "   Powermenu  ")
+      option=$(printf "$lock\n$suspend\n$restart\n$poweroff" | ${lib.getExe pkgs.rofi} -dmenu -i -p "   Powermenu  ")
 
       if [ "$option" == "$lock" ]; then
-        swaylock
+        ${pkgs.systemd}/bin/loginctl lock-session
       elif [ "$option" == "$suspend" ]; then
-        systemctl suspend
+        ${pkgs.systemd}/bin/systemctl suspend
       elif [ "$option" == "$restart" ]; then
-        systemctl reboot
+        ${pkgs.systemd}/bin/systemctl reboot
       elif [ "$option" == "$poweroff" ]; then
-        systemctl poweroff
+        ${pkgs.systemd}/bin/systemctl poweroff
       fi
+    '';
+    screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
+      print_path="$HOME/Pictures/Screenshots"
+      filename=$(date "+%Y%m%d-%H:%M:%S")
+      region_selector=$(${lib.getExe pkgs.slurp})
+      grab_image=${lib.getExe pkgs.grim}
+      annotator=${lib.getExe pkgs.satty}
+
+      $grab_image -g "$region_selector" - | $annotator --filename - --output-filename "$print_path/$filename".png
     '';
   in {
     enable = true;
@@ -83,10 +96,9 @@
         "float,class:(gcolor3)"
         "float,class:(nwg-displays)"
         "float,class:(nwg-look)"
-        "float,class:(rofi)"
-        "float,class:(copyq)"
+        "float,class:(${lib.getExe pkgs.rofi})"
+        "float,class:(${lib.getExe pkgs.copyq})"
         "float,class:(pavucontrol)"
-        "float,class:(syncthingtray)"
       ];
       workspace = [
         "1,monitor:HDMI-A-1"
@@ -105,8 +117,8 @@
       ];
       binde = [
         # volume keys
-        ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%"
+        ",XF86AudioRaiseVolume,exec,${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,exec,${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"
         # resize
         "SUPER ALT,left,resizeactive,-10 0"
         "SUPER ALT,right,resizeactive,10 0"
@@ -116,16 +128,14 @@
       bind =
         [
           # apps
-          "SUPER,escape,exec,rofi -show power-menu"
-          "SUPER,space,exec,rofi -show drun"
-          "SUPER,W,exec,rofi -show window"
-          "SUPER,return,exec,kitty"
-          "SUPER,E,exec,thunar"
-          "SUPER,C,exec,dunstctl close-all"
+          "SUPER,escape,exec,${lib.getExe pkgs.rofi} -show power-menu"
+          "SUPER,space,exec,${lib.getExe pkgs.rofi} -show drun"
+          "SUPER,W,exec,${lib.getExe pkgs.rofi} -show window"
+          "SUPER,return,exec,${lib.getExe pkgs.kitty}"
+          "SUPER,C,exec,${pkgs.dunst}/bin/dunstctl close-all"
           "SUPER,f4,exec,${powermenuScript}/bin/powermenu"
-          "SUPER SHIFT,V,exec,copyq toggle"
-          '',print,exec,grim -g "$(slurp)" - | satty --filename -''
-          ''SHIFT,print,exec,grim -g "$(slurp)" - | satty --filename - --output-filename ~/Pictures/Screenshots/"$(date '+%Y%m%d-%H:%M:%S')".png''
+          "SUPER SHIFT,V,exec,${lib.getExe pkgs.copyq} toggle"
+          ",print,exec,${screenshotScript}/bin/screenshot"
           # general operations
           "SUPER,F,togglefloating"
           "SUPER,P,pseudo"
@@ -147,10 +157,10 @@
           "SUPER ALT,H,movetoworkspace,r-1"
           "SUPER ALT,L,movetoworkspace,r+1"
           # media keys
-          ",XF86AudioMute,exec,pactl set-sink-mute @DEFAULT_SINK@ toggle"
-          ",XF86AudioPlay,exec,playerctl play-pause"
-          ",XF86AudioNext,exec,playerctl next"
-          ",XF86AudioPrev,exec,playerctl previous"
+          ",XF86AudioMute,exec,${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"
+          ",XF86AudioPlay,exec,${lib.getExe pkgs.playerctl} play-pause"
+          ",XF86AudioNext,exec,${lib.getExe pkgs.playerctl} next"
+          ",XF86AudioPrev,exec,${lib.getExe pkgs.playerctl} previous"
         ]
         ++ switchToWorkspace
         ++ moveToWorkspace

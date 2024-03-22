@@ -1,7 +1,8 @@
 {
+  inputs,
+  lib,
   parameters,
   pkgs,
-  inputs,
   ...
 }: {
   services = {
@@ -47,10 +48,15 @@
         options = "grp:alt_space_toggle";
       };
       videoDrivers = ["nvidia"];
-      displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-        theme = "Elegant";
+      displayManager = {
+        setupCommands = ''
+          ${lib.getExe pkgs.wlr-randr} --output DP-2 --off
+        '';
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+          theme = "Elegant";
+        };
       };
     };
   };

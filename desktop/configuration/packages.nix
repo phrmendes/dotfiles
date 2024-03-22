@@ -35,6 +35,7 @@ in {
     unzip
     wget
     wl-clipboard
+    wlr-randr
     zip
     zlib
     (elegant-sddm.override {

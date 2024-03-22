@@ -17,7 +17,7 @@
       }
       {
         event = "after-resume";
-        command = "hyprctl dispatch dpms on";
+        command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
       }
     ];
     timeouts = [
@@ -26,12 +26,12 @@
         timeout = 60;
       }
       {
-        command = "hyprctl dispatch dpms off";
-        resumeCommand = "hyprctl dispatch dpms on";
+        command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
         timeout = 90;
       }
       {
-        command = "systemctl suspend";
+        command = "${pkgs.systemd}/bin/systemctl suspend";
         timeout = 120;
       }
     ];

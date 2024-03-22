@@ -51,7 +51,6 @@
       tokei
       ventoy
       vlc
-      wlr-randr
       xdotool
       zotero
     ]

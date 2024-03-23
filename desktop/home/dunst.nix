@@ -18,6 +18,7 @@
         offset = "20x20";
         progress_bar = true;
         sort = true;
+        gap_size = 2;
       };
       urgency_low = {
         background = "#${base}";

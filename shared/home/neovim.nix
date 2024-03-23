@@ -155,7 +155,6 @@ in {
       ++ (with pkgs.nodePackages; [
         bash-language-server
         dockerfile-language-server-nodejs
-        pyright
         vscode-json-languageserver
         vscode-langservers-extracted
         yaml-language-server

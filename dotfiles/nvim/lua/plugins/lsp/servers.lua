@@ -15,6 +15,7 @@ local servers = {
 	{ server = "texlab" },
 	{ server = "tflint" },
 	{ server = "dotls" },
+	{ server = "basedpyright" },
 	{ server = "html", capabilities = capabilities_snippets },
 	{ server = "cssls", capabilities = capabilities_snippets },
 	{
@@ -52,24 +53,6 @@ local servers = {
 					library = {
 						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 						[vim.fn.stdpath("config") .. "/lua"] = true,
-					},
-				},
-			},
-		},
-	},
-	{
-		server = "pyright",
-		settings = {
-			single_file_support = true,
-			python = {
-				analysis = {
-					autoSearchPaths = true,
-					diagnosticMode = "workspace",
-					typeCheckingMode = "strict",
-					useLibraryCodeForTypes = false,
-					inlayHints = {
-						variableTypes = true,
-						functionReturnTypes = true,
 					},
 				},
 			},

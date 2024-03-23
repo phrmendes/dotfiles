@@ -49,9 +49,6 @@
       };
       videoDrivers = ["nvidia"];
       displayManager = {
-        setupCommands = ''
-          ${lib.getExe pkgs.wlr-randr} --output DP-2 --off
-        '';
         sddm = {
           enable = true;
           wayland.enable = true;

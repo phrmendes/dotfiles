@@ -11,7 +11,7 @@
       version = src.rev;
     };
   gh = builtins.mapAttrs (name: input: getNeovimPluginFromGitHub name input) {
-    inherit (inputs) cmp-pandoc-references telescope-zotero img-clip-nvim kitty-scrollback jupytext-nvim nvim-lspconfig;
+    inherit (inputs) cmp-pandoc-references telescope-zotero img-clip-nvim kitty-scrollback jupytext-nvim;
   };
 in {
   programs.neovim = {
@@ -43,7 +43,6 @@ in {
       gh.img-clip-nvim
       gh.jupytext-nvim
       gh.kitty-scrollback
-      gh.nvim-lspconfig
       gh.telescope-zotero
       gitsigns-nvim
       image-nvim
@@ -64,6 +63,7 @@ in {
       nvim-dap-ui
       nvim-dap-virtual-text
       nvim-lint
+      nvim-lspconfig
       nvim-spectre
       nvim-treesitter-context
       nvim-treesitter-textobjects

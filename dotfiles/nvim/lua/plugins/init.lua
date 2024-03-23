@@ -24,6 +24,5 @@ require("plugins.writing")
 require("plugins.zen")
 
 if vim.fn.has("mac") == 0 then
-	require("plugins.ia")
 	require("plugins.obsidian")
 end

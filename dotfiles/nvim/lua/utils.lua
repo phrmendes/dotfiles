@@ -57,12 +57,6 @@ M.keys.map = function(args, user_opts)
 	vim.keymap.set(opts.mode, opts.key, opts.cmd, opts.keymap_opts)
 end
 
-M.lsp.provider = function(client, provider, func)
-	if client.server_capabilities[provider .. "Provider"] then
-		func()
-	end
-end
-
 M.lsp.handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
@@ -72,129 +66,6 @@ M.lsp.flags = {
 	allow_incremental_sync = true,
 	debounce_text_changes = 150,
 }
-
-M.lsp.on_attach = function(client, bufnr)
-	M.keys.map({
-		key = "<leader>D",
-		cmd = "<ClspD>TroubleToggle workspace_diagnostics<CR>",
-		buffer = bufnr,
-		desc = "LSP: workspace diagnostics",
-	})
-
-	M.keys.map({
-		key = "<leader>F",
-		cmd = vim.diagnostic.open_float,
-		buffer = bufnr,
-		desc = "LSP: floating diagnostics",
-	})
-
-	M.keys.map({
-		key = "<leader>d",
-		cmd = "<ClspD>TroubleToggle document_diagnostics<CR>",
-		buffer = bufnr,
-		desc = "LSP: document diagnostics",
-	})
-
-	M.lsp.provider(client, "codeAction", function()
-		M.keys.map({
-			mode = { "n", "v" },
-			key = "<leader>a",
-			cmd = require("actions-preview").code_actions,
-			buffer = bufnr,
-			desc = "LSP: code actions",
-		})
-	end)
-
-	M.lsp.provider(client, "declaration", function()
-		M.keys.map({
-			key = "gD",
-			cmd = vim.lsp.buf.declaration,
-			buffer = bufnr,
-			desc = "LSP: go to declaration",
-		})
-	end)
-
-	M.lsp.provider(client, "definition", function()
-		M.keys.map({
-			key = "gd",
-			cmd = "<ClspD>Telescope lsp_definitions<CR>",
-			buffer = bufnr,
-			desc = "LSP: go to definition",
-		})
-	end)
-
-	M.lsp.provider(client, "documentSymbol", function()
-		M.keys.map({
-			key = "<leader>s",
-			cmd = "<ClspD>Telescope lsp_document_symbols<CR>",
-			buffer = bufnr,
-			desc = "LSP: document symbols",
-		})
-	end)
-
-	M.lsp.provider(client, "hover", function()
-		M.keys.map({
-			key = "<leader>k",
-			cmd = vim.lsp.buf.hover,
-			buffer = bufnr,
-			desc = "LSP: show hover documentation",
-		})
-	end)
-
-	M.lsp.provider(client, "implementation", function()
-		M.keys.map({
-			key = "gi",
-			cmd = "<ClspD>Telescope lsp_implementations<CR>",
-			buffer = bufnr,
-			desc = "LSP: go to implementations",
-		})
-	end)
-
-	M.lsp.provider(client, "signatureHelp", function()
-		M.keys.map({
-			key = "<leader>h",
-			cmd = require("lsp_signature").toggle_float_win,
-			buffer = bufnr,
-			desc = "LSP: toggle signature help",
-		})
-	end)
-
-	M.lsp.provider(client, "rename", function()
-		M.keys.map({
-			key = "<leader>r",
-			cmd = vim.lsp.buf.rename,
-			buffer = bufnr,
-			desc = "LSP: rename symbol",
-		})
-	end)
-
-	M.lsp.provider(client, "references", function()
-		M.keys.map({
-			key = "<leader>R",
-			cmd = "<ClspD>Telescope lsp_references<CR>",
-			buffer = bufnr,
-			desc = "LSP: show references",
-		})
-	end)
-
-	M.lsp.provider(client, "typeDefinition", function()
-		M.keys.map({
-			key = "gt",
-			cmd = "<ClspD>Telescope lsp_type_definitions<CR>",
-			buffer = bufnr,
-			desc = "LSP: go to type definition",
-		})
-	end)
-
-	M.lsp.provider(client, "workspaceSymbol", function()
-		M.keys.map({
-			key = "<leader>S",
-			cmd = "<ClspD>Telescope lsp_workspace_symbols<CR>",
-			buffer = bufnr,
-			desc = "LSP: workspace symbols",
-		})
-	end)
-end
 
 M.lsp.add_language_server = function(args)
 	local lspconfig = require("lspconfig")
@@ -214,12 +85,7 @@ M.lsp.add_language_server = function(args)
 		}
 
 		if args.on_attach then
-			setup.on_attach = function(client, bufnr)
-				args.on_attach()
-				M.lsp.on_attach(client, bufnr)
-			end
-		else
-			setup.on_attach = M.lsp.on_attach
+			setup.on_attach = args.on_attach
 		end
 
 		if args.filetypes then

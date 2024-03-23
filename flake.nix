@@ -55,12 +55,7 @@
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [
-            "nix-2.16.2"
-          ];
-        };
+        config.allowUnfree = true;
       };
     in
       darwin.lib.darwinSystem {
@@ -95,12 +90,7 @@
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [
-            "nix-2.16.2"
-          ];
-        };
+        config.allowUnfree = true;
       };
     in
       nixpkgs.lib.nixosSystem {

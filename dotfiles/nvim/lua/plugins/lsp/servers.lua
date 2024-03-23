@@ -1,36 +1,28 @@
 local utils = require("utils")
 local schemastore = require("schemastore")
+local python_ls
 
-local capabilities_snippets = vim.lsp.protocol.make_client_capabilities()
-capabilities_snippets.textDocument.completion.completionItem.snippetSupport = true
+if vim.fn.executable("basedpyright-langserver") == 1 then
+	python_ls = "basedpyright"
+else
+	python_ls = "pyright"
+end
 
 local servers = {
+	{ server = python_ls },
 	{ server = "ansiblels" },
 	{ server = "bashls" },
+	{ server = "cssls" },
 	{ server = "docker_compose_language_service" },
 	{ server = "dockerls" },
+	{ server = "dotls" },
+	{ server = "html" },
 	{ server = "nixd" },
 	{ server = "ruff_lsp" },
+	{ server = "taplo" },
 	{ server = "terraformls" },
 	{ server = "texlab" },
 	{ server = "tflint" },
-	{ server = "dotls" },
-	{ server = "basedpyright" },
-	{ server = "html", capabilities = capabilities_snippets },
-	{ server = "cssls", capabilities = capabilities_snippets },
-	{
-		server = "taplo",
-		settings = {
-			evenBetterToml = {
-				schema = {
-					associations = {
-						["ruff\\.toml$"] = "https://json.schemastore.org/ruff.json",
-						["pyproject\\.toml$"] = "https://json.schemastore.org/pyproject.json",
-					},
-				},
-			},
-		},
-	},
 	{
 		server = "helm_ls",
 		settings = {
@@ -84,7 +76,6 @@ local servers = {
 	},
 	{
 		server = "jsonls",
-		capabilities = capabilities_snippets,
 		filetypes = { "json" },
 		settings = {
 			json = {

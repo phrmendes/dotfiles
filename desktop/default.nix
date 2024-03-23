@@ -1,6 +1,4 @@
 {
-  config,
-  inputs,
   parameters,
   pkgs,
   ...

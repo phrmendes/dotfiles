@@ -14,6 +14,7 @@ in {
     fd
     gcc
     gcr
+    gnome-icon-theme
     gnumake
     gnused
     gzip

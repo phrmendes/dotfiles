@@ -53,6 +53,13 @@
           enable = true;
           wayland.enable = true;
           theme = "Elegant";
+          settings = {
+            General.Numlock = true;
+            Theme = {
+              Font = "Fira Sans";
+              FacesDir = "~/";
+            };
+          };
         };
       };
     };

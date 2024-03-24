@@ -13,6 +13,7 @@ in {
     curl
     fd
     gcc
+    gcr
     gnumake
     gnused
     gzip

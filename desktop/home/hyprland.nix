@@ -12,11 +12,6 @@
     moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
     startupScript = pkgs.writeShellScriptBin "start" ''
       ${lib.getExe pkgs.swaybg} --image ${wallpaper} --mode fill
-
-      if [ "$DESKTOP_SESSION" != "" ]; then
-          eval "$(gnome-keyring-daemon --start)"
-          export SSH_AUTH_SOCK
-      fi
     '';
     powermenuScript = pkgs.writeShellScriptBin "powermenu" ''
       lock="  Lock"

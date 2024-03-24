@@ -10,6 +10,7 @@
     ./btop.nix
     ./copyq.nix
     ./dunst.nix
+    ./gnome-keyring.nix
     ./gtk.nix
     ./home-manager.nix
     ./hyprland.nix

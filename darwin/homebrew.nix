@@ -19,9 +19,11 @@
     ];
     casks = [
       "amethyst"
+      "bruno"
       "firefox"
       "keepingyouawake"
       "maccy"
+      "microsoft-teams"
       "podman-desktop"
       "postman"
       "qview"

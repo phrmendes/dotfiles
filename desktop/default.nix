@@ -14,6 +14,7 @@
     ./configuration/services.nix
     ./configuration/syncthing.nix
     ./configuration/virtualisation.nix
+    ./configuration/plex.nix
   ];
 
   console.keyMap = "us";

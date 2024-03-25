@@ -118,27 +118,6 @@ map({ key = "<leader>fg", cmd = "<CMD>Telescope live_grep<CR>", desc = "Live gre
 map({ key = "<leader>fz", cmd = "<CMD>Telescope zoxide list<CR>", desc = "Zoxide" })
 map({ key = "<leader>fs", cmd = require("spectre").toggle, desc = "Search and replace" })
 
--- dap ---------------------------------------------------
-map({ key = "<F3>", cmd = require("dap").step_out, desc = "DAP: step out" })
-map({ key = "<F4>", cmd = require("dap").step_into, desc = "DAP: step into" })
-map({ key = "<F5>", cmd = require("dap").step_back, desc = "DAP: step back" })
-map({ key = "<F6>", cmd = require("dap").continue, desc = "DAP: continue" })
-map({ key = "<F7>", cmd = require("dap").step_over, desc = "DAP: step over" })
-map({ key = "<S-F6>", cmd = require("dap").pause, desc = "DAP: pause" })
-map({ key = "<C-c><C-c>", cmd = require("dap").close, desc = "DAP: quit" })
-map({ key = "<C-c><C-b>", cmd = require("dap").toggle_breakpoint, desc = "DAP: toggle breakpoint" })
-map({ key = "<C-c><C-u>", cmd = require("dapui").toggle, desc = "DAP: toggle UI" })
-
-autocmd("FileType", {
-	pattern = { "python" },
-	group = augroup,
-	callback = function()
-		map({ key = "<localleader>c", cmd = require("dap-python").test_class, desc = "DAP: test class" })
-		map({ key = "<localleader>f", cmd = require("dap-python").test_method, desc = "DAP: test method" })
-		map({ mode = "v", key = "<localleader>d", cmd = require("dap-python").debug_selection, desc = "DAP: debug" })
-	end,
-})
-
 -- git ---------------------------------------------------
 section({ mode = { "n", "v" }, key = "<leader>g", name = "git" })
 map({ key = "<leader>gB", cmd = require("gitsigns").toggle_current_line_blame, desc = "Blame line" })
@@ -180,41 +159,6 @@ map({
 }, {
 	expr = true,
 })
-
--- ia ----------------------------------------------------
-if vim.fn.has("mac") == 0 then
-	section({ mode = { "n", "v" }, key = "<leader>i", name = "IA" })
-	map({ key = "<leader>ic", cmd = "<CMD>ChatGPT<CR>", desc = "ChatGPT" })
-	map({ mode = { "n", "v" }, key = "<leader>iS", cmd = "<CMD>ChatGPTRun summarize<CR>", desc = "Summarize" })
-	map({ mode = { "n", "v" }, key = "<leader>ia", cmd = "<CMD>ChatGPTRun add_tests<CR>", desc = "Add tests" })
-	map({ mode = { "n", "v" }, key = "<leader>id", cmd = "<CMD>ChatGPTRun docstring<CR>", desc = "Docstring" })
-	map({ mode = { "n", "v" }, key = "<leader>if", cmd = "<CMD>ChatGPTRun fix_bugs<CR>", desc = "Fix bugs" })
-	map({ mode = { "n", "v" }, key = "<leader>ik", cmd = "<CMD>ChatGPTRun keywords<CR>", desc = "Keywords" })
-	map({ mode = { "n", "v" }, key = "<leader>io", cmd = "<CMD>ChatGPTRun optimize_code<CR>", desc = "Optimize code" })
-	map({ mode = { "n", "v" }, key = "<leader>it", cmd = "<CMD>ChatGPTRun translate<CR>", desc = "Translate" })
-	map({ mode = { "n", "v" }, key = "<leader>ix", cmd = "<CMD>ChatGPTRun explain_code<CR>", desc = "Explain code" })
-
-	map({
-		mode = { "n", "v" },
-		key = "<leader>ie",
-		cmd = "<CMD>ChatGPTEditWithInstruction<CR>",
-		desc = "Edit with instruction",
-	})
-
-	map({
-		mode = { "n", "v" },
-		key = "<leader>ig",
-		cmd = "<CMD>ChatGPTRun grammar_correction<CR>",
-		desc = "Grammar correction",
-	})
-
-	map({
-		mode = { "n", "v" },
-		key = "<leader>il",
-		cmd = "<CMD>ChatGPTRun code_readability_analysis<CR>",
-		desc = "Code readability analysis",
-	})
-end
 
 -- obsidian ----------------------------------------------
 if vim.fn.has("mac") == 0 then
@@ -361,20 +305,31 @@ autocmd("LspAttach", {
 		map({ key = "<F7>", cmd = require("dap").step_over, desc = "DAP: step over" })
 		map({ key = "<S-F6>", cmd = require("dap").pause, desc = "DAP: pause" })
 		map({ key = "<BS>", cmd = require("dap").close, desc = "DAP: quit" })
-		map({ key = "<leader>t", cmd = require("dap").toggle_breakpoint, desc = "DAP: toggle breakpoint" })
-		map({ key = "<leader>U", cmd = require("dapui").toggle, desc = "DAP: toggle UI" })
+
+		section({ mode = { "n" }, key = "<leader>t", name = "DAP" })
+		map({ key = "<leader>tb", cmd = require("dap").toggle_breakpoint, desc = "Toggle breakpoint" })
+		map({ key = "<leader>tu", cmd = require("dapui").toggle, desc = "Toggle UI" })
+
+		map({
+			key = "<leader>tc",
+			cmd = function()
+				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+			end,
+			desc = "Toggle conditional breakpoint",
+		})
 
 		autocmd("FileType", {
 			pattern = { "python" },
 			group = augroup,
 			callback = function()
-				map({ key = "<localleader>c", cmd = require("dap-python").test_class, desc = "DAP: test class" })
-				map({ key = "<localleader>f", cmd = require("dap-python").test_method, desc = "DAP: test method" })
+				map({ key = "<leader>tc", cmd = require("dap-python").test_class, desc = "Test class (python)" })
+				map({ key = "<leader>tf", cmd = require("dap-python").test_method, desc = "Test method (python)" })
+
 				map({
 					mode = "v",
-					key = "<localleader>d",
+					key = "<leader>td",
 					cmd = require("dap-python").debug_selection,
-					desc = "DAP: debug",
+					desc = "Debug (python)",
 				})
 			end,
 		})

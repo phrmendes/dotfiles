@@ -16,42 +16,99 @@ screen-padding-top: 3
 window-margin-size: 10
 window-margins: true
 
-layouts: [tall, column, fullscreen]
+layouts: [tall, wide, fullscreen, floating]
 
 mod1: [option]
 mod2: [option, shift]
-mod3: [option, control, shift]
+mod3: [option, control]
+mod4: [option, control, shift]
 
 reevaluate-windows:
   key: r
   mod: mod2
 relaunch-amethyst:
   key: r
-  mod: mod3
+  mod: mod4
+toggle-float:
+  key: f
+  mod: mod2
+select-fullscreen-layout:
+  key: f
+  mod: mod1
+
+expand-main:
+  key: right
+  mod: mod1
+shrink-main:
+  key: left
+  mod: mod1
+increase-main:
+  key: up
+  mod: mod1
+decrease-main:
+  key: down
+  mod: mod1
+
 cycle-layout:
   key: space
   mod: mod2
 cycle-layout-backward:
   key: space
   mod: mod3
-expand-main:
-  key: e
-  mod: mod1
-shrink-main:
-  key: s
-  mod: mod1
+
 focus-ccw:
-  key: k
+  key: p
   mod: mod1
 focus-cw:
-  key: j
+  key: n
   mod: mod1
+focus-screen-ccw:
+  mod: mod3
+  key: h
+focus-screen-cw:
+  mod: mod3
+  key: l
+focus-screen-1:
+  key: 1
+  mod: mod1
+focus-screen-2:
+  key: 2
+  mod: mod1
+focus-screen-3:
+  key: 3
+  mod: mod1
+focus-screen-4:
+  key: 4
+  mod: mod1
+focus-screen-5:
+  key: 5
+  mod: mod1
+focus-screen-6:
+  key: 6
+  mod: mod1
+
 swap-ccw:
-  key: k
+  key: p
   mod: mod2
 swap-cw:
-  key: j
+  key: n
   mod: mod2
+swap-screen-ccw:
+  mod: mod2
+  key: h
+swap-screen-cw:
+  mod: mod2
+  key: l
+swap-main:
+  mod: mod1
+  key: enter
+
+throw-space-left:
+  key: h
+  mod: mod4
+throw-space-right:
+  key: l
+  mod: mod4
 throw-screen-1:
   key: 1
   mod: mod2
@@ -70,15 +127,3 @@ throw-screen-5:
 throw-screen-6:
   key: 6
   mod: mod2
-throw-space-left:
-  key: h
-  mod: mod3
-throw-space-right:
-  key: l
-  mod: mod3
-toggle-float:
-  key: f
-  mod: mod2
-select-fullscreen-layout:
-  key: f
-  mod: mod1

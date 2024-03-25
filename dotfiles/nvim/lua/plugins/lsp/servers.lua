@@ -1,15 +1,18 @@
 local utils = require("utils")
 local schemastore = require("schemastore")
-local python_ls
+local servers = {}
 
 if vim.fn.executable("basedpyright-langserver") == 1 then
-	python_ls = "basedpyright"
+	servers = vim.tbl_deep_extend("force", { server = "basedpyright" })
 else
-	python_ls = "pyright"
+	servers = vim.tbl_deep_extend("force", { server = "pyright" })
 end
 
-local servers = {
-	{ server = python_ls },
+if vim.fn.has("mac") == 1 then
+	servers = vim.tbl_deep_extend("force", { server = "marksman" })
+end
+
+servers = vim.tbl_deep_extend("force", servers, {
 	{ server = "ansiblels" },
 	{ server = "bashls" },
 	{ server = "cssls" },
@@ -100,7 +103,7 @@ local servers = {
 			},
 		},
 	},
-}
+})
 
 for _, server in ipairs(servers) do
 	utils.lsp.add_language_server(server)

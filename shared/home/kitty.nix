@@ -59,8 +59,6 @@ in {
       "ctrl+shift+t" = "new_tab";
       "ctrl+shift+x" = "close_window";
       "ctrl+shift+z" = "toggle_layout stack";
-      "ctrl+shift+s" = "kitten scrollback.py";
-      "ctrl+shift+g" = "kitten scrollback.py --config ksb_builtin_last_cmd_output";
       "ctrl+shift+h" = "previous_tab";
       "ctrl+shift+l" = "next_tab";
       "alt+left" = "kitten pass_keys.py relative_resize left 3 alt+left";

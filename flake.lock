@@ -88,22 +88,6 @@
         "type": "github"
       }
     },
-    "kitty-scrollback": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1711043816,
-        "narHash": "sha256-3RIB1uOR8kaFlboOk1pNB7tQa1Fh8Uwwq4zQ24BcSkk=",
-        "owner": "mikesmithgh",
-        "repo": "kitty-scrollback.nvim",
-        "rev": "74d46367f91ebb0ed4591435095972489ec6bb5b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mikesmithgh",
-        "repo": "kitty-scrollback.nvim",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1711200738,
@@ -127,7 +111,6 @@
         "home-manager": "home-manager",
         "img-clip-nvim": "img-clip-nvim",
         "jupytext-nvim": "jupytext-nvim",
-        "kitty-scrollback": "kitty-scrollback",
         "nixpkgs": "nixpkgs",
         "telescope-zotero": "telescope-zotero"
       }

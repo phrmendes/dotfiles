@@ -3,16 +3,16 @@ local schemastore = require("schemastore")
 local servers = {}
 
 if vim.fn.executable("basedpyright-langserver") == 1 then
-	servers = vim.tbl_deep_extend("force", { server = "basedpyright" })
+	servers = vim.tbl_extend("force", servers, { server = "basedpyright" })
 else
-	servers = vim.tbl_deep_extend("force", { server = "pyright" })
+	servers = vim.tbl_extend("force", servers, { server = "pyright" })
 end
 
 if vim.fn.has("mac") == 1 then
-	servers = vim.tbl_deep_extend("force", { server = "marksman" })
+	servers = vim.tbl_extend("force", servers, { server = "marksman" })
 end
 
-servers = vim.tbl_deep_extend("force", servers, {
+servers = vim.tbl_extend("force", servers, {
 	{ server = "ansiblels" },
 	{ server = "bashls" },
 	{ server = "cssls" },

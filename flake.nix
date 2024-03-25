@@ -29,11 +29,6 @@
       url = "github:GCBallesteros/jupytext.nvim";
     };
 
-    kitty-scrollback = {
-      flake = false;
-      url = "github:mikesmithgh/kitty-scrollback.nvim";
-    };
-
     telescope-zotero = {
       flake = false;
       url = "github:jmbuhr/telescope-zotero.nvim";

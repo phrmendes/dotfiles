@@ -1,15 +1,19 @@
-local later = require("mini.deps").later
+local augroup = require("utils").augroup
+local autocmd = vim.api.nvim_create_autocmd
 
-later(function()
-	require("neogen").setup({
-		snippet_engine = "luasnip",
-		enabled = true,
-		languages = {
-			python = {
-				template = {
-					annotation_convention = "numpydoc",
+autocmd("LspAttach", {
+	group = augroup,
+	callback = function()
+		require("neogen").setup({
+			snippet_engine = "luasnip",
+			enabled = true,
+			languages = {
+				python = {
+					template = {
+						annotation_convention = "numpydoc",
+					},
 				},
 			},
-		},
-	})
-end)
+		})
+	end,
+})

@@ -8,7 +8,7 @@
     colors = import ../../shared/catppuccin.nix;
     range = [1 2 3 4 5 6 7 8 9];
     switchToWorkspace = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") range;
-    moveToWorkspaceSilent = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") range;
+    moveToWorkspaceSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") range;
     moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
     startupScript = pkgs.writeShellScriptBin "start" ''
       ${lib.getExe pkgs.swaybg} --image ${wallpaper} --mode fill

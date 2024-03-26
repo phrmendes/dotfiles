@@ -45,7 +45,6 @@
       satty
       slurp
       swaybg
-      syncthingtray
       tectonic
       terraform
       tokei

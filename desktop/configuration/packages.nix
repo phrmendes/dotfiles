@@ -14,7 +14,6 @@ in {
     fd
     gcc
     gcr
-    gnome-icon-theme
     gnumake
     gnused
     gzip
@@ -32,6 +31,7 @@ in {
     readline
     ripgrep
     sqlite
+    syncthingtray
     unrar
     unzip
     wget

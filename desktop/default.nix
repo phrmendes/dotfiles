@@ -8,13 +8,14 @@
     ./configuration/hardware.nix
     ./configuration/networking.nix
     ./configuration/packages.nix
+    ./configuration/plex.nix
     ./configuration/programs.nix
     ./configuration/security.nix
     ./configuration/services.nix
     ./configuration/services.nix
     ./configuration/syncthing.nix
+    ./configuration/systemd.nix
     ./configuration/virtualisation.nix
-    ./configuration/plex.nix
   ];
 
   console.keyMap = "us";

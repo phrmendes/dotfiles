@@ -132,12 +132,12 @@
       bind =
         [
           # apps
-          "SUPER SHIFT,V,exec,${lib.getExe pkgs.copyq} toggle"
-          "SUPER,C,exec,${pkgs.dunst}/bin/dunstctl close-all"
-          "SUPER,W,exec,${lib.getExe pkgs.rofi} -show window"
+          "SUPER SHIFT,V,exec,copyq toggle"
+          "SUPER,C,exec,dunstctl close-all"
+          "SUPER,W,exec,rofi -show window"
           "SUPER,escape,exec,${powermenuScript}/bin/powermenu"
-          "SUPER,return,exec,${lib.getExe pkgs.kitty}"
-          "SUPER,space,exec,${lib.getExe pkgs.rofi} -show drun"
+          "SUPER,return,exec,kitty"
+          "SUPER,space,exec,rofi -show drun"
           ",print,exec,${screenshotScript}/bin/screenshot"
           # general operations
           "SUPER,F,togglefloating"

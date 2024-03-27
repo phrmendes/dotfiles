@@ -57,8 +57,6 @@
     ];
     extraConfig = ''
       set -g detach-on-destroy off
-      set -g pane-active-border-style 'fg=magenta,bg=default'
-      set -g pane-border-style 'fg=brightblack,bg=default'
       set -g renumber-windows on
       set -g set-clipboard on
       set -g status-position top

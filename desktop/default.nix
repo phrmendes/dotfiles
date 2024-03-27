@@ -25,8 +25,7 @@
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WAYLAND = "1";
-    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
+    NIXOS_OZONE_WL = "1";
   };
 
   time = {

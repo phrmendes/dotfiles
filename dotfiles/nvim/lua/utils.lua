@@ -2,6 +2,8 @@ local M = {}
 M.lsp = {}
 M.keys = {}
 
+M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
+
 M.match_pattern = function(string, pattern)
 	if string:match(pattern) then
 		return true
@@ -34,8 +36,6 @@ M.metadata = function(note)
 	return out
 end
 
-M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
-
 M.open = function(arg)
 	local open
 
@@ -46,6 +46,12 @@ M.open = function(arg)
 	end
 
 	vim.fn.jobstart(open)
+end
+
+M.has_words_before = function()
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 M.keys.section = function(args)

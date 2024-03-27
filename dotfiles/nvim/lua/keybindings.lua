@@ -21,11 +21,15 @@ map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, { ex
 map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, { expr = true, silent = true })
 
 -- clear highlights --------------------------------------
-map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
+map({ mode = { "i", "n" }, key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
 
 -- better page up/down -----------------------------------
 map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
 map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })
+
+-- saner behavior of n and N -----------------------------
+map({ key = "n", cmd = [['Nn'[v:searchforward].'zv']], desc = "Next" }, { expr = true })
+map({ key = "N", cmd = [['nN'[v:searchforward].'zv']], desc = "Previous" }, { expr = true })
 
 -- windows -----------------------------------------------
 map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
@@ -38,10 +42,12 @@ map({ key = "<leader>O", cmd = "<C-w>o", desc = "Keep only current window" })
 
 -- tabs --------------------------------------------------
 section({ key = "<leader><TAB>", name = "tabs" })
-map({ key = "<leader><TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New" })
-map({ key = "<leader><TAB>d", cmd = "<CMD>tabclose<CR>", desc = "Close" })
-map({ key = "<leader><TAB>k", cmd = "<CMD>tabonly<CR>", desc = "Keep only this tab" })
 map({ key = "<leader><TAB><TAB>", cmd = "<CMD>tab split<CR>", desc = "Open in new tab" })
+map({ key = "<leader><TAB>G", cmd = "<CMD>tablast<CR>", desc = "Last" })
+map({ key = "<leader><TAB>d", cmd = "<CMD>tabclose<CR>", desc = "Close" })
+map({ key = "<leader><TAB>g", cmd = "<CMD>tabfirst<CR>", desc = "First" })
+map({ key = "<leader><TAB>k", cmd = "<CMD>tabonly<CR>", desc = "Keep" })
+map({ key = "<leader><TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New" })
 map({ key = "[<TAB>", cmd = "<CMD>tabprevious<CR>", desc = "Previous tab" })
 map({ key = "]<TAB>", cmd = "<CMD>tabnext<CR>", desc = "Next tab" })
 
@@ -57,7 +63,7 @@ map({ key = "<leader>?", cmd = "<CMD>Telescope help_tags<CR>", desc = "Help" })
 -- undo tree ---------------------------------------------
 map({ key = "<leader>u", cmd = "<CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" })
 
--- copilot
+-- copilot -----------------------------------------------
 map({
 	mode = "i",
 	key = "<C-a>",
@@ -99,10 +105,20 @@ map({
 	key = "<leader>e",
 	cmd = function()
 		if not require("mini.files").close() then
-			require("mini.files").open()
+			require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
 		end
 	end,
-	desc = "Open file explorer",
+	desc = "Open file explorer (current file)",
+})
+
+map({
+	key = "<leader>E",
+	cmd = function()
+		if not require("mini.files").close() then
+			require("mini.files").open(vim.uv.cwd(), true)
+		end
+	end,
+	desc = "Open file explorer (cwd)",
 })
 
 -- buffers -----------------------------------------------

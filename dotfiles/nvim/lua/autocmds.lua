@@ -56,3 +56,19 @@ autocmd("LspAttach", {
 		end
 	end,
 })
+
+autocmd("FileType", {
+	group = augroup,
+	pattern = { "man" },
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+	end,
+})
+
+autocmd({ "FileType" }, {
+	group = augroup,
+	pattern = { "json", "jsonc", "json5" },
+	callback = function()
+		vim.opt_local.conceallevel = 0
+	end,
+})

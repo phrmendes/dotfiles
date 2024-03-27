@@ -32,12 +32,16 @@ map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
 map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
 map({ key = "<leader>x", cmd = "<C-w>q", desc = "Close window" })
 map({ key = "<leader>=", cmd = "<C-w>=", desc = "Resize and make windows equal" })
+map({ key = "<leader>_", cmd = "<C-w>_", desc = "Maximize (H)" })
+map({ key = "<leader>|", cmd = "<C-w>|", desc = "Maximize (V)" })
+map({ key = "<leader>O", cmd = "<C-w>o", desc = "Keep only current window" })
 
 -- tabs --------------------------------------------------
 section({ key = "<leader><TAB>", name = "tabs" })
-map({ key = "<leader><TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New tab" })
-map({ key = "<leader><TAB>q", cmd = "<CMD>tabclose<CR>", desc = "Close tab" })
-map({ key = "<leader><TAB>o", cmd = "<CMD>tabonly<CR>", desc = "Keep tab" })
+map({ key = "<leader><TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New" })
+map({ key = "<leader><TAB>d", cmd = "<CMD>tabclose<CR>", desc = "Close" })
+map({ key = "<leader><TAB>k", cmd = "<CMD>tabonly<CR>", desc = "Keep only this tab" })
+map({ key = "<leader><TAB><TAB>", cmd = "<CMD>tab split<CR>", desc = "Open in new tab" })
 map({ key = "[<TAB>", cmd = "<CMD>tabprevious<CR>", desc = "Previous tab" })
 map({ key = "]<TAB>", cmd = "<CMD>tabnext<CR>", desc = "Next tab" })
 
@@ -108,7 +112,7 @@ map({ key = "<leader>bb", cmd = "<CMD>Telescope buffers<CR>", desc = "List" })
 map({ key = "<leader>bd", cmd = require("mini.bufremove").delete, desc = "Delete" })
 map({ key = "<leader>bf", cmd = "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Search in current buffer" })
 map({ key = "<leader>bg", cmd = "<CMD>bfirst<CR>", desc = "Go to last buffer" })
-map({ key = "<leader>bq", cmd = "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>", desc = "Close all unfocused" })
+map({ key = "<leader>bk", cmd = "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>", desc = "Keep only this buffer" })
 map({ key = "<leader>bw", cmd = require("mini.bufremove").wipeout, desc = "Wipeout" })
 
 -- find --------------------------------------------------

@@ -61,14 +61,8 @@ in {
       "ctrl+shift+z" = "toggle_layout stack";
       "ctrl+shift+h" = "previous_tab";
       "ctrl+shift+l" = "next_tab";
-      "alt+left" = "kitten pass_keys.py relative_resize left 3 alt+left";
-      "alt+right" = "kitten pass_keys.py relative_resize right 3 alt+right";
-      "alt+down" = "kitten pass_keys.py relative_resize down 3 alt+down";
-      "alt+up" = "kitten pass_keys.py relative_resize up 3 alt+up";
-      "ctrl+h" = "kitten pass_keys.py neighboring_window left ctrl+h";
-      "ctrl+j" = "kitten pass_keys.py neighboring_window bottom ctrl+j";
-      "ctrl+k" = "kitten pass_keys.py neighboring_window top ctrl+k";
-      "ctrl+l" = "kitten pass_keys.py neighboring_window right ctrl+l";
+      "ctrl+shift+p" = "previous_window";
+      "ctrl+shift+n" = "next_window";
     };
   };
 }

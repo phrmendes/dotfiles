@@ -6,7 +6,9 @@ later(function()
 
 	require("quarto").setup({
 		codeRunner = {
-			enabled = false,
+			enabled = true,
+			default_method = "slime",
+			never_run = { "yaml" },
 		},
 	})
 
@@ -18,8 +20,12 @@ later(function()
 	})
 
 	require("jupytext").setup({
-		style = "markdown",
-		output_extension = "md",
-		force_ft = "markdown",
+		custom_language_formatting = {
+			python = {
+				extension = "qmd",
+				style = "quarto",
+				force_ft = "quarto",
+			},
+		},
 	})
 end)

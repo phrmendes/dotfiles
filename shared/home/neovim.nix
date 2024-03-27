@@ -25,7 +25,6 @@ in {
       SchemaStore-nvim
       actions-preview-nvim
       ansible-vim
-      auto-session
       better-escape-nvim
       catppuccin-nvim
       cmp-buffer
@@ -81,7 +80,6 @@ in {
       telescope-nvim
       telescope-zoxide
       todo-comments-nvim
-      toggleterm-nvim
       trouble-nvim
       undotree
       vim-abolish
@@ -91,6 +89,7 @@ in {
       vim-just
       vim-nix
       vim-sleuth
+      vim-slime
       vim-visual-multi
       which-key-nvim
       zen-mode-nvim

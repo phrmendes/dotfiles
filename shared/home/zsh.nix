@@ -21,6 +21,13 @@
       untar = "tar -xvf";
       untargz = "tar -xzf";
       v = "nvim";
+      t = getExe tmux;
+      ta = "${getExe tmux} attach";
+      tk = "${getExe tmux} kill-session -t";
+      tl = "${getExe tmux} list-sessions";
+      tn = "${getExe tmux} new-session -s";
+      tas = "${getExe tmux} attach -t";
+      tks = "${getExe tmux} kill-server";
     }
     // (
       if ! isDarwin

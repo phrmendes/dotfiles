@@ -14,6 +14,7 @@ later(function()
 		max_width = 100,
 		max_height = 15,
 		editor_only_render_when_focused = false,
+		tmux_show_only_in_active_window = true,
 	})
 
 	require("img-clip").setup({

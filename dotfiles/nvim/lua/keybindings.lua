@@ -21,7 +21,7 @@ map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, { ex
 map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, { expr = true, silent = true })
 
 -- clear highlights --------------------------------------
-map({ mode = { "i", "n" }, key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
+map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
 
 -- better page up/down -----------------------------------
 map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
@@ -102,23 +102,23 @@ map({
 
 -- file explorer -----------------------------------------
 map({
-	key = "<leader>e",
-	cmd = function()
-		if not require("mini.files").close() then
-			require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-		end
-	end,
-	desc = "Open file explorer (current file)",
-})
-
-map({
 	key = "<leader>E",
 	cmd = function()
 		if not require("mini.files").close() then
-			require("mini.files").open(vim.uv.cwd(), true)
+			require("mini.files").open(vim.fn.getcwd(), true)
 		end
 	end,
 	desc = "Open file explorer (cwd)",
+})
+
+map({
+	key = "<leader>e",
+	cmd = function()
+		if not require("mini.files").close() then
+			require("mini.files").open(vim.fn.expand("%:p:h"), true)
+		end
+	end,
+	desc = "Open file explorer (current file)",
 })
 
 -- buffers -----------------------------------------------
@@ -369,15 +369,6 @@ map({ key = "<localleader>h", cmd = require("smart-splits").swap_buf_left, desc 
 map({ key = "<localleader>j", cmd = require("smart-splits").swap_buf_down, desc = "Swap buffer down" })
 map({ key = "<localleader>k", cmd = require("smart-splits").swap_buf_up, desc = "Swap buffer up" })
 map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc = "Swap buffer right" })
-
--- terminal ----------------------------------------------
-map({ key = "<C-CR>", cmd = "<CMD>ToggleTermSendCurrentLine<CR>", desc = "Send line to terminal" })
-map({ mode = "v", key = "<C-CR>", cmd = "<CMD>ToggleTermSendVisualLines<CR>", desc = "Send lines to terminal" })
-map({ mode = "t", key = "<C-h>", cmd = [[<C-\><C-n><C-w>h]], desc = "Move left" })
-map({ mode = "t", key = "<C-j>", cmd = [[<C-\><C-n><C-w>j]], desc = "Move down" })
-map({ mode = "t", key = "<C-k>", cmd = [[<C-\><C-n><C-w>k]], desc = "Move up" })
-map({ mode = "t", key = "<C-l>", cmd = [[<C-\><C-n><C-w>l]], desc = "Move right" })
-map({ mode = "t", key = "<ESC>", cmd = "<C-\\><C-n>", desc = "Exit" })
 
 -- luasnip -----------------------------------------------
 map({

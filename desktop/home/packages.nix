@@ -5,6 +5,7 @@
       bashly
       bitwarden
       bruno
+      cachix
       chromium
       curtail
       dbeaver

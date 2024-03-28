@@ -20,7 +20,6 @@
     ./rofi.nix
     ./swayidle.nix
     ./swaylock.nix
-    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
   ];

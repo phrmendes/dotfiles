@@ -11,6 +11,7 @@
     ./symlinks.nix
     ./symlinks.nix
     ./tealdeer.nix
+    ./tmux.nix
     ./zoxide.nix
     ./zsh.nix
   ];

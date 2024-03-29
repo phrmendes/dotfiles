@@ -21,12 +21,19 @@
   console.keyMap = "us";
   sound.enable = true;
   system.stateVersion = "23.11";
-  xdg.portal.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
 
   environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
     SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   time = {

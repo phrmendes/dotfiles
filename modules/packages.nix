@@ -37,8 +37,8 @@ in {
         pngpaste
         terragrunt
       ];
-      desktop = with pkgs;
-        [
+      desktop =
+        (with pkgs; [
           bashly
           bitwarden
           bruno
@@ -49,6 +49,7 @@ in {
           droidcam
           evince
           firefox
+          foliate
           gcolor3
           gnuplot
           gparted
@@ -68,11 +69,10 @@ in {
           ventoy
           vlc
           zotero
-        ]
-        ++ (with pkgs.xfce; [
-          thunar
-          thunar-volman
-          thunar-archive-plugin
+        ])
+        ++ (with pkgs.gnome; [
+          nautilus
+          file-roller
         ]);
     in
       if isDarwin

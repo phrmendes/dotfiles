@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "bat-catppuccin": {
+    "catppuccin-bat": {
       "flake": false,
       "locked": {
         "lastModified": 1710456315,
@@ -13,6 +13,22 @@
       "original": {
         "owner": "catppuccin",
         "repo": "bat",
+        "type": "github"
+      }
+    },
+    "catppuccin-starship": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689246850,
+        "narHash": "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=",
+        "owner": "catppuccin",
+        "repo": "starship",
+        "rev": "5629d2356f62a9f2f8efad3ff37476c19969bd4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "starship",
         "type": "github"
       }
     },
@@ -74,7 +90,8 @@
     },
     "root": {
       "inputs": {
-        "bat-catppuccin": "bat-catppuccin",
+        "catppuccin-bat": "catppuccin-bat",
+        "catppuccin-starship": "catppuccin-starship",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",

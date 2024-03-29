@@ -140,45 +140,24 @@ map({ key = "<leader>fs", cmd = require("spectre").toggle, desc = "Search and re
 
 -- git ---------------------------------------------------
 section({ mode = { "n", "v" }, key = "<leader>g", name = "git" })
+map({ key = "<leader>gg", cmd = "<CMD>LazyGit<CR>", desc = "LazyGit (cwd)" })
+map({ key = "<leader>gG", cmd = "<CMD>LazyGitCurrentFile<CR>", desc = "LazyGit (current file)" })
+map({ key = "<leader>gf", cmd = "<CMD>LazyGitFilter<CR>", desc = "Commits (cwd)" })
+map({ key = "<leader>gF", cmd = "<CMD>LazyGitFilterCurrentFile<CR>", desc = "Commits (current file)" })
 map({ key = "<leader>gB", cmd = require("gitsigns").toggle_current_line_blame, desc = "Blame line" })
-map({ key = "<leader>gP", cmd = "<CMD>Neogit push<CR>", desc = "Push" })
-map({ key = "<leader>gb", cmd = "<CMD>Telescope git_branches<CR>", desc = "Branches" })
-map({ key = "<leader>gc", cmd = "<CMD>Neogit commit<CR>", desc = "Commit" })
-map({ key = "<leader>gd", cmd = "<CMD>DiffviewOpen<CR>", desc = "Diff" })
-map({ key = "<leader>gg", cmd = "<CMD>Neogit<CR>", desc = "Neogit" })
-map({ key = "<leader>gp", cmd = "<CMD>Neogit pull<CR>", desc = "Pull" })
+map({ key = "<leader>gc", cmd = "<CMD>Telescope git_branches<CR>", desc = "Checkout" })
+map({ key = "<leader>gd", cmd = require("gitsigns").diffthis, desc = "Diff" })
+map({ key = "]h", cmd = require("gitsigns").next_hunk, desc = "Next hunk" })
+map({ key = "[h", cmd = require("gitsigns").prev_hunk, desc = "Previous hunk" })
 
-map({
-	key = "]h",
-	desc = "Next hunk",
-	cmd = function()
-		if vim.wo.diff then
-			return "]h"
-		end
-		vim.schedule(function()
-			require("gitsigns").next_hunk()
-		end)
-		return "<Ignore>"
-	end,
-}, {
-	expr = true,
-})
+section({ mode = { "n", "v" }, key = "<leader>gh", name = "hunk" })
+map({ key = "<leader>ghu", cmd = require("gitsigns").undo_stage_hunk, desc = "Undo stage" })
+map({ mode = { "n", "v" }, key = "<leader>ghr", cmd = require("gitsigns").reset_hunk, desc = "Reset" })
+map({ mode = { "n", "v" }, key = "<leader>ghs", cmd = require("gitsigns").stage_hunk, desc = "Stage" })
 
-map({
-	key = "[h",
-	desc = "Previous hunk",
-	cmd = function()
-		if vim.wo.diff then
-			return "[h"
-		end
-		vim.schedule(function()
-			require("gitsigns").prev_hunk()
-		end)
-		return "<Ignore>"
-	end,
-}, {
-	expr = true,
-})
+section({ mode = { "n", "v" }, key = "<leader>gb", name = "buffer" })
+map({ key = "<leader>gbs", cmd = require("gitsigns").stage_buffer, desc = "Stage" })
+map({ key = "<leader>gbr", cmd = require("gitsigns").reset_buffer, desc = "Reset" })
 
 -- obsidian ----------------------------------------------
 if vim.fn.has("mac") == 0 then

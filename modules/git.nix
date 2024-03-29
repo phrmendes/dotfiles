@@ -8,8 +8,8 @@
 
   config = lib.mkIf config.git.enable {
     programs.git = {
-      delta.enable = true;
       enable = true;
+      delta.enable = true;
       userEmail = parameters.email;
       userName = parameters.name;
       extraConfig = {

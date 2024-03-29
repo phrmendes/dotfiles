@@ -18,6 +18,7 @@
     ./hyprland.nix
     ./kdeconnect.nix
     ./kitty.nix
+    ./lazygit.nix
     ./neovim.nix
     ./network-manager.nix
     ./packages.nix
@@ -42,6 +43,7 @@
   fzf.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
   kitty.enable = lib.mkDefault true;
+  lazygit.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   starship.enable = lib.mkDefault true;

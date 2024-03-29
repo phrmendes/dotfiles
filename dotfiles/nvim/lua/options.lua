@@ -90,5 +90,9 @@ vim.g.VM_mouse_mappings = 1
 -- copilot
 vim.g.copilot_no_tab_map = true
 
--- sessions
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+-- nvim server
+if vim.fn.executable("nvr") then
+	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+	vim.env.VISUAL = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end

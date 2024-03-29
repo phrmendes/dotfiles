@@ -39,7 +39,6 @@
         cmp_luasnip
         conform-nvim
         copilot-vim
-        diffview-nvim
         dressing-nvim
         friendly-snippets
         gh.telescope-zotero
@@ -47,6 +46,7 @@
         image-nvim
         indent-blankline-nvim
         jupytext-nvim
+        lazygit-nvim
         lsp_signature-nvim
         lspkind-nvim
         ltex_extra-nvim
@@ -56,7 +56,6 @@
         nabla-nvim
         neodev-nvim
         neogen
-        neogit
         nvim-cmp
         nvim-colorizer-lua
         nvim-dap
@@ -115,6 +114,7 @@
           lua-language-server
           marksman
           md-tangle
+          neovim-remote
           nixd
           prettierd
           ruff

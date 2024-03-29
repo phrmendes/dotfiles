@@ -11,8 +11,8 @@
       enable = true;
       themes = {
         catppuccin = {
-          src = inputs.bat-catppuccin;
-          file = "/Catppuccin-mocha.tmTheme";
+          src = inputs.catppuccin-bat;
+          file = "themes/Catppuccin Mocha.tmTheme";
         };
       };
       config = {

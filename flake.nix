@@ -19,9 +19,14 @@
       url = "github:jmbuhr/telescope-zotero.nvim";
     };
 
-    bat-catppuccin = {
-      flake = false;
+    catppuccin-bat = {
       url = "github:catppuccin/bat";
+      flake = false;
+    };
+
+    catppuccin-starship = {
+      url = "github:catppuccin/starship";
+      flake = false;
     };
   };
 

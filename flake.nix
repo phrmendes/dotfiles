@@ -14,24 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cmp-pandoc-references = {
-      flake = false;
-      url = "github:jmbuhr/cmp-pandoc-references";
-    };
-
-    img-clip-nvim = {
-      flake = false;
-      url = "github:HakonHarnes/img-clip.nvim";
-    };
-
-    jupytext-nvim = {
-      flake = false;
-      url = "github:GCBallesteros/jupytext.nvim";
-    };
-
     telescope-zotero = {
       flake = false;
       url = "github:jmbuhr/telescope-zotero.nvim";
+    };
+
+    bat-catppuccin = {
+      flake = false;
+      url = "github:catppuccin/bat";
     };
   };
 
@@ -44,9 +34,11 @@
   }: {
     darwinConfigurations."SAO-QQ4FN0YXVT" = let
       parameters = rec {
-        user = "prochame";
+        email = "pedro.mendes-ext@ab-inbev.com";
         home = "/Users/${user}";
+        name = "Pedro Mendes";
         system = "aarch64-darwin";
+        user = "prochame";
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
@@ -59,7 +51,7 @@
           inherit inputs pkgs parameters;
         };
         modules = [
-          ./darwin
+          ./hosts/darwin
           home-manager.darwinModules.home-manager
           {
             home-manager = {
@@ -69,9 +61,7 @@
                 inherit inputs pkgs parameters;
               };
               backupFileExtension = "bak";
-              users.${parameters.user}.imports = [
-                ./darwin/home
-              ];
+              users.${parameters.user}.imports = [./modules];
             };
           }
         ];
@@ -79,9 +69,11 @@
 
     nixosConfigurations.desktop = let
       parameters = rec {
-        user = "phrmendes";
+        email = "pedrohrmendes@proton.me";
         home = "/home/${user}";
+        name = "Pedro Mendes";
         system = "x86_64-linux";
+        user = "phrmendes";
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
@@ -94,7 +86,7 @@
           inherit inputs pkgs parameters;
         };
         modules = [
-          ./desktop
+          ./hosts/desktop
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -104,9 +96,26 @@
                 inherit inputs pkgs parameters;
               };
               backupFileExtension = "bak";
-              users.${parameters.user}.imports = [
-                ./desktop/home
-              ];
+              users.${parameters.user} = {
+                imports = [./modules];
+
+                blueman.enable = true;
+                btop.enable = true;
+                copyq.enable = true;
+                dunst.enable = true;
+                gnome-keyring.enable = true;
+                gtk-theme.enable = true;
+                hyprland.enable = true;
+                kdeconnect.enable = true;
+                nm-applet.enable = true;
+                pasystray.enable = true;
+                rofi.enable = true;
+                swayidle.enable = true;
+                swaylock.enable = true;
+                targets.enable = true;
+                udiskie.enable = true;
+                waybar.enable = true;
+              };
             };
           }
         ];

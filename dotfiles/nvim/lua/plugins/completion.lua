@@ -3,6 +3,14 @@ local luasnip = require("luasnip")
 local border = cmp.config.window.bordered()
 local utils = require("utils")
 
+require("cmp_pandoc").setup({
+	filetypes = { "quarto", "markdown" },
+	crossref = {
+		documentation = true,
+		enable_nabla = true,
+	},
+})
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -61,7 +69,7 @@ cmp.setup({
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip", keyword_length = 3, max_item_count = 3 },
-		{ name = "pandoc_references" },
+		{ name = "cmp_pandoc" },
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 		{ name = "latex_symbols", option = { strategy = 2 } },
 		{ name = "treesitter", keyword_length = 5, max_item_count = 3 },

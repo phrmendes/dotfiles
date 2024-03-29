@@ -1,18 +1,18 @@
 {
   "nodes": {
-    "cmp-pandoc-references": {
+    "bat-catppuccin": {
       "flake": false,
       "locked": {
-        "lastModified": 1688994825,
-        "narHash": "sha256-B3KxmQUrYrBxKn/WRjMNSA0P499MUgGyxTi4S8h5W4E=",
-        "owner": "jmbuhr",
-        "repo": "cmp-pandoc-references",
-        "rev": "dd86d3a8acc52a6d0503c3a45ba1bb93f39a3d31",
+        "lastModified": 1710456315,
+        "narHash": "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=",
+        "owner": "catppuccin",
+        "repo": "bat",
+        "rev": "b19bea35a85a32294ac4732cad5b0dc6495bed32",
         "type": "github"
       },
       "original": {
-        "owner": "jmbuhr",
-        "repo": "cmp-pandoc-references",
+        "owner": "catppuccin",
+        "repo": "bat",
         "type": "github"
       }
     },
@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710717205,
-        "narHash": "sha256-Wf3gHh5uV6W1TV/A8X8QJf99a5ypDSugY4sNtdJDe0A=",
+        "lastModified": 1711591334,
+        "narHash": "sha256-9d5ilxxq4CXw44eFw8VFrRneAKex7D8xjn95mwZjgf4=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "bcc8afd06e237df060c85bad6af7128e05fd61a3",
+        "rev": "f0dd0838c3558b59dc3b726d8ab89f5b5e35c297",
         "type": "github"
       },
       "original": {
@@ -43,58 +43,26 @@
         ]
       },
       "locked": {
-        "lastModified": 1711133180,
-        "narHash": "sha256-WJOahf+6115+GMl3wUfURu8fszuNeJLv9qAWFQl3Vmo=",
+        "lastModified": 1711625603,
+        "narHash": "sha256-W+9dfqA9bqUIBV5u7jaIARAzMe3kTq/Hp2SpSVXKRQw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1c2c5e4cabba4c43504ef0f8cc3f3dfa284e2dbb",
+        "rev": "c0ef0dab55611c676ad7539bf4e41b3ec6fa87d2",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "img-clip-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1711203236,
-        "narHash": "sha256-eVHCuR6Kjnyq3/HPnW997UQwsNBUe9jwcQYPpokJTdE=",
-        "owner": "HakonHarnes",
-        "repo": "img-clip.nvim",
-        "rev": "2dc1d02f16482982afe399c690fea73b8f4779e6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "HakonHarnes",
-        "repo": "img-clip.nvim",
-        "type": "github"
-      }
-    },
-    "jupytext-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1706080485,
-        "narHash": "sha256-x5emW+qfUTUDR72B9QdDgVdrb8wGH9D7AdtRrQm80sI=",
-        "owner": "GCBallesteros",
-        "repo": "jupytext.nvim",
-        "rev": "68fddf28119dbaddfaea6b71f3d6aa1e081afb93",
-        "type": "github"
-      },
-      "original": {
-        "owner": "GCBallesteros",
-        "repo": "jupytext.nvim",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1711200738,
-        "narHash": "sha256-dkJmk/ET/tRV4007O6kU101UEg1svUwiyk/zEEX9Tdg=",
+        "lastModified": 1711655175,
+        "narHash": "sha256-1xiaYhC3ul4y+i3eicYxeERk8ZkrNjLkrFSb/UW36Zw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "20bc93ca7b2158ebc99b8cef987a2173a81cde35",
+        "rev": "64c81edb4b97a51c5bbc54c191763ac71a6517ee",
         "type": "github"
       },
       "original": {
@@ -106,11 +74,9 @@
     },
     "root": {
       "inputs": {
-        "cmp-pandoc-references": "cmp-pandoc-references",
+        "bat-catppuccin": "bat-catppuccin",
         "darwin": "darwin",
         "home-manager": "home-manager",
-        "img-clip-nvim": "img-clip-nvim",
-        "jupytext-nvim": "jupytext-nvim",
         "nixpkgs": "nixpkgs",
         "telescope-zotero": "telescope-zotero"
       }
@@ -118,11 +84,11 @@
     "telescope-zotero": {
       "flake": false,
       "locked": {
-        "lastModified": 1711195820,
-        "narHash": "sha256-JzqiZjUcYu0RvcwLDwgJcBFL48niX+/zyKOu7CUGlug=",
+        "lastModified": 1711445191,
+        "narHash": "sha256-H+YsMayb1Lz8IjXc3aDDKNtFQmaqKCzh2eVhcNhLjA0=",
         "owner": "jmbuhr",
         "repo": "telescope-zotero.nvim",
-        "rev": "30addd70752f0549ec3f3beccca514a7f4c3a458",
+        "rev": "616b8f13a840d62733b3683fe85c4080bba8b6b7",
         "type": "github"
       },
       "original": {

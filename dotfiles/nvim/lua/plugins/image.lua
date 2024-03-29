@@ -14,23 +14,4 @@ later(function()
 		max_height = 15,
 		tmux_show_only_in_active_window = true,
 	})
-
-	require("img-clip").setup({
-		filetypes = {
-			markdown = {
-				url_encode_path = true,
-				template = "![$CURSOR]($FILE_PATH)",
-				drag_and_drop = {
-					download_images = false,
-				},
-			},
-			quarto = {
-				url_encode_path = true,
-				template = "![$CURSOR]($FILE_PATH)",
-				drag_and_drop = {
-					download_images = false,
-				},
-			},
-		},
-	})
 end)

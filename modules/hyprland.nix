@@ -8,6 +8,7 @@
 
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
+      inherit (lib) getExe;
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
       range = [1 2 3 4 5 6 7 8 9];
@@ -15,34 +16,15 @@
       moveToWorkspaceSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") range;
       moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
       startupScript = pkgs.writeShellScriptBin "start" ''
-        ${lib.getExe pkgs.swaybg} --image ${wallpaper} --mode fill
-      '';
-      powermenuScript = pkgs.writeShellScriptBin "powermenu" ''
-        lock="  Lock"
-        suspend="󰤄  Suspend"
-        restart="  Restart"
-        poweroff="󰐥  Power off"
-
-        option=$(printf "$lock\n$suspend\n$restart\n$poweroff" | ${lib.getExe pkgs.rofi} -dmenu -i -p "   Powermenu  ")
-
-        if [ "$option" == "$lock" ]; then
-          ${pkgs.systemd}/bin/loginctl lock-session
-        elif [ "$option" == "$suspend" ]; then
-          ${pkgs.systemd}/bin/systemctl suspend
-        elif [ "$option" == "$restart" ]; then
-          ${pkgs.systemd}/bin/systemctl reboot
-        elif [ "$option" == "$poweroff" ]; then
-          ${pkgs.systemd}/bin/systemctl poweroff
-        fi
+        ${getExe pkgs.swaybg} --image ${wallpaper} --mode fill
+        ${getExe pkgs.copyq} --start-server
+        ${pkgs.syncthingtray}/bin/syncthingtray
       '';
       screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
         print_path="$HOME/Pictures/Screenshots"
         filename=$(date "+%Y%m%d-%H:%M:%S")
-        region_selector=$(${lib.getExe pkgs.slurp})
-        grab_image=${lib.getExe pkgs.grim}
-        annotator=${lib.getExe pkgs.satty}
 
-        $grab_image -g "$region_selector" - | $annotator --filename - --output-filename "$print_path/$filename".png
+        ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.satty} --filename - --output-filename "$print_path/$filename".png
       '';
     in {
       enable = true;
@@ -95,13 +77,12 @@
           "HDMI-A-1,1920x1080,1366x0,auto"
         ];
         windowrulev2 = [
-          "float,class:(copyq)"
-          "float,class:(gcolor3)"
-          "float,class:(nwg-displays)"
-          "float,class:(nwg-look)"
-          "float,class:(pavucontrol)"
-          "float,class:(rofi)"
-          "float,class:(satty)"
+          "float,stayfocused,class:(copyq)"
+          "float,stayfocused,class:(gcolor3)"
+          "float,stayfocused,class:(nwg-displays)"
+          "float,stayfocused,class:(pavucontrol)"
+          "float,stayfocused,class:(rofi)"
+          "float,stayfocused,class:(satty)"
         ];
         workspace = [
           "1,monitor:HDMI-A-1"
@@ -131,19 +112,23 @@
         bind =
           [
             # apps
-            "SUPER SHIFT,V,exec,copyq toggle"
-            "SUPER,C,exec,dunstctl close-all"
-            "SUPER,W,exec,rofi -show window"
-            "SUPER,escape,exec,${powermenuScript}/bin/powermenu"
-            "SUPER,return,exec,kitty"
+            "SUPER,C,exec,rofi -show calc -modi calc -no-show-match -no-sort"
+            "SUPER,E,exec,rofi -show emoji -modi emoji"
+            "SUPER,F,exec,rofi -show filebrowser"
+            "SUPER,S,exec,rofi -show recursivebrowser"
             "SUPER,space,exec,rofi -show drun"
+            "SUPER,tab,exec,rofi -show window"
+            ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${getExe pkgs.rofi-power-menu} --choices=shutdown/reboot/lockscreen/suspend"''
             ",print,exec,${screenshotScript}/bin/screenshot"
+            "SUPER,return,exec,${getExe pkgs.kitty}"
+            "SUPER SHIFT,C,exec,${pkgs.dunst}/bin/dunstctl close-all"
+            "SUPER SHIFT,V,exec,${getExe pkgs.copyq} menu"
             # general operations
-            "SUPER,F,togglefloating"
             "SUPER,P,pseudo"
             "SUPER,Q,killactive"
             "SUPER,T,togglesplit"
             "SUPER,Z,fullscreen"
+            "SUPER SHIFT,F,togglefloating"
             # windows
             "SUPER,H,movefocus,l"
             "SUPER,J,movefocus,d"
@@ -160,9 +145,9 @@
             "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
             # media keys
             ",XF86AudioMute,exec,${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"
-            ",XF86AudioPlay,exec,${lib.getExe pkgs.playerctl} play-pause"
-            ",XF86AudioNext,exec,${lib.getExe pkgs.playerctl} next"
-            ",XF86AudioPrev,exec,${lib.getExe pkgs.playerctl} previous"
+            ",XF86AudioPlay,exec,${getExe pkgs.playerctl} play-pause"
+            ",XF86AudioNext,exec,${getExe pkgs.playerctl} next"
+            ",XF86AudioPrev,exec,${getExe pkgs.playerctl} previous"
           ]
           ++ switchToWorkspace
           ++ moveToWorkspace

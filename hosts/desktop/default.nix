@@ -14,7 +14,6 @@
     ./configuration/services.nix
     ./configuration/services.nix
     ./configuration/syncthing.nix
-    ./configuration/systemd.nix
     ./configuration/virtualisation.nix
   ];
 
@@ -77,4 +76,8 @@
       options = "--delete-older-than 1w";
     };
   };
+
+  systemd.user.services.syncthingtray.serviceConfig.ExecStart =
+    pkgs.lib.mkForce
+    ''${pkgs.bash}/bin/bash -c "${pkgs.coreutils}/bin/sleep 5; ${pkgs.syncthingtray-minimal}/bin/syncthingtray"'';
 }

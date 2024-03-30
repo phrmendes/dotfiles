@@ -7,7 +7,6 @@
     ./bat.nix
     ./blueman.nix
     ./btop.nix
-    ./copyq.nix
     ./direnv.nix
     ./dunst.nix
     ./eza.nix

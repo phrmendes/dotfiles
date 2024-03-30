@@ -12,7 +12,7 @@ luasnip.config.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local markdown = {
-	parse_snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%Y-%m-%d") .. " $0"),
+	parse_snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%A, %d %b %Y") .. " $0"),
 	parse_snippet({ trig = "ltex", name = "enable ltex" }, "<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"),
 	parse_snippet(
 		{ trig = "entry", name = "journal entry" },

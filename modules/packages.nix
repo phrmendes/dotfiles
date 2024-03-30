@@ -43,6 +43,8 @@ in {
           bitwarden
           bruno
           chromium
+          cliphist
+          copyq
           curtail
           dbeaver
           deluge
@@ -60,14 +62,18 @@ in {
           nwg-displays
           obsidian
           pavucontrol
+          peek
           phockup
           quickemu
           qview
+          rofi-power-menu
           satty
           slurp
           swaybg
+          syncthingtray
           ventoy
           vlc
+          wl-clipboard
           zotero
         ])
         ++ (with pkgs.gnome; [

@@ -30,11 +30,9 @@ in {
     rar
     readline
     sqlite
-    syncthingtray
     unrar
     unzip
     wget
-    wl-clipboard
     wlr-randr
     zip
     zlib

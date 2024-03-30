@@ -9,9 +9,11 @@
     "modules-center": ["clock"],
     "modules-right": ["hyprland/language", "idle_inhibitor", "tray"],
     "hyprland/workspaces": {
-      "disable-scroll": true,
       "all-outputs": false,
+      "disable-scroll": false,
       "format": "{icon}",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
       "format-icons": {
         "1": "1",
         "2": "2",
@@ -28,9 +30,6 @@
     },
     "hyprland/language": {
       "format": "   {}"
-    },
-    "hyprland/window": {
-      "format": "󱂬   {}"
     },
     "tray": {
       "icon-size": 15,

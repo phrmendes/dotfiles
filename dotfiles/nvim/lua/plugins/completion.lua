@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local border = cmp.config.window.bordered()
-local utils = require("utils")
 
 require("cmp_pandoc").setup({
 	filetypes = { "quarto", "markdown" },
@@ -19,34 +18,30 @@ cmp.setup({
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+		["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-CR>"] = cmp.mapping(function(fallback)
+			cmp.abort()
+			fallback()
+		end, { "i", "s" }),
 		["<TAB>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-			elseif luasnip.expand_or_locally_jumpable() then
+			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
-			elseif utils.has_words_before() then
-				cmp.complete()
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
 		["<S-TAB>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-			elseif luasnip.jumpable(-1) then
+			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-CR>"] = function(fallback)
-			cmp.abort()
-			fallback()
-		end,
 	}),
 	formatting = {
 		format = require("lspkind").cmp_format({

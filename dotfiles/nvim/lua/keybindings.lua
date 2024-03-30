@@ -336,10 +336,10 @@ autocmd("LspAttach", {
 })
 
 -- smart splits ------------------------------------------
-map({ key = "<A-h>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
-map({ key = "<A-j>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
-map({ key = "<A-k>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
-map({ key = "<A-l>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
+map({ key = "<C-Left>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
+map({ key = "<C-Down>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
+map({ key = "<C-Up>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
+map({ key = "<C-Right>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
 map({ key = "<C-h>", cmd = require("smart-splits").move_cursor_left, desc = "Move cursor left" })
 map({ key = "<C-j>", cmd = require("smart-splits").move_cursor_down, desc = "Move cursor down" })
 map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move cursor up" })
@@ -348,37 +348,6 @@ map({ key = "<localleader>h", cmd = require("smart-splits").swap_buf_left, desc 
 map({ key = "<localleader>j", cmd = require("smart-splits").swap_buf_down, desc = "Swap buffer down" })
 map({ key = "<localleader>k", cmd = require("smart-splits").swap_buf_up, desc = "Swap buffer up" })
 map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc = "Swap buffer right" })
-
--- luasnip -----------------------------------------------
-map({
-	mode = "i",
-	key = "<TAB>",
-	cmd = function()
-		return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<TAB>"
-	end,
-	desc = "(Luasnip) next",
-}, {
-	expr = true,
-	silent = true,
-})
-
-map({
-	mode = "s",
-	key = "<TAB>",
-	cmd = function()
-		require("luasnip").jump(1)
-	end,
-	desc = "(Luasnip) next",
-})
-
-map({
-	mode = { "i", "s" },
-	key = "<S-TAB>",
-	cmd = function()
-		require("luasnip").jump(-1)
-	end,
-	desc = "(Luasnip) prev",
-})
 
 -- slime -------------------------------------------------
 map({ mode = { "n", "v" }, key = "<C-c><C-c>", cmd = "<Plug>SlimeParagraphSend", desc = "Send to REPL" })

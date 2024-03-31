@@ -60,21 +60,16 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = "path" },
-		{ name = "copilot" },
-		{ name = "otter" },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip", keyword_length = 3, max_item_count = 3 },
-		{ name = "cmp_pandoc" },
-		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-		{ name = "treesitter", keyword_length = 5, max_item_count = 3 },
+		{ name = "luasnip" },
+		{ name = "buffer" },
 	}),
 })
 
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
-		{ name = "cmdline", max_item_count = 10, keyword_length = 2 },
+		{ name = "cmdline", max_item_count = 10 },
 		{ name = "path" },
 	}),
 })
@@ -86,4 +81,16 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
-luasnip.filetype_extend("quarto", { "markdown" })
+cmp.setup.filetype({ "markdown", "quarto" }, {
+	sources = cmp.config.sources({
+		{ name = "otter" },
+		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "cmp_pandoc" },
+		{ name = "latex_symbols", option = { strategy = 2 } },
+		{ name = "buffer" },
+	}, {
+		{ name = "buffer" },
+	}),
+})

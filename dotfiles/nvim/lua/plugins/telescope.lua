@@ -64,11 +64,7 @@ telescope.setup({
 	},
 })
 
-local extensions = {
-	"fzf",
-	"lazygit",
-	"zoxide",
-}
+local extensions = { "fzf" }
 
 if vim.fn.has("mac") == 0 then
 	table.insert(extensions, "zotero")

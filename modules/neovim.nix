@@ -80,7 +80,6 @@
         sqlite-lua
         telescope-fzf-native-nvim
         telescope-nvim
-        telescope-zoxide
         todo-comments-nvim
         trouble-nvim
         undotree
@@ -92,6 +91,7 @@
         vim-nix
         vim-sleuth
         vim-slime
+        vim-startuptime
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim

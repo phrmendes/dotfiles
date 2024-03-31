@@ -30,7 +30,7 @@ telescope.setup({
 				["<C-s>"] = actions.file_split,
 				["<C-v>"] = actions.file_vsplit,
 				["<C-c>"] = actions.close,
-				["<C-t>"] = trouble.open_with_trouble,
+				["<C-q>"] = trouble.open_with_trouble,
 				["<C-x>"] = actions.delete_buffer,
 			},
 			n = {

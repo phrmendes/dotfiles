@@ -43,8 +43,6 @@ in {
           bitwarden
           bruno
           chromium
-          cliphist
-          copyq
           curtail
           dbeaver
           deluge
@@ -64,13 +62,13 @@ in {
           pavucontrol
           peek
           phockup
+          protonmail-desktop
           quickemu
           qview
           rofi-power-menu
           satty
           slurp
           swaybg
-          syncthingtray
           ventoy
           vlc
           wl-clipboard

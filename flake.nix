@@ -106,6 +106,7 @@
 
                 blueman.enable = true;
                 btop.enable = true;
+                copyq.enable = true;
                 dunst.enable = true;
                 gnome-keyring.enable = true;
                 gtk-theme.enable = true;
@@ -116,6 +117,8 @@
                 rofi.enable = true;
                 swayidle.enable = true;
                 swaylock.enable = true;
+                swayosd.enable = true;
+                syncthingtray.enable = true;
                 targets.enable = true;
                 udiskie.enable = true;
                 waybar.enable = true;

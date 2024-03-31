@@ -9,22 +9,34 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
+      copyq = getExe pkgs.copyq;
+      grim = getExe pkgs.grim;
+      kitty = getExe pkgs.kitty;
+      playerctl = getExe pkgs.playerctl;
+      powermenu = getExe pkgs.rofi-power-menu;
+      satty = getExe pkgs.satty;
+      slurp = getExe pkgs.slurp;
+      swaybg = getExe pkgs.swaybg;
+      dunstctl = "${pkgs.dunst}/bin/dunstctl";
+      swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
+      syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
+      systemctl = "${pkgs.systemd}/bin/systemctl";
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
-      range = [1 2 3 4 5 6 7 8 9];
-      switchToWorkspace = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") range;
-      moveToWorkspaceSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") range;
-      moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") range;
+      workspaces = [1 2 3 4 5 6 7 8 9];
+      switchToWorkspace = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") workspaces;
+      moveToWorkspaceSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") workspaces;
+      moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
       startupScript = pkgs.writeShellScriptBin "start" ''
-        ${getExe pkgs.swaybg} --image ${wallpaper} --mode fill
-        ${getExe pkgs.copyq} --start-server
-        ${pkgs.syncthingtray}/bin/syncthingtray
+        ${swaybg} --image ${wallpaper} --mode fill
+        ${systemctl} --user restart syncthingtray
+        ${systemctl} --user restart copyq
       '';
       screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
         print_path="$HOME/Pictures/Screenshots"
         filename=$(date "+%Y%m%d-%H:%M:%S")
 
-        ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.satty} --filename - --output-filename "$print_path/$filename".png
+        ${grim} -g "$(${slurp})" - | ${satty} --filename - --output-filename "$print_path/$filename".png
       '';
     in {
       enable = true;
@@ -77,12 +89,15 @@
           "HDMI-A-1,1920x1080,1366x0,auto"
         ];
         windowrulev2 = [
-          "float,stayfocused,class:(copyq)"
           "float,stayfocused,class:(gcolor3)"
           "float,stayfocused,class:(nwg-displays)"
           "float,stayfocused,class:(pavucontrol)"
-          "float,stayfocused,class:(rofi)"
           "float,stayfocused,class:(satty)"
+          "float,stayfocused,opaque,class:(copyq)"
+          "float,stayfocused,rounding 10,class:(rofi)"
+          "opaque,class:(chromium)"
+          "opaque,class:(firefox)"
+          "opaque,class:(vlc)"
         ];
         workspace = [
           "1,monitor:HDMI-A-1"
@@ -100,9 +115,9 @@
           "SUPER,mouse:273,resizewindow"
         ];
         binde = [
-          # volume keys
-          ",XF86AudioRaiseVolume,exec,${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%"
-          ",XF86AudioLowerVolume,exec,${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"
+          ",XF86AudioMute,exec,${swayosd-client} --output-volume mute-toggle"
+          ",XF86AudioRaiseVolume,exec,${swayosd-client} --output-volume raise"
+          ",XF86AudioLowerVolume,exec,${swayosd-client} --output-volume lower"
           # resize
           "SUPER ALT,left,resizeactive,-20 0"
           "SUPER ALT,right,resizeactive,20 0"
@@ -118,17 +133,19 @@
             "SUPER,S,exec,rofi -show recursivebrowser"
             "SUPER,space,exec,rofi -show drun"
             "SUPER,tab,exec,rofi -show window"
-            ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${getExe pkgs.rofi-power-menu} --choices=shutdown/reboot/lockscreen/suspend"''
+            ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${powermenu} --choices=shutdown/reboot/lockscreen/suspend"''
             ",print,exec,${screenshotScript}/bin/screenshot"
-            "SUPER,return,exec,${getExe pkgs.kitty}"
-            "SUPER SHIFT,C,exec,${pkgs.dunst}/bin/dunstctl close-all"
-            "SUPER SHIFT,V,exec,${getExe pkgs.copyq} menu"
+            "SUPER,return,exec,${kitty}"
+            "SUPER SHIFT,C,exec,${dunstctl} close-all"
+            "SUPER SHIFT,V,exec,${copyq} menu"
             # general operations
+            "SUPER,G,togglegroup"
             "SUPER,P,pseudo"
             "SUPER,Q,killactive"
             "SUPER,T,togglesplit"
             "SUPER,Z,fullscreen"
             "SUPER SHIFT,F,togglefloating"
+            "SUPER SHIFT,G,changegroupactive"
             # windows
             "SUPER,H,movefocus,l"
             "SUPER,J,movefocus,d"
@@ -143,11 +160,10 @@
             "SUPER CTRL,L,workspace,r+1"
             "SUPER SHIFT CTRL,H,movetoworkspace,r-1"
             "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
-            # media keys
-            ",XF86AudioMute,exec,${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"
-            ",XF86AudioPlay,exec,${getExe pkgs.playerctl} play-pause"
-            ",XF86AudioNext,exec,${getExe pkgs.playerctl} next"
-            ",XF86AudioPrev,exec,${getExe pkgs.playerctl} previous"
+            # music
+            ",XF86AudioNext,exec,${playerctl} next"
+            ",XF86AudioPlay,exec,${playerctl} play-pause"
+            ",XF86AudioPrev,exec,${playerctl} previous"
           ]
           ++ switchToWorkspace
           ++ moveToWorkspace

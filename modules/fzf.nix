@@ -9,12 +9,13 @@
   config = lib.mkIf config.fzf.enable {
     programs.fzf = let
       colors = import ./catppuccin.nix;
+      fd = lib.getExe pkgs.fd;
     in {
       enable = true;
-      defaultCommand = "${lib.getExe pkgs.fd} --type f";
+      defaultCommand = "${fd} --type f";
       enableZshIntegration = true;
-      changeDirWidgetCommand = "${lib.getExe pkgs.fd} --type d";
-      fileWidgetCommand = "${lib.getExe pkgs.fd} --type f";
+      changeDirWidgetCommand = "${fd} --type d";
+      fileWidgetCommand = "${fd} --type f";
       tmux.enableShellIntegration = true;
       colors = with colors.catppuccin.palette; {
         "bg+" = "#${surface0}";

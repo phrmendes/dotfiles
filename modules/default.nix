@@ -7,6 +7,7 @@
     ./bat.nix
     ./blueman.nix
     ./btop.nix
+    ./copyq.nix
     ./direnv.nix
     ./dunst.nix
     ./eza.nix
@@ -26,7 +27,9 @@
     ./starship.nix
     ./swayidle.nix
     ./swaylock.nix
+    ./swayosd.nix
     ./symlinks.nix
+    ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix

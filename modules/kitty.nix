@@ -10,7 +10,7 @@ in {
 
   config = lib.mkIf config.kitty.enable {
     programs.kitty = let
-      font_family = "FiraCode Nerd Font Mono";
+      font_family = "FiraCode Nerd Font";
       font_size =
         if isDarwin
         then 16

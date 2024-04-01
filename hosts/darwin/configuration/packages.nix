@@ -14,11 +14,8 @@
     libuv
     libxml2
     nodejs_21
-    playerctl
     python312
-    rar
     sqlite
-    unrar
     unzip
     wget
     zip

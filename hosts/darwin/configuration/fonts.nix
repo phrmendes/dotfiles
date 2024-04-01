@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   fonts = {
-    fontsDir.enable = true;
+    fontDir.enable = true;
     fonts = with pkgs; [
       fira
       fira-code-nerdfont

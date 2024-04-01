@@ -78,22 +78,6 @@ require("mini.statusline").setup({
 	set_vim_settings = false,
 })
 
-require("mini.files").setup({
-	mappings = {
-		close = "q",
-		go_in = "l",
-		go_in_plus = "<CR>",
-		go_out = "h",
-		go_out_plus = "<BS>",
-		reset = "<BS>",
-		reveal_cwd = "@",
-		show_help = "g?",
-		synchronize = "=",
-		trim_left = "<",
-		trim_right = ">",
-	},
-})
-
 require("mini.notify").setup({
 	lsp_progress = {
 		enable = false,

@@ -65,6 +65,7 @@
         nvim-lint
         nvim-lspconfig
         nvim-spectre
+        nvim-tree-lua
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars

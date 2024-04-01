@@ -101,25 +101,8 @@ map({
 })
 
 -- file explorer -----------------------------------------
-map({
-	key = "<leader>E",
-	cmd = function()
-		if not require("mini.files").close() then
-			require("mini.files").open(vim.fn.getcwd(), true)
-		end
-	end,
-	desc = "Open file explorer (cwd)",
-})
-
-map({
-	key = "<leader>e",
-	cmd = function()
-		if not require("mini.files").close() then
-			require("mini.files").open(vim.fn.expand("%:p:h"), true)
-		end
-	end,
-	desc = "Open file explorer (current file)",
-})
+map({ key = "<leader>e", cmd = "<CMD>NvimTreeToggle<CR>", desc = "Open file explorer (cwd)" })
+map({ key = "<leader>E", cmd = "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open file explorer (current file)" })
 
 -- buffers -----------------------------------------------
 section({ key = "<leader>b", name = "buffers" })

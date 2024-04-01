@@ -19,10 +19,10 @@ in {
         grex
         jq
         just
+        kind
         kubectl
         kubernetes-helm
         mc
-        minikube
         opentofu
         pandoc
         parallel

@@ -10,6 +10,9 @@
     caskArgs = {
       no_quarantine = true;
     };
+    taps = [
+      "homebrew/cask-fonts"
+    ];
     brews = [
       "gnu-sed"
       "openssl"
@@ -30,6 +33,7 @@
       "slack"
       "tailscale"
       "whichspace"
+      "font-fira-code-nerd-font"
     ];
   };
 }

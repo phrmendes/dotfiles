@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./configuration/apple.nix
-    ./configuration/fonts.nix
     ./configuration/homebrew.nix
     ./configuration/packages.nix
   ];
@@ -22,8 +21,9 @@
     shell = pkgs.zsh;
   };
 
+  services.nix-daemon.enable = true;
+
   nix = {
-    useDaemon = true;
     gc.automatic = true;
     settings.auto-optimise-store = true;
   };

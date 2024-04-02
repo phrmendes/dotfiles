@@ -19,7 +19,7 @@ obsidian.setup({
 			action = obsidian.util.gf_passthrough,
 			opts = { noremap = false, expr = true, buffer = true },
 		},
-		["<CR>"] = {
+		["<S-CR>"] = {
 			action = function()
 				return obsidian.util.toggle_checkbox()
 			end,

@@ -29,8 +29,6 @@
       moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
       startupScript = pkgs.writeShellScriptBin "start" ''
         ${swaybg} --image ${wallpaper} --mode fill
-        ${systemctl} --user restart syncthingtray
-        ${systemctl} --user restart copyq
       '';
       screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
         print_path="$HOME/Pictures/Screenshots"
@@ -40,6 +38,13 @@
       '';
     in {
       enable = true;
+      systemd = {
+        enable = true;
+        extraCommands = [
+          "${systemctl} --user restart syncthingtray"
+          "${systemctl} --user restart copyq"
+        ];
+      };
       settings = with colors.catppuccin.palette; {
         exec-once = "${startupScript}/bin/start";
         input = {
@@ -57,6 +62,7 @@
           layout = "dwindle";
           resize_on_border = true;
           "col.active_border" = "rgba(${blue}ff) rgba(${green}ff) 60deg";
+          "col.inactive_border" = "rgba(${surface0}ff)";
         };
         decoration = {
           active_opacity = 1;
@@ -83,6 +89,18 @@
         misc = {
           force_default_wallpaper = 0;
           disable_hyprland_logo = true;
+        };
+        group = {
+          "col.border_active" = "rgba(${blue}ff) rgba(${green}ff) 60deg";
+          "col.border_inactive" = "rgba(${surface0}ff)";
+          "col.border_locked_active" = "rgba(${red}ff)";
+          "col.border_locked_inactive" = "rgba(${surface0}ff)";
+          groupbar = {
+            "col.active" = "rgba(${blue}ff)";
+            "col.inactive" = "rgba(${surface0}ff)";
+            "col.locked_active" = "rgba(${red}ff)";
+            "col.locked_inactive" = "rgba(${surface0}ff)";
+          };
         };
         monitor = [
           "DP-2,1366x768,0x0,auto"
@@ -119,10 +137,10 @@
           ",XF86AudioRaiseVolume,exec,${swayosd-client} --output-volume raise"
           ",XF86AudioLowerVolume,exec,${swayosd-client} --output-volume lower"
           # resize
-          "SUPER ALT,left,resizeactive,-20 0"
-          "SUPER ALT,right,resizeactive,20 0"
-          "SUPER ALT,up,resizeactive,0 -20"
-          "SUPER ALT,down,resizeactive,0 20"
+          "SUPER ALT,h,resizeactive,-20 0"
+          "SUPER ALT,j,resizeactive,0 20"
+          "SUPER ALT,k,resizeactive,0 -20"
+          "SUPER ALT,l,resizeactive,20 0"
         ];
         bind =
           [
@@ -131,30 +149,31 @@
             "SUPER,E,exec,rofi -show emoji -modi emoji"
             "SUPER,F,exec,rofi -show filebrowser"
             "SUPER,S,exec,rofi -show recursivebrowser"
+            "SUPER,W,exec,rofi -show window"
             "SUPER,space,exec,rofi -show drun"
-            "SUPER,tab,exec,rofi -show window"
             ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${powermenu} --choices=shutdown/reboot/lockscreen/suspend"''
             ",print,exec,${screenshotScript}/bin/screenshot"
             "SUPER,return,exec,${kitty}"
             "SUPER SHIFT,C,exec,${dunstctl} close-all"
             "SUPER SHIFT,V,exec,${copyq} menu"
             # general operations
-            "SUPER,G,togglegroup"
             "SUPER,P,pseudo"
             "SUPER,Q,killactive"
-            "SUPER,T,togglesplit"
+            "SUPER,R,togglesplit"
             "SUPER,Z,fullscreen"
             "SUPER SHIFT,F,togglefloating"
-            "SUPER SHIFT,G,changegroupactive"
-            # windows
+            # windows and groups
             "SUPER,H,movefocus,l"
             "SUPER,J,movefocus,d"
             "SUPER,K,movefocus,u"
             "SUPER,L,movefocus,r"
-            "SUPER SHIFT,H,movewindow,l"
-            "SUPER SHIFT,L,movewindow,r"
-            "SUPER SHIFT,K,movewindow,u"
-            "SUPER SHIFT,J,movewindow,d"
+            "SUPER SHIFT,H,movewindoworgroup,l"
+            "SUPER SHIFT,L,movewindoworgroup,r"
+            "SUPER SHIFT,K,movewindoworgroup,u"
+            "SUPER SHIFT,J,movewindoworgroup,d"
+            "SUPER,T,togglegroup"
+            "SUPER,tab,changegroupactive,f"
+            "SUPER SHIFT,T,lockactivegroup,toggle"
             # workspaces
             "SUPER CTRL,H,workspace,r-1"
             "SUPER CTRL,L,workspace,r+1"

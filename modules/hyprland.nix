@@ -28,6 +28,7 @@
       moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
       startupScript = pkgs.writeShellScriptBin "start" ''
         ${swaybg} --image ${wallpaper} --mode fill
+        ${pkgs.coreutils}/bin/sleep 5 && ${pkgs.syncthingtray}/bin/syncthingtray
       '';
       screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
         ${grim} -g "$(${slurp})" - | ${satty} --filename -

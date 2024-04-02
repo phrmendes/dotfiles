@@ -72,6 +72,7 @@ in {
         satty
         slurp
         swaybg
+        syncthingtray
         ventoy
         vlc
         zotero

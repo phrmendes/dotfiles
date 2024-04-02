@@ -117,7 +117,6 @@
                 swayidle.enable = true;
                 swaylock.enable = true;
                 swayosd.enable = true;
-                syncthingtray.enable = true;
                 targets.enable = true;
                 udiskie.enable = true;
                 waybar.enable = true;

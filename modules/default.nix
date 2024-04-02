@@ -28,7 +28,6 @@
     ./swaylock.nix
     ./swayosd.nix
     ./symlinks.nix
-    ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix

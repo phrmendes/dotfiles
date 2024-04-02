@@ -9,7 +9,6 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
-      copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
       kitty = getExe pkgs.kitty;
       playerctl = getExe pkgs.playerctl;
@@ -19,8 +18,8 @@
       swaybg = getExe pkgs.swaybg;
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
-      syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
       systemctl = "${pkgs.systemd}/bin/systemctl";
+      clipcat-menu = "${pkgs.clipcat}/bin/clipcat-menu";
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
       workspaces = [1 2 3 4 5 6 7 8 9];
@@ -31,20 +30,10 @@
         ${swaybg} --image ${wallpaper} --mode fill
       '';
       screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
-        print_path="$HOME/Pictures/Screenshots"
-        filename=$(date "+%Y%m%d-%H:%M:%S")
-
-        ${grim} -g "$(${slurp})" - | ${satty} --filename - --output-filename "$print_path/$filename".png
+        ${grim} -g "$(${slurp})" - | ${satty} --filename -
       '';
     in {
       enable = true;
-      systemd = {
-        enable = true;
-        extraCommands = [
-          "${systemctl} --user restart syncthingtray"
-          "${systemctl} --user restart copyq"
-        ];
-      };
       settings = with colors.catppuccin.palette; {
         exec-once = "${startupScript}/bin/start";
         input = {
@@ -147,21 +136,19 @@
             # apps
             "SUPER,C,exec,rofi -show calc -modi calc -no-show-match -no-sort"
             "SUPER,E,exec,rofi -show emoji -modi emoji"
-            "SUPER,F,exec,rofi -show filebrowser"
-            "SUPER,S,exec,rofi -show recursivebrowser"
             "SUPER,W,exec,rofi -show window"
             "SUPER,space,exec,rofi -show drun"
             ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${powermenu} --choices=shutdown/reboot/lockscreen/suspend"''
+            "SUPER SHIFT,V,exec,${clipcat-menu}"
             ",print,exec,${screenshotScript}/bin/screenshot"
             "SUPER,return,exec,${kitty}"
             "SUPER SHIFT,C,exec,${dunstctl} close-all"
-            "SUPER SHIFT,V,exec,${copyq} menu"
             # general operations
+            "SUPER,F,togglefloating"
             "SUPER,P,pseudo"
             "SUPER,Q,killactive"
             "SUPER,R,togglesplit"
             "SUPER,Z,fullscreen"
-            "SUPER SHIFT,F,togglefloating"
             # windows and groups
             "SUPER,H,movefocus,l"
             "SUPER,J,movefocus,d"

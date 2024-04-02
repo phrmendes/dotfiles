@@ -106,7 +106,6 @@
 
                 blueman.enable = true;
                 btop.enable = true;
-                copyq.enable = true;
                 dunst.enable = true;
                 gnome-keyring.enable = true;
                 gtk-theme.enable = true;

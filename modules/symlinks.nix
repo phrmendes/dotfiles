@@ -13,6 +13,7 @@ in {
       common = {
         ".local/share/mc/skins/catppuccin.ini".source = ../dotfiles/mc/skin/catppuccin.ini;
         ".config/mc".source = ../dotfiles/mc;
+        ".config/yazi/theme.toml".source = ../dotfiles/yazi/theme.toml;
         ".config/nvim" = {
           source = ../dotfiles/nvim;
           recursive = true;

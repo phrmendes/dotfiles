@@ -14,6 +14,8 @@ in {
         ansible
         cachix
         fd
+        ffmpegthumbnailer
+        file
         gh
         graphviz
         grex
@@ -26,58 +28,54 @@ in {
         opentofu
         pandoc
         parallel
+        poppler
         quarto
         ripgrep
         tectonic
         terraform
         tokei
+        unar
       ];
       darwin = with pkgs; [
         maven
         pngpaste
         terragrunt
       ];
-      desktop =
-        (with pkgs; [
-          bashly
-          bitwarden
-          bruno
-          chromium
-          curtail
-          dbeaver
-          deluge
-          droidcam
-          evince
-          firefox
-          foliate
-          gcolor3
-          gnuplot
-          gparted
-          grim
-          hugo
-          libqalculate
-          libreoffice
-          nwg-displays
-          obsidian
-          pavucontrol
-          peek
-          phockup
-          protonmail-desktop
-          quickemu
-          qview
-          rofi-power-menu
-          satty
-          slurp
-          swaybg
-          ventoy
-          vlc
-          wl-clipboard
-          zotero
-        ])
-        ++ (with pkgs.gnome; [
-          nautilus
-          file-roller
-        ]);
+      desktop = with pkgs; [
+        bashly
+        bitwarden
+        bruno
+        chromium
+        curtail
+        dbeaver
+        deluge
+        droidcam
+        evince
+        firefox
+        foliate
+        gcolor3
+        gnuplot
+        gparted
+        grim
+        hugo
+        libqalculate
+        libreoffice
+        nwg-displays
+        obsidian
+        pavucontrol
+        peek
+        phockup
+        protonmail-desktop
+        quickemu
+        qview
+        rofi-power-menu
+        satty
+        slurp
+        swaybg
+        ventoy
+        vlc
+        zotero
+      ];
     in
       if isDarwin
       then common ++ darwin

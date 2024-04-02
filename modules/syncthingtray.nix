@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.syncthingtray.enable = lib.mkEnableOption "enable syncthingtray";
@@ -10,7 +11,7 @@
       enable = true;
       tray = {
         enable = true;
-        command = "syncthingtray --wait";
+        command = "${pkgs.coreutils}/bin/sleep 5; syncthingtray";
       };
     };
   };

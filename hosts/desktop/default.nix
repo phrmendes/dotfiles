@@ -12,7 +12,6 @@
     ./configuration/programs.nix
     ./configuration/security.nix
     ./configuration/services.nix
-    ./configuration/services.nix
     ./configuration/syncthing.nix
     ./configuration/virtualisation.nix
   ];

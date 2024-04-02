@@ -11,6 +11,7 @@
     gvfs.enable = true;
     tailscale.enable = true;
     udev.enable = true;
+    clipcat.enable = true;
 
     gnome.gnome-keyring.enable = true;
 

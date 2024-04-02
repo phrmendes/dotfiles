@@ -29,15 +29,15 @@
           gap_size = 2;
         };
         urgency_low = {
-          background = "#${base}";
+          background = "#${overlay0}";
           foreground = "#${text}";
         };
         urgency_normal = {
-          background = "#${base}";
+          background = "#${overlay0}";
           foreground = "#${text}";
         };
         urgency_critical = {
-          background = "#${base}";
+          background = "#${overlay0}";
           foreground = "#${text}";
           frame_color = "#${peach}";
         };

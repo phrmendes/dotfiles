@@ -7,7 +7,6 @@
     ./bat.nix
     ./blueman.nix
     ./btop.nix
-    ./copyq.nix
     ./direnv.nix
     ./dunst.nix
     ./eza.nix
@@ -35,6 +34,7 @@
     ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
+    ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -52,6 +52,7 @@
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
+  yazi.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
 

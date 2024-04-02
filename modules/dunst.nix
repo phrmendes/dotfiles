@@ -19,25 +19,26 @@
         global = {
           corner_radius = 5;
           font = "Fira Sans 12";
-          frame_color = "${blue}";
+          frame_width = 0;
+          gap_size = 2;
           hide_duplicate_count = true;
           monitor = "HDMI-A-1";
           notification_limit = 5;
           offset = "20x20";
           progress_bar = true;
+          separator_color = "foreground";
           sort = true;
-          gap_size = 2;
         };
         urgency_low = {
-          background = "#${overlay0}";
+          background = "#${surface0}";
           foreground = "#${text}";
         };
         urgency_normal = {
-          background = "#${overlay0}";
+          background = "#${surface0}";
           foreground = "#${text}";
         };
         urgency_critical = {
-          background = "#${overlay0}";
+          background = "#${surface0}";
           foreground = "#${text}";
           frame_color = "#${peach}";
         };

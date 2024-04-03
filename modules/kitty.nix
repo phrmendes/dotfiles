@@ -69,8 +69,8 @@ in {
         "ctrl+shift+z" = "toggle_layout stack";
         "ctrl+shift+[" = "previous_tab";
         "ctrl+shift+]" = "next_tab";
-        "ctrl+shift+=" = "resize_window reset";
-        "ctrl+shift+-" = "launch --location=hsplit --cwd=current";
+        "ctrl+shift+equal" = "resize_window reset";
+        "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
       };
     };

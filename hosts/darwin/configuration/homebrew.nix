@@ -24,6 +24,7 @@
       "amethyst"
       "bruno"
       "firefox"
+      "font-fira-code-nerd-font"
       "keepingyouawake"
       "maccy"
       "microsoft-teams"
@@ -33,7 +34,6 @@
       "slack"
       "tailscale"
       "whichspace"
-      "font-fira-code-nerd-font"
     ];
   };
 }

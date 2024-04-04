@@ -16,7 +16,7 @@ screen-padding-top: 3
 window-margin-size: 10
 window-margins: true
 
-layouts: [tall, wide, column]
+layouts: [tall, wide, column, fullscreen]
 
 mod1: [option]
 mod2: [option, shift]

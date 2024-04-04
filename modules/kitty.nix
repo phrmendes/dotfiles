@@ -10,7 +10,6 @@ in {
 
   config = lib.mkIf config.kitty.enable {
     programs.kitty = let
-      font_family = "FiraCode Nerd Font";
       font_size =
         if isDarwin
         then 16
@@ -19,7 +18,7 @@ in {
       enable = true;
       theme = "Catppuccin-Mocha";
       font = {
-        name = "${font_family} Light";
+        name = "FiraCode Nerd Font Mono Light";
         package = pkgs.fira-code-nerdfont;
       };
       shellIntegration = {
@@ -30,12 +29,12 @@ in {
         inherit font_size;
         allow_remote_control = "yes";
         bell_on_tab = false;
-        bold_font = "${font_family} SemBd";
-        bold_italic_font = "${font_family} SemBd Italic";
+        bold_font = "auto";
+        bold_italic_font = "auto";
         enable_audio_bell = false;
         enabled_layouts = "splits:split_axis=horizontal,stack";
         inactive_text_alpha = "0.9";
-        italic_font = "${font_family} Italic";
+        italic_font = "auto";
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "left";
         open_url_with = "default";

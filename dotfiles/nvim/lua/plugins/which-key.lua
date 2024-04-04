@@ -5,4 +5,9 @@ wk.setup({
 	window = {
 		border = "single",
 	},
+	icons = {
+		breadcrumb = "»",
+		separator = "➜",
+		group = "+",
+	},
 })

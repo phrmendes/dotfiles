@@ -72,6 +72,15 @@ map({ mode = "i", key = "<C-a>", cmd = [[ copilot#Accept("<CR>") ]], desc = "Acc
 map({ mode = "i", key = "<C-h>", cmd = [[ copilot#Previous() ]], desc = "Previous copilot suggestion" }, opts)
 map({ mode = "i", key = "<C-l>", cmd = [[ copilot#Next() ]], desc = "Next copilot suggestion" }, opts)
 
+section({ mode = { "n", "v" }, key = "<leader>c", name = "copilot" })
+map({ key = "<leader>cc", cmd = "<CMD>CopilotChatToggle<CR>", desc = "Open" })
+map({ key = "<leader>cr", cmd = "<CMD>CopilotChatReset<CR>", desc = "Reset" })
+map({ mode = { "n", "v" }, key = "<leader>cd", cmd = "<CMD>CopilotChatDocs<CR>", desc = "Add documentation" })
+map({ mode = { "n", "v" }, key = "<leader>ce", cmd = "<CMD>CopilotChatExplain<CR>", desc = "Explain code" })
+map({ mode = { "n", "v" }, key = "<leader>cf", cmd = "<CMD>CopilotChatFix<CR>", desc = "Fix code" })
+map({ mode = { "n", "v" }, key = "<leader>co", cmd = "<CMD>CopilotChatOptimize<CR>", desc = "Optimize code" })
+map({ mode = { "n", "v" }, key = "<leader>ct", cmd = "<CMD>CopilotChatTests<CR>", desc = "Generate tests" })
+
 -- file explorer -----------------------------------------
 section({ key = "<leader>e", name = "explorer" })
 map({ key = "<leader>ec", cmd = "<CMD>NvimTreeCollapse<CR>", desc = "Collapse" })

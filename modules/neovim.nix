@@ -15,7 +15,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {
-        inherit (inputs) telescope-zotero;
+        inherit (inputs) telescope-zotero copilot-chat-nvim;
       };
     in {
       enable = true;
@@ -42,6 +42,7 @@
         copilot-vim
         dressing-nvim
         friendly-snippets
+        gh.copilot-chat-nvim
         gh.telescope-zotero
         gitsigns-nvim
         image-nvim
@@ -101,6 +102,7 @@
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           magick
+          tiktoken_core
         ];
       extraPackages =
         (with pkgs; [

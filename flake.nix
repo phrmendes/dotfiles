@@ -19,6 +19,14 @@
       url = "github:jmbuhr/telescope-zotero.nvim";
     };
 
+    copilot-chat-nvim = {
+      flake = false;
+      type = "github";
+      owner = "CopilotC-Nvim";
+      repo = "CopilotChat.nvim";
+      ref = "canary";
+    };
+
     catppuccin-bat = {
       url = "github:catppuccin/bat";
       flake = false;

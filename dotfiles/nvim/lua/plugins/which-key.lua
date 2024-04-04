@@ -6,8 +6,8 @@ wk.setup({
 		border = "single",
 	},
 	icons = {
-		breadcrumb = "»",
-		separator = "➜",
+		breadcrumb = ">",
+		separator = "",
 		group = "+",
 	},
 })

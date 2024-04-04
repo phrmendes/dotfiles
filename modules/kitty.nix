@@ -18,7 +18,7 @@ in {
       enable = true;
       theme = "Catppuccin-Mocha";
       font = {
-        name = "FiraCode Nerd Font Mono Light";
+        name = "FiraCode Nerd Font Mono";
         package = pkgs.fira-code-nerdfont;
       };
       shellIntegration = {

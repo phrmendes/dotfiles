@@ -38,6 +38,8 @@ in {
     xdg-utils
     zip
     zlib
+    gnome.gnome-disk-utility
+    kdePackages.polkit-kde-agent-1
     (elegant-sddm.override {
       themeConfig.General = {
         background = "${wallpaper}";

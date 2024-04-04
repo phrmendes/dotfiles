@@ -54,7 +54,6 @@ in {
         foliate
         gcolor3
         gnuplot
-        gparted
         grim
         hugo
         libqalculate
@@ -64,7 +63,7 @@ in {
         pavucontrol
         peek
         phockup
-        protonmail-desktop
+        plex
         quickemu
         qview
         rofi-power-menu

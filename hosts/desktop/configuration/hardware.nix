@@ -57,10 +57,6 @@
     };
   };
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/7622da1d-0b9d-4882-89d6-f4daf30e004d";}
-  ];
-
   hardware = {
     uinput.enable = true;
 

@@ -16,27 +16,28 @@
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;
-      dunstctl = "${pkgs.dunst}/bin/dunstctl";
-      swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
-      systemctl = "${pkgs.systemd}/bin/systemctl";
       clipcat-menu = "${pkgs.clipcat}/bin/clipcat-menu";
+      dunstctl = "${pkgs.dunst}/bin/dunstctl";
+      polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
+      swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
+      syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
+      systemctl = "${pkgs.systemd}/bin/systemctl";
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
-      workspaces = [1 2 3 4 5 6 7 8 9];
-      switchToWorkspace = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") workspaces;
-      moveToWorkspaceSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") workspaces;
-      moveToWorkspace = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
-      startupScript = pkgs.writeShellScriptBin "start" ''
-        ${swaybg} --image ${wallpaper} --mode fill
-        ${pkgs.coreutils}/bin/sleep 5 && ${pkgs.syncthingtray}/bin/syncthingtray
-      '';
-      screenshotScript = pkgs.writeShellScriptBin "screenshot" ''
-        ${grim} -g "$(${slurp})" - | ${satty} --filename -
-      '';
+      workspacesKeys = rec {
+        workspaces = [1 2 3 4 5 6 7 8 9];
+        move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
+        switch = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") workspaces;
+        moveSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") workspaces;
+      };
     in {
       enable = true;
       settings = with colors.catppuccin.palette; {
-        exec-once = "${startupScript}/bin/start";
+        exec-once = [
+          "${swaybg} --image ${wallpaper} --mode fill"
+          "${syncthingtray}"
+          "${polkit}"
+        ];
         input = {
           kb_layout = "us,br";
           kb_model = "pc104";
@@ -135,15 +136,15 @@
         bind =
           [
             # apps
+            "SUPER SHIFT,C,exec,${dunstctl} close-all"
+            "SUPER SHIFT,V,exec,${clipcat-menu}"
             "SUPER,C,exec,rofi -show calc -modi calc -no-show-match -no-sort"
             "SUPER,E,exec,rofi -show emoji -modi emoji"
             "SUPER,W,exec,rofi -show window"
-            "SUPER,space,exec,rofi -show drun"
-            ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${powermenu} --choices=shutdown/reboot/lockscreen/suspend"''
-            "SUPER SHIFT,V,exec,${clipcat-menu}"
-            ",print,exec,${screenshotScript}/bin/screenshot"
             "SUPER,return,exec,${kitty}"
-            "SUPER SHIFT,C,exec,${dunstctl} close-all"
+            "SUPER,space,exec,rofi -show drun"
+            '',print,exec,${grim} -g "$(${slurp})" - | ${satty} --filename -''
+            ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${powermenu} --choices=shutdown/reboot/lockscreen/suspend"''
             # general operations
             "SUPER,F,togglefloating"
             "SUPER,P,pseudo"
@@ -172,9 +173,9 @@
             ",XF86AudioPlay,exec,${playerctl} play-pause"
             ",XF86AudioPrev,exec,${playerctl} previous"
           ]
-          ++ switchToWorkspace
-          ++ moveToWorkspace
-          ++ moveToWorkspaceSilent;
+          ++ workspacesKeys.switch
+          ++ workspacesKeys.move
+          ++ workspacesKeys.moveSilent;
       };
     };
   };

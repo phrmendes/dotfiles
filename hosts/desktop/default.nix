@@ -8,7 +8,6 @@
     ./configuration/hardware.nix
     ./configuration/networking.nix
     ./configuration/packages.nix
-    ./configuration/plex.nix
     ./configuration/programs.nix
     ./configuration/security.nix
     ./configuration/services.nix

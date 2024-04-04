@@ -13,7 +13,7 @@ in {
       font_size =
         if isDarwin
         then 16
-        else 13;
+        else 12;
     in {
       enable = true;
       theme = "Catppuccin-Mocha";

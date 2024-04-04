@@ -13,12 +13,14 @@ for mode, keys in pairs(unbind) do
 end
 
 -- macros ------------------------------------------------
-map({ mode = "n", key = "Q", cmd = "@qj", desc = "Replay macro" })
+map({ mode = "n", key = "Q", cmd = "@q", desc = "Replay macro" })
 map({ mode = "v", key = "Q", cmd = "<CMD>norm @q<CR>", desc = "Replay macro" })
 
 -- word wrap ---------------------------------------------
-map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, { expr = true, silent = true })
-map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, { expr = true, silent = true })
+local opts = { expr = true, silent = true }
+
+map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, opts)
+map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, opts)
 
 -- clear highlights --------------------------------------
 map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
@@ -64,45 +66,18 @@ map({ key = "<leader>?", cmd = "<CMD>Telescope help_tags<CR>", desc = "Help" })
 map({ key = "<leader>u", cmd = "<CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" })
 
 -- copilot -----------------------------------------------
-map({
-	mode = "i",
-	key = "<C-a>",
-	cmd = [[ copilot#Accept("<CR>") ]],
-	desc = "Accept copilot suggestion",
-}, {
-	noremap = true,
-	silent = true,
-	expr = true,
-	replace_keycodes = false,
-})
+local opts = { noremap = true, silent = true, expr = true, replace_keycodes = false }
 
-map({
-	mode = "i",
-	key = "<C-h>",
-	cmd = [[ copilot#Previous() ]],
-	desc = "Previous copilot suggestion",
-}, {
-	noremap = true,
-	silent = true,
-	expr = true,
-	replace_keycodes = false,
-})
-
-map({
-	mode = "i",
-	key = "<C-l>",
-	cmd = [[ copilot#Next() ]],
-	desc = "Next copilot suggestion",
-}, {
-	noremap = true,
-	silent = true,
-	expr = true,
-	replace_keycodes = false,
-})
+map({ mode = "i", key = "<C-a>", cmd = [[ copilot#Accept("<CR>") ]], desc = "Accept copilot suggestion" }, opts)
+map({ mode = "i", key = "<C-h>", cmd = [[ copilot#Previous() ]], desc = "Previous copilot suggestion" }, opts)
+map({ mode = "i", key = "<C-l>", cmd = [[ copilot#Next() ]], desc = "Next copilot suggestion" }, opts)
 
 -- file explorer -----------------------------------------
-map({ key = "<leader>e", cmd = "<CMD>NvimTreeToggle<CR>", desc = "Open file explorer (cwd)" })
-map({ key = "<leader>E", cmd = "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open file explorer (current file)" })
+section({ key = "<leader>e", name = "explorer" })
+map({ key = "<leader>ec", cmd = "<CMD>NvimTreeCollapse<CR>", desc = "Collapse" })
+map({ key = "<leader>ee", cmd = "<CMD>NvimTreeToggle<CR>", desc = "Open (cwd)" })
+map({ key = "<leader>ef", cmd = "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open (current file)" })
+map({ key = "<leader>er", cmd = "<CMD>NvimTreeRefresh<CR>", desc = "Collapse" })
 
 -- buffers -----------------------------------------------
 section({ key = "<leader>b", name = "buffers" })
@@ -115,11 +90,12 @@ map({ key = "<leader>bk", cmd = "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>", desc
 map({ key = "<leader>bw", cmd = require("mini.bufremove").wipeout, desc = "Wipeout" })
 
 -- find --------------------------------------------------
-section({ mode = { "n", "v" }, key = "<leader>f", name = "files/find" })
-map({ key = "<leader>ff", cmd = "<CMD>Telescope find_files<CR>", desc = "Find" })
+section({ mode = { "n", "v" }, key = "<leader>f", name = "Find" })
+map({ key = "<leader>ff", cmd = "<CMD>Telescope find_files<CR>", desc = "Files" })
 map({ key = "<leader>fg", cmd = "<CMD>Telescope live_grep<CR>", desc = "Live grep" })
-map({ key = "<leader>fz", cmd = "<CMD>Telescope zoxide list<CR>", desc = "Zoxide" })
-map({ key = "<leader>fs", cmd = require("spectre").toggle, desc = "Search and replace" })
+map({ key = "<leader>fo", cmd = "<CMD>Telescope oldfiles<CR>", desc = "Recent files" })
+map({ key = "<leader>fr", cmd = require("spectre").toggle, desc = "Replace" })
+map({ key = "<leader>ft", cmd = "<CMD>TodoTelescope<CR>", desc = "Todo" })
 
 -- git ---------------------------------------------------
 section({ mode = { "n", "v" }, key = "<leader>g", name = "git" })
@@ -335,3 +311,7 @@ map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc
 -- slime -------------------------------------------------
 map({ mode = { "n", "v" }, key = "<C-c><C-c>", cmd = "<Plug>SlimeParagraphSend", desc = "Send to REPL" })
 map({ mode = { "n", "v" }, key = "<C-c><C-s>", cmd = "<Plug>SlimeConfig", desc = "Slime settings" })
+
+-- session ------------------------------------------------
+map({ key = "<localleader>s", cmd = "<CMD>SessionSave<CR>", desc = "Save session" })
+map({ key = "<localleader>r", cmd = "<CMD>SessionRestore<CR>", desc = "Restore session" })

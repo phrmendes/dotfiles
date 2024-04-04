@@ -24,7 +24,6 @@ in {
         kind
         kubectl
         kubernetes-helm
-        mc
         opentofu
         pandoc
         parallel

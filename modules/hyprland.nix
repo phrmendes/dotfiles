@@ -9,6 +9,7 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
+      copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
       kitty = getExe pkgs.kitty;
       playerctl = getExe pkgs.playerctl;
@@ -16,7 +17,6 @@
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;
-      clipcat-menu = "${pkgs.clipcat}/bin/clipcat-menu";
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
@@ -35,6 +35,7 @@
       settings = with colors.catppuccin.palette; {
         exec-once = [
           "${swaybg} --image ${wallpaper} --mode fill"
+          "${copyq} --start-server"
           "${syncthingtray}"
           "${polkit}"
         ];
@@ -137,7 +138,7 @@
           [
             # apps
             "SUPER SHIFT,C,exec,${dunstctl} close-all"
-            "SUPER SHIFT,V,exec,${clipcat-menu}"
+            "SUPER SHIFT,V,exec,${copyq} menu"
             "SUPER,C,exec,rofi -show calc -modi calc -no-show-match -no-sort"
             "SUPER,E,exec,rofi -show emoji -modi emoji"
             "SUPER,W,exec,rofi -show window"

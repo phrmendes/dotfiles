@@ -45,6 +45,7 @@ in {
         bitwarden
         bruno
         chromium
+        copyq
         curtail
         dbeaver
         deluge

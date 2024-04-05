@@ -19,7 +19,6 @@
       swaybg = getExe pkgs.swaybg;
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
-      sleep = "${pkgs.coreutils}/bin/sleep";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
       syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
       systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -38,8 +37,7 @@
           "${swaybg} --image ${wallpaper} --mode fill"
           "${copyq} --start-server"
           "${polkit}"
-          "${sleep} 5"
-          "${syncthingtray}"
+          "${syncthingtray} --wait"
         ];
         input = {
           kb_layout = "us,br";

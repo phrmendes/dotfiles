@@ -15,7 +15,7 @@
         name = "Pop";
         package = pkgs.pop-icon-theme;
       };
-      settings = with colors.catppuccin.palette; {
+      settings = with colors.catppuccin.hex; {
         global = {
           corner_radius = 5;
           font = "Fira Sans 12";
@@ -30,17 +30,17 @@
           sort = true;
         };
         urgency_low = {
-          background = "#${surface0}";
-          foreground = "#${text}";
+          background = surface0;
+          foreground = text;
         };
         urgency_normal = {
-          background = "#${surface0}";
-          foreground = "#${text}";
+          background = surface0;
+          foreground = text;
         };
         urgency_critical = {
-          background = "#${surface0}";
-          foreground = "#${text}";
-          frame_color = "#${peach}";
+          background = surface0;
+          foreground = text;
+          frame_color = peach;
         };
       };
     };

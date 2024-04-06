@@ -14,16 +14,16 @@
       settings = {
         gui = {
           nerdFontsVersion = "3";
-          theme = with colors.catppuccin.palette; {
-            activeBorderColor = ["#${blue}" "bold"];
-            inactiveBorderColor = ["#${subtext0}"];
-            optionsTextColor = ["#${blue}"];
-            selectedLineBgColor = ["#${surface0}"];
-            cherryPickedCommitBgColor = ["#${surface1}"];
-            cherryPickedCommitFgColor = ["#${blue}"];
-            unstagedChangesColor = ["#${red}"];
-            defaultFgColor = ["#${text}"];
-            searchingActiveBorderColor = ["#${yellow}"];
+          theme = with colors.catppuccin.hex; {
+            activeBorderColor = [blue "bold"];
+            inactiveBorderColor = [subtext0];
+            optionsTextColor = [blue];
+            selectedLineBgColor = [surface0];
+            cherryPickedCommitBgColor = [surface1];
+            cherryPickedCommitFgColor = [blue];
+            unstagedChangesColor = [red];
+            defaultFgColor = [text];
+            searchingActiveBorderColor = [yellow];
           };
         };
         os = {

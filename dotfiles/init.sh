@@ -26,3 +26,17 @@ function update() {
         nix run nix-darwin -- switch --flake "$DOTFILES"
     fi
 }
+
+function yy() {
+	local TMP
+
+    TMP="$(mktemp -t "yazi-cwd.XXXXXX")"
+
+	yazi "$@" --cwd-file="$TMP"
+
+	if CWD="$(cat -- "$TMP")" && [ "$CWD" != "" ] && [ "$CWD" != "$PWD" ]; then
+		cd -- "$CWD" || return
+	fi
+
+	rm -f -- "$TMP"
+}

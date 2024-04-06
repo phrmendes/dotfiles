@@ -23,7 +23,7 @@ later(function()
 				desc = "show options",
 			},
 			["run_current_replace"] = {
-				map = "<C-s><C-r>",
+				map = "<C-s><C-s>",
 				cmd = "<CMD>lua require('spectre.actions').run_current_replace()<CR>",
 				desc = "replace current line",
 			},

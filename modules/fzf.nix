@@ -17,19 +17,19 @@
       changeDirWidgetCommand = "${fd} --type d";
       fileWidgetCommand = "${fd} --type f";
       tmux.enableShellIntegration = true;
-      colors = with colors.catppuccin.palette; {
-        "bg+" = "#${surface0}";
-        "bg" = "#${base}";
-        "spinner" = "#${rosewater}";
-        "hl" = "#${red}";
-        "fg" = "#${text}";
-        "header" = "#${red}";
-        "info" = "#${lavender}";
-        "pointer" = "#${rosewater}";
-        "marker" = "#${rosewater}";
-        "fg+" = "#${text}";
-        "prompt" = "#${lavender}";
-        "hl+" = "#${red}";
+      colors = with colors.catppuccin.hex; {
+        "bg+" = surface0;
+        "bg" = base;
+        "spinner" = rosewater;
+        "hl" = red;
+        "fg" = text;
+        "header" = red;
+        "info" = lavender;
+        "pointer" = rosewater;
+        "marker" = rosewater;
+        "fg+" = text;
+        "prompt" = lavender;
+        "hl+" = red;
       };
     };
   };

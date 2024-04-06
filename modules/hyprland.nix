@@ -32,7 +32,7 @@
       };
     in {
       enable = true;
-      settings = with colors.catppuccin.palette; {
+      settings = with colors.catppuccin.rgba; {
         exec-once = [
           "${swaybg} --image ${wallpaper} --mode fill"
           "${copyq} --start-server"
@@ -53,8 +53,8 @@
           border_size = 2;
           layout = "dwindle";
           resize_on_border = true;
-          "col.active_border" = "rgba(${blue}ff) rgba(${green}ff) 60deg";
-          "col.inactive_border" = "rgba(${surface0}ff)";
+          "col.active_border" = "${blue} ${green} 60deg";
+          "col.inactive_border" = surface0;
         };
         decoration = {
           active_opacity = 1;
@@ -63,7 +63,7 @@
           drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
-          "col.shadow" = "rgba(${base}ff)";
+          "col.shadow" = base;
           blur = {
             enabled = true;
             size = 3;
@@ -83,15 +83,15 @@
           disable_hyprland_logo = true;
         };
         group = {
-          "col.border_active" = "rgba(${blue}ff) rgba(${green}ff) 60deg";
-          "col.border_inactive" = "rgba(${surface0}ff)";
-          "col.border_locked_active" = "rgba(${red}ff)";
-          "col.border_locked_inactive" = "rgba(${surface0}ff)";
+          "col.border_active" = "${blue} ${green} 60deg";
+          "col.border_inactive" = surface0;
+          "col.border_locked_active" = red;
+          "col.border_locked_inactive" = surface0;
           groupbar = {
-            "col.active" = "rgba(${blue}ff)";
-            "col.inactive" = "rgba(${surface0}ff)";
-            "col.locked_active" = "rgba(${red}ff)";
-            "col.locked_inactive" = "rgba(${surface0}ff)";
+            "col.active" = blue;
+            "col.inactive" = surface0;
+            "col.locked_active" = red;
+            "col.locked_inactive" = surface0;
           };
         };
         monitor = [

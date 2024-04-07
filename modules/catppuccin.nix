@@ -28,11 +28,11 @@
       mantle = "#181825";
       crust = "#11111B";
     };
-    removeHash = hex: builtins.replaceStrings ["#"] [""] hex;
-    convertToRGBA = code: "rgba(${builtins.toString code}ff)";
+    removeHash = name: hex: builtins.replaceStrings ["#"] [""] hex;
+    convertToRGBA = name: code: "rgba(${builtins.toString code}ff)";
   in rec {
     hex = palette;
-    code = builtins.mapAttrs (name: color: removeHash color) palette;
-    rgba = builtins.mapAttrs (name: color: convertToRGBA color) code;
+    code = builtins.mapAttrs removeHash palette;
+    rgba = builtins.mapAttrs convertToRGBA code;
   };
 }

@@ -82,11 +82,8 @@ map({ mode = { "n", "v" }, key = "<leader>co", cmd = "<CMD>CopilotChatOptimize<C
 map({ mode = { "n", "v" }, key = "<leader>ct", cmd = "<CMD>CopilotChatTests<CR>", desc = "Generate tests" })
 
 -- file explorer -----------------------------------------
-section({ key = "<leader>e", name = "explorer" })
-map({ key = "<leader>ec", cmd = "<CMD>NvimTreeCollapse<CR>", desc = "Collapse" })
-map({ key = "<leader>ee", cmd = "<CMD>NvimTreeToggle<CR>", desc = "Open (cwd)" })
-map({ key = "<leader>ef", cmd = "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open (current file)" })
-map({ key = "<leader>er", cmd = "<CMD>NvimTreeRefresh<CR>", desc = "Collapse" })
+map({ key = "<leader>e", cmd = "<CMD>NvimTreeToggle<CR>", desc = "Open (cwd)" })
+map({ key = "<leader>E", cmd = "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open (current file)" })
 
 -- buffers -----------------------------------------------
 section({ key = "<leader>b", name = "buffers" })

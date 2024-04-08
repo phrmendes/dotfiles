@@ -33,6 +33,7 @@
       "qview"
       "slack"
       "tailscale"
+      "vagrant"
       "virtualbox"
       "whichspace"
     ];

@@ -27,7 +27,6 @@ in {
         opentofu
         pandoc
         parallel
-        vagrant
         poppler
         quarto
         ripgrep
@@ -73,6 +72,7 @@ in {
         slurp
         swaybg
         syncthingtray
+        vagrant
         ventoy
         vlc
         zotero

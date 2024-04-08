@@ -27,6 +27,7 @@ in {
         opentofu
         pandoc
         parallel
+        vagrant
         poppler
         quarto
         ripgrep

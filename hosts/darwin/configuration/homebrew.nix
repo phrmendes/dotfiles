@@ -34,7 +34,6 @@
       "slack"
       "tailscale"
       "vagrant"
-      "virtualbox"
       "whichspace"
     ];
   };

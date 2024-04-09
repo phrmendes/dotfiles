@@ -80,24 +80,23 @@
 
         bind '-' split-window -v -c '#{pane_current_path}'
         bind '\' split-window -h -c '#{pane_current_path}'
+        bind ']' next-window
+        bind '[' previous-window
+        bind G last-window
+        bind P paste-buffer
+        bind w new-window
+        bind x kill-window
         bind y copy-mode
         bind z resize-pane -Z
-        bind P paste-buffer
-
-        bind -n M-n next-window
-        bind -n M-p previous-window
-        bind -n M-w new-window
-        bind -n M-x kill-window
-        bind -n M-G last-window
-        bind -n M-1 select-window -t 1
-        bind -n M-2 select-window -t 2
-        bind -n M-3 select-window -t 3
-        bind -n M-4 select-window -t 4
-        bind -n M-5 select-window -t 5
-        bind -n M-6 select-window -t 6
-        bind -n M-7 select-window -t 7
-        bind -n M-8 select-window -t 8
-        bind -n M-9 select-window -t 9
+        bind 1 select-window -t 1
+        bind 2 select-window -t 2
+        bind 3 select-window -t 3
+        bind 4 select-window -t 4
+        bind 5 select-window -t 5
+        bind 6 select-window -t 6
+        bind 7 select-window -t 7
+        bind 8 select-window -t 8
+        bind 9 select-window -t 9
 
         bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h'  'select-pane -L'
         bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j'  'select-pane -D'

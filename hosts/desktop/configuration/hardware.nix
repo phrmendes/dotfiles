@@ -9,6 +9,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
   boot = {
+    tmp.cleanOnBoot = true;
     loader = {
       efi = {
         canTouchEfiVariables = true;

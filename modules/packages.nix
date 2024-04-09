@@ -38,6 +38,8 @@ in {
       darwin = with pkgs; [
         maven
         pngpaste
+        poetry
+        pyenv
         terragrunt
       ];
       desktop = with pkgs; [

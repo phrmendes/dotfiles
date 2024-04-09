@@ -5,22 +5,18 @@ export GIT_EDITOR="nvim";
 export SUDO_EDITOR="nvim";
 export VISUAL="nvim";
 
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
-export PATH="/run/current-system/sw/bin:$PATH"
-
 if [[ $HOST  != "desktop" ]]; then
     export PATH="/opt/homebrew/sbin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
-    export PYENV_ROOT="$HOME/.pyenv"
-
-    if [[ -d $PYENV_ROOT/bin ]]; then
-	export PATH="$PYENV_ROOT/bin:$PATH"
-    fi
+    export PATH="$HOME/.pyenv/bin:$PATH"
 
     eval "$(pyenv init -)"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
+export PATH="/run/current-system/sw/bin:$PATH"
+export PATH="/run/wrappers/bin:$PATH"
 
 function gc() {
     sudo nix-collect-garbage --delete-older-than 1d

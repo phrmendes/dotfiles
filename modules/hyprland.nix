@@ -20,8 +20,6 @@
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
-      syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
-      sleep = "${pkgs.coreutils-full}/bin/sleep";
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
       workspacesKeys = rec {
@@ -37,8 +35,6 @@
           "${swaybg} --image ${wallpaper} --mode fill"
           "${copyq} --start-server"
           "${polkit}"
-          "${sleep} 10"
-          "${syncthingtray}"
         ];
         input = {
           kb_layout = "us,br";

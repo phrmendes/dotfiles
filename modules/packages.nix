@@ -45,13 +45,8 @@ in {
       ];
       desktop = with pkgs; [
         bashly
-        bitwarden
-        bruno
-        chromium
         copyq
         curtail
-        dbeaver
-        deluge
         droidcam
         evince
         firefox
@@ -60,12 +55,11 @@ in {
         gnuplot
         grim
         hugo
+        kooha
         libqalculate
         libreoffice
         nwg-displays
-        obsidian
         pavucontrol
-        peek
         phockup
         plex
         quickemu
@@ -74,11 +68,10 @@ in {
         satty
         slurp
         swaybg
-        syncthingtray
+        transmission
         vagrant
         ventoy
         vlc
-        zotero
       ];
     in
       if isDarwin

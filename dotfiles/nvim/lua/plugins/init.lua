@@ -21,9 +21,10 @@ require("plugins.telescope")
 require("plugins.todo")
 require("plugins.treesitter")
 require("plugins.which-key")
-require("plugins.writing")
 require("plugins.zen")
 
 if vim.fn.has("mac") == 0 then
+	require("plugins.jupytext")
 	require("plugins.obsidian")
+	require("plugins.quarto")
 end

@@ -2,14 +2,6 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local border = cmp.config.window.bordered()
 
-require("cmp_pandoc").setup({
-	filetypes = { "quarto", "markdown" },
-	crossref = {
-		documentation = true,
-		enable_nabla = true,
-	},
-})
-
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -81,16 +73,24 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
-cmp.setup.filetype({ "markdown", "quarto" }, {
-	sources = cmp.config.sources({
-		{ name = "otter" },
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "cmp_pandoc" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-		{ name = "buffer" },
-	}, {
-		{ name = "buffer" },
-	}),
-})
+if vim.fn.has("mac") == 0 then
+	require("cmp_pandoc").setup({
+		filetypes = { "quarto", "markdown" },
+		crossref = {
+			documentation = true,
+			enable_nabla = true,
+		},
+	})
+
+	cmp.setup.filetype({ "markdown", "quarto" }, {
+		sources = cmp.config.sources({
+			{ name = "otter" },
+			{ name = "path" },
+			{ name = "nvim_lsp" },
+			{ name = "luasnip" },
+			{ name = "cmp_pandoc" },
+			{ name = "latex_symbols", option = { strategy = 2 } },
+			{ name = "buffer" },
+		}),
+	})
+end

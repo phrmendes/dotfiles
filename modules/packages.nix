@@ -29,9 +29,7 @@ in {
         pandoc
         parallel
         poppler
-        quarto
         ripgrep
-        tectonic
         terraform
         tokei
         unar
@@ -62,12 +60,14 @@ in {
         pavucontrol
         phockup
         plex
+        quarto
         quickemu
         qview
         rofi-power-menu
         satty
         slurp
         swaybg
+        tectonic
         transmission
         vagrant
         ventoy

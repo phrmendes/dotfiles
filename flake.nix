@@ -120,6 +120,7 @@
                 imports = [
                   nix-flatpak.homeManagerModules.nix-flatpak
                   ./modules
+                  ./modules/flatpak.nix
                 ];
 
                 blueman.enable = true;

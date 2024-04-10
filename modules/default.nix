@@ -10,7 +10,6 @@
     ./direnv.nix
     ./dunst.nix
     ./eza.nix
-    ./flatpak.nix
     ./fzf.nix
     ./git.nix
     ./gnome-keyring.nix

@@ -40,27 +40,28 @@
       };
     };
 
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        theme = "Elegant";
+        settings = {
+          General.Numlock = true;
+          Theme = {
+            Font = "Fira Sans";
+            FacesDir = "~/";
+          };
+        };
+      };
+    };
+
     xserver = {
       enable = true;
       autorun = true;
+      videoDrivers = ["nvidia"];
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";
-      };
-      videoDrivers = ["nvidia"];
-      displayManager = {
-        sddm = {
-          enable = true;
-          wayland.enable = true;
-          theme = "Elegant";
-          settings = {
-            General.Numlock = true;
-            Theme = {
-              Font = "Fira Sans";
-              FacesDir = "~/";
-            };
-          };
-        };
       };
     };
   };

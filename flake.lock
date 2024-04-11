@@ -89,6 +89,22 @@
         "type": "github"
       }
     },
+    "latex-snippets-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707898530,
+        "narHash": "sha256-hasYnmyWq3yk3uzQIwXDtGqCIk0Ck+Qu5obxBoXE0OI=",
+        "owner": "iurimateus",
+        "repo": "luasnip-latex-snippets.nvim",
+        "rev": "064f2abb6d08ebdd17b4a2baa181ffa7c4011f39",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iurimateus",
+        "repo": "luasnip-latex-snippets.nvim",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1711997201,
@@ -128,6 +144,7 @@
         "copilot-chat-nvim": "copilot-chat-nvim",
         "darwin": "darwin",
         "home-manager": "home-manager",
+        "latex-snippets-nvim": "latex-snippets-nvim",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
         "telescope-zotero": "telescope-zotero"

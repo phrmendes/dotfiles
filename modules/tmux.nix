@@ -75,6 +75,7 @@
 
         unbind '"'
         unbind %
+        unbind &
         unbind [
         unbind y
 
@@ -82,10 +83,13 @@
         bind '\' split-window -h -c '#{pane_current_path}'
         bind ']' next-window
         bind '[' previous-window
+        bind D confirm kill-server
         bind G last-window
         bind P paste-buffer
+        bind X confirm kill-window
+        bind d detach-client
         bind w new-window
-        bind x kill-window
+        bind x kill-pane
         bind y copy-mode
         bind z resize-pane -Z
         bind 1 select-window -t 1

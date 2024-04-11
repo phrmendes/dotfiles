@@ -15,7 +15,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {
-        inherit (inputs) telescope-zotero copilot-chat-nvim;
+        inherit (inputs) telescope-zotero copilot-chat-nvim latex-snippets-nvim;
       };
     in {
       enable = true;
@@ -33,7 +33,6 @@
         catppuccin-nvim
         cmp-buffer
         cmp-cmdline
-        cmp-latex-symbols
         cmp-nvim-lsp
         cmp-pandoc-nvim
         cmp-path
@@ -42,7 +41,9 @@
         copilot-vim
         dressing-nvim
         friendly-snippets
+        cmp-latex-symbols
         gh.copilot-chat-nvim
+        gh.latex-snippets-nvim
         gh.telescope-zotero
         gitsigns-nvim
         image-nvim

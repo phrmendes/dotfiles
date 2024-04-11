@@ -33,6 +33,11 @@
       ref = "canary";
     };
 
+    latex-snippets-nvim = {
+      flake = false;
+      url = "github:iurimateus/luasnip-latex-snippets.nvim";
+    };
+
     catppuccin-bat = {
       url = "github:catppuccin/bat";
       flake = false;

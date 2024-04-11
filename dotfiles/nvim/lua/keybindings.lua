@@ -25,6 +25,9 @@ map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, opts
 -- clear highlights --------------------------------------
 map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
 
+-- escape term mode --------------------------------------
+map({ mode = "t", key = "<C-c>", cmd = "<C-\\><C-n>", desc = "Escape terminal mode" })
+
 -- better page up/down -----------------------------------
 map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
 map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })

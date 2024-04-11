@@ -38,7 +38,6 @@ in {
         maven
         pngpaste
         poetry
-        pyenv
         terragrunt
       ];
       desktop = with pkgs; [

@@ -8,9 +8,6 @@ export VISUAL="nvim";
 if [[ $HOST  != "desktop" ]]; then
     export PATH="/opt/homebrew/sbin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
-    export PATH="$HOME/.pyenv/bin:$PATH"
-
-    eval "$(pyenv init -)"
 fi
 
 export PATH="$HOME/.local/bin:$PATH"

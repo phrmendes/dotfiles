@@ -22,6 +22,7 @@
     ./network-manager.nix
     ./packages.nix
     ./pasystray.nix
+    ./pyenv.nix
     ./rofi.nix
     ./starship.nix
     ./swayidle.nix

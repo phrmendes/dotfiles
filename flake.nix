@@ -86,7 +86,11 @@
                 inherit inputs pkgs parameters;
               };
               backupFileExtension = "bak";
-              users.${parameters.user}.imports = [./modules];
+              users.${parameters.user} = {
+                imports = [./modules];
+
+                pyenv.enable = true;
+              };
             };
           }
         ];

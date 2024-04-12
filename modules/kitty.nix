@@ -71,6 +71,7 @@ in {
         "ctrl+shift+equal" = "resize_window reset";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
+        "cmd+k" = "no_op";
       };
     };
   };

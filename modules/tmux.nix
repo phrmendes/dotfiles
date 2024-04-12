@@ -102,10 +102,8 @@
         bind 8 select-window -t 8
         bind 9 select-window -t 9
 
-        bind h swap-pane -L
-        bind j swap-pane -D
-        bind k swap-pane -U
-        bind l swap-pane -R
+        bind -r n swap-pane -D
+        bind -r p swap-pane -U
         bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
         bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
         bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'

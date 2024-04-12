@@ -304,10 +304,10 @@ autocmd("LspAttach", {
 })
 
 -- smart splits ------------------------------------------
-map({ key = "<A-h>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
-map({ key = "<A-j>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
-map({ key = "<A-k>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
-map({ key = "<A-l>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
+map({ key = "<C-Left>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
+map({ key = "<C-Down>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
+map({ key = "<C-Up>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
+map({ key = "<C-Right>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
 map({ key = "<C-h>", cmd = require("smart-splits").move_cursor_left, desc = "Move cursor left" })
 map({ key = "<C-j>", cmd = require("smart-splits").move_cursor_down, desc = "Move cursor down" })
 map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move cursor up" })

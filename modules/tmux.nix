@@ -102,14 +102,18 @@
         bind 8 select-window -t 8
         bind 9 select-window -t 9
 
-        bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h'  'select-pane -L'
-        bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j'  'select-pane -D'
-        bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k'  'select-pane -U'
-        bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l'  'select-pane -R'
-        bind -n M-h if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
-        bind -n M-j if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
-        bind -n M-k if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
-        bind -n M-l if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
+        bind h swap-pane -L
+        bind j swap-pane -D
+        bind k swap-pane -U
+        bind l swap-pane -R
+        bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
+        bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
+        bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'
+        bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l' 'select-pane -R'
+        bind -n C-Left if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
+        bind -n C-Down if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
+        bind -n C-Up if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
+        bind -n C-Right if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
 
         bind -T copy-mode-vi 'C-h' select-pane -L
         bind -T copy-mode-vi 'C-j' select-pane -D

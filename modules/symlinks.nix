@@ -21,7 +21,8 @@ in {
         ".amethyst.yml".source = ../dotfiles/amethyst.yml;
       };
       desktop = {
-        ".phrmendes.face.icon".source = ../dotfiles/avatar.png;
+        ".face".source = ../dotfiles/avatar.png;
+        ".wallpaper".source = ../dotfiles/wallpaper.png;
       };
     in
       if isDarwin

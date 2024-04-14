@@ -28,15 +28,15 @@ in {
       settings = {
         inherit font_size;
         allow_remote_control = "yes";
-        bell_on_tab = false;
+        bell_on_tab = "no";
         bold_font = "auto";
         bold_italic_font = "auto";
-        enable_audio_bell = false;
+        enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
         inactive_text_alpha = "0.9";
         italic_font = "auto";
         listen_on = "unix:/tmp/kitty";
-        macos_option_as_alt = "left";
+        macos_option_as_alt = "yes";
         open_url_with = "default";
         scrollback_lines = 10000;
         shell_integration = "enabled";

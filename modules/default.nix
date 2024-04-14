@@ -15,7 +15,6 @@
     ./gnome-keyring.nix
     ./gtk.nix
     ./hyprland.nix
-    ./kdeconnect.nix
     ./kitty.nix
     ./lazygit.nix
     ./neovim.nix

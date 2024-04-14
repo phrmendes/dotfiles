@@ -36,6 +36,16 @@ map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })
 map({ key = "n", cmd = [['Nn'[v:searchforward].'zv']], desc = "Next" }, { expr = true })
 map({ key = "N", cmd = [['nN'[v:searchforward].'zv']], desc = "Previous" }, { expr = true })
 
+-- vim-visual-multi --------------------------------------
+vim.g.VM_maps = {
+	["Select h"] = "<A-h>",
+	["Select l"] = "<A-l>",
+	["Add Cursor Up"] = "<A-k>",
+	["Add Cursor Down"] = "<A-j>",
+	["Move Left"] = "<A-Left>",
+	["Move Right"] = "<A-Right>",
+}
+
 -- windows -----------------------------------------------
 map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
 map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
@@ -320,7 +330,3 @@ map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc
 -- slime -------------------------------------------------
 map({ mode = { "n", "v" }, key = "<C-c><C-c>", cmd = "<Plug>SlimeParagraphSend", desc = "Send to REPL" })
 map({ mode = { "n", "v" }, key = "<C-c><C-s>", cmd = "<Plug>SlimeConfig", desc = "Slime settings" })
-
--- session ------------------------------------------------
-map({ key = "<localleader>s", cmd = "<CMD>SessionSave<CR>", desc = "Save session" })
-map({ key = "<localleader>r", cmd = "<CMD>SessionRestore<CR>", desc = "Restore session" })

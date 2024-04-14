@@ -139,7 +139,6 @@
                 gnome-keyring.enable = true;
                 gtk-theme.enable = true;
                 hyprland.enable = true;
-                kdeconnect.enable = true;
                 nm-applet.enable = true;
                 pasystray.enable = true;
                 rofi.enable = true;

@@ -11,6 +11,7 @@
       inherit (lib) getExe;
       swaylock = getExe pkgs.swaylock;
       rg = getExe pkgs.ripgrep;
+      sleep = "${pkgs.coreutils-full}/bin/sleep";
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       systemctl = "${pkgs.systemd}/bin/systemctl";
       pw-cli = "${pkgs.pipewire}/bin/pw-cli";
@@ -19,7 +20,7 @@
         ${pw-cli} i all | ${rg} running
 
         if [ $? == 1 ]; then
-          ${systemctl} suspend
+          ${systemctl} suspend -i
         fi
       '';
     in {
@@ -42,7 +43,7 @@
         }
         {
           command = "${hyprctl} dispatch dpms off";
-          resumeCommand = "${hyprctl} dispatch dpms on";
+          resumeCommand = "${sleep} 3; ${hyprctl} dispatch dpms on";
           timeout = 330;
         }
         {

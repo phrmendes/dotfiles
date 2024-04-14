@@ -8,7 +8,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -53,7 +52,6 @@
     self,
     darwin,
     home-manager,
-    nix-flatpak,
     nixpkgs,
     ...
   }: {
@@ -126,16 +124,11 @@
               };
               backupFileExtension = "bak";
               users.${parameters.user} = {
-                imports = [
-                  nix-flatpak.homeManagerModules.nix-flatpak
-                  ./modules
-                  ./modules/flatpak.nix
-                ];
+                imports = [./modules];
 
                 blueman.enable = true;
                 btop.enable = true;
                 dunst.enable = true;
-                flatpak.enable = true;
                 gnome-keyring.enable = true;
                 gtk-theme.enable = true;
                 hyprland.enable = true;

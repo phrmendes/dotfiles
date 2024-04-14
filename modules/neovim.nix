@@ -94,7 +94,6 @@
         vim-nix
         vim-sleuth
         vim-slime
-        vim-startuptime
         vim-visual-multi
         which-key-nvim
         zen-mode-nvim

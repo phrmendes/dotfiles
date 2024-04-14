@@ -35,7 +35,6 @@
           "${swaybg} --image ${wallpaper} --mode fill"
           "${copyq} --start-server"
           "${polkit}"
-          "flatpak run com.github.zocker_160.SyncThingy"
         ];
         input = {
           kb_layout = "us,br";

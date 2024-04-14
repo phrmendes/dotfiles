@@ -35,11 +35,11 @@
     "copilot-chat-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1712505329,
-        "narHash": "sha256-SBrKcX8pZZlDNZ49GEhY6RPDK7nawfnqkoQ0aw05ZKk=",
+        "lastModified": 1712990755,
+        "narHash": "sha256-Nwugw3YDO4DDZeluepRY7d9F5umaGviuQ2EkrF6FNd4=",
         "owner": "CopilotC-Nvim",
         "repo": "CopilotChat.nvim",
-        "rev": "11c8b5d9c3c492f6cb6f9335f2539514a2f58a2e",
+        "rev": "9898b4cd1b19c6ca639b77b34bb599a119356c1f",
         "type": "github"
       },
       "original": {
@@ -76,11 +76,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712688495,
-        "narHash": "sha256-NrVLXkpT9ZigiI8md6NIzHS+3lE4QTj30IgXG57O9iM=",
+        "lastModified": 1713131281,
+        "narHash": "sha256-/Jm1X9MPfLXAxZSCdWmQAFNUQggEfNWHol5jSyyzFzw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b00d0e4fe9cba0047f54e77418ddda5f17e6ef2c",
+        "rev": "9f32c66a51d05e6d4ec0dea555bbff9135749ec7",
         "type": "github"
       },
       "original": {
@@ -105,29 +105,13 @@
         "type": "github"
       }
     },
-    "nix-flatpak": {
-      "locked": {
-        "lastModified": 1711997201,
-        "narHash": "sha256-J71xzQlVYsjagA4AsVwRazhBh2rZrPpKvxTgs6UzL7c=",
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
-        "rev": "b76fa31346db7fc958a9898f3c594696ca71c4fd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gmodena",
-        "ref": "v0.4.1",
-        "repo": "nix-flatpak",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1712666087,
-        "narHash": "sha256-WwjUkWsjlU8iUImbivlYxNyMB1L5YVqE8QotQdL9jWc=",
+        "lastModified": 1713006710,
+        "narHash": "sha256-u7vpSVm2eCycRuOzSWKic/aaRUK4c8hPo3gETlDfm0A=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a76c4553d7e741e17f289224eda135423de0491d",
+        "rev": "692ceb334b4fd60d61798dde895f6f122110f5fe",
         "type": "github"
       },
       "original": {
@@ -145,7 +129,6 @@
         "darwin": "darwin",
         "home-manager": "home-manager",
         "latex-snippets-nvim": "latex-snippets-nvim",
-        "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
         "telescope-zotero": "telescope-zotero"
       }

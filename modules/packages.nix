@@ -28,6 +28,7 @@ in {
         opentofu
         pandoc
         parallel
+        podman-tui
         poppler
         ripgrep
         terraform
@@ -42,8 +43,12 @@ in {
       ];
       desktop = with pkgs; [
         bashly
+        bitwarden
+        bruno
+        chromium
         copyq
         curtail
+        dbeaver
         droidcam
         evince
         firefox
@@ -56,6 +61,7 @@ in {
         libqalculate
         libreoffice
         nwg-displays
+        obsidian
         pavucontrol
         phockup
         plex
@@ -71,6 +77,7 @@ in {
         vagrant
         ventoy
         vlc
+        zotero
       ];
     in
       if isDarwin

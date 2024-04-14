@@ -29,7 +29,6 @@
       "keepingyouawake"
       "maccy"
       "microsoft-teams"
-      "podman-desktop"
       "postman"
       "qview"
       "slack"

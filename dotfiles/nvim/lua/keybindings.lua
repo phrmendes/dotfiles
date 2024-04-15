@@ -38,12 +38,10 @@ map({ key = "N", cmd = [['nN'[v:searchforward].'zv']], desc = "Previous" }, { ex
 
 -- vim-visual-multi --------------------------------------
 vim.g.VM_maps = {
-	["Select h"] = "<A-h>",
-	["Select l"] = "<A-l>",
-	["Add Cursor Up"] = "<A-k>",
-	["Add Cursor Down"] = "<A-j>",
-	["Move Left"] = "<A-Left>",
-	["Move Right"] = "<A-Right>",
+	["Add Cursor Up"] = "M",
+	["Add Cursor Down"] = "m",
+	["Undo"] = "u",
+	["Redo"] = "<C-r>",
 }
 
 -- windows -----------------------------------------------

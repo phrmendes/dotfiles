@@ -75,7 +75,6 @@ in {
           slurp
           swaybg
           swaynotificationcenter
-          syncthingtray
           tectonic
           transmission
           vagrant
@@ -86,10 +85,6 @@ in {
         ])
         ++ (with pkgs.cinnamon; [
           nemo-with-extensions
-          nemo-fileroller
-        ])
-        ++ (with pkgs.gnome; [
-          file-roller
         ]);
     in
       if isDarwin

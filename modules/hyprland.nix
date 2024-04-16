@@ -20,11 +20,9 @@
       walker = getExe pkgs.walker;
       nwg-panel = getExe pkgs.nwg-panel;
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
-      sleep = "${pkgs.coreutils-full}/bin/sleep";
       swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
       swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
-      syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
       workspacesKeys = rec {
@@ -42,8 +40,6 @@
           "${copyq} --start-server"
           "${swaync}"
           "${polkit}"
-          "${sleep} 10"
-          "${syncthingtray}"
         ];
         input = {
           kb_layout = "us,br";

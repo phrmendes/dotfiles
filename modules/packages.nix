@@ -84,10 +84,12 @@ in {
           xarchiver
           zotero
         ])
-        ++ (with pkgs.xfce; [
-          thunar
-          thunar-volman
-          thunar-archive-plugin
+        ++ (with pkgs.cinnamon; [
+          nemo-with-extensions
+          nemo-fileroller
+        ])
+        ++ (with pkgs.gnome; [
+          file-roller
         ]);
     in
       if isDarwin

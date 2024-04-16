@@ -25,8 +25,9 @@ in {
       desktop = {
         ".face".source = ../dotfiles/avatar.png;
         ".wallpaper".source = ../dotfiles/wallpaper.png;
-        ".config/nwg-panel/style.css".source = ../dotfiles/nwg-panel/style.css;
         ".config/nwg-bar/style.css".source = ../dotfiles/nwg-bar/style.css;
+        ".config/nwg-panel/style.css".source = ../dotfiles/nwg-panel/style.css;
+        ".config/swaync/style.css".source = ../dotfiles/swaync/style.css;
         ".config/nwg-panel/config".source = ../dotfiles/nwg-panel/config.json;
         ".config/nwg-bar/bar.json".text = builtins.toJSON [
           {

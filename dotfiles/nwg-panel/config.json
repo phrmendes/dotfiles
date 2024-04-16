@@ -38,7 +38,7 @@
           "cmd": "nwg-displays"
         },
         {
-          "name": "Settings",
+          "name": "Panel settings",
           "icon": "nwg-panel",
           "cmd": "nwg-panel-config"
         }
@@ -86,24 +86,6 @@
       "root-css-name": "tray",
       "inner-css-name": "inner-tray"
     },
-    "sway-taskbar": {
-      "workspace-menu": ["1", "2", "3", "4", "5", "6", "7", "8"],
-      "name-max-len": 20,
-      "image-size": 16,
-      "workspaces-spacing": 0,
-      "task-padding": 0,
-      "show-app-icon": true,
-      "show-app-name": true,
-      "show-layout": true,
-      "workspace-buttons": false,
-      "all-workspaces": true,
-      "mark-autotiling": true,
-      "mark-xwayland": true,
-      "all-outputs": true
-    },
-    "sway-workspaces": {
-      "numbers": ["1", "2", "3", "4", "5", "6", "7", "8"]
-    },
     "clock": {
       "format": "%H:%M",
       "tooltip-text": "",
@@ -149,42 +131,6 @@
     "use-sigrt": false,
     "scratchpad": {},
     "sway-mode": {},
-    "openweather": {
-      "module-id": "1713293727.983622",
-      "appid": "533d942e2c6ed12a3385b8627e9f0251",
-      "weatherbit-api-key": "",
-      "lat": 51.5008,
-      "long": -0.1246,
-      "lang": "en",
-      "units": "metric",
-      "interval": 1800,
-      "loc-name": "",
-      "weather-icons": "color",
-      "on-right-click": "",
-      "on-middle-click": "",
-      "on-scroll": "",
-      "icon-placement": "start",
-      "icon-size": 24,
-      "css-name": "weather",
-      "show-name": false,
-      "angle": 0.0,
-      "ow-popup-icons": "light",
-      "popup-header-icon-size": 48,
-      "popup-icon-size": 24,
-      "popup-text-size": "medium",
-      "popup-css-name": "weather-forecast",
-      "popup-placement": "right",
-      "popup-margin-horizontal": 0,
-      "popup-margin-top": 0,
-      "popup-margin-bottom": 0,
-      "show-humidity": true,
-      "show-wind": true,
-      "show-pressure": true,
-      "show-cloudiness": true,
-      "show-visibility": true,
-      "show-pop": true,
-      "show-volume": true
-    },
     "brightness-slider": {},
     "dwl-tags": {},
     "hyprland-taskbar": {
@@ -232,7 +178,7 @@
       "cmd-restart": "systemctl -i reboot",
       "cmd-shutdown": "systemctl -i poweroff",
       "autohide": true,
-      "file-manager": "thunar",
+      "file-manager": "nemo",
       "icon-size-large": 32,
       "icon-size-small": 16,
       "icon-size-button": 16,
@@ -241,7 +187,7 @@
       "margin-right": 0,
       "margin-top": 0,
       "padding": 2,
-      "terminal": "foot",
+      "terminal": "kitty",
       "run-through-compositor": true
     }
   }

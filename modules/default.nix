@@ -11,7 +11,6 @@
     ./blueman.nix
     ./btop.nix
     ./direnv.nix
-    ./dunst.nix
     ./eza.nix
     ./fzf.nix
     ./git.nix
@@ -23,7 +22,6 @@
     ./neovim.nix
     ./network-manager.nix
     ./packages.nix
-    ./pasystray.nix
     ./pyenv.nix
     ./starship.nix
     ./swayidle.nix
@@ -35,7 +33,6 @@
     ./tmux.nix
     ./udiskie.nix
     ./walker.nix
-    ./waybar.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix

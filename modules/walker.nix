@@ -11,7 +11,7 @@
       kitty = lib.getExe pkgs.kitty;
     in {
       enable = true;
-      runAsService = true;
+      runAsService = false;
       style = builtins.readFile ../dotfiles/walker/style.css;
       config = {
         activation_mode.disable = false;
@@ -55,11 +55,6 @@
           {
             name = "switcher";
             prefix = "/";
-          }
-          {
-            name = "clipboard";
-            prefix = "";
-            switcher_exclusive = true;
           }
           {
             name = "finder";

@@ -41,45 +41,54 @@ in {
         poetry
         terragrunt
       ];
-      desktop = with pkgs; [
-        bashly
-        bitwarden
-        bruno
-        chromium
-        copyq
-        curtail
-        dbeaver
-        droidcam
-        evince
-        firefox
-        foliate
-        gcolor3
-        gnuplot
-        grim
-        hugo
-        kooha
-        libqalculate
-        libreoffice
-        nwg-bar
-        nwg-displays
-        nwg-panel
-        obsidian
-        pavucontrol
-        phockup
-        plex
-        quarto
-        quickemu
-        qview
-        satty
-        slurp
-        swaybg
-        tectonic
-        transmission
-        vagrant
-        ventoy
-        vlc
-        zotero
-      ];
+      desktop =
+        (with pkgs; [
+          bashly
+          bitwarden
+          bruno
+          chromium
+          copyq
+          curtail
+          dbeaver
+          droidcam
+          evince
+          firefox
+          foliate
+          gcolor3
+          gnuplot
+          grim
+          hugo
+          kooha
+          libqalculate
+          libreoffice
+          nwg-bar
+          nwg-displays
+          nwg-panel
+          obsidian
+          pavucontrol
+          phockup
+          plex
+          quarto
+          quickemu
+          qview
+          satty
+          slurp
+          swaybg
+          swaynotificationcenter
+          syncthingtray
+          tectonic
+          transmission
+          vagrant
+          ventoy
+          vlc
+          xarchiver
+          zotero
+        ])
+        ++ (with pkgs.xfce; [
+          thunar
+          thunar-volman
+          thunar-archive-plugin
+        ]);
     in
       if isDarwin
       then common ++ darwin

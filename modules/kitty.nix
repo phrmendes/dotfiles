@@ -66,10 +66,10 @@ in {
         "ctrl+shift+z" = "toggle_layout stack";
         "ctrl+shift+[" = "previous_tab";
         "ctrl+shift+]" = "next_tab";
-        "ctrl+shift+left" = "resize_window narrower";
+        "ctrl+shift+left" = "resize_window wider";
         "ctrl+shift+down" = "resize_window shorter";
         "ctrl+shift+up" = "resize_window taller";
-        "ctrl+shift+right" = "resize_window wider";
+        "ctrl+shift+right" = "resize_window narrower";
         "ctrl+shift+equal" = "resize_window reset";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";

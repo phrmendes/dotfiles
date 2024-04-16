@@ -18,9 +18,13 @@
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;
       walker = getExe pkgs.walker;
-      dunstctl = "${pkgs.dunst}/bin/dunstctl";
+      nwg-panel = getExe pkgs.nwg-panel;
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
+      sleep = "${pkgs.coreutils-full}/bin/sleep";
+      swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
+      swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
+      syncthingtray = "${pkgs.syncthingtray}/bin/syncthingtray";
       wallpaper = ../dotfiles/wallpaper.png;
       colors = import ./catppuccin.nix;
       workspacesKeys = rec {
@@ -34,8 +38,12 @@
       settings = with colors.catppuccin.rgba; {
         exec-once = [
           "${swaybg} --image ${wallpaper} --mode fill"
+          "${nwg-panel}"
           "${copyq} --start-server"
+          "${swaync}"
           "${polkit}"
+          "${sleep} 10"
+          "${syncthingtray}"
         ];
         input = {
           kb_layout = "us,br";
@@ -135,11 +143,11 @@
         bind =
           [
             # apps
-            "SUPER SHIFT,C,exec,${dunstctl} close-all"
             "SUPER SHIFT,V,exec,${copyq} menu"
             "SUPER,return,exec,${kitty}"
             "SUPER,space,exec,${walker}"
             "SUPER,escape,exec,${powermenu}"
+            "SUPER,N,exec,${swaync-client} -t -sw"
             '',print,exec,${grim} -g "$(${slurp})" - | ${satty} --filename -''
             # general operations
             "SUPER,F,togglefloating"

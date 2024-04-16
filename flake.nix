@@ -142,19 +142,16 @@
 
                 blueman.enable = true;
                 btop.enable = true;
-                dunst.enable = true;
                 gnome-keyring.enable = true;
                 gtk-theme.enable = true;
                 hyprland.enable = true;
                 nm-applet.enable = true;
-                pasystray.enable = true;
                 swayidle.enable = true;
                 swaylock.enable = true;
                 swayosd.enable = true;
                 targets.enable = true;
                 udiskie.enable = true;
                 walker.enable = true;
-                waybar.enable = true;
               };
             };
           }

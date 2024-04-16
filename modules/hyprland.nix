@@ -13,10 +13,11 @@
       grim = getExe pkgs.grim;
       kitty = getExe pkgs.kitty;
       playerctl = getExe pkgs.playerctl;
-      powermenu = getExe pkgs.rofi-power-menu;
+      powermenu = getExe pkgs.nwg-bar;
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;
+      walker = getExe pkgs.walker;
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
@@ -101,7 +102,7 @@
           "float,stayfocused,class:(pavucontrol)"
           "float,stayfocused,class:(satty)"
           "float,stayfocused,opaque,class:(copyq)"
-          "float,stayfocused,rounding 10,class:(rofi)"
+          "float,stayfocused,opaque,class:(walker)"
           "opaque,class:(chromium)"
           "opaque,class:(firefox)"
           "opaque,class:(vlc)"
@@ -136,13 +137,10 @@
             # apps
             "SUPER SHIFT,C,exec,${dunstctl} close-all"
             "SUPER SHIFT,V,exec,${copyq} menu"
-            "SUPER,C,exec,rofi -show calc -modi calc -no-show-match -no-sort"
-            "SUPER,E,exec,rofi -show emoji -modi emoji"
-            "SUPER,W,exec,rofi -show window"
             "SUPER,return,exec,${kitty}"
-            "SUPER,space,exec,rofi -show drun"
+            "SUPER,space,exec,${walker}"
+            "SUPER,escape,exec,${powermenu}"
             '',print,exec,${grim} -g "$(${slurp})" - | ${satty} --filename -''
-            ''SUPER,escape,exec,rofi -show power-menu -modi "power-menu:${powermenu} --choices=shutdown/reboot/lockscreen/suspend"''
             # general operations
             "SUPER,F,togglefloating"
             "SUPER,P,pseudo"

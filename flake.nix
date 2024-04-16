@@ -2,12 +2,22 @@
   description = "My personal nixOS/nix-darwin configuration";
 
   nixConfig = {
-    extra-trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
-    extra-substituters = "https://nix-community.cachix.org";
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://walker.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+    ];
   };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    hyprland.url = "github:hyprwm/Hyprland";
+    walker.url = "github:abenz1267/walker";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -51,8 +61,10 @@
   outputs = inputs @ {
     self,
     darwin,
-    home-manager,
     nixpkgs,
+    home-manager,
+    hyprland,
+    walker,
     ...
   }: {
     darwinConfigurations."SAO-QQ4FN0YXVT" = let
@@ -124,7 +136,9 @@
               };
               backupFileExtension = "bak";
               users.${parameters.user} = {
-                imports = [./modules];
+                imports = [
+                  ./modules
+                ];
 
                 blueman.enable = true;
                 btop.enable = true;
@@ -134,12 +148,12 @@
                 hyprland.enable = true;
                 nm-applet.enable = true;
                 pasystray.enable = true;
-                rofi.enable = true;
                 swayidle.enable = true;
                 swaylock.enable = true;
                 swayosd.enable = true;
                 targets.enable = true;
                 udiskie.enable = true;
+                walker.enable = true;
                 waybar.enable = true;
               };
             };

@@ -60,7 +60,9 @@ in {
         kooha
         libqalculate
         libreoffice
+        nwg-bar
         nwg-displays
+        nwg-panel
         obsidian
         pavucontrol
         phockup
@@ -68,7 +70,6 @@ in {
         quarto
         quickemu
         qview
-        rofi-power-menu
         satty
         slurp
         swaybg

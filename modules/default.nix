@@ -1,9 +1,12 @@
 {
   lib,
   parameters,
+  inputs,
   ...
 }: {
   imports = [
+    inputs.hyprland.homeManagerModules.default
+    inputs.walker.homeManagerModules.walker
     ./bat.nix
     ./blueman.nix
     ./btop.nix
@@ -22,7 +25,6 @@
     ./packages.nix
     ./pasystray.nix
     ./pyenv.nix
-    ./rofi.nix
     ./starship.nix
     ./swayidle.nix
     ./swaylock.nix
@@ -32,11 +34,14 @@
     ./tealdeer.nix
     ./tmux.nix
     ./udiskie.nix
+    ./walker.nix
     ./waybar.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
   ];
+
+  programs.home-manager.enable = true;
 
   bat.enable = lib.mkDefault true;
   direnv.enable = lib.mkDefault true;
@@ -60,6 +65,4 @@
     username = parameters.user;
     homeDirectory = parameters.home;
   };
-
-  programs.home-manager.enable = true;
 }

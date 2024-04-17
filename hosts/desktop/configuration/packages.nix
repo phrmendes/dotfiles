@@ -33,6 +33,7 @@ in {
     unzip
     wget
     wl-clipboard
+    xclip
     xdg-utils
     zip
     zlib

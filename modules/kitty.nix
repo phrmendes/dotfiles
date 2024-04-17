@@ -13,8 +13,6 @@ in {
       linux_options = {
         font_size = 12;
         hide_window_decorations = "yes";
-        window_border_width = 0;
-        draw_minimal_borders = "yes";
       };
       darwin_options = {
         font_size = 16;
@@ -54,7 +52,7 @@ in {
           term = "xterm-256color";
           undercurl_style = "thin-sparse";
           update_check_interval = 0;
-          window_padding_width = 4;
+          window_padding_width = 5;
         }
         // (
           if isDarwin

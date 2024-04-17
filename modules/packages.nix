@@ -80,7 +80,6 @@ in {
         ++ (with pkgs.gnome; [
           file-roller
           geary
-          gpaste
           nautilus
           pomodoro
           gnome-tweaks

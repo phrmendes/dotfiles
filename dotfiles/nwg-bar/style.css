@@ -26,7 +26,7 @@
 @define-color rosewater #f5e0dc;
 
 window {
-  background-color: @surface0;
+  background-color: @base;
   border-radius: 10px;
 }
 

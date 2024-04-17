@@ -55,16 +55,9 @@
     ];
   };
 
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      trusted-users = ["root" "@wheel"];
-      experimental-features = ["flakes" "nix-command"];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 1w";
-    };
+  nix.settings = {
+    auto-optimise-store = true;
+    trusted-users = ["root" "@wheel"];
+    experimental-features = ["flakes" "nix-command"];
   };
 }

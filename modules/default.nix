@@ -5,35 +5,26 @@
   ...
 }: {
   imports = [
-    inputs.hyprland.homeManagerModules.default
-    inputs.walker.homeManagerModules.walker
     ./bat.nix
-    ./blueman.nix
     ./btop.nix
-    ./caffeine.nix
+    ./copyq.nix
+    ./dconf.nix
     ./direnv.nix
     ./eza.nix
+    ./flameshot.nix
     ./fzf.nix
     ./git.nix
-    ./gnome-keyring.nix
     ./gtk.nix
-    ./hyprland.nix
     ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
-    ./network-manager.nix
     ./packages.nix
     ./pyenv.nix
     ./starship.nix
-    ./swayidle.nix
-    ./swaylock.nix
-    ./swayosd.nix
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix
-    ./udiskie.nix
-    ./walker.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix

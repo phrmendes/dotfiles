@@ -6,13 +6,19 @@
   ...
 }: {
   services = {
-    blueman.enable = true;
     flatpak.enable = true;
     gvfs.enable = true;
     tailscale.enable = true;
-    udev.enable = true;
 
-    gnome.gnome-keyring.enable = true;
+    udev = {
+      enable = true;
+      packages = with pkgs.gnome; [gnome-settings-daemon];
+    };
+
+    gnome = {
+      core-utilities.enable = false;
+      gnome-keyring.enable = true;
+    };
 
     journald.extraConfig = "SystemMaxUse=1G";
 
@@ -40,22 +46,9 @@
       };
     };
 
-    displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        theme = "Elegant";
-        settings = {
-          General.Numlock = true;
-          Theme = {
-            Font = "Fira Sans";
-            FacesDir = "~/";
-          };
-        };
-      };
-    };
-
     xserver = {
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
       enable = true;
       autorun = true;
       videoDrivers = ["nvidia"];

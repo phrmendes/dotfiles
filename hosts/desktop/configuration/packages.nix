@@ -16,15 +16,14 @@ in {
     gnumake
     gnupg
     gnused
+    gparted
     gzip
     iconv
     icu
     jdk21
-    libnotify
     libuv
     libxml2
     nodejs_21
-    playerctl
     psmisc
     python312
     rar
@@ -34,16 +33,8 @@ in {
     unzip
     wget
     wl-clipboard
-    wlr-randr
     xdg-utils
     zip
     zlib
-    gnome.gnome-disk-utility
-    kdePackages.polkit-kde-agent-1
-    (elegant-sddm.override {
-      themeConfig.General = {
-        background = "${wallpaper}";
-      };
-    })
   ];
 }

@@ -47,46 +47,48 @@ in {
           bitwarden
           bruno
           chromium
-          copyq
           curtail
           dbeaver
           droidcam
           evince
           firefox
+          flameshot
           foliate
+          fragments
           gcolor3
+          gimp
+          gnome-photos
           gnuplot
           grim
           hugo
-          kooha
-          libqalculate
           libreoffice
-          nwg-bar
-          nwg-displays
-          nwg-panel
           obsidian
-          pavucontrol
           phockup
           plex
+          pop-launcher
+          protonmail-bridge-gui
+          qalculate-gtk
           quarto
           quickemu
-          qview
-          satty
-          slurp
-          swaybg
-          swaynotificationcenter
+          syncthingtray
           tectonic
-          transmission
           vagrant
           ventoy
           vlc
-          xarchiver
           zotero
         ])
-        ++ (with pkgs.xfce; [
-          thunar
-          thunar-archive-plugin
-          thunar-volman
+        ++ (with pkgs.gnome; [
+          file-roller
+          geary
+          gpaste
+          nautilus
+          pomodoro
+          gnome-tweaks
+        ])
+        ++ (with pkgs.gnomeExtensions; [
+          appindicator
+          espresso
+          pop-shell
         ]);
     in
       if isDarwin

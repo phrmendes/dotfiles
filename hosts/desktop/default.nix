@@ -18,14 +18,7 @@
   console.keyMap = "us";
   sound.enable = true;
   system.stateVersion = "23.11";
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-    ];
-  };
+  xdg.portal.enable = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

@@ -3,21 +3,15 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
-      "https://walker.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
     ];
   };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
-    walker.url = "github:abenz1267/walker";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -63,8 +57,6 @@
     darwin,
     nixpkgs,
     home-manager,
-    hyprland,
-    walker,
     ...
   }: {
     darwinConfigurations."SAO-QQ4FN0YXVT" = let
@@ -140,18 +132,12 @@
                   ./modules
                 ];
 
-                blueman.enable = true;
                 btop.enable = true;
-                gnome-keyring.enable = true;
-                gtk-theme.enable = true;
-                hyprland.enable = true;
-                nm-applet.enable = true;
-                swayidle.enable = true;
-                swaylock.enable = true;
-                swayosd.enable = true;
+                copyq.enable = true;
+                dconf-settings.enable = true;
+                flameshot.enable = true;
+                gtk-settings.enable = true;
                 targets.enable = true;
-                udiskie.enable = true;
-                walker.enable = true;
               };
             };
           }

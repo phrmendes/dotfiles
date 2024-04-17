@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: {
-  options.gtk-theme.enable = lib.mkEnableOption "enable gtk themes";
+  options.gtk-settings.enable = lib.mkEnableOption "enable gtk themes";
 
-  config = lib.mkIf config.gtk-theme.enable {
+  config = lib.mkIf config.gtk-settings.enable {
     gtk = {
       enable = true;
       cursorTheme = {
@@ -16,15 +16,6 @@
       iconTheme = {
         name = "Pop";
         package = pkgs.pop-icon-theme;
-      };
-      theme = {
-        name = "Catppuccin-Mocha-Standard-Blue-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "standard";
-          tweaks = ["rimless"];
-          variant = "mocha";
-        };
       };
       font = {
         name = "Fira Sans";

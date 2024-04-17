@@ -10,6 +10,7 @@
     ./bat.nix
     ./blueman.nix
     ./btop.nix
+    ./caffeine.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix

@@ -6,10 +6,8 @@
   options.dconf-settings.enable = lib.mkEnableOption "enable dconf settings";
 
   config = lib.mkIf config.dconf-settings.enable {
-    dconf = let
-      colors = import ./catppuccin.nix;
-    in {
-      settings = with colors.catppuccin.hex; {
+    dconf = {
+      settings = {
         "org/gnome/shell" = {
           disable-user-extensions = false;
           enabled-extensions = [
@@ -19,7 +17,6 @@
             "gsconnect@andyholmes.github.io"
             "pano@elhan.io"
             "pomodoro@arun.codito.in"
-            "user-theme@gnome-shell-extensions.gcampax.github.com"
           ];
           favorite-apps = [
             "org.gnome.Nautilus.desktop"
@@ -31,10 +28,6 @@
         };
         "org/gnome/shell/keybindings" = {
           toggle-message-tray = ["<Super>n"];
-        };
-
-        "org/gnome/shell/extensions/user-theme" = {
-          name = "Catppuccin-Mocha-Standard-Blue-Dark";
         };
         "org/gnome/desktop/wm/keybindings" = {
           close = ["<Super>q"];

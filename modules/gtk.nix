@@ -22,15 +22,6 @@
         package = pkgs.cantarell-fonts;
         size = 11;
       };
-      theme = {
-        name = "Catppuccin";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "standard";
-          tweaks = ["rimless"];
-          variant = "mocha";
-        };
-      };
       gtk3 = {
         extraConfig = {
           gtk-application-prefer-dark-theme = true;

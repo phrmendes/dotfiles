@@ -88,7 +88,6 @@ in {
           espresso
           forge
           pano
-          user-themes
         ]);
     in
       if isDarwin

@@ -7,7 +7,6 @@
   imports = [
     ./bat.nix
     ./btop.nix
-    ./copyq.nix
     ./dconf.nix
     ./direnv.nix
     ./eza.nix

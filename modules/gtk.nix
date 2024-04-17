@@ -10,17 +10,26 @@
     gtk = {
       enable = true;
       cursorTheme = {
-        name = "Pop";
-        package = pkgs.pop-icon-theme;
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
       };
       iconTheme = {
-        name = "Pop";
-        package = pkgs.pop-icon-theme;
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
       };
       font = {
-        name = "Fira Sans";
-        package = pkgs.fira;
+        name = "Cantarell Regular";
+        package = pkgs.cantarell-fonts;
         size = 11;
+      };
+      theme = {
+        name = "Catppuccin";
+        package = pkgs.catppuccin-gtk.override {
+          accents = ["blue"];
+          size = "standard";
+          tweaks = ["rimless"];
+          variant = "mocha";
+        };
       };
       gtk3 = {
         extraConfig = {

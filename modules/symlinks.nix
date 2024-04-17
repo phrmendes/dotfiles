@@ -23,6 +23,7 @@ in {
       desktop = {
         ".face".source = ../dotfiles/avatar.png;
         ".wallpaper".source = ../dotfiles/wallpaper.png;
+        ".config/forge/stylesheet/forge/stylesheet.css".source = ../dotfiles/forge/style.css;
       };
     in
       if isDarwin

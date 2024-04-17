@@ -65,7 +65,6 @@ in {
           obsidian
           phockup
           plex
-          pop-launcher
           protonmail-bridge-gui
           qalculate-gtk
           quarto
@@ -87,7 +86,9 @@ in {
         ++ (with pkgs.gnomeExtensions; [
           appindicator
           espresso
-          pop-shell
+          forge
+          pano
+          user-themes
         ]);
     in
       if isDarwin

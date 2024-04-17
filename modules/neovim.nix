@@ -145,7 +145,6 @@
         ])
         ++ (with pkgs.python312Packages; [
           debugpy
-          google-generativeai
           jupytext
           pynvim
         ]);

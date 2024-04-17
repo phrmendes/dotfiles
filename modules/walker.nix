@@ -58,12 +58,12 @@
           }
           {
             name = "finder";
-            prefix = "";
+            prefix = "~";
             switcher_exclusive = true;
           }
           {
             name = "websearch";
-            prefix = "";
+            prefix = "?";
             switcher_exclusive = true;
           }
         ];

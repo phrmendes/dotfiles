@@ -87,9 +87,6 @@ vim.g.loaded_netrwPlugin = 1
 -- mouse support
 vim.g.VM_mouse_mappings = 1
 
--- copilot
-vim.g.copilot_no_tab_map = true
-
 -- nvim server
 if vim.fn.executable("nvr") then
 	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

@@ -1,31 +1,35 @@
-local utils = require("utils")
 local schemastore = require("schemastore")
-local pyls
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-if vim.fn.executable("basedpyright-langserver") == 1 then
-	pyls = "basedpyright"
-else
-	pyls = "pyright"
-end
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
+local flags = {
+	allow_incremental_sync = true,
+	debounce_text_changes = 150,
+}
 
 local servers = {
-	{ server = pyls },
-	{ server = "ansiblels" },
-	{ server = "bashls" },
-	{ server = "cssls" },
-	{ server = "docker_compose_language_service" },
-	{ server = "dockerls" },
-	{ server = "dotls" },
-	{ server = "html" },
-	{ server = "marksman" },
-	{ server = "nixd" },
-	{ server = "ruff_lsp" },
-	{ server = "taplo" },
-	{ server = "terraformls" },
-	{ server = "texlab" },
-	{ server = "tflint" },
-	{
-		server = "helm_ls",
+	basedpyright = {},
+	pyright = {},
+	ansiblels = {},
+	bashls = {},
+	cssls = {},
+	docker_compose_language_service = {},
+	dockerls = {},
+	dotls = {},
+	html = {},
+	marksman = {},
+	nixd = {},
+	ruff_lsp = {},
+	taplo = {},
+	terraformls = {},
+	texlab = {},
+	tflint = {
 		settings = {
 			["helm-ls"] = {
 				yamlls = {
@@ -34,8 +38,7 @@ local servers = {
 			},
 		},
 	},
-	{
-		server = "lua_ls",
+	lua_ls = {
 		settings = {
 			Lua = {
 				completion = { callSnippet = "Replace" },
@@ -51,8 +54,7 @@ local servers = {
 			},
 		},
 	},
-	{
-		server = "yamlls",
+	yamlls = {
 		settings = {
 			yaml = {
 				validate = true,
@@ -75,8 +77,7 @@ local servers = {
 			},
 		},
 	},
-	{
-		server = "jsonls",
+	jsonls = {
 		filetypes = { "json" },
 		settings = {
 			json = {
@@ -85,8 +86,7 @@ local servers = {
 			},
 		},
 	},
-	{
-		server = "ltex",
+	ltex = {
 		filetypes = { "markdown", "quarto" },
 		on_attach = function()
 			require("ltex_extra").setup({
@@ -103,6 +103,14 @@ local servers = {
 	},
 }
 
-for _, server in ipairs(servers) do
-	utils.lsp.add_language_server(server)
+for key, value in pairs(servers) do
+	(function(server_name, settings)
+		local server = settings or {}
+
+		server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+		server.flags = vim.tbl_deep_extend("force", {}, flags, server.flags or {})
+		server.handlers = vim.tbl_deep_extend("force", {}, handlers, server.handlers or {})
+
+		require("lspconfig")[server_name].setup(server)
+	end)(key, value)
 end

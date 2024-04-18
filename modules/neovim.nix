@@ -116,7 +116,6 @@
           ltex-ls
           lua-language-server
           marksman
-          md-tangle
           neovim-remote
           nixd
           prettierd

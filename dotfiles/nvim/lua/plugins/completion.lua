@@ -20,14 +20,14 @@ cmp.setup({
 			cmp.abort()
 			fallback()
 		end, { "i", "s" }),
-		["<TAB>"] = cmp.mapping(function(fallback)
+		["<C-l>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<S-TAB>"] = cmp.mapping(function(fallback)
+		["<C-h>"] = cmp.mapping(function(fallback)
 			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
@@ -42,7 +42,6 @@ cmp.setup({
 			mode = "symbol",
 			symbol_map = {
 				otter = "🦦",
-				Copilot = "",
 			},
 		}),
 	},

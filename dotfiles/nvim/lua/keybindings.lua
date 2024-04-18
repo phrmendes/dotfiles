@@ -1,42 +1,10 @@
+local wk = require("which-key")
 local augroup = require("utils").augroup
-local map = require("utils").keys.map
-local section = require("utils").keys.section
 local autocmd = vim.api.nvim_create_autocmd
+local map = vim.keymap.set
 
--- unbind keys -------------------------------------------
-local unbind = { n = { "<", ">", "<Space>" }, v = { "<", ">" } }
+vim.g.copilot_no_tab_map = true
 
-for mode, keys in pairs(unbind) do
-	for _, key in ipairs(keys) do
-		vim.keymap.set(mode, key, "<Nop>", { noremap = true, silent = true })
-	end
-end
-
--- macros ------------------------------------------------
-map({ mode = "n", key = "Q", cmd = "@q", desc = "Replay macro" })
-map({ mode = "v", key = "Q", cmd = "<CMD>norm @q<CR>", desc = "Replay macro" })
-
--- word wrap ---------------------------------------------
-local opts = { expr = true, silent = true }
-
-map({ key = "k", cmd = [[v:count == 0 ? "gk" : "k"]], desc = "Word wrap" }, opts)
-map({ key = "j", cmd = [[v:count == 0 ? "gj" : "j"]], desc = "Word wrap" }, opts)
-
--- clear highlights --------------------------------------
-map({ key = "<Esc>", cmd = "<CMD>nohlsearch<CR>", desc = "Clear highlights" })
-
--- escape term mode --------------------------------------
-map({ mode = "t", key = "<C-c>", cmd = "<C-\\><C-n>", desc = "Escape terminal mode" })
-
--- better page up/down -----------------------------------
-map({ key = "<C-d>", cmd = "<C-d>zz", desc = "Page down" })
-map({ key = "<C-u>", cmd = "<C-u>zz", desc = "Page up" })
-
--- saner behavior of n and N -----------------------------
-map({ key = "n", cmd = [['Nn'[v:searchforward].'zv']], desc = "Next" }, { expr = true })
-map({ key = "N", cmd = [['nN'[v:searchforward].'zv']], desc = "Previous" }, { expr = true })
-
--- vim-visual-multi --------------------------------------
 vim.g.VM_maps = {
 	["Add Cursor Up"] = "M",
 	["Add Cursor Down"] = "m",
@@ -44,287 +12,223 @@ vim.g.VM_maps = {
 	["Redo"] = "<C-r>",
 }
 
--- windows -----------------------------------------------
-map({ key = "<leader>-", cmd = "<CMD>split<CR>", desc = "Split window (H)" })
-map({ key = "<leader>\\", cmd = "<CMD>vsplit<CR>", desc = "Split window (V)" })
-map({ key = "<leader>x", cmd = "<C-w>q", desc = "Close window" })
-map({ key = "<leader>=", cmd = "<C-w>=", desc = "Resize and make windows equal" })
-map({ key = "<leader>_", cmd = "<C-w>_", desc = "Maximize (H)" })
-map({ key = "<leader>|", cmd = "<C-w>|", desc = "Maximize (V)" })
-map({ key = "<leader>O", cmd = "<C-w>o", desc = "Keep only current window" })
+map("n", "<Esc>", "<CMD>nohlsearch<CR>", { noremap = true, silent = true })
+map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Better page down" })
+map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "Better page up" })
+map("n", "N", [[v:searchforward ? 'N' : 'n']], { expr = true, noremap = true, silent = true })
+map("n", "n", [[v:searchforward ? 'n' : 'N']], { expr = true, noremap = true, silent = true })
+map("n", "Q", "@q", { noremap = true, silent = true })
+map("n", "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true, noremap = true, silent = true })
+map("n", "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true, noremap = true, silent = true })
+map("n", "<C-h>", require("smart-splits").move_cursor_left, { desc = "Move cursor left" })
+map("n", "<C-j>", require("smart-splits").move_cursor_down, { desc = "Move cursor down" })
+map("n", "<C-k>", require("smart-splits").move_cursor_up, { desc = "Move cursor up" })
+map("n", "<C-l>", require("smart-splits").move_cursor_right, { desc = "Move cursor right" })
+map("n", "<C-Left>", require("smart-splits").resize_left, { desc = "Resize left" })
+map("n", "<C-Down>", require("smart-splits").resize_down, { desc = "Resize down" })
+map("n", "<C-Up>", require("smart-splits").resize_up, { desc = "Resize up" })
+map("n", "<C-Right>", require("smart-splits").resize_right, { desc = "Resize right" })
+map("i", "<C-a>", [[copilot#Accept("\\<CR>")]], { expr = true, replace_keycodes = false })
+map("t", "<C-c>", "<C-\\><C-n>", { noremap = true, silent = true })
+map("v", "Q", "<CMD>norm @q<CR>", { noremap = true, silent = true })
+map({ "n", "v" }, "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = true, silent = true, desc = "Send to REPL" })
+map({ "n", "v" }, "<C-c><C-v>", "<Plug>SlimeConfig", { noremap = true, silent = true, desc = "Config Slime" })
 
--- tabs --------------------------------------------------
-section({ key = "<leader><TAB>", name = "tabs" })
-map({ key = "<leader><TAB><TAB>", cmd = "<CMD>tab split<CR>", desc = "Open in new tab" })
-map({ key = "<leader><TAB>G", cmd = "<CMD>tablast<CR>", desc = "Last" })
-map({ key = "<leader><TAB>d", cmd = "<CMD>tabclose<CR>", desc = "Close" })
-map({ key = "<leader><TAB>g", cmd = "<CMD>tabfirst<CR>", desc = "First" })
-map({ key = "<leader><TAB>k", cmd = "<CMD>tabonly<CR>", desc = "Keep" })
-map({ key = "<leader><TAB>n", cmd = "<CMD>tabnew<CR>", desc = "New" })
-map({ key = "[<TAB>", cmd = "<CMD>tabprevious<CR>", desc = "Previous tab" })
-map({ key = "]<TAB>", cmd = "<CMD>tabnext<CR>", desc = "Next tab" })
+wk.register({
+	["["] = {
+		name = "previous",
+		["<TAB>"] = { "<CMD>tabprevious<CR>", "Previous tab" },
+		h = { require("gitsigns").prev_hunk, "Previous hunk" },
+		t = { require("todo-comments").jump_prev, "Previous todo" },
+	},
+	["]"] = {
+		name = "next",
+		["<TAB>"] = { "<CMD>tabnext<CR>", "Next tab" },
+		h = { require("gitsigns").next_hunk, "Next hunk" },
+		t = { require("todo-comments").jump_next, "Next todo" },
+	},
+	["<leader>"] = {
+		["-"] = { "<CMD>split<CR>", "Split window (H)" },
+		["."] = { "<CMD>Telescope commands<CR>", "Commands" },
+		["="] = { "<C-w>=", "Resize and make windows equal" },
+		["?"] = { "<CMD>Telescope help_tags<CR>", "Help" },
+		["\\"] = { "<CMD>vsplit<CR>", "Split window (V)" },
+		["_"] = { "<C-w>_", "Maximize (H)" },
+		["|"] = { "<C-w>|", "Maximize (V)" },
+		E = { "<CMD>NvimTreeToggle<CR>", "File explorer (cwd)" },
+		O = { "<C-w>o", "Keep only current window" },
+		W = { "<CMD>wq<CR>", "Save and quit" },
+		e = { "<CMD>NvimTreeFindFileToggle<CR>", "File explorer (current file)" },
+		n = { "<CMD>Neogen<CR>", "Generate annotations" },
+		q = { "<CMD>q<CR>", "Quit" },
+		u = { "<CMD>UndotreeToggle<CR>", "Undo tree" },
+		w = { "<CMD>w<CR>", "Save" },
+		x = { "<C-w>q", "Close window" },
+		z = { "<CMD>ZenMode<CR>", "Zen mode" },
+	},
+	["<leader><leader>"] = {
+		h = { require("smart-splits").swap_buf_left, "Swap buffer left" },
+		j = { require("smart-splits").swap_buf_down, "Swap buffer down" },
+		k = { require("smart-splits").swap_buf_up, "Swap buffer up" },
+		l = { require("smart-splits").swap_buf_right, "Swap buffer right" },
+	},
+	["<leader><TAB>"] = {
+		name = "tabs",
+		["<TAB>"] = { "<CMD>tab split<CR>", "Open in new tab" },
+		G = { "<CMD>tablast<CR>", "Last tab" },
+		d = { "<CMD>tabclose<CR>", "Close tab" },
+		g = { "<CMD>tabfirst<CR>", "First tab" },
+		k = { "<CMD>tabonly<CR>", "Keep only this tab" },
+		n = { "<CMD>tabnew<CR>", "New tab" },
+	},
+	["<leader>b"] = {
+		name = "buffers",
+		G = { "<CMD>blast<CR>", "Go to last buffer" },
+		b = { "<CMD>Telescope buffers<CR>", "List" },
+		d = { require("mini.bufremove").delete, "Delete" },
+		f = { "<CMD>Telescope current_buffer_fuzzy_find<CR>", "Search in current buffer" },
+		g = { "<CMD>bfirst<CR>", "Go to last buffer" },
+		k = { "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>", "Keep only this buffer" },
+		w = { require("mini.bufremove").wipeout, "Wipeout" },
+	},
+	["<leader>c"] = {
+		name = "copilot",
+		c = { "<CMD>CopilotChatToggle<CR>", "Open" },
+		r = { "<CMD>CopilotChatReset<CR>", "Reset" },
+	},
+	["<leader>f"] = {
+		name = "find",
+		f = { "<CMD>Telescope find_files<CR>", "Files" },
+		g = { "<CMD>Telescope live_grep<CR>", "Live grep" },
+		o = { "<CMD>Telescope oldfiles<CR>", "Recent files" },
+		r = { require("spectre").toggle, "Replace" },
+		t = { "<CMD>TodoTelescope<CR>", "Todo" },
+	},
+	["<leader>g"] = {
+		name = "git",
+		B = { require("gitsigns").toggle_current_line_blame, "Blame line" },
+		C = { "<CMD>Telescope git_commits<CR>", "Commits (cwd)" },
+		G = { "<CMD>LazyGit<CR>", "LazyGit" },
+		b = { "<CMD>Telescope git_branches<CR>", "Checkout" },
+		c = { "<CMD>Telescope git_bcommits<CR>", "Commits (current file)" },
+		d = { require("gitsigns").diffthis, "Diff" },
+		f = { "<CMD>Telescope git_files<CR>", "Files" },
+		g = { "<CMD>LazyGitCurrentFile<CR>", "LazyGit (current file)" },
+		s = {
+			name = "stage",
+			h = { require("gitsigns").stage_hunk, "Hunk" },
+			b = { require("gitsigns").stage_buffer, "Buffer" },
+		},
+		r = {
+			name = "reset",
+			h = { require("gitsigns").reset_hunk, "Hunk" },
+			b = { require("gitsigns").reset_buffer, "Buffer" },
+		},
+	},
+})
 
--- save and quit -----------------------------------------
-map({ key = "<leader>W", cmd = "<CMD>wq<CR>", desc = "Save and quit" })
-map({ key = "<leader>q", cmd = "<CMD>confirm q<CR>", desc = "Quit" })
-map({ key = "<leader>w", cmd = "<CMD>w<CR>", desc = "Save" })
+wk.register({
+	["<leader>c"] = {
+		name = "copilot",
+		d = { "<CMD>CopilotChatDocs<CR>", "Add documentation" },
+		e = { "<CMD>CopilotChatExplain<CR>", "Explain code" },
+		f = { "<CMD>CopilotChatFix<CR>", "Fix code" },
+		o = { "<CMD>CopilotChatOptimize<CR>", "Optimize code" },
+		t = { "<CMD>CopilotChatTests<CR>", "Generate tests" },
+	},
+	["<leader>g"] = {
+		name = "git",
+		s = {
+			name = "stage",
+			h = { require("gitsigns").stage_hunk, "Hunk" },
+		},
+		r = {
+			name = "reset",
+			h = { require("gitsigns").reset_hunk, "Hunk" },
+		},
+	},
+}, { mode = "v" })
 
--- help --------------------------------------------------
-map({ key = "<leader>.", cmd = "<CMD>Telescope commands<CR>", desc = "List commands" })
-map({ key = "<leader>?", cmd = "<CMD>Telescope help_tags<CR>", desc = "Help" })
-
--- undo tree ---------------------------------------------
-map({ key = "<leader>u", cmd = "<CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" })
-
--- copilot -----------------------------------------------
-local opts = { noremap = true, silent = true, expr = true, replace_keycodes = false }
-
-map({ mode = "i", key = "<C-a>", cmd = [[ copilot#Accept("<CR>") ]], desc = "Accept copilot suggestion" }, opts)
-map({ mode = "i", key = "<C-h>", cmd = [[ copilot#Previous() ]], desc = "Previous copilot suggestion" }, opts)
-map({ mode = "i", key = "<C-l>", cmd = [[ copilot#Next() ]], desc = "Next copilot suggestion" }, opts)
-
-section({ mode = { "n", "v" }, key = "<leader>c", name = "copilot" })
-map({ key = "<leader>cc", cmd = "<CMD>CopilotChatToggle<CR>", desc = "Open" })
-map({ key = "<leader>cr", cmd = "<CMD>CopilotChatReset<CR>", desc = "Reset" })
-map({ mode = { "n", "v" }, key = "<leader>cd", cmd = "<CMD>CopilotChatDocs<CR>", desc = "Add documentation" })
-map({ mode = { "n", "v" }, key = "<leader>ce", cmd = "<CMD>CopilotChatExplain<CR>", desc = "Explain code" })
-map({ mode = { "n", "v" }, key = "<leader>cf", cmd = "<CMD>CopilotChatFix<CR>", desc = "Fix code" })
-map({ mode = { "n", "v" }, key = "<leader>co", cmd = "<CMD>CopilotChatOptimize<CR>", desc = "Optimize code" })
-map({ mode = { "n", "v" }, key = "<leader>ct", cmd = "<CMD>CopilotChatTests<CR>", desc = "Generate tests" })
-
--- file explorer -----------------------------------------
-map({ key = "<leader>e", cmd = "<CMD>NvimTreeToggle<CR>", desc = "Open (cwd)" })
-map({ key = "<leader>E", cmd = "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open (current file)" })
-
--- buffers -----------------------------------------------
-section({ key = "<leader>b", name = "buffers" })
-map({ key = "<leader>bG", cmd = "<CMD>blast<CR>", desc = "Go to last buffer" })
-map({ key = "<leader>bb", cmd = "<CMD>Telescope buffers<CR>", desc = "List" })
-map({ key = "<leader>bd", cmd = require("mini.bufremove").delete, desc = "Delete" })
-map({ key = "<leader>bf", cmd = "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Search in current buffer" })
-map({ key = "<leader>bg", cmd = "<CMD>bfirst<CR>", desc = "Go to last buffer" })
-map({ key = "<leader>bk", cmd = "<CMD>%bdelete<bar>edit#<bar>bdelete#<CR>", desc = "Keep only this buffer" })
-map({ key = "<leader>bw", cmd = require("mini.bufremove").wipeout, desc = "Wipeout" })
-
--- find --------------------------------------------------
-section({ mode = { "n", "v" }, key = "<leader>f", name = "Find" })
-map({ key = "<leader>ff", cmd = "<CMD>Telescope find_files<CR>", desc = "Files" })
-map({ key = "<leader>fg", cmd = "<CMD>Telescope live_grep<CR>", desc = "Live grep" })
-map({ key = "<leader>fo", cmd = "<CMD>Telescope oldfiles<CR>", desc = "Recent files" })
-map({ key = "<leader>fr", cmd = require("spectre").toggle, desc = "Replace" })
-map({ key = "<leader>ft", cmd = "<CMD>TodoTelescope<CR>", desc = "Todo" })
-
--- git ---------------------------------------------------
-section({ mode = { "n", "v" }, key = "<leader>g", name = "git" })
-map({ key = "<leader>gg", cmd = "<CMD>LazyGit<CR>", desc = "LazyGit (cwd)" })
-map({ key = "<leader>gG", cmd = "<CMD>LazyGitCurrentFile<CR>", desc = "LazyGit (current file)" })
-map({ key = "<leader>gf", cmd = "<CMD>LazyGitFilter<CR>", desc = "Commits (cwd)" })
-map({ key = "<leader>gF", cmd = "<CMD>LazyGitFilterCurrentFile<CR>", desc = "Commits (current file)" })
-map({ key = "<leader>gB", cmd = require("gitsigns").toggle_current_line_blame, desc = "Blame line" })
-map({ key = "<leader>gc", cmd = "<CMD>Telescope git_branches<CR>", desc = "Checkout" })
-map({ key = "<leader>gd", cmd = require("gitsigns").diffthis, desc = "Diff" })
-map({ key = "]h", cmd = require("gitsigns").next_hunk, desc = "Next hunk" })
-map({ key = "[h", cmd = require("gitsigns").prev_hunk, desc = "Previous hunk" })
-
-section({ mode = { "n", "v" }, key = "<leader>gh", name = "hunk" })
-map({ key = "<leader>ghu", cmd = require("gitsigns").undo_stage_hunk, desc = "Undo stage" })
-map({ mode = { "n", "v" }, key = "<leader>ghr", cmd = require("gitsigns").reset_hunk, desc = "Reset" })
-map({ mode = { "n", "v" }, key = "<leader>ghs", cmd = require("gitsigns").stage_hunk, desc = "Stage" })
-
-section({ mode = { "n", "v" }, key = "<leader>gb", name = "buffer" })
-map({ key = "<leader>gbs", cmd = require("gitsigns").stage_buffer, desc = "Stage" })
-map({ key = "<leader>gbr", cmd = require("gitsigns").reset_buffer, desc = "Reset" })
-
--- obsidian ----------------------------------------------
-if vim.fn.has("mac") == 0 then
-	section({ key = "<leader>o", name = "obsidian" })
-	map({ key = "<leader>ob", cmd = "<CMD>ObsidianBacklinks<CR>", desc = "Backlinks" })
-	map({ key = "<leader>of", cmd = "<CMD>ObsidianFollowLink<CR>", desc = "Follow link under cursor" })
-	map({ key = "<leader>oo", cmd = "<CMD>ObsidianOpen<CR>", desc = "Open Obsidian app" })
-	map({ key = "<leader>op", cmd = "<CMD>ObsidianPasteImg<CR>", desc = "Paste image" })
-	map({ key = "<leader>os", cmd = "<CMD>ObsidianQuickSwitch<CR>", desc = "Quick switch to another note" })
-end
-
--- annotations -------------------------------------------
-map({ key = "<leader>n", cmd = "<CMD>Neogen<CR>", desc = "Generate annotations" })
-
--- todo --------------------------------------------------
-map({ key = "[t", cmd = require("todo-comments").jump_prev, desc = "Previous todo comment" })
-map({ key = "]t", cmd = require("todo-comments").jump_next, desc = "Next todo comment" })
-
--- zen mode ----------------------------------------------
-map({ key = "<leader>z", cmd = "<CMD>ZenMode<CR>", desc = "Zen mode" })
-
--- writing -----------------------------------------------
 autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
 	group = augroup,
 	callback = function(event)
-		map({
-			key = "<C-c><C-t>",
-			cmd = "<CMD>! md-tangle -f %<CR>",
-			desc = "Md: Tangle code block",
-			buffer = event.buf,
-		}, {
-			silent = true,
-			noremap = true,
-		})
-
-		map({
-			buffer = event.buf,
-			key = "<leader>Z",
-			cmd = "<CMD>Telescope zotero<CR>",
-			desc = "Add source from Zotero",
-		})
+		wk.register({
+			["<leader>Z"] = { "<CMD>Telescope zotero<CR>", "Add source from Zotero" },
+		}, { buffer = event.buf })
 	end,
 })
 
--- lsp and dap -------------------------------------------
 autocmd("LspAttach", {
 	group = augroup,
 	callback = function(event)
-		-- lsp -------------------------------------------
-		map({ key = "<leader>k", cmd = vim.lsp.buf.hover, buffer = event.buf, desc = "LSP: show hover documentation" })
-		map({ key = "<leader>r", cmd = vim.lsp.buf.rename, buffer = event.buf, desc = "LSP: rename symbol" })
+		wk.register({
+			["<F-3>"] = { require("dap").step_out, "DAP: step out" },
+			["<F-4>"] = { require("dap").step_into, "DAP: step into" },
+			["<F-5>"] = { require("dap").step_back, "DAP: step back" },
+			["<F-6>"] = { require("dap").continue, "DAP: continue" },
+			["<F-7>"] = { require("dap").step_over, "DAP: step over" },
+			["<S-F-6>"] = { require("dap").pause, "DAP: pause" },
+			["<BS>"] = { require("dap").close, "DAP: quit" },
+			["g"] = {
+				D = { vim.lsp.buf.declaration, "Go to declaration" },
+				d = { "<CMD>Telescope lsp_definitions<CR>", "Go to definition" },
+				i = { "<CMD>Telescope lsp_implementations<CR>", "Go to implementations" },
+				t = { "<CMD>Telescope lsp_type_definitions<CR>", "Go to type definition" },
+			},
+			["<leader>"] = {
+				k = { vim.lsp.buf.hover, "Show hover documentation" },
+				r = { vim.lsp.buf.rename, "Rename symbol" },
+				D = { "<CMD>TroubleToggle workspace_diagnostics<CR>", "Workspace diagnostics" },
+				F = { vim.diagnostic.open_float, "Floating diagnostics" },
+				R = { "<CMD>Telescope lsp_references<CR>", "Show references" },
+				S = { "<CMD>Telescope lsp_workspace_symbols<CR>", "Workspace symbols" },
+				d = { "<CMD>TroubleToggle document_diagnostics<CR>", "Document diagnostics" },
+				h = { require("lsp_signature").toggle_float_win, "Toggle signature help" },
+				s = { "<CMD>Telescope lsp_document_symbols<CR>", "Document symbols" },
+			},
+			["<leader>t"] = {
+				name = "DAP",
+				B = {
+					function()
+						require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+					end,
+					"Toggle conditional breakpoint",
+				},
+				b = { require("dap").toggle_breakpoint, "Toggle breakpoint" },
+				u = { require("dapui").toggle, "Toggle UI" },
+			},
+		}, { buffer = event.buf })
 
-		map({
-			key = "<leader>D",
-			cmd = "<CMD>TroubleToggle workspace_diagnostics<CR>",
+		wk.register({
+			["<leader>a"] = { require("actions-preview").code_actions, "Code actions" },
+		}, {
+			mode = "v",
 			buffer = event.buf,
-			desc = "LSP: workspace diagnostics",
-		})
-
-		map({
-			key = "<leader>F",
-			cmd = vim.diagnostic.open_float,
-			buffer = event.buf,
-			desc = "LSP: floating diagnostics",
-		})
-
-		map({
-			key = "<leader>R",
-			cmd = "<CMD>Telescope lsp_references<CR>",
-			buffer = event.buf,
-			desc = "LSP: show references",
-		})
-
-		map({
-			key = "<leader>S",
-			cmd = "<CMD>Telescope lsp_workspace_symbols<CR>",
-			buffer = event.buf,
-			desc = "LSP: workspace symbols",
-		})
-
-		map({
-			key = "<leader>d",
-			cmd = "<CMD>TroubleToggle document_diagnostics<CR>",
-			buffer = event.buf,
-			desc = "LSP: document diagnostics",
-		})
-
-		map({
-			key = "<leader>h",
-			cmd = require("lsp_signature").toggle_float_win,
-			buffer = event.buf,
-			desc = "LSP: toggle signature help",
-		})
-
-		map({
-			key = "<leader>s",
-			cmd = "<CMD>Telescope lsp_document_symbols<CR>",
-			buffer = event.buf,
-			desc = "LSP: document symbols",
-		})
-
-		map({
-			key = "gD",
-			cmd = vim.lsp.buf.declaration,
-			buffer = event.buf,
-			desc = "LSP: go to declaration",
-		})
-
-		map({
-			key = "gd",
-			cmd = "<CMD>Telescope lsp_definitions<CR>",
-			buffer = event.buf,
-			desc = "LSP: go to definition",
-		})
-
-		map({
-			key = "gi",
-			cmd = "<CMD>Telescope lsp_implementations<CR>",
-			buffer = event.buf,
-			desc = "LSP: go to implementations",
-		})
-
-		map({
-			key = "gt",
-			cmd = "<CMD>Telescope lsp_type_definitions<CR>",
-			buffer = event.buf,
-			desc = "LSP: go to type definition",
-		})
-
-		map({
-			mode = { "n", "v" },
-			key = "<leader>a",
-			cmd = require("actions-preview").code_actions,
-			buffer = event.buf,
-			desc = "LSP: code actions",
-		})
-
-		-- dap -------------------------------------------
-		map({ key = "<F3>", cmd = require("dap").step_out, desc = "DAP: step out" })
-		map({ key = "<F4>", cmd = require("dap").step_into, desc = "DAP: step into" })
-		map({ key = "<F5>", cmd = require("dap").step_back, desc = "DAP: step back" })
-		map({ key = "<F6>", cmd = require("dap").continue, desc = "DAP: continue" })
-		map({ key = "<F7>", cmd = require("dap").step_over, desc = "DAP: step over" })
-		map({ key = "<S-F6>", cmd = require("dap").pause, desc = "DAP: pause" })
-		map({ key = "<BS>", cmd = require("dap").close, desc = "DAP: quit" })
-
-		section({ mode = { "n" }, key = "<leader>t", name = "DAP" })
-		map({ key = "<leader>tb", cmd = require("dap").toggle_breakpoint, desc = "Toggle breakpoint" })
-		map({ key = "<leader>tu", cmd = require("dapui").toggle, desc = "Toggle UI" })
-
-		map({
-			key = "<leader>tc",
-			cmd = function()
-				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-			end,
-			desc = "Toggle conditional breakpoint",
 		})
 
 		autocmd("FileType", {
 			pattern = { "python" },
 			group = augroup,
-			callback = function()
-				map({ key = "<leader>tc", cmd = require("dap-python").test_class, desc = "Test class (python)" })
-				map({ key = "<leader>tf", cmd = require("dap-python").test_method, desc = "Test method (python)" })
+			callback = function(ev)
+				wk.register({
+					["<leader>t"] = {
+						name = "DAP",
+						t = { require("dap-python").test_file, "Test file (python)" },
+						d = { require("dap-python").debug_file, "Debug file (python)" },
+					},
+				}, { buffer = ev.buf })
 
-				map({
+				wk.register({
+					["<leader>t"] = {
+						name = "DAP",
+						d = { require("dap-python").debug_selection, "Debug selection (python)" },
+					},
+				}, {
 					mode = "v",
-					key = "<leader>td",
-					cmd = require("dap-python").debug_selection,
-					desc = "Debug (python)",
+					buffer = ev.buf,
 				})
 			end,
 		})
 	end,
 })
-
--- smart splits ------------------------------------------
-map({ key = "<C-Left>", cmd = require("smart-splits").resize_left, desc = "Resize left" })
-map({ key = "<C-Down>", cmd = require("smart-splits").resize_down, desc = "Resize down" })
-map({ key = "<C-Up>", cmd = require("smart-splits").resize_up, desc = "Resize up" })
-map({ key = "<C-Right>", cmd = require("smart-splits").resize_right, desc = "Resize right" })
-map({ key = "<C-h>", cmd = require("smart-splits").move_cursor_left, desc = "Move cursor left" })
-map({ key = "<C-j>", cmd = require("smart-splits").move_cursor_down, desc = "Move cursor down" })
-map({ key = "<C-k>", cmd = require("smart-splits").move_cursor_up, desc = "Move cursor up" })
-map({ key = "<C-l>", cmd = require("smart-splits").move_cursor_right, desc = "Move cursor right" })
-map({ key = "<localleader>h", cmd = require("smart-splits").swap_buf_left, desc = "Swap buffer left" })
-map({ key = "<localleader>j", cmd = require("smart-splits").swap_buf_down, desc = "Swap buffer down" })
-map({ key = "<localleader>k", cmd = require("smart-splits").swap_buf_up, desc = "Swap buffer up" })
-map({ key = "<localleader>l", cmd = require("smart-splits").swap_buf_right, desc = "Swap buffer right" })
-
--- slime -------------------------------------------------
-map({ mode = { "n", "v" }, key = "<C-c><C-c>", cmd = "<Plug>SlimeParagraphSend", desc = "Send to REPL" })
-map({ mode = { "n", "v" }, key = "<C-c><C-s>", cmd = "<Plug>SlimeConfig", desc = "Slime settings" })

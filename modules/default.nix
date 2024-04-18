@@ -10,7 +10,6 @@
     ./dconf.nix
     ./direnv.nix
     ./eza.nix
-    ./flameshot.nix
     ./fzf.nix
     ./git.nix
     ./gtk.nix

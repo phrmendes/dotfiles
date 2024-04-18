@@ -134,7 +134,6 @@
 
                 btop.enable = true;
                 dconf-settings.enable = true;
-                flameshot.enable = true;
                 gtk-settings.enable = true;
                 targets.enable = true;
               };

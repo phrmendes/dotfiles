@@ -45,18 +45,18 @@ in {
         (with pkgs; [
           bashly
           bitwarden
+          gnome-solanum
           bruno
           chromium
           curtail
           dbeaver
+          drawing
           droidcam
           evince
           firefox
-          flameshot
           foliate
           fragments
           gcolor3
-          gimp
           gnome-photos
           gnuplot
           grim
@@ -79,9 +79,9 @@ in {
         ++ (with pkgs.gnome; [
           file-roller
           geary
-          nautilus
-          pomodoro
+          gnome-screenshot
           gnome-tweaks
+          nautilus
         ])
         ++ (with pkgs.gnomeExtensions; [
           appindicator

@@ -1,13 +1,16 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.dconf-settings.enable = lib.mkEnableOption "enable dconf settings";
 
   config = lib.mkIf config.dconf-settings.enable {
-    dconf = {
-      settings = {
+    dconf = let
+      colors = import ./catppuccin.nix;
+    in {
+      settings = with colors.catppuccin.rgb; {
         "org/gnome/shell" = {
           disable-user-extensions = false;
           enabled-extensions = [
@@ -16,7 +19,6 @@
             "forge@jmmaranan.com"
             "gsconnect@andyholmes.github.io"
             "pano@elhan.io"
-            "pomodoro@arun.codito.in"
           ];
           favorite-apps = [
             "org.gnome.Nautilus.desktop"
@@ -26,7 +28,78 @@
             "obsidian.desktop"
           ];
         };
+        "org/gnome/shell/extensions/pano" = {
+          active-item-border-color = blue;
+          hovered-item-border-color = blue;
+          incognito-window-background-color = crust;
+          is-in-incognito = false;
+          item-size = 200;
+          play-audio-on-copy = false;
+          send-notification-on-copy = false;
+          sync-primary = true;
+          wiggle-indicator = false;
+          window-background-color = surface0;
+        };
+        "org/gnome/shell/extensions/pano/code-item" = {
+          body-bg-color = base;
+          body-font-family = "FiraCode Nerd Font";
+          body-font-size = 13;
+          header-bg-color = crust;
+          header-color = text;
+        };
+        "org/gnome/shell/extensions/pano/color-item" = {
+          header-bg-color = lavender;
+          header-color = crust;
+          metadata-bg-color = base;
+          metadata-color = text;
+        };
+        "org/gnome/shell/extensions/pano/emoji-item" = {
+          body-bg-color = yellow;
+          header-bg-color = peach;
+          header-color = crust;
+        };
+        "org/gnome/shell/extensions/pano/file-item" = {
+          body-bg-color = base;
+          body-color = text;
+          header-bg-color = crust;
+          header-color = text;
+        };
+        "org/gnome/shell/extensions/pano/image-item" = {
+          body-bg-color = base;
+          header-bg-color = red;
+          header-color = crust;
+          metadata-bg-color = base;
+          metadata-color = text;
+        };
+        "org/gnome/shell/extensions/pano/link-item" = {
+          body-bg-color = base;
+          header-bg-color = crust;
+          header-color = text;
+          metadata-bg-color = base;
+          metadata-description-color = text;
+          metadata-link-color = text;
+          metadata-title-color = text;
+        };
+        "org/gnome/shell/extensions/pano/text-item" = {
+          body-bg-color = base;
+          body-color = text;
+          header-bg-color = crust;
+          header-color = text;
+        };
+        "org/gnome/mutter" = {
+          dynamic-workspaces = false;
+          edge-tiling = true;
+          num-workspaces = 7;
+          workspaces-only-on-primary = true;
+        };
         "org/gnome/shell/keybindings" = {
+          switch-to-application-1 = [];
+          switch-to-application-2 = [];
+          switch-to-application-3 = [];
+          switch-to-application-4 = [];
+          switch-to-application-5 = [];
+          switch-to-application-6 = [];
+          switch-to-application-7 = [];
           toggle-message-tray = ["<Super>n"];
         };
         "org/gnome/desktop/wm/keybindings" = {
@@ -90,6 +163,11 @@
           window-toggle-always-float = ["<Shift><Super>f"];
           window-toggle-float = ["<Super>f"];
           workspace-active-tile-toggle = ["<Shift><Super>w"];
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+          binding = "<Super>t";
+          command = "kitty";
+          name = "Terminal";
         };
       };
     };

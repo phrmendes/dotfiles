@@ -23,6 +23,7 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
+    ./thefuck.nix
     ./tmux.nix
     ./yazi.nix
     ./zoxide.nix
@@ -43,6 +44,7 @@
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
+  thefuck.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;

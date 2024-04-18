@@ -5,7 +5,9 @@
   ...
 }: {
   imports = [
+    ./atuin.nix
     ./bat.nix
+    ./navi.nix
     ./btop.nix
     ./dconf.nix
     ./direnv.nix
@@ -31,6 +33,7 @@
 
   programs.home-manager.enable = true;
 
+  atuin.enable = lib.mkDefault true;
   bat.enable = lib.mkDefault true;
   direnv.enable = lib.mkDefault true;
   eza.enable = lib.mkDefault true;
@@ -38,6 +41,7 @@
   git.enable = lib.mkDefault true;
   kitty.enable = lib.mkDefault true;
   lazygit.enable = lib.mkDefault true;
+  navi.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   starship.enable = lib.mkDefault true;

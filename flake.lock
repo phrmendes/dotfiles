@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "cmp-zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710558035,
+        "narHash": "sha256-p3vssnEXVwXdLHTrCRngAVReA+yA0Hc9bMwuRju4fXc=",
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "rev": "281f43726bed2c5eb96bea1544edcf2e069795db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "type": "github"
+      }
+    },
     "copilot-chat-nvim": {
       "flake": false,
       "locked": {
@@ -125,12 +141,14 @@
       "inputs": {
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-starship": "catppuccin-starship",
+        "cmp-zotcite": "cmp-zotcite",
         "copilot-chat-nvim": "copilot-chat-nvim",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "latex-snippets-nvim": "latex-snippets-nvim",
         "nixpkgs": "nixpkgs",
-        "telescope-zotero": "telescope-zotero"
+        "telescope-zotero": "telescope-zotero",
+        "zotcite": "zotcite"
       }
     },
     "telescope-zotero": {
@@ -146,6 +164,22 @@
       "original": {
         "owner": "jmbuhr",
         "repo": "telescope-zotero.nvim",
+        "type": "github"
+      }
+    },
+    "zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710602447,
+        "narHash": "sha256-x/6CEfYSDopUKGvKw9VaGoMNqs7Khi6/VF/c2G701cw=",
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "rev": "9753c2629cefa3bc388e3bac4ac65dfb9d5a3610",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "zotcite",
         "type": "github"
       }
     }

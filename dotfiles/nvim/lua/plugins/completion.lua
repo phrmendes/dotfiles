@@ -88,6 +88,7 @@ if vim.fn.has("mac") == 0 then
 			{ name = "nvim_lsp" },
 			{ name = "luasnip" },
 			{ name = "cmp_pandoc" },
+			{ name = "cmp_zotcite" },
 			{ name = "latex_symbols", option = { strategy = 2 } },
 			{ name = "buffer" },
 		}),

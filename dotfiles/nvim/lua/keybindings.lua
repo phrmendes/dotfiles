@@ -64,13 +64,13 @@ wk.register({
 		u = { "<CMD>UndotreeToggle<CR>", "Undo tree" },
 		w = { "<CMD>w<CR>", "Save" },
 		x = { "<C-w>q", "Close window" },
-		z = { "<CMD>ZenMode<CR>", "Zen mode" },
 	},
 	["<leader><leader>"] = {
 		h = { require("smart-splits").swap_buf_left, "Swap buffer left" },
 		j = { require("smart-splits").swap_buf_down, "Swap buffer down" },
 		k = { require("smart-splits").swap_buf_up, "Swap buffer up" },
 		l = { require("smart-splits").swap_buf_right, "Swap buffer right" },
+		z = { "<CMD>ZenMode<CR>", "Zen mode" },
 	},
 	["<leader><TAB>"] = {
 		name = "tabs",
@@ -170,7 +170,15 @@ autocmd("FileType", {
 	group = augroup,
 	callback = function(event)
 		wk.register({
-			["<leader>Z"] = { "<CMD>Telescope zotero<CR>", "Add source from Zotero" },
+			["<leader>z"] = {
+				name = "zotero",
+				a = { "<CMD>Telescope zotero<CR>", "Add source from Zotero" },
+				c = { "<Plug>ZCitationCompleteInfo", "Citation complete info" },
+				i = { "<Plug>ZCitationInfo", "Citation info" },
+				o = { "<Plug>ZOpenAttachment", "Open attachment" },
+				v = { "<Plug>ZViewDocument", "View document" },
+				y = { "<Plug>ZCitationYamlRef", "YAML reference" },
+			},
 		}, { buffer = event.buf })
 	end,
 })

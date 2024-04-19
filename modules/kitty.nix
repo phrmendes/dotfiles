@@ -10,12 +10,14 @@ in {
 
   config = lib.mkIf config.kitty.enable {
     programs.kitty = let
-      linux_options = {
-        font_size = 12;
-        hide_window_decorations = "yes";
-      };
-      darwin_options = {
-        font_size = 16;
+      settings = {
+        linux = {
+          font_size = 12;
+          hide_window_decorations = "yes";
+        };
+        darwin = {
+          font_size = 16;
+        };
       };
     in {
       enable = true;
@@ -56,8 +58,8 @@ in {
         }
         // (
           if isDarwin
-          then darwin_options
-          else linux_options
+          then settings.darwin
+          else settings.linux
         );
       keybindings = {
         "ctrl+equal" = "change_font_size all +2.0";

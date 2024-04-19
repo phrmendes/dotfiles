@@ -24,17 +24,6 @@ M.normalize = function(word)
 	return normalized_word:gsub("[%s%W]", "_")
 end
 
-M.metadata = function(note)
-	local out = { aliases = note.aliases, tags = note.tags }
-	if note.metadata ~= nil and require("obsidian").util.table_length(note.metadata) > 0 then
-		for k, v in pairs(note.metadata) do
-			out[k] = v
-		end
-	end
-
-	return out
-end
-
 M.open = function(arg)
 	local open
 

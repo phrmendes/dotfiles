@@ -125,6 +125,16 @@ wk.register({
 			b = { require("gitsigns").reset_buffer, "Buffer" },
 		},
 	},
+	["<leader>o"] = {
+		name = "obsidian",
+		b = { "<CMD>ObsidianBacklinks<CR>", "Backlinks" },
+		n = { "<CMD>ObsidianNew<CR>", "New note" },
+		o = { "<CMD>ObsidianQuickSwitch<CR>", "Search notes" },
+		p = { "<CMD>ObsidianPasteImg<CR>", "Paste image" },
+		r = { "<CMD>ObsidianRename<CR>", "Rename note" },
+		s = { "<CMD>ObsidianSearch<CR>", "Search in notes" },
+		t = { "<CMD>ObsidianTags<CR>", "Tags" },
+	},
 })
 
 wk.register({
@@ -147,6 +157,12 @@ wk.register({
 			h = { require("gitsigns").reset_hunk, "Hunk" },
 		},
 	},
+	["<leader>o"] = {
+		name = "obsidian",
+		e = { "<CMD>ObsidianExtractNote<CR>", "Extract to new note" },
+		l = { "<CMD>ObsidianLink<CR>", "Add link" },
+		n = { "<CMD>ObsidianLinkNew<CR>", "Add link to new file" },
+	},
 }, { mode = "v" })
 
 autocmd("FileType", {
@@ -156,6 +172,30 @@ autocmd("FileType", {
 		wk.register({
 			["<leader>Z"] = { "<CMD>Telescope zotero<CR>", "Add source from Zotero" },
 		}, { buffer = event.buf })
+	end,
+})
+
+autocmd("FileType", {
+	pattern = { "python" },
+	group = augroup,
+	callback = function(event)
+		wk.register({
+			["<leader>t"] = {
+				name = "DAP",
+				t = { require("dap-python").test_file, "Test file (python)" },
+				d = { require("dap-python").debug_file, "Debug file (python)" },
+			},
+		}, { buffer = event.buf })
+
+		wk.register({
+			["<leader>t"] = {
+				name = "DAP",
+				d = { require("dap-python").debug_selection, "Debug selection (python)" },
+			},
+		}, {
+			mode = "v",
+			buffer = event.buf,
+		})
 	end,
 })
 
@@ -205,30 +245,6 @@ autocmd("LspAttach", {
 		}, {
 			mode = "v",
 			buffer = event.buf,
-		})
-
-		autocmd("FileType", {
-			pattern = { "python" },
-			group = augroup,
-			callback = function(ev)
-				wk.register({
-					["<leader>t"] = {
-						name = "DAP",
-						t = { require("dap-python").test_file, "Test file (python)" },
-						d = { require("dap-python").debug_file, "Debug file (python)" },
-					},
-				}, { buffer = ev.buf })
-
-				wk.register({
-					["<leader>t"] = {
-						name = "DAP",
-						d = { require("dap-python").debug_selection, "Debug selection (python)" },
-					},
-				}, {
-					mode = "v",
-					buffer = ev.buf,
-				})
-			end,
 		})
 	end,
 })

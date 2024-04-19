@@ -73,7 +73,10 @@
       driSupport = true;
       driSupport32Bit = true;
       setLdLibraryPath = true;
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
+      extraPackages = with pkgs; [
+        mesa
+        nvidia-vaapi-driver
+      ];
     };
 
     bluetooth = {

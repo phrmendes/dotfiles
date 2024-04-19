@@ -19,6 +19,7 @@
             "forge@jmmaranan.com"
             "gsconnect@andyholmes.github.io"
             "pano@elhan.io"
+            "user-theme@gnome-shell-extensions.gcampax.github.com"
           ];
           favorite-apps = [
             "org.gnome.Nautilus.desktop"
@@ -27,6 +28,9 @@
             "bitwarden.desktop"
             "obsidian.desktop"
           ];
+        };
+        "org/gnome/shell/extensions/user-theme" = {
+          name = "Catppuccin-Mocha-Standard-Blue-Dark";
         };
         "org/gnome/shell/extensions/pano" = {
           active-item-border-color = blue;

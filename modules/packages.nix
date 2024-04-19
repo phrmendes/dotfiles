@@ -65,7 +65,6 @@ in {
           obsidian
           phockup
           plex
-          protonmail-bridge-gui
           qalculate-gtk
           quarto
           quickemu
@@ -78,7 +77,6 @@ in {
         ])
         ++ (with pkgs.gnome; [
           file-roller
-          geary
           gnome-screenshot
           gnome-tweaks
           nautilus
@@ -88,6 +86,7 @@ in {
           espresso
           forge
           pano
+          user-themes
         ]);
     in
       if isDarwin

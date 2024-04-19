@@ -2,12 +2,12 @@
   lib,
   parameters,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
     ./atuin.nix
     ./bat.nix
-    ./navi.nix
     ./btop.nix
     ./dconf.nix
     ./direnv.nix
@@ -17,6 +17,7 @@
     ./gtk.nix
     ./kitty.nix
     ./lazygit.nix
+    ./navi.nix
     ./neovim.nix
     ./packages.nix
     ./pyenv.nix
@@ -57,5 +58,14 @@
     stateVersion = "23.11";
     username = parameters.user;
     homeDirectory = parameters.home;
+  };
+
+  systemd.user.sessionVariables = {
+    EDITOR = "nvim";
+    GIT_EDITOR = "nvim";
+    SUDO_EDITOR = "nvim";
+    VISUAL = "nvim";
+    DEBUGPY = "${pkgs.python312Packages.debugpy}/bin/python";
+    VAGRANT_DEFAULT_PROVIDER = "libvirt";
   };
 }

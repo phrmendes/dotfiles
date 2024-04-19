@@ -13,10 +13,12 @@ luasnip.config.setup({
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
-require("luasnip-latex-snippets").setup({
-	use_treesitter = true,
-	allow_on_markdown = true,
-})
+if vim.fn.has("mac") == 0 then
+	require("luasnip-latex-snippets").setup({
+		use_treesitter = true,
+		allow_on_markdown = true,
+	})
+end
 
 local snippets = {
 	snippet({ trig = "im", name = "inline math" }, "$${1:${TM_SELECTED_TEXT}}$"),

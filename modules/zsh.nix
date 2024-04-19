@@ -39,18 +39,25 @@ in {
         dpct = "duplicati-cli";
         open = "xdg-open";
       };
-      aliases =
+      shellAliases =
         if isLinux
         then common // desktop
         else common;
+      envExtra = ''
+        export EDITOR="nvim"
+        export GIT_EDITOR="nvim"
+        export SUDO_EDITOR="nvim"
+        export VISUAL="nvim"
+        export VAGRANT_DEFAULT_PROVIDER="libvirt"
+      '';
+      initExtra = builtins.readFile ../dotfiles/init.sh;
     in {
+      inherit shellAliases envExtra initExtra;
       enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
       enableVteIntegration = true;
       syntaxHighlighting.enable = true;
-      initExtra = builtins.readFile ../dotfiles/init.sh;
-      shellAliases = aliases;
     };
   };
 }

@@ -211,12 +211,12 @@ autocmd("LspAttach", {
 	group = augroup,
 	callback = function(event)
 		wk.register({
-			["<F-3>"] = { require("dap").step_out, "DAP: step out" },
-			["<F-4>"] = { require("dap").step_into, "DAP: step into" },
-			["<F-5>"] = { require("dap").step_back, "DAP: step back" },
-			["<F-6>"] = { require("dap").continue, "DAP: continue" },
-			["<F-7>"] = { require("dap").step_over, "DAP: step over" },
-			["<S-F-6>"] = { require("dap").pause, "DAP: pause" },
+			["<F3>"] = { require("dap").step_out, "DAP: step out" },
+			["<F4>"] = { require("dap").step_into, "DAP: step into" },
+			["<F5>"] = { require("dap").step_back, "DAP: step back" },
+			["<F6>"] = { require("dap").continue, "DAP: continue" },
+			["<F7>"] = { require("dap").step_over, "DAP: step over" },
+			["<S-F6>"] = { require("dap").pause, "DAP: pause" },
 			["<BS>"] = { require("dap").close, "DAP: quit" },
 			["g"] = {
 				D = { vim.lsp.buf.declaration, "Go to declaration" },

@@ -24,7 +24,6 @@
           with pkgs.vimPlugins; [
             cmp-latex-symbols
             cmp-pandoc-nvim
-            jupytext-nvim
             nabla-nvim
             obsidian-nvim
             gh.cmp-zotcite
@@ -116,8 +115,9 @@
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
-          poppler-qt5
+          debugpy
           pynvim
+          poppler-qt5
           pyqt5
         ];
       extraPackages =
@@ -158,10 +158,6 @@
           vscode-json-languageserver
           vscode-langservers-extracted
           yaml-language-server
-        ])
-        ++ (with pkgs.python312Packages; [
-          debugpy
-          jupytext
         ]);
     };
   };

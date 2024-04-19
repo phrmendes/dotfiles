@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-export EDITOR="nvim";
-export GIT_EDITOR="nvim";
-export SUDO_EDITOR="nvim";
-export VISUAL="nvim";
-
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
 export PATH="/run/current-system/sw/bin:$PATH"

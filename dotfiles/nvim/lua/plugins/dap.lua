@@ -19,7 +19,7 @@ later(function()
 
 	dap_ui.setup()
 	dap_virtual_text.setup()
-	dap_python.setup(vim.fn.system("which python"))
+	dap_python.setup("nvim-python3")
 
 	dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
 	dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close

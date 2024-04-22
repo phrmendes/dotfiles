@@ -116,9 +116,10 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
-          pynvim
           poppler-qt5
+          pynvim
           pyqt5
+          pyyaml
         ];
       extraPackages =
         (with pkgs; [

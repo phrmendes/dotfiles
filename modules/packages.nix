@@ -45,7 +45,6 @@ in {
         (with pkgs; [
           bashly
           bitwarden
-          gnome-solanum
           bruno
           chromium
           curtail
@@ -58,10 +57,13 @@ in {
           fragments
           gcolor3
           gnome-photos
+          gnome-solanum
           gnuplot
+          gnvim
           grim
           hugo
           libreoffice
+          neovim-gtk
           obsidian
           phockup
           plex

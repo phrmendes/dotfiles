@@ -93,3 +93,7 @@ if vim.fn.executable("nvr") then
 	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 	vim.env.VISUAL = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
+
+if vim.fn.exists("g:GtkGuiLoaded") then
+	vim.cmd([[call rpcnotify(1, 'Gui', 'Font', 'FiraCode Nerd Font 14')]])
+end

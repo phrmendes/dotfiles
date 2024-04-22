@@ -3,8 +3,6 @@ local augroup = require("utils").augroup
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
-vim.g.copilot_no_tab_map = true
-
 vim.g.VM_maps = {
 	["Add Cursor Up"] = "M",
 	["Add Cursor Down"] = "m",
@@ -28,7 +26,6 @@ map("n", "<C-Left>", require("smart-splits").resize_left, { desc = "Resize left"
 map("n", "<C-Down>", require("smart-splits").resize_down, { desc = "Resize down" })
 map("n", "<C-Up>", require("smart-splits").resize_up, { desc = "Resize up" })
 map("n", "<C-Right>", require("smart-splits").resize_right, { desc = "Resize right" })
-map("i", "<C-a>", [[copilot#Accept("\\<CR>")]], { expr = true, replace_keycodes = false })
 map("t", "<C-c>", "<C-\\><C-n>", { noremap = true, silent = true })
 map("v", "Q", "<CMD>norm @q<CR>", { noremap = true, silent = true })
 map({ "n", "v" }, "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = true, silent = true, desc = "Send to REPL" })

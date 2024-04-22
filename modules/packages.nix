@@ -56,12 +56,12 @@ in {
           foliate
           fragments
           gcolor3
-          gnome-photos
           gnome-solanum
           gnuplot
           grim
           hugo
           libreoffice
+          loupe
           neovim-gtk
           obsidian
           phockup

@@ -59,7 +59,6 @@ in {
           gnome-photos
           gnome-solanum
           gnuplot
-          gnvim
           grim
           hugo
           libreoffice

@@ -14,8 +14,6 @@ local flags = {
 }
 
 local servers = {
-	basedpyright = {},
-	pyright = {},
 	ansiblels = {},
 	bashls = {},
 	cssls = {},
@@ -103,14 +101,20 @@ local servers = {
 	},
 }
 
+if vim.fn.executable("basedpyright") == 1 then
+	servers.basedpyright = {}
+else
+	servers.pyright = {}
+end
+
 for key, value in pairs(servers) do
 	(function(server_name, settings)
-		local server = settings or {}
+		local setup = settings or {}
 
-		server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-		server.flags = vim.tbl_deep_extend("force", {}, flags, server.flags or {})
-		server.handlers = vim.tbl_deep_extend("force", {}, handlers, server.handlers or {})
+		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
+		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
+		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
-		require("lspconfig")[server_name].setup(server)
+		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)
 end

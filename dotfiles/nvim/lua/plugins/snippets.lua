@@ -28,5 +28,5 @@ local snippets = {
 	snippet({ trig = "ltex", name = "enable ltex" }, "<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"),
 }
 
-luasnip.add_snippets("markdown", snippets, { type = "autosnippets" })
+luasnip.add_snippets("markdown", snippets)
 luasnip.filetype_extend("markdown", { "quarto" })

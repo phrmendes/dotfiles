@@ -92,6 +92,7 @@
           sqlite-lua
           telescope-fzf-native-nvim
           telescope-nvim
+          telescope-zoxide
           todo-comments-nvim
           trouble-nvim
           undotree

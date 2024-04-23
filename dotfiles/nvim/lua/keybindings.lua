@@ -100,6 +100,7 @@ wk.register({
 		o = { "<CMD>Telescope oldfiles<CR>", "Recent files" },
 		r = { require("spectre").toggle, "Replace" },
 		t = { "<CMD>TodoTelescope<CR>", "Todo" },
+		z = { "<CMD>Telescope zoxide list<CR>", "Zoxide" },
 	},
 	["<leader>g"] = {
 		name = "git",

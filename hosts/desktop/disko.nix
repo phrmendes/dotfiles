@@ -1,4 +1,4 @@
-{parameters, ...}: {
+{device ? throw "Device is required", ...}: {
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
@@ -6,7 +6,7 @@
     };
 
     disk.main = {
-      inherit (parameters) device;
+      inherit device;
       type = "disk";
       content = {
         type = "gpt";

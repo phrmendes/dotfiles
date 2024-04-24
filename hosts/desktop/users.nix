@@ -5,20 +5,22 @@
 }: {
   users = {
     mutableUsers = true;
-    users.root.initialPassword = "password";
-    users.${parameters.user} = {
-      inherit (parameters) home;
-      isNormalUser = true;
-      initialPassword = "password";
-      shell = pkgs.zsh;
-      uid = 1000;
-      extraGroups = [
-        "audio"
-        "libvirtd"
-        "networkmanager"
-        "video"
-        "wheel"
-      ];
+    users = {
+      root.hashedPasswordFile = "password";
+      ${parameters.user} = {
+        inherit (parameters) home;
+        isNormalUser = true;
+        hashedPasswordFile = "password";
+        shell = pkgs.zsh;
+        uid = 1000;
+        extraGroups = [
+          "audio"
+          "libvirtd"
+          "networkmanager"
+          "video"
+          "wheel"
+        ];
+      };
     };
   };
 }

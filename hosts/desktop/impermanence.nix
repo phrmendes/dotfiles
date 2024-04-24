@@ -31,6 +31,7 @@
         ".config/obsidian"
         ".config/syncthing"
         ".config/systemd"
+        ".config/sops"
         ".local/share/Trash"
         ".local/share/atuin"
         ".local/share/keyrings"
@@ -38,6 +39,9 @@
         ".local/share/syncthing"
         ".local/share/zoxide"
         ".local/state/nvim"
+      ];
+      files = [
+        ".config/monitors.xml"
       ];
     };
   };

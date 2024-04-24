@@ -43,3 +43,23 @@ Install NixOS:
 ```sh
 sudo nixos-install --flake .#desktop --root /mnt --no-root-passwd
 ```
+
+## Secrets
+
+Generate new key at ~/.config/sops/age/keys.txt
+
+```sh
+nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
+```
+
+Generate new key at ~/.config/sops/age/keys.txt from private ssh key at ~/.ssh/private:
+
+```sh
+nix run nixpkgs#ssh-to-age -- -private-key -i ~/.ssh/private > ~/.config/sops/age/keys.txt
+```
+
+Get a public key of ~/.config/sops/age/keys.txt:
+
+```sh
+nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt
+```

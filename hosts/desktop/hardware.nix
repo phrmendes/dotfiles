@@ -41,8 +41,21 @@
     };
 
     "/boot" = {
-      device = "/dev/disk/by-partlabel/disk-main-esp";
+      device = "/dev/disk/by-partlabel/disk-main-ESP";
       fsType = "vfat";
+    };
+
+    "/nix" = {
+      device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = ["subvol=nix" "compress=zstd" "noatime"];
+    };
+
+    "/persist" = {
+      device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = ["subvol=persist" "compress=zstd" "noatime"];
+      neededForBoot = true;
     };
 
     "/swap" = {
@@ -51,17 +64,16 @@
       options = ["subvol=swap" "noatime"];
     };
 
-    "/nix" = {
+    "/tmp" = {
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
-      options = ["subvol=nix" "compress=zstd" "noatime"];
-      neededForBoot = true;
+      options = ["subvol=tmp" "noatime"];
     };
 
-    "/persist" = {
+    "/var/log" = {
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
-      options = ["subvol=persist" "compress=zstd" "noatime"];
+      options = ["subvol=log" "compress=zstd" "noatime"];
       neededForBoot = true;
     };
   };

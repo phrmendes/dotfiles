@@ -11,7 +11,7 @@
       content = {
         type = "gpt";
         partitions = {
-          esp = {
+          ESP = {
             priority = 1;
             size = "512M";
             type = "EF00";
@@ -40,6 +40,14 @@
                   persist = {
                     mountpoint = "/persist";
                     mountOptions = ["compress=zstd" "noatime"];
+                  };
+                  log = {
+                    mountpoint = "/var/log";
+                    mountOptions = ["compress=zstd" "noatime"];
+                  };
+                  tmp = {
+                    mountpoint = "/tmp";
+                    mountOptions = ["noatime"];
                   };
                   swap = {
                     mountpoint = "/swap";

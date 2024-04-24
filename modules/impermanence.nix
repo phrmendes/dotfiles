@@ -7,6 +7,7 @@
 
   config = lib.mkIf config.impermanence.enable {
     home.persistence."/persist/home" = {
+      allowOther = true;
       directories = [
         "Documents"
         "Downloads"

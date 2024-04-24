@@ -21,8 +21,8 @@ in {
         ".amethyst.yml".source = ../dotfiles/amethyst.yml;
       };
       desktop = {
-        ".face".source = ../dotfiles/avatar.png;
-        ".wallpaper".source = ../dotfiles/wallpaper.png;
+        ".face".source = ../dotfiles/face.png;
+        ".config/background".source = ../dotfiles/background.png;
         ".config/forge/stylesheet/forge/stylesheet.css".source = ../dotfiles/forge/style.css;
       };
     in

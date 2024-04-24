@@ -1,6 +1,7 @@
 {
-  lib,
   config,
+  lib,
+  parameters,
   pkgs,
   ...
 }: {
@@ -178,6 +179,13 @@
           has-battery = false;
           show-notifications = false;
           user-enabled = true;
+        };
+        "org/gnome/desktop/background" = {
+          picture-uri = "file:///home/${parameters.user}/.config/background";
+          picture-uri-dark = "file:///home/${parameters.user}/.config/background";
+        };
+        "org/gnome/desktop/screensaver" = {
+          picture-uri = "file:///home/${parameters.user}/.config/background";
         };
       };
     };

@@ -18,6 +18,7 @@
     "/boot" = {
       device = "/dev/disk/by-partlabel/disk-main-ESP";
       fsType = "vfat";
+      options = ["defaults" "umask=0077"];
     };
 
     "/nix" = {

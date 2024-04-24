@@ -41,5 +41,5 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 Install NixOS:
 
 ```sh
-nixos-install --flake .#desktop --root /mnt --no-root-passwd
+sudo nixos-install --flake .#desktop --root /mnt --no-root-passwd
 ```

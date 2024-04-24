@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    inputs.impermanence.nixosModules.home-manager.impermanence
     ./atuin.nix
     ./bat.nix
     ./btop.nix
@@ -15,11 +16,13 @@
     ./fzf.nix
     ./git.nix
     ./gtk.nix
+    ./impermanence.nix
     ./kitty.nix
     ./lazygit.nix
     ./navi.nix
     ./neovim.nix
     ./packages.nix
+    ./persistence.nix
     ./pyenv.nix
     ./starship.nix
     ./symlinks.nix

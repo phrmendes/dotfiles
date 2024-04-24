@@ -5,11 +5,15 @@
   ...
 }: {
   imports = [
+    inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
+    inputs.impermanence.nixosModules.impermanence
+    ./disko.nix
     ./fonts.nix
     ./hardware.nix
     ./home-manager.nix
     ./i18n.nix
+    ./impermanence.nix
     ./networking.nix
     ./nix-settings.nix
     ./packages.nix

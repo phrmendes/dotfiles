@@ -11,6 +11,11 @@
     ntpd-rs.enable = true;
     tailscale.enable = true;
 
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "monthly";
+    };
+
     udev = {
       enable = true;
       packages = with pkgs.gnome; [gnome-settings-daemon];

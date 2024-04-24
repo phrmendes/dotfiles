@@ -8,6 +8,7 @@
   services = {
     flatpak.enable = true;
     gvfs.enable = true;
+    ntpd-rs.enable = true;
     tailscale.enable = true;
 
     udev = {

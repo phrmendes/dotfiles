@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  wallpaper = ../../../dotfiles/wallpaper.png;
-in {
+}: {
   environment.systemPackages = with pkgs; [
     appimage-run
     binutils

@@ -32,8 +32,6 @@
     ./zsh.nix
   ];
 
-  programs.home-manager.enable = true;
-
   atuin.enable = lib.mkDefault true;
   bat.enable = lib.mkDefault true;
   direnv.enable = lib.mkDefault true;
@@ -65,7 +63,6 @@
     GIT_EDITOR = "nvim";
     SUDO_EDITOR = "nvim";
     VISUAL = "nvim";
-    DEBUGPY = "${pkgs.python312Packages.debugpy}/bin/python";
     VAGRANT_DEFAULT_PROVIDER = "libvirt";
   };
 }

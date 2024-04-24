@@ -66,16 +66,15 @@
     self,
     darwin,
     nixpkgs,
-    home-manager,
     ...
   }: {
     darwinConfigurations."SAO-QQ4FN0YXVT" = let
       parameters = rec {
+        name = "Pedro Mendes";
+        user = "prochame";
         email = "pedro.mendes-ext@ab-inbev.com";
         home = "/Users/${user}";
-        name = "Pedro Mendes";
         system = "aarch64-darwin";
-        user = "prochame";
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
@@ -84,37 +83,17 @@
     in
       darwin.lib.darwinSystem {
         inherit (parameters) system;
-        specialArgs = {
-          inherit inputs pkgs parameters;
-        };
-        modules = [
-          ./hosts/darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs pkgs parameters;
-              };
-              backupFileExtension = "bak";
-              users.${parameters.user} = {
-                imports = [./modules];
-
-                pyenv.enable = true;
-              };
-            };
-          }
-        ];
+        specialArgs = {inherit inputs pkgs parameters;};
+        modules = [./hosts/darwin];
       };
 
     nixosConfigurations.desktop = let
       parameters = rec {
+        name = "Pedro Mendes";
+        user = "phrmendes";
         email = "pedrohrmendes@proton.me";
         home = "/home/${user}";
-        name = "Pedro Mendes";
         system = "x86_64-linux";
-        user = "phrmendes";
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;
@@ -123,33 +102,8 @@
     in
       nixpkgs.lib.nixosSystem {
         inherit (parameters) system;
-        specialArgs = {
-          inherit inputs pkgs parameters;
-        };
-        modules = [
-          ./hosts/desktop
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs pkgs parameters;
-              };
-              backupFileExtension = "bak";
-              users.${parameters.user} = {
-                imports = [
-                  ./modules
-                ];
-
-                btop.enable = true;
-                dconf-settings.enable = true;
-                gtk-settings.enable = true;
-                targets.enable = true;
-              };
-            };
-          }
-        ];
+        specialArgs = {inherit inputs pkgs parameters;};
+        modules = [./hosts/desktop];
       };
   };
 }

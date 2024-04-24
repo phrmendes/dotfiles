@@ -7,7 +7,6 @@
     hideMounts = true;
     directories = [
       "/etc/NetworkManager"
-      "/etc/shadow"
       "/var/log"
       "/var/lib"
     ];

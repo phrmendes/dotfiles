@@ -18,13 +18,10 @@
         pull.rebase = true;
         push.autoSetupRemote = true;
         http.sslVerify = true;
-        core.excludesFile = pkgs.writeTextFile {
-          name = "ignore";
-          text = ''
-            .DS_Store
-            Session.vim
-          '';
-        };
+        core.excludeFiles = builtins.toFile "ignore" ''
+          .DS_Store
+          Session.vim
+        '';
       };
       aliases = {
         A = "add .";

@@ -68,6 +68,7 @@
   swapDevices = [{device = "/swap/swapfile";}];
 
   hardware = {
+    pulseaudio.enable = false;
     uinput.enable = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

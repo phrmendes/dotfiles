@@ -22,7 +22,6 @@
     ./navi.nix
     ./neovim.nix
     ./packages.nix
-    ./persistence.nix
     ./pyenv.nix
     ./starship.nix
     ./symlinks.nix

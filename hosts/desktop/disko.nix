@@ -1,4 +1,4 @@
-{
+{parameters, ...}: {
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
@@ -6,9 +6,8 @@
     };
 
     disk.main = {
+      inherit (parameters) device;
       type = "disk";
-      device = "/dev/sdb";
-
       content = {
         type = "gpt";
         partitions = {

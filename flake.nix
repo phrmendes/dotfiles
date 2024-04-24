@@ -100,6 +100,7 @@
         email = "pedrohrmendes@proton.me";
         home = "/home/${user}";
         system = "x86_64-linux";
+        device = "/dev/sdc";
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;

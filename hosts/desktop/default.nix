@@ -9,6 +9,8 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
     (import ./disko.nix {inherit (parameters) device;})
+    ./boot.nix
+    ./file-systems.nix
     ./fonts.nix
     ./hardware.nix
     ./home-manager.nix

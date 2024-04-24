@@ -22,6 +22,7 @@
         ".tmux"
         ".config/Bitwarden"
         ".config/Duplicati"
+        ".config/dconf"
         ".config/obsidian"
         ".config/syncthing"
         ".config/systemd"

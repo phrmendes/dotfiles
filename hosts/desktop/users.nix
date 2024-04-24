@@ -4,7 +4,7 @@
   ...
 }: {
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
     users.${parameters.user} = {
       inherit (parameters) home;
       isNormalUser = true;

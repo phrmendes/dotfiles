@@ -14,6 +14,7 @@
         "org/gnome/shell" = {
           disable-user-extensions = false;
           enabled-extensions = [
+            "AlphabeticalAppGrid@stuarthayhurst"
             "appindicatorsupport@rgcjonas.gmail.com"
             "espresso@coadmunkee.github.com"
             "forge@jmmaranan.com"
@@ -172,6 +173,11 @@
           binding = "<Super>t";
           command = "kitty";
           name = "Terminal";
+        };
+        "org/gnome/shell/extensions/espresso" = {
+          has-battery = false;
+          show-notifications = false;
+          user-enabled = true;
         };
       };
     };

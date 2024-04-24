@@ -46,16 +46,12 @@ sudo nixos-install --flake .#desktop --root /mnt --no-root-passwd
 
 ## Secrets
 
-Generate new key at ~/.config/sops/age/keys.txt
+Generate new `age` key from private `ssh` key:
 
 ```sh
-nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
-```
-
-Generate new key at ~/.config/sops/age/keys.txt from private ssh key at ~/.ssh/private:
-
-```sh
-nix run nixpkgs#ssh-to-age -- -private-key -i ~/.ssh/private > ~/.config/sops/age/keys.txt
+mkdir -p ~/.config/sops/age
+read -s SSH_TO_AGE_PASSPHRASE; export SSH_TO_AGE_PASSPHRASE
+nix run nixpkgs#ssh-to-age -- -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt
 ```
 
 Get a public key of ~/.config/sops/age/keys.txt:
@@ -63,3 +59,5 @@ Get a public key of ~/.config/sops/age/keys.txt:
 ```sh
 nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt
 ```
+
+Insert the public key in the `.sops.yaml` file.

@@ -50,13 +50,12 @@
     extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
     loader = {
       timeout = 5;
-      systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
       grub = {
-        enable = false;
+        enable = true;
         efiSupport = true;
         enableCryptodisk = true;
         useOSProber = true;

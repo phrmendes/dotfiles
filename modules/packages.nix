@@ -83,6 +83,7 @@ in {
           nautilus
         ])
         ++ (with pkgs.gnomeExtensions; [
+          alphabetical-app-grid
           appindicator
           espresso
           forge

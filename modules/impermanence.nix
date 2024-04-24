@@ -31,6 +31,7 @@
         ".local/share/pano@elhan.io"
         ".local/share/syncthing"
         ".local/share/zoxide"
+        ".local/state/nvim"
       ];
     };
   };

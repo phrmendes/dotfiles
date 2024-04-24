@@ -14,6 +14,7 @@
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
+    ./gh.nix
     ./git.nix
     ./gtk.nix
     ./impermanence.nix
@@ -39,6 +40,7 @@
   direnv.enable = lib.mkDefault true;
   eza.enable = lib.mkDefault true;
   fzf.enable = lib.mkDefault true;
+  gh.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
   kitty.enable = lib.mkDefault true;
   lazygit.enable = lib.mkDefault true;

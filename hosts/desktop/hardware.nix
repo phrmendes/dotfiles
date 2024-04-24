@@ -9,30 +9,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  boot = {
-    tmp.cleanOnBoot = true;
-    supportedFilesystems = ["btrfs" "ntfs"];
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["kvm-amd" "snd-aloop" "v4l2loopback"];
-    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
-    extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
-    loader = {
-      timeout = 5;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 8;
-      };
-    };
-    initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-      luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
-    };
-  };
-
   fileSystems = {
     "/" = {
       device = "none";
@@ -83,6 +59,29 @@
       fsType = "btrfs";
       options = ["subvol=lib" "compress=zstd" "noatime"];
       neededForBoot = true;
+    };
+  };
+
+  boot = {
+    tmp.cleanOnBoot = true;
+    supportedFilesystems = ["btrfs" "ntfs"];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = ["kvm-amd" "snd-aloop" "v4l2loopback"];
+    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
+    extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
+    loader = {
+      timeout = 5;
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        devices = ["nodev"];
+        useOSProber = true;
+      };
+    };
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+      luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
     };
   };
 

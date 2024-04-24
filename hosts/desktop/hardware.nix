@@ -55,6 +55,7 @@
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
       options = ["subvol=nix" "compress=zstd" "noatime"];
+      neededForBoot = true;
     };
 
     "/persist" = {

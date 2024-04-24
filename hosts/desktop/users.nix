@@ -5,6 +5,7 @@
 }: {
   users = {
     mutableUsers = true;
+    users.root.initialPassword = "password";
     users.${parameters.user} = {
       inherit (parameters) home;
       isNormalUser = true;

@@ -13,7 +13,6 @@
   inputs = {
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -27,6 +26,11 @@
 
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

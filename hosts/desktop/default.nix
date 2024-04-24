@@ -8,7 +8,6 @@
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
-    inputs.sops-nix.nixosModules.sops
     (import ./disko.nix {inherit (parameters) device;})
     ./boot.nix
     ./file-systems.nix
@@ -23,7 +22,6 @@
     ./programs.nix
     ./security.nix
     ./services.nix
-    ./sops.nix
     ./syncthing.nix
     ./time.nix
     ./users.nix

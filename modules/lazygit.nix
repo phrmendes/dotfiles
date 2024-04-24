@@ -12,6 +12,7 @@
     in {
       enable = true;
       settings = {
+        disableStartupPopups = true;
         gui = {
           nerdFontsVersion = "3";
           theme = with colors.catppuccin.hex; {

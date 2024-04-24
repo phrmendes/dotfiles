@@ -6,12 +6,9 @@
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
-      "/etc/NetworkManager"
-      "/var/log"
+      "/etc"
       "/var/lib"
-    ];
-    files = [
-      "/etc/machine-id"
+      "/var/log"
     ];
     users.${parameters.user} = {
       directories = [
@@ -31,7 +28,6 @@
         ".config/obsidian"
         ".config/syncthing"
         ".config/systemd"
-        ".config/sops"
         ".local/share/Trash"
         ".local/share/atuin"
         ".local/share/keyrings"

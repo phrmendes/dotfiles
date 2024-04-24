@@ -11,9 +11,8 @@
 
   fileSystems = {
     "/" = {
-      device = "none";
       fsType = "tmpfs";
-      options = ["defaults" "size=32G" "mode=755"];
+      options = ["defaults" "size=10%" "mode=755"];
     };
 
     "/boot" = {
@@ -25,39 +24,18 @@
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
       options = ["subvol=nix" "compress=zstd" "noatime"];
-      neededForBoot = true;
+    };
+
+    "/home" = {
+      device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = ["subvol=home" "compress=zstd" "noatime"];
     };
 
     "/persist" = {
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
       options = ["subvol=persist" "compress=zstd" "noatime"];
-      neededForBoot = true;
-    };
-
-    "/swap" = {
-      device = "/dev/mapper/crypted";
-      fsType = "btrfs";
-      options = ["subvol=swap" "noatime"];
-    };
-
-    "/tmp" = {
-      device = "/dev/mapper/crypted";
-      fsType = "btrfs";
-      options = ["subvol=tmp" "noatime"];
-    };
-
-    "/var/log" = {
-      device = "/dev/mapper/crypted";
-      fsType = "btrfs";
-      options = ["subvol=log" "compress=zstd" "noatime"];
-      neededForBoot = true;
-    };
-
-    "/var/lib" = {
-      device = "/dev/mapper/crypted";
-      fsType = "btrfs";
-      options = ["subvol=lib" "compress=zstd" "noatime"];
       neededForBoot = true;
     };
   };
@@ -71,12 +49,17 @@
     extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
     loader = {
       timeout = 5;
-      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
       grub = {
-        enable = true;
+        enable = false;
         efiSupport = true;
-        devices = ["nodev"];
+        enableCryptodisk = true;
         useOSProber = true;
+        devices = ["nodev"];
       };
     };
     initrd = {
@@ -84,8 +67,6 @@
       luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
     };
   };
-
-  swapDevices = [{device = "/swap/swapfile";}];
 
   hardware = {
     pulseaudio.enable = false;

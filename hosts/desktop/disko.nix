@@ -33,6 +33,10 @@
                 type = "btrfs";
                 extraArgs = ["-f"];
                 subvolumes = {
+                  home = {
+                    mountpoint = "/home";
+                    mountOptions = ["compress=zstd" "noatime"];
+                  };
                   nix = {
                     mountpoint = "/nix";
                     mountOptions = ["compress=zstd" "noatime"];
@@ -40,23 +44,6 @@
                   persist = {
                     mountpoint = "/persist";
                     mountOptions = ["compress=zstd" "noatime"];
-                  };
-                  log = {
-                    mountpoint = "/var/log";
-                    mountOptions = ["compress=zstd" "noatime"];
-                  };
-                  lib = {
-                    mountpoint = "/var/lib";
-                    mountOptions = ["compress=zstd" "noatime"];
-                  };
-                  tmp = {
-                    mountpoint = "/tmp";
-                    mountOptions = ["noatime"];
-                  };
-                  swap = {
-                    mountpoint = "/swap";
-                    mountOptions = ["noatime"];
-                    swap.swapfile.size = "5G";
                   };
                 };
               };

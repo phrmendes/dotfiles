@@ -3,10 +3,12 @@
   parameters,
   ...
 }: {
-  environment.persistence."/persist/system" = {
+  environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
-      "/etc/NetworkManager/system-connections"
+      "/etc/NetworkManager"
+      "/var/log"
+      "/var/lib"
     ];
     files = [
       "/etc/machine-id"

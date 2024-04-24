@@ -1,12 +1,13 @@
 {
-  lib,
   config,
+  lib,
+  parameters,
   ...
 }: {
   options.impermanence.enable = lib.mkEnableOption "enable impermanence";
 
   config = lib.mkIf config.impermanence.enable {
-    home.persistence."/persist/home" = {
+    home.persistence."/persist/home/${parameters.user}" = {
       allowOther = true;
       directories = [
         "Documents"

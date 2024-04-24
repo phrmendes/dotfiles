@@ -68,6 +68,7 @@ wk.register({
 		k = { require("smart-splits").swap_buf_up, "Swap buffer up" },
 		l = { require("smart-splits").swap_buf_right, "Swap buffer right" },
 		z = { "<CMD>ZenMode<CR>", "Zen mode" },
+		s = { "<CMD>Obsess<CR>", "Save session" },
 	},
 	["<leader><TAB>"] = {
 		name = "tabs",

@@ -102,6 +102,7 @@
           vim-jinja
           vim-just
           vim-nix
+          vim-obsession
           vim-sleuth
           vim-slime
           vim-visual-multi

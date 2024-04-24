@@ -50,6 +50,7 @@
         {
           plugin = continuum;
           extraConfig = ''
+            set -g @continuum-boot 'on'
             set -g @continuum-restore 'on'
             set -g @continuum-save-interval '5'
           '';
@@ -58,8 +59,9 @@
           plugin = resurrect;
           extraConfig = ''
             set -g @resurrect-capture-pane-contents 'on'
-            set -g @resurrect-save 's'
             set -g @resurrect-restore 'r'
+            set -g @resurrect-save 's'
+            set -g @resurrect-strategy-nvim 'session'
           '';
         }
       ];

@@ -49,6 +49,7 @@
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
       options = ["subvol=nix" "compress=zstd" "noatime"];
+      neededForBoot = true;
     };
 
     "/persist" = {
@@ -74,6 +75,13 @@
       device = "/dev/mapper/crypted";
       fsType = "btrfs";
       options = ["subvol=log" "compress=zstd" "noatime"];
+      neededForBoot = true;
+    };
+
+    "/var/lib" = {
+      device = "/dev/mapper/crypted";
+      fsType = "btrfs";
+      options = ["subvol=lib" "compress=zstd" "noatime"];
       neededForBoot = true;
     };
   };

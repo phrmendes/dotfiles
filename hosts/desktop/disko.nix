@@ -45,6 +45,10 @@
                     mountpoint = "/var/log";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
+                  lib = {
+                    mountpoint = "/var/lib";
+                    mountOptions = ["compress=zstd" "noatime"];
+                  };
                   tmp = {
                     mountpoint = "/tmp";
                     mountOptions = ["noatime"];

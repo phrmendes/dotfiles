@@ -17,12 +17,10 @@
             };
           };
           luks = {
-            name = "crypted";
             size = "100%";
             content = {
               type = "luks";
               name = "crypted";
-              askPassword = true;
               settings.allowDiscards = true;
               content = {
                 type = "btrfs";

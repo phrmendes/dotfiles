@@ -173,8 +173,6 @@
         "plasmashell"."switch to next activity" = [];
         "plasmashell"."switch to previous activity" = [];
         "plasmashell"."toggle do not disturb" = [];
-        "services/org.kde.krunner.desktop"."RunClipboard" = [];
-        "services/org.kde.krunner.desktop"."_launch" = "Meta+Space";
         "services/org.kde.plasma.emojier.desktop"."_launch" = "Meta+.";
         "services/org.kde.spectacle.desktop"."ActiveWindowScreenShot" = [];
         "services/org.kde.spectacle.desktop"."FullScreenScreenShot" = [];

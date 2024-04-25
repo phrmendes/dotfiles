@@ -72,7 +72,6 @@ in {
         ++ (with pkgs.kdePackages; [
           gwenview
           kcolorchooser
-          krunner
           ktorrent
           okular
           plasma-browser-integration

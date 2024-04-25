@@ -50,7 +50,6 @@ in {
           chromium
           curtail
           dbeaver
-          drawing
           droidcam
           firefox
           haruna

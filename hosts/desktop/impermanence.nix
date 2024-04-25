@@ -12,6 +12,7 @@
     ];
     users.${parameters.user} = {
       files = [
+        ".config/gh/hosts.yml"
         ".config/gtkrc"
         ".config/kde.org"
         ".config/kded5rc"

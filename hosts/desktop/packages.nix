@@ -29,7 +29,6 @@
       rar
       readline
       sqlite
-      timeshift
       unrar
       unzip
       wget

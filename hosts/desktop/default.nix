@@ -9,7 +9,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
     (import ./disko.nix {inherit (parameters) device;})
-    (import ./boot.nix {device = "/dev/mapper/crypted";})
+    ./boot.nix
     ./file-systems.nix
     ./fonts.nix
     ./hardware.nix

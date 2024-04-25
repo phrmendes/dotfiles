@@ -11,6 +11,11 @@
       "/var/log"
     ];
     users.${parameters.user} = {
+      files = [
+        ".config/kde.org"
+        ".config/plasma-org.kde.plasma.desktop-appletsrc"
+        ".config/kwinoutputconfig.json"
+      ];
       directories = [
         "Documents"
         "Downloads"
@@ -22,6 +27,7 @@
         ".mozilla"
         ".ssh"
         ".tmux"
+        ".config/kde.org"
         ".config/Bitwarden"
         ".config/Duplicati"
         ".config/dconf"

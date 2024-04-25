@@ -46,49 +46,38 @@ in {
           bashly
           bitwarden
           bruno
+          catppuccin-kde
           chromium
           curtail
           dbeaver
           drawing
           droidcam
-          evince
           firefox
-          foliate
-          fragments
-          gcolor3
-          gnome-solanum
-          gnuplot
-          grim
+          haruna
           hugo
           libreoffice
-          loupe
-          neovim-gtk
+          neovim-qt
           obsidian
           phockup
           plex
-          qalculate-gtk
           quarto
           quickemu
           syncthingtray
           tectonic
           vagrant
           ventoy
-          vlc
           zotero
         ])
-        ++ (with pkgs.gnome; [
-          file-roller
-          gnome-screenshot
-          gnome-tweaks
-          nautilus
-        ])
-        ++ (with pkgs.gnomeExtensions; [
-          alphabetical-app-grid
-          appindicator
-          espresso
-          forge
-          pano
-          user-themes
+        ++ (with pkgs.libsForQt5; [polonium])
+        ++ (with pkgs.kdePackages; [
+          gwenview
+          kcolorchooser
+          krunner
+          ktorrent
+          okular
+          plasma-browser-integration
+          sddm-kcm
+          spectacle
         ]);
     in
       if isDarwin

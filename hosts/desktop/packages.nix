@@ -4,7 +4,13 @@
   ...
 }: {
   environment = {
-    gnome.excludePackages = with pkgs; [gnome-tour];
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      elisa
+      kate
+      khelpcenter
+      konsole
+      oxygen
+    ];
     systemPackages = with pkgs; [
       appimage-run
       binutils
@@ -16,7 +22,6 @@
       gnumake
       gnupg
       gnused
-      gparted
       gzip
       iconv
       icu

@@ -31,13 +31,9 @@
         ".local/share/Trash"
         ".local/share/atuin"
         ".local/share/keyrings"
-        ".local/share/pano@elhan.io"
         ".local/share/syncthing"
         ".local/share/zoxide"
         ".local/state/nvim"
-      ];
-      files = [
-        ".config/monitors.xml"
       ];
     };
   };

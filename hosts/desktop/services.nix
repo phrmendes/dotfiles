@@ -10,20 +10,11 @@
     gvfs.enable = true;
     ntpd-rs.enable = true;
     tailscale.enable = true;
+    udev.enable = true;
 
     btrfs.autoScrub = {
       enable = true;
       interval = "monthly";
-    };
-
-    udev = {
-      enable = true;
-      packages = with pkgs.gnome; [gnome-settings-daemon];
-    };
-
-    gnome = {
-      core-utilities.enable = false;
-      gnome-keyring.enable = true;
     };
 
     journald.extraConfig = "SystemMaxUse=1G";
@@ -52,13 +43,15 @@
       };
     };
 
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+
     xserver = {
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
       enable = true;
       autorun = true;
       videoDrivers = ["nvidia"];
       excludePackages = with pkgs; [xterm];
+      displayManager.defaultSession = "plasma";
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

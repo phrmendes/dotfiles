@@ -4,24 +4,11 @@
   pkgs,
   ...
 }: {
-  options.gtk-settings.enable = lib.mkEnableOption "enable gtk themes";
+  options.gtk-manager.enable = lib.mkEnableOption "enable gtk manager";
 
-  config = lib.mkIf config.gtk-settings.enable {
+  config = lib.mkIf config.gtk-manager.enable {
     gtk = {
       enable = true;
-      cursorTheme = {
-        name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
-      };
-      iconTheme = {
-        name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
-      };
-      font = {
-        name = "Cantarell Regular";
-        package = pkgs.cantarell-fonts;
-        size = 11;
-      };
       theme = {
         name = "Catppuccin-Mocha-Standard-Blue-Dark";
         package = pkgs.catppuccin-gtk.override {

@@ -10,7 +10,7 @@
     pam = {
       services = {
         login = {
-          enableGnomeKeyring = true;
+          kwallet.enable = true;
           gnupg.enable = true;
         };
       };

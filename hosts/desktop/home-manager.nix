@@ -13,8 +13,8 @@
       imports = [../../modules];
 
       btop.enable = true;
-      dconf-settings.enable = true;
-      gtk-settings.enable = true;
+      gtk-manager.enable = true;
+      plasma-manager.enable = true;
       targets.enable = true;
     };
   };

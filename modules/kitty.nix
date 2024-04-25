@@ -9,17 +9,7 @@ in {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
 
   config = lib.mkIf config.kitty.enable {
-    programs.kitty = let
-      settings = {
-        linux = {
-          font_size = 12;
-          hide_window_decorations = "yes";
-        };
-        darwin = {
-          font_size = 16;
-        };
-      };
-    in {
+    programs.kitty = {
       enable = true;
       theme = "Catppuccin-Mocha";
       font = {
@@ -30,37 +20,34 @@ in {
         enableBashIntegration = true;
         enableZshIntegration = true;
       };
-      settings =
-        {
-          allow_remote_control = "yes";
-          bell_on_tab = "no";
-          bold_font = "auto";
-          bold_italic_font = "auto";
-          enable_audio_bell = "no";
-          enabled_layouts = "splits:split_axis=horizontal,stack";
-          hide_window_decorations = "yes";
-          inactive_text_alpha = "0.9";
-          italic_font = "auto";
-          listen_on = "unix:/tmp/kitty";
-          macos_option_as_alt = "yes";
-          open_url_with = "default";
-          scrollback_lines = 10000;
-          shell_integration = "enabled";
-          tab_bar_edge = "bottom";
-          tab_bar_min_tabs = 2;
-          tab_bar_style = "powerline";
-          tab_powerline_style = "slanted";
-          tab_title_template = "{title}{' #{}'.format(num_windows) if num_windows > 1 else ''}";
-          term = "xterm-256color";
-          undercurl_style = "thin-sparse";
-          update_check_interval = 0;
-          window_padding_width = 5;
-        }
-        // (
+      settings = {
+        allow_remote_control = "yes";
+        bell_on_tab = "no";
+        bold_font = "auto";
+        bold_italic_font = "auto";
+        enable_audio_bell = "no";
+        enabled_layouts = "splits:split_axis=horizontal,stack";
+        inactive_text_alpha = "0.9";
+        italic_font = "auto";
+        listen_on = "unix:/tmp/kitty";
+        macos_option_as_alt = "yes";
+        open_url_with = "default";
+        scrollback_lines = 10000;
+        shell_integration = "enabled";
+        tab_bar_edge = "bottom";
+        tab_bar_min_tabs = 2;
+        tab_bar_style = "powerline";
+        tab_powerline_style = "slanted";
+        tab_title_template = "{title}{' #{}'.format(num_windows) if num_windows > 1 else ''}";
+        term = "xterm-256color";
+        undercurl_style = "thin-sparse";
+        update_check_interval = 0;
+        window_padding_width = 5;
+        font_size =
           if isDarwin
-          then settings.darwin
-          else settings.linux
-        );
+          then 16
+          else 12;
+      };
       keybindings = {
         "ctrl+equal" = "change_font_size all +2.0";
         "ctrl+minus" = "change_font_size all -2.0";

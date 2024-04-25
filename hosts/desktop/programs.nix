@@ -5,14 +5,10 @@
 }: {
   programs = {
     dconf.enable = true;
-    seahorse.enable = true;
     virt-manager.enable = true;
     zsh.enable = true;
-
-    kdeconnect = {
-      enable = true;
-      package = pkgs.gnomeExtensions.gsconnect;
-    };
+    kdeconnect.enable = true;
+    fuse.userAllowOther = true;
 
     nh = {
       enable = true;
@@ -26,9 +22,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentryPackage = pkgs.pinentry-qt;
     };
-
-    fuse.userAllowOther = true;
   };
 }

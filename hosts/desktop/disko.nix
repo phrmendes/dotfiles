@@ -1,10 +1,5 @@
-{device ? throw "Device is required", ...}: {
+{device, ...}: {
   disko.devices = {
-    nodev."/" = {
-      fsType = "tmpfs";
-      mountOptions = ["defaults" "size=32G" "mode=755"];
-    };
-
     disk.main = {
       inherit device;
       type = "disk";
@@ -12,34 +7,38 @@
         type = "gpt";
         partitions = {
           ESP = {
-            priority = 1;
             size = "512M";
             type = "EF00";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = ["defaults" "umask=0077"];
+              mountOptions = ["defaults"];
             };
           };
-
           luks = {
+            name = "crypted";
             size = "100%";
             content = {
               type = "luks";
               name = "crypted";
+              askPassword = true;
               settings.allowDiscards = true;
               content = {
                 type = "btrfs";
                 extraArgs = ["-f"];
                 subvolumes = {
-                  nix = {
-                    mountpoint = "/nix";
+                  "/root" = {
+                    mountpoint = "/";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
-                  persist = {
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
+                  };
+                  "/persist" = {
                     mountpoint = "/persist";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = ["subvol=persist" "compress=zstd" "noatime"];
                   };
                 };
               };

@@ -6,10 +6,10 @@
   ...
 }: {
   imports = [
+    inputs.plasma-manager.homeManagerModules.plasma-manager
     ./atuin.nix
     ./bat.nix
     ./btop.nix
-    ./dconf.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
@@ -21,6 +21,7 @@
     ./navi.nix
     ./neovim.nix
     ./packages.nix
+    ./plasma.nix
     ./pyenv.nix
     ./starship.nix
     ./symlinks.nix

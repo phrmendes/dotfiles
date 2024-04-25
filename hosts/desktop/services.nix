@@ -43,15 +43,18 @@
       };
     };
 
-    displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
+
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "plasma";
+    };
 
     xserver = {
       enable = true;
       autorun = true;
       videoDrivers = ["nvidia"];
       excludePackages = with pkgs; [xterm];
-      displayManager.defaultSession = "plasma";
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

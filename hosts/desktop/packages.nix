@@ -42,6 +42,11 @@
       xdg-utils
       zip
       zlib
+      (pkgs.where-is-my-sddm-theme.override {
+        themeConfig.General = {
+          background = "${../../dotfiles/background.png}";
+        };
+      })
     ];
   };
 }

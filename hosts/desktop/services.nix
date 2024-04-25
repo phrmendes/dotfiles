@@ -46,8 +46,11 @@
     desktopManager.plasma6.enable = true;
 
     displayManager = {
-      sddm.enable = true;
       defaultSession = "plasma";
+      sddm = {
+        enable = true;
+        theme = "where_is_my_sddm_theme";
+      };
     };
 
     xserver = {

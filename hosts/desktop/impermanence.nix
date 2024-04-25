@@ -12,9 +12,17 @@
     ];
     users.${parameters.user} = {
       files = [
+        ".config/gtkrc"
         ".config/kde.org"
-        ".config/plasma-org.kde.plasma.desktop-appletsrc"
+        ".config/kded5rc"
+        ".config/kded6rc"
+        ".config/kdeglobals"
+        ".config/kscreenlockerc"
         ".config/kwinoutputconfig.json"
+        ".config/plasma-org.kde.plasma.desktop-appletsrc"
+        ".config/plasmarc"
+        ".config/plasmashellrc"
+        ".config/syncthingtray.ini"
       ];
       directories = [
         "Documents"

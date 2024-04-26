@@ -22,8 +22,7 @@ in {
       };
       desktop = {
         ".face".source = ../dotfiles/face.png;
-        ".config/background".source = ../dotfiles/background.png;
-        ".config/forge/stylesheet/forge/stylesheet.css".source = ../dotfiles/forge/style.css;
+        ".background".source = ../dotfiles/background.png;
       };
     in
       if isDarwin

@@ -13,6 +13,7 @@
       imports = [../../modules];
 
       btop.enable = true;
+      firefox.enable = true;
       gtk-manager.enable = true;
       plasma-manager.enable = true;
       targets.enable = true;

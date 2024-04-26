@@ -51,7 +51,6 @@ in {
           curtail
           dbeaver
           droidcam
-          firefox
           haruna
           hugo
           libreoffice
@@ -73,7 +72,6 @@ in {
           kcolorchooser
           ktorrent
           okular
-          plasma-browser-integration
           sddm-kcm
           spectacle
         ]);

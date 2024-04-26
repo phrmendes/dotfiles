@@ -12,6 +12,7 @@
     ./btop.nix
     ./direnv.nix
     ./eza.nix
+    ./firefox.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix

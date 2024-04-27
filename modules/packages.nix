@@ -54,7 +54,7 @@ in {
           haruna
           hugo
           libreoffice
-          neovim-qt
+          neovide
           obsidian
           phockup
           plex

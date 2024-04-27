@@ -93,3 +93,12 @@ if vim.fn.executable("nvr") then
 	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 	vim.env.VISUAL = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
+
+-- neovide
+if vim.g.neovide then
+	vim.o.guifont = "FiraCode Nerd Font Mono:h14"
+	vim.g.neovide_padding_top = 5
+	vim.g.neovide_padding_bottom = 5
+	vim.g.neovide_padding_right = 5
+	vim.g.neovide_padding_left = 5
+end

@@ -26,6 +26,6 @@ if vim.fn.has("mac") == 0 then
 	require("plugins.quarto")
 end
 
-if vim.o.term ~= "nvim" then
+if not vim.g.neovide then
 	require("plugins.image")
 end

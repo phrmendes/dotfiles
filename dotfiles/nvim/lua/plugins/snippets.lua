@@ -23,8 +23,6 @@ end
 local snippets = {
 	snippet({ trig = "im", name = "inline math" }, "$${1:${TM_SELECTED_TEXT}}$"),
 	snippet({ trig = "bm", name = "block math" }, "$$\n${1:${TM_SELECTED_TEXT}}\n$$"),
-	snippet({ trig = "done", name = "done" }, " ✅ " .. os.date("%Y-%m-%d") .. " $0"),
-	snippet({ trig = "todo", name = "todo" }, "- [ ] #todo ${1:desc} ${2|🛫,⌛, |} ${3|📆, |} ${4|🔼,⏫, |}"),
 	snippet({ trig = "ltex", name = "enable ltex" }, "<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"),
 }
 

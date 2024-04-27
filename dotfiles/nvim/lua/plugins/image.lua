@@ -1,6 +1,8 @@
 local later = require("mini.deps").later
 
 later(function()
+	require("img-clip").setup()
+
 	require("image").setup({
 		backend = "kitty",
 		integrations = {

@@ -15,9 +15,7 @@
           inherit src pname;
           version = src.rev;
         };
-      gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {
-        inherit (inputs) telescope-zotero copilot-chat-nvim latex-snippets-nvim zotcite cmp-zotcite;
-      };
+      gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {inherit (inputs) cmp-zotcite copilot-chat-nvim img-clip-nvim latex-snippets-nvim telescope-zotero zotcite;};
       plugins =
         if ! isDarwin
         then
@@ -25,7 +23,6 @@
             cmp-latex-symbols
             cmp-pandoc-nvim
             nabla-nvim
-            obsidian-nvim
             gh.cmp-zotcite
             gh.latex-snippets-nvim
             gh.telescope-zotero
@@ -56,6 +53,7 @@
           dressing-nvim
           friendly-snippets
           gh.copilot-chat-nvim
+          gh.img-clip-nvim
           gitsigns-nvim
           image-nvim
           indent-blankline-nvim
@@ -68,6 +66,7 @@
           mini-nvim
           neodev-nvim
           neogen
+          nvim-bqf
           nvim-cmp
           nvim-colorizer-lua
           nvim-dap
@@ -84,6 +83,7 @@
           nvim-ts-autotag
           nvim-ts-context-commentstring
           nvim-web-devicons
+          orgmode
           otter-nvim
           plenary-nvim
           quarto-nvim
@@ -102,10 +102,10 @@
           vim-jinja
           vim-just
           vim-nix
-          vim-obsession
           vim-sleuth
           vim-slime
           vim-visual-multi
+          vimwiki
           which-key-nvim
           zen-mode-nvim
         ])
@@ -135,7 +135,6 @@
           imagemagick
           ltex-ls
           lua-language-server
-          marksman
           neovim-remote
           nixd
           prettierd

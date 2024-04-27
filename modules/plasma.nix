@@ -124,10 +124,10 @@
         "kwin"."Window Pack Left" = [];
         "kwin"."Window Pack Right" = [];
         "kwin"."Window Pack Up" = [];
-        "kwin"."Window Quick Tile Bottom" = "Meta+Shift+J";
-        "kwin"."Window Quick Tile Left" = "Meta+Shift+L";
-        "kwin"."Window Quick Tile Right" = "Meta+Shift+H";
-        "kwin"."Window Quick Tile Top" = "Meta+Shift+K";
+        "kwin"."Window Quick Tile Bottom" = [];
+        "kwin"."Window Quick Tile Left" = [];
+        "kwin"."Window Quick Tile Right" = [];
+        "kwin"."Window Quick Tile Top" = [];
         "kwin"."Window Raise" = [];
         "kwin"."Window Resize" = [];
         "kwin"."Window Shade" = [];

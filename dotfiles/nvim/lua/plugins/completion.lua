@@ -72,6 +72,14 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
+cmp.setup.filetype("org", {
+	sources = cmp.config.sources({
+		{ name = "orgmode" },
+		{ name = "path" },
+		{ name = "buffer" },
+	}),
+})
+
 if vim.fn.has("mac") == 0 then
 	require("cmp_pandoc").setup({
 		filetypes = { "quarto", "markdown" },

@@ -21,7 +21,6 @@ local servers = {
 	dockerls = {},
 	dotls = {},
 	html = {},
-	marksman = {},
 	nixd = {},
 	ruff_lsp = {},
 	taplo = {},

@@ -50,5 +50,4 @@ To backup KDE settings:
 
 ```sh
 nix run github:mcdonc/plasma-manager/enable-look-and-feel-settings > path/to/plasma.nix
-
 ```

@@ -30,17 +30,31 @@ map("t", "<C-c>", "<C-\\><C-n>", { noremap = true, silent = true })
 map("v", "Q", "<CMD>norm @q<CR>", { noremap = true, silent = true })
 map({ "n", "v" }, "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = true, silent = true, desc = "Send to REPL" })
 map({ "n", "v" }, "<C-c><C-v>", "<Plug>SlimeConfig", { noremap = true, silent = true, desc = "Config Slime" })
+map("n", "<CR>", "<Plug>VimwikiFollowLink", { noremap = true, silent = true, desc = "Follow link" })
+map("n", "<C-CR>", "<Plug>VimwikiToggleListItem", { noremap = true, silent = true, desc = "Toggle checkbox" })
+map("n", "<S-CR>", "<Plug>VimwikiGoBackLink", { noremap = true, silent = true, desc = "Go back link" })
+map("n", "<S-TAB>", "<Plug>VimwikiPrevLink", { noremap = true, silent = true, desc = "Previous link" })
+map("n", "<TAB>", "<Plug>VimwikiNextLink", { noremap = true, silent = true, desc = "Next link" })
+map("n", "=", "<Plug>VimwikiAddHeaderLevel", { noremap = true, silent = true, desc = "Add header level" })
+map("n", "-", "<Plug>VimwikiRemoveHeaderLevel", { noremap = true, silent = true, desc = "Subtract header level" })
+map("n", "+", "<Plug>VimwikiNormalizeLink", { noremap = true, silent = true, desc = "Normalize link" })
+map("v", "+", "<Plug>VimwikiNormalizeLinkVisual", { noremap = true, silent = true, desc = "Normalize link" })
 
 wk.register({
+	g = {
+		o = { name = "org" },
+	},
 	["["] = {
 		name = "previous",
 		["<TAB>"] = { "<CMD>tabprevious<CR>", "Previous tab" },
+		["["] = { "<Plug>VimwikiGoToPrevHeader", "Previous header" },
 		h = { require("gitsigns").prev_hunk, "Previous hunk" },
 		t = { require("todo-comments").jump_prev, "Previous todo" },
 	},
 	["]"] = {
 		name = "next",
 		["<TAB>"] = { "<CMD>tabnext<CR>", "Next tab" },
+		["]"] = { "<Plug>VimwikiGoToNextHeader", "Next header" },
 		h = { require("gitsigns").next_hunk, "Next hunk" },
 		t = { require("todo-comments").jump_next, "Next todo" },
 	},
@@ -54,21 +68,21 @@ wk.register({
 		["|"] = { "<C-w>|", "Maximize (V)" },
 		E = { "<CMD>NvimTreeToggle<CR>", "File explorer (cwd)" },
 		O = { "<C-w>o", "Keep only current window" },
-		W = { "<CMD>wq<CR>", "Save and quit" },
 		e = { "<CMD>NvimTreeFindFileToggle<CR>", "File explorer (current file)" },
 		n = { "<CMD>Neogen<CR>", "Generate annotations" },
 		q = { "<CMD>q<CR>", "Quit" },
 		u = { "<CMD>UndotreeToggle<CR>", "Undo tree" },
-		w = { "<CMD>w<CR>", "Save" },
 		x = { "<C-w>q", "Close window" },
 	},
 	["<leader><leader>"] = {
+		name = "local leader",
 		h = { require("smart-splits").swap_buf_left, "Swap buffer left" },
 		j = { require("smart-splits").swap_buf_down, "Swap buffer down" },
 		k = { require("smart-splits").swap_buf_up, "Swap buffer up" },
 		l = { require("smart-splits").swap_buf_right, "Swap buffer right" },
-		z = { "<CMD>ZenMode<CR>", "Zen mode" },
+		p = { "<CMD>PasteImage<CR>", "Paste image" },
 		s = { "<CMD>Obsess<CR>", "Save session" },
+		z = { "<CMD>ZenMode<CR>", "Zen mode" },
 	},
 	["<leader><TAB>"] = {
 		name = "tabs",
@@ -100,6 +114,7 @@ wk.register({
 		g = { "<CMD>Telescope live_grep<CR>", "Live grep" },
 		o = { "<CMD>Telescope oldfiles<CR>", "Recent files" },
 		r = { require("spectre").toggle, "Replace" },
+		s = { "<CMD>w<CR>", "Save" },
 		t = { "<CMD>TodoTelescope<CR>", "Todo" },
 		z = { "<CMD>Telescope zoxide list<CR>", "Zoxide" },
 	},
@@ -124,15 +139,16 @@ wk.register({
 			b = { require("gitsigns").reset_buffer, "Buffer" },
 		},
 	},
-	["<leader>o"] = {
-		name = "obsidian",
-		b = { "<CMD>ObsidianBacklinks<CR>", "Backlinks" },
-		n = { "<CMD>ObsidianNew<CR>", "New note" },
-		o = { "<CMD>ObsidianQuickSwitch<CR>", "Search notes" },
-		p = { "<CMD>ObsidianPasteImg<CR>", "Paste image" },
-		r = { "<CMD>ObsidianRename<CR>", "Rename note" },
-		s = { "<CMD>ObsidianSearch<CR>", "Search in notes" },
-		t = { "<CMD>ObsidianTags<CR>", "Tags" },
+	["<leader>w"] = {
+		name = "wiki",
+		["-"] = { "<Plug>VimwikiSplitLink", "Open link (h)" },
+		["\\"] = { "<Plug>VimwikiVSplitLink", "Open link (v)" },
+		a = { "<Plug>VimwikiRenumberAllLists", "Renumber all lists" },
+		d = { "<Plug>VimwikiDeleteFile", "Delete file" },
+		n = { "<Plug>VimwikiGoto", "Goto or create new page" },
+		r = { "<Plug>VimwikiRenameFile", "Rename file" },
+		s = { "<Plug>VimwikiUISelect", "Select wiki" },
+		w = { "<Plug>VimwikiIndex", "Index" },
 	},
 })
 
@@ -155,12 +171,6 @@ wk.register({
 			name = "reset",
 			h = { require("gitsigns").reset_hunk, "Hunk" },
 		},
-	},
-	["<leader>o"] = {
-		name = "obsidian",
-		e = { "<CMD>ObsidianExtractNote<CR>", "Extract to new note" },
-		l = { "<CMD>ObsidianLink<CR>", "Add link" },
-		n = { "<CMD>ObsidianLinkNew<CR>", "Add link to new file" },
 	},
 }, { mode = "v" })
 

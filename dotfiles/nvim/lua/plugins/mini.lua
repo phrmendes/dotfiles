@@ -8,6 +8,7 @@ require("mini.pairs").setup()
 require("mini.starter").setup()
 require("mini.tabline").setup()
 require("mini.trailspace").setup()
+require("mini.sessions").setup()
 
 require("mini.bracketed").setup({
 	diagnostic = { options = { float = false } },

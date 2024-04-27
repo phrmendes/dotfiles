@@ -48,16 +48,11 @@
         themeConfig = {
           General = with colors.catppuccin.hex; {
             background = "${../../dotfiles/background.png}";
-            basicTextColor = text;
-            passwordCharacter = "*";
             passwordFontSize = 20;
-            passwordInputBackground = base;
-            passwordInputCursorVisible = false;
-            passwordInputRadius = 10;
-            passwordInputWidth = 0.25;
-            passwordMask = true;
             sessionsFontSize = 20;
-            usersFontSize = 25;
+            showSessionsByDefault = true;
+            showUsersByDefault = true;
+            usersFontSize = 20;
           };
         };
       })

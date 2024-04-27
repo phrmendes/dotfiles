@@ -1,7 +1,13 @@
 local later = require("mini.deps").later
 
 later(function()
-	require("img-clip").setup()
+	require("img-clip").setup({
+		default = {
+			show_dir_path_in_prompt = true,
+			url_encode_path = true,
+			template = "![$CURSOR]($FILE_PATH)",
+		},
+	})
 
 	require("image").setup({
 		backend = "kitty",

@@ -3,33 +3,34 @@ local template = {}
 
 template.todo = [[** TODO %?]]
 
-template.todo_scheduled = [[
-	** TODO %?
-	   SCHEDULED: %t
+template.scheduled = [[
+* TODO %?
+  SCHEDULED: %t
 ]]
 
-template.todo_deadline = [[
-	** TODO %?
-	   DEADLINE: %t
+template.deadline = [[
+* TODO %?
+  DEADLINE: %t
 ]]
 
 template.event = [[
-	** %?
-	   %T
+** %?
+   SCHEDULED: %T
 ]]
 
-template.event_scheduled = [[
-	** %?
-	   SCHEDULED: %t
+template.calendar = [[
+** %?
+   %t
 ]]
 
 require("orgmode").setup({
 	org_agenda_files = { org_dir .. "/**/*" },
-	org_archive_location = { org_dir .. "/archive.org::" },
+	org_archive_location = org_dir .. "/archive.org",
+	org_default_notes_file = org_dir .. "/inbox.org",
 	org_todo_keywords = { "TODO(t)", "NEXT(n)", "|", "DONE(d)" },
 	calendar_week_start_day = 0,
 	org_deadline_warning_days = 7,
-	org_ellipsis = "▼",
+	org_ellipsis = " ▼",
 	notifications = {
 		enabled = true,
 		cron_enabled = false,
@@ -52,31 +53,40 @@ require("orgmode").setup({
 			description = "Default",
 			template = template.todo,
 			target = org_dir .. "/todo.org",
-			properties = { empty_lines = { after = 1 } },
+			properties = { empty_lines = { before = 1 } },
 		},
 		ts = {
 			description = "Scheduled",
-			template = template.todo_scheduled,
+			template = template.scheduled,
 			target = org_dir .. "/todo.org",
-			properties = { empty_lines = { after = 1 } },
+			properties = { empty_lines = { before = 1 } },
 		},
 		td = {
 			description = "Deadline",
-			template = template.todo_deadline,
+			template = template.deadline,
 			target = org_dir .. "/todo.org",
-			properties = { empty_lines = { after = 1 } },
+			properties = { empty_lines = { before = 1 } },
 		},
 		ee = {
 			description = "Default",
 			template = template.event,
 			target = org_dir .. "/agenda.org",
-			properties = { empty_lines = { after = 1 } },
+			properties = { empty_lines = { before = 1 } },
+			headline = "One-time",
 		},
-		es = {
-			description = "Scheduled",
-			template = template.event_scheduled,
+		er = {
+			description = "Recurrent",
+			template = template.event,
 			target = org_dir .. "/agenda.org",
-			properties = { empty_lines = { after = 1 } },
+			properties = { empty_lines = { before = 1 } },
+			headline = "Recurrent",
+		},
+		ec = {
+			description = "Calendar",
+			template = template.calendar,
+			target = org_dir .. "/agenda.org",
+			properties = { empty_lines = { before = 1 } },
+			headline = "Calendar",
 		},
 	},
 })

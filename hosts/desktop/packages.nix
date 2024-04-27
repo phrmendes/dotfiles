@@ -48,11 +48,9 @@
         themeConfig = {
           General = with colors.catppuccin.hex; {
             background = "${../../dotfiles/background.png}";
-            passwordFontSize = 20;
-            sessionsFontSize = 20;
-            showSessionsByDefault = true;
-            showUsersByDefault = true;
-            usersFontSize = 20;
+            passwordFontSize = 25;
+            sessionsFontSize = 25;
+            usersFontSize = 25;
           };
         };
       })

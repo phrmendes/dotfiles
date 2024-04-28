@@ -51,7 +51,6 @@ cmp.setup({
 			maxwidth = 50,
 			mode = "symbol",
 			symbol_map = {
-				mkdnflow = "",
 				otter = "🦦",
 			},
 		}),
@@ -83,17 +82,8 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
-cmp.setup.filetype("org", {
-	sources = cmp.config.sources({
-		{ name = "orgmode" },
-		{ name = "path" },
-		{ name = "buffer" },
-	}),
-})
-
 cmp.setup.filetype("markdown", {
 	sources = cmp.config.sources({
-		{ name = "mkdnflow" },
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "cmp_zotcite" },

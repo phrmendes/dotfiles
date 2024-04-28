@@ -132,6 +132,16 @@ wk.register({
 			b = { require("gitsigns").reset_buffer, "Buffer" },
 		},
 	},
+	["<leader>o"] = {
+		name = "obsidian",
+		b = { "<CMD>ObsidianBacklinks<CR>", "Backlinks" },
+		n = { "<CMD>ObsidianNew<CR>", "New note" },
+		o = { "<CMD>ObsidianQuickSwitch<CR>", "Search notes" },
+		p = { "<CMD>ObsidianPasteImg<CR>", "Paste image" },
+		r = { "<CMD>ObsidianRename<CR>", "Rename note" },
+		s = { "<CMD>ObsidianSearch<CR>", "Search in notes" },
+		t = { "<CMD>ObsidianTags<CR>", "Tags" },
+	},
 })
 
 wk.register({
@@ -153,6 +163,12 @@ wk.register({
 			name = "reset",
 			h = { require("gitsigns").reset_hunk, "Hunk" },
 		},
+	},
+	["<leader>o"] = {
+		name = "obsidian",
+		e = { "<CMD>ObsidianExtractNote<CR>", "Extract to new note" },
+		l = { "<CMD>ObsidianLink<CR>", "Add link" },
+		n = { "<CMD>ObsidianLinkNew<CR>", "Add link to new file" },
 	},
 }, { mode = "v" })
 

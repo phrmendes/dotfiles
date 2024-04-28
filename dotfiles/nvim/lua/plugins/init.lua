@@ -7,12 +7,11 @@ require("plugins.dap")
 require("plugins.dressing")
 require("plugins.git")
 require("plugins.ibl")
+require("plugins.jupytext")
 require("plugins.lsp")
-require("plugins.markdown")
 require("plugins.mini")
 require("plugins.neogen")
 require("plugins.nvim-tree")
-require("plugins.orgmode")
 require("plugins.quarto")
 require("plugins.slime")
 require("plugins.smartyank")
@@ -23,6 +22,10 @@ require("plugins.todo")
 require("plugins.treesitter")
 require("plugins.which-key")
 require("plugins.zen")
+
+if vim.fn.has("mac") == 0 then
+	require("plugins.obsidian")
+end
 
 if not vim.g.neovide then
 	require("plugins.image")

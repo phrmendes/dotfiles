@@ -68,11 +68,6 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
-    img-clip-nvim = {
-      flake = false;
-      url = "github:HakonHarnes/img-clip.nvim";
-    };
-
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

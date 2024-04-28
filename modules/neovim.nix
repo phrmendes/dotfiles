@@ -16,7 +16,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {
-        inherit (inputs) copilot-chat-nvim img-clip-nvim latex-snippets-nvim telescope-zotero cmp-zotcite zotcite;
+        inherit (inputs) copilot-chat-nvim latex-snippets-nvim telescope-zotero cmp-zotcite zotcite;
       };
     in {
       enable = true;
@@ -44,12 +44,12 @@
           dressing-nvim
           friendly-snippets
           gh.copilot-chat-nvim
-          gh.img-clip-nvim
           gh.latex-snippets-nvim
           gh.telescope-zotero
           gitsigns-nvim
           image-nvim
           indent-blankline-nvim
+          jupytext-nvim
           lazygit-nvim
           lsp_signature-nvim
           lspkind-nvim
@@ -57,7 +57,6 @@
           luasnip
           markdown-preview-nvim
           mini-nvim
-          mkdnflow-nvim
           nabla-nvim
           neodev-nvim
           neogen
@@ -78,7 +77,6 @@
           nvim-ts-autotag
           nvim-ts-context-commentstring
           nvim-web-devicons
-          orgmode
           otter-nvim
           plenary-nvim
           quarto-nvim
@@ -108,6 +106,7 @@
           then []
           else
             with pkgs.vimPlugins; [
+              obsidian-nvim
               gh.cmp-zotcite
               gh.zotcite
             ]
@@ -120,6 +119,7 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
+          jupytext
           poppler-qt5
           pynvim
           pyqt5
@@ -162,6 +162,9 @@
           vscode-json-languageserver
           vscode-langservers-extracted
           yaml-language-server
+        ])
+        ++ (with pkgs.python312Packages; [
+          jupytext
         ]);
     };
   };

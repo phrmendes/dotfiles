@@ -55,6 +55,7 @@ in {
           hugo
           libreoffice
           neovide
+          obsidian
           phockup
           plex
           quarto

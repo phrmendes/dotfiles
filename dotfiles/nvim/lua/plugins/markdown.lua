@@ -18,7 +18,7 @@ require("mkdnflow").setup({
 		maps = true,
 		paths = true,
 		tables = true,
-		yaml = true,
+		yaml = false,
 		cmp = true,
 	},
 	new_file_template = {

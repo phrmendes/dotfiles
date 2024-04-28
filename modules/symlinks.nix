@@ -11,8 +11,11 @@ in {
   config = lib.mkIf config.symlinks.enable {
     home.file = let
       common = {
-        ".config/helix".source = ../dotfiles/helix;
-        ".config/zellij".source = ../dotfiles/zellij;
+        ".config/yazi/theme.toml".source = ../dotfiles/yazi/theme.toml;
+        ".config/nvim" = {
+          source = ../dotfiles/nvim;
+          recursive = true;
+        };
       };
       darwin = {
         ".amethyst.yml".source = ../dotfiles/amethyst.yml;

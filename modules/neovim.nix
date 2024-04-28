@@ -8,13 +8,6 @@
   options.neovim.enable = lib.mkEnableOption "enable neovim";
 
   config = lib.mkIf config.neovim.enable {
-    home.file = {
-      ".config/nvim" = {
-        source = ../dotfiles/nvim;
-        recursive = true;
-      };
-    };
-
     programs.neovim = let
       inherit (pkgs.stdenv) isDarwin;
       getNeovimPluginFromGitHub = pname: src:

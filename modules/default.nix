@@ -45,13 +45,13 @@
   kitty.enable = lib.mkDefault true;
   lazygit.enable = lib.mkDefault true;
   navi.enable = lib.mkDefault true;
-  neovim.enable = lib.mkDefault false;
+  neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
   thefuck.enable = lib.mkDefault true;
-  tmux.enable = lib.mkDefault false;
+  tmux.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
@@ -63,11 +63,11 @@
   };
 
   systemd.user.sessionVariables = {
-    EDITOR = "hx";
-    GIT_EDITOR = "hx";
+    EDITOR = "nvim";
+    GIT_EDITOR = "nvim";
     NOTES_DIR = "/home/${parameters.user}/Documents/notes";
-    SUDO_EDITOR = "hx";
+    SUDO_EDITOR = "nvim";
     VAGRANT_DEFAULT_PROVIDER = "libvirt";
-    VISUAL = "hx";
+    VISUAL = "nvim";
   };
 }

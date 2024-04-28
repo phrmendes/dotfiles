@@ -30,6 +30,7 @@ require("orgmode").setup({
 	org_todo_keywords = { "TODO(t)", "NEXT(n)", "|", "DONE(d)" },
 	calendar_week_start_day = 0,
 	org_deadline_warning_days = 7,
+	org_tags_column = 0,
 	org_ellipsis = " ▼",
 	notifications = {
 		enabled = true,
@@ -47,24 +48,24 @@ require("orgmode").setup({
 		},
 	},
 	org_capture_templates = {
-		t = "TODO",
+		t = "Task",
 		e = "Event",
 		tt = {
 			description = "Default",
 			template = template.todo,
-			target = org_dir .. "/todo.org",
+			target = org_dir .. "/tasks.org",
 			properties = { empty_lines = { before = 1 } },
 		},
 		ts = {
 			description = "Scheduled",
 			template = template.scheduled,
-			target = org_dir .. "/todo.org",
+			target = org_dir .. "/tasks.org",
 			properties = { empty_lines = { before = 1 } },
 		},
 		td = {
 			description = "Deadline",
 			template = template.deadline,
-			target = org_dir .. "/todo.org",
+			target = org_dir .. "/tasks.org",
 			properties = { empty_lines = { before = 1 } },
 		},
 		ee = {

@@ -27,11 +27,6 @@
             searchingActiveBorderColor = [yellow];
           };
         };
-        os = {
-          edit = ''nvim --server $NVIM --remote-tab "{{filename}}"'';
-          editAtLine = ''nvim --server $NVIM --remote-tab "{{filename}}"'';
-          editAtLineAndWait = ''nvim --server $NVIM --remote-tab "{{filename}}"'';
-        };
         git.paging = {
           colorArg = "always";
           pager = "${lib.getExe pkgs.delta} --dark --paging=never";

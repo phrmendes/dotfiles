@@ -1,0 +1,57 @@
+copy_clipboard "primary"
+copy_on_select true
+default_shell "zsh"
+default_layout "compact"
+mouse_mode true
+pane_frames false
+simplified_ui true
+theme "catppuccin-mocha"
+
+ui {
+    pane_frames {
+        hide_session_name true
+    }
+}
+
+keybinds {
+    normal clear-defaults=true {
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt =" { Resize "Increase"; }
+        bind "Alt [" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "Alt ]" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "Alt t" { NewTab; SwitchToMode "Normal"; }
+        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt h" { MoveFocusOrTab "Left"; SwitchToMode "Normal"; }
+        bind "Alt j" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "Alt k" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; SwitchToMode "Normal"; }
+        bind "Alt d" { Detach; }
+        bind "Ctrl f" { SwitchToMode "Tmux"; }
+    }
+
+    tmux clear-defaults=true {
+        bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "\\" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "Backspace" { PreviousSwapLayout; SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Resize"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+        bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
+        bind "m" { SwitchToMode "Move"; }
+        bind "q" { Quit; }
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "s" { 
+            LaunchOrFocusPlugin "zellij:session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
+    }
+
+    renametab {
+        bind "Esc" { UndoRenameTab; SwitchToMode "normal"; }
+        bind "Enter" { SwitchToMode "Normal"; }
+    }
+}

@@ -15,20 +15,9 @@
           inherit src pname;
           version = src.rev;
         };
-      gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {inherit (inputs) cmp-zotcite copilot-chat-nvim img-clip-nvim latex-snippets-nvim telescope-zotero zotcite;};
-      plugins =
-        if ! isDarwin
-        then
-          with pkgs.vimPlugins; [
-            cmp-latex-symbols
-            cmp-pandoc-nvim
-            nabla-nvim
-            gh.cmp-zotcite
-            gh.latex-snippets-nvim
-            gh.telescope-zotero
-            gh.zotcite
-          ]
-        else [];
+      gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {
+        inherit (inputs) copilot-chat-nvim img-clip-nvim latex-snippets-nvim telescope-zotero cmp-zotcite zotcite;
+      };
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -45,7 +34,9 @@
           catppuccin-nvim
           cmp-buffer
           cmp-cmdline
+          cmp-latex-symbols
           cmp-nvim-lsp
+          cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
           conform-nvim
@@ -54,6 +45,8 @@
           friendly-snippets
           gh.copilot-chat-nvim
           gh.img-clip-nvim
+          gh.latex-snippets-nvim
+          gh.telescope-zotero
           gitsigns-nvim
           image-nvim
           indent-blankline-nvim
@@ -64,6 +57,8 @@
           luasnip
           markdown-preview-nvim
           mini-nvim
+          mkdnflow-nvim
+          nabla-nvim
           neodev-nvim
           neogen
           nvim-bqf
@@ -105,11 +100,18 @@
           vim-sleuth
           vim-slime
           vim-visual-multi
-          vimwiki
           which-key-nvim
           zen-mode-nvim
         ])
-        ++ plugins;
+        ++ (
+          if isDarwin
+          then []
+          else
+            with pkgs.vimPlugins; [
+              gh.cmp-zotcite
+              gh.zotcite
+            ]
+        );
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           magick

@@ -30,31 +30,21 @@ map("t", "<C-c>", "<C-\\><C-n>", { noremap = true, silent = true })
 map("v", "Q", "<CMD>norm @q<CR>", { noremap = true, silent = true })
 map({ "n", "v" }, "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = true, silent = true, desc = "Send to REPL" })
 map({ "n", "v" }, "<C-c><C-v>", "<Plug>SlimeConfig", { noremap = true, silent = true, desc = "Config Slime" })
-map("n", "<CR>", "<Plug>VimwikiFollowLink", { noremap = true, silent = true, desc = "Follow link" })
-map("n", "<C-CR>", "<Plug>VimwikiToggleListItem", { noremap = true, silent = true, desc = "Toggle checkbox" })
-map("n", "<S-CR>", "<Plug>VimwikiGoBackLink", { noremap = true, silent = true, desc = "Go back link" })
-map("n", "<S-TAB>", "<Plug>VimwikiPrevLink", { noremap = true, silent = true, desc = "Previous link" })
-map("n", "<TAB>", "<Plug>VimwikiNextLink", { noremap = true, silent = true, desc = "Next link" })
-map("n", "=", "<Plug>VimwikiAddHeaderLevel", { noremap = true, silent = true, desc = "Add header level" })
-map("n", "-", "<Plug>VimwikiRemoveHeaderLevel", { noremap = true, silent = true, desc = "Subtract header level" })
-map("n", "+", "<Plug>VimwikiNormalizeLink", { noremap = true, silent = true, desc = "Normalize link" })
-map("v", "+", "<Plug>VimwikiNormalizeLinkVisual", { noremap = true, silent = true, desc = "Normalize link" })
 
 wk.register({
 	g = {
 		o = { name = "org" },
+		y = { name = "tables" },
 	},
 	["["] = {
 		name = "previous",
 		["<TAB>"] = { "<CMD>tabprevious<CR>", "Previous tab" },
-		["["] = { "<Plug>VimwikiGoToPrevHeader", "Previous header" },
 		h = { require("gitsigns").prev_hunk, "Previous hunk" },
 		t = { require("todo-comments").jump_prev, "Previous todo" },
 	},
 	["]"] = {
 		name = "next",
 		["<TAB>"] = { "<CMD>tabnext<CR>", "Next tab" },
-		["]"] = { "<Plug>VimwikiGoToNextHeader", "Next header" },
 		h = { require("gitsigns").next_hunk, "Next hunk" },
 		t = { require("todo-comments").jump_next, "Next todo" },
 	},
@@ -68,11 +58,14 @@ wk.register({
 		["|"] = { "<C-w>|", "Maximize (V)" },
 		E = { "<CMD>NvimTreeToggle<CR>", "File explorer (cwd)" },
 		O = { "<C-w>o", "Keep only current window" },
+		Q = { "<CMD>qall!<CR>", "Quit all" },
 		e = { "<CMD>NvimTreeFindFileToggle<CR>", "File explorer (current file)" },
 		n = { "<CMD>Neogen<CR>", "Generate annotations" },
 		q = { "<CMD>q<CR>", "Quit" },
 		u = { "<CMD>UndotreeToggle<CR>", "Undo tree" },
+		w = { "<CMD>w<CR>", "Save" },
 		x = { "<C-w>q", "Close window" },
+		z = { "<CMD>ZenMode<CR>", "Zen mode" },
 	},
 	["<leader><leader>"] = {
 		name = "local leader",
@@ -81,8 +74,9 @@ wk.register({
 		k = { require("smart-splits").swap_buf_up, "Swap buffer up" },
 		l = { require("smart-splits").swap_buf_right, "Swap buffer right" },
 		p = { "<CMD>PasteImage<CR>", "Paste image" },
-		s = { "<CMD>Obsess<CR>", "Save session" },
-		z = { "<CMD>ZenMode<CR>", "Zen mode" },
+		u = { "<CMD>MkdnUpdateNumbering<CR>", "Update numbering" },
+		f = { "<CMD>MkdnFoldSection<CR>", "Fold section" },
+		F = { "<CMD>MkdnUnfoldSection<CR>", "Unfold section" },
 	},
 	["<leader><TAB>"] = {
 		name = "tabs",
@@ -114,7 +108,6 @@ wk.register({
 		g = { "<CMD>Telescope live_grep<CR>", "Live grep" },
 		o = { "<CMD>Telescope oldfiles<CR>", "Recent files" },
 		r = { require("spectre").toggle, "Replace" },
-		s = { "<CMD>w<CR>", "Save" },
 		t = { "<CMD>TodoTelescope<CR>", "Todo" },
 		z = { "<CMD>Telescope zoxide list<CR>", "Zoxide" },
 	},
@@ -138,17 +131,6 @@ wk.register({
 			h = { require("gitsigns").reset_hunk, "Hunk" },
 			b = { require("gitsigns").reset_buffer, "Buffer" },
 		},
-	},
-	["<leader>w"] = {
-		name = "wiki",
-		["-"] = { "<Plug>VimwikiSplitLink", "Open link (h)" },
-		["\\"] = { "<Plug>VimwikiVSplitLink", "Open link (v)" },
-		a = { "<Plug>VimwikiRenumberAllLists", "Renumber all lists" },
-		d = { "<Plug>VimwikiDeleteFile", "Delete file" },
-		n = { "<Plug>VimwikiGoto", "Goto or create new page" },
-		r = { "<Plug>VimwikiRenameFile", "Rename file" },
-		s = { "<Plug>VimwikiUISelect", "Select wiki" },
-		w = { "<Plug>VimwikiIndex", "Index" },
 	},
 })
 
@@ -175,13 +157,22 @@ wk.register({
 }, { mode = "v" })
 
 autocmd("FileType", {
+	pattern = "quarto",
+	group = augroup,
+	callback = function(event)
+		wk.register({
+			["<leader>z"] = { "<CMD>Telescope zotero<CR>", "Add source from Zotero" },
+		}, { buffer = event.buf })
+	end,
+})
+
+autocmd("FileType", {
 	pattern = { "markdown", "quarto" },
 	group = augroup,
 	callback = function(event)
 		wk.register({
 			["<leader>z"] = {
 				name = "zotero",
-				a = { "<CMD>Telescope zotero<CR>", "Add source from Zotero" },
 				c = { "<Plug>ZCitationCompleteInfo", "Citation complete info" },
 				i = { "<Plug>ZCitationInfo", "Citation info" },
 				o = { "<Plug>ZOpenAttachment", "Open attachment" },
@@ -193,7 +184,7 @@ autocmd("FileType", {
 })
 
 autocmd("FileType", {
-	pattern = { "python" },
+	pattern = "python",
 	group = augroup,
 	callback = function(event)
 		wk.register({

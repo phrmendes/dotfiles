@@ -42,8 +42,8 @@ require("orgmode").setup({
 		org_return_uses_meta_return = true,
 		prefix = "go",
 		global = {
-			org_agenda = { "gA" },
-			org_capture = { "gC" },
+			org_agenda = { "<localleader>a" },
+			org_capture = { "<localleader>c" },
 		},
 	},
 	org_capture_templates = {

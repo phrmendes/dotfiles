@@ -87,6 +87,9 @@ vim.g.loaded_netrwPlugin = 1
 -- mouse support
 vim.g.VM_mouse_mappings = 1
 
+-- language
+vim.cmd("language en_US.UTF-8")
+
 -- nvim server
 if vim.fn.executable("nvr") then
 	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

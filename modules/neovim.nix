@@ -113,6 +113,7 @@
         );
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
+          jsregexp
           magick
           tiktoken_core
         ];

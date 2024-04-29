@@ -3,9 +3,7 @@
   inputs,
   ...
 }: {
-  environment = let
-    colors = import ../../modules/catppuccin.nix;
-  in {
+  environment = {
     plasma6.excludePackages = with pkgs.kdePackages; [
       elisa
       kate
@@ -46,11 +44,8 @@
       zlib
       (pkgs.where-is-my-sddm-theme.override {
         themeConfig = {
-          General = with colors.catppuccin.hex; {
+          General = {
             background = "${../../dotfiles/background.png}";
-            passwordFontSize = 25;
-            sessionsFontSize = 25;
-            usersFontSize = 25;
           };
         };
       })

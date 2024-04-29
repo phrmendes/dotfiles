@@ -9,13 +9,13 @@
 
   config = lib.mkIf config.neovim.enable {
     programs.neovim = let
-      inherit (pkgs.stdenv) isDarwin;
-      getNeovimPluginFromGitHub = pname: src:
+      inherit (pkgs.stdenv) isDarwin isLinux;
+      fromGitHub = pname: src:
         pkgs.vimUtils.buildVimPlugin {
           inherit src pname;
           version = src.rev;
         };
-      gh = builtins.mapAttrs (pname: src: getNeovimPluginFromGitHub pname src) {
+      gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
         inherit (inputs) copilot-chat-nvim latex-snippets-nvim telescope-zotero cmp-zotcite zotcite;
       };
     in {
@@ -101,15 +101,12 @@
           which-key-nvim
           zen-mode-nvim
         ])
-        ++ (
-          if isDarwin
-          then []
-          else
-            with pkgs.vimPlugins; [
-              obsidian-nvim
-              gh.cmp-zotcite
-              gh.zotcite
-            ]
+        ++ lib.optionals isLinux (
+          with pkgs.vimPlugins; [
+            obsidian-nvim
+            gh.cmp-zotcite
+            gh.zotcite
+          ]
         );
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
@@ -120,7 +117,6 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
-          jupytext
           poppler-qt5
           pynvim
           pyqt5

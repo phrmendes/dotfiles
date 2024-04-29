@@ -39,20 +39,10 @@ in {
         dpct = "duplicati-cli";
         open = "xdg-open";
       };
-      shellAliases =
-        if isLinux
-        then common // desktop
-        else common;
-      envExtra = ''
-        export EDITOR="nvim"
-        export GIT_EDITOR="nvim"
-        export SUDO_EDITOR="nvim"
-        export VISUAL="nvim"
-        export VAGRANT_DEFAULT_PROVIDER="libvirt"
-      '';
+      shellAliases = common // lib.optionalAttrs isLinux desktop;
       initExtra = builtins.readFile ../dotfiles/init.sh;
     in {
-      inherit shellAliases envExtra initExtra;
+      inherit shellAliases initExtra;
       enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;

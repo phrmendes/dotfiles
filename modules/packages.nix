@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv) isDarwin isLinux;
 in {
   options.packages.enable = lib.mkEnableOption "enable packages";
 
@@ -35,13 +35,17 @@ in {
         tokei
         unar
       ];
-      darwin = with pkgs; [
-        maven
-        pngpaste
-        poetry
-        terragrunt
-      ];
-      desktop =
+    in
+      common
+      ++ lib.optionals isDarwin (
+        with pkgs; [
+          maven
+          pngpaste
+          poetry
+          terragrunt
+        ]
+      )
+      ++ lib.optionals isLinux (
         (with pkgs; [
           bashly
           bitwarden
@@ -66,18 +70,16 @@ in {
           ventoy
           zotero
         ])
-        ++ (with pkgs.libsForQt5; [polonium])
+        ++ (with pkgs.libsForQt5; [
+          polonium
+        ])
         ++ (with pkgs.kdePackages; [
           gwenview
           kcolorchooser
           ktorrent
           okular
-          sddm-kcm
           spectacle
-        ]);
-    in
-      if isDarwin
-      then common ++ darwin
-      else common ++ desktop;
+        ])
+      );
   };
 }

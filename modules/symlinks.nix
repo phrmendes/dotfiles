@@ -17,16 +17,14 @@ in {
           recursive = true;
         };
       };
-      darwin = {
+    in
+      common
+      // lib.optionalAttrs isDarwin {
         ".amethyst.yml".source = ../dotfiles/amethyst.yml;
-      };
-      desktop = {
+      }
+      // lib.optionalAttrs isLinux {
         ".face".source = ../dotfiles/face.png;
         ".background".source = ../dotfiles/background.png;
       };
-    in
-      if isDarwin
-      then common // darwin
-      else common // desktop;
   };
 }

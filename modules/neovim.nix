@@ -129,6 +129,7 @@
           ansible-lint
           djlint
           docker-compose-language-service
+          dockerfile-language-server-nodejs
           dot-language-server
           helm-ls
           imagemagick
@@ -137,6 +138,7 @@
           neovim-remote
           nixd
           prettierd
+          pyright
           ruff
           ruff-lsp
           shellcheck
@@ -148,17 +150,15 @@
           terraform-ls
           texlab
           tflint
+          vscode-langservers-extracted
+          yaml-language-server
         ])
         ++ (with pkgs.perl538Packages; [
           LatexIndent
         ])
         ++ (with pkgs.nodePackages; [
           bash-language-server
-          dockerfile-language-server-nodejs
-          pyright
           vscode-json-languageserver
-          vscode-langservers-extracted
-          yaml-language-server
         ])
         ++ (with pkgs.python312Packages; [
           jupytext

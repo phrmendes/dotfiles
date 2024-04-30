@@ -19,6 +19,35 @@
       };
     };
 
+    nix-ld = {
+      enable = true;
+      package = pkgs.nix-ld-rs;
+      libraries = with pkgs; [
+        bzip2
+        cairo
+        coreutils-full
+        findutils
+        gcc
+        gdbm
+        glib
+        gnumake
+        gnupatch
+        iconv
+        icu
+        libcxx
+        libffi
+        libuv
+        libxml2
+        openssl
+        readline
+        sqlite
+        stdenv.cc.cc
+        tk
+        xz
+        zlib
+      ];
+    };
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

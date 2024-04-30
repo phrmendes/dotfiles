@@ -14,7 +14,6 @@
       "homebrew/cask-fonts"
     ];
     brews = [
-      "gnu-sed"
       "openssl"
       "podman"
       "podman-compose"

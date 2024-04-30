@@ -10,31 +10,37 @@ in {
 
   config = lib.mkIf config.packages.enable {
     home.packages = let
-      common = with pkgs; [
-        ansible
-        cachix
-        fd
-        ffmpegthumbnailer
-        file
-        gh
-        graphviz
-        grex
-        jq
-        just
-        kind
-        kubectl
-        kubernetes-helm
-        ncdu
-        opentofu
-        pandoc
-        parallel
-        podman-tui
-        poppler
-        ripgrep
-        terraform
-        tokei
-        unar
-      ];
+      common =
+        (with pkgs; [
+          ansible
+          cachix
+          fd
+          ffmpegthumbnailer
+          file
+          gh
+          graphviz
+          grex
+          jdk
+          jq
+          just
+          kind
+          kubectl
+          kubernetes-helm
+          ncdu
+          opentofu
+          pandoc
+          parallel
+          podman-tui
+          poppler
+          python312
+          ripgrep
+          terraform
+          tokei
+          unar
+        ])
+        ++ (with pkgs.nodePackages_latest; [
+          nodejs
+        ]);
     in
       common
       ++ lib.optionals isDarwin (

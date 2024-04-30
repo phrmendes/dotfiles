@@ -111,14 +111,11 @@ end
 
 for key, value in pairs(servers) do
 	(function(server_name, settings)
-		local setup = {}
+		local setup = settings or {}
 
-		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, settings.capabilities or {})
-		setup.flags = vim.tbl_deep_extend("force", {}, flags, settings.flags or {})
-		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, settings.handlers or {})
-		setup.on_attach = function()
-			settings.on_attach()
-		end
+		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
+		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
+		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
 		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)

@@ -8,6 +8,7 @@ lint.linters_by_ft = {
 	sh = { "shellcheck" },
 	sql = { "sqlfluff" },
 	jinja = { "djlint" },
+	go = { "golangcilint" },
 }
 
 autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

@@ -20,6 +20,7 @@ local servers = {
 	docker_compose_language_service = {},
 	dockerls = {},
 	dotls = {},
+	gopls = {},
 	html = {},
 	nil_ls = {},
 	ruff_lsp = {},

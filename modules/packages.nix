@@ -18,6 +18,7 @@ in {
           ffmpegthumbnailer
           file
           gh
+          go
           graphviz
           grex
           jdk

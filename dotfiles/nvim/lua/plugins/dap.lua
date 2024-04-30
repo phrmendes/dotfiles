@@ -1,6 +1,5 @@
 local dap = require("dap")
 local dap_ui = require("dapui")
-local dap_virtual_text = require("nvim-dap-virtual-text")
 local dap_python = require("dap-python")
 
 local dap_signs = {
@@ -14,8 +13,10 @@ for type, icon in pairs(dap_signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+require("nvim-dap-virtual-text").setup()
+require("dap-go").setup()
+
 dap_ui.setup()
-dap_virtual_text.setup()
 dap_python.setup("nvim-python3")
 
 dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open

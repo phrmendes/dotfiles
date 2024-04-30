@@ -71,6 +71,7 @@
           nvim-cmp
           nvim-colorizer-lua
           nvim-dap
+          nvim-dap-go
           nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
@@ -133,10 +134,15 @@
           alejandra
           ansible-language-server
           ansible-lint
+          delve
           djlint
           docker-compose-language-service
           dockerfile-language-server-nodejs
           dot-language-server
+          gofumpt
+          goimports-reviser
+          golangci-lint
+          gopls
           helm-ls
           imagemagick
           ltex-ls

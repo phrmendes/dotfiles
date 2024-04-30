@@ -41,11 +41,6 @@ wk.register({
 	z = { mode = "n", name = "zotero" },
 	c = { mode = { "n", "v" }, name = "copilot" },
 	o = { mode = { "n", "v" }, name = "obsidian" },
-	d = {
-		mode = { "n", "v" },
-		name = "DAP",
-		p = { name = "python" },
-	},
 	g = {
 		mode = { "n", "v" },
 		name = "git",
@@ -183,20 +178,6 @@ autocmd("FileType", {
 	end,
 })
 
-autocmd("FileType", {
-	group = augroup,
-	pattern = "python",
-	callback = function(event)
-		wk.register({
-			["<leader>dp"] = {
-				d = { require("dap-python").debug_file, "Debug file" },
-				s = { mode = "v", require("dap-python").debug_selection, "Debug selection" },
-				t = { require("dap-python").test_file, "Test file" },
-			},
-		}, { buffer = event.buf })
-	end,
-})
-
 autocmd("LspAttach", {
 	group = augroup,
 	callback = function(event)
@@ -230,27 +211,6 @@ autocmd("LspAttach", {
 					d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
 					w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
 				},
-				d = {
-					b = { require("dap").toggle_breakpoint, "Breakpoint" },
-					c = { require("dap").clear_breakpoints, "Clear all breakpoints" },
-					k = { require("dap.ui.widgets").hover, "Show hover" },
-					l = { "<cmd>Telescope dap list_breakpoints<cr>", "List breakpoints" },
-					r = { require("dap").repl.toggle, "Toggle REPL" },
-					t = { require("dapui").toggle, "Toggle UI" },
-					q = {
-						function()
-							require("dap").terminate()
-							require("dapui").close()
-						end,
-						"Terminate",
-					},
-					B = {
-						function()
-							require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-						end,
-						"Conditional breakpoint",
-					},
-				},
 			},
 		}, { buffer = event.buf })
 
@@ -264,5 +224,58 @@ autocmd("LspAttach", {
 				},
 			}, { buffer = event.buf })
 		end
+	end,
+})
+
+local dap_mappings = {
+	name = "DAP",
+	b = { require("dap").toggle_breakpoint, "Breakpoint" },
+	c = { require("dap").clear_breakpoints, "Clear all breakpoints" },
+	k = { require("dap.ui.widgets").hover, "Show hover" },
+	l = { "<cmd>Telescope dap list_breakpoints<cr>", "List breakpoints" },
+	r = { require("dap").repl.toggle, "Toggle REPL" },
+	t = { require("dapui").toggle, "Toggle UI" },
+	q = {
+		function()
+			require("dap").terminate()
+			require("dapui").close()
+		end,
+		"Terminate",
+	},
+	B = {
+		function()
+			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+		end,
+		"Conditional breakpoint",
+	},
+}
+
+autocmd("FileType", {
+	group = augroup,
+	pattern = "python",
+	callback = function(event)
+		wk.register({ ["<leader>d"] = dap_mappings })
+
+		wk.register({
+			["<leader>d"] = {
+				d = { require("dap-python").debug_file, "Python: debug file" },
+				t = { require("dap-python").test_file, "Python: test file" },
+			},
+		}, { buffer = event.buf })
+	end,
+})
+
+autocmd("FileType", {
+	group = augroup,
+	pattern = "go",
+	callback = function(event)
+		wk.register({ ["<leader>d"] = dap_mappings })
+
+		wk.register({
+			["<leader>d"] = {
+				t = { require("dap-go").debug_test, "Go: debug test" },
+				l = { require("dap-go").debug_last_test, "Go: latest test" },
+			},
+		}, { buffer = event.buf })
 	end,
 })

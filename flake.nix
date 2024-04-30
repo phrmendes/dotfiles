@@ -4,15 +4,18 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
+      "https://walker.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
     ];
   };
 
   inputs = {
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    walker.url = "github:abenz1267/walker";
 
     darwin = {
       url = "github:lnl7/nix-darwin";
@@ -26,17 +29,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    sops = {
-      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

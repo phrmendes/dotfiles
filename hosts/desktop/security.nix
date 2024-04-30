@@ -9,8 +9,9 @@
     };
     pam = {
       services = {
+        swaylock = {};
         login = {
-          kwallet.enable = true;
+          enableGnomeKeyring = true;
           gnupg.enable = true;
         };
       };

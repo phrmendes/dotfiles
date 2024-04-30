@@ -1,13 +1,13 @@
 {
-  inputs,
-  lib,
   parameters,
   pkgs,
   ...
 }: {
   services = {
+    blueman.enable = true;
     envfs.enable = true;
     flatpak.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     ntpd-rs.enable = true;
     tailscale.enable = true;
@@ -44,13 +44,18 @@
       };
     };
 
-    desktopManager.plasma6.enable = true;
-
     displayManager = {
-      defaultSession = "plasma";
       sddm = {
         enable = true;
-        theme = "where_is_my_sddm_theme";
+        wayland.enable = true;
+        theme = "Elegant";
+        settings = {
+          General.Numlock = true;
+          Theme = {
+            Font = "Fira Sans";
+            FacesDir = "~/";
+          };
+        };
       };
     };
 

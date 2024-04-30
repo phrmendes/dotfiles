@@ -8,8 +8,15 @@
   options.neovim.enable = lib.mkEnableOption "enable neovim";
 
   config = lib.mkIf config.neovim.enable {
+    home.file = {
+      ".config/nvim" = {
+        source = ../dotfiles/nvim;
+        recursive = true;
+      };
+    };
+
     programs.neovim = let
-      inherit (pkgs.stdenv) isDarwin isLinux;
+      inherit (pkgs.stdenv) isLinux;
       fromGitHub = pname: src:
         pkgs.vimUtils.buildVimPlugin {
           inherit src pname;
@@ -94,7 +101,6 @@
           vim-helm
           vim-jinja
           vim-just
-          vim-nix
           vim-sleuth
           vim-slime
           vim-visual-multi
@@ -136,7 +142,7 @@
           ltex-ls
           lua-language-server
           neovim-remote
-          nixd
+          nil
           prettierd
           pyright
           ruff

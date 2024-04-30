@@ -1,6 +1,6 @@
 -- leader keys
 vim.g.mapleader = [[ ]]
-vim.g.maplocalleader = [[  ]]
+vim.g.maplocalleader = [[,]]
 
 -- syntax
 vim.opt.syntax = "on"

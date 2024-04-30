@@ -1,0 +1,6 @@
+bruno
+firefox
+kitty
+neovide
+obsidian
+vlc

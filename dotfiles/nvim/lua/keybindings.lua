@@ -66,8 +66,10 @@ wk.register({
 		t = { require("todo-comments").jump_next, "Next todo" },
 	},
 	["<leader>"] = {
+		["<leader>"] = { "<cmd>Telescope buffers<cr>", "List" },
 		["-"] = { "<cmd>split<cr>", "Split window (H)" },
 		["."] = { "<cmd>Telescope commands<cr>", "Commands" },
+		["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search in current buffer" },
 		["="] = { "<c-w>=", "Resize and make windows equal" },
 		["?"] = { "<cmd>Telescope help_tags<cr>", "Help" },
 		["\\"] = { "<cmd>vsplit<cr>", "Split window (V)" },
@@ -94,9 +96,7 @@ wk.register({
 	},
 	["<leader>b"] = {
 		G = { "<cmd>blast<cr>", "Go to last buffer" },
-		b = { "<cmd>Telescope buffers<cr>", "List" },
 		d = { require("mini.bufremove").delete, "Delete" },
-		f = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search in current buffer" },
 		g = { "<cmd>bfirst<cr>", "Go to last buffer" },
 		k = { "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", "Keep only this buffer" },
 		w = { require("mini.bufremove").wipeout, "Wipeout" },
@@ -158,7 +158,7 @@ wk.register({
 autocmd("FileType", {
 	group = augroup,
 	pattern = "markdown",
-	callback = function(ev)
+	callback = function(event)
 		wk.register({
 			["<leader>z"] = {
 				c = { "<Plug>ZCitationCompleteInfo", "Citation complete info" },
@@ -167,42 +167,44 @@ autocmd("FileType", {
 				v = { "<Plug>ZViewDocument", "View document" },
 				y = { "<Plug>ZCitationYamlRef", "YAML reference" },
 			},
-		}, { buffer = ev.buf })
+		}, { buffer = event.buf })
 	end,
 })
 
 autocmd("FileType", {
 	group = augroup,
 	pattern = "quarto",
-	callback = function(ev)
+	callback = function(event)
 		wk.register({
 			["<leader>z"] = {
 				z = { "<cmd>Telescope zotero<cr>", "Add source from Zotero" },
 			},
-		}, { buffer = ev.buf })
+		}, { buffer = event.buf })
 	end,
 })
 
 autocmd("FileType", {
 	group = augroup,
 	pattern = "python",
-	callback = function(ev)
+	callback = function(event)
 		wk.register({
 			["<leader>dp"] = {
 				d = { require("dap-python").debug_file, "Debug file" },
 				s = { mode = "v", require("dap-python").debug_selection, "Debug selection" },
 				t = { require("dap-python").test_file, "Test file" },
 			},
-		}, { buffer = ev.buf })
+		}, { buffer = event.buf })
 	end,
 })
 
 autocmd("LspAttach", {
 	group = augroup,
-	callback = function(ev)
+	callback = function(event)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+
 		wk.register({
+			["<F1>"] = { require("dap").step_into, "DAP: step into" },
 			["<F3>"] = { require("dap").step_out, "DAP: step out" },
-			["<F4>"] = { require("dap").step_into, "DAP: step into" },
 			["<F5>"] = { require("dap").step_back, "DAP: step back" },
 			["<F6>"] = { require("dap").continue, "DAP: continue" },
 			["<F7>"] = { require("dap").step_over, "DAP: step over" },
@@ -234,7 +236,7 @@ autocmd("LspAttach", {
 					k = { require("dap.ui.widgets").hover, "Show hover" },
 					l = { "<cmd>Telescope dap list_breakpoints<cr>", "List breakpoints" },
 					r = { require("dap").repl.toggle, "Toggle REPL" },
-					u = { require("dapui").toggle, "Toggle UI" },
+					t = { require("dapui").toggle, "Toggle UI" },
 					q = {
 						function()
 							require("dap").terminate()
@@ -250,6 +252,17 @@ autocmd("LspAttach", {
 					},
 				},
 			},
-		}, { buffer = ev.buf })
+		}, { buffer = event.buf })
+
+		if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+			wk.register({
+				["<leader>T"] = {
+					function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+					end,
+					"Toggle inlay hints",
+				},
+			}, { buffer = event.buf })
+		end
 	end,
 })

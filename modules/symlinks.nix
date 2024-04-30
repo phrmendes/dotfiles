@@ -12,10 +12,6 @@ in {
     home.file = let
       common = {
         ".config/yazi/theme.toml".source = ../dotfiles/yazi/theme.toml;
-        ".config/nvim" = {
-          source = ../dotfiles/nvim;
-          recursive = true;
-        };
       };
     in
       common
@@ -23,6 +19,7 @@ in {
         ".amethyst.yml".source = ../dotfiles/amethyst.yml;
       }
       // lib.optionalAttrs isLinux {
+        ".config/satty".source = ../dotfiles/satty;
         ".face".source = ../dotfiles/face.png;
         ".background".source = ../dotfiles/background.png;
       };

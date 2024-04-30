@@ -5,10 +5,21 @@
 }: {
   programs = {
     dconf.enable = true;
+    firefox.enable = true;
+    fuse.userAllowOther = true;
+    hyprland.enable = true;
+    kdeconnect.enable = true;
+    seahorse.enable = true;
     virt-manager.enable = true;
     zsh.enable = true;
-    kdeconnect.enable = true;
-    fuse.userAllowOther = true;
+
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
 
     nh = {
       enable = true;
@@ -19,39 +30,14 @@
       };
     };
 
-    nix-ld = {
-      enable = true;
-      package = pkgs.nix-ld-rs;
-      libraries = with pkgs; [
-        bzip2
-        cairo
-        coreutils-full
-        findutils
-        gcc
-        gdbm
-        glib
-        gnumake
-        gnupatch
-        iconv
-        icu
-        libcxx
-        libffi
-        libuv
-        libxml2
-        openssl
-        readline
-        sqlite
-        stdenv.cc.cc
-        tk
-        xz
-        zlib
-      ];
-    };
-
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
+    };
+
+    nix-ld = {
+      enable = true;
+      package = pkgs.nix-ld-rs;
     };
   };
 }

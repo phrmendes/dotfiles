@@ -21,7 +21,7 @@ local servers = {
 	dockerls = {},
 	dotls = {},
 	html = {},
-	nixd = {},
+	nil_ls = {},
 	ruff_lsp = {},
 	taplo = {},
 	terraformls = {},
@@ -39,7 +39,10 @@ local servers = {
 		settings = {
 			Lua = {
 				completion = { callSnippet = "Replace" },
-				diagnostics = { globals = { "vim" } },
+				diagnostics = {
+					globals = { "vim" },
+					disable = { "missing-fields" },
+				},
 				telemetry = { enable = false },
 				workspace = {
 					checkThirdParty = false,
@@ -108,11 +111,14 @@ end
 
 for key, value in pairs(servers) do
 	(function(server_name, settings)
-		local setup = settings or {}
+		local setup = {}
 
-		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
-		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
-		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
+		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, settings.capabilities or {})
+		setup.flags = vim.tbl_deep_extend("force", {}, flags, settings.flags or {})
+		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, settings.handlers or {})
+		setup.on_attach = function()
+			settings.on_attach()
+		end
 
 		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)

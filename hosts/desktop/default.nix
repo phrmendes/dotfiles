@@ -1,7 +1,6 @@
 {
   inputs,
   parameters,
-  pkgs,
   ...
 }: {
   imports = [
@@ -26,10 +25,15 @@
     ./time.nix
     ./users.nix
     ./virtualisation.nix
+    ./xdg.nix
   ];
 
   console.keyMap = "us";
   sound.enable = true;
   system.stateVersion = "23.11";
-  xdg.portal.enable = true;
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 }

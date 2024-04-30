@@ -50,41 +50,47 @@ in {
           terragrunt
         ]
       )
-      ++ lib.optionals isLinux (
-        (with pkgs; [
-          bashly
-          bitwarden
-          bruno
-          catppuccin-kde
-          chromium
-          curtail
-          dbeaver
-          droidcam
-          haruna
-          hugo
-          libreoffice
-          neovide
-          obsidian
-          phockup
-          plex
-          quarto
-          quickemu
-          syncthingtray
-          tectonic
-          vagrant
-          ventoy
-          zotero
-        ])
-        ++ (with pkgs.libsForQt5; [
-          polonium
-        ])
-        ++ (with pkgs.kdePackages; [
-          gwenview
-          kcolorchooser
-          ktorrent
-          okular
-          spectacle
-        ])
-      );
+      ++ lib.optionals isLinux (with pkgs; [
+        bashly
+        bitwarden
+        bruno
+        chromium
+        copyq
+        curtail
+        dbeaver
+        droidcam
+        evince
+        foliate
+        gcolor3
+        goldwarden
+        grim
+        hugo
+        kooha
+        libqalculate
+        libreoffice
+        neovide
+        nwg-bar
+        nwg-displays
+        nwg-panel
+        obsidian
+        pavucontrol
+        phockup
+        plex
+        quarto
+        quickemu
+        qview
+        satty
+        slurp
+        swaybg
+        swaynotificationcenter
+        syncthingtray
+        tectonic
+        transmission
+        vagrant
+        ventoy
+        vlc
+        xarchiver
+        zotero
+      ]);
   };
 }

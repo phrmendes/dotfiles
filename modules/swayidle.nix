@@ -1,0 +1,46 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options.swayidle.enable = lib.mkEnableOption "enable swayidle";
+
+  config = lib.mkIf config.swayidle.enable {
+    services.swayidle = let
+      inherit (lib) getExe;
+      swaylock = getExe pkgs.swaylock;
+      sleep = "${pkgs.coreutils-full}/bin/sleep";
+      hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+      systemctl = "${pkgs.systemd}/bin/systemctl";
+    in {
+      enable = true;
+      systemdTarget = "hyprland-session.target";
+      events = [
+        {
+          event = "before-sleep";
+          command = "${swaylock}";
+        }
+        {
+          event = "lock";
+          command = "${swaylock}";
+        }
+      ];
+      timeouts = [
+        {
+          command = "${swaylock}";
+          timeout = 300;
+        }
+        {
+          command = "${hyprctl} dispatch dpms off";
+          resumeCommand = "${sleep} 3; ${hyprctl} dispatch dpms on";
+          timeout = 330;
+        }
+        {
+          command = "${systemctl} suspend -i";
+          timeout = 3600;
+        }
+      ];
+    };
+  };
+}

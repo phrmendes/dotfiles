@@ -1,35 +1,44 @@
 {
+  inputs,
   lib,
   parameters,
-  inputs,
-  pkgs,
   ...
 }: {
   imports = [
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.walker.homeManagerModules.walker
     ./atuin.nix
     ./bat.nix
+    ./blueman-applet.nix
     ./btop.nix
+    ./caffeine.nix
     ./direnv.nix
     ./eza.nix
-    ./firefox.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./gnome-keyring.nix
     ./gtk.nix
+    ./hyprland.nix
     ./kitty.nix
     ./lazygit.nix
     ./navi.nix
     ./neovim.nix
+    ./nm-applet.nix
+    ./nwg.nix
     ./packages.nix
-    ./plasma.nix
     ./pyenv.nix
     ./starship.nix
+    ./swayidle.nix
+    ./swaylock.nix
+    ./swaync.nix
+    ./swayosd.nix
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
     ./thefuck.nix
     ./tmux.nix
+    ./udiskie.nix
+    ./walker.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix

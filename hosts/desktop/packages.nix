@@ -1,36 +1,29 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   environment = {
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      elisa
-      kate
-      khelpcenter
-      oxygen
-    ];
     systemPackages = with pkgs; [
+      gnumake
+      sqlite
+      findutils
       appimage-run
       binutils
-      curl
+      coreutils-full
+      gcc
       gnupg
       gnused
       gzip
+      libnotify
       psmisc
       rar
       unrar
       unzip
       wget
       wl-clipboard
-      xclip
       xdg-utils
       zip
-      (pkgs.where-is-my-sddm-theme.override {
-        themeConfig = {
-          General = {
-            background = "${../../dotfiles/background.png}";
-          };
+      kdePackages.polkit-kde-agent-1
+      (elegant-sddm.override {
+        themeConfig.General = {
+          background = "${../../dotfiles/background.png}";
         };
       })
     ];

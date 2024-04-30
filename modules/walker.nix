@@ -39,10 +39,6 @@
           height = 500;
           always_show = true;
         };
-        clipboard = {
-          image_height = 300;
-          max_entries = 10;
-        };
         modules = [
           {
             name = "applications";
@@ -59,12 +55,14 @@
           {
             name = "finder";
             prefix = "~";
-            switcher_exclusive = true;
           }
           {
             name = "websearch";
             prefix = "?";
-            switcher_exclusive = true;
+          }
+          {
+            name = "commands";
+            prefix = ":";
           }
         ];
       };

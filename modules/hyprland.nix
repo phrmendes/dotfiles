@@ -22,9 +22,9 @@
       walker = getExe pkgs.walker;
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
-      swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
       swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
+      notify = "${pkgs.libnotify}/bin/notify-send";
       wallpaper = ../dotfiles/background.png;
       colors = import ./catppuccin.nix;
       workspacesKeys = rec {
@@ -34,15 +34,16 @@
         moveSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") workspaces;
       };
       keyboardNotifyScript = pkgs.writeShellScriptBin "keyboard-notify" ''
-        KEYBOARD=logitech-k850
         HYPRCTL=${hyprctl}
         JQ=${jq}
+        KEYBOARD=logitech-k850
+        NOTIFTY=${notify}
 
         $HYPRCTL switchxkblayout "$KEYBOARD" next
 
         LAYOUT=$($HYPRCTL devices -j | $JQ --arg KEYBOARD $KEYBOARD '.keyboards | map(select(.name == "$KEYBOARD")) | .[] | .active_keymap')
 
-        ${hyprctl} -1 1500 "${colors.catppuccin.hex.green}" "fontsize:18 ⌨ $LAYOUT"
+        $NOTIFY --expire-time 1000 "⌨ $LAYOUT"
       '';
     in {
       enable = true;
@@ -51,7 +52,6 @@
           "${swaybg} --image ${wallpaper} --mode fill"
           "${nwg-panel}"
           "${copyq} --start-server"
-          "${swaync}"
           "${polkit}"
         ];
         input = {
@@ -153,7 +153,7 @@
           [
             # apps
             "ALT, space, exec, ${keyboardNotifyScript}/bin/keyboard-notify"
-            "SUPER SHIFT,V,exec,${copyq} menu"
+            "SUPER,V,exec,${copyq} menu"
             "SUPER,C,exec,${swaync-client} --close-all"
             "SUPER,N,exec,${swaync-client} --toggle-panel --skip-wait"
             "SUPER,escape,exec,${powermenu}"

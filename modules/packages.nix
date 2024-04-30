@@ -47,7 +47,6 @@ in {
         with pkgs; [
           maven
           pngpaste
-          poetry
           terragrunt
         ]
       )

@@ -24,7 +24,6 @@
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
       swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
-      notify = "${pkgs.libnotify}/bin/notify-send";
       wallpaper = ../dotfiles/background.png;
       colors = import ./catppuccin.nix;
       workspacesKeys = rec {
@@ -34,16 +33,13 @@
         moveSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") workspaces;
       };
       keyboardNotifyScript = pkgs.writeShellScriptBin "keyboard-notify" ''
-        HYPRCTL=${hyprctl}
-        JQ=${jq}
         KEYBOARD=logitech-k850
-        NOTIFTY=${notify}
 
-        $HYPRCTL switchxkblayout "$KEYBOARD" next
+        ${hyprctl} switchxkblayout "$KEYBOARD" next &> /dev/null
 
-        LAYOUT=$($HYPRCTL devices -j | $JQ --arg KEYBOARD $KEYBOARD '.keyboards | map(select(.name == "$KEYBOARD")) | .[] | .active_keymap')
+        LAYOUT=$(${hyprctl} devices -j | ${jq} --arg keyboard "$KEYBOARD" '.keyboards | map(select(.name == $keyboard)) | .[] | .active_keymap')
 
-        $NOTIFY --expire-time 1000 "⌨ $LAYOUT"
+        ${hyprctl} notify -1 1500 "rgb(f38ba8)" "fontsize:18 ⌨ $LAYOUT" &> /dev/null
       '';
     in {
       enable = true;

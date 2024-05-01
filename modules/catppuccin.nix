@@ -29,10 +29,12 @@
       crust = "#11111B";
     };
     removeHash = name: hex: builtins.replaceStrings ["#"] [""] hex;
+    convertToRGB = name: code: "rgb(${builtins.toString code})";
     convertToRGBA = name: code: "rgba(${builtins.toString code}ff)";
   in rec {
     inherit hex;
     code = builtins.mapAttrs removeHash hex;
+    rgb = builtins.mapAttrs convertToRGB code;
     rgba = builtins.mapAttrs convertToRGBA code;
   };
 }

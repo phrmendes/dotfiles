@@ -39,7 +39,7 @@
 
         LAYOUT=$(${hyprctl} devices -j | ${jq} --arg keyboard "$KEYBOARD" '.keyboards | map(select(.name == $keyboard)) | .[] | .active_keymap')
 
-        ${hyprctl} notify -1 1500 "rgb(f38ba8)" "fontsize:18 ⌨ $LAYOUT" &> /dev/null
+        ${hyprctl} notify -1 1500 "${colors.catppuccin.rgb.green}" "fontsize:18 ⌨ $LAYOUT" &> /dev/null
       '';
     in {
       enable = true;

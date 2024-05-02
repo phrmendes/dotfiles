@@ -1,7 +1,7 @@
 [
   {
     "name": "panel-top",
-    "output": "HDMI-A-1",
+    "output": "DP-1",
     "layer": "bottom",
     "position": "top",
     "controls": "right",

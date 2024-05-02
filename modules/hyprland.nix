@@ -106,8 +106,8 @@
           };
         };
         monitor = [
-          "DP-2,1366x768,0x0,auto"
-          "HDMI-A-1,1920x1080,1366x0,auto"
+          "DP-1,1920x1080,1366x0,auto"
+          "HDMI-A-1,1366x768,0x0,auto"
         ];
         windowrulev2 = [
           "float,stayfocused,class:(gcolor3)"
@@ -121,15 +121,15 @@
           "opaque,class:(vlc)"
         ];
         workspace = [
-          "1,monitor:HDMI-A-1"
-          "2,monitor:HDMI-A-1"
-          "3,monitor:HDMI-A-1"
-          "4,monitor:HDMI-A-1"
-          "5,monitor:HDMI-A-1"
-          "6,monitor:HDMI-A-1"
-          "7,monitor:HDMI-A-1"
-          "8,monitor:HDMI-A-1"
-          "9,monitor:DP-2"
+          "1,monitor:DP-1"
+          "2,monitor:DP-1"
+          "3,monitor:DP-1"
+          "4,monitor:DP-1"
+          "5,monitor:DP-1"
+          "6,monitor:DP-1"
+          "7,monitor:DP-1"
+          "8,monitor:DP-1"
+          "9,monitor:HDMI-A-1"
         ];
         bindm = [
           "SUPER,mouse:272,movewindow"

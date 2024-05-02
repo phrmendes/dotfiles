@@ -10,7 +10,6 @@
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
-    ./caffeine.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
@@ -28,7 +27,6 @@
     ./packages.nix
     ./pyenv.nix
     ./starship.nix
-    ./swayidle.nix
     ./swaylock.nix
     ./swaync.nix
     ./swayosd.nix

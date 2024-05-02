@@ -14,6 +14,7 @@
         "Projects"
         "Videos"
         "Zotero"
+        "go"
         ".config"
         ".gnupg"
         ".mozilla"

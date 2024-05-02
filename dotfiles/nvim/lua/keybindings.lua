@@ -3,279 +3,463 @@ local augroup = require("utils").augroup
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
+local keybindings = {}
+
 vim.g.VM_maps = {
 	["Add Cursor Down"] = "m",
 	["Add Cursor Up"] = "M",
 }
 
-map("n", "<a-h>", require("smart-splits").swap_buf_left, { desc = "Swap buffer left" })
-map("n", "<a-j>", require("smart-splits").swap_buf_down, { desc = "Swap buffer down" })
-map("n", "<a-k>", require("smart-splits").swap_buf_up, { desc = "Swap buffer up" })
-map("n", "<a-l>", require("smart-splits").swap_buf_right, { desc = "Swap buffer right" })
-map("n", "<c-down>", require("smart-splits").resize_down, { desc = "Resize down" })
-map("n", "<c-left>", require("smart-splits").resize_left, { desc = "Resize left" })
-map("n", "<c-right>", require("smart-splits").resize_right, { desc = "Resize right" })
-map("n", "<c-up>", require("smart-splits").resize_up, { desc = "Resize up" })
-map("n", "<c-d>", "<c-d>zz", { noremap = true, silent = true, desc = "Better page down" })
-map("n", "<c-h>", require("smart-splits").move_cursor_left, { desc = "Move cursor left" })
-map("n", "<c-j>", require("smart-splits").move_cursor_down, { desc = "Move cursor down" })
-map("n", "<c-k>", require("smart-splits").move_cursor_up, { desc = "Move cursor up" })
-map("n", "<c-l>", require("smart-splits").move_cursor_right, { desc = "Move cursor right" })
-map("n", "<c-u>", "<c-u>zz", { noremap = true, silent = true, desc = "Better page up" })
-map("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true, silent = true })
-map("n", "Q", "@q", { noremap = true, silent = true })
-map("n", "N", [[v:searchforward ? 'N' : 'n']], { expr = true, noremap = true, silent = true })
-map("n", "n", [[v:searchforward ? 'n' : 'N']], { expr = true, noremap = true, silent = true })
-map("n", "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true, noremap = true, silent = true })
-map("n", "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true, noremap = true, silent = true })
-map("t", "<c-c>", "<c-\\><c-n>", { noremap = true, silent = true })
-map("v", "Q", "<cmd>norm @q<cr>", { noremap = true, silent = true })
-map({ "n", "v" }, "<c-c><c-c>", "<Plug>SlimeParagraphSend", { noremap = true, silent = true, desc = "Send to REPL" })
-map({ "n", "v" }, "<c-c><c-v>", "<Plug>SlimeConfig", { noremap = true, silent = true, desc = "Config Slime" })
+keybindings.std = {
+	random = function()
+		local opts = { noremap = true }
 
-wk.register({
-	["<tab>"] = { mode = "n", name = "tabs" },
-	b = { mode = "n", name = "buffers" },
-	f = { mode = "n", name = "find" },
-	t = { mode = "n", name = "trouble" },
-	z = { mode = "n", name = "zotero" },
-	c = { mode = { "n", "v" }, name = "copilot" },
-	o = { mode = { "n", "v" }, name = "obsidian" },
-	g = {
+		map("n", "<c-s>", "<cmd>w<cr>", opts)
+		map("n", "<c-d>", "<c-d>zz", opts)
+		map("n", "<c-u>", "<c-u>zz", opts)
+		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
+		map("n", "Q", "@q", opts)
+		map("t", "<c-c>", "<c-\\><c-n>", opts)
+		map("v", "Q", "<cmd>norm @q<cr>", opts)
+
+		opts.desc = "Split (H)"
+		map("n", "<leader>-", "<cmd>split<cr>", opts)
+
+		opts.desc = "Commands"
+		map("n", "<leader>.", "<cmd>Telescope commands<cr>", opts)
+
+		opts.desc = "Resize and make windows equal"
+		map("n", "<leader>=", "<c-w>=", opts)
+
+		opts.desc = "Help"
+		map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", opts)
+
+		opts.desc = "Split (V)"
+		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
+
+		opts.desc = "Maximize (H)"
+		map("n", "<leader>_", "<c-w>_", opts)
+
+		opts.desc = "Maximize (V)"
+		map("n", "<leader>|", "<c-w>|", opts)
+
+		opts.desc = "Keep only current window"
+		map("n", "<leader>O", "<c-w>o", opts)
+
+		opts.desc = "Quit all"
+		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
+
+		opts.desc = "Zen mode"
+		map("n", "<leader>Z", "<cmd>ZenMode<cr>", opts)
+
+		opts.desc = "Generate annotations"
+		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
+
+		opts.desc = "Quit"
+		map("n", "<leader>q", "<cmd>q<cr>", opts)
+
+		opts.desc = "Undo tree"
+		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+
+		opts.desc = "Close window"
+		map("n", "<leader>x", "<c-w>q", opts)
+	end,
+	better_keys = function()
+		local opts = { expr = true, noremap = true, silent = true }
+
+		map("n", "N", [[v:searchforward ? 'N' : 'n']], opts)
+		map("n", "n", [[v:searchforward ? 'n' : 'N']], opts)
+		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
+		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
+	end,
+	buffers = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>b"] = { name = "buffers" } })
+
+		opts.desc = "List buffers"
+		map("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", opts)
+
+		opts.desc = "First buffer"
+		map("n", "<leader>bG", "<cmd>bfirst<cr>", opts)
+
+		opts.desc = "Last buffer"
+		map("n", "<leader>bG", "<cmd>blast<cr>", opts)
+
+		opts.desc = "Keep this buffer"
+		map("n", "<leader>bk", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opts)
+
+		opts.desc = "Delete buffer"
+		map("n", "<leader>bd", require("mini.bufremove").delete, opts)
+
+		opts.desc = "Wipeout buffer"
+		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
+	end,
+	copilot = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>c"] = { name = "copilot" } })
+
+		opts.desc = "Toggle chat"
+		map("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", opts)
+
+		opts.desc = "Reset chat"
+		map("n", "<leader>cr", "<cmd>CopilotChatReset<cr>", opts)
+
+		opts.desc = "Add documentation"
+		map({ "n", "v" }, "<leader>cd", "<cmd>CopilotChatDocs<cr>", opts)
+
+		opts.desc = "Explain code"
+		map({ "n", "v" }, "<leader>ce", "<cmd>CopilotChatExplain<cr>", opts)
+
+		opts.desc = "Fix code"
+		map({ "n", "v" }, "<leader>cf", "<cmd>CopilotChatFix<cr>", opts)
+
+		opts.desc = "Optimize code"
+		map({ "n", "v" }, "<leader>co", "<cmd>CopilotChatOptimize<cr>", opts)
+
+		opts.desc = "Generate tests"
+		map({ "n", "v" }, "<leader>ct", "<cmd>CopilotChatTests<cr>", opts)
+	end,
+	file_explorer = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Explorer (current file)"
+		map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", opts)
+
+		opts.desc = "Explorer (cwd)"
+		map("n", "<leader>E", "<cmd>NvimTreeToggle<cr>", opts)
+	end,
+	find = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>f"] = { name = "find" } })
+
+		map("n", "<c-p>", "<cmd>Telescope find_files<cr>", opts)
+		map("n", "<c-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
+
+		opts.desc = "Live grep"
+		map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+
+		opts.desc = "Recent"
+		map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", opts)
+
+		opts.desc = "Spectre"
+		map("n", "<leader>fs", require("spectre").toggle, opts)
+
+		opts.desc = "TODO"
+		map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", opts)
+
+		opts.desc = "Zoxide"
+		map("n", "<leader>fz", "<cmd>Telescope zoxide list<cr>", opts)
+	end,
+	git = function()
+		local opts = { noremap = true }
+
+		wk.register({
+			["<leader>g"] = { name = "git" },
+			["<leader>gs"] = { name = "stage" },
+			["<leader>gr"] = { name = "reset" },
+		})
+
+		opts.desc = "Previous hunk"
+		map("n", "[h", require("gitsigns").prev_hunk, opts)
+
+		opts.desc = "Next hunk"
+		map("n", "]h", require("gitsigns").next_hunk, opts)
+
+		opts.desc = "Toggle blame"
+		map("n", "<leader>gB", require("gitsigns").toggle_current_line_blame, opts)
+
+		opts.desc = "List commits (cwd)"
+		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
+
+		opts.desc = "LazyGit"
+		map("n", "<leader>gG", "<cmd>LazyGit<cr>", opts)
+
+		opts.desc = "List branches"
+		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
+
+		opts.desc = "List commits (current file)"
+		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
+
+		opts.desc = "Diff"
+		map("n", "<leader>gd", require("gitsigns").diffthis, opts)
+
+		opts.desc = "List files"
+		map("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts)
+
+		opts.desc = "LazyGit (current file)"
+		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
+
+		opts.desc = "Stage hunk"
+		map({ "n", "v" }, "<leader>gsh", require("gitsigns").stage_hunk, opts)
+
+		opts.desc = "Stage buffer"
+		map("n", "<leader>gsb", require("gitsigns").stage_buffer, opts)
+
+		opts.desc = "Reset hunk"
+		map({ "n", "v" }, "<leader>grh", require("gitsigns").reset_hunk, opts)
+
+		opts.desc = "Reset buffer"
+		map("n", "<leader>grb", require("gitsigns").reset_buffer, opts)
+	end,
+	obsidian = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>o"] = { name = "obsidian" } })
+
+		opts.desc = "Backlinks"
+		map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", opts)
+
+		opts.desc = "Create note"
+		map("n", "<leader>oc", "<cmd>ObsidianNew<cr>", opts)
+
+		opts.desc = "Extract to new note"
+		map("v", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
+
+		opts.desc = "Add link"
+		map("v", "<leader>ol", "<cmd>ObsidianLink<cr>", opts)
+
+		opts.desc = "Add link to new file"
+		map("v", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
+
+		opts.desc = "Search notes"
+		map("n", "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", opts)
+
+		opts.desc = "Paste image"
+		map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", opts)
+
+		opts.desc = "Rename note"
+		map("n", "<leader>or", "<cmd>ObsidianRename<cr>", opts)
+
+		opts.desc = "Search in notes"
+		map("n", "<leader>os", "<cmd>ObsidianSearch<cr>", opts)
+
+		opts.desc = "Tags"
+		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
+	end,
+	slime = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = "Send to REPL"
+		map({ "n", "v" }, "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
+
+		opts.desc = "Config SLIME"
+		map({ "n", "v" }, "<c-c><c-v>", "<Plug>SlimeConfig", opts)
+	end,
+	smart_splits = function()
+		local opts = { silent = true }
+
+		map("n", "<a-h>", require("smart-splits").swap_buf_left, opts)
+		map("n", "<a-j>", require("smart-splits").swap_buf_down, opts)
+		map("n", "<a-k>", require("smart-splits").swap_buf_up, opts)
+		map("n", "<a-l>", require("smart-splits").swap_buf_right, opts)
+		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map("n", "<c-left>", require("smart-splits").resize_left, opts)
+		map("n", "<c-down>", require("smart-splits").resize_down, opts)
+		map("n", "<c-up>", require("smart-splits").resize_up, opts)
+		map("n", "<c-right>", require("smart-splits").resize_right, opts)
+	end,
+	tabs = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader><tab>"] = { name = "tabs" } })
+
+		opts.desc = "Previous tab"
+		map("n", "[<tab>", "<cmd>tabprevious<cr>", opts)
+
+		opts.desc = "Next tab"
+		map("n", "]<tab>", "<cmd>tabnext<cr>", opts)
+
+		opts.desc = "Last tab"
+		map("n", "<leader><tab>G", "<cmd>tablast<cr>", opts)
+
+		opts.desc = "Close tab"
+		map("n", "<leader><tab>d", "<cmd>tabclose<cr>", opts)
+
+		opts.desc = "First tab"
+		map("n", "<leader><tab>g", "<cmd>tabfirst<cr>", opts)
+
+		opts.desc = "Keep only this tab"
+		map("n", "<leader><tab>k", "<cmd>tabonly<cr>", opts)
+
+		opts.desc = "New tab"
+		map("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
+	end,
+}
+
+keybindings.lsp = function(event)
+	local opts = { noremap = true, buffer = event.buf }
+
+	wk.register({ ["<leader>l"] = {
+		name = "LSP",
 		mode = { "n", "v" },
-		name = "git",
-		s = { name = "stage" },
-		r = { name = "reset" },
-	},
-}, { prefix = "<leader>" })
+		buffer = event.buf,
+	} })
 
-wk.register({
-	["["] = {
-		["<tab>"] = { "<cmd>tabprevious<cr>", "Previous tab" },
-		h = { require("gitsigns").prev_hunk, "Previous hunk" },
-		t = { require("todo-comments").jump_prev, "Previous todo" },
-	},
-	["]"] = {
-		["<tab>"] = { "<cmd>tabnext<cr>", "Next tab" },
-		h = { require("gitsigns").next_hunk, "Next hunk" },
-		t = { require("todo-comments").jump_next, "Next todo" },
-	},
-	["<leader>"] = {
-		["<leader>"] = { "<cmd>Telescope buffers<cr>", "List" },
-		["-"] = { "<cmd>split<cr>", "Split window (H)" },
-		["."] = { "<cmd>Telescope commands<cr>", "Commands" },
-		["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Search in current buffer" },
-		["="] = { "<c-w>=", "Resize and make windows equal" },
-		["?"] = { "<cmd>Telescope help_tags<cr>", "Help" },
-		["\\"] = { "<cmd>vsplit<cr>", "Split window (V)" },
-		["_"] = { "<c-w>_", "Maximize (H)" },
-		["|"] = { "<c-w>|", "Maximize (V)" },
-		E = { "<cmd>NvimTreeToggle<cr>", "File explorer (cwd)" },
-		O = { "<c-w>o", "Keep only current window" },
-		Q = { "<cmd>qall!<cr>", "Quit all" },
-		Z = { "<cmd>ZenMode<cr>", "Zen mode" },
-		e = { "<cmd>NvimTreeFindFileToggle<cr>", "File explorer (current file)" },
-		n = { "<cmd>Neogen<cr>", "Generate annotations" },
-		q = { "<cmd>q<cr>", "Quit" },
-		u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
-		w = { "<cmd>w<cr>", "Save" },
-		x = { "<c-w>q", "Close window" },
-	},
-	["<leader><tab>"] = {
-		["<tab>"] = { "<cmd>tab split<cr>", "Open in new tab" },
-		G = { "<cmd>tablast<cr>", "Last tab" },
-		d = { "<cmd>tabclose<cr>", "Close tab" },
-		g = { "<cmd>tabfirst<cr>", "First tab" },
-		k = { "<cmd>tabonly<cr>", "Keep only this tab" },
-		n = { "<cmd>tabnew<cr>", "New tab" },
-	},
-	["<leader>b"] = {
-		G = { "<cmd>blast<cr>", "Go to last buffer" },
-		d = { require("mini.bufremove").delete, "Delete" },
-		g = { "<cmd>bfirst<cr>", "Go to last buffer" },
-		k = { "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", "Keep only this buffer" },
-		w = { require("mini.bufremove").wipeout, "Wipeout" },
-	},
-	["<leader>c"] = {
-		c = { "<cmd>CopilotChatToggle<cr>", "Open" },
-		r = { "<cmd>CopilotChatReset<cr>", "Reset" },
-		d = { mode = "v", "<cmd>CopilotChatDocs<cr>", "Add documentation" },
-		e = { mode = "v", "<cmd>CopilotChatExplain<cr>", "Explain code" },
-		f = { mode = "v", "<cmd>CopilotChatFix<cr>", "Fix code" },
-		o = { mode = "v", "<cmd>CopilotChatOptimize<cr>", "Optimize code" },
-		t = { mode = "v", "<cmd>CopilotChatTests<cr>", "Generate tests" },
-	},
-	["<leader>f"] = {
-		f = { "<cmd>Telescope find_files<cr>", "Files" },
-		g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-		o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
-		r = { require("spectre").toggle, "Replace" },
-		t = { "<cmd>TodoTelescope<cr>", "Todo" },
-		z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
-	},
-	["<leader>g"] = {
-		B = { require("gitsigns").toggle_current_line_blame, "Blame line" },
-		C = { "<cmd>Telescope git_commits<cr>", "Commits (cwd)" },
-		G = { "<cmd>LazyGit<cr>", "LazyGit" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout" },
-		c = { "<cmd>Telescope git_bcommits<cr>", "Commits (current file)" },
-		d = { require("gitsigns").diffthis, "Diff" },
-		f = { "<cmd>Telescope git_files<cr>", "Files" },
-		g = { "<cmd>LazyGitCurrentFile<cr>", "LazyGit (current file)" },
-		s = {
-			h = { mode = { "n", "v" }, require("gitsigns").stage_hunk, "Hunk" },
-			b = { require("gitsigns").stage_buffer, "Buffer" },
-		},
-		r = {
-			h = { mode = { "n", "v" }, require("gitsigns").reset_hunk, "Hunk" },
-			b = { require("gitsigns").reset_buffer, "Buffer" },
-		},
-	},
-	["<leader>o"] = {
-		b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-		c = { "<cmd>ObsidianNew<cr>", "Create note" },
-		e = { mode = "v", "<cmd>ObsidianExtractNote<cr>", "Extract to new note" },
-		l = { mode = "v", "<cmd>ObsidianLink<cr>", "Add link" },
-		n = { mode = "v", "<cmd>ObsidianLinkNew<cr>", "Add link to new file" },
-		o = { "<cmd>ObsidianQuickSwitch<cr>", "Search notes" },
-		p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
-		r = { "<cmd>ObsidianRename<cr>", "Rename note" },
-		s = { "<cmd>ObsidianSearch<cr>", "Search in notes" },
-		t = { "<cmd>ObsidianTags<cr>", "Tags" },
-	},
-	["<leader>t"] = {
-		T = { "<cmd>TodoTrouble", "Todo" },
-		r = { "<cmd>TroubleRefresh<cr>", "Refresh" },
-		t = { "<cmd>TroubleToggle<cr>", "Toggle" },
-	},
-})
+	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
-autocmd("FileType", {
-	group = augroup,
-	pattern = "markdown",
-	callback = function(event)
-		wk.register({
-			["<leader>z"] = {
-				c = { "<Plug>ZCitationCompleteInfo", "Citation complete info" },
-				i = { "<Plug>ZCitationInfo", "Citation info" },
-				o = { "<Plug>ZOpenAttachment", "Open attachment" },
-				v = { "<Plug>ZViewDocument", "View document" },
-				y = { "<Plug>ZCitationYamlRef", "YAML reference" },
-			},
-		}, { buffer = event.buf })
+	opts.desc = "Go to references"
+	map("n", "gr", vim.lsp.buf.references, opts)
+
+	opts.desc = "Go to declaration"
+	map("n", "gD", vim.lsp.buf.declaration, opts)
+
+	opts.desc = "Go to definition"
+	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+
+	opts.desc = "Go to type definition"
+	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
+
+	opts.desc = "Go to implementations"
+	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+
+	opts.desc = "Symbols (document)"
+	map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+
+	opts.desc = "Symbols (workspace)"
+	map("n", "<leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
+
+	opts.desc = "Diagnostics (document)"
+	map("n", "<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+
+	opts.desc = "Diagnostics (workspace)"
+	map("n", "<leader>D", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+
+	opts.desc = "Code actions"
+	map({ "n", "v" }, "<leader>a", require("actions-preview").code_actions, opts)
+
+	opts.desc = "Floating diagnostics"
+	map("n", "<leader>F", vim.diagnostic.open_float, opts)
+
+	opts.desc = "Signature help"
+	map("n", "<leader>h", require("lsp_signature").toggle_float_win, opts)
+
+	opts.desc = "Hover"
+	map("n", "<leader>k", vim.lsp.buf.hover, opts)
+end
+
+keybindings.dap = function(event)
+	local opts = { noremap = true, buffer = event.buf }
+
+	wk.register({ ["<leader>t"] = {
+		name = "DAP",
+		buffer = event.buf,
+		mode = { "n", "v" },
+	} })
+
+	map("n", "<f1>", require("dap").step_into, opts)
+	map("n", "<f3>", require("dap").step_out, opts)
+	map("n", "<f5>", require("dap").step_back, opts)
+	map("n", "<f6>", require("dap").continue, opts)
+	map("n", "<f7>", require("dap").step_over, opts)
+	map("n", "<s-F6>", require("dap").pause, opts)
+	map("n", "<bs>", require("dap").close, opts)
+
+	opts.desc = "Breakpoint"
+	map("n", "<leader>tb", require("dap").toggle_breakpoint, opts)
+
+	opts.desc = "Clear all breakpoints"
+	map("n", "<leader>tc", require("dap").clear_breakpoints, opts)
+
+	opts.desc = "Show hover"
+	map("n", "<leader>tk", require("dap.ui.widgets").hover, opts)
+
+	opts.desc = "List breakpoints"
+	map("n", "<leader>tl", "<cmd>Telescope dap list_breakpoints<cr>", opts)
+
+	opts.desc = "Toggle REPL"
+	map("n", "<leader>tr", require("dap").repl.toggle, opts)
+
+	opts.desc = "Toggle UI"
+	map("n", "<leader>tu", require("dapui").toggle, opts)
+
+	opts.desc = "Terminate"
+	map("n", "<leader>tq", function()
+		require("dap").terminate()
+		require("dapui").close()
+	end, opts)
+
+	opts.desc = "Conditional breakpoint"
+	map("n", "<leader>tB", function()
+		require("dap").set_breakpoint(vim.fn.input("Condition: "))
+	end, opts)
+end
+
+keybindings.ft = {
+	go = function(event)
+		local opts = { noremap = true, buffer = event.buf }
+
+		keybindings.dap(event)
+
+		opts.desc = "Go: debug test"
+		map("n", "<leader>tt", require("dap-go").debug_test, opts)
+
+		opts.desc = "Go: latest test"
+		map("n", "<leader>tT", require("dap-go").debug_last_test, opts)
 	end,
-})
+	markdown = function(event)
+		local opts = { noremap = true, buffer = event.buf }
 
-autocmd("FileType", {
-	group = augroup,
-	pattern = "quarto",
-	callback = function(event)
-		wk.register({
-			["<leader>z"] = {
-				z = { "<cmd>Telescope zotero<cr>", "Add source from Zotero" },
-			},
-		}, { buffer = event.buf })
+		wk.register({ ["<leader>z"] = {
+			name = "zotero",
+			buffer = event.buf,
+		} })
+
+		opts.desc = "Citation complete info"
+		map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", opts)
+
+		opts.desc = "Citation info"
+		map("n", "<leader>zi", "<Plug>ZCitationInfo", opts)
+
+		opts.desc = "Open attachment"
+		map("n", "<leader>zo", "<Plug>ZOpenAttachment", opts)
+
+		opts.desc = "View document"
+		map("n", "<leader>zv", "<Plug>ZViewDocument", opts)
+
+		opts.desc = "YAML reference"
+		map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
 	end,
-})
+	python = function(event)
+		local opts = { noremap = true, buffer = event.buf }
+
+		keybindings.dap(event)
+
+		opts.desc = "Python: test function/method"
+		map("n", "<leader>tf", require("dap-python").test_method, opts)
+
+		opts.desc = "Python: test class"
+		map("n", "<leader>tc", require("dap-python").test_class, opts)
+
+		opts.desc = "Python: debug selection"
+		map("v", "<leader>ts", require("dap-python").debug_selection, opts)
+	end,
+	quarto = function(event)
+		local opts = { noremap = true, buffer = event.buf }
+
+		opts.desc = "Add source from Zotero"
+		map("n", "<leader>z", "<cmd>Telescope zotero<cr>", opts)
+	end,
+}
+
+for _, func in pairs(keybindings.std) do
+	func()
+end
 
 autocmd("LspAttach", {
 	group = augroup,
-	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-		wk.register({
-			["<F1>"] = { require("dap").step_into, "DAP: step into" },
-			["<F3>"] = { require("dap").step_out, "DAP: step out" },
-			["<F5>"] = { require("dap").step_back, "DAP: step back" },
-			["<F6>"] = { require("dap").continue, "DAP: continue" },
-			["<F7>"] = { require("dap").step_over, "DAP: step over" },
-			["<S-F6>"] = { require("dap").pause, "DAP: pause" },
-			["<bs>"] = { require("dap").close, "DAP: quit" },
-			g = {
-				D = { vim.lsp.buf.declaration, "Go to declaration" },
-				d = { "<cmd>Trouble lsp_definitions<cr>", "Go to definition" },
-				i = { "<cmd>Trouble lsp_implementations<cr>", "Go to implementations" },
-				t = { "<cmd>Trouble lsp_type_definitions<cr>", "Go to type definition" },
-			},
-			["<leader>"] = {
-				F = { vim.diagnostic.open_float, "Floating diagnostics" },
-				R = { "<cmd>Trouble lsp_references<cr>", "Show references" },
-				S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols" },
-				a = { mode = { "n", "v" }, require("actions-preview").code_actions, "Code actions" },
-				h = { require("lsp_signature").toggle_float_win, "Toggle signature help" },
-				k = { vim.lsp.buf.hover, "Show hover" },
-				r = { vim.lsp.buf.rename, "Rename symbol" },
-				s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
-				t = {
-					name = "trouble",
-					d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics" },
-					w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics" },
-				},
-			},
-		}, { buffer = event.buf })
-
-		if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-			wk.register({
-				["<leader>T"] = {
-					function()
-						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-					end,
-					"Toggle inlay hints",
-				},
-			}, { buffer = event.buf })
-		end
-	end,
+	callback = keybindings.lsp,
 })
 
-local dap_mappings = {
-	name = "DAP",
-	b = { require("dap").toggle_breakpoint, "Breakpoint" },
-	c = { require("dap").clear_breakpoints, "Clear all breakpoints" },
-	k = { require("dap.ui.widgets").hover, "Show hover" },
-	l = { "<cmd>Telescope dap list_breakpoints<cr>", "List breakpoints" },
-	r = { require("dap").repl.toggle, "Toggle REPL" },
-	t = { require("dapui").toggle, "Toggle UI" },
-	q = {
-		function()
-			require("dap").terminate()
-			require("dapui").close()
-		end,
-		"Terminate",
-	},
-	B = {
-		function()
-			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-		end,
-		"Conditional breakpoint",
-	},
-}
-
-autocmd("FileType", {
-	group = augroup,
-	pattern = "python",
-	callback = function(event)
-		wk.register({ ["<leader>d"] = dap_mappings })
-
-		wk.register({
-			["<leader>d"] = {
-				d = { require("dap-python").debug_file, "Python: debug file" },
-				t = { require("dap-python").test_file, "Python: test file" },
-			},
-		}, { buffer = event.buf })
-	end,
-})
-
-autocmd("FileType", {
-	group = augroup,
-	pattern = "go",
-	callback = function(event)
-		wk.register({ ["<leader>d"] = dap_mappings })
-
-		wk.register({
-			["<leader>d"] = {
-				t = { require("dap-go").debug_test, "Go: debug test" },
-				l = { require("dap-go").debug_last_test, "Go: latest test" },
-			},
-		}, { buffer = event.buf })
-	end,
-})
+for ft, func in pairs(keybindings.ft) do
+	autocmd("FileType", {
+		group = augroup,
+		pattern = ft,
+		callback = func,
+	})
+end

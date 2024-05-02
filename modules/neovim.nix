@@ -41,6 +41,7 @@
           catppuccin-nvim
           cmp-buffer
           cmp-cmdline
+          cmp-emoji
           cmp-latex-symbols
           cmp-nvim-lsp
           cmp-pandoc-nvim

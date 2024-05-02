@@ -63,6 +63,7 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "emoji" },
 		{ name = "buffer" },
 	}),
 })
@@ -88,6 +89,7 @@ cmp.setup.filetype("markdown", {
 		{ name = "luasnip" },
 		{ name = "cmp_zotcite" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
+		{ name = "emoji" },
 		{ name = "buffer" },
 	}),
 })
@@ -100,6 +102,7 @@ cmp.setup.filetype("quarto", {
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
+
 		{ name = "buffer" },
 	}),
 })

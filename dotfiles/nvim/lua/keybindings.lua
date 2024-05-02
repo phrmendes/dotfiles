@@ -14,8 +14,9 @@ keybindings.std = {
 	random = function()
 		local opts = { noremap = true }
 
-		map("n", "<c-s>", "<cmd>w<cr>", opts)
+		map("n", "<c-.>", "<cmd>Telescope commands<cr>", opts)
 		map("n", "<c-d>", "<c-d>zz", opts)
+		map("n", "<c-s>", "<cmd>w<cr>", opts)
 		map("n", "<c-u>", "<c-u>zz", opts)
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 		map("n", "Q", "@q", opts)
@@ -24,9 +25,6 @@ keybindings.std = {
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
-
-		opts.desc = "Commands"
-		map("n", "<leader>.", "<cmd>Telescope commands<cr>", opts)
 
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
@@ -135,8 +133,8 @@ keybindings.std = {
 
 		wk.register({ ["<leader>f"] = { name = "find" } })
 
-		map("n", "<c-p>", "<cmd>Telescope find_files<cr>", opts)
 		map("n", "<c-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
+		map("n", "<c-p>", "<cmd>Telescope find_files<cr>", opts)
 
 		opts.desc = "Live grep"
 		map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)

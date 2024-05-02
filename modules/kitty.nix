@@ -56,8 +56,6 @@ in {
         "ctrl+shift+j" = "neighboring_window down";
         "ctrl+shift+k" = "neighboring_window up";
         "ctrl+shift+l" = "neighboring_window right";
-        "ctrl+shift+n" = "move_window_forward";
-        "ctrl+shift+p" = "move_window_backward";
         "ctrl+shift+q" = "close_tab";
         "ctrl+shift+r" = "layout_action rotate";
         "ctrl+shift+x" = "close_window";

@@ -43,11 +43,3 @@ Install NixOS:
 ```sh
 sudo nixos-install --flake .#desktop --root /mnt --no-root-passwd
 ```
-
-## KDE
-
-To backup KDE settings:
-
-```sh
-nix run github:mcdonc/plasma-manager/enable-look-and-feel-settings > path/to/plasma.nix
-```

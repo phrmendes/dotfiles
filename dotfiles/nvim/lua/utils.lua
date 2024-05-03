@@ -1,7 +1,18 @@
+local augroup = vim.api.nvim_create_augroup
+
 local M = {}
 M.lsp = {}
 
-M.augroup = vim.api.nvim_create_augroup("UserGroup", { clear = true })
+M.augroups = {
+	term = augroup("UserTerm", { clear = true }),
+	filetype = augroup("UserFileType", { clear = true }),
+	linter = augroup("UserLinter", { clear = false }),
+	lsp = {
+		attach = augroup("UserLspAttach", { clear = true }),
+		detach = augroup("UserLspDetach", { clear = true }),
+		highlight = augroup("UserLspHighlight", { clear = false }),
+	},
+}
 
 M.match_pattern = function(string, pattern)
 	if string:match(pattern) then

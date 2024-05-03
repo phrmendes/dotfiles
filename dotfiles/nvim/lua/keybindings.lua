@@ -1,5 +1,5 @@
 local wk = require("which-key")
-local augroup = require("utils").augroup
+local augroups = require("utils").augroups
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
@@ -301,11 +301,11 @@ keybindings.lsp = function(event)
 
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
-	opts.desc = "Go to references"
-	map("n", "gr", vim.lsp.buf.references, opts)
-
 	opts.desc = "Go to declaration"
 	map("n", "gD", vim.lsp.buf.declaration, opts)
+
+	opts.desc = "Go to references"
+	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
 	opts.desc = "Go to definition"
 	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
@@ -450,13 +450,13 @@ for _, func in pairs(keybindings.std) do
 end
 
 autocmd("LspAttach", {
-	group = augroup,
+	group = augroups.lsp.attach,
 	callback = keybindings.lsp,
 })
 
 for ft, func in pairs(keybindings.ft) do
 	autocmd("FileType", {
-		group = augroup,
+		group = augroups.filetype,
 		pattern = ft,
 		callback = func,
 	})

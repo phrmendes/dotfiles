@@ -1,4 +1,4 @@
-local augroup = require("utils").augroup
+local augroups = require("utils").augroups
 local autocmd = vim.api.nvim_create_autocmd
 
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
@@ -38,7 +38,7 @@ vim.diagnostic.config({
 })
 
 autocmd("LspAttach", {
-	group = augroup,
+	group = require("utils").augroups.lsp.attach,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client.server_capabilities.documentHighlightProvider then

@@ -14,41 +14,41 @@ keybindings.std = {
 	random = function()
 		local opts = { noremap = true }
 
-		map("n", "<c-.>", "<cmd>Telescope commands<cr>", opts)
+		opts.desc = "Half page down"
 		map("n", "<c-d>", "<c-d>zz", opts)
-		map("n", "<c-s>", "<cmd>w<cr>", opts)
+
+		opts.desc = "Half page up"
 		map("n", "<c-u>", "<c-u>zz", opts)
+
+		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
-		map("n", "Q", "@q", opts)
+
+		opts.desc = "Exit terminal mode"
 		map("t", "<c-c>", "<c-\\><c-n>", opts)
+
+		opts.desc = "Replay macro"
+		map("n", "Q", "@q", opts)
+
+		opts.desc = "Replay macro (visual)"
 		map("v", "Q", "<cmd>norm @q<cr>", opts)
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
+		opts.desc = "Split (V)"
+		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
+
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
+
+		opts.desc = "Commands"
+		map("n", "<leader>.", "<cmd>Telescope commands<cr>", opts)
 
 		opts.desc = "Help"
 		map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", opts)
 
-		opts.desc = "Split (V)"
-		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
-
-		opts.desc = "Maximize (H)"
-		map("n", "<leader>_", "<c-w>_", opts)
-
-		opts.desc = "Maximize (V)"
-		map("n", "<leader>|", "<c-w>|", opts)
-
-		opts.desc = "Keep only current window"
-		map("n", "<leader>O", "<c-w>o", opts)
-
-		opts.desc = "Quit all"
-		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
-
-		opts.desc = "Zen mode"
-		map("n", "<leader>Z", "<cmd>ZenMode<cr>", opts)
+		opts.desc = "Keymaps"
+		map("n", "<leader>K", "<cmd>Telescope keymaps<cr>", opts)
 
 		opts.desc = "Generate annotations"
 		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
@@ -56,14 +56,29 @@ keybindings.std = {
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
 
+		opts.desc = "Quit all"
+		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
+
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
+		opts.desc = "Save"
+		map("n", "<leader>w", "<cmd>w<cr>", opts)
+
+		opts.desc = "Save all"
+		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
+
 		opts.desc = "Close window"
 		map("n", "<leader>x", "<c-w>q", opts)
+
+		opts.desc = "Close all other windows"
+		map("n", "<leader>X", "<c-w>o", opts)
+
+		opts.desc = "Zen mode"
+		map("n", "<leader>Z", "<cmd>ZenMode<cr>", opts)
 	end,
 	better_keys = function()
-		local opts = { expr = true, noremap = true, silent = true }
+		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
 		map("n", "N", [[v:searchforward ? 'N' : 'n']], opts)
 		map("n", "n", [[v:searchforward ? 'n' : 'N']], opts)
@@ -78,19 +93,19 @@ keybindings.std = {
 		opts.desc = "List buffers"
 		map("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", opts)
 
-		opts.desc = "First buffer"
-		map("n", "<leader>bG", "<cmd>bfirst<cr>", opts)
+		opts.desc = "First"
+		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
 
-		opts.desc = "Last buffer"
+		opts.desc = "Last"
 		map("n", "<leader>bG", "<cmd>blast<cr>", opts)
 
-		opts.desc = "Keep this buffer"
+		opts.desc = "Keep this"
 		map("n", "<leader>bk", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opts)
 
-		opts.desc = "Delete buffer"
+		opts.desc = "Delete"
 		map("n", "<leader>bd", require("mini.bufremove").delete, opts)
 
-		opts.desc = "Wipeout buffer"
+		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
 	copilot = function()
@@ -133,8 +148,11 @@ keybindings.std = {
 
 		wk.register({ ["<leader>f"] = { name = "find" } })
 
-		map("n", "<c-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
-		map("n", "<c-p>", "<cmd>Telescope find_files<cr>", opts)
+		opts.desc = "Find in buffer"
+		map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
+
+		opts.desc = "Files"
+		map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
 
 		opts.desc = "Live grep"
 		map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
@@ -169,26 +187,26 @@ keybindings.std = {
 		opts.desc = "Toggle blame"
 		map("n", "<leader>gB", require("gitsigns").toggle_current_line_blame, opts)
 
+		opts.desc = "List commits (current file)"
+		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
+
 		opts.desc = "List commits (cwd)"
 		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
 
-		opts.desc = "LazyGit"
+		opts.desc = "LazyGit (current file)"
+		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
+
+		opts.desc = "LazyGit (cwd)"
 		map("n", "<leader>gG", "<cmd>LazyGit<cr>", opts)
 
 		opts.desc = "List branches"
 		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
-
-		opts.desc = "List commits (current file)"
-		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", require("gitsigns").diffthis, opts)
 
 		opts.desc = "List files"
 		map("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts)
-
-		opts.desc = "LazyGit (current file)"
-		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
 
 		opts.desc = "Stage hunk"
 		map({ "n", "v" }, "<leader>gsh", require("gitsigns").stage_hunk, opts)
@@ -247,7 +265,7 @@ keybindings.std = {
 		map({ "n", "v" }, "<c-c><c-v>", "<Plug>SlimeConfig", opts)
 	end,
 	smart_splits = function()
-		local opts = { silent = true }
+		local opts = { silent = true, desc = "Smart splits" }
 
 		map("n", "<a-h>", require("smart-splits").swap_buf_left, opts)
 		map("n", "<a-j>", require("smart-splits").swap_buf_down, opts)
@@ -292,6 +310,7 @@ keybindings.std = {
 
 keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
+	local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 	wk.register({ ["<leader>l"] = {
 		name = "LSP",
@@ -299,46 +318,54 @@ keybindings.lsp = function(event)
 		buffer = event.buf,
 	} })
 
+	opts.desc = "LSP: rename"
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
-	opts.desc = "Go to declaration"
+	opts.desc = "LSP: go to declaration"
 	map("n", "gD", vim.lsp.buf.declaration, opts)
 
-	opts.desc = "Go to references"
+	opts.desc = "LSP: go to references"
 	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
-	opts.desc = "Go to definition"
+	opts.desc = "LSP: go to definition"
 	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
-	opts.desc = "Go to type definition"
+	opts.desc = "LSP: go to type definition"
 	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 
-	opts.desc = "Go to implementations"
+	opts.desc = "LSP: go to implementations"
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-	opts.desc = "Symbols (document)"
-	map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
-
-	opts.desc = "Symbols (workspace)"
-	map("n", "<leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
-
-	opts.desc = "Diagnostics (document)"
-	map("n", "<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
-
-	opts.desc = "Diagnostics (workspace)"
-	map("n", "<leader>D", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
-
-	opts.desc = "Code actions"
+	opts.desc = "LSP: code actions"
 	map({ "n", "v" }, "<leader>a", require("actions-preview").code_actions, opts)
 
-	opts.desc = "Floating diagnostics"
+	opts.desc = "LSP: symbols (document)"
+	map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+
+	opts.desc = "LSP: symbols (workspace)"
+	map("n", "<leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
+
+	opts.desc = "LSP: diagnostics (document)"
+	map("n", "<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+
+	opts.desc = "LSP: diagnostics (workspace)"
+	map("n", "<leader>D", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+
+	opts.desc = "LSP: floating diagnostics"
 	map("n", "<leader>F", vim.diagnostic.open_float, opts)
 
-	opts.desc = "Signature help"
+	opts.desc = "LSP: signature help"
 	map("n", "<leader>h", require("lsp_signature").toggle_float_win, opts)
 
-	opts.desc = "Hover"
+	opts.desc = "LSP: hover"
 	map("n", "<leader>k", vim.lsp.buf.hover, opts)
+
+	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+		opts.desc = "LSP: inlay hints"
+		map("n", "<leader>i", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, opts)
+	end
 end
 
 keybindings.dap = function(event)
@@ -350,13 +377,29 @@ keybindings.dap = function(event)
 		mode = { "n", "v" },
 	} })
 
+	opts.desc = "DAP: step into"
 	map("n", "<f1>", require("dap").step_into, opts)
+
+	opts.desc = "DAP: step out"
 	map("n", "<f3>", require("dap").step_out, opts)
+
+	opts.desc = "DAP: step back"
 	map("n", "<f5>", require("dap").step_back, opts)
+
+	opts.desc = "DAP: continue"
 	map("n", "<f6>", require("dap").continue, opts)
+
+	opts.desc = "DAP: step over"
 	map("n", "<f7>", require("dap").step_over, opts)
-	map("n", "<s-F6>", require("dap").pause, opts)
-	map("n", "<bs>", require("dap").close, opts)
+
+	opts.desc = "DAP: pause"
+	map("n", "<s-f6>", require("dap").pause, opts)
+
+	opts.desc = "DAP: terminate"
+	map("n", "<bs>", function()
+		require("dap").terminate()
+		require("dapui").close()
+	end, opts)
 
 	opts.desc = "Breakpoint"
 	map("n", "<leader>tb", require("dap").toggle_breakpoint, opts)
@@ -375,12 +418,6 @@ keybindings.dap = function(event)
 
 	opts.desc = "Toggle UI"
 	map("n", "<leader>tu", require("dapui").toggle, opts)
-
-	opts.desc = "Terminate"
-	map("n", "<leader>tq", function()
-		require("dap").terminate()
-		require("dapui").close()
-	end, opts)
 
 	opts.desc = "Conditional breakpoint"
 	map("n", "<leader>tB", function()

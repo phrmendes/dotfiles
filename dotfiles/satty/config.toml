@@ -4,7 +4,7 @@ early-exit = true
 initial-tool = "brush"
 copy-command = "wl-copy"
 annotation-size-factor = 2
-output-filename = "~/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
+output-filename = "/home/phrmendes/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
 save-after-copy = false
 default-hide-toolbars = false
 

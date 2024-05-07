@@ -63,7 +63,6 @@ in {
         evince
         foliate
         gcolor3
-        goldwarden
         grim
         hugo
         kooha

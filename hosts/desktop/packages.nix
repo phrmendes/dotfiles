@@ -1,19 +1,19 @@
 {pkgs, ...}: {
   environment = {
     systemPackages = with pkgs; [
-      gnumake
-      sqlite
-      findutils
       appimage-run
       binutils
       coreutils-full
+      findutils
       gcc
+      gnumake
       gnupg
       gnused
       gzip
       libnotify
       psmisc
       rar
+      sqlite
       unrar
       unzip
       wget

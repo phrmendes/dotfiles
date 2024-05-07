@@ -19,7 +19,6 @@ in {
           file
           gh
           go
-          gobang
           graphviz
           grex
           jdk

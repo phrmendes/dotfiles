@@ -20,7 +20,6 @@
         ".mozilla"
         ".ssh"
         ".tmux"
-        ".local/share/Trash"
         ".local/share/atuin"
         ".local/share/keyrings"
         ".local/share/syncthing"

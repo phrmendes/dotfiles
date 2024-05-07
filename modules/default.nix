@@ -68,13 +68,4 @@
     username = parameters.user;
     homeDirectory = parameters.home;
   };
-
-  systemd.user.sessionVariables = {
-    EDITOR = "nvim";
-    GIT_EDITOR = "nvim";
-    NOTES_DIR = "/home/${parameters.user}/Documents/notes";
-    SUDO_EDITOR = "nvim";
-    VAGRANT_DEFAULT_PROVIDER = "libvirt";
-    VISUAL = "nvim";
-  };
 }

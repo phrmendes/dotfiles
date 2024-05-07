@@ -22,9 +22,9 @@
       "on-scroll-down": "hyprctl dispatch workspace e-1",
       "persistent-workspaces": { "HDMI-A-1": 9 },
       "format-icons": {
-        "active": "",
+        "active": "",
         "empty": "",
-        "default": ""
+        "default": ""
       }
     },
     "tray": {

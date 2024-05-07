@@ -10,6 +10,7 @@
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
+    ./copyq.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
@@ -25,18 +26,20 @@
     ./nm-applet.nix
     ./nwg.nix
     ./packages.nix
+    ./pasystray.nix
     ./pyenv.nix
     ./starship.nix
     ./swaylock.nix
     ./swaync.nix
     ./swayosd.nix
     ./symlinks.nix
+    ./syncthing-tray.nix
     ./targets.nix
     ./tealdeer.nix
-    ./thefuck.nix
     ./tmux.nix
     ./udiskie.nix
     ./walker.nix
+    ./waybar.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
@@ -57,7 +60,6 @@
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
-  thefuck.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;

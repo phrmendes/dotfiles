@@ -68,6 +68,7 @@ in {
         kooha
         libqalculate
         libreoffice
+        mictray
         neovide
         nwg-bar
         nwg-displays

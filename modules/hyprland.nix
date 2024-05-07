@@ -9,11 +9,10 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
-      copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
       jq = getExe pkgs.jq;
       kitty = getExe pkgs.kitty;
-      nwg-panel = getExe pkgs.nwg-panel;
+      mictray = getExe pkgs.mictray;
       playerctl = getExe pkgs.playerctl;
       powermenu = getExe pkgs.nwg-bar;
       satty = getExe pkgs.satty;
@@ -46,9 +45,8 @@
       settings = with colors.catppuccin.rgba; {
         exec-once = [
           "${swaybg} --image ${wallpaper} --mode fill"
-          "${nwg-panel}"
-          "${copyq} --start-server"
           "${polkit}"
+          "${mictray}"
         ];
         input = {
           kb_layout = "us,br";

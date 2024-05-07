@@ -12,8 +12,6 @@
       systemctl = "${pkgs.systemd}/bin/systemctl";
     in {
       ".config/nwg-bar/style.css".source = ../dotfiles/nwg-bar/style.css;
-      ".config/nwg-panel/style.css".source = ../dotfiles/nwg-panel/style.css;
-      ".config/nwg-panel/config".source = ../dotfiles/nwg-panel/config.json;
       ".config/nwg-bar/bar.json".text = builtins.toJSON [
         {
           "label" = "Lock";

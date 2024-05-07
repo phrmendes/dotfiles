@@ -7,24 +7,23 @@
     "spacing": 15,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["tray"],
+    "modules-right": [
+      "cpu",
+      "memory",
+      "pulseaudio#input",
+      "pulseaudio#output",
+      "tray"
+    ],
     "hyprland/workspaces": {
-      "all-outputs": false,
-      "disable-scroll": false,
-      "format": "{icon}",
-      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "format": "[ {name} <sub>{icon}</sub> ]",
+      "all-outputs": true,
+      "on-click": "activate",
       "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "persistent-workspaces": { "HDMI-A-1": 9 },
       "format-icons": {
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
-        "active": "",
+        "active": "",
+        "empty": "",
         "default": ""
       }
     },
@@ -32,13 +31,23 @@
       "icon-size": 15,
       "spacing": 15
     },
+    "cpu": {
+      "interval": 10,
+      "format": "   {}%",
+      "max-length": 10
+    },
+    "memory": {
+      "interval": 30,
+      "format": "   {}%",
+      "max-length": 10
+    },
     "clock": {
-      "format": "   {:%H:%M}   ",
+      "format": "   {:%H:%M}",
       "interval": 60,
       "tooltip": true,
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "calendar": {
-        "mode": "month",
+        "mode": "year",
         "mode-mon-col": 3,
         "weeks-pos": "right",
         "on-scroll": 1,
@@ -53,6 +62,30 @@
       "actions": {
         "on-scroll-up": "shift_down",
         "on-scroll-down": "shift_up"
+      }
+    },
+    "pulseaudio#input": {
+      "format-source": "   {volume}%",
+      "format-source-muted": "   (off)",
+      "format": "{format_source}",
+      "scroll-step": 1,
+      "smooth-scrolling-threshold": 1,
+      "max-volume": 100,
+      "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+      "on-click-middle": "pavucontrol",
+      "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+      "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%"
+    },
+    "pulseaudio#output": {
+      "format": "{icon}   {volume}%",
+      "format-muted": "   (off)",
+      "max-volume": 100,
+      "scroll-step": 2,
+      "smooth-scrolling-threshold": 1,
+      "on-click": "pavucontrol",
+      "on-click-middle": "pavucontrol",
+      "format-icons": {
+        "default": ["", "", ""]
       }
     }
   }

@@ -14,17 +14,14 @@
 
       blueman-applet.enable = true;
       btop.enable = true;
-      copyq.enable = true;
       gnome-keyring.enable = true;
       gtk-manager.enable = true;
       hyprland.enable = true;
       nm-applet.enable = true;
       nwg.enable = true;
-      pasystray.enable = true;
       swaylock.enable = true;
       swaync.enable = true;
       swayosd.enable = true;
-      syncthing-tray.enable = true;
       targets.enable = true;
       udiskie.enable = true;
       walker.enable = true;

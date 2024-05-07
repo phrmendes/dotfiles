@@ -10,7 +10,6 @@
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
-    ./copyq.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
@@ -26,14 +25,12 @@
     ./nm-applet.nix
     ./nwg.nix
     ./packages.nix
-    ./pasystray.nix
     ./pyenv.nix
     ./starship.nix
     ./swaylock.nix
     ./swaync.nix
     ./swayosd.nix
     ./symlinks.nix
-    ./syncthing-tray.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix

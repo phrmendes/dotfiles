@@ -34,7 +34,7 @@
 }
 
 window#waybar {
-  background: @base;
+  background: @crust;
   color: @text;
 }
 

@@ -22,6 +22,7 @@ local servers = {
 	dotls = {},
 	gopls = {},
 	html = {},
+	marksman = {},
 	nil_ls = {},
 	ruff_lsp = {},
 	taplo = {},

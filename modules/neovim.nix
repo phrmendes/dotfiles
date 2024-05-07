@@ -148,6 +148,7 @@
           imagemagick
           ltex-ls
           lua-language-server
+          marksman
           neovim-remote
           nil
           prettierd

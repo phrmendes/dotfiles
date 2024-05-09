@@ -28,12 +28,11 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	tflint = {
+	tflint = {},
+	helm_ls = {
 		settings = {
 			["helm-ls"] = {
-				yamlls = {
-					enable = false,
-				},
+				yamlls = { enabled = false },
 			},
 		},
 	},

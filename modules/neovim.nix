@@ -50,6 +50,7 @@
           conform-nvim
           copilot-vim
           dressing-nvim
+          executor-nvim
           friendly-snippets
           gh.copilot-chat-nvim
           gh.latex-snippets-nvim
@@ -92,6 +93,7 @@
           smart-splits-nvim
           smartyank-nvim
           sqlite-lua
+          telescope-dap-nvim
           telescope-fzf-native-nvim
           telescope-nvim
           telescope-zoxide

@@ -434,7 +434,7 @@ keybindings.ft = {
 		opts.desc = "Go: debug test"
 		map("n", "<leader>tt", require("dap-go").debug_test, opts)
 
-		opts.desc = "Go: latest test"
+		opts.desc = "Go: debug latest test"
 		map("n", "<leader>tT", require("dap-go").debug_last_test, opts)
 	end,
 	markdown = function(event)

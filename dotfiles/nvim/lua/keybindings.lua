@@ -134,6 +134,20 @@ keybindings.std = {
 		opts.desc = "Generate tests"
 		map({ "n", "v" }, "<leader>ct", "<cmd>CopilotChatTests<cr>", opts)
 	end,
+	executor = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>r"] = { name = "runner" } })
+
+		opts.desc = "Run command"
+		map("n", "<leader>rr", require("executor").commands.run, opts)
+
+		opts.desc = "Details"
+		map("n", "<leader>rt", require("executor").commands.toggle_detail, opts)
+
+		opts.desc = "Set command"
+		map("n", "<leader>rs", require("executor").commands.set_command, opts)
+	end,
 	file_explorer = function()
 		local opts = { noremap = true }
 

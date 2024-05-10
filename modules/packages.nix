@@ -59,6 +59,7 @@ in {
         copyq
         curtail
         dbeaver
+        deluge
         droidcam
         evince
         foliate
@@ -86,7 +87,6 @@ in {
         swaynotificationcenter
         syncthingtray
         tectonic
-        transmission
         vagrant
         ventoy
         vlc

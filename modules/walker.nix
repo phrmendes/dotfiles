@@ -54,11 +54,7 @@
           }
           {
             name = "finder";
-            prefix = "~";
-          }
-          {
-            name = "websearch";
-            prefix = "?";
+            prefix = "'";
           }
           {
             name = "commands";

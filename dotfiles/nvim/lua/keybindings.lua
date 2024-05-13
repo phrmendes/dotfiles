@@ -149,13 +149,23 @@ keybindings.std = {
 		map("n", "<leader>rs", require("executor").commands.set_command, opts)
 	end,
 	file_explorer = function()
+		local files = require("mini.files")
 		local opts = { noremap = true }
 
 		opts.desc = "Explorer (current file)"
-		map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", opts)
+		map("n", "<leader>e", function()
+			if not files.close() then
+				files.open(vim.api.nvim_buf_get_name(0))
+				files.reveal_cwd()
+			end
+		end, opts)
 
 		opts.desc = "Explorer (cwd)"
-		map("n", "<leader>E", "<cmd>NvimTreeToggle<cr>", opts)
+		map("n", "<leader>E", function()
+			if not files.close() then
+				files.open(vim.loop.cwd())
+			end
+		end, opts)
 	end,
 	find = function()
 		local opts = { noremap = true }
@@ -186,26 +196,19 @@ keybindings.std = {
 	git = function()
 		local opts = { noremap = true }
 
-		wk.register({
-			["<leader>g"] = { name = "git" },
-			["<leader>gs"] = { name = "stage" },
-			["<leader>gr"] = { name = "reset" },
-		})
+		wk.register({ ["<leader>g"] = { name = "git" } })
 
-		opts.desc = "Previous hunk"
-		map("n", "[h", require("gitsigns").prev_hunk, opts)
+		opts.desc = "Branches"
+		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
 
-		opts.desc = "Next hunk"
-		map("n", "]h", require("gitsigns").next_hunk, opts)
-
-		opts.desc = "Toggle blame"
-		map("n", "<leader>gB", require("gitsigns").toggle_current_line_blame, opts)
-
-		opts.desc = "List commits (current file)"
+		opts.desc = "Commits (current file)"
 		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
 
-		opts.desc = "List commits (cwd)"
+		opts.desc = "Commits (cwd)"
 		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
+
+		opts.desc = "Diff"
+		map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", opts)
 
 		opts.desc = "LazyGit (current file)"
 		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
@@ -213,26 +216,14 @@ keybindings.std = {
 		opts.desc = "LazyGit (cwd)"
 		map("n", "<leader>gG", "<cmd>LazyGit<cr>", opts)
 
-		opts.desc = "List branches"
-		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
-
-		opts.desc = "Diff"
-		map("n", "<leader>gd", require("gitsigns").diffthis, opts)
-
-		opts.desc = "List files"
+		opts.desc = "Files"
 		map("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts)
 
-		opts.desc = "Stage hunk"
-		map({ "n", "v" }, "<leader>gsh", require("gitsigns").stage_hunk, opts)
+		opts.desc = "Status"
+		map("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts)
 
-		opts.desc = "Stage buffer"
-		map("n", "<leader>gsb", require("gitsigns").stage_buffer, opts)
-
-		opts.desc = "Reset hunk"
-		map({ "n", "v" }, "<leader>grh", require("gitsigns").reset_hunk, opts)
-
-		opts.desc = "Reset buffer"
-		map("n", "<leader>grb", require("gitsigns").reset_buffer, opts)
+		opts.desc = "Stash"
+		map("n", "<leader>gt", "<cmd>Telescope git_stash<cr>", opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }
@@ -273,10 +264,10 @@ keybindings.std = {
 		local opts = { noremap = true, silent = true }
 
 		opts.desc = "Send to REPL"
-		map({ "n", "v" }, "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
+		map({ "n", "v" }, "<s-cr>", "<Plug>SlimeParagraphSend", opts)
 
 		opts.desc = "Config SLIME"
-		map({ "n", "v" }, "<c-c><c-v>", "<Plug>SlimeConfig", opts)
+		map({ "n", "v" }, ",,", "<Plug>SlimeConfig", opts)
 	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
@@ -326,12 +317,6 @@ keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-	wk.register({ ["<leader>l"] = {
-		name = "LSP",
-		mode = { "n", "v" },
-		buffer = event.buf,
-	} })
-
 	opts.desc = "LSP: rename"
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
@@ -359,11 +344,8 @@ keybindings.lsp = function(event)
 	opts.desc = "LSP: symbols (workspace)"
 	map("n", "<leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
 
-	opts.desc = "LSP: diagnostics (document)"
-	map("n", "<leader>d", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
-
-	opts.desc = "LSP: diagnostics (workspace)"
-	map("n", "<leader>D", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+	opts.desc = "LSP: diagnostics"
+	map("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
 
 	opts.desc = "LSP: floating diagnostics"
 	map("n", "<leader>F", vim.diagnostic.open_float, opts)

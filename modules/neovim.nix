@@ -37,7 +37,6 @@
           SchemaStore-nvim
           actions-preview-nvim
           ansible-vim
-          better-escape-nvim
           catppuccin-nvim
           cmp-buffer
           cmp-cmdline
@@ -49,15 +48,14 @@
           cmp_luasnip
           conform-nvim
           copilot-vim
+          diffview-nvim
           dressing-nvim
           executor-nvim
           friendly-snippets
           gh.copilot-chat-nvim
           gh.latex-snippets-nvim
           gh.telescope-zotero
-          gitsigns-nvim
           image-nvim
-          indent-blankline-nvim
           jupytext-nvim
           lazygit-nvim
           lsp_signature-nvim
@@ -80,7 +78,6 @@
           nvim-lint
           nvim-lspconfig
           nvim-spectre
-          nvim-tree-lua
           nvim-treesitter-context
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
@@ -98,7 +95,6 @@
           telescope-nvim
           telescope-zoxide
           todo-comments-nvim
-          trouble-nvim
           undotree
           vim-abolish
           vim-eunuch

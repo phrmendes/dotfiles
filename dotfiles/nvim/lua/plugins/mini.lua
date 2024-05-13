@@ -1,20 +1,23 @@
 require("mini.align").setup()
 require("mini.bufremove").setup()
+require("mini.clue").setup()
 require("mini.cursorword").setup()
+require("mini.files").setup()
 require("mini.fuzzy").setup()
+require("mini.indentscope").setup()
 require("mini.jump").setup()
 require("mini.operators").setup()
 require("mini.pairs").setup()
+require("mini.sessions").setup()
 require("mini.starter").setup()
 require("mini.tabline").setup()
 require("mini.trailspace").setup()
-require("mini.sessions").setup()
 
-require("mini.bracketed").setup({
-	diagnostic = { options = { float = false } },
-	file = { suffix = "" },
-	comment = { suffix = "" },
-})
+require("mini.diff").setup({ view = { style = "sign" } })
+require("mini.jump2d").setup({ mappings = { start_jumping = "<leader>j" } })
+require("mini.notify").setup({ lsp_progress = { enable = false } })
+require("mini.splitjoin").setup({ mappings = { toggle = "T" } })
+require("mini.statusline").setup({ set_vim_settings = false })
 
 require("mini.ai").setup({
 	n_lines = 500,
@@ -28,6 +31,12 @@ require("mini.ai").setup({
 	},
 })
 
+require("mini.bracketed").setup({
+	diagnostic = { options = { float = false } },
+	file = { suffix = "" },
+	comment = { suffix = "" },
+})
+
 require("mini.comment").setup({
 	options = {
 		custom_commentstring = function()
@@ -36,29 +45,17 @@ require("mini.comment").setup({
 	},
 })
 
-require("mini.jump2d").setup({
-	mappings = {
-		start_jumping = "<leader>j",
-	},
-})
-
 require("mini.move").setup({
 	mappings = {
-		-- visual mode
 		down = "<S-j>",
 		left = "<S-h>",
 		right = "<S-l>",
 		up = "<S-k>",
-		-- normal mode
 		line_down = "<S-j>",
 		line_left = "<S-h>",
 		line_right = "<S-l>",
 		line_up = "<S-k>",
 	},
-})
-
-require("mini.splitjoin").setup({
-	mappings = { toggle = "T" },
 })
 
 require("mini.surround").setup({
@@ -71,15 +68,5 @@ require("mini.surround").setup({
 		update_n_lines = "sn",
 		suffix_last = "l",
 		suffix_next = "n",
-	},
-})
-
-require("mini.statusline").setup({
-	set_vim_settings = false,
-})
-
-require("mini.notify").setup({
-	lsp_progress = {
-		enable = false,
 	},
 })

@@ -25,7 +25,7 @@ mod4: [option, control, shift]
 
 reevaluate-windows:
   key: r
-  mod: mod2
+  mod: mod3
 relaunch-amethyst:
   key: r
   mod: mod4
@@ -64,11 +64,11 @@ focus-cw:
   key: j
   mod: mod1
 focus-screen-ccw:
-  mod: mod4
-  key: k
+  mod: mod1
+  key: h
 focus-screen-cw:
-  mod: mod4
-  key: j
+  mod: mod1
+  key: l
 focus-screen-1:
   key: 1
   mod: mod1
@@ -89,17 +89,17 @@ focus-screen-6:
   mod: mod1
 
 swap-ccw:
-  key: k
+  key: r
   mod: mod2
 swap-cw:
-  key: j
-  mod: mod2
+  key: r
+  mod: mod1
 swap-screen-ccw:
-  mod: mod3
-  key: k
+  mod: mod2
+  key: h
 swap-screen-cw:
-  mod: mod3
-  key: j
+  mod: mod2
+  key: l
 swap-main:
   mod: mod1
   key: enter

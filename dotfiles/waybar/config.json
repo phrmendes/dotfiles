@@ -15,7 +15,8 @@
       "tray"
     ],
     "hyprland/workspaces": {
-      "format": "[ {name} <sub>{icon}</sub> ]",
+      "format": "({name} {icon})",
+      "format-window-separator": "|",
       "all-outputs": true,
       "on-click": "activate",
       "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -33,19 +34,19 @@
     },
     "cpu": {
       "interval": 10,
-      "format": "   {}%",
+      "format": " {}%",
       "max-length": 10
     },
     "memory": {
       "interval": 30,
-      "format": "   {}%",
+      "format": "󰘚 {}%",
       "max-length": 10
     },
     "clock": {
-      "format": "   {:%H:%M}",
+      "format": " {:%H:%M}",
       "interval": 60,
       "tooltip": true,
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "tooltip-format": "<small>{calendar}</small>",
       "calendar": {
         "mode": "year",
         "mode-mon-col": 3,
@@ -65,8 +66,8 @@
       }
     },
     "pulseaudio#input": {
-      "format-source": "   {volume}%",
-      "format-source-muted": "   (off)",
+      "format-source": "󰍬 {volume}%",
+      "format-source-muted": "󰍭 (muted)",
       "format": "{format_source}",
       "scroll-step": 1,
       "smooth-scrolling-threshold": 1,
@@ -77,15 +78,15 @@
       "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%"
     },
     "pulseaudio#output": {
-      "format": "{icon}   {volume}%",
-      "format-muted": "   (off)",
+      "format": "{icon} {volume}%",
+      "format-muted": "󰝟 (muted)",
       "max-volume": 100,
       "scroll-step": 2,
       "smooth-scrolling-threshold": 1,
-      "on-click": "pavucontrol",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
       "on-click-middle": "pavucontrol",
       "format-icons": {
-        "default": ["", "", ""]
+        "default": ["󰕿", "󰖀", "󰕾"]
       }
     }
   }

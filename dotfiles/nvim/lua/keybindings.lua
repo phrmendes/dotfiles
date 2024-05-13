@@ -152,19 +152,21 @@ keybindings.std = {
 		local files = require("mini.files")
 		local opts = { noremap = true }
 
+		local explorer = function(path)
+			if not files.close() then
+				files.open(path)
+			end
+		end
+
 		opts.desc = "Explorer (current file)"
 		map("n", "<leader>e", function()
-			if not files.close() then
-				files.open(vim.api.nvim_buf_get_name(0))
-				files.reveal_cwd()
-			end
+			explorer(vim.fn.expand("%:p:h"))
+			files.reveal_cwd()
 		end, opts)
 
 		opts.desc = "Explorer (cwd)"
 		map("n", "<leader>E", function()
-			if not files.close() then
-				files.open(vim.loop.cwd())
-			end
+			explorer(vim.loop.cwd())
 		end, opts)
 	end,
 	find = function()

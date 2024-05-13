@@ -2,7 +2,6 @@ require("mini.align").setup()
 require("mini.bufremove").setup()
 require("mini.clue").setup()
 require("mini.cursorword").setup()
-require("mini.files").setup()
 require("mini.fuzzy").setup()
 require("mini.indentscope").setup()
 require("mini.jump").setup()
@@ -42,6 +41,22 @@ require("mini.comment").setup({
 		custom_commentstring = function()
 			return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
 		end,
+	},
+})
+
+require("mini.files").setup({
+	mappings = {
+		close = "q",
+		go_in = "l",
+		go_in_plus = "<cr>",
+		go_out = "h",
+		go_out_plus = "<bs>",
+		reset = "<del>",
+		reveal_cwd = "@",
+		show_help = "?",
+		synchronize = "<s-cr>",
+		trim_left = "<",
+		trim_right = ">",
 	},
 })
 

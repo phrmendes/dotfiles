@@ -78,7 +78,6 @@
           nvim-dap-virtual-text
           nvim-lint
           nvim-lspconfig
-          nvim-spectre
           nvim-treesitter-context
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars

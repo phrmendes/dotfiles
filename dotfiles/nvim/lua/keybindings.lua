@@ -186,9 +186,6 @@ keybindings.std = {
 		opts.desc = "Recent"
 		map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", opts)
 
-		opts.desc = "Spectre"
-		map("n", "<leader>fs", require("spectre").toggle, opts)
-
 		opts.desc = "TODO"
 		map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", opts)
 

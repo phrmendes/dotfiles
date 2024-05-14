@@ -67,6 +67,9 @@
           nabla-nvim
           neodev-nvim
           neogen
+          neotest
+          neotest-go
+          neotest-python
           nvim-bqf
           nvim-cmp
           nvim-colorizer-lua

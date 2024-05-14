@@ -75,7 +75,7 @@ keybindings.std = {
 		map("n", "<leader>X", "<c-w>o", opts)
 
 		opts.desc = "Zen mode"
-		map("n", "<leader>Z", "<cmd>ZenMode<cr>", opts)
+		map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -306,6 +306,12 @@ keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+	wk.register({ ["<leader>l"] = {
+		name = "LSP",
+		buffer = event.buf,
+		mode = { "n", "v" },
+	} })
+
 	opts.desc = "LSP: rename"
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
@@ -324,26 +330,26 @@ keybindings.lsp = function(event)
 	opts.desc = "LSP: go to implementations"
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-	opts.desc = "LSP: code actions"
-	map({ "n", "v" }, "<leader>a", require("actions-preview").code_actions, opts)
+	opts.desc = "Code actions"
+	map({ "n", "v" }, "<leader>la", require("actions-preview").code_actions, opts)
 
-	opts.desc = "LSP: symbols (document)"
-	map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+	opts.desc = "Symbols (document)"
+	map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
-	opts.desc = "LSP: symbols (workspace)"
-	map("n", "<leader>S", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
+	opts.desc = "Symbols (workspace)"
+	map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
 
-	opts.desc = "LSP: diagnostics"
-	map("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
+	opts.desc = "Diagnostics"
+	map("n", "<leader>ld", "<cmd>Telescope diagnostics<cr>", opts)
 
-	opts.desc = "LSP: floating diagnostics"
-	map("n", "<leader>F", vim.diagnostic.open_float, opts)
+	opts.desc = "Floating diagnostics"
+	map("n", "<leader>lF", vim.diagnostic.open_float, opts)
 
-	opts.desc = "LSP: signature help"
-	map("n", "<leader>h", require("lsp_signature").toggle_float_win, opts)
+	opts.desc = "Signature help"
+	map("n", "<leader>lh", require("lsp_signature").toggle_float_win, opts)
 
-	opts.desc = "LSP: hover"
-	map("n", "<leader>k", vim.lsp.buf.hover, opts)
+	opts.desc = "Hover"
+	map("n", "<leader>lk", vim.lsp.buf.hover, opts)
 
 	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
 		opts.desc = "LSP: inlay hints"
@@ -356,7 +362,7 @@ end
 keybindings.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	wk.register({ ["<leader>t"] = {
+	wk.register({ ["<leader>d"] = {
 		name = "DAP",
 		buffer = event.buf,
 		mode = { "n", "v" },
@@ -387,26 +393,51 @@ keybindings.dap = function(event)
 	end, opts)
 
 	opts.desc = "Breakpoint"
-	map("n", "<leader>tb", require("dap").toggle_breakpoint, opts)
+	map("n", "<leader>db", require("dap").toggle_breakpoint, opts)
 
 	opts.desc = "Clear all breakpoints"
-	map("n", "<leader>tc", require("dap").clear_breakpoints, opts)
+	map("n", "<leader>d<del>", require("dap").clear_breakpoints, opts)
 
 	opts.desc = "Show hover"
-	map("n", "<leader>tk", require("dap.ui.widgets").hover, opts)
+	map("n", "<leader>dk", require("dap.ui.widgets").hover, opts)
 
 	opts.desc = "List breakpoints"
-	map("n", "<leader>tl", "<cmd>Telescope dap list_breakpoints<cr>", opts)
-
-	opts.desc = "Toggle REPL"
-	map("n", "<leader>tr", require("dap").repl.toggle, opts)
+	map("n", "<leader>dl", "<cmd>Telescope dap list_breakpoints<cr>", opts)
 
 	opts.desc = "Toggle UI"
-	map("n", "<leader>tu", require("dapui").toggle, opts)
+	map("n", "<leader>du", require("dapui").toggle, opts)
 
 	opts.desc = "Conditional breakpoint"
-	map("n", "<leader>tB", function()
+	map("n", "<leader>dB", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
+	end, opts)
+end
+
+keybindings.tests = function(event)
+	local opts = { noremap = true, buffer = event.buf }
+
+	wk.register({ ["<leader>t"] = {
+		name = "tests",
+		buffer = event.buf,
+	} })
+
+	opts.desc = "Run nearest test"
+	map("n", "<leader>tt", require("neotest").run.run, opts)
+
+	opts.desc = "Stop nearest test"
+	map("n", "<leader>ts", require("neotest").run.run, opts)
+
+	opts.desc = "Attach nearest test"
+	map("n", "<leader>ta", require("neotest").run.attach, opts)
+
+	opts.desc = "Debug nearest test"
+	map("n", "<leader>ta", function()
+		require("neotest").run.run({ strategy = "dap" })
+	end, opts)
+
+	opts.desc = "Run current file"
+	map("n", "<leader>tT", function()
+		require("neotest").run.run(vim.fn.expand("%"))
 	end, opts)
 end
 
@@ -415,64 +446,63 @@ keybindings.ft = {
 		local opts = { noremap = true, buffer = event.buf }
 
 		keybindings.dap(event)
+		keybindings.tests(event)
 
 		opts.desc = "Go: debug test"
-		map("n", "<leader>tt", require("dap-go").debug_test, opts)
+		map("n", "<leader>dt", require("dap-go").debug_test, opts)
 
 		opts.desc = "Go: debug latest test"
-		map("n", "<leader>tT", require("dap-go").debug_last_test, opts)
+		map("n", "<leader>dT", require("dap-go").debug_last_test, opts)
 
 		opts.desc = "Go: add json struct tags"
 		map("n", "<localleader>j", "<cmd>GoTagAdd json<cr>", opts)
 
 		opts.desc = "Go: add yaml struct tags"
 		map("n", "<localleader>y", "<cmd>GoTagAdd yaml<cr>", opts)
-
-		opts.desc = "Go: run tests"
-		map("n", "<localleader>t", "<cmd>GoTestsAll<cr>", opts)
 	end,
 	markdown = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
-		wk.register({ ["<leader>z"] = {
+		wk.register({ ["<localleader>z"] = {
 			name = "zotero",
 			buffer = event.buf,
 		} })
 
 		opts.desc = "Citation complete info"
-		map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", opts)
+		map("n", "<localleader>zc", "<Plug>ZCitationCompleteInfo", opts)
 
 		opts.desc = "Citation info"
-		map("n", "<leader>zi", "<Plug>ZCitationInfo", opts)
+		map("n", "<localleader>zi", "<Plug>ZCitationInfo", opts)
 
 		opts.desc = "Open attachment"
-		map("n", "<leader>zo", "<Plug>ZOpenAttachment", opts)
+		map("n", "<localleader>zo", "<Plug>ZOpenAttachment", opts)
 
 		opts.desc = "View document"
-		map("n", "<leader>zv", "<Plug>ZViewDocument", opts)
+		map("n", "<localleader>zv", "<Plug>ZViewDocument", opts)
 
 		opts.desc = "YAML reference"
-		map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
+		map("n", "<localleader>zy", "<Plug>ZCitationYamlRef", opts)
 	end,
 	python = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
 		keybindings.dap(event)
+		keybindings.tests(event)
 
-		opts.desc = "Python: test function/method"
-		map("n", "<leader>tf", require("dap-python").test_method, opts)
+		opts.desc = "Python: debug function/method"
+		map("n", "<leader>df", require("dap-python").test_method, opts)
 
-		opts.desc = "Python: test class"
-		map("n", "<leader>tc", require("dap-python").test_class, opts)
+		opts.desc = "Python: debug class"
+		map("n", "<leader>dc", require("dap-python").test_class, opts)
 
 		opts.desc = "Python: debug selection"
-		map("v", "<leader>ts", require("dap-python").debug_selection, opts)
+		map("v", "<leader>ds", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
 		opts.desc = "Add source from Zotero"
-		map("n", "<leader>z", "<cmd>Telescope zotero<cr>", opts)
+		map("n", "<localleader>z", "<cmd>Telescope zotero<cr>", opts)
 	end,
 }
 

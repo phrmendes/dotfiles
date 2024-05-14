@@ -1,4 +1,3 @@
-local augroups = require("utils").augroups
 local autocmd = vim.api.nvim_create_autocmd
 
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
@@ -10,7 +9,7 @@ end
 
 require("lsp_signature").setup()
 
-require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui", "neotest" }, types = true } })
 
 require("actions-preview").setup({
 	telescope = {

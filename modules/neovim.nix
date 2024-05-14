@@ -97,6 +97,9 @@
           todo-comments-nvim
           undotree
           vim-abolish
+          vim-dadbod
+          vim-dadbod-completion
+          vim-dadbod-ui
           vim-eunuch
           vim-helm
           vim-jinja

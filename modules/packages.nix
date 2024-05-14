@@ -14,19 +14,30 @@ in {
         (with pkgs; [
           ansible
           cachix
+          coreutils-full
+          curl
           fd
           ffmpegthumbnailer
           file
+          findutils
+          gcc
           gh
+          gnumake
+          gnupg
+          gnused
           go
           graphviz
           grex
+          gzip
+          html-tidy
           jdk
           jq
           just
           kind
           kubectl
           kubernetes-helm
+          libuv
+          libxml2
           ncdu
           opentofu
           pandoc
@@ -34,10 +45,15 @@ in {
           podman-tui
           poppler
           python312
+          rar
           ripgrep
+          sqlite
           terraform
           tokei
           unar
+          uv
+          wget
+          zip
         ])
         ++ (with pkgs.nodePackages_latest; [
           nodejs
@@ -54,11 +70,9 @@ in {
       ++ lib.optionals isLinux (with pkgs; [
         bashly
         bitwarden
-        bruno
         chromium
         copyq
         curtail
-        dbeaver
         deluge
         droidcam
         evince
@@ -69,11 +83,8 @@ in {
         kooha
         libqalculate
         libreoffice
-        mictray
         neovide
         nwg-bar
-        nwg-displays
-        nwg-panel
         obsidian
         pavucontrol
         phockup

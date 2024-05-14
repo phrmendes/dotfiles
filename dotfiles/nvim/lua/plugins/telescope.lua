@@ -65,6 +65,7 @@ telescope.setup({
 local extensions = {
 	"dap",
 	"fzf",
+	"rest",
 	"zoxide",
 }
 

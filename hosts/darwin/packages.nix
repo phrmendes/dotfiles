@@ -1,17 +1,14 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    binutils
     coreutils-full
-    curl
-    gnumake
+    findutils
+    gcc
     gnupg
     gnused
     gzip
     iconv
     libuv
     libxml2
-    sqlite
-    unzip
-    wget
-    zip
   ];
 }

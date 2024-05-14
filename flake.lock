@@ -48,23 +48,6 @@
         "type": "github"
       }
     },
-    "copilot-chat-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715181265,
-        "narHash": "sha256-M8yXhO5PWxTlCMEgVkaRuVlscKr2NR9YN+U3j4PUQJs=",
-        "owner": "CopilotC-Nvim",
-        "repo": "CopilotChat.nvim",
-        "rev": "af18fa2fbc765ddf9bacd22e15c974642f20d19b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "CopilotC-Nvim",
-        "ref": "canary",
-        "repo": "CopilotChat.nvim",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -230,7 +213,6 @@
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-starship": "catppuccin-starship",
         "cmp-zotcite": "cmp-zotcite",
-        "copilot-chat-nvim": "copilot-chat-nvim",
         "darwin": "darwin",
         "disko": "disko",
         "gopher-nvim": "gopher-nvim",

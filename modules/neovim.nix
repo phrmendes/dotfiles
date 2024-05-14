@@ -23,7 +23,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite copilot-chat-nvim gopher-nvim latex-snippets-nvim telescope-zotero zotcite;
+        inherit (inputs) cmp-zotcite gopher-nvim latex-snippets-nvim telescope-zotero zotcite;
       };
     in {
       enable = true;
@@ -52,7 +52,6 @@
           dressing-nvim
           executor-nvim
           friendly-snippets
-          gh.copilot-chat-nvim
           gh.gopher-nvim
           gh.latex-snippets-nvim
           gh.telescope-zotero
@@ -87,6 +86,7 @@
           otter-nvim
           plenary-nvim
           quarto-nvim
+          rest-nvim
           smart-splits-nvim
           smartyank-nvim
           sqlite-lua
@@ -120,8 +120,12 @@
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
+          lua-curl
           magick
-          tiktoken_core
+          mimetypes
+          nvim-nio
+          rest-nvim
+          xml2lua
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [

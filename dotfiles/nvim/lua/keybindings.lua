@@ -108,45 +108,19 @@ keybindings.std = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
-	copilot = function()
-		local opts = { noremap = true }
-
-		wk.register({ ["<leader>c"] = { name = "copilot" } })
-
-		opts.desc = "Toggle chat"
-		map("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", opts)
-
-		opts.desc = "Reset chat"
-		map("n", "<leader>cr", "<cmd>CopilotChatReset<cr>", opts)
-
-		opts.desc = "Add documentation"
-		map({ "n", "v" }, "<leader>cd", "<cmd>CopilotChatDocs<cr>", opts)
-
-		opts.desc = "Explain code"
-		map({ "n", "v" }, "<leader>ce", "<cmd>CopilotChatExplain<cr>", opts)
-
-		opts.desc = "Fix code"
-		map({ "n", "v" }, "<leader>cf", "<cmd>CopilotChatFix<cr>", opts)
-
-		opts.desc = "Optimize code"
-		map({ "n", "v" }, "<leader>co", "<cmd>CopilotChatOptimize<cr>", opts)
-
-		opts.desc = "Generate tests"
-		map({ "n", "v" }, "<leader>ct", "<cmd>CopilotChatTests<cr>", opts)
-	end,
 	executor = function()
 		local opts = { noremap = true }
 
-		wk.register({ ["<leader>r"] = { name = "runner" } })
+		wk.register({ ["<leader>c"] = { name = "commands" } })
 
-		opts.desc = "Run command"
-		map("n", "<leader>rr", require("executor").commands.run, opts)
+		opts.desc = "Run"
+		map("n", "<leader>cr", require("executor").commands.run, opts)
 
-		opts.desc = "Details"
-		map("n", "<leader>rt", require("executor").commands.toggle_detail, opts)
+		opts.desc = "Detais"
+		map("n", "<leader>cd", require("executor").commands.toggle_detail, opts)
 
 		opts.desc = "Set command"
-		map("n", "<leader>rs", require("executor").commands.set_command, opts)
+		map("n", "<leader>cs", require("executor").commands.set_command, opts)
 	end,
 	file_explorer = function()
 		local files = require("mini.files")
@@ -259,14 +233,30 @@ keybindings.std = {
 		opts.desc = "Tags"
 		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
 	end,
+	rest = function()
+		local opts = { noremap = true }
+		wk.register({ ["<leader>r"] = { name = "rest client" } })
+
+		opts.desc = "Run request under cursor"
+		map("n", "<leader>rr", "<cmd>Rest run<cr>", opts)
+
+		opts.desc = "Re-run last request"
+		map("n", "<leader>rl", "<cmd>Rest run last<cr>", opts)
+
+		opts.desc = "Select env"
+		map("n", "<leader>re", "<cmd>Telescope rest select_env<cr>", opts)
+	end,
 	slime = function()
 		local opts = { noremap = true, silent = true }
 
-		opts.desc = "Send to REPL"
-		map({ "n", "v" }, "<s-cr>", "<Plug>SlimeParagraphSend", opts)
+		opts.desc = "SLIME: send to REPL"
+		map({ "n" }, "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
 
-		opts.desc = "Config SLIME"
-		map({ "n", "v" }, ",,", "<Plug>SlimeConfig", opts)
+		opts.desc = "SLIME: send to REPL"
+		map({ "v" }, "<c-c><c-c>", "<Plug>SlimeRegionSend", opts)
+
+		opts.desc = "SLIME: reconfigure"
+		map({ "n", "v" }, "<c-c><c-r>", "<Plug>SlimeConfig", opts)
 	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
@@ -431,6 +421,15 @@ keybindings.ft = {
 
 		opts.desc = "Go: debug latest test"
 		map("n", "<leader>tT", require("dap-go").debug_last_test, opts)
+
+		opts.desc = "Go: add json struct tags"
+		map("n", "<localleader>j", "<cmd>GoTagAdd json<cr>", opts)
+
+		opts.desc = "Go: add yaml struct tags"
+		map("n", "<localleader>y", "<cmd>GoTagAdd yaml<cr>", opts)
+
+		opts.desc = "Go: run tests"
+		map("n", "<localleader>t", "<cmd>GoTestsAll<cr>", opts)
 	end,
 	markdown = function(event)
 		local opts = { noremap = true, buffer = event.buf }

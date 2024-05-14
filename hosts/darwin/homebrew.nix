@@ -21,8 +21,6 @@
     ];
     casks = [
       "amethyst"
-      "bruno"
-      "dbeaver-community"
       "firefox"
       "font-fira-code-nerd-font"
       "keepingyouawake"

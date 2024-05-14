@@ -52,14 +52,6 @@
       url = "github:olexsmir/gopher.nvim";
     };
 
-    copilot-chat-nvim = {
-      flake = false;
-      type = "github";
-      owner = "CopilotC-Nvim";
-      repo = "CopilotChat.nvim";
-      ref = "canary";
-    };
-
     latex-snippets-nvim = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";

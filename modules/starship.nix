@@ -18,7 +18,7 @@
           docker_context.disabled = true;
           conda.symbol = "🐍 ";
           nix_shell.symbol = " ";
-          scala.symbol = " ";
+          golang.symbol = " ";
           palette = "catppuccin_${flavour}";
         }
         // builtins.fromTOML (builtins.readFile "${inputs.catppuccin-starship}/palettes/${flavour}.toml");

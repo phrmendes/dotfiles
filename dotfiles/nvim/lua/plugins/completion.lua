@@ -52,6 +52,7 @@ cmp.setup({
 			mode = "symbol",
 			symbol_map = {
 				otter = "🦦",
+				["vim-dadbod-completion"] = "",
 			},
 		}),
 	},
@@ -81,6 +82,13 @@ cmp.setup.cmdline({ "/", "?" }, {
 	sources = {
 		{ name = "buffer" },
 	},
+})
+
+cmp.setup.filetype("sql", {
+	sources = cmp.config.sources({
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
+	}),
 })
 
 cmp.setup.filetype("markdown", {

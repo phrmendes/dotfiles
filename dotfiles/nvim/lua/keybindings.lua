@@ -435,7 +435,7 @@ keybindings.tests = function(event)
 	map("n", "<leader>tt", require("neotest").run.run, opts)
 
 	opts.desc = "Stop nearest test"
-	map("n", "<leader>ts", require("neotest").run.run, opts)
+	map("n", "<leader>ts", require("neotest").run.stop, opts)
 
 	opts.desc = "Attach nearest test"
 	map("n", "<leader>ta", require("neotest").run.attach, opts)
@@ -446,10 +446,10 @@ keybindings.tests = function(event)
 	end, opts)
 
 	opts.desc = "Output - nearest test"
-	map("n", "<leader>to", require("neotest").output, opts)
+	map("n", "<leader>to", require("neotest").output.open, opts)
 
-	opts.desc = "Output - all test"
-	map("n", "<leader>to", require("neotest").output, opts)
+	opts.desc = "Output - panel"
+	map("n", "<leader>tp", require("neotest").output_panel.toggle, opts)
 
 	opts.desc = "Run current file"
 	map("n", "<leader>tT", function()
@@ -457,7 +457,7 @@ keybindings.tests = function(event)
 	end, opts)
 
 	opts.desc = "Summary"
-	map("n", "<leader>ts", require("neotest").summary, opts)
+	map("n", "<leader>ts", require("neotest").summary.toggle, opts)
 end
 
 keybindings.ft = {

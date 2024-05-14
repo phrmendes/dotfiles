@@ -421,6 +421,16 @@ keybindings.tests = function(event)
 		buffer = event.buf,
 	} })
 
+	opts.desc = "Previous failed test"
+	map("n", "[n", function()
+		require("neotest").jump.prev({ status = "failed" })
+	end, opts)
+
+	opts.desc = "Next failed test"
+	map("n", "]n", function()
+		require("neotest").jump.next({ status = "failed" })
+	end, opts)
+
 	opts.desc = "Run nearest test"
 	map("n", "<leader>tt", require("neotest").run.run, opts)
 
@@ -431,14 +441,23 @@ keybindings.tests = function(event)
 	map("n", "<leader>ta", require("neotest").run.attach, opts)
 
 	opts.desc = "Debug nearest test"
-	map("n", "<leader>ta", function()
+	map("n", "<leader>td", function()
 		require("neotest").run.run({ strategy = "dap" })
 	end, opts)
+
+	opts.desc = "Output - nearest test"
+	map("n", "<leader>to", require("neotest").output, opts)
+
+	opts.desc = "Output - all test"
+	map("n", "<leader>to", require("neotest").output, opts)
 
 	opts.desc = "Run current file"
 	map("n", "<leader>tT", function()
 		require("neotest").run.run(vim.fn.expand("%"))
 	end, opts)
+
+	opts.desc = "Summary"
+	map("n", "<leader>ts", require("neotest").summary, opts)
 end
 
 keybindings.ft = {

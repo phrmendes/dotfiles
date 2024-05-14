@@ -23,7 +23,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) copilot-chat-nvim latex-snippets-nvim telescope-zotero cmp-zotcite zotcite;
+        inherit (inputs) cmp-zotcite copilot-chat-nvim gopher-nvim latex-snippets-nvim telescope-zotero zotcite;
       };
     in {
       enable = true;
@@ -53,6 +53,7 @@
           executor-nvim
           friendly-snippets
           gh.copilot-chat-nvim
+          gh.gopher-nvim
           gh.latex-snippets-nvim
           gh.telescope-zotero
           image-nvim
@@ -141,9 +142,14 @@
           gofumpt
           goimports-reviser
           golangci-lint
+          golines
+          gomodifytags
           gopls
+          gotests
           helm-ls
+          iferr
           imagemagick
+          impl
           ltex-ls
           lua-language-server
           marksman

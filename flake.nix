@@ -47,6 +47,11 @@
       url = "github:jmbuhr/telescope-zotero.nvim";
     };
 
+    gopher-nvim = {
+      flake = false;
+      url = "github:olexsmir/gopher.nvim";
+    };
+
     copilot-chat-nvim = {
       flake = false;
       type = "github";

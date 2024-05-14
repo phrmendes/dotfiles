@@ -126,6 +126,22 @@
         "type": "github"
       }
     },
+    "gopher-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696856053,
+        "narHash": "sha256-8arSYelWObRnzNQ1F4wh/U44USy5aQFIGA9Aa7p9XXM=",
+        "owner": "olexsmir",
+        "repo": "gopher.nvim",
+        "rev": "ac27f4b6794c872140fb205313d79ab166892fe9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olexsmir",
+        "repo": "gopher.nvim",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -217,6 +233,7 @@
         "copilot-chat-nvim": "copilot-chat-nvim",
         "darwin": "darwin",
         "disko": "disko",
+        "gopher-nvim": "gopher-nvim",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "latex-snippets-nvim": "latex-snippets-nvim",

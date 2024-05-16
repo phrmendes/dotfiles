@@ -6,7 +6,7 @@ vim.g.maplocalleader = [[,]]
 vim.opt.syntax = "on"
 
 -- file type plugin
-vim.cmd("filetype plugin on")
+vim.cmd([[filetype plugin on]])
 
 -- line numbers
 vim.opt.relativenumber = true
@@ -88,7 +88,15 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.VM_mouse_mappings = 1
 
 -- language
-vim.cmd("language en_US.UTF-8")
+vim.cmd([[language en_US.UTF-8]])
+
+-- treat '-' as part of a word
+vim.cmd([[set iskeyword+=-]])
+
+-- filetypes
+vim.filetype.add({
+	extension = { templ = "http" },
+})
 
 -- nvim server
 if vim.fn.executable("nvr") then

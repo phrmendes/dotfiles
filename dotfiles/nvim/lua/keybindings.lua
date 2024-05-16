@@ -337,7 +337,7 @@ keybindings.lsp = function(event)
 	map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 	opts.desc = "Symbols (workspace)"
-	map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
+	map("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
 
 	opts.desc = "Diagnostics"
 	map("n", "<leader>ld", "<cmd>Telescope diagnostics<cr>", opts)

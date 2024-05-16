@@ -78,11 +78,3 @@ autocmd({ "FileType" }, {
 		vim.opt_local.conceallevel = 0
 	end,
 })
-
-autocmd({ "FileType" }, {
-	group = augroups.filetype,
-	pattern = { "*.http" },
-	callback = function()
-		vim.cmd("set ft=http")
-	end,
-})

@@ -74,7 +74,7 @@
     nixpkgs,
     ...
   }: {
-    darwinConfigurations."SAO-QQ4FN0YXVT" = let
+    darwinConfigurations."NTTD-QQ4FN0YXVT" = let
       parameters = rec {
         name = "Pedro Mendes";
         user = "prochame";

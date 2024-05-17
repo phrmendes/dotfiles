@@ -20,41 +20,37 @@ layouts: [tall, wide, column, fullscreen]
 
 mod1: [option]
 mod2: [option, shift]
-mod3: [option, control]
-mod4: [option, control, shift]
+mod3: [option, shift, control]
 
 reevaluate-windows:
-  key: r
-  mod: mod3
+  key: w
+  mod: mod1
 relaunch-amethyst:
   key: r
-  mod: mod4
+  mod: mod3
 toggle-float:
   key: f
-  mod: mod2
-select-fullscreen-layout:
-  key: f
   mod: mod1
-
+select-fullscreen-layout:
+  key: z
+  mod: mod1
 expand-main:
   key: "="
   mod: mod1
 shrink-main:
   key: "-"
   mod: mod1
-
 increase-main:
   key: "."
   mod: mod1
 decrease-main:
   key: ","
   mod: mod1
-
 cycle-layout:
-  key: n
+  key: "]"
   mod: mod1
 cycle-layout-backward:
-  key: p
+  key: "["
   mod: mod1
 
 focus-ccw:
@@ -65,28 +61,10 @@ focus-cw:
   mod: mod1
 focus-screen-ccw:
   mod: mod1
-  key: h
+  key: p
 focus-screen-cw:
   mod: mod1
-  key: l
-focus-screen-1:
-  key: 1
-  mod: mod1
-focus-screen-2:
-  key: 2
-  mod: mod1
-focus-screen-3:
-  key: 3
-  mod: mod1
-focus-screen-4:
-  key: 4
-  mod: mod1
-focus-screen-5:
-  key: 5
-  mod: mod1
-focus-screen-6:
-  key: 6
-  mod: mod1
+  key: n
 
 swap-ccw:
   key: r
@@ -94,37 +72,37 @@ swap-ccw:
 swap-cw:
   key: r
   mod: mod1
-swap-screen-ccw:
-  mod: mod2
-  key: h
-swap-screen-cw:
-  mod: mod2
-  key: l
 swap-main:
   mod: mod1
   key: enter
+swap-screen-ccw:
+  mod: mod2
+  key: p
+swap-screen-cw:
+  mod: mod2
+  key: n
 
 throw-space-left:
   key: h
-  mod: mod4
+  mod: mod3
 throw-space-right:
   key: l
-  mod: mod4
-throw-screen-1:
+  mod: mod3
+throw-space-1:
   key: 1
   mod: mod2
-throw-screen-2:
+throw-space-2:
   key: 2
   mod: mod2
-throw-screen-3:
+throw-space-3:
   key: 3
   mod: mod2
-throw-screen-4:
+throw-space-4:
   key: 4
   mod: mod2
-throw-screen-5:
+throw-space-5:
   key: 5
   mod: mod2
-throw-screen-6:
+throw-space-6:
   key: 6
   mod: mod2

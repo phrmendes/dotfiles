@@ -4,6 +4,7 @@
       appimage-run
       glibc
       libnotify
+      psmisc
       wl-clipboard
       xdg-utils
       kdePackages.polkit-kde-agent-1

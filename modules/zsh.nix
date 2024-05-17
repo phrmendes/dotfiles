@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   pkgs,
   ...
 }: let
@@ -12,7 +11,6 @@ in {
   config = lib.mkIf config.zsh.enable {
     programs.zsh = let
       inherit (lib) getExe;
-      path = "~/Projects/dotfiles";
       common = with pkgs; {
         cat = getExe bat;
         du = getExe ncdu;
@@ -48,6 +46,23 @@ in {
       enableCompletion = true;
       enableVteIntegration = true;
       syntaxHighlighting.enable = true;
+      plugins = [
+        {
+          name = "zsh-fzf-tab";
+          file = "share/fzf-tab/fzf-tab.plugin.zsh";
+          src = pkgs.zsh-fzf-tab;
+        }
+        {
+          name = "zsh-nix-shell";
+          file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+          src = pkgs.zsh-nix-shell;
+        }
+        {
+          name = "zsh-vi-mode";
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+          src = pkgs.zsh-vi-mode;
+        }
+      ];
     };
   };
 }

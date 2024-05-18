@@ -57,6 +57,7 @@
           gh.neotest-golang
           gh.telescope-zotero
           image-nvim
+          jupytext-nvim
           lsp_signature-nvim
           lspkind-nvim
           ltex_extra-nvim
@@ -181,6 +182,9 @@
         ])
         ++ (with pkgs.perl538Packages; [
           LatexIndent
+        ])
+        ++ (with pkgs.python312Packages; [
+          jupytext
         ])
         ++ (with pkgs.nodePackages; [
           bash-language-server

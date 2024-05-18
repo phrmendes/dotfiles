@@ -174,29 +174,16 @@ keybindings.std = {
 		opts.desc = "Branches"
 		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
 
-		opts.desc = "Commits (current file)"
-		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
-
-		opts.desc = "Commits (cwd)"
-		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
+		opts.desc = "Commit"
+		map("n", "<leader>gc", function()
+			require("neogit").open({ "commit" })
+		end, opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", opts)
 
-		opts.desc = "LazyGit (current file)"
-		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
-
-		opts.desc = "LazyGit (cwd)"
-		map("n", "<leader>gG", "<cmd>LazyGit<cr>", opts)
-
-		opts.desc = "Files"
-		map("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts)
-
-		opts.desc = "Status"
-		map("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts)
-
-		opts.desc = "Stash"
-		map("n", "<leader>gt", "<cmd>Telescope git_stash<cr>", opts)
+		opts.desc = "Neogit"
+		map("n", "<leader>gg", require("neogit").open, opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }
@@ -261,18 +248,18 @@ keybindings.std = {
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
 
-		map("n", "<a-h>", require("smart-splits").swap_buf_left, opts)
-		map("n", "<a-j>", require("smart-splits").swap_buf_down, opts)
-		map("n", "<a-k>", require("smart-splits").swap_buf_up, opts)
-		map("n", "<a-l>", require("smart-splits").swap_buf_right, opts)
-		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-left>", require("smart-splits").resize_left, opts)
-		map("n", "<c-down>", require("smart-splits").resize_down, opts)
-		map("n", "<c-up>", require("smart-splits").resize_up, opts)
-		map("n", "<c-right>", require("smart-splits").resize_right, opts)
+		map({ "n", "i", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map({ "n", "i", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map({ "n", "i", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map({ "n", "i", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map({ "n", "i", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "i", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "i", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "i", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
+		map({ "n", "i", "t" }, "<c-down>", require("smart-splits").swap_buf_down, opts)
+		map({ "n", "i", "t" }, "<c-left>", require("smart-splits").swap_buf_left, opts)
+		map({ "n", "i", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)
+		map({ "n", "i", "t" }, "<c-up>", require("smart-splits").swap_buf_up, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -353,7 +340,7 @@ keybindings.lsp = function(event)
 
 	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
 		opts.desc = "LSP: inlay hints"
-		map("n", "<leader>i", function()
+		map("n", "<leader>li", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end, opts)
 	end

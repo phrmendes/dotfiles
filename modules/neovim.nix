@@ -57,8 +57,6 @@
           gh.neotest-golang
           gh.telescope-zotero
           image-nvim
-          jupytext-nvim
-          lazygit-nvim
           lsp_signature-nvim
           lspkind-nvim
           ltex_extra-nvim
@@ -68,6 +66,7 @@
           nabla-nvim
           neodev-nvim
           neogen
+          neogit
           neotest
           neotest-python
           nvim-bqf
@@ -186,9 +185,6 @@
         ++ (with pkgs.nodePackages; [
           bash-language-server
           vscode-json-languageserver
-        ])
-        ++ (with pkgs.python312Packages; [
-          jupytext
         ]);
     };
   };

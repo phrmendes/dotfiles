@@ -9,6 +9,11 @@ in {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
 
   config = lib.mkIf config.kitty.enable {
+    home.file = {
+      ".config/kitty/neighboring_window.py".text = builtins.readFile ../dotfiles/kitty/neighboring_window.py;
+      ".config/kitty/relative_resize.py".text = builtins.readFile ../dotfiles/kitty/relative_resize.py;
+    };
+
     programs.kitty = {
       enable = true;
       theme = "Catppuccin-Mocha";
@@ -51,25 +56,33 @@ in {
       keybindings = {
         "ctrl+equal" = "change_font_size all +2.0";
         "ctrl+minus" = "change_font_size all -2.0";
-        "ctrl+shift+enter" = "start_resizing_window";
-        "ctrl+shift+h" = "neighboring_window left";
-        "ctrl+shift+j" = "neighboring_window down";
-        "ctrl+shift+k" = "neighboring_window up";
-        "ctrl+shift+l" = "neighboring_window right";
         "ctrl+shift+q" = "close_tab";
         "ctrl+shift+r" = "layout_action rotate";
         "ctrl+shift+x" = "close_window";
         "ctrl+shift+z" = "toggle_layout stack";
         "ctrl+shift+[" = "previous_tab";
         "ctrl+shift+]" = "next_tab";
-        "ctrl+shift+left" = "resize_window wider";
-        "ctrl+shift+down" = "resize_window shorter";
-        "ctrl+shift+up" = "resize_window taller";
-        "ctrl+shift+right" = "resize_window narrower";
-        "ctrl+shift+equal" = "resize_window reset";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
+        "ctrl+j" = "neighboring_window down";
+        "ctrl+k" = "neighboring_window up";
+        "ctrl+h" = "neighboring_window left";
+        "ctrl+l" = "neighboring_window right";
+        "alt+j" = "kitten relative_resize.py down  3";
+        "alt+k" = "kitten relative_resize.py up    3";
+        "alt+h" = "kitten relative_resize.py left  3";
+        "alt+l" = "kitten relative_resize.py right 3";
       };
+      extraConfig = ''
+        map --when-focus-on var:IS_NVIM ctrl+j
+        map --when-focus-on var:IS_NVIM ctrl+k
+        map --when-focus-on var:IS_NVIM ctrl+h
+        map --when-focus-on var:IS_NVIM ctrl+l
+        map --when-focus-on var:IS_NVIM alt+j
+        map --when-focus-on var:IS_NVIM alt+k
+        map --when-focus-on var:IS_NVIM alt+h
+        map --when-focus-on var:IS_NVIM alt+l
+      '';
     };
   };
 }

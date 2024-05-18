@@ -22,6 +22,7 @@
         ".tmux"
         ".local/share/atuin"
         ".local/share/keyrings"
+        ".local/share/plex"
         ".local/share/syncthing"
         ".local/share/zoxide"
         ".local/state/nvim"

@@ -83,6 +83,7 @@ in {
         kooha
         libqalculate
         libreoffice
+        mpv
         neovide
         nwg-bar
         obsidian
@@ -100,7 +101,6 @@ in {
         tectonic
         vagrant
         ventoy
-        vlc
         xarchiver
         zotero
       ]);

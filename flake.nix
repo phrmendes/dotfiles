@@ -42,11 +42,6 @@
       flake = false;
     };
 
-    telescope-zotero = {
-      flake = false;
-      url = "github:jmbuhr/telescope-zotero.nvim";
-    };
-
     gopher-nvim = {
       flake = false;
       url = "github:olexsmir/gopher.nvim";
@@ -55,6 +50,16 @@
     latex-snippets-nvim = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
+    };
+
+    neotest-golang = {
+      flake = false;
+      url = "github:fredrikaverpil/neotest-golang";
+    };
+
+    telescope-zotero = {
+      flake = false;
+      url = "github:jmbuhr/telescope-zotero.nvim";
     };
 
     zotcite = {

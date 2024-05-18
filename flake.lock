@@ -176,6 +176,22 @@
         "type": "github"
       }
     },
+    "neotest-golang": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716032600,
+        "narHash": "sha256-vUond4czhzFn5wpepQcxd5/pWQvbk2xAinR2jkUxtCA=",
+        "owner": "fredrikaverpil",
+        "repo": "neotest-golang",
+        "rev": "e460a3bb69dfba97acc2d82fdfe76d1b0222627b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fredrikaverpil",
+        "repo": "neotest-golang",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1715499532,
@@ -219,6 +235,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "latex-snippets-nvim": "latex-snippets-nvim",
+        "neotest-golang": "neotest-golang",
         "nixpkgs": "nixpkgs",
         "telescope-zotero": "telescope-zotero",
         "walker": "walker",

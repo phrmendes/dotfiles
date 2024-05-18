@@ -337,7 +337,7 @@ keybindings.lsp = function(event)
 	map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 	opts.desc = "Symbols (workspace)"
-	map("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
+	map("n", "<leader>lw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
 
 	opts.desc = "Diagnostics"
 	map("n", "<leader>ld", "<cmd>Telescope diagnostics<cr>", opts)
@@ -387,13 +387,13 @@ keybindings.dap = function(event)
 	map("n", "<s-f6>", require("dap").pause, opts)
 
 	opts.desc = "DAP: terminate"
-	map("n", "<bs>", function()
-		require("dap").terminate()
-		require("dapui").close()
-	end, opts)
+	map("n", "<bs>", require("dap").terminate, opts)
 
 	opts.desc = "Breakpoint"
 	map("n", "<leader>db", require("dap").toggle_breakpoint, opts)
+
+	opts.desc = "Debug last"
+	map("n", "<leader>dl", require("dap").run_last, opts)
 
 	opts.desc = "Clear all breakpoints"
 	map("n", "<leader>d<del>", require("dap").clear_breakpoints, opts)
@@ -406,6 +406,9 @@ keybindings.dap = function(event)
 
 	opts.desc = "Toggle UI"
 	map("n", "<leader>du", require("dapui").toggle, opts)
+
+	opts.desc = "Eval"
+	map("n", "<leader>de", require("dapui").eval, opts)
 
 	opts.desc = "Conditional breakpoint"
 	map("n", "<leader>dB", function()
@@ -431,33 +434,48 @@ keybindings.tests = function(event)
 		require("neotest").jump.next({ status = "failed" })
 	end, opts)
 
-	opts.desc = "Run nearest test"
-	map("n", "<leader>tt", require("neotest").run.run, opts)
-
-	opts.desc = "Stop nearest test"
-	map("n", "<leader>ts", require("neotest").run.stop, opts)
-
-	opts.desc = "Attach nearest test"
+	opts.desc = "Attach"
 	map("n", "<leader>ta", require("neotest").run.attach, opts)
 
-	opts.desc = "Debug nearest test"
+	opts.desc = "Debug (nearest)"
 	map("n", "<leader>td", function()
-		require("neotest").run.run({ strategy = "dap" })
+		require("neotest").run.run({ suite = false, strategy = "dap" })
 	end, opts)
 
-	opts.desc = "Output - nearest test"
-	map("n", "<leader>to", require("neotest").output.open, opts)
-
-	opts.desc = "Output - panel"
+	opts.desc = "Output (panel)"
 	map("n", "<leader>tp", require("neotest").output_panel.toggle, opts)
 
-	opts.desc = "Run current file"
-	map("n", "<leader>tT", function()
-		require("neotest").run.run(vim.fn.expand("%"))
+	opts.desc = "Output"
+	map("n", "<leader>to", function()
+		require("neotest").output.open({ enter = true, auto_close = true })
 	end, opts)
+
+	opts.desc = "Stop"
+	map("n", "<leader>tq", require("neotest").run.stop, opts)
 
 	opts.desc = "Summary"
 	map("n", "<leader>ts", require("neotest").summary.toggle, opts)
+
+	opts.desc = "Test (nearest)"
+	map("n", "<leader>tt", require("neotest").run.run, opts)
+
+	opts.desc = "Test (last)"
+	map("n", "<leader>tl", require("neotest").run.run_last, opts)
+
+	opts.desc = "Test (suite)"
+	map("n", "<leader>ts", function()
+		require("neotest").run.run({ suite = false })
+	end, opts)
+
+	opts.desc = "Test (current file)"
+	map("n", "<leader>tf", function()
+		require("neotest").run.run(vim.fn.expand("%"))
+	end, opts)
+
+	opts.desc = "Test (cwd)"
+	map("n", "<leader>tw", function()
+		require("neotest").run.run(vim.uv.cwd())
+	end, opts)
 end
 
 keybindings.ft = {
@@ -470,7 +488,7 @@ keybindings.ft = {
 		opts.desc = "Go: debug test"
 		map("n", "<leader>dt", require("dap-go").debug_test, opts)
 
-		opts.desc = "Go: debug latest test"
+		opts.desc = "Go: debug last test"
 		map("n", "<leader>dT", require("dap-go").debug_last_test, opts)
 
 		opts.desc = "Go: add json struct tags"

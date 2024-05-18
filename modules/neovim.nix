@@ -23,7 +23,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim latex-snippets-nvim telescope-zotero zotcite;
+        inherit (inputs) cmp-zotcite gopher-nvim latex-snippets-nvim telescope-zotero zotcite neotest-golang;
       };
     in {
       enable = true;
@@ -54,6 +54,7 @@
           friendly-snippets
           gh.gopher-nvim
           gh.latex-snippets-nvim
+          gh.neotest-golang
           gh.telescope-zotero
           image-nvim
           jupytext-nvim
@@ -68,7 +69,6 @@
           neodev-nvim
           neogen
           neotest
-          neotest-go
           neotest-python
           nvim-bqf
           nvim-cmp

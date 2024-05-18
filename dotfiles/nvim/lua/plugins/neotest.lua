@@ -3,7 +3,7 @@ local neotest_namespace = vim.api.nvim_create_namespace("neotest")
 require("neotest").setup({
 	adapters = {
 		require("neotest-python"),
-		require("neotest-go"),
+		require("neotest-golang")({ dap_go_enabled = true }),
 	},
 })
 

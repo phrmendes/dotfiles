@@ -10,31 +10,65 @@
     programs.walker = {
       enable = true;
       runAsService = true;
+      style = builtins.readFile ../dotfiles/walker.css;
       config = {
-        terminal = lib.getExe pkgs.kitty;
-        activation_mode.disable = false;
         enable_typeahead = true;
         fullscreen = false;
-        hyprland.context_aware_history = true;
         ignore_mouse = false;
-        notify_on_fail = true;
+        keep_open = false;
+        orientation = "vertical";
         placeholder = "Search...";
         scrollbar_policy = "automatic";
-        search.hide_icons = false;
         show_initial_entries = true;
+        ssh_host_file = "";
+        terminal = "${lib.getExe pkgs.kitty}";
+        hyprland = {
+          context_aware_history = true;
+        };
+        activation_mode = {
+          disabled = false;
+          use_f_keys = false;
+          use_alt = false;
+        };
+        search = {
+          delay = 0;
+          hide_icons = false;
+          margin_spinner = 10;
+          hide_spinner = false;
+        };
+        clipboard = {
+          max_entries = 10;
+          image_height = 300;
+        };
         align = {
+          ignore_exlusive = true;
+          width = 400;
           horizontal = "center";
-          width = 500;
+          vertical = "start";
+          anchors = {
+            top = false;
+            left = false;
+            bottom = false;
+            right = false;
+          };
+          margins = {
+            top = 20;
+            bottom = 0;
+            end = 0;
+            start = 0;
+          };
+        };
+        list = {
+          height = 300;
+          margin_top = 10;
+          always_show = true;
+          hide_sub = false;
         };
         icons = {
+          theme = "Pop";
           hide = false;
           size = 28;
           image_height = 200;
-        };
-        list = {
-          margin_top = 10;
-          height = 500;
-          always_show = true;
         };
         modules = [
           {
@@ -51,7 +85,7 @@
           }
           {
             name = "finder";
-            prefix = "'";
+            prefix = "~";
           }
           {
             name = "commands";

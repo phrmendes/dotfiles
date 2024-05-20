@@ -11,47 +11,7 @@
       swaylock = lib.getExe pkgs.swaylock;
       systemctl = "${pkgs.systemd}/bin/systemctl";
     in {
-      ".config/nwg-bar/style.css".text = ''
-        @define-color background #2a2827;
-        @define-color foreground #fbf1c7;
-        @define-color hover #5a524c;
-
-        window {
-          background-color: @background;
-          border-radius: 10px;
-        }
-
-        #outer-box {
-          margin: 5px;
-          border-radius: 10px;
-        }
-
-        #inner-box {
-          background-color: @background;
-          border-color: @background;
-          border-radius: 10px;
-          border-style: none;
-          border-width: 1px;
-          margin: 5px;
-          padding: 5px;
-        }
-
-        button, image {
-          background: none;
-          border: none;
-          box-shadow: none;
-        }
-
-        button {
-          padding-left: 10px;
-          padding-right: 10px;
-          margin: 5px;
-        }
-
-        button:hover {
-          background-color: @hover;
-        }
-      '';
+      ".config/nwg-bar/style.css".source = ../dotfiles/nwg-bar.css;
       ".config/nwg-bar/bar.json".text = builtins.toJSON [
         {
           "label" = "Lock";

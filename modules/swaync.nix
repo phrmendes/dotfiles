@@ -8,7 +8,7 @@
   config = lib.mkIf config.swaync.enable {
     services.swaync = {
       enable = true;
-      style = builtins.readFile ../dotfiles/swaync/style.css;
+      style = builtins.readFile ../dotfiles/swaync.css;
     };
   };
 }

@@ -25,9 +25,6 @@ vim.opt.wrap = true
 -- line wrapping
 vim.opt.wrap = true
 
--- global status line
-vim.opt.laststatus = 3
-
 -- search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

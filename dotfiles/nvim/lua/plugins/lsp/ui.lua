@@ -28,7 +28,6 @@ require("actions-preview").setup({
 })
 
 vim.diagnostic.config({
-	float = { border = "rounded" },
 	virtual_text = true,
 	signs = true,
 	underline = true,

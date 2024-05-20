@@ -1,6 +1,5 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local border = cmp.config.window.bordered()
 
 if vim.fn.has("mac") == 0 then
 	require("cmp_pandoc").setup({
@@ -55,10 +54,6 @@ cmp.setup({
 				["vim-dadbod-completion"] = "",
 			},
 		}),
-	},
-	window = {
-		completion = border,
-		documentation = border,
 	},
 	sources = cmp.config.sources({
 		{ name = "path" },

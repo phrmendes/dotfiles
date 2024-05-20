@@ -1,26 +1,18 @@
 {
   lib,
   config,
-  pkgs,
   ...
-}: let
-  inherit (pkgs.stdenv) isDarwin;
-in {
+}: {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
 
   config = lib.mkIf config.kitty.enable {
-    home.file = {
-      ".config/kitty/neighboring_window.py".text = builtins.readFile ../dotfiles/kitty/neighboring_window.py;
-      ".config/kitty/relative_resize.py".text = builtins.readFile ../dotfiles/kitty/relative_resize.py;
+    xdg.configFile = {
+      "kitty/neighboring_window.py".source = ../dotfiles/kitty/neighboring_window.py;
+      "kitty/relative_resize.py".source = ../dotfiles/kitty/relative_resize.py;
     };
 
     programs.kitty = {
       enable = true;
-      theme = "Catppuccin-Mocha";
-      font = {
-        name = "FiraCode Nerd Font Mono";
-        package = pkgs.fira-code-nerdfont;
-      };
       shellIntegration = {
         enableBashIntegration = true;
         enableZshIntegration = true;
@@ -28,12 +20,9 @@ in {
       settings = {
         allow_remote_control = "yes";
         bell_on_tab = "no";
-        bold_font = "auto";
-        bold_italic_font = "auto";
         enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
         inactive_text_alpha = "0.9";
-        italic_font = "auto";
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "yes";
         open_url_with = "default";
@@ -48,10 +37,6 @@ in {
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 5;
-        font_size =
-          if isDarwin
-          then 16
-          else 12;
       };
       keybindings = {
         "ctrl+equal" = "change_font_size all +2.0";

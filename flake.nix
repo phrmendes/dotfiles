@@ -16,6 +16,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     walker.url = "github:abenz1267/walker";
+    stylix.url = "github:danth/stylix";
 
     darwin = {
       url = "github:lnl7/nix-darwin";
@@ -30,16 +31,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
-
-    catppuccin-starship = {
-      url = "github:catppuccin/starship";
-      flake = false;
     };
 
     gopher-nvim = {

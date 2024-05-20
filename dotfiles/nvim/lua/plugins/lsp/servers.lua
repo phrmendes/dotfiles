@@ -3,11 +3,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-local handlers = {
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-}
-
 local flags = {
 	allow_incremental_sync = true,
 	debounce_text_changes = 150,
@@ -116,7 +111,6 @@ for key, value in pairs(servers) do
 
 		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
 		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
-		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
 		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)

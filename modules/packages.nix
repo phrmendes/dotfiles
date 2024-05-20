@@ -78,7 +78,6 @@ in {
         evince
         foliate
         gcolor3
-        grim
         hugo
         kooha
         libqalculate
@@ -93,8 +92,6 @@ in {
         quarto
         quickemu
         qview
-        satty
-        slurp
         swaybg
         swaynotificationcenter
         syncthingtray

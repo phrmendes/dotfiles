@@ -7,13 +7,11 @@
   options.walker.enable = lib.mkEnableOption "enable walker";
 
   config = lib.mkIf config.walker.enable {
-    programs.walker = let
-      kitty = lib.getExe pkgs.kitty;
-    in {
+    programs.walker = {
       enable = true;
       runAsService = true;
-      style = builtins.readFile ../dotfiles/walker/style.css;
       config = {
+        terminal = lib.getExe pkgs.kitty;
         activation_mode.disable = false;
         enable_typeahead = true;
         fullscreen = false;
@@ -24,7 +22,6 @@
         scrollbar_policy = "automatic";
         search.hide_icons = false;
         show_initial_entries = true;
-        terminal = kitty;
         align = {
           horizontal = "center";
           width = 500;

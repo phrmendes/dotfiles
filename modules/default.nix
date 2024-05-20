@@ -16,7 +16,6 @@
     ./gh.nix
     ./git.nix
     ./gnome-keyring.nix
-    ./gtk.nix
     ./hyprland.nix
     ./kitty.nix
     ./lazygit.nix
@@ -26,6 +25,7 @@
     ./nwg.nix
     ./packages.nix
     ./pyenv.nix
+    ./satty.nix
     ./starship.nix
     ./swaylock.nix
     ./swaync.nix
@@ -33,11 +33,11 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./walker.nix
     ./waybar.nix
     ./yazi.nix
+    ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -57,8 +57,8 @@
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
-  tmux.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
+  zellij.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
 

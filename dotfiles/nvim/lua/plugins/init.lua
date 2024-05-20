@@ -1,5 +1,4 @@
 require("plugins.colorizer")
-require("plugins.colorscheme")
 require("plugins.completion")
 require("plugins.dap")
 require("plugins.dressing")

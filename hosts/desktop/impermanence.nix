@@ -19,7 +19,6 @@
         ".gnupg"
         ".mozilla"
         ".ssh"
-        ".tmux"
         ".local/share/atuin"
         ".local/share/keyrings"
         ".local/share/plex"

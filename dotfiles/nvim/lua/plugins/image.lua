@@ -1,5 +1,7 @@
 require("image").setup({
 	backend = "kitty",
+	max_width = 100,
+	max_height = 15,
 	integrations = {
 		markdown = {
 			enabled = true,
@@ -7,7 +9,4 @@ require("image").setup({
 			filetypes = { "markdown", "quarto" },
 		},
 	},
-	max_width = 100,
-	max_height = 15,
-	tmux_show_only_in_active_window = true,
 })

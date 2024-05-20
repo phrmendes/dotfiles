@@ -11,7 +11,6 @@
       inherit (lib) getExe;
       copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
-      jq = getExe pkgs.jq;
       kitty = getExe pkgs.kitty;
       playerctl = getExe pkgs.playerctl;
       powermenu = getExe pkgs.nwg-bar;
@@ -19,30 +18,19 @@
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;
       walker = getExe pkgs.walker;
-      hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
       swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
       wallpaper = ../dotfiles/background.png;
-      colors = import ./catppuccin.nix;
       workspacesKeys = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
         switch = map (x: "SUPER, ${builtins.toString x}, workspace, ${builtins.toString x}") workspaces;
         moveSilent = map (x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}") workspaces;
       };
-      keyboardNotifyScript = pkgs.writeShellScriptBin "keyboard-notify" ''
-        KEYBOARD=logitech-k850
-
-        ${hyprctl} switchxkblayout "$KEYBOARD" next &> /dev/null
-
-        LAYOUT=$(${hyprctl} devices -j | ${jq} --arg keyboard "$KEYBOARD" '.keyboards | map(select(.name == $keyboard)) | .[] | .active_keymap')
-
-        ${hyprctl} notify -1 1500 "${colors.catppuccin.rgb.green}" "fontsize:18 ⌨ $LAYOUT" &> /dev/null
-      '';
     in {
       enable = true;
-      settings = with colors.catppuccin.rgba; {
+      settings = {
         exec-once = [
           "${swaybg} --image ${wallpaper} --mode fill"
           "${copyq} --start-server"
@@ -52,6 +40,7 @@
           kb_layout = "us,br";
           kb_model = "pc104";
           kb_rules = "evdev";
+          kb_options = "grp:alt_space_toggle";
           numlock_by_default = true;
           follow_mouse = 1;
           sensitivity = 0;
@@ -62,8 +51,6 @@
           border_size = 2;
           layout = "dwindle";
           resize_on_border = true;
-          "col.active_border" = "${blue} ${green} 60deg";
-          "col.inactive_border" = surface0;
         };
         decoration = {
           active_opacity = 1;
@@ -72,7 +59,6 @@
           drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
-          "col.shadow" = base;
           blur = {
             enabled = true;
             size = 3;
@@ -91,25 +77,12 @@
           force_default_wallpaper = 0;
           disable_hyprland_logo = true;
         };
-        group = {
-          "col.border_active" = "${blue} ${green} 60deg";
-          "col.border_inactive" = surface0;
-          "col.border_locked_active" = red;
-          "col.border_locked_inactive" = surface0;
-          groupbar = {
-            "col.active" = blue;
-            "col.inactive" = surface0;
-            "col.locked_active" = red;
-            "col.locked_inactive" = surface0;
-          };
-        };
         monitor = [
           "HDMI-A-1,1920x1080,1366x0,1"
           "DP-1,1366x768,0x0,auto"
         ];
         windowrulev2 = [
           "float,stayfocused,class:(gcolor3)"
-          "float,stayfocused,class:(nwg-displays)"
           "float,stayfocused,class:(pavucontrol)"
           "float,stayfocused,class:(satty)"
           "float,stayfocused,opaque,class:(copyq)"
@@ -146,7 +119,6 @@
         bind =
           [
             # apps
-            "ALT, space, exec, ${keyboardNotifyScript}/bin/keyboard-notify"
             "SUPER,V,exec,${copyq} menu"
             "SUPER,C,exec,${swaync-client} --close-all"
             "SUPER,N,exec,${swaync-client} --toggle-panel --skip-wait"

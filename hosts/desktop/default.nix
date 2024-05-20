@@ -7,10 +7,10 @@
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
+    inputs.stylix.nixosModules.stylix
     (import ./disko.nix {inherit (parameters) device;})
     ./boot.nix
     ./file-systems.nix
-    ./fonts.nix
     ./hardware.nix
     ./home-manager.nix
     ./i18n.nix
@@ -26,6 +26,7 @@
     ./users.nix
     ./virtualisation.nix
     ./xdg.nix
+    ../shared/stylix.nix
   ];
 
   console.keyMap = "us";

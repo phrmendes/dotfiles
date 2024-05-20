@@ -37,7 +37,6 @@
           SchemaStore-nvim
           actions-preview-nvim
           ansible-vim
-          catppuccin-nvim
           cmp-buffer
           cmp-cmdline
           cmp-emoji
@@ -107,6 +106,7 @@
           vim-helm
           vim-jinja
           vim-just
+          vim-nix
           vim-sleuth
           vim-slime
           vim-visual-multi

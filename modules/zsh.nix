@@ -10,7 +10,9 @@ in {
 
   config = lib.mkIf config.zsh.enable {
     programs.zsh = let
-      inherit (lib) getExe;
+      inherit (lib) getExe optionalAttrs;
+      shellAliases = common // optionalAttrs isLinux desktop;
+      initExtra = builtins.readFile ../dotfiles/init.sh;
       common = with pkgs; {
         cat = getExe bat;
         du = getExe ncdu;
@@ -21,14 +23,8 @@ in {
         m = "mkdir -p";
         ps = getExe procs;
         sed = getExe gnused;
-        t = getExe tmux;
-        ta = "${getExe tmux} attach";
-        tas = "${getExe tmux} attach -t";
-        tk = "${getExe tmux} kill-session -t";
-        tks = "${getExe tmux} kill-server";
-        tl = "${getExe tmux} list-sessions";
-        tn = "${getExe tmux} new-session -s";
         top = getExe btop;
+        zz = getExe zellij;
         untar = "tar -xvf";
         untargz = "tar -xzf";
         v = "nvim";
@@ -37,8 +33,6 @@ in {
         dpct = "duplicati-cli";
         open = "xdg-open";
       };
-      shellAliases = common // lib.optionalAttrs isLinux desktop;
-      initExtra = builtins.readFile ../dotfiles/init.sh;
     in {
       inherit shellAliases initExtra;
       enable = true;

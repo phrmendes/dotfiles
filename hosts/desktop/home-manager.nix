@@ -15,10 +15,10 @@
       blueman-applet.enable = true;
       btop.enable = true;
       gnome-keyring.enable = true;
-      gtk-manager.enable = true;
       hyprland.enable = true;
       nm-applet.enable = true;
       nwg.enable = true;
+      satty.enable = true;
       swaylock.enable = true;
       swaync.enable = true;
       swayosd.enable = true;

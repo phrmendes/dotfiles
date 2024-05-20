@@ -14,6 +14,7 @@
       ".config/nwg-bar/style.css".text = ''
         @define-color background #2a2827;
         @define-color foreground #fbf1c7;
+        @define-color hover #5a524c;
 
         window {
           background-color: @background;
@@ -48,7 +49,7 @@
         }
 
         button:hover {
-          background-color: @foreground;
+          background-color: @hover;
         }
       '';
       ".config/nwg-bar/bar.json".text = builtins.toJSON [

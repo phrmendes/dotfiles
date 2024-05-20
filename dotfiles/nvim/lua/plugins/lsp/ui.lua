@@ -7,7 +7,11 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-require("lsp_signature").setup()
+require("lsp_signature").setup({
+	handler_opts = {
+		border = "none",
+	},
+})
 
 require("neodev").setup({ library = { plugins = { "nvim-dap-ui", "neotest" }, types = true } })
 

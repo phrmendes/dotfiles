@@ -184,6 +184,9 @@ keybindings.std = {
 
 		opts.desc = "Neogit"
 		map("n", "<leader>gg", require("neogit").open, opts)
+
+		opts.desc = "LazyGit"
+		map("n", "<leader>gG", "<cmd>LazyGitCurrentFile<cr>", opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }

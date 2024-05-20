@@ -57,6 +57,7 @@
           gh.telescope-zotero
           image-nvim
           jupytext-nvim
+          lazygit-nvim
           lsp_signature-nvim
           lspkind-nvim
           ltex_extra-nvim

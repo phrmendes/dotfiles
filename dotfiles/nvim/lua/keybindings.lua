@@ -291,7 +291,6 @@ keybindings.std = {
 
 keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
-	local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 	wk.register({ ["<leader>l"] = {
 		name = "LSP",
@@ -337,13 +336,6 @@ keybindings.lsp = function(event)
 
 	opts.desc = "Hover"
 	map("n", "<leader>lk", vim.lsp.buf.hover, opts)
-
-	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-		opts.desc = "LSP: inlay hints"
-		map("n", "<leader>li", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, opts)
-	end
 end
 
 keybindings.dap = function(event)

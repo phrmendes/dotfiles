@@ -8,7 +8,7 @@
   in
     {
       image = ../../dotfiles/background.png;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
       polarity = "dark";
       fonts = {
         sizes = {

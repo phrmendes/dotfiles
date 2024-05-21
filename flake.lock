@@ -328,6 +328,22 @@
         "type": "github"
       }
     },
+    "mini-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716303446,
+        "narHash": "sha256-T1MXFUEbB6yPuE35oRI0IHGyBQl289sN3aabI927xAk=",
+        "owner": "echasnovski",
+        "repo": "mini.nvim",
+        "rev": "e94945129780fa5b43447ecc0a4b0273892043e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.nvim",
+        "type": "github"
+      }
+    },
     "neotest-golang": {
       "flake": false,
       "locked": {
@@ -401,6 +417,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "latex-snippets-nvim": "latex-snippets-nvim",
+        "mini-nvim": "mini-nvim",
         "neotest-golang": "neotest-golang",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",

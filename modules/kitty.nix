@@ -49,24 +49,24 @@
         "ctrl+shift+]" = "next_tab";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
+        "ctrl+h" = "neighboring_window left";
         "ctrl+j" = "neighboring_window down";
         "ctrl+k" = "neighboring_window up";
-        "ctrl+h" = "neighboring_window left";
         "ctrl+l" = "neighboring_window right";
-        "alt+j" = "kitten relative_resize.py down  3";
-        "alt+k" = "kitten relative_resize.py up    3";
-        "alt+h" = "kitten relative_resize.py left  3";
-        "alt+l" = "kitten relative_resize.py right 3";
+        "ctrl+shift+h" = "kitten relative_resize.py left 3";
+        "ctrl+shift+j" = "kitten relative_resize.py down 3";
+        "ctrl+shift+k" = "kitten relative_resize.py up 3";
+        "ctrl+shift+l" = "kitten relative_resize.py right 3";
       };
       extraConfig = ''
         map --when-focus-on var:IS_NVIM ctrl+j
         map --when-focus-on var:IS_NVIM ctrl+k
         map --when-focus-on var:IS_NVIM ctrl+h
         map --when-focus-on var:IS_NVIM ctrl+l
-        map --when-focus-on var:IS_NVIM alt+j
-        map --when-focus-on var:IS_NVIM alt+k
-        map --when-focus-on var:IS_NVIM alt+h
-        map --when-focus-on var:IS_NVIM alt+l
+        map --when-focus-on var:IS_NVIM ctrl+shift+j
+        map --when-focus-on var:IS_NVIM ctrl+shift+k
+        map --when-focus-on var:IS_NVIM ctrl+shift+h
+        map --when-focus-on var:IS_NVIM ctrl+shift+l
       '';
     };
   };

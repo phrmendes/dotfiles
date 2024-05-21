@@ -48,7 +48,7 @@ keybindings.std = {
 		map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", opts)
 
 		opts.desc = "Keymaps"
-		map("n", "<leader>K", "<cmd>Telescope keymaps<cr>", opts)
+		map("n", "<leader>k", "<cmd>Telescope keymaps<cr>", opts)
 
 		opts.desc = "Generate annotations"
 		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
@@ -169,29 +169,51 @@ keybindings.std = {
 	git = function()
 		local opts = { noremap = true }
 
-		wk.register({ ["<leader>g"] = { name = "git" } })
+		wk.register({ ["<leader>g"] = {
+			name = "git",
+			mode = { "n", "v" },
+		} })
+
+		opts.desc = "LazyGit"
+		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
+
+		opts.desc = "List commits (file)"
+		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
+
+		opts.desc = "List commits (repo)"
+		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
+
+		opts.desc = "Add (file)"
+		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
+
+		opts.desc = "Add (repo)"
+		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
 
 		opts.desc = "Branches"
 		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
 
 		opts.desc = "Commit"
-		map("n", "<leader>gc", function()
-			require("neogit").open({ "commit" })
-		end, opts)
+		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
 
-		opts.desc = "Diff"
-		map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", opts)
+		opts.desc = "Pull"
+		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
 
-		opts.desc = "Neogit"
-		map("n", "<leader>gg", require("neogit").open, opts)
+		opts.desc = "Push"
+		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 
-		opts.desc = "LazyGit"
-		map("n", "<leader>gG", "<cmd>LazyGitCurrentFile<cr>", opts)
+		opts.desc = "Blame"
+		map("n", "<leader>gl", "<cmd>Git blame %<cr>", opts)
+
+		opts.desc = "Show at cursor"
+		map({ "n", "v" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }
 
-		wk.register({ ["<leader>o"] = { name = "obsidian" } })
+		wk.register({ ["<leader>o"] = {
+			name = "obsidian",
+			mode = { "n", "v" },
+		} })
 
 		opts.desc = "Backlinks"
 		map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", opts)
@@ -255,10 +277,10 @@ keybindings.std = {
 		map({ "n", "i", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map({ "n", "i", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map({ "n", "i", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map({ "n", "i", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
-		map({ "n", "i", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
-		map({ "n", "i", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
-		map({ "n", "i", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
+		map({ "n", "i", "t" }, "<c-s-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "i", "t" }, "<c-s-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "i", "t" }, "<c-s-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "i", "t" }, "<c-s-l>", require("smart-splits").resize_right, opts)
 		map({ "n", "i", "t" }, "<c-down>", require("smart-splits").swap_buf_down, opts)
 		map({ "n", "i", "t" }, "<c-left>", require("smart-splits").swap_buf_left, opts)
 		map({ "n", "i", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)

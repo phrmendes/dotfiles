@@ -18,9 +18,9 @@
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;
       walker = getExe pkgs.walker;
-      polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
-      swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
+      dunstctl = "${pkgs.dunst}/bin/dunstctl";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
+      polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
       wallpaper = ../dotfiles/background.png;
       workspacesKeys = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
@@ -120,8 +120,7 @@
           [
             # apps
             "SUPER,V,exec,${copyq} menu"
-            "SUPER,C,exec,${swaync-client} --close-all"
-            "SUPER,N,exec,${swaync-client} --toggle-panel --skip-wait"
+            "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,escape,exec,${powermenu}"
             "SUPER,return,exec,${kitty}"
             "SUPER,space,exec,${walker}"

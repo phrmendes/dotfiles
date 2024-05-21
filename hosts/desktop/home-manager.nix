@@ -14,13 +14,13 @@
 
       blueman-applet.enable = true;
       btop.enable = true;
+      dunst.enable = true;
       gnome-keyring.enable = true;
       hyprland.enable = true;
       nm-applet.enable = true;
       nwg.enable = true;
       satty.enable = true;
       swaylock.enable = true;
-      swaync.enable = true;
       swayosd.enable = true;
       targets.enable = true;
       udiskie.enable = true;

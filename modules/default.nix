@@ -11,6 +11,7 @@
     ./blueman-applet.nix
     ./btop.nix
     ./direnv.nix
+    ./dunst.nix
     ./eza.nix
     ./fzf.nix
     ./gh.nix
@@ -28,7 +29,6 @@
     ./satty.nix
     ./starship.nix
     ./swaylock.nix
-    ./swaync.nix
     ./swayosd.nix
     ./symlinks.nix
     ./targets.nix

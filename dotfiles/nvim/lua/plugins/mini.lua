@@ -3,12 +3,14 @@ require("mini.bufremove").setup()
 require("mini.clue").setup()
 require("mini.cursorword").setup()
 require("mini.fuzzy").setup()
+require("mini.git").setup()
 require("mini.indentscope").setup()
 require("mini.jump").setup()
 require("mini.operators").setup()
 require("mini.pairs").setup()
 require("mini.sessions").setup()
 require("mini.starter").setup()
+require("mini.statusline").setup()
 require("mini.tabline").setup()
 require("mini.trailspace").setup()
 
@@ -16,7 +18,6 @@ require("mini.diff").setup({ view = { style = "sign" } })
 require("mini.jump2d").setup({ mappings = { start_jumping = "<leader>j" } })
 require("mini.notify").setup({ lsp_progress = { enable = false } })
 require("mini.splitjoin").setup({ mappings = { toggle = "T" } })
-require("mini.statusline").setup()
 
 require("mini.ai").setup({
 	n_lines = 500,

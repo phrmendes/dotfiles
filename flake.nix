@@ -43,6 +43,11 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
+    mini-nvim = {
+      flake = false;
+      url = "github:echasnovski/mini.nvim";
+    };
+
     neotest-golang = {
       flake = false;
       url = "github:fredrikaverpil/neotest-golang";

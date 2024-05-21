@@ -1,1 +1,5 @@
-require("dressing").setup()
+require("dressing").setup({
+	input = {
+		border = "none",
+	},
+})

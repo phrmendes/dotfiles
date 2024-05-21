@@ -13,6 +13,7 @@
       userEmail = parameters.email;
       userName = parameters.name;
       extraConfig = {
+        merge.tool = "nvimdiff";
         init.defaultBranch = "main";
         pull.rebase = true;
         push.autoSetupRemote = true;

@@ -8,7 +8,7 @@
   in
     {
       image = ../../dotfiles/background.png;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
       polarity = "dark";
       fonts = {
         sizes = {

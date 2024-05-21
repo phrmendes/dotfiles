@@ -9,27 +9,11 @@ end
 
 require("lsp_signature").setup({
 	handler_opts = {
-		border = "none",
+		border = "single",
 	},
 })
 
 require("neodev").setup({ library = { plugins = { "nvim-dap-ui", "neotest" }, types = true } })
-
-require("actions-preview").setup({
-	telescope = {
-		sorting_strategy = "ascending",
-		layout_strategy = "vertical",
-		layout_config = {
-			width = 0.8,
-			height = 0.9,
-			prompt_position = "top",
-			preview_cutoff = 20,
-			preview_height = function(_, _, max_lines)
-				return max_lines - 15
-			end,
-		},
-	},
-})
 
 vim.diagnostic.config({
 	virtual_text = true,

@@ -108,20 +108,6 @@ keybindings.std = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
-	executor = function()
-		local opts = { noremap = true }
-
-		wk.register({ ["<leader>c"] = { name = "commands" } })
-
-		opts.desc = "Run"
-		map("n", "<leader>cr", require("executor").commands.run, opts)
-
-		opts.desc = "Detais"
-		map("n", "<leader>cd", require("executor").commands.toggle_detail, opts)
-
-		opts.desc = "Set command"
-		map("n", "<leader>cs", require("executor").commands.set_command, opts)
-	end,
 	file_explorer = function()
 		local files = require("mini.files")
 		local opts = { noremap = true }
@@ -258,17 +244,14 @@ keybindings.std = {
 		opts.desc = "Select env"
 		map("n", "<leader>re", "<cmd>Telescope rest select_env<cr>", opts)
 	end,
-	slime = function()
+	toggleterm = function()
 		local opts = { noremap = true, silent = true }
 
-		opts.desc = "SLIME: send to REPL"
-		map({ "n" }, "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
+		opts.desc = "Send line to terminal"
+		map("n", "<c-c><c-c>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
 
-		opts.desc = "SLIME: send to REPL"
-		map({ "v" }, "<c-c><c-c>", "<Plug>SlimeRegionSend", opts)
-
-		opts.desc = "SLIME: reconfigure"
-		map({ "n", "v" }, "<c-c><c-r>", "<Plug>SlimeConfig", opts)
+		opts.desc = "Send lines to terminal"
+		map("v", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
 	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
@@ -342,7 +325,7 @@ keybindings.lsp = function(event)
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
 	opts.desc = "Code actions"
-	map({ "n", "v" }, "<leader>la", require("actions-preview").code_actions, opts)
+	map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
 
 	opts.desc = "Symbols (document)"
 	map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)

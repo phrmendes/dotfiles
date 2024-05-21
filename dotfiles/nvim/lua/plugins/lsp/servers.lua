@@ -8,6 +8,11 @@ local flags = {
 	debounce_text_changes = 150,
 }
 
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
+}
+
 local servers = {
 	ansiblels = {},
 	bashls = {},
@@ -111,6 +116,7 @@ for key, value in pairs(servers) do
 
 		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
 		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
+		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
 		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)

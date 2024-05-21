@@ -17,12 +17,9 @@
         }
 
         #box {
-          background: #${config.lib.stylix.colors.base00};
+          background: #${config.lib.stylix.colors.base01};
           padding: 10px;
           border-radius: 2px;
-        }
-
-        #searchwrapper {
         }
 
         #search,
@@ -33,7 +30,7 @@
           box-shadow: none;
           border-bottom: none;
           border: none;
-          background: #${config.lib.stylix.colors.base00};
+          background: #${config.lib.stylix.colors.base01};
           padding-left: 10px;
           padding-right: 10px;
           padding-top: 0px;
@@ -62,7 +59,7 @@
         }
 
         row:selected {
-          background: #${config.lib.stylix.colors.base01};
+          background: #${config.lib.stylix.colors.base02};
         }
 
         .item {

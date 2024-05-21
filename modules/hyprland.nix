@@ -119,11 +119,12 @@
         bind =
           [
             # apps
-            "SUPER,V,exec,${copyq} menu"
             "SUPER,C,exec,${dunstctl} close-all"
+            "SUPER,V,exec,${copyq} menu"
             "SUPER,escape,exec,${powermenu}"
             "SUPER,return,exec,${kitty}"
             "SUPER,space,exec,${walker}"
+            "SUPER SHIFT,T,exec,${dunstctl} set-paused toggle"
             '',print,exec,${grim} -g "$(${slurp})" - | ${satty} --filename -''
             # general operations
             "SUPER,F,togglefloating"

@@ -44,17 +44,12 @@
       };
     };
 
-    displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        theme = "Elegant";
-        settings = {
-          General.Numlock = true;
-          Theme = {
-            Font = "Fira Sans";
-            FacesDir = "~/";
-          };
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          inherit (parameters) user;
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         };
       };
     };

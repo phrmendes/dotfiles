@@ -84,7 +84,6 @@ in {
         libreoffice
         mpv
         neovide
-        nwg-bar
         obsidian
         pavucontrol
         phockup

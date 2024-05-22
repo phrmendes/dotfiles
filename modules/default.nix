@@ -23,7 +23,6 @@
     ./navi.nix
     ./neovim.nix
     ./nm-applet.nix
-    ./nwg.nix
     ./packages.nix
     ./pyenv.nix
     ./satty.nix
@@ -36,6 +35,7 @@
     ./udiskie.nix
     ./walker.nix
     ./waybar.nix
+    ./wlogout.nix
     ./yazi.nix
     ./zellij.nix
     ./zoxide.nix

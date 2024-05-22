@@ -13,7 +13,7 @@
       grim = getExe pkgs.grim;
       kitty = getExe pkgs.kitty;
       playerctl = getExe pkgs.playerctl;
-      powermenu = getExe pkgs.nwg-bar;
+      powermenu = getExe pkgs.wlogout;
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
       swaybg = getExe pkgs.swaybg;

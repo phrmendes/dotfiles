@@ -18,7 +18,6 @@
       gnome-keyring.enable = true;
       hyprland.enable = true;
       nm-applet.enable = true;
-      nwg.enable = true;
       satty.enable = true;
       swaylock.enable = true;
       swayosd.enable = true;
@@ -26,6 +25,7 @@
       udiskie.enable = true;
       walker.enable = true;
       waybar.enable = true;
+      wlogout.enable = true;
     };
   };
 }

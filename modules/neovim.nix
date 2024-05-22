@@ -106,7 +106,7 @@
           nvim-ts-context-commentstring
           nvim-web-devicons
           otter-nvim
-          overseer-nvim
+          executor-nvim
           plenary-nvim
           quarto-nvim
           rest-nvim

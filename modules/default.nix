@@ -27,6 +27,7 @@
     ./pyenv.nix
     ./satty.nix
     ./starship.nix
+    ./swayidle.nix
     ./swaylock.nix
     ./swayosd.nix
     ./symlinks.nix

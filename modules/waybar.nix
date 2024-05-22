@@ -18,16 +18,26 @@
           layer = "top";
           position = "top";
           height = 30;
-          spacing = 15;
+          spacing = 5;
           modules-left = ["hyprland/workspaces"];
-          modules-center = ["clock"];
+          modules-center = ["hyprland/window"];
           modules-right = [
+            "idle_inhibitor"
+            "custom/separator"
             "hyprland/language"
+            "custom/separator"
             "cpu"
+            "custom/separator"
             "memory"
+            "custom/separator"
             "pulseaudio#input"
+            "custom/separator"
             "pulseaudio#output"
+            "custom/separator"
             "tray"
+            "custom/separator"
+            "clock"
+            "custom/spacer"
           ];
           tray = {
             icon-size = 15;
@@ -35,23 +45,50 @@
           };
           cpu = {
             interval = 10;
-            format = "<tt> {}%</tt>";
+            format = "<tt>  {}%</tt>";
             max-length = 10;
           };
           memory = {
             interval = 30;
-            format = "<tt>󰘚 {}%</tt>";
+            format = "󰘚<tt>  {}%</tt>";
             max-length = 10;
           };
           clock = {
-            format = "<tt> {:%H:%M}</tt>";
+            format = "<tt>{:%H:%M}</tt>";
             interval = 60;
             tooltip = true;
-            tooltip-format = "<tt>{:%A, %d %B %Y (%R)}</tt>";
+            tooltip-format = "{:%A, %d %b %Y}";
+          };
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = "";
+              deactivated = "";
+              tooltip-format-activated = "Active";
+              tooltip-format-deactivated = "Inactive";
+            };
+          };
+          "custom/separator" = {
+            format = "";
+            interval = "once";
+            tooltip = false;
+          };
+          "custom/spacer" = {
+            format = " ";
+            interval = "once";
+            tooltip = false;
+          };
+          "hyprland/language" = {
+            format = "󰌌<tt>  {}</tt>";
+            format-en = "en-US";
+            format-pt = "pt-BR";
+          };
+          "hyprland/window" = {
+            format = "<tt>  {}</tt>";
+            max-length = 50;
           };
           "hyprland/workspaces" = {
             format = "<tt>{name}</tt>";
-            format-window-separator = "|";
             all-outputs = true;
             on-click = "activate";
             on-scroll-up = "hyprctl dispatch workspace e+1";
@@ -60,14 +97,9 @@
               "HDMI-A-1" = 9;
             };
           };
-          "hyprland/language" = {
-            format = "<tt>󰌌 {}</tt>";
-            format-en = "English (US)";
-            format-br = "Portuguese (BR)";
-          };
           "pulseaudio#input" = {
-            format-source = "<tt>󰍬 {volume}%</tt>";
-            format-source-muted = "<tt>󰍭  (muted)</tt>";
+            format-source = "󰍬<tt>  {volume}%</tt>";
+            format-source-muted = "󰍭<tt>  (muted)</tt>";
             format = "<tt>{format_source}</tt>";
             scroll-step = 1;
             smooth-scrolling-threshold = 1;
@@ -78,8 +110,8 @@
             on-scroll-down = "pactl set-source-volume @DEFAULT_SOURCE@ -1%";
           };
           "pulseaudio#output" = {
-            format = "<tt>{icon} {volume}%</tt>";
-            format-muted = "<tt>󰝟 (muted)</tt>";
+            format = "{icon}<tt>  {volume}%</tt>";
+            format-muted = "󰝟<tt>  (muted)</tt>";
             max-volume = 100;
             scroll-step = 2;
             smooth-scrolling-threshold = 1;

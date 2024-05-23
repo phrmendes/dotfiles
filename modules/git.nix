@@ -2,6 +2,7 @@
   config,
   lib,
   parameters,
+  pkgs,
   ...
 }: {
   options.git.enable = lib.mkEnableOption "enable git";
@@ -18,10 +19,6 @@
         pull.rebase = true;
         push.autoSetupRemote = true;
         http.sslVerify = true;
-        core.excludeFiles = builtins.toFile "ignore" ''
-          .DS_Store
-          Session.vim
-        '';
       };
       aliases = {
         A = "add .";
@@ -36,6 +33,10 @@
         rc = "rebase --continue";
         st = "status";
       };
+      ignores = [
+        ".DS_Store"
+        "Session.vim"
+      ];
     };
   };
 }

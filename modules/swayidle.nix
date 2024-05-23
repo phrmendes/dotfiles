@@ -10,7 +10,6 @@
     services.swayidle = let
       swaylock = "${lib.getExe pkgs.swaylock}";
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-      systemctl = "${pkgs.systemd}/bin/systemctl";
     in {
       enable = true;
       events = [
@@ -32,10 +31,6 @@
         {
           timeout = 360;
           command = "${swaylock}";
-        }
-        {
-          timeout = 420;
-          command = "${systemctl} suspend";
         }
       ];
     };

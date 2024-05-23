@@ -190,6 +190,12 @@ keybindings.std = {
 		opts.desc = "Blame"
 		map("n", "<leader>gl", "<cmd>Git blame %<cr>", opts)
 
+		opts.desc = "Diff"
+		map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", opts)
+
+		opts.desc = "File history"
+		map("n", "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", opts)
+
 		opts.desc = "Show at cursor"
 		map({ "n", "v" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
 	end,
@@ -284,7 +290,7 @@ keybindings.std = {
 		map("n", "<leader><tab>G", "<cmd>tablast<cr>", opts)
 
 		opts.desc = "Close tab"
-		map("n", "<leader><tab>d", "<cmd>tabclose<cr>", opts)
+		map("n", "<leader><tab>q", "<cmd>tabclose<cr>", opts)
 
 		opts.desc = "First tab"
 		map("n", "<leader><tab>g", "<cmd>tabfirst<cr>", opts)

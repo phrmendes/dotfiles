@@ -68,7 +68,9 @@
           cmp_luasnip
           conform-nvim
           copilot-vim
+          diffview-nvim
           dressing-nvim
+          executor-nvim
           friendly-snippets
           gh.gopher-nvim
           gh.latex-snippets-nvim
@@ -106,7 +108,6 @@
           nvim-ts-context-commentstring
           nvim-web-devicons
           otter-nvim
-          executor-nvim
           plenary-nvim
           quarto-nvim
           rest-nvim

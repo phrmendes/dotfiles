@@ -11,6 +11,7 @@ M.augroups = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),
 		highlight = augroup("UserLspHighlight", { clear = false }),
+		fs = augroup("UserFileSystem", { clear = false }),
 	},
 }
 

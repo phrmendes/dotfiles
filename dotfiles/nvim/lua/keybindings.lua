@@ -86,8 +86,12 @@ keybindings.std = {
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
-		map("n", "N", [[v:searchforward ? 'N' : 'n']], opts)
-		map("n", "n", [[v:searchforward ? 'n' : 'N']], opts)
+		map("n", "N", "'nN'[v:searchforward].'zv'", opts)
+		map("o", "N", "'nN'[v:searchforward]", opts)
+		map("x", "N", "'nN'[v:searchforward]", opts)
+		map("n", "n", "'Nn'[v:searchforward].'zv'", opts)
+		map("o", "n", "'Nn'[v:searchforward]", opts)
+		map("x", "n", "'Nn'[v:searchforward]", opts)
 		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
 		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
 	end,
@@ -132,7 +136,7 @@ keybindings.std = {
 
 		opts.desc = "Explorer (cwd)"
 		map("n", "<leader>E", function()
-			explorer(vim.loop.cwd())
+			explorer(vim.uv.cwd())
 		end, opts)
 	end,
 	find = function()
@@ -256,22 +260,66 @@ keybindings.std = {
 		opts.desc = "Select env"
 		map("n", "<leader>hs", "<cmd>Telescope rest select_env<cr>", opts)
 	end,
-	toggleterm = function()
-		local opts = { noremap = true, silent = true }
+	refactor = function()
+		local opts = { noremap = true }
 
-		opts.desc = "Send line to terminal"
-		map("n", "<c-c><c-c>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
+		opts.desc = "Extract function"
+		map("x", "<leader>rf", function()
+			require("refactoring").refactor("Extract Function")
+		end, opts)
 
-		opts.desc = "Send lines to terminal"
-		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
+		opts.desc = "Extract function to file"
+		map("x", "<leader>rF", function()
+			require("refactoring").refactor("Extract Function To File")
+		end, opts)
+
+		opts.desc = "Extract variable"
+		map("x", "<leader>rv", function()
+			require("refactoring").refactor("Extract Variable")
+		end, opts)
+
+		opts.desc = "Inline function"
+		map("n", "<leader>rI", function()
+			require("refactoring").refactor("Inline Function")
+		end, opts)
+
+		opts.desc = "Inline variable"
+		map({ "n", "x" }, "<leader>ri", function()
+			require("refactoring").refactor("Inline Variable")
+		end, opts)
+
+		opts.desc = "Extract block"
+		map("n", "<leader>rb", function()
+			require("refactoring").refactor("Extract Block")
+		end, opts)
+
+		opts.desc = "Extract block to file"
+		map("n", "<leader>rB", function()
+			require("refactoring").refactor("Extract Block To File")
+		end, opts)
+
+		opts.desc = "Select refactor"
+		vim.keymap.set({ "n", "x" }, "<leader>rr", function()
+			require("telescope").extensions.refactoring.refactors()
+		end, opts)
+
+		opts.desc = "Print variable"
+		map({ "x", "n" }, "<leader>rp", function()
+			require("refactoring").debug.print_var()
+		end, opts)
+
+		opts.desc = "Cleanup"
+		map("n", "<leader>rc", function()
+			require("refactoring").debug.cleanup({})
+		end, opts)
 	end,
 	sniprun = function()
 		local opts = { noremap = true, silent = true }
 
 		opts.desc = "SnipRun"
-		map("n", "<leader>r", "<Plug>SnipRunOperator", opts)
-		map("n", "<leader>rr", "<Plug>SnipRun", opts)
-		map("x", "<leader>r", "<Plug>SnipRun", opts)
+		map("n", "<localleader>r", "<Plug>SnipRunOperator", opts)
+		map("n", "<localleader>rr", "<Plug>SnipRun", opts)
+		map("x", "<localleader>r", "<Plug>SnipRun", opts)
 
 		opts.desc = "Close SnipRun"
 		map("n", "<localleader>q", "<Plug>SnipClose", opts)
@@ -328,6 +376,15 @@ keybindings.std = {
 
 		opts.desc = "New tab"
 		map("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
+	end,
+	toggleterm = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = "Send line to terminal"
+		map("n", "<c-c><c-c>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
+
+		opts.desc = "Send lines to terminal"
+		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
 	end,
 	yanky = function()
 		local opts = { noremap = true }
@@ -390,6 +447,7 @@ keybindings.std = {
 }
 
 keybindings.lsp = function(event)
+	local client = vim.lsp.get_client_by_id(event.data.client_id)
 	local opts = { noremap = true, buffer = event.buf }
 
 	wk.register({ ["<leader>c"] = {
@@ -439,6 +497,13 @@ keybindings.lsp = function(event)
 
 	opts.desc = "Hover"
 	map("n", "<leader>ck", vim.lsp.buf.hover, opts)
+
+	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+		opts.desc = "Inlay hints"
+		map("n", "<leader>ch", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, opts)
+	end
 end
 
 keybindings.dap = function(event)

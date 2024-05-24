@@ -119,6 +119,7 @@
         with luaPkgs; [
           jsregexp
           lua-curl
+          luv
           magick
           mimetypes
           nvim-nio

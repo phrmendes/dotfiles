@@ -136,7 +136,7 @@ keybindings.std = {
 
 		opts.desc = "Explorer (cwd)"
 		map("n", "<leader>E", function()
-			explorer(vim.uv.cwd())
+			explorer(vim.loop.cwd())
 		end, opts)
 	end,
 	find = function()
@@ -621,7 +621,7 @@ keybindings.tests = function(event)
 
 	opts.desc = "Test (cwd)"
 	map("n", "<leader>tw", function()
-		require("neotest").run.run(vim.uv.cwd())
+		require("neotest").run.run(vim.loop.cwd())
 	end, opts)
 end
 

@@ -1,11 +1,11 @@
 require("zen-mode").setup({
 	plugins = {
 		twilight = {
-			enabled = false,
+			enabled = true,
 		},
 		kitty = {
 			enabled = true,
-			font = "+2",
+			font = "+3",
 		},
 	},
 })

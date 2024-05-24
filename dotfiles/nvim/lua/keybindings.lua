@@ -118,6 +118,41 @@ keybindings.std = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
+	dial = function()
+		local opts = { noremap = true, silent = true, desc = "Dial" }
+
+		map("n", "<C-a>", function()
+			require("dial.map").manipulate("increment", "normal")
+		end, opts)
+
+		map("n", "<C-x>", function()
+			require("dial.map").manipulate("decrement", "normal")
+		end, opts)
+
+		map("n", "g<C-a>", function()
+			require("dial.map").manipulate("increment", "gnormal")
+		end, opts)
+
+		map("n", "g<C-x>", function()
+			require("dial.map").manipulate("decrement", "gnormal")
+		end, opts)
+
+		map("v", "<C-a>", function()
+			require("dial.map").manipulate("increment", "visual")
+		end, opts)
+
+		map("v", "<C-x>", function()
+			require("dial.map").manipulate("decrement", "visual")
+		end, opts)
+
+		map("v", "g<C-a>", function()
+			require("dial.map").manipulate("increment", "gvisual")
+		end, opts)
+
+		map("v", "g<C-x>", function()
+			require("dial.map").manipulate("decrement", "gvisual")
+		end, opts)
+	end,
 	file_explorer = function()
 		local files = require("mini.files")
 		local opts = { noremap = true }
@@ -299,7 +334,7 @@ keybindings.std = {
 		end, opts)
 
 		opts.desc = "Select refactor"
-		vim.keymap.set({ "n", "x" }, "<leader>rr", function()
+		map({ "n", "x" }, "<leader>rr", function()
 			require("telescope").extensions.refactoring.refactors()
 		end, opts)
 
@@ -376,6 +411,9 @@ keybindings.std = {
 
 		opts.desc = "New tab"
 		map("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
+
+		opts.desc = "Edit in tab"
+		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
 	toggleterm = function()
 		local opts = { noremap = true, silent = true }
@@ -387,61 +425,28 @@ keybindings.std = {
 		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
 	end,
 	yanky = function()
-		local opts = { noremap = true }
+		local opts = { noremap = true, desc = "Yanky" }
 
 		wk.register({ ["<leader>y"] = { name = "yank" } })
 
-		opts.desc = "History"
 		map("n", "<leader>yy", "<cmd>YankyRingHistory<cr>", opts)
-
-		opts.desc = "Clear history"
 		map("n", "<leader>yc", "<cmd>YankyClearHistory<cr>", opts)
-
-		opts.desc = "Yank text"
 		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
-
-		opts.desc = "Put yanked text after cursor"
 		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-
-		opts.desc = "Put yanked text before cursor"
 		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-
-		opts.desc = "Put yanked text after selection"
 		map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-
-		opts.desc = "Put yanked text before selection"
 		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
-
-		opts.desc = "Previous yanked entry"
 		map("n", "]y", "<Plug>(YankyPreviousEntry)", opts)
-
-		opts.desc = "Cycle backward through yanked text"
 		map("n", "[y", "<Plug>(YankyNextEntry)", opts)
-
-		opts.desc = "Put yanked text after cursor (linewise)"
 		map("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", opts)
 		map("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)", opts)
-
-		opts.desc = "Put yanked text before cursor (linewise)"
 		map("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
 		map("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
-
-		opts.desc = "Put yanked text after cursor and indent right"
 		map("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)", opts)
-
-		opts.desc = "Put yanked text after cursor and indent left"
 		map("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", opts)
-
-		opts.desc = "Put yanked text before cursor and indent right"
 		map("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", opts)
-
-		opts.desc = "Put yanked text before cursor and indent left"
 		map("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", opts)
-
-		opts.desc = "Put yanked text after applying a filer"
 		map("n", "=p", "<Plug>(YankyPutAfterFilter)", opts)
-
-		opts.desc = "Put yanked text before applying a filer"
 		map("n", "=P", "<Plug>(YankyPutBeforeFilter)", opts)
 	end,
 }

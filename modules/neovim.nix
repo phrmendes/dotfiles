@@ -39,6 +39,7 @@
           cmp_luasnip
           conform-nvim
           copilot-vim
+          dial-nvim
           diffview-nvim
           dressing-nvim
           executor-nvim

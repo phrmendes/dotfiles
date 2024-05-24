@@ -1,6 +1,7 @@
 require("plugins.colorizer")
 require("plugins.completion")
 require("plugins.dap")
+require("plugins.dial")
 require("plugins.executor")
 require("plugins.gopher")
 require("plugins.jupytext")

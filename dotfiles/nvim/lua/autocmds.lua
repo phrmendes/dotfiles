@@ -1,5 +1,4 @@
 local autocmd = vim.api.nvim_create_autocmd
-local open = require("utils").open
 local augroups = require("utils").augroups
 
 autocmd("TermOpen", {
@@ -28,7 +27,7 @@ autocmd("BufEnter", {
 		local filename = vim.api.nvim_buf_get_name(0)
 		filename = vim.fn.shellescape(filename)
 
-		open(filename)
+		require("utils").open(filename)
 
 		vim.cmd.redraw()
 	end,

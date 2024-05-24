@@ -332,8 +332,13 @@ keybindings.std = {
 	yanky = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Yank history"
-		map("n", "<leader>y", "<cmd>Telescope yank_history<cr>", opts)
+		wk.register({ ["<leader>y"] = { name = "yank" } })
+
+		opts.desc = "History"
+		map("n", "<leader>yy", "<cmd>YankyRingHistory<cr>", opts)
+
+		opts.desc = "Clear history"
+		map("n", "<leader>yc", "<cmd>YankyClearHistory<cr>", opts)
 
 		opts.desc = "Yank text"
 		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)

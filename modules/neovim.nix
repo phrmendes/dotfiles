@@ -37,7 +37,6 @@
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
-          cmp_yanky
           conform-nvim
           copilot-vim
           diffview-nvim

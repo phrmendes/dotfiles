@@ -52,7 +52,6 @@ cmp.setup({
 			symbol_map = {
 				otter = "🦦",
 				["vim-dadbod-completion"] = "",
-				["cmp_yanky"] = "󰆒",
 			},
 		}),
 	},
@@ -61,7 +60,6 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "emoji" },
-		{ name = "cmp_yanky" },
 		{ name = "buffer" },
 	}),
 })

@@ -255,8 +255,8 @@ keybindings.std = {
 		opts.desc = "Backlinks"
 		map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", opts)
 
-		opts.desc = "Create note"
-		map("n", "<leader>oc", "<cmd>ObsidianNew<cr>", opts)
+		opts.desc = "New note"
+		map("n", "<leader>on", "<cmd>ObsidianNew<cr>", opts)
 
 		opts.desc = "Extract to new note"
 		map("x", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
@@ -284,6 +284,7 @@ keybindings.std = {
 	end,
 	rest = function()
 		local opts = { noremap = true }
+
 		wk.register({ ["<leader>h"] = { name = "http client" } })
 
 		opts.desc = "Run request under cursor"
@@ -297,6 +298,8 @@ keybindings.std = {
 	end,
 	refactor = function()
 		local opts = { noremap = true }
+
+		wk.register({ ["<leader>r"] = { name = "refactor" } })
 
 		opts.desc = "Extract function"
 		map("x", "<leader>rf", function()

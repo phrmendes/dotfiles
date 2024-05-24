@@ -52,6 +52,7 @@ cmp.setup({
 			symbol_map = {
 				otter = "🦦",
 				["vim-dadbod-completion"] = "",
+				["cmp_yanky"] = "󰆒",
 			},
 		}),
 	},

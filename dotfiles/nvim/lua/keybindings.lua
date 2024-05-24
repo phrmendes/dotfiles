@@ -292,6 +292,17 @@ keybindings.std = {
 		map({ "n", "i", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)
 		map({ "n", "i", "t" }, "<c-up>", require("smart-splits").swap_buf_up, opts)
 	end,
+	session = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>s"] = { name = "sessions" } })
+
+		opts.desc = "Create"
+		map("n", "<leader>ss", "<cmd>mksession<cr>", opts)
+
+		opts.desc = "Choose"
+		map("n", "<leader>sc", require("mini.sessions").select, opts)
+	end,
 	tabs = function()
 		local opts = { noremap = true }
 

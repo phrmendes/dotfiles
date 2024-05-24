@@ -3,11 +3,16 @@ local augroups = require("utils").augroups
 
 autocmd("TermOpen", {
 	group = augroups.term,
-	pattern = { "*" },
+	pattern = "*",
 	callback = function()
 		vim.wo.number = false
 		vim.wo.relativenumber = false
-		vim.api.nvim_command("startinsert")
+
+		vim.defer_fn(function()
+			if vim.api.nvim_buf_get_option(0, "buftype") == "terminal" then
+				vim.cmd([[startinsert]])
+			end
+		end, 100)
 	end,
 })
 

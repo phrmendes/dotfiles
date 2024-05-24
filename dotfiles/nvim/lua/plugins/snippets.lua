@@ -20,11 +20,11 @@ if vim.fn.has("mac") == 0 then
 	})
 end
 
-local snippets = {
+local markdown = {
 	snippet({ trig = "im", name = "inline math" }, "$${1:${TM_SELECTED_TEXT}}$"),
 	snippet({ trig = "bm", name = "block math" }, "$$\n${1:${TM_SELECTED_TEXT}}\n$$"),
 	snippet({ trig = "ltex", name = "enable ltex" }, "<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"),
 }
 
-luasnip.add_snippets("markdown", snippets)
+luasnip.add_snippets("markdown", markdown)
 luasnip.filetype_extend("markdown", { "quarto" })

@@ -60,6 +60,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "emoji" },
+		{ name = "cmp_yanky" },
 		{ name = "buffer" },
 	}),
 })

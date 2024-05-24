@@ -33,13 +33,16 @@ keybindings.std = {
 		map("n", "Q", "@q", opts)
 
 		opts.desc = "Replay macro (visual)"
-		map("v", "Q", "<cmd>norm @q<cr>", opts)
+		map("x", "Q", "<cmd>norm @q<cr>", opts)
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
 		opts.desc = "Split (V)"
 		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
+
+		opts.desc = "Command history"
+		map("n", "<leader>:", "<cmd>Telescope command_history<cr>", opts)
 
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
@@ -160,7 +163,7 @@ keybindings.std = {
 
 		wk.register({ ["<leader>g"] = {
 			name = "git",
-			mode = { "n", "v" },
+			mode = { "n", "x" },
 		} })
 
 		opts.desc = "LazyGit"
@@ -200,14 +203,14 @@ keybindings.std = {
 		map("n", "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", opts)
 
 		opts.desc = "Show at cursor"
-		map({ "n", "v" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
+		map({ "n", "x" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }
 
 		wk.register({ ["<leader>o"] = {
 			name = "obsidian",
-			mode = { "n", "v" },
+			mode = { "n", "x" },
 		} })
 
 		opts.desc = "Backlinks"
@@ -217,16 +220,16 @@ keybindings.std = {
 		map("n", "<leader>oc", "<cmd>ObsidianNew<cr>", opts)
 
 		opts.desc = "Extract to new note"
-		map("v", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
+		map("x", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
 
 		opts.desc = "Add link"
-		map("v", "<leader>ol", "<cmd>ObsidianLink<cr>", opts)
+		map("x", "<leader>oa", "<cmd>ObsidianLink<cr>", opts)
 
 		opts.desc = "Add link to new file"
-		map("v", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
+		map("x", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
 
 		opts.desc = "Search notes"
-		map("n", "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", opts)
+		map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", opts)
 
 		opts.desc = "Paste image"
 		map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", opts)
@@ -234,24 +237,24 @@ keybindings.std = {
 		opts.desc = "Rename note"
 		map("n", "<leader>or", "<cmd>ObsidianRename<cr>", opts)
 
-		opts.desc = "Search in notes"
-		map("n", "<leader>os", "<cmd>ObsidianSearch<cr>", opts)
+		opts.desc = "Live grep (notes)"
+		map("n", "<leader>og", "<cmd>ObsidianSearch<cr>", opts)
 
 		opts.desc = "Tags"
 		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
 	end,
 	rest = function()
 		local opts = { noremap = true }
-		wk.register({ ["<leader>r"] = { name = "rest client" } })
+		wk.register({ ["<leader>h"] = { name = "http client" } })
 
 		opts.desc = "Run request under cursor"
-		map("n", "<leader>rr", "<cmd>Rest run<cr>", opts)
+		map("n", "<leader>hr", "<cmd>Rest run<cr>", opts)
 
 		opts.desc = "Re-run last request"
-		map("n", "<leader>rl", "<cmd>Rest run last<cr>", opts)
+		map("n", "<leader>hl", "<cmd>Rest run last<cr>", opts)
 
 		opts.desc = "Select env"
-		map("n", "<leader>re", "<cmd>Telescope rest select_env<cr>", opts)
+		map("n", "<leader>hs", "<cmd>Telescope rest select_env<cr>", opts)
 	end,
 	toggleterm = function()
 		local opts = { noremap = true, silent = true }
@@ -260,7 +263,18 @@ keybindings.std = {
 		map("n", "<c-c><c-c>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
 
 		opts.desc = "Send lines to terminal"
-		map("v", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
+		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
+	end,
+	sniprun = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = "SnipRun"
+		map("n", "<leader>r", "<Plug>SnipRunOperator", opts)
+		map("n", "<leader>rr", "<Plug>SnipRun", opts)
+		map("x", "<leader>r", "<Plug>SnipRun", opts)
+
+		opts.desc = "Close SnipRun"
+		map("n", "<localleader>q", "<Plug>SnipClose", opts)
 	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
@@ -304,85 +318,141 @@ keybindings.std = {
 		opts.desc = "New tab"
 		map("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
 	end,
+	yanky = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Yank history"
+		map("n", "<leader>y", "<cmd>Telescope yank_history<cr>", opts)
+
+		opts.desc = "Yank text"
+		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
+
+		opts.desc = "Put yanked text after cursor"
+		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
+
+		opts.desc = "Put yanked text before cursor"
+		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
+
+		opts.desc = "Put yanked text after selection"
+		map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
+
+		opts.desc = "Put yanked text before selection"
+		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
+
+		opts.desc = "Previous yanked entry"
+		map("n", "]y", "<Plug>(YankyPreviousEntry)", opts)
+
+		opts.desc = "Cycle backward through yanked text"
+		map("n", "[y", "<Plug>(YankyNextEntry)", opts)
+
+		opts.desc = "Put yanked text after cursor (linewise)"
+		map("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", opts)
+		map("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)", opts)
+
+		opts.desc = "Put yanked text before cursor (linewise)"
+		map("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
+		map("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
+
+		opts.desc = "Put yanked text after cursor and indent right"
+		map("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)", opts)
+
+		opts.desc = "Put yanked text after cursor and indent left"
+		map("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", opts)
+
+		opts.desc = "Put yanked text before cursor and indent right"
+		map("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", opts)
+
+		opts.desc = "Put yanked text before cursor and indent left"
+		map("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", opts)
+
+		opts.desc = "Put yanked text after applying a filer"
+		map("n", "=p", "<Plug>(YankyPutAfterFilter)", opts)
+
+		opts.desc = "Put yanked text before applying a filer"
+		map("n", "=P", "<Plug>(YankyPutBeforeFilter)", opts)
+	end,
 }
 
 keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	wk.register({ ["<leader>l"] = {
-		name = "LSP",
+	wk.register({ ["<leader>c"] = {
+		name = "code",
 		buffer = event.buf,
-		mode = { "n", "v" },
+		mode = { "n", "x" },
 	} })
 
-	opts.desc = "LSP: rename"
+	opts.desc = "Rename"
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
-	opts.desc = "LSP: go to declaration"
+	opts.desc = "Go to declaration"
 	map("n", "gD", vim.lsp.buf.declaration, opts)
 
-	opts.desc = "LSP: go to references"
+	opts.desc = "Go to references"
 	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
-	opts.desc = "LSP: go to definition"
+	opts.desc = "Go to definition"
 	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
-	opts.desc = "LSP: go to type definition"
+	opts.desc = "Go to type definition"
 	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 
-	opts.desc = "LSP: go to implementations"
+	opts.desc = "Go to implementations"
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-	opts.desc = "Code actions"
-	map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
+	opts.desc = "Signature help"
+	map("n", "gK", require("lsp_signature").toggle_float_win, opts)
+
+	opts.desc = "Actions"
+	map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+	opts.desc = "Info"
+	map("n", "<leader>ci", "<cmd>LspInfo<cr>", opts)
 
 	opts.desc = "Symbols (document)"
-	map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+	map("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 	opts.desc = "Symbols (workspace)"
-	map("n", "<leader>lw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
+	map("n", "<leader>cS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
 
 	opts.desc = "Diagnostics"
-	map("n", "<leader>ld", "<cmd>Telescope diagnostics<cr>", opts)
+	map("n", "<leader>cd", "<cmd>Telescope diagnostics<cr>", opts)
 
 	opts.desc = "Floating diagnostics"
-	map("n", "<leader>lF", vim.diagnostic.open_float, opts)
-
-	opts.desc = "Signature help"
-	map("n", "<leader>lh", require("lsp_signature").toggle_float_win, opts)
+	map("n", "<leader>cf", vim.diagnostic.open_float, opts)
 
 	opts.desc = "Hover"
-	map("n", "<leader>lk", vim.lsp.buf.hover, opts)
+	map("n", "<leader>ck", vim.lsp.buf.hover, opts)
 end
 
 keybindings.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	wk.register({ ["<leader>d"] = {
-		name = "DAP",
+		name = "debugger",
 		buffer = event.buf,
-		mode = { "n", "v" },
+		mode = { "n", "x" },
 	} })
 
-	opts.desc = "DAP: step into"
+	opts.desc = "Step into"
 	map("n", "<f1>", require("dap").step_into, opts)
 
-	opts.desc = "DAP: step out"
+	opts.desc = "Step out"
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	opts.desc = "DAP: step back"
+	opts.desc = "Step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "DAP: continue"
+	opts.desc = "Continue"
 	map("n", "<f6>", require("dap").continue, opts)
 
-	opts.desc = "DAP: step over"
+	opts.desc = "Step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "DAP: pause"
+	opts.desc = "Pause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "DAP: terminate"
+	opts.desc = "Terminate"
 	map("n", "<bs>", require("dap").terminate, opts)
 
 	opts.desc = "Breakpoint"
@@ -529,7 +599,7 @@ keybindings.ft = {
 		map("n", "<leader>dc", require("dap-python").test_class, opts)
 
 		opts.desc = "Python: debug selection"
-		map("v", "<leader>ds", require("dap-python").debug_selection, opts)
+		map("x", "<leader>ds", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
 		local opts = { noremap = true, buffer = event.buf }

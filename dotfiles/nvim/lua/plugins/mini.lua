@@ -80,12 +80,12 @@ require("mini.move").setup({
 
 require("mini.surround").setup({
 	mappings = {
-		add = "sa",
-		find = "sf",
-		find_left = "sF",
-		highlight = "sh",
-		replace = "sr",
-		update_n_lines = "sn",
+		add = "gsa",
+		find = "gsf",
+		find_left = "gsF",
+		highlight = "gsh",
+		replace = "gsr",
+		update_n_lines = "gsn",
 		suffix_last = "l",
 		suffix_next = "n",
 	},

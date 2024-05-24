@@ -92,7 +92,7 @@ vim.cmd([[set iskeyword+=-]])
 
 -- filetypes
 vim.filetype.add({
-	extension = { templ = "http" },
+	extension = { http = "http" },
 })
 
 -- nvim server

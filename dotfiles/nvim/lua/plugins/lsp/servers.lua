@@ -1,16 +1,14 @@
-local schemastore = require("schemastore")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+capabilities.workspace = {
+	didChangeWatchedFiles = {
+		dynamicRegistration = true,
+	},
+}
 
 local flags = {
 	allow_incremental_sync = true,
 	debounce_text_changes = 150,
-}
-
-local handlers = {
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
-	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
 }
 
 local servers = {
@@ -22,13 +20,14 @@ local servers = {
 	dotls = {},
 	gopls = {},
 	html = {},
-	marksman = {},
+	jsonls = {},
 	nil_ls = {},
 	ruff_lsp = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},
 	tflint = {},
+	yamlls = {},
 	helm_ls = {
 		settings = {
 			["helm-ls"] = {
@@ -55,38 +54,6 @@ local servers = {
 			},
 		},
 	},
-	yamlls = {
-		settings = {
-			yaml = {
-				validate = true,
-				schemaStore = {
-					enable = false,
-					url = "",
-				},
-				schemas = schemastore.yaml.schemas({
-					select = {
-						".pre-commit-hooks.yml",
-						"Azure Pipelines",
-						"GitHub Action",
-						"GitHub Workflow",
-						"Helm Chart.lock",
-						"Helm Chart.yaml",
-						"Hugo",
-						"docker-compose.yml",
-					},
-				}),
-			},
-		},
-	},
-	jsonls = {
-		filetypes = { "json" },
-		settings = {
-			json = {
-				schemas = schemastore.json.schemas(),
-				validate = { enable = true },
-			},
-		},
-	},
 	ltex = {
 		filetypes = { "markdown", "quarto" },
 		on_attach = function()
@@ -102,6 +69,17 @@ local servers = {
 			},
 		},
 	},
+	markdown_oxide = {
+		filetypes = { "markdown" },
+		on_attach = function(_, bufnr)
+			local group = require("utils").augroups.lsp
+			vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
+				group = group,
+				buffer = bufnr,
+				callback = vim.lsp.codelens.refresh,
+			})
+		end,
+	},
 }
 
 if vim.fn.executable("basedpyright") == 1 then
@@ -116,7 +94,6 @@ for key, value in pairs(servers) do
 
 		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
 		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
-		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
 		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)

@@ -59,6 +59,9 @@ keybindings.std = {
 		opts.desc = "Generate annotations"
 		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
 
+		opts.desc = "Paste image"
+		map("n", "<leader>p", "<cmd>PasteImage<cr>", opts)
+
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
 
@@ -244,44 +247,6 @@ keybindings.std = {
 		opts.desc = "Show at cursor"
 		map({ "n", "x" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
 	end,
-	obsidian = function()
-		local opts = { noremap = true }
-
-		wk.register({ ["<leader>o"] = {
-			name = "obsidian",
-			mode = { "n", "x" },
-		} })
-
-		opts.desc = "Backlinks"
-		map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", opts)
-
-		opts.desc = "New note"
-		map("n", "<leader>on", "<cmd>ObsidianNew<cr>", opts)
-
-		opts.desc = "Extract to new note"
-		map("x", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
-
-		opts.desc = "Add link"
-		map("x", "<leader>oa", "<cmd>ObsidianLink<cr>", opts)
-
-		opts.desc = "Add link to new file"
-		map("x", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
-
-		opts.desc = "Search notes"
-		map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", opts)
-
-		opts.desc = "Paste image"
-		map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", opts)
-
-		opts.desc = "Rename note"
-		map("n", "<leader>or", "<cmd>ObsidianRename<cr>", opts)
-
-		opts.desc = "Live grep (notes)"
-		map("n", "<leader>og", "<cmd>ObsidianSearch<cr>", opts)
-
-		opts.desc = "Tags"
-		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
-	end,
 	rest = function()
 		local opts = { noremap = true }
 
@@ -296,71 +261,12 @@ keybindings.std = {
 		opts.desc = "Select env"
 		map("n", "<leader>hs", "<cmd>Telescope rest select_env<cr>", opts)
 	end,
-	refactor = function()
-		local opts = { noremap = true }
-
-		wk.register({ ["<leader>r"] = { name = "refactor" } })
-
-		opts.desc = "Extract function"
-		map("x", "<leader>rf", function()
-			require("refactoring").refactor("Extract Function")
-		end, opts)
-
-		opts.desc = "Extract function to file"
-		map("x", "<leader>rF", function()
-			require("refactoring").refactor("Extract Function To File")
-		end, opts)
-
-		opts.desc = "Extract variable"
-		map("x", "<leader>rv", function()
-			require("refactoring").refactor("Extract Variable")
-		end, opts)
-
-		opts.desc = "Inline function"
-		map("n", "<leader>rI", function()
-			require("refactoring").refactor("Inline Function")
-		end, opts)
-
-		opts.desc = "Inline variable"
-		map({ "n", "x" }, "<leader>ri", function()
-			require("refactoring").refactor("Inline Variable")
-		end, opts)
-
-		opts.desc = "Extract block"
-		map("n", "<leader>rb", function()
-			require("refactoring").refactor("Extract Block")
-		end, opts)
-
-		opts.desc = "Extract block to file"
-		map("n", "<leader>rB", function()
-			require("refactoring").refactor("Extract Block To File")
-		end, opts)
-
-		opts.desc = "Select refactor"
-		map({ "n", "x" }, "<leader>rr", function()
-			require("telescope").extensions.refactoring.refactors()
-		end, opts)
-
-		opts.desc = "Print variable"
-		map({ "x", "n" }, "<leader>rp", function()
-			require("refactoring").debug.print_var()
-		end, opts)
-
-		opts.desc = "Cleanup"
-		map("n", "<leader>rc", function()
-			require("refactoring").debug.cleanup({})
-		end, opts)
-	end,
 	sniprun = function()
 		local opts = { noremap = true, silent = true }
 
 		opts.desc = "SnipRun"
-		map("n", "<localleader>r", "<Plug>SnipRunOperator", opts)
-		map("n", "<localleader>rr", "<Plug>SnipRun", opts)
-		map("x", "<localleader>r", "<Plug>SnipRun", opts)
-
-		opts.desc = "Close SnipRun"
-		map("n", "<localleader>q", "<Plug>SnipClose", opts)
+		map("n", "<leader><cr>", "<Plug>SnipRunOperator", opts)
+		map({ "n", "x" }, "<leader><cr>", "<Plug>SnipRun", opts)
 	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
@@ -428,12 +334,17 @@ keybindings.std = {
 		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
 	end,
 	yanky = function()
-		local opts = { noremap = true, desc = "Yanky" }
+		local opts = { noremap = true }
 
 		wk.register({ ["<leader>y"] = { name = "yank" } })
 
+		opts.desc = "History"
 		map("n", "<leader>yy", "<cmd>YankyRingHistory<cr>", opts)
+
+		opts.desc = "Clear history"
 		map("n", "<leader>yc", "<cmd>YankyClearHistory<cr>", opts)
+
+		opts.desc = "Yanky"
 		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
 		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
 		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
@@ -571,130 +482,141 @@ keybindings.dap = function(event)
 	end, opts)
 end
 
-keybindings.tests = function(event)
+keybindings.refactor = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	wk.register({ ["<leader>t"] = {
-		name = "tests",
+	wk.register({ ["<leader>r"] = {
+		name = "refactor",
 		buffer = event.buf,
+		mode = { "n", "x" },
 	} })
 
-	opts.desc = "Previous failed test"
-	map("n", "[n", function()
-		require("neotest").jump.prev({ status = "failed" })
+	opts.desc = "Extract function"
+	map("x", "<leader>rf", function()
+		require("refactoring").refactor("Extract Function")
 	end, opts)
 
-	opts.desc = "Next failed test"
-	map("n", "]n", function()
-		require("neotest").jump.next({ status = "failed" })
+	opts.desc = "Extract function to file"
+	map("x", "<leader>rF", function()
+		require("refactoring").refactor("Extract Function To File")
 	end, opts)
 
-	opts.desc = "Attach"
-	map("n", "<leader>ta", require("neotest").run.attach, opts)
-
-	opts.desc = "Debug (nearest)"
-	map("n", "<leader>td", function()
-		require("neotest").run.run({ suite = false, strategy = "dap" })
+	opts.desc = "Extract variable"
+	map("x", "<leader>rv", function()
+		require("refactoring").refactor("Extract Variable")
 	end, opts)
 
-	opts.desc = "Output (panel)"
-	map("n", "<leader>tp", require("neotest").output_panel.toggle, opts)
-
-	opts.desc = "Output"
-	map("n", "<leader>to", function()
-		require("neotest").output.open({ enter = true, auto_close = true })
+	opts.desc = "Inline function"
+	map("n", "<leader>rI", function()
+		require("refactoring").refactor("Inline Function")
 	end, opts)
 
-	opts.desc = "Stop"
-	map("n", "<leader>tq", require("neotest").run.stop, opts)
-
-	opts.desc = "Summary"
-	map("n", "<leader>ts", require("neotest").summary.toggle, opts)
-
-	opts.desc = "Test (nearest)"
-	map("n", "<leader>tt", require("neotest").run.run, opts)
-
-	opts.desc = "Test (last)"
-	map("n", "<leader>tl", require("neotest").run.run_last, opts)
-
-	opts.desc = "Test (suite)"
-	map("n", "<leader>ts", function()
-		require("neotest").run.run({ suite = false })
+	opts.desc = "Inline variable"
+	map({ "n", "x" }, "<leader>ri", function()
+		require("refactoring").refactor("Inline Variable")
 	end, opts)
 
-	opts.desc = "Test (current file)"
-	map("n", "<leader>tf", function()
-		require("neotest").run.run(vim.fn.expand("%"))
+	opts.desc = "Extract block"
+	map("n", "<leader>rb", function()
+		require("refactoring").refactor("Extract Block")
 	end, opts)
 
-	opts.desc = "Test (cwd)"
-	map("n", "<leader>tw", function()
-		require("neotest").run.run(vim.loop.cwd())
+	opts.desc = "Extract block to file"
+	map("n", "<leader>rB", function()
+		require("refactoring").refactor("Extract Block To File")
+	end, opts)
+
+	opts.desc = "Select refactor"
+	map({ "n", "x" }, "<leader>rr", function()
+		require("telescope").extensions.refactoring.refactors()
+	end, opts)
+
+	opts.desc = "Print variable"
+	map({ "x", "n" }, "<leader>rp", function()
+		require("refactoring").debug.print_var()
+	end, opts)
+
+	opts.desc = "Cleanup"
+	map("n", "<leader>rc", function()
+		require("refactoring").debug.cleanup({})
 	end, opts)
 end
 
 keybindings.ft = {
+	lua = function(event)
+		keybindings.refactor(event)
+	end,
 	go = function(event)
+		keybindings.dap(event)
+		keybindings.refactor(event)
+
 		local opts = { noremap = true, buffer = event.buf }
 
-		keybindings.dap(event)
-		keybindings.tests(event)
-
-		opts.desc = "Go: debug test"
+		opts.desc = "Debug test"
 		map("n", "<leader>dt", require("dap-go").debug_test, opts)
 
-		opts.desc = "Go: debug last test"
+		opts.desc = "Debug last test"
 		map("n", "<leader>dT", require("dap-go").debug_last_test, opts)
 
-		opts.desc = "Go: add json struct tags"
-		map("n", "<localleader>j", "<cmd>GoTagAdd json<cr>", opts)
+		wk.register({ ["<leader>G"] = {
+			name = "go",
+			buffer = event.buf,
+		} })
 
-		opts.desc = "Go: add yaml struct tags"
-		map("n", "<localleader>y", "<cmd>GoTagAdd yaml<cr>", opts)
+		opts.desc = "Add json struct tags"
+		map("n", "<leader>Gj", "<cmd>GoTagAdd json<cr>", opts)
+
+		opts.desc = "Add yaml struct tags"
+		map("n", "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
-		wk.register({ ["<localleader>z"] = {
+		opts.desc = "Markdown"
+		map("i", "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
+		map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
+		map({ "n", "x" }, "<cr>", "<cmd>MDTaskToggle<cr>", opts)
+
+		wk.register({ ["<leader>Z"] = {
 			name = "zotero",
 			buffer = event.buf,
 		} })
 
 		opts.desc = "Citation complete info"
-		map("n", "<localleader>zc", "<Plug>ZCitationCompleteInfo", opts)
+		map("n", "<leader>Zc", "<Plug>ZCitationCompleteInfo", opts)
 
 		opts.desc = "Citation info"
-		map("n", "<localleader>zi", "<Plug>ZCitationInfo", opts)
+		map("n", "<leader>Zi", "<Plug>ZCitationInfo", opts)
 
 		opts.desc = "Open attachment"
-		map("n", "<localleader>zo", "<Plug>ZOpenAttachment", opts)
+		map("n", "<leader>Zo", "<Plug>ZOpenAttachment", opts)
 
 		opts.desc = "View document"
-		map("n", "<localleader>zv", "<Plug>ZViewDocument", opts)
+		map("n", "<leader>Zv", "<Plug>ZViewDocument", opts)
 
 		opts.desc = "YAML reference"
-		map("n", "<localleader>zy", "<Plug>ZCitationYamlRef", opts)
+		map("n", "<leader>Zy", "<Plug>ZCitationYamlRef", opts)
 	end,
 	python = function(event)
+		keybindings.dap(event)
+		keybindings.refactor(event)
+
 		local opts = { noremap = true, buffer = event.buf }
 
-		keybindings.dap(event)
-		keybindings.tests(event)
-
-		opts.desc = "Python: debug function/method"
+		opts.desc = "Debug function/method"
 		map("n", "<leader>df", require("dap-python").test_method, opts)
 
-		opts.desc = "Python: debug class"
+		opts.desc = "Debug class"
 		map("n", "<leader>dc", require("dap-python").test_class, opts)
 
-		opts.desc = "Python: debug selection"
+		opts.desc = "Debug selection"
 		map("x", "<leader>ds", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
 		opts.desc = "Add source from Zotero"
-		map("n", "<localleader>z", "<cmd>Telescope zotero<cr>", opts)
+		map("n", "<leader>Z", "<cmd>Telescope zotero<cr>", opts)
 	end,
 }
 

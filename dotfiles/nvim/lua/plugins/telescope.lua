@@ -31,7 +31,7 @@ telescope.setup({
 				["<c-v>"] = actions.file_vsplit,
 				["<c-c>"] = actions.close,
 				["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-				["<c-x>"] = actions.delete_buffer,
+				["<c-x>"] = actions.delete_buffer + actions.move_to_top,
 			},
 			n = {
 				["<c-d>"] = actions.preview_scrolling_down,

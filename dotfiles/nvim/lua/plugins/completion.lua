@@ -6,7 +6,7 @@ if vim.fn.has("mac") == 0 then
 		filetypes = { "quarto" },
 		crossref = {
 			documentation = true,
-			enable_nabla = true,
+			enable_nabla = false,
 		},
 	})
 end
@@ -59,7 +59,6 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "emoji" },
 		{ name = "buffer" },
 	}),
 })
@@ -89,10 +88,16 @@ cmp.setup.filetype("sql", {
 cmp.setup.filetype("markdown", {
 	sources = cmp.config.sources({
 		{ name = "path" },
+		{
+			name = "nvim_lsp",
+			option = {
+				markdown_oxide = {
+					keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
+				},
+			},
+		},
 		{ name = "luasnip" },
 		{ name = "cmp_zotcite" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-		{ name = "emoji" },
 		{ name = "buffer" },
 	}),
 })
@@ -104,8 +109,6 @@ cmp.setup.filetype("quarto", {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-
 		{ name = "buffer" },
 	}),
 })

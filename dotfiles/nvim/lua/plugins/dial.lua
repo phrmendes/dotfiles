@@ -16,7 +16,6 @@ require("dial.config").augends:register_group({
 	},
 	python = {
 		augend.integer.alias.decimal_int,
-		augend.constant.alias.bool,
 		augend.constant.new({
 			elements = { "True", "False" },
 			word = true,

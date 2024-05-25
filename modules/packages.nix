@@ -84,7 +84,6 @@ in {
         libreoffice
         mpv
         neovide
-        obsidian
         pavucontrol
         phockup
         plex

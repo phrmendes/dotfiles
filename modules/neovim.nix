@@ -16,7 +16,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim latex-snippets-nvim telescope-zotero zotcite neotest-golang mini-nvim;
+        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim markdown-nvim mini-nvim telescope-zotero zotcite;
       };
     in {
       enable = true;
@@ -25,14 +25,11 @@
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
-      plugins =
-        (with pkgs.vimPlugins; [
-          SchemaStore-nvim
+      plugins = with pkgs.vimPlugins;
+        [
           ansible-vim
           cmp-buffer
           cmp-cmdline
-          cmp-emoji
-          cmp-latex-symbols
           cmp-nvim-lsp
           cmp-pandoc-nvim
           cmp-path
@@ -45,9 +42,10 @@
           executor-nvim
           friendly-snippets
           gh.gopher-nvim
+          gh.img-clip-nvim
           gh.latex-snippets-nvim
+          gh.markdown-nvim
           gh.mini-nvim
-          gh.neotest-golang
           gh.telescope-zotero
           image-nvim
           jupytext-nvim
@@ -57,12 +55,8 @@
           ltex_extra-nvim
           luasnip
           markdown-preview-nvim
-          nabla-nvim
           neodev-nvim
           neogen
-          neogit
-          neotest
-          neotest-python
           nvim-bqf
           nvim-cmp
           nvim-colorizer-lua
@@ -92,6 +86,7 @@
           telescope-nvim
           telescope-zoxide
           todo-comments-nvim
+          todo-txt-vim
           toggleterm-nvim
           undotree
           vim-abolish
@@ -102,25 +97,20 @@
           vim-helm
           vim-jinja
           vim-just
-          vim-nix
           vim-sleuth
           vim-visual-multi
           which-key-nvim
           yanky-nvim
           zen-mode-nvim
-        ])
-        ++ lib.optionals isLinux (
-          with pkgs.vimPlugins; [
-            obsidian-nvim
-            gh.cmp-zotcite
-            gh.zotcite
-          ]
-        );
+        ]
+        ++ lib.optionals isLinux [
+          gh.cmp-zotcite
+          gh.zotcite
+        ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
           lua-curl
-          luv
           magick
           mimetypes
           nvim-nio
@@ -158,7 +148,7 @@
           impl
           ltex-ls
           lua-language-server
-          marksman
+          markdown-oxide
           neovim-remote
           nil
           prettierd

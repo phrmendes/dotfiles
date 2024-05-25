@@ -297,6 +297,22 @@
         "type": "github"
       }
     },
+    "img-clip-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716655136,
+        "narHash": "sha256-HKqQ/8STmcN+TBCXiH3IpcsfiWVeRDYLtWAooF+oSQk=",
+        "owner": "HakonHarnes",
+        "repo": "img-clip.nvim",
+        "rev": "d7ddfd88d50f0b1acd5175448ad159057fe41ab6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HakonHarnes",
+        "repo": "img-clip.nvim",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1708968331,
@@ -328,6 +344,22 @@
         "type": "github"
       }
     },
+    "markdown-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713878830,
+        "narHash": "sha256-6xCSKTp1unGTE3rqTpT0Ws+rzBazxDb+Eyqwc3QQBdk=",
+        "owner": "tadmccorkle",
+        "repo": "markdown.nvim",
+        "rev": "951b7b567668608d60637d2c9e97f4baea5fdbbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tadmccorkle",
+        "repo": "markdown.nvim",
+        "type": "github"
+      }
+    },
     "mini-nvim": {
       "flake": false,
       "locked": {
@@ -341,22 +373,6 @@
       "original": {
         "owner": "echasnovski",
         "repo": "mini.nvim",
-        "type": "github"
-      }
-    },
-    "neotest-golang": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1716032600,
-        "narHash": "sha256-vUond4czhzFn5wpepQcxd5/pWQvbk2xAinR2jkUxtCA=",
-        "owner": "fredrikaverpil",
-        "repo": "neotest-golang",
-        "rev": "e460a3bb69dfba97acc2d82fdfe76d1b0222627b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fredrikaverpil",
-        "repo": "neotest-golang",
         "type": "github"
       }
     },
@@ -415,10 +431,11 @@
         "disko": "disko",
         "gopher-nvim": "gopher-nvim",
         "home-manager": "home-manager",
+        "img-clip-nvim": "img-clip-nvim",
         "impermanence": "impermanence",
         "latex-snippets-nvim": "latex-snippets-nvim",
+        "markdown-nvim": "markdown-nvim",
         "mini-nvim": "mini-nvim",
-        "neotest-golang": "neotest-golang",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",
         "telescope-zotero": "telescope-zotero",

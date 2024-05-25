@@ -1,4 +1,5 @@
 require("options")
 require("plugins")
 require("autocmds")
+require("commands")
 require("keybindings")

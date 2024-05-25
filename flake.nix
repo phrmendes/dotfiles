@@ -38,19 +38,24 @@
       url = "github:olexsmir/gopher.nvim";
     };
 
+    img-clip-nvim = {
+      flake = false;
+      url = "github:HakonHarnes/img-clip.nvim";
+    };
+
     latex-snippets-nvim = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
+    markdown-nvim = {
+      flake = false;
+      url = "github:tadmccorkle/markdown.nvim";
+    };
+
     mini-nvim = {
       flake = false;
       url = "github:echasnovski/mini.nvim";
-    };
-
-    neotest-golang = {
-      flake = false;
-      url = "github:fredrikaverpil/neotest-golang";
     };
 
     telescope-zotero = {

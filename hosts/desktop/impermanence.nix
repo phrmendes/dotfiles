@@ -19,6 +19,7 @@
         ".gnupg"
         ".mozilla"
         ".ssh"
+        ".zotero"
         ".local/share/atuin"
         ".local/share/keyrings"
         ".local/share/plex"

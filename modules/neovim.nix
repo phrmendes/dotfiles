@@ -101,7 +101,6 @@
           vim-visual-multi
           which-key-nvim
           yanky-nvim
-          zen-mode-nvim
         ]
         ++ lib.optionals isLinux [
           gh.cmp-zotcite

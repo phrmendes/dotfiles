@@ -19,7 +19,6 @@ require("plugins.toggleterm")
 require("plugins.treesitter")
 require("plugins.which-key")
 require("plugins.yanky")
-require("plugins.zen")
 
 if not vim.g.neovide then
 	require("plugins.image")

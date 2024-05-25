@@ -82,9 +82,6 @@ keybindings.std = {
 
 		opts.desc = "Close all other windows"
 		map("n", "<leader>X", "<c-w>o", opts)
-
-		opts.desc = "Zen mode"
-		map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -577,25 +574,25 @@ keybindings.ft = {
 		map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
 		map({ "n", "x" }, "<cr>", "<cmd>MDTaskToggle<cr>", opts)
 
-		wk.register({ ["<leader>Z"] = {
+		wk.register({ ["<leader>z"] = {
 			name = "zotero",
 			buffer = event.buf,
 		} })
 
 		opts.desc = "Citation complete info"
-		map("n", "<leader>Zc", "<Plug>ZCitationCompleteInfo", opts)
+		map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", opts)
 
 		opts.desc = "Citation info"
-		map("n", "<leader>Zi", "<Plug>ZCitationInfo", opts)
+		map("n", "<leader>zi", "<Plug>ZCitationInfo", opts)
 
 		opts.desc = "Open attachment"
-		map("n", "<leader>Zo", "<Plug>ZOpenAttachment", opts)
+		map("n", "<leader>zo", "<Plug>ZOpenAttachment", opts)
 
 		opts.desc = "View document"
-		map("n", "<leader>Zv", "<Plug>ZViewDocument", opts)
+		map("n", "<leader>zv", "<Plug>ZViewDocument", opts)
 
 		opts.desc = "YAML reference"
-		map("n", "<leader>Zy", "<Plug>ZCitationYamlRef", opts)
+		map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
 	end,
 	python = function(event)
 		keybindings.dap(event)
@@ -616,7 +613,7 @@ keybindings.ft = {
 		local opts = { noremap = true, buffer = event.buf }
 
 		opts.desc = "Add source from Zotero"
-		map("n", "<leader>Z", "<cmd>Telescope zotero<cr>", opts)
+		map("n", "<leader>z", "<cmd>Telescope zotero<cr>", opts)
 	end,
 }
 

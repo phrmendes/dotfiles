@@ -7,11 +7,15 @@
     dconf.enable = true;
     firefox.enable = true;
     fuse.userAllowOther = true;
-    hyprland.enable = true;
     kdeconnect.enable = true;
     seahorse.enable = true;
     virt-manager.enable = true;
     zsh.enable = true;
+
+    hyprland = {
+      enable = true;
+      package = pkgs.hyprland;
+    };
 
     thunar = {
       enable = true;

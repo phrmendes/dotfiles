@@ -428,6 +428,9 @@ keybindings.lsp = function(event)
 	opts.desc = "Signature help"
 	map("n", "<leader>ch", vim.lsp.buf.signature_help, opts)
 
+	opts.desc = "Code lens"
+	map("n", "<leader>ch", vim.lsp.codelens.run, opts)
+
 	opts.desc = "Hover"
 	map("n", "<leader>ck", vim.lsp.buf.hover, opts)
 end
@@ -549,6 +552,47 @@ keybindings.refactor = function(event)
 	end, opts)
 end
 
+keybindings.writing = function(event)
+	local opts = { noremap = true, buffer = event.buf }
+
+	local function toggle(key)
+		return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
+	end
+
+	opts.desc = "Markdown"
+	map({ "n", "x" }, "<cr>", "<cmd>MDTaskToggle<cr>", opts)
+	map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
+	map("i", "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
+	map("x", "<c-b>", toggle("b"), opts)
+	map("x", "<c-i>", toggle("i"), opts)
+
+	opts.desc = "Preview equation"
+	map("n", "<localleader>p", require("nabla").popup, opts)
+
+	wk.register({ ["<leader>z"] = {
+		name = "zotero",
+		buffer = event.buf,
+	} })
+
+	opts.desc = "Citation complete info"
+	map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", opts)
+
+	opts.desc = "Citation info"
+	map("n", "<leader>zi", "<Plug>ZCitationInfo", opts)
+
+	opts.desc = "Open attachment"
+	map("n", "<leader>zo", "<Plug>ZOpenAttachment", opts)
+
+	opts.desc = "View document"
+	map("n", "<leader>zv", "<Plug>ZViewDocument", opts)
+
+	opts.desc = "YAML reference"
+	map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
+
+	opts.desc = "Add Zotero reference to local .bib file"
+	map("n", "<leader>zz", "<cmd>Telescope zotero<cr>", opts)
+end
+
 keybindings.ft = {
 	lua = function(event)
 		keybindings.refactor(event)
@@ -577,38 +621,7 @@ keybindings.ft = {
 		map("n", "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
-		local opts = { noremap = true, buffer = event.buf }
-
-		local function toggle(key)
-			return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
-		end
-
-		opts.desc = "Markdown"
-		map({ "n", "x" }, "<cr>", "<cmd>MDTaskToggle<cr>", opts)
-		map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
-		map("i", "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
-		map("x", "<c-b>", toggle("b"), opts)
-		map("x", "<c-i>", toggle("i"), opts)
-
-		wk.register({ ["<leader>z"] = {
-			name = "zotero",
-			buffer = event.buf,
-		} })
-
-		opts.desc = "Citation complete info"
-		map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", opts)
-
-		opts.desc = "Citation info"
-		map("n", "<leader>zi", "<Plug>ZCitationInfo", opts)
-
-		opts.desc = "Open attachment"
-		map("n", "<leader>zo", "<Plug>ZOpenAttachment", opts)
-
-		opts.desc = "View document"
-		map("n", "<leader>zv", "<Plug>ZViewDocument", opts)
-
-		opts.desc = "YAML reference"
-		map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
+		keybindings.writing(event)
 	end,
 	python = function(event)
 		keybindings.dap(event)
@@ -626,10 +639,7 @@ keybindings.ft = {
 		map("x", "<leader>ds", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "Add source from Zotero"
-		map("n", "<leader>z", "<cmd>Telescope zotero<cr>", opts)
+		keybindings.writing(event)
 	end,
 }
 

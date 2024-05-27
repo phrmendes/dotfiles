@@ -48,7 +48,6 @@
           gh.markdown-nvim
           gh.mini-nvim
           gh.telescope-zotero
-          headlines-nvim
           image-nvim
           jupytext-nvim
           lazygit-nvim
@@ -56,6 +55,7 @@
           ltex_extra-nvim
           luasnip
           markdown-preview-nvim
+          nabla-nvim
           neodev-nvim
           neogen
           nvim-bqf
@@ -98,6 +98,7 @@
           vim-helm
           vim-jinja
           vim-just
+          vim-pandoc-syntax
           vim-sleuth
           vim-visual-multi
           which-key-nvim

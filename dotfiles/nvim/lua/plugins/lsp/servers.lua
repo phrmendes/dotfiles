@@ -34,13 +34,15 @@ local servers = {
 	tflint = {},
 	yamlls = {},
 	markdown_oxide = {
-		on_attach = function(_, bufnr)
-			vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
-				buffer = bufnr,
-				callback = vim.lsp.codelens.refresh,
-			})
+		on_attach = function(client, bufnr)
+			if client and client.server_capabilities.codeLensProvider then
+				vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
+					buffer = bufnr,
+					callback = vim.lsp.codelens.refresh,
+				})
 
-			vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+				vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+			end
 		end,
 	},
 	helm_ls = {

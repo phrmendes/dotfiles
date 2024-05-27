@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cmp-zotcite = {
+      flake = false;
+      url = "github:jalvesaq/cmp-zotcite";
+    };
+
     gopher-nvim = {
       flake = false;
       url = "github:olexsmir/gopher.nvim";
@@ -67,11 +72,6 @@
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";
-    };
-
-    cmp-zotcite = {
-      flake = false;
-      url = "github:jalvesaq/cmp-zotcite";
     };
   };
 

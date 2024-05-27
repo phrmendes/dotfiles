@@ -89,10 +89,18 @@ autocmd({ "FileType" }, {
 	end,
 })
 
-autocmd("BufEnter", {
+autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
+	group = augroups.filetype,
+	pattern = { "*.md", "*.qmd" },
+	callback = function()
+		vim.cmd([[set syntax=markdown.pandoc]])
+	end,
+})
+
+autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
 	group = augroups.filetype,
 	pattern = "*.http",
 	callback = function()
-		vim.bo.filetype = "http"
+		vim.cmd([[set filetype=http]])
 	end,
 })

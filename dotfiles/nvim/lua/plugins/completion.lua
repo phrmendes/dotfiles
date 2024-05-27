@@ -1,16 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-if vim.fn.has("mac") == 0 then
-	require("cmp_pandoc").setup({
-		filetypes = { "quarto" },
-		crossref = {
-			documentation = true,
-			enable_nabla = false,
-		},
-	})
-end
-
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -90,9 +80,10 @@ cmp.setup.filetype("sql", {
 	}),
 })
 
-cmp.setup.filetype("markdown", {
+cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
 		{ name = "path" },
+		{ name = "otter" },
 		{
 			name = "nvim_lsp",
 			option = {
@@ -102,18 +93,20 @@ cmp.setup.filetype("markdown", {
 			},
 		},
 		{ name = "luasnip" },
+		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
 		{ name = "buffer" },
 	}),
 })
 
-cmp.setup.filetype("quarto", {
-	sources = cmp.config.sources({
-		{ name = "otter" },
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "cmp_pandoc" },
-		{ name = "buffer" },
-	}),
+require("cmp_pandoc").setup({
+	filetypes = { "quarto", "markdown" },
+	bibliography = {
+		documentation = true,
+		fields = { "type", "title", "author", "year" },
+	},
+	crossref = {
+		documentation = true,
+		enable_nabla = true,
+	},
 })

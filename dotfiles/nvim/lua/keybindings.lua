@@ -429,7 +429,7 @@ keybindings.lsp = function(event)
 	map("n", "<leader>ch", vim.lsp.buf.signature_help, opts)
 
 	opts.desc = "Code lens"
-	map("n", "<leader>ch", vim.lsp.codelens.run, opts)
+	map("n", "<leader>cl", vim.lsp.codelens.run, opts)
 
 	opts.desc = "Hover"
 	map("n", "<leader>ck", vim.lsp.buf.hover, opts)

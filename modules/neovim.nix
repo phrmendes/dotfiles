@@ -31,6 +31,7 @@
           cmp-buffer
           cmp-cmdline
           cmp-nvim-lsp
+          cmp-nvim-lsp-signature-help
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
@@ -47,10 +48,10 @@
           gh.markdown-nvim
           gh.mini-nvim
           gh.telescope-zotero
+          headlines-nvim
           image-nvim
           jupytext-nvim
           lazygit-nvim
-          lsp_signature-nvim
           lspkind-nvim
           ltex_extra-nvim
           luasnip

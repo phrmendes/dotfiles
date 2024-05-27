@@ -7,13 +7,7 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-require("lsp_signature").setup({
-	handler_opts = {
-		border = "none",
-	},
-})
-
-require("neodev").setup({ library = { plugins = { "nvim-dap-ui", "neotest" }, types = true } })
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 
 vim.diagnostic.config({
 	virtual_text = true,
@@ -27,16 +21,35 @@ autocmd("LspAttach", {
 	group = require("utils").augroups.lsp.attach,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client and client.server_capabilities.documentHighlightProvider then
-			autocmd({ "CursorHold", "CursorHoldI" }, {
-				buffer = event.buf,
-				callback = vim.lsp.buf.document_highlight,
-			})
 
-			autocmd({ "CursorMoved", "CursorMovedI" }, {
-				buffer = event.buf,
-				callback = vim.lsp.buf.clear_references,
-			})
+		if client then
+			if client.server_capabilities.documentHighlightProvider then
+				autocmd({ "CursorHold", "CursorHoldI" }, {
+					buffer = event.buf,
+					callback = vim.lsp.buf.document_highlight,
+				})
+
+				autocmd({ "CursorMoved", "CursorMovedI" }, {
+					buffer = event.buf,
+					callback = vim.lsp.buf.clear_references,
+				})
+			end
+
+			if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+				autocmd("InsertEnter", {
+					buffer = event.buf,
+					callback = function()
+						vim.lsp.inlay_hint.enable(true)
+					end,
+				})
+
+				autocmd("InsertLeave", {
+					buffer = event.buf,
+					callback = function()
+						vim.lsp.inlay_hint.enable(false)
+					end,
+				})
+			end
 		end
 	end,
 })

@@ -7,12 +7,7 @@ autocmd("TermOpen", {
 	callback = function()
 		vim.wo.number = false
 		vim.wo.relativenumber = false
-
-		vim.defer_fn(function()
-			if vim.api.nvim_buf_get_option(0, "buftype") == "terminal" then
-				vim.cmd([[startinsert]])
-			end
-		end, 100)
+		vim.cmd([[startinsert]])
 	end,
 })
 
@@ -91,5 +86,13 @@ autocmd({ "FileType" }, {
 	pattern = { "json", "jsonc", "json5" },
 	callback = function()
 		vim.opt_local.conceallevel = 0
+	end,
+})
+
+autocmd("BufEnter", {
+	group = augroups.filetype,
+	pattern = "*.http",
+	callback = function()
+		vim.bo.filetype = "http"
 	end,
 })

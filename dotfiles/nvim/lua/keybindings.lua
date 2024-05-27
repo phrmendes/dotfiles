@@ -121,35 +121,35 @@ keybindings.std = {
 	dial = function()
 		local opts = { noremap = true, silent = true, desc = "Dial" }
 
-		map("n", "<C-a>", function()
+		map("n", "<c-a>", function()
 			require("dial.map").manipulate("increment", "normal")
 		end, opts)
 
-		map("n", "<C-x>", function()
+		map("n", "<c-x>", function()
 			require("dial.map").manipulate("decrement", "normal")
 		end, opts)
 
-		map("n", "g<C-a>", function()
+		map("n", "g<c-a>", function()
 			require("dial.map").manipulate("increment", "gnormal")
 		end, opts)
 
-		map("n", "g<C-x>", function()
+		map("n", "g<c-x>", function()
 			require("dial.map").manipulate("decrement", "gnormal")
 		end, opts)
 
-		map("v", "<C-a>", function()
+		map("v", "<c-a>", function()
 			require("dial.map").manipulate("increment", "visual")
 		end, opts)
 
-		map("v", "<C-x>", function()
+		map("v", "<c-x>", function()
 			require("dial.map").manipulate("decrement", "visual")
 		end, opts)
 
-		map("v", "g<C-a>", function()
+		map("v", "g<c-a>", function()
 			require("dial.map").manipulate("increment", "gvisual")
 		end, opts)
 
-		map("v", "g<C-x>", function()
+		map("v", "g<c-x>", function()
 			require("dial.map").manipulate("decrement", "gvisual")
 		end, opts)
 	end,
@@ -281,17 +281,6 @@ keybindings.std = {
 		map({ "n", "i", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)
 		map({ "n", "i", "t" }, "<c-up>", require("smart-splits").swap_buf_up, opts)
 	end,
-	session = function()
-		local opts = { noremap = true }
-
-		wk.register({ ["<leader>s"] = { name = "sessions" } })
-
-		opts.desc = "Create"
-		map("n", "<leader>ss", "<cmd>mksession<cr>", opts)
-
-		opts.desc = "Choose"
-		map("n", "<leader>sc", require("mini.sessions").select, opts)
-	end,
 	tabs = function()
 		local opts = { noremap = true }
 
@@ -341,23 +330,51 @@ keybindings.std = {
 		opts.desc = "Clear history"
 		map("n", "<leader>yc", "<cmd>YankyClearHistory<cr>", opts)
 
-		opts.desc = "Yanky"
+		opts.desc = "Yank text"
 		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
+
+		opts.desc = "Paste after cursor"
 		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
+
+		opts.desc = "Paste before cursor"
 		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
+
+		opts.desc = "Paste after selection"
 		map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
+
+		opts.desc = "Paste before selection"
 		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
+
+		opts.desc = "Previous yank entry"
 		map("n", "]y", "<Plug>(YankyPreviousEntry)", opts)
+
+		opts.desc = "Next yank entry"
 		map("n", "[y", "<Plug>(YankyNextEntry)", opts)
+
+		opts.desc = "Paste indented after cursor (linewise)"
 		map("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", opts)
 		map("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)", opts)
+
+		opts.desc = "Paste indented before cursor (linewise)"
 		map("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
 		map("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
+
+		opts.desc = "Paste and indent right"
 		map("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)", opts)
+
+		opts.desc = "Paste and indent left"
 		map("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", opts)
+
+		opts.desc = "Paste before and indent right"
 		map("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", opts)
+
+		opts.desc = "Paste before and indent left"
 		map("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", opts)
+
+		opts.desc = "Paste after filter"
 		map("n", "=p", "<Plug>(YankyPutAfterFilter)", opts)
+
+		opts.desc = "Paste before filter"
 		map("n", "=P", "<Plug>(YankyPutBeforeFilter)", opts)
 	end,
 }
@@ -390,9 +407,6 @@ keybindings.lsp = function(event)
 	opts.desc = "Go to implementations"
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-	opts.desc = "Signature help"
-	map("n", "gK", require("lsp_signature").toggle_float_win, opts)
-
 	opts.desc = "Actions"
 	map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
@@ -411,15 +425,11 @@ keybindings.lsp = function(event)
 	opts.desc = "Floating diagnostics"
 	map("n", "<leader>cf", vim.diagnostic.open_float, opts)
 
+	opts.desc = "Signature help"
+	map("n", "<leader>ch", vim.lsp.buf.signature_help, opts)
+
 	opts.desc = "Hover"
 	map("n", "<leader>ck", vim.lsp.buf.hover, opts)
-
-	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-		opts.desc = "Inlay hints"
-		map("n", "<leader>ch", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, opts)
-	end
 end
 
 keybindings.dap = function(event)
@@ -569,10 +579,16 @@ keybindings.ft = {
 	markdown = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
+		local function toggle(key)
+			return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
+		end
+
 		opts.desc = "Markdown"
-		map("i", "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
-		map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
 		map({ "n", "x" }, "<cr>", "<cmd>MDTaskToggle<cr>", opts)
+		map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
+		map("i", "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
+		map("x", "<c-b>", toggle("b"), opts)
+		map("x", "<c-i>", toggle("i"), opts)
 
 		wk.register({ ["<leader>z"] = {
 			name = "zotero",

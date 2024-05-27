@@ -4,7 +4,7 @@ local command = vim.api.nvim_create_user_command
 local telescope = require("telescope.builtin")
 
 command("NewNote", function(args)
-	local title = args.fargs[1]
+	local title = args.fargs[1] or vim.fn.input("Title: ")
 	local id = os.date("%Y%m%d") .. os.time()
 	local suffix = normalize(title)
 	local file_name = id .. "-" .. suffix
@@ -16,12 +16,13 @@ command("NewNote", function(args)
 		"---",
 		"id: " .. id,
 		"tags: []",
+		"aliases: []",
 		"---",
 		"",
 		"# " .. title,
 		"",
 	})
-end, { desc = "Create new note", nargs = 1 })
+end, { desc = "Create new note", nargs = "*" })
 
 command("SearchNote", function()
 	telescope.find_files({
@@ -44,3 +45,7 @@ end, { desc = "Open tasks", nargs = 0 })
 command("Inbox", function()
 	vim.cmd("split " .. notes_path .. "/inbox.md")
 end, { desc = "Open inbox", nargs = 0 })
+
+command("Sessions", function()
+	require("mini.sessions").select()
+end, { desc = "List sessions", nargs = 0 })

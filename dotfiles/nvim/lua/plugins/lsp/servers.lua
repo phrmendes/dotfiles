@@ -11,6 +11,11 @@ local flags = {
 	debounce_text_changes = 150,
 }
 
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
 local servers = {
 	ansiblels = {},
 	bashls = {},
@@ -28,6 +33,16 @@ local servers = {
 	texlab = {},
 	tflint = {},
 	yamlls = {},
+	markdown_oxide = {
+		on_attach = function(_, bufnr)
+			vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
+				buffer = bufnr,
+				callback = vim.lsp.codelens.refresh,
+			})
+
+			vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+		end,
+	},
 	helm_ls = {
 		settings = {
 			["helm-ls"] = {
@@ -69,17 +84,6 @@ local servers = {
 			},
 		},
 	},
-	markdown_oxide = {
-		filetypes = { "markdown" },
-		on_attach = function(_, bufnr)
-			local group = require("utils").augroups.lsp
-			vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
-				group = group,
-				buffer = bufnr,
-				callback = vim.lsp.codelens.refresh,
-			})
-		end,
-	},
 }
 
 if vim.fn.executable("basedpyright") == 1 then
@@ -94,6 +98,7 @@ for key, value in pairs(servers) do
 
 		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
 		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
+		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
 		require("lspconfig")[server_name].setup(setup)
 	end)(key, value)

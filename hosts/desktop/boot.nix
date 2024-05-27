@@ -7,8 +7,9 @@
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems = ["btrfs" "ntfs"];
-    kernelPackages = pkgs.stable.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = ["kvm-amd" "snd-aloop" "v4l2loopback"];
+    kernelParams = ["nvidia-drm.fbdev=y"];
     extraModulePackages = with config.boot.kernelPackages; [v4l2loopback.out];
     extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
     loader = {

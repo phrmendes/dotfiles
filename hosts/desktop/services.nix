@@ -47,11 +47,11 @@
     greetd = {
       enable = true;
       settings = rec {
+        default_session = initial_session;
         initial_session = {
           inherit (parameters) user;
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         };
-        default_session = initial_session;
       };
     };
 

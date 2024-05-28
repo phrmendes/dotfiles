@@ -62,12 +62,6 @@ keybindings.std = {
 		opts.desc = "Paste image"
 		map("n", "<leader>p", "<cmd>PasteImage<cr>", opts)
 
-		opts.desc = "Quit"
-		map("n", "<leader>q", "<cmd>q<cr>", opts)
-
-		opts.desc = "Quit all"
-		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
-
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
@@ -243,6 +237,20 @@ keybindings.std = {
 
 		opts.desc = "Show at cursor"
 		map({ "n", "x" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
+	end,
+	quit = function()
+		local opts = { noremap = true }
+
+		wk.register({ ["<leader>q"] = { name = "quit" } })
+
+		opts.desc = "Quit"
+		map("n", "<leader>qq", "<cmd>q<cr>", opts)
+
+		opts.desc = "Quit all"
+		map("n", "<leader>qa", "<cmd>qall!<cr>", opts)
+
+		opts.desc = "Save and quit"
+		map("n", "<leader>qw", "<cmd>wq<cr>", opts)
 	end,
 	rest = function()
 		local opts = { noremap = true }

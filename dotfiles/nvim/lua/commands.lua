@@ -5,7 +5,7 @@ local telescope = require("telescope.builtin")
 
 command("NewNote", function(args)
 	local title = args.fargs[1] or vim.fn.input("Title: ")
-	local id = os.date("%Y%m%d") .. os.time()
+	local id = os.date("%Y%m%d%H%M%S")
 	local suffix = normalize(title)
 	local file_name = id .. "-" .. suffix
 	local file_path = notes_path .. "/" .. file_name .. ".md"

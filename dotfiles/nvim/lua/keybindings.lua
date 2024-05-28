@@ -354,10 +354,10 @@ keybindings.std = {
 		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
 
 		opts.desc = "Previous yank entry"
-		map("n", "]y", "<Plug>(YankyPreviousEntry)", opts)
+		map("n", "[y", "<Plug>(YankyPreviousEntry)", opts)
 
 		opts.desc = "Next yank entry"
-		map("n", "[y", "<Plug>(YankyNextEntry)", opts)
+		map("n", "]y", "<Plug>(YankyNextEntry)", opts)
 
 		opts.desc = "Paste indented after cursor (linewise)"
 		map("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", opts)

@@ -66,7 +66,7 @@ local extensions = {
 	"dap",
 	"fzf",
 	"rest",
-	"zoxide",
+	"smart_open",
 }
 
 if vim.fn.has("mac") == 0 then

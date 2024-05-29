@@ -53,8 +53,26 @@ keybindings.std = {
 		opts.desc = "Help"
 		map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", opts)
 
+		opts.desc = "Find in buffer"
+		map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
+
+		opts.desc = "Open"
+		map("n", "<leader><leader>", "<cmd>Telescope smart_open<cr>", opts)
+
+		opts.desc = "Live grep"
+		map("n", "<leader>G", "<cmd>Telescope live_grep<cr>", opts)
+
 		opts.desc = "Keymaps"
-		map("n", "<leader>k", "<cmd>Telescope keymaps<cr>", opts)
+		map("n", "<leader>K", "<cmd>Telescope keymaps<cr>", opts)
+
+		opts.desc = "Quit all"
+		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
+
+		opts.desc = "Write all"
+		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
+
+		opts.desc = "Close all other windows"
+		map("n", "<leader>X", "<c-w>o", opts)
 
 		opts.desc = "Generate annotations"
 		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
@@ -68,20 +86,11 @@ keybindings.std = {
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
 
-		opts.desc = "Quit all"
-		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
-
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>w<cr>", opts)
 
-		opts.desc = "Write all"
-		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
-
 		opts.desc = "Close window"
 		map("n", "<leader>x", "<c-w>q", opts)
-
-		opts.desc = "Close all other windows"
-		map("n", "<leader>X", "<c-w>o", opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -99,9 +108,6 @@ keybindings.std = {
 		local opts = { noremap = true }
 
 		wk.register({ ["<leader>b"] = { name = "buffers" } })
-
-		opts.desc = "List buffers"
-		map("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", opts)
 
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
@@ -174,29 +180,6 @@ keybindings.std = {
 			explorer(vim.loop.cwd())
 		end, opts)
 	end,
-	find = function()
-		local opts = { noremap = true }
-
-		wk.register({ ["<leader>f"] = { name = "find" } })
-
-		opts.desc = "Find in buffer"
-		map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
-
-		opts.desc = "Files"
-		map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-
-		opts.desc = "Live grep"
-		map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-
-		opts.desc = "Recent"
-		map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", opts)
-
-		opts.desc = "TODO"
-		map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", opts)
-
-		opts.desc = "Zoxide"
-		map("n", "<leader>fz", "<cmd>Telescope zoxide list<cr>", opts)
-	end,
 	git = function()
 		local opts = { noremap = true }
 
@@ -247,16 +230,16 @@ keybindings.std = {
 	rest = function()
 		local opts = { noremap = true }
 
-		wk.register({ ["<leader>h"] = { name = "http client" } })
+		wk.register({ ["<leader>H"] = { name = "http" } })
 
 		opts.desc = "Run request under cursor"
-		map("n", "<leader>hr", "<cmd>Rest run<cr>", opts)
+		map("n", "<leader>Hr", "<cmd>Rest run<cr>", opts)
 
 		opts.desc = "Re-run last request"
-		map("n", "<leader>hl", "<cmd>Rest run last<cr>", opts)
+		map("n", "<leader>Hl", "<cmd>Rest run last<cr>", opts)
 
 		opts.desc = "Select env"
-		map("n", "<leader>hs", "<cmd>Telescope rest select_env<cr>", opts)
+		map("n", "<leader>Hs", "<cmd>Telescope rest select_env<cr>", opts)
 	end,
 	sniprun = function()
 		local opts = { noremap = true, silent = true }
@@ -380,59 +363,50 @@ keybindings.std = {
 }
 
 keybindings.lsp = function(event)
-	local client = vim.lsp.get_client_by_id(event.data.client_id)
 	local opts = { noremap = true, buffer = event.buf }
 
-	wk.register({ ["<leader>c"] = {
-		name = "code",
-		buffer = event.buf,
-		mode = { "n", "x" },
-	} })
+	local desc = function(desc)
+		opts.desc = "LSP: " .. desc
+	end
 
-	opts.desc = "Rename"
+	desc("rename")
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
-	opts.desc = "Go to declaration"
+	desc("go to declaration")
 	map("n", "gD", vim.lsp.buf.declaration, opts)
 
-	opts.desc = "Go to references"
+	desc("go to references")
 	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
-	opts.desc = "Go to definition"
+	desc("go to definition")
 	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
-	opts.desc = "Go to type definition"
+	desc("go to type definition")
 	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 
-	opts.desc = "Go to implementations"
+	desc("go to implementations")
 	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-	opts.desc = "Actions"
-	map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+	desc("code actions")
+	map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
 
-	opts.desc = "Info"
-	map("n", "<leader>ci", "<cmd>LspInfo<cr>", opts)
+	desc("diagnostics")
+	map("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
 
-	opts.desc = "Symbols (document)"
-	map("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+	desc("signature help")
+	map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 
-	opts.desc = "Symbols (workspace)"
-	map("n", "<leader>cS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
+	desc("hover")
+	map("n", "<leader>k", vim.lsp.buf.hover, opts)
 
-	opts.desc = "Diagnostics"
-	map("n", "<leader>cd", "<cmd>Telescope diagnostics<cr>", opts)
+	desc("code lens")
+	map("n", "<leader>l", vim.lsp.codelens.run, opts)
 
-	opts.desc = "Floating diagnostics"
-	map("n", "<leader>cf", vim.diagnostic.open_float, opts)
+	desc("symbols (document)")
+	map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
-	opts.desc = "Signature help"
-	map("n", "<leader>ch", vim.lsp.buf.signature_help, opts)
-
-	opts.desc = "Code lens"
-	map("n", "<leader>cl", vim.lsp.codelens.run, opts)
-
-	opts.desc = "Hover"
-	map("n", "<leader>ck", vim.lsp.buf.hover, opts)
+	desc("symbols (workspace)")
+	map("n", "<leader>S", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
 end
 
 keybindings.dap = function(event)
@@ -444,25 +418,29 @@ keybindings.dap = function(event)
 		mode = { "n", "x" },
 	} })
 
-	opts.desc = "Step into"
+	local desc = function(desc)
+		opts.desc = "LSP: " .. desc
+	end
+
+	desc("step into")
 	map("n", "<f1>", require("dap").step_into, opts)
 
-	opts.desc = "Step out"
+	desc("step out")
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	opts.desc = "Step back"
+	desc("step back")
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "Continue"
+	desc("continue")
 	map("n", "<f6>", require("dap").continue, opts)
 
-	opts.desc = "Step over"
+	desc("step over")
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "Pause"
+	desc("pause")
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "Terminate"
+	desc("terminate")
 	map("n", "<bs>", require("dap").terminate, opts)
 
 	opts.desc = "Breakpoint"
@@ -609,16 +587,16 @@ keybindings.ft = {
 		opts.desc = "Debug last test"
 		map("n", "<leader>dT", require("dap-go").debug_last_test, opts)
 
-		wk.register({ ["<leader>G"] = {
+		wk.register({ ["<leader>g"] = {
 			name = "go",
 			buffer = event.buf,
 		} })
 
 		opts.desc = "Add json struct tags"
-		map("n", "<leader>Gj", "<cmd>GoTagAdd json<cr>", opts)
+		map("n", "<localleader>gj", "<cmd>GoTagAdd json<cr>", opts)
 
 		opts.desc = "Add yaml struct tags"
-		map("n", "<leader>Gy", "<cmd>GoTagAdd yaml<cr>", opts)
+		map("n", "<localleader>gy", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
 		keybindings.writing(event)

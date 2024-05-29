@@ -59,9 +59,9 @@
       url = "github:tadmccorkle/markdown.nvim";
     };
 
-    mini-nvim = {
+    smart-open-nvim = {
       flake = false;
-      url = "github:echasnovski/mini.nvim";
+      url = "github:danielfalk/smart-open.nvim";
     };
 
     telescope-zotero = {

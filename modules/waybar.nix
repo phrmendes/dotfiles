@@ -14,7 +14,7 @@
       };
       settings = {
         mainBar = {
-          output = "HDMI-A-1";
+          output = ["HDMI-A-1" "DP-1"];
           layer = "top";
           position = "top";
           height = 30;

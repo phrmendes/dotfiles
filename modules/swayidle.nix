@@ -14,10 +14,6 @@
       enable = true;
       events = [
         {
-          event = "before-sleep";
-          command = "${swaylock}";
-        }
-        {
           event = "after-resume";
           command = "${hyprctl} dispatch dpms on";
         }

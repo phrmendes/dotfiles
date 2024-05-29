@@ -133,6 +133,7 @@
           alejandra
           ansible-language-server
           ansible-lint
+          basedpyright
           delve
           djlint
           docker-compose-language-service
@@ -155,7 +156,6 @@
           neovim-remote
           nil
           prettierd
-          pyright
           ruff
           ruff-lsp
           shellcheck

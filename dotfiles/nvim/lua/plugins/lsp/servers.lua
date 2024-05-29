@@ -18,6 +18,7 @@ local handlers = {
 
 local servers = {
 	ansiblels = {},
+	basedpyright = {},
 	bashls = {},
 	cssls = {},
 	docker_compose_language_service = {},
@@ -85,12 +86,6 @@ local servers = {
 		},
 	},
 }
-
-if vim.fn.executable("basedpyright") == 1 then
-	servers.basedpyright = {}
-else
-	servers.pyright = {}
-end
 
 for key, value in pairs(servers) do
 	(function(server_name, settings)

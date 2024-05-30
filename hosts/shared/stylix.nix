@@ -27,7 +27,7 @@
           name = "Fira Sans";
         };
         monospace = {
-          package = pkgs.fira-code-nerdfont;
+          package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
           name = "FiraCode Nerd Font Mono";
         };
         emoji = {
@@ -40,7 +40,7 @@
       cursor = {
         name = "Pop";
         package = pkgs.pop-icon-theme;
-        size = 28;
+        size = 26;
       };
     };
 }

@@ -71,10 +71,7 @@ require("mini.files").setup({
 
 require("mini.jump2d").setup({
 	mappings = { start_jumping = "<leader>j" },
-	view = {
-		dim = true,
-		n_steps_ahead = 1,
-	},
+	view = { dim = true },
 })
 
 require("mini.move").setup({

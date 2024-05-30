@@ -189,10 +189,10 @@ keybindings.std = {
 		} })
 
 		opts.desc = "Commit"
-		map("n", "<leader>g<cr>", "<cmd>horizontal Git commit<cr>", opts)
+		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
 
 		opts.desc = "Branches"
-		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
+		map("n", "<leader>g<leader>", "<cmd>Telescope git_branches<cr>", opts)
 
 		opts.desc = "Commits (file)"
 		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
@@ -208,6 +208,9 @@ keybindings.std = {
 
 		opts.desc = "History"
 		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
+
+		opts.desc = "Blame"
+		map("n", "<leader>gb", "<cmd>vertical Git blame -- %<cr>", opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)

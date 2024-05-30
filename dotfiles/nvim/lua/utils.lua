@@ -6,12 +6,13 @@ M.lsp = {}
 M.augroups = {
 	term = augroup("UserTerm", { clear = true }),
 	filetype = augroup("UserFileType", { clear = true }),
-	linter = augroup("UserLinter", { clear = false }),
+	linter = augroup("UserLinter", { clear = true }),
+	git = augroup("UserGit", { clear = true }),
 	lsp = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),
-		highlight = augroup("UserLspHighlight", { clear = false }),
-		fs = augroup("UserFileSystem", { clear = false }),
+		highlight = augroup("UserLspHighlight", { clear = true }),
+		fs = augroup("UserFileSystem", { clear = true }),
 	},
 }
 

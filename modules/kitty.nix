@@ -47,6 +47,7 @@
         "ctrl+shift+z" = "toggle_layout stack";
         "ctrl+shift+[" = "previous_tab";
         "ctrl+shift+]" = "next_tab";
+        "ctrl+shift+enter" = ''set_tab_title " "'';
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
         "ctrl+h" = "neighboring_window left";

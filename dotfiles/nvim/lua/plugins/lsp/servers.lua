@@ -26,14 +26,31 @@ local servers = {
 	dotls = {},
 	gopls = {},
 	html = {},
-	jsonls = {},
 	nil_ls = {},
 	ruff_lsp = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},
 	tflint = {},
-	yamlls = {},
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
+	yamlls = {
+		settings = {
+			yaml = {
+				schemaStore = {
+					enable = false,
+					url = "",
+				},
+				schemas = require("schemastore").yaml.schemas(),
+			},
+		},
+	},
 	markdown_oxide = {
 		on_attach = function(_, bufnr)
 			vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {

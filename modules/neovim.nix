@@ -27,6 +27,7 @@
       withPython3 = true;
       plugins = with pkgs.vimPlugins;
         [
+          SchemaStore-nvim
           actions-preview-nvim
           ansible-vim
           cmp-buffer

@@ -6,15 +6,49 @@
   options.waybar.enable = lib.mkEnableOption "enable waybar";
 
   config = lib.mkIf config.waybar.enable {
-    programs.waybar = {
+    programs.waybar = let
+      shared = {
+        date_time = {
+          format = "<tt>  {:%H:%M}</tt>";
+          interval = 60;
+          tooltip = true;
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          calendar = {
+            mode = "month";
+            on-scroll = 1;
+            format = {
+              months = "<span color='#${config.lib.stylix.colors.base04}'><b>{}</b></span>";
+              days = "<span color='#${config.lib.stylix.colors.base04}'><b>{}</b></span>";
+              weeks = "<span color='#${config.lib.stylix.colors.base04}'><b>W{}</b></span>";
+              weekdays = "<span color='#${config.lib.stylix.colors.base04}'><b>{}</b></span>";
+              today = "<span color='#${config.lib.stylix.colors.base08}'><b><u>{}</u></b></span>";
+            };
+          };
+          actions = {
+            on-scroll-up = "shift_down";
+            on-scroll-down = "shift_up";
+          };
+        };
+        separator = {
+          format = "";
+          interval = "once";
+          tooltip = false;
+        };
+        spacer = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+      };
+    in {
       enable = true;
       systemd = {
         enable = true;
         target = "hyprland-session.target";
       };
-      settings = {
-        mainBar = {
-          output = ["HDMI-A-1" "DP-1"];
+      settings = [
+        {
+          output = "HDMI-A-1";
           layer = "top";
           position = "top";
           height = 30;
@@ -53,12 +87,6 @@
             format = "󰘚<tt>  {}%</tt>";
             max-length = 10;
           };
-          clock = {
-            format = "<tt>{:%H:%M}</tt>";
-            interval = 60;
-            tooltip = true;
-            tooltip-format = "{:%A, %d %b %Y}";
-          };
           idle_inhibitor = {
             format = "{icon}";
             format-icons = {
@@ -67,16 +95,6 @@
               tooltip-format-activated = "Active";
               tooltip-format-deactivated = "Inactive";
             };
-          };
-          "custom/separator" = {
-            format = "";
-            interval = "once";
-            tooltip = false;
-          };
-          "custom/spacer" = {
-            format = " ";
-            interval = "once";
-            tooltip = false;
           };
           "hyprland/language" = {
             format = "󰌌<tt>  {}</tt>";
@@ -121,8 +139,22 @@
               default = ["󰕿" "󰖀" "󰕾"];
             };
           };
-        };
-      };
+          clock = shared.date_time;
+          "custom/separator" = shared.separator;
+          "custom/spacer" = shared.spacer;
+        }
+        {
+          output = "DP-1";
+          modules-left = ["hyprland/workspaces"];
+          modules-right = [
+            "clock"
+            "custom/spacer"
+          ];
+          clock = shared.date_time;
+          "custom/separator" = shared.separator;
+          "custom/spacer" = shared.spacer;
+        }
+      ];
     };
   };
 }

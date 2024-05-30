@@ -188,26 +188,26 @@ keybindings.std = {
 			mode = { "n", "x" },
 		} })
 
-		opts.desc = "LazyGit"
-		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
-
-		opts.desc = "List commits (file)"
-		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
-
-		opts.desc = "List commits (repo)"
-		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
-
-		opts.desc = "Add (file)"
-		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
-
-		opts.desc = "Add (repo)"
-		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
+		opts.desc = "Commit"
+		map("n", "<leader>g<cr>", "<cmd>horizontal Git commit<cr>", opts)
 
 		opts.desc = "Branches"
 		map("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)
 
-		opts.desc = "Commit"
-		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
+		opts.desc = "Commits (file)"
+		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
+
+		opts.desc = "Commits (repo)"
+		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
+
+		opts.desc = "Diff"
+		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
+
+		opts.desc = "LazyGit"
+		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
+
+		opts.desc = "History"
+		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
@@ -215,17 +215,11 @@ keybindings.std = {
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 
-		opts.desc = "Blame"
-		map("n", "<leader>gl", "<cmd>Git blame %<cr>", opts)
+		opts.desc = "Stage (file)"
+		map("n", "<leader>gs", "<cmd>Git add %<cr>", opts)
 
-		opts.desc = "Diff"
-		map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", opts)
-
-		opts.desc = "File history"
-		map("n", "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", opts)
-
-		opts.desc = "Show at cursor"
-		map({ "n", "x" }, "<leader>gs", require("mini.git").show_at_cursor, opts)
+		opts.desc = "Stage (repo)"
+		map("n", "<leader>gS", "<cmd>Git add .<cr>", opts)
 	end,
 	rest = function()
 		local opts = { noremap = true }

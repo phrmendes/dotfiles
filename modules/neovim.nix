@@ -158,7 +158,6 @@
           nil
           prettierd
           ruff
-          ruff-lsp
           shellcheck
           shellharden
           sqlfluff

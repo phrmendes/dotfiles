@@ -14,7 +14,6 @@ require("mini.tabline").setup()
 require("mini.trailspace").setup()
 
 require("mini.diff").setup({ view = { style = "sign" } })
-require("mini.jump2d").setup({ mappings = { start_jumping = "<leader>j" } })
 require("mini.notify").setup({ lsp_progress = { enable = false } })
 require("mini.splitjoin").setup({ mappings = { toggle = "T" } })
 
@@ -67,6 +66,14 @@ require("mini.files").setup({
 		synchronize = "=",
 		trim_left = "<",
 		trim_right = ">",
+	},
+})
+
+require("mini.jump2d").setup({
+	mappings = { start_jumping = "<leader>j" },
+	view = {
+		dim = true,
+		n_steps_ahead = 1,
 	},
 })
 

@@ -1,7 +1,6 @@
 local notes_path = vim.env.NOTES_PATH or vim.env.HOME .. "/Documents/notes"
 local normalize = require("utils").normalize
 local command = vim.api.nvim_create_user_command
-local telescope = require("telescope.builtin")
 
 command("NewNote", function(args)
 	local title = args.fargs[1] or vim.fn.input("Title: ")
@@ -25,15 +24,13 @@ command("NewNote", function(args)
 end, { desc = "Create new note", nargs = "*" })
 
 command("SearchNote", function()
-	telescope.find_files({
-		prompt_title = "Search note",
+	require("mini.pick").builtin.files({
 		cwd = notes_path,
 	})
 end, { desc = "Search note", nargs = 0 })
 
 command("GrepNotes", function()
-	telescope.live_grep({
-		prompt_title = "Search in notes",
+	require("mini.pick").builtin.grep_live({
 		cwd = notes_path,
 	})
 end, { desc = "Search in notes", nargs = 0 })

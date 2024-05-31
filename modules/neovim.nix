@@ -16,7 +16,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim markdown-nvim smart-open-nvim telescope-zotero zotcite;
+        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim markdown-nvim zotcite;
       };
     in {
       enable = true;
@@ -47,8 +47,6 @@
           gh.img-clip-nvim
           gh.latex-snippets-nvim
           gh.markdown-nvim
-          gh.smart-open-nvim
-          gh.telescope-zotero
           image-nvim
           jupytext-nvim
           lazygit-nvim
@@ -84,10 +82,6 @@
           smart-splits-nvim
           sniprun
           sqlite-lua
-          telescope-dap-nvim
-          telescope-fzf-native-nvim
-          telescope-nvim
-          todo-comments-nvim
           todo-txt-vim
           toggleterm-nvim
           undotree
@@ -101,7 +95,6 @@
           vim-just
           vim-pandoc-syntax
           vim-sleuth
-          vim-visual-multi
           which-key-nvim
           yanky-nvim
           zen-mode-nvim

@@ -437,27 +437,9 @@
         "markdown-nvim": "markdown-nvim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
-        "smart-open-nvim": "smart-open-nvim",
         "stylix": "stylix",
-        "telescope-zotero": "telescope-zotero",
         "walker": "walker",
         "zotcite": "zotcite"
-      }
-    },
-    "smart-open-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1713921977,
-        "narHash": "sha256-mhOvWaRzPvGTFIMVAYg8Zd8YqpSs1xMMAaWTeh90Ee0=",
-        "owner": "danielfalk",
-        "repo": "smart-open.nvim",
-        "rev": "028bb71d20e8212da3514bf6dabfb17038d81ee4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "danielfalk",
-        "repo": "smart-open.nvim",
-        "type": "github"
       }
     },
     "stylix": {
@@ -485,22 +467,6 @@
       "original": {
         "owner": "danth",
         "repo": "stylix",
-        "type": "github"
-      }
-    },
-    "telescope-zotero": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1713869625,
-        "narHash": "sha256-3nGaTbMcpmj/oGnNQRWGZuJPRMG7JJ86OzUYWFvOZIc=",
-        "owner": "jmbuhr",
-        "repo": "telescope-zotero.nvim",
-        "rev": "81c5fba582f74e478378c2572011da13d79fa653",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jmbuhr",
-        "repo": "telescope-zotero.nvim",
         "type": "github"
       }
     },

@@ -59,16 +59,6 @@
       url = "github:tadmccorkle/markdown.nvim";
     };
 
-    smart-open-nvim = {
-      flake = false;
-      url = "github:danielfalk/smart-open.nvim";
-    };
-
-    telescope-zotero = {
-      flake = false;
-      url = "github:jmbuhr/telescope-zotero.nvim";
-    };
-
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

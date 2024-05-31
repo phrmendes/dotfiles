@@ -5,11 +5,6 @@ local map = vim.keymap.set
 
 local keybindings = {}
 
-vim.g.VM_maps = {
-	["Add Cursor Down"] = "m",
-	["Add Cursor Up"] = "M",
-}
-
 keybindings.std = {
 	random = function()
 		local opts = { noremap = true }
@@ -42,28 +37,24 @@ keybindings.std = {
 		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
 
 		opts.desc = "Command history"
-		map("n", "<leader>:", "<cmd>Telescope command_history<cr>", opts)
+		map("n", "<leader>:", function()
+			require("min.extra").pickers.history({ scope = ":" })
+		end, opts)
 
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
 
-		opts.desc = "Commands"
-		map("n", "<leader>.", "<cmd>Telescope commands<cr>", opts)
-
 		opts.desc = "Help"
-		map("n", "<leader>?", "<cmd>Telescope help_tags<cr>", opts)
+		map("n", "<leader>?", require("mini.pick").builtin.help, opts)
 
-		opts.desc = "Find in buffer"
-		map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
-
-		opts.desc = "Open"
-		map("n", "<leader><leader>", "<cmd>Telescope smart_open<cr>", opts)
+		opts.desc = "Find"
+		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
 
 		opts.desc = "Live grep"
-		map("n", "<leader>G", "<cmd>Telescope live_grep<cr>", opts)
+		map("n", "<leader>G", require("mini.pick").builtin.grep_live, opts)
 
 		opts.desc = "Keymaps"
-		map("n", "<leader>K", "<cmd>Telescope keymaps<cr>", opts)
+		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
 		opts.desc = "Quit all"
 		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
@@ -82,6 +73,9 @@ keybindings.std = {
 
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+
+		opts.desc = "Visits"
+		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
@@ -108,6 +102,9 @@ keybindings.std = {
 		local opts = { noremap = true }
 
 		wk.register({ ["<leader>b"] = { name = "buffers" } })
+
+		opts.desc = "List"
+		map("n", "<leader>bb", require("mini.pick").builtin.buffers, opts)
 
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
@@ -192,13 +189,15 @@ keybindings.std = {
 		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
 
 		opts.desc = "Branches"
-		map("n", "<leader>g<leader>", "<cmd>Telescope git_branches<cr>", opts)
+		map("n", "<leader>g<leader>", require("mini.extra").pickers.git_branches, opts)
 
 		opts.desc = "Commits (file)"
-		map("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>", opts)
+		map("n", "<leader>gc", function()
+			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
+		end, opts)
 
 		opts.desc = "Commits (repo)"
-		map("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", opts)
+		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
@@ -208,6 +207,9 @@ keybindings.std = {
 
 		opts.desc = "History"
 		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
+
+		opts.desc = "Hunks"
+		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
 
 		opts.desc = "Blame"
 		map("n", "<leader>gb", "<cmd>vertical Git blame -- %<cr>", opts)
@@ -234,9 +236,6 @@ keybindings.std = {
 
 		opts.desc = "Re-run last request"
 		map("n", "<leader>Hl", "<cmd>Rest run last<cr>", opts)
-
-		opts.desc = "Select env"
-		map("n", "<leader>Hs", "<cmd>Telescope rest select_env<cr>", opts)
 	end,
 	sniprun = function()
 		local opts = { noremap = true, silent = true }
@@ -370,25 +369,35 @@ keybindings.lsp = function(event)
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
 	desc("go to declaration")
-	map("n", "gD", vim.lsp.buf.declaration, opts)
+	map("n", "gD", function()
+		require("mini.extra").pickers.lsp({ scope = "declaration" })
+	end, opts)
 
 	desc("go to references")
-	map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+	map("n", "gr", function()
+		require("mini.extra").pickers.lsp({ scope = "references" })
+	end, opts)
 
 	desc("go to definition")
-	map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+	map("n", "gd", function()
+		require("mini.extra").pickers.lsp({ scope = "definition" })
+	end, opts)
 
 	desc("go to type definition")
-	map("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
+	map("n", "gt", function()
+		require("mini.extra").pickers.lsp({ scope = "type_definition" })
+	end, opts)
 
-	desc("go to implementations")
-	map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+	desc("go to implementation")
+	map("n", "gt", function()
+		require("mini.extra").pickers.lsp({ scope = "implementation" })
+	end, opts)
 
 	desc("code actions")
 	map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
 
 	desc("diagnostics")
-	map("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
+	map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
 
 	desc("signature help")
 	map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
@@ -400,10 +409,14 @@ keybindings.lsp = function(event)
 	map("n", "<leader>l", vim.lsp.codelens.run, opts)
 
 	desc("symbols (document)")
-	map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+	map("n", "<leader>s", function()
+		require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+	end, opts)
 
 	desc("symbols (workspace)")
-	map("n", "<leader>S", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
+	map("n", "<leader>S", function()
+		require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
+	end, opts)
 end
 
 keybindings.dap = function(event)
@@ -452,9 +465,6 @@ keybindings.dap = function(event)
 	opts.desc = "Show hover"
 	map("n", "<leader>dk", require("dap.ui.widgets").hover, opts)
 
-	opts.desc = "List breakpoints"
-	map("n", "<leader>dl", "<cmd>Telescope dap list_breakpoints<cr>", opts)
-
 	opts.desc = "Toggle UI"
 	map("n", "<leader>du", require("dapui").toggle, opts)
 
@@ -468,62 +478,14 @@ keybindings.dap = function(event)
 end
 
 keybindings.refactor = function(event)
-	local opts = { noremap = true, buffer = event.buf }
-
-	wk.register({ ["<leader>r"] = {
-		name = "refactor",
+	local opts = {
+		noremap = true,
 		buffer = event.buf,
-		mode = { "n", "x" },
-	} })
+		desc = "Refactor",
+	}
 
-	opts.desc = "Extract function"
-	map("x", "<leader>rf", function()
-		require("refactoring").refactor("Extract Function")
-	end, opts)
-
-	opts.desc = "Extract function to file"
-	map("x", "<leader>rF", function()
-		require("refactoring").refactor("Extract Function To File")
-	end, opts)
-
-	opts.desc = "Extract variable"
-	map("x", "<leader>rv", function()
-		require("refactoring").refactor("Extract Variable")
-	end, opts)
-
-	opts.desc = "Inline function"
-	map("n", "<leader>rI", function()
-		require("refactoring").refactor("Inline Function")
-	end, opts)
-
-	opts.desc = "Inline variable"
-	map({ "n", "x" }, "<leader>ri", function()
-		require("refactoring").refactor("Inline Variable")
-	end, opts)
-
-	opts.desc = "Extract block"
-	map("n", "<leader>rb", function()
-		require("refactoring").refactor("Extract Block")
-	end, opts)
-
-	opts.desc = "Extract block to file"
-	map("n", "<leader>rB", function()
-		require("refactoring").refactor("Extract Block To File")
-	end, opts)
-
-	opts.desc = "Select refactor"
-	map({ "n", "x" }, "<leader>rr", function()
-		require("telescope").extensions.refactoring.refactors()
-	end, opts)
-
-	opts.desc = "Print variable"
-	map({ "x", "n" }, "<leader>rp", function()
-		require("refactoring").debug.print_var()
-	end, opts)
-
-	opts.desc = "Cleanup"
-	map("n", "<leader>rc", function()
-		require("refactoring").debug.cleanup({})
+	map({ "n", "x" }, "<leader>r", function()
+		require("refactoring").select_refactor()
 	end, opts)
 end
 
@@ -563,9 +525,6 @@ keybindings.writing = function(event)
 
 	opts.desc = "YAML reference"
 	map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
-
-	opts.desc = "Add Zotero reference to local .bib file"
-	map("n", "<leader>zz", "<cmd>Telescope zotero<cr>", opts)
 end
 
 keybindings.ft = {

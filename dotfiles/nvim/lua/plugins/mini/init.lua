@@ -1,7 +1,6 @@
 require("plugins.mini.ai")
 require("plugins.mini.align")
 require("plugins.mini.base16")
-require("plugins.mini.base16")
 require("plugins.mini.bracketed")
 require("plugins.mini.bufremove")
 require("plugins.mini.clue")

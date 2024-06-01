@@ -26,6 +26,7 @@ local servers = {
 	dotls = {},
 	gopls = {},
 	html = {},
+	markdown_oxide = {},
 	nil_ls = {},
 	ruff = {},
 	taplo = {},
@@ -50,16 +51,6 @@ local servers = {
 				schemas = require("schemastore").yaml.schemas(),
 			},
 		},
-	},
-	markdown_oxide = {
-		on_attach = function(_, bufnr)
-			vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
-				buffer = bufnr,
-				callback = vim.lsp.codelens.refresh,
-			})
-
-			vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-		end,
 	},
 	helm_ls = {
 		settings = {

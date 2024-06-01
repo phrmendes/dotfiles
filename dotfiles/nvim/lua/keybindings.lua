@@ -1,4 +1,3 @@
-local wk = require("which-key")
 local augroups = require("utils").augroups
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
@@ -6,7 +5,7 @@ local map = vim.keymap.set
 local keybindings = {}
 
 keybindings.std = {
-	random = function()
+	leader = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Half page down"
@@ -38,7 +37,7 @@ keybindings.std = {
 
 		opts.desc = "Command history"
 		map("n", "<leader>:", function()
-			require("min.extra").pickers.history({ scope = ":" })
+			require("mini.extra").pickers.history({ scope = ":" })
 		end, opts)
 
 		opts.desc = "Resize and make windows equal"
@@ -69,16 +68,16 @@ keybindings.std = {
 		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
 
 		opts.desc = "Paste image"
-		map("n", "<leader>p", "<cmd>PasteImage<cr>", opts)
+		map("n", "<leader>i", "<cmd>PasteImage<cr>", opts)
 
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
-		opts.desc = "Visits"
-		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
-
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
+
+		opts.desc = "Visits"
+		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>w<cr>", opts)
@@ -100,8 +99,6 @@ keybindings.std = {
 	end,
 	buffers = function()
 		local opts = { noremap = true }
-
-		wk.register({ ["<leader>b"] = { name = "buffers" } })
 
 		opts.desc = "List"
 		map("n", "<leader>bb", require("mini.pick").builtin.buffers, opts)
@@ -157,33 +154,26 @@ keybindings.std = {
 		end, opts)
 	end,
 	file_explorer = function()
-		local files = require("mini.files")
 		local opts = { noremap = true }
-
-		local explorer = function(path)
-			if not files.close() then
-				files.open(path)
-			end
-		end
 
 		opts.desc = "Explorer (current file)"
 		map("n", "<leader>e", function()
-			explorer(vim.fn.expand("%:p:h"))
-			files.reveal_cwd()
+			if not require("mini.files").close() then
+				require("mini.files").open(vim.fn.expand("%:p:h"))
+			end
+
+			require("mini.files").reveal_cwd()
 		end, opts)
 
 		opts.desc = "Explorer (cwd)"
 		map("n", "<leader>E", function()
-			explorer(vim.loop.cwd())
+			if not require("mini.files").close() then
+				require("mini.files").open(vim.loop.cwd())
+			end
 		end, opts)
 	end,
 	git = function()
 		local opts = { noremap = true }
-
-		wk.register({ ["<leader>g"] = {
-			name = "git",
-			mode = { "n", "x" },
-		} })
 
 		opts.desc = "Commit"
 		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
@@ -202,7 +192,7 @@ keybindings.std = {
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
 
-		opts.desc = "LazyGit"
+		opts.desc = "Lazygit"
 		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
 
 		opts.desc = "History"
@@ -228,8 +218,6 @@ keybindings.std = {
 	end,
 	rest = function()
 		local opts = { noremap = true }
-
-		wk.register({ ["<leader>H"] = { name = "http" } })
 
 		opts.desc = "Run request under cursor"
 		map("n", "<leader>Hr", "<cmd>Rest run<cr>", opts)
@@ -262,8 +250,6 @@ keybindings.std = {
 	end,
 	tabs = function()
 		local opts = { noremap = true }
-
-		wk.register({ ["<leader><tab>"] = { name = "tabs" } })
 
 		opts.desc = "Previous tab"
 		map("n", "[<tab>", "<cmd>tabprevious<cr>", opts)
@@ -300,8 +286,6 @@ keybindings.std = {
 	end,
 	yanky = function()
 		local opts = { noremap = true }
-
-		wk.register({ ["<leader>y"] = { name = "yank" } })
 
 		opts.desc = "History"
 		map("n", "<leader>yy", "<cmd>YankyRingHistory<cr>", opts)
@@ -361,59 +345,55 @@ keybindings.std = {
 keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	local desc = function(desc)
-		opts.desc = "LSP: " .. desc
-	end
-
-	desc("rename")
+	opts.desc = "LSP: rename"
 	map("n", "<F2>", vim.lsp.buf.rename, opts)
 
-	desc("go to declaration")
+	opts.desc = "LSP: go to declaration"
 	map("n", "gD", function()
 		require("mini.extra").pickers.lsp({ scope = "declaration" })
 	end, opts)
 
-	desc("go to references")
+	opts.desc = "LSP: go to references"
 	map("n", "gr", function()
 		require("mini.extra").pickers.lsp({ scope = "references" })
 	end, opts)
 
-	desc("go to definition")
+	opts.desc = "LSP: go to definition"
 	map("n", "gd", function()
 		require("mini.extra").pickers.lsp({ scope = "definition" })
 	end, opts)
 
-	desc("go to type definition")
+	opts.desc = "LSP: go to type definition"
 	map("n", "gt", function()
 		require("mini.extra").pickers.lsp({ scope = "type_definition" })
 	end, opts)
 
-	desc("go to implementation")
+	opts.desc = "LSP: go to implementation"
 	map("n", "gt", function()
 		require("mini.extra").pickers.lsp({ scope = "implementation" })
 	end, opts)
 
-	desc("code actions")
+	opts.desc = "LSP: code actions"
 	map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
 
-	desc("diagnostics")
+	opts.desc = "LSP: diagnostics"
 	map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
 
-	desc("signature help")
+	opts.desc = "LSP: signature help"
 	map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 
-	desc("hover")
+	opts.desc = "LSP: hover"
 	map("n", "<leader>k", vim.lsp.buf.hover, opts)
 
-	desc("code lens")
+	opts.desc = "LSP: code lens"
 	map("n", "<leader>l", vim.lsp.codelens.run, opts)
 
-	desc("symbols (document)")
+	opts.desc = "LSP: symbols (document)"
 	map("n", "<leader>s", function()
 		require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 	end, opts)
 
-	desc("symbols (workspace)")
+	opts.desc = "LSP: symbols (workspace)"
 	map("n", "<leader>S", function()
 		require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
 	end, opts)
@@ -422,57 +402,47 @@ end
 keybindings.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	wk.register({ ["<leader>d"] = {
-		name = "debugger",
-		buffer = event.buf,
-		mode = { "n", "x" },
-	} })
-
-	local desc = function(desc)
-		opts.desc = "LSP: " .. desc
-	end
-
-	desc("step into")
+	opts.desc = "DAP: step into"
 	map("n", "<f1>", require("dap").step_into, opts)
 
-	desc("step out")
+	opts.desc = "DAP: step out"
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	desc("step back")
+	opts.desc = "DAP: step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	desc("continue")
+	opts.desc = "DAP: continue"
 	map("n", "<f6>", require("dap").continue, opts)
 
-	desc("step over")
+	opts.desc = "DAP: step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	desc("pause")
+	opts.desc = "DAP: pause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	desc("terminate")
+	opts.desc = "DAP: terminate"
 	map("n", "<bs>", require("dap").terminate, opts)
 
-	opts.desc = "Breakpoint"
-	map("n", "<leader>db", require("dap").toggle_breakpoint, opts)
+	opts.desc = "DAP: breakpoint"
+	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
-	opts.desc = "Debug last"
-	map("n", "<leader>dl", require("dap").run_last, opts)
+	opts.desc = "DAP: debug last"
+	map("n", "<localleader>l", require("dap").run_last, opts)
 
-	opts.desc = "Clear all breakpoints"
-	map("n", "<leader>d<del>", require("dap").clear_breakpoints, opts)
+	opts.desc = "DAP: clear all breakpoints"
+	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
 
-	opts.desc = "Show hover"
-	map("n", "<leader>dk", require("dap.ui.widgets").hover, opts)
+	opts.desc = "DAP: show hover"
+	map("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
 
-	opts.desc = "Toggle UI"
-	map("n", "<leader>du", require("dapui").toggle, opts)
+	opts.desc = "DAP: toggle UI"
+	map("n", "<localleader>u", require("dapui").toggle, opts)
 
-	opts.desc = "Eval"
-	map("n", "<leader>de", require("dapui").eval, opts)
+	opts.desc = "DAP: eval"
+	map("n", "<localleader><cr>", require("dapui").eval, opts)
 
-	opts.desc = "Conditional breakpoint"
-	map("n", "<leader>dB", function()
+	opts.desc = "DAP: conditional breakpoint"
+	map("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
 end
@@ -493,7 +463,7 @@ keybindings.writing = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	local function toggle(key)
-		return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
+		return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual]] .. key .. "<cr>"
 	end
 
 	opts.desc = "Markdown"
@@ -503,28 +473,26 @@ keybindings.writing = function(event)
 	map("x", "<c-b>", toggle("b"), opts)
 	map("x", "<c-i>", toggle("i"), opts)
 
+	opts.desc = "Preview markdown"
+	map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", opts)
+
 	opts.desc = "Preview equation"
-	map("n", "<localleader>p", require("nabla").popup, opts)
+	map("n", "<leader>p", require("nabla").popup, opts)
 
-	wk.register({ ["<leader>z"] = {
-		name = "zotero",
-		buffer = event.buf,
-	} })
+	opts.desc = "Zotero: citation info"
+	map("n", "<localleader>i", "<Plug>ZCitationInfo", opts)
 
-	opts.desc = "Citation complete info"
-	map("n", "<leader>zc", "<Plug>ZCitationCompleteInfo", opts)
+	opts.desc = "Zotero: citation info (complete)"
+	map("n", "<localleader>I", "<Plug>ZCitationCompleteInfo", opts)
 
-	opts.desc = "Citation info"
-	map("n", "<leader>zi", "<Plug>ZCitationInfo", opts)
+	opts.desc = "Zotero: open attachment"
+	map("n", "<localleader>o", "<Plug>ZOpenAttachment", opts)
 
-	opts.desc = "Open attachment"
-	map("n", "<leader>zo", "<Plug>ZOpenAttachment", opts)
+	opts.desc = "Zotero: view document"
+	map("n", "<localleader>v", "<Plug>ZViewDocument", opts)
 
-	opts.desc = "View document"
-	map("n", "<leader>zv", "<Plug>ZViewDocument", opts)
-
-	opts.desc = "YAML reference"
-	map("n", "<leader>zy", "<Plug>ZCitationYamlRef", opts)
+	opts.desc = "Zotero: YAML reference"
+	map("n", "<localleader>y", "<Plug>ZCitationYamlRef", opts)
 end
 
 keybindings.ft = {
@@ -537,22 +505,17 @@ keybindings.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "Debug test"
-		map("n", "<leader>dt", require("dap-go").debug_test, opts)
+		opts.desc = "DAP: debug test"
+		map("n", "<localleader>t", require("dap-go").debug_test, opts)
 
-		opts.desc = "Debug last test"
-		map("n", "<leader>dT", require("dap-go").debug_last_test, opts)
+		opts.desc = "DAP: debug last test"
+		map("n", "<localleader>T", require("dap-go").debug_last_test, opts)
 
-		wk.register({ ["<leader>g"] = {
-			name = "go",
-			buffer = event.buf,
-		} })
+		opts.desc = "Go: add json struct tags"
+		map("n", "<localleader>j", "<cmd>GoTagAdd json<cr>", opts)
 
-		opts.desc = "Add json struct tags"
-		map("n", "<localleader>gj", "<cmd>GoTagAdd json<cr>", opts)
-
-		opts.desc = "Add yaml struct tags"
-		map("n", "<localleader>gy", "<cmd>GoTagAdd yaml<cr>", opts)
+		opts.desc = "Go: add yaml struct tags"
+		map("n", "<localleader>y", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
 		keybindings.writing(event)
@@ -563,17 +526,64 @@ keybindings.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "Debug function/method"
-		map("n", "<leader>df", require("dap-python").test_method, opts)
+		opts.desc = "DAP: debug function/method"
+		map("n", "<localleader>f", require("dap-python").test_method, opts)
 
-		opts.desc = "Debug class"
-		map("n", "<leader>dc", require("dap-python").test_class, opts)
+		opts.desc = "DAP: debug class"
+		map("n", "<localleader>c", require("dap-python").test_class, opts)
 
-		opts.desc = "Debug selection"
-		map("x", "<leader>ds", require("dap-python").debug_selection, opts)
+		opts.desc = "DAP: debug selection"
+		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
 		keybindings.writing(event)
+	end,
+	todo = function(event)
+		local opts = { script = true, silent = true, buffer = event.buf }
+
+		opts.desc = "Sort the file"
+		map({ "n", "v" }, "<localleader>s", "<cmd>%sort<cr>", opts)
+
+		opts.desc = "Sort by +project"
+		map({ "n", "v" }, "<localleader>s+", "<cmd>%call todo#txt#sort_by_project()<cr>", opts)
+
+		opts.desc = "Sort by @context"
+		map({ "n", "v" }, "<localleader>s@", "<cmd>%call todo#txt#sort_by_context()<cr>", opts)
+
+		opts.desc = "Sort by date"
+		map({ "n", "v" }, "<localleader>sd", "<cmd>%call todo#txt#sort_by_date()<cr>", opts)
+
+		opts.desc = "Sort by due date"
+		map({ "n", "v" }, "<localleader>sdd", "<cmd>%call todo#txt#sort_by_due_date()<cr>", opts)
+
+		opts.desc = "Decrease priority"
+		map({ "n", "v" }, "<localleader>k", "<cmd>call todo#txt#prioritize_decrease()<cr>", opts)
+
+		opts.desc = "Increase priority"
+		map({ "n", "v" }, "<localleader>j", "<cmd>call todo#txt#prioritize_increase()<cr>", opts)
+
+		opts.desc = "Add priority (A)"
+		map({ "n", "v" }, "<localleader>a", "<cmd>call todo#txt#prioritize_add('A')<cr>", opts)
+
+		opts.desc = "Add priority (B)"
+		map({ "n", "v" }, "<localleader>b", "<cmd>call todo#txt#prioritize_add('B')<cr>", opts)
+
+		opts.desc = "Add priority (C)"
+		map({ "n", "v" }, "<localleader>c", "<cmd>call todo#txt#prioritize_add('C')<cr>", opts)
+
+		opts.desc = "Insert date"
+		map("i", "date<tab>", "<c-r>=strftime('%Y-%m-%d')<cr>", opts)
+		map("n", "<localleader>d", "<cmd>call todo#txt#replace_date()<cr>", opts)
+		map("v", "<localleader>d", "<cmd>call todo#txt#replace_date()<cr>", opts)
+
+		opts.desc = "Mark as done"
+		map({ "n", "v" }, "<localleader>x", "<cmd>call todo#txt#mark_as_done()<cr>", opts)
+
+		opts.desc = "Mark all as done"
+		map("n", "<localleader>X", "<cmd>call todo#txt#mark_all_as_done()<cr>", opts)
+
+		opts.desc = "Remove completed"
+		map("n", "<localleader>D", "<cmd>call todo#txt#remove_completed()<cr>", opts)
 	end,
 }
 

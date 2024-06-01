@@ -41,7 +41,6 @@
           copilot-vim
           dial-nvim
           dressing-nvim
-          executor-nvim
           friendly-snippets
           gh.gopher-nvim
           gh.img-clip-nvim
@@ -95,7 +94,6 @@
           vim-just
           vim-pandoc-syntax
           vim-sleuth
-          which-key-nvim
           yanky-nvim
           zen-mode-nvim
         ]

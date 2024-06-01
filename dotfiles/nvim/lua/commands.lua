@@ -24,24 +24,24 @@ command("NewNote", function(args)
 end, { desc = "Create new note", nargs = "*" })
 
 command("SearchNote", function()
-	require("mini.pick").builtin.files({
+	require("mini.pick").registry.files({
 		cwd = notes_path,
 	})
 end, { desc = "Search note", nargs = 0 })
 
 command("GrepNotes", function()
-	require("mini.pick").builtin.grep_live({
+	require("mini.pick").registry.live_grep({
 		cwd = notes_path,
 	})
 end, { desc = "Search in notes", nargs = 0 })
 
-command("TodoTxt", function()
-	vim.cmd("split " .. notes_path .. "/todo.txt")
-end, { desc = "Open tasks", nargs = 0 })
-
 command("Inbox", function()
 	vim.cmd("split " .. notes_path .. "/inbox.md")
 end, { desc = "Open inbox", nargs = 0 })
+
+command("TodoTxt", function()
+	vim.cmd("split " .. notes_path .. "/todo.txt")
+end, { desc = "Open todo.txt", nargs = 0 })
 
 command("Sessions", function()
 	require("mini.sessions").select()

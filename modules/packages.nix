@@ -83,7 +83,6 @@ in {
         libqalculate
         libreoffice
         mpv
-        neovide
         pavucontrol
         phockup
         plex

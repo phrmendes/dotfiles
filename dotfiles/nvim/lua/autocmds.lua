@@ -107,7 +107,7 @@ autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
 
 autocmd("User", {
 	pattern = "MiniGitCommandSplit",
-	group = augroups.git,
+	group = augroups.mini,
 	callback = function(event)
 		if event.data.git_subcommand ~= "blame" then
 			return
@@ -121,5 +121,16 @@ autocmd("User", {
 
 		-- bind both windows so that they scroll together
 		vim.wo[win_src].scrollbind, vim.wo.scrollbind = true, true
+	end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "MiniFilesWindowOpen",
+	group = augroups.mini,
+	callback = function(event)
+		local win_id = event.data.win_id
+
+		-- customize window-local settings
+		vim.api.nvim_win_set_config(win_id, { border = "rounded" })
 	end,
 })

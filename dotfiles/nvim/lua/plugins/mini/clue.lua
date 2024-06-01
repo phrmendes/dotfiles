@@ -1,1 +1,50 @@
-require("mini.clue").setup()
+local clue = require("mini.clue")
+
+clue.setup({
+	triggers = {
+		{ mode = "n", keys = "<leader>" },
+		{ mode = "x", keys = "<leader>" },
+		{ mode = "n", keys = "<localleader>" },
+		{ mode = "x", keys = "<localleader>" },
+		{ mode = "n", keys = "<c-c>" },
+		{ mode = "x", keys = "<c-c>" },
+		{ mode = "c", keys = "<c-r>" },
+		{ mode = "i", keys = "<c-r>" },
+		{ mode = "n", keys = "<c-w>" },
+		{ mode = "i", keys = "<c-x>" },
+		{ mode = "n", keys = "]" },
+		{ mode = "n", keys = "[" },
+		{ mode = "n", keys = "g" },
+		{ mode = "x", keys = "g" },
+		{ mode = "n", keys = "z" },
+		{ mode = "x", keys = "z" },
+		{ mode = "n", keys = "'" },
+		{ mode = "x", keys = "'" },
+		{ mode = "n", keys = "`" },
+		{ mode = "x", keys = "`" },
+		{ mode = "n", keys = '"' },
+		{ mode = "x", keys = '"' },
+	},
+	clues = {
+		clue.gen_clues.builtin_completion(),
+		clue.gen_clues.g(),
+		clue.gen_clues.marks(),
+		clue.gen_clues.registers(),
+		clue.gen_clues.windows(),
+		clue.gen_clues.z(),
+		{ mode = "n", keys = "<leader><tab>", desc = "+tabs" },
+		{ mode = "n", keys = "<leader>b", desc = "+buffers" },
+		{ mode = "x", keys = "<leader>b", desc = "+buffers" },
+		{ mode = "n", keys = "<leader>g", desc = "+git" },
+		{ mode = "x", keys = "<leader>g", desc = "+git" },
+		{ mode = "n", keys = "<leader>H", desc = "+http" },
+		{ mode = "n", keys = "<leader>y", desc = "+yank" },
+	},
+	window = {
+		delay = 500,
+		config = {
+			width = "auto",
+			border = "rounded",
+		},
+	},
+})

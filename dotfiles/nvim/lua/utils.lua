@@ -7,7 +7,7 @@ M.augroups = {
 	term = augroup("UserTerm", { clear = true }),
 	filetype = augroup("UserFileType", { clear = true }),
 	linter = augroup("UserLinter", { clear = true }),
-	git = augroup("UserGit", { clear = true }),
+	mini = augroup("UserMini", { clear = true }),
 	lsp = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),

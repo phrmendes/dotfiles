@@ -54,11 +54,6 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
-    markdown-nvim = {
-      flake = false;
-      url = "github:tadmccorkle/markdown.nvim";
-    };
-
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

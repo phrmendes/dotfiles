@@ -33,7 +33,7 @@ autocmd("BufEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+autocmd({ "BufWritePre" }, {
 	group = augroups.fs,
 	callback = function(event)
 		if event.match:match("^%w%w+:[\\/][\\/]") then
@@ -49,27 +49,70 @@ autocmd("LspAttach", {
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-		if client and client.server_capabilities.documentHighlightProvider then
-			autocmd({ "CursorHold", "CursorHoldI" }, {
-				buffer = event.buf,
-				group = augroups.lsp.highlight,
-				callback = vim.lsp.buf.document_highlight,
-			})
+		if client then
+			if client.server_capabilities.documentHighlightProvider then
+				autocmd({ "CursorHold", "CursorHoldI" }, {
+					buffer = event.buf,
+					callback = vim.lsp.buf.document_highlight,
+				})
 
-			autocmd({ "CursorMoved", "CursorMovedI" }, {
-				buffer = event.buf,
-				group = augroups.lsp.highlight,
-				callback = vim.lsp.buf.clear_references,
-			})
+				autocmd({ "CursorMoved", "CursorMovedI" }, {
+					buffer = event.buf,
+					callback = vim.lsp.buf.clear_references,
+				})
+			end
 
-			autocmd("LspDetach", {
-				group = augroups.lsp.detach,
-				callback = function(ev)
-					vim.lsp.buf.clear_references()
-					vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
-				end,
-			})
+			if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+				autocmd("InsertEnter", {
+					buffer = event.buf,
+					callback = function()
+						vim.lsp.inlay_hint.enable(true)
+					end,
+				})
+
+				autocmd("InsertLeave", {
+					buffer = event.buf,
+					callback = function()
+						vim.lsp.inlay_hint.enable(false)
+					end,
+				})
+			end
+
+			if client.server_capabilities.documentHighlightProvider then
+				autocmd({ "CursorHold", "CursorHoldI" }, {
+					buffer = event.buf,
+					group = augroups.lsp.highlight,
+					callback = vim.lsp.buf.document_highlight,
+				})
+
+				autocmd({ "CursorMoved", "CursorMovedI" }, {
+					buffer = event.buf,
+					group = augroups.lsp.highlight,
+					callback = vim.lsp.buf.clear_references,
+				})
+
+				autocmd("LspDetach", {
+					group = augroups.lsp.detach,
+					callback = function(ev)
+						vim.lsp.buf.clear_references()
+						vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
+					end,
+				})
+			end
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = augroups.lsp.format,
+	callback = function(event)
+		local efm = vim.lsp.get_clients({ name = "efm", bufnr = event.buf })
+
+		if vim.tbl_isempty(efm) then
+			return
+		end
+
+		vim.lsp.buf.format({ name = "efm" })
 	end,
 })
 

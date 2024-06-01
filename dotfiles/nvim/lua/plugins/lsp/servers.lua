@@ -16,6 +16,54 @@ local handlers = {
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
+local languages = {
+	nix = {
+		require("efmls-configs.linters.statix"),
+		require("efmls-configs.formatters.alejandra"),
+	},
+	sh = {
+		require("efmls-configs.linters.shellcheck"),
+		require("efmls-configs.formatters.shellharden"),
+	},
+	sql = {
+		require("efmls-configs.linters.sqlfluff"),
+	},
+	jinja = {
+		require("efmls-configs.linters.djlint"),
+	},
+	go = {
+		require("efmls-configs.linters.golangci_lint"),
+		require("efmls-configs.formatters.gofmt"),
+		require("efmls-configs.formatters.goimports"),
+		require("efmls-configs.formatters.golines"),
+	},
+	html = {
+		require("efmls-configs.formatters.prettier_d"),
+	},
+	css = {
+		require("efmls-configs.formatters.prettier_d"),
+	},
+	json = {
+		require("efmls-configs.linters.jq"),
+	},
+	lua = {
+		require("efmls-configs.formatters.stylua"),
+	},
+	python = {
+		require("efmls-configs.formatters.ruff"),
+	},
+	terraform = {
+		require("efmls-configs.formatters.terraform_fmt"),
+	},
+	toml = {
+		require("efmls-configs.formatters.taplo"),
+	},
+	yaml = {
+		require("efmls-configs.linters.ansible_lint"),
+		require("efmls-configs.formatters.yq"),
+	},
+}
+
 local servers = {
 	ansiblels = {},
 	basedpyright = {},
@@ -91,6 +139,17 @@ local servers = {
 			ltex = {
 				language = "none",
 			},
+		},
+	},
+	efm = {
+		filetypes = vim.tbl_keys(languages),
+		init_options = {
+			documentFormatting = true,
+			documentRangeFormatting = true,
+		},
+		settings = {
+			rootMarkers = { ".git/" },
+			languages = languages,
 		},
 	},
 }

@@ -16,7 +16,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim markdown-nvim zotcite;
+        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim zotcite;
       };
     in {
       enable = true;
@@ -37,21 +37,21 @@
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
-          conform-nvim
           copilot-vim
           dial-nvim
           dressing-nvim
+          efmls-configs-nvim
           friendly-snippets
           gh.gopher-nvim
           gh.img-clip-nvim
           gh.latex-snippets-nvim
-          gh.markdown-nvim
           image-nvim
           jupytext-nvim
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
           luasnip
+          markdown-nvim
           markdown-preview-nvim
           mini-nvim
           nabla-nvim
@@ -65,7 +65,6 @@
           nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
-          nvim-lint
           nvim-lspconfig
           nvim-treesitter-context
           nvim-treesitter-textobjects
@@ -130,8 +129,7 @@
           docker-compose-language-service
           dockerfile-language-server-nodejs
           dot-language-server
-          gofumpt
-          goimports-reviser
+          efm-langserver
           golangci-lint
           golines
           gomodifytags
@@ -141,6 +139,7 @@
           iferr
           imagemagick
           impl
+          jq
           ltex-ls
           lua-language-server
           markdown-oxide
@@ -159,6 +158,7 @@
           tflint
           vscode-langservers-extracted
           yaml-language-server
+          yq-go
         ])
         ++ (with pkgs.perl538Packages; [
           LatexIndent
@@ -179,24 +179,24 @@
       };
       ".config/nvim/lua/base16.lua".text = ''
         return {
-          palette = {
-        	base00 = "#${config.lib.stylix.colors.base00}",
-        	base01 = "#${config.lib.stylix.colors.base01}",
-        	base02 = "#${config.lib.stylix.colors.base02}",
-        	base03 = "#${config.lib.stylix.colors.base03}",
-        	base04 = "#${config.lib.stylix.colors.base04}",
-        	base05 = "#${config.lib.stylix.colors.base05}",
-        	base06 = "#${config.lib.stylix.colors.base06}",
-        	base07 = "#${config.lib.stylix.colors.base07}",
-        	base08 = "#${config.lib.stylix.colors.base08}",
-        	base09 = "#${config.lib.stylix.colors.base09}",
-        	base0A = "#${config.lib.stylix.colors.base0A}",
-        	base0B = "#${config.lib.stylix.colors.base0B}",
-        	base0C = "#${config.lib.stylix.colors.base0C}",
-        	base0D = "#${config.lib.stylix.colors.base0D}",
-        	base0E = "#${config.lib.stylix.colors.base0E}",
-        	base0F = "#${config.lib.stylix.colors.base0F}",
-          },
+            palette = {
+                base00 = "#${config.lib.stylix.colors.base00}",
+                base01 = "#${config.lib.stylix.colors.base01}",
+                base02 = "#${config.lib.stylix.colors.base02}",
+                base03 = "#${config.lib.stylix.colors.base03}",
+                base04 = "#${config.lib.stylix.colors.base04}",
+                base05 = "#${config.lib.stylix.colors.base05}",
+                base06 = "#${config.lib.stylix.colors.base06}",
+                base07 = "#${config.lib.stylix.colors.base07}",
+                base08 = "#${config.lib.stylix.colors.base08}",
+                base09 = "#${config.lib.stylix.colors.base09}",
+                base0A = "#${config.lib.stylix.colors.base0A}",
+                base0B = "#${config.lib.stylix.colors.base0B}",
+                base0C = "#${config.lib.stylix.colors.base0C}",
+                base0D = "#${config.lib.stylix.colors.base0D}",
+                base0E = "#${config.lib.stylix.colors.base0E}",
+                base0F = "#${config.lib.stylix.colors.base0F}",
+            },
         }
       '';
     };

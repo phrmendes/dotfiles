@@ -32,6 +32,7 @@ in {
           html-tidy
           jdk
           jq
+          yq-go
           just
           kind
           kubectl

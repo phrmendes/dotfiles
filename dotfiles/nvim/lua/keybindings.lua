@@ -225,13 +225,6 @@ keybindings.std = {
 		opts.desc = "Re-run last request"
 		map("n", "<leader>Hl", "<cmd>Rest run last<cr>", opts)
 	end,
-	sniprun = function()
-		local opts = { noremap = true, silent = true }
-
-		opts.desc = "SnipRun"
-		map("n", "<leader><cr>", "<Plug>SnipRunOperator", opts)
-		map({ "n", "x" }, "<leader><cr>", "<Plug>SnipRun", opts)
-	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
 

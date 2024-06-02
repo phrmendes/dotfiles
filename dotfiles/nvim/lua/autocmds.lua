@@ -3,7 +3,6 @@ local augroups = require("utils").augroups
 
 autocmd("TermOpen", {
 	group = augroups.term,
-	pattern = "*",
 	callback = function()
 		vim.wo.number = false
 		vim.wo.relativenumber = false
@@ -11,9 +10,13 @@ autocmd("TermOpen", {
 	end,
 })
 
+autocmd("TextYankPost", {
+	group = augroups.yank,
+	callback = vim.highlight.on_yank,
+})
+
 autocmd("TermClose", {
 	group = augroups.term,
-	pattern = { "*" },
 	callback = function()
 		vim.wo.number = true
 		vim.wo.relativenumber = true
@@ -33,36 +36,13 @@ autocmd("BufEnter", {
 	end,
 })
 
-autocmd({ "BufWritePre" }, {
-	group = augroups.fs,
-	callback = function(event)
-		if event.match:match("^%w%w+:[\\/][\\/]") then
-			return
-		end
-		local file = vim.loop.fs_realpath(event.match) or event.match
-		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-	end,
-})
-
 autocmd("LspAttach", {
 	group = augroups.lsp.attach,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 		if client then
-			if client.server_capabilities.documentHighlightProvider then
-				autocmd({ "CursorHold", "CursorHoldI" }, {
-					buffer = event.buf,
-					callback = vim.lsp.buf.document_highlight,
-				})
-
-				autocmd({ "CursorMoved", "CursorMovedI" }, {
-					buffer = event.buf,
-					callback = vim.lsp.buf.clear_references,
-				})
-			end
-
-			if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+			if client.server_capabilities.inlayHintProvider then
 				autocmd("InsertEnter", {
 					buffer = event.buf,
 					callback = function()
@@ -162,6 +142,9 @@ autocmd("User", {
 		vim.fn.winrestview({ topline = vim.fn.line("w0", win_src) })
 		vim.api.nvim_win_set_cursor(0, { vim.fn.line(".", win_src), 0 })
 
+		-- disable relative numbers
+		vim.wo.relativenumber = false
+
 		-- bind both windows so that they scroll together
 		vim.wo[win_src].scrollbind, vim.wo.scrollbind = true, true
 	end,
@@ -173,7 +156,6 @@ vim.api.nvim_create_autocmd("User", {
 	callback = function(event)
 		local win_id = event.data.win_id
 
-		-- customize window-local settings
 		vim.api.nvim_win_set_config(win_id, { border = "rounded" })
 	end,
 })

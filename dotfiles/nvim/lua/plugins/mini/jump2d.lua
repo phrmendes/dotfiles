@@ -1,4 +1,4 @@
 require("mini.jump2d").setup({
-	mappings = { start_jumping = "<leader>j" },
+	mappings = { start_jumping = "s" },
 	view = { dim = true },
 })

@@ -12,7 +12,4 @@ require("mini.files").setup({
 		trim_left = "<",
 		trim_right = ">",
 	},
-	windows = {
-		preview = true,
-	},
 })

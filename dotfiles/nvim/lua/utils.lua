@@ -9,6 +9,7 @@ M.augroups = {
 	linter = augroup("UserLinter", { clear = true }),
 	mini = augroup("UserMini", { clear = true }),
 	term = augroup("UserTerm", { clear = true }),
+	yank = augroup("UserYank", { clear = true }),
 	lsp = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),

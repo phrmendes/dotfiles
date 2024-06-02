@@ -32,6 +32,7 @@ local languages = {
 		require("efmls-configs.linters.djlint"),
 	},
 	go = {
+		require("efmls-configs.linters.djlint"),
 		require("efmls-configs.linters.golangci_lint"),
 		require("efmls-configs.formatters.gofmt"),
 		require("efmls-configs.formatters.goimports"),
@@ -72,7 +73,6 @@ local servers = {
 	docker_compose_language_service = {},
 	dockerls = {},
 	dotls = {},
-	gopls = {},
 	html = {},
 	markdown_oxide = {},
 	nil_ls = {},
@@ -81,24 +81,21 @@ local servers = {
 	terraformls = {},
 	texlab = {},
 	tflint = {},
-	jsonls = {
+	efm = {
+		filetypes = vim.tbl_keys(languages),
+		init_options = {
+			documentFormatting = true,
+			documentRangeFormatting = true,
+		},
 		settings = {
-			json = {
-				schemas = require("schemastore").json.schemas(),
-				validate = { enable = true },
-			},
+			rootMarkers = { ".git/" },
+			languages = languages,
 		},
 	},
-	yamlls = {
-		settings = {
-			yaml = {
-				schemaStore = {
-					enable = false,
-					url = "",
-				},
-				schemas = require("schemastore").yaml.schemas(),
-			},
-		},
+	gopls = {
+		on_attach = function()
+			require("gopher").setup()
+		end,
 	},
 	helm_ls = {
 		settings = {
@@ -107,7 +104,18 @@ local servers = {
 			},
 		},
 	},
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
 	lua_ls = {
+		on_attach = function()
+			require("lazydev").setup()
+		end,
 		settings = {
 			Lua = {
 				completion = { callSnippet = "Replace" },
@@ -141,15 +149,15 @@ local servers = {
 			},
 		},
 	},
-	efm = {
-		filetypes = vim.tbl_keys(languages),
-		init_options = {
-			documentFormatting = true,
-			documentRangeFormatting = true,
-		},
+	yamlls = {
 		settings = {
-			rootMarkers = { ".git/" },
-			languages = languages,
+			yaml = {
+				schemas = require("schemastore").yaml.schemas(),
+				schemaStore = {
+					enable = false,
+					url = "",
+				},
+			},
 		},
 	},
 }

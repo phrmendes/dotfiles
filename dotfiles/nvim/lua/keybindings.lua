@@ -5,7 +5,7 @@ local map = vim.keymap.set
 local keybindings = {}
 
 keybindings.std = {
-	leader = function()
+	random = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Half page down"
@@ -28,6 +28,9 @@ keybindings.std = {
 
 		opts.desc = "Replay macro (visual)"
 		map("x", "Q", "<cmd>norm @q<cr>", opts)
+	end,
+	leader = function()
+		local opts = { noremap = true }
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
@@ -63,9 +66,6 @@ keybindings.std = {
 
 		opts.desc = "Close all other windows"
 		map("n", "<leader>X", "<c-w>o", opts)
-
-		opts.desc = "Generate annotations"
-		map("n", "<leader>n", "<cmd>Neogen<cr>", opts)
 
 		opts.desc = "Paste image"
 		map("n", "<leader>i", "<cmd>PasteImage<cr>", opts)
@@ -168,7 +168,7 @@ keybindings.std = {
 		opts.desc = "Explorer (cwd)"
 		map("n", "<leader>E", function()
 			if not require("mini.files").close() then
-				require("mini.files").open(vim.loop.cwd())
+				require("mini.files").open(vim.fn.getcwd())
 			end
 		end, opts)
 	end,
@@ -277,62 +277,6 @@ keybindings.std = {
 		opts.desc = "Send lines to terminal"
 		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
 	end,
-	yanky = function()
-		local opts = { noremap = true }
-
-		opts.desc = "History"
-		map("n", "<leader>yy", "<cmd>YankyRingHistory<cr>", opts)
-
-		opts.desc = "Clear history"
-		map("n", "<leader>yc", "<cmd>YankyClearHistory<cr>", opts)
-
-		opts.desc = "Yank text"
-		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
-
-		opts.desc = "Paste after cursor"
-		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-
-		opts.desc = "Paste before cursor"
-		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-
-		opts.desc = "Paste after selection"
-		map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-
-		opts.desc = "Paste before selection"
-		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
-
-		opts.desc = "Previous yank entry"
-		map("n", "[y", "<Plug>(YankyPreviousEntry)", opts)
-
-		opts.desc = "Next yank entry"
-		map("n", "]y", "<Plug>(YankyNextEntry)", opts)
-
-		opts.desc = "Paste indented after cursor (linewise)"
-		map("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", opts)
-		map("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)", opts)
-
-		opts.desc = "Paste indented before cursor (linewise)"
-		map("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
-		map("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)", opts)
-
-		opts.desc = "Paste and indent right"
-		map("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)", opts)
-
-		opts.desc = "Paste and indent left"
-		map("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", opts)
-
-		opts.desc = "Paste before and indent right"
-		map("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", opts)
-
-		opts.desc = "Paste before and indent left"
-		map("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", opts)
-
-		opts.desc = "Paste after filter"
-		map("n", "=p", "<Plug>(YankyPutAfterFilter)", opts)
-
-		opts.desc = "Paste before filter"
-		map("n", "=P", "<Plug>(YankyPutBeforeFilter)", opts)
-	end,
 }
 
 keybindings.lsp = function(event)
@@ -395,11 +339,11 @@ end
 keybindings.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "DAP: step into"
-	map("n", "<f1>", require("dap").step_into, opts)
-
 	opts.desc = "DAP: step out"
 	map("n", "<f3>", require("dap").step_out, opts)
+
+	opts.desc = "DAP: step into"
+	map("n", "<f4>", require("dap").step_into, opts)
 
 	opts.desc = "DAP: step back"
 	map("n", "<f5>", require("dap").step_back, opts)
@@ -414,7 +358,7 @@ keybindings.dap = function(event)
 	map("n", "<s-f6>", require("dap").pause, opts)
 
 	opts.desc = "DAP: terminate"
-	map("n", "<bs>", require("dap").terminate, opts)
+	map("n", "<del>", require("dap").terminate, opts)
 
 	opts.desc = "DAP: breakpoint"
 	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
@@ -473,19 +417,19 @@ keybindings.writing = function(event)
 	map("n", "<leader>p", require("nabla").popup, opts)
 
 	opts.desc = "Zotero: citation info"
-	map("n", "<localleader>i", "<Plug>ZCitationInfo", opts)
+	map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
 
 	opts.desc = "Zotero: citation info (complete)"
-	map("n", "<localleader>I", "<Plug>ZCitationCompleteInfo", opts)
+	map("n", "<c-s-i>", "<Plug>ZCitationCompleteInfo", opts)
 
 	opts.desc = "Zotero: open attachment"
-	map("n", "<localleader>o", "<Plug>ZOpenAttachment", opts)
+	map("n", "<c-o>", "<Plug>ZOpenAttachment", opts)
 
 	opts.desc = "Zotero: view document"
-	map("n", "<localleader>v", "<Plug>ZViewDocument", opts)
+	map("n", "<c-s-o>", "<Plug>ZViewDocument", opts)
 
 	opts.desc = "Zotero: YAML reference"
-	map("n", "<localleader>y", "<Plug>ZCitationYamlRef", opts)
+	map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 end
 
 keybindings.ft = {
@@ -505,10 +449,10 @@ keybindings.ft = {
 		map("n", "<localleader>T", require("dap-go").debug_last_test, opts)
 
 		opts.desc = "Go: add json struct tags"
-		map("n", "<localleader>j", "<cmd>GoTagAdd json<cr>", opts)
+		map("n", "<leader>j", "<cmd>GoTagAdd json<cr>", opts)
 
 		opts.desc = "Go: add yaml struct tags"
-		map("n", "<localleader>y", "<cmd>GoTagAdd yaml<cr>", opts)
+		map("n", "<leader>y", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
 		keybindings.writing(event)

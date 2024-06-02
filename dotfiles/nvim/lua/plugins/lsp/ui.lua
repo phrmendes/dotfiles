@@ -5,6 +5,8 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
+
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,

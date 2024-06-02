@@ -54,11 +54,6 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
-    lazydev-nvim = {
-      flake = false;
-      url = "github:folke/lazydev.nvim";
-    };
-
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

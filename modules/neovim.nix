@@ -16,7 +16,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim lazydev-nvim zotcite;
+        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim zotcite;
       };
     in {
       enable = true;
@@ -45,7 +45,6 @@
           gh.gopher-nvim
           gh.img-clip-nvim
           gh.latex-snippets-nvim
-          gh.lazydev-nvim
           image-nvim
           jupytext-nvim
           lazygit-nvim
@@ -56,6 +55,7 @@
           markdown-preview-nvim
           mini-nvim
           nabla-nvim
+          neodev-nvim
           nui-nvim
           nvim-bqf
           nvim-cmp

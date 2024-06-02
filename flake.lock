@@ -344,22 +344,6 @@
         "type": "github"
       }
     },
-    "lazydev-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1717361101,
-        "narHash": "sha256-AxcRkk0FYsFbVbax6m3LVl4MzBaUOcLspXjVJJJbO+E=",
-        "owner": "folke",
-        "repo": "lazydev.nvim",
-        "rev": "41e5bb150020d0841fffdd52e6a4942f51004986",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "lazydev.nvim",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1717112898,
@@ -434,7 +418,6 @@
         "img-clip-nvim": "img-clip-nvim",
         "impermanence": "impermanence",
         "latex-snippets-nvim": "latex-snippets-nvim",
-        "lazydev-nvim": "lazydev-nvim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "stylix": "stylix",

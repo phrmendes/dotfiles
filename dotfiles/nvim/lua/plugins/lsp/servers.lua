@@ -113,9 +113,6 @@ local servers = {
 		},
 	},
 	lua_ls = {
-		on_attach = function()
-			require("lazydev").setup()
-		end,
 		settings = {
 			Lua = {
 				completion = { callSnippet = "Replace" },

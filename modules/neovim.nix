@@ -129,6 +129,7 @@
           dot-language-server
           efm-langserver
           golangci-lint
+          golangci-lint-langserver
           golines
           gomodifytags
           gopls
@@ -148,7 +149,6 @@
           shellcheck
           shellharden
           sqlfluff
-          statix
           stylua
           taplo
           terraform-ls

@@ -18,7 +18,6 @@ local handlers = {
 
 local languages = {
 	nix = {
-		require("efmls-configs.linters.statix"),
 		require("efmls-configs.formatters.alejandra"),
 	},
 	sh = {
@@ -33,7 +32,6 @@ local languages = {
 	},
 	go = {
 		require("efmls-configs.linters.djlint"),
-		require("efmls-configs.linters.golangci_lint"),
 		require("efmls-configs.formatters.gofmt"),
 		require("efmls-configs.formatters.goimports"),
 		require("efmls-configs.formatters.golines"),
@@ -45,7 +43,7 @@ local languages = {
 		require("efmls-configs.formatters.prettier_d"),
 	},
 	json = {
-		require("efmls-configs.linters.jq"),
+		require("efmls-configs.formatters.jq"),
 	},
 	lua = {
 		require("efmls-configs.formatters.stylua"),
@@ -60,7 +58,6 @@ local languages = {
 		require("efmls-configs.formatters.taplo"),
 	},
 	yaml = {
-		require("efmls-configs.linters.ansible_lint"),
 		require("efmls-configs.formatters.yq"),
 	},
 }
@@ -73,6 +70,7 @@ local servers = {
 	docker_compose_language_service = {},
 	dockerls = {},
 	dotls = {},
+	golangci_lint_ls = {},
 	html = {},
 	markdown_oxide = {},
 	nil_ls = {},

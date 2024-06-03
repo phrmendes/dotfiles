@@ -61,7 +61,6 @@
   };
 
   outputs = {
-    self,
     darwin,
     nixpkgs,
     nixpkgs-stable,

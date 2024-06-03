@@ -1,6 +1,6 @@
 local dap = require("dap")
-local dap_ui = require("dapui")
 local dap_python = require("dap-python")
+local dap_ui = require("dapui")
 
 local dap_signs = {
 	Breakpoint = "",

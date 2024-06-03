@@ -42,9 +42,6 @@
           dressing-nvim
           efmls-configs-nvim
           friendly-snippets
-          gh.gopher-nvim
-          gh.img-clip-nvim
-          gh.latex-snippets-nvim
           image-nvim
           jupytext-nvim
           lazygit-nvim
@@ -93,6 +90,11 @@
           vim-just
           vim-sleuth
           zen-mode-nvim
+        ]
+        ++ [
+          gh.gopher-nvim
+          gh.img-clip-nvim
+          gh.latex-snippets-nvim
         ]
         ++ lib.optionals isLinux [
           gh.cmp-zotcite
@@ -143,7 +145,7 @@
           lua-language-server
           markdown-oxide
           neovim-remote
-          nixd
+          nil
           prettierd
           ruff
           shellcheck

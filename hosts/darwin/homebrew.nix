@@ -22,6 +22,7 @@
     casks = [
       "amethyst"
       "firefox"
+      "flameshot"
       "font-fira-code-nerd-font"
       "keepingyouawake"
       "maccy"

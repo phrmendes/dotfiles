@@ -143,7 +143,7 @@
           lua-language-server
           markdown-oxide
           neovim-remote
-          nil
+          nixd
           prettierd
           ruff
           shellcheck

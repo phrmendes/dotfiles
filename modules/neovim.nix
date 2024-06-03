@@ -91,7 +91,6 @@
           vim-helm
           vim-jinja
           vim-just
-          vim-pandoc-syntax
           vim-sleuth
           zen-mode-nvim
         ]

@@ -5,8 +5,7 @@ local command = vim.api.nvim_create_user_command
 command("NewNote", function(args)
 	local title = args.fargs[1] or vim.fn.input("Title: ")
 	local id = os.date("%Y%m%d%H%M%S")
-	local suffix = normalize(title)
-	local file_name = id .. "-" .. suffix
+	local file_name = normalize(title)
 	local file_path = notes_path .. "/" .. file_name .. ".md"
 
 	vim.cmd("edit " .. file_path)
@@ -42,7 +41,3 @@ end, { desc = "Open inbox", nargs = 0 })
 command("TodoTxt", function()
 	vim.cmd("split " .. notes_path .. "/todo.txt")
 end, { desc = "Open todo.txt", nargs = 0 })
-
-command("Sessions", function()
-	require("mini.sessions").select()
-end, { desc = "List sessions", nargs = 0 })

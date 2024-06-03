@@ -12,7 +12,9 @@ autocmd("TermOpen", {
 
 autocmd("TextYankPost", {
 	group = augroups.yank,
-	callback = vim.highlight.on_yank,
+	callback = function()
+		vim.highlight.on_yank({ timeout = 150 })
+	end,
 })
 
 autocmd("TermClose", {
@@ -26,8 +28,8 @@ autocmd("TermClose", {
 autocmd("BufEnter", {
 	pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg" },
 	group = augroups.filetype,
-	callback = function()
-		local filename = vim.api.nvim_buf_get_name(0)
+	callback = function(event)
+		local filename = vim.api.nvim_buf_get_name(event.buf)
 		filename = vim.fn.shellescape(filename)
 
 		require("utils").open(filename)
@@ -42,7 +44,7 @@ autocmd("LspAttach", {
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 		if client then
-			if client.server_capabilities.inlayHintProvider then
+			if client.supports_method("textDocument/inlayHint") then
 				autocmd("InsertEnter", {
 					buffer = event.buf,
 					callback = function()
@@ -58,7 +60,16 @@ autocmd("LspAttach", {
 				})
 			end
 
-			if client.server_capabilities.documentHighlightProvider then
+			if client.supports_method("textDocument/codeLens") then
+				autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+					buffer = event.buf,
+					callback = function()
+						vim.lsp.codelens.refresh({ bufnr = event.buf })
+					end,
+				})
+			end
+
+			if client.supports_method("textDocument/documentHighlight") then
 				autocmd({ "CursorHold", "CursorHoldI" }, {
 					buffer = event.buf,
 					group = augroups.lsp.highlight,
@@ -83,7 +94,7 @@ autocmd("LspAttach", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
+autocmd("BufWritePost", {
 	group = augroups.lsp.format,
 	callback = function(event)
 		local efm = vim.lsp.get_clients({ name = "efm", bufnr = event.buf })
@@ -109,14 +120,6 @@ autocmd({ "FileType" }, {
 	pattern = { "json", "jsonc", "json5" },
 	callback = function()
 		vim.opt_local.conceallevel = 0
-	end,
-})
-
-autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
-	group = augroups.filetype,
-	pattern = { "*.md", "*.qmd" },
-	callback = function()
-		vim.cmd([[set syntax=markdown.pandoc]])
 	end,
 })
 
@@ -150,7 +153,7 @@ autocmd("User", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
 	pattern = "MiniFilesWindowOpen",
 	group = augroups.mini,
 	callback = function(event)

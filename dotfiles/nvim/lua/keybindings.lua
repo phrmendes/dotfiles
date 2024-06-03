@@ -28,6 +28,11 @@ keybindings.std = {
 
 		opts.desc = "Replay macro (visual)"
 		map("x", "Q", "<cmd>norm @q<cr>", opts)
+
+		opts.desc = "SnipRun"
+		map("v", "<c-cr>", "<Plug>SnipRun", { silent = true })
+		map("n", "<c-cr>", "<Plug>SnipRunOperator", { silent = true })
+		map("n", "<c-cr>", "<Plug>SnipRun", { silent = true })
 	end,
 	leader = function()
 		local opts = { noremap = true }
@@ -281,59 +286,82 @@ keybindings.std = {
 
 keybindings.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
+	local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-	opts.desc = "LSP: rename"
-	map("n", "<F2>", vim.lsp.buf.rename, opts)
+	if client then
+		if client.supports_method("textDocument/rename") then
+			opts.desc = "LSP: rename"
+			map("n", "<f2>", vim.lsp.buf.rename, opts)
+		end
 
-	opts.desc = "LSP: go to declaration"
-	map("n", "gD", function()
-		require("mini.extra").pickers.lsp({ scope = "declaration" })
-	end, opts)
+		if client.supports_method("textDocument/definition") then
+			opts.desc = "LSP: go to definition"
+			map("n", "gd", function()
+				require("mini.extra").pickers.lsp({ scope = "definition" })
+			end, opts)
+		end
 
-	opts.desc = "LSP: go to references"
-	map("n", "gr", function()
-		require("mini.extra").pickers.lsp({ scope = "references" })
-	end, opts)
+		if client.supports_method("textDocument/declaration") then
+			opts.desc = "LSP: go to declaration"
+			map("n", "gD", function()
+				require("mini.extra").pickers.lsp({ scope = "declaration" })
+			end, opts)
+		end
 
-	opts.desc = "LSP: go to definition"
-	map("n", "gd", function()
-		require("mini.extra").pickers.lsp({ scope = "definition" })
-	end, opts)
+		if client.supports_method("textDocument/implementation") then
+			map("n", "gi", function()
+				require("mini.extra").pickers.lsp({ scope = "implementation" })
+			end, opts)
+		end
 
-	opts.desc = "LSP: go to type definition"
-	map("n", "gt", function()
-		require("mini.extra").pickers.lsp({ scope = "type_definition" })
-	end, opts)
+		if client.supports_method("textDocument/references") then
+			opts.desc = "LSP: go to references"
+			map("n", "gr", function()
+				require("mini.extra").pickers.lsp({ scope = "references" })
+			end, opts)
+		end
 
-	opts.desc = "LSP: go to implementation"
-	map("n", "gt", function()
-		require("mini.extra").pickers.lsp({ scope = "implementation" })
-	end, opts)
+		if client.supports_method("textDocument/typeDefinition") then
+			opts.desc = "LSP: go to type definition"
+			map("n", "gt", function()
+				require("mini.extra").pickers.lsp({ scope = "type_definition" })
+			end, opts)
+		end
 
-	opts.desc = "LSP: code actions"
-	map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
+		if client.supports_method("textDocument/codeAction") then
+			opts.desc = "LSP: code actions"
+			map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
+		end
 
-	opts.desc = "LSP: diagnostics"
-	map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
+		if client.supports_method("textDocument/publishDiagnostics") then
+			opts.desc = "LSP: diagnostics"
+			map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
+		end
 
-	opts.desc = "LSP: signature help"
-	map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
+		if client.supports_method("textDocument/signatureHelp") then
+			opts.desc = "LSP: signature help"
+			map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
+		end
 
-	opts.desc = "LSP: hover"
-	map("n", "<leader>k", vim.lsp.buf.hover, opts)
+		if client.supports_method("textDocument/hover") then
+			opts.desc = "LSP: hover"
+			map("n", "<leader>k", vim.lsp.buf.hover, opts)
+		end
 
-	opts.desc = "LSP: code lens"
-	map("n", "<leader>l", vim.lsp.codelens.run, opts)
+		if client.supports_method("textDocument/documentSymbol") then
+			opts.desc = "LSP: symbols (document)"
+			map("n", "<leader>s", function()
+				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+			end, opts)
+		end
 
-	opts.desc = "LSP: symbols (document)"
-	map("n", "<leader>s", function()
-		require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-	end, opts)
-
-	opts.desc = "LSP: symbols (workspace)"
-	map("n", "<leader>S", function()
-		require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
-	end, opts)
+		if client.supports_method("workspace/symbol") then
+			opts.desc = "LSP: symbols (workspace)"
+			map("n", "<leader>S", function()
+				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
+			end, opts)
+		end
+	end
 end
 
 keybindings.dap = function(event)
@@ -385,14 +413,21 @@ keybindings.dap = function(event)
 end
 
 keybindings.refactor = function(event)
-	local opts = {
-		noremap = true,
-		buffer = event.buf,
-		desc = "Refactor",
-	}
+	local opts = { noremap = true, buffer = event.buf }
 
+	opts.desc = "Refactor: select"
 	map({ "n", "x" }, "<leader>r", function()
 		require("refactoring").select_refactor()
+	end, opts)
+
+	opts.desc = "Refactor: print variable"
+	map("n", "<leader>p", function()
+		require("refactoring").debug.print_var()
+	end, opts)
+
+	opts.desc = "Refactor: clean print statements"
+	map("n", "<leader>c", function()
+		require("refactoring").debug.cleanup()
 	end, opts)
 end
 

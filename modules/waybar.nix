@@ -17,11 +17,11 @@
             mode = "month";
             on-scroll = 1;
             format = {
-              months = "<span color='#${config.lib.stylix.colors.base04}'><b>{}</b></span>";
-              days = "<span color='#${config.lib.stylix.colors.base04}'><b>{}</b></span>";
-              weeks = "<span color='#${config.lib.stylix.colors.base04}'><b>W{}</b></span>";
-              weekdays = "<span color='#${config.lib.stylix.colors.base04}'><b>{}</b></span>";
-              today = "<span color='#${config.lib.stylix.colors.base08}'><b><u>{}</u></b></span>";
+              months = ''<span color="#${config.lib.stylix.colors.base04}"><b>{}</b></span>'';
+              days = ''<span color="#${config.lib.stylix.colors.base04}"><b>{}</b></span>'';
+              weeks = ''<span color="#${config.lib.stylix.colors.base04}"><b>W{}</b></span>'';
+              weekdays = ''<span color="#${config.lib.stylix.colors.base04}"><b>{}</b></span>'';
+              today = ''<span color="#${config.lib.stylix.colors.base08}"><b><u>{}</u></b></span>'';
             };
           };
           actions = {
@@ -108,12 +108,10 @@
           "hyprland/workspaces" = {
             format = "<tt>{name}</tt>";
             all-outputs = true;
+            active-only = false;
             on-click = "activate";
             on-scroll-up = "hyprctl dispatch workspace e+1";
             on-scroll-down = "hyprctl dispatch workspace e-1";
-            persistent-workspaces = {
-              "HDMI-A-1" = 9;
-            };
           };
           "pulseaudio#input" = {
             format-source = "󰍬<tt>  {volume}%</tt>";

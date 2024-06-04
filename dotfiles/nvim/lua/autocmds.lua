@@ -123,14 +123,6 @@ autocmd({ "FileType" }, {
 	end,
 })
 
-autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
-	group = augroups.filetype,
-	pattern = "*.http",
-	callback = function()
-		vim.cmd([[set filetype=http]])
-	end,
-})
-
 autocmd("User", {
 	pattern = "MiniGitCommandSplit",
 	group = augroups.mini,

@@ -32,7 +32,6 @@ in {
           html-tidy
           jdk
           jq
-          yq-go
           just
           kind
           kubectl
@@ -54,6 +53,7 @@ in {
           unar
           uv
           wget
+          yq-go
           zip
         ])
         ++ (with pkgs.nodePackages_latest; [
@@ -71,6 +71,7 @@ in {
       ++ lib.optionals isLinux (with pkgs; [
         bashly
         bitwarden
+        bruno
         chromium
         copyq
         curtail

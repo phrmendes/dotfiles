@@ -90,11 +90,6 @@ vim.cmd([[language en_US.UTF-8]])
 -- treat '-' as part of a word
 vim.cmd([[set iskeyword+=-]])
 
--- filetypes
-vim.filetype.add({
-	extension = { http = "http" },
-})
-
 -- nvim server
 if vim.fn.executable("nvr") then
 	vim.env.EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

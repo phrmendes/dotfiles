@@ -221,15 +221,6 @@ keybindings.std = {
 		opts.desc = "Stage (repo)"
 		map("n", "<leader>gS", "<cmd>Git add .<cr>", opts)
 	end,
-	rest = function()
-		local opts = { noremap = true }
-
-		opts.desc = "Rest: run request under cursor"
-		map("n", "<localleader>r", "<cmd>Rest run<cr>", opts)
-
-		opts.desc = "Rest: re-run last request"
-		map("n", "<localleader>l", "<cmd>Rest run last<cr>", opts)
-	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
 

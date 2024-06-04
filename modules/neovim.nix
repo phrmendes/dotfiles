@@ -47,6 +47,7 @@
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
+          luasnip
           markdown-nvim
           markdown-preview-nvim
           mini-nvim
@@ -100,15 +101,9 @@
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
-          lua-curl
-          luasnip
           luv
           magick
-          mimetypes
-          nvim-nio
-          rest-nvim
           sqlite
-          xml2lua
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [

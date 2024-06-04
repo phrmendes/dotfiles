@@ -32,8 +32,7 @@ local languages = {
 	},
 	go = {
 		require("efmls-configs.linters.djlint"),
-		require("efmls-configs.formatters.gofmt"),
-		require("efmls-configs.formatters.goimports"),
+		require("efmls-configs.formatters.gofumpt"),
 		require("efmls-configs.formatters.golines"),
 	},
 	html = {

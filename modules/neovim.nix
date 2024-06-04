@@ -47,7 +47,6 @@
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
-          luasnip
           markdown-nvim
           markdown-preview-nvim
           mini-nvim
@@ -73,10 +72,8 @@
           plenary-nvim
           quarto-nvim
           refactoring-nvim
-          rest-nvim
           smart-splits-nvim
           sniprun
-          sqlite-lua
           todo-txt-vim
           toggleterm-nvim
           undotree
@@ -104,10 +101,13 @@
         with luaPkgs; [
           jsregexp
           lua-curl
+          luasnip
+          luv
           magick
           mimetypes
           nvim-nio
           rest-nvim
+          sqlite
           xml2lua
         ];
       extraPython3Packages = pythonPkgs:
@@ -135,6 +135,8 @@
           golines
           gomodifytags
           gopls
+          gosimports
+          gofumpt
           gotests
           helm-ls
           iferr

@@ -1,1 +1,1 @@
-require("mini.diff").setup({ view = { style = "sign" } })
+require("mini.diff").setup()

@@ -35,6 +35,8 @@
       };
       ignores = [
         ".DS_Store"
+        ".env"
+        ".envrc"
         "Session.vim"
       ];
     };

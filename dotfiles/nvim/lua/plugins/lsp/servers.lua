@@ -43,7 +43,7 @@ local languages = {
 		require("efmls-configs.formatters.prettier_d"),
 	},
 	json = {
-		require("efmls-configs.formatters.jq"),
+		require("efmls-configs.formatters.prettier_d"),
 	},
 	lua = {
 		require("efmls-configs.formatters.stylua"),
@@ -58,7 +58,7 @@ local languages = {
 		require("efmls-configs.formatters.taplo"),
 	},
 	yaml = {
-		require("efmls-configs.formatters.yq"),
+		require("efmls-configs.formatters.prettier_d"),
 	},
 }
 

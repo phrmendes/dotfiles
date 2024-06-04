@@ -140,7 +140,6 @@
           iferr
           imagemagick
           impl
-          jq
           ltex-ls
           lua-language-server
           markdown-oxide
@@ -158,7 +157,6 @@
           tflint
           vscode-langservers-extracted
           yaml-language-server
-          yq-go
         ])
         ++ (with pkgs.perl538Packages; [
           LatexIndent

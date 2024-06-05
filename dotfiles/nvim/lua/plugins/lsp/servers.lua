@@ -27,9 +27,6 @@ local languages = {
 	sql = {
 		require("efmls-configs.linters.sqlfluff"),
 	},
-	jinja = {
-		require("efmls-configs.linters.djlint"),
-	},
 	go = {
 		require("efmls-configs.linters.djlint"),
 		require("efmls-configs.formatters.gofumpt"),

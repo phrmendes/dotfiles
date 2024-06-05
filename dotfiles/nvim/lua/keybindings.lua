@@ -274,7 +274,7 @@ keybindings.std = {
 		map("n", "<c-c><c-c>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
 
 		opts.desc = "Send lines to terminal"
-		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualSelection<cr>", opts)
+		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualLines<cr>", opts)
 	end,
 }
 

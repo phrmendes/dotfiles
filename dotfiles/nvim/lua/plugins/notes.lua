@@ -1,12 +1,11 @@
 local notes_path = vim.env.NOTES_PATH or vim.env.HOME .. "/Documents/notes"
-local normalize = require("utils").normalize
 local command = vim.api.nvim_create_user_command
 
 command("NewNote", function(args)
 	local title = args.fargs[1] or vim.fn.input("Title: ")
 	local id = os.date("%Y%m%d%H%M%S")
-	local file_name = normalize(title)
-	local file_path = notes_path .. "/" .. file_name .. ".md"
+	local file_name = require("utils").normalize(title)
+	local file_path = notes_path .. "/" .. id .. "-" .. file_name .. ".md"
 
 	vim.cmd("edit " .. file_path)
 

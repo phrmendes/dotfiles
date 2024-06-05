@@ -15,6 +15,7 @@ in {
           ansible
           cachix
           coreutils-full
+          csvlens
           curl
           fd
           ffmpegthumbnailer

@@ -180,46 +180,49 @@ keybindings.std = {
 	git = function()
 		local opts = { noremap = true }
 
+		opts.desc = "Add (file)"
+		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
+
+		opts.desc = "Add (repo)"
+		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
+
 		opts.desc = "Commit"
-		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
-
-		opts.desc = "Branches"
-		map("n", "<leader>g<leader>", require("mini.extra").pickers.git_branches, opts)
-
-		opts.desc = "Commits (file)"
 		map("n", "<leader>gc", function()
-			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
+			require("neogit").open({ "commit" })
 		end, opts)
 
-		opts.desc = "Commits (repo)"
-		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
+		opts.desc = "Diff (file)"
+		map({ "n", "v" }, "<leader>gd", "<cmd>DiffviewFileHistory<cr>", opts)
 
-		opts.desc = "Diff"
-		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
+		opts.desc = "Diff (repo)"
+		map({ "n", "v" }, "<leader>gD", "<cmd>DiffviewOpen<cr>", opts)
 
-		opts.desc = "Lazygit"
-		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
-
-		opts.desc = "History"
-		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
-
-		opts.desc = "Hunks"
-		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
-
-		opts.desc = "Blame"
-		map("n", "<leader>gb", "<cmd>vertical Git blame -- %<cr>", opts)
+		opts.desc = "Neogit"
+		map("n", "<leader>gg", require("neogit").open, opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
 
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
+	end,
+	notes = function()
+		local opts = { noremap = true }
 
-		opts.desc = "Stage (file)"
-		map("n", "<leader>gs", "<cmd>Git add %<cr>", opts)
+		opts.desc = "New note"
+		map("n", "<leader>nn", "<cmd>NewNote<cr>", opts)
 
-		opts.desc = "Stage (repo)"
-		map("n", "<leader>gS", "<cmd>Git add .<cr>", opts)
+		opts.desc = "Search note"
+		map("n", "<leader>ns", "<cmd>SearchNote<cr>", opts)
+
+		opts.desc = "Live grep in notes"
+		map("n", "<leader>ng", "<cmd>GrepNotes<cr>", opts)
+
+		opts.desc = "Open inbox"
+		map("n", "<leader>ni", "<cmd>Inbox<cr>", opts)
+
+		opts.desc = "Open todo.txt"
+		map("n", "<leader>nt", "<cmd>TodoTxt<cr>", opts)
 	end,
 	smart_splits = function()
 		local opts = { silent = true, desc = "Smart splits" }

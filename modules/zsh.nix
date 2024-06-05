@@ -19,7 +19,6 @@ in {
         find = getExe fd;
         fs = getExe fselect;
         grep = getExe ripgrep;
-        lg = getExe lazygit;
         m = "mkdir -p";
         ps = getExe procs;
         sed = getExe gnused;

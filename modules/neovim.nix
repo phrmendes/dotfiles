@@ -39,12 +39,13 @@
           cmp_luasnip
           copilot-vim
           dial-nvim
+          diffview-nvim
           dressing-nvim
           efmls-configs-nvim
+          flatten-nvim
           friendly-snippets
           image-nvim
           jupytext-nvim
-          lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
           luasnip
@@ -53,7 +54,8 @@
           mini-nvim
           nabla-nvim
           neodev-nvim
-          nui-nvim
+          neogen
+          neogit
           nvim-bqf
           nvim-cmp
           nvim-colorizer-lua
@@ -70,7 +72,6 @@
           nvim-ts-context-commentstring
           nvim-web-devicons
           otter-nvim
-          plenary-nvim
           quarto-nvim
           refactoring-nvim
           smart-splits-nvim
@@ -101,9 +102,9 @@
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
-          luv
           magick
-          sqlite
+          nui-nvim
+          plenary-nvim
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
@@ -140,7 +141,6 @@
           ltex-ls
           lua-language-server
           markdown-oxide
-          neovim-remote
           nil
           prettierd
           ruff

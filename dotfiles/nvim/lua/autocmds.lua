@@ -44,22 +44,6 @@ autocmd("LspAttach", {
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 		if client then
-			if client.supports_method("textDocument/inlayHint") then
-				autocmd("InsertEnter", {
-					buffer = event.buf,
-					callback = function()
-						vim.lsp.inlay_hint.enable(true)
-					end,
-				})
-
-				autocmd("InsertLeave", {
-					buffer = event.buf,
-					callback = function()
-						vim.lsp.inlay_hint.enable(false)
-					end,
-				})
-			end
-
 			if client.supports_method("textDocument/codeLens") then
 				autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 					buffer = event.buf,

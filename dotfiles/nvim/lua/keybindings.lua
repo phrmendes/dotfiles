@@ -18,10 +18,10 @@ keybindings.std = {
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
 		opts.desc = "Exit insert mode"
-		map("i", "jk", "<esc>", opts)
+		map("i", "jj", "<esc>", opts)
 
 		opts.desc = "Exit terminal mode"
-		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
+		map("t", "<esc><esc>", "<c-\\><c-n>", opts)
 
 		opts.desc = "Replay macro"
 		map("n", "Q", "@q", opts)

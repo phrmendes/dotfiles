@@ -229,9 +229,8 @@ keybindings.std = {
 		local opts = { noremap = true, silent = true }
 
 		opts.desc = "Send to terminal"
-		map("n", "<c-cr>", "<Plug>SlimeParagraphSend", opts)
-
-		opts.desc = "Send to terminal"
+		map("n", "<c-cr>", "<Plug>SlimeMotionSend", opts)
+		map("n", "<c-cr><c-cr>", "<Plug>SlimeLineSend", opts)
 		map("x", "<c-cr>", "<Plug>SlimeRegionSend", opts)
 	end,
 	tabs = function()

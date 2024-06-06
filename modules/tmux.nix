@@ -20,7 +20,7 @@
       prefix = "C-Space";
       sensibleOnTop = true;
       shell = lib.getExe pkgs.zsh;
-      terminal = "screen-256color";
+      terminal = "xterm-256color";
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
         {
@@ -58,7 +58,7 @@
         set -g renumber-windows on
         set -g set-clipboard on
         set -g visual-activity off
-        set -ga terminal-overrides ",screen-256color:Tc"
+        set -ga terminal-overrides ',xterm-256color:Tc'
         set -gq allow-passthrough on
 
         set -g status "on"
@@ -68,12 +68,13 @@
         set -g status-left-length "80"
         set -g status-right-style none
         set -g status-right-length "80"
+        set -g status-left ""
+        set -g status-right "[ #S]"
 
-        set -g status-left " [󰖯 #I] [ #W]#{?window_zoomed_flag, [] ,} "
-        set -g status-right " [ #S] "
-
-        set-window-option -g window-status-current-format ""
-        set-window-option -g window-status-format ""
+        set-window-option -g visual-bell on
+        set-window-option -g bell-action other
+        set-window-option -g window-status-format "[ #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,}]"
+        set-window-option -g window-status-current-format "#[bold][ #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,}]#[nobold]"
 
         bind ':' command-prompt
         bind '-' split-window -v -c '#{pane_current_path}'

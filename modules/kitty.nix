@@ -30,8 +30,8 @@
         tab_title_template = "{title}{' #{}'.format(num_windows) if num_windows > 1 else ''}";
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
-        window_padding_width = 5;
-        term = "screen-256color";
+        window_padding_width = 10;
+        term = "xterm-256color";
       };
       keybindings = {
         "alt+enter" = "layout_action rotate";

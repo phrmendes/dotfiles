@@ -28,11 +28,6 @@ keybindings.std = {
 
 		opts.desc = "Replay macro (visual)"
 		map("x", "Q", "<cmd>norm @q<cr>", opts)
-
-		opts.desc = "SnipRun"
-		map("v", "<c-cr>", "<Plug>SnipRun", { silent = true })
-		map("n", "<c-cr>", "<Plug>SnipRunOperator", { silent = true })
-		map("n", "<c-cr>", "<Plug>SnipRun", { silent = true })
 	end,
 	leader = function()
 		local opts = { noremap = true }
@@ -158,7 +153,7 @@ keybindings.std = {
 			require("dial.map").manipulate("decrement", "gvisual")
 		end, opts)
 	end,
-	file_explorer = function()
+	explorer = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Explorer (current file)"
@@ -224,7 +219,7 @@ keybindings.std = {
 		opts.desc = "Open todo.txt"
 		map("n", "<leader>nt", "<cmd>TodoTxt<cr>", opts)
 	end,
-	smart_splits = function()
+	splits = function()
 		local opts = { silent = true, desc = "Smart splits" }
 
 		map({ "n", "i", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
@@ -267,14 +262,14 @@ keybindings.std = {
 		opts.desc = "Edit in tab"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
-	toggleterm = function()
+	terminal = function()
 		local opts = { noremap = true, silent = true }
 
-		opts.desc = "Send line to terminal"
-		map("n", "<c-c><c-c>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
+		opts.desc = "Send to terminal"
+		map("n", "<c-cr>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
 
-		opts.desc = "Send lines to terminal"
-		map("x", "<c-c><c-c>", "<cmd>ToggleTermSendVisualLines<cr>", opts)
+		opts.desc = "Send to terminal"
+		map("x", "<c-cr>", "<cmd>ToggleTermSendVisualLines<cr>", opts)
 	end,
 }
 

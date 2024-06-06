@@ -226,14 +226,23 @@ keybindings.std = {
 		map({ "n", "i", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map({ "n", "i", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map({ "n", "i", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map({ "n", "i", "t" }, "<c-s-h>", require("smart-splits").resize_left, opts)
-		map({ "n", "i", "t" }, "<c-s-j>", require("smart-splits").resize_down, opts)
-		map({ "n", "i", "t" }, "<c-s-k>", require("smart-splits").resize_up, opts)
-		map({ "n", "i", "t" }, "<c-s-l>", require("smart-splits").resize_right, opts)
-		map({ "n", "i", "t" }, "<c-down>", require("smart-splits").swap_buf_down, opts)
+		map({ "n", "i", "t" }, "<m-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "i", "t" }, "<m-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "i", "t" }, "<m-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "i", "t" }, "<m-l>", require("smart-splits").resize_right, opts)
 		map({ "n", "i", "t" }, "<c-left>", require("smart-splits").swap_buf_left, opts)
-		map({ "n", "i", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)
+		map({ "n", "i", "t" }, "<c-down>", require("smart-splits").swap_buf_down, opts)
 		map({ "n", "i", "t" }, "<c-up>", require("smart-splits").swap_buf_up, opts)
+		map({ "n", "i", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)
+	end,
+	slime = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = "Send to terminal"
+		map("n", "<c-cr>", "<Plug>SlimeParagraphSend", opts)
+
+		opts.desc = "Send to terminal"
+		map("x", "<c-cr>", "<Plug>SlimeRegionSend", opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -261,15 +270,6 @@ keybindings.std = {
 
 		opts.desc = "Edit in tab"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
-	end,
-	terminal = function()
-		local opts = { noremap = true, silent = true }
-
-		opts.desc = "Send to terminal"
-		map("n", "<c-cr>", "<cmd>ToggleTermSendCurrentLine<cr>", opts)
-
-		opts.desc = "Send to terminal"
-		map("x", "<c-cr>", "<cmd>ToggleTermSendVisualLines<cr>", opts)
 	end,
 }
 

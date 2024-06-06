@@ -77,7 +77,6 @@
           smart-splits-nvim
           sniprun
           todo-txt-vim
-          toggleterm-nvim
           undotree
           vim-abolish
           vim-dadbod
@@ -88,6 +87,7 @@
           vim-jinja
           vim-just
           vim-sleuth
+          vim-slime
           zen-mode-nvim
         ]
         ++ [

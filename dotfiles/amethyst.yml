@@ -18,16 +18,15 @@ window-margins: true
 
 layouts: [tall, wide, column, fullscreen]
 
-mod1: [option]
-mod2: [option, shift]
-mod3: [option, shift, control]
+mod1: [option, shift]
+mod2: [option, shift, control]
 
 reevaluate-windows:
   key: w
   mod: mod1
 relaunch-amethyst:
   key: r
-  mod: mod3
+  mod: mod2
 toggle-float:
   key: f
   mod: mod1
@@ -66,9 +65,6 @@ focus-screen-cw:
   mod: mod1
   key: n
 
-swap-ccw:
-  key: r
-  mod: mod2
 swap-cw:
   key: r
   mod: mod1
@@ -84,10 +80,10 @@ swap-screen-cw:
 
 throw-space-left:
   key: h
-  mod: mod3
+  mod: mod2
 throw-space-right:
   key: l
-  mod: mod3
+  mod: mod2
 throw-space-1:
   key: 1
   mod: mod2

@@ -33,12 +33,16 @@
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
         tab_title_template = "{title}{' #{}'.format(num_windows) if num_windows > 1 else ''}";
-        term = "xterm-256color";
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 5;
+        term = "screen-256color";
       };
       keybindings = {
+        "ctrl+shift+h" = "no op";
+        "ctrl+shift+j" = "no_op";
+        "ctrl+shift+k" = "no_op";
+        "ctrl+shift+l" = "no_op";
         "ctrl+equal" = "change_font_size all +2.0";
         "ctrl+minus" = "change_font_size all -2.0";
         "ctrl+shift+q" = "close_tab";
@@ -54,20 +58,20 @@
         "ctrl+j" = "neighboring_window down";
         "ctrl+k" = "neighboring_window up";
         "ctrl+l" = "neighboring_window right";
-        "ctrl+shift+h" = "kitten relative_resize.py left 3";
-        "ctrl+shift+j" = "kitten relative_resize.py down 3";
-        "ctrl+shift+k" = "kitten relative_resize.py up 3";
-        "ctrl+shift+l" = "kitten relative_resize.py right 3";
+        "alt+h" = "kitten relative_resize.py left 3";
+        "alt+j" = "kitten relative_resize.py down 3";
+        "alt+k" = "kitten relative_resize.py up 3";
+        "alt+l" = "kitten relative_resize.py right 3";
       };
       extraConfig = ''
         map --when-focus-on var:IS_NVIM ctrl+j
         map --when-focus-on var:IS_NVIM ctrl+k
         map --when-focus-on var:IS_NVIM ctrl+h
         map --when-focus-on var:IS_NVIM ctrl+l
-        map --when-focus-on var:IS_NVIM ctrl+shift+j
-        map --when-focus-on var:IS_NVIM ctrl+shift+k
-        map --when-focus-on var:IS_NVIM ctrl+shift+h
-        map --when-focus-on var:IS_NVIM ctrl+shift+l
+        map --when-focus-on var:IS_NVIM alt+j
+        map --when-focus-on var:IS_NVIM alt+k
+        map --when-focus-on var:IS_NVIM alt+h
+        map --when-focus-on var:IS_NVIM alt+l
       '';
     };
   };

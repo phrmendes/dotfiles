@@ -19,11 +19,10 @@ in {
         find = getExe fd;
         fs = getExe fselect;
         grep = getExe ripgrep;
-        m = "mkdir -p";
         ps = getExe procs;
         sed = getExe gnused;
+        t = getExe tmux;
         top = getExe btop;
-        zz = getExe zellij;
         untar = "tar -xvf";
         untargz = "tar -xzf";
         v = "nvim";

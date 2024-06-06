@@ -110,7 +110,7 @@ keybindings.std = {
 		map("n", "<leader>bG", "<cmd>blast<cr>", opts)
 
 		opts.desc = "Keep this"
-		map("n", "<leader>bk", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opts)
+		map("n", "<leader>bk", "<cmd>wall!<bar>%bdelete<bar>edit#<bar>bdelete#<cr>", opts)
 
 		opts.desc = "Delete"
 		map("n", "<leader>bd", require("mini.bufremove").delete, opts)

@@ -22,6 +22,7 @@
       shell = lib.getExe pkgs.zsh;
       terminal = "screen-256color";
       plugins = with pkgs.tmuxPlugins; [
+        vim-tmux-navigator
         {
           plugin = yank;
           extraConfig = ''
@@ -68,13 +69,7 @@
         set -g status-right-style none
         set -g status-right-length "80"
 
-        set -g status-justify "left"
-        set -g status-left-style none
-        set -g status-left-length "80"
-        set -g status-right-style none
-        set -g status-right-length "80"
-
-        set -g status-left " [󰖯 #I] [ #W] "
+        set -g status-left " [󰖯 #I] [ #W]#{?window_zoomed_flag, [] ,} "
         set -g status-right " [ #S] "
 
         set-window-option -g window-status-current-format ""
@@ -98,24 +93,11 @@
         bind p paste-buffer
         bind r rotate-window
         bind z resize-pane -Z
-        bind 1 select-window -t 1
-        bind 2 select-window -t 2
-        bind 3 select-window -t 3
-        bind 4 select-window -t 4
-        bind 5 select-window -t 5
-        bind 6 select-window -t 6
-        bind 7 select-window -t 7
-        bind 8 select-window -t 8
-        bind 9 select-window -t 9
 
-        bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h'  'select-pane -L'
-        bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j'  'select-pane -D'
-        bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k'  'select-pane -U'
-        bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l'  'select-pane -R'
-        bind -n M-h if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
-        bind -n M-j if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
-        bind -n M-k if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
-        bind -n M-l if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
+        bind -r h resize-pane -L 3
+        bind -r j resize-pane -D 3
+        bind -r k resize-pane -U 3
+        bind -r l resize-pane -R 3
 
         bind -T copy-mode-vi 'C-h' select-pane -L
         bind -T copy-mode-vi 'C-j' select-pane -D

@@ -6,11 +6,6 @@
   options.kitty.enable = lib.mkEnableOption "enable kitty";
 
   config = lib.mkIf config.kitty.enable {
-    xdg.configFile = {
-      "kitty/neighboring_window.py".source = ../dotfiles/kitty/neighboring_window.py;
-      "kitty/relative_resize.py".source = ../dotfiles/kitty/relative_resize.py;
-    };
-
     programs.kitty = {
       enable = true;
       shellIntegration = {
@@ -39,40 +34,24 @@
         term = "screen-256color";
       };
       keybindings = {
-        "ctrl+shift+h" = "no op";
-        "ctrl+shift+j" = "no_op";
-        "ctrl+shift+k" = "no_op";
-        "ctrl+shift+l" = "no_op";
-        "ctrl+equal" = "change_font_size all +2.0";
-        "ctrl+minus" = "change_font_size all -2.0";
-        "ctrl+shift+q" = "close_tab";
-        "ctrl+shift+r" = "layout_action rotate";
-        "ctrl+shift+x" = "close_window";
-        "ctrl+shift+z" = "toggle_layout stack";
-        "ctrl+shift+[" = "previous_tab";
-        "ctrl+shift+]" = "next_tab";
-        "ctrl+shift+enter" = ''set_tab_title " "'';
-        "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
-        "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
-        "ctrl+h" = "neighboring_window left";
-        "ctrl+j" = "neighboring_window down";
-        "ctrl+k" = "neighboring_window up";
-        "ctrl+l" = "neighboring_window right";
-        "alt+h" = "kitten relative_resize.py left 3";
-        "alt+j" = "kitten relative_resize.py down 3";
-        "alt+k" = "kitten relative_resize.py up 3";
-        "alt+l" = "kitten relative_resize.py right 3";
+        "alt+enter" = "layout_action rotate";
+        "alt+minus" = "launch --location=hsplit --cwd=current";
+        "alt+\\" = "launch --location=vsplit --cwd=current";
+        "alt+q" = "close_tab";
+        "alt+r" = "start_resizing_window";
+        "alt+x" = "close_window";
+        "alt+z" = "toggle_layout stack";
+        "alt+t" = "new_tab";
+        "alt+[" = "previous_tab";
+        "alt+]" = "next_tab";
+        "alt+h" = "neighboring_window left";
+        "alt+j" = "neighboring_window down";
+        "alt+k" = "neighboring_window up";
+        "alt+l" = "neighboring_window right";
+        "alt+shift+t" = ''set_tab_title " "'';
+        "alt+shift+equal" = "change_font_size all +2.0";
+        "alt+shift+minus" = "change_font_size all -2.0";
       };
-      extraConfig = ''
-        map --when-focus-on var:IS_NVIM ctrl+j
-        map --when-focus-on var:IS_NVIM ctrl+k
-        map --when-focus-on var:IS_NVIM ctrl+h
-        map --when-focus-on var:IS_NVIM ctrl+l
-        map --when-focus-on var:IS_NVIM alt+j
-        map --when-focus-on var:IS_NVIM alt+k
-        map --when-focus-on var:IS_NVIM alt+h
-        map --when-focus-on var:IS_NVIM alt+l
-      '';
     };
   };
 }

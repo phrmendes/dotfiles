@@ -86,19 +86,19 @@ throw-space-right:
   mod: mod2
 throw-space-1:
   key: 1
-  mod: mod2
+  mod: mod1
 throw-space-2:
   key: 2
-  mod: mod2
+  mod: mod1
 throw-space-3:
   key: 3
-  mod: mod2
+  mod: mod1
 throw-space-4:
   key: 4
-  mod: mod2
+  mod: mod1
 throw-space-5:
   key: 5
-  mod: mod2
+  mod: mod1
 throw-space-6:
   key: 6
-  mod: mod2
+  mod: mod1

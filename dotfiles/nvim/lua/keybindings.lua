@@ -225,14 +225,6 @@ keybindings.std = {
 		opts.desc = "Open todo.txt"
 		map("n", "<leader>nt", "<cmd>TodoTxt<cr>", opts)
 	end,
-	slime = function()
-		local opts = { noremap = true, silent = true }
-
-		opts.desc = "Send to terminal"
-		map("n", "<c-cr>", "<Plug>SlimeMotionSend", opts)
-		map("n", "<c-cr><c-cr>", "<Plug>SlimeLineSend", opts)
-		map("x", "<c-cr>", "<Plug>SlimeRegionSend", opts)
-	end,
 	tabs = function()
 		local opts = { noremap = true }
 

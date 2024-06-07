@@ -69,7 +69,7 @@
         set -g status-right-style none
         set -g status-right-length "80"
         set -g status-left ""
-        set -g status-right "[ #S]"
+        set -g status-right "[  #S ]"
 
         set-window-option -g visual-bell on
         set-window-option -g bell-action other

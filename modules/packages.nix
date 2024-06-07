@@ -65,6 +65,7 @@ in {
       ++ lib.optionals isDarwin (
         with pkgs; [
           maven
+          mongosh
           pngpaste
           terragrunt
         ]

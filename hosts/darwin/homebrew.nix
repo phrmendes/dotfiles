@@ -27,6 +27,7 @@
       "keepingyouawake"
       "maccy"
       "microsoft-teams"
+      "mongodb-compass"
       "postman"
       "qview"
       "slack"

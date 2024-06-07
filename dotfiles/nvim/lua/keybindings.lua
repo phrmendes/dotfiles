@@ -124,21 +124,6 @@ keybindings.std = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
-	db = function()
-		local opts = { noremap = true }
-
-		opts.desc = "[dadbod] Execute query"
-		map({ "n", "x" }, "<localleader><cr>", "<Plug>(DBUI_ExecuteQuery)", opts)
-
-		opts.desc = "[dadbod] Edit bind parameters"
-		map("n", "<localleader>e", "<Plug>(DBUI_EditBindParameters)", opts)
-
-		opts.desc = "[dadbod] Toggle results"
-		map("n", "<localleader>r", "<Plug>(DBUI_ToggleResultLayout)", opts)
-
-		opts.desc = "[dadbod] Save query for later use"
-		map("n", "<localleader>w", "<Plug>(DBUI_SaveQuery)", opts)
-	end,
 	dial = function()
 		local opts = { noremap = true, silent = true, desc = "Dial" }
 
@@ -454,6 +439,36 @@ keybindings.writing = function(event)
 end
 
 keybindings.ft = {
+	dbui = function(event)
+		local opts = { noremap = true, buffer = event.buf }
+
+		opts.desc = "[dadbod] Execute query"
+		map("n", "<cr>", "<Plug>(DBUI_ExecuteQuery)", opts)
+
+		opts.desc = "[dadbod] Select line"
+		map("n", "<tab>", "<Plug>(DBUI_SelectLine)", opts)
+
+		opts.desc = "[dadbod] Toggle details"
+		map("n", "K", "<Plug>(DBUI_ToggleDetails)", opts)
+
+		opts.desc = "[dadbod] Redraw"
+		map("n", "R", "<Plug>(DBUI_Redraw)", opts)
+
+		opts.desc = "[dadbod] Delete line"
+		map("n", "d", "<Plug>(DBUI_DeleteLine)", opts)
+
+		opts.desc = "[dadbod] Insert line"
+		map("n", "q", "<Plug>(DBUI_Quit)", opts)
+
+		opts.desc = "[dadbod] Rename line"
+		map("n", "r", "<Plug>(DBUI_RenameLine)", opts)
+
+		opts.desc = "[dadbod] Toggle result layout"
+		map("n", "t", "<Plug>(DBUI_ToggleResultLayout)", opts)
+
+		opts.desc = "[dadbod] Save query"
+		map("n", "w", "<Plug>(DBUI_SaveQuery)", opts)
+	end,
 	lua = function(event)
 		keybindings.refactor(event)
 	end,

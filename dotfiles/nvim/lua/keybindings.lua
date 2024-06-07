@@ -127,11 +127,17 @@ keybindings.std = {
 	db = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Save query for later use"
-		map("n", "<localleader>w", "<Plug>(DBUI_SaveQuery)", opts)
+		opts.desc = "[dadbod] Execute query"
+		map({ "n", "x" }, "<localleader><cr>", "<Plug>(DBUI_ExecuteQuery)", opts)
 
-		opts.desc = "Edit bind parameters"
+		opts.desc = "[dadbod] Edit bind parameters"
 		map("n", "<localleader>e", "<Plug>(DBUI_EditBindParameters)", opts)
+
+		opts.desc = "[dadbod] Toggle results"
+		map("n", "<localleader>r", "<Plug>(DBUI_ToggleResultLayout)", opts)
+
+		opts.desc = "[dadbod] Save query for later use"
+		map("n", "<localleader>w", "<Plug>(DBUI_SaveQuery)", opts)
 	end,
 	dial = function()
 		local opts = { noremap = true, silent = true, desc = "Dial" }
@@ -269,73 +275,74 @@ keybindings.lsp = function(event)
 
 	if client then
 		if client.supports_method("textDocument/rename") then
-			opts.desc = "LSP: rename"
+			opts.desc = "[LSP] Rename"
 			map("n", "<f2>", vim.lsp.buf.rename, opts)
 		end
 
 		if client.supports_method("textDocument/definition") then
-			opts.desc = "LSP: go to definition"
+			opts.desc = "[LSP] Go to definition"
 			map("n", "gd", function()
 				require("mini.extra").pickers.lsp({ scope = "definition" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/declaration") then
-			opts.desc = "LSP: go to declaration"
+			opts.desc = "[LSP] Go to declaration"
 			map("n", "gD", function()
 				require("mini.extra").pickers.lsp({ scope = "declaration" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/implementation") then
+			opts.desc = "[LSP] Go to implementation"
 			map("n", "gi", function()
 				require("mini.extra").pickers.lsp({ scope = "implementation" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/references") then
-			opts.desc = "LSP: go to references"
+			opts.desc = "[LSP] Go to references"
 			map("n", "gr", function()
 				require("mini.extra").pickers.lsp({ scope = "references" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/typeDefinition") then
-			opts.desc = "LSP: go to type definition"
+			opts.desc = "[LSP] Go to type definition"
 			map("n", "gt", function()
 				require("mini.extra").pickers.lsp({ scope = "type_definition" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/codeAction") then
-			opts.desc = "LSP: code actions"
+			opts.desc = "[LSP] Code actions"
 			map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
 		end
 
 		if client.supports_method("textDocument/publishDiagnostics") then
-			opts.desc = "LSP: diagnostics"
+			opts.desc = "[LSP] Diagnostics"
 			map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
 		end
 
 		if client.supports_method("textDocument/signatureHelp") then
-			opts.desc = "LSP: signature help"
+			opts.desc = "[LSP] Signature help"
 			map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 		end
 
 		if client.supports_method("textDocument/hover") then
-			opts.desc = "LSP: hover"
+			opts.desc = "[LSP] Hover"
 			map("n", "<leader>k", vim.lsp.buf.hover, opts)
 		end
 
 		if client.supports_method("textDocument/documentSymbol") then
-			opts.desc = "LSP: symbols (document)"
+			opts.desc = "[LSP] Symbols (document)"
 			map("n", "<leader>s", function()
 				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 			end, opts)
 		end
 
 		if client.supports_method("workspace/symbol") then
-			opts.desc = "LSP: symbols (workspace)"
+			opts.desc = "[LSP] Symbols (workspace)"
 			map("n", "<leader>S", function()
 				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
 			end, opts)
@@ -346,46 +353,46 @@ end
 keybindings.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "DAP: step out"
+	opts.desc = "[DAP] step out"
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	opts.desc = "DAP: step into"
+	opts.desc = "[DAP] step into"
 	map("n", "<f4>", require("dap").step_into, opts)
 
-	opts.desc = "DAP: step back"
+	opts.desc = "[DAP] step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "DAP: continue"
+	opts.desc = "[DAP] continue"
 	map("n", "<f6>", require("dap").continue, opts)
 
-	opts.desc = "DAP: step over"
+	opts.desc = "[DAP] step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "DAP: pause"
+	opts.desc = "[DAP] pause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "DAP: terminate"
+	opts.desc = "[DAP] terminate"
 	map("n", "<del>", require("dap").terminate, opts)
 
-	opts.desc = "DAP: breakpoint"
+	opts.desc = "[DAP] breakpoint"
 	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
-	opts.desc = "DAP: debug last"
+	opts.desc = "[DAP] debug last"
 	map("n", "<localleader>l", require("dap").run_last, opts)
 
-	opts.desc = "DAP: clear all breakpoints"
+	opts.desc = "[DAP] clear all breakpoints"
 	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
 
-	opts.desc = "DAP: show hover"
+	opts.desc = "[DAP] show hover"
 	map("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
 
-	opts.desc = "DAP: toggle UI"
+	opts.desc = "[DAP] toggle UI"
 	map("n", "<localleader>u", require("dapui").toggle, opts)
 
-	opts.desc = "DAP: eval"
+	opts.desc = "[DAP] eval"
 	map("n", "<localleader><cr>", require("dapui").eval, opts)
 
-	opts.desc = "DAP: conditional breakpoint"
+	opts.desc = "[DAP] conditional breakpoint"
 	map("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
@@ -394,17 +401,17 @@ end
 keybindings.refactor = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "Refactor: select"
+	opts.desc = "[Refactor] Select"
 	map({ "n", "x" }, "<leader>r", function()
 		require("refactoring").select_refactor()
 	end, opts)
 
-	opts.desc = "Refactor: print variable"
+	opts.desc = "[Refactor] Print variable"
 	map("n", "<leader>p", function()
 		require("refactoring").debug.print_var()
 	end, opts)
 
-	opts.desc = "Refactor: clean print statements"
+	opts.desc = "[Refactor] Clean print statements"
 	map("n", "<leader>c", function()
 		require("refactoring").debug.cleanup()
 	end, opts)
@@ -430,19 +437,19 @@ keybindings.writing = function(event)
 	opts.desc = "Preview equation"
 	map("n", "<leader>p", require("nabla").popup, opts)
 
-	opts.desc = "Zotero: citation info"
+	opts.desc = "[Zotero] Citation info"
 	map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
 
-	opts.desc = "Zotero: citation info (complete)"
+	opts.desc = "[Zotero] Citation info (complete)"
 	map("n", "<c-s-i>", "<Plug>ZCitationCompleteInfo", opts)
 
-	opts.desc = "Zotero: open attachment"
+	opts.desc = "[Zotero] Open attachment"
 	map("n", "<c-o>", "<Plug>ZOpenAttachment", opts)
 
-	opts.desc = "Zotero: view document"
+	opts.desc = "[Zotero] View document"
 	map("n", "<c-s-o>", "<Plug>ZViewDocument", opts)
 
-	opts.desc = "Zotero: YAML reference"
+	opts.desc = "[Zotero] YAML reference"
 	map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 end
 
@@ -456,16 +463,16 @@ keybindings.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "DAP: debug test"
+		opts.desc = "[DAP] debug test"
 		map("n", "<localleader>t", require("dap-go").debug_test, opts)
 
-		opts.desc = "DAP: debug last test"
+		opts.desc = "[DAP] debug last test"
 		map("n", "<localleader>T", require("dap-go").debug_last_test, opts)
 
-		opts.desc = "Go: add json struct tags"
+		opts.desc = "[Go] Add json struct tags"
 		map("n", "<leader>j", "<cmd>GoTagAdd json<cr>", opts)
 
-		opts.desc = "Go: add yaml struct tags"
+		opts.desc = "[Go] Add yaml struct tags"
 		map("n", "<leader>y", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
@@ -477,13 +484,13 @@ keybindings.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "DAP: debug function/method"
+		opts.desc = "[DAP] Debug function/method"
 		map("n", "<localleader>f", require("dap-python").test_method, opts)
 
-		opts.desc = "DAP: debug class"
+		opts.desc = "[DAP] Debug class"
 		map("n", "<localleader>c", require("dap-python").test_class, opts)
 
-		opts.desc = "DAP: debug selection"
+		opts.desc = "[DAP] Debug selection"
 		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
@@ -492,7 +499,7 @@ keybindings.ft = {
 	todo = function(event)
 		local opts = { script = true, silent = true, buffer = event.buf }
 
-		opts.desc = "Sort the file"
+		opts.desc = "[todo.txt] Sort"
 		map({ "n", "v" }, "<localleader>s", "<cmd>%sort<cr>", opts)
 
 		opts.desc = "Sort by +project"
@@ -507,33 +514,33 @@ keybindings.ft = {
 		opts.desc = "Sort by due date"
 		map({ "n", "v" }, "<localleader>sdd", "<cmd>%call todo#txt#sort_by_due_date()<cr>", opts)
 
-		opts.desc = "Decrease priority"
+		opts.desc = "[todo.txt] Decrease priority"
 		map({ "n", "v" }, "<localleader>k", "<cmd>call todo#txt#prioritize_decrease()<cr>", opts)
 
-		opts.desc = "Increase priority"
+		opts.desc = "[todo.txt] Increase priority"
 		map({ "n", "v" }, "<localleader>j", "<cmd>call todo#txt#prioritize_increase()<cr>", opts)
 
-		opts.desc = "Add priority (A)"
+		opts.desc = "[todo.txt] Add priority (A)"
 		map({ "n", "v" }, "<localleader>a", "<cmd>call todo#txt#prioritize_add('A')<cr>", opts)
 
-		opts.desc = "Add priority (B)"
+		opts.desc = "[todo.txt] Add priority (B)"
 		map({ "n", "v" }, "<localleader>b", "<cmd>call todo#txt#prioritize_add('B')<cr>", opts)
 
-		opts.desc = "Add priority (C)"
+		opts.desc = "[todo.txt] Add priority (C)"
 		map({ "n", "v" }, "<localleader>c", "<cmd>call todo#txt#prioritize_add('C')<cr>", opts)
 
-		opts.desc = "Insert date"
+		opts.desc = "[todo.txt] Insert date"
 		map("i", "date<tab>", "<c-r>=strftime('%Y-%m-%d')<cr>", opts)
 		map("n", "<localleader>d", "<cmd>call todo#txt#replace_date()<cr>", opts)
 		map("v", "<localleader>d", "<cmd>call todo#txt#replace_date()<cr>", opts)
 
-		opts.desc = "Mark as done"
+		opts.desc = "[todo.txt] Mark as done"
 		map({ "n", "v" }, "<localleader>x", "<cmd>call todo#txt#mark_as_done()<cr>", opts)
 
-		opts.desc = "Mark all as done"
+		opts.desc = "[todo.txt] Mark all as done"
 		map("n", "<localleader>X", "<cmd>call todo#txt#mark_all_as_done()<cr>", opts)
 
-		opts.desc = "Remove completed"
+		opts.desc = "[todo.txt] Remove completed"
 		map("n", "<localleader>D", "<cmd>call todo#txt#remove_completed()<cr>", opts)
 	end,
 }

@@ -1,6 +1,10 @@
 local pick = require("mini.pick")
 
 pick.setup({
+	mappings = {
+		choose_marked = "<c-q>",
+		mark = "<c-cr>",
+	},
 	options = {
 		use_cache = true,
 	},

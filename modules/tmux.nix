@@ -73,8 +73,8 @@
 
         set-window-option -g visual-bell on
         set-window-option -g bell-action other
-        set-window-option -g window-status-format "[ #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,}]"
-        set-window-option -g window-status-current-format "#[bold][ #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,}]#[nobold]"
+        set-window-option -g window-status-format "[  #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ]"
+        set-window-option -g window-status-current-format "#[bold][  #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ]#[nobold]"
 
         bind ':' command-prompt
         bind '-' split-window -v -c '#{pane_current_path}'

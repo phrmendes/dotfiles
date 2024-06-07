@@ -124,6 +124,15 @@ keybindings.std = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
+	db = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Save query for later use"
+		map("n", "<localleader>w", "<Plug>(DBUI_SaveQuery)", opts)
+
+		opts.desc = "Edit bind parameters"
+		map("n", "<localleader>e", "<Plug>(DBUI_EditBindParameters)", opts)
+	end,
 	dial = function()
 		local opts = { noremap = true, silent = true, desc = "Dial" }
 

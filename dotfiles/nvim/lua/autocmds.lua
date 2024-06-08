@@ -107,6 +107,14 @@ autocmd({ "FileType" }, {
 	end,
 })
 
+autocmd("FileType", {
+	group = augroups.filetype,
+	pattern = { "*.http" },
+	callback = function()
+		vim.cmd([[set filetype=http]])
+	end,
+})
+
 autocmd("User", {
 	pattern = "MiniFilesWindowOpen",
 	group = augroups.mini,

@@ -73,7 +73,6 @@ in {
       ++ lib.optionals isLinux (with pkgs; [
         bashly
         bitwarden
-        bruno
         chromium
         copyq
         curtail

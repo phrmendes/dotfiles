@@ -24,11 +24,8 @@ local languages = {
 		require("efmls-configs.linters.shellcheck"),
 		require("efmls-configs.formatters.shellharden"),
 	},
-	sql = {
-		require("efmls-configs.linters.sqlfluff"),
-	},
 	go = {
-		require("efmls-configs.linters.djlint"),
+		require("efmls-configs.linters.golangci_lint"),
 		require("efmls-configs.formatters.gofumpt"),
 		require("efmls-configs.formatters.golines"),
 	},
@@ -66,7 +63,6 @@ local servers = {
 	docker_compose_language_service = {},
 	dockerls = {},
 	dotls = {},
-	golangci_lint_ls = {},
 	html = {},
 	markdown_oxide = {},
 	nil_ls = {},

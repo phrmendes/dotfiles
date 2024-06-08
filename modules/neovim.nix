@@ -42,7 +42,6 @@
           diffview-nvim
           dressing-nvim
           efmls-configs-nvim
-          flatten-nvim
           friendly-snippets
           image-nvim
           jupytext-nvim
@@ -74,6 +73,7 @@
           otter-nvim
           quarto-nvim
           refactoring-nvim
+          rest-nvim
           sniprun
           todo-txt-vim
           undotree
@@ -102,9 +102,15 @@
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
+          lua-curl
+          luv
           magick
+          mimetypes
           nui-nvim
+          nvim-nio
           plenary-nvim
+          sqlite
+          xml2lua
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
@@ -127,7 +133,6 @@
           dot-language-server
           efm-langserver
           golangci-lint
-          golangci-lint-langserver
           golines
           gomodifytags
           gopls
@@ -146,7 +151,6 @@
           ruff
           shellcheck
           shellharden
-          sqlfluff
           stylua
           taplo
           terraform-ls

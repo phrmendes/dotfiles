@@ -91,6 +91,12 @@ keybindings.std = {
 		opts.desc = "Close window"
 		map("n", "<leader>x", "<c-w>q", opts)
 	end,
+	neogen = function()
+		local opts = { noremap = true }
+
+		opts.desc = "[neogen] Generate documentation"
+		map("n", "<localleader>g", require("neogen").generate, opts)
+	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
@@ -468,6 +474,15 @@ keybindings.ft = {
 
 		opts.desc = "[dadbod] Save query"
 		map("n", "w", "<Plug>(DBUI_SaveQuery)", opts)
+	end,
+	http = function(event)
+		local opts = { noremap = true, buffer = event.buf }
+
+		opts.desc = "[REST] Run request under the cursor"
+		map("n", "<localleader>r", "<cmd>Rest run<cr>", opts)
+
+		opts.desc = "[REST] Re-run latest request"
+		map("n", "<localleader>R", "<cmd>Rest run last<cr>", opts)
 	end,
 	lua = function(event)
 		keybindings.refactor(event)

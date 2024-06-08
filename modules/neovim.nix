@@ -70,7 +70,6 @@
           nvim-ts-autotag
           nvim-ts-context-commentstring
           nvim-web-devicons
-          osv
           otter-nvim
           quarto-nvim
           refactoring-nvim
@@ -95,6 +94,7 @@
           gh.gopher-nvim
           gh.img-clip-nvim
           gh.latex-snippets-nvim
+          gh.osv
         ]
         ++ lib.optionals isLinux [
           gh.cmp-zotcite

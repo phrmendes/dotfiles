@@ -16,10 +16,11 @@
       btop.enable = true;
       dunst.enable = true;
       gnome-keyring.enable = true;
+      hypridle.enable = true;
       hyprland.enable = true;
+      hyprpaper.enable = true;
       nm-applet.enable = true;
       satty.enable = true;
-      swayidle.enable = true;
       swaylock.enable = true;
       swayosd.enable = true;
       targets.enable = true;

@@ -92,8 +92,6 @@ in {
         quarto
         quickemu
         qview
-        swaybg
-        swaynotificationcenter
         syncthingtray
         tectonic
         vagrant

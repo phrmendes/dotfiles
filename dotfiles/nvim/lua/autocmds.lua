@@ -107,7 +107,7 @@ autocmd({ "FileType" }, {
 	end,
 })
 
-autocmd("FileType", {
+autocmd("BufEnter", {
 	group = augroups.filetype,
 	pattern = { "*.http" },
 	callback = function()

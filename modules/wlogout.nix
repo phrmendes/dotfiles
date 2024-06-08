@@ -11,39 +11,39 @@
       layout = [
         {
           label = "lock";
-          action = "swaylock";
-          text = "Lock";
+          action = "loginctl lock-session";
+          text = "Lock (l)";
           keybind = "l";
-        }
-        {
-          label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate";
-          keybind = "h";
-        }
-        {
-          label = "logout";
-          action = "loginctl terminate-user $USER";
-          text = "Logout";
-          keybind = "e";
         }
         {
           label = "shutdown";
           action = "systemctl poweroff";
-          text = "Shutdown";
+          text = "Shutdown (s)";
           keybind = "s";
         }
         {
           label = "suspend";
           action = "systemctl suspend";
-          text = "Suspend";
-          keybind = "u";
+          text = "Suspend (z)";
+          keybind = "z";
         }
         {
           label = "reboot";
           action = "systemctl reboot";
-          text = "Reboot";
+          text = "Reboot (r)";
           keybind = "r";
+        }
+        {
+          label = "logout";
+          action = "loginctl terminate-session $USER";
+          text = "Logout (o)";
+          keybind = "o";
+        }
+        {
+          label = "hibernate";
+          action = "systemctl hibernate";
+          text = "Hibernate (h)";
+          keybind = "h";
         }
       ];
     };

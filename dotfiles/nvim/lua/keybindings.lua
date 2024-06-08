@@ -91,12 +91,6 @@ keybindings.std = {
 		opts.desc = "Close window"
 		map("n", "<leader>x", "<c-w>q", opts)
 	end,
-	neogen = function()
-		local opts = { noremap = true }
-
-		opts.desc = "[neogen] Generate documentation"
-		map("n", "<localleader>g", require("neogen").generate, opts)
-	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
@@ -389,6 +383,13 @@ keybindings.dap = function(event)
 	end, opts)
 end
 
+keybindings.neogen = function(event)
+	local opts = { noremap = true, buffer = event.buf }
+
+	opts.desc = "[neogen] Generate documentation"
+	map("n", "<localleader>g", require("neogen").generate, opts)
+end
+
 keybindings.refactor = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
@@ -485,10 +486,12 @@ keybindings.ft = {
 		map("n", "<localleader>R", "<cmd>Rest run last<cr>", opts)
 	end,
 	lua = function(event)
+		keybindings.neogen(event)
 		keybindings.refactor(event)
 	end,
 	go = function(event)
 		keybindings.dap(event)
+		keybindings.neogen(event)
 		keybindings.refactor(event)
 
 		local opts = { noremap = true, buffer = event.buf }
@@ -510,6 +513,7 @@ keybindings.ft = {
 	end,
 	python = function(event)
 		keybindings.dap(event)
+		keybindings.neogen(event)
 		keybindings.refactor(event)
 
 		local opts = { noremap = true, buffer = event.buf }

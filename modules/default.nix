@@ -17,7 +17,9 @@
     ./gh.nix
     ./git.nix
     ./gnome-keyring.nix
+    ./hypridle.nix
     ./hyprland.nix
+    ./hyprpaper.nix
     ./kitty.nix
     ./lazygit.nix
     ./navi.nix
@@ -27,7 +29,6 @@
     ./pyenv.nix
     ./satty.nix
     ./starship.nix
-    ./swayidle.nix
     ./swaylock.nix
     ./swayosd.nix
     ./symlinks.nix

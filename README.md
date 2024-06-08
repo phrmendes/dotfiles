@@ -43,3 +43,7 @@ Install NixOS:
 ```sh
 sudo nixos-install --flake .#desktop --root /mnt --no-root-passwd
 ```
+
+## TODO
+
+- Change swaylock to hyprlock when Stylix supports it.

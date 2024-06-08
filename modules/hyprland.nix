@@ -16,12 +16,10 @@
       powermenu = getExe pkgs.wlogout;
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
-      swaybg = getExe pkgs.swaybg;
       walker = getExe pkgs.walker;
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
-      wallpaper = ../dotfiles/background.png;
       workspacesKeys = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
@@ -32,7 +30,6 @@
       enable = true;
       settings = {
         exec-once = [
-          "${swaybg} --image ${wallpaper} --mode fill"
           "${copyq} --start-server"
           "${polkit}"
         ];

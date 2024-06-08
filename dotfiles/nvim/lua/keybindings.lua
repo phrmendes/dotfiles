@@ -338,46 +338,46 @@ end
 keybindings.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "[DAP] step out"
+	opts.desc = "[DAP] Step out"
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	opts.desc = "[DAP] step into"
+	opts.desc = "[DAP] Step into"
 	map("n", "<f4>", require("dap").step_into, opts)
 
-	opts.desc = "[DAP] step back"
+	opts.desc = "[DAP] Step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "[DAP] continue"
+	opts.desc = "[DAP] Continue"
 	map("n", "<f6>", require("dap").continue, opts)
 
-	opts.desc = "[DAP] step over"
+	opts.desc = "[DAP] Step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "[DAP] pause"
+	opts.desc = "[DAP] Pause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "[DAP] terminate"
+	opts.desc = "[DAP] Terminate"
 	map("n", "<del>", require("dap").terminate, opts)
 
-	opts.desc = "[DAP] breakpoint"
+	opts.desc = "[DAP] Breakpoint"
 	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
-	opts.desc = "[DAP] debug last"
+	opts.desc = "[DAP] Debug last"
 	map("n", "<localleader><bs>", require("dap").run_last, opts)
 
-	opts.desc = "[DAP] clear all breakpoints"
+	opts.desc = "[DAP] Clear all breakpoints"
 	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
 
-	opts.desc = "[DAP] show hover"
+	opts.desc = "[DAP] Show hover"
 	map("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
 
-	opts.desc = "[DAP] toggle UI"
+	opts.desc = "[DAP] Toggle UI"
 	map("n", "<localleader>u", require("dapui").toggle, opts)
 
-	opts.desc = "[DAP] eval"
+	opts.desc = "[DAP] Eval"
 	map("n", "<localleader><cr>", require("dapui").eval, opts)
 
-	opts.desc = "[DAP] conditional breakpoint"
+	opts.desc = "[DAP] Conditional breakpoint"
 	map("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
@@ -493,7 +493,7 @@ keybindings.ft = {
 		local opts = { noremap = true, buffer = event.buf }
 
 		opts.desc = "[DAP] Launch debugger"
-		map("n", "<localleader>l", require("osv").launch({ port = 8086 }), opts)
+		map("n", "<f6>", require("osv").run_this, opts)
 	end,
 	go = function(event)
 		keybindings.dap(event)

@@ -54,6 +54,11 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
+    osv = {
+      flake = false;
+      url = "github:jbyuki/one-small-step-for-vimkind";
+    };
+
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

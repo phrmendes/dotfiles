@@ -363,7 +363,7 @@ keybindings.dap = function(event)
 	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
 	opts.desc = "[DAP] debug last"
-	map("n", "<localleader>l", require("dap").run_last, opts)
+	map("n", "<localleader><bs>", require("dap").run_last, opts)
 
 	opts.desc = "[DAP] clear all breakpoints"
 	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
@@ -486,8 +486,14 @@ keybindings.ft = {
 		map("n", "<localleader>R", "<cmd>Rest run last<cr>", opts)
 	end,
 	lua = function(event)
+		keybindings.dap(event)
 		keybindings.neogen(event)
 		keybindings.refactor(event)
+
+		local opts = { noremap = true, buffer = event.buf }
+
+		opts.desc = "[DAP] Launch debugger"
+		map("n", "<localleader>l", require("osv").launch({ port = 8086 }), opts)
 	end,
 	go = function(event)
 		keybindings.dap(event)

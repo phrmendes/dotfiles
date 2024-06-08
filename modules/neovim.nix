@@ -16,7 +16,7 @@
           version = src.rev;
         };
       gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim zotcite;
+        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim osv zotcite;
       };
     in {
       enable = true;
@@ -70,6 +70,7 @@
           nvim-ts-autotag
           nvim-ts-context-commentstring
           nvim-web-devicons
+          osv
           otter-nvim
           quarto-nvim
           refactoring-nvim

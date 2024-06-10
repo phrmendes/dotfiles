@@ -39,12 +39,12 @@
           cmp_luasnip
           copilot-vim
           dial-nvim
-          diffview-nvim
           dressing-nvim
           efmls-configs-nvim
           friendly-snippets
           image-nvim
           jupytext-nvim
+          lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
           luasnip
@@ -54,7 +54,6 @@
           nabla-nvim
           neodev-nvim
           neogen
-          neogit
           nvim-bqf
           nvim-cmp
           nvim-colorizer-lua
@@ -133,12 +132,12 @@
           dockerfile-language-server-nodejs
           dot-language-server
           efm-langserver
+          gofumpt
           golangci-lint
           golines
           gomodifytags
           gopls
           gosimports
-          gofumpt
           gotests
           helm-ls
           iferr
@@ -148,6 +147,7 @@
           lua-language-server
           markdown-oxide
           nil
+          neovim-remote
           prettierd
           ruff
           shellcheck

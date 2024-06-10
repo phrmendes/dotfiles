@@ -47,7 +47,6 @@ in {
           poppler
           python312
           rar
-          ripgrep
           sqlite
           terraform
           tokei

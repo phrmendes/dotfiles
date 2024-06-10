@@ -107,9 +107,9 @@ autocmd({ "FileType" }, {
 	end,
 })
 
-autocmd("BufEnter", {
+autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
 	group = augroups.filetype,
-	pattern = { "*.http" },
+	pattern = "*.http",
 	callback = function()
 		vim.cmd([[set filetype=http]])
 	end,

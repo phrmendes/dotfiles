@@ -21,7 +21,7 @@ keybindings.std = {
 		map("i", "jj", "<esc>", opts)
 
 		opts.desc = "Exit terminal mode"
-		map("t", "<esc><esc>", "<c-\\><c-n>", opts)
+		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
 
 		opts.desc = "Replay macro"
 		map("n", "Q", "@q", opts)
@@ -181,25 +181,37 @@ keybindings.std = {
 	git = function()
 		local opts = { noremap = true }
 
+		opts.desc = "Commit"
+		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
+
 		opts.desc = "Add (file)"
 		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
 
 		opts.desc = "Add (repo)"
 		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
 
-		opts.desc = "Commit"
+		opts.desc = "Branches"
+		map("n", "<leader>g<leader>", require("mini.extra").pickers.git_branches, opts)
+
+		opts.desc = "Commits (file)"
 		map("n", "<leader>gc", function()
-			require("neogit").open({ "commit" })
+			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
 		end, opts)
 
-		opts.desc = "Diff (file)"
-		map({ "n", "v" }, "<leader>gd", "<cmd>DiffviewFileHistory<cr>", opts)
+		opts.desc = "Commits (repo)"
+		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
 
-		opts.desc = "Diff (repo)"
-		map({ "n", "v" }, "<leader>gD", "<cmd>DiffviewOpen<cr>", opts)
+		opts.desc = "Diff"
+		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
 
-		opts.desc = "Neogit"
-		map("n", "<leader>gg", require("neogit").open, opts)
+		opts.desc = "LazyGit"
+		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
+
+		opts.desc = "History"
+		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
+
+		opts.desc = "Hunks"
+		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)

@@ -90,3 +90,10 @@ vim.cmd([[language en_US.UTF-8]])
 
 -- treat '-' as part of a word
 vim.cmd([[set iskeyword+=-]])
+
+-- nvim server
+if vim.fn.executable("nvr") then
+	vim.env.EDITOR = [[nvr -cc split --remote-wait +'set bufhidden=wipe']]
+	vim.env.GIT_EDITOR = [[nvr -cc split --remote-wait +'set bufhidden=wipe']]
+	vim.env.VISUAL = [[nvr -cc split --remote-wait +'set bufhidden=wipe']]
+end

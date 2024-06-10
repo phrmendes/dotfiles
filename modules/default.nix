@@ -27,6 +27,7 @@
     ./nm-applet.nix
     ./packages.nix
     ./pyenv.nix
+    ./ripgrep.nix
     ./satty.nix
     ./starship.nix
     ./swaylock.nix
@@ -52,9 +53,11 @@
   gh.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
   kitty.enable = lib.mkDefault true;
+  lazygit.enable = lib.mkDefault true;
   navi.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
+  ripgrep.enable = lib.mkDefault true;
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;

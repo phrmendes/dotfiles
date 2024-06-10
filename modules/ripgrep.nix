@@ -9,10 +9,10 @@
     programs.ripgrep = {
       enable = true;
       arguments = [
-        "--files"
-        "--hidden"
-        "--glob=!.git/*"
         "--smart-case"
+        "--hidden"
+        "--glob"
+        "!.git"
       ];
     };
   };

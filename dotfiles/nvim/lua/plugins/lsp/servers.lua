@@ -72,7 +72,6 @@ local servers = {
 	terraformls = {},
 	texlab = {},
 	tflint = {},
-	typos_lsp = {},
 	efm = {
 		filetypes = vim.tbl_keys(languages),
 		init_options = {

@@ -155,7 +155,6 @@
           terraform-ls
           texlab
           tflint
-          typos-lsp
           vscode-langservers-extracted
           yaml-language-server
         ])

@@ -13,11 +13,7 @@
       settings = {
         enter_accept = false;
         keymap_mode = "vim-insert";
-        filter_mode_shell_up_key_binding = "session";
       };
-      flags = [
-        "--disable-up-arrow"
-      ];
     };
   };
 }

@@ -11,8 +11,8 @@
       arguments = [
         "--files"
         "--hidden"
-        "--glob"
-        "!.git"
+        "--glob=!.git/*"
+        "--smart-case"
       ];
     };
   };

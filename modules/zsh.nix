@@ -23,6 +23,7 @@ in {
         sed = getExe gnused;
         t = getExe tmux;
         top = getExe btop;
+        lg = getExe lazygit;
         untar = "tar -xvf";
         untargz = "tar -xzf";
         v = "nvim";

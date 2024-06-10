@@ -28,7 +28,6 @@
       plugins = with pkgs.vimPlugins;
         [
           SchemaStore-nvim
-          actions-preview-nvim
           ansible-vim
           cmp-buffer
           cmp-cmdline
@@ -106,10 +105,8 @@
           luv
           magick
           mimetypes
-          nui-nvim
           nvim-nio
           plenary-nvim
-          sqlite
           xml2lua
         ];
       extraPython3Packages = pythonPkgs:
@@ -132,6 +129,7 @@
           dockerfile-language-server-nodejs
           dot-language-server
           efm-langserver
+          emmet-language-server
           gofumpt
           golangci-lint
           golines
@@ -146,8 +144,8 @@
           ltex-ls
           lua-language-server
           markdown-oxide
-          nil
           neovim-remote
+          nil
           prettierd
           ruff
           shellcheck
@@ -157,6 +155,7 @@
           terraform-ls
           texlab
           tflint
+          typos-lsp
           vscode-langservers-extracted
           yaml-language-server
         ])

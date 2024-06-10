@@ -182,7 +182,7 @@ keybindings.std = {
 		local opts = { noremap = true }
 
 		opts.desc = "Commit"
-		map("n", "<leader>g<cr>", "<cmd>Git commit<cr>", opts)
+		map("n", "<leader>g<space>", "<cmd>Git commit<cr>", opts)
 
 		opts.desc = "Add (file)"
 		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
@@ -191,7 +191,7 @@ keybindings.std = {
 		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
 
 		opts.desc = "Branches"
-		map("n", "<leader>g<leader>", require("mini.extra").pickers.git_branches, opts)
+		map("n", "<leader>gb", require("mini.extra").pickers.git_branches, opts)
 
 		opts.desc = "Commits (file)"
 		map("n", "<leader>gc", function()
@@ -313,7 +313,7 @@ keybindings.lsp = function(event)
 
 		if client.supports_method("textDocument/codeAction") then
 			opts.desc = "[LSP] Code actions"
-			map({ "n", "x" }, "<leader>a", require("actions-preview").code_actions, opts)
+			map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
 		end
 
 		if client.supports_method("textDocument/publishDiagnostics") then

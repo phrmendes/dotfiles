@@ -2,7 +2,6 @@
   config,
   lib,
   parameters,
-  pkgs,
   ...
 }: {
   options.git.enable = lib.mkEnableOption "enable git";

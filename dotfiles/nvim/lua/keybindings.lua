@@ -64,12 +64,6 @@ keybindings.std = {
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
-		opts.desc = "Quit all"
-		map("n", "<leader>Q", "<cmd>qall!<cr>", opts)
-
-		opts.desc = "Write all"
-		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
-
 		opts.desc = "Close all other windows"
 		map("n", "<leader>X", "<c-w>o", opts)
 
@@ -162,20 +156,13 @@ keybindings.std = {
 	explorer = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Explorer (current file)"
+		opts.desc = "Explorer"
 		map("n", "<leader>e", function()
 			if not require("mini.files").close() then
 				require("mini.files").open(vim.fn.expand("%:p:h"))
 			end
 
 			require("mini.files").reveal_cwd()
-		end, opts)
-
-		opts.desc = "Explorer (cwd)"
-		map("n", "<leader>E", function()
-			if not require("mini.files").close() then
-				require("mini.files").open(vim.fn.getcwd())
-			end
 		end, opts)
 	end,
 	git = function()
@@ -458,36 +445,6 @@ keybindings.writing = function(event)
 end
 
 keybindings.ft = {
-	dbui = function(event)
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "[dadbod] Execute query"
-		map("n", "<cr>", "<Plug>(DBUI_ExecuteQuery)", opts)
-
-		opts.desc = "[dadbod] Select line"
-		map("n", "<tab>", "<Plug>(DBUI_SelectLine)", opts)
-
-		opts.desc = "[dadbod] Toggle details"
-		map("n", "K", "<Plug>(DBUI_ToggleDetails)", opts)
-
-		opts.desc = "[dadbod] Redraw"
-		map("n", "R", "<Plug>(DBUI_Redraw)", opts)
-
-		opts.desc = "[dadbod] Delete line"
-		map("n", "d", "<Plug>(DBUI_DeleteLine)", opts)
-
-		opts.desc = "[dadbod] Insert line"
-		map("n", "q", "<Plug>(DBUI_Quit)", opts)
-
-		opts.desc = "[dadbod] Rename line"
-		map("n", "r", "<Plug>(DBUI_RenameLine)", opts)
-
-		opts.desc = "[dadbod] Toggle result layout"
-		map("n", "t", "<Plug>(DBUI_ToggleResultLayout)", opts)
-
-		opts.desc = "[dadbod] Save query"
-		map("n", "w", "<Plug>(DBUI_SaveQuery)", opts)
-	end,
 	http = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 

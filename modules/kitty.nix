@@ -41,7 +41,7 @@
         "alt+r" = "start_resizing_window";
         "alt+x" = "close_window";
         "alt+z" = "toggle_layout stack";
-        "alt+t" = "new_tab";
+        "alt+n" = "new_tab";
         "alt+[" = "previous_tab";
         "alt+]" = "next_tab";
         "alt+h" = "neighboring_window left";
@@ -49,8 +49,6 @@
         "alt+k" = "neighboring_window up";
         "alt+l" = "neighboring_window right";
         "alt+shift+t" = ''set_tab_title " "'';
-        "alt+shift+equal" = "change_font_size all +2.0";
-        "alt+shift+minus" = "change_font_size all -2.0";
       };
     };
   };

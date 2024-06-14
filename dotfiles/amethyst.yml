@@ -16,10 +16,11 @@ screen-padding-top: 3
 window-margin-size: 10
 window-margins: true
 
-layouts: [tall, wide, column, fullscreen]
+layouts: [tall, wide, column]
 
-mod1: [option, shift]
-mod2: [option, shift, control]
+mod1: [option]
+mod2: [option, shift]
+mod3: [option, shift, control]
 
 reevaluate-windows:
   key: w
@@ -30,9 +31,7 @@ relaunch-amethyst:
 toggle-float:
   key: f
   mod: mod1
-select-fullscreen-layout:
-  key: z
-  mod: mod1
+
 expand-main:
   key: "="
   mod: mod1
@@ -44,6 +43,10 @@ increase-main:
   mod: mod1
 decrease-main:
   key: ","
+  mod: mod1
+
+select-fullscreen-layout:
+  key: z
   mod: mod1
 cycle-layout:
   key: "]"
@@ -58,19 +61,19 @@ focus-ccw:
 focus-cw:
   key: j
   mod: mod1
-focus-screen-ccw:
-  mod: mod1
-  key: p
-focus-screen-cw:
-  mod: mod1
-  key: n
-
 swap-cw:
   key: r
   mod: mod1
 swap-main:
   mod: mod1
   key: enter
+
+focus-screen-ccw:
+  mod: mod1
+  key: p
+focus-screen-cw:
+  mod: mod1
+  key: n
 swap-screen-ccw:
   mod: mod2
   key: p
@@ -80,25 +83,25 @@ swap-screen-cw:
 
 throw-space-left:
   key: h
-  mod: mod2
+  mod: mod3
 throw-space-right:
   key: l
-  mod: mod2
+  mod: mod3
 throw-space-1:
   key: 1
-  mod: mod1
+  mod: mod2
 throw-space-2:
   key: 2
-  mod: mod1
+  mod: mod2
 throw-space-3:
   key: 3
-  mod: mod1
+  mod: mod2
 throw-space-4:
   key: 4
-  mod: mod1
+  mod: mod2
 throw-space-5:
   key: 5
-  mod: mod1
+  mod: mod2
 throw-space-6:
   key: 6
-  mod: mod1
+  mod: mod2

@@ -48,66 +48,56 @@
       ];
       style = ''
         * {
+            background-image: none;
+            box-shadow: none;
             font-family: "Fira Sans Semibold";
-        	background-image: none;
-        	transition: 20ms;
-        	box-shadow: none;
+            transition: 20ms;
+        }
+
+        window {
+            background-color: #${config.lib.stylix.colors.base00};
         }
 
         button {
-        	color: #${config.lib.stylix.colors.base00}
-            font-size:20px;
+            background-color: #${config.lib.stylix.colors.base00};
+            background-position: center;
             background-repeat: no-repeat;
-        	background-position: center;
-        	background-size: 25%;
-        	border-style: solid;
-        	background-color: #${config.lib.stylix.colors.base00};
-        	border: 3px solid #${config.lib.stylix.colors.base00};
-            box-shadow: #${config.lib.stylix.colors.base00};
+            background-size: 25%;
+            border-color: #${config.lib.stylix.colors.base00};
+            border-radius: 20px;
+            border-style: solid;
+            color: #${config.lib.stylix.colors.base07};
+            text-decoration-color: #${config.lib.stylix.colors.base07};
         }
 
-        button:focus,
-        button:active,
-        button:hover {
-            color: #${config.lib.stylix.colors.base03};
-        	background-color: #${config.lib.stylix.colors.base00};
-        	border: #${config.lib.stylix.colors.base00};
+        button:focus, button:active, button:hover {
+            background-color: #${config.lib.stylix.colors.base03};
+            outline-style: none;
+            border-radius: 20px;
         }
 
         #lock {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url(${../dotfiles/wlogout/icons/lock.png}));
+            background-image: image(url(${../dotfiles/wlogout/icons/lock.png}));
         }
 
         #logout {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url(${../dotfiles/wlogout/icons/logout.png}));
+            background-image: image(url(${../dotfiles/wlogout/icons/logout.png}));
         }
 
         #suspend {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url(${../dotfiles/wlogout/icons/suspend.png}));
+            background-image: image(url(${../dotfiles/wlogout/icons/suspend.png}));
         }
 
         #hibernate {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url(${../dotfiles/wlogout/icons/hibernate.png}));
+            background-image: image(url(${../dotfiles/wlogout/icons/hibernate.png}));
         }
 
         #shutdown {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url(${../dotfiles/wlogout/icons/shutdown.png}));
+            background-image: image(url(${../dotfiles/wlogout/icons/shutdown.png}));
         }
 
         #reboot {
-        	margin: 10px;
-        	border-radius: 20px;
-        	background-image: image(url(${../dotfiles/wlogout/icons/reboot.png}));
+            background-image: image(url(${../dotfiles/wlogout/icons/reboot.png}));
         }
       '';
     };

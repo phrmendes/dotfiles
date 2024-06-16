@@ -40,9 +40,9 @@
           tooltip = false;
         };
         exit = {
-          format = "";
+          format = "  ";
           on-click = "wlogout";
-          tooltip-format = "Power Menu";
+          tooltip-format = "Power menu";
         };
       };
     in {
@@ -76,7 +76,7 @@
             "tray"
             "custom/separator"
             "clock"
-            "custom/spacer"
+            "custom/separator"
             "custom/exit"
             "custom/spacer"
           ];
@@ -154,7 +154,7 @@
           modules-left = ["hyprland/workspaces"];
           modules-right = [
             "clock"
-            "custom/spacer"
+            "custom/separator"
             "custom/exit"
             "custom/spacer"
           ];

@@ -13,17 +13,25 @@
       enable = true;
 
       settings = {
-        lockCmd = "${pkgs.procps}/bin/pidof swaylock || ${swaylock}";
+        general = {
+          lock_cmd = "${pkgs.procps}/bin/pidof swaylock || ${swaylock}";
+          before_sleep_cmd = "loginctl lock-session";
+          after_resume_cmd = "hyperctl dispatch dpms on";
+        };
 
         listener = [
           {
-            timeout = 300;
-            onTimeout = "loginctl lock-session";
+            timeout = 600;
+            on-timeout = "loginctl lock-session";
           }
           {
-            timeout = 330;
-            onTimeout = "hyprctl dispatch dpms off";
-            onResume = "hyprctl dispatch dpms on";
+            timeout = 660;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 1800;
+            on-timeout = "systemctl suspend";
           }
         ];
       };

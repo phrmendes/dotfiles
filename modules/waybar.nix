@@ -39,6 +39,11 @@
           interval = "once";
           tooltip = false;
         };
+        exit = {
+          format = "";
+          on-click = "wlogout";
+          tooltip-format = "Power Menu";
+        };
       };
     in {
       enable = true;
@@ -71,6 +76,8 @@
             "tray"
             "custom/separator"
             "clock"
+            "custom/spacer"
+            "custom/exit"
             "custom/spacer"
           ];
           tray = {
@@ -110,8 +117,8 @@
             all-outputs = true;
             active-only = false;
             on-click = "activate";
-            on-scroll-up = "hyprctl dispatch workspace e+1";
-            on-scroll-down = "hyprctl dispatch workspace e-1";
+            on-scroll-up = "hyprctl dispatch workspace r+1";
+            on-scroll-down = "hyprctl dispatch workspace r-1";
           };
           "pulseaudio#input" = {
             format-source = "󰍬<tt>  {volume}%</tt>";
@@ -140,6 +147,7 @@
           clock = shared.date_time;
           "custom/separator" = shared.separator;
           "custom/spacer" = shared.spacer;
+          "custom/exit" = shared.exit;
         }
         {
           output = "DP-1";
@@ -147,10 +155,13 @@
           modules-right = [
             "clock"
             "custom/spacer"
+            "custom/exit"
+            "custom/spacer"
           ];
           clock = shared.date_time;
           "custom/separator" = shared.separator;
           "custom/spacer" = shared.spacer;
+          "custom/exit" = shared.exit;
         }
       ];
     };

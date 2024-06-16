@@ -123,6 +123,7 @@
           ansible-language-server
           ansible-lint
           basedpyright
+          bash-language-server
           delve
           djlint
           docker-compose-language-service
@@ -165,7 +166,6 @@
           jupytext
         ])
         ++ (with pkgs.nodePackages; [
-          bash-language-server
           vscode-json-languageserver
         ]);
     };

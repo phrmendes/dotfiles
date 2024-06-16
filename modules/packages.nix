@@ -64,7 +64,6 @@ in {
       ++ lib.optionals isDarwin (
         with pkgs; [
           azure-cli
-          azure-functions-core-tools
           maven
           mongosh
           pngpaste

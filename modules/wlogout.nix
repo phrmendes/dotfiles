@@ -1,12 +1,22 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.wlogout.enable = lib.mkEnableOption "enable wlogout";
 
   config = lib.mkIf config.wlogout.enable {
-    programs.wlogout = {
+    programs.wlogout = let
+      image = name: ''
+        #${name} {
+            background-image: image(
+              url("${../dotfiles/wlogout/icons/${name}.png}"),
+              url("${pkgs.wlogout}/share/wlogout/icons/${name}.svg}")
+            );
+        }
+      '';
+    in {
       enable = true;
       layout = [
         {
@@ -48,57 +58,35 @@
       ];
       style = ''
         * {
-            background-image: none;
-            box-shadow: none;
-            font-family: "Fira Sans Semibold";
-            transition: 20ms;
+            background: none;
         }
 
         window {
+            color: #${config.lib.stylix.colors.base07};
             background-color: #${config.lib.stylix.colors.base00};
         }
 
         button {
-            background-color: #${config.lib.stylix.colors.base00};
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 25%;
-            border-color: #${config.lib.stylix.colors.base00};
-            border-radius: 20px;
-            border-style: solid;
             color: #${config.lib.stylix.colors.base07};
-            text-decoration-color: #${config.lib.stylix.colors.base07};
+            background-color: #${config.lib.stylix.colors.base00};
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 25%;
         }
 
         button:focus, button:active, button:hover {
             background-color: #${config.lib.stylix.colors.base03};
             outline-style: none;
-            border-radius: 20px;
         }
 
-        #lock {
-            background-image: image(url(${../dotfiles/wlogout/icons/lock.png}));
-        }
-
-        #logout {
-            background-image: image(url(${../dotfiles/wlogout/icons/logout.png}));
-        }
-
-        #suspend {
-            background-image: image(url(${../dotfiles/wlogout/icons/suspend.png}));
-        }
-
-        #hibernate {
-            background-image: image(url(${../dotfiles/wlogout/icons/hibernate.png}));
-        }
-
-        #shutdown {
-            background-image: image(url(${../dotfiles/wlogout/icons/shutdown.png}));
-        }
-
-        #reboot {
-            background-image: image(url(${../dotfiles/wlogout/icons/reboot.png}));
-        }
+        ${lib.concatMapStringsSep "\n" image [
+          "lock"
+          "logout"
+          "suspend"
+          "hibernate"
+          "shutdown"
+          "reboot"
+        ]}
       '';
     };
   };

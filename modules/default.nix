@@ -67,7 +67,7 @@
   zsh.enable = lib.mkDefault true;
 
   home = {
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     username = parameters.user;
     homeDirectory = parameters.home;
   };

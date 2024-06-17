@@ -31,7 +31,7 @@
 
   console.keyMap = "us";
   sound.enable = true;
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

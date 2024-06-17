@@ -22,6 +22,7 @@ in {
           file
           findutils
           gcc
+          gdu
           gh
           gnumake
           gnupg
@@ -39,7 +40,6 @@ in {
           kubernetes-helm
           libuv
           libxml2
-          ncdu
           opentofu
           pandoc
           parallel

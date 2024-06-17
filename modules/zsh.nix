@@ -15,7 +15,7 @@ in {
       initExtra = builtins.readFile ../dotfiles/init.sh;
       common = with pkgs; {
         cat = getExe bat;
-        du = getExe ncdu;
+        du = getExe gdu;
         find = getExe fd;
         fs = getExe fselect;
         grep = getExe ripgrep;

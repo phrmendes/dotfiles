@@ -34,6 +34,7 @@
       "tailscale"
       "vagrant"
       "whichspace"
+      "zoom"
     ];
   };
 }

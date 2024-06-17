@@ -136,6 +136,7 @@
           golines
           gomodifytags
           gopls
+          fswatch
           gosimports
           gotests
           helm-ls

@@ -34,8 +34,6 @@ vim.opt.hlsearch = true
 vim.opt.cursorline = true
 
 -- appearance
-vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-vim.env.NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true

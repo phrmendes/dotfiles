@@ -16,7 +16,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-23.11";
     walker.url = "github:abenz1267/walker";
 
     darwin = {

@@ -1,7 +1,6 @@
 local augroup = vim.api.nvim_create_augroup
 
 local M = {}
-M.lsp = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),

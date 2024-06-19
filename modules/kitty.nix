@@ -36,9 +36,9 @@
       keybindings = {
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
-        "ctrl+shift+enter" = "layout_action rotate";
+        "ctrl+shift+enter" = "start_resizing_window";
+        "ctrl+shift+r" = "layout_action rotate";
         "ctrl+shift+q" = "close_tab";
-        "ctrl+shift+r" = "start_resizing_window";
         "ctrl+shift+x" = "close_window";
         "ctrl+shift+z" = "toggle_layout stack";
         "ctrl+shift+n" = "new_tab";
@@ -49,6 +49,10 @@
         "ctrl+shift+k" = "neighboring_window up";
         "ctrl+shift+l" = "neighboring_window right";
         "ctrl+shift+t" = ''set_tab_title " "'';
+        "ctrl+shift+down" = "no_op";
+        "ctrl+shift+left" = "no_op";
+        "ctrl+shift+right" = "no_op";
+        "ctrl+shift+up" = "no_op";
       };
     };
   };

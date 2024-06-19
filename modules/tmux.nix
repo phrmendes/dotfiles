@@ -23,11 +23,10 @@
       shell = lib.getExe pkgs.zsh;
       terminal = "xterm-256color";
       plugins = with pkgs.tmuxPlugins; [
-        vim-tmux-navigator
         {
           plugin = tmux-fzf;
           extraConfig = ''
-            TMUX_FZF_LAUNCH_KEY='C-Space'
+            TMUX_FZF_LAUNCH_KEY='Enter'
           '';
         }
         {
@@ -93,10 +92,17 @@
         bind y copy-mode
         bind z resize-pane -Z
 
-        bind -r h resize-pane -L 3
-        bind -r j resize-pane -D 3
-        bind -r k resize-pane -U 3
-        bind -r l resize-pane -R 3
+        bind -r Space next-layout
+
+        bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h'  'select-pane -L'
+        bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j'  'select-pane -D'
+        bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k'  'select-pane -U'
+        bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l'  'select-pane -R'
+
+        bind -n C-Left if -F "#{@pane-is-vim}" 'send-keys C-Left' 'resize-pane -L 3'
+        bind -n C-Down if -F "#{@pane-is-vim}" 'send-keys C-Down' 'resize-pane -D 3'
+        bind -n C-Up if -F "#{@pane-is-vim}" 'send-keys C-Up' 'resize-pane -U 3'
+        bind -n C-Right if -F "#{@pane-is-vim}" 'send-keys C-Right' 'resize-pane -R 3'
 
         bind -T copy-mode-vi 'C-h' select-pane -L
         bind -T copy-mode-vi 'C-j' select-pane -D

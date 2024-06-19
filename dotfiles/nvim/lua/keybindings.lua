@@ -28,12 +28,6 @@ keybindings.std = {
 
 		opts.desc = "Replay macro (visual)"
 		map("x", "Q", "<cmd>norm @q<cr>", opts)
-
-		opts.desc = "Resizing"
-		map("n", "-", "<c-w><", opts)
-		map("n", "=", "<c-w>>", opts)
-		map("n", "_", "<c-w>-", opts)
-		map("n", "+", "<c-w>+", opts)
 	end,
 	leader = function()
 		local opts = { noremap = true }
@@ -223,6 +217,23 @@ keybindings.std = {
 
 		opts.desc = "Open todo.txt"
 		map("n", "<leader>nt", "<cmd>TodoTxt<cr>", opts)
+	end,
+	smart_splits = function()
+		local opts = { noremap = true, desc = "Smart splits" }
+
+		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map("n", "<c-left>", require("smart-splits").resize_left, opts)
+		map("n", "<c-down>", require("smart-splits").resize_down, opts)
+		map("n", "<c-up>", require("smart-splits").resize_up, opts)
+		map("n", "<c-right>", require("smart-splits").resize_right, opts)
+
+		map("n", "<c-s-left", require("smart-splits").swap_buf_left)
+		map("n", "<c-s-down", require("smart-splits").swap_buf_down)
+		map("n", "<c-s-up", require("smart-splits").swap_buf_up)
+		map("n", "<c-s-right", require("smart-splits").swap_buf_right)
 	end,
 	tabs = function()
 		local opts = { noremap = true }

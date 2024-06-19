@@ -4,6 +4,7 @@ now(function()
 	require("plugins.completion")
 	require("plugins.lsp")
 	require("plugins.mini")
+	require("plugins.smart-splits")
 end)
 
 later(function()

@@ -72,6 +72,7 @@
           quarto-nvim
           refactoring-nvim
           rest-nvim
+          smart-splits-nvim
           sniprun
           todo-txt-vim
           undotree
@@ -83,9 +84,9 @@
           vim-helm
           vim-jinja
           vim-just
+          vim-rsi
           vim-sleuth
           vim-slime
-          vim-tmux-navigator
           zen-mode-nvim
         ]
         ++ [

@@ -7,6 +7,7 @@
     inherit (pkgs.stdenv) isLinux;
   in
     {
+      enable = true;
       image = ../../dotfiles/background.png;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
       polarity = "dark";

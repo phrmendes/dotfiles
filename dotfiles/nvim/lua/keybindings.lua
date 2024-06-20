@@ -32,6 +32,9 @@ keybindings.std = {
 	leader = function()
 		local opts = { noremap = true }
 
+		opts.desc = "Sniprun"
+		map({ "n", "v" }, "<leader><cr>", "<cmd>SnipRun<cr>", opts)
+
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
@@ -229,7 +232,6 @@ keybindings.std = {
 		map("n", "<c-down>", require("smart-splits").resize_down, opts)
 		map("n", "<c-up>", require("smart-splits").resize_up, opts)
 		map("n", "<c-right>", require("smart-splits").resize_right, opts)
-
 		map("n", "<c-s-left", require("smart-splits").swap_buf_left)
 		map("n", "<c-s-down", require("smart-splits").swap_buf_down)
 		map("n", "<c-s-up", require("smart-splits").swap_buf_up)

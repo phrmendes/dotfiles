@@ -50,7 +50,7 @@
         enable = true;
         wayland.enable = true;
         autoNumlock = true;
-        theme = "where_is_my_sddm_theme";
+        theme = "Elegant";
       };
     };
 

@@ -15,5 +15,17 @@ require("nvim-treesitter.configs").setup({
 	},
 	markdown = {
 		enable = true,
+		mappings = {
+			inline_surround_toggle = "gs",
+			inline_surround_toggle_line = "gss",
+			inline_surround_delete = "ds",
+			inline_surround_change = "cs",
+			link_add = "gl",
+			link_follow = "gx",
+			go_curr_heading = "]c",
+			go_parent_heading = "]p",
+			go_next_heading = "]]",
+			go_prev_heading = "[[",
+		},
 	},
 })

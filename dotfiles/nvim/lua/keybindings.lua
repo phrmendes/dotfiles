@@ -425,7 +425,7 @@ keybindings.writing = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	local function toggle(key)
-		return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual]] .. key .. "<cr>"
+		return [[<esc>gv<cmd>lua require("markdown.inline")]] .. [[.toggle_emphasis_visual("]] .. key .. [[")<cr>]]
 	end
 
 	opts.desc = "Markdown"

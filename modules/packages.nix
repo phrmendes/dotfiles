@@ -16,12 +16,10 @@ in {
           cachix
           coreutils-full
           csvlens
-          curl
           fd
           ffmpegthumbnailer
           file
           findutils
-          gcc
           gdu
           gh
           gnumake
@@ -38,8 +36,6 @@ in {
           kind
           kubectl
           kubernetes-helm
-          libuv
-          libxml2
           opentofu
           pandoc
           parallel
@@ -51,7 +47,6 @@ in {
           terraform
           tokei
           unar
-          uv
           wget
           yq-go
           zip

@@ -42,6 +42,28 @@
     nix-ld = {
       enable = true;
       package = pkgs.nix-ld-rs;
+      libraries = with pkgs; [
+        cairo
+        curl
+        dbus
+        freetype
+        fuse3
+        gcc
+        glib
+        icu
+        libnotify
+        libpulseaudio
+        libusb1
+        libuuid
+        libuv
+        libxml2
+        mesa
+        openssl
+        pipewire
+        stdenv.cc.cc
+        systemd
+        vulkan-loader
+      ];
     };
   };
 }

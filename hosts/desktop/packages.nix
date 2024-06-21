@@ -8,7 +8,7 @@
       wl-clipboard
       xdg-utils
       kdePackages.polkit-kde-agent-1
-      (elegant-sddm.override {
+      (where-is-my-sddm-theme.override {
         themeConfig.General = {
           background = "${../../dotfiles/background.png}";
         };

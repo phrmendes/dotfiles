@@ -44,14 +44,13 @@
       };
     };
 
-    greetd = {
-      enable = true;
-      settings = rec {
-        default_session = initial_session;
-        initial_session = {
-          inherit (parameters) user;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        };
+    displayManager = {
+      defaultSession = "hyprland";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        autoNumlock = true;
+        theme = "where_is_my_sddm_theme";
       };
     };
 

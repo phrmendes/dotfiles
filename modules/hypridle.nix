@@ -11,27 +11,26 @@
       swaylock = "${lib.getExe pkgs.swaylock}";
     in {
       enable = true;
-
-      settings = {
+      settings = let
+        lock = "${pkgs.procps}/bin/pidof swaylock || ${swaylock}";
+        screen_off = "hyprctl dispatch dpms off";
+        screen_on = "hyprctl dispatch dpms on";
+      in {
         general = {
-          lock_cmd = "${pkgs.procps}/bin/pidof swaylock || ${swaylock}";
-          before_sleep_cmd = "loginctl lock-session";
-          after_resume_cmd = "hyperctl dispatch dpms on";
+          lock_cmd = lock;
+          before_sleep_cmd = screen_off;
+          after_resume_cmd = screen_on;
         };
 
         listener = [
           {
             timeout = 600;
-            on-timeout = "loginctl lock-session";
+            on-timeout = lock;
           }
           {
             timeout = 660;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-          {
-            timeout = 1800;
-            on-timeout = "systemctl suspend";
+            on-timeout = screen_off;
+            on-resume = screen_on;
           }
         ];
       };

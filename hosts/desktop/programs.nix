@@ -48,8 +48,8 @@
         dbus
         freetype
         fuse3
-        gcc
         glib
+        glibc
         icu
         libnotify
         libpulseaudio

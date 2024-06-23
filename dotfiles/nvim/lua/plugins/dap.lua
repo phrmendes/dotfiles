@@ -1,6 +1,16 @@
 local dap = require("dap")
-local dap_python = require("dap-python")
 local dap_ui = require("dapui")
+local python
+
+if vim.env.VIRTUAL_ENV then
+	python = vim.env.VIRTUAL_ENV .. "/bin/python"
+else
+	python = vim.fn.exepath("nvim-python3")
+end
+
+require("dap-go").setup()
+require("dap-python").setup(python)
+require("nvim-dap-virtual-text").setup()
 
 local dap_signs = {
 	Breakpoint = "",
@@ -13,17 +23,6 @@ for type, icon in pairs(dap_signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-require("nvim-dap-virtual-text").setup()
-require("dap-go").setup()
-
-dap_ui.setup()
-dap_python.setup("nvim-python3")
-
-dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
-dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close
-dap.listeners.before.event_exited["dapui_config"] = dap_ui.close
-dap_python.test_runner = "pytest"
-
 dap.configurations.lua = {
 	{
 		type = "nlua",
@@ -35,3 +34,8 @@ dap.configurations.lua = {
 dap.adapters.nlua = function(callback, config)
 	callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
 end
+
+dap_ui.setup()
+dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
+dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close
+dap.listeners.before.event_exited["dapui_config"] = dap_ui.close

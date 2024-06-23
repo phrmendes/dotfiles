@@ -17,42 +17,25 @@ local handlers = {
 }
 
 local languages = {
-	nix = {
-		require("efmls-configs.formatters.alejandra"),
-	},
-	sh = {
-		require("efmls-configs.linters.shellcheck"),
-		require("efmls-configs.formatters.shellharden"),
-	},
 	go = {
 		require("efmls-configs.linters.golangci_lint"),
 		require("efmls-configs.formatters.gofumpt"),
 		require("efmls-configs.formatters.golines"),
 	},
-	html = {
-		require("efmls-configs.formatters.prettier_d"),
+	sh = {
+		require("efmls-configs.linters.shellcheck"),
+		require("efmls-configs.formatters.shellharden"),
 	},
-	css = {
-		require("efmls-configs.formatters.prettier_d"),
-	},
-	json = {
-		require("efmls-configs.formatters.prettier_d"),
-	},
-	lua = {
-		require("efmls-configs.formatters.stylua"),
-	},
-	python = {
-		require("efmls-configs.formatters.ruff"),
-	},
-	terraform = {
-		require("efmls-configs.formatters.terraform_fmt"),
-	},
-	toml = {
-		require("efmls-configs.formatters.taplo"),
-	},
-	yaml = {
-		require("efmls-configs.formatters.prettier_d"),
-	},
+	css = { require("efmls-configs.formatters.prettier_d") },
+	html = { require("efmls-configs.formatters.prettier_d") },
+	json = { require("efmls-configs.formatters.prettier_d") },
+	lua = { require("efmls-configs.formatters.stylua") },
+	markdown = { require("efmls-configs.formatters.prettier_d") },
+	nix = { require("efmls-configs.formatters.alejandra") },
+	python = { require("efmls-configs.formatters.ruff") },
+	terraform = { require("efmls-configs.formatters.terraform_fmt") },
+	toml = { require("efmls-configs.formatters.taplo") },
+	yaml = { require("efmls-configs.formatters.prettier_d") },
 }
 
 local servers = {
@@ -65,7 +48,6 @@ local servers = {
 	dotls = {},
 	emmet_language_server = {},
 	html = {},
-	markdown_oxide = {},
 	nil_ls = {},
 	ruff = {},
 	taplo = {},

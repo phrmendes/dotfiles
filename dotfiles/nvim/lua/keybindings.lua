@@ -2,9 +2,9 @@ local augroups = require("utils").augroups
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 
-local keybindings = {}
+local keys = {}
 
-keybindings.std = {
+keys.std = {
 	random = function()
 		local opts = { noremap = true }
 
@@ -19,6 +19,7 @@ keybindings.std = {
 
 		opts.desc = "Exit insert mode"
 		map("i", "jj", "<esc>", opts)
+		map("i", "jk", "<esc>", opts)
 
 		opts.desc = "Exit terminal mode"
 		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
@@ -31,9 +32,6 @@ keybindings.std = {
 	end,
 	leader = function()
 		local opts = { noremap = true }
-
-		opts.desc = "Sniprun"
-		map({ "n", "v" }, "<leader><cr>", "<cmd>SnipRun<cr>", opts)
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
@@ -64,9 +62,6 @@ keybindings.std = {
 		opts.desc = "Close all other windows"
 		map("n", "<leader>X", "<c-w>o", opts)
 
-		opts.desc = "Paste image"
-		map("n", "<leader>i", "<cmd>PasteImage<cr>", opts)
-
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
@@ -85,14 +80,14 @@ keybindings.std = {
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
+		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
+		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
 		map("n", "N", "'nN'[v:searchforward].'zv'", opts)
 		map("o", "N", "'nN'[v:searchforward]", opts)
 		map("x", "N", "'nN'[v:searchforward]", opts)
 		map("n", "n", "'Nn'[v:searchforward].'zv'", opts)
 		map("o", "n", "'Nn'[v:searchforward]", opts)
 		map("x", "n", "'Nn'[v:searchforward]", opts)
-		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
-		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
 	end,
 	buffers = function()
 		local opts = { noremap = true }
@@ -126,28 +121,12 @@ keybindings.std = {
 			require("dial.map").manipulate("decrement", "normal")
 		end, opts)
 
-		map("n", "g<c-a>", function()
-			require("dial.map").manipulate("increment", "gnormal")
-		end, opts)
-
-		map("n", "g<c-x>", function()
-			require("dial.map").manipulate("decrement", "gnormal")
-		end, opts)
-
 		map("v", "<c-a>", function()
 			require("dial.map").manipulate("increment", "visual")
 		end, opts)
 
 		map("v", "<c-x>", function()
 			require("dial.map").manipulate("decrement", "visual")
-		end, opts)
-
-		map("v", "g<c-a>", function()
-			require("dial.map").manipulate("increment", "gvisual")
-		end, opts)
-
-		map("v", "g<c-x>", function()
-			require("dial.map").manipulate("decrement", "gvisual")
 		end, opts)
 	end,
 	explorer = function()
@@ -203,23 +182,38 @@ keybindings.std = {
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 	end,
-	notes = function()
+	obsidian = function()
 		local opts = { noremap = true }
 
+		opts.desc = "Backlinks"
+		map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", opts)
+
 		opts.desc = "New note"
-		map("n", "<leader>nn", "<cmd>NewNote<cr>", opts)
+		map("n", "<leader>on", "<cmd>ObsidianNew<cr>", opts)
 
-		opts.desc = "Search note"
-		map("n", "<leader>ns", "<cmd>SearchNote<cr>", opts)
+		opts.desc = "Extract to new note"
+		map("x", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
 
-		opts.desc = "Live grep in notes"
-		map("n", "<leader>ng", "<cmd>GrepNotes<cr>", opts)
+		opts.desc = "Add link"
+		map("x", "<leader>oa", "<cmd>ObsidianLink<cr>", opts)
 
-		opts.desc = "Open inbox"
-		map("n", "<leader>ni", "<cmd>Inbox<cr>", opts)
+		opts.desc = "Add link to new file"
+		map("x", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
 
-		opts.desc = "Open todo.txt"
-		map("n", "<leader>nt", "<cmd>TodoTxt<cr>", opts)
+		opts.desc = "Search"
+		map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", opts)
+
+		opts.desc = "Paste image"
+		map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", opts)
+
+		opts.desc = "Rename"
+		map("n", "<leader>or", "<cmd>ObsidianRename<cr>", opts)
+
+		opts.desc = "Live grep"
+		map("n", "<leader>og", "<cmd>ObsidianSearch<cr>", opts)
+
+		opts.desc = "Tags"
+		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
 	end,
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
@@ -232,10 +226,6 @@ keybindings.std = {
 		map("n", "<c-down>", require("smart-splits").resize_down, opts)
 		map("n", "<c-up>", require("smart-splits").resize_up, opts)
 		map("n", "<c-right>", require("smart-splits").resize_right, opts)
-		map("n", "<c-s-left", require("smart-splits").swap_buf_left)
-		map("n", "<c-s-down", require("smart-splits").swap_buf_down)
-		map("n", "<c-s-up", require("smart-splits").swap_buf_up)
-		map("n", "<c-s-right", require("smart-splits").swap_buf_right)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -266,7 +256,7 @@ keybindings.std = {
 	end,
 }
 
-keybindings.lsp = function(event)
+keys.lsp = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -347,7 +337,7 @@ keybindings.lsp = function(event)
 	end
 end
 
-keybindings.dap = function(event)
+keys.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	opts.desc = "[DAP] Step out"
@@ -395,51 +385,34 @@ keybindings.dap = function(event)
 	end, opts)
 end
 
-keybindings.neogen = function(event)
+keys.neogen = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	opts.desc = "[neogen] Generate documentation"
 	map("n", "<localleader>g", require("neogen").generate, opts)
 end
 
-keybindings.refactor = function(event)
+keys.refactoring = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "[Refactor] Select"
-	map({ "n", "x" }, "<leader>r", function()
-		require("refactoring").select_refactor()
-	end, opts)
+	opts.desc = "[Refactoring] Select action"
+	map({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
 
-	opts.desc = "[Refactor] Print variable"
-	map("n", "<leader>p", function()
-		require("refactoring").debug.print_var()
-	end, opts)
+	opts.desc = "[Refactoring] Print variable"
+	map("n", "<leader>p", require("refactoring").debug.print_var, opts)
 
-	opts.desc = "[Refactor] Clean print statements"
-	map("n", "<leader>c", function()
-		require("refactoring").debug.cleanup()
-	end, opts)
+	opts.desc = "[Refactoring] Clean print statements"
+	map("n", "<leader>c", require("refactoring").debug.cleanup, opts)
 end
 
-keybindings.writing = function(event)
+keys.writing = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	local function toggle(key)
-		return [[<esc>gv<cmd>lua require("markdown.inline")]] .. [[.toggle_emphasis_visual("]] .. key .. [[")<cr>]]
-	end
-
-	opts.desc = "Markdown"
-	map({ "n", "x" }, "<cr>", "<cmd>MDTaskToggle<cr>", opts)
-	map("i", "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
-	map("i", "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
-	map("x", "<c-b>", toggle("b"), opts)
-	map("x", "<c-i>", toggle("i"), opts)
-
 	opts.desc = "Preview markdown"
-	map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", opts)
+	map("n", "<localleader>m", "<cmd>MarkdownPreviewToggle<cr>", opts)
 
 	opts.desc = "Preview equation"
-	map("n", "<leader>p", require("nabla").popup, opts)
+	map("n", "<localleader>e", require("nabla").popup, opts)
 
 	opts.desc = "[Zotero] Citation info"
 	map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
@@ -457,7 +430,7 @@ keybindings.writing = function(event)
 	map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 end
 
-keybindings.ft = {
+keys.ft = {
 	http = function(event)
 		local opts = { noremap = true, buffer = event.buf }
 
@@ -468,9 +441,9 @@ keybindings.ft = {
 		map("n", "<localleader>R", "<cmd>Rest run last<cr>", opts)
 	end,
 	lua = function(event)
-		keybindings.dap(event)
-		keybindings.neogen(event)
-		keybindings.refactor(event)
+		keys.dap(event)
+		keys.neogen(event)
+		keys.refactoring(event)
 
 		local opts = { noremap = true, buffer = event.buf }
 
@@ -478,9 +451,9 @@ keybindings.ft = {
 		map("n", "<f6>", require("osv").run_this, opts)
 	end,
 	go = function(event)
-		keybindings.dap(event)
-		keybindings.neogen(event)
-		keybindings.refactor(event)
+		keys.dap(event)
+		keys.neogen(event)
+		keys.refactoring(event)
 
 		local opts = { noremap = true, buffer = event.buf }
 
@@ -497,12 +470,12 @@ keybindings.ft = {
 		map("n", "<leader>y", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
-		keybindings.writing(event)
+		keys.writing(event)
 	end,
 	python = function(event)
-		keybindings.dap(event)
-		keybindings.neogen(event)
-		keybindings.refactor(event)
+		keys.dap(event)
+		keys.neogen(event)
+		keys.refactoring(event)
 
 		local opts = { noremap = true, buffer = event.buf }
 
@@ -516,67 +489,20 @@ keybindings.ft = {
 		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)
-		keybindings.writing(event)
-	end,
-	todo = function(event)
-		local opts = { script = true, silent = true, buffer = event.buf }
-
-		opts.desc = "[todo.txt] Sort"
-		map({ "n", "v" }, "<localleader>s", "<cmd>%sort<cr>", opts)
-
-		opts.desc = "Sort by +project"
-		map({ "n", "v" }, "<localleader>s+", "<cmd>%call todo#txt#sort_by_project()<cr>", opts)
-
-		opts.desc = "Sort by @context"
-		map({ "n", "v" }, "<localleader>s@", "<cmd>%call todo#txt#sort_by_context()<cr>", opts)
-
-		opts.desc = "Sort by date"
-		map({ "n", "v" }, "<localleader>sd", "<cmd>%call todo#txt#sort_by_date()<cr>", opts)
-
-		opts.desc = "Sort by due date"
-		map({ "n", "v" }, "<localleader>sdd", "<cmd>%call todo#txt#sort_by_due_date()<cr>", opts)
-
-		opts.desc = "[todo.txt] Decrease priority"
-		map({ "n", "v" }, "<localleader>k", "<cmd>call todo#txt#prioritize_decrease()<cr>", opts)
-
-		opts.desc = "[todo.txt] Increase priority"
-		map({ "n", "v" }, "<localleader>j", "<cmd>call todo#txt#prioritize_increase()<cr>", opts)
-
-		opts.desc = "[todo.txt] Add priority (A)"
-		map({ "n", "v" }, "<localleader>a", "<cmd>call todo#txt#prioritize_add('A')<cr>", opts)
-
-		opts.desc = "[todo.txt] Add priority (B)"
-		map({ "n", "v" }, "<localleader>b", "<cmd>call todo#txt#prioritize_add('B')<cr>", opts)
-
-		opts.desc = "[todo.txt] Add priority (C)"
-		map({ "n", "v" }, "<localleader>c", "<cmd>call todo#txt#prioritize_add('C')<cr>", opts)
-
-		opts.desc = "[todo.txt] Insert date"
-		map("i", "date<tab>", "<c-r>=strftime('%Y-%m-%d')<cr>", opts)
-		map("n", "<localleader>d", "<cmd>call todo#txt#replace_date()<cr>", opts)
-		map("v", "<localleader>d", "<cmd>call todo#txt#replace_date()<cr>", opts)
-
-		opts.desc = "[todo.txt] Mark as done"
-		map({ "n", "v" }, "<localleader>x", "<cmd>call todo#txt#mark_as_done()<cr>", opts)
-
-		opts.desc = "[todo.txt] Mark all as done"
-		map("n", "<localleader>X", "<cmd>call todo#txt#mark_all_as_done()<cr>", opts)
-
-		opts.desc = "[todo.txt] Remove completed"
-		map("n", "<localleader>D", "<cmd>call todo#txt#remove_completed()<cr>", opts)
+		keys.writing(event)
 	end,
 }
 
-for _, func in pairs(keybindings.std) do
+for _, func in pairs(keys.std) do
 	func()
 end
 
 autocmd("LspAttach", {
 	group = augroups.lsp.attach,
-	callback = keybindings.lsp,
+	callback = keys.lsp,
 })
 
-for ft, func in pairs(keybindings.ft) do
+for ft, func in pairs(keys.ft) do
 	autocmd("FileType", {
 		group = augroups.filetype,
 		pattern = ft,

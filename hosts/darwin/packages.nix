@@ -3,7 +3,6 @@
     binutils
     coreutils-full
     findutils
-    gcc
     gnupg
     gnused
     gzip

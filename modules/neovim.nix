@@ -15,9 +15,11 @@
           inherit src pname;
           version = src.rev;
         };
-      gh = builtins.mapAttrs (pname: src: fromGitHub pname src) {
-        inherit (inputs) cmp-zotcite gopher-nvim img-clip-nvim latex-snippets-nvim osv zotcite;
-      };
+      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
+      gopher-nvim = fromGitHub "gopher.nvim" inputs.gopher-nvim;
+      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      osv = fromGitHub "one-small-step-for-vimkind" inputs.osv;
+      zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -31,6 +33,8 @@
           ansible-vim
           cmp-buffer
           cmp-cmdline
+          cmp-emoji
+          cmp-latex-symbols
           cmp-nvim-lsp
           cmp-nvim-lsp-signature-help
           cmp-pandoc-nvim
@@ -41,13 +45,14 @@
           dressing-nvim
           efmls-configs-nvim
           friendly-snippets
+          gopher-nvim
           image-nvim
           jupytext-nvim
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
           luasnip
-          markdown-nvim
+          luasnip-latex-snippets
           markdown-preview-nvim
           mini-nvim
           nabla-nvim
@@ -68,13 +73,14 @@
           nvim-ts-autotag
           nvim-ts-context-commentstring
           nvim-web-devicons
+          obsidian-nvim
+          osv
           otter-nvim
           quarto-nvim
           refactoring-nvim
           rest-nvim
           smart-splits-nvim
           sniprun
-          todo-txt-vim
           undotree
           vim-abolish
           vim-dadbod
@@ -89,21 +95,14 @@
           vim-slime
           zen-mode-nvim
         ]
-        ++ [
-          gh.gopher-nvim
-          gh.img-clip-nvim
-          gh.latex-snippets-nvim
-          gh.osv
-        ]
         ++ lib.optionals isLinux [
-          gh.cmp-zotcite
-          gh.zotcite
+          cmp-zotcite
+          zotcite
         ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
           lua-curl
-          luv
           magick
           mimetypes
           nvim-nio
@@ -136,7 +135,6 @@
           golines
           gomodifytags
           gopls
-          fswatch
           gosimports
           gotests
           helm-ls
@@ -145,7 +143,6 @@
           impl
           ltex-ls
           lua-language-server
-          markdown-oxide
           neovim-remote
           nil
           prettierd
@@ -156,7 +153,6 @@
           taplo
           terraform-ls
           texlab
-          tflint
           vscode-langservers-extracted
           yaml-language-server
         ])

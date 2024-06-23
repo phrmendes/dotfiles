@@ -99,7 +99,7 @@ autocmd("FileType", {
 	end,
 })
 
-autocmd({ "FileType" }, {
+autocmd("FileType", {
 	group = augroups.filetype,
 	pattern = { "json", "jsonc", "json5" },
 	callback = function()

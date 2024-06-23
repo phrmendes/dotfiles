@@ -15,7 +15,6 @@
   inputs = {
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     stylix.url = "github:danth/stylix";
     walker.url = "github:abenz1267/walker";
 
@@ -44,12 +43,7 @@
       url = "github:olexsmir/gopher.nvim";
     };
 
-    img-clip-nvim = {
-      flake = false;
-      url = "github:HakonHarnes/img-clip.nvim";
-    };
-
-    latex-snippets-nvim = {
+    luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
@@ -68,7 +62,6 @@
   outputs = {
     darwin,
     nixpkgs,
-    nixpkgs-stable,
     ...
   } @ inputs: {
     darwinConfigurations."NTTD-QQ4FN0YXVT" = let
@@ -86,8 +79,12 @@
     in
       darwin.lib.darwinSystem {
         inherit (parameters) system;
-        specialArgs = {inherit inputs pkgs parameters;};
-        modules = [./hosts/darwin];
+        modules = [
+          ./hosts/darwin
+        ];
+        specialArgs = {
+          inherit inputs pkgs parameters;
+        };
       };
 
     nixosConfigurations.desktop = let
@@ -99,26 +96,19 @@
         system = "x86_64-linux";
         device = "/dev/sdc";
       };
-      overlay-pkgs-stable = final: prev: {
-        stable = import nixpkgs-stable {
-          inherit (parameters) system;
-          config.allowUnfree = true;
-        };
-      };
       pkgs = import nixpkgs {
         inherit (parameters) system;
         config.allowUnfree = true;
-        overlays = [
-          overlay-pkgs-stable
-        ];
       };
     in
       nixpkgs.lib.nixosSystem {
         inherit (parameters) system;
-        specialArgs = {inherit inputs pkgs parameters;};
         modules = [
           ./hosts/desktop
         ];
+        specialArgs = {
+          inherit inputs pkgs parameters;
+        };
       };
   };
 }

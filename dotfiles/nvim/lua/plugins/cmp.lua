@@ -84,17 +84,12 @@ cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
 		{ name = "path" },
 		{ name = "otter" },
-		{
-			name = "nvim_lsp",
-			option = {
-				markdown_oxide = {
-					keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
-				},
-			},
-		},
+		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
+		{ name = "emoji" },
+		{ name = "latex_symbols", option = { strategy = 2 } },
 		{ name = "buffer" },
 	}),
 })

@@ -22,6 +22,7 @@ in {
           findutils
           gdu
           gh
+          gcc
           gnumake
           gnupg
           gnused
@@ -81,6 +82,7 @@ in {
         libqalculate
         libreoffice
         mpv
+        obsidian
         pavucontrol
         phockup
         plex

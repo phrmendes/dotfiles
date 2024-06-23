@@ -31,7 +31,7 @@ clue.setup({
 		{ mode = "n", keys = "<leader>b", desc = "+buffers" },
 		{ mode = "n", keys = "<leader>g", desc = "+git" },
 		{ mode = "x", keys = "<leader>g", desc = "+git" },
-		{ mode = "n", keys = "<leader>n", desc = "+notes" },
+		{ mode = "n", keys = "<leader>o", desc = "+obsidian" },
 	},
 	window = {
 		delay = 500,

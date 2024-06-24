@@ -28,6 +28,12 @@
       walker.enable = true;
       waybar.enable = true;
       wlogout.enable = true;
+
+      xdg.desktopEntries.obsidian = {
+        name = "Obsidian";
+        exec = "obsidian --disable-gpu";
+        icon = "obsidian";
+      };
     };
   };
 }

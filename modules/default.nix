@@ -71,10 +71,4 @@
     username = parameters.user;
     homeDirectory = parameters.home;
   };
-
-  xdg.desktopEntries.obsidian = {
-    name = "Obsidian";
-    exec = "obsidian --disable-gpu";
-    icon = "obsidian";
-  };
 }

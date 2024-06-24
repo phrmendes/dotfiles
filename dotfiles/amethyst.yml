@@ -9,11 +9,11 @@ mouse-follows-focus: false
 mouse-resizes-windows: true
 mouse-swaps-windows: true
 new-windows-to-main: false
-screen-padding-bottom: 3
-screen-padding-left: 3
-screen-padding-right: 3
-screen-padding-top: 3
-window-margin-size: 10
+screen-padding-bottom: 1
+screen-padding-left: 1
+screen-padding-right: 1
+screen-padding-top: 1
+window-margin-size: 5
 window-margins: true
 
 layouts: [tall, wide, column, fullscreen]

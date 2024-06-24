@@ -44,6 +44,9 @@ keys.std = {
 			require("mini.extra").pickers.history({ scope = ":" })
 		end, opts)
 
+		opts.desc = "Live grep"
+		map("n", "<leader>/", require("mini.pick").builtin.grep_live, opts)
+
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
 
@@ -52,9 +55,6 @@ keys.std = {
 
 		opts.desc = "Find"
 		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
-
-		opts.desc = "Live grep"
-		map("n", "<leader>G", require("mini.pick").builtin.grep_live, opts)
 
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)

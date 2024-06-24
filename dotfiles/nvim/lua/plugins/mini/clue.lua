@@ -32,6 +32,7 @@ clue.setup({
 		{ mode = "n", keys = "<leader>g", desc = "+git" },
 		{ mode = "x", keys = "<leader>g", desc = "+git" },
 		{ mode = "n", keys = "<leader>o", desc = "+obsidian" },
+		{ mode = "x", keys = "<leader>o", desc = "+obsidian" },
 	},
 	window = {
 		delay = 500,

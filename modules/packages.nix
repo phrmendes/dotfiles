@@ -100,17 +100,16 @@ in {
           pop-shell
           user-themes
         ]);
+      darwin = with pkgs; [
+        azure-cli
+        maven
+        mongosh
+        pngpaste
+        terragrunt
+      ];
     in
       common
-      ++ lib.optionals isDarwin (
-        with pkgs; [
-          azure-cli
-          maven
-          mongosh
-          pngpaste
-          terragrunt
-        ]
-      )
+      ++ lib.optionals isDarwin darwin
       ++ lib.optionals isLinux linux;
   };
 }

@@ -431,15 +431,6 @@ keys.writing = function(event)
 end
 
 keys.ft = {
-	http = function(event)
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "[REST] Run request under the cursor"
-		map("n", "<localleader>r", "<cmd>Rest run<cr>", opts)
-
-		opts.desc = "[REST] Re-run latest request"
-		map("n", "<localleader>R", "<cmd>Rest run last<cr>", opts)
-	end,
 	lua = function(event)
 		keys.dap(event)
 		keys.neogen(event)

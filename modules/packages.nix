@@ -13,6 +13,7 @@ in {
       common =
         (with pkgs; [
           ansible
+          bruno
           cachix
           coreutils-full
           csvlens
@@ -20,9 +21,9 @@ in {
           ffmpegthumbnailer
           file
           findutils
+          gcc
           gdu
           gh
-          gcc
           gnumake
           gnupg
           gnused

@@ -78,7 +78,6 @@
           otter-nvim
           quarto-nvim
           refactoring-nvim
-          rest-nvim
           smart-splits-nvim
           sniprun
           undotree

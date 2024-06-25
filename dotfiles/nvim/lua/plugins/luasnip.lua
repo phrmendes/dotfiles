@@ -28,4 +28,6 @@ for key, value in pairs(snippets) do
 	luasnip.add_snippets(key, value)
 end
 
-luasnip.filetype_extend("markdown", { "quarto" })
+luasnip.filetype_extend("quarto", { "markdown" })
+luasnip.filetype_extend("jinja", { "html" })
+luasnip.filetype_extend("template", { "html" })

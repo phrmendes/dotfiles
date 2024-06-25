@@ -22,6 +22,7 @@
             "appindicatorsupport@rgcjonas.gmail.com"
             "espresso@coadmunkee.github.com"
             "gsconnect@andyholmes.github.io"
+            "just-perfection-desktop@just-perfection"
             "pop-shell@system76.com"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
           ];
@@ -98,6 +99,42 @@
           has-battery = false;
           show-notifications = false;
           user-enabled = true;
+        };
+        "org/gnome/shell/extensions/just-perfection" = {
+          accessibility-menu = false;
+          activities-button = true;
+          background-menu = true;
+          calendar = true;
+          clock-menu = true;
+          controls-manager-spacing-size = 0;
+          dash = true;
+          dash-icon-size = 0;
+          double-super-to-appgrid = true;
+          keyboard-layout = false;
+          osd = true;
+          panel = true;
+          panel-button-padding-size = 6;
+          panel-in-overview = true;
+          panel-size = 30;
+          power-icon = true;
+          quick-settings = true;
+          ripple-box = true;
+          search = true;
+          show-apps-button = true;
+          startup-status = 1;
+          theme = true;
+          top-panel-position = 0;
+          window-demands-attention-focus = false;
+          window-menu-take-screenshot-button = false;
+          window-picker-icon = true;
+          window-preview-caption = true;
+          window-preview-close-button = true;
+          workspace = true;
+          workspace-background-corner-size = 0;
+          workspace-popup = false;
+          workspace-switcher-size = 0;
+          workspaces-in-app-grid = true;
+          world-clock = true;
         };
       };
     };

@@ -96,6 +96,7 @@ in {
           alphabetical-app-grid
           appindicator
           espresso
+          just-perfection
           pop-shell
           user-themes
         ]);

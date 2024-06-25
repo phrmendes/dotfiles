@@ -13,4 +13,28 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		additional_vim_regex_highlighting = { "markdown" },
 	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<c-s>",
+			node_incremental = "<c-s>",
+			scope_incremental = false,
+			node_decremental = "<bs>",
+		},
+	},
+	markdown = {
+		enable = true,
+		mappings = {
+			inline_surround_toggle = "gs",
+			inline_surround_toggle_line = "gss",
+			inline_surround_delete = "ds",
+			inline_surround_change = "cs",
+			link_add = "gl",
+			link_follow = "gx",
+			go_curr_heading = "]c",
+			go_parent_heading = "]p",
+			go_next_heading = "]]",
+			go_prev_heading = "[[",
+		},
+	},
 })

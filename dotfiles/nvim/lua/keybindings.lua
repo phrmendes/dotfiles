@@ -414,6 +414,12 @@ keys.writing = function(event)
 	opts.desc = "Preview equation"
 	map("n", "<localleader>e", require("nabla").popup, opts)
 
+	opts.desc = "Add item below"
+	map({ "n", "i" }, "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
+
+	opts.desc = "Add item above"
+	map({ "n", "i" }, "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
+
 	opts.desc = "[Zotero] Citation info"
 	map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
 

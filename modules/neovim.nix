@@ -53,6 +53,7 @@
           ltex_extra-nvim
           luasnip
           luasnip-latex-snippets
+          markdown-nvim
           markdown-preview-nvim
           mini-nvim
           nabla-nvim

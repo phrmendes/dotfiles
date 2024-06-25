@@ -12,22 +12,12 @@
     users.${parameters.user} = {
       imports = [../../modules];
 
-      blueman-applet.enable = true;
       btop.enable = true;
-      dunst.enable = true;
+      copyq.enable = true;
+      dconf-settings.enable = true;
+      flameshot.enable = true;
       gnome-keyring.enable = true;
-      hypridle.enable = true;
-      hyprland.enable = true;
-      hyprpaper.enable = true;
-      nm-applet.enable = true;
-      satty.enable = true;
-      swaylock.enable = true;
-      swayosd.enable = true;
       targets.enable = true;
-      udiskie.enable = true;
-      walker.enable = true;
-      waybar.enable = true;
-      wlogout.enable = true;
 
       xdg.desktopEntries.obsidian = {
         name = "Obsidian";

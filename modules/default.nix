@@ -1,45 +1,33 @@
 {
-  inputs,
   lib,
   parameters,
   ...
 }: {
   imports = [
-    inputs.walker.homeManagerModules.walker
     ./atuin.nix
     ./bat.nix
-    ./blueman-applet.nix
     ./btop.nix
+    ./copyq.nix
+    ./dconf.nix
     ./direnv.nix
-    ./dunst.nix
     ./eza.nix
+    ./flameshot.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
     ./gnome-keyring.nix
-    ./hypridle.nix
-    ./hyprland.nix
-    ./hyprpaper.nix
     ./kitty.nix
     ./lazygit.nix
     ./navi.nix
     ./neovim.nix
-    ./nm-applet.nix
     ./packages.nix
     ./pyenv.nix
     ./ripgrep.nix
-    ./satty.nix
     ./starship.nix
-    ./swaylock.nix
-    ./swayosd.nix
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix
-    ./udiskie.nix
-    ./walker.nix
-    ./waybar.nix
-    ./wlogout.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix

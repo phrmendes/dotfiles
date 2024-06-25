@@ -7,22 +7,13 @@
     dconf.enable = true;
     firefox.enable = true;
     fuse.userAllowOther = true;
-    kdeconnect.enable = true;
     seahorse.enable = true;
     virt-manager.enable = true;
     zsh.enable = true;
 
-    hyprland = {
+    kdeconnect = {
       enable = true;
-      package = pkgs.hyprland;
-    };
-
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
+      package = pkgs.gnomeExtensions.gsconnect;
     };
 
     nh = {
@@ -37,6 +28,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-gnome3;
     };
 
     nix-ld = {

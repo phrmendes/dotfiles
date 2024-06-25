@@ -18,6 +18,7 @@
         enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
         inactive_text_alpha = "0.9";
+        linux_display_server = "x11";
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "yes";
         open_url_with = "default";
@@ -28,10 +29,10 @@
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
         tab_title_template = "{title}{' #{}'.format(num_windows) if num_windows > 1 else ''}";
+        term = "xterm-256color";
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 6;
-        term = "xterm-256color";
       };
       keybindings = {
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";

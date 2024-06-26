@@ -11,9 +11,10 @@ local flags = {
 	debounce_text_changes = 150,
 }
 
+
 local handlers = {
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, require("utils").borders),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, require("utils").borders),
 }
 
 local languages = {

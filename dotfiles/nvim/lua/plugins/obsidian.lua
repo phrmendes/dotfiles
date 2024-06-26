@@ -13,12 +13,6 @@ obsidian.setup({
 		},
 	},
 	mappings = {
-		["gf"] = {
-			action = function()
-				return obsidian.util.gf_passthrough()
-			end,
-			opts = { noremap = false, expr = true, buffer = true },
-		},
 		["<cr>"] = {
 			action = function()
 				return obsidian.util.smart_action()

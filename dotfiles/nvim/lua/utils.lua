@@ -56,4 +56,9 @@ M.open = function(arg)
 	vim.fn.jobstart(open)
 end
 
+M.borders = {
+	border = "rounded",
+	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+}
+
 return M

@@ -110,7 +110,6 @@
           dash = true;
           dash-icon-size = 0;
           double-super-to-appgrid = true;
-          keyboard-layout = false;
           osd = true;
           panel = true;
           panel-button-padding-size = 6;

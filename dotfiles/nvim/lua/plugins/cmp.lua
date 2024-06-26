@@ -8,25 +8,25 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<C-CR>"] = cmp.mapping(function(fallback)
+		["<cr>"] = cmp.mapping.confirm({ select = false }),
+		["<s-cr>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		["<c-space>"] = cmp.mapping.complete(),
+		["<c-u>"] = cmp.mapping.scroll_docs(-4),
+		["<c-d>"] = cmp.mapping.scroll_docs(4),
+		["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<c-cr>"] = cmp.mapping(function(fallback)
 			cmp.abort()
 			fallback()
 		end, { "i", "s" }),
-		["<C-l>"] = cmp.mapping(function(fallback)
+		["<c-l>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-h>"] = cmp.mapping(function(fallback)
+		["<c-h>"] = cmp.mapping(function(fallback)
 			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
@@ -53,8 +53,8 @@ cmp.setup({
 		{ name = "buffer" },
 	}),
 	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+		completion = require("utils").borders,
+		documentation = require("utils").borders,
 	},
 })
 
@@ -78,6 +78,12 @@ cmp.setup.filetype("sql", {
 		{ name = "vim-dadbod-completion" },
 		{ name = "buffer" },
 	}),
+})
+
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+	sources = {
+		{ name = "dap" },
+	},
 })
 
 cmp.setup.filetype({ "markdown", "quarto" }, {

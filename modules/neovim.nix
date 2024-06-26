@@ -33,6 +33,7 @@
           ansible-vim
           cmp-buffer
           cmp-cmdline
+          cmp-dap
           cmp-emoji
           cmp-latex-symbols
           cmp-nvim-lsp

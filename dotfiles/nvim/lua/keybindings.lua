@@ -389,7 +389,7 @@ keys.neogen = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	opts.desc = "[neogen] Generate documentation"
-	map("n", "<localleader>g", require("neogen").generate, opts)
+	map("n", "<leader>G", require("neogen").generate, opts)
 end
 
 keys.refactoring = function(event)

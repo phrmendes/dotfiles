@@ -121,7 +121,7 @@
           search = true;
           show-apps-button = true;
           startup-status = 1;
-          theme = true;
+          theme = false;
           top-panel-position = 0;
           window-demands-attention-focus = false;
           window-menu-take-screenshot-button = false;

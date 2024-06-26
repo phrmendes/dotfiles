@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
@@ -12,13 +13,14 @@
         enableBashIntegration = true;
         enableZshIntegration = true;
       };
-      settings = {
+      settings = let
+        inherit (pkgs.stdenv) isLinux;
+      in {
         allow_remote_control = "yes";
         bell_on_tab = "no";
         enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
         inactive_text_alpha = "0.9";
-        linux_display_server = "x11";
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "yes";
         open_url_with = "default";
@@ -33,6 +35,10 @@
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 6;
+        hide_window_decorations =
+          if isLinux
+          then true
+          else false;
       };
       keybindings = {
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";

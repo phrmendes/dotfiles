@@ -27,6 +27,7 @@ in {
         untar = "tar -xvf";
         untargz = "tar -xzf";
         v = "nvim";
+        docker = "podman";
       };
       desktop = {
         dpct = "duplicati-cli";

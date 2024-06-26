@@ -4,15 +4,14 @@
   ...
 }: {
   services = {
+    blueman.enable = true;
     envfs.enable = true;
+    flatpak.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     ntpd-rs.enable = true;
     tailscale.enable = true;
-
-    udev = {
-      enable = true;
-      packages = with pkgs.gnome; [gnome-settings-daemon];
-    };
+    udev.enable = true;
 
     btrfs.autoScrub = {
       enable = true;
@@ -24,11 +23,6 @@
     duplicati = {
       inherit (parameters) user;
       enable = true;
-    };
-
-    gnome = {
-      core-utilities.enable = false;
-      gnome-keyring.enable = true;
     };
 
     openssh = {
@@ -50,13 +44,22 @@
       };
     };
 
+    greetd = {
+      enable = true;
+      settings = rec {
+        default_session = initial_session;
+        initial_session = {
+          inherit (parameters) user;
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        };
+      };
+    };
+
     xserver = {
       enable = true;
       autorun = true;
       videoDrivers = ["nvidia"];
       excludePackages = with pkgs; [xterm];
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

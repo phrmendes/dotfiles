@@ -56,51 +56,35 @@ in {
         ++ (with pkgs.nodePackages_latest; [
           nodejs
         ]);
-      linux =
-        (with pkgs; [
-          bitwarden
-          bitwarden-cli
-          celluloid
-          chromium
-          curtail
-          drawing
-          droidcam
-          evince
-          foliate
-          gcolor3
-          hugo
-          kooha
-          libreoffice
-          loupe
-          neovim-gtk
-          obsidian
-          pavucontrol
-          phockup
-          plex
-          pop-launcher
-          qalculate-gtk
-          quarto
-          quickemu
-          syncthingtray
-          tectonic
-          transmission
-          vagrant
-          ventoy
-          zotero
-        ])
-        ++ (with pkgs.gnome; [
-          file-roller
-          gnome-tweaks
-          nautilus
-        ])
-        ++ (with pkgs.gnomeExtensions; [
-          alphabetical-app-grid
-          appindicator
-          espresso
-          just-perfection
-          pop-shell
-          user-themes
-        ]);
+      linux = with pkgs; [
+        bitwarden
+        chromium
+        copyq
+        curtail
+        deluge
+        droidcam
+        evince
+        foliate
+        gcolor3
+        hugo
+        kooha
+        libqalculate
+        libreoffice
+        mpv
+        obsidian
+        pavucontrol
+        phockup
+        plex
+        quarto
+        quickemu
+        qview
+        syncthingtray
+        tectonic
+        vagrant
+        ventoy
+        xarchiver
+        zotero
+      ];
       darwin = with pkgs; [
         azure-cli
         maven

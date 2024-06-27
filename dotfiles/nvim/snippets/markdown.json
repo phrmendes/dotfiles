@@ -1,0 +1,7 @@
+{
+  "ltex": {
+    "prefix": "ltex",
+    "body": ["<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"],
+    "description": "Enable ltex"
+  }
+}

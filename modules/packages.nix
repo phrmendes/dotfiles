@@ -67,6 +67,7 @@ in {
         foliate
         gcolor3
         hugo
+        inkscape
         kooha
         libqalculate
         libreoffice

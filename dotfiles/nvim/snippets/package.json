@@ -1,0 +1,15 @@
+{
+  "name": "snippets",
+  "author": "phrmendes",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "quarto",
+          "markdown"
+        ],
+        "path": "./markdown.json"
+      }
+    ]
+  }
+}

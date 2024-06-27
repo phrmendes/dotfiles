@@ -3,75 +3,52 @@ local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smar
 local action = wezterm.action
 local config = wezterm.config_builder()
 
+config.check_for_updates = false
 config.default_prog = { "zsh" }
+config.inactive_pane_hsb = { saturation = 0.5, brightness = 0.7 }
+config.status_update_interval = 1000
+config.use_fancy_tab_bar = false
+config.window_close_confirmation = "AlwaysPrompt"
+config.tab_bar_at_bottom = true
 
-config.inactive_pane_hsb = {
-	saturation = 0.24,
-	brightness = 0.5,
-}
+wezterm.on("update-status", function(window, pane)
+	local ws = window:active_workspace()
+	local cmd = pane:get_foreground_process_name()
+	local cwd = pane:get_current_working_dir().file_path
 
-config.leader = {
-	key = "phys:Space",
-	mods = "CTRL",
-	timeout_milliseconds = 1000,
-}
+	window:set_right_status(wezterm.format({
+		{ Text = "[" .. wezterm.nerdfonts.oct_table .. " " .. ws .. "]" },
+		{ Text = "[" .. wezterm.nerdfonts.fa_code .. " " .. cmd .. "]" },
+		{ Text = "[" .. wezterm.nerdfonts.md_folder .. " " .. cwd .. "]" },
+		{ Text = " " },
+	}))
+end)
+
+config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
-	-- Send C-a when pressing C-a twice
-	{ key = "a", mods = "LEADER|CTRL", action = action.SendKey({ key = "a", mods = "CTRL" }) },
-	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
-	{ key = "phys:Space", mods = "LEADER", action = action.ActivateCommandPalette },
-
-	-- Pane keybindings
-	{ key = "s", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "v", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
-	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
-	{ key = "o", mods = "LEADER", action = action.RotatePanes("Clockwise") },
-	-- We can make separate keybindings for resizing panes
-	-- But Wezterm offers custom "mode" in the name of "KeyTable"
-	{
-		key = "r",
-		mods = "LEADER",
-		action = action.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
-	},
-
-	-- Tab keybindings
-	{ key = "t", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
+	{ key = "Space", mods = "LEADER|CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
+	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "[", mods = "LEADER", action = action.ActivateTabRelative(-1) },
 	{ key = "]", mods = "LEADER", action = action.ActivateTabRelative(1) },
-	{ key = "n", mods = "LEADER", action = action.ShowTabNavigator },
-	{
-		key = "e",
-		mods = "LEADER",
-		action = action.PromptInputLine({
-			description = wezterm.format({
-				{ Attribute = { Intensity = "Bold" } },
-				{ Foreground = { AnsiColor = "Fuchsia" } },
-				{ Text = "Renaming Tab Title...:" },
-			}),
-			action = wezterm.action_callback(function(window, pane, line)
-				if line then
-					window:active_tab():set_title(line)
-				end
-			end),
-		}),
-	},
-	-- Key table for moving tabs around
-	{ key = "m", mods = "LEADER", action = action.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
-	-- Or shortcuts to move tab w/o move_tab table. SHIFT is for when caps lock is on
-	{ key = "{", mods = "LEADER|SHIFT", action = action.MoveTabRelative(-1) },
-	{ key = "}", mods = "LEADER|SHIFT", action = action.MoveTabRelative(1) },
-
-	-- Lastly, workspace
+	{ key = "n", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
+	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
+	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
+	{ key = "r", mods = "LEADER", action = action.RotatePanes("Clockwise") },
+	{ key = "t", mods = "LEADER", action = action.ShowTabNavigator },
+	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
+	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
+	{ key = "{", mods = "LEADER", action = action.MoveTabRelative(-1) },
+	{ key = "}", mods = "LEADER", action = action.MoveTabRelative(1) },
 	{ key = "w", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 }
--- I can use the tab navigator (LDR t), but I also want to quickly navigate tabs with index
+
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "LEADER",
-		action = action.ActivateTab(i - 1),
+		action = action.ActivateTab(i),
 	})
 end
 
@@ -79,7 +56,7 @@ smart_splits.apply_to_config(config, {
 	direction_keys = { "h", "j", "k", "l" },
 	modifiers = {
 		move = "CTRL",
-		resize = "CTRL+SHIFT",
+		resize = "CTRL|SHIFT",
 	},
 })
 

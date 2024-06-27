@@ -29,7 +29,6 @@
       "microsoft-teams"
       "mongodb-compass"
       "obsidian"
-      "postman"
       "qview"
       "slack"
       "tailscale"

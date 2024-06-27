@@ -13,6 +13,7 @@ in {
       common =
         (with pkgs; [
           ansible
+          bruno
           cachix
           coreutils-full
           csvlens
@@ -57,7 +58,6 @@ in {
         ]);
       linux = with pkgs; [
         bitwarden
-        bruno
         chromium
         copyq
         curtail

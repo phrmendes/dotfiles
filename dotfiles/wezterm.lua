@@ -14,6 +14,7 @@ config.tab_and_split_indices_are_zero_based = false
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
+config.enable_wayland = false
 
 wezterm.on("update-status", function(window, _)
 	local workspace = window:active_workspace()

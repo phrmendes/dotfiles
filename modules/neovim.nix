@@ -92,6 +92,7 @@
           vim-rsi
           vim-sleuth
           vim-slime
+          yanky-nvim
           zen-mode-nvim
         ]
         ++ lib.optionals isLinux [
@@ -145,6 +146,7 @@
           shellcheck
           shellharden
           stylua
+          ueberzugpp
           taplo
           terraform-ls
           texlab

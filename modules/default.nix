@@ -20,9 +20,7 @@
     ./hypridle.nix
     ./hyprland.nix
     ./hyprpaper.nix
-    ./kitty.nix
     ./lazygit.nix
-    ./navi.nix
     ./neovim.nix
     ./nm-applet.nix
     ./packages.nix
@@ -35,10 +33,10 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./walker.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wlogout.nix
     ./yazi.nix
     ./zoxide.nix
@@ -52,16 +50,14 @@
   fzf.enable = lib.mkDefault true;
   gh.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
-  kitty.enable = lib.mkDefault true;
   lazygit.enable = lib.mkDefault true;
-  navi.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   ripgrep.enable = lib.mkDefault true;
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
-  tmux.enable = lib.mkDefault true;
+  wezterm.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;

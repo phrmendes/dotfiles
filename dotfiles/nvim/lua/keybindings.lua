@@ -26,10 +26,6 @@ keys.std = {
 
 		opts.desc = "Make U opposite of u"
 		map("n", "U", "<c-r>", opts)
-
-		opts.desc = "Word navigation in non-normal modes"
-		map({ "i", "c" }, "<c-h>", "<c-left>", opts)
-		map({ "i", "c" }, "<c-l>", "<c-right>", opts)
 	end,
 	leader = function()
 		local opts = { noremap = true }
@@ -60,9 +56,6 @@ keys.std = {
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
-		opts.desc = "Close all other windows"
-		map("n", "<leader>X", "<c-w>o", opts)
-
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
@@ -74,17 +67,18 @@ keys.std = {
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>w<cr>", opts)
-
-		opts.desc = "Close window"
-		map("n", "<leader>x", "<c-w>q", opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
-		map("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], opts)
-		map("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], opts)
-		map("n", "n", "nzzzv", opts)
-		map("n", "N", "Nzzzv", opts)
+		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
+		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
+		map("n", "N", "'nN'[v:searchforward].'zv'", opts)
+		map("o", "N", "'nN'[v:searchforward]", opts)
+		map("x", "N", "'nN'[v:searchforward]", opts)
+		map("n", "n", "'Nn'[v:searchforward].'zv'", opts)
+		map("o", "n", "'Nn'[v:searchforward]", opts)
+		map("x", "n", "'Nn'[v:searchforward]", opts)
 	end,
 	buffers = function()
 		local opts = { noremap = true }
@@ -225,10 +219,10 @@ keys.std = {
 		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-left>", require("smart-splits").resize_left, opts)
-		map("n", "<c-down>", require("smart-splits").resize_down, opts)
-		map("n", "<c-up>", require("smart-splits").resize_up, opts)
-		map("n", "<c-right>", require("smart-splits").resize_right, opts)
+		map("n", "<c-s-h>", require("smart-splits").resize_left, opts)
+		map("n", "<c-s-j>", require("smart-splits").resize_down, opts)
+		map("n", "<c-s-k>", require("smart-splits").resize_up, opts)
+		map("n", "<c-s-l>", require("smart-splits").resize_right, opts)
 	end,
 	snippets = function()
 		local opts = { expr = true, silent = true }

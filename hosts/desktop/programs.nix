@@ -4,7 +4,6 @@
   ...
 }: {
   programs = {
-    dconf.enable = true;
     firefox.enable = true;
     fuse.userAllowOther = true;
     kdeconnect.enable = true;

@@ -1,6 +1,7 @@
 {
-  lib,
   config,
+  lib,
+  parameters,
   pkgs,
   ...
 }: {
@@ -14,7 +15,17 @@
     ];
 
     xdg.configFile = {
-      "satty/config.toml".source = ../dotfiles/satty.toml;
+      "satty/config.toml".source = builtins.fromTOML ''
+        [general]
+        fullscreen = true
+        early-exit = true
+        initial-tool = "brush"
+        copy-command = "${pkgs.wl-clipboard}/bin/wl-copy"
+        annotation-size-factor = 2
+        output-filename = "${parameters.home}/Pictures/screenshot-%Y%m%d%H%M%S.png"
+        save-after-copy = false
+        default-hide-toolbars = false
+      '';
     };
   };
 }

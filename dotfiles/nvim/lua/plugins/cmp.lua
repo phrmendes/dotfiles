@@ -1,12 +1,6 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
 	mapping = cmp.mapping.preset.insert({
 		["<cr>"] = cmp.mapping.confirm({ select = false }),
 		["<s-cr>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
@@ -18,20 +12,6 @@ cmp.setup({
 		["<c-cr>"] = cmp.mapping(function(fallback)
 			cmp.abort()
 			fallback()
-		end, { "i", "s" }),
-		["<c-l>"] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_locally_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<c-h>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
 		end, { "i", "s" }),
 	}),
 	formatting = {
@@ -49,7 +29,7 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "luasnip" },
+		{ name = "snippets" },
 		{ name = "buffer" },
 	}),
 	window = {
@@ -91,7 +71,7 @@ cmp.setup.filetype({ "markdown", "quarto" }, {
 		{ name = "path" },
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
+		{ name = "snippets" },
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
 		{ name = "emoji" },

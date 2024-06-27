@@ -43,11 +43,6 @@
       url = "github:olexsmir/gopher.nvim";
     };
 
-    luasnip-latex-snippets = {
-      flake = false;
-      url = "github:iurimateus/luasnip-latex-snippets.nvim";
-    };
-
     osv = {
       flake = false;
       url = "github:jbyuki/one-small-step-for-vimkind";

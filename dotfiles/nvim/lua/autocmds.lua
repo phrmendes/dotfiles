@@ -2,6 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroups = require("utils").augroups
 
 autocmd("TermOpen", {
+	desc = "Disable numbers in terminal",
 	group = augroups.term,
 	callback = function()
 		vim.wo.number = false
@@ -10,14 +11,8 @@ autocmd("TermOpen", {
 	end,
 })
 
-autocmd("TextYankPost", {
-	group = augroups.yank,
-	callback = function()
-		vim.highlight.on_yank({ timeout = 150 })
-	end,
-})
-
 autocmd("TermClose", {
+	desc = "Enable numbers when terminal is closed",
 	group = augroups.term,
 	callback = function()
 		vim.wo.number = true
@@ -25,7 +20,16 @@ autocmd("TermClose", {
 	end,
 })
 
+autocmd("TextYankPost", {
+	desc = "Highlight yanked text",
+	group = augroups.yank,
+	callback = function()
+		vim.highlight.on_yank({ timeout = 150 })
+	end,
+})
+
 autocmd("BufEnter", {
+	desc = "Open files with system default",
 	pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg" },
 	group = augroups.filetype,
 	callback = function(event)
@@ -39,6 +43,7 @@ autocmd("BufEnter", {
 })
 
 autocmd("LspAttach", {
+	desc = "Enable code lens and document highlights",
 	group = augroups.lsp.attach,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -79,6 +84,7 @@ autocmd("LspAttach", {
 })
 
 autocmd("BufWritePost", {
+	desc = "Format on save with efm-langserver",
 	group = augroups.lsp.format,
 	callback = function(event)
 		local efm = vim.lsp.get_clients({ name = "efm", bufnr = event.buf })
@@ -92,14 +98,24 @@ autocmd("BufWritePost", {
 })
 
 autocmd("FileType", {
+	desc = "Close with <q>",
 	group = augroups.filetype,
-	pattern = { "man" },
+	pattern = {
+		"git",
+		"help",
+		"man",
+		"qf",
+		"query",
+		"scratch",
+	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = event.buf })
 	end,
 })
 
 autocmd("FileType", {
+	desc = "Disable	conceal for JSON files",
 	group = augroups.filetype,
 	pattern = { "json", "jsonc", "json5" },
 	callback = function()
@@ -107,17 +123,10 @@ autocmd("FileType", {
 	end,
 })
 
-autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
-	group = augroups.filetype,
-	pattern = "*.http",
-	callback = function()
-		vim.cmd([[set filetype=http]])
-	end,
-})
-
 autocmd("User", {
-	pattern = "MiniFilesWindowOpen",
+	desc = "Set border for mini files window",
 	group = augroups.mini,
+	pattern = "MiniFilesWindowOpen",
 	callback = function(event)
 		local win_id = event.data.win_id
 

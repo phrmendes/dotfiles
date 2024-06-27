@@ -24,11 +24,12 @@ keys.std = {
 		opts.desc = "Exit terminal mode"
 		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
 
-		opts.desc = "Replay macro"
-		map("n", "Q", "@q", opts)
+		opts.desc = "Make U opposite of u"
+		map("n", "U", "<c-r>", opts)
 
-		opts.desc = "Replay macro (visual)"
-		map("x", "Q", "<cmd>norm @q<cr>", opts)
+		opts.desc = "Word navigation in non-normal modes"
+		map({ "i", "c" }, "<c-h>", "<c-left>", opts)
+		map({ "i", "c" }, "<c-l>", "<c-right>", opts)
 	end,
 	leader = function()
 		local opts = { noremap = true }
@@ -80,14 +81,10 @@ keys.std = {
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
-		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
-		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
-		map("n", "N", "'nN'[v:searchforward].'zv'", opts)
-		map("o", "N", "'nN'[v:searchforward]", opts)
-		map("x", "N", "'nN'[v:searchforward]", opts)
-		map("n", "n", "'Nn'[v:searchforward].'zv'", opts)
-		map("o", "n", "'Nn'[v:searchforward]", opts)
-		map("x", "n", "'Nn'[v:searchforward]", opts)
+		map("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], opts)
+		map("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], opts)
+		map("n", "n", "nzzzv", opts)
+		map("n", "N", "Nzzzv", opts)
 	end,
 	buffers = function()
 		local opts = { noremap = true }
@@ -182,6 +179,12 @@ keys.std = {
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 	end,
+	macros = function()
+		local opts = { noremap = true, expr = true, desc = "Replace macro" }
+
+		map("n", "Q", "@q", opts)
+		map("x", "Q", "<cmd>norm @q<cr>", opts)
+	end,
 	obsidian = function()
 		local opts = { noremap = true }
 
@@ -227,6 +230,38 @@ keys.std = {
 		map("n", "<c-up>", require("smart-splits").resize_up, opts)
 		map("n", "<c-right>", require("smart-splits").resize_right, opts)
 	end,
+	snippets = function()
+		local opts = { expr = true, silent = true }
+
+		opts.desc = "Expand snippet"
+		map("i", "<c-l>", function()
+			if vim.snippet.active({ direction = 1 }) then
+				vim.schedule(function()
+					vim.snippet.jump(1)
+				end)
+				return
+			end
+			return "<c-l>"
+		end, opts)
+
+		opts.desc = "Jump snippet"
+		map("s", "<c-l>", function()
+			vim.schedule(function()
+				vim.snippet.jump(1)
+			end)
+		end, opts)
+
+		opts.desc = "Jump snippet (back)"
+		map({ "i", "s" }, "<c-h>", function()
+			if vim.snippet.active({ direction = -1 }) then
+				vim.schedule(function()
+					vim.snippet.jump(-1)
+				end)
+				return
+			end
+			return "<c-h>"
+		end, opts)
+	end,
 	tabs = function()
 		local opts = { noremap = true }
 
@@ -253,6 +288,17 @@ keys.std = {
 
 		opts.desc = "Edit in tab"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
+	end,
+	yanky = function()
+		local opts = { noremap = true, desc = "Yanky" }
+
+		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
+		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
+		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
+		map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
+		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
+		map("n", "[y", "<Plug>(YankyPreviousEntry)", opts)
+		map("n", "y]", "<Plug>(YankyNextEntry)", opts)
 	end,
 }
 

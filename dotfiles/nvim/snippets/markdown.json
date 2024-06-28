@@ -1,7 +1,17 @@
 {
-  "ltex": {
+  "Enable ltex-ls": {
     "prefix": "ltex",
     "body": ["<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"],
-    "description": "Enable ltex"
+    "description": "Enable ltex for the current document"
+  },
+  "Inline math": {
+    "prefix": "im",
+    "body": ["$${1:equation}$\n$0"],
+    "description": "Add inline math"
+  },
+  "Block math": {
+    "prefix": "bm",
+    "body": ["$$\n${1:equation}\n$$\n$0"],
+    "description": "Add block math"
   }
 }

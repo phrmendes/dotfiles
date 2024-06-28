@@ -1,12 +1,459 @@
 {
-  "Inline math": {
-    "prefix": "im",
-    "body": ["$${1:equation}$\n$0"],
-    "description": "Add inline math"
+  "Absolute value": {
+    "body": ["\\abs{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add absolute value",
+    "prefix": "abs"
   },
-  "Block math": {
-    "prefix": "bm",
-    "body": ["$$\n${1:equation}\n$$\n$0"],
-    "description": "Add block math"
+  "Arccosine": {
+    "body": ["\\arccos"],
+    "description": "Add arccosine",
+    "prefix": "acos"
+  },
+  "Arcsecant": {
+    "body": ["\\arcsec"],
+    "description": "Add arcsecant",
+    "prefix": "asec"
+  },
+  "Arcsine": {
+    "body": ["\\arcsin"],
+    "description": "Add arcsine",
+    "prefix": "asin"
+  },
+  "Arctangent": {
+    "body": ["\\arctan"],
+    "description": "Add arctangent",
+    "prefix": "atan"
+  },
+  "Bar": {
+    "body": ["\\bar{${1:${TM_SELECTED_TEXT}}} $0"],
+    "description": "Add bar",
+    "prefix": "bar"
+  },
+  "Big cap": {
+    "body": ["\\bigcap"],
+    "description": "Add big cap",
+    "prefix": "bcap"
+  },
+  "Big cup": {
+    "body": ["\\bigcup"],
+    "description": "Add big cup",
+    "prefix": "bcup"
+  },
+  "Cap": {
+    "body": ["\\cap"],
+    "description": "Add cap",
+    "prefix": "cap"
+  },
+  "Complement": {
+    "body": ["^{c} $0"],
+    "description": "Add complement",
+    "prefix": "comp"
+  },
+  "Cosine": {
+    "body": ["\\cos"],
+    "description": "Add cosine",
+    "prefix": "cos"
+  },
+  "Cross": {
+    "body": ["\\times"],
+    "description": "Add cross",
+    "prefix": "xx"
+  },
+  "Cube": {
+    "body": ["^{3} $0"],
+    "description": "Add cube",
+    "prefix": "cb"
+  },
+  "Cup": {
+    "body": ["\\cup"],
+    "description": "Add cup",
+    "prefix": "cup"
+  },
+  "Define": {
+    "body": ["\\coloneqq"],
+    "description": "Add define",
+    "prefix": ":="
+  },
+  "Derivative": {
+    "body": ["\\frac{\\mathrm{d/${1:f}}}{\\mathrm{d${2:x}}} $0"],
+    "description": "Add derivative",
+    "prefix": "ddx"
+  },
+  "Determinant": {
+    "body": ["\\det{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add determinant",
+    "prefix": "det"
+  },
+  "Dots": {
+    "body": ["\\ldots"],
+    "description": "Add dots",
+    "prefix": "..."
+  },
+  "Empty set": {
+    "body": ["\\emptyset"],
+    "description": "Add empty set",
+    "prefix": "OO"
+  },
+  "Exists": {
+    "body": ["\\exists"],
+    "description": "Add exists",
+    "prefix": "exs"
+  },
+  "Expected value": {
+    "body": ["\\mathbb{E}[${1:X}]$0"],
+    "description": "Add expected value",
+    "prefix": "EE"
+  },
+  "For all": {
+    "body": ["\\forall"],
+    "description": "Add for all",
+    "prefix": "AA"
+  },
+  "Fraction": {
+    "body": ["\\frac{${1:${TM_SELECTED_TEXT}}}{${2:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add fraction",
+    "prefix": "//"
+  },
+  "Function map": {
+    "body": ["f \\colon $1 \\R \\to \\R \\colon $0"],
+    "description": "Add function map",
+    "prefix": "fun"
+  },
+  "Greater than or equal": {
+    "body": ["\\geq"],
+    "description": "Add greater than or equal",
+    "prefix": ">="
+  },
+  "Hat": {
+    "body": ["\\hat{${1:${TM_SELECTED_TEXT}}} $0"],
+    "description": "Add hat",
+    "prefix": "hat"
+  },
+  "If and only if": {
+    "body": ["\\iff"],
+    "description": "Add if and only if",
+    "prefix": "<=>"
+  },
+  "Implied by": {
+    "body": ["\\impliedby"],
+    "description": "Add implied by",
+    "prefix": "<="
+  },
+  "Implies": {
+    "body": ["\\implies"],
+    "description": "Add implies",
+    "prefix": "=>"
+  },
+  "In": {
+    "body": ["\\in"],
+    "description": "Add in",
+    "prefix": "inn"
+  },
+  "Infinity": {
+    "body": ["\\infty"],
+    "description": "Add infinity",
+    "prefix": "inf"
+  },
+  "Inverse": {
+    "body": ["^{-1} $0"],
+    "description": "Add inverse",
+    "prefix": "inv"
+  },
+  "Left and right arrow": {
+    "body": ["\\leftrightarrow"],
+    "description": "Add left and right arrow",
+    "prefix": "<->"
+  },
+  "Less than or equal": {
+    "body": ["\\leq"],
+    "description": "Add less than or equal",
+    "prefix": "<="
+  },
+  "Limit": {
+    "body": ["\\lim_{${1:n} \\to ${2:\\infty}}"],
+    "description": "Add limit",
+    "prefix": "lim"
+  },
+  "Limit inferior": {
+    "body": ["\\limsup_{${1:n} \\to ${2:\\infty}}"],
+    "description": "Add superior limit",
+    "prefix": "limsup"
+  },
+  "Limit superior": {
+    "body": ["\\liminf_{${1:n} \\to ${2:\\infty}}"],
+    "description": "Add inferior limit",
+    "prefix": "liminf"
+  },
+  "Maps to": {
+    "body": ["\\mapsto"],
+    "description": "Add maps to",
+    "prefix": "|->"
+  },
+  "Mathbb": {
+    "body": ["\\mathbb{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add mathbb",
+    "prefix": "mbb"
+  },
+  "Mathcal": {
+    "body": ["\\mathcal{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add mathcal",
+    "prefix": "mc"
+  },
+  "Matrix": {
+    "body": ["\\begin{matrix} $1 \\end{matrix} $0"],
+    "description": "Add matrix",
+    "prefix": "matrix"
+  },
+  "Matrix with brackets": {
+    "body": ["\\begin{bmatrix} $1 \\end{bmatrix} $0"],
+    "description": "Add matrix with brackets",
+    "prefix": "bmatrix"
+  },
+  "Matrix with parentesis": {
+    "body": ["\\begin{pmatrix} $1 \\end{pmatrix} $0"],
+    "description": "Add matrix with parentesis",
+    "prefix": "pmatrix"
+  },
+  "Matrix with pipes": {
+    "body": ["\\begin{vmatrix} $1 \\end{vmatrix} $0"],
+    "description": "Add matrix with pipes",
+    "prefix": "vmatrix"
+  },
+  "Mid": {
+    "body": ["\\mid"],
+    "description": "Add mid",
+    "prefix": "mid"
+  },
+  "Minus (set)": {
+    "body": ["\\setminus"],
+    "description": "Add minus (set)",
+    "prefix": "\\"
+  },
+  "Nabla": {
+    "body": ["\\nabla"],
+    "description": "Add nabla",
+    "prefix": "nabl"
+  },
+  "Norm": {
+    "body": ["\\|${1:${TM_SELECTED_TEXT}}\\|$0"],
+    "description": "Add norm",
+    "prefix": "norm"
+  },
+  "Not equal": {
+    "body": ["\\neq"],
+    "description": "Add not equal",
+    "prefix": "neq"
+  },
+  "Not in": {
+    "body": ["\\notin"],
+    "description": "Add not in",
+    "prefix": "nin"
+  },
+  "Overbrace": {
+    "body": ["\\overbrace{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add overbrace",
+    "prefix": "obrace"
+  },
+  "Partial derivative": {
+    "body": ["\\frac{\\partial ${1:f}}{\\partial ${2:x}} $0"],
+    "description": "Add partial derivative",
+    "prefix": "part"
+  },
+  "Population mean": {
+    "body": ["\\mu"],
+    "description": "Add population mean",
+    "prefix": "mean"
+  },
+  "Population variance": {
+    "body": ["\\sigma^{2}"],
+    "description": "Add population variance",
+    "prefix": "var"
+  },
+  "Product": {
+    "body": [
+      "\\prod_{${1:n=${2:1}}}^{${3:\\infty}} ${4:${TM_SELECTED_TEXT}} $0"
+    ],
+    "description": "Add product",
+    "prefix": "prod"
+  },
+  "Sample mean": {
+    "body": ["\\bar{x}"],
+    "description": "Add sample mean",
+    "prefix": "smean"
+  },
+  "Sample variance": {
+    "body": ["s^{2}"],
+    "description": "Add sample variance",
+    "prefix": "svar"
+  },
+  "Secant": {
+    "body": ["\\sec"],
+    "description": "Add secant",
+    "prefix": "sec"
+  },
+  "Set": {
+    "body": ["\\{$1\\}$0"],
+    "description": "Add set",
+    "prefix": "set"
+  },
+  "Sim": {
+    "body": ["\\sim"],
+    "description": "Add sim",
+    "prefix": "sim"
+  },
+  "Sine": {
+    "body": ["\\sin"],
+    "description": "Add sine",
+    "prefix": "sin"
+  },
+  "Square": {
+    "body": ["^{2} $0"],
+    "description": "Add square",
+    "prefix": "sq"
+  },
+  "Square root": {
+    "body": ["\\sqrt{${1:${TM_SELECTED_TEXT}}} $0"],
+    "description": "Add square root",
+    "prefix": "sqrt"
+  },
+  "Subscript": {
+    "body": ["_{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add subscript",
+    "prefix": "_"
+  },
+  "Subset": {
+    "body": ["\\subset"],
+    "description": "Add subset",
+    "prefix": "sub"
+  },
+  "Sum": {
+    "body": ["\\sum_{n=${1:1}}^{${2:\\infty}} ${3:a_n z^n}"],
+    "description": "Add sum",
+    "prefix": "sum"
+  },
+  "Superscript": {
+    "body": ["^{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add superscript",
+    "prefix": "^"
+  },
+  "Tangent": {
+    "body": ["\\tan"],
+    "description": "Add tangent",
+    "prefix": "tan"
+  },
+  "Taylor series": {
+    "body": ["\\sum_{${1:k}=${2:0}}^{${3:\\infty}} ${4:c_$1} (x-a)^$1 $0"],
+    "description": "Add Taylor series",
+    "prefix": "taylor"
+  },
+  "Text": {
+    "body": ["\\text{${1:text}}$0"],
+    "description": "Add text",
+    "prefix": "text"
+  },
+  "Text subscript": {
+    "body": ["_{\\text{${1:text}}}$0"],
+    "description": "Add text subscript",
+    "prefix": "t_"
+  },
+  "Text superscript": {
+    "body": ["^{\\text{${1:text}}}$0"],
+    "description": "Add text superscript",
+    "prefix": "t^"
+  },
+  "To": {
+    "body": ["\\to"],
+    "description": "Add to",
+    "prefix": "->"
+  },
+  "To the power of": {
+    "body": ["^{(${1:${TM_SELECTED_TEXT}})} $0"],
+    "description": "Add to the power of",
+    "prefix": "pow"
+  },
+  "To the power of (parentheses)": {
+    "body": ["^{(${1:${TM_SELECTED_TEXT}})} $0"],
+    "description": "Add to the power of (parentheses)",
+    "prefix": "powp"
+  },
+  "Underbrace": {
+    "body": ["\\underbrace{${1:${TM_SELECTED_TEXT}}}$0"],
+    "description": "Add underbrace",
+    "prefix": "ubrace"
+  },
+  "Variance": {
+    "body": ["\\mathcal{Var}[${1:X}]$0"],
+    "description": "Add variance",
+    "prefix": "VV"
+  },
+  "x^n": {
+    "body": ["x^{${1:n}}$0"],
+    "description": "Add x^n",
+    "prefix": "xn"
+  },
+  "x_i": {
+    "body": ["x_i"],
+    "description": "Add x_i",
+    "prefix": "xi"
+  },
+  "x_j": {
+    "body": ["x_j"],
+    "description": "Add x_j",
+    "prefix": "xj"
+  },
+  "x_n": {
+    "body": ["x_{${1:n}}$0"],
+    "description": "Add x_n",
+    "prefix": "xn"
+  },
+  "y_i": {
+    "body": ["y_i"],
+    "description": "Add y_i",
+    "prefix": "yi"
+  },
+  "y_j": {
+    "body": ["y_j"],
+    "description": "Add y_j",
+    "prefix": "yj"
+  },
+  "Left and right parenthesis": {
+    "body": ["\\left( ${1:${TM_SELECTED_TEXT}} \\right) $0"],
+    "description": "Add left and right parenthesis",
+    "prefix": "lr("
+  },
+  "Left and right square bracket": {
+    "body": ["\\left[ ${1:${TM_SELECTED_TEXT}} \\right] $0"],
+    "description": "Add left and right square bracket",
+    "prefix": "lr["
+  },
+  "Left and right curly bracket": {
+    "body": ["\\left\\{ ${1:${TM_SELECTED_TEXT}} \\right\\} $0"],
+    "description": "Add left and right curly bracket",
+    "prefix": "lr{"
+  },
+  "Left and right angle bracket": {
+    "body": ["\\left\\langle ${1:${TM_SELECTED_TEXT}} \\right\\rangle $0"],
+    "description": "Add left and right angle bracket",
+    "prefix": "lr<"
+  },
+  "Left and right pipe": {
+    "body": ["\\left| ${1:${TM_SELECTED_TEXT}} \\right| $0"],
+    "description": "Add left and right floor bracket",
+    "prefix": "lr|"
+  },
+  "Integral": {
+    "body": ["\\int_{${1:a}}^{${2:b}} ${3:f(x)} \\, dx $0"],
+    "description": "Add integral",
+    "prefix": "int"
+  },
+  "Integral bivariate": {
+    "body": ["\\iint_{${1:D}} ${2:f(x,y)} \\, dx \\, dy $0"],
+    "description": "Add integral bivariate",
+    "prefix": "iint"
+  },
+  "Normal distribution": {
+    "body": ["\\mathcal{N}(${1:\\mu}, ${2:\\sigma^{2}})$0"],
+    "description": "Add normal distribution",
+    "prefix": "NN"
   }
 }

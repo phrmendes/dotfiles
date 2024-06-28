@@ -18,7 +18,6 @@ config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
 config.command_palette_font_size = 16.0
 config.unix_domains = { { name = "unix" } }
-config.default_gui_startup_args = { "connect", "unix" }
 
 config.ssh_domains = {
 	{
@@ -67,6 +66,29 @@ wezterm.on("format-tab-title", function(tab, _)
 		{ Text = nerdfonts.cod_window .. " " .. index .. ": " .. title },
 		{ Text = "] " },
 	}
+end)
+
+wezterm.on("user-var-changed", function(window, pane, name, value)
+	local overrides = window:get_config_overrides() or {}
+	if name == "ZEN_MODE" then
+		local incremental = value:find("+")
+		local number_value = tonumber(value)
+		if incremental ~= nil then
+			while number_value > 0 do
+				window:perform_action(wezterm.action.IncreaseFontSize, pane)
+				number_value = number_value - 1
+			end
+			overrides.enable_tab_bar = false
+		elseif number_value < 0 then
+			window:perform_action(wezterm.action.ResetFontSize, pane)
+			overrides.font_size = nil
+			overrides.enable_tab_bar = true
+		else
+			overrides.font_size = number_value
+			overrides.enable_tab_bar = false
+		end
+	end
+	window:set_config_overrides(overrides)
 end)
 
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }

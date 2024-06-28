@@ -1,6 +1,7 @@
 local augroups = require("utils").augroups
 local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
+local luasnip = require("luasnip")
 
 local keys = {}
 
@@ -224,36 +225,21 @@ keys.std = {
 		map("n", "<c-s-k>", require("smart-splits").resize_up, opts)
 		map("n", "<c-s-l>", require("smart-splits").resize_right, opts)
 	end,
-	snippets = function()
-		local opts = { expr = true, silent = true }
+	luasnip = function()
+		local opts = { noremap = true, silent = true }
 
-		opts.desc = "Expand snippet"
-		map("i", "<c-l>", function()
-			if vim.snippet.active({ direction = 1 }) then
-				vim.schedule(function()
-					vim.snippet.jump(1)
-				end)
-				return
+		opts.desc = "[Luasnip] Next choice"
+		map({ "i", "s" }, "<c-j>", function()
+			if luasnip.choice_active() then
+				luasnip.change_choice(1)
 			end
-			return "<c-l>"
 		end, opts)
 
-		opts.desc = "Jump snippet"
-		map("s", "<c-l>", function()
-			vim.schedule(function()
-				vim.snippet.jump(1)
-			end)
-		end, opts)
-
-		opts.desc = "Jump snippet (back)"
-		map({ "i", "s" }, "<c-h>", function()
-			if vim.snippet.active({ direction = -1 }) then
-				vim.schedule(function()
-					vim.snippet.jump(-1)
-				end)
-				return
+		opts.desc = "[Luasnip] Previous choice"
+		map({ "i", "s" }, "<c-k>", function()
+			if luasnip.choice_active() then
+				luasnip.change_choice(-1)
 			end
-			return "<c-h>"
 		end, opts)
 	end,
 	tabs = function()

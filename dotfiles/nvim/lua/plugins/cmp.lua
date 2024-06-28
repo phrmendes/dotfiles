@@ -8,14 +8,23 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<cr>"] = cmp.mapping.confirm({ select = false }),
-		["<s-cr>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		["<cr>"] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+				else
+					fallback()
+				end
+			end,
+			s = cmp.mapping.confirm({ select = true }),
+			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		}),
 		["<c-space>"] = cmp.mapping.complete(),
 		["<c-u>"] = cmp.mapping.scroll_docs(-4),
 		["<c-d>"] = cmp.mapping.scroll_docs(4),
 		["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<c-cr>"] = cmp.mapping(function(fallback)
+		["<bs>"] = cmp.mapping(function(fallback)
 			cmp.abort()
 			fallback()
 		end, { "i", "s" }),
@@ -51,6 +60,7 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
+		{ name = "emoji" },
 	}),
 	window = {
 		completion = require("utils").borders,
@@ -91,6 +101,7 @@ cmp.setup.filetype({ "markdown", "quarto" }, {
 		{ name = "path" },
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },

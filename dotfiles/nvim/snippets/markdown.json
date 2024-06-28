@@ -13,5 +13,42 @@
     "body": ["$${1:equation}$$0"],
     "description": "Add inline math",
     "prefix": "im"
+  },
+  "Task": {
+    "body": [
+      "- [ ] #todo ${1:task} ➕${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}$0"
+    ],
+    "description": "Add a task",
+    "prefix": "todo"
+  },
+  "Task - due date": {
+    "body": ["📆 ${1:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}$0"],
+    "description": "Add a due date",
+    "prefix": "due"
+  },
+  "Task - start date": {
+    "body": ["✈️ ${1:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}$0"],
+    "description": "Add a start date",
+    "prefix": "start"
+  },
+  "Task - done": {
+    "body": ["✅ ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}$0"],
+    "description": "Mark a task as done",
+    "prefix": "done"
+  },
+  "Task - canceled": {
+    "body": ["❌ ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}$0"],
+    "description": "Mark a task as canceled",
+    "prefix": "cancel"
+  },
+  "Task - scheduled": {
+    "body": ["⏳ ${1:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}$0"],
+    "description": "Mark a task as scheduled",
+    "prefix": "scheduled"
+  },
+  "Task - priority": {
+    "body": ["${1|⏬,🔽, ,🔼,⏫,🔺|}$0"],
+    "description": "Add a priority to a task",
+    "prefix": "priority"
   }
 }

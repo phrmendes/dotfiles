@@ -1,0 +1,12 @@
+{
+  "Inline math": {
+    "prefix": "im",
+    "body": ["$${1:equation}$\n$0"],
+    "description": "Add inline math"
+  },
+  "Block math": {
+    "prefix": "bm",
+    "body": ["$$\n${1:equation}\n$$\n$0"],
+    "description": "Add block math"
+  }
+}

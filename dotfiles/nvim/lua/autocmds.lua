@@ -20,14 +20,6 @@ autocmd("TermClose", {
 	end,
 })
 
-autocmd("TextYankPost", {
-	desc = "Highlight yanked text",
-	group = augroups.yank,
-	callback = function()
-		vim.highlight.on_yank({ timeout = 150 })
-	end,
-})
-
 autocmd("BufEnter", {
 	desc = "Open files with system default",
 	pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg" },

@@ -12,13 +12,6 @@
           "markdown"
         ],
         "path": "./markdown.json"
-      },
-      {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./latex.json"
       }
     ]
   }

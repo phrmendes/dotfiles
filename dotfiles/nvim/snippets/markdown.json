@@ -1,17 +1,17 @@
 {
+  "Block math": {
+    "body": ["$$", "${1:equation}", "$$", "$0"],
+    "description": "Add block math",
+    "prefix": "bm"
+  },
   "Enable ltex-ls": {
-    "prefix": "ltex",
-    "body": ["<!-- LTeX: SETTINGS language=${1:pt-BR}-->$0"],
-    "description": "Enable ltex for the current document"
+    "body": ["<!-- LTeX: SETTINGS language=${1:pt-BR}-->", "$0"],
+    "description": "Enable ltex for the current document",
+    "prefix": "ltex"
   },
   "Inline math": {
-    "prefix": "im",
-    "body": ["$${1:equation}$\n$0"],
-    "description": "Add inline math"
-  },
-  "Block math": {
-    "prefix": "bm",
-    "body": ["$$\n${1:equation}\n$$\n$0"],
-    "description": "Add block math"
+    "body": ["$${1:equation}$$0"],
+    "description": "Add inline math",
+    "prefix": "im"
   }
 }

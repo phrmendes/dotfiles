@@ -18,6 +18,7 @@
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       gopher-nvim = fromGitHub "gopher.nvim" inputs.gopher-nvim;
       osv = fromGitHub "one-small-step-for-vimkind" inputs.osv;
+      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
@@ -39,6 +40,7 @@
           cmp-nvim-lsp-signature-help
           cmp-pandoc-nvim
           cmp-path
+          cmp_luasnip
           copilot-vim
           dial-nvim
           dressing-nvim
@@ -50,6 +52,8 @@
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
+          luasnip
+          luasnip-latex-snippets
           markdown-nvim
           markdown-preview-nvim
           mini-nvim
@@ -66,7 +70,6 @@
           nvim-dap-virtual-text
           nvim-lspconfig
           nvim-pqf
-          nvim-snippets
           nvim-treesitter-context
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
@@ -102,6 +105,7 @@
         ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
+          jsregexp
           magick
           plenary-nvim
           sqlite

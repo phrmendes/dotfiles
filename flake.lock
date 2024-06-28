@@ -312,6 +312,22 @@
         "type": "github"
       }
     },
+    "luasnip-latex-snippets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715250117,
+        "narHash": "sha256-Y8TZCu5iBfnW6GuKZMOaynHs57U6Qa0YBycG8MIW2Qs=",
+        "owner": "iurimateus",
+        "repo": "luasnip-latex-snippets.nvim",
+        "rev": "4b91f28d91979f61a3e8aef1cee5b7c7f2c7beb8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iurimateus",
+        "repo": "luasnip-latex-snippets.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1719468428,
@@ -384,6 +400,7 @@
         "gopher-nvim": "gopher-nvim",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "osv": "osv",
         "stylix": "stylix",

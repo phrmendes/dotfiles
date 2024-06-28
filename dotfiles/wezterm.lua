@@ -18,6 +18,7 @@ config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
 config.command_palette_font_size = 16.0
 config.unix_domains = { { name = "unix" } }
+config.window_padding = { left = 5, right = 5, top = 5, bottom = 0 }
 
 config.ssh_domains = {
 	{

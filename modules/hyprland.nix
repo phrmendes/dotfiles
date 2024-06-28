@@ -119,7 +119,7 @@
             "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,V,exec,${copyq} menu"
             "SUPER,escape,exec,${powermenu}"
-            "SUPER,return,exec,${wezterm} start --always-new-process"
+            "SUPER,return,exec,${wezterm}"
             "SUPER,space,exec,${walker}"
             "SUPER SHIFT,T,exec,${dunstctl} set-paused toggle"
             '',print,exec,${grim} -g "$(${slurp})" - | ${satty} --filename -''

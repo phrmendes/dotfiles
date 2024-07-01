@@ -7,18 +7,22 @@ local nerdfonts = wezterm.nerdfonts
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 config.check_for_updates = false
+config.command_palette_font_size = 16.0
 config.default_prog = { "zsh" }
 config.enable_wayland = false
 config.hide_tab_bar_if_only_one_tab = false
 config.inactive_pane_hsb = { saturation = 0.5, brightness = 0.7 }
-config.status_update_interval = 1000
+config.status_update_interval = 500
 config.tab_and_split_indices_are_zero_based = false
 config.tab_bar_at_bottom = true
+config.tab_max_width = 15
 config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
-config.command_palette_font_size = 16.0
-config.unix_domains = { { name = "unix" } }
-config.window_padding = { left = 5, right = 5, top = 5, bottom = 0 }
+config.window_padding = { left = 8, right = 8, top = 8, bottom = 0 }
+
+config.unix_domains = {
+	{ name = "unix" },
+}
 
 config.ssh_domains = {
 	{
@@ -39,33 +43,62 @@ config.ssh_domains = {
 }
 
 wezterm.on("update-status", function(window, _)
-	local workspace = window:active_workspace()
+	window:set_left_status(wezterm.format({
+		{ Text = " " },
+		{ Text = nerdfonts.md_tab },
+		{ Text = " " },
+	}))
 
 	window:set_right_status(wezterm.format({
-		{ Text = " [" },
-		{ Text = nerdfonts.oct_table .. " " .. workspace },
-		{ Text = "] " },
+		{ Text = " " },
+		{ Text = nerdfonts.cod_terminal_tmux },
+		{ Text = " " },
+		{ Text = window:active_workspace() },
+		{ Text = " " },
 	}))
 end)
 
-wezterm.on("format-tab-title", function(tab, _)
-	local function tab_title(tab_info)
+wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
+	local tab_title = function(tab_info)
 		local title = tab_info.tab_title
+		local len = string.len(title)
 
-		if title and #title > 0 then
-			return title
+		if len == 0 then
+			title = tab_info.active_pane.title
 		end
 
-		return tab_info.active_pane.title
+		if len > max_width then
+			title = wezterm.truncate_right(title, max_width - 7) .. "..."
+		end
+
+		return title
 	end
 
-	local index = tab.tab_index + 1
-	local title = tab_title(tab)
+	local tab_index = function(tab_info)
+		local index = tab_info.tab_index + 1
+
+		if index < 10 then
+			return nerdfonts[string.format("md_numeric_%d_box_outline", index)]
+		end
+
+		return nerdfonts.md_numeric_9_plus_box_outline
+	end
+
+	local tab_zoomed = function(tab_info)
+		if tab_info.active_pane.is_zoomed then
+			return " " .. nerdfonts.cod_zoom_in
+		end
+
+		return ""
+	end
 
 	return {
-		{ Text = " [" },
-		{ Text = nerdfonts.cod_window .. " " .. index .. ": " .. title },
-		{ Text = "] " },
+		{ Text = tab_zoomed(tab) },
+		{ Text = " " },
+		{ Text = tab_index(tab) },
+		{ Text = " " },
+		{ Text = tab_title(tab) },
+		{ Text = " " },
 	}
 end)
 

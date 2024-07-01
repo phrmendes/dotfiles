@@ -123,6 +123,7 @@
           alejandra
           ansible-language-server
           ansible-lint
+          autotools-language-server
           basedpyright
           bash-language-server
           delve
@@ -151,10 +152,10 @@
           shellcheck
           shellharden
           stylua
-          ueberzugpp
           taplo
           terraform-ls
           texlab
+          ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ])

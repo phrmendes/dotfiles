@@ -40,6 +40,7 @@ local languages = {
 
 local servers = {
 	ansiblels = {},
+	autotools_ls = {},
 	basedpyright = {},
 	bashls = {},
 	cssls = {},

@@ -27,6 +27,7 @@
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
+      withRuby = false;
       plugins = with pkgs.vimPlugins;
         [
           SchemaStore-nvim

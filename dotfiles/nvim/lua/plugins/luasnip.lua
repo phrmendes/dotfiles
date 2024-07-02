@@ -16,5 +16,7 @@ require("luasnip-latex-snippets").setup({
 from_vscode.lazy_load()
 from_vscode.lazy_load({ paths = { vim.env.HOME .. "/.config/nvim/snippets" } })
 
-luasnip.filetype_extend("html", { "jinja", "template" })
-luasnip.filetype_extend("latex", { "markdown", "quarto" })
+luasnip.filetype_extend("jinja", { "html" })
+luasnip.filetype_extend("template", { "html" })
+luasnip.filetype_extend("markdown", { "latex" })
+luasnip.filetype_extend("quarto", { "markdown" })

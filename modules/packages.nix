@@ -31,6 +31,7 @@ in {
           grex
           gzip
           html-tidy
+          hurl
           jdk
           jq
           just

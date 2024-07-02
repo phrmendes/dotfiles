@@ -41,7 +41,8 @@
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
-          copilot-vim
+          copilot-cmp
+          copilot-lua
           dial-nvim
           dressing-nvim
           efmls-configs-nvim

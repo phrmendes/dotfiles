@@ -1,6 +1,17 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
+require("cmp_pandoc").setup({
+	crossref = { enable_nabla = true },
+})
+
+require("copilot").setup({
+	suggestion = { enabled = false },
+	panel = { enabled = false },
+})
+
+require("copilot_cmp").setup()
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -25,7 +36,7 @@ cmp.setup({
 				end
 			end,
 		}),
-		["<c-space>"] = cmp.mapping.complete(),
+		["<c-y>"] = cmp.mapping.complete(),
 		["<c-u>"] = cmp.mapping.scroll_docs(-4),
 		["<c-d>"] = cmp.mapping.scroll_docs(4),
 		["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -55,15 +66,17 @@ cmp.setup({
 			maxwidth = 50,
 			mode = "symbol",
 			symbol_map = {
-				otter = "🦦",
 				["vim-dadbod-completion"] = "",
+				Copilot = "",
+				otter = "🦦",
 			},
 		}),
 	},
 	sources = cmp.config.sources({
-		{ name = "path" },
+		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
+		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "emoji" },
@@ -104,10 +117,11 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 
 cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
-		{ name = "path" },
+		{ name = "copilot" },
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
+		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
@@ -115,16 +129,4 @@ cmp.setup.filetype({ "markdown", "quarto" }, {
 		{ name = "latex_symbols", option = { strategy = 2 } },
 		{ name = "buffer" },
 	}),
-})
-
-require("cmp_pandoc").setup({
-	filetypes = { "quarto", "markdown" },
-	bibliography = {
-		documentation = true,
-		fields = { "type", "title", "author", "year" },
-	},
-	crossref = {
-		documentation = true,
-		enable_nabla = true,
-	},
 })

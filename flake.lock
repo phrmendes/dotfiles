@@ -442,11 +442,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1718214030,
-        "narHash": "sha256-9RI5CMXhijihasmqG7v+0NDDctKAnsUgRYdSWuVLevQ=",
+        "lastModified": 1719775374,
+        "narHash": "sha256-sKs30zEMd2zFGnfbV4WuRZsYveI/fuD14cyOnb0qyi0=",
         "owner": "abenz1267",
         "repo": "walker",
-        "rev": "afcf8f694772682999a4384ec24746b9dd702a71",
+        "rev": "cd97cbc2ca87b484fb4ce0d426e21770342e9f68",
         "type": "github"
       },
       "original": {

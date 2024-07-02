@@ -18,7 +18,7 @@ config.tab_bar_at_bottom = true
 config.tab_max_width = 15
 config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
-config.window_padding = { left = 8, right = 8, top = 8, bottom = 1 }
+config.window_padding = { left = 8, right = 8, top = 8, bottom = 0 }
 
 config.unix_domains = {
 	{ name = "unix" },

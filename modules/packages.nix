@@ -13,7 +13,6 @@ in {
       common =
         (with pkgs; [
           ansible
-          bruno
           cachix
           coreutils-full
           csvlens
@@ -75,7 +74,6 @@ in {
         obsidian
         pavucontrol
         phockup
-        plex
         quarto
         quickemu
         qview

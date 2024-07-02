@@ -29,10 +29,12 @@
       waybar.enable = true;
       wlogout.enable = true;
 
-      xdg.desktopEntries.obsidian = {
-        name = "Obsidian";
-        exec = "obsidian --disable-gpu";
-        icon = "obsidian";
+      xdg.desktopEntries = {
+        obsidian = {
+          name = "Obsidian";
+          exec = "obsidian --disable-gpu";
+          icon = "obsidian";
+        };
       };
     };
   };

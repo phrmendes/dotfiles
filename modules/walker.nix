@@ -10,16 +10,19 @@
     programs.walker = let
       style = ''
         * {
-          color: #${config.lib.stylix.colors.base05};
+          color: #${config.lib.stylix.colors.base07};
         }
 
         #window {
         }
 
         #box {
-          background: #${config.lib.stylix.colors.base01};
+          background: #${config.lib.stylix.colors.base00};
           padding: 10px;
           border-radius: 2px;
+        }
+
+        #searchwrapper {
         }
 
         #search,
@@ -59,7 +62,7 @@
         }
 
         row:selected {
-          background: #${config.lib.stylix.colors.base00};
+          background: #${config.lib.stylix.colors.base01};
         }
 
         .item {
@@ -87,7 +90,7 @@
 
         .activation .activationlabel {
           opacity: 1;
-          color: #${config.lib.stylix.colors.base0A};
+          color: #${config.lib.stylix.colors.base0C};
         }
 
         .activation .textwrapper,

@@ -17,6 +17,7 @@
     ./gh.nix
     ./git.nix
     ./gnome-keyring.nix
+    ./gtk.nix
     ./hypridle.nix
     ./hyprland.nix
     ./hyprpaper.nix

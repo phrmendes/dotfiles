@@ -16,6 +16,7 @@
       btop.enable = true;
       dunst.enable = true;
       gnome-keyring.enable = true;
+      gtk-manager.enable = true;
       hypridle.enable = true;
       hyprland.enable = true;
       hyprpaper.enable = true;

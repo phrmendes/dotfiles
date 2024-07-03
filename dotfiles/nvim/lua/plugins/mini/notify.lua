@@ -1,15 +1,22 @@
 local notify = require("mini.notify")
 
-local filter_ltex = function(notification_array)
-	local ltex = function(notification)
-		return not vim.startswith(notification.msg, "ltex")
+local filters = function(notification_array)
+	local filters = { "ltex", "file to analyze" }
+
+	local filter_generator = function(filter)
+		return function(notification)
+			return not string.find(notification.msg, filter)
+		end
 	end
 
-	notification_array = vim.tbl_filter(ltex, notification_array)
+	for _, filter in pairs(filters) do
+		notification_array = vim.tbl_filter(filter_generator(filter), notification_array)
+	end
+
 	return notify.default_sort(notification_array)
 end
 
 notify.setup({
-	content = { sort = filter_ltex },
+	content = { sort = filters },
 	window = { config = { border = require("utils").borders.border } },
 })

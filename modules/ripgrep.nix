@@ -13,6 +13,8 @@
         "--hidden"
         "--glob"
         "!.git"
+        "--glob"
+        "!.venv"
       ];
     };
   };

@@ -17,8 +17,8 @@
         };
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       gopher-nvim = fromGitHub "gopher.nvim" inputs.gopher-nvim;
-      osv = fromGitHub "one-small-step-for-vimkind" inputs.osv;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      osv = fromGitHub "one-small-step-for-vimkind" inputs.osv;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
@@ -71,7 +71,6 @@
           nvim-dap-ui
           nvim-dap-virtual-text
           nvim-lspconfig
-          nvim-pqf
           nvim-treesitter-context
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
@@ -85,6 +84,7 @@
           refactoring-nvim
           smart-splits-nvim
           sniprun
+          toggleterm-nvim
           twilight-nvim
           undotree
           vim-abolish
@@ -97,7 +97,6 @@
           vim-just
           vim-rsi
           vim-sleuth
-          vim-slime
           yanky-nvim
           zen-mode-nvim
         ]

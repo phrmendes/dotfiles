@@ -15,3 +15,7 @@ command("Scratch", function()
 		vim.api.nvim_set_option_value(name, value, { buf = buf })
 	end
 end, { desc = "Open a scratch buffer", nargs = 0 })
+
+command("Sessions", function()
+	require("mini.sessions").select()
+end, { desc = "Select session" })

@@ -3,6 +3,8 @@ local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 local luasnip = require("luasnip")
 
+map({ "n", "x" }, "s", "<Nop>")
+
 local keys = {}
 
 keys.std = {
@@ -21,12 +23,6 @@ keys.std = {
 		opts.desc = "Exit insert mode"
 		map("i", "jj", "<esc>", opts)
 		map("i", "jk", "<esc>", opts)
-
-		opts.desc = "Exit terminal mode"
-		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
-
-		opts.desc = "Make U opposite of u"
-		map("n", "U", "<c-r>", opts)
 	end,
 	leader = function()
 		local opts = { noremap = true }
@@ -174,6 +170,23 @@ keys.std = {
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 	end,
+	luasnip = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = "Next snippet choice"
+		map({ "i", "s" }, "<c-j>", function()
+			if luasnip.choice_active() then
+				luasnip.change_choice(1)
+			end
+		end, opts)
+
+		opts.desc = "Previous snippet choice"
+		map({ "i", "s" }, "<c-k>", function()
+			if luasnip.choice_active() then
+				luasnip.change_choice(-1)
+			end
+		end, opts)
+	end,
 	macros = function()
 		local opts = { noremap = true, expr = true, desc = "Replace macro" }
 
@@ -216,31 +229,14 @@ keys.std = {
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
-		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-s-h>", require("smart-splits").resize_left, opts)
-		map("n", "<c-s-j>", require("smart-splits").resize_down, opts)
-		map("n", "<c-s-k>", require("smart-splits").resize_up, opts)
-		map("n", "<c-s-l>", require("smart-splits").resize_right, opts)
-	end,
-	luasnip = function()
-		local opts = { noremap = true, silent = true }
-
-		opts.desc = "[Luasnip] Next choice"
-		map({ "i", "s" }, "<c-j>", function()
-			if luasnip.choice_active() then
-				luasnip.change_choice(1)
-			end
-		end, opts)
-
-		opts.desc = "[Luasnip] Previous choice"
-		map({ "i", "s" }, "<c-k>", function()
-			if luasnip.choice_active() then
-				luasnip.change_choice(-1)
-			end
-		end, opts)
+		map({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map({ "n", "t" }, "<c-s-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "t" }, "<c-s-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "t" }, "<c-s-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "t" }, "<c-s-l>", require("smart-splits").resize_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -269,6 +265,23 @@ keys.std = {
 		opts.desc = "Edit in tab"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
+	terminal = function()
+		local opts = { noremap = true }
+		local trim_spaces = true
+
+		opts.desc = "Send line to terminal"
+		map({ "n", "i" }, "<c-c><c-c>", function()
+			require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
+		end, opts)
+
+		opts.desc = "Send lines to terminal"
+		map("v", "<c-c><c-c>", function()
+			require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+		end, opts)
+
+		opts.desc = "Exit terminal mode"
+		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
+	end,
 	yanky = function()
 		local opts = { noremap = true, desc = "Yanky" }
 
@@ -288,74 +301,74 @@ keys.lsp = function(event)
 
 	if client then
 		if client.supports_method("textDocument/rename") then
-			opts.desc = "[LSP] Rename"
+			opts.desc = "Rename symbol"
 			map("n", "<f2>", vim.lsp.buf.rename, opts)
 		end
 
 		if client.supports_method("textDocument/definition") then
-			opts.desc = "[LSP] Go to definition"
+			opts.desc = " Go to definition"
 			map("n", "gd", function()
 				require("mini.extra").pickers.lsp({ scope = "definition" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/declaration") then
-			opts.desc = "[LSP] Go to declaration"
+			opts.desc = " Go to declaration"
 			map("n", "gD", function()
 				require("mini.extra").pickers.lsp({ scope = "declaration" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/implementation") then
-			opts.desc = "[LSP] Go to implementation"
+			opts.desc = " Go to implementation"
 			map("n", "gi", function()
 				require("mini.extra").pickers.lsp({ scope = "implementation" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/references") then
-			opts.desc = "[LSP] Go to references"
+			opts.desc = " Go to references"
 			map("n", "gr", function()
 				require("mini.extra").pickers.lsp({ scope = "references" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/typeDefinition") then
-			opts.desc = "[LSP] Go to type definition"
+			opts.desc = " Go to type definition"
 			map("n", "gt", function()
 				require("mini.extra").pickers.lsp({ scope = "type_definition" })
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/codeAction") then
-			opts.desc = "[LSP] Code actions"
+			opts.desc = " Code actions"
 			map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
 		end
 
 		if client.supports_method("textDocument/publishDiagnostics") then
-			opts.desc = "[LSP] Diagnostics"
+			opts.desc = " Diagnostics"
 			map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
 		end
 
 		if client.supports_method("textDocument/signatureHelp") then
-			opts.desc = "[LSP] Signature help"
+			opts.desc = " Signature help"
 			map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 		end
 
 		if client.supports_method("textDocument/hover") then
-			opts.desc = "[LSP] Hover"
+			opts.desc = " Hover"
 			map("n", "<leader>k", vim.lsp.buf.hover, opts)
 		end
 
 		if client.supports_method("textDocument/documentSymbol") then
-			opts.desc = "[LSP] Symbols (document)"
+			opts.desc = " Symbols (document)"
 			map("n", "<leader>s", function()
 				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 			end, opts)
 		end
 
 		if client.supports_method("workspace/symbol") then
-			opts.desc = "[LSP] Symbols (workspace)"
+			opts.desc = " Symbols (workspace)"
 			map("n", "<leader>S", function()
 				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
 			end, opts)
@@ -366,46 +379,46 @@ end
 keys.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "[DAP] Step out"
+	opts.desc = "Step out"
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	opts.desc = "[DAP] Step into"
+	opts.desc = "Step into"
 	map("n", "<f4>", require("dap").step_into, opts)
 
-	opts.desc = "[DAP] Step back"
+	opts.desc = "Step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "[DAP] Continue"
+	opts.desc = "Continue"
 	map("n", "<f6>", require("dap").continue, opts)
 
-	opts.desc = "[DAP] Step over"
+	opts.desc = "Step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "[DAP] Pause"
+	opts.desc = "Pause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "[DAP] Terminate"
+	opts.desc = "Terminate"
 	map("n", "<del>", require("dap").terminate, opts)
 
-	opts.desc = "[DAP] Breakpoint"
+	opts.desc = " Breakpoint"
 	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
-	opts.desc = "[DAP] Debug last"
+	opts.desc = " Debug last"
 	map("n", "<localleader><bs>", require("dap").run_last, opts)
 
-	opts.desc = "[DAP] Clear all breakpoints"
+	opts.desc = " Clear all breakpoints"
 	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
 
-	opts.desc = "[DAP] Show hover"
+	opts.desc = " Show hover"
 	map("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
 
-	opts.desc = "[DAP] Toggle UI"
+	opts.desc = " Toggle UI"
 	map("n", "<localleader>u", require("dapui").toggle, opts)
 
-	opts.desc = "[DAP] Eval"
+	opts.desc = " Eval"
 	map("n", "<localleader><cr>", require("dapui").eval, opts)
 
-	opts.desc = "[DAP] Conditional breakpoint"
+	opts.desc = " Conditional breakpoint"
 	map("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
@@ -414,20 +427,20 @@ end
 keys.neogen = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "[neogen] Generate documentation"
+	opts.desc = "Generate documentation"
 	map("n", "<leader>G", require("neogen").generate, opts)
 end
 
 keys.refactoring = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "[Refactoring] Select action"
+	opts.desc = "Refactoring"
 	map({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
 
-	opts.desc = "[Refactoring] Print variable"
+	opts.desc = "Print variable"
 	map("n", "<leader>p", require("refactoring").debug.print_var, opts)
 
-	opts.desc = "[Refactoring] Clean print statements"
+	opts.desc = "Clean print statements"
 	map("n", "<leader>c", require("refactoring").debug.cleanup, opts)
 end
 
@@ -446,19 +459,19 @@ keys.writing = function(event)
 	opts.desc = "Add item above"
 	map({ "n", "i" }, "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
 
-	opts.desc = "[Zotero] Citation info"
+	opts.desc = "Citation info"
 	map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
 
-	opts.desc = "[Zotero] Citation info (complete)"
+	opts.desc = "Citation info (complete)"
 	map("n", "<c-s-i>", "<Plug>ZCitationCompleteInfo", opts)
 
-	opts.desc = "[Zotero] Open attachment"
+	opts.desc = "Open attachment"
 	map("n", "<c-o>", "<Plug>ZOpenAttachment", opts)
 
-	opts.desc = "[Zotero] View document"
+	opts.desc = "View document"
 	map("n", "<c-s-o>", "<Plug>ZViewDocument", opts)
 
-	opts.desc = "[Zotero] YAML reference"
+	opts.desc = "YAML reference"
 	map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 end
 
@@ -470,7 +483,7 @@ keys.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "[DAP] Launch debugger"
+		opts.desc = "Launch debugger"
 		map("n", "<f6>", require("osv").run_this, opts)
 	end,
 	go = function(event)
@@ -480,16 +493,16 @@ keys.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "[DAP] debug test"
+		opts.desc = " Debug test"
 		map("n", "<localleader>t", require("dap-go").debug_test, opts)
 
-		opts.desc = "[DAP] debug last test"
+		opts.desc = " Debug last test"
 		map("n", "<localleader>T", require("dap-go").debug_last_test, opts)
 
-		opts.desc = "[Go] Add json struct tags"
+		opts.desc = " Add json struct tags"
 		map("n", "<leader>j", "<cmd>GoTagAdd json<cr>", opts)
 
-		opts.desc = "[Go] Add yaml struct tags"
+		opts.desc = " Add yaml struct tags"
 		map("n", "<leader>y", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
 	markdown = function(event)
@@ -502,13 +515,13 @@ keys.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = "[DAP] Debug function/method"
+		opts.desc = " Debug function/method"
 		map("n", "<localleader>f", require("dap-python").test_method, opts)
 
-		opts.desc = "[DAP] Debug class"
+		opts.desc = " Debug class"
 		map("n", "<localleader>c", require("dap-python").test_class, opts)
 
-		opts.desc = "[DAP] Debug selection"
+		opts.desc = " Debug selection"
 		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)

@@ -1,1 +1,1 @@
-require("mini.pairs").setup()
+require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } })

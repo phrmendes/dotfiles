@@ -93,16 +93,19 @@ autocmd("FileType", {
 	desc = "Close with <q>",
 	group = augroups.filetype,
 	pattern = {
+		"dap-float",
+		"diff",
 		"git",
 		"help",
 		"man",
 		"qf",
 		"query",
 		"scratch",
+		"undotree",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
-		vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = event.buf })
+		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -122,6 +125,6 @@ autocmd("User", {
 	callback = function(event)
 		local win_id = event.data.win_id
 
-		vim.api.nvim_win_set_config(win_id, { border = "rounded" })
+		vim.api.nvim_win_set_config(win_id, { border = require("utils").borders.border })
 	end,
 })

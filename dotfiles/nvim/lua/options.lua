@@ -95,3 +95,6 @@ if vim.fn.executable("nvr") then
 	vim.env.GIT_EDITOR = [[nvr -cc split --remote-wait +'set bufhidden=wipe']]
 	vim.env.VISUAL = [[nvr -cc split --remote-wait +'set bufhidden=wipe']]
 end
+
+-- markdown preview
+vim.g.mkdp_auto_close = 0

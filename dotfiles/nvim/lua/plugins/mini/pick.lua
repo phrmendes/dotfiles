@@ -34,7 +34,7 @@ pick.setup({
 	},
 	window = {
 		config = {
-			border = "rounded",
+			border = require("utils").borders.border,
 		},
 	},
 })

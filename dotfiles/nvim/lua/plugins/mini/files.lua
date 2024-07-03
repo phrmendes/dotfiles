@@ -1,4 +1,8 @@
 require("mini.files").setup({
+	windows = {
+		preview = true,
+		width_preview = 80,
+	},
 	mappings = {
 		close = "q",
 		go_in = "l",

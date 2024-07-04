@@ -28,8 +28,8 @@
           name = "Fira Sans";
         };
         monospace = {
-          package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
-          name = "FiraCode Nerd Font Mono";
+          package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+          name = "JetBrainsMono Nerd Font";
         };
         emoji = {
           package = pkgs.noto-fonts-emoji;

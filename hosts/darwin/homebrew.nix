@@ -10,9 +10,6 @@
     caskArgs = {
       no_quarantine = true;
     };
-    taps = [
-      "homebrew/cask-fonts"
-    ];
     brews = [
       "openssl"
       "podman"
@@ -23,7 +20,6 @@
       "amethyst"
       "firefox"
       "flameshot"
-      "font-fira-code-nerd-font"
       "keepingyouawake"
       "maccy"
       "microsoft-teams"

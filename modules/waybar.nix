@@ -9,7 +9,7 @@
     programs.waybar = let
       shared = {
         date_time = {
-          format = "<tt>  {:%H:%M}</tt>";
+          format = " <tt> {:%H:%M}</tt>";
           interval = 60;
           tooltip = true;
           tooltip-format = "<tt><small>{calendar}</small></tt>";
@@ -90,12 +90,12 @@
           };
           cpu = {
             interval = 10;
-            format = "<tt>  {}%</tt>";
+            format = " <tt> {}%</tt>";
             max-length = 10;
           };
           memory = {
             interval = 30;
-            format = "󰘚<tt>  {}%</tt>";
+            format = "󰘚 <tt> {}%</tt>";
             max-length = 10;
           };
           idle_inhibitor = {
@@ -126,12 +126,12 @@
             tooltip-format-enumerate-connected-battery = "{device_alias}, {device_battery_percentage}%";
           };
           "hyprland/language" = {
-            format = "󰌌<tt>  {}</tt>";
+            format = "󰌌 <tt> {}</tt>";
             format-en = "en-US";
             format-pt = "pt-BR";
           };
           "hyprland/window" = {
-            format = "<tt>  {}</tt>";
+            format = " <tt> {}</tt>";
             max-length = 50;
           };
           "hyprland/workspaces" = {
@@ -143,8 +143,8 @@
             on-scroll-down = "hyprctl dispatch workspace r-1";
           };
           "pulseaudio#input" = {
-            format-source = "󰍬<tt>  {volume}%</tt>";
-            format-source-muted = "󰍭<tt>  (muted)</tt>";
+            format-source = "󰍬 <tt> {volume}%</tt>";
+            format-source-muted = "󰍭 <tt> (muted)</tt>";
             format = "<tt>{format_source}</tt>";
             scroll-step = 1;
             smooth-scrolling-threshold = 1;
@@ -155,8 +155,8 @@
             on-scroll-down = "pactl set-source-volume @DEFAULT_SOURCE@ -1%";
           };
           "pulseaudio#output" = {
-            format = "{icon}<tt>  {volume}%</tt>";
-            format-muted = "󰝟<tt>  (muted)</tt>";
+            format = "{icon} <tt> {volume}%</tt>";
+            format-muted = "󰝟 <tt> (muted)</tt>";
             max-volume = 100;
             scroll-step = 2;
             smooth-scrolling-threshold = 1;

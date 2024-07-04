@@ -110,7 +110,6 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 
 cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
-		{ name = "copilot" },
 		{ name = "otter" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },

@@ -10,8 +10,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
       };
     };
   };

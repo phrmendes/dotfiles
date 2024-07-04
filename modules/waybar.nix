@@ -73,6 +73,10 @@
             "custom/separator"
             "pulseaudio#output"
             "custom/separator"
+            "bluetooth"
+            "custom/separator"
+            "network"
+            "custom/separator"
             "tray"
             "custom/separator"
             "clock"
@@ -99,9 +103,27 @@
             format-icons = {
               activated = "";
               deactivated = "";
+              tooltip = true;
               tooltip-format-activated = "Active";
               tooltip-format-deactivated = "Inactive";
             };
+          };
+          network = {
+            format-ethernet = "󰈁";
+            format-disconnected = "󰈂";
+            tooltip-format-ethernet = "Download: {bandwidthDownBytes}\nUpload: {bandwidthUpBytes}";
+            tooltip-format-disconnected = "Disconnected";
+          };
+          bluetooth = {
+            format = "󰂯";
+            format-connected = "󰂱";
+            format-connected-battery = "󰂱";
+            format-disabled = "󰂲";
+            on-click = "blueman-manager";
+            tooltip-format = "Controller: {controller_alias}";
+            tooltip-format-connected = "Controller: {controller_alias}\nDevices: {device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias}";
+            tooltip-format-enumerate-connected-battery = "{device_alias}, {device_battery_percentage}%";
           };
           "hyprland/language" = {
             format = "󰌌<tt>  {}</tt>";

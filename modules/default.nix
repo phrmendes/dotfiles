@@ -8,7 +8,6 @@
     inputs.walker.homeManagerModules.walker
     ./atuin.nix
     ./bat.nix
-    ./blueman-applet.nix
     ./btop.nix
     ./direnv.nix
     ./dunst.nix
@@ -23,7 +22,6 @@
     ./hyprpaper.nix
     ./lazygit.nix
     ./neovim.nix
-    ./nm-applet.nix
     ./packages.nix
     ./pyenv.nix
     ./ripgrep.nix

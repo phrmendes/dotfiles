@@ -151,7 +151,7 @@
           hide_sub = false;
         };
         icons = {
-          theme = "Adwaita";
+          theme = "Pop";
           hide = false;
           size = 28;
           image_height = 200;

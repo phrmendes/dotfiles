@@ -10,8 +10,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Mint";
-        package = pkgs.cinnamon.mint-y-icons;
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
       };
     };
   };

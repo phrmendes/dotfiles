@@ -39,8 +39,8 @@
     }
     // lib.optionalAttrs isLinux {
       cursor = {
-        name = "Pop";
-        package = pkgs.pop-icon-theme;
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
         size = 26;
       };
     };

@@ -5,6 +5,7 @@ local mux = wezterm.mux
 local nerdfonts = wezterm.nerdfonts
 
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 config.check_for_updates = false
 config.command_palette_font_size = 16.0
@@ -43,6 +44,8 @@ config.ssh_domains = {
 }
 
 wezterm.on("update-status", function(window, _)
+	local workspace = string.gsub(window:active_workspace(), "(.*[/\\])(.*)", "%2")
+
 	window:set_left_status(wezterm.format({
 		{ Text = " " },
 		{ Text = nerdfonts.md_tab },
@@ -53,7 +56,7 @@ wezterm.on("update-status", function(window, _)
 		{ Text = " " },
 		{ Text = nerdfonts.cod_terminal_tmux },
 		{ Text = " " },
-		{ Text = window:active_workspace() },
+		{ Text = workspace },
 		{ Text = " " },
 	}))
 end)
@@ -61,14 +64,13 @@ end)
 wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
 	local tab_title = function(tab_info)
 		local title = tab_info.tab_title
-		local len = string.len(title)
 
-		if len == 0 then
+		if string.len(title) == 0 then
 			title = tab_info.active_pane.title
 		end
 
-		if len > max_width then
-			title = wezterm.truncate_right(title, max_width - 7) .. "..."
+		if string.len(title) > max_width then
+			title = wezterm.truncate_right(title, max_width - 5) .. "..."
 		end
 
 		return title
@@ -86,19 +88,19 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
 
 	local tab_zoomed = function(tab_info)
 		if tab_info.active_pane.is_zoomed then
-			return " " .. nerdfonts.cod_zoom_in
+			return nerdfonts.cod_zoom_in
 		end
 
 		return ""
 	end
 
 	return {
-		{ Text = tab_zoomed(tab) },
 		{ Text = " " },
 		{ Text = tab_index(tab) },
 		{ Text = " " },
 		{ Text = tab_title(tab) },
 		{ Text = " " },
+		{ Text = tab_zoomed(tab) },
 	}
 end)
 
@@ -140,8 +142,8 @@ config.keys = {
 	{ key = "n", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
+	{ key = "s", mods = "LEADER", action = workspace_switcher.switch_workspace() },
 	{ key = "t", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
-	{ key = "w", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
 	{
@@ -185,5 +187,11 @@ smart_splits.apply_to_config(config, {
 		resize = "CTRL|SHIFT",
 	},
 })
+
+workspace_switcher.set_workspace_formatter(function(label)
+	return wezterm.format({
+		{ Text = "󱂬 : " .. label },
+	})
+end)
 
 return config

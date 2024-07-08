@@ -16,7 +16,7 @@
   },
   "Task": {
     "body": [
-      "- [ ] #todo ${1:task} ➕${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}$0"
+      "- [ ] #todo ${1:task} ➕ ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}$0"
     ],
     "description": "Add a task",
     "prefix": "todo"

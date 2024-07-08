@@ -1,11 +1,10 @@
 {pkgs, ...}: {
   environment = {
     systemPackages = with pkgs; [
-      appimage-run
       psmisc
       wl-clipboard
+      xclip
       xdg-utils
-      kdePackages.polkit-kde-agent-1
     ];
   };
 }

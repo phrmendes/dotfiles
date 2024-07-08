@@ -38,6 +38,7 @@ in {
           kind
           kubectl
           kubernetes-helm
+          mongosh
           opentofu
           pandoc
           parallel
@@ -56,39 +57,47 @@ in {
         ++ (with pkgs.nodePackages_latest; [
           nodejs
         ]);
-      linux = with pkgs; [
-        bitwarden
-        chromium
-        copyq
-        curtail
-        deluge
-        droidcam
-        evince
-        foliate
-        gcolor3
-        hugo
-        inkscape
-        kooha
-        libqalculate
-        libreoffice
-        mpv
-        obsidian
-        pavucontrol
-        phockup
-        quarto
-        quickemu
-        qview
-        syncthingtray
-        tectonic
-        vagrant
-        ventoy
-        xarchiver
-        zotero
-      ];
+      linux =
+        (with pkgs; [
+          bitwarden
+          chromium
+          curtail
+          droidcam
+          evince
+          hugo
+          inkscape
+          libreoffice
+          mupdf
+          obsidian
+          phockup
+          podman-desktop
+          pop-launcher
+          qalculate-gtk
+          quarto
+          quickemu
+          syncthingtray
+          tectonic
+          transmission
+          vagrant
+          ventoy
+          vlc
+          zotero
+        ])
+        ++ (with pkgs.gnome; [
+          file-roller
+          gnome-tweaks
+          nautilus
+        ])
+        ++ (with pkgs.gnomeExtensions; [
+          alphabetical-app-grid
+          appindicator
+          espresso
+          pop-shell
+          user-themes
+        ]);
       darwin = with pkgs; [
         azure-cli
         maven
-        mongosh
         pngpaste
         terragrunt
       ];

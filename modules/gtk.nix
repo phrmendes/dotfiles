@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: {
-  options.gtk-manager.enable = lib.mkEnableOption "enable gtk manager";
+  options.gtk-settings.enable = lib.mkEnableOption "enable gtk settings";
 
-  config = lib.mkIf config.gtk-manager.enable {
+  config = lib.mkIf config.gtk-settings.enable {
     gtk = {
       enable = true;
       iconTheme = {

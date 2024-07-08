@@ -88,7 +88,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
 
 	local tab_zoomed = function(tab_info)
 		if tab_info.active_pane.is_zoomed then
-			return nerdfonts.cod_zoom_in
+			return nerdfonts.cod_zoom_in .. " "
 		end
 
 		return ""

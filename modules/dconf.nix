@@ -99,6 +99,16 @@
           show-notifications = false;
           user-enabled = true;
         };
+        "org/gnome/shell/extensions/pop-shell" = {
+          active-hint = true;
+          active-hint-border-radius = 1;
+          log-level = 0;
+          mouse-cursor-focus-location = 4;
+          search = ["<Super>space"];
+          show-skip-taskbar = true;
+          show-title = false;
+          tile-by-default = true;
+        };
       };
     };
   };

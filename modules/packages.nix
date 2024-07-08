@@ -70,7 +70,6 @@ in {
           mupdf
           obsidian
           phockup
-          podman-desktop
           pop-launcher
           qalculate-gtk
           quarto

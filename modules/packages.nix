@@ -64,6 +64,7 @@ in {
           curtail
           droidcam
           evince
+          firefox
           hugo
           inkscape
           libreoffice

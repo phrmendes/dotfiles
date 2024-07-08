@@ -5,7 +5,6 @@
 }: {
   programs = {
     dconf.enable = true;
-    firefox.enable = true;
     fuse.userAllowOther = true;
     virt-manager.enable = true;
     zsh.enable = true;

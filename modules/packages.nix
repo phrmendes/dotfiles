@@ -93,6 +93,7 @@ in {
           appindicator
           espresso
           pop-shell
+          sound-output-device-chooser
           user-themes
         ]);
       darwin = with pkgs; [

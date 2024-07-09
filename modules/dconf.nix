@@ -23,6 +23,7 @@
             "espresso@coadmunkee.github.com"
             "gsconnect@andyholmes.github.io"
             "pop-shell@system76.com"
+            "sound-output-device-chooser@kgshank.net"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
           ];
         };

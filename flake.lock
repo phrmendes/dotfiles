@@ -342,11 +342,11 @@
     "osv": {
       "flake": false,
       "locked": {
-        "lastModified": 1716827666,
-        "narHash": "sha256-gR4RnMW1BUuVNo5sj0V/pBzT8ayLipZsrWuwNZwCvyM=",
+        "lastModified": 1720291564,
+        "narHash": "sha256-Lq3SISZM24nn5Zq0mj6eKeEDqfkwKVcMwnt5atsWS2U=",
         "owner": "jbyuki",
         "repo": "one-small-step-for-vimkind",
-        "rev": "e92abbce0b9b77fed1aaf6f122fb18b7045b15ec",
+        "rev": "730189c92c6fd80eb92bb6c1886392a142dba273",
         "type": "github"
       },
       "original": {
@@ -401,11 +401,11 @@
     "zotcite": {
       "flake": false,
       "locked": {
-        "lastModified": 1710602447,
-        "narHash": "sha256-x/6CEfYSDopUKGvKw9VaGoMNqs7Khi6/VF/c2G701cw=",
+        "lastModified": 1720528362,
+        "narHash": "sha256-kLmIMzdSRkshYJE2kO0sD8DfvLzpXway72ZNEMHtyjk=",
         "owner": "jalvesaq",
         "repo": "zotcite",
-        "rev": "9753c2629cefa3bc388e3bac4ac65dfb9d5a3610",
+        "rev": "4f1d669e704900ced262a03ea4325dc94bc72b04",
         "type": "github"
       },
       "original": {

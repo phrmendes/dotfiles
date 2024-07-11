@@ -51,8 +51,13 @@
       enable = true;
       autorun = true;
       desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
       videoDrivers = ["nvidia"];
+
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
+
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

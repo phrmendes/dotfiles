@@ -10,7 +10,6 @@ local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/s
 config.check_for_updates = false
 config.command_palette_font_size = 16.0
 config.default_prog = { "zsh" }
-config.enable_wayland = false
 config.hide_tab_bar_if_only_one_tab = false
 config.inactive_pane_hsb = { saturation = 0.5, brightness = 0.7 }
 config.status_update_interval = 500
@@ -20,6 +19,7 @@ config.tab_max_width = 15
 config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
 config.window_padding = { left = 6, right = 6, top = 6, bottom = 0 }
+config.window_decorations = "RESIZE"
 
 config.unix_domains = {
 	{ name = "unix" },

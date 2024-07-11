@@ -62,6 +62,7 @@ in {
           bitwarden
           chromium
           curtail
+          drawing
           droidcam
           evince
           firefox
@@ -85,6 +86,7 @@ in {
         ])
         ++ (with pkgs.gnome; [
           file-roller
+          gnome-screenshot
           gnome-tweaks
           nautilus
         ])

@@ -11,7 +11,6 @@
     ./dconf.nix
     ./direnv.nix
     ./eza.nix
-    ./flameshot.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix

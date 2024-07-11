@@ -21,6 +21,7 @@
     ./programs.nix
     ./security.nix
     ./services.nix
+    ./session-variables.nix
     ./syncthing.nix
     ./time.nix
     ./users.nix

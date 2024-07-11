@@ -90,11 +90,6 @@
           command = "wezterm";
           name = "Terminal";
         };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-          binding = "Print";
-          command = "flameshot gui";
-          name = "Flameshot";
-        };
         "org/gnome/shell/extensions/espresso" = {
           has-battery = false;
           show-notifications = false;

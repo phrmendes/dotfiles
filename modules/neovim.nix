@@ -128,18 +128,19 @@
           basedpyright
           bash-language-server
           delve
+          djlint
           docker-compose-language-service
           dockerfile-language-server-nodejs
           dot-language-server
           efm-langserver
           emmet-language-server
-          gofumpt
           golangci-lint
           golines
           gomodifytags
           gopls
-          gosimports
           gotests
+          gotools
+          hadolint
           helm-ls
           iferr
           imagemagick
@@ -152,6 +153,8 @@
           ruff
           shellcheck
           shellharden
+          sqlfluff
+          statix
           stylua
           taplo
           terraform-ls
@@ -160,13 +163,11 @@
           vscode-langservers-extracted
           yaml-language-server
         ])
-        ++ (with pkgs.perl538Packages; [
-          LatexIndent
-        ])
         ++ (with pkgs.python312Packages; [
           jupytext
         ])
         ++ (with pkgs.nodePackages; [
+          sql-formatter
           vscode-json-languageserver
         ]);
     };

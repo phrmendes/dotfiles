@@ -355,6 +355,13 @@ keys.lsp = function(event)
 			map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 		end
 
+		if client.supports_method("textDocument/inlayHint") then
+			opts.desc = " Toggle inlay hints"
+			map("n", "<leader>t", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+			end, opts)
+		end
+
 		if client.supports_method("textDocument/hover") then
 			opts.desc = " Hover"
 			map("n", "<leader>k", vim.lsp.buf.hover, opts)

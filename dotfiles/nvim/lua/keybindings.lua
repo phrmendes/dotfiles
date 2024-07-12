@@ -3,11 +3,12 @@ local autocmd = vim.api.nvim_create_autocmd
 local map = vim.keymap.set
 local luasnip = require("luasnip")
 
-map({ "n", "x" }, "s", "<Nop>")
-
 local keys = {}
 
 keys.std = {
+	disable = function()
+		map({ "n", "x" }, "s", "<Nop>")
+	end,
 	random = function()
 		local opts = { noremap = true }
 
@@ -23,6 +24,10 @@ keys.std = {
 		opts.desc = "Exit insert mode"
 		map("i", "jj", "<esc>", opts)
 		map("i", "jk", "<esc>", opts)
+
+		opts.desc = "Move in insert mode"
+		map({ "c", "i" }, "<c-h>", "<left>", opts)
+		map({ "c", "i" }, "<c-l>", "<right>", opts)
 	end,
 	leader = function()
 		local opts = { noremap = true }

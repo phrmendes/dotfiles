@@ -82,6 +82,7 @@ cmp.setup({
 
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
+	matching = { disallow_symbol_nonprefix_matching = false },
 	sources = cmp.config.sources({
 		{ name = "cmdline", max_item_count = 10 },
 		{ name = "path" },

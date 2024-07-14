@@ -18,7 +18,6 @@
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       gopher-nvim = fromGitHub "gopher.nvim" inputs.gopher-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      osv = fromGitHub "one-small-step-for-vimkind" inputs.osv;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
@@ -50,7 +49,6 @@
           friendly-snippets
           gopher-nvim
           image-nvim
-          jupytext-nvim
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
@@ -78,12 +76,10 @@
           nvim-ts-context-commentstring
           nvim-web-devicons
           obsidian-nvim
-          osv
           otter-nvim
           quarto-nvim
           refactoring-nvim
           smart-splits-nvim
-          sniprun
           toggleterm-nvim
           twilight-nvim
           undotree
@@ -162,9 +158,6 @@
           ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
-        ])
-        ++ (with pkgs.python312Packages; [
-          jupytext
         ])
         ++ (with pkgs.nodePackages; [
           sql-formatter

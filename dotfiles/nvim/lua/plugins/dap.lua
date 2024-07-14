@@ -23,18 +23,6 @@ for type, icon in pairs(dap_signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-dap.configurations.lua = {
-	{
-		type = "nlua",
-		request = "attach",
-		name = "Attach to running Neovim instance",
-	},
-}
-
-dap.adapters.nlua = function(callback, config)
-	callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
-end
-
 dap_ui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
 dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close

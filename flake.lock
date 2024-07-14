@@ -339,22 +339,6 @@
         "type": "github"
       }
     },
-    "osv": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1720291564,
-        "narHash": "sha256-Lq3SISZM24nn5Zq0mj6eKeEDqfkwKVcMwnt5atsWS2U=",
-        "owner": "jbyuki",
-        "repo": "one-small-step-for-vimkind",
-        "rev": "730189c92c6fd80eb92bb6c1886392a142dba273",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jbyuki",
-        "repo": "one-small-step-for-vimkind",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "cmp-zotcite": "cmp-zotcite",
@@ -365,7 +349,6 @@
         "impermanence": "impermanence",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
-        "osv": "osv",
         "stylix": "stylix",
         "zotcite": "zotcite"
       }

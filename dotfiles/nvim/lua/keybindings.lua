@@ -7,7 +7,11 @@ local keys = {}
 
 keys.std = {
 	disable = function()
-		map({ "n", "x" }, "s", "<Nop>")
+		map({ "n", "x" }, "s", "<nop>")
+		map({ "c", "i", "t" }, "<c-h>", "<nop>")
+		map({ "c", "i", "t" }, "<c-j>", "<nop>")
+		map({ "c", "i", "t" }, "<c-k>", "<nop>")
+		map({ "c", "i", "t" }, "<c-l>", "<nop>")
 	end,
 	random = function()
 		local opts = { noremap = true }
@@ -488,16 +492,6 @@ keys.writing = function(event)
 end
 
 keys.ft = {
-	lua = function(event)
-		keys.dap(event)
-		keys.neogen(event)
-		keys.refactoring(event)
-
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "Launch debugger"
-		map("n", "<f6>", require("osv").run_this, opts)
-	end,
 	go = function(event)
 		keys.dap(event)
 		keys.neogen(event)

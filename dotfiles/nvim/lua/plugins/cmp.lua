@@ -70,9 +70,10 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "copilot" },
-		{ name = "buffer" },
 		{ name = "emoji" },
+	}, {
+		{ name = "copilot" },
+		{ name = "buffer", max_item_count = 5 },
 	}),
 	window = {
 		completion = require("utils").borders,
@@ -84,22 +85,23 @@ cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	matching = { disallow_symbol_nonprefix_matching = false },
 	sources = cmp.config.sources({
-		{ name = "cmdline", max_item_count = 10 },
-		{ name = "path" },
+		{ name = "cmdline", max_item_count = 5 },
+		{ name = "path", max_item_count = 5 },
 	}),
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{ name = "buffer" },
+		{ name = "buffer", max_item_count = 5 },
 	},
 })
 
 cmp.setup.filetype("sql", {
 	sources = cmp.config.sources({
 		{ name = "vim-dadbod-completion" },
-		{ name = "buffer" },
+	}, {
+		{ name = "buffer", max_item_count = 5 },
 	}),
 })
 
@@ -111,15 +113,13 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 
 cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
-		{ name = "otter" },
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
+		{ name = "luasnip" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
 		{ name = "path" },
-		{ name = "buffer" },
 		{ name = "emoji" },
+	}, {
+		{ name = "buffer", max_item_count = 5 },
 	}),
 })

@@ -1,8 +1,5 @@
-require("quarto").setup()
-
-require("otter").setup({
-	handle_leading_whitespace = true,
-	buffers = {
-		set_filetype = true,
-	},
+require("quarto").setup({
+	closePreviewOnExit = false,
+	lspFeatures = { enable = false },
+	codeRunner = { enable = false },
 })

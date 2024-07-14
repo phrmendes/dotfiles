@@ -46,6 +46,7 @@
           dial-nvim
           dressing-nvim
           efmls-configs-nvim
+          executor-nvim
           friendly-snippets
           gopher-nvim
           image-nvim
@@ -104,6 +105,7 @@
         with luaPkgs; [
           jsregexp
           magick
+          nui-nvim
           plenary-nvim
           sqlite
         ];

@@ -75,17 +75,17 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd("BufWritePost", {
-	desc = "Format on save with efm-langserver",
-	group = augroups.lsp.format,
+autocmd("BufWritePre", {
+	desc = "Format on save",
 	callback = function(event)
-		local efm = vim.lsp.get_clients({ name = "efm", bufnr = event.buf })
+		require("conform").format({ bufnr = event.buf })
+	end,
+})
 
-		if vim.tbl_isempty(efm) then
-			return
-		end
-
-		vim.lsp.buf.format({ name = "efm" })
+autocmd({ "BufWritePost" }, {
+	desc = "Lint file",
+	callback = function()
+		require("lint").try_lint()
 	end,
 })
 

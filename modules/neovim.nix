@@ -41,11 +41,11 @@
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
+          conform-nvim
           copilot-cmp
           copilot-lua
           dial-nvim
           dressing-nvim
-          efmls-configs-nvim
           executor-nvim
           friendly-snippets
           gopher-nvim
@@ -69,6 +69,7 @@
           nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
+          nvim-lint
           nvim-lspconfig
           nvim-treesitter-context
           nvim-treesitter-textobjects
@@ -91,7 +92,6 @@
           vim-eunuch
           vim-helm
           vim-jinja
-          vim-just
           vim-rsi
           vim-sleuth
           yanky-nvim
@@ -130,14 +130,14 @@
           docker-compose-language-service
           dockerfile-language-server-nodejs
           dot-language-server
-          efm-langserver
           emmet-language-server
+          gofumpt
+          goimports-reviser
           golangci-lint
           golines
           gomodifytags
           gopls
           gotests
-          gotools
           hadolint
           helm-ls
           iferr
@@ -152,17 +152,16 @@
           shellcheck
           shellharden
           sqlfluff
-          statix
           stylua
           taplo
           terraform-ls
           texlab
+          tflint
           ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ])
         ++ (with pkgs.nodePackages; [
-          sql-formatter
           vscode-json-languageserver
         ]);
     };

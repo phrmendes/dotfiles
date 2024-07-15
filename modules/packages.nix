@@ -34,7 +34,6 @@ in {
           hurl
           jdk
           jq
-          just
           kind
           kubectl
           kubernetes-helm

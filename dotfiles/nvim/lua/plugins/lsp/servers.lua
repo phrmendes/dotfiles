@@ -1,43 +1,8 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-capabilities.workspace = {
-	didChangeWatchedFiles = {
-		dynamicRegistration = true,
-	},
-}
-
-local flags = {
-	allow_incremental_sync = true,
-	debounce_text_changes = 150,
-}
-
 local handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, require("utils").borders),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, require("utils").borders),
-}
-
-local languages = {
-	css = { require("efmls-configs.formatters.prettier_d") },
-	dockerfile = { require("efmls-configs.linters.hadolint") },
-	go = {
-		require("efmls-configs.linters.djlint"),
-		require("efmls-configs.linters.golangci_lint"),
-		require("efmls-configs.formatters.gofmt"),
-		require("efmls-configs.formatters.goimports"),
-		require("efmls-configs.formatters.golines"),
-	},
-	html = { require("efmls-configs.linters.djlint"), require("efmls-configs.formatters.prettier_d") },
-	jinja = { require("efmls-configs.linters.djlint") },
-	json = { require("efmls-configs.formatters.prettier_d") },
-	lua = { require("efmls-configs.formatters.stylua") },
-	markdown = { require("efmls-configs.formatters.prettier_d") },
-	nix = { require("efmls-configs.linters.statix"), require("efmls-configs.formatters.alejandra") },
-	python = { require("efmls-configs.formatters.ruff") },
-	sh = { require("efmls-configs.linters.shellcheck"), require("efmls-configs.formatters.shellharden") },
-	terraform = { require("efmls-configs.formatters.terraform_fmt") },
-	toml = { require("efmls-configs.formatters.taplo") },
-	yaml = { require("efmls-configs.formatters.prettier_d") },
-	sql = { require("efmls-configs.linters.sqlfluff"), require("efmls-configs.formatters.sql-formatter") },
 }
 
 local servers = {
@@ -56,18 +21,6 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	tflint = {},
-	efm = {
-		filetypes = vim.tbl_keys(languages),
-		init_options = {
-			documentFormatting = true,
-			documentRangeFormatting = true,
-		},
-		settings = {
-			rootMarkers = { ".git/" },
-			languages = languages,
-		},
-	},
 	gopls = {
 		on_attach = function()
 			require("gopher").setup()
@@ -140,7 +93,6 @@ for key, value in pairs(servers) do
 		local setup = settings or {}
 
 		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
-		setup.flags = vim.tbl_deep_extend("force", {}, flags, setup.flags or {})
 		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
 		require("lspconfig")[server_name].setup(setup)

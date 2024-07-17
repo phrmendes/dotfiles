@@ -1,10 +1,15 @@
+local now, later = require("mini.deps").now, require("mini.deps").later
+
 require("plugins.mini")
 
-require("mini.deps").later(function()
+now(function()
+	require("plugins.dressing")
+end)
+
+later(function()
 	require("plugins.autotag")
 	require("plugins.colorizer")
 	require("plugins.completion")
-	require("plugins.dadbod")
 	require("plugins.dap")
 	require("plugins.dial")
 	require("plugins.executor")

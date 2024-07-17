@@ -1,5 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local borders = require("utils").borders
+local max_count = 5
 
 require("cmp_pandoc").setup({
 	crossref = { enable_nabla = true },
@@ -73,11 +75,11 @@ cmp.setup({
 		{ name = "emoji" },
 	}, {
 		{ name = "copilot" },
-		{ name = "buffer", max_item_count = 5 },
+		{ name = "buffer", max_item_count = max_count },
 	}),
 	window = {
-		completion = require("utils").borders,
-		documentation = require("utils").borders,
+		completion = borders,
+		documentation = borders,
 	},
 })
 
@@ -85,15 +87,15 @@ cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	matching = { disallow_symbol_nonprefix_matching = false },
 	sources = cmp.config.sources({
-		{ name = "cmdline", max_item_count = 5 },
-		{ name = "path", max_item_count = 5 },
+		{ name = "cmdline", max_item_count = max_count },
+		{ name = "path", max_item_count = max_count },
 	}),
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{ name = "buffer", max_item_count = 5 },
+		{ name = "buffer", max_item_count = max_count },
 	},
 })
 
@@ -101,7 +103,7 @@ cmp.setup.filetype("sql", {
 	sources = cmp.config.sources({
 		{ name = "vim-dadbod-completion" },
 	}, {
-		{ name = "buffer", max_item_count = 5 },
+		{ name = "buffer", max_item_count = max_count },
 	}),
 })
 
@@ -120,6 +122,6 @@ cmp.setup.filetype({ "markdown", "quarto" }, {
 		{ name = "path" },
 		{ name = "emoji" },
 	}, {
-		{ name = "buffer", max_item_count = 5 },
+		{ name = "buffer", max_item_count = max_count },
 	}),
 })

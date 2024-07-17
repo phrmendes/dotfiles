@@ -74,11 +74,14 @@ vim.opt.inccommand = "split"
 vim.opt.conceallevel = 2
 
 -- clipboard
-vim.opt.clipboard:append({ "unnamedplus" })
+vim.schedule(function()
+	vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+end)
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- disable native plugins
+for _, disable in ipairs({ "gzip", "netrwPlugin", "tarPlugin", "tohtml", "tutor", "zipPlugin" }) do
+	vim.g["loaded_" .. disable] = 0
+end
 
 -- mouse support
 vim.g.VM_mouse_mappings = 1
@@ -98,3 +101,8 @@ end
 
 -- markdown preview
 vim.g.mkdp_auto_close = 0
+
+-- vim-dadbod
+vim.g.db_ui_env_variable_name = "DB_NAME"
+vim.g.db_ui_env_variable_url = "DB_CONNECTION"
+vim.g.db_ui_use_nvim_notify = 1

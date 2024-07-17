@@ -73,6 +73,9 @@ keys.std = {
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>w<cr>", opts)
+
+		opts.desc = "Quickfix"
+		map("n", "<leader>x", "<cmd>copen<cr>", opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -310,6 +313,9 @@ keys.std = {
 		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
 		map("n", "[y", "<Plug>(YankyPreviousEntry)", opts)
 		map("n", "y]", "<Plug>(YankyNextEntry)", opts)
+
+		opts.desc = "Yank history"
+		map("n", "<leader>y", "<cmd>YankyRingHistory<cr>", opts)
 	end,
 }
 

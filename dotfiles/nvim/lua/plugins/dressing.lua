@@ -4,5 +4,8 @@ require("dressing").setup({
 		border = require("utils").borders.border,
 		relative = "win",
 	},
-	select = { enabled = true },
+	select = {
+		enabled = true,
+		backend = { "fzf", "builtin" },
+	},
 })

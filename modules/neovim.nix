@@ -48,6 +48,7 @@
           dressing-nvim
           executor-nvim
           friendly-snippets
+          fzfWrapper
           gopher-nvim
           image-nvim
           lazygit-nvim
@@ -71,6 +72,7 @@
           nvim-dap-virtual-text
           nvim-lint
           nvim-lspconfig
+          nvim-pqf
           nvim-treesitter-context
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars

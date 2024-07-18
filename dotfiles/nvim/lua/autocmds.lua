@@ -1,39 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroups = require("utils").augroups
 
-autocmd("TermOpen", {
-	desc = "Disable numbers in terminal",
-	group = augroups.term,
-	callback = function()
-		vim.wo.number = false
-		vim.wo.relativenumber = false
-		vim.cmd([[startinsert]])
-	end,
-})
-
-autocmd("TermClose", {
-	desc = "Enable numbers when terminal is closed",
-	group = augroups.term,
-	callback = function()
-		vim.wo.number = true
-		vim.wo.relativenumber = true
-	end,
-})
-
-autocmd("BufEnter", {
-	desc = "Open files with system default",
-	pattern = { "*.pdf", "*.png", "*.jpg", "*.jpeg" },
-	group = augroups.filetype,
-	callback = function(event)
-		local filename = vim.api.nvim_buf_get_name(event.buf)
-		filename = vim.fn.shellescape(filename)
-
-		require("utils").open(filename)
-
-		vim.cmd.redraw()
-	end,
-})
-
 autocmd("LspAttach", {
 	desc = "Enable code lens and document highlights",
 	group = augroups.lsp.attach,
@@ -44,8 +11,8 @@ autocmd("LspAttach", {
 			if client.supports_method("textDocument/codeLens") then
 				autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 					buffer = event.buf,
-					callback = function()
-						vim.lsp.codelens.refresh({ bufnr = event.buf })
+					callback = function(ev)
+						vim.lsp.codelens.refresh({ bufnr = ev.buf })
 					end,
 				})
 			end
@@ -92,17 +59,7 @@ autocmd({ "BufWritePost" }, {
 autocmd("FileType", {
 	desc = "Close with <q>",
 	group = augroups.filetype,
-	pattern = {
-		"dap-float",
-		"diff",
-		"git",
-		"help",
-		"man",
-		"qf",
-		"query",
-		"scratch",
-		"undotree",
-	},
+	pattern = { "dap-float", "diff", "git", "help", "man", "qf", "query", "scratch", "undotree" },
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })

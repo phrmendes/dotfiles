@@ -44,18 +44,6 @@ M.normalize = function(word)
 	return normalized_word:gsub("[%s%W]", "_")
 end
 
-M.open = function(arg)
-	local open
-
-	if vim.fn.has("mac") == 1 then
-		open = { "open", arg }
-	else
-		open = { "xdg-open", arg }
-	end
-
-	vim.fn.jobstart(open)
-end
-
 M.borders = {
 	border = "rounded",
 	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",

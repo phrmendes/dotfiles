@@ -50,7 +50,6 @@ in {
           tokei
           unar
           wget
-          yq-go
           zip
         ])
         ++ (with pkgs.nodePackages_latest; [

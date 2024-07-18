@@ -149,7 +149,6 @@
           lua-language-server
           neovim-remote
           nil
-          prettierd
           ruff
           shellcheck
           shellharden
@@ -164,6 +163,7 @@
           yaml-language-server
         ])
         ++ (with pkgs.nodePackages; [
+          prettier
           vscode-json-languageserver
         ]);
     };

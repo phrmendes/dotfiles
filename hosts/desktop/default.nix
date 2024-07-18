@@ -31,6 +31,5 @@
   ];
 
   console.keyMap = "us";
-  sound.enable = true;
   system.stateVersion = "24.05";
 }

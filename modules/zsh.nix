@@ -15,19 +15,20 @@ in {
       initExtra = builtins.readFile ../dotfiles/init.sh;
       common = with pkgs; {
         cat = getExe bat;
+        docker = "podman";
         du = getExe gdu;
         find = getExe fd;
         fs = getExe fselect;
         grep = getExe ripgrep;
+        k = "${pkgs.kubectl}/bin/kubectl";
+        lg = getExe lazygit;
         ps = getExe procs;
         sed = getExe gnused;
         t = getExe tmux;
         top = getExe btop;
-        lg = getExe lazygit;
         untar = "tar -xvf";
         untargz = "tar -xzf";
         v = "nvim";
-        docker = "podman";
       };
       desktop = {
         dpct = "duplicati-cli";

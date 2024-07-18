@@ -42,13 +42,6 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd("BufWritePre", {
-	desc = "Format on save",
-	callback = function(event)
-		require("conform").format({ bufnr = event.buf })
-	end,
-})
-
 autocmd({ "BufWritePost" }, {
 	desc = "Lint file",
 	callback = function()

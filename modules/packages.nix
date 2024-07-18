@@ -99,6 +99,7 @@ in {
         ]);
       darwin = with pkgs; [
         azure-cli
+        kubelogin
         maven
         pngpaste
         terragrunt

@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./atuin.nix
     ./bat.nix
     ./btop.nix
     ./copyq.nix
@@ -31,7 +30,6 @@
     ./zsh.nix
   ];
 
-  atuin.enable = lib.mkDefault true;
   bat.enable = lib.mkDefault true;
   direnv.enable = lib.mkDefault true;
   eza.enable = lib.mkDefault true;

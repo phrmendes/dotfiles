@@ -96,12 +96,16 @@ in {
           sound-output-device-chooser
           user-themes
         ]);
-      darwin = with pkgs; [
-        azure-cli
+      darwin = with pkgs; let
+        az =
+          azure-cli.withExtensions
+          (with azure-cli-extensions; [amg fzf]);
+      in [
         kubelogin
         maven
         pngpaste
         terragrunt
+        az
       ];
     in
       common

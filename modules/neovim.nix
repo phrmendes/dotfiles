@@ -78,7 +78,6 @@
           nvim-treesitter.withAllGrammars
           nvim-ts-autotag
           nvim-ts-context-commentstring
-          nvim-web-devicons
           obsidian-nvim
           otter-nvim
           quarto-nvim

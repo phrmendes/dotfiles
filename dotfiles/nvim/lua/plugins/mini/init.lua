@@ -3,6 +3,7 @@ local now, later = require("mini.deps").now, require("mini.deps").later
 now(function()
 	require("plugins.mini.base16")
 	require("plugins.mini.diff")
+	require("plugins.mini.icons")
 	require("plugins.mini.notify")
 	require("plugins.mini.sessions")
 	require("plugins.mini.starter")

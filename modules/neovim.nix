@@ -128,7 +128,6 @@
           bash-language-server
           delve
           djlint
-          docker-compose-language-service
           dockerfile-language-server-nodejs
           dot-language-server
           emmet-language-server

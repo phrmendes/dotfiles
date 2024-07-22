@@ -11,7 +11,6 @@ local servers = {
 	basedpyright = {},
 	bashls = {},
 	cssls = {},
-	docker_compose_language_service = {},
 	dockerls = {},
 	dotls = {},
 	emmet_language_server = {},

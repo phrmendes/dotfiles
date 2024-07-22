@@ -22,7 +22,7 @@ config.window_padding = { left = 6, right = 6, top = 6, bottom = 0 }
 config.window_decorations = "RESIZE"
 
 config.unix_domains = {
-	{ name = "unix" },
+	{ name = "mux" },
 }
 
 config.ssh_domains = {

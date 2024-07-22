@@ -22,6 +22,7 @@ in {
         grep = getExe ripgrep;
         k = "${pkgs.kubectl}/bin/kubectl";
         lg = getExe lazygit;
+        mux = "wezterm connect mux";
         ps = getExe procs;
         sed = getExe gnused;
         t = getExe tmux;

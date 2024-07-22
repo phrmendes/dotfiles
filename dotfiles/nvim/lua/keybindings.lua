@@ -526,6 +526,18 @@ keys.ft = {
 		opts.desc = " Add yaml struct tags"
 		map("n", "<leader>y", "<cmd>GoTagAdd yaml<cr>", opts)
 	end,
+	http = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = " Previous request"
+		map("n", "<localleader>p", require("kulala").jump_prev, opts)
+
+		opts.desc = " Next request"
+		map("n", "<localleader>n", require("kulala").jump_next, opts)
+
+		opts.desc = " Send request"
+		map("n", "<localleader>s", require("kulala").run, opts)
+	end,
 	markdown = function(event)
 		keys.writing(event)
 	end,

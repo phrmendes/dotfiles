@@ -19,6 +19,7 @@
       gopher-nvim = fromGitHub "gopher.nvim" inputs.gopher-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
+      kulala-nvim = fromGitHub "kulala.nvim" inputs.kulala-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -51,6 +52,7 @@
           fzfWrapper
           gopher-nvim
           image-nvim
+          kulala-nvim
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim

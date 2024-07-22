@@ -30,13 +30,12 @@ in {
           graphviz
           grex
           gzip
-          html-tidy
-          hurl
           jdk
           jq
           kind
           kubectl
           kubernetes-helm
+          libxml2
           mongosh
           opentofu
           pandoc

@@ -40,6 +40,11 @@
       url = "github:olexsmir/gopher.nvim";
     };
 
+    kulala-nvim = {
+      flake = false;
+      url = "github:mistweaverco/kulala.nvim";
+    };
+
     luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";

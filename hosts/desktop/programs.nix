@@ -42,7 +42,6 @@
         glibc
         icu
         libuuid
-        libxml2
         mesa
         openssl
         stdenv.cc.cc

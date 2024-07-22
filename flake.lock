@@ -291,6 +291,22 @@
         "type": "github"
       }
     },
+    "kulala-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721662181,
+        "narHash": "sha256-e2m1eUoyltwsmVLPUqTgEKH59wQ4GobiyDz9eMpK/3s=",
+        "owner": "mistweaverco",
+        "repo": "kulala.nvim",
+        "rev": "a3f86928104cbbeaa41ab8295a82ea1e9ea59c2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mistweaverco",
+        "repo": "kulala.nvim",
+        "type": "github"
+      }
+    },
     "luasnip-latex-snippets": {
       "flake": false,
       "locked": {
@@ -347,6 +363,7 @@
         "gopher-nvim": "gopher-nvim",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "kulala-nvim": "kulala-nvim",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",

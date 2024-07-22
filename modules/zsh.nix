@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  parameters,
   ...
 }: let
   inherit (pkgs.stdenv) isLinux;
@@ -38,9 +39,11 @@ in {
     in {
       inherit shellAliases initExtra;
       enable = true;
-      autosuggestion.enable = true;
       enableCompletion = true;
       enableVteIntegration = true;
+      autosuggestion.enable = true;
+      defaultKeymap = "vicmd";
+      history.path = "${parameters.home}/.zsh_history";
       syntaxHighlighting.enable = true;
       plugins = [
         {

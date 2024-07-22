@@ -27,9 +27,6 @@
         ".local/share/zoxide"
         ".local/state/nvim"
       ];
-      files = [
-        ".zsh_history"
-      ];
     };
   };
 }

@@ -42,7 +42,6 @@ in {
       enableCompletion = true;
       enableVteIntegration = true;
       autosuggestion.enable = true;
-      defaultKeymap = "vicmd";
       history.path = "${parameters.home}/.zsh_history";
       syntaxHighlighting.enable = true;
       plugins = [

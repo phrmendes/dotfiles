@@ -32,6 +32,7 @@
         [
           SchemaStore-nvim
           ansible-vim
+          better-escape-nvim
           cmp-buffer
           cmp-cmdline
           cmp-dap

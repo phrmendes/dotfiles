@@ -25,10 +25,6 @@ keys.std = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
-		opts.desc = "Exit insert mode"
-		map("i", "jj", "<esc>", opts)
-		map("i", "jk", "<esc>", opts)
-
 		opts.desc = "Move in insert mode"
 		map({ "c", "i" }, "<c-h>", "<left>", opts)
 		map({ "c", "i" }, "<c-l>", "<right>", opts)

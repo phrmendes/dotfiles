@@ -36,4 +36,11 @@ require("dial.config").augends:register_group({
 			cyclic = true,
 		}),
 	},
+	markdown = {
+		augend.constant.new({
+			elements = { "#", "##", "###", "####", "#####" },
+			word = false,
+			cyclic = true,
+		}),
+	},
 })

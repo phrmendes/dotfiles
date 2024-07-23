@@ -8,6 +8,7 @@ end)
 
 later(function()
 	require("plugins.autotag")
+	require("plugins.better-escape")
 	require("plugins.colorizer")
 	require("plugins.completion")
 	require("plugins.dap")

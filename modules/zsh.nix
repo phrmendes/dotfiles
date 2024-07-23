@@ -42,7 +42,7 @@ in {
       enableCompletion = true;
       enableVteIntegration = true;
       autosuggestion.enable = true;
-      history.path = "${parameters.home}/.zsh_history";
+      history.path = "${parameters.home}/.config/.zsh_history";
       syntaxHighlighting.enable = true;
       plugins = [
         {

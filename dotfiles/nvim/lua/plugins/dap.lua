@@ -2,7 +2,7 @@ local dap = require("dap")
 local dap_ui = require("dapui")
 local python
 
-if vim.env.VIRTUAL_ENV then
+if vim.env.VIRTUAL_ENV or vim.env.CONDA_DEFAULT_ENV then
 	python = vim.env.VIRTUAL_ENV .. "/bin/python"
 else
 	python = vim.fn.exepath("nvim-python3")

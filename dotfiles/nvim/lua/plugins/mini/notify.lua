@@ -1,7 +1,11 @@
 local notify = require("mini.notify")
 
 local filters = function(notification_array)
-	local filters = { "ltex", "file to analyze" }
+	local filters = {
+		"ltex",
+		"file to analyze",
+		"Diagnosing",
+	}
 
 	local filter_generator = function(filter)
 		return function(notification)

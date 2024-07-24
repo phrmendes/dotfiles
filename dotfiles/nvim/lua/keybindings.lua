@@ -243,6 +243,16 @@ keys.std = {
 		opts.desc = "Tags"
 		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
 	end,
+	slime = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Slime: send to terminal"
+		map("n", "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
+		map("v", "<c-c><c-c>", "<Plug>SlimeRegionSend", opts)
+
+		opts.desc = "Slime: settings"
+		map("n", "<c-c><c-s>", "<Plug>SlimeConfig", opts)
+	end,
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
@@ -250,10 +260,10 @@ keys.std = {
 		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map({ "n", "t" }, "<c-s-h>", require("smart-splits").resize_left, opts)
-		map({ "n", "t" }, "<c-s-j>", require("smart-splits").resize_down, opts)
-		map({ "n", "t" }, "<c-s-k>", require("smart-splits").resize_up, opts)
-		map({ "n", "t" }, "<c-s-l>", require("smart-splits").resize_right, opts)
+		map({ "n", "t" }, "<c-left>", require("smart-splits").resize_left, opts)
+		map({ "n", "t" }, "<c-down>", require("smart-splits").resize_down, opts)
+		map({ "n", "t" }, "<c-up>", require("smart-splits").resize_up, opts)
+		map({ "n", "t" }, "<c-right>", require("smart-splits").resize_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -281,23 +291,6 @@ keys.std = {
 
 		opts.desc = "Edit in tab"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
-	end,
-	terminal = function()
-		local opts = { noremap = true }
-		local trim_spaces = true
-
-		opts.desc = "Send line to terminal"
-		map({ "n", "i" }, "<c-c><c-c>", function()
-			require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
-		end, opts)
-
-		opts.desc = "Send lines to terminal"
-		map("v", "<c-c><c-c>", function()
-			require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
-		end, opts)
-
-		opts.desc = "Exit terminal mode"
-		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
 	end,
 	yanky = function()
 		local opts = { noremap = true, desc = "Yanky" }

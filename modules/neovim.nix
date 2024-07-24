@@ -86,7 +86,6 @@
           quarto-nvim
           refactoring-nvim
           smart-splits-nvim
-          toggleterm-nvim
           twilight-nvim
           undotree
           vim-abolish
@@ -98,6 +97,7 @@
           vim-jinja
           vim-rsi
           vim-sleuth
+          vim-slime
           yanky-nvim
           zen-mode-nvim
         ]
@@ -159,7 +159,6 @@
           terraform-ls
           texlab
           tflint
-          ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ])

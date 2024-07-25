@@ -42,6 +42,7 @@ in {
           parallel
           podman-tui
           poppler
+          postgresql
           python312
           rar
           sqlite

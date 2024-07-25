@@ -19,12 +19,12 @@
         ".gnupg"
         ".mozilla"
         ".ssh"
+        ".tmux"
         ".zotero"
-        ".local/share/atuin"
         ".local/share/keyrings"
-        ".local/share/plex"
         ".local/share/syncthing"
         ".local/share/zoxide"
+        ".local/state/nix"
         ".local/state/nvim"
       ];
     };

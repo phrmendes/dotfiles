@@ -3,7 +3,6 @@ require("lint").linters_by_ft = {
 	go = { "golangcilint" },
 	jinja = { "djlint" },
 	sh = { "shellcheck" },
-	sql = { "sqlfluff" },
 	template = { "djlint" },
 	terraform = { "tflint" },
 }

@@ -26,6 +26,7 @@ in {
         ps = getExe procs;
         sed = getExe gnused;
         t = getExe tmux;
+        tn = ''tmux new -s "$(pwd | sed 's/.*\///g')"'';
         top = getExe btop;
         untar = "tar -xvf";
         untargz = "tar -xzf";

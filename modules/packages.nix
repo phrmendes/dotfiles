@@ -44,6 +44,7 @@ in {
           poppler
           postgresql
           python312
+          quarto
           rar
           sqlite
           terraform
@@ -72,7 +73,6 @@ in {
           phockup
           pop-launcher
           qalculate-gtk
-          quarto
           quickemu
           syncthingtray
           tectonic

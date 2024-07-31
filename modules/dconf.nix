@@ -13,7 +13,7 @@
           favorite-apps = [
             "org.gnome.Nautilus.desktop"
             "firefox.desktop"
-            "kitty.desktop"
+            "org.wezfurlong.wezterm.desktop"
             "obsidian.desktop"
             "bitwarden.desktop"
           ];
@@ -87,7 +87,7 @@
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<Super>t";
-          command = "kitty";
+          command = "wezterm";
           name = "Terminal";
         };
         "org/gnome/shell/extensions/espresso" = {

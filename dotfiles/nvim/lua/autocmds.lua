@@ -68,6 +68,15 @@ autocmd("FileType", {
 	end,
 })
 
+autocmd("FileType", {
+	desc = "Scala LSP settings",
+	pattern = { "scala", "sbt", "java" },
+	group = augroups.filetype,
+	callback = function()
+		require("metals").initialize_or_attach(require("plugins.lsp.metals"))
+	end,
+})
+
 autocmd("User", {
 	desc = "Set border for mini files window",
 	group = augroups.mini,

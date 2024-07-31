@@ -148,9 +148,12 @@
           impl
           ltex-ls
           lua-language-server
+          metals
           neovim-remote
           nil
           ruff
+          scalafix
+          scalafmt
           shellcheck
           shellharden
           sqlfluff
@@ -159,6 +162,7 @@
           terraform-ls
           texlab
           tflint
+          ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ])

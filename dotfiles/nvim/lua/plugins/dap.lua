@@ -24,6 +24,26 @@ for type, icon in pairs(dap_signs) do
 end
 
 dap_ui.setup()
+
 dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
 dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close
 dap.listeners.before.event_exited["dapui_config"] = dap_ui.close
+
+dap.configurations.scala = {
+	{
+		type = "scala",
+		request = "launch",
+		name = "RunOrTest",
+		metals = {
+			runType = "runOrTestFile",
+		},
+	},
+	{
+		type = "scala",
+		request = "launch",
+		name = "Test Target",
+		metals = {
+			runType = "testTarget",
+		},
+	},
+}

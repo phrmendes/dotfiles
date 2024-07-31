@@ -256,14 +256,14 @@ keys.std = {
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
-		map({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map({ "n", "t" }, "<c-left>", require("smart-splits").resize_left, opts)
-		map({ "n", "t" }, "<c-down>", require("smart-splits").resize_down, opts)
-		map({ "n", "t" }, "<c-up>", require("smart-splits").resize_up, opts)
-		map({ "n", "t" }, "<c-right>", require("smart-splits").resize_right, opts)
+		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map("n", "<c-s-h>", require("smart-splits").resize_left, opts)
+		map("n", "<c-s-j>", require("smart-splits").resize_down, opts)
+		map("n", "<c-s-k>", require("smart-splits").resize_up, opts)
+		map("n", "<c-s-l>", require("smart-splits").resize_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -545,6 +545,11 @@ keys.ft = {
 
 		opts.desc = " Debug selection"
 		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
+	end,
+	scala = function(event)
+		keys.dap(event)
+		keys.neogen(event)
+		keys.refactoring(event)
 	end,
 	quarto = function(event)
 		keys.writing(event)

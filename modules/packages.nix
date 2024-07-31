@@ -60,6 +60,7 @@ in {
         (with pkgs; [
           bitwarden
           chromium
+          coursier
           curtail
           drawing
           droidcam

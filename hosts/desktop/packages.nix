@@ -5,6 +5,7 @@
       wl-clipboard
       xclip
       xdg-utils
+      kdePackages.polkit-kde-agent-1
     ];
   };
 }

@@ -56,47 +56,35 @@ in {
         ++ (with pkgs.nodePackages_latest; [
           nodejs
         ]);
-      linux =
-        (with pkgs; [
-          bitwarden
-          chromium
-          coursier
-          curtail
-          drawing
-          droidcam
-          evince
-          firefox
-          hugo
-          inkscape
-          libreoffice
-          mupdf
-          obsidian
-          phockup
-          pop-launcher
-          qalculate-gtk
-          quickemu
-          syncthingtray
-          tectonic
-          transmission
-          vagrant
-          ventoy
-          vlc
-          zotero
-        ])
-        ++ (with pkgs.gnome; [
-          file-roller
-          gnome-screenshot
-          gnome-tweaks
-          nautilus
-        ])
-        ++ (with pkgs.gnomeExtensions; [
-          alphabetical-app-grid
-          appindicator
-          espresso
-          pop-shell
-          sound-output-device-chooser
-          user-themes
-        ]);
+      linux = with pkgs; [
+        bitwarden
+        chromium
+        coursier
+        curtail
+        drawing
+        droidcam
+        evince
+        firefox
+        gcolor3
+        hugo
+        inkscape
+        libreoffice
+        mupdf
+        obsidian
+        pavucontrol
+        phockup
+        pop-launcher
+        qalculate-gtk
+        quickemu
+        swaybg
+        syncthingtray
+        tectonic
+        transmission
+        vagrant
+        ventoy
+        vlc
+        zotero
+      ];
       darwin = with pkgs; let
         az =
           azure-cli.withExtensions

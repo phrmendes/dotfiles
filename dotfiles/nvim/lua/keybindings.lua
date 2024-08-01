@@ -260,10 +260,10 @@ keys.std = {
 		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-s-h>", require("smart-splits").resize_left, opts)
-		map("n", "<c-s-j>", require("smart-splits").resize_down, opts)
-		map("n", "<c-s-k>", require("smart-splits").resize_up, opts)
-		map("n", "<c-s-l>", require("smart-splits").resize_right, opts)
+		map("n", "<c-left>", require("smart-splits").resize_left, opts)
+		map("n", "<c-down>", require("smart-splits").resize_down, opts)
+		map("n", "<c-up>", require("smart-splits").resize_up, opts)
+		map("n", "<c-right>", require("smart-splits").resize_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }

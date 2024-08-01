@@ -6,9 +6,23 @@
   programs = {
     dconf.enable = true;
     fuse.userAllowOther = true;
+    kdeconnect.enable = true;
     seahorse.enable = true;
     virt-manager.enable = true;
     zsh.enable = true;
+
+    hyprland = {
+      enable = true;
+      package = pkgs.hyprland;
+    };
+
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
 
     nh = {
       enable = true;
@@ -17,11 +31,6 @@
         enable = true;
         extraArgs = "--keep-since 3d --keep 3";
       };
-    };
-
-    kdeconnect = {
-      enable = true;
-      package = pkgs.gnomeExtensions.gsconnect;
     };
 
     gnupg.agent = {

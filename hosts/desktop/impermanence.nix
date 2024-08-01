@@ -19,13 +19,13 @@
         ".gnupg"
         ".mozilla"
         ".ssh"
+        ".tmux"
         ".zotero"
         ".local/share/keyrings"
         ".local/share/syncthing"
         ".local/share/zoxide"
         ".local/state/nix"
         ".local/state/nvim"
-        ".local/state/wezterm"
       ];
     };
   };

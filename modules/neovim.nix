@@ -28,8 +28,8 @@
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;
-      plugins = with pkgs.vimPlugins;
-        [
+      plugins =
+        (with pkgs.vimPlugins; [
           SchemaStore-nvim
           ansible-vim
           better-escape-nvim
@@ -51,14 +51,11 @@
           executor-nvim
           friendly-snippets
           fzfWrapper
-          gopher-nvim
           image-nvim
-          kulala-nvim
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
           luasnip
-          luasnip-latex-snippets
           markdown-nvim
           markdown-preview-nvim
           mini-nvim
@@ -101,6 +98,11 @@
           vim-slime
           yanky-nvim
           zen-mode-nvim
+        ])
+        ++ [
+          kulala-nvim
+          gopher-nvim
+          luasnip-latex-snippets
         ]
         ++ lib.optionals isLinux [
           cmp-zotcite
@@ -151,7 +153,7 @@
           lua-language-server
           metals
           neovim-remote
-          nil
+          nixd
           ruff
           scalafix
           scalafmt

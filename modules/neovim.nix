@@ -75,6 +75,7 @@
           nvim-dap-virtual-text
           nvim-lint
           nvim-lspconfig
+          nvim-metals
           nvim-pqf
           nvim-treesitter-context
           nvim-treesitter-textobjects

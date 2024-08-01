@@ -1,7 +1,7 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local borders = require("utils").borders
-local default_max_item_count = 5
+local default_max_item_count = 10
 
 require("cmp_pandoc").setup({
 	crossref = { enable_nabla = true },

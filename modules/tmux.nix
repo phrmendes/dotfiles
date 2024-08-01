@@ -80,19 +80,19 @@
         set-window-option -g window-status-format         '${status_bar}'
         set-window-option -g window-status-current-format '#[bold]${status_bar}#[nobold]'
 
-        bind Enter   rotate-window
-        bind ':'     command-prompt
-        bind '-'     split-window -v -c '#{pane_current_path}'
-        bind '\'     split-window -h -c '#{pane_current_path}'
-        bind G       last-window
-        bind Q       kill-window
-        bind d       detach-client
-        bind k       kill-session
-        bind n       new-window
-        bind p       paste-buffer
-        bind q       kill-pane
-        bind y       copy-mode
-        bind z       resize-pane -Z
+        bind Enter rotate-window
+        bind ':'   command-prompt
+        bind '-'   split-window -v -c '#{pane_current_path}'
+        bind '\'   split-window -h -c '#{pane_current_path}'
+        bind G     last-window
+        bind Q     kill-window
+        bind d     detach-client
+        bind k     kill-session
+        bind n     new-window
+        bind p     paste-buffer
+        bind q     kill-pane
+        bind y     copy-mode
+        bind z     resize-pane -Z
 
         bind -r '>' next-layout
         bind -r '<' previous-layout

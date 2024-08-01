@@ -6,6 +6,6 @@ config.settings = {
 }
 
 config.init_options.statusBarProvider = "off"
-config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+config.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 return config

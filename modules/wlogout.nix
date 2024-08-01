@@ -34,28 +34,10 @@
           keybind = "s";
         }
         {
-          label = "suspend";
-          action = "systemctl suspend";
-          text = "Suspend (z)";
-          keybind = "z";
-        }
-        {
           label = "reboot";
           action = "systemctl reboot";
           text = "Reboot (r)";
           keybind = "r";
-        }
-        {
-          label = "logout";
-          action = "loginctl terminate-session $USER";
-          text = "Logout (o)";
-          keybind = "o";
-        }
-        {
-          label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate (h)";
-          keybind = "h";
         }
       ];
       style = ''
@@ -83,9 +65,6 @@
 
         ${lib.concatMapStringsSep "\n" image [
           "lock"
-          "logout"
-          "suspend"
-          "hibernate"
           "shutdown"
           "reboot"
         ]}

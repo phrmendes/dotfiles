@@ -61,6 +61,7 @@ in {
         chromium
         coursier
         curtail
+        deluge
         drawing
         droidcam
         evince
@@ -73,13 +74,10 @@ in {
         obsidian
         pavucontrol
         phockup
-        pop-launcher
         qalculate-gtk
         quickemu
-        swaybg
         syncthingtray
         tectonic
-        transmission
         vagrant
         ventoy
         vlc

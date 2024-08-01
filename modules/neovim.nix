@@ -9,16 +9,12 @@
 
   config = lib.mkIf config.neovim.enable {
     programs.neovim = let
-      inherit (pkgs.stdenv) isLinux;
       fromGitHub = pname: src:
         pkgs.vimUtils.buildVimPlugin {
           inherit src pname;
           version = src.rev;
         };
-      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
-      gopher-nvim = fromGitHub "gopher.nvim" inputs.gopher-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      zotcite = fromGitHub "zotcite" inputs.zotcite;
       kulala-nvim = fromGitHub "kulala.nvim" inputs.kulala-nvim;
     in {
       enable = true;
@@ -43,11 +39,11 @@
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
-          conform-nvim
           copilot-cmp
           copilot-lua
           dial-nvim
           dressing-nvim
+          efmls-configs-nvim
           executor-nvim
           friendly-snippets
           fzfWrapper
@@ -66,11 +62,9 @@
           nvim-cmp
           nvim-colorizer-lua
           nvim-dap
-          nvim-dap-go
           nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
-          nvim-lint
           nvim-lspconfig
           nvim-metals
           nvim-pqf
@@ -101,12 +95,7 @@
         ])
         ++ [
           kulala-nvim
-          gopher-nvim
           luasnip-latex-snippets
-        ]
-        ++ lib.optionals isLinux [
-          cmp-zotcite
-          zotcite
         ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
@@ -119,10 +108,7 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
-          poppler-qt5
           pynvim
-          pyqt5
-          pyyaml
         ];
       extraPackages =
         (with pkgs; [
@@ -133,22 +119,14 @@
           basedpyright
           bash-language-server
           delve
-          djlint
           dockerfile-language-server-nodejs
           dot-language-server
+          efm-langserver
+          efm-langserver
           emmet-language-server
-          gofumpt
-          goimports-reviser
-          golangci-lint
-          golines
-          gomodifytags
-          gopls
-          gotests
           hadolint
           helm-ls
-          iferr
           imagemagick
-          impl
           ltex-ls
           lua-language-server
           metals

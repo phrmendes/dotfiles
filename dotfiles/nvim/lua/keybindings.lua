@@ -496,25 +496,6 @@ keys.writing = function(event)
 end
 
 keys.ft = {
-	go = function(event)
-		keys.dap(event)
-		keys.neogen(event)
-		keys.refactoring(event)
-
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = " Debug test"
-		map("n", "<localleader>t", require("dap-go").debug_test, opts)
-
-		opts.desc = " Debug last test"
-		map("n", "<localleader>T", require("dap-go").debug_last_test, opts)
-
-		opts.desc = " Add json struct tags"
-		map("n", "<leader>j", "<cmd>GoTagAdd json<cr>", opts)
-
-		opts.desc = " Add yaml struct tags"
-		map("n", "<leader>y", "<cmd>GoTagAdd yaml<cr>", opts)
-	end,
 	http = function()
 		local opts = { noremap = true, silent = true }
 

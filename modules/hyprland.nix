@@ -16,7 +16,7 @@
       powermenu = getExe pkgs.wlogout;
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
-      rofi = getExe pkgs.rofi-wayland;
+      rofi = "rofi -theme gruvbox-dark";
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
       polkit = "${pkgs.kdePackages.polkit-kde-agent-1}/bin/polkit-kde-agent-1";
@@ -121,6 +121,8 @@
             "SUPER,escape,exec,${powermenu}"
             "SUPER,return,exec,${kitty}"
             "SUPER,space,exec,${rofi} -show drun"
+            "SUPER,W,exec,${rofi} -show window"
+            "SUPER,B,exec,${rofi} -show recursivebrowser"
             "SUPER SHIFT,T,exec,${dunstctl} set-paused toggle"
             '',print,exec,${grim} -g "$(${slurp})" - | ${satty} --filename -''
             "SUPER,F,togglefloating"

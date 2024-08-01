@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local borders = require("utils").borders
-local default_max_item_count = 10
 
 require("cmp_pandoc").setup({
 	crossref = { enable_nabla = true },
@@ -69,13 +68,13 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 10 },
-		{ name = "nvim_lsp_signature_help", max_item_count = default_max_item_count },
-		{ name = "luasnip", max_item_count = default_max_item_count },
-		{ name = "path", max_item_count = default_max_item_count },
-		{ name = "emoji", max_item_count = default_max_item_count },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "luasnip" },
+		{ name = "path" },
+		{ name = "emoji" },
 	}, {
 		{ name = "copilot" },
-		{ name = "buffer", max_item_count = default_max_item_count },
+		{ name = "buffer" },
 	}),
 	window = {
 		completion = borders,
@@ -87,15 +86,15 @@ cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	matching = { disallow_symbol_nonprefix_matching = false },
 	sources = cmp.config.sources({
-		{ name = "cmdline", max_item_count = default_max_item_count },
-		{ name = "path", max_item_count = default_max_item_count },
+		{ name = "cmdline" },
+		{ name = "path" },
 	}),
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{ name = "buffer", max_item_count = default_max_item_count },
+		{ name = "buffer" },
 	},
 })
 
@@ -103,25 +102,25 @@ cmp.setup.filetype("sql", {
 	sources = cmp.config.sources({
 		{ name = "vim-dadbod-completion" },
 	}, {
-		{ name = "buffer", max_item_count = default_max_item_count },
+		{ name = "buffer" },
 	}),
 })
 
 cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 	sources = {
-		{ name = "dap", max_item_count = default_max_item_count },
+		{ name = "dap" },
 	},
 })
 
 cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
-		{ name = "cmp_pandoc", max_item_count = default_max_item_count },
-		{ name = "cmp_zotcite", max_item_count = default_max_item_count },
-		{ name = "luasnip", max_item_count = default_max_item_count },
-		{ name = "latex_symbols", option = { strategy = 2 }, max_item_count = default_max_item_count },
-		{ name = "path", max_item_count = default_max_item_count },
-		{ name = "emoji", max_item_count = default_max_item_count },
+		{ name = "cmp_pandoc" },
+		{ name = "cmp_zotcite" },
+		{ name = "luasnip" },
+		{ name = "latex_symbols", option = { strategy = 2 } },
+		{ name = "path" },
+		{ name = "emoji" },
 	}, {
-		{ name = "buffer", max_item_count = default_max_item_count },
+		{ name = "buffer" },
 	}),
 })

@@ -42,10 +42,16 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd({ "BufWritePost" }, {
-	desc = "Lint file",
-	callback = function()
-		require("lint").try_lint()
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = augroups.lsp.format,
+	callback = function(event)
+		local efm = vim.lsp.get_clients({ name = "efm", bufnr = event.buf })
+
+		if vim.tbl_isempty(efm) then
+			return
+		end
+
+		vim.lsp.buf.format({ name = "efm" })
 	end,
 })
 
@@ -73,7 +79,7 @@ autocmd("FileType", {
 	pattern = { "scala", "sbt", "java" },
 	group = augroups.filetype,
 	callback = function()
-		require("metals").initialize_or_attach(require("plugins.lsp.metals"))
+		require("metals").initialize_or_attach(require("plugins.metals"))
 	end,
 })
 

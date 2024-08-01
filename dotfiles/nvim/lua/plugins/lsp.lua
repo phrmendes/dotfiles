@@ -1,8 +1,50 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local alejandra = require("efmls-configs.formatters.alejandra")
+local hadolint = require("efmls-configs.linters.hadolint")
+local prettier = require("efmls-configs.formatters.prettier")
+local ruff = require("efmls-configs.linters.ruff")
+local shellcheck = require("efmls-configs.linters.shellcheck")
+local shellharden = require("efmls-configs.formatters.shellharden")
+local sqlfluff = require("efmls-configs.linters.sqlfluff")
+local stylua = require("efmls-configs.formatters.stylua")
+local taplo = require("efmls-configs.formatters.taplo")
+local terraform_fmt = require("efmls-configs.formatters.terraform_fmt")
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
 
 local handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, require("utils").borders),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, require("utils").borders),
+}
+
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
+
+local languages = {
+	nix = { alejandra },
+	dockerfile = { hadolint },
+	markdown = { prettier },
+	json = { prettier },
+	yaml = { prettier },
+	css = { prettier },
+	scss = { prettier },
+	html = { prettier },
+	sh = { shellcheck, shellharden },
+	python = { ruff },
+	toml = { taplo },
+	lua = { stylua },
+	terraform = { terraform_fmt },
+	sql = { sqlfluff },
 }
 
 local servers = {
@@ -20,10 +62,16 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	gopls = {
-		on_attach = function()
-			require("gopher").setup()
-		end,
+	efm = {
+		filetypes = vim.tbl_keys(languages),
+		settings = {
+			rootMarkers = { ".git/" },
+			languages = languages,
+		},
+		init_options = {
+			documentFormatting = true,
+			documentRangeFormatting = true,
+		},
 	},
 	helm_ls = {
 		settings = {

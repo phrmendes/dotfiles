@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   virtualisation = {
-    containers.cdi.dynamic.nvidia.enable = true;
     libvirtd = {
       enable = true;
       qemu = {

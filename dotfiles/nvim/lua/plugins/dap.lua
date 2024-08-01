@@ -8,7 +8,6 @@ else
 	python = vim.fn.exepath("nvim-python3")
 end
 
-require("dap-go").setup()
 require("dap-python").setup(python)
 require("nvim-dap-virtual-text").setup()
 

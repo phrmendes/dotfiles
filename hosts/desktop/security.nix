@@ -3,16 +3,15 @@
     rtkit.enable = true;
     polkit.enable = true;
     sudo.enable = false;
-
     sudo-rs = {
       enable = true;
       execWheelOnly = true;
     };
-
     pam = {
       services = {
-        sddm = {
-          kwallet.enable = true;
+        swaylock = {};
+        greetd = {
+          enableGnomeKeyring = true;
           gnupg.enable = true;
         };
       };

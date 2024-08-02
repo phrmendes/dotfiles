@@ -40,35 +40,37 @@
           keybind = "r";
         }
       ];
-      style = ''
-        * {
-            background: none;
-        }
+      style =
+        (with config.lib.stylix.colors.withHashtag; ''
+          * {
+              background: none;
+          }
 
-        window {
-            color: #${config.lib.stylix.colors.base07};
-            background-color: #${config.lib.stylix.colors.base00};
-        }
+          window {
+              color: ${base07};
+              background-color: ${base00};
+          }
 
-        button {
-            color: #${config.lib.stylix.colors.base07};
-            background-color: #${config.lib.stylix.colors.base00};
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 25%;
-        }
+          button {
+              color: ${base07};
+              background-color: ${base00};
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 25%;
+          }
 
-        button:focus, button:active, button:hover {
-            background-color: #${config.lib.stylix.colors.base03};
-            outline-style: none;
-        }
-
-        ${lib.concatMapStringsSep "\n" image [
-          "lock"
-          "shutdown"
-          "reboot"
-        ]}
-      '';
+          button:focus, button:active, button:hover {
+              background-color: ${base03};
+              outline-style: none;
+          }
+        '')
+        + ''
+          ${lib.concatMapStringsSep "\n" image [
+            "lock"
+            "shutdown"
+            "reboot"
+          ]}
+        '';
     };
   };
 }

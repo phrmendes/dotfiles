@@ -25,12 +25,12 @@ in {
         lg = getExe pkgs.lazygit;
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
-        t = getExe pkgs.tmux;
-        tn = ''${t} new -s "$(pwd | sed 's/.*\///g')"'';
         top = getExe pkgs.btop;
         untar = "tar -xvf";
         untargz = "tar -xzf";
         v = "nvim";
+        zz = getExe pkgs.zellij;
+        za = ''${zz} attach --create "$(pwd | sed 's/.*\///g')"'';
       };
       desktop = {
         dpct = "duplicati-cli";

@@ -21,12 +21,12 @@
           calendar = {
             mode = "month";
             on-scroll = 1;
-            format = {
-              months = ''<span color="#${config.lib.stylix.colors.base04}"><b>{}</b></span>'';
-              days = ''<span color="#${config.lib.stylix.colors.base04}"><b>{}</b></span>'';
-              weeks = ''<span color="#${config.lib.stylix.colors.base04}"><b>W{}</b></span>'';
-              weekdays = ''<span color="#${config.lib.stylix.colors.base04}"><b>{}</b></span>'';
-              today = ''<span color="#${config.lib.stylix.colors.base08}"><b><u>{}</u></b></span>'';
+            format = with config.lib.stylix.colors.withHashtag; {
+              today = ''<span color="${base08}"><b><u>{}</u></b></span>'';
+              days = ''<span color="${base04}"><b>{}</b></span>'';
+              weekdays = ''<span color="${base04}"><b>{}</b></span>'';
+              weeks = ''<span color="${base04}"><b>W{}</b></span>'';
+              months = ''<span color="${base04}"><b>{}</b></span>'';
             };
           };
           actions = {

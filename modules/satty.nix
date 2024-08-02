@@ -14,22 +14,20 @@
       slurp
     ];
 
-    xdg.configFile = {
-      "satty/config.toml".text =
-        /*
-        toml
-        */
-        ''
-          [general]
-          fullscreen = true
-          early-exit = true
-          initial-tool = "brush"
-          copy-command = "wl-copy"
-          annotation-size-factor = 2
-          output-filename = "${parameters.home}/Pictures/screenshot-%Y%m%d%H%M%S.png"
-          save-after-copy = false
-          default-hide-toolbars = false
-        '';
-    };
+    home.file."satty/config.toml".text =
+      /*
+      toml
+      */
+      ''
+        [general]
+        fullscreen = true
+        early-exit = true
+        initial-tool = "brush"
+        copy-command = "wl-copy"
+        annotation-size-factor = 2
+        output-filename = "${parameters.home}/Pictures/screenshot-%Y%m%d%H%M%S.png"
+        save-after-copy = false
+        default-hide-toolbars = false
+      '';
   };
 }

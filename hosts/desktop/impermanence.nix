@@ -19,7 +19,6 @@
         ".gnupg"
         ".mozilla"
         ".ssh"
-        ".tmux"
         ".zotero"
         ".local/share/keyrings"
         ".local/share/syncthing"

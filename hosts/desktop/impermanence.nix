@@ -14,17 +14,20 @@
         "Projects"
         "Videos"
         "Zotero"
-        "go"
         ".config"
         ".gnupg"
         ".mozilla"
         ".ssh"
         ".zotero"
+        ".cache/zellij"
         ".local/share/keyrings"
+        ".local/share/nvim"
         ".local/share/syncthing"
         ".local/share/zoxide"
+        ".local/state/lazygit"
         ".local/state/nix"
         ".local/state/nvim"
+        ".local/state/wireplumber"
       ];
     };
   };

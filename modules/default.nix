@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./bat.nix
+    ./blueman-applet.nix
     ./btop.nix
     ./copyq.nix
     ./direnv.nix
@@ -20,21 +21,22 @@
     ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
+    ./nm-applet.nix
     ./packages.nix
+    ./pasystray.nix
     ./pyenv.nix
     ./ripgrep.nix
     ./rofi.nix
     ./satty.nix
     ./starship.nix
     ./swaylock.nix
-    ./swayosd.nix
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
     ./udiskie.nix
     ./waybar.nix
-    ./wlogout.nix
     ./yazi.nix
+    ./zathura.nix
     ./zellij.nix
     ./zoxide.nix
     ./zsh.nix

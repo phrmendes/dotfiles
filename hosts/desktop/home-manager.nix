@@ -12,6 +12,7 @@
     users.${parameters.user} = {
       imports = [../../modules];
 
+      blueman-applet.enable = true;
       btop.enable = true;
       copyq.enable = true;
       dunst.enable = true;
@@ -19,14 +20,15 @@
       gtk-settings.enable = true;
       hyprland.enable = true;
       hyprpaper.enable = true;
+      network-manager-applet.enable = true;
+      pasystray.enable = true;
       rofi.enable = true;
       satty.enable = true;
       swaylock.enable = true;
-      swayosd.enable = true;
       targets.enable = true;
       udiskie.enable = true;
-      wlogout.enable = true;
       waybar.enable = true;
+      zathura.enable = true;
 
       xdg.desktopEntries = {
         obsidian = {

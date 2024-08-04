@@ -42,19 +42,14 @@
       enable = true;
       package = pkgs.nix-ld-rs;
       libraries = with pkgs; [
-        cairo
         curl
-        dbus
-        freetype
-        fuse3
-        glib
-        glibc
-        icu
-        libuuid
-        mesa
         openssl
+        readline
+        sqlite
         stdenv.cc.cc
-        vulkan-loader
+        tk
+        xz
+        zlib
       ];
     };
   };

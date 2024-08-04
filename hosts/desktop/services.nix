@@ -44,13 +44,16 @@
       };
     };
 
-    greetd = {
+    greetd = let
+      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+      hyprland = "${pkgs.hyprland}/bin/Hyprland";
+    in {
       enable = true;
       settings = rec {
         default_session = initial_session;
         initial_session = {
           inherit (parameters) user;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${pkgs.hyprland}/bin/Hyprland";
+          command = "${tuigreet} --time --remember --asterisks --cmd ${hyprland}";
         };
       };
     };

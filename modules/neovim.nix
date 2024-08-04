@@ -118,10 +118,8 @@
           autotools-language-server
           basedpyright
           bash-language-server
-          delve
           dockerfile-language-server-nodejs
           dot-language-server
-          efm-langserver
           efm-langserver
           emmet-language-server
           hadolint

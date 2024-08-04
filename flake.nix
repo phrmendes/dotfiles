@@ -11,8 +11,8 @@
   };
 
   inputs = {
-    impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
 
     darwin = {
@@ -77,6 +77,10 @@
         home = "/home/${user}";
         system = "x86_64-linux";
         device = "/dev/sdc";
+        monitors = {
+          primary = "HDMI-A-1";
+          secondary = "DP-1";
+        };
       };
       pkgs = import nixpkgs {
         inherit (parameters) system;

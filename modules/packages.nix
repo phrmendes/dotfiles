@@ -46,7 +46,6 @@ in {
           python312
           quarto
           rar
-          sqlite
           terraform
           tokei
           unar
@@ -64,14 +63,14 @@ in {
         deluge
         drawing
         droidcam
-        evince
         firefox
         gcolor3
         hugo
         inkscape
         libreoffice
-        mupdf
+        networkmanagerapplet
         obsidian
+        pamixer
         pavucontrol
         phockup
         qalculate-gtk
@@ -91,6 +90,7 @@ in {
         kubelogin
         maven
         pngpaste
+        sqlite
         terragrunt
         az
       ];

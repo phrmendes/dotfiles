@@ -14,7 +14,7 @@
       slurp
     ];
 
-    home.file."satty/config.toml".text =
+    home.file.".config/satty/config.toml".text =
       /*
       toml
       */

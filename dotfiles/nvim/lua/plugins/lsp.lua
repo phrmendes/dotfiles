@@ -30,7 +30,6 @@ local servers = {
 	emmet_language_server = {},
 	html = {},
 	nixd = {},
-	ruff = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},

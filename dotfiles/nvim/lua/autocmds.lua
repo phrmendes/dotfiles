@@ -42,16 +42,17 @@ autocmd("LspAttach", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
+autocmd({ "BufWritePost" }, {
+	group = augroups.lsp.lint,
+	callback = function()
+		require("lint").try_lint()
+	end,
+})
+
+autocmd("BufWritePost", {
 	group = augroups.lsp.format,
 	callback = function(event)
-		local efm = vim.lsp.get_clients({ name = "efm", bufnr = event.buf })
-
-		if vim.tbl_isempty(efm) then
-			return
-		end
-
-		vim.lsp.buf.format({ name = "efm" })
+		require("conform").format({ bufnr = event.buf })
 	end,
 })
 

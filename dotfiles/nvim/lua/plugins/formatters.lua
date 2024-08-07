@@ -1,0 +1,15 @@
+require("conform").formatters_by_ft = {
+	css = { "prettier" },
+	html = { "prettier" },
+	json = { "prettier" },
+	lua = { "stylua" },
+	markdown = { "prettier" },
+	nix = { "alejandra" },
+	python = { "ruff" },
+	scss = { "prettier" },
+	sh = { "shellharden" },
+	sql = { "sqlfluff" },
+	terraform = { "terraform_fmt" },
+	toml = { "taplo" },
+	yaml = { "prettier" },
+}

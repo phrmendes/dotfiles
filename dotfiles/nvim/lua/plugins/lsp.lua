@@ -1,14 +1,3 @@
-local alejandra = require("efmls-configs.formatters.alejandra")
-local hadolint = require("efmls-configs.linters.hadolint")
-local prettier = require("efmls-configs.formatters.prettier")
-local ruff = require("efmls-configs.formatters.ruff")
-local shellcheck = require("efmls-configs.linters.shellcheck")
-local shellharden = require("efmls-configs.formatters.shellharden")
-local sqlfluff = require("efmls-configs.linters.sqlfluff")
-local stylua = require("efmls-configs.formatters.stylua")
-local taplo = require("efmls-configs.formatters.taplo")
-local terraform_fmt = require("efmls-configs.formatters.terraform_fmt")
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
 
@@ -30,23 +19,6 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-local languages = {
-	nix = { alejandra },
-	dockerfile = { hadolint },
-	markdown = { prettier },
-	json = { prettier },
-	yaml = { prettier },
-	css = { prettier },
-	scss = { prettier },
-	html = { prettier },
-	sh = { shellcheck, shellharden },
-	python = { ruff },
-	toml = { taplo },
-	lua = { stylua },
-	terraform = { terraform_fmt },
-	sql = { sqlfluff },
-}
-
 local servers = {
 	ansiblels = {},
 	autotools_ls = {},
@@ -62,17 +34,6 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	efm = {
-		filetypes = vim.tbl_keys(languages),
-		settings = {
-			rootMarkers = { ".git/" },
-			languages = languages,
-		},
-		init_options = {
-			documentFormatting = true,
-			documentRangeFormatting = true,
-		},
-	},
 	helm_ls = {
 		settings = {
 			["helm-ls"] = {

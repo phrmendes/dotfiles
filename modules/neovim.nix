@@ -39,11 +39,11 @@
           cmp-pandoc-nvim
           cmp-path
           cmp_luasnip
+          conform-nvim
           copilot-cmp
           copilot-lua
           dial-nvim
           dressing-nvim
-          efmls-configs-nvim
           executor-nvim
           friendly-snippets
           fzfWrapper
@@ -65,6 +65,7 @@
           nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
+          nvim-lint
           nvim-lspconfig
           nvim-metals
           nvim-pqf
@@ -120,7 +121,6 @@
           bash-language-server
           dockerfile-language-server-nodejs
           dot-language-server
-          efm-langserver
           emmet-language-server
           hadolint
           helm-ls

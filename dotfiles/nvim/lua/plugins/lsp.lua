@@ -31,6 +31,7 @@ local servers = {
 	html = {},
 	nixd = {},
 	ruff = {},
+	sqls = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},

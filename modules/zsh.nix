@@ -25,12 +25,13 @@ in {
         lg = getExe pkgs.lazygit;
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
+        tar = getExe pkgs.gnutar;
         top = getExe pkgs.btop;
-        untar = "tar -xvf";
-        untargz = "tar -xzf";
+        untar = "${tar} -xvf";
+        untargz = "${tar} -xzf";
         v = "nvim";
-        zz = getExe pkgs.zellij;
         za = ''${zz} attach --create "$(pwd | sed 's/.*\///g')"'';
+        zz = getExe pkgs.zellij;
       };
       desktop = {
         dpct = "duplicati-cli";

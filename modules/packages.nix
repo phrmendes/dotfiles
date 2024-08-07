@@ -12,7 +12,9 @@ in {
     home.packages = let
       common =
         (with pkgs; [
+          age
           ansible
+          atac
           cachix
           coreutils-full
           csvlens
@@ -37,17 +39,17 @@ in {
           kubernetes-helm
           libxml2
           mongosh
-          opentofu
           pandoc
           parallel
           podman-tui
           poppler
+          portal
           postgresql
           python312
           quarto
           rar
+          sshs
           terraform
-          tokei
           unar
           wget
           zip

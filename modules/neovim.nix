@@ -136,12 +136,12 @@
           shellcheck
           shellharden
           sqlfluff
+          sqls
           stylua
           taplo
           terraform-ls
           texlab
           tflint
-          ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ])

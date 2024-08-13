@@ -30,8 +30,8 @@ in {
         untar = "${tar} -xvf";
         untargz = "${tar} -xzf";
         v = "nvim";
-        za = ''${zz} attach --create "$(pwd | sed 's/.*\///g')"'';
-        zz = getExe pkgs.zellij;
+        t = getExe pkgs.tmux;
+        ta = ''${t} new -s "$(pwd | sed 's/.*\///g')"'';
       };
       desktop = {
         dpct = "duplicati-cli";

@@ -9,12 +9,12 @@
   config = lib.mkIf config.rofi.enable {
     programs.rofi = let
       inherit (lib) getExe;
-      kitty = getExe pkgs.kitty;
+      wezterm = getExe pkgs.wezterm;
     in {
       enable = true;
       package = pkgs.rofi-wayland;
-      terminal = "${kitty}";
-      font = lib.mkForce "JetBrainsMono Nerd Font 14";
+      terminal = "${wezterm}";
+      font = lib.mkForce "${config.stylix.fonts.monospace.name} 14";
       extraConfig = {
         display-drun = " 󰀻 ";
         display-recursivebrowser = "  ";

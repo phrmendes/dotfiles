@@ -18,7 +18,6 @@
     ./gtk.nix
     ./hyprland.nix
     ./hyprpaper.nix
-    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -33,11 +32,12 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
+    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
+    ./wezterm.nix
     ./yazi.nix
     ./zathura.nix
-    ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -48,7 +48,6 @@
   fzf.enable = lib.mkDefault true;
   gh.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
-  kitty.enable = lib.mkDefault true;
   lazygit.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
@@ -56,8 +55,9 @@
   starship.enable = lib.mkDefault true;
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
+  tmux.enable = lib.mkDefault true;
+  wezterm.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
-  zellij.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
 

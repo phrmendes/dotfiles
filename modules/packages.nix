@@ -50,6 +50,7 @@ in {
           rar
           sshs
           terraform
+          ueberzugpp
           unar
           wget
           zip

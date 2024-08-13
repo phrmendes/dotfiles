@@ -1,11 +1,11 @@
 local target, config
 
-if vim.env.ZELLIJ then
-	target = "zellij"
-	config = { session_id = "current", relative_pane = "right" }
+if vim.env.TMUX then
+	target = "tmux"
+	config = { socket_name = "default", target_pane = "{last}" }
 else
-	target = "kitty"
-	config = { listen_on = os.getenv("KITTY_LISTEN_ON"), window_id = 2 }
+	target = "wezterm"
+	config = { pane_direction = "right" }
 end
 
 vim.g.slime_bracketed_paste = 1

@@ -72,6 +72,9 @@ keys.std = {
 
 		opts.desc = "Quickfix"
 		map("n", "<leader>x", "<cmd>copen<cr>", opts)
+
+		opts.desc = "Zen"
+		map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -256,14 +259,14 @@ keys.std = {
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
+		map("n", "<a-h>", require("smart-splits").resize_left, opts)
+		map("n", "<a-j>", require("smart-splits").resize_down, opts)
+		map("n", "<a-k>", require("smart-splits").resize_up, opts)
+		map("n", "<a-l>", require("smart-splits").resize_right, opts)
 		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
 		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-s-h>", require("smart-splits").resize_left, opts)
-		map("n", "<c-s-j>", require("smart-splits").resize_down, opts)
-		map("n", "<c-s-k>", require("smart-splits").resize_up, opts)
-		map("n", "<c-s-l>", require("smart-splits").resize_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }

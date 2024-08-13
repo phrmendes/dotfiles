@@ -13,7 +13,7 @@
       powermenu = pkgs.writeScriptBin "powermenu" (builtins.readFile ../dotfiles/powermenu.sh);
       copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
-      kitty = getExe pkgs.kitty;
+      wezterm = getExe pkgs.wezterm;
       playerctl = getExe pkgs.playerctl;
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
@@ -121,7 +121,7 @@
             "SUPER,space,exec,${rofi} -show drun"
             "SUPER,tab,changegroupactive,f"
             "SUPER,escape,exec,${getExe powermenu}"
-            "SUPER,return,exec,${kitty}"
+            "SUPER,return,exec,${wezterm}"
             "SUPER,B,exec,${rofi} -show recursivebrowser"
             "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,N,exec,${dunstctl} set-paused toggle"

@@ -79,7 +79,6 @@
           quarto-nvim
           refactoring-nvim
           smart-splits-nvim
-          twilight-nvim
           undotree
           vim-abolish
           vim-dadbod

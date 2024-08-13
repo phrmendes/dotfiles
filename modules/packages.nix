@@ -82,6 +82,7 @@ in {
         vagrant
         ventoy
         vlc
+        xarchiver
         zotero
       ];
       darwin = with pkgs; let

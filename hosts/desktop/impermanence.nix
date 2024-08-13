@@ -20,6 +20,8 @@
         ".ssh"
         ".zotero"
         ".cache/zellij"
+        ".cache/tealdeer"
+        ".local/share/Trash"
         ".local/share/keyrings"
         ".local/share/nvim"
         ".local/share/syncthing"

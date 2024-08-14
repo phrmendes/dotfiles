@@ -36,7 +36,7 @@ local utils = {
 	end,
 	zoom = function(tab)
 		if tab.active_pane.is_zoomed then
-			return "[" .. nf.cod_zoom_in .. "] "
+			return nf.cod_zoom_in .. " "
 		end
 
 		return ""
@@ -70,19 +70,21 @@ local utils = {
 config.check_for_updates = false
 config.command_palette_font_size = 16.0
 config.default_prog = { "zsh" }
+config.enable_wayland = true
+config.front_end = "WebGpu"
 config.hide_tab_bar_if_only_one_tab = false
 config.inactive_pane_hsb = { saturation = 0.5, brightness = 0.7 }
+config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 config.status_update_interval = 500
 config.tab_and_split_indices_are_zero_based = false
 config.tab_bar_at_bottom = true
-config.tab_max_width = 20
-config.use_fancy_tab_bar = false
-config.window_close_confirmation = "AlwaysPrompt"
-config.window_padding = { left = 6, right = 6, top = 6, bottom = 0 }
-config.window_decorations = "RESIZE"
-config.enable_wayland = true
+config.tab_max_width = 25
 config.unix_domains = { { name = "mux" } }
-config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
+config.use_fancy_tab_bar = false
+config.webgpu_power_preference = "HighPerformance"
+config.window_close_confirmation = "AlwaysPrompt"
+config.window_decorations = "RESIZE"
+config.window_padding = { left = 6, right = 6, top = 6, bottom = 0 }
 config.ssh_domains = {
 	{ name = "server", remote_address = "server", username = "phrmendes" },
 	{ name = "desktop", remote_address = "desktop", username = "phrmendes" },
@@ -102,11 +104,31 @@ config.keys = {
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
 	{ key = "t", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
-	{ key = "w", mods = "LEADER", action = ws.switch_workspace() },
+	{ key = "w", mods = "LEADER", action = ws.switch_workspace(" | rg -F Projects") },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
 	{
 		key = "r",
+		mods = "LEADER",
+		action = wezterm.action.Multiple({
+			wezterm.action_callback(function(window, pane)
+				resurrect.fuzzy_load(window, pane, function(id)
+					id = string.match(id, "([^/]+)$")
+					id = string.match(id, "(.+)%..+$")
+
+					local state = resurrect.load_state(id, "workspace")
+
+					resurrect.workspace_state.restore_workspace(state, {
+						relative = true,
+						restore_text = true,
+						on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+					})
+				end)
+			end),
+		}),
+	},
+	{
+		key = "R",
 		mods = "LEADER",
 		action = action.PromptInputLine({
 			description = "Rename tab:",
@@ -164,15 +186,6 @@ end)
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	window:set_config_overrides(utils.zen(window, pane, name, value))
-end)
-
-wezterm.on("smart_workspace_switcher.workspace_switcher.created", function(window, _, label)
-	resurrect.workspace_state.restore_workspace(resurrect.load_state(label, "workspace"), {
-		window = window,
-		relative = true,
-		restore_text = true,
-		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-	})
 end)
 
 wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function()

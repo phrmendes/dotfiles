@@ -77,6 +77,7 @@
           "${secondary},1366x768,0x0,auto"
         ];
         windowrulev2 = [
+          "float,class:(org.wezfurlong.wezterm)"
           "float,stayfocused,class:(gcolor3)"
           "float,stayfocused,class:(pavucontrol)"
           "float,stayfocused,class:(satty)"
@@ -85,6 +86,7 @@
           "opaque,class:(chromium)"
           "opaque,class:(firefox)"
           "opaque,class:(vlc)"
+          "tile,class:(org.wezfurlong.wezterm)"
         ];
         workspace = with parameters.monitors; [
           "1,monitor:${primary}"
@@ -121,7 +123,7 @@
             "SUPER,space,exec,${rofi} -show drun"
             "SUPER,tab,changegroupactive,f"
             "SUPER,escape,exec,${getExe powermenu}"
-            "SUPER,return,exec,${wezterm}"
+            "SUPER,return,exec,[float;tile] ${wezterm} start --always-new-process"
             "SUPER,B,exec,${rofi} -show recursivebrowser"
             "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,N,exec,${dunstctl} set-paused toggle"

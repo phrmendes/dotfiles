@@ -3,104 +3,74 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (pkgs.stdenv) isDarwin isLinux;
-in {
+}: {
   options.packages.enable = lib.mkEnableOption "enable packages";
 
   config = lib.mkIf config.packages.enable {
-    home.packages = let
-      common =
-        (with pkgs; [
-          age
-          ansible
-          atac
-          cachix
-          coreutils-full
-          csvlens
-          fd
-          ffmpegthumbnailer
-          file
-          findutils
-          gcc
-          gdu
-          gh
-          gnumake
-          gnupg
-          gnused
-          go
-          graphviz
-          grex
-          gzip
-          jdk
-          jq
-          kind
-          kubectl
-          kubernetes-helm
-          libxml2
-          mongosh
-          pandoc
-          parallel
-          podman-tui
-          poppler
-          portal
-          postgresql
-          python312
-          quarto
-          rar
-          sshs
-          terraform
-          ueberzugpp
-          unar
-          wget
-          zip
-        ])
-        ++ (with pkgs.nodePackages_latest; [
-          nodejs
-        ]);
-      linux = with pkgs; [
+    home.packages = with pkgs;
+      [
+        age
+        ansible
+        atac
         bitwarden
+        cachix
         chromium
+        coreutils-full
         coursier
+        csvlens
         curtail
         deluge
-        drawing
         droidcam
+        fd
+        ffmpegthumbnailer
+        file
+        findutils
         firefox
+        gcc
         gcolor3
+        gdu
+        gnumake
+        gnused
+        graphviz
+        grex
+        gzip
         hugo
         inkscape
+        jdk
+        jq
         libreoffice
+        mongosh
         networkmanagerapplet
         obsidian
-        pamixer
+        pandoc
+        parallel
         pavucontrol
         phockup
+        podman-tui
+        poppler
+        portal
+        postgresql
+        python312
         qalculate-gtk
+        quarto
         quickemu
+        rar
+        sshs
         syncthingtray
         tectonic
+        terraform
+        ueberzugpp
+        unar
         vagrant
         ventoy
         vlc
+        wget
         xarchiver
+        zip
         zotero
-      ];
-      darwin = with pkgs; let
-        az =
-          azure-cli.withExtensions
-          (with azure-cli-extensions; [amg fzf]);
-      in [
-        kubelogin
-        maven
-        pngpaste
-        sqlite
-        terragrunt
-        az
-      ];
-    in
-      common
-      ++ lib.optionals isDarwin darwin
-      ++ lib.optionals isLinux linux;
+      ]
+      ++ (with nodePackages_latest; [
+        nodejs
+      ]);
   };
 }

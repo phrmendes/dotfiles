@@ -28,12 +28,3 @@ function yy() {
 function diff_persist() {
     sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
 }
-
-if [[ $HOST  != "desktop" ]]; then
-    export PATH="/opt/homebrew/sbin:$PATH"
-    export PATH="/opt/homebrew/bin:$PATH"
-
-    function update() {
-        nix run nix-darwin -- switch --flake "$HOME/Projects/dotfiles"
-    }
-fi

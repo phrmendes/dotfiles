@@ -118,11 +118,11 @@
           autotools-language-server
           basedpyright
           bash-language-server
+          deadnix
           dockerfile-language-server-nodejs
           dot-language-server
           emmet-language-server
           hadolint
-          helm-ls
           imagemagick
           ltex-ls
           lua-language-server

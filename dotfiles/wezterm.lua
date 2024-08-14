@@ -80,7 +80,7 @@ config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
 config.window_padding = { left = 6, right = 6, top = 6, bottom = 0 }
 config.window_decorations = "RESIZE"
-config.enable_wayland = false
+config.enable_wayland = true
 config.unix_domains = { { name = "mux" } }
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 config.ssh_domains = {

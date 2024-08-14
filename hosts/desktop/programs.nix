@@ -43,9 +43,9 @@
       package = pkgs.nix-ld-rs;
       libraries = with pkgs; [
         curl
+        libxml2
         openssl
         readline
-        sqlite
         stdenv.cc.cc
         tk
         xz

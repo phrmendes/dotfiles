@@ -35,13 +35,6 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	helm_ls = {
-		settings = {
-			["helm-ls"] = {
-				yamlls = { enabled = false },
-			},
-		},
-	},
 	jsonls = {
 		settings = {
 			json = {

@@ -2,27 +2,6 @@
 
 Dotfiles files for my personal computer.
 
-## Darwin
-
-Install Nix package manager:
-
-```sh
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-```
-
-Clone repo and go to the directory:
-
-```sh
-git clone https://github.com/phrmendes/dotfiles
-cd dotfiles
-```
-
-Install nix-darwin:
-
-```sh
-nix run nix-darwin -- switch --flake .#darwin
-```
-
 ## Desktop
 
 Clone repo and go to the directory:

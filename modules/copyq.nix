@@ -8,7 +8,7 @@
   config = lib.mkIf config.copyq.enable {
     services.copyq.enable = true;
 
-    home.file.".config/copyq/themes/gruvbox.ini".text = with config.lib.stylix.colors.withHashtag; ''
+    xdg.configFile."copyq/themes/gruvbox.ini".text = with config.lib.stylix.colors.withHashtag; ''
       [General]
       alt_bg=${base01}
       alt_item_css=

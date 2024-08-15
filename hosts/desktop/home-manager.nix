@@ -23,15 +23,16 @@
       gtk-settings.enable = true;
       hyprland.enable = true;
       hyprpaper.enable = true;
+      kitty.enable = true;
       network-manager-applet.enable = true;
       pasystray.enable = true;
       satty.enable = true;
       swaylock.enable = true;
       targets.enable = true;
       udiskie.enable = true;
+      walker.enable = true;
       waybar.enable = true;
       zathura.enable = true;
-      walker.enable = true;
 
       xdg.desktopEntries = {
         obsidian = {

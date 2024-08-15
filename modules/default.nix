@@ -18,6 +18,7 @@
     ./gtk.nix
     ./hyprland.nix
     ./hyprpaper.nix
+    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -35,7 +36,6 @@
     ./udiskie.nix
     ./walker.nix
     ./waybar.nix
-    ./wezterm.nix
     ./yazi.nix
     ./zathura.nix
     ./zoxide.nix
@@ -56,7 +56,6 @@
   symlinks.enable = lib.mkDefault true;
   tealdeer.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
-  wezterm.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
   zoxide.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;

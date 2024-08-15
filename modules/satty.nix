@@ -14,10 +14,8 @@
       slurp
     ];
 
-    home.file.".config/satty/config.toml".text =
-      /*
-      toml
-      */
+    xdg.configFile."satty/config.toml".text =
+      # toml
       ''
         [general]
         fullscreen = true

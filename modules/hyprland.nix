@@ -17,7 +17,7 @@
       slurp = getExe pkgs.slurp;
       swaylock = getExe pkgs.swaylock;
       walker = getExe pkgs.walker;
-      wezterm = getExe pkgs.wezterm;
+      kitty = getExe pkgs.kitty;
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       pactl = "${pkgs.pulseaudio}/bin/pactl";
       screenshot = ''${grim} -g "$(${slurp})" - | ${satty} --filename -'';
@@ -72,11 +72,10 @@
           disable_hyprland_logo = true;
         };
         monitor = with parameters.monitors; [
-          "${primary},1920x1080,1366x0,1"
-          "${secondary},1366x768,0x0,auto"
+          "${primary},preferred,auto,1"
+          "${secondary},preferred,auto-left,1"
         ];
         windowrulev2 = [
-          "float,class:(org.wezfurlong.wezterm)"
           "float,stayfocused,class:(gcolor3)"
           "float,stayfocused,class:(pavucontrol)"
           "float,stayfocused,class:(satty)"
@@ -88,7 +87,6 @@
           "opaque,class:(chromium)"
           "opaque,class:(firefox)"
           "opaque,class:(vlc)"
-          "tile,class:(org.wezfurlong.wezterm)"
         ];
         workspace = with parameters.monitors; [
           "1,monitor:${primary}"
@@ -124,7 +122,7 @@
             "CTRL ALT, L, exec, ${swaylock}"
             "SUPER,space,exec,${walker}"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,return,exec,[float;tile] ${wezterm} start --always-new-process"
+            "SUPER,return,exec,${kitty}"
             "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,N,exec,${dunstctl} set-paused toggle"
             "SUPER,V,exec,${copyq} toggle"

@@ -55,12 +55,12 @@
         qalculate-gtk
         quarto
         quickemu
+        qview
         rar
         sshs
         syncthingtray
         tectonic
         terraform
-        ueberzugpp
         unar
         vagrant
         ventoy

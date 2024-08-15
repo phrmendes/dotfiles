@@ -1,5 +1,5 @@
 require("zen-mode").setup({
-	wezterm = {
+	kitty = {
 		enabled = true,
 		font = "+4",
 	},

@@ -25,7 +25,6 @@
         ".local/share/keyrings"
         ".local/share/nvim"
         ".local/share/syncthing"
-        ".local/share/wezterm"
         ".local/share/zoxide"
         ".local/state/lazygit"
         ".local/state/nix"

@@ -150,12 +150,12 @@
         ]);
     };
 
-    home.file = {
-      ".config/nvim" = {
+    xdg.configFile = {
+      "nvim" = {
         source = ../dotfiles/nvim;
         recursive = true;
       };
-      ".config/nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag;
+      "nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag;
       # lua
         ''
           return {

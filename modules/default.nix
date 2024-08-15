@@ -25,7 +25,6 @@
     ./pasystray.nix
     ./pyenv.nix
     ./ripgrep.nix
-    ./rofi.nix
     ./satty.nix
     ./starship.nix
     ./swaylock.nix
@@ -34,6 +33,7 @@
     ./tealdeer.nix
     ./tmux.nix
     ./udiskie.nix
+    ./walker.nix
     ./waybar.nix
     ./wezterm.nix
     ./yazi.nix

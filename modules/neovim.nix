@@ -156,9 +156,7 @@
         recursive = true;
       };
       ".config/nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag;
-      /*
-      lua
-      */
+      # lua
         ''
           return {
               palette = {

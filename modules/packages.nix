@@ -38,6 +38,7 @@
         inkscape
         jdk
         jq
+        libqalculate
         libreoffice
         mongosh
         networkmanagerapplet

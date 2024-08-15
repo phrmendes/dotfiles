@@ -10,17 +10,16 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
-      powermenu = pkgs.writeScriptBin "powermenu" (builtins.readFile ../dotfiles/powermenu.sh);
       copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
-      wezterm = getExe pkgs.wezterm;
       playerctl = getExe pkgs.playerctl;
       satty = getExe pkgs.satty;
       slurp = getExe pkgs.slurp;
       swaylock = getExe pkgs.swaylock;
+      walker = getExe pkgs.walker;
+      wezterm = getExe pkgs.wezterm;
       dunstctl = "${pkgs.dunst}/bin/dunstctl";
       pactl = "${pkgs.pulseaudio}/bin/pactl";
-      rofi = "${pkgs.rofi-wayland}/bin/rofi -theme gruvbox-dark";
       screenshot = ''${grim} -g "$(${slurp})" - | ${satty} --filename -'';
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
@@ -81,8 +80,11 @@
           "float,stayfocused,class:(gcolor3)"
           "float,stayfocused,class:(pavucontrol)"
           "float,stayfocused,class:(satty)"
-          "float,stayfocused,opaque,class:(copyq)"
-          "float,stayfocused,opaque,class:(rofi)"
+          "float,stayfocused,opaque,class:(walker)"
+          "float,stayfocused,opaque,size 30% 50%,center,class:(copyq)"
+          "float,title:(Picture-in-Picture)"
+          "float,title:(blueman-manager)"
+          "float,title:(blueman-manager)"
           "opaque,class:(chromium)"
           "opaque,class:(firefox)"
           "opaque,class:(vlc)"
@@ -120,15 +122,12 @@
             ",XF86AudioPrev,exec,${playerctl} previous"
             ",XF86AudioNext,exec,${playerctl} next"
             "CTRL ALT, L, exec, ${swaylock}"
-            "SUPER,space,exec,${rofi} -show drun"
+            "SUPER,space,exec,${walker}"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,escape,exec,${getExe powermenu}"
             "SUPER,return,exec,[float;tile] ${wezterm} start --always-new-process"
-            "SUPER,B,exec,${rofi} -show recursivebrowser"
             "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,N,exec,${dunstctl} set-paused toggle"
             "SUPER,V,exec,${copyq} toggle"
-            "SUPER,W,exec,${rofi} -show window"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"
             "SUPER,H,movefocus,l"

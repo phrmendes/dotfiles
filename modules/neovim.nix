@@ -50,6 +50,7 @@
           friendly-snippets
           fzfWrapper
           image-nvim
+          lazydev-nvim
           lazygit-nvim
           lspkind-nvim
           ltex_extra-nvim
@@ -58,7 +59,6 @@
           markdown-preview-nvim
           mini-nvim
           nabla-nvim
-          neodev-nvim
           neogen
           nvim-bqf
           nvim-cmp

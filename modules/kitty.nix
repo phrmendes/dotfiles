@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
@@ -13,9 +12,7 @@
         enableBashIntegration = true;
         enableZshIntegration = true;
       };
-      settings = let
-        inherit (pkgs.stdenv) isLinux;
-      in {
+      settings = {
         allow_remote_control = "yes";
         bell_on_tab = "no";
         enable_audio_bell = "no";
@@ -35,10 +32,7 @@
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 5;
-        hide_window_decorations =
-          if isLinux
-          then "yes"
-          else "no";
+        hide_window_decorations = "yes";
       };
       keybindings = {
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";

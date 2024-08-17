@@ -114,8 +114,8 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 
 cmp.setup.filetype({ "markdown", "quarto" }, {
 	sources = cmp.config.sources({
-		{ name = "cmp_pandoc" },
 		{ name = "cmp_zotcite" },
+		{ name = "cmp_pandoc" },
 		{ name = "luasnip" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
 		{ name = "path" },

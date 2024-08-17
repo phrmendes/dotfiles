@@ -37,6 +37,16 @@
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
+
+    zotcite = {
+      flake = false;
+      url = "github:jalvesaq/zotcite";
+    };
+
+    cmp-zotcite = {
+      flake = false;
+      url = "github:jalvesaq/cmp-zotcite";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

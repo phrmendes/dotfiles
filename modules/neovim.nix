@@ -16,6 +16,8 @@
         };
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       kulala-nvim = fromGitHub "kulala.nvim" inputs.kulala-nvim;
+      zotcite = fromGitHub "zotcite" inputs.zotcite;
+      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -94,8 +96,10 @@
           zen-mode-nvim
         ])
         ++ [
+          cmp-zotcite
           kulala-nvim
           luasnip-latex-snippets
+          zotcite
         ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
@@ -108,10 +112,13 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
+          poppler-qt5
           pynvim
+          pyqt5
+          pyyaml
         ];
-      extraPackages =
-        (with pkgs; [
+      extraPackages = with pkgs;
+        [
           alejandra
           ansible-language-server
           ansible-lint
@@ -143,8 +150,8 @@
           tflint
           vscode-langservers-extracted
           yaml-language-server
-        ])
-        ++ (with pkgs.nodePackages; [
+        ]
+        ++ (with nodePackages_latest; [
           prettier
           vscode-json-languageserver
         ]);

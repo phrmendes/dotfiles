@@ -114,6 +114,22 @@
         "type": "github"
       }
     },
+    "cmp-zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710558035,
+        "narHash": "sha256-p3vssnEXVwXdLHTrCRngAVReA+yA0Hc9bMwuRju4fXc=",
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "rev": "281f43726bed2c5eb96bea1544edcf2e069795db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -342,6 +358,7 @@
     },
     "root": {
       "inputs": {
+        "cmp-zotcite": "cmp-zotcite",
         "disko": "disko",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
@@ -349,7 +366,8 @@
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",
-        "walker": "walker"
+        "walker": "walker",
+        "zotcite": "zotcite"
       }
     },
     "stylix": {
@@ -396,6 +414,22 @@
       "original": {
         "owner": "abenz1267",
         "repo": "walker",
+        "type": "github"
+      }
+    },
+    "zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723203474,
+        "narHash": "sha256-mp0UpRwvaM1HSfXscWoEpCG+TpQnQUnB7JpR998iUU8=",
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "rev": "f141895107242e01a4639b8cfefbc6462c46ab16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "zotcite",
         "type": "github"
       }
     }

@@ -1,5 +1,8 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, require("utils").borders),

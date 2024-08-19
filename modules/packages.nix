@@ -55,7 +55,6 @@
         python312
         qalculate-gtk
         quarto
-        quickemu
         qview
         rar
         sshs

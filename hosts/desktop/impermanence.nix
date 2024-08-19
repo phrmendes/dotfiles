@@ -24,6 +24,7 @@
         ".local/share/Trash"
         ".local/share/keyrings"
         ".local/share/nvim"
+        ".local/share/plex"
         ".local/share/syncthing"
         ".local/share/zoxide"
         ".local/state/lazygit"

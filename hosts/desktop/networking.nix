@@ -4,17 +4,18 @@
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
+      allowedTCPPorts = [
+        8324
+        32400
+        32469
       ];
-      allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
+      allowedUDPPorts = [
+        1900
+        5353
+        32410
+        32412
+        32413
+        32414
       ];
     };
   };

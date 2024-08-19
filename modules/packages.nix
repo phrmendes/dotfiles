@@ -48,6 +48,7 @@
         parallel
         pavucontrol
         phockup
+        plex
         podman-tui
         poppler
         portal

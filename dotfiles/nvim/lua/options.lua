@@ -75,16 +75,13 @@ vim.opt.conceallevel = 2
 
 -- clipboard
 vim.schedule(function()
-	vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- disable native plugins
 for _, disable in ipairs({ "gzip", "netrwPlugin", "tarPlugin", "tohtml", "tutor", "zipPlugin" }) do
 	vim.g["loaded_" .. disable] = 0
 end
-
--- mouse support
-vim.g.VM_mouse_mappings = 1
 
 -- language
 vim.cmd([[language en_US.UTF-8]])

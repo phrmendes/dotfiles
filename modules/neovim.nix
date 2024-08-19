@@ -130,7 +130,6 @@
           dot-language-server
           emmet-language-server
           hadolint
-          imagemagick
           ltex-ls
           lua-language-server
           metals

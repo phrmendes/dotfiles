@@ -35,6 +35,7 @@
         grex
         gzip
         hugo
+        imagemagick
         inkscape
         jdk
         jq

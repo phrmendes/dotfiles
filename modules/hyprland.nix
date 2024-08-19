@@ -10,7 +10,6 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
-      copyq = getExe pkgs.copyq;
       grim = getExe pkgs.grim;
       playerctl = getExe pkgs.playerctl;
       satty = getExe pkgs.satty;
@@ -80,7 +79,6 @@
           "float,stayfocused,class:(pavucontrol)"
           "float,stayfocused,class:(satty)"
           "float,stayfocused,opaque,class:(walker)"
-          "float,stayfocused,opaque,size 30% 50%,center,class:(copyq)"
           "float,title:(Picture-in-Picture)"
           "float,title:(blueman-manager)"
           "float,title:(blueman-manager)"
@@ -125,7 +123,7 @@
             "SUPER,return,exec,${kitty}"
             "SUPER,C,exec,${dunstctl} close-all"
             "SUPER,N,exec,${dunstctl} set-paused toggle"
-            "SUPER,V,exec,${copyq} toggle"
+            "SUPER,V,exec,${walker} --modules clipboard"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"
             "SUPER,H,movefocus,l"

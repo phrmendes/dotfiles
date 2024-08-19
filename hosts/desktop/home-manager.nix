@@ -17,7 +17,6 @@
 
       blueman-applet.enable = true;
       btop.enable = true;
-      copyq.enable = true;
       dunst.enable = true;
       gnome-keyring.enable = true;
       gtk-settings.enable = true;
@@ -33,14 +32,6 @@
       walker.enable = true;
       waybar.enable = true;
       zathura.enable = true;
-
-      xdg.desktopEntries = {
-        obsidian = {
-          name = "Obsidian";
-          exec = "obsidian --disable-gpu";
-          icon = "obsidian";
-        };
-      };
     };
   };
 }

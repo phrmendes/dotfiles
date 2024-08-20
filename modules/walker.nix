@@ -10,8 +10,12 @@
       enable = true;
       runAsService = true;
       config = {
-        activation_mode = {};
         applications.cache = false;
+        builtins = {
+          calc.switcher_only = true;
+          websearch.switcher_only = true;
+          windows.switcher_only = true;
+        };
       };
       theme = {
         style = with config.lib.stylix.colors.withHashtag;

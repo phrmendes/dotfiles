@@ -21,6 +21,7 @@
         curtail
         deluge
         droidcam
+        exiftool
         fd
         ffmpegthumbnailer
         file

@@ -16,14 +16,6 @@
       package = pkgs.hyprland;
     };
 
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-
     nh = {
       enable = true;
       flake = "/home/${parameters.user}/Projects/dotfiles";

@@ -42,6 +42,7 @@
         libqalculate
         libreoffice
         mongosh
+        nemo-with-extensions
         networkmanagerapplet
         obsidian
         pandoc

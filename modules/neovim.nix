@@ -15,7 +15,7 @@
           version = src.rev;
         };
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      kulala-nvim = fromGitHub "kulala.nvim" inputs.kulala-nvim;
+      curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
     in {
@@ -97,7 +97,7 @@
         ])
         ++ [
           cmp-zotcite
-          kulala-nvim
+          curl-nvim
           luasnip-latex-snippets
           zotcite
         ];

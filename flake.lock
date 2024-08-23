@@ -130,6 +130,22 @@
         "type": "github"
       }
     },
+    "curl-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724230444,
+        "narHash": "sha256-nfugMJg1p8ESgmegqDxzA9SjE7kCJKwlOakj/05izGA=",
+        "owner": "oysandvik94",
+        "repo": "curl.nvim",
+        "rev": "4576324dc6d1b86744459031d2dc44fa3e40c7d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oysandvik94",
+        "repo": "curl.nvim",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -276,22 +292,6 @@
         "type": "github"
       }
     },
-    "kulala-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1724140254,
-        "narHash": "sha256-Nhj3U2leux9r+dsDKqGQ2BcsQMWhW0YWq632czEUVH8=",
-        "owner": "mistweaverco",
-        "repo": "kulala.nvim",
-        "rev": "6706d848ddb60a0cf1a7c115de3af60ffad83d17",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mistweaverco",
-        "repo": "kulala.nvim",
-        "type": "github"
-      }
-    },
     "luasnip-latex-snippets": {
       "flake": false,
       "locked": {
@@ -359,10 +359,10 @@
     "root": {
       "inputs": {
         "cmp-zotcite": "cmp-zotcite",
+        "curl-nvim": "curl-nvim",
         "disko": "disko",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "kulala-nvim": "kulala-nvim",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",

@@ -28,9 +28,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kulala-nvim = {
+    curl-nvim = {
       flake = false;
-      url = "github:mistweaverco/kulala.nvim";
+      url = "github:oysandvik94/curl.nvim";
     };
 
     luasnip-latex-snippets = {

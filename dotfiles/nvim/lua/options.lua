@@ -102,6 +102,6 @@ vim.g.mkdp_auto_close = 0
 -- add filetypes
 vim.filetype.add({
 	extension = {
-		["http"] = "http",
+		["curl"] = "curl",
 	},
 })

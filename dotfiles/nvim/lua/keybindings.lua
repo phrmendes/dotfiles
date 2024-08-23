@@ -109,6 +109,27 @@ keys.std = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
+	curl = function()
+		local opts = { noremap = true, silent = true }
+
+		opts.desc = "Open curl"
+		map("n", "<leader>co", require("curl").open_curl_tab, opts)
+
+		opts.desc = "Open curl (global)"
+		map("n", "<leader>cO", require("curl").open_global_tab, opts)
+
+		opts.desc = "Create or open collection"
+		map("n", "<leader>cc", require("curl").create_scoped_collection, opts)
+
+		opts.desc = "Create or open collection (global)"
+		map("n", "<leader>cC", require("curl").create_global_collection, opts)
+
+		opts.desc = "Pick collection"
+		map("n", "<leader>cp", require("curl").pick_scoped_collection, opts)
+
+		opts.desc = "Pick collection (global)"
+		map("n", "<leader>cP", require("curl").pick_global_collection, opts)
+	end,
 	dial = function()
 		local opts = { noremap = true, silent = true, desc = "Dial" }
 
@@ -499,18 +520,6 @@ keys.writing = function(event)
 end
 
 keys.ft = {
-	http = function()
-		local opts = { noremap = true, silent = true }
-
-		opts.desc = " Previous request"
-		map("n", "<localleader>p", require("kulala").jump_prev, opts)
-
-		opts.desc = " Next request"
-		map("n", "<localleader>n", require("kulala").jump_next, opts)
-
-		opts.desc = " Send request"
-		map("n", "<localleader>s", require("kulala").run, opts)
-	end,
 	markdown = function(event)
 		keys.writing(event)
 	end,

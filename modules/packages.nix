@@ -25,6 +25,7 @@
         fd
         ffmpegthumbnailer
         file
+        filezilla
         findutils
         firefox
         gcc

@@ -2,17 +2,6 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local borders = require("utils").borders
 
-require("cmp_pandoc").setup({
-	crossref = { enable_nabla = true },
-})
-
-require("copilot").setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
-})
-
-require("copilot_cmp").setup()
-
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -62,20 +51,18 @@ cmp.setup({
 			symbol_map = {
 				["vim-dadbod-completion"] = "",
 				Copilot = "",
-				otter = "🦦",
 			},
 		}),
 	},
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp", max_item_count = 10 },
-		{ name = "lazydev", group_index = 0 },
+		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
+		{ name = "lazydev", group_index = 0 },
 		{ name = "luasnip" },
+		{ name = "copilot" },
 		{ name = "path" },
 		{ name = "emoji" },
-	}, {
-		{ name = "copilot" },
-		{ name = "buffer" },
+		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
 	window = {
 		completion = borders,
@@ -95,33 +82,32 @@ cmp.setup.cmdline(":", {
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{ name = "buffer" },
+		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	},
 })
 
-cmp.setup.filetype("sql", {
+cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 	sources = cmp.config.sources({
 		{ name = "vim-dadbod-completion" },
 	}, {
-		{ name = "buffer" },
+		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
+})
+
+cmp.setup.filetype({ "quarto", "markdown" }, {
+	sources = {
+		{ name = "luasnip" },
+		{ name = "cmp_zotcite" },
+		{ name = "cmp_pandoc" },
+		{ name = "emoji" },
+		{ name = "path" },
+		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
+		{ name = "latex_symbols", option = { strategy = 2 } },
+	},
 })
 
 cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 	sources = {
 		{ name = "dap" },
 	},
-})
-
-cmp.setup.filetype({ "markdown", "quarto" }, {
-	sources = cmp.config.sources({
-		{ name = "cmp_zotcite" },
-		{ name = "cmp_pandoc" },
-		{ name = "luasnip" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-		{ name = "path" },
-		{ name = "emoji" },
-	}, {
-		{ name = "buffer" },
-	}),
 })

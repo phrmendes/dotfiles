@@ -77,8 +77,6 @@
           nvim-ts-autotag
           nvim-ts-context-commentstring
           obsidian-nvim
-          otter-nvim
-          quarto-nvim
           refactoring-nvim
           smart-splits-nvim
           undotree

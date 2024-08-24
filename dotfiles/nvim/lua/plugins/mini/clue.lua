@@ -6,6 +6,8 @@ clue.setup({
 		{ mode = "x", keys = "<leader>" },
 		{ mode = "n", keys = "<localleader>" },
 		{ mode = "x", keys = "<localleader>" },
+		{ mode = "n", keys = "<c-c>" },
+		{ mode = "v", keys = "<c-c>" },
 		{ mode = "n", keys = "<c-w>" },
 		{ mode = "n", keys = "]" },
 		{ mode = "n", keys = "[" },

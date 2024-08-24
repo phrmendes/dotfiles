@@ -3,9 +3,12 @@ local utils = require("utils")
 
 obsidian.setup({
 	follow_url_func = utils.open,
-	preferred_link_style = "markdown",
+	follow_img_func = utils.open,
+	preferred_link_style = "wiki",
 	attachments = { img_folder = "assets" },
-	picker = { name = "mini.pick" },
+	picker = {
+		name = "mini.pick",
+	},
 	workspaces = {
 		{
 			name = "personal",
@@ -51,4 +54,10 @@ obsidian.setup({
 
 		return header
 	end,
+	ui = {
+		checkboxes = {
+			[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+			["x"] = { char = "", hl_group = "ObsidianDone" },
+		},
+	},
 })

@@ -44,6 +44,10 @@ M.normalize = function(word)
 	return normalized_word:gsub("[%s%W]", "_")
 end
 
+M.open = function(obj)
+	vim.fn.jobstart({ "xdg-open", obj })
+end
+
 M.borders = {
 	border = "rounded",
 	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",

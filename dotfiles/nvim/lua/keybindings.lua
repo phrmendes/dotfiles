@@ -491,9 +491,6 @@ end
 keys.writing = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "Preview markdown"
-	map("n", "<localleader>m", "<cmd>MarkdownPreviewToggle<cr>", opts)
-
 	opts.desc = "Preview equation"
 	map("n", "<localleader>e", require("nabla").popup, opts)
 
@@ -502,26 +499,31 @@ keys.writing = function(event)
 
 	opts.desc = "Add item above"
 	map({ "n", "i" }, "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
-
-	opts.desc = "Citation info"
-	map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
-
-	opts.desc = "Citation info (complete)"
-	map("n", "<c-s-i>", "<Plug>ZCitationCompleteInfo", opts)
-
-	opts.desc = "Open attachment"
-	map("n", "<c-o>", "<Plug>ZOpenAttachment", opts)
-
-	opts.desc = "View document"
-	map("n", "<c-s-o>", "<Plug>ZViewDocument", opts)
-
-	opts.desc = "YAML reference"
-	map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 end
 
 keys.ft = {
 	markdown = function(event)
+		local opts = { noremap = true, buffer = event.buf }
+
 		keys.writing(event)
+
+		opts.desc = " Preview"
+		map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
+
+		opts.desc = "Citation info"
+		map("n", "<c-i>", "<Plug>ZCitationInfo", opts)
+
+		opts.desc = "Citation info (complete)"
+		map("n", "<c-s-i>", "<Plug>ZCitationCompleteInfo", opts)
+
+		opts.desc = "Open attachment"
+		map("n", "<c-o>", "<Plug>ZOpenAttachment", opts)
+
+		opts.desc = "View document"
+		map("n", "<c-s-o>", "<Plug>ZViewDocument", opts)
+
+		opts.desc = "YAML reference"
+		map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 	end,
 	python = function(event)
 		keys.dap(event)

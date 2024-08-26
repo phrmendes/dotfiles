@@ -59,9 +59,9 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "lazydev", group_index = 0 },
 		{ name = "luasnip" },
-		{ name = "copilot" },
 		{ name = "path" },
 		{ name = "emoji" },
+		{ name = "copilot" },
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
 	window = {

@@ -58,6 +58,9 @@ keys.std = {
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
+		opts.desc = "Write all"
+		map("n", "<leader>W", "<cmd>wall<cr>", opts)
+
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 

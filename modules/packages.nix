@@ -20,6 +20,7 @@
         csvlens
         curtail
         deluge
+        discord
         droidcam
         exiftool
         fd

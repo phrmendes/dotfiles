@@ -6,7 +6,6 @@
     ./dconf.nix
     ./direnv.nix
     ./eza.nix
-    ./flameshot.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
@@ -34,7 +33,6 @@
   dconf-settings.enable = true;
   direnv.enable = true;
   eza.enable = true;
-  flameshot.enable = true;
   fzf.enable = true;
   gh.enable = true;
   git.enable = true;

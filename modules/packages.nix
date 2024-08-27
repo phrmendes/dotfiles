@@ -21,6 +21,7 @@
         curtail
         deluge
         discord
+        drawing
         droidcam
         exiftool
         fd

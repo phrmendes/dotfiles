@@ -69,9 +69,7 @@
       in
         nixpkgs.lib.nixosSystem {
           inherit (parameters) system;
-          modules = [
-            ./hosts/desktop
-          ];
+          modules = [./hosts/desktop.nix];
           specialArgs = {
             inherit inputs pkgs parameters;
           };
@@ -86,9 +84,7 @@
       in
         nixpkgs.lib.nixosSystem {
           inherit (parameters) system;
-          modules = [
-            ./hosts/laptop
-          ];
+          modules = [./hosts/laptop.nix];
           specialArgs = {
             inherit inputs pkgs parameters;
           };

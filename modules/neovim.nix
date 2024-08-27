@@ -86,6 +86,7 @@
           vim-dadbod-ui
           vim-eunuch
           vim-helm
+          vim-helm
           vim-jinja
           vim-rsi
           vim-sleuth
@@ -128,6 +129,7 @@
           dot-language-server
           emmet-language-server
           hadolint
+          helm-ls
           ltex-ls
           lua-language-server
           metals

@@ -44,8 +44,11 @@
         inkscape
         jdk
         jq
+        kubectl
+        kubernetes-helm
         libqalculate
         libreoffice
+        minikube
         mongosh
         nautilus
         obsidian

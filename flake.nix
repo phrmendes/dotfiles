@@ -61,11 +61,7 @@
       };
     in {
       desktop = let
-        parameters =
-          {
-            device = "/dev/sdc";
-          }
-          // global;
+        parameters = {device = "/dev/sdc";} // global;
       in
         nixpkgs.lib.nixosSystem {
           inherit (parameters) system;
@@ -76,11 +72,7 @@
         };
 
       laptop = let
-        parameters =
-          {
-            device = "/dev/nvme0n1";
-          }
-          // global;
+        parameters = {device = "/dev/nvme0n1";} // global;
       in
         nixpkgs.lib.nixosSystem {
           inherit (parameters) system;

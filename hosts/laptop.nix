@@ -38,6 +38,13 @@
       };
     };
 
+    logind = {
+      lidSwitch = "suspend";
+      powerKey = "suspend";
+      powerKeyLongPress = "poweroff";
+      lidSwitchExternalPower = "ignore";
+    };
+
     syncthing = {
       settings = {
         folders = {
@@ -94,10 +101,10 @@
         };
       };
     };
-  };
 
-  system76-scheduler = {
-    enable = true;
-    useStockConfig = true;
+    system76-scheduler = {
+      enable = true;
+      useStockConfig = true;
+    };
   };
 }

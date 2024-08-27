@@ -23,6 +23,7 @@
     ./services.nix
     ./session-variables.nix
     ./stylix.nix
+    ./syncthing.nix
     ./time.nix
     ./users.nix
     ./virtualisation.nix

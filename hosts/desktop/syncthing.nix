@@ -18,23 +18,23 @@
       folders = {
         "camera" = {
           path = "${parameters.home}/Documents/camera";
-          devices = ["phone" "server"];
+          devices = ["phone" "server" "laptop"];
         };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
-          devices = ["phone" "server"];
+          devices = ["phone" "server" "laptop"];
         };
         "images" = {
           path = "${parameters.home}/Documents/images";
-          devices = ["server"];
+          devices = ["server" "laptop"];
         };
         "notes" = {
           path = "${parameters.home}/Documents/notes";
-          devices = ["phone" "tablet" "server"];
+          devices = ["phone" "tablet" "server" "laptop"];
         };
         "ufabc" = {
           path = "${parameters.home}/Documents/ufabc";
-          devices = ["server" "tablet"];
+          devices = ["server" "tablet" "laptop"];
         };
         "comics" = {
           path = "${parameters.home}/Documents/library/comics";
@@ -42,19 +42,19 @@
         };
         "IT" = {
           path = "${parameters.home}/Documents/library/IT";
-          devices = ["server"];
+          devices = ["server" "laptop"];
         };
         "math" = {
           path = "${parameters.home}/Documents/library/math";
-          devices = ["server"];
+          devices = ["server" "laptop"];
         };
         "social_sciences" = {
           path = "${parameters.home}/Documents/library/social_sciences";
-          devices = ["server"];
+          devices = ["server" "laptop"];
         };
         "zotero" = {
           path = "${parameters.home}/Documents/library/zotero";
-          devices = ["phone" "server" "tablet"];
+          devices = ["phone" "server" "tablet" "laptop"];
         };
       };
       devices = {
@@ -68,6 +68,10 @@
         };
         "server" = {
           id = "VH6IWI6-D5E666H-4S2D7XJ-AVHD2XW-7UC64AS-APTOCPU-LB3SB52-S5722Q5";
+          autoAcceptFolders = true;
+        };
+        "laptop" = {
+          id = "DC7CVQK-XCQYE7F-JTW2JNJ-PQRSZOV-WU5GK5H-DZNX5VM-PU4HIKL-ZJUA5AX";
           autoAcceptFolders = true;
         };
       };

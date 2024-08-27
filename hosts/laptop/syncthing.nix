@@ -16,45 +16,37 @@
         urAccepted = 1;
       };
       folders = {
-        "camera" = {
-          path = "${parameters.home}/Pictures/camera";
-          devices = ["phone" "server"];
-        };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
-          devices = ["phone" "server"];
+          devices = ["phone" "server" "desktop"];
         };
         "images" = {
           path = "${parameters.home}/Pictures/images";
-          devices = ["server"];
+          devices = ["server" "desktop"];
         };
         "notes" = {
           path = "${parameters.home}/Documents/notes";
-          devices = ["phone" "tablet" "server"];
+          devices = ["phone" "tablet" "server" "desktop"];
         };
         "ufabc" = {
           path = "${parameters.home}/Documents/ufabc";
-          devices = ["server" "tablet"];
-        };
-        "comics" = {
-          path = "${parameters.home}/Documents/library/comics";
-          devices = ["server"];
+          devices = ["server" "tablet" "desktop"];
         };
         "IT" = {
           path = "${parameters.home}/Documents/library/IT";
-          devices = ["server"];
+          devices = ["server" "desktop"];
         };
         "math" = {
           path = "${parameters.home}/Documents/library/math";
-          devices = ["server"];
+          devices = ["server" "desktop"];
         };
         "social_sciences" = {
           path = "${parameters.home}/Documents/library/social_sciences";
-          devices = ["server"];
+          devices = ["server" "desktop"];
         };
         "zotero" = {
           path = "${parameters.home}/Documents/library/zotero";
-          devices = ["phone" "server" "tablet"];
+          devices = ["phone" "server" "tablet" "desktop"];
         };
       };
       devices = {
@@ -68,6 +60,10 @@
         };
         "server" = {
           id = "VH6IWI6-D5E666H-4S2D7XJ-AVHD2XW-7UC64AS-APTOCPU-LB3SB52-S5722Q5";
+          autoAcceptFolders = true;
+        };
+        "desktop" = {
+          id = "2BIXHD4-5LMQH5L-PNJC6JP-FQ5JVTP-HWUJM63-FO6PE5Z-AF6RYNF-SWDZHAW";
           autoAcceptFolders = true;
         };
       };

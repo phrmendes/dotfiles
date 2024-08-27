@@ -90,10 +90,15 @@
           command = "kitty";
           name = "Terminal";
         };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
           binding = "Print";
           command = "flameshot gui";
           name = "Print";
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+          binding = "<Super>v";
+          command = "copyq toggle";
+          name = "CopyQ";
         };
         "org/gnome/shell/extensions/espresso" = {
           has-battery = false;

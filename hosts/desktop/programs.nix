@@ -6,14 +6,13 @@
   programs = {
     dconf.enable = true;
     fuse.userAllowOther = true;
-    kdeconnect.enable = true;
     seahorse.enable = true;
     virt-manager.enable = true;
     zsh.enable = true;
 
-    hyprland = {
+    kdeconnect = {
       enable = true;
-      package = pkgs.hyprland;
+      package = pkgs.gnomeExtensions.gsconnect;
     };
 
     nh = {

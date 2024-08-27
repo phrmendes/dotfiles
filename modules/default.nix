@@ -5,36 +5,27 @@
 }: {
   imports = [
     ./bat.nix
-    ./blueman-applet.nix
     ./btop.nix
+    ./copyq.nix
+    ./dconf.nix
     ./direnv.nix
-    ./dunst.nix
     ./eza.nix
+    ./flameshot.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
     ./gnome-keyring.nix
     ./gtk.nix
-    ./hyprland.nix
-    ./hyprpaper.nix
     ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
-    ./nm-applet.nix
     ./packages.nix
-    ./pasystray.nix
-    ./pyenv.nix
     ./ripgrep.nix
-    ./satty.nix
     ./starship.nix
-    ./swaylock.nix
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix
-    ./udiskie.nix
-    ./walker.nix
-    ./waybar.nix
     ./yazi.nix
     ./zathura.nix
     ./zoxide.nix

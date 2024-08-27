@@ -21,7 +21,6 @@
         ".tmux"
         ".zotero"
         ".cache/tealdeer"
-        ".cache/walker"
         ".local/share/Trash"
         ".local/share/keyrings"
         ".local/share/nvim"

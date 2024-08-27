@@ -11,26 +11,17 @@
     extraSpecialArgs = {inherit inputs pkgs parameters;};
     users.${parameters.user} = {
       imports = [
-        inputs.walker.homeManagerModules.default
         ../../modules
       ];
 
-      blueman-applet.enable = true;
       btop.enable = true;
-      dunst.enable = true;
+      copyq.enable = true;
+      dconf-settings.enable = true;
+      flameshot.enable = true;
       gnome-keyring.enable = true;
       gtk-settings.enable = true;
-      hyprland.enable = true;
-      hyprpaper.enable = true;
       kitty.enable = true;
-      network-manager-applet.enable = true;
-      pasystray.enable = true;
-      satty.enable = true;
-      swaylock.enable = true;
       targets.enable = true;
-      udiskie.enable = true;
-      walker.enable = true;
-      waybar.enable = true;
       zathura.enable = true;
     };
   };

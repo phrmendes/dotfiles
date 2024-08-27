@@ -26,12 +26,14 @@
         fd
         ffmpegthumbnailer
         file
+        file-roller
         filezilla
         findutils
         firefox
         gcc
         gcolor3
         gdu
+        gnome-tweaks
         gnumake
         gnused
         graphviz
@@ -45,22 +47,19 @@
         libqalculate
         libreoffice
         mongosh
-        nemo-with-extensions
-        networkmanagerapplet
+        nautilus
         obsidian
-        pandoc
         parallel
-        pavucontrol
         phockup
         plex
         podman-tui
+        pop-launcher
         poppler
         portal
         postgresql
         python312
         qalculate-gtk
         quarto
-        qview
         rar
         sshs
         syncthingtray
@@ -71,12 +70,19 @@
         ventoy
         vlc
         wget
-        xarchiver
         zip
         zotero
       ]
       ++ (with nodePackages_latest; [
         nodejs
+      ])
+      ++ (with gnomeExtensions; [
+        alphabetical-app-grid
+        appindicator
+        espresso
+        pop-shell
+        sound-output-device-chooser
+        user-themes
       ]);
   };
 }

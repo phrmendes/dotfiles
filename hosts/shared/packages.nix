@@ -4,6 +4,7 @@
       gvfs
       psmisc
       wl-clipboard
+      xclip
       xdg-utils
     ];
   };

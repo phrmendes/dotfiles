@@ -1,8 +1,4 @@
-{
-  lib,
-  parameters,
-  ...
-}: {
+{parameters, ...}: {
   imports = [
     ./bat.nix
     ./btop.nix
@@ -32,23 +28,32 @@
     ./zsh.nix
   ];
 
-  bat.enable = lib.mkDefault true;
-  direnv.enable = lib.mkDefault true;
-  eza.enable = lib.mkDefault true;
-  fzf.enable = lib.mkDefault true;
-  gh.enable = lib.mkDefault true;
-  git.enable = lib.mkDefault true;
-  lazygit.enable = lib.mkDefault true;
-  neovim.enable = lib.mkDefault true;
-  packages.enable = lib.mkDefault true;
-  ripgrep.enable = lib.mkDefault true;
-  starship.enable = lib.mkDefault true;
-  symlinks.enable = lib.mkDefault true;
-  tealdeer.enable = lib.mkDefault true;
-  tmux.enable = lib.mkDefault true;
-  yazi.enable = lib.mkDefault true;
-  zoxide.enable = lib.mkDefault true;
-  zsh.enable = lib.mkDefault true;
+  bat.enable = true;
+  btop.enable = true;
+  copyq.enable = true;
+  dconf-settings.enable = true;
+  direnv.enable = true;
+  eza.enable = true;
+  flameshot.enable = true;
+  fzf.enable = true;
+  gh.enable = true;
+  git.enable = true;
+  gnome-keyring.enable = true;
+  gtk-settings.enable = true;
+  kitty.enable = true;
+  lazygit.enable = true;
+  neovim.enable = true;
+  packages.enable = true;
+  ripgrep.enable = true;
+  starship.enable = true;
+  symlinks.enable = true;
+  targets.enable = true;
+  tealdeer.enable = true;
+  tmux.enable = true;
+  yazi.enable = true;
+  zathura.enable = true;
+  zoxide.enable = true;
+  zsh.enable = true;
 
   home = {
     stateVersion = "24.05";

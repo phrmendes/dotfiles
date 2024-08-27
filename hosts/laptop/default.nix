@@ -2,11 +2,9 @@
   imports = [
     ../shared
     ./boot.nix
-    ./hardware.nix
     ./networking.nix
-    ./programs.nix
+    ./power-management.nix
     ./services.nix
     ./syncthing.nix
-    ./virtualisation.nix
   ];
 }

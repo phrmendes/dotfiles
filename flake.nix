@@ -47,28 +47,52 @@
   };
 
   outputs = {nixpkgs, ...} @ inputs: {
-    nixosConfigurations.desktop = let
-      parameters = rec {
+    nixosConfigurations = let
+      global = rec {
         name = "Pedro Mendes";
         user = "phrmendes";
         email = "pedrohrmendes@proton.me";
         home = "/home/${user}";
         system = "x86_64-linux";
-        device = "/dev/sdc";
       };
       pkgs = import nixpkgs {
-        inherit (parameters) system;
+        inherit (global) system;
         config.allowUnfree = true;
       };
-    in
-      nixpkgs.lib.nixosSystem {
-        inherit (parameters) system;
-        modules = [
-          ./hosts/desktop
-        ];
-        specialArgs = {
-          inherit inputs pkgs parameters;
+    in {
+      desktop = let
+        parameters =
+          {
+            device = "/dev/sdc";
+          }
+          // global;
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit (parameters) system;
+          modules = [
+            ./hosts/desktop
+          ];
+          specialArgs = {
+            inherit inputs pkgs parameters;
+          };
         };
-      };
+
+      laptop = let
+        parameters =
+          {
+            device = "/dev/nvme0n1";
+          }
+          // global;
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit (parameters) system;
+          modules = [
+            ./hosts/laptop
+          ];
+          specialArgs = {
+            inherit inputs pkgs parameters;
+          };
+        };
+    };
   };
 }

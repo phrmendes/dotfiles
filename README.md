@@ -14,11 +14,11 @@ cd dotfiles
 Disk partitioning:
 
 ```sh
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./hosts/desktop/disko.nix --arg device '"/dev/sdX"'
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./hosts/shared/disko.nix --arg device '"/dev/{disk}"'
 ```
 
 Install NixOS:
 
 ```sh
-sudo nixos-install --flake .#desktop --root /mnt --no-root-passwd
+sudo nixos-install --flake .#{device} --root /mnt --no-root-passwd
 ```

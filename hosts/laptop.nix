@@ -1,11 +1,15 @@
 {
   config,
+  inputs,
   lib,
   parameters,
   pkgs,
   ...
 }: {
-  imports = [./shared];
+  imports = [
+    ./shared
+    inputs.auto-cpufreq.nixosModules.default
+  ];
 
   boot = {
     kernelModules = ["kvm-intel"];
@@ -32,28 +36,25 @@
   powerManagement = {
     enable = true;
     powertop.enable = true;
-    cpuFreqGovernor = "powersave";
+  };
+
+  programs.auto-cpufreq = {
+    enable = true;
+    settings = {
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+    };
   };
 
   services = {
     power-profiles-daemon.enable = false;
     thermald.enable = true;
-
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        charger = {
-          governor = "performance";
-          energy_performance_preference = "performance";
-          turbo = "auto";
-        };
-        battery = {
-          governor = "powersave";
-          energy_performance_preference = "power";
-          turbo = "never";
-        };
-      };
-    };
 
     logind = {
       lidSwitch = "suspend";

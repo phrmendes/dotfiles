@@ -86,6 +86,7 @@
         espresso
         pop-shell
         sound-output-device-chooser
+        tailscale-qs
         user-themes
       ]);
   };

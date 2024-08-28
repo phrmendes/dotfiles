@@ -24,6 +24,7 @@
             "gsconnect@andyholmes.github.io"
             "pop-shell@system76.com"
             "sound-output-device-chooser@kgshank.net"
+            "tailscale@joaophi.github.com"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
           ];
         };
@@ -105,7 +106,7 @@
           active-hint-border-radius = 1;
           log-level = 0;
           mouse-cursor-focus-location = 4;
-          search = ["<Super>space"];
+          activate-launcher = ["<Super>space"];
           show-skip-taskbar = true;
           show-title = false;
           tile-by-default = true;

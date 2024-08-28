@@ -18,6 +18,7 @@
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
     nvidia = {
+      open = false;
       nvidiaSettings = true;
       modesetting.enable = true;
       package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.stable;

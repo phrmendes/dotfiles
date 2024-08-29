@@ -22,7 +22,6 @@
     ./tealdeer.nix
     ./tmux.nix
     ./yazi.nix
-    ./zathura.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -49,7 +48,6 @@
   tealdeer.enable = true;
   tmux.enable = true;
   yazi.enable = true;
-  zathura.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
 

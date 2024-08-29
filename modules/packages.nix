@@ -23,6 +23,7 @@
         discord
         drawing
         droidcam
+        evince
         exiftool
         fd
         ffmpegthumbnailer

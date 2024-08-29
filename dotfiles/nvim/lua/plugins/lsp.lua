@@ -33,7 +33,6 @@ local servers = {
 	dockerls = {},
 	dotls = {},
 	emmet_language_server = {},
-	helm_ls = {},
 	html = {},
 	nixd = {},
 	ruff = {},
@@ -41,6 +40,15 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
+	helm_ls = {
+		settings = {
+			["helm-ls"] = {
+				yamlls = {
+					enabled = true,
+				},
+			},
+		},
+	},
 	jsonls = {
 		settings = {
 			json = {

@@ -16,7 +16,6 @@
         python.symbol = " ";
         conda.symbol = "🐍 ";
         nix_shell.symbol = " ";
-        scala.symbol = " ";
       };
     };
   };

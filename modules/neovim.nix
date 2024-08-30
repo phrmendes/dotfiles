@@ -46,7 +46,6 @@
           copilot-lua
           dial-nvim
           dressing-nvim
-          executor-nvim
           friendly-snippets
           fzfWrapper
           image-nvim
@@ -69,7 +68,6 @@
           nvim-dap-virtual-text
           nvim-lint
           nvim-lspconfig
-          nvim-metals
           nvim-pqf
           nvim-treesitter-context
           nvim-treesitter-textobjects
@@ -79,6 +77,7 @@
           obsidian-nvim
           refactoring-nvim
           smart-splits-nvim
+          toggleterm-nvim
           undotree
           vim-abolish
           vim-dadbod
@@ -127,17 +126,15 @@
           deadnix
           dockerfile-language-server-nodejs
           dot-language-server
+          elixir-ls
           emmet-language-server
           hadolint
           helm-ls
           ltex-ls
           lua-language-server
-          metals
           neovim-remote
           nixd
           ruff
-          scalafix
-          scalafmt
           shellcheck
           shellharden
           sqlfluff
@@ -147,6 +144,7 @@
           terraform-ls
           texlab
           tflint
+          ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ]

@@ -44,7 +44,7 @@ local servers = {
 		settings = {
 			["helm-ls"] = {
 				yamlls = {
-					enabled = true,
+					enabled = false,
 				},
 			},
 		},

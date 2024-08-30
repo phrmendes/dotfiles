@@ -11,7 +11,6 @@
     ./git.nix
     ./gnome-keyring.nix
     ./gtk.nix
-    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./packages.nix
@@ -20,7 +19,7 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
+    ./wezterm.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
@@ -37,7 +36,6 @@
   git.enable = true;
   gnome-keyring.enable = true;
   gtk-settings.enable = true;
-  kitty.enable = true;
   lazygit.enable = true;
   neovim.enable = true;
   packages.enable = true;
@@ -46,7 +44,7 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
+  wezterm.enable = true;
   yazi.enable = true;
   zoxide.enable = true;
   zsh.enable = true;

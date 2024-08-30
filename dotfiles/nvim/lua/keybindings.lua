@@ -152,15 +152,6 @@ keys.std = {
 			require("dial.map").manipulate("decrement", "visual")
 		end, opts)
 	end,
-	executor = function()
-		local opts = { noremap = true }
-
-		opts.desc = "Run"
-		map("n", "<leader>rr", require("executor").commands.run, opts)
-
-		opts.desc = "Toggle details"
-		map("n", "<leader>rt", require("executor").commands.toggle_detail, opts)
-	end,
 	explorer = function()
 		local opts = { noremap = true }
 
@@ -528,6 +519,10 @@ keys.ft = {
 		opts.desc = "YAML reference"
 		map("n", "<c-y>", "<Plug>ZCitationYamlRef", opts)
 	end,
+	elixir = function(event)
+		keys.dap(event)
+		keys.neogen(event)
+	end,
 	python = function(event)
 		keys.dap(event)
 		keys.neogen(event)
@@ -543,11 +538,6 @@ keys.ft = {
 
 		opts.desc = " Debug selection"
 		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
-	end,
-	scala = function(event)
-		keys.dap(event)
-		keys.neogen(event)
-		keys.refactoring(event)
 	end,
 	quarto = function(event)
 		keys.writing(event)

@@ -56,6 +56,16 @@ autocmd("BufWritePost", {
 	end,
 })
 
+autocmd({ "BufNewFile", "BufRead" }, {
+	desc = "Set filetype for helm templates",
+	group = augroups.filetype,
+	pattern = { "*/templates/*.yaml", "*/templates/*.yml" },
+	callback = function()
+		vim.opt_local.filetype = "helm"
+		vim.diagnostic.enable(false)
+	end,
+})
+
 autocmd("FileType", {
 	desc = "Close with <q>",
 	group = augroups.filetype,
@@ -72,15 +82,6 @@ autocmd("FileType", {
 	pattern = { "json", "jsonc", "json5" },
 	callback = function()
 		vim.opt_local.conceallevel = 0
-	end,
-})
-
-autocmd("FileType", {
-	desc = "Scala LSP settings",
-	pattern = { "scala", "sbt", "java" },
-	group = augroups.filetype,
-	callback = function()
-		require("metals").initialize_or_attach(require("plugins.metals"))
 	end,
 })
 

@@ -48,7 +48,6 @@
         jq
         kubectl
         kubernetes-helm
-        libqalculate
         libreoffice
         minikube
         mongosh

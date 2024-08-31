@@ -56,16 +56,6 @@ autocmd("BufWritePost", {
 	end,
 })
 
-autocmd({ "BufNewFile", "BufRead" }, {
-	desc = "Set filetype for helm templates",
-	group = augroups.filetype,
-	pattern = { "*/templates/*.yaml", "*/templates/*.yml" },
-	callback = function()
-		vim.opt_local.filetype = "helm"
-		vim.diagnostic.enable(false)
-	end,
-})
-
 autocmd("FileType", {
 	desc = "Close with <q>",
 	group = augroups.filetype,

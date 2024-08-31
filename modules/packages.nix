@@ -16,13 +16,13 @@
         cachix
         chromium
         coreutils-full
-        coursier
         csvlens
         curtail
         deluge
         discord
         drawing
         droidcam
+        elixir
         evince
         exiftool
         fd

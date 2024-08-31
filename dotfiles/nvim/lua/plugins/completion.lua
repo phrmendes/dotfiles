@@ -61,6 +61,7 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "emoji" },
+	}, {
 		{ name = "copilot" },
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
@@ -95,19 +96,18 @@ cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 })
 
 cmp.setup.filetype({ "quarto", "markdown" }, {
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "luasnip" },
 		{ name = "cmp_zotcite" },
 		{ name = "cmp_pandoc" },
 		{ name = "emoji" },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 		{ name = "latex_symbols", option = { strategy = 2 } },
-	},
+	}, {
+		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
+	}),
 })
 
 cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-	sources = {
-		{ name = "dap" },
-	},
+	sources = cmp.config.sources({ { name = "dap" } }),
 })

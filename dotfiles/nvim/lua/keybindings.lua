@@ -25,6 +25,9 @@ keys.std = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
+		opts.desc = "Escape terminal mode"
+		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
+
 		opts.desc = "Move in insert mode"
 		map({ "c", "i" }, "<c-h>", "<left>", opts)
 		map({ "c", "i" }, "<c-l>", "<right>", opts)
@@ -274,14 +277,14 @@ keys.std = {
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
-		map("n", "<a-h>", require("smart-splits").resize_left, opts)
-		map("n", "<a-j>", require("smart-splits").resize_down, opts)
-		map("n", "<a-k>", require("smart-splits").resize_up, opts)
-		map("n", "<a-l>", require("smart-splits").resize_right, opts)
-		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map({ "t", "n" }, "<a-h>", require("smart-splits").resize_left, opts)
+		map({ "t", "n" }, "<a-j>", require("smart-splits").resize_down, opts)
+		map({ "t", "n" }, "<a-k>", require("smart-splits").resize_up, opts)
+		map({ "t", "n" }, "<a-l>", require("smart-splits").resize_right, opts)
+		map({ "t", "n" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map({ "t", "n" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map({ "t", "n" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map({ "t", "n" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -454,7 +457,9 @@ keys.dap = function(event)
 	map("n", "<localleader>u", require("dapui").toggle, opts)
 
 	opts.desc = " Eval"
-	map("n", "<localleader><cr>", require("dapui").eval, opts)
+	map("n", "<localleader>?", function()
+		require("dapui").eval(nil, { enter = true })
+	end, opts)
 
 	opts.desc = " Conditional breakpoint"
 	map("n", "<localleader>B", function()

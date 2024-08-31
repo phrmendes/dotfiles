@@ -6,9 +6,7 @@ obsidian.setup({
 	follow_img_func = utils.open,
 	preferred_link_style = "wiki",
 	attachments = { img_folder = "assets" },
-	picker = {
-		name = "mini.pick",
-	},
+	picker = { name = "mini.pick" },
 	workspaces = {
 		{
 			name = "personal",
@@ -57,6 +55,7 @@ obsidian.setup({
 	ui = {
 		checkboxes = {
 			[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+			[">"] = { char = "", hl_group = "ObsidianRightArrow" },
 			["x"] = { char = "", hl_group = "ObsidianDone" },
 		},
 	},

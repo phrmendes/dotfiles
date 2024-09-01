@@ -8,10 +8,6 @@ local keys = {}
 keys.std = {
 	disable = function()
 		map({ "n", "x" }, "s", "<nop>")
-		map({ "c", "i", "t" }, "<c-h>", "<nop>")
-		map({ "c", "i", "t" }, "<c-j>", "<nop>")
-		map({ "c", "i", "t" }, "<c-k>", "<nop>")
-		map({ "c", "i", "t" }, "<c-l>", "<nop>")
 	end,
 	random = function()
 		local opts = { noremap = true }
@@ -27,10 +23,6 @@ keys.std = {
 
 		opts.desc = "Escape terminal mode"
 		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
-
-		opts.desc = "Move in insert mode"
-		map({ "c", "i" }, "<c-h>", "<left>", opts)
-		map({ "c", "i" }, "<c-l>", "<right>", opts)
 	end,
 	leader = function()
 		local opts = { noremap = true }

@@ -77,7 +77,6 @@
           obsidian-nvim
           refactoring-nvim
           smart-splits-nvim
-          toggleterm-nvim
           undotree
           vim-abolish
           vim-dadbod

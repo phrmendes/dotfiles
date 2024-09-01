@@ -4,6 +4,9 @@ require("dial.config").augends:register_group({
 	default = {
 		augend.integer.alias.decimal_int,
 		augend.constant.alias.bool,
+		augend.date.alias["%Y-%m-%d"],
+		augend.date.alias["%Y/%m/%d"],
+		augend.date.alias["%d/%m/%Y"],
 	},
 	lua = {
 		augend.integer.alias.decimal_int,

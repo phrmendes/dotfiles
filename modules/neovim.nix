@@ -133,6 +133,7 @@
           ltex-ls
           lua-language-server
           neovim-remote
+          nginx-language-server
           nixd
           ruff
           shellcheck

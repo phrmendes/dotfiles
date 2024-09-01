@@ -62,7 +62,7 @@ keys.std = {
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
 		opts.desc = "Write all"
-		map("n", "<leader>W", "<cmd>wall<cr>", opts)
+		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
 
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
@@ -74,7 +74,7 @@ keys.std = {
 		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Write"
-		map("n", "<leader>w", "<cmd>w<cr>", opts)
+		map("n", "<leader>w", "<cmd>w!<cr>", opts)
 
 		opts.desc = "Quickfix"
 		map("n", "<leader>x", "<cmd>copen<cr>", opts)
@@ -527,6 +527,11 @@ keys.ft = {
 	elixir = function(event)
 		keys.dap(event)
 		keys.neogen(event)
+
+		local opts = { noremap = true, buffer = event.buf }
+
+		opts.desc = " Pipe"
+		map("i", "<c-cr>", "<esc>:normal! a |><cr>a", opts)
 	end,
 	python = function(event)
 		keys.dap(event)

@@ -35,6 +35,7 @@ local servers = {
 	elixirls = {},
 	emmet_language_server = {},
 	html = {},
+	nginx_language_server = {},
 	nixd = {},
 	ruff = {},
 	sqls = {},

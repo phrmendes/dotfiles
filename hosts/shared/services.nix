@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   services = {
     envfs.enable = true;
     flatpak.enable = true;
@@ -6,18 +6,18 @@
     gvfs.enable = true;
     ntpd-rs.enable = true;
     tailscale.enable = true;
+    udev.enable = true;
 
-    gnome.core-utilities.enable = false;
     journald.extraConfig = "SystemMaxUse=1G";
-
-    udev = {
-      enable = true;
-      packages = with pkgs; [gnome.gnome-settings-daemon];
-    };
 
     btrfs.autoScrub = {
       enable = true;
       interval = "monthly";
+    };
+
+    gnome = {
+      core-utilities.enable = false;
+      gnome-settings-daemon.enable = true;
     };
 
     openssh = {

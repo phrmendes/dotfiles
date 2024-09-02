@@ -370,8 +370,25 @@
         "impermanence": "impermanence",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
+        "smart-open-nvim": "smart-open-nvim",
         "stylix": "stylix",
         "zotcite": "zotcite"
+      }
+    },
+    "smart-open-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718197413,
+        "narHash": "sha256-bEo5p7tHeoE13P8QsjC8RqNA0NMogjdYzN0oatQaIJY=",
+        "owner": "danielfalk",
+        "repo": "smart-open.nvim",
+        "rev": "f4e39e9a1b05a6b82b1182a013677acc44b27abb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danielfalk",
+        "repo": "smart-open.nvim",
+        "type": "github"
       }
     },
     "stylix": {

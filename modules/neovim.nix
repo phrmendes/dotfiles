@@ -14,10 +14,11 @@
           inherit src pname;
           version = src.rev;
         };
-      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
-      zotcite = fromGitHub "zotcite" inputs.zotcite;
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
+      curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
+      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
+      zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -76,7 +77,6 @@
           nvim-ts-context-commentstring
           obsidian-nvim
           refactoring-nvim
-          smart-open-nvim
           smart-splits-nvim
           telescope-fzf-native-nvim
           telescope-nvim
@@ -98,6 +98,7 @@
           cmp-zotcite
           curl-nvim
           luasnip-latex-snippets
+          smart-open-nvim
           zotcite
         ];
       extraLuaPackages = luaPkgs:

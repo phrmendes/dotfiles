@@ -85,3 +85,11 @@ autocmd("User", {
 		vim.api.nvim_win_set_config(win_id, { border = require("utils").borders.border })
 	end,
 })
+
+autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = augroups.yank,
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})

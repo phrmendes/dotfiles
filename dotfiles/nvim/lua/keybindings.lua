@@ -33,25 +33,17 @@ keys.std = {
 		opts.desc = "Split (V)"
 		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
 
-		opts.desc = "Command history"
-		map("n", "<leader>:", function()
-			require("mini.extra").pickers.history({ scope = ":" })
-		end, opts)
-
 		opts.desc = "Live grep"
-		map("n", "<leader>/", require("mini.pick").builtin.grep_live, opts)
+		map("n", "<leader>/", require("telescope.builtin").live_grep, opts)
 
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
 
 		opts.desc = "Help"
-		map("n", "<leader>?", require("mini.pick").builtin.help, opts)
+		map("n", "<leader>?", require("telescope.builtin").help_tags, opts)
 
-		opts.desc = "Find"
-		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
-
-		opts.desc = "Keymaps"
-		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
+		opts.desc = "Open"
+		map("n", "<leader><leader>", require("telescope").extensions.smart_open.smart_open, opts)
 
 		opts.desc = "Write all"
 		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
@@ -61,9 +53,6 @@ keys.std = {
 
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
-
-		opts.desc = "Visits"
-		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>w!<cr>", opts)
@@ -89,9 +78,6 @@ keys.std = {
 	buffers = function()
 		local opts = { noremap = true }
 
-		opts.desc = "List"
-		map("n", "<leader>bb", require("mini.pick").builtin.buffers, opts)
-
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
 
@@ -106,6 +92,14 @@ keys.std = {
 
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
+
+		opts.desc = "Find"
+		map("n", "<leader>bf", function()
+			require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+				winblend = 10,
+				previewer = false,
+			}))
+		end, opts)
 	end,
 	curl = function()
 		local opts = { noremap = true, silent = true }
@@ -150,7 +144,7 @@ keys.std = {
 	explorer = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Explorer"
+		opts.desc = " Explorer"
 		map("n", "<leader>e", function()
 			if not require("mini.files").close() then
 				require("mini.files").open(vim.fn.expand("%:p:h"))
@@ -171,16 +165,11 @@ keys.std = {
 		opts.desc = "Add (repo)"
 		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
 
-		opts.desc = "Branches"
-		map("n", "<leader>gb", require("mini.extra").pickers.git_branches, opts)
-
 		opts.desc = "Commits (file)"
-		map("n", "<leader>gc", function()
-			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
-		end, opts)
+		map("n", "<leader>gc", "<cmd>LazyGitFilterCurrentFile<cr>", opts)
 
 		opts.desc = "Commits (repo)"
-		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
+		map("n", "<leader>gC", "<cmd>LazyGitFilter<cr>", opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
@@ -190,9 +179,6 @@ keys.std = {
 
 		opts.desc = "History"
 		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
-
-		opts.desc = "Hunks"
-		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
@@ -269,14 +255,18 @@ keys.std = {
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
-		map({ "t", "n" }, "<a-h>", require("smart-splits").resize_left, opts)
-		map({ "t", "n" }, "<a-j>", require("smart-splits").resize_down, opts)
-		map({ "t", "n" }, "<a-k>", require("smart-splits").resize_up, opts)
-		map({ "t", "n" }, "<a-l>", require("smart-splits").resize_right, opts)
-		map({ "t", "n" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map({ "t", "n" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map({ "t", "n" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map({ "t", "n" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map({ "n", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
+		map({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
+		map({ "n", "t" }, "<c-down>", require("smart-splits").swap_buf_down, opts)
+		map({ "n", "t" }, "<c-left>", require("smart-splits").swap_buf_left, opts)
+		map({ "n", "t" }, "<c-right>", require("smart-splits").swap_buf_right, opts)
+		map({ "n", "t" }, "<c-up>", require("smart-splits").swap_buf_up, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -305,20 +295,6 @@ keys.std = {
 		opts.desc = "Edit in tab"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
-	yanky = function()
-		local opts = { noremap = true, desc = "Yanky" }
-
-		map({ "n", "x" }, "y", "<Plug>(YankyYank)", opts)
-		map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", opts)
-		map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", opts)
-		map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", opts)
-		map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", opts)
-		map("n", "[y", "<Plug>(YankyPreviousEntry)", opts)
-		map("n", "y]", "<Plug>(YankyNextEntry)", opts)
-
-		opts.desc = "Yank history"
-		map("n", "<leader>y", "<cmd>YankyRingHistory<cr>", opts)
-	end,
 }
 
 keys.lsp = function(event)
@@ -333,37 +309,27 @@ keys.lsp = function(event)
 
 		if client.supports_method("textDocument/definition") then
 			opts.desc = " Go to definition"
-			map("n", "gd", function()
-				require("mini.extra").pickers.lsp({ scope = "definition" })
-			end, opts)
+			map("n", "gd", require("telescope.builtin").lsp_definitions, opts)
 		end
 
 		if client.supports_method("textDocument/declaration") then
 			opts.desc = " Go to declaration"
-			map("n", "gD", function()
-				require("mini.extra").pickers.lsp({ scope = "declaration" })
-			end, opts)
+			map("n", "gD", vim.lsp.buf.declaration, opts)
 		end
 
 		if client.supports_method("textDocument/implementation") then
-			opts.desc = " Go to implementation"
-			map("n", "gi", function()
-				require("mini.extra").pickers.lsp({ scope = "implementation" })
-			end, opts)
+			opts.desc = " Go to implementations"
+			map("n", "gi", require("telescope.builtin").lsp_implementations, opts)
 		end
 
 		if client.supports_method("textDocument/references") then
 			opts.desc = " Go to references"
-			map("n", "gr", function()
-				require("mini.extra").pickers.lsp({ scope = "references" })
-			end, opts)
+			map("n", "gr", require("telescope.builtin").lsp_references, opts)
 		end
 
 		if client.supports_method("textDocument/typeDefinition") then
 			opts.desc = " Go to type definition"
-			map("n", "gt", function()
-				require("mini.extra").pickers.lsp({ scope = "type_definition" })
-			end, opts)
+			map("n", "gt", require("telescope.builtin").lsp_type_definitions, opts)
 		end
 
 		if client.supports_method("textDocument/codeAction") then
@@ -373,7 +339,7 @@ keys.lsp = function(event)
 
 		if client.supports_method("textDocument/publishDiagnostics") then
 			opts.desc = " Diagnostics"
-			map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
+			map("n", "<leader>d", require("telescope.builtin").diagnostics, opts)
 		end
 
 		if client.supports_method("textDocument/signatureHelp") then
@@ -395,16 +361,12 @@ keys.lsp = function(event)
 
 		if client.supports_method("textDocument/documentSymbol") then
 			opts.desc = " Symbols (document)"
-			map("n", "<leader>s", function()
-				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-			end, opts)
+			map("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, opts)
 		end
 
 		if client.supports_method("workspace/symbol") then
 			opts.desc = " Symbols (workspace)"
-			map("n", "<leader>S", function()
-				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
-			end, opts)
+			map("n", "<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
 		end
 	end
 end

@@ -76,7 +76,10 @@
           nvim-ts-context-commentstring
           obsidian-nvim
           refactoring-nvim
+          smart-open-nvim
           smart-splits-nvim
+          telescope-fzf-native-nvim
+          telescope-nvim
           undotree
           vim-abolish
           vim-dadbod
@@ -89,7 +92,6 @@
           vim-rsi
           vim-sleuth
           vim-slime
-          yanky-nvim
           zen-mode-nvim
         ])
         ++ [

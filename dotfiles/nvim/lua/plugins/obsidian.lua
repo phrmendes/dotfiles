@@ -6,7 +6,6 @@ obsidian.setup({
 	follow_img_func = utils.open,
 	preferred_link_style = "wiki",
 	attachments = { img_folder = "assets" },
-	picker = { name = "mini.pick" },
 	workspaces = {
 		{
 			name = "personal",

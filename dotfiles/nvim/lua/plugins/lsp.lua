@@ -32,7 +32,6 @@ local servers = {
 	cssls = {},
 	dockerls = {},
 	dotls = {},
-	elixirls = {},
 	emmet_language_server = {},
 	html = {},
 	nginx_language_server = {},
@@ -43,6 +42,11 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
+	elixirls = {
+		cmd = {
+			vim.fn.exepath("elixir-ls"),
+		},
+	},
 	helm_ls = {
 		settings = {
 			["helm-ls"] = {

@@ -38,7 +38,7 @@ dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
 dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close
 dap.listeners.before.event_exited["dapui_config"] = dap_ui.close
 
-local elixir_ls_debugger = vim.fn.executable("elixir-debug-adapter")
+local elixir_ls_debugger = vim.fn.exepath("elixir-debug-adapter")
 
 if elixir_ls_debugger ~= "" then
 	dap.adapters.mix_task = {

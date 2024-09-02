@@ -43,6 +43,7 @@
         gzip
         hugo
         imagemagick
+        infisical
         inkscape
         jdk
         jq

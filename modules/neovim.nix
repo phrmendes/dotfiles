@@ -140,6 +140,7 @@
           sqlfluff
           sqls
           stylua
+          tailwindcss-language-server
           taplo
           terraform-ls
           texlab

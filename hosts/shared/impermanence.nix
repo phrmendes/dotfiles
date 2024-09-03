@@ -16,6 +16,7 @@
         "Zotero"
         ".config"
         ".gnupg"
+        ".kube"
         ".mozilla"
         ".ssh"
         ".tmux"

@@ -26,6 +26,8 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
+        PubKeyAuthentication = true;
+        AuthorizedKeysFile = "%h/.ssh/authorized_keys";
       };
     };
 

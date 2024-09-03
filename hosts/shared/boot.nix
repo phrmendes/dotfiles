@@ -7,6 +7,7 @@
     tmp.cleanOnBoot = true;
     supportedFilesystems = ["btrfs" "ntfs"];
     kernelPackages = pkgs.linuxPackages_latest;
+    plymouth.enable = true;
 
     loader = {
       timeout = 5;

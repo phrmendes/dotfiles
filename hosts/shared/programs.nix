@@ -9,6 +9,11 @@
     seahorse.enable = true;
     zsh.enable = true;
 
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
     kdeconnect = {
       enable = true;
       package = pkgs.gnomeExtensions.gsconnect;
@@ -21,11 +26,6 @@
         enable = true;
         extraArgs = "--keep-since 3d --keep 3";
       };
-    };
-
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
     };
 
     nix-ld = {

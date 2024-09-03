@@ -13,6 +13,7 @@
       settings = {
         command_timeout = 1000;
         docker_context.disabled = true;
+        gcloud.disabled = true;
         python.symbol = " ";
         conda.symbol = "🐍 ";
         nix_shell.symbol = " ";

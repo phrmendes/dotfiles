@@ -41,7 +41,7 @@
         folders = {
           "camera" = {
             path = "${parameters.home}/Documents/camera";
-            devices = ["phone" "server" "laptop"];
+            devices = ["phone" "server"];
           };
           "documents" = {
             path = "${parameters.home}/Documents/documents";

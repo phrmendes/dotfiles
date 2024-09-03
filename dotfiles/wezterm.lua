@@ -24,7 +24,6 @@ config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 config.status_update_interval = 500
 config.tab_and_split_indices_are_zero_based = false
 config.tab_bar_at_bottom = true
-config.tab_max_width = 15
 config.unix_domains = { { name = "mux" } }
 config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
@@ -50,6 +49,7 @@ config.keys = {
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
 	{ key = "t", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
+	{ key = "w", mods = "LEADER", action = ws.switch_workspace() },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
 	{
@@ -99,13 +99,6 @@ config.keys = {
 			resurrect.save_state(resurrect.workspace_state.get_workspace_state())
 			resurrect.window_state.save_window_action()
 		end),
-	},
-	{
-		key = "w",
-		mods = "LEADER",
-		action = ws.switch_workspace({
-			{ extra_args = " | rg " .. home .. "/(Projects|Documents/notes) | cut --delimiter '/' --fields 1-7" },
-		}),
 	},
 }
 

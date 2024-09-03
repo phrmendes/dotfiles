@@ -7,7 +7,11 @@
   options.packages.enable = lib.mkEnableOption "enable packages";
 
   config = lib.mkIf config.packages.enable {
-    home.packages = with pkgs;
+    home.packages = with pkgs; let
+      gcloud = google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [
+        gke-gcloud-auth-plugin
+      ]);
+    in
       [
         age
         ansible
@@ -33,7 +37,9 @@
         findutils
         firefox
         gcc
+        gcloud
         gcolor3
+        gdal
         gdu
         gnome-tweaks
         gnumake

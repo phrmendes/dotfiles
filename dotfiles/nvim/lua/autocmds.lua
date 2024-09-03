@@ -75,6 +75,15 @@ autocmd("FileType", {
 	end,
 })
 
+autocmd("FileType", {
+	desc = "",
+	group = augroups.filetype,
+	pattern = "helm",
+	callback = function(event)
+		vim.diagnostic.enable(false, { bufnr = event.buf })
+	end,
+})
+
 autocmd("User", {
 	desc = "Set border for mini files window",
 	group = augroups.mini,

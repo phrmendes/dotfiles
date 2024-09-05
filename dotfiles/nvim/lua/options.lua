@@ -103,6 +103,7 @@ vim.g.mkdp_auto_close = 0
 vim.filetype.add({
 	filename = {
 		["*/.kube/config"] = "yaml",
+		["*/.envrc"] = "sh",
 	},
 	extension = {
 		["curl"] = "curl",

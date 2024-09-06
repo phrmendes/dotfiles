@@ -53,7 +53,7 @@ config.keys = {
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
 	{
-		key = "R",
+		key = "r",
 		mods = "LEADER",
 		action = wezterm.action.PromptInputLine({
 			description = "Rename tab:",
@@ -65,7 +65,7 @@ config.keys = {
 		}),
 	},
 	{
-		key = "r",
+		key = "R",
 		mods = "LEADER",
 		action = wezterm.action_callback(function(win, pane)
 			resurrect.fuzzy_load(win, pane, function(id)
@@ -93,7 +93,7 @@ config.keys = {
 		end),
 	},
 	{
-		key = "s",
+		key = "S",
 		mods = "LEADER",
 		action = wezterm.action_callback(function()
 			resurrect.save_state(resurrect.workspace_state.get_workspace_state())

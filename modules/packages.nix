@@ -68,6 +68,7 @@
         poppler
         portal
         postgresql
+        protonvpn-gui
         python312
         qalculate-gtk
         quarto

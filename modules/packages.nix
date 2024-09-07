@@ -15,13 +15,10 @@
       [
         age
         ansible
-        atac
         bitwarden
         cachix
         chromium
         coreutils-full
-        csvlens
-        curtail
         deluge
         discord
         drawing
@@ -44,8 +41,8 @@
         gnome-tweaks
         gnumake
         gnused
+        gparted
         graphviz
-        grex
         gzip
         hugo
         imagemagick
@@ -78,6 +75,7 @@
         tectonic
         terraform
         unar
+        usbimager
         vagrant
         ventoy
         vlc

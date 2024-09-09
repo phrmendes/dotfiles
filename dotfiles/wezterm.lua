@@ -38,13 +38,15 @@ config.ssh_domains = {
 
 config.keys = {
 	{ key = "Space", mods = "LEADER|CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
-	{ key = "Enter", mods = "LEADER", action = action.RotatePanes("Clockwise") },
+	{ key = "Enter", mods = "LEADER", action = action.SpawnWindow },
 	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "[", mods = "LEADER", action = action.ActivateTabRelative(-1) },
 	{ key = "]", mods = "LEADER", action = action.ActivateTabRelative(1) },
 	{ key = "{", mods = "LEADER", action = action.MoveTabRelative(-1) },
 	{ key = "}", mods = "LEADER", action = action.MoveTabRelative(1) },
+	{ key = ".", mods = "LEADER", action = action.RotatePanes("Clockwise") },
+	{ key = ",", mods = "LEADER", action = action.RotatePanes("CounterClockwise") },
 	{ key = "d", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|DOMAINS" }) },
 	{ key = "n", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },

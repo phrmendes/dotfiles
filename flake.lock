@@ -134,22 +134,6 @@
         "type": "github"
       }
     },
-    "cmp-zotcite": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710558035,
-        "narHash": "sha256-p3vssnEXVwXdLHTrCRngAVReA+yA0Hc9bMwuRju4fXc=",
-        "owner": "jalvesaq",
-        "repo": "cmp-zotcite",
-        "rev": "281f43726bed2c5eb96bea1544edcf2e069795db",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jalvesaq",
-        "repo": "cmp-zotcite",
-        "type": "github"
-      }
-    },
     "curl-nvim": {
       "flake": false,
       "locked": {
@@ -363,32 +347,13 @@
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
-        "cmp-zotcite": "cmp-zotcite",
         "curl-nvim": "curl-nvim",
         "disko": "disko",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
-        "smart-open-nvim": "smart-open-nvim",
-        "stylix": "stylix",
-        "zotcite": "zotcite"
-      }
-    },
-    "smart-open-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1718197413,
-        "narHash": "sha256-bEo5p7tHeoE13P8QsjC8RqNA0NMogjdYzN0oatQaIJY=",
-        "owner": "danielfalk",
-        "repo": "smart-open.nvim",
-        "rev": "f4e39e9a1b05a6b82b1182a013677acc44b27abb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "danielfalk",
-        "repo": "smart-open.nvim",
-        "type": "github"
+        "stylix": "stylix"
       }
     },
     "stylix": {
@@ -433,22 +398,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "zotcite": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1725615858,
-        "narHash": "sha256-uplJP7eaiJUBqHulLYGZqVfB29JWJ1p4loqKsRBg/Dk=",
-        "owner": "jalvesaq",
-        "repo": "zotcite",
-        "rev": "d990fa26040128e4143b49c991f6cea3edc10cf7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jalvesaq",
-        "repo": "zotcite",
         "type": "github"
       }
     }

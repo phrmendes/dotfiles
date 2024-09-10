@@ -98,7 +98,6 @@ cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 cmp.setup.filetype({ "quarto", "markdown" }, {
 	sources = cmp.config.sources({
 		{ name = "luasnip" },
-		{ name = "cmp_zotcite" },
 		{ name = "cmp_pandoc" },
 		{ name = "emoji" },
 		{ name = "path" },

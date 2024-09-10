@@ -2,7 +2,6 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local action = wezterm.action
 local nf = wezterm.nerdfonts
-local home = os.getenv("HOME")
 
 local ss = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local ws = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
@@ -169,32 +168,6 @@ wezterm.on("format-tab-title", function(tab)
 		{ Text = " " },
 		{ Text = zoom(tab) },
 	}
-end)
-
-wezterm.on("user-var-changed", function(window, pane, name, value)
-	local overrides = window:get_config_overrides() or {}
-
-	if name == "ZEN_MODE" then
-		local incremental = value:find("+")
-		local number_value = tonumber(value)
-
-		if incremental ~= nil then
-			while number_value > 0 do
-				window:perform_action(action.IncreaseFontSize, pane)
-				number_value = number_value - 1
-			end
-			overrides.enable_tab_bar = false
-		elseif number_value < 0 then
-			window:perform_action(action.ResetFontSize, pane)
-			overrides.font_size = nil
-			overrides.enable_tab_bar = true
-		else
-			overrides.font_size = number_value
-			overrides.enable_tab_bar = false
-		end
-	end
-
-	window:set_config_overrides(overrides)
 end)
 
 ss.apply_to_config(config, {

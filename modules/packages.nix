@@ -70,6 +70,7 @@
         qalculate-gtk
         quarto
         rar
+        sqlite
         sshs
         syncthingtray
         tectonic

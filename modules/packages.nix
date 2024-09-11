@@ -14,6 +14,7 @@
     in
       [
         age
+        android-tools
         ansible
         bitwarden
         cachix
@@ -70,6 +71,7 @@
         qalculate-gtk
         quarto
         rar
+        scrcpy
         sqlite
         sshs
         syncthingtray

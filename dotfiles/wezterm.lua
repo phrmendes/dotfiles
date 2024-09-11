@@ -67,8 +67,8 @@ config.keys = {
 		}),
 	},
 	{
-		key = "R",
-		mods = "LEADER",
+		key = "r",
+		mods = "LEADER|CTRL",
 		action = wezterm.action_callback(function(win, pane)
 			resurrect.fuzzy_load(win, pane, function(id)
 				local type = string.match(id, "^([^/]+)") -- match before '/'
@@ -95,8 +95,8 @@ config.keys = {
 		end),
 	},
 	{
-		key = "S",
-		mods = "LEADER",
+		key = "s",
+		mods = "LEADER|CTRL",
 		action = wezterm.action_callback(function()
 			resurrect.save_state(resurrect.workspace_state.get_workspace_state())
 			resurrect.window_state.save_window_action()

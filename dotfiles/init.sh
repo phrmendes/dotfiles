@@ -28,3 +28,5 @@ function yy() {
 function diff_persist() {
     sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
 }
+
+eval "$(uv generate-shell-completion zsh)"

@@ -22,6 +22,7 @@
         ".tmux"
         ".zotero"
         ".cache/tealdeer"
+        ".cache/uv"
         ".local/share/Trash"
         ".local/share/keyrings"
         ".local/share/nvim"
@@ -31,6 +32,7 @@
         ".local/state/lazygit"
         ".local/state/nix"
         ".local/state/nvim"
+        ".local/state/uv"
         ".local/state/wireplumber"
       ];
     };

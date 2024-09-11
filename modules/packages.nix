@@ -76,6 +76,7 @@
         terraform
         unar
         usbimager
+        uv
         vagrant
         ventoy
         vlc

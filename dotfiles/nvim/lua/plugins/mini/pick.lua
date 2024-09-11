@@ -1,15 +1,14 @@
 require("mini.pick").setup({
 	mappings = {
-		choose_marked = "<c-cr>",
+		choose = "<cr>",
+		choose_marked = "<c-q>",
+		mark = "<tab>",
 		refine = "<c-r>",
 		refine_marked = "<c-m>",
 		scroll_down = "<c-d>",
 		scroll_up = "<c-u>",
-		delete_left = "",
-		paste = "",
-	},
-	options = {
-		use_cache = true,
+		toggle_info = "<c-i>",
+		toggle_preview = "<m-p>",
 	},
 	window = {
 		config = {

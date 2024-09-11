@@ -33,25 +33,17 @@ keys.std = {
 		opts.desc = "Split (V)"
 		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
 
-		opts.desc = "Command history"
-		map("n", "<leader>:", function()
-			require("mini.extra").pickers.history({ scope = ":" })
-		end, opts)
-
 		opts.desc = "Live grep"
-		map("n", "<leader>/", require("mini.pick").builtin.grep_live, opts)
+		map("n", "<leader>/", require("telescope.builtin").live_grep, opts)
 
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
 
 		opts.desc = "Help"
-		map("n", "<leader>?", require("mini.pick").builtin.help, opts)
+		map("n", "<leader>?", require("telescope.builtin").help_tags, opts)
 
-		opts.desc = "Find"
-		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
-
-		opts.desc = "Keymaps"
-		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
+		opts.desc = "Open"
+		map("n", "<leader><leader>", require("telescope").extensions.smart_open.smart_open, opts)
 
 		opts.desc = "Write all"
 		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
@@ -61,9 +53,6 @@ keys.std = {
 
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
-
-		opts.desc = "Visits"
-		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>w!<cr>", opts)
@@ -89,9 +78,6 @@ keys.std = {
 	buffers = function()
 		local opts = { noremap = true }
 
-		opts.desc = "List"
-		map("n", "<leader>bb", require("mini.pick").builtin.buffers, opts)
-
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
 
@@ -106,6 +92,14 @@ keys.std = {
 
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
+
+		opts.desc = "Find"
+		map("n", "<leader>bf", function()
+			require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+				winblend = 10,
+				previewer = false,
+			}))
+		end, opts)
 	end,
 	curl = function()
 		local opts = { noremap = true, silent = true }
@@ -171,16 +165,11 @@ keys.std = {
 		opts.desc = "Add (repo)"
 		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
 
-		opts.desc = "Branches"
-		map("n", "<leader>gb", require("mini.extra").pickers.git_branches, opts)
-
 		opts.desc = "Commits (file)"
-		map("n", "<leader>gc", function()
-			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
-		end, opts)
+		map("n", "<leader>gc", "<cmd>LazyGitFilterCurrentFile<cr>", opts)
 
 		opts.desc = "Commits (repo)"
-		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
+		map("n", "<leader>gC", "<cmd>LazyGitFilter<cr>", opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
@@ -190,9 +179,6 @@ keys.std = {
 
 		opts.desc = "History"
 		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
-
-		opts.desc = "Hunks"
-		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
@@ -317,84 +303,70 @@ keys.lsp = function(event)
 
 	if client then
 		if client.supports_method("textDocument/rename") then
-			opts.desc = "Rename symbol"
+			opts.desc = "LSP: rename symbol"
 			map("n", "<f2>", vim.lsp.buf.rename, opts)
 		end
 
 		if client.supports_method("textDocument/definition") then
-			opts.desc = " Go to definition"
-			map("n", "gd", function()
-				require("mini.extra").pickers.lsp({ scope = "definition" })
-			end, opts)
+			opts.desc = "LSP: go to definition"
+			map("n", "gd", require("telescope.builtin").lsp_definitions, opts)
 		end
 
 		if client.supports_method("textDocument/declaration") then
-			opts.desc = " Go to declaration"
-			map("n", "gD", function()
-				require("mini.extra").pickers.lsp({ scope = "declaration" })
-			end, opts)
+			opts.desc = "LSP: go to declaration"
+			map("n", "gD", vim.lsp.buf.declaration, opts)
 		end
 
 		if client.supports_method("textDocument/implementation") then
-			opts.desc = " Go to implementation"
-			map("n", "gi", function()
-				require("mini.extra").pickers.lsp({ scope = "implementation" })
-			end, opts)
+			opts.desc = "LSP: go to implementations"
+			map("n", "gi", require("telescope.builtin").lsp_implementations, opts)
 		end
 
 		if client.supports_method("textDocument/references") then
-			opts.desc = " Go to references"
-			map("n", "gr", function()
-				require("mini.extra").pickers.lsp({ scope = "references" })
-			end, opts)
+			opts.desc = "LSP: go to references"
+			map("n", "gr", require("telescope.builtin").lsp_references, opts)
 		end
 
 		if client.supports_method("textDocument/typeDefinition") then
-			opts.desc = " Go to type definition"
-			map("n", "gt", function()
-				require("mini.extra").pickers.lsp({ scope = "type_definition" })
-			end, opts)
+			opts.desc = "LSP: go to type definition"
+			map("n", "gt", require("telescope.builtin").lsp_type_definitions, opts)
 		end
 
 		if client.supports_method("textDocument/codeAction") then
-			opts.desc = " Code actions"
+			opts.desc = "LSP: code actions"
 			map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
 		end
 
 		if client.supports_method("textDocument/publishDiagnostics") then
-			opts.desc = " Diagnostics"
-			map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
+			opts.desc = "LSP: diagnostics"
+			map("n", "<leader>d", require("telescope.builtin").diagnostics, opts)
 		end
 
 		if client.supports_method("textDocument/signatureHelp") then
-			opts.desc = " Signature help"
+			opts.desc = "LSP: signature help"
 			map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 		end
 
 		if client.supports_method("textDocument/inlayHint") then
-			opts.desc = " Toggle inlay hints"
+			opts.desc = "LSP: toggle inlay hints"
 			map("n", "<leader>t", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 			end, opts)
 		end
 
 		if client.supports_method("textDocument/hover") then
-			opts.desc = " Hover"
+			opts.desc = "LSP: hover"
 			map("n", "<leader>k", vim.lsp.buf.hover, opts)
 		end
 
 		if client.supports_method("textDocument/documentSymbol") then
-			opts.desc = " Symbols (document)"
-			map("n", "<leader>s", function()
-				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-			end, opts)
+			opts.desc = "LSP: symbols (document)"
+			map("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, opts)
 		end
 
 		if client.supports_method("workspace/symbol") then
-			opts.desc = " Symbols (workspace)"
-			map("n", "<leader>S", function()
-				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
-			end, opts)
+			opts.desc = "LSP: symbols (workspace)"
+			map("n", "<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
 		end
 	end
 end
@@ -402,48 +374,48 @@ end
 keys.dap = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
-	opts.desc = "Step out"
+	opts.desc = "DAP: step out"
 	map("n", "<f3>", require("dap").step_out, opts)
 
-	opts.desc = "Step into"
+	opts.desc = "DAP: step into"
 	map("n", "<f4>", require("dap").step_into, opts)
 
-	opts.desc = "Step back"
+	opts.desc = "DAP: step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "Continue"
+	opts.desc = "DAP: sontinue"
 	map("n", "<f6>", require("dap").continue, opts)
 
-	opts.desc = "Step over"
+	opts.desc = "DAP: step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "Pause"
+	opts.desc = "DAP: sause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "Terminate"
+	opts.desc = "DAP: serminate"
 	map("n", "<del>", require("dap").terminate, opts)
 
-	opts.desc = " Breakpoint"
+	opts.desc = "DAP: breakpoint"
 	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
-	opts.desc = " Debug last"
+	opts.desc = "DAP: debug last"
 	map("n", "<localleader><bs>", require("dap").run_last, opts)
 
-	opts.desc = " Clear all breakpoints"
+	opts.desc = "DAP: clear all breakpoints"
 	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
 
-	opts.desc = " Show hover"
+	opts.desc = "DAP: show hover"
 	map("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
 
-	opts.desc = " Toggle UI"
+	opts.desc = "DAP: toggle UI"
 	map("n", "<localleader>u", require("dapui").toggle, opts)
 
-	opts.desc = " Eval"
+	opts.desc = "DAP: eval"
 	map("n", "<localleader>?", function()
 		require("dapui").eval(nil, { enter = true })
 	end, opts)
 
-	opts.desc = " Conditional breakpoint"
+	opts.desc = "DAP: conditional breakpoint"
 	map("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
@@ -488,8 +460,26 @@ keys.ft = {
 
 		keys.writing(event)
 
-		opts.desc = " Preview"
+		opts.desc = "Preview (markdown)"
 		map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
+
+		opts.desc = "Zotcite: citation info"
+		map("n", "<leader>i", "<Plug>ZCitationInfo", opts)
+
+		opts.desc = "Zotcite: citation info (complete)"
+		map("n", "<leader>I", "<Plug>ZCitationCompleteInfo", opts)
+
+		opts.desc = "Zotcite: open attachment"
+		map("n", "<leader>O", "<Plug>ZOpenAttachment", opts)
+
+		opts.desc = "Zotcite: view document"
+		map("n", "<leader>v", "<Plug>ZViewDocument", opts)
+
+		opts.desc = "Zotcite: YAML reference"
+		map("n", "<leader>y", "<Plug>ZCitationYamlRef", opts)
+
+		opts.desc = "Zotcite: extract abstract"
+		map("n", "<Leader>X", "<Plug>ZExtractAbstract", opts)
 	end,
 	elixir = function(event)
 		keys.dap(event)
@@ -498,7 +488,7 @@ keys.ft = {
 		local opts = { noremap = true, buffer = event.buf }
 
 		opts.desc = " Pipe"
-		map("i", "<c-cr>", "<esc>:normal! a |><cr>a", opts)
+		map("i", "<c-cr>", "<esc><cmd>normal! a |><cr>a", opts)
 	end,
 	python = function(event)
 		keys.dap(event)
@@ -507,13 +497,13 @@ keys.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = " Debug function/method"
+		opts.desc = "Python: debug function/method"
 		map("n", "<localleader>f", require("dap-python").test_method, opts)
 
-		opts.desc = " Debug class"
+		opts.desc = "Python: debug class"
 		map("n", "<localleader>c", require("dap-python").test_class, opts)
 
-		opts.desc = " Debug selection"
+		opts.desc = "Python: debug selection"
 		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 	end,
 	quarto = function(event)

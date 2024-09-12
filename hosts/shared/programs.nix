@@ -32,14 +32,22 @@
       enable = true;
       package = pkgs.nix-ld-rs;
       libraries = with pkgs; [
+        acl
+        attr
+        bzip2
         curl
+        libsodium
+        libssh
         libxml2
         openssl
         readline
         stdenv.cc.cc
+        systemd
         tk
+        util-linux
         xz
         zlib
+        zstd
       ];
     };
   };

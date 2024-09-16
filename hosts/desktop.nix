@@ -38,46 +38,70 @@
 
     syncthing = {
       settings = {
-        folders = {
+        folders = let
+          versioning = {
+            simple = {
+              type = "simple";
+              params = {
+                keep = "10";
+                cleanoutDays = "30";
+              };
+            };
+            trashcan = {
+              type = "trashcan";
+              params.cleanoutDays = "15";
+            };
+          };
+        in {
           "camera" = {
             path = "${parameters.home}/Documents/camera";
             devices = ["phone" "server"];
+            versioning = versioning.trashcan;
           };
           "documents" = {
             path = "${parameters.home}/Documents/documents";
             devices = ["phone" "server" "laptop"];
+            versioning = versioning.trashcan;
           };
           "images" = {
             path = "${parameters.home}/Documents/images";
             devices = ["server" "laptop"];
+            versioning = versioning.trashcan;
           };
           "notes" = {
             path = "${parameters.home}/Documents/notes";
             devices = ["phone" "tablet" "server" "laptop"];
+            versioning = versioning.simple;
           };
           "ufabc" = {
             path = "${parameters.home}/Documents/ufabc";
             devices = ["server" "tablet" "laptop"];
+            versioning = versioning.trashcan;
           };
           "comics" = {
             path = "${parameters.home}/Documents/library/comics";
             devices = ["server"];
+            versioning = versioning.trashcan;
           };
           "IT" = {
             path = "${parameters.home}/Documents/library/IT";
             devices = ["server" "laptop"];
+            versioning = versioning.trashcan;
           };
           "math" = {
             path = "${parameters.home}/Documents/library/math";
             devices = ["server" "laptop"];
+            versioning = versioning.trashcan;
           };
           "social_sciences" = {
             path = "${parameters.home}/Documents/library/social_sciences";
             devices = ["server" "laptop"];
+            versioning = versioning.trashcan;
           };
           "zotero" = {
             path = "${parameters.home}/Documents/library/zotero";
             devices = ["phone" "server" "tablet" "laptop"];
+            versioning = versioning.trashcan;
           };
         };
         devices = {

@@ -42,6 +42,7 @@
         gnome-tweaks
         gnumake
         gnused
+        go
         gparted
         graphviz
         gzip

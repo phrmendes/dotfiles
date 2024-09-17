@@ -64,6 +64,7 @@
           nvim-cmp
           nvim-colorizer-lua
           nvim-dap
+          nvim-dap-go
           nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
@@ -124,10 +125,16 @@
           autotools-language-server
           basedpyright
           bash-language-server
+          delve
           dockerfile-language-server-nodejs
           dot-language-server
           elixir-ls
           emmet-language-server
+          gofumpt
+          goimports-reviser
+          golangci-lint
+          golines
+          gopls
           hadolint
           helm-ls
           ltex-ls

@@ -487,8 +487,21 @@ keys.ft = {
 
 		local opts = { noremap = true, buffer = event.buf }
 
-		opts.desc = " Pipe"
+		opts.desc = "Elixir: Pipe"
 		map("i", "<c-cr>", "<esc><cmd>normal! a |><cr>a", opts)
+	end,
+	go = function(event)
+		keys.dap(event)
+		keys.neogen(event)
+		keys.refactoring(event)
+
+		local opts = { noremap = true, buffer = event.buf }
+
+		opts.desc = "Go: debug test"
+		map("n", "<localleader>t", require("dap-go").debug_test, opts)
+
+		opts.desc = "Go: debug last test"
+		map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
 	end,
 	python = function(event)
 		keys.dap(event)

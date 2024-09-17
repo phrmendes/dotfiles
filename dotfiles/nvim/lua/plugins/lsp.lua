@@ -33,6 +33,7 @@ local servers = {
 	dockerls = {},
 	dotls = {},
 	emmet_language_server = {},
+	gopls = {},
 	html = {},
 	nixd = {},
 	ruff = {},

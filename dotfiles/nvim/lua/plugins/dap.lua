@@ -24,6 +24,8 @@ dap_python.resolve_python = function()
 	return vim.fn.exepath("nvim-python3")
 end
 
+require("dap-go").setup()
+
 require("nvim-dap-virtual-text").setup({
 	display_callback = function(variable)
 		if #variable.value > 15 then

@@ -58,6 +58,7 @@
         minikube
         mongosh
         nautilus
+        ngrok
         obsidian
         parallel
         phockup

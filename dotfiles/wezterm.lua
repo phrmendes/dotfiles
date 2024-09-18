@@ -100,6 +100,7 @@ config.keys = {
 		action = wezterm.action_callback(function()
 			resurrect.save_state(resurrect.workspace_state.get_workspace_state())
 			resurrect.window_state.save_window_action()
+			resurrect.periodic_save()
 		end),
 	},
 }

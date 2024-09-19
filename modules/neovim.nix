@@ -152,7 +152,6 @@
           terraform-ls
           texlab
           tflint
-          ueberzugpp
           vscode-langservers-extracted
           yaml-language-server
         ]

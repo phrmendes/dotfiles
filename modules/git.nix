@@ -33,9 +33,9 @@
         st = "status";
       };
       ignores = [
-        ".DS_Store"
         ".env"
         ".envrc"
+        ".tmuxp.yaml"
         "Session.vim"
       ];
     };

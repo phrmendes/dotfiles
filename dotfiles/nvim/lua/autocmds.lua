@@ -2,12 +2,14 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroups = require("utils").augroups
 
 autocmd("LspAttach", {
-	desc = "Enable code lens and document highlights",
+	desc = "LSP options and keymaps",
 	group = augroups.lsp.attach,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 		if client then
+			require("keymaps").lsp(client, event.buf)
+
 			if client.supports_method("textDocument/codeLens") then
 				autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 					buffer = event.buf,
@@ -42,17 +44,30 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd({ "BufWritePost" }, {
-	group = augroups.lsp.lint,
-	callback = function()
+autocmd("BufWritePost", {
+	group = augroups.lsp.lint_format,
+	callback = function(event)
 		require("lint").try_lint()
+		require("conform").format({ bufnr = event.buf })
 	end,
 })
 
-autocmd("BufWritePost", {
-	group = augroups.lsp.format,
+autocmd("User", {
+	desc = "Set border for mini files window",
+	group = augroups.mini,
+	pattern = "MiniFilesWindowOpen",
 	callback = function(event)
-		require("conform").format({ bufnr = event.buf })
+		local win_id = event.data.win_id
+
+		vim.api.nvim_win_set_config(win_id, { border = require("utils").borders.border })
+	end,
+})
+
+autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = augroups.yank,
+	callback = function()
+		vim.highlight.on_yank()
 	end,
 })
 
@@ -76,29 +91,10 @@ autocmd("FileType", {
 })
 
 autocmd("FileType", {
-	desc = "",
+	desc = "Markdown keybindings",
 	group = augroups.filetype,
-	pattern = "helm",
+	pattern = "markdown",
 	callback = function(event)
-		vim.diagnostic.enable(false, { bufnr = event.buf })
-	end,
-})
-
-autocmd("User", {
-	desc = "Set border for mini files window",
-	group = augroups.mini,
-	pattern = "MiniFilesWindowOpen",
-	callback = function(event)
-		local win_id = event.data.win_id
-
-		vim.api.nvim_win_set_config(win_id, { border = require("utils").borders.border })
-	end,
-})
-
-autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = augroups.yank,
-	callback = function()
-		vim.highlight.on_yank()
+		require("keymaps").markdown(event)
 	end,
 })

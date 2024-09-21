@@ -1,11 +1,9 @@
-local augroups = require("utils").augroups
-local autocmd = vim.api.nvim_create_autocmd
-local map = vim.keymap.set
 local luasnip = require("luasnip")
+local map = vim.keymap.set
 
-local keys = {}
+local M = {}
 
-keys.std = {
+local keys = {
 	disable = function()
 		map({ "n", "x" }, "s", "<nop>")
 	end,
@@ -23,9 +21,6 @@ keys.std = {
 
 		opts.desc = "Escape terminal mode"
 		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
-	end,
-	leader = function()
-		local opts = { noremap = true }
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
@@ -204,10 +199,19 @@ keys.std = {
 		end, opts)
 	end,
 	macros = function()
-		local opts = { noremap = true, expr = true, desc = "Replace macro" }
+		local opts = { noremap = true, expr = true }
 
+		opts.desc = "Record macro"
 		map("n", "Q", "@q", opts)
+
+		opts.desc = "Replace with macro"
 		map("x", "Q", "<cmd>norm @q<cr>", opts)
+	end,
+	neogen = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Generate documentation"
+		map("n", "<leader>G", require("neogen").generate, opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }
@@ -271,108 +275,105 @@ keys.std = {
 	tabs = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Previous tab"
+		opts.desc = "Previous"
 		map("n", "[<tab>", "<cmd>tabprevious<cr>", opts)
 
-		opts.desc = "Next tab"
+		opts.desc = "Next"
 		map("n", "]<tab>", "<cmd>tabnext<cr>", opts)
 
-		opts.desc = "Last tab"
+		opts.desc = "Last"
 		map("n", "<leader><tab>G", "<cmd>tablast<cr>", opts)
 
-		opts.desc = "Close tab"
+		opts.desc = "Close"
 		map("n", "<leader><tab>q", "<cmd>tabclose<cr>", opts)
 
-		opts.desc = "First tab"
+		opts.desc = "First"
 		map("n", "<leader><tab>g", "<cmd>tabfirst<cr>", opts)
 
-		opts.desc = "Keep only this tab"
+		opts.desc = "Keep"
 		map("n", "<leader><tab>k", "<cmd>tabonly<cr>", opts)
 
-		opts.desc = "New tab"
+		opts.desc = "New"
 		map("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
 
-		opts.desc = "Edit in tab"
+		opts.desc = "Edit"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
 }
 
-keys.lsp = function(event)
-	local opts = { noremap = true, buffer = event.buf }
-	local client = vim.lsp.get_client_by_id(event.data.client_id)
+M.lsp = function(client, bufnr)
+	local opts = { noremap = true, buffer = bufnr }
 
-	if client then
-		if client.supports_method("textDocument/rename") then
-			opts.desc = "LSP: rename symbol"
-			map("n", "<f2>", vim.lsp.buf.rename, opts)
-		end
+	if client.supports_method("textDocument/rename") then
+		opts.desc = "LSP: rename symbol"
+		map("n", "<f2>", vim.lsp.buf.rename, opts)
+	end
 
-		if client.supports_method("textDocument/definition") then
-			opts.desc = "LSP: go to definition"
-			map("n", "gd", require("telescope.builtin").lsp_definitions, opts)
-		end
+	if client.supports_method("textDocument/definition") then
+		opts.desc = "LSP: go to definition"
+		map("n", "gd", require("telescope.builtin").lsp_definitions, opts)
+	end
 
-		if client.supports_method("textDocument/declaration") then
-			opts.desc = "LSP: go to declaration"
-			map("n", "gD", vim.lsp.buf.declaration, opts)
-		end
+	if client.supports_method("textDocument/declaration") then
+		opts.desc = "LSP: go to declaration"
+		map("n", "gD", vim.lsp.buf.declaration, opts)
+	end
 
-		if client.supports_method("textDocument/implementation") then
-			opts.desc = "LSP: go to implementations"
-			map("n", "gi", require("telescope.builtin").lsp_implementations, opts)
-		end
+	if client.supports_method("textDocument/implementation") then
+		opts.desc = "LSP: go to implementations"
+		map("n", "gi", require("telescope.builtin").lsp_implementations, opts)
+	end
 
-		if client.supports_method("textDocument/references") then
-			opts.desc = "LSP: go to references"
-			map("n", "gr", require("telescope.builtin").lsp_references, opts)
-		end
+	if client.supports_method("textDocument/references") then
+		opts.desc = "LSP: go to references"
+		map("n", "gr", require("telescope.builtin").lsp_references, opts)
+	end
 
-		if client.supports_method("textDocument/typeDefinition") then
-			opts.desc = "LSP: go to type definition"
-			map("n", "gt", require("telescope.builtin").lsp_type_definitions, opts)
-		end
+	if client.supports_method("textDocument/typeDefinition") then
+		opts.desc = "LSP: go to type definition"
+		map("n", "gt", require("telescope.builtin").lsp_type_definitions, opts)
+	end
 
-		if client.supports_method("textDocument/codeAction") then
-			opts.desc = "LSP: code actions"
-			map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
-		end
+	if client.supports_method("textDocument/codeAction") then
+		opts.desc = "LSP: code actions"
+		map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
+	end
 
-		if client.supports_method("textDocument/publishDiagnostics") then
-			opts.desc = "LSP: diagnostics"
-			map("n", "<leader>d", require("telescope.builtin").diagnostics, opts)
-		end
+	if client.supports_method("textDocument/publishDiagnostics") then
+		opts.desc = "LSP: diagnostics"
+		map("n", "<leader>d", require("telescope.builtin").diagnostics, opts)
+	end
 
-		if client.supports_method("textDocument/signatureHelp") then
-			opts.desc = "LSP: signature help"
-			map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
-		end
+	if client.supports_method("textDocument/signatureHelp") then
+		opts.desc = "LSP: signature help"
+		map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
+	end
 
-		if client.supports_method("textDocument/inlayHint") then
-			opts.desc = "LSP: toggle inlay hints"
-			map("n", "<leader>t", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-			end, opts)
-		end
+	if client.supports_method("textDocument/inlayHint") then
+		opts.desc = "LSP: toggle inlay hints"
+		map("n", "<leader>t", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+		end, opts)
+	end
 
-		if client.supports_method("textDocument/hover") then
-			opts.desc = "LSP: hover"
-			map("n", "<leader>k", vim.lsp.buf.hover, opts)
-		end
+	if client.supports_method("textDocument/hover") then
+		opts.desc = "LSP: hover"
+		map("n", "<leader>k", vim.lsp.buf.hover, opts)
+	end
 
-		if client.supports_method("textDocument/documentSymbol") then
-			opts.desc = "LSP: symbols (document)"
-			map("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, opts)
-		end
+	if client.supports_method("textDocument/documentSymbol") then
+		opts.desc = "LSP: symbols (document)"
+		map("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, opts)
+	end
 
-		if client.supports_method("workspace/symbol") then
-			opts.desc = "LSP: symbols (workspace)"
-			map("n", "<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
-		end
+	if client.supports_method("workspace/symbol") then
+		opts.desc = "LSP: symbols (workspace)"
+		map("n", "<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
 	end
 end
 
-keys.dap = function(event)
-	local opts = { noremap = true, buffer = event.buf }
+M.dap = function(_, bufnr)
+	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "DAP: step out"
 	map("n", "<f3>", require("dap").step_out, opts)
@@ -383,16 +384,16 @@ keys.dap = function(event)
 	opts.desc = "DAP: step back"
 	map("n", "<f5>", require("dap").step_back, opts)
 
-	opts.desc = "DAP: sontinue"
+	opts.desc = "DAP: continue"
 	map("n", "<f6>", require("dap").continue, opts)
 
 	opts.desc = "DAP: step over"
 	map("n", "<f7>", require("dap").step_over, opts)
 
-	opts.desc = "DAP: sause"
+	opts.desc = "DAP: pause"
 	map("n", "<s-f6>", require("dap").pause, opts)
 
-	opts.desc = "DAP: serminate"
+	opts.desc = "DAP: terminate"
 	map("n", "<del>", require("dap").terminate, opts)
 
 	opts.desc = "DAP: breakpoint"
@@ -421,15 +422,8 @@ keys.dap = function(event)
 	end, opts)
 end
 
-keys.neogen = function(event)
-	local opts = { noremap = true, buffer = event.buf }
-
-	opts.desc = "Generate documentation"
-	map("n", "<leader>G", require("neogen").generate, opts)
-end
-
-keys.refactoring = function(event)
-	local opts = { noremap = true, buffer = event.buf }
+M.refactoring = function(_, bufnr)
+	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Refactoring"
 	map({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
@@ -441,7 +435,7 @@ keys.refactoring = function(event)
 	map("n", "<leader>c", require("refactoring").debug.cleanup, opts)
 end
 
-keys.writing = function(event)
+M.markdown = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
 	opts.desc = "Preview equation"
@@ -452,91 +446,56 @@ keys.writing = function(event)
 
 	opts.desc = "Add item above"
 	map({ "n", "i" }, "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
+
+	opts.desc = "Preview document"
+	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
+
+	opts.desc = "Zotcite: citation info"
+	map("n", "<leader>i", "<Plug>ZCitationInfo", opts)
+
+	opts.desc = "Zotcite: citation info (complete)"
+	map("n", "<leader>I", "<Plug>ZCitationCompleteInfo", opts)
+
+	opts.desc = "Zotcite: open attachment"
+	map("n", "<leader>O", "<Plug>ZOpenAttachment", opts)
+
+	opts.desc = "Zotcite: view document"
+	map("n", "<leader>v", "<Plug>ZViewDocument", opts)
+
+	opts.desc = "Zotcite: YAML reference"
+	map("n", "<leader>y", "<Plug>ZCitationYamlRef", opts)
+
+	opts.desc = "Zotcite: extract abstract"
+	map("n", "<Leader>X", "<Plug>ZExtractAbstract", opts)
 end
 
-keys.ft = {
-	markdown = function(event)
-		local opts = { noremap = true, buffer = event.buf }
+M.go = function(_, bufnr)
+	local opts = { noremap = true, buffer = bufnr }
 
-		keys.writing(event)
+	opts.desc = "Go: debug test"
+	map("n", "<localleader>t", require("dap-go").debug_test, opts)
 
-		opts.desc = "Preview (markdown)"
-		map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
-
-		opts.desc = "Zotcite: citation info"
-		map("n", "<leader>i", "<Plug>ZCitationInfo", opts)
-
-		opts.desc = "Zotcite: citation info (complete)"
-		map("n", "<leader>I", "<Plug>ZCitationCompleteInfo", opts)
-
-		opts.desc = "Zotcite: open attachment"
-		map("n", "<leader>O", "<Plug>ZOpenAttachment", opts)
-
-		opts.desc = "Zotcite: view document"
-		map("n", "<leader>v", "<Plug>ZViewDocument", opts)
-
-		opts.desc = "Zotcite: YAML reference"
-		map("n", "<leader>y", "<Plug>ZCitationYamlRef", opts)
-
-		opts.desc = "Zotcite: extract abstract"
-		map("n", "<Leader>X", "<Plug>ZExtractAbstract", opts)
-	end,
-	elixir = function(event)
-		keys.dap(event)
-		keys.neogen(event)
-
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "Elixir: Pipe"
-		map("i", "<c-cr>", "<esc><cmd>normal! a |><cr>a", opts)
-	end,
-	go = function(event)
-		keys.dap(event)
-		keys.neogen(event)
-		keys.refactoring(event)
-
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "Go: debug test"
-		map("n", "<localleader>t", require("dap-go").debug_test, opts)
-
-		opts.desc = "Go: debug last test"
-		map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
-	end,
-	python = function(event)
-		keys.dap(event)
-		keys.neogen(event)
-		keys.refactoring(event)
-
-		local opts = { noremap = true, buffer = event.buf }
-
-		opts.desc = "Python: debug function/method"
-		map("n", "<localleader>f", require("dap-python").test_method, opts)
-
-		opts.desc = "Python: debug class"
-		map("n", "<localleader>c", require("dap-python").test_class, opts)
-
-		opts.desc = "Python: debug selection"
-		map("x", "<localleader>s", require("dap-python").debug_selection, opts)
-	end,
-	quarto = function(event)
-		keys.writing(event)
-	end,
-}
-
-for _, func in pairs(keys.std) do
-	func()
+	opts.desc = "Go: debug last test"
+	map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
 end
 
-autocmd("LspAttach", {
-	group = augroups.lsp.attach,
-	callback = keys.lsp,
-})
+M.python = function(_, bufnr)
+	local opts = { noremap = true, buffer = bufnr }
 
-for ft, func in pairs(keys.ft) do
-	autocmd("FileType", {
-		group = augroups.filetype,
-		pattern = ft,
-		callback = func,
-	})
+	opts.desc = "Python: debug function/method"
+	map("n", "<localleader>f", require("dap-python").test_method, opts)
+
+	opts.desc = "Python: debug class"
+	map("n", "<localleader>c", require("dap-python").test_class, opts)
+
+	opts.desc = "Python: debug selection"
+	map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 end
+
+M.setup = function()
+	for _, func in pairs(keys) do
+		func()
+	end
+end
+
+return M

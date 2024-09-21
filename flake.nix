@@ -45,6 +45,11 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
+    nvim-go = {
+      flake = false;
+      url = "github:crispgm/nvim-go";
+    };
+
     smart-open-nvim = {
       flake = false;
       url = "github:danielfalk/smart-open.nvim";

@@ -360,6 +360,22 @@
         "type": "github"
       }
     },
+    "nvim-go": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726589134,
+        "narHash": "sha256-8n8VHG0cFdaFnW1TbBpjRLNcugGkt+FSZzOnK5rMX8Y=",
+        "owner": "crispgm",
+        "repo": "nvim-go",
+        "rev": "78a67e2ff3262a148f7a4a79644dbe989b4eeabb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "crispgm",
+        "repo": "nvim-go",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
@@ -370,6 +386,7 @@
         "impermanence": "impermanence",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
+        "nvim-go": "nvim-go",
         "smart-open-nvim": "smart-open-nvim",
         "stylix": "stylix",
         "zotcite": "zotcite"

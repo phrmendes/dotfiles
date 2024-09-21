@@ -4,16 +4,13 @@ local M = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
-	fs = augroup("UserFileSystem", { clear = true }),
 	mini = augroup("UserMini", { clear = true }),
-	term = augroup("UserTerm", { clear = true }),
 	yank = augroup("UserYank", { clear = true }),
 	lsp = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),
-		format = augroup("UserLspFormat", { clear = true }),
 		highlight = augroup("UserLspHighlight", { clear = true }),
-		lint = augroup("UserLspLint", { clear = true }),
+		lint_format = augroup("UserLspLintFormat", { clear = true }),
 	},
 }
 

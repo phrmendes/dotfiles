@@ -2,6 +2,11 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local borders = require("utils").borders
 
+require("cmp_pandoc").setup({
+	filetypes = { "quarto" },
+	crossref = { enable_nabla = true },
+})
+
 cmp.setup({
 	snippet = {
 		expand = function(args)

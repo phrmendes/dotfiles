@@ -17,6 +17,7 @@
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      nvim-go = fromGitHub "nvim-go" inputs.nvim-go;
       smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
@@ -47,6 +48,7 @@
           copilot-lua
           dial-nvim
           dressing-nvim
+          elixir-tools-nvim
           friendly-snippets
           fzfWrapper
           image-nvim
@@ -98,6 +100,7 @@
           cmp-zotcite
           curl-nvim
           luasnip-latex-snippets
+          nvim-go
           smart-open-nvim
           zotcite
         ];
@@ -135,12 +138,15 @@
           golangci-lint
           golines
           gopls
+          gotests
           hadolint
           helm-ls
+          iferr
           ltex-ls
           lua-language-server
           neovim-remote
           nixd
+          quicktype
           ruff
           shellcheck
           shellharden

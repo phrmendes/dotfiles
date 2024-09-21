@@ -27,13 +27,11 @@ vim.diagnostic.config({
 local servers = {
 	ansiblels = {},
 	autotools_ls = {},
-	basedpyright = {},
 	bashls = {},
 	cssls = {},
 	dockerls = {},
 	dotls = {},
 	emmet_language_server = {},
-	gopls = {},
 	html = {},
 	nixd = {},
 	ruff = {},
@@ -42,82 +40,111 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	elixirls = {
-		cmd = {
-			vim.fn.exepath("elixir-ls"),
+}
+
+servers.basedpyright = {
+	on_attach = function(client, bufnr)
+		require("keymaps").dap(client, bufnr)
+		require("keymaps").refactoring(client, bufnr)
+		require("keymaps").python(client, bufnr)
+	end,
+}
+
+servers.elixirls = {
+	cmd = { vim.fn.exepath("elixir-ls") },
+	on_attach = function(client, bufnr)
+		require("keymaps").dap(client, bufnr)
+	end,
+}
+
+servers.gopls = {
+	on_attach = function(client, bufnr)
+		require("keymaps").dap(client, bufnr)
+		require("keymaps").refactoring(client, bufnr)
+		require("keymaps").go(client, bufnr)
+	end,
+}
+
+servers.helm_ls = {
+	settings = {
+		["helm-ls"] = {
+			yamlls = {
+				enabled = false,
+			},
 		},
 	},
-	helm_ls = {
-		settings = {
-			["helm-ls"] = {
-				yamlls = {
-					enabled = false,
+}
+servers.jsonls = {
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+}
+
+servers.lua_ls = {
+	settings = {
+		Lua = {
+			completion = { callSnippet = "Replace" },
+			diagnostics = {
+				globals = { "vim" },
+				disable = { "missing-fields" },
+			},
+			telemetry = { enable = false },
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
 		},
 	},
-	jsonls = {
-		settings = {
-			json = {
-				schemas = require("schemastore").json.schemas(),
-				validate = { enable = true },
-			},
+}
+servers.ltex = {
+	filetypes = { "markdown", "quarto" },
+	on_attach = function()
+		require("ltex_extra").setup({
+			init_check = true,
+			load_langs = { "en-US", "pt-BR" },
+			path = vim.fn.stdpath("data") .. "/ltex-ls",
+		})
+	end,
+	settings = {
+		ltex = {
+			language = "none",
 		},
 	},
-	lua_ls = {
-		settings = {
-			Lua = {
-				completion = { callSnippet = "Replace" },
-				diagnostics = {
-					globals = { "vim" },
-					disable = { "missing-fields" },
-				},
-				telemetry = { enable = false },
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						[vim.fn.stdpath("config") .. "/lua"] = true,
-					},
-				},
-			},
-		},
-	},
-	ltex = {
-		filetypes = { "markdown", "quarto" },
-		on_attach = function()
-			require("ltex_extra").setup({
-				init_check = true,
-				load_langs = { "en-US", "pt-BR" },
-				path = vim.fn.stdpath("data") .. "/ltex-ls",
-			})
-		end,
-		settings = {
-			ltex = {
-				language = "none",
-			},
-		},
-	},
-	yamlls = {
-		settings = {
-			yaml = {
-				schemas = require("schemastore").yaml.schemas(),
-				schemaStore = {
-					enable = false,
-					url = "",
-				},
+}
+servers.yamlls = {
+	on_attach = function(_, bufnr)
+		if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+			vim.diagnostic.enable(false, { bufnr = bufnr })
+
+			vim.defer_fn(function()
+				vim.diagnostic.reset(nil, bufnr)
+			end, 1000)
+		end
+	end,
+	settings = {
+		yaml = {
+			schemas = require("schemastore").yaml.schemas(),
+			schemaStore = {
+				enable = false,
+				url = "",
 			},
 		},
 	},
 }
 
 for key, value in pairs(servers) do
-	(function(server_name, settings)
+	(function(server, settings)
 		local setup = settings or {}
 
 		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
 		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
 
-		require("lspconfig")[server_name].setup(setup)
+		require("lspconfig")[server].setup(setup)
 	end)(key, value)
 end

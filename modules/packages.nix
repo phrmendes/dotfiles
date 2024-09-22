@@ -55,6 +55,7 @@
         kubectl
         kubernetes-helm
         libreoffice
+        livebook
         minikube
         mongosh
         nautilus

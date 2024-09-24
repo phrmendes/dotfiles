@@ -42,8 +42,8 @@
           plugin = resurrect;
           extraConfig = ''
             set -g @resurrect-capture-pane-contents 'on'
-            set -g @resurrect-restore               'r'
-            set -g @resurrect-save                  's'
+            set -g @resurrect-restore               'C-r'
+            set -g @resurrect-save                  'C-s'
             set -g @resurrect-strategy-nvim         'session'
           '';
         }

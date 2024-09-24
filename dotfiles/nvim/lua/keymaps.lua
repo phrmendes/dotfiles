@@ -349,13 +349,6 @@ M.lsp = function(client, bufnr)
 		map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 	end
 
-	if client.supports_method("textDocument/inlayHint") then
-		opts.desc = "LSP: toggle inlay hints"
-		map("n", "<leader>t", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
-		end, opts)
-	end
-
 	if client.supports_method("textDocument/hover") then
 		opts.desc = "LSP: hover"
 		map("n", "<leader>k", vim.lsp.buf.hover, opts)
@@ -372,7 +365,7 @@ M.lsp = function(client, bufnr)
 	end
 end
 
-M.dap = function(_, bufnr)
+M.dap = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "DAP: step out"
@@ -422,7 +415,7 @@ M.dap = function(_, bufnr)
 	end, opts)
 end
 
-M.refactoring = function(_, bufnr)
+M.refactoring = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Refactoring"
@@ -433,6 +426,23 @@ M.refactoring = function(_, bufnr)
 
 	opts.desc = "Clean print statements"
 	map("n", "<leader>c", require("refactoring").debug.cleanup, opts)
+end
+
+M.tests = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "Neotest: run nearest test"
+	map("n", "<localleader>t", require("neotest").run.run, opts)
+
+	opts.desc = "Neotest: run current file"
+	map("n", "<localleader>T", function()
+		require("neotest").run.run(vim.fn.expand("%"))
+	end, opts)
+
+	opts.desc = "Neotest: debug nearest test"
+	map("n", "<localleader>d", function()
+		require("neotest").run.run({ strategy = "dap" })
+	end, opts)
 end
 
 M.markdown = function(event)
@@ -469,17 +479,7 @@ M.markdown = function(event)
 	map("n", "<Leader>X", "<Plug>ZExtractAbstract", opts)
 end
 
-M.go = function(_, bufnr)
-	local opts = { noremap = true, buffer = bufnr }
-
-	opts.desc = "Go: debug test"
-	map("n", "<localleader>t", require("dap-go").debug_test, opts)
-
-	opts.desc = "Go: debug last test"
-	map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
-end
-
-M.python = function(_, bufnr)
+M.python = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Python: debug function/method"
@@ -493,8 +493,8 @@ M.python = function(_, bufnr)
 end
 
 M.setup = function()
-	for _, func in pairs(keys) do
-		func()
+	for _, fn in pairs(keys) do
+		fn()
 	end
 end
 

@@ -53,10 +53,6 @@ cmp.setup({
 			ellipsis_char = "...",
 			maxwidth = 50,
 			mode = "symbol",
-			symbol_map = {
-				["vim-dadbod-completion"] = "",
-				Copilot = "",
-			},
 		}),
 	},
 	sources = cmp.config.sources({
@@ -67,7 +63,6 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "emoji" },
 	}, {
-		{ name = "copilot" },
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
 	window = {

@@ -44,11 +44,9 @@
           cmp-path
           cmp_luasnip
           conform-nvim
-          copilot-cmp
-          copilot-lua
+          copilot-vim
           dial-nvim
           dressing-nvim
-          elixir-tools-nvim
           friendly-snippets
           fzfWrapper
           image-nvim
@@ -62,6 +60,10 @@
           mini-nvim
           nabla-nvim
           neogen
+          neotest
+          neotest-elixir
+          neotest-golang
+          neotest-python
           nvim-bqf
           nvim-cmp
           nvim-colorizer-lua
@@ -72,7 +74,6 @@
           nvim-dap-virtual-text
           nvim-lint
           nvim-lspconfig
-          nvim-pqf
           nvim-treesitter-context
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
@@ -109,6 +110,7 @@
           jsregexp
           magick
           nui-nvim
+          nvim-nio
           plenary-nvim
           sqlite
         ];

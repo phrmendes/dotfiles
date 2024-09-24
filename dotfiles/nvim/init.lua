@@ -1,5 +1,6 @@
 require("options")
 require("plugins")
 require("autocmds")
-require("commands")
+
+require("commands").setup()
 require("keymaps").setup()

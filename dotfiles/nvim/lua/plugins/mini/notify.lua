@@ -2,9 +2,10 @@ local notify = require("mini.notify")
 
 local filters = function(notification_array)
 	local filters = {
-		"ltex",
-		"file to analyze",
 		"Diagnosing",
+		"ansible-lint",
+		"file to analyze",
+		"ltex",
 	}
 
 	local filter_generator = function(filter)

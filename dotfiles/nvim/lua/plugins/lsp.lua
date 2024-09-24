@@ -43,25 +43,27 @@ local servers = {
 }
 
 servers.basedpyright = {
-	on_attach = function(client, bufnr)
-		require("keymaps").dap(client, bufnr)
-		require("keymaps").refactoring(client, bufnr)
-		require("keymaps").python(client, bufnr)
+	on_attach = function(_, bufnr)
+		require("keymaps").dap(bufnr)
+		require("keymaps").python(bufnr)
+		require("keymaps").refactoring(bufnr)
+		require("keymaps").tests(bufnr)
 	end,
 }
 
 servers.elixirls = {
 	cmd = { vim.fn.exepath("elixir-ls") },
-	on_attach = function(client, bufnr)
-		require("keymaps").dap(client, bufnr)
+	on_attach = function(_, bufnr)
+		require("keymaps").dap(bufnr)
+		require("keymaps").tests(bufnr)
 	end,
 }
 
 servers.gopls = {
-	on_attach = function(client, bufnr)
-		require("keymaps").dap(client, bufnr)
-		require("keymaps").refactoring(client, bufnr)
-		require("keymaps").go(client, bufnr)
+	on_attach = function(_, bufnr)
+		require("keymaps").dap(bufnr)
+		require("keymaps").refactoring(bufnr)
+		require("keymaps").tests(bufnr)
 	end,
 }
 

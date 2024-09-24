@@ -9,6 +9,7 @@ autocmd("LspAttach", {
 
 		if client then
 			require("keymaps").lsp(client, event.buf)
+			require("commands").lsp(client, event.buf)
 
 			if client.supports_method("textDocument/codeLens") then
 				autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {

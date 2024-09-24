@@ -1,5 +1,3 @@
-require("pqf").setup()
-
 require("bqf").setup({
 	func_map = {
 		drop = "o",

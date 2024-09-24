@@ -35,6 +35,8 @@
         hide_window_decorations = "yes";
       };
       keybindings = {
+        "ctrl+equal" = "increase_font_size";
+        "ctrl+minus" = "decrease_font_size";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+enter" = "start_resizing_window";

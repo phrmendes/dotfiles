@@ -33,7 +33,6 @@
       in rec {
         cat = getExe pkgs.bat;
         docker = getExe pkgs.podman;
-        dpct = "${pkgs.duplicati}/bin/duplicati-cli";
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;

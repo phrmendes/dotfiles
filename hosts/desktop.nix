@@ -31,11 +31,6 @@
   services = {
     xserver.videoDrivers = ["nvidia"];
 
-    duplicati = {
-      inherit (parameters) user;
-      enable = true;
-    };
-
     syncthing = {
       settings = {
         folders = let
@@ -54,53 +49,53 @@
           };
         in {
           "camera" = {
-            path = "${parameters.home}/Documents/camera";
-            devices = ["phone" "server"];
+            path = "${parameters.home}/Pictures/camera";
+            devices = ["phone" "orangepizero2"];
             versioning = versioning.trashcan;
           };
           "documents" = {
             path = "${parameters.home}/Documents/documents";
-            devices = ["phone" "server" "laptop"];
+            devices = ["phone" "orangepizero2" "laptop"];
             versioning = versioning.trashcan;
           };
           "images" = {
-            path = "${parameters.home}/Documents/images";
-            devices = ["server" "laptop"];
+            path = "${parameters.home}/Pictures/images";
+            devices = ["orangepizero2" "laptop"];
             versioning = versioning.trashcan;
           };
           "notes" = {
             path = "${parameters.home}/Documents/notes";
-            devices = ["phone" "tablet" "server" "laptop"];
+            devices = ["phone" "tablet" "orangepizero2" "laptop"];
             versioning = versioning.simple;
           };
           "ufabc" = {
             path = "${parameters.home}/Documents/ufabc";
-            devices = ["server" "tablet" "laptop"];
+            devices = ["orangepizero2" "tablet" "laptop"];
             versioning = versioning.trashcan;
           };
           "comics" = {
             path = "${parameters.home}/Documents/library/comics";
-            devices = ["server"];
+            devices = ["orangepizero2"];
             versioning = versioning.trashcan;
           };
           "IT" = {
             path = "${parameters.home}/Documents/library/IT";
-            devices = ["server" "laptop"];
+            devices = ["orangepizero2" "laptop"];
             versioning = versioning.trashcan;
           };
           "math" = {
             path = "${parameters.home}/Documents/library/math";
-            devices = ["server" "laptop"];
+            devices = ["orangepizero2" "laptop"];
             versioning = versioning.trashcan;
           };
           "social_sciences" = {
             path = "${parameters.home}/Documents/library/social_sciences";
-            devices = ["server" "laptop"];
+            devices = ["orangepizero2" "laptop"];
             versioning = versioning.trashcan;
           };
           "zotero" = {
             path = "${parameters.home}/Documents/library/zotero";
-            devices = ["phone" "server" "tablet" "laptop"];
+            devices = ["phone" "orangepizero2" "tablet" "laptop"];
             versioning = versioning.trashcan;
           };
         };
@@ -113,8 +108,8 @@
             id = "ME77KQY-MGUM34F-M6RI4DI-EPNNS2P-FSPEYB6-2XUHYZB-5MGG7BV-XJTGAQO";
             autoAcceptFolders = true;
           };
-          "server" = {
-            id = "VH6IWI6-D5E666H-4S2D7XJ-AVHD2XW-7UC64AS-APTOCPU-LB3SB52-S5722Q5";
+          "orangepizero2" = {
+            id = "LERY5VL-SZREUIC-2ZQ2JKC-SB5XM3E-SMRMI3J-SUD54AQ-HDCHA46-AUOF6QK";
             autoAcceptFolders = true;
           };
           "laptop" = {

@@ -29,4 +29,15 @@ function diff_persist() {
     sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
 }
 
+function unlock_bw() {
+    if [[ -z $BW_SESSION ]]; then
+	echo "Unlocking Bitwarden..."
+
+	BW_SESSION="$(bw unlock --raw)"
+	export BW_SESSION
+
+	echo "Bitwarden unlocked."
+    fi
+}
+
 eval "$(uv generate-shell-completion zsh)"

@@ -17,6 +17,7 @@
         android-tools
         ansible
         bitwarden
+        bitwarden-cli
         cachix
         chromium
         coreutils-full

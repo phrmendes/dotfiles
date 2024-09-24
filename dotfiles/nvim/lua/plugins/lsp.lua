@@ -26,7 +26,6 @@ vim.diagnostic.config({
 
 local servers = {
 	ansiblels = {},
-	autotools_ls = {},
 	bashls = {},
 	cssls = {},
 	dockerls = {},

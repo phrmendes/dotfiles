@@ -127,7 +127,6 @@
           alejandra
           ansible-language-server
           ansible-lint
-          autotools-language-server
           basedpyright
           bash-language-server
           delve

@@ -14,15 +14,7 @@ for type, icon in pairs(dap_signs) do
 end
 
 dap_ui.setup()
-dap_python.setup()
-dap_python.test_runner = "pytest"
-dap_python.resolve_python = function()
-	if vim.env.VIRTUAL_ENV or vim.env.CONDA_DEFAULT_ENV then
-		return vim.env.VIRTUAL_ENV .. "/bin/python"
-	end
-
-	return vim.fn.exepath("nvim-python3")
-end
+dap_python.setup(vim.fn.exepath("nvim-python3"))
 
 require("dap-go").setup()
 

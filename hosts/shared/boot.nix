@@ -6,7 +6,7 @@
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems = ["btrfs" "ntfs"];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     plymouth.enable = true;
 
     loader = {

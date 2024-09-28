@@ -2,11 +2,7 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    sudo.enable = false;
-    sudo-rs = {
-      enable = true;
-      execWheelOnly = true;
-    };
+    sudo.enable = true;
     pam = {
       services = {
         gdm = {

@@ -12,6 +12,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
 
@@ -61,7 +62,11 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  } @ inputs: {
     nixosConfigurations = let
       global = rec {
         name = "Pedro Mendes";
@@ -74,6 +79,10 @@
         inherit (global) system;
         config.allowUnfree = true;
       };
+      pkgs-stable = import nixpkgs-stable {
+        inherit (global) system;
+        config.allowUnfree = true;
+      };
     in {
       desktop = let
         parameters = {device = "/dev/sdc";} // global;
@@ -82,7 +91,7 @@
           inherit (parameters) system;
           modules = [./hosts/desktop.nix];
           specialArgs = {
-            inherit inputs pkgs parameters;
+            inherit inputs pkgs pkgs-stable parameters;
           };
         };
 

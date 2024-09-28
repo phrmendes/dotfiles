@@ -78,11 +78,9 @@
         scrcpy
         sqlite
         sshs
-        syncthingtray
         tectonic
         terraform
         unar
-        usbimager
         uv
         vagrant
         ventoy

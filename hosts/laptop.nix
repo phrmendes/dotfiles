@@ -55,6 +55,7 @@
   services = {
     power-profiles-daemon.enable = false;
     thermald.enable = true;
+    fprintd.enable = true;
 
     logind = {
       lidSwitch = "suspend";

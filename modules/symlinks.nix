@@ -7,7 +7,7 @@
 
   config = lib.mkIf config.symlinks.enable {
     home.file = {
-      ".face".source = ../dotfiles/face.png;
+      ".face.icon".source = ../dotfiles/face.png;
     };
   };
 }

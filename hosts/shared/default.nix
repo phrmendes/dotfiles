@@ -17,13 +17,13 @@
     ./impermanence.nix
     ./networking.nix
     ./nix-settings.nix
-    ./packages.nix
     ./programs.nix
     ./security.nix
     ./services.nix
     ./session-variables.nix
     ./stylix.nix
     ./syncthing.nix
+    ./system-packages.nix
     ./time.nix
     ./users.nix
     ./virtualisation.nix

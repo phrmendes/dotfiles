@@ -7,17 +7,13 @@
     ntpd-rs.enable = true;
     tailscale.enable = true;
     udev.enable = true;
+    gnome.gnome-keyring.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";
 
     btrfs.autoScrub = {
       enable = true;
       interval = "monthly";
-    };
-
-    gnome = {
-      core-utilities.enable = false;
-      gnome-settings-daemon.enable = true;
     };
 
     openssh = {
@@ -27,7 +23,6 @@
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         PubKeyAuthentication = true;
-        AuthorizedKeysFile = "%h/.ssh/authorized_keys";
       };
     };
 
@@ -41,12 +36,22 @@
       };
     };
 
+    desktopManager.plasma6.enable = true;
+
+    displayManager.sddm = {
+      enable = true;
+      theme = "where_is_my_sddm_theme";
+      autoNumlock = true;
+      settings = {
+        General = {
+          InputMethod = "";
+        };
+      };
+    };
+
     xserver = {
       enable = true;
       autorun = true;
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

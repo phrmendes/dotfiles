@@ -21,26 +21,19 @@
         cachix
         chromium
         coreutils-full
-        deluge
         discord
-        drawing
         droidcam
         elixir
-        evince
         exiftool
         fd
         ffmpegthumbnailer
         file
-        file-roller
-        filezilla
         findutils
         firefox
         gcc
         gcloud
-        gcolor3
         gdal
         gdu
-        gnome-tweaks
         gnumake
         gnused
         go
@@ -53,34 +46,40 @@
         inkscape
         jdk
         jq
+        kdiff3
+        krename
+        krusader
         kubectl
         kubernetes-helm
         libreoffice
         livebook
         minikube
+        mlocate
         mongosh
-        nautilus
         ngrok
         obsidian
+        p7zip
         parallel
         phockup
         plex
         podman-tui
-        pop-launcher
         poppler
         portal
         postgresql
         protonvpn-gui
         python312
-        qalculate-gtk
+        qalculate-qt
         quarto
+        qview
         rar
         scrcpy
         sqlite
         sshs
+        syncthingtray
         tectonic
         terraform
         unar
+        unzip
         uv
         vagrant
         ventoy
@@ -92,14 +91,14 @@
       ++ (with nodePackages_latest; [
         nodejs
       ])
-      ++ (with gnomeExtensions; [
-        alphabetical-app-grid
-        appindicator
-        espresso
-        pop-shell
-        sound-output-device-chooser
-        tailscale-qs
-        user-themes
+      ++ (with kdePackages; [
+        konqueror
+        krohnkite
+        kscreen
+        okular
+        spectacle
+        kget
+        ktorrent
       ]);
   };
 }

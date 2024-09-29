@@ -5,8 +5,7 @@
     sudo.enable = true;
     pam = {
       services = {
-        gdm = {
-          enableGnomeKeyring = true;
+        login = {
           gnupg.enable = true;
         };
       };

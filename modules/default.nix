@@ -2,8 +2,6 @@
   imports = [
     ./bat.nix
     ./btop.nix
-    ./copyq.nix
-    ./dconf.nix
     ./direnv.nix
     ./eza.nix
     ./fzf.nix
@@ -28,8 +26,6 @@
 
   bat.enable = true;
   btop.enable = true;
-  copyq.enable = true;
-  dconf-settings.enable = true;
   direnv.enable = true;
   eza.enable = true;
   fzf.enable = true;
@@ -55,5 +51,8 @@
     stateVersion = "24.05";
     username = parameters.user;
     homeDirectory = parameters.home;
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = "1";
+    };
   };
 }

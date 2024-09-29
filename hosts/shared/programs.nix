@@ -6,17 +6,16 @@
   programs = {
     dconf.enable = true;
     fuse.userAllowOther = true;
-    seahorse.enable = true;
     zsh.enable = true;
+    kdeconnect.enable = true;
 
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-
-    kdeconnect = {
-      enable = true;
-      package = pkgs.gnomeExtensions.gsconnect;
+      settings = {
+        default-cache-ttl = 2592000;
+        max-cache-ttl = 2592000;
+      };
     };
 
     nh = {

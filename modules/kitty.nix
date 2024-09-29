@@ -32,7 +32,6 @@
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 5;
-        hide_window_decorations = "yes";
       };
       keybindings = {
         "ctrl+equal" = "increase_font_size";

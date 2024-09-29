@@ -30,7 +30,6 @@
         ".cache/uv"
         ".cache/zotcite"
         ".local/share/Trash"
-        ".local/share/copyq"
         ".local/share/keyrings"
         ".local/share/nvim"
         ".local/share/plex"

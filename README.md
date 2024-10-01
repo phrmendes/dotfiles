@@ -22,7 +22,3 @@ Install NixOS:
 ```sh
 sudo nixos-install --flake .#{device} --root /mnt --no-root-passwd
 ```
-
-## OrangePi
-
-Tutorial to generate the image: <https://nixos.wiki/wiki/NixOS_on_ARM/Orange_Pi_Zero2_H616>

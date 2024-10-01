@@ -73,6 +73,9 @@ local keys = {
 	buffers = function()
 		local opts = { noremap = true }
 
+		opts.desc = "Find"
+		map("n", "<leader>b/", require("telescope.builtin").current_buffer_fuzzy_find, opts)
+
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
 
@@ -87,14 +90,6 @@ local keys = {
 
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
-
-		opts.desc = "Find"
-		map("n", "<leader>bf", function()
-			require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-				winblend = 10,
-				previewer = false,
-			}))
-		end, opts)
 	end,
 	curl = function()
 		local opts = { noremap = true, silent = true }

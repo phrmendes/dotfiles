@@ -2,11 +2,9 @@ local actions = require("telescope.actions")
 local telescope = require("telescope")
 
 telescope.setup({
-	defaults = {
-		hidden = true,
+	defaults = require("telescope.themes").get_ivy({
 		prompt_prefix = "   ",
 		selection_caret = "  ",
-		layout_strategy = "vertical",
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
@@ -21,11 +19,9 @@ telescope.setup({
 				["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 			},
 		},
-	},
+	}),
 	pickers = {
-		buffers = { theme = "dropdown", previewer = false },
-		current_buffer_fuzzy_find = { theme = "dropdown", previewer = false, winblend = 10 },
-		git_branches = { theme = "dropdown", previewer = false },
+		current_buffer_fuzzy_find = { previewer = false, winblend = 10 },
 	},
 	extensions = {
 		fzf = {
@@ -36,6 +32,8 @@ telescope.setup({
 		},
 		smart_open = {
 			cwd_only = true,
+			match_algorithm = "fzf",
+			filename_first = false,
 			ignore_patterns = {
 				"*.git/*",
 				"*.obsidian/*",

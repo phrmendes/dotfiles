@@ -65,7 +65,7 @@
         postgresql
         protonvpn-gui
         python312
-        qalculate-qt
+        qalculate-gtk
         quarto
         qview
         satty

@@ -42,9 +42,6 @@
         inkscape
         jdk
         jq
-        kdiff3
-        krename
-        krusader
         kubectl
         kubernetes-helm
         libreoffice

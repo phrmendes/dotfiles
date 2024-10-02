@@ -5,6 +5,7 @@
     sudo.enable = true;
     pam = {
       services = {
+        swaylock = {};
         login = {
           gnupg.enable = true;
         };

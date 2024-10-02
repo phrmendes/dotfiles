@@ -15,12 +15,6 @@
     impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,7 +76,16 @@
       };
     in {
       desktop = let
-        parameters = {device = "/dev/sdc";} // global;
+        parameters =
+          {
+            laptop = false;
+            device = "/dev/sdc";
+            monitors = {
+              primary = "HDMI-A-1";
+              secondary = "DP-1";
+            };
+          }
+          // global;
       in
         nixpkgs.lib.nixosSystem {
           inherit (parameters) system;
@@ -93,7 +96,15 @@
         };
 
       laptop = let
-        parameters = {device = "/dev/nvme0n1";} // global;
+        parameters =
+          {
+            laptop = true;
+            device = "/dev/nvme0n1";
+            monitors = {
+              primary = "eDP-1";
+            };
+          }
+          // global;
       in
         nixpkgs.lib.nixosSystem {
           inherit (parameters) system;

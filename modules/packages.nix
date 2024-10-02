@@ -18,17 +18,15 @@
         ansible
         bitwarden
         bitwarden-cli
-        cachix
+        brightnessctl
         chromium
-        coreutils-full
+        deluge
         discord
         droidcam
         elixir
         exiftool
         fd
         ffmpegthumbnailer
-        file
-        findutils
         firefox
         gcloud
         gdu
@@ -37,6 +35,7 @@
         go
         gparted
         graphviz
+        grim
         hugo
         imagemagick
         infisical
@@ -52,10 +51,14 @@
         livebook
         minikube
         mongosh
+        nemo-with-extensions
+        networkmanagerapplet
         ngrok
         obsidian
         parallel
+        pavucontrol
         phockup
+        playerctl
         plex
         podman-tui
         poppler
@@ -65,8 +68,9 @@
         qalculate-qt
         quarto
         qview
+        satty
         scrcpy
-        sqlite
+        slurp
         syncthingtray
         tectonic
         terraform
@@ -78,15 +82,6 @@
       ]
       ++ (with nodePackages_latest; [
         nodejs
-      ])
-      ++ (with kdePackages; [
-        konqueror
-        krohnkite
-        kscreen
-        okular
-        spectacle
-        kget
-        ktorrent
       ]);
   };
 }

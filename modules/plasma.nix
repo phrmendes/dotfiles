@@ -15,8 +15,8 @@
         "KrohnkiteFocusUp" = "Meta+K,none,Krohnkite: Focus Up";
         "KrohnkiteGrowHeight" = "Meta++,none,Krohnkite: Grow Height";
         "KrohnkiteGrowWidth" = "Meta+=,none,Krohnkite: Grow Width";
-        "KrohnkiteNextLayout" = "Meta+.,none,Krohnkite: Next Layout";
-        "KrohnkitePreviousLayout" = "Meta+\\,,none,Krohnkite: Previous Layout";
+        "KrohnkiteNextLayout" = "Meta+],none,Krohnkite: Next Layout";
+        "KrohnkitePreviousLayout" = "Meta+[,none,Krohnkite: Previous Layout";
         "KrohnkiteRotate" = "Meta+R,none,Krohnkite: Rotate";
         "KrohnkiteSetMaster" = "Meta+M,none,Krohnkite: Set master";
         "KrohnkiteShiftDown" = "Meta+Shift+J,none,Krohnkite: Move Down/Next";

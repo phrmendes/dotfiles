@@ -34,7 +34,6 @@
         acl
         attr
         bzip2
-        curl
         libsodium
         libssh
         libxml2

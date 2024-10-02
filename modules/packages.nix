@@ -30,16 +30,13 @@
         file
         findutils
         firefox
-        gcc
         gcloud
-        gdal
         gdu
         gnumake
         gnused
         go
         gparted
         graphviz
-        gzip
         hugo
         imagemagick
         infisical
@@ -54,38 +51,29 @@
         libreoffice
         livebook
         minikube
-        mlocate
         mongosh
         ngrok
         obsidian
-        p7zip
         parallel
         phockup
         plex
         podman-tui
         poppler
-        portal
         postgresql
         protonvpn-gui
         python312
         qalculate-qt
         quarto
         qview
-        rar
         scrcpy
         sqlite
-        sshs
         syncthingtray
         tectonic
         terraform
-        unar
-        unzip
         uv
         vagrant
         ventoy
         vlc
-        wget
-        zip
         zotero
       ]
       ++ (with nodePackages_latest; [

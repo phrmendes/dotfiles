@@ -1,5 +1,10 @@
 {
+  parameters,
+  pkgs,
+  ...
+}: {
   services = {
+    blueman.enable = true;
     envfs.enable = true;
     flatpak.enable = true;
     fstrim.enable = true;
@@ -36,15 +41,16 @@
       };
     };
 
-    desktopManager.plasma6.enable = true;
-
-    displayManager.sddm = {
+    greetd = let
+      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+      hyprland = "${pkgs.hyprland}/bin/Hyprland";
+    in {
       enable = true;
-      theme = "where_is_my_sddm_theme";
-      autoNumlock = true;
-      settings = {
-        General = {
-          InputMethod = "";
+      settings = rec {
+        default_session = initial_session;
+        initial_session = {
+          inherit (parameters) user;
+          command = "${tuigreet} --time --remember --asterisks --cmd ${hyprland}";
         };
       };
     };

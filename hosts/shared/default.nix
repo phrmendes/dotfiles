@@ -27,6 +27,7 @@
     ./time.nix
     ./users.nix
     ./virtualisation.nix
+    ./xdg.nix
   ];
 
   console.keyMap = "us";

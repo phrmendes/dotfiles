@@ -16,6 +16,7 @@
       wofi = getExe pkgs.wofi;
       pactl = "${pkgs.pulseaudio}/bin/pactl";
       dmenu = "${getExe pkgs.wofi} --show dmenu";
+      systemctl = "${pkgs.systemd}/bin/systemctl";
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
@@ -35,16 +36,25 @@
       powermenu = pkgs.writeShellScriptBin "powermenu" ''
         #!/usr/bin/env bash
 
-        option=$(echo -e " Poweroff\n Reboot\n Suspend" | ${dmenu} | ${pkgs.gawk}/bin/awk "{print tolower($2)}")
+        OPTIONS="🔴 Shutdown\n🔁 Reboot\n🛑 Suspend\n🔒 Lock"
+        SELECTED=$(echo -e "$OPTIONS" | wofi --dmenu --width=250 --height=200 --prompt="Power Menu" --insensitive)
 
-        case $option in
-            poweroff)
-                    ;&
-            reboot)
-                    ;&
-            suspend)
-                    ${pkgs.systemd}/bin/systemctl "$op"
-                    ;;
+        case "$SELECTED" in
+            "🔴 Shutdown")
+                ${systemctl} poweroff
+                ;;
+            "🔁 Reboot")
+                ${systemctl} reboot
+                ;;
+            "🛑 Suspend")
+                ${systemctl} suspend
+                ;;
+            "🔒 Lock")
+                ${swaylock}
+                ;;
+            *)
+                echo "No valid option selected."
+                ;;
         esac
       '';
     in {

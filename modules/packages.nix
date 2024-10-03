@@ -48,7 +48,7 @@
         livebook
         minikube
         mongosh
-        nemo-with-extensions
+        nemo
         networkmanagerapplet
         ngrok
         obsidian
@@ -75,6 +75,7 @@
         vagrant
         ventoy
         vlc
+        xarchiver
         zotero
       ]
       ++ (with nodePackages_latest; [

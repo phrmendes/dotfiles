@@ -87,7 +87,7 @@
         };
         window = {
           format = "  " + tt "{}";
-          max-length = 50;
+          max-length = 25;
         };
         workspaces = {
           format = tt "{name}";

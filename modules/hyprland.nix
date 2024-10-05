@@ -14,6 +14,7 @@
       playerctl = getExe pkgs.playerctl;
       swaylock = getExe pkgs.swaylock;
       wofi = getExe pkgs.wofi;
+      wofi-emoji = getExe pkgs.wofi-emoji;
       pactl = "${pkgs.pulseaudio}/bin/pactl";
       dmenu = "${getExe pkgs.wofi} --show dmenu";
       systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -169,6 +170,7 @@
             "SUPER,R,togglesplit"
             "SUPER,T,lockactivegroup,toggle"
             "SUPER,Z,fullscreen"
+            "SUPER,E,exec,${wofi-emoji}"
             "SUPER CTRL,H,workspace,r-1"
             "SUPER CTRL,L,workspace,r+1"
             "SUPER SHIFT,H,movewindoworgroup,l"

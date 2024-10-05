@@ -28,7 +28,6 @@
         ".zotero"
         ".cache/tealdeer"
         ".cache/uv"
-        ".cache/zotcite"
         ".cache/cliphist"
         ".local/share/Trash"
         ".local/share/keyrings"

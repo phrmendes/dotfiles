@@ -14,12 +14,10 @@
           inherit src pname;
           version = src.rev;
         };
-      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      mini-nvim = fromGitHub "mini.nvim" inputs.mini-nvim;
       nvim-go = fromGitHub "nvim-go" inputs.nvim-go;
-      smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
-      zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -28,83 +26,74 @@
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;
-      plugins =
-        (with pkgs.vimPlugins; [
-          SchemaStore-nvim
-          ansible-vim
-          better-escape-nvim
-          cmp-buffer
-          cmp-cmdline
-          cmp-dap
-          cmp-emoji
-          cmp-latex-symbols
-          cmp-nvim-lsp
-          cmp-nvim-lsp-signature-help
-          cmp-pandoc-nvim
-          cmp-path
-          cmp_luasnip
-          conform-nvim
-          copilot-vim
-          dial-nvim
-          dressing-nvim
-          friendly-snippets
-          fzfWrapper
-          image-nvim
-          lazydev-nvim
-          lazygit-nvim
-          lspkind-nvim
-          ltex_extra-nvim
-          luasnip
-          markdown-nvim
-          markdown-preview-nvim
-          mini-nvim
-          nabla-nvim
-          neogen
-          neotest
-          neotest-elixir
-          neotest-golang
-          neotest-python
-          nvim-bqf
-          nvim-cmp
-          nvim-colorizer-lua
-          nvim-dap
-          nvim-dap-go
-          nvim-dap-python
-          nvim-dap-ui
-          nvim-dap-virtual-text
-          nvim-lint
-          nvim-lspconfig
-          nvim-treesitter-context
-          nvim-treesitter-textobjects
-          nvim-treesitter.withAllGrammars
-          nvim-ts-autotag
-          nvim-ts-context-commentstring
-          obsidian-nvim
-          refactoring-nvim
-          smart-splits-nvim
-          telescope-fzf-native-nvim
-          telescope-nvim
-          undotree
-          vim-abolish
-          vim-dadbod
-          vim-dadbod-completion
-          vim-dadbod-ui
-          vim-eunuch
-          vim-helm
-          vim-helm
-          vim-jinja
-          vim-rsi
-          vim-sleuth
-          vim-slime
-        ])
-        ++ [
-          cmp-zotcite
-          curl-nvim
-          luasnip-latex-snippets
-          nvim-go
-          smart-open-nvim
-          zotcite
-        ];
+      plugins = with pkgs.vimPlugins; [
+        SchemaStore-nvim
+        ansible-vim
+        better-escape-nvim
+        cmp-buffer
+        cmp-cmdline
+        cmp-dap
+        cmp-latex-symbols
+        cmp-nvim-lsp
+        cmp-nvim-lsp-signature-help
+        cmp-pandoc-nvim
+        cmp-path
+        cmp_luasnip
+        conform-nvim
+        copilot-vim
+        curl-nvim
+        dial-nvim
+        dressing-nvim
+        friendly-snippets
+        fzfWrapper
+        image-nvim
+        lazydev-nvim
+        lazygit-nvim
+        lspkind-nvim
+        ltex_extra-nvim
+        luasnip
+        luasnip-latex-snippets
+        luvit-meta
+        markdown-nvim
+        markdown-preview-nvim
+        mini-nvim
+        nabla-nvim
+        neogen
+        neotest
+        neotest-elixir
+        neotest-golang
+        neotest-python
+        nvim-bqf
+        nvim-cmp
+        nvim-colorizer-lua
+        nvim-dap
+        nvim-dap-go
+        nvim-dap-python
+        nvim-dap-ui
+        nvim-dap-virtual-text
+        nvim-go
+        nvim-lint
+        nvim-lspconfig
+        nvim-treesitter-context
+        nvim-treesitter-textobjects
+        nvim-treesitter.withAllGrammars
+        nvim-ts-autotag
+        nvim-ts-context-commentstring
+        obsidian-nvim
+        refactoring-nvim
+        smart-splits-nvim
+        undotree
+        vim-abolish
+        vim-dadbod
+        vim-dadbod-completion
+        vim-dadbod-ui
+        vim-eunuch
+        vim-helm
+        vim-jinja
+        vim-rsi
+        vim-sleuth
+        vim-slime
+      ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
           jsregexp
@@ -117,10 +106,7 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
-          poppler-qt5
           pynvim
-          pyqt5
-          pyyaml
         ];
       extraPackages = with pkgs;
         [

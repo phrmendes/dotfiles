@@ -75,6 +75,7 @@
         vagrant
         ventoy
         vlc
+        wofi-emoji
         xarchiver
         zotero
       ]

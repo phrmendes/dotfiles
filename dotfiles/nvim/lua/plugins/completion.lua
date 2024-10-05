@@ -61,7 +61,6 @@ cmp.setup({
 		{ name = "lazydev", group_index = 0 },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "emoji" },
 	}, {
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
@@ -98,9 +97,7 @@ cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 cmp.setup.filetype({ "quarto", "markdown" }, {
 	sources = cmp.config.sources({
 		{ name = "luasnip" },
-		{ name = "cmp_zotcite" },
 		{ name = "cmp_pandoc" },
-		{ name = "emoji" },
 		{ name = "path" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
 	}, {

@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cmp-zotcite = {
-      flake = false;
-      url = "github:jalvesaq/cmp-zotcite";
-    };
-
     curl-nvim = {
       flake = false;
       url = "github:oysandvik94/curl.nvim";
@@ -45,19 +40,14 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
+    mini-nvim = {
+      flake = false;
+      url = "github:echasnovski/mini.nvim";
+    };
+
     nvim-go = {
       flake = false;
       url = "github:crispgm/nvim-go";
-    };
-
-    smart-open-nvim = {
-      flake = false;
-      url = "github:danielfalk/smart-open.nvim";
-    };
-
-    zotcite = {
-      flake = false;
-      url = "github:jalvesaq/zotcite";
     };
   };
 

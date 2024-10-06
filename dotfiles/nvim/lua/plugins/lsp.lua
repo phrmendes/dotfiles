@@ -118,6 +118,7 @@ servers.ltex = {
 		},
 	},
 }
+
 servers.yamlls = {
 	on_attach = function(_, bufnr)
 		if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then

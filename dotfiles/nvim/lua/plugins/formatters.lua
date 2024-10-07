@@ -3,6 +3,7 @@ require("conform").formatters_by_ft = {
 	elixir = { "mix" },
 	go = { "gofumpt", "goimports-reviser", "golines" },
 	html = { "prettier" },
+	javascript = { "prettier" },
 	json = { "prettier" },
 	lua = { "stylua" },
 	markdown = { "prettier" },

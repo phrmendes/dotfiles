@@ -18,6 +18,7 @@
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       mini-nvim = fromGitHub "mini.nvim" inputs.mini-nvim;
       nvim-go = fromGitHub "nvim-go" inputs.nvim-go;
+      nvim-cmp = fromGitHub "magazine.nvim" inputs.nvim-cmp;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;

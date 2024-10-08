@@ -45,6 +45,11 @@
       url = "github:echasnovski/mini.nvim";
     };
 
+    nvim-cmp = {
+      flake = false;
+      url = "github:iguanacucumber/magazine.nvim";
+    };
+
     nvim-go = {
       flake = false;
       url = "github:crispgm/nvim-go";

@@ -312,6 +312,22 @@
         "type": "github"
       }
     },
+    "nvim-cmp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728239185,
+        "narHash": "sha256-mK8ATaFeDgedaT2xYl4lo12sQxqP4IQ+NSm2OKKXDGc=",
+        "owner": "iguanacucumber",
+        "repo": "magazine.nvim",
+        "rev": "09441d144b115ace0e726ee305fa857702a4699d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iguanacucumber",
+        "repo": "magazine.nvim",
+        "type": "github"
+      }
+    },
     "nvim-go": {
       "flake": false,
       "locked": {
@@ -338,6 +354,7 @@
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "mini-nvim": "mini-nvim",
         "nixpkgs": "nixpkgs",
+        "nvim-cmp": "nvim-cmp",
         "nvim-go": "nvim-go",
         "stylix": "stylix"
       }

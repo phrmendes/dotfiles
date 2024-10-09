@@ -15,6 +15,7 @@
     ./hypridle.nix
     ./hyprland.nix
     ./hyprpaper.nix
+    ./k9s.nix
     ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
@@ -51,6 +52,7 @@
   hypridle.enable = true;
   hyprland.enable = true;
   hyprpaper.enable = true;
+  k9s.enable = true;
   kitty.enable = true;
   lazygit.enable = true;
   neovim.enable = true;

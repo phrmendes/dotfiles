@@ -32,7 +32,6 @@
         inherit (lib) getExe;
       in rec {
         cat = getExe pkgs.bat;
-        docker = getExe pkgs.podman;
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;

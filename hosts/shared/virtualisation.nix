@@ -1,12 +1,14 @@
 {pkgs, ...}: {
   virtualisation = {
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
       autoPrune.enable = true;
-      dockerSocket.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-      extraPackages = with pkgs; [podman-compose];
+      extraPackages = with pkgs; [docker-compose];
+      storageDriver = "btrfs";
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
     };
   };
 }

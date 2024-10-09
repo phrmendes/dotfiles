@@ -44,6 +44,7 @@
         jq
         kubectl
         kubernetes-helm
+        lazydocker
         libreoffice
         livebook
         minikube
@@ -57,7 +58,6 @@
         phockup
         playerctl
         plex
-        podman-tui
         poppler
         postgresql
         protonvpn-gui

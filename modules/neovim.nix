@@ -33,18 +33,17 @@
         better-escape-nvim
         cmp-buffer
         cmp-cmdline
-        cmp-dap
         cmp-latex-symbols
         cmp-nvim-lsp
         cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp-path
         cmp_luasnip
-        conform-nvim
         copilot-vim
         curl-nvim
         dial-nvim
         dressing-nvim
+        efmls-configs-nvim
         friendly-snippets
         fzfWrapper
         image-nvim
@@ -73,7 +72,6 @@
         nvim-dap-ui
         nvim-dap-virtual-text
         nvim-go
-        nvim-lint
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -122,7 +120,6 @@
           elixir-ls
           emmet-language-server
           gofumpt
-          goimports-reviser
           golangci-lint
           golines
           gopls
@@ -145,12 +142,13 @@
           taplo
           terraform-ls
           texlab
-          tflint
           vscode-langservers-extracted
           yaml-language-server
+          efm-langserver
         ]
         ++ (with nodePackages_latest; [
-          prettier
+              prettier
+          sql-formatter
           vscode-json-languageserver
         ]);
     };

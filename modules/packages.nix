@@ -34,6 +34,7 @@
         gnumake
         gnused
         go
+        gotools
         gparted
         graphviz
         grim

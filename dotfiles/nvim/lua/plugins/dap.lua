@@ -1,32 +1,13 @@
 local dap = require("dap")
 local dap_python = require("dap-python")
 local dap_ui = require("dapui")
-
-local dap_signs = {
-	Breakpoint = "",
-	BreakpointRejected = "",
-	Stopped = "",
-}
-
-for type, icon in pairs(dap_signs) do
-	local hl = "Dap" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+local utils = require("utils")
 
 dap_ui.setup()
 dap_python.setup(vim.fn.exepath("nvim-python3"))
-
 require("dap-go").setup()
-
-require("nvim-dap-virtual-text").setup({
-	display_callback = function(variable)
-		if #variable.value > 15 then
-			return " " .. string.sub(variable.value, 1, 15) .. "... "
-		end
-
-		return " " .. variable.value
-	end,
-})
+require("nvim-dap-virtual-text").setup({ display_callback = utils.display_callback })
+utils.setup_dap_signs({ Breakpoint = "", BreakpointRejected = "", Stopped = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
 dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close

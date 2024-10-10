@@ -1,28 +1,32 @@
-local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+local utils = require("utils")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local handlers = {
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, require("utils").borders),
-	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, require("utils").borders),
+local efm = {
+	css = { require("efmls-configs.formatters.prettier") },
+	dockerfile = { require("efmls-configs.linters.hadolint") },
+	go = {
+		require("efmls-configs.linters.golangci_lint"),
+		require("efmls-configs.formatters.gofumpt"),
+		require("efmls-configs.formatters.goimports"),
+		require("efmls-configs.formatters.golines"),
+	},
+	html = { require("efmls-configs.formatters.prettier") },
+	json = { require("efmls-configs.formatters.prettier") },
+	lua = { require("efmls-configs.formatters.stylua") },
+	markdown = { require("efmls-configs.formatters.prettier") },
+	nix = { require("efmls-configs.formatters.alejandra") },
+	python = { require("efmls-configs.formatters.ruff") },
+	scss = { require("efmls-configs.formatters.prettier") },
+	sh = { require("efmls-configs.linters.shellcheck"), require("efmls-configs.formatters.shellharden") },
+	sql = { require("efmls-configs.formatters.sql-formatter") },
+	terraform = { require("efmls-configs.formatters.terraform_fmt") },
+	toml = { require("efmls-configs.formatters.taplo") },
+	yaml = { require("efmls-configs.formatters.prettier") },
 }
 
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
-})
+utils.config_diagnostics(
+	{ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " },
+	{ virtual_text = true, signs = true, underline = true, update_in_insert = false, severity_sort = true }
+)
 
 local servers = {
 	ansiblels = {},
@@ -48,6 +52,18 @@ servers.basedpyright = {
 		require("keymaps").refactoring(bufnr)
 		require("keymaps").tests(bufnr)
 	end,
+}
+
+servers.efm = {
+	init_options = {
+		documentFormatting = true,
+		documentRangeFormatting = true,
+	},
+	filetypes = vim.tbl_keys(efm),
+	settings = {
+		rootMarkers = { ".git/" },
+		languages = efm,
+	},
 }
 
 servers.elixirls = {
@@ -141,12 +157,8 @@ servers.yamlls = {
 }
 
 for key, value in pairs(servers) do
-	(function(server, settings)
-		local setup = settings or {}
-
-		setup.capabilities = vim.tbl_deep_extend("force", {}, capabilities, setup.capabilities or {})
-		setup.handlers = vim.tbl_deep_extend("force", {}, handlers, setup.handlers or {})
-
-		require("lspconfig")[server].setup(setup)
-	end)(key, value)
+	utils.config_server({
+		server = key,
+		settings = value,
+	})
 end

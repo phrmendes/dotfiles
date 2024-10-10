@@ -19,6 +19,7 @@
         bitwarden
         bitwarden-cli
         brightnessctl
+        bws
         chromium
         deluge
         discord

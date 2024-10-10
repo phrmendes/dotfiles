@@ -70,6 +70,7 @@
         satty
         scrcpy
         slurp
+        stremio
         syncthingtray
         tectonic
         terraform

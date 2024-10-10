@@ -21,6 +21,8 @@
       interval = "monthly";
     };
 
+    dbus.packages = with pkgs; [gcr];
+
     openssh = {
       enable = true;
       settings = {

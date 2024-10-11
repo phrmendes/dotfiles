@@ -73,9 +73,7 @@ autocmd("User", {
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+	callback = vim.highlight.on_yank
 })
 
 autocmd("FileType", {

@@ -16,8 +16,6 @@
         };
       curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      mini-nvim = fromGitHub "mini.nvim" inputs.mini-nvim;
-      nvim-go = fromGitHub "nvim-go" inputs.nvim-go;
       nvim-cmp = fromGitHub "magazine.nvim" inputs.nvim-cmp;
     in {
       enable = true;
@@ -71,7 +69,6 @@
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
-        nvim-go
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -117,25 +114,22 @@
           delve
           dockerfile-language-server-nodejs
           dot-language-server
+          efm-langserver
           elixir-ls
           emmet-language-server
           gofumpt
           golangci-lint
           golines
           gopls
-          gotests
           hadolint
           helm-ls
-          iferr
           ltex-ls
           lua-language-server
           neovim-remote
           nixd
-          quicktype
           ruff
           shellcheck
           shellharden
-          sqlfluff
           sqls
           stylua
           tailwindcss-language-server
@@ -144,10 +138,9 @@
           texlab
           vscode-langservers-extracted
           yaml-language-server
-          efm-langserver
         ]
         ++ (with nodePackages_latest; [
-              prettier
+          prettier
           sql-formatter
           vscode-json-languageserver
         ]);

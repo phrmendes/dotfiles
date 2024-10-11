@@ -51,7 +51,6 @@ autocmd("BufWritePost", {
 		local efm = vim.lsp.get_clients({ name = "efm", bufnr = ev.buf })
 
 		if vim.tbl_isempty(efm) then
-			vim.lsp.buf.format()
 			return
 		end
 
@@ -73,7 +72,9 @@ autocmd("User", {
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
-	callback = vim.highlight.on_yank
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 autocmd("FileType", {

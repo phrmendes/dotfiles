@@ -44,6 +44,7 @@
         inkscape
         jdk
         jq
+        kooha
         kubectl
         kubernetes-helm
         lazydocker

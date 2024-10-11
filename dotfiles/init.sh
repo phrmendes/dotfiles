@@ -11,6 +11,8 @@ export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
 export PATH="/run/current-system/sw/bin:$PATH"
 export PATH="/run/wrappers/bin:$PATH"
 
+set -o vi
+
 function yy() {
     local TMP
 

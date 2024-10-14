@@ -86,6 +86,22 @@
         "type": "github"
       }
     },
+    "cmp-zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710558035,
+        "narHash": "sha256-p3vssnEXVwXdLHTrCRngAVReA+yA0Hc9bMwuRju4fXc=",
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "rev": "281f43726bed2c5eb96bea1544edcf2e069795db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "type": "github"
+      }
+    },
     "curl-nvim": {
       "flake": false,
       "locked": {
@@ -315,6 +331,7 @@
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
+        "cmp-zotcite": "cmp-zotcite",
         "curl-nvim": "curl-nvim",
         "disko": "disko",
         "home-manager": "home-manager",
@@ -322,7 +339,25 @@
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "nvim-cmp": "nvim-cmp",
-        "stylix": "stylix"
+        "smart-open-nvim": "smart-open-nvim",
+        "stylix": "stylix",
+        "zotcite": "zotcite"
+      }
+    },
+    "smart-open-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718197413,
+        "narHash": "sha256-bEo5p7tHeoE13P8QsjC8RqNA0NMogjdYzN0oatQaIJY=",
+        "owner": "danielfalk",
+        "repo": "smart-open.nvim",
+        "rev": "f4e39e9a1b05a6b82b1182a013677acc44b27abb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danielfalk",
+        "repo": "smart-open.nvim",
+        "type": "github"
       }
     },
     "stylix": {
@@ -416,6 +451,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
+        "type": "github"
+      }
+    },
+    "zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726879805,
+        "narHash": "sha256-R/j6KgZEijijLpAENYnPzF+lnrwBnFCAouwZw584olY=",
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "rev": "c2c52ceea8dc86df87a9caf6411e0606dd4879d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "zotcite",
         "type": "github"
       }
     }

@@ -17,6 +17,9 @@
       curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       nvim-cmp = fromGitHub "magazine.nvim" inputs.nvim-cmp;
+      zotcite = fromGitHub "zotcite" inputs.zotcite;
+      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
+      smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -36,6 +39,7 @@
         cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp-path
+        cmp-zotcite
         cmp_luasnip
         copilot-vim
         curl-nvim
@@ -77,7 +81,10 @@
         nvim-ts-context-commentstring
         obsidian-nvim
         refactoring-nvim
+        smart-open-nvim
         smart-splits-nvim
+        telescope-fzf-native-nvim
+        telescope-nvim
         undotree
         vim-abolish
         vim-dadbod
@@ -89,6 +96,7 @@
         vim-rsi
         vim-sleuth
         vim-slime
+        zotcite
       ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
@@ -102,7 +110,10 @@
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [
           debugpy
+          poppler-qt5
           pynvim
+          pyqt5
+          pyyaml
         ];
       extraPackages = with pkgs;
         [

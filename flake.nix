@@ -44,6 +44,21 @@
       flake = false;
       url = "github:iguanacucumber/magazine.nvim";
     };
+
+    smart-open-nvim = {
+      flake = false;
+      url = "github:danielfalk/smart-open.nvim";
+    };
+
+    zotcite = {
+      flake = false;
+      url = "github:jalvesaq/zotcite";
+    };
+
+    cmp-zotcite = {
+      flake = false;
+      url = "github:jalvesaq/cmp-zotcite";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

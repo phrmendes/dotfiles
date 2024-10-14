@@ -73,6 +73,11 @@ vim.opt.inccommand = "split"
 -- conceal
 vim.opt.conceallevel = 2
 
+-- fold
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+
 -- clipboard
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"

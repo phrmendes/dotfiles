@@ -20,6 +20,7 @@
       zotcite = fromGitHub "zotcite" inputs.zotcite;
       cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
+      tailwindcss-colorizer-cmp-nvim = fromGitHub "tailwindcss-colorizer-cmp.nvim" inputs.tailwindcss-colorizer-cmp-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -83,6 +84,7 @@
         refactoring-nvim
         smart-open-nvim
         smart-splits-nvim
+        tailwindcss-colorizer-cmp-nvim
         telescope-fzf-native-nvim
         telescope-nvim
         undotree
@@ -147,6 +149,7 @@
           taplo
           terraform-ls
           texlab
+          vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server
         ]

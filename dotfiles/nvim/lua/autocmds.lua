@@ -7,6 +7,8 @@ autocmd("LspAttach", {
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+		vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
 		if client then
 			require("keymaps").lsp(client, event.buf)
 			require("commands").lsp(client, event.buf)
@@ -54,7 +56,7 @@ autocmd("BufWritePost", {
 			return
 		end
 
-		vim.lsp.buf.format({ name = "efm" })
+		vim.lsp.buf.format({ name = "efm", async = true })
 	end,
 })
 

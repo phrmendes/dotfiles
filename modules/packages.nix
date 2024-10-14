@@ -75,6 +75,7 @@
         syncthingtray
         tectonic
         terraform
+        typescript
         uv
         vagrant
         ventoy
@@ -85,6 +86,7 @@
       ]
       ++ (with nodePackages_latest; [
         nodejs
+        typescript-language-server
       ]);
   };
 }

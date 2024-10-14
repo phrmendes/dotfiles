@@ -341,6 +341,7 @@
         "nvim-cmp": "nvim-cmp",
         "smart-open-nvim": "smart-open-nvim",
         "stylix": "stylix",
+        "tailwindcss-colorizer-cmp-nvim": "tailwindcss-colorizer-cmp-nvim",
         "zotcite": "zotcite"
       }
     },
@@ -402,6 +403,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tailwindcss-colorizer-cmp-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711194583,
+        "narHash": "sha256-PIkfJzLt001TojAnE/rdRhgVEwSvCvUJm/vNPLSWjpY=",
+        "owner": "roobert",
+        "repo": "tailwindcss-colorizer-cmp.nvim",
+        "rev": "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roobert",
+        "repo": "tailwindcss-colorizer-cmp.nvim",
         "type": "github"
       }
     },

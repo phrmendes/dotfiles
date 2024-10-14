@@ -10,6 +10,7 @@ local efm = {
 		require("efmls-configs.formatters.golines"),
 	},
 	html = { require("efmls-configs.formatters.prettier") },
+	javascript = { require("efmls-configs.formatters.prettier") },
 	json = { require("efmls-configs.formatters.prettier") },
 	lua = { require("efmls-configs.formatters.stylua") },
 	markdown = { require("efmls-configs.formatters.prettier") },
@@ -20,6 +21,7 @@ local efm = {
 	sql = { require("efmls-configs.formatters.sql-formatter") },
 	terraform = { require("efmls-configs.formatters.terraform_fmt") },
 	toml = { require("efmls-configs.formatters.taplo") },
+	typescript = { require("efmls-configs.formatters.prettier") },
 	yaml = { require("efmls-configs.formatters.prettier") },
 }
 
@@ -43,6 +45,12 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
+	eslint = {},
+	ts_ls = {
+		init_options = {
+			disableSuggestions = true,
+		},
+	},
 }
 
 servers.basedpyright = {

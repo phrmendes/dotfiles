@@ -14,13 +14,14 @@
           inherit src pname;
           version = src.rev;
         };
+      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       curl-nvim = fromGitHub "curl.nvim" inputs.curl-nvim;
+      efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       nvim-cmp = fromGitHub "magazine.nvim" inputs.nvim-cmp;
-      zotcite = fromGitHub "zotcite" inputs.zotcite;
-      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
       smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
       tailwindcss-colorizer-cmp-nvim = fromGitHub "tailwindcss-colorizer-cmp.nvim" inputs.tailwindcss-colorizer-cmp-nvim;
+      zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -56,7 +57,6 @@
         ltex_extra-nvim
         luasnip
         luasnip-latex-snippets
-        luvit-meta
         markdown-nvim
         markdown-preview-nvim
         mini-nvim
@@ -125,6 +125,7 @@
           basedpyright
           bash-language-server
           delve
+          djlint
           dockerfile-language-server-nodejs
           dot-language-server
           efm-langserver
@@ -165,6 +166,11 @@
         source = ../dotfiles/nvim;
         recursive = true;
       };
+      "nvim/lua/luvit-meta.lua".text = ''
+        return {
+            path = "${pkgs.vimPlugins.luvit-meta}/library",
+        }
+      '';
       "nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {
             palette = {

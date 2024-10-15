@@ -1,20 +1,71 @@
 local dap = require("dap")
-local dap_python = require("dap-python")
 local dap_ui = require("dapui")
 local utils = require("utils")
 
 local elixir_ls_debugger = vim.fn.exepath("elixir-debug-adapter")
 local vscode_js_debugger = vim.fn.exepath("js-debug-adapter")
+local python = vim.fn.exepath("nvim-python3")
 
-dap_ui.setup()
-dap_python.setup(vim.fn.exepath("nvim-python3"))
+utils.setup_dap_signs({
+	Breakpoint = "",
+	BreakpointRejected = "",
+	Stopped = "",
+})
+
 require("dap-go").setup()
 require("nvim-dap-virtual-text").setup({ display_callback = utils.display_callback })
-utils.setup_dap_signs({ Breakpoint = "", BreakpointRejected = "", Stopped = "" })
 
+dap_ui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = dap_ui.open
 dap.listeners.before.event_terminated["dapui_config"] = dap_ui.close
 dap.listeners.before.event_exited["dapui_config"] = dap_ui.close
+
+if python ~= "" then
+	require("dap-python").setup(python)
+
+	dap.configurations.python = {
+		{
+			type = "python",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			pythonPath = python,
+		},
+		{
+			type = "python",
+			request = "launch",
+			name = "Debug Django app",
+			program = vim.uv.cwd() .. "/manage.py",
+			args = { "runserver", "--noreload" },
+			justMyCode = true,
+			django = true,
+			console = "integratedTerminal",
+		},
+		{
+			type = "python",
+			request = "attach",
+			name = "Attach remote",
+			connect = function()
+				return {
+					host = "127.0.0.1",
+					port = 5678,
+				}
+			end,
+		},
+		{
+			type = "python",
+			request = "launch",
+			name = "Launch file with arguments",
+			program = "${file}",
+			args = function()
+				local args_string = vim.fn.input("Arguments: ")
+				return vim.split(args_string, " +")
+			end,
+			console = "integratedTerminal",
+			pythonPath = python,
+		},
+	}
+end
 
 if vscode_js_debugger ~= "" then
 	dap.adapters["pwa-node"] = {

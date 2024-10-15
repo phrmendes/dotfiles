@@ -1,5 +1,5 @@
 require("lazydev").setup({
 	library = {
-		{ path = "luvit-meta/library", words = { "vim%.uv" } },
+		{ path = require("luvit-meta").path, words = { "vim%.uv" } },
 	},
 })

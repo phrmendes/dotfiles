@@ -9,7 +9,11 @@ local efm = {
 		require("efmls-configs.formatters.goimports"),
 		require("efmls-configs.formatters.golines"),
 	},
-	html = { require("efmls-configs.formatters.prettier") },
+	html = {
+		require("efmls-configs.linters.djlint"),
+		require("efmls-configs.formatters.prettier"),
+	},
+	elixir = { require("efmls-configs.formatters.mix") },
 	javascript = { require("efmls-configs.formatters.prettier") },
 	json = { require("efmls-configs.formatters.prettier") },
 	lua = { require("efmls-configs.formatters.stylua") },

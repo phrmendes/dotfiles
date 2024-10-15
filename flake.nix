@@ -30,9 +30,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cmp-zotcite = {
+      flake = false;
+      url = "github:jalvesaq/cmp-zotcite";
+    };
+
     curl-nvim = {
       flake = false;
       url = "github:oysandvik94/curl.nvim";
+    };
+
+    efmls-configs-nvim = {
+      flake = false;
+      url = "github:creativenull/efmls-configs-nvim";
     };
 
     luasnip-latex-snippets = {
@@ -58,11 +68,6 @@
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";
-    };
-
-    cmp-zotcite = {
-      flake = false;
-      url = "github:jalvesaq/cmp-zotcite";
     };
   };
 

@@ -94,7 +94,6 @@
         vim-dadbod-ui
         vim-eunuch
         vim-helm
-        vim-jinja
         vim-rsi
         vim-sleuth
         vim-slime

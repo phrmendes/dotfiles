@@ -125,11 +125,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728922573,
-        "narHash": "sha256-FegyBabjV4868aJUbvFtqH0zKDEtUpeCAfnB1vWXeBg=",
+        "lastModified": 1729070567,
+        "narHash": "sha256-r3KMTeBLioUtRPRFjdWbpZqfMmQHr6Dj9vjGaj4OhP8=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "3b778f10eb275573da9f5c8a7a49e774200b87e5",
+        "rev": "c8760cee70cf166ad6bcee0bd9f0bba934a3a651",
         "type": "github"
       },
       "original": {
@@ -141,15 +141,15 @@
     "efmls-configs-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1728965483,
+        "lastModified": 1729034961,
         "narHash": "sha256-yTxYIhOO0WymnqME/00g/pUyd69kQCM/BTe4NmfmRbE=",
-        "owner": "phrmendes",
+        "owner": "creativenull",
         "repo": "efmls-configs-nvim",
-        "rev": "4fcbb25413ed04d08c3de4539debe66f5910f98c",
+        "rev": "e44e39c962dc1629a341fc71cfc8feaa09cefa6f",
         "type": "github"
       },
       "original": {
-        "owner": "phrmendes",
+        "owner": "creativenull",
         "repo": "efmls-configs-nvim",
         "type": "github"
       }
@@ -231,11 +231,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728903686,
-        "narHash": "sha256-ZHFrGNWDDriZ4m8CA/5kDa250SG1LiiLPApv1p/JF0o=",
+        "lastModified": 1729027341,
+        "narHash": "sha256-IqWD7bA9iJVifvJlB4vs2KUXVhN+d9lECWdNB4jJ0tE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e1aec543f5caf643ca0d94b6a633101942fd065f",
+        "rev": "2a4fd1cfd8ed5648583dadef86966a8231024221",
         "type": "github"
       },
       "original": {
@@ -267,11 +267,11 @@
     },
     "impermanence": {
       "locked": {
-        "lastModified": 1727649413,
-        "narHash": "sha256-FA53of86DjFdeQzRDVtvgWF9o52rWK70VHGx0Y8fElQ=",
+        "lastModified": 1729068498,
+        "narHash": "sha256-C2sGRJl1EmBq0nO98TNd4cbUy20ABSgnHWXLIJQWRFA=",
         "owner": "nix-community",
         "repo": "impermanence",
-        "rev": "d0b38e550039a72aff896ee65b0918e975e6d48e",
+        "rev": "e337457502571b23e449bf42153d7faa10c0a562",
         "type": "github"
       },
       "original": {
@@ -365,11 +365,11 @@
     "smart-open-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1718197413,
-        "narHash": "sha256-bEo5p7tHeoE13P8QsjC8RqNA0NMogjdYzN0oatQaIJY=",
+        "lastModified": 1729015447,
+        "narHash": "sha256-cnWB5Op48wkSFZM5TcNVUVGp77PN6dZ6al1RsBEL3/s=",
         "owner": "danielfalk",
         "repo": "smart-open.nvim",
-        "rev": "f4e39e9a1b05a6b82b1182a013677acc44b27abb",
+        "rev": "7770b01ce4d551c143d7ec8589879320796621b9",
         "type": "github"
       },
       "original": {

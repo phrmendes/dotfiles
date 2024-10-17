@@ -71,6 +71,7 @@
         satty
         scrcpy
         slurp
+        sqlc
         stremio
         syncthingtray
         tectonic

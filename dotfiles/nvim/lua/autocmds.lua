@@ -57,6 +57,7 @@ autocmd("BufWritePost", {
 		end
 
 		vim.lsp.buf.format({ name = "efm", async = true })
+		vim.cmd("noautocmd write")
 	end,
 })
 

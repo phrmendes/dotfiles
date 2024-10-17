@@ -12,6 +12,12 @@
           "markdown"
         ],
         "path": "./markdown.json"
+      },
+      {
+        "language": [
+          "nix"
+        ],
+        "path": "./nix.json"
       }
     ]
   }

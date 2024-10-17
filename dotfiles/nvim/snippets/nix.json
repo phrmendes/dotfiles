@@ -1,0 +1,19 @@
+{
+  "Home-manager module": {
+    "body": [
+      "{",
+      "  lib,",
+      "  config,",
+      "  ...",
+      "}: {",
+      "  options.${1:program}.enable = lib.mkEnableOption \"enable ${1}\";",
+      "",
+      "  config = lib.mkIf config.${1}.enable {",
+      "    programs.${1}.enable = true;",
+      "  };",
+      "}"
+    ],
+    "description": "Home-manager module",
+    "prefix": "hmm"
+  }
+}

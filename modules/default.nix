@@ -23,6 +23,7 @@
     ./packages.nix
     ./pasystray.nix
     ./ripgrep.nix
+    ./sioyek.nix
     ./starship.nix
     ./swaylock.nix
     ./symlinks.nix
@@ -72,6 +73,7 @@
   yazi.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
+  sioyek.enable = true;
 
   home = {
     stateVersion = "24.05";

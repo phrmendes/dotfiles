@@ -120,13 +120,6 @@ servers.lua_ls = {
 				disable = { "missing-fields" },
 			},
 			telemetry = { enable = false },
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
 		},
 	},
 }

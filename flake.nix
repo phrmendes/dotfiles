@@ -30,16 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cmp-zotcite = {
-      flake = false;
-      url = "github:jalvesaq/cmp-zotcite";
-    };
-
-    curl-nvim = {
-      flake = false;
-      url = "github:oysandvik94/curl.nvim";
-    };
-
     efmls-configs-nvim = {
       flake = false;
       url = "github:creativenull/efmls-configs-nvim";
@@ -48,26 +38,6 @@
     luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
-    };
-
-    nvim-cmp = {
-      flake = false;
-      url = "github:iguanacucumber/magazine.nvim";
-    };
-
-    smart-open-nvim = {
-      flake = false;
-      url = "github:danielfalk/smart-open.nvim";
-    };
-
-    tailwindcss-colorizer-cmp-nvim = {
-      flake = false;
-      url = "github:roobert/tailwindcss-colorizer-cmp.nvim";
-    };
-
-    zotcite = {
-      flake = false;
-      url = "github:jalvesaq/zotcite";
     };
   };
 

@@ -47,28 +47,36 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd("BufWritePost", {
+autocmd("BufWritePre", {
 	group = augroups.lsp.lint_format,
 	callback = function(ev)
-		local efm = vim.lsp.get_clients({ name = "efm", bufnr = ev.buf })
-
-		if vim.tbl_isempty(efm) then
-			return
-		end
-
-		vim.lsp.buf.format({ name = "efm", async = true })
-		vim.cmd("noautocmd write")
+		vim.lsp.buf.format({
+			async = true,
+			bufnr = ev.buf,
+			filter = function(client)
+				return client.name == "efm"
+			end,
+		})
 	end,
 })
 
 autocmd("User", {
-	desc = "Set border for mini files window",
+	desc = "Set border for mini.files window",
 	group = augroups.mini,
 	pattern = "MiniFilesWindowOpen",
 	callback = function(event)
 		local win_id = event.data.win_id
 
 		vim.api.nvim_win_set_config(win_id, { border = require("utils").borders.border })
+	end,
+})
+
+autocmd("User", {
+	desc = "Config mini.files keybindings",
+	group = augroups.mini,
+	pattern = "MiniFilesBufferCreate",
+	callback = function(event)
+		require("keymaps").mini.files(event)
 	end,
 })
 

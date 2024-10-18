@@ -2,6 +2,11 @@ local augroup = vim.api.nvim_create_augroup
 
 local M = {}
 
+M.mini = {}
+M.mini.notify = {}
+M.mini.files = {}
+M.mini.pick = {}
+
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
 	mini = augroup("UserMini", { clear = true }),
@@ -83,27 +88,6 @@ M.config_server = function(opts)
 	require("lspconfig")[opts.server].setup(settings)
 end
 
-M.filter_notifications = function(array)
-	local filters = {
-		"Diagnosing",
-		"ansible-lint",
-		"file to analyze",
-		"ltex",
-	}
-
-	local filter_generator = function(filter)
-		return function(notification)
-			return not string.find(notification.msg, filter)
-		end
-	end
-
-	for _, filter in pairs(filters) do
-		array = vim.tbl_filter(filter_generator(filter), array)
-	end
-
-	return require("mini.notify").default_sort(array)
-end
-
 M.image_name = function()
 	local prefix = os.date("%Y%m%d%H%M%S")
 	local suffix = vim.fn.expand("%:p:t:r")
@@ -150,6 +134,112 @@ M.setup_dap_signs = function(signs)
 	for type, icon in pairs(signs) do
 		local hl = "Dap" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	end
+end
+
+M.get_clients = function(opts)
+	local ret = {}
+
+	if vim.lsp.get_clients then
+		ret = vim.lsp.get_clients(opts)
+
+		if opts and opts.method then
+			ret = vim.tbl_filter(function(client)
+				return client.supports_method(opts.method, { bufnr = opts.bufnr })
+			end, ret)
+		end
+	end
+
+	return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
+end
+
+M.mini.notify.filter_notifications = function(array)
+	local filters = {
+		"Diagnosing",
+		"ansible-lint",
+		"file to analyze",
+		"ltex",
+	}
+
+	local filter_generator = function(filter)
+		return function(notification)
+			return not string.find(notification.msg, filter)
+		end
+	end
+
+	for _, filter in pairs(filters) do
+		array = vim.tbl_filter(filter_generator(filter), array)
+	end
+
+	return require("mini.notify").default_sort(array)
+end
+
+M.mini.files.filter_show = function()
+	return true
+end
+
+M.mini.files.filter_hide = function(fs_entry)
+	return not vim.startswith(fs_entry.name, ".")
+end
+
+M.mini.files.toggle_dotfiles = function()
+	vim.g.mini_show_dotfiles = not vim.g.mini_show_dotfiles
+	local new_filter = vim.g.mini_show_dotfiles and M.mini.files.filter_show or M.mini.files.filter_hide
+	require("mini.files").refresh({ content = { filter = new_filter } })
+end
+
+M.mini.files.map_split = function(direction, close_on_file)
+	return function()
+		local new_target_window
+		local current_target_window = require("mini.files").get_explorer_state().target_window
+
+		if current_target_window ~= nil then
+			vim.api.nvim_win_call(current_target_window, function()
+				vim.cmd("belowright " .. direction .. " split")
+				new_target_window = vim.api.nvim_get_current_win()
+			end)
+
+			require("mini.files").set_target_window(new_target_window)
+			require("mini.files").go_in({ close_on_file = close_on_file })
+		end
+	end
+end
+
+M.mini.files.set_cwd = function()
+	local current_entry_path = require("mini.files").get_fs_entry().path
+	local current_directory = vim.fs.dirname(current_entry_path)
+
+	if current_directory ~= nil then
+		vim.fn.chdir(current_directory)
+	end
+end
+
+M.mini.files.on_rename = function(from, to)
+	local changes = {
+		files = {
+			{
+				oldUri = vim.uri_from_fname(from),
+				newUri = vim.uri_from_fname(to),
+			},
+		},
+	}
+
+	local clients = M.get_clients()
+
+	for _, client in ipairs(clients) do
+		if client.supports_method("workspace/willRenameFiles") then
+			local resp = client.request_sync("workspace/willRenameFiles", changes, 1000, 0)
+
+			if resp and resp.result ~= nil then
+				vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
+			end
+		end
+	end
+
+	for _, client in ipairs(clients) do
+		if client.supports_method("workspace/didRenameFiles") then
+			client.notify("workspace/didRenameFiles", changes)
+		end
 	end
 end
 

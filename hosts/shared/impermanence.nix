@@ -29,7 +29,6 @@
         ".cache/cliphist"
         ".cache/tealdeer"
         ".cache/uv"
-        ".cache/zotcite"
         ".local/share/Trash"
         ".local/share/keyrings"
         ".local/share/nvim"

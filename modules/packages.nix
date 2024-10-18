@@ -58,6 +58,7 @@
         obsidian
         parallel
         pavucontrol
+        pdfannots2json
         phockup
         playerctl
         plex
@@ -78,7 +79,6 @@
         terraform
         typescript
         uv
-        vagrant
         ventoy
         vlc
         wofi-emoji

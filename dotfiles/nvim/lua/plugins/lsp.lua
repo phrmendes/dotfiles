@@ -44,7 +44,6 @@ local servers = {
 	nixd = {},
 	ruff = {},
 	sqls = {},
-	tailwindcss = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},

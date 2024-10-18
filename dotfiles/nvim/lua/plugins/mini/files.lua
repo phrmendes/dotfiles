@@ -13,3 +13,5 @@ require("mini.files").setup({
 		trim_right = ">",
 	},
 })
+
+vim.g.mini_show_dotfiles = true

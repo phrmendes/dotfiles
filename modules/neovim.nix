@@ -20,7 +20,6 @@
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       nvim-cmp = fromGitHub "magazine.nvim" inputs.nvim-cmp;
       smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
-      tailwindcss-colorizer-cmp-nvim = fromGitHub "tailwindcss-colorizer-cmp.nvim" inputs.tailwindcss-colorizer-cmp-nvim;
       zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
@@ -84,7 +83,6 @@
         refactoring-nvim
         smart-open-nvim
         smart-splits-nvim
-        tailwindcss-colorizer-cmp-nvim
         telescope-fzf-native-nvim
         telescope-nvim
         undotree
@@ -145,7 +143,6 @@
           shellharden
           sqls
           stylua
-          tailwindcss-language-server
           taplo
           terraform-ls
           texlab

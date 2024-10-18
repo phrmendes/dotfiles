@@ -1,5 +1,6 @@
 local luasnip = require("luasnip")
 local map = vim.keymap.set
+local utils = require("utils")
 
 local M = {}
 
@@ -137,10 +138,13 @@ local keys = {
 		opts.desc = "Explorer"
 		map("n", "<leader>e", function()
 			if not require("mini.files").close() then
-				require("mini.files").open(vim.fn.expand("%:p:h"))
+				require("mini.files").open(vim.fn.expand("%:p:h"), true)
 			end
+		end, opts)
 
-			require("mini.files").reveal_cwd()
+		opts.desc = "Explorer (cwd)"
+		map("n", "<leader>E", function()
+			require("mini.files").open(vim.uv.cwd(), true)
 		end, opts)
 	end,
 	git = function()
@@ -486,6 +490,19 @@ M.python = function(bufnr)
 	opts.desc = "Python: debug selection"
 	map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 end
+
+M.mini = {
+	files = function(event)
+		local opts = { noremap = true, buffer = event.data.buf_id }
+
+		map("n", ".", utils.mini.files.toggle_dotfiles, opts)
+		map("n", "c", utils.mini.files.set_cwd, opts)
+		map("n", "<c-s>", utils.mini.files.map_split("horizontal", true), opts)
+		map("n", "<c-v>", utils.mini.files.map_split("vertical", true), opts)
+		map("n", "<a-s>", utils.mini.files.map_split("horizontal", false), opts)
+		map("n", "<a-v>", utils.mini.files.map_split("vertical", false), opts)
+	end,
+}
 
 M.setup = function()
 	for _, fn in pairs(keys) do

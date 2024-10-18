@@ -60,11 +60,6 @@
       url = "github:danielfalk/smart-open.nvim";
     };
 
-    tailwindcss-colorizer-cmp-nvim = {
-      flake = false;
-      url = "github:roobert/tailwindcss-colorizer-cmp.nvim";
-    };
-
     zotcite = {
       flake = false;
       url = "github:jalvesaq/zotcite";

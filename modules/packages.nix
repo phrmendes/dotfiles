@@ -27,6 +27,7 @@
         elixir
         exiftool
         fd
+        ffmpeg
         ffmpegthumbnailer
         firefox
         gcloud

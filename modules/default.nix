@@ -33,6 +33,7 @@
     ./udiskie.nix
     ./waybar.nix
     ./wofi.nix
+    ./xwaylandvideobridge.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
@@ -61,6 +62,7 @@
   packages.enable = true;
   pasystray.enable = true;
   ripgrep.enable = true;
+  sioyek.enable = true;
   starship.enable = true;
   swaylock.enable = true;
   symlinks.enable = true;
@@ -70,10 +72,10 @@
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;
+  xwaylandvideobridge.enable = true;
   yazi.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
-  sioyek.enable = true;
 
   home = {
     stateVersion = "24.05";
@@ -88,5 +90,12 @@
       XDG_SESSION_DESKTOP = "hyprland";
       XDG_SESSION_TYPE = "wayland";
     };
+  };
+
+  xdg.desktopEntries.discord = {
+    name = "Discord";
+    exec = "env XDG_SESSION_TYPE=x11 discord";
+    icon = "discord";
+    type = "Application";
   };
 }

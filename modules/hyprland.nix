@@ -108,13 +108,18 @@
           (lib.mkIf (!parameters.laptop) "${secondary},preferred,auto-left,1")
         ];
         windowrulev2 = [
-          "float,stayfocused,class:(satty)"
-          "float,stayfocused,opaque,class:(pavucontrol)"
-          "float,stayfocused,opaque,class:(wofi)"
-          "float,title:(Picture-in-Picture)"
-          "opaque,class:(chromium)"
-          "opaque,class:(firefox)"
-          "opaque,class:(vlc)"
+          "float,stayfocused,class:^(satty)$"
+          "float,stayfocused,opaque,class:^(pavucontrol)$"
+          "float,stayfocused,opaque,class:^(wofi)$"
+          "float,title:^(Picture-in-Picture)$"
+          "opaque,class:^(chromium)$"
+          "opaque,class:^(firefox)$"
+          "opaque,class:^(vlc)$"
+          "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+          "noanim, class:^(xwaylandvideobridge)$"
+          "noinitialfocus, class:^(xwaylandvideobridge)$"
+          "maxsize 1 1, class:^(xwaylandvideobridge)$"
+          "noblur, class:^(xwaylandvideobridge)$"
         ];
         workspace = with parameters.monitors; [
           "1,monitor:${primary}"

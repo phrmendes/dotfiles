@@ -90,7 +90,6 @@
       ]
       ++ (with nodePackages_latest; [
         nodejs
-        typescript-language-server
       ]);
   };
 }

@@ -7,7 +7,7 @@
   config = lib.mkIf config.cliphist.enable {
     services.cliphist = {
       enable = true;
-allowImages = true;
+      allowImages = true;
       systemdTarget = "hyprland-session.target";
     };
   };

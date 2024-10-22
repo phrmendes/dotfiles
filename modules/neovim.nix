@@ -144,6 +144,7 @@
           taplo
           terraform-ls
           texlab
+          typescript-language-server
           vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server

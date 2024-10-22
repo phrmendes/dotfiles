@@ -86,6 +86,22 @@
         "type": "github"
       }
     },
+    "cmp-zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710558035,
+        "narHash": "sha256-p3vssnEXVwXdLHTrCRngAVReA+yA0Hc9bMwuRju4fXc=",
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "rev": "281f43726bed2c5eb96bea1544edcf2e069795db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "cmp-zotcite",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -299,13 +315,32 @@
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
+        "cmp-zotcite": "cmp-zotcite",
         "disko": "disko",
         "efmls-configs-nvim": "efmls-configs-nvim",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
-        "stylix": "stylix"
+        "smart-open-nvim": "smart-open-nvim",
+        "stylix": "stylix",
+        "zotcite": "zotcite"
+      }
+    },
+    "smart-open-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729015447,
+        "narHash": "sha256-cnWB5Op48wkSFZM5TcNVUVGp77PN6dZ6al1RsBEL3/s=",
+        "owner": "danielfalk",
+        "repo": "smart-open.nvim",
+        "rev": "7770b01ce4d551c143d7ec8589879320796621b9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danielfalk",
+        "repo": "smart-open.nvim",
+        "type": "github"
       }
     },
     "stylix": {
@@ -399,6 +434,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
+        "type": "github"
+      }
+    },
+    "zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729170652,
+        "narHash": "sha256-UGVK8u2W/rrXz7vahQgMFw5t/H2rRbmchn7fEiMOkYE=",
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "rev": "13888932222045720ced030c47d3329759a1979c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "zotcite",
         "type": "github"
       }
     }

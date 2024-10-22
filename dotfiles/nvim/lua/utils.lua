@@ -5,7 +5,6 @@ local M = {}
 M.mini = {}
 M.mini.notify = {}
 M.mini.files = {}
-M.mini.pick = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),

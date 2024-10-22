@@ -4,6 +4,8 @@ local borders = require("utils").borders
 
 require("cmp_pandoc").setup({ filetypes = { "quarto" }, crossref = { enable_nabla = true } })
 
+require("cmp_zotcite").setup({ filetypes = { "markdown" } })
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -57,7 +59,7 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "lazydev", group_index = 0 },
 		{ name = "luasnip" },
-		{ name = "path" },
+		{ name = "async_path" },
 	}, {
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
@@ -72,7 +74,7 @@ cmp.setup.cmdline(":", {
 	matching = { disallow_symbol_nonprefix_matching = false },
 	sources = cmp.config.sources({
 		{ name = "cmdline" },
-		{ name = "path" },
+		{ name = "async_path" },
 	}),
 })
 
@@ -95,7 +97,8 @@ cmp.setup.filetype({ "quarto", "markdown" }, {
 	sources = cmp.config.sources({
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
-		{ name = "path" },
+		{ name = "async_path" },
+		{ name = "cmp_zotcite" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
 	}, {
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },

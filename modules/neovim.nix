@@ -16,6 +16,9 @@
         };
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      smart-open-nvim = fromGitHub "smart-open.nvim" inputs.smart-open-nvim;
+      cmp-zotcite = fromGitHub "cmp-zotcite" inputs.cmp-zotcite;
+      zotcite = fromGitHub "zotcite" inputs.zotcite;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -28,13 +31,14 @@
         SchemaStore-nvim
         ansible-vim
         better-escape-nvim
+        cmp-async-path
         cmp-buffer
         cmp-cmdline
         cmp-latex-symbols
         cmp-nvim-lsp
         cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
-        cmp-path
+        cmp-zotcite
         cmp_luasnip
         copilot-vim
         dial-nvim
@@ -74,7 +78,10 @@
         nvim-ts-context-commentstring
         obsidian-nvim
         refactoring-nvim
+        smart-open-nvim
         smart-splits-nvim
+        telescope-fzf-native-nvim
+        telescope-nvim
         undotree
         vim-abolish
         vim-dadbod
@@ -86,6 +93,7 @@
         vim-sleuth
         vim-slime
         yazi-nvim
+        zotcite
       ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [

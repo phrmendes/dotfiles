@@ -121,16 +121,10 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Explorer"
-		map("n", "<leader>e", function()
-			if not require("mini.files").close() then
-				require("mini.files").open(vim.fn.expand("%:p:h"), true)
-			end
-		end, opts)
+		map("n", "<leader>e", "<cmd>Yazi<cr>", opts)
 
 		opts.desc = "Explorer (cwd)"
-		map("n", "<leader>E", function()
-			require("mini.files").open(vim.uv.cwd(), true)
-		end, opts)
+		map("n", "<leader>E", "<cmd>Yazi cwd<cr>", opts)
 	end,
 	git = function()
 		local opts = { noremap = true }
@@ -474,19 +468,6 @@ M.python = function(bufnr)
 	opts.desc = "Python: debug selection"
 	map("x", "<localleader>s", require("dap-python").debug_selection, opts)
 end
-
-M.mini = {
-	files = function(event)
-		local opts = { noremap = true, buffer = event.data.buf_id }
-
-		map("n", ".", utils.mini.files.toggle_dotfiles, opts)
-		map("n", "<c-;>", utils.mini.files.set_cwd, opts)
-		map("n", "<c-s>", utils.mini.files.map_split("horizontal", true), opts)
-		map("n", "<c-v>", utils.mini.files.map_split("vertical", true), opts)
-		map("n", "<a-s>", utils.mini.files.map_split("horizontal", false), opts)
-		map("n", "<a-v>", utils.mini.files.map_split("vertical", false), opts)
-	end,
-}
 
 M.setup = function()
 	for _, fn in pairs(keys) do

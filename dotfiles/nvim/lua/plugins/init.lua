@@ -6,6 +6,7 @@ now(function()
 	require("plugins.dadbod")
 	require("plugins.dressing")
 	require("plugins.obsidian")
+	require("plugins.yazi")
 end)
 
 later(function()

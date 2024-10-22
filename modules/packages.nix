@@ -29,6 +29,7 @@
         fd
         ffmpeg
         ffmpegthumbnailer
+        file-roller
         firefox
         gcloud
         gdu
@@ -54,6 +55,7 @@
         minikube
         mongosh
         nemo
+        nemo-fileroller
         networkmanagerapplet
         ngrok
         obsidian
@@ -79,11 +81,11 @@
         tectonic
         terraform
         typescript
+        ueberzugpp
         uv
         ventoy
         vlc
         wofi-emoji
-        xarchiver
         zotero
       ]
       ++ (with nodePackages_latest; [

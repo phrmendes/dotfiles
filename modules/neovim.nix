@@ -85,6 +85,7 @@
         vim-rsi
         vim-sleuth
         vim-slime
+        yazi-nvim
       ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [

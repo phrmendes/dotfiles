@@ -34,8 +34,6 @@
       };
       ignores = [
         ".env"
-        ".envrc"
-        ".tmuxp.yaml"
         "Session.vim"
       ];
     };

@@ -21,6 +21,7 @@
         brightnessctl
         bws
         chromium
+        cloudflared
         deluge
         discord
         droidcam

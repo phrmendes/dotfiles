@@ -108,9 +108,10 @@
           (lib.mkIf (!parameters.laptop) "${secondary},preferred,auto-left,1")
         ];
         windowrulev2 = [
-          "float,stayfocused,class:^(satty)$"
-          "float,stayfocused,opaque,class:^(pavucontrol)$"
-          "float,stayfocused,opaque,class:^(wofi)$"
+          "float,stayfocused,opaque,class:(com.gabm.satty)"
+          "float,stayfocused,opaque,class:(pavucontrol)"
+          "float,stayfocused,opaque,class:(wofi)"
+          "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
           "float,title:^(Picture-in-Picture)$"
           "opaque,class:^(chromium)$"
           "opaque,class:^(firefox)$"

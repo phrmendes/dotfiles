@@ -23,7 +23,6 @@
     ./packages.nix
     ./pasystray.nix
     ./ripgrep.nix
-    ./sioyek.nix
     ./starship.nix
     ./swaylock.nix
     ./symlinks.nix
@@ -33,6 +32,7 @@
     ./udiskie.nix
     ./waybar.nix
     ./wofi.nix
+    ./xdg.nix
     ./xwaylandvideobridge.nix
     ./yazi.nix
     ./zoxide.nix
@@ -62,7 +62,6 @@
   packages.enable = true;
   pasystray.enable = true;
   ripgrep.enable = true;
-  sioyek.enable = true;
   starship.enable = true;
   swaylock.enable = true;
   symlinks.enable = true;
@@ -89,13 +88,7 @@
       XDG_CURRENT_DESKTOP = "hyprland";
       XDG_SESSION_DESKTOP = "hyprland";
       XDG_SESSION_TYPE = "wayland";
+      TERMINAL = "kitty";
     };
-  };
-
-  xdg.desktopEntries.discord = {
-    name = "Discord";
-    exec = "env XDG_SESSION_TYPE=x11 discord";
-    icon = "discord";
-    type = "Application";
   };
 }

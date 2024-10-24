@@ -26,6 +26,7 @@
         discord
         droidcam
         elixir
+        evince
         exiftool
         fd
         ffmpeg

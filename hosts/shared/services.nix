@@ -60,6 +60,7 @@
     xserver = {
       enable = true;
       autorun = true;
+      excludePackages = with pkgs; [xterm];
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

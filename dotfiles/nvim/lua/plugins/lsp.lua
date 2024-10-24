@@ -28,10 +28,17 @@ local efm = {
 	yaml = { require("efmls-configs.formatters.prettier") },
 }
 
-utils.config_diagnostics(
-	{ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " },
-	{ virtual_text = true, signs = true, underline = true, update_in_insert = false, severity_sort = true }
-)
+utils.config_diagnostics({ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }, {
+	virtual_text = false,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = {
+		source = "always",
+		border = require("utils").borders.border,
+	},
+})
 
 local servers = {
 	ansiblels = {},

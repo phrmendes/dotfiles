@@ -135,7 +135,7 @@
           ltex-ls
           lua-language-server
           neovim-remote
-          nil
+          nixd
           ruff
           shellcheck
           shellharden

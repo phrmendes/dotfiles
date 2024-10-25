@@ -49,7 +49,6 @@ local servers = {
 	emmet_language_server = {},
 	eslint = {},
 	html = {},
-	nil_ls = {},
 	ruff = {},
 	sqls = {},
 	taplo = {},
@@ -129,6 +128,7 @@ servers.lua_ls = {
 		},
 	},
 }
+
 servers.ltex = {
 	filetypes = { "markdown", "quarto" },
 	on_attach = function()
@@ -141,6 +141,21 @@ servers.ltex = {
 	settings = {
 		ltex = {
 			language = "none",
+		},
+	},
+}
+
+servers.nixd = {
+	settings = {
+		nixd = {
+			nixpkgs = {
+				expr = "import <nixpkgs> {}",
+			},
+		},
+	},
+	options = {
+		nixos = {
+			expr = '(builtins.getFlake "github:phrmendes/dotfiles").nixosConfigurations.desktop.options',
 		},
 	},
 }

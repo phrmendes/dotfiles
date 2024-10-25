@@ -4,8 +4,6 @@ local borders = require("utils").borders
 
 require("cmp_pandoc").setup({ filetypes = { "quarto" }, crossref = { enable_nabla = true } })
 
-require("cmp_zotcite").setup({ filetypes = { "markdown" } })
-
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -98,7 +96,6 @@ cmp.setup.filetype({ "quarto", "markdown" }, {
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "async_path" },
-		{ name = "cmp_zotcite" },
 		{ name = "latex_symbols", option = { strategy = 2 } },
 	}, {
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },

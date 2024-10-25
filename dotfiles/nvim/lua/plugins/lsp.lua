@@ -65,7 +65,6 @@ servers.basedpyright = {
 	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
 		require("keymaps").python(bufnr)
-		require("keymaps").refactoring(bufnr)
 		require("keymaps").tests(bufnr)
 	end,
 }
@@ -93,7 +92,6 @@ servers.elixirls = {
 servers.gopls = {
 	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
-		require("keymaps").refactoring(bufnr)
 		require("keymaps").tests(bufnr)
 	end,
 }

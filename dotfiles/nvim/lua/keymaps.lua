@@ -30,25 +30,28 @@ local keys = {
 		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
 
 		opts.desc = "Live grep"
-		map("n", "<leader>/", require("telescope.builtin").live_grep, opts)
+		map("n", "<leader>/", require("mini.pick").builtin.grep_live, opts)
 
 		opts.desc = "Resize and make windows equal"
 		map("n", "<leader>=", "<c-w>=", opts)
 
 		opts.desc = "Help"
-		map("n", "<leader>?", require("telescope.builtin").help_tags, opts)
+		map("n", "<leader>?", require("mini.pick").builtin.help, opts)
 
-		opts.desc = "Open"
-		map("n", "<leader><leader>", require("telescope").extensions.smart_open.smart_open, opts)
+		opts.desc = "Find"
+		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
+
+		opts.desc = "Keymaps"
+		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
 		opts.desc = "Write all"
 		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
 
-		opts.desc = "Find in buffer"
-		map("n", "<leader>f", require("telescope.builtin").current_buffer_fuzzy_find, opts)
-
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+
+		opts.desc = "Visits"
+		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
@@ -77,6 +80,9 @@ local keys = {
 	buffers = function()
 		local opts = { noremap = true }
 
+		opts.desc = "List"
+		map("n", "<leader>bb", require("mini.pick").builtin.buffers, opts)
+
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
 
@@ -91,25 +97,6 @@ local keys = {
 
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
-	end,
-	dial = function()
-		local opts = { noremap = true, silent = true, desc = "Dial" }
-
-		map("n", "<c-a>", function()
-			require("dial.map").manipulate("increment", "normal")
-		end, opts)
-
-		map("n", "<c-x>", function()
-			require("dial.map").manipulate("decrement", "normal")
-		end, opts)
-
-		map("v", "<c-a>", function()
-			require("dial.map").manipulate("increment", "visual")
-		end, opts)
-
-		map("v", "<c-x>", function()
-			require("dial.map").manipulate("decrement", "visual")
-		end, opts)
 	end,
 	explorer = function()
 		local opts = { noremap = true }
@@ -146,6 +133,9 @@ local keys = {
 
 		opts.desc = "History"
 		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
+
+		opts.desc = "Hunks"
+		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
 
 		opts.desc = "Pull"
 		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
@@ -283,27 +273,37 @@ M.lsp = function(client, bufnr)
 
 	if client.supports_method("textDocument/definition") then
 		opts.desc = "LSP: go to definition"
-		map("n", "gd", require("telescope.builtin").lsp_definitions, opts)
+		map("n", "gd", function()
+			require("mini.extra").pickers.lsp({ scope = "definition" })
+		end, opts)
 	end
 
 	if client.supports_method("textDocument/declaration") then
 		opts.desc = "LSP: go to declaration"
-		map("n", "gD", vim.lsp.buf.declaration, opts)
+		map("n", "gD", function()
+			require("mini.extra").pickers.lsp({ scope = "declaration" })
+		end, opts)
 	end
 
 	if client.supports_method("textDocument/implementation") then
 		opts.desc = "LSP: go to implementations"
-		map("n", "gi", require("telescope.builtin").lsp_implementations, opts)
+		map("n", "gi", function()
+			require("mini.extra").pickers.lsp({ scope = "implementation" })
+		end, opts)
 	end
 
 	if client.supports_method("textDocument/references") then
 		opts.desc = "LSP: go to references"
-		map("n", "gr", require("telescope.builtin").lsp_references, opts)
+		map("n", "gr", function()
+			require("mini.extra").pickers.lsp({ scope = "references" })
+		end, opts)
 	end
 
 	if client.supports_method("textDocument/typeDefinition") then
 		opts.desc = "LSP: go to type definition"
-		map("n", "gt", require("telescope.builtin").lsp_type_definitions, opts)
+		map("n", "gt", function()
+			require("mini.extra").pickers.lsp({ scope = "type_definition" })
+		end, opts)
 	end
 
 	if client.supports_method("textDocument/codeAction") then
@@ -313,7 +313,7 @@ M.lsp = function(client, bufnr)
 
 	if client.supports_method("textDocument/publishDiagnostics") then
 		opts.desc = "LSP: diagnostics"
-		map("n", "<leader>d", require("telescope.builtin").diagnostics, opts)
+		map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
 	end
 
 	if client.supports_method("textDocument/signatureHelp") then
@@ -328,12 +328,16 @@ M.lsp = function(client, bufnr)
 
 	if client.supports_method("textDocument/documentSymbol") then
 		opts.desc = "LSP: symbols (document)"
-		map("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, opts)
+		map("n", "<leader>s", function()
+			require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+		end, opts)
 	end
 
 	if client.supports_method("workspace/symbol") then
 		opts.desc = "LSP: symbols (workspace)"
-		map("n", "<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
+		map("n", "<leader>S", function()
+			require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
+		end, opts)
 	end
 end
 
@@ -387,36 +391,6 @@ M.dap = function(bufnr)
 	end, opts)
 end
 
-M.refactoring = function(bufnr)
-	local opts = { noremap = true, buffer = bufnr }
-
-	opts.desc = "Refactoring"
-	map({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
-
-	opts.desc = "Print variable"
-	map("n", "<leader>p", require("refactoring").debug.print_var, opts)
-
-	opts.desc = "Clean print statements"
-	map("n", "<leader>c", require("refactoring").debug.cleanup, opts)
-end
-
-M.tests = function(bufnr)
-	local opts = { noremap = true, buffer = bufnr }
-
-	opts.desc = "Neotest: run nearest test"
-	map("n", "<localleader>t", require("neotest").run.run, opts)
-
-	opts.desc = "Neotest: run current file"
-	map("n", "<localleader>T", function()
-		require("neotest").run.run(vim.fn.expand("%"))
-	end, opts)
-
-	opts.desc = "Neotest: debug nearest test"
-	map("n", "<localleader>d", function()
-		require("neotest").run.run({ strategy = "dap" })
-	end, opts)
-end
-
 M.markdown = function(event)
 	local opts = { noremap = true, buffer = event.buf }
 
@@ -431,24 +405,6 @@ M.markdown = function(event)
 
 	opts.desc = "Preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
-
-	opts.desc = "Zotcite: citation info"
-	map("n", "<leader>i", "<Plug>ZCitationInfo", opts)
-
-	opts.desc = "Zotcite: citation info (complete)"
-	map("n", "<leader>I", "<Plug>ZCitationCompleteInfo", opts)
-
-	opts.desc = "Zotcite: open attachment"
-	map("n", "<leader>O", "<Plug>ZOpenAttachment", opts)
-
-	opts.desc = "Zotcite: view document"
-	map("n", "<leader>v", "<Plug>ZViewDocument", opts)
-
-	opts.desc = "Zotcite: YAML reference"
-	map("n", "<leader>y", "<Plug>ZCitationYamlRef", opts)
-
-	opts.desc = "Zotcite: extract abstract"
-	map("n", "<Leader>X", "<Plug>ZExtractAbstract", opts)
 end
 
 M.python = function(bufnr)
@@ -462,6 +418,16 @@ M.python = function(bufnr)
 
 	opts.desc = "Python: debug selection"
 	map("x", "<localleader>s", require("dap-python").debug_selection, opts)
+end
+
+M.go = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "Go: debug test"
+	map("n", "<localleader>t", require("dap-go").debug_test, opts)
+
+	opts.desc = "Go: debug last test"
+	map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
 end
 
 M.setup = function()

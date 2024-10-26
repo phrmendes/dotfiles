@@ -115,11 +115,15 @@ servers.jsonls = {
 }
 
 servers.lua_ls = {
+	on_attach = function(_, bufnr)
+		require("keymaps").dap(bufnr)
+		require("keymaps").lua(bufnr)
+	end,
 	settings = {
 		Lua = {
 			completion = { callSnippet = "Replace" },
 			diagnostics = {
-				globals = { "vim" },
+				globals = { "vim", "_" },
 				disable = { "missing-fields" },
 			},
 			telemetry = { enable = false },

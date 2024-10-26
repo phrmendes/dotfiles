@@ -1,6 +1,5 @@
 local luasnip = require("luasnip")
 local map = vim.keymap.set
-local utils = require("utils")
 
 local M = {}
 
@@ -405,6 +404,13 @@ M.markdown = function(event)
 
 	opts.desc = "Preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
+end
+
+M.lua = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "DAP: continue"
+	map("n", "<f6>", require("osv").run_this, opts)
 end
 
 M.python = function(bufnr)

@@ -16,6 +16,7 @@
         };
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
+      one-small-step-for-vimkind = fromGitHub "one-small-step-for-vimkind" inputs.one-small-step-for-vimkind;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -67,6 +68,7 @@
         nvim-ts-autotag
         nvim-ts-context-commentstring
         obsidian-nvim
+        one-small-step-for-vimkind
         smart-splits-nvim
         undotree
         vim-abolish

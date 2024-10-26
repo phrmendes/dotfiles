@@ -35,6 +35,11 @@
       url = "github:creativenull/efmls-configs-nvim";
     };
 
+    one-small-step-for-vimkind = {
+      flake = false;
+      url = "github:jbyuki/one-small-step-for-vimkind";
+    };
+
     luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";

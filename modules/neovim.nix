@@ -111,6 +111,7 @@
           helm-ls
           ltex-ls
           lua-language-server
+          marksman
           neovim-remote
           nixd
           ruff

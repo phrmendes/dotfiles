@@ -76,7 +76,6 @@
         qview
         satty
         scrcpy
-        silverbullet
         slurp
         sqlc
         stremio

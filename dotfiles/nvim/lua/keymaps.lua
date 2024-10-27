@@ -220,10 +220,10 @@ local keys = {
 	smart_splits = function()
 		local opts = { noremap = true, desc = "Smart splits" }
 
-		map({ "n", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
-		map({ "n", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
-		map({ "n", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
-		map({ "n", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
+		map({ "n", "t" }, "<c-s-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "t" }, "<c-s-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "t" }, "<c-s-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "t" }, "<c-s-l>", require("smart-splits").resize_right, opts)
 		map({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
 		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)

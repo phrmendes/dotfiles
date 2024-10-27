@@ -54,11 +54,7 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	ts_ls = {
-		init_options = {
-			disableSuggestions = true,
-		},
-	},
+	marksman = {},
 }
 
 servers.basedpyright = {
@@ -159,6 +155,12 @@ servers.nixd = {
 		nixos = {
 			expr = '(builtins.getFlake "github:phrmendes/dotfiles").nixosConfigurations.desktop.options',
 		},
+	},
+}
+
+servers.ts_ls = {
+	init_options = {
+		disableSuggestions = true,
 	},
 }
 

@@ -56,8 +56,8 @@
         livebook
         minikube
         mongosh
-        nemo
-        nemo-fileroller
+        nautilus
+        file-roller
         networkmanagerapplet
         ngrok
         obsidian
@@ -76,6 +76,7 @@
         qview
         satty
         scrcpy
+        silverbullet
         slurp
         sqlc
         stremio

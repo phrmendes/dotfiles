@@ -41,4 +41,30 @@ function unlock_bw() {
     fi
 }
 
+function ta() {
+    DIR_BASENAME=$(basename "$PWD")
+    tmux new-session -s "$DIR_BASENAME"
+}
+
+function tf() {
+    echo "Local or global configuration? (local/global)"
+    read -r CONFIGURATION
+
+    if [[ $CONFIGURATION == "local" ]]; then
+	tmuxp freeze -y -f yaml
+    else
+	tmuxp freeze -y -f yaml -o .tmuxp.yaml
+    fi
+}
+
+function tl() {
+    DIR_BASENAME=$(basename "$PWD")
+
+    if [[ -e ./.tmuxp.yaml ]]; then
+	tmuxp load ./.tmuxp.yaml
+    else
+	tmuxp load "$DIR_BASENAME"
+    fi
+}
+
 eval "$(uv generate-shell-completion zsh)"

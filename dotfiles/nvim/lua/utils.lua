@@ -155,7 +155,7 @@ end
 M.mini.notify.filter_notifications = function(array)
 	local filters = {
 		"Diagnosing",
-		"ansible-lint",
+		"Processing files",
 		"file to analyze",
 		"ltex",
 	}

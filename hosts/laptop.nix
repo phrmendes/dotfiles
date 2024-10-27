@@ -99,6 +99,10 @@
             path = "${parameters.home}/Documents/library/zotero";
             devices = ["phone" "orangepizero2" "tablet" "desktop"];
           };
+          "tmuxp" = {
+            path = "${parameters.home}/.config/tmuxp";
+            devices = ["orangepizero2" "desktop"];
+          };
         };
         devices = {
           "phone" = {

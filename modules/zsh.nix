@@ -42,9 +42,6 @@
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
         t = getExe pkgs.tmux;
-        ta = ''${t} new-session -A -s "$(pwd | sed 's/.*\///g')"'';
-        tf = ''${getExe pkgs.tmuxp} freeze -y -f yaml -o .tmuxp.yaml'';
-        tl = ''${getExe pkgs.tmuxp} load .'';
         tar = getExe pkgs.gnutar;
         top = getExe pkgs.btop;
         untar = "${tar} -xvf";

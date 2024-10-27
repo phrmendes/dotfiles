@@ -24,7 +24,6 @@
         ".prefect"
         ".ssh"
         ".tmux"
-        ".tmuxp"
         ".zotero"
         ".cache/cliphist"
         ".cache/tealdeer"

@@ -104,7 +104,7 @@
           autoAcceptFolders = true;
         };
         "desktop" = {
-          id = "2BIXHD4-5LMQH5L-PNJC6JP-FQ5JVTP-HWUJM63-FO6PE5Z-AF6RYNF-SWDZHAW";
+          id = "V3YDAIH-HZAJKMP-GZEYKK4-WEA4F2H-MSVSXFA-6XUTGTF-XSXCSG7-TRFW5AZ";
           autoAcceptFolders = true;
         };
       };

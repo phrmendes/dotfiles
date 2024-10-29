@@ -104,24 +104,6 @@
             devices = ["orangepizero2" "desktop"];
           };
         };
-        devices = {
-          "phone" = {
-            id = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
-            autoAcceptFolders = true;
-          };
-          "tablet" = {
-            id = "ME77KQY-MGUM34F-M6RI4DI-EPNNS2P-FSPEYB6-2XUHYZB-5MGG7BV-XJTGAQO";
-            autoAcceptFolders = true;
-          };
-          "orangepizero2" = {
-            id = "LERY5VL-SZREUIC-2ZQ2JKC-SB5XM3E-SMRMI3J-SUD54AQ-HDCHA46-AUOF6QK";
-            autoAcceptFolders = true;
-          };
-          "desktop" = {
-            id = "2BIXHD4-5LMQH5L-PNJC6JP-FQ5JVTP-HWUJM63-FO6PE5Z-AF6RYNF-SWDZHAW";
-            autoAcceptFolders = true;
-          };
-        };
       };
     };
 

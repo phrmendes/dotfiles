@@ -3,7 +3,6 @@ local dap_ui = require("dapui")
 local utils = require("utils")
 
 local elixir_ls_debugger = vim.fn.exepath("elixir-debug-adapter")
-local vscode_js_debugger = vim.fn.exepath("js-debug-adapter")
 local python = vim.fn.exepath("nvim-python3")
 
 utils.setup_dap_signs({
@@ -23,72 +22,34 @@ dap.listeners.before.event_exited["dapui_config"] = dap_ui.close
 if python ~= "" then
 	require("dap-python").setup(python)
 
-	dap.configurations.python = {
-		{
-			type = "python",
-			request = "launch",
-			name = "Launch file",
-			program = "${file}",
-			pythonPath = python,
-		},
-		{
-			type = "python",
-			request = "launch",
-			name = "Debug Django app",
-			program = vim.uv.cwd() .. "/manage.py",
-			args = { "runserver", "--noreload", "8001" },
-			justMyCode = true,
-			django = true,
-			console = "integratedTerminal",
-		},
-		{
-			type = "python",
-			request = "attach",
-			name = "Attach remote",
-			connect = function()
-				return {
-					host = "127.0.0.1",
-					port = 5678,
-				}
-			end,
-		},
-		{
-			type = "python",
-			request = "launch",
-			name = "Launch file with arguments",
-			program = "${file}",
-			args = function()
-				local args_string = vim.fn.input("Arguments: ")
-				return vim.split(args_string, " +")
-			end,
-			console = "integratedTerminal",
-			pythonPath = python,
-		},
-	}
-end
+	local configs = dap.configurations.python or {}
+	dap.configurations.python = configs
 
-if vscode_js_debugger ~= "" then
-	dap.adapters["pwa-node"] = {
-		type = "server",
-		host = "127.0.0.1",
-		port = 8123,
-		executable = {
-			command = vscode_js_debugger,
-		},
-	}
+	table.insert(configs, {
+		type = "python",
+		request = "launch",
+		name = "Launch Django app",
+		program = vim.uv.cwd() .. "/manage.py",
+		args = { "runserver", "--noreload", "8001" },
+		justMyCode = true,
+		django = true,
+		console = "integratedTerminal",
+	})
 
-	for _, language in ipairs({ "typescript", "javascript" }) do
-		dap.configurations[language] = {
-			{
-				type = "pwa-node",
-				request = "launch",
-				name = "Launch file",
-				program = "${file}",
-				cwd = "${workspaceFolder}",
-				runtimeExecutable = "node",
-			},
-		}
-	end
+	table.insert(configs, {
+		type = "python",
+		request = "launch",
+		name = "Launch FastAPI app",
+		program = "fastapi",
+		args = function()
+			return {
+				vim.fn.input("File: ", vim.uv.cwd() .. "/main.py"),
+				"--use-colors",
+			}
+		end,
+		pythonPath = "python",
+		console = "integratedTerminal",
+	})
 end
 
 if elixir_ls_debugger ~= "" then

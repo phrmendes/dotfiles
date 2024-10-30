@@ -60,7 +60,6 @@ servers.basedpyright = {
 	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
 		require("keymaps").python(bufnr)
-		require("keymaps").tests(bufnr)
 	end,
 }
 
@@ -80,14 +79,12 @@ servers.elixirls = {
 	cmd = { vim.fn.exepath("elixir-ls") },
 	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
-		require("keymaps").tests(bufnr)
 	end,
 }
 
 servers.gopls = {
 	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
-		require("keymaps").tests(bufnr)
 	end,
 }
 

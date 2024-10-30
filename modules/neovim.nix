@@ -62,6 +62,7 @@
         nvim-dap-ui
         nvim-dap-virtual-text
         nvim-lspconfig
+        nvim-luapad
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
@@ -122,7 +123,6 @@
           terraform-ls
           texlab
           typescript-language-server
-          vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server
         ]

@@ -43,7 +43,7 @@ function unlock_bw() {
 
 function ta() {
     DIR_BASENAME=$(basename "$PWD")
-    tmux new-session -s "$DIR_BASENAME"
+    tmux new-session -A -s "$DIR_BASENAME"
 }
 
 function tf() {
@@ -59,11 +59,19 @@ function tf() {
 
 function tl() {
     DIR_BASENAME=$(basename "$PWD")
+    TMUXP_DIR="$HOME/.config/tmuxp"
 
     if [[ -e ./.tmuxp.yaml ]]; then
 	tmuxp load ./.tmuxp.yaml
-    else
+    elif [[ -e $TMUXP_DIR/$DIR_BASENAME.yaml ]]; then
 	tmuxp load "$DIR_BASENAME"
+    else
+	tmuxp load "$(fd . "$TMUXP_DIR" | fzf --delimiter / \
+	    --with-nth -1 \
+	    --height 40% \
+	    --reverse \
+	    --preview "bat --color=always {}" \
+	    --bind ctrl-u:preview-up,ctrl-d:preview-down)"
     fi
 }
 

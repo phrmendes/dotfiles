@@ -313,6 +313,7 @@ M.lsp = function(client, bufnr)
 	if client.supports_method("textDocument/publishDiagnostics") then
 		opts.desc = "LSP: diagnostics"
 		map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
+		map("n", "<leader>f", vim.diagnostic.open_float)
 	end
 
 	if client.supports_method("textDocument/signatureHelp") then

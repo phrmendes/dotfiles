@@ -55,29 +55,30 @@
         }
       ];
       extraConfig = let
-        status_bar = "  #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ";
+        status_bar = "  #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
       in ''
         unbind ','
 
-        set -g detach-on-destroy   'off'
-        set -g renumber-windows    'on'
-        set -g set-clipboard       'on'
-        set -g status              'on'
-        set -g status-interval     3
-        set -g status-justify      'left'
-        set -g status-left         ""
-        set -g status-left-length  '80'
-        set -g status-left-style   none
-        set -g status-position     top
-        set -g status-right        '  #S '
-        set -g status-right-length '80'
-        set -g status-right-style  none
-        set -g visual-activity     'off'
-        set -ga terminal-overrides ',xterm-256color:RGB'
-        set -gq allow-passthrough  'on'
+        set -g detach-on-destroy        'off'
+        set -g renumber-windows         'on'
+        set -g set-clipboard            'on'
+        set -g status                   'on'
+        set -g status-interval          3
+        set -g status-justify           'left'
+        set -g status-left              ""
+        set -g status-left-length       '80'
+        set -g status-left-style        none
+        set -g status-position          top
+        set -g status-right             '  #S '
+        set -g status-right-length      '80'
+        set -g status-right-style       none
+        set -g visual-activity          'off'
+        set -ga terminal-overrides      ',xterm-256color:RGB'
+        set -gq allow-passthrough       'on'
 
         set-window-option -g visual-bell                  'on'
         set-window-option -g bell-action                  'other'
+        set-window-option -g window-status-separator      ''
         set-window-option -g window-status-format         '${status_bar}'
         set-window-option -g window-status-current-format '#[bold]${status_bar}#[nobold]'
 

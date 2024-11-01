@@ -55,7 +55,7 @@
         }
       ];
       extraConfig = let
-        status_bar = "[  #I   #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ]";
+        status_bar = "  #I  #W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ";
       in ''
         unbind ','
 
@@ -69,7 +69,7 @@
         set -g status-left-length  '80'
         set -g status-left-style   none
         set -g status-position     top
-        set -g status-right        '[  #S ]'
+        set -g status-right        '  #S '
         set -g status-right-length '80'
         set -g status-right-style  none
         set -g visual-activity     'off'
@@ -110,10 +110,10 @@
         bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'
         bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l' 'select-pane -R'
 
-        bind -n C-s-h if -F "#{@pane-is-vim}" 'send-keys C-s-h' 'resize-pane -L 3'
-        bind -n C-s-j if -F "#{@pane-is-vim}" 'send-keys C-s-j' 'resize-pane -D 3'
-        bind -n C-s-k if -F "#{@pane-is-vim}" 'send-keys C-s-k' 'resize-pane -U 3'
-        bind -n C-s-l if -F "#{@pane-is-vim}" 'send-keys C-s-l' 'resize-pane -R 3'
+        bind -n C-Left  if -F "#{@pane-is-vim}" 'send-keys C-Left'  'resize-pane -L 3'
+        bind -n C-Down  if -F "#{@pane-is-vim}" 'send-keys C-Down'  'resize-pane -D 3'
+        bind -n C-Up    if -F "#{@pane-is-vim}" 'send-keys C-Up'    'resize-pane -U 3'
+        bind -n C-Right if -F "#{@pane-is-vim}" 'send-keys C-Right' 'resize-pane -R 3'
 
         bind -T copy-mode-vi C-h select-pane -L
         bind -T copy-mode-vi C-j select-pane -D

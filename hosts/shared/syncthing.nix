@@ -96,7 +96,7 @@
           autoAcceptFolders = true;
         };
         "orangepizero2" = {
-          id = "J6F4NC7-S4IYALY-M6WBD3S-R6GV542-AWXYRBU-74EH4RQ-Q4V36V6-YOUNDQZ";
+          id = "BVM7PXK-VIQOZQ4-Z3RFYNH-33GVYPJ-WYSRYBK-3DQ2N2X-JJXXI56-7OSSKQW";
           autoAcceptFolders = true;
         };
         "laptop" = {

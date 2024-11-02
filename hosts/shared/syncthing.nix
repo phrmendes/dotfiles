@@ -37,7 +37,7 @@
         };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
-          devices = ["desktop" "laptop" "orangepizero2" "phone" "tablet"];
+          devices = ["desktop" "laptop" "orangepizero2" "phone"];
           versioning = versioning.trashcan;
         };
         "images" = {

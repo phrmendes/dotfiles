@@ -44,7 +44,6 @@
         image-nvim
         lazydev-nvim
         lazygit-nvim
-        lspkind-nvim
         ltex_extra-nvim
         luasnip
         luasnip-latex-snippets

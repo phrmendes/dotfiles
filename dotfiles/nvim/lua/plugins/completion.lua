@@ -46,11 +46,12 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	formatting = {
-		format = require("lspkind").cmp_format({
-			ellipsis_char = "...",
-			maxwidth = 50,
-			mode = "symbol",
-		}),
+		format = function(_, vim_item)
+			local icon, hl = require("mini.icons").get("lsp", vim_item.kind)
+			vim_item.kind = icon .. " " .. vim_item.kind
+			vim_item.kind_hl_group = hl
+			return vim_item
+		end,
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },

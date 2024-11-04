@@ -2,6 +2,7 @@
   config,
   lib,
   parameters,
+  pkgs,
   ...
 }: {
   options.git.enable = lib.mkEnableOption "enable git";
@@ -18,6 +19,20 @@
         pull.rebase = true;
         push.autoSetupRemote = true;
         http.sslVerify = true;
+        diff = {
+          tool = "kitty";
+          guitool = "kitty.gui";
+        };
+        difftool = {
+          prompt = false;
+          trustExitCode = true;
+        };
+        "difftool \"kitty\"" = {
+          cmd = "${pkgs.kitty}/bin/kitten diff $LOCAL $REMOTE";
+        };
+        "difftool \"kitty.gui\"" = {
+          cmd = "${pkgs.kitty}/bin/kitten diff $LOCAL $REMOTE";
+        };
       };
       aliases = {
         A = "add .";

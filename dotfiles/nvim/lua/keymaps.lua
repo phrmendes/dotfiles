@@ -19,9 +19,6 @@ local keys = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
-		opts.desc = "Escape terminal mode"
-		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
-
 		opts.desc = "Explorer"
 		map("n", "-", "<cmd>Yazi<cr>", opts)
 
@@ -218,14 +215,14 @@ local keys = {
 		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-left>", require("smart-splits").resize_left, opts)
-		map("n", "<c-down>", require("smart-splits").resize_down, opts)
-		map("n", "<c-up>", require("smart-splits").resize_up, opts)
-		map("n", "<c-right>", require("smart-splits").resize_right, opts)
-		map("n", "<c-s-left>", require("smart-splits").swap_buf_left, opts)
-		map("n", "<c-s-down>", require("smart-splits").swap_buf_down, opts)
-		map("n", "<c-s-up>", require("smart-splits").swap_buf_up, opts)
-		map("n", "<c-s-right>", require("smart-splits").swap_buf_right, opts)
+		map("n", "<a-h>", require("smart-splits").resize_left, opts)
+		map("n", "<a-j>", require("smart-splits").resize_down, opts)
+		map("n", "<a-k>", require("smart-splits").resize_up, opts)
+		map("n", "<a-l>", require("smart-splits").resize_right, opts)
+		map("n", "<c-left>", require("smart-splits").swap_buf_left, opts)
+		map("n", "<c-down>", require("smart-splits").swap_buf_down, opts)
+		map("n", "<c-up>", require("smart-splits").swap_buf_up, opts)
+		map("n", "<c-right>", require("smart-splits").swap_buf_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
@@ -255,6 +252,17 @@ local keys = {
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
 }
+
+M.terminal = function(event)
+	local opts = { buffer = event.buf }
+
+	map("t", "<c-c>", "<c-\\><c-n>", opts)
+	map("t", "<c-w>", "<c-\\><c-n><c-w>", opts)
+	map("t", "<c-h>", "<cmd>wincmd h<cr>", opts)
+	map("t", "<c-j>", "<cmd>wincmd j<cr>", opts)
+	map("t", "<c-k>", "<cmd>wincmd k<cr>", opts)
+	map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
+end
 
 M.lsp = function(client, bufnr)
 	local opts = { noremap = true, buffer = bufnr }

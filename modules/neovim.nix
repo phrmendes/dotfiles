@@ -17,6 +17,7 @@
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       one-small-step-for-vimkind = fromGitHub "one-small-step-for-vimkind" inputs.one-small-step-for-vimkind;
+      kitty-scrollback-nvim = fromGitHub "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -42,6 +43,7 @@
         friendly-snippets
         fzfWrapper
         image-nvim
+        kitty-scrollback-nvim
         lazydev-nvim
         lazygit-nvim
         ltex_extra-nvim
@@ -69,6 +71,7 @@
         obsidian-nvim
         one-small-step-for-vimkind
         smart-splits-nvim
+        toggleterm-nvim
         undotree
         vim-abolish
         vim-dadbod

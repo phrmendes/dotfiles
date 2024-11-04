@@ -248,6 +248,22 @@
         "type": "github"
       }
     },
+    "kitty-scrollback-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730473156,
+        "narHash": "sha256-ySM5DllHA3kDIBS0xXtJ2LD3rWJiXGBeIXVONqlwu2Y=",
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
+        "rev": "90ff0b2c32e5aff1eb04125f54b4e4e6944ef321",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
+        "type": "github"
+      }
+    },
     "luasnip-latex-snippets": {
       "flake": false,
       "locked": {
@@ -319,6 +335,7 @@
         "efmls-configs-nvim": "efmls-configs-nvim",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "kitty-scrollback-nvim": "kitty-scrollback-nvim",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "one-small-step-for-vimkind": "one-small-step-for-vimkind",

@@ -115,3 +115,12 @@ autocmd("FileType", {
 		require("keymaps").markdown(event)
 	end,
 })
+
+autocmd("TermOpen", {
+	desc = "Terminal keymaps",
+	group = augroups.filetype,
+	pattern = "term://*",
+	callback = function(event)
+		require("keymaps").terminal(event)
+	end,
+})

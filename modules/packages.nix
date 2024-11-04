@@ -32,7 +32,6 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
-        file-roller
         firefox
         gcloud
         gdu
@@ -63,7 +62,6 @@
         obsidian
         parallel
         pavucontrol
-        pdfannots2json
         phockup
         playerctl
         plex

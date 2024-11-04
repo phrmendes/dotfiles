@@ -28,7 +28,6 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
     ./wofi.nix
@@ -67,7 +66,6 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;

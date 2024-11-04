@@ -32,6 +32,7 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
+        file-roller
         firefox
         gcloud
         gdu
@@ -57,7 +58,6 @@
         minikube
         mongosh
         nautilus
-        file-roller
         networkmanagerapplet
         ngrok
         obsidian
@@ -78,6 +78,7 @@
         scrcpy
         slurp
         sqlc
+        sshs
         stremio
         syncthingtray
         tectonic

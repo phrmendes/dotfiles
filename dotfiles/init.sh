@@ -74,5 +74,3 @@ function tl() {
 	    --bind ctrl-u:preview-up,ctrl-d:preview-down)"
     fi
 }
-
-eval "$(uv generate-shell-completion zsh)"

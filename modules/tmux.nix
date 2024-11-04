@@ -15,10 +15,9 @@
       clock24 = true;
       disableConfirmationPrompt = true;
       escapeTime = 0;
-      historyLimit = 1000000;
+      historyLimit = 500000;
       keyMode = "vi";
       mouse = true;
-      newSession = true;
       prefix = "C-Space";
       sensibleOnTop = true;
       shell = lib.getExe pkgs.zsh;
@@ -45,12 +44,6 @@
             set -g @resurrect-restore               'C-r'
             set -g @resurrect-save                  'C-s'
             set -g @resurrect-strategy-nvim         'session'
-          '';
-        }
-        {
-          plugin = fzf-tmux-url;
-          extraConfig = ''
-            set -g @fzf-url-bind 'o'
           '';
         }
       ];

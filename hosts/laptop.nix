@@ -64,49 +64,6 @@
       lidSwitchExternalPower = "ignore";
     };
 
-    syncthing = {
-      settings = {
-        folders = {
-          "documents" = {
-            path = "${parameters.home}/Documents/documents";
-            devices = ["phone" "orangepizero2" "desktop"];
-          };
-          "images" = {
-            path = "${parameters.home}/Pictures/images";
-            devices = ["orangepizero2" "desktop"];
-          };
-          "notes" = {
-            path = "${parameters.home}/Documents/notes";
-            devices = ["phone" "tablet" "orangepizero2" "desktop"];
-          };
-          "ufabc" = {
-            path = "${parameters.home}/Documents/ufabc";
-            devices = ["orangepizero2" "tablet" "desktop"];
-          };
-          "IT" = {
-            path = "${parameters.home}/Documents/library/IT";
-            devices = ["orangepizero2" "desktop"];
-          };
-          "math" = {
-            path = "${parameters.home}/Documents/library/math";
-            devices = ["orangepizero2" "desktop"];
-          };
-          "social_sciences" = {
-            path = "${parameters.home}/Documents/library/social_sciences";
-            devices = ["orangepizero2" "desktop"];
-          };
-          "zotero" = {
-            path = "${parameters.home}/Documents/library/zotero";
-            devices = ["phone" "orangepizero2" "tablet" "desktop"];
-          };
-          "tmuxp" = {
-            path = "${parameters.home}/.config/tmuxp";
-            devices = ["orangepizero2" "desktop"];
-          };
-        };
-      };
-    };
-
     system76-scheduler = {
       enable = true;
       useStockConfig = true;

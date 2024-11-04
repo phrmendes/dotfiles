@@ -22,6 +22,9 @@ local keys = {
 		opts.desc = "Escape terminal mode"
 		map("t", "<c-c><c-c>", "<c-\\><c-n>", opts)
 
+		opts.desc = "Explorer"
+		map("n", "-", "<cmd>Yazi<cr>", opts)
+
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
@@ -96,15 +99,6 @@ local keys = {
 
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
-	end,
-	explorer = function()
-		local opts = { noremap = true }
-
-		opts.desc = "Explorer"
-		map("n", "<leader>e", "<cmd>Yazi<cr>", opts)
-
-		opts.desc = "Explorer (cwd)"
-		map("n", "<leader>E", "<cmd>Yazi cwd<cr>", opts)
 	end,
 	git = function()
 		local opts = { noremap = true }

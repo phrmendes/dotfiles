@@ -54,6 +54,7 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
+	tailwindcss = {},
 }
 
 servers.basedpyright = {

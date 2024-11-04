@@ -46,11 +46,19 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	formatting = {
-		format = function(_, vim_item)
-			local icon, hl = require("mini.icons").get("lsp", vim_item.kind)
-			vim_item.kind = icon .. " " .. vim_item.kind
-			vim_item.kind_hl_group = hl
-			return vim_item
+		format = function(entry, item)
+			local icon, hl = require("mini.icons").get("lsp", item.kind)
+			local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+
+			if color_item.abbr_hl_group then
+				item.kind = color_item.abbr
+				item.kind_hl_group = color_item.abbr_hl_group
+			else
+				item.kind = icon .. " " .. item.kind
+				item.kind_hl_group = hl
+			end
+
+			return item
 		end,
 	},
 	sources = cmp.config.sources({
@@ -75,13 +83,6 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 		{ name = "async_path" },
 	}),
-})
-
-cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
-	},
 })
 
 cmp.setup.filetype({ "sql", "mysql", "plsql" }, {

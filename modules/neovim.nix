@@ -54,18 +54,17 @@
         neogen
         nvim-bqf
         nvim-cmp
-        nvim-colorizer-lua
         nvim-dap
         nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
+        nvim-highlight-colors
         nvim-lspconfig
         nvim-luapad
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
-        nvim-ts-autotag
         nvim-ts-context-commentstring
         obsidian-nvim
         one-small-step-for-vimkind
@@ -118,6 +117,7 @@
           shellharden
           sqls
           stylua
+          tailwindcss-language-server
           taplo
           terraform-ls
           texlab

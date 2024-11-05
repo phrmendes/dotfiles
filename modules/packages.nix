@@ -33,6 +33,7 @@
         ffmpegthumbnailer
         file-roller
         firefox
+        foliate
         gcloud
         gdu
         gnumake

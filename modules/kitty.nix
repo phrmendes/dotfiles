@@ -16,6 +16,7 @@
         allow_remote_control = "yes";
         enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
+        forward_remote_control = "yes";
         inactive_text_alpha = "0.9";
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "yes";

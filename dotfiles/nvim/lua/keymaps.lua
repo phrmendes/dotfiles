@@ -22,13 +22,6 @@ local keys = {
 		opts.desc = "Yazi"
 		map("n", "-", "<cmd>Yazi toggle<cr>", opts)
 
-		opts.desc = "List buffers"
-		map("n", "<c-space>", function()
-			require("mini.pick").builtin.buffers(nil, {
-				mappings = require("utils").mini.buffers.delete(),
-			})
-		end, opts)
-
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
@@ -70,6 +63,13 @@ local keys = {
 
 		opts.desc = "Zoom"
 		map("n", "<leader>z", require("mini.misc").zoom, opts)
+
+		opts.desc = "List buffers"
+		map("n", "<leader>l", function()
+			require("mini.pick").builtin.buffers(nil, {
+				mappings = require("utils").mini.buffers.delete(),
+			})
+		end, opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }

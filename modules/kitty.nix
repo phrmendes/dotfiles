@@ -26,7 +26,7 @@
         tab_bar_min_tabs = 1;
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
-        tab_title_template = "{index}: {title}{' (Z)' if layout_name == 'stack' else ''}";
+        tab_title_template = "{index}: {title.split('/')[-1].split(':')[-1]}{' (Z)' if layout_name == 'stack' else ''}";
         term = "xterm-256color";
         undercurl_style = "thin-sparse";
         update_check_interval = 0;

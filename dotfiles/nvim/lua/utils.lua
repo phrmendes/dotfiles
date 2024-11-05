@@ -4,7 +4,7 @@ local M = {}
 
 M.mini = {}
 M.mini.notify = {}
-M.mini.files = {}
+M.mini.buffers= {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
@@ -171,6 +171,17 @@ M.mini.notify.filter_notifications = function(array)
 	end
 
 	return require("mini.notify").default_sort(array)
+end
+
+M.mini.buffers.delete = function()
+	return {
+		wipeout = {
+			char = "<c-d>",
+			func = function()
+				vim.api.nvim_buf_delete(require("mini.pick").get_picker_matches().current.bufnr, {})
+			end,
+		},
+	}
 end
 
 return M

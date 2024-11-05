@@ -23,7 +23,7 @@
         scrollback_lines = 10000;
         shell_integration = "enabled";
         tab_bar_edge = "bottom";
-        tab_bar_min_tabs = 2;
+        tab_bar_min_tabs = 1;
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
         tab_title_template = "{index}: {title}{' (Z)' if layout_name == 'stack' else ''}";

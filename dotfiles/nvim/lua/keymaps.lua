@@ -19,8 +19,15 @@ local keys = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
-		opts.desc = "Explorer"
-		map("n", "-", "<cmd>Yazi<cr>", opts)
+		opts.desc = "Yazi"
+		map("n", "-", "<cmd>Yazi toggle<cr>", opts)
+
+		opts.desc = "List buffers"
+		map("n", "<c-space>", function()
+			require("mini.pick").builtin.buffers(nil, {
+				mappings = require("utils").mini.buffers.delete(),
+			})
+		end, opts)
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
@@ -78,9 +85,6 @@ local keys = {
 	end,
 	buffers = function()
 		local opts = { noremap = true }
-
-		opts.desc = "List"
-		map("n", "<leader>bb", require("mini.pick").builtin.buffers, opts)
 
 		opts.desc = "First"
 		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)

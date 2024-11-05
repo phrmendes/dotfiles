@@ -50,7 +50,7 @@
         "alt+h" = "kitten relative_resize.py left 3";
         "alt+j" = "kitten relative_resize.py down 3";
         "alt+k" = "kitten relative_resize.py up 3";
-        "alt+l" = "kitten relative_resize.py right3";
+        "alt+l" = "kitten relative_resize.py right 3";
         "alt+t" = "select_tab";
         "alt+d" = "scroll_line_down";
         "alt+u" = "scroll_line_up";

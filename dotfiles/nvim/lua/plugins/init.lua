@@ -12,6 +12,7 @@ end)
 
 later(function()
 	require("plugins.completion")
+	require("plugins.grug-far")
 	require("plugins.dap")
 	require("plugins.highlight-colors")
 	require("plugins.image")

@@ -42,6 +42,7 @@
         efmls-configs-nvim
         friendly-snippets
         fzfWrapper
+        grug-far-nvim
         image-nvim
         kitty-scrollback-nvim
         lazydev-nvim

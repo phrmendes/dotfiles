@@ -5,25 +5,10 @@ local M = {
 	random = function()
 		local opts = { nargs = 0 }
 
-		opts.desc = "Open a scratch buffer"
-		command("Scratch", function()
-			local buf = vim.api.nvim_get_current_buf()
-
-			vim.cmd("bel 10new")
-
-			for name, value in pairs({
-				filetype = "scratch",
-				buftype = "nofile",
-				bufhidden = "hide",
-				swapfile = false,
-				modifiable = true,
-			}) do
-				vim.api.nvim_set_option_value(name, value, { buf = buf })
-			end
-		end, opts)
-
 		opts.desc = "Select session"
-		command("Sessions", require("mini.sessions").select, opts)
+		command("Sessions", function()
+			require("mini.sessions").select()
+		end, opts)
 	end,
 	lsp = function(client, bufnr)
 		if client.supports_method("textDocument/inlayHint") then

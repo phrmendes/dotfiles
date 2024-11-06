@@ -213,20 +213,20 @@ local keys = {
 		map("n", "<c-c><c-s>", "<Plug>SlimeConfig", opts)
 	end,
 	smart_splits = function()
-		local opts = { noremap = true, desc = "Smart splits" }
+		local opts = { desc = "Smart splits" }
 
 		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
 		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
 		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
 		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<a-h>", require("smart-splits").resize_left, opts)
-		map("n", "<a-j>", require("smart-splits").resize_down, opts)
-		map("n", "<a-k>", require("smart-splits").resize_up, opts)
-		map("n", "<a-l>", require("smart-splits").resize_right, opts)
-		map("n", "<c-left>", require("smart-splits").swap_buf_left, opts)
-		map("n", "<c-down>", require("smart-splits").swap_buf_down, opts)
-		map("n", "<c-up>", require("smart-splits").swap_buf_up, opts)
-		map("n", "<c-right>", require("smart-splits").swap_buf_right, opts)
+		map("n", "<c-left>", require("smart-splits").resize_left, opts)
+		map("n", "<c-down>", require("smart-splits").resize_down, opts)
+		map("n", "<c-up>", require("smart-splits").resize_up, opts)
+		map("n", "<c-right>", require("smart-splits").resize_right, opts)
+		map("n", "<c-s-left>", require("smart-splits").swap_buf_left, opts)
+		map("n", "<c-s-down>", require("smart-splits").swap_buf_down, opts)
+		map("n", "<c-s-up>", require("smart-splits").swap_buf_up, opts)
+		map("n", "<c-s-right>", require("smart-splits").swap_buf_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }

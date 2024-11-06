@@ -17,6 +17,7 @@
       changeDirWidgetCommand = "${fd} --type d";
       fileWidgetCommand = "${fd} --type f";
       fileWidgetOptions = ["--preview '${bat} --color=always {}'"];
+      tmux.enableShellIntegration = true;
     };
   };
 }

@@ -51,6 +51,7 @@ local servers = {
 	html = {},
 	ruff = {},
 	sqls = {},
+	nil_ls = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},
@@ -136,21 +137,6 @@ servers.ltex = {
 	settings = {
 		ltex = {
 			language = "none",
-		},
-	},
-}
-
-servers.nixd = {
-	settings = {
-		nixd = {
-			nixpkgs = {
-				expr = "import <nixpkgs> {}",
-			},
-		},
-	},
-	options = {
-		nixos = {
-			expr = '(builtins.getFlake "github:phrmendes/dotfiles").nixosConfigurations.desktop.options',
 		},
 	},
 }

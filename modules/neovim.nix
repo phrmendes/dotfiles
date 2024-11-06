@@ -72,7 +72,6 @@
         obsidian-nvim
         one-small-step-for-vimkind
         smart-splits-nvim
-        toggleterm-nvim
         undotree
         vim-abolish
         vim-dadbod
@@ -115,7 +114,7 @@
           ltex-ls
           lua-language-server
           neovim-remote
-          nixd
+          nil
           ruff
           shellcheck
           shellharden

@@ -257,17 +257,6 @@ local keys = {
 	end,
 }
 
-M.terminal = function(event)
-	local opts = { buffer = event.buf }
-
-	map("t", "<c-c>", "<c-\\><c-n>", opts)
-	map("t", "<c-w>", "<c-\\><c-n><c-w>", opts)
-	map("t", "<c-h>", "<cmd>wincmd h<cr>", opts)
-	map("t", "<c-j>", "<cmd>wincmd j<cr>", opts)
-	map("t", "<c-k>", "<cmd>wincmd k<cr>", opts)
-	map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
-end
-
 M.lsp = function(client, bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
@@ -397,11 +386,8 @@ M.dap = function(bufnr)
 	end, opts)
 end
 
-M.markdown = function(event)
-	local opts = { noremap = true, buffer = event.buf }
-
-	opts.desc = "Preview equation"
-	map("n", "<localleader>e", require("nabla").popup, opts)
+M.markdown = function(bufnr)
+	local opts = { buffer = bufnr }
 
 	opts.desc = "Add item below"
 	map({ "n", "i" }, "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
@@ -409,8 +395,17 @@ M.markdown = function(event)
 	opts.desc = "Add item above"
 	map({ "n", "i" }, "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
 
+	opts.desc = "Toggle italic"
+	map("x", "<c-i>", require("utils").toggle_emphasis("i"), opts)
+
+	opts.desc = "Toggle bold"
+	map("x", "<c-b>", require("utils").toggle_emphasis("b"), opts)
+
 	opts.desc = "Preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
+
+	opts.desc = "Preview equation"
+	map("n", "<localleader>e", require("nabla").popup, opts)
 end
 
 M.lua = function(bufnr)

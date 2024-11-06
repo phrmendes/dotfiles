@@ -4,7 +4,7 @@ local M = {}
 
 M.mini = {}
 M.mini.notify = {}
-M.mini.buffers= {}
+M.mini.buffers = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
@@ -150,6 +150,10 @@ M.get_clients = function(opts)
 	end
 
 	return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
+end
+
+M.toggle_emphasis = function(key)
+	return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual("]] .. key .. [[")<cr>]]
 end
 
 M.mini.notify.filter_notifications = function(array)

@@ -106,21 +106,3 @@ autocmd("FileType", {
 		vim.opt_local.conceallevel = 0
 	end,
 })
-
-autocmd("FileType", {
-	desc = "Markdown keybindings",
-	group = augroups.filetype,
-	pattern = "markdown",
-	callback = function(event)
-		require("keymaps").markdown(event)
-	end,
-})
-
-autocmd("TermOpen", {
-	desc = "Terminal keymaps",
-	group = augroups.filetype,
-	pattern = "term://*",
-	callback = function(event)
-		require("keymaps").terminal(event)
-	end,
-})

@@ -20,7 +20,7 @@ config.automatically_reload_config = true
 config.check_for_updates = false
 config.command_palette_font_size = 16.0
 config.default_prog = { "zsh" }
-config.enable_wayland = false
+config.enable_wayland = true
 config.front_end = "WebGpu"
 config.hide_tab_bar_if_only_one_tab = false
 config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.8 }

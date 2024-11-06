@@ -30,25 +30,20 @@
       ];
       shellAliases = let
         inherit (lib) getExe;
-        kitten = "${pkgs.kitty}/bin/kitten";
       in rec {
         cat = getExe pkgs.bat;
-        d = "${kitten} diff";
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;
         gdiff = "${getExe pkgs.git} difftool --no-symlinks --dir-diff";
         grep = getExe pkgs.ripgrep;
         k = "${pkgs.kubectl}/bin/kubectl";
-        kgrep = "${kitten} hyperlinked-grep";
         lg = getExe pkgs.lazygit;
         open = "${pkgs.xdg-utils}/bin/xdg-open";
         ps = getExe pkgs.procs;
-        s = "${kitten} ssh";
         sed = getExe pkgs.gnused;
         tar = getExe pkgs.gnutar;
         top = getExe pkgs.btop;
-        transfer = "${kitten} transfer";
         untar = "${tar} -xvf";
         untargz = "${tar} -xzf";
         v = "nvim";

@@ -4,9 +4,11 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
+      "https://wezterm.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
     ];
   };
 
@@ -14,6 +16,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
+    wezterm.url = "github:wez/wezterm?dir=nix";
 
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";

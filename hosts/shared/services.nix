@@ -25,6 +25,7 @@
 
     openssh = {
       enable = true;
+      allowSFTP = true;
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;

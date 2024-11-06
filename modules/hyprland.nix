@@ -17,7 +17,7 @@
       dmenu = "${getExe pkgs.wofi} --show dmenu";
       pactl = "${pkgs.pulseaudio}/bin/pactl";
       systemctl = "${pkgs.systemd}/bin/systemctl";
-      terminal = "${pkgs.wezterm}/bin/wezterm-gui start --always-new-process";
+      terminal = getExe pkgs.kitty;
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
@@ -163,7 +163,7 @@
             ",XF86AudioNext,exec,${playerctl} next"
             "SUPER,space,exec,${wofi}"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,return,exec,[float;tile] ${terminal}"
+            "SUPER,return,exec,${terminal}"
             "SUPER,V,exec,${lib.getExe clipboard}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

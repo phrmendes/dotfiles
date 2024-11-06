@@ -69,7 +69,6 @@
   tealdeer.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
-  wezterm.enable = true;
   wofi.enable = true;
   xwaylandvideobridge.enable = true;
   yazi.enable = true;

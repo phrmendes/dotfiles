@@ -77,6 +77,7 @@
         scrcpy
         slurp
         sqlc
+        sshfs
         sshs
         stremio
         syncthingtray

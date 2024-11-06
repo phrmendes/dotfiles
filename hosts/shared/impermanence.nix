@@ -28,6 +28,7 @@
         ".cache/tealdeer"
         ".cache/uv"
         ".local/share/Trash"
+        ".local/share/wezterm"
         ".local/share/keyrings"
         ".local/share/nvim"
         ".local/share/plex"

@@ -116,7 +116,6 @@
           ruff
           shellcheck
           shellharden
-          sqls
           stylua
           tailwindcss-language-server
           taplo

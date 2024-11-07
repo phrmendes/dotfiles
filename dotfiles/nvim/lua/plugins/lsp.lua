@@ -50,7 +50,6 @@ local servers = {
 	eslint = {},
 	html = {},
 	ruff = {},
-	sqls = {},
 	nil_ls = {},
 	taplo = {},
 	terraformls = {},

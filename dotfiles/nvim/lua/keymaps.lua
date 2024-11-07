@@ -417,22 +417,22 @@ end
 M.markdown = function(bufnr)
 	local opts = { buffer = bufnr }
 
-	opts.desc = "Add item below"
-	map({ "n", "i" }, "<c-cr>", "<cmd>MDListItemBelow<cr>", opts)
+	opts.desc = "Markdown: add item below"
+	map({ "n", "i" }, "<c-c><c-j>", "<cmd>MDListItemBelow<cr>", opts)
 
-	opts.desc = "Add item above"
-	map({ "n", "i" }, "<s-cr>", "<cmd>MDListItemAbove<cr>", opts)
+	opts.desc = "Markdown: add item above"
+	map({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
 
-	opts.desc = "Toggle italic"
+	opts.desc = "Markdown: toggle italic"
 	map("x", "<c-i>", require("utils").toggle_emphasis("i"), opts)
 
-	opts.desc = "Toggle bold"
+	opts.desc = "Markdown: toggle bold"
 	map("x", "<c-b>", require("utils").toggle_emphasis("b"), opts)
 
-	opts.desc = "Preview document"
+	opts.desc = "Markdown: preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
 
-	opts.desc = "Preview equation"
+	opts.desc = "Markdown: preview equation"
 	map("n", "<localleader>e", require("nabla").popup, opts)
 end
 

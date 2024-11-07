@@ -60,6 +60,7 @@
         nautilus
         networkmanagerapplet
         ngrok
+        nix-prefetch-github
         obsidian
         parallel
         pavucontrol

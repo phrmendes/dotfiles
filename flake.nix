@@ -35,19 +35,19 @@
       url = "github:creativenull/efmls-configs-nvim";
     };
 
-    one-small-step-for-vimkind = {
-      flake = false;
-      url = "github:jbyuki/one-small-step-for-vimkind";
-    };
-
     luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
-    kitty-scrollback-nvim = {
+    one-small-step-for-vimkind = {
       flake = false;
-      url = "github:mikesmithgh/kitty-scrollback.nvim";
+      url = "github:jbyuki/one-small-step-for-vimkind";
+    };
+
+    snacks-nvim = {
+      flake = false;
+      url = "github:folke/snacks.nvim";
     };
   };
 

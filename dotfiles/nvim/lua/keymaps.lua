@@ -19,8 +19,8 @@ local keys = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
-		opts.desc = "Yazi"
-		map("n", "-", "<cmd>Yazi toggle<cr>", opts)
+		opts.desc = "Terminal"
+		map("n", "<leader>;", require("snacks").terminal.toggle, opts)
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
@@ -70,6 +70,18 @@ local keys = {
 				mappings = require("utils").mini.buffers.delete(),
 			})
 		end, opts)
+
+		opts.desc = "Explorer"
+		map("n", "<leader>e", function()
+			if not require("mini.files").close() then
+				require("mini.files").open(vim.fn.expand("%:p:h"), true)
+			end
+		end, opts)
+
+		opts.desc = "Explorer (cwd)"
+		map("n", "<leader>E", function()
+			require("mini.files").open(vim.uv.cwd(), true)
+		end, opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -104,26 +116,29 @@ local keys = {
 	git = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Commit"
-		map("n", "<leader>g<space>", "<cmd>Git commit<cr>", opts)
-
 		opts.desc = "Add (file)"
 		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
 
 		opts.desc = "Add (repo)"
 		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
 
-		opts.desc = "Commits (file)"
-		map("n", "<leader>gc", "<cmd>LazyGitFilterCurrentFile<cr>", opts)
+		opts.desc = "Blame"
+		map("n", "<leader>gb", require("snacks").git.blame_line, opts)
 
-		opts.desc = "Commits (repo)"
-		map("n", "<leader>gC", "<cmd>LazyGitFilter<cr>", opts)
+		opts.desc = "Commit"
+		map("n", "<leader>gc", "<cmd>Git commit<cr>", opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
 
 		opts.desc = "LazyGit"
-		map("n", "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", opts)
+		map("n", "<leader>gg", require("snacks").lazygit.open, opts)
+
+		opts.desc = "Log (file)"
+		map("n", "<leader>gl", require("snacks").lazygit.log_file, opts)
+
+		opts.desc = "Log (repo)"
+		map("n", "<leader>gL", require("snacks").lazygit.log, opts)
 
 		opts.desc = "History"
 		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
@@ -136,6 +151,9 @@ local keys = {
 
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
+
+		opts.desc = "Open repo in browser"
+		map("n", "<leader>go", require("snacks").gitbrowse.open, opts)
 	end,
 	luasnip = function()
 		local opts = { noremap = true, silent = true }
@@ -259,6 +277,16 @@ local keys = {
 
 M.lsp = function(client, bufnr)
 	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "LSP: go to next reference"
+	map("n", "]]", function()
+		require("snacks").words.jump(vim.v.count1)
+	end, opts)
+
+	opts.desc = "LSP: go to previous reference"
+	map("n", "[[", function()
+		require("snacks").words.jump(-vim.v.count1)
+	end, opts)
 
 	if client.supports_method("textDocument/rename") then
 		opts.desc = "LSP: rename symbol"
@@ -437,6 +465,17 @@ M.go = function(bufnr)
 	opts.desc = "Go: debug last test"
 	map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
 end
+
+M.mini = {
+	files = function(event)
+		local opts = { noremap = true, buffer = event.data.buf_id }
+
+		map("n", ".", require("utils").mini.files.toggle_dotfiles, opts)
+		map("n", "<c-;>", require("utils").mini.files.set_cwd, opts)
+		map("n", "<c-s>", require("utils").mini.files.map_split("horizontal", true), opts)
+		map("n", "<c-v>", require("utils").mini.files.map_split("vertical", true), opts)
+	end,
+}
 
 M.setup = function()
 	for _, fn in pairs(keys) do

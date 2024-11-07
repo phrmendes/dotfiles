@@ -5,6 +5,7 @@ local M = {}
 M.mini = {}
 M.mini.notify = {}
 M.mini.buffers = {}
+M.mini.files = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
@@ -186,6 +187,43 @@ M.mini.buffers.delete = function()
 			end,
 		},
 	}
+end
+
+M.mini.files.filter_show = function()
+	return true
+end
+
+M.mini.files.filter_hide = function(fs_entry)
+	return not vim.startswith(fs_entry.name, ".")
+end
+
+M.mini.files.toggle_dotfiles = function()
+	vim.g.mini_show_dotfiles = not vim.g.mini_show_dotfiles
+	local new_filter = vim.g.mini_show_dotfiles and M.mini.files.filter_show or M.mini.files.filter_hide
+	require("mini.files").refresh({ content = { filter = new_filter } })
+end
+
+M.mini.files.map_split = function(direction, close_on_file)
+	return function()
+		local new_target_window
+		local current_target_window = require("mini.files").get_explorer_state().target_window
+		if current_target_window ~= nil then
+			vim.api.nvim_win_call(current_target_window, function()
+				vim.cmd("belowright " .. direction .. " split")
+				new_target_window = vim.api.nvim_get_current_win()
+			end)
+			require("mini.files").set_target_window(new_target_window)
+			require("mini.files").go_in({ close_on_file = close_on_file })
+		end
+	end
+end
+
+M.mini.files.set_cwd = function()
+	local current_entry_path = require("mini.files").get_fs_entry().path
+	local current_directory = vim.fs.dirname(current_entry_path)
+	if current_directory ~= nil then
+		vim.fn.chdir(current_directory)
+	end
 end
 
 return M

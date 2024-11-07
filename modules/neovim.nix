@@ -17,7 +17,7 @@
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       one-small-step-for-vimkind = fromGitHub "one-small-step-for-vimkind" inputs.one-small-step-for-vimkind;
-      kitty-scrollback-nvim = fromGitHub "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
+      snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -44,9 +44,7 @@
         fzfWrapper
         grug-far-nvim
         image-nvim
-        kitty-scrollback-nvim
         lazydev-nvim
-        lazygit-nvim
         ltex_extra-nvim
         luasnip
         luasnip-latex-snippets
@@ -72,6 +70,7 @@
         obsidian-nvim
         one-small-step-for-vimkind
         smart-splits-nvim
+        snacks-nvim
         undotree
         vim-abolish
         vim-dadbod
@@ -81,7 +80,6 @@
         vim-helm
         vim-sleuth
         vim-slime
-        yazi-nvim
       ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [

@@ -80,6 +80,15 @@ autocmd("User", {
 	end,
 })
 
+autocmd("User", {
+	desc = "Rename file in mini.files",
+	group = augroups.mini,
+	pattern = "MiniFilesActionRename",
+	callback = function(event)
+		require("snacks").rename.on_rename_file(event.data.from, event.data.to)
+	end,
+})
+
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,

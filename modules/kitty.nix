@@ -74,6 +74,8 @@
         "alt+shift+down" = "move_window down";
         "alt+shift+up" = "move_window up";
         "alt+shift+right" = "move_window right";
+        "ctrl+shift+c" = "copy_to_clipboard";
+        "ctrl+shift+v" = "paste_from_clipboard";
       };
     };
 

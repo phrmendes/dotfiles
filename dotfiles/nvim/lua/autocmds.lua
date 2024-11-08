@@ -108,6 +108,15 @@ autocmd("FileType", {
 })
 
 autocmd("FileType", {
+	desc = "Set shiftwidth to 2 for SQL files",
+	group = augroups.filetype,
+	pattern = "sql",
+	callback = function()
+		vim.bo.shiftwidth = 2
+	end,
+})
+
+autocmd("FileType", {
 	desc = "Disable	conceal for JSON files",
 	group = augroups.filetype,
 	pattern = { "json", "jsonc", "json5" },

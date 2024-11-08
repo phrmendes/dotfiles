@@ -1,0 +1,7 @@
+{
+  "BigQuery safe cast": {
+    "body": ["SAFE_CAST (${1} as ${2}) as ${3},"],
+    "description": "BigQuery safe cast",
+    "prefix": "sc"
+  }
+}

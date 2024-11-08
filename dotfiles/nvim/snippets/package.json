@@ -18,6 +18,12 @@
           "nix"
         ],
         "path": "./nix.json"
+      },
+      {
+        "language": [
+          "sql"
+        ],
+        "path": "./sql.json"
       }
     ]
   }

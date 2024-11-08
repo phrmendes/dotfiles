@@ -110,7 +110,6 @@ servers.jsonls = {
 servers.lua_ls = {
 	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
-		require("keymaps").lua(bufnr)
 	end,
 	settings = {
 		Lua = {

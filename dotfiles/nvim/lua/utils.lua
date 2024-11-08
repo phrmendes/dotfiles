@@ -3,9 +3,9 @@ local augroup = vim.api.nvim_create_augroup
 local M = {}
 
 M.mini = {}
-M.mini.notify = {}
 M.mini.buffers = {}
 M.mini.files = {}
+M.mini.notify = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
@@ -157,27 +157,6 @@ M.toggle_emphasis = function(key)
 	return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual("]] .. key .. [[")<cr>]]
 end
 
-M.mini.notify.filter_notifications = function(array)
-	local filters = {
-		"Diagnosing",
-		"Processing files",
-		"file to analyze",
-		"ltex",
-	}
-
-	local filter_generator = function(filter)
-		return function(notification)
-			return not string.find(notification.msg, filter)
-		end
-	end
-
-	for _, filter in pairs(filters) do
-		array = vim.tbl_filter(filter_generator(filter), array)
-	end
-
-	return require("mini.notify").default_sort(array)
-end
-
 M.mini.buffers.delete = function()
 	return {
 		wipeout = {
@@ -224,6 +203,27 @@ M.mini.files.set_cwd = function()
 	if current_directory ~= nil then
 		vim.fn.chdir(current_directory)
 	end
+end
+
+M.mini.notify.filter_notifications = function(array)
+	local filters = {
+		"Diagnosing",
+		"Processing files",
+		"file to analyze",
+		"ltex",
+	}
+
+	local filter_generator = function(filter)
+		return function(notification)
+			return not string.find(notification.msg, filter)
+		end
+	end
+
+	for _, filter in pairs(filters) do
+		array = vim.tbl_filter(filter_generator(filter), array)
+	end
+
+	return require("mini.notify").default_sort(array)
 end
 
 return M

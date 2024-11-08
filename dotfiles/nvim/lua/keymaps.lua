@@ -19,8 +19,17 @@ local keys = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
+		opts.desc = "Launch neovim debug server"
+		map("n", "<f12>", function()
+			require("osv").launch({ port = 8086 })
+		end, opts)
+
 		opts.desc = "Terminal"
-		map("n", "<leader>;", require("snacks").terminal.toggle, opts)
+		map("t", "<c-h>", "<cmd>wincmd h<cr>", opts)
+		map("t", "<c-j>", "<cmd>wincmd j<cr>", opts)
+		map("t", "<c-k>", "<cmd>wincmd k<cr>", opts)
+		map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
+		map({ "n", "t" }, "<c-;>", require("snacks").terminal.toggle, opts)
 
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
@@ -434,13 +443,6 @@ M.markdown = function(bufnr)
 
 	opts.desc = "Markdown: preview equation"
 	map("n", "<localleader>e", require("nabla").popup, opts)
-end
-
-M.lua = function(bufnr)
-	local opts = { noremap = true, buffer = bufnr }
-
-	opts.desc = "DAP: continue"
-	map("n", "<f6>", require("osv").run_this, opts)
 end
 
 M.python = function(bufnr)

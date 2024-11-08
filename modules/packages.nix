@@ -36,6 +36,7 @@
         foliate
         gcloud
         gdu
+        gnome-commander
         gnumake
         gnused
         go
@@ -57,11 +58,12 @@
         livebook
         minikube
         mongosh
-        nautilus
+        neovide
         networkmanagerapplet
         ngrok
         nix-prefetch-github
         obsidian
+        ouch
         parallel
         pavucontrol
         phockup

@@ -30,23 +30,20 @@
       ];
       shellAliases = let
         inherit (lib) getExe;
-      in rec {
+      in {
         cat = getExe pkgs.bat;
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;
-        gdiff = "${getExe pkgs.git} difftool --no-symlinks --dir-diff";
         grep = getExe pkgs.ripgrep;
         k = "${pkgs.kubectl}/bin/kubectl";
         lg = getExe pkgs.lazygit;
         open = "${pkgs.xdg-utils}/bin/xdg-open";
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
-        tar = getExe pkgs.gnutar;
         top = getExe pkgs.btop;
-        untar = "${tar} -xvf";
-        untargz = "${tar} -xzf";
         v = "nvim";
+        gm = getExe pkgs.gnome-commander;
       };
     };
   };

@@ -10,16 +10,13 @@
     programs.lazygit = {
       enable = true;
       settings = {
+        promptToReturnFromSubprocess = false;
         disableStartupPopups = true;
         gui.nerdFontsVersion = "3";
+        os.editPreset = "nvim-remote";
         git.paging = {
           colorArg = "always";
           pager = "${lib.getExe pkgs.delta} --dark --paging=never";
-        };
-        os = {
-          edit = ''nvim --server $NVIM --remote-tab "{{filename}}"'';
-          editAtLine = ''nvim --server $NVIM --remote-tab "{{filename}}"'';
-          editAtLineAndWait = ''nvim --server $NVIM --remote-tab "{{filename}}"'';
         };
       };
     };

@@ -26,6 +26,7 @@
         ".tmux"
         ".zotero"
         ".cache/cliphist"
+        ".cache/neovim"
         ".cache/tealdeer"
         ".cache/uv"
         ".local/share/Trash"

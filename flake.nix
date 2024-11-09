@@ -49,6 +49,11 @@
       flake = false;
       url = "github:folke/snacks.nvim";
     };
+
+    vim-dadbod-ui = {
+      flake = false;
+      url = "github:phrmendes/vim-dadbod-ui";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

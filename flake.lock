@@ -323,7 +323,8 @@
         "nixpkgs": "nixpkgs",
         "one-small-step-for-vimkind": "one-small-step-for-vimkind",
         "snacks-nvim": "snacks-nvim",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "vim-dadbod-ui": "vim-dadbod-ui"
       }
     },
     "snacks-nvim": {
@@ -433,6 +434,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
+        "type": "github"
+      }
+    },
+    "vim-dadbod-ui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731172792,
+        "narHash": "sha256-Ui6FLSRshZ9BcWt5Kq+wGvWaPSOvn1fivD1AWZrYCrY=",
+        "owner": "phrmendes",
+        "repo": "vim-dadbod-ui",
+        "rev": "22761df22b22d6d940585964293d20d2868d2dcc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "phrmendes",
+        "repo": "vim-dadbod-ui",
         "type": "github"
       }
     }

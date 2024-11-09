@@ -18,6 +18,7 @@
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       one-small-step-for-vimkind = fromGitHub "one-small-step-for-vimkind" inputs.one-small-step-for-vimkind;
       snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
+      vim-dadbod-ui = fromGitHub "vim-dadbod-ui" inputs.vim-dadbod-ui;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;

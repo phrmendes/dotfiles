@@ -124,6 +124,7 @@
           texlab
           typescript-language-server
           vscode-langservers-extracted
+          vue-language-server
           yaml-language-server
         ]
         ++ (with nodePackages_latest; [
@@ -141,6 +142,11 @@
       "nvim/lua/luvit-meta.lua".text = ''
         return {
             path = "${pkgs.vimPlugins.luvit-meta}/library",
+        }
+      '';
+      "nvim/lua/volar.lua".text = ''
+        return {
+            path = "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server",
         }
       '';
       "nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''

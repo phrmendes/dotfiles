@@ -49,12 +49,13 @@ local servers = {
 	emmet_language_server = {},
 	eslint = {},
 	html = {},
-	ruff = {},
 	nil_ls = {},
+	ruff = {},
+	tailwindcss = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	tailwindcss = {},
+	volar = {},
 }
 
 servers.basedpyright = {
@@ -141,7 +142,14 @@ servers.ltex = {
 
 servers.ts_ls = {
 	init_options = {
-		disableSuggestions = true,
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = require("volar").path,
+				languages = { "javascript", "typescript", "vue" },
+			},
+		},
+		filetypes = { "javascript", "typescript", "vue" },
 	},
 }
 
@@ -171,4 +179,4 @@ for key, value in pairs(servers) do
 		server = key,
 		settings = value,
 	})
-end
+en

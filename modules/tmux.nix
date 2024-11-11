@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  parameters,
   ...
 }: {
   options.tmux.enable = lib.mkEnableOption "enable tmux";
@@ -38,11 +39,15 @@
         }
         {
           plugin = resurrect;
-          extraConfig = ''
+          extraConfig = let
+            resurrect_dir = "${parameters.home}/.tmux/resurrect";
+          in ''
+            set -g @resurrect-dir                   '${resurrect_dir}'
             set -g @resurrect-capture-pane-contents 'on'
             set -g @resurrect-restore               'C-r'
             set -g @resurrect-save                  'C-s'
             set -g @resurrect-strategy-nvim         'session'
+            set -g @resurrect-processes             'nvim "~nvim->nvim"'
           '';
         }
       ];

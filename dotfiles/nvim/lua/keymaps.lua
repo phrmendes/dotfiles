@@ -19,11 +19,6 @@ local keys = {
 		opts.desc = "Clear highlights"
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
-		opts.desc = "Launch neovim debug server"
-		map("n", "<f12>", function()
-			require("osv").launch({ port = 8086 })
-		end, opts)
-
 		opts.desc = "Terminal"
 		map("t", "<c-h>", "<cmd>wincmd h<cr>", opts)
 		map("t", "<c-j>", "<cmd>wincmd j<cr>", opts)

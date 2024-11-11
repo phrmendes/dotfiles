@@ -51,11 +51,9 @@ local servers = {
 	html = {},
 	nil_ls = {},
 	ruff = {},
-	tailwindcss = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	volar = {},
 }
 
 servers.basedpyright = {
@@ -85,9 +83,57 @@ servers.elixirls = {
 }
 
 servers.gopls = {
-	on_attach = function(_, bufnr)
+	on_attach = function(client, bufnr)
 		require("keymaps").dap(bufnr)
+
+		if not client.server_capabilities.semanticTokensProvider then
+			local semantic = client.config.capabilities.textDocument.semanticTokens
+			client.server_capabilities.semanticTokensProvider = {
+				full = true,
+				legend = {
+					tokenTypes = semantic.tokenTypes,
+					tokenModifiers = semantic.tokenModifiers,
+				},
+				range = true,
+			}
+		end
 	end,
+	settings = {
+		gopls = {
+			gofumpt = true,
+			codelenses = {
+				gc_details = false,
+				generate = true,
+				regenerate_cgo = true,
+				run_govulncheck = true,
+				test = true,
+				tidy = true,
+				upgrade_dependency = true,
+				vendor = true,
+			},
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
+			},
+			analyses = {
+				fieldalignment = true,
+				nilness = true,
+				unusedparams = true,
+				unusedwrite = true,
+				useany = true,
+			},
+			usePlaceholders = true,
+			completeUnimported = true,
+			staticcheck = true,
+			directoryFilters = { "-.git", "-node_modules" },
+			semanticTokens = true,
+		},
+	},
 }
 
 servers.helm_ls = {
@@ -140,16 +186,38 @@ servers.ltex = {
 	},
 }
 
+servers.tailwindcss = {
+	settings = {
+		tailwindCSS = {
+			includeLanguages = {
+				elixir = "html-eex",
+				eelixir = "html-eex",
+				heex = "html-eex",
+			},
+		},
+	},
+}
+
 servers.ts_ls = {
 	init_options = {
 		plugins = {
 			{
 				name = "@vue/typescript-plugin",
-				location = require("volar").path,
+				location = require("paths.vue-language-server"),
 				languages = { "javascript", "typescript", "vue" },
+				configNamespace = "typescript",
+				enableForWorkspaceTypeScriptVersions = true,
 			},
 		},
 		filetypes = { "javascript", "typescript", "vue" },
+	},
+}
+
+servers.volar = {
+	init_options = {
+		vue = {
+			hybridMode = true,
+		},
 	},
 }
 
@@ -179,4 +247,4 @@ for key, value in pairs(servers) do
 		server = key,
 		settings = value,
 	})
-en
+end

@@ -14,8 +14,9 @@
           inherit src pname;
           version = src.rev;
         };
-      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
+      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      nvim-dap-vscode-js = fromGitHub "nvim-dap-vscode-js" inputs.nvim-dap-vscode-js;
       one-small-step-for-vimkind = fromGitHub "one-small-step-for-vimkind" inputs.one-small-step-for-vimkind;
       snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
       vim-dadbod-ui = fromGitHub "vim-dadbod-ui" inputs.vim-dadbod-ui;
@@ -61,6 +62,7 @@
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
+        nvim-dap-vscode-js
         nvim-highlight-colors
         nvim-lspconfig
         nvim-luapad
@@ -123,6 +125,7 @@
           terraform-ls
           texlab
           typescript-language-server
+          vscode-js-debug
           vscode-langservers-extracted
           vue-language-server
           yaml-language-server
@@ -139,15 +142,14 @@
         source = ../dotfiles/nvim;
         recursive = true;
       };
-      "nvim/lua/luvit-meta.lua".text = ''
-        return {
-            path = "${pkgs.vimPlugins.luvit-meta}/library",
-        }
+      "nvim/lua/paths/luvit-meta.lua".text = ''
+        return "${pkgs.vimPlugins.luvit-meta}/library"
       '';
-      "nvim/lua/volar.lua".text = ''
-        return {
-            path = "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server",
-        }
+      "nvim/lua/paths/vue-language-server.lua".text = ''
+        return "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server"
+      '';
+      "nvim/lua/paths/vscode-js-debug.lua".text = ''
+        return "${pkgs.vscode-js-debug}"
       '';
       "nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {

@@ -296,6 +296,22 @@
         "type": "github"
       }
     },
+    "nvim-dap-vscode-js": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678071992,
+        "narHash": "sha256-8dlzaI94I8ppzLRNIfjVd92kYgqr07D1akDj4VdKQto=",
+        "owner": "mxsdev",
+        "repo": "nvim-dap-vscode-js",
+        "rev": "03bd29672d7fab5e515fc8469b7d07cc5994bbf6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mxsdev",
+        "repo": "nvim-dap-vscode-js",
+        "type": "github"
+      }
+    },
     "one-small-step-for-vimkind": {
       "flake": false,
       "locked": {
@@ -321,6 +337,7 @@
         "impermanence": "impermanence",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
+        "nvim-dap-vscode-js": "nvim-dap-vscode-js",
         "one-small-step-for-vimkind": "one-small-step-for-vimkind",
         "snacks-nvim": "snacks-nvim",
         "stylix": "stylix",

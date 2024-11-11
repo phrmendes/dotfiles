@@ -45,6 +45,11 @@
       url = "github:jbyuki/one-small-step-for-vimkind";
     };
 
+    nvim-dap-vscode-js = {
+      flake = false;
+      url = "github:mxsdev/nvim-dap-vscode-js";
+    };
+
     snacks-nvim = {
       flake = false;
       url = "github:folke/snacks.nvim";

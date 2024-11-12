@@ -57,6 +57,15 @@
     thermald.enable = true;
     fprintd.enable = true;
 
+    libinput = {
+      enable = true;
+      touchpad = {
+        tapping = true;
+        horizontalScrolling = true;
+        disableWhileTyping = true;
+      };
+    };
+
     logind = {
       lidSwitch = "suspend";
       powerKey = "suspend";

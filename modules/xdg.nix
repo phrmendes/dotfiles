@@ -3,10 +3,9 @@
     mimeApps.defaultApplications = {
       "application/pdf" = "org.gnome.Evince.desktop";
       "image/*" = "qview.desktop";
-      "inode/directory" = "nautilus.desktop";
       "video/*" = "vlc.desktop";
       "audio/*" = "vlc.desktop";
-      "text/*" = "nvim.desktop";
+      "text/*" = "neovide.desktop";
     };
     desktopEntries = {
       discord = {

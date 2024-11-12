@@ -23,7 +23,6 @@
         chromium
         cloudflared
         deluge
-        discord
         droidcam
         elixir
         evince
@@ -90,6 +89,7 @@
         ueberzugpp
         uv
         ventoy
+        vesktop
         vlc
         wofi-emoji
         zotero

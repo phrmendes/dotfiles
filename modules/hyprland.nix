@@ -116,11 +116,6 @@
           "opaque,class:^(chromium)$"
           "opaque,class:^(firefox)$"
           "opaque,class:^(vlc)$"
-          "opacity 0.0 override, class:^(xwaylandvideobridge)$"
-          "noanim, class:^(xwaylandvideobridge)$"
-          "noinitialfocus, class:^(xwaylandvideobridge)$"
-          "maxsize 1 1, class:^(xwaylandvideobridge)$"
-          "noblur, class:^(xwaylandvideobridge)$"
         ];
         workspace = with parameters.monitors; [
           "1,monitor:${primary}"

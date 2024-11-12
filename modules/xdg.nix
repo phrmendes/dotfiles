@@ -2,18 +2,11 @@
   xdg = {
     mimeApps.defaultApplications = {
       "application/pdf" = "org.gnome.Evince.desktop";
-      "image/*" = "qview.desktop";
-      "video/*" = "vlc.desktop";
       "audio/*" = "vlc.desktop";
+      "image/*" = "qview.desktop";
+      "inode/directory" = "org.gnome.gnome-commander.desktop";
       "text/*" = "neovide.desktop";
-    };
-    desktopEntries = {
-      discord = {
-        name = "Discord";
-        exec = "env XDG_SESSION_TYPE=x11 discord";
-        icon = "discord";
-        type = "Application";
-      };
+      "video/*" = "vlc.desktop";
     };
   };
 }

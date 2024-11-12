@@ -34,7 +34,6 @@
     ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
-    ./xwaylandvideobridge.nix
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
@@ -72,7 +71,6 @@
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;
-  xwaylandvideobridge.enable = true;
   yazi.enable = true;
   zoxide.enable = true;
   zsh.enable = true;

@@ -22,3 +22,9 @@ Install NixOS:
 ```sh
 sudo nixos-install --flake .#{device} --root /mnt --no-root-passwd
 ```
+
+## Install in a Surface Laptop Go
+
+1. Delete all partitions with a Windows ISO
+2. Insert a USB with the NixOS ISO
+3. Boot from the USB

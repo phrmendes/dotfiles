@@ -82,7 +82,6 @@
         sshfs
         sshs
         stremio
-        syncthingtray
         tectonic
         terraform
         typescript

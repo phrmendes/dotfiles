@@ -77,5 +77,67 @@
       enable = true;
       useStockConfig = true;
     };
+
+    syncthing.settings.folders = let
+      versioning = {
+        simple = {
+          type = "simple";
+          params = {
+            keep = "10";
+            cleanoutDays = "30";
+          };
+        };
+        trashcan = {
+          type = "trashcan";
+          params.cleanoutDays = "15";
+        };
+      };
+    in {
+      "documents" = {
+        path = "${parameters.home}/Documents/documents";
+        devices = ["desktop" "orangepizero2" "phone"];
+        versioning = versioning.trashcan;
+      };
+      "images" = {
+        path = "${parameters.home}/Pictures/images";
+        devices = ["orangepizero2" "desktop"];
+        versioning = versioning.trashcan;
+      };
+      "notes" = {
+        path = "${parameters.home}/Documents/notes";
+        devices = ["desktop" "orangepizero2" "phone" "tablet"];
+        versioning = versioning.simple;
+      };
+      "ufabc" = {
+        path = "${parameters.home}/Documents/ufabc";
+        devices = ["desktop" "orangepizero2" "phone" "tablet"];
+        versioning = versioning.trashcan;
+      };
+      "IT" = {
+        path = "${parameters.home}/Documents/library/IT";
+        devices = ["desktop" "orangepizero2"];
+        versioning = versioning.trashcan;
+      };
+      "math" = {
+        path = "${parameters.home}/Documents/library/math";
+        devices = ["desktop" "orangepizero2"];
+        versioning = versioning.trashcan;
+      };
+      "social_sciences" = {
+        path = "${parameters.home}/Documents/library/social_sciences";
+        devices = ["desktop" "orangepizero2"];
+        versioning = versioning.trashcan;
+      };
+      "zotero" = {
+        path = "${parameters.home}/Documents/library/zotero";
+        devices = ["desktop" "orangepizero2" "phone" "tablet"];
+        versioning = versioning.trashcan;
+      };
+      "tmuxp" = {
+        path = "${parameters.home}/.config/tmuxp";
+        devices = ["desktop" "orangepizero2"];
+        versioning = versioning.trashcan;
+      };
+    };
   };
 }

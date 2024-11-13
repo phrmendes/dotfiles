@@ -32,7 +32,7 @@ sudo nixos-install --flake .#{device} --root /mnt --no-root-passwd
 When using a minimal NixOS ISO, run this to connect to wifi:
 
 ```sh
-wpa_passphrase "SSID" > wifi.conf
-sudo wpa_supplicant -i interface -c wifi.conf -B
+wpa_passphrase "{ssid}" > wifi.conf
+sudo wpa_supplicant -i {interface} -c wifi.conf -B
 sudo dhcpcd
 ```

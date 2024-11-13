@@ -135,7 +135,7 @@ setup.js_ts = function()
 		adapters = { "pwa-node", "pwa-chrome" },
 	})
 
-	for _, language in ipairs({ "javascript", "typescript", "vue" }) do
+	for _, language in ipairs({ "javascript", "typescript" }) do
 		dap.configurations[language] = {
 			{
 				type = "pwa-node",

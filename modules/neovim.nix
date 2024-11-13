@@ -127,7 +127,6 @@
           typescript-language-server
           vscode-js-debug
           vscode-langservers-extracted
-          vue-language-server
           yaml-language-server
         ]
         ++ (with nodePackages_latest; [
@@ -144,9 +143,6 @@
       };
       "nvim/lua/paths/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
-      '';
-      "nvim/lua/paths/vue-language-server.lua".text = ''
-        return "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server"
       '';
       "nvim/lua/paths/vscode-js-debug.lua".text = ''
         return "${pkgs.vscode-js-debug}"

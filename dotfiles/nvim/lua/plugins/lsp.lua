@@ -54,6 +54,7 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
+	ts_ls = {},
 }
 
 servers.basedpyright = {
@@ -194,29 +195,6 @@ servers.tailwindcss = {
 				eelixir = "html-eex",
 				heex = "html-eex",
 			},
-		},
-	},
-}
-
-servers.ts_ls = {
-	init_options = {
-		plugins = {
-			{
-				name = "@vue/typescript-plugin",
-				location = require("paths.vue-language-server"),
-				languages = { "javascript", "typescript", "vue" },
-				configNamespace = "typescript",
-				enableForWorkspaceTypeScriptVersions = true,
-			},
-		},
-		filetypes = { "javascript", "typescript", "vue" },
-	},
-}
-
-servers.volar = {
-	init_options = {
-		vue = {
-			hybridMode = true,
 		},
 	},
 }

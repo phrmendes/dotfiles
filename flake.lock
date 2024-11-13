@@ -458,15 +458,15 @@
     "vim-dadbod-ui": {
       "flake": false,
       "locked": {
-        "lastModified": 1731172792,
+        "lastModified": 1731534953,
         "narHash": "sha256-Ui6FLSRshZ9BcWt5Kq+wGvWaPSOvn1fivD1AWZrYCrY=",
-        "owner": "phrmendes",
+        "owner": "kristijanhusak",
         "repo": "vim-dadbod-ui",
-        "rev": "22761df22b22d6d940585964293d20d2868d2dcc",
+        "rev": "39a5d69ff786ca43ca3785857c38e4e0515c6bf8",
         "type": "github"
       },
       "original": {
-        "owner": "phrmendes",
+        "owner": "kristijanhusak",
         "repo": "vim-dadbod-ui",
         "type": "github"
       }

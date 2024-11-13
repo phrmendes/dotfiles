@@ -57,7 +57,7 @@
 
     vim-dadbod-ui = {
       flake = false;
-      url = "github:phrmendes/vim-dadbod-ui";
+      url = "github:kristijanhusak/vim-dadbod-ui";
     };
   };
 

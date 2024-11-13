@@ -100,7 +100,7 @@
           autoAcceptFolders = true;
         };
         "laptop" = {
-          id = "DC7CVQK-XCQYE7F-JTW2JNJ-PQRSZOV-WU5GK5H-DZNX5VM-PU4HIKL-ZJUA5AX";
+          id = "UDC7ERC-4U3ANWI-FCND77N-MNIZHXG-IXQTU42-TMOGIOY-7SXE2DV-UOCCUAC";
           autoAcceptFolders = true;
         };
         "desktop" = {

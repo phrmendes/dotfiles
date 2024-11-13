@@ -14,8 +14,8 @@ M.augroups = {
 	lsp = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),
+		efm = augroup("UserLspEfm", { clear = true }),
 		highlight = augroup("UserLspHighlight", { clear = true }),
-		lint_format = augroup("UserLspLintFormat", { clear = true }),
 	},
 }
 

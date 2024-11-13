@@ -5,61 +5,66 @@ autocmd("LspAttach", {
 	desc = "LSP options and keymaps",
 	group = augroups.lsp.attach,
 	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		local id = vim.tbl_get(event, "data", "client_id")
+		local client = id and vim.lsp.get_client_by_id(id)
 
-		vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		if client == nil then
+			return
+		end
 
-		if client then
-			require("keymaps").lsp(client, event.buf)
-			require("commands").lsp(client, event.buf)
+		require("keymaps").lsp(client, event.buf)
+		require("commands").lsp(client, event.buf)
 
-			if client.supports_method("textDocument/codeLens") then
-				autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-					buffer = event.buf,
-					callback = function(ev)
-						vim.lsp.codelens.refresh({ bufnr = ev.buf })
-					end,
-				})
-			end
+		if client.supports_method("textDocument/codeLens") then
+			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+				buffer = event.buf,
+				callback = function(ev)
+					vim.lsp.codelens.refresh({ bufnr = ev.buf })
+				end,
+			})
+		end
 
-			if client.supports_method("textDocument/documentHighlight") then
-				autocmd({ "CursorHold", "CursorHoldI" }, {
-					buffer = event.buf,
-					group = augroups.lsp.highlight,
-					callback = vim.lsp.buf.document_highlight,
-				})
+		if client.supports_method("textDocument/documentHighlight") then
+			autocmd({ "CursorHold", "CursorHoldI" }, {
+				buffer = event.buf,
+				group = augroups.lsp.highlight,
+				callback = vim.lsp.buf.document_highlight,
+			})
 
-				autocmd({ "CursorMoved", "CursorMovedI" }, {
-					buffer = event.buf,
-					group = augroups.lsp.highlight,
-					callback = vim.lsp.buf.clear_references,
-				})
+			autocmd({ "CursorMoved", "CursorMovedI" }, {
+				buffer = event.buf,
+				group = augroups.lsp.highlight,
+				callback = vim.lsp.buf.clear_references,
+			})
 
-				autocmd("LspDetach", {
-					group = augroups.lsp.detach,
-					callback = function(ev)
-						vim.lsp.buf.clear_references()
-						vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
-					end,
-				})
-			end
+			autocmd("LspDetach", {
+				group = augroups.lsp.detach,
+				buffer = event.buf,
+				callback = function(ev)
+					vim.lsp.buf.clear_references()
+					vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
+				end,
+			})
+		end
+
+		if client.supports_method("textDocument/formatting") then
+			autocmd("BufWritePre", {
+				buffer = event.buf,
+				group = augroups.lsp.efm,
+				callback = function(ev)
+					vim.lsp.buf.format({
+						async = false,
+						bufnr = ev.buf,
+						timeout_ms = 10000,
+						filter = function(c)
+							return c.name == "efm"
+						end,
+					})
+				end,
+			})
 		end
 	end,
 })
-
-autocmd("BufWritePre", {
-	group = augroups.lsp.lint_format,
-	callback = function(ev)
-		vim.lsp.buf.format({
-			async = true,
-			bufnr = ev.buf,
-			filter = function(client)
-				return client.name == "efm"
-			end,
-		})
-	end,
-})
-
 autocmd("User", {
 	desc = "Set border for mini.files window",
 	group = augroups.mini,

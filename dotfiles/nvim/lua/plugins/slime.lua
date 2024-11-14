@@ -12,3 +12,4 @@ end
 vim.g.slime_no_mappings = true
 vim.g.slime_target = target
 vim.g.slime_default_config = config
+vim.g.slime_bracketed_paste = 1

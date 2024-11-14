@@ -340,7 +340,9 @@ M.lsp = function(client, bufnr)
 	if client.supports_method("textDocument/publishDiagnostics") then
 		opts.desc = "LSP: diagnostics"
 		map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
-		map("n", "<leader>f", vim.diagnostic.open_float)
+
+		opts.desc = "LSP: diagnostics (float)"
+		map("n", "<leader>f", vim.diagnostic.open_float, opts)
 	end
 
 	if client.supports_method("textDocument/signatureHelp") then
@@ -469,8 +471,8 @@ M.mini = {
 
 		map("n", ".", require("utils").mini.files.toggle_dotfiles, opts)
 		map("n", "<c-;>", require("utils").mini.files.set_cwd, opts)
-		map("n", "<c-s>", require("utils").mini.files.map_split("horizontal", true), opts)
-		map("n", "<c-v>", require("utils").mini.files.map_split("vertical", true), opts)
+		map("n", "<c-->", require("utils").mini.files.map_split("horizontal", true), opts)
+		map("n", "<c-\\>", require("utils").mini.files.map_split("vertical", true), opts)
 	end,
 }
 

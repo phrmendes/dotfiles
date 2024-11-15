@@ -14,11 +14,12 @@
       userEmail = parameters.email;
       userName = parameters.name;
       extraConfig = {
-        merge.tool = "nvimdiff";
+        credential.helper = "store";
+        http.sslVerify = true;
         init.defaultBranch = "main";
+        merge.tool = "nvimdiff";
         pull.rebase = true;
         push.autoSetupRemote = true;
-        http.sslVerify = true;
         diff = {
           tool = "kitty";
           guitool = "kitty.gui";

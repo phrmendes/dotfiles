@@ -1,9 +1,9 @@
 require("mini.files").setup({
 	mappings = {
 		close = "q",
-		go_in = "l",
+		go_in = "L",
 		go_in_plus = "<cr>",
-		go_out = "h",
+		go_out = "H",
 		go_out_plus = "<bs>",
 		reset = "<del>",
 		reveal_cwd = "@",

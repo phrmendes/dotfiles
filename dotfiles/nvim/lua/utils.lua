@@ -6,6 +6,7 @@ M.mini = {}
 M.mini.buffers = {}
 M.mini.files = {}
 M.mini.notify = {}
+M.mini.pick = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
@@ -224,6 +225,18 @@ M.mini.notify.filter_notifications = function(array)
 	end
 
 	return require("mini.notify").default_sort(array)
+end
+
+M.mini.pick.mark_and_move_down = function()
+	local mappings = require("mini.pick").get_picker_opts().mappings
+	local keys = mappings.mark .. mappings.move_down
+	vim.api.nvim_input(vim.api.nvim_replace_termcodes(keys, true, true, true))
+end
+
+M.mini.pick.move_up_and_unmark = function()
+	local mappings = require("mini.pick").get_picker_opts().mappings
+	local keys = mappings.move_up .. mappings.mark
+	vim.api.nvim_input(vim.api.nvim_replace_termcodes(keys, true, true, true))
 end
 
 return M

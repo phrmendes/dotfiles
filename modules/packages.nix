@@ -19,6 +19,7 @@
         bitwarden
         bitwarden-cli
         brightnessctl
+        bruno
         bws
         chromium
         cloudflared

@@ -117,6 +117,45 @@ local keys = {
 		opts.desc = "Wipeout"
 		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
+	copilot = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Copilot: quick chat"
+		map("n", "<leader>cc", function()
+			local input = vim.fn.input("Quick Chat: ")
+
+			if input ~= "" then
+				require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+			end
+		end, opts)
+
+		opts.desc = "Toggle chat"
+		map("n", "<leader>ct", "<cmd>CopilotChatToggle<cr>", opts)
+
+		opts.desc = "Stop chat"
+		map("n", "<leader>cs", "<cmd>CopilotChatStop<cr>", opts)
+
+		opts.desc = "Reset chat"
+		map("n", "<leader>cr", "<cmd>CopilotChatReset<cr>", opts)
+
+		opts.desc = "Explain"
+		map({ "n", "v" }, "<leader>ce", "<cmd>CopilotChatExplain<cr>", opts)
+
+		opts.desc = "Fix"
+		map({ "n", "v" }, "<leader>cf", "<cmd>CopilotChatFix<cr>", opts)
+
+		opts.desc = "Optimize"
+		map({ "n", "v" }, "<leader>co", "<cmd>CopilotChatOptimize<cr>", opts)
+
+		opts.desc = "Generate docs"
+		map({ "n", "v" }, "<leader>cd", "<cmd>CopilotChatDocs<cr>", opts)
+
+		opts.desc = "Generate tests"
+		map({ "n", "v" }, "<leader>cT", "<cmd>CopilotChatTests<cr>", opts)
+
+		opts.desc = "Review"
+		map({ "n", "v" }, "<leader>cR", "<cmd>CopilotChatReview<cr>", opts)
+	end,
 	git = function()
 		local opts = { noremap = true }
 

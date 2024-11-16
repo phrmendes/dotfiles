@@ -3,6 +3,8 @@ local luasnip = require("luasnip")
 local borders = require("utils").borders
 
 require("cmp_pandoc").setup({ filetypes = { "quarto" }, crossref = { enable_nabla = true } })
+require("copilot_cmp").setup()
+require("CopilotChat.integrations.cmp").setup()
 
 cmp.setup({
 	snippet = {
@@ -62,6 +64,7 @@ cmp.setup({
 		end,
 	},
 	sources = cmp.config.sources({
+		{ name = "copilot", group_index = 2 },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "lazydev", group_index = 0 },
@@ -95,6 +98,7 @@ cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 
 cmp.setup.filetype({ "quarto", "markdown" }, {
 	sources = cmp.config.sources({
+		{ name = "copilot", group_index = 2 },
 		{ name = "luasnip" },
 		{ name = "cmp_pandoc" },
 		{ name = "async_path" },

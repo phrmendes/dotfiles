@@ -29,6 +29,7 @@
       withPython3 = true;
       withRuby = false;
       plugins = with pkgs.vimPlugins; [
+        CopilotChat-nvim
         SchemaStore-nvim
         ansible-vim
         cmp-async-path
@@ -39,7 +40,8 @@
         cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp_luasnip
-        copilot-vim
+        copilot-cmp
+        copilot-lua
         dressing-nvim
         efmls-configs-nvim
         friendly-snippets
@@ -89,6 +91,7 @@
           jsregexp
           magick
           plenary-nvim
+          tiktoken_core
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [debugpy];

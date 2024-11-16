@@ -1,6 +1,11 @@
 local icons = require("mini.icons")
 
 icons.setup({
+	lsp = {
+		copilot = { glyph = "", hl = "MiniIconsOrange" },
+		otter = { glyph = "🦦", hl = "MiniIconsCyan" },
+		ellipsis_char = { glyph = "…", hl = "MiniIconsRed" },
+	},
 	file = {
 		[".eslintrc.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
 		[".node-version"] = { glyph = "", hl = "MiniIconsGreen" },

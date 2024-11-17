@@ -1,5 +1,6 @@
 require("snacks").setup({
-	notifier = { enabled = false },
-	statuscolumn = { enabled = false },
+	bigfile = { enabled = true },
+	quickfile = { enabled = true },
+	words = { enabled = true },
 	lazygit = { configure = false },
 })

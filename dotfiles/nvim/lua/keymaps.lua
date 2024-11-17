@@ -26,6 +26,16 @@ local keys = {
 		map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
 		map({ "n", "t" }, "<c-;>", require("snacks").terminal.toggle, opts)
 
+		opts.desc = "List buffers"
+		map("n", "<c-p>", function()
+			require("mini.pick").builtin.buffers(nil, {
+				mappings = require("utils").mini.buffers.delete(),
+			})
+		end, opts)
+
+		opts.desc = "Commands"
+		map("n", "<c-s-p>", require("mini.extra").pickers.commands, opts)
+
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
@@ -67,13 +77,6 @@ local keys = {
 
 		opts.desc = "Zoom"
 		map("n", "<leader>z", require("mini.misc").zoom, opts)
-
-		opts.desc = "List buffers"
-		map("n", "<leader>l", function()
-			require("mini.pick").builtin.buffers(nil, {
-				mappings = require("utils").mini.buffers.delete(),
-			})
-		end, opts)
 
 		opts.desc = "Explorer"
 		map("n", "<leader>e", function()
@@ -120,7 +123,7 @@ local keys = {
 	copilot = function()
 		local opts = { noremap = true }
 
-		opts.desc = "Copilot: quick chat"
+		opts.desc = "Quick chat"
 		map("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 
@@ -387,6 +390,11 @@ M.lsp = function(client, bufnr)
 	if client.supports_method("textDocument/signatureHelp") then
 		opts.desc = "LSP: signature help"
 		map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
+	end
+
+	if client.supports_method("textDocument/inlayHint") then
+		opts.desc = "LSP: toggle inlay hints"
+		map("n", "<leader>i", require("snacks").toggle.inlay_hints, opts)
 	end
 
 	if client.supports_method("textDocument/hover") then

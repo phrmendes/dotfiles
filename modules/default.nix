@@ -31,7 +31,6 @@
     ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
-    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -76,7 +75,7 @@
   zsh.enable = true;
 
   home = {
-    stateVersion = "24.05";
+    stateVersion = "25.05";
     username = parameters.user;
     homeDirectory = parameters.home;
     sessionVariables = {
@@ -84,10 +83,10 @@
       MOZ_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
+      TERMINAL = "kitty";
       XDG_CURRENT_DESKTOP = "hyprland";
       XDG_SESSION_DESKTOP = "hyprland";
       XDG_SESSION_TYPE = "wayland";
-      TERMINAL = "kitty";
     };
   };
 }

@@ -17,7 +17,6 @@
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       nvim-dap-vscode-js = fromGitHub "nvim-dap-vscode-js" inputs.nvim-dap-vscode-js;
-      one-small-step-for-vimkind = fromGitHub "one-small-step-for-vimkind" inputs.one-small-step-for-vimkind;
       snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
       vim-dadbod-ui = fromGitHub "vim-dadbod-ui" inputs.vim-dadbod-ui;
     in {

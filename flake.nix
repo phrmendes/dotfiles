@@ -40,11 +40,6 @@
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
-    one-small-step-for-vimkind = {
-      flake = false;
-      url = "github:jbyuki/one-small-step-for-vimkind";
-    };
-
     nvim-dap-vscode-js = {
       flake = false;
       url = "github:mxsdev/nvim-dap-vscode-js";

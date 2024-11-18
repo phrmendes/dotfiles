@@ -1,10 +1,10 @@
 require("mini.files").setup({
 	mappings = {
 		close = "q",
-		go_in = "<tab>",
+		go_in = "L",
 		go_in_plus = "<cr>",
-		go_out = "<s-tab>",
-		go_out_plus = "H",
+		go_out = "H",
+		go_out_plus = "<bs>",
 		reset = "<del>",
 		reveal_cwd = "@",
 		show_help = "?",

@@ -279,18 +279,23 @@ local keys = {
 	smart_splits = function()
 		local opts = { desc = "Smart splits" }
 
-		map("n", "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map("n", "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map("n", "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map("n", "<c-l>", require("smart-splits").move_cursor_right, opts)
-		map("n", "<c-left>", require("smart-splits").resize_left, opts)
-		map("n", "<c-down>", require("smart-splits").resize_down, opts)
-		map("n", "<c-up>", require("smart-splits").resize_up, opts)
-		map("n", "<c-right>", require("smart-splits").resize_right, opts)
-		map("n", "<c-s-left>", require("smart-splits").swap_buf_left, opts)
-		map("n", "<c-s-down>", require("smart-splits").swap_buf_down, opts)
-		map("n", "<c-s-up>", require("smart-splits").swap_buf_up, opts)
-		map("n", "<c-s-right>", require("smart-splits").swap_buf_right, opts)
+		opts.desc = "Smart splits: move cursor"
+		map({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
+		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
+		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
+		map({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
+
+		opts.desc = "Smart splits: resize panes"
+		map({ "n", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
+		map({ "n", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
+		map({ "n", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
+		map({ "n", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
+
+		opts.desc = "Smart splits: swap buffer"
+		map("n", "<c-left>", require("smart-splits").swap_buf_left, opts)
+		map("n", "<c-down>", require("smart-splits").swap_buf_down, opts)
+		map("n", "<c-up>", require("smart-splits").swap_buf_up, opts)
+		map("n", "<c-right>", require("smart-splits").swap_buf_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }

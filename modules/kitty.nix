@@ -48,11 +48,10 @@
         "ctrl+shift+j" = "neighboring_window down";
         "ctrl+shift+k" = "neighboring_window up";
         "ctrl+shift+l" = "neighboring_window right";
-        "ctrl+shift+n" = "new_window";
+        "ctrl+shift+n" = "new_tab_with_cwd";
         "ctrl+shift+q" = "close_window";
         "ctrl+shift+r" = "set_tab_title";
         "ctrl+shift+s" = "show_scrollback";
-        "ctrl+shift+t" = "new_tab_with_cwd";
         "ctrl+shift+u" = "scroll_line_up";
         "ctrl+shift+v" = "paste_from_clipboard";
         "ctrl+shift+z" = "combine : toggle_layout stack : scroll_prompt_to_bottom";

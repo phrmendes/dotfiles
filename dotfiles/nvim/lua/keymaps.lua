@@ -528,6 +528,13 @@ M.mini = {
 	end,
 }
 
+M.rest = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "Rest: run"
+	map("n", "<leader>r", "<cmd>Rest run<cr>", opts)
+end
+
 M.setup = function()
 	for _, fn in pairs(keys) do
 		fn()

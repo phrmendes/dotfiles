@@ -128,3 +128,12 @@ autocmd("FileType", {
 		vim.opt_local.conceallevel = 0
 	end,
 })
+
+autocmd("FileType", {
+	desc = "HTTP keymaps",
+	group = augroups.filetype,
+	pattern = "http",
+	callback = function(event)
+		require("keymaps").rest(event.bufnr)
+	end,
+})

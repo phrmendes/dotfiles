@@ -74,6 +74,7 @@
         nvim-ts-context-commentstring
         obsidian-nvim
         one-small-step-for-vimkind
+        rest-nvim
         smart-splits-nvim
         snacks-nvim
         undotree
@@ -90,8 +91,11 @@
         with luaPkgs; [
           jsregexp
           magick
+          mimetypes
+          nvim-nio
           plenary-nvim
           tiktoken_core
+          xml2lua
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [debugpy];

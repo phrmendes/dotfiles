@@ -3,10 +3,4 @@ require("copilot").setup({
 	panel = { enabled = false },
 })
 
-require("CopilotChat").setup({
-	mappings = {
-		complete = {
-			insert = "",
-		},
-	},
-})
+require("CopilotChat").setup({ chat_autocomplete = true })

@@ -14,6 +14,7 @@
           inherit src pname;
           version = src.rev;
         };
+      CopilotChat-nvim = fromGitHub "CopilotChat.nvim" inputs.CopilotChat-nvim;
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       nvim-dap-vscode-js = fromGitHub "nvim-dap-vscode-js" inputs.nvim-dap-vscode-js;

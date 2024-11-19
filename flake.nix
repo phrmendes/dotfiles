@@ -30,6 +30,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    CopilotChat-nvim = {
+      flake = false;
+      url = "github:CopilotC-Nvim/CopilotChat.nvim";
+    };
+
     efmls-configs-nvim = {
       flake = false;
       url = "github:creativenull/efmls-configs-nvim";

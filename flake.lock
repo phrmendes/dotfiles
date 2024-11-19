@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "CopilotChat-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731976518,
+        "narHash": "sha256-uL8f6+sZWBHH2VHmSWGlL5EC7kVRSO0I4sKEC2AEFXk=",
+        "owner": "CopilotC-Nvim",
+        "repo": "CopilotChat.nvim",
+        "rev": "947ca3d906a98ffdf9928d2e2ef8c7d694d2116f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CopilotC-Nvim",
+        "repo": "CopilotChat.nvim",
+        "type": "github"
+      }
+    },
     "auto-cpufreq": {
       "inputs": {
         "nixpkgs": [
@@ -314,6 +330,7 @@
     },
     "root": {
       "inputs": {
+        "CopilotChat-nvim": "CopilotChat-nvim",
         "auto-cpufreq": "auto-cpufreq",
         "disko": "disko",
         "efmls-configs-nvim": "efmls-configs-nvim",

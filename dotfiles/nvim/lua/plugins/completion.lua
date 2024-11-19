@@ -4,7 +4,6 @@ local borders = require("utils").borders
 
 require("cmp_pandoc").setup({ filetypes = { "quarto" }, crossref = { enable_nabla = true } })
 require("copilot_cmp").setup()
-require("CopilotChat.integrations.cmp").setup()
 
 cmp.setup({
 	snippet = {

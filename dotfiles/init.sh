@@ -40,39 +40,3 @@ function unlock_bw() {
 	echo "Bitwarden unlocked."
     fi
 }
-
-function t() {
-    tmux new-session -A -s default
-}
-
-function ta() {
-    DIR_BASENAME=$(basename "$PWD")
-    tmux new-session -A -s "$DIR_BASENAME"
-}
-
-function tf() {
-    echo "Local or global configuration? (local/global)"
-    read -r CONFIGURATION
-    if [[ $CONFIGURATION == "local" ]]; then
-	tmuxp freeze -y -f yaml
-    else
-	tmuxp freeze -y -f yaml -o .tmuxp.yaml
-    fi
-}
-
-function tl() {
-    DIR_BASENAME=$(basename "$PWD")
-    TMUXP_DIR="$HOME/.config/tmuxp"
-    if [[ -e ./.tmuxp.yaml ]]; then
-	tmuxp load ./.tmuxp.yaml
-    elif [[ -e $TMUXP_DIR/$DIR_BASENAME.yaml ]]; then
-	tmuxp load "$DIR_BASENAME"
-    else
-	tmuxp load "$(fd . "$TMUXP_DIR" | fzf --delimiter / \
-	    --with-nth -1 \
-	    --height 40% \
-	    --reverse \
-	    --preview "bat --color=always {}" \
-	    --bind ctrl-u:preview-up,ctrl-d:preview-down)"
-    fi
-}

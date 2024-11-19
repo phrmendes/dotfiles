@@ -292,10 +292,10 @@ local keys = {
 		map({ "n", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
 
 		opts.desc = "Smart splits: swap buffer"
-		map("n", "<c-left>", require("smart-splits").swap_buf_left, opts)
-		map("n", "<c-down>", require("smart-splits").swap_buf_down, opts)
-		map("n", "<c-up>", require("smart-splits").swap_buf_up, opts)
-		map("n", "<c-right>", require("smart-splits").swap_buf_right, opts)
+		map("n", "<c-s-h>", require("smart-splits").swap_buf_left, opts)
+		map("n", "<c-s-j>", require("smart-splits").swap_buf_down, opts)
+		map("n", "<c-s-k>", require("smart-splits").swap_buf_up, opts)
+		map("n", "<c-s-l>", require("smart-splits").swap_buf_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }

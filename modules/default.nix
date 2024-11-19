@@ -66,7 +66,6 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;

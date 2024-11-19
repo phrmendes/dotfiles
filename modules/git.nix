@@ -20,6 +20,20 @@
         merge.tool = "nvimdiff";
         pull.rebase = true;
         push.autoSetupRemote = true;
+        diff = {
+          tool = "kitty";
+          guitool = "kitty.gui";
+        };
+        difftool = {
+          prompt = false;
+          trustExitCode = true;
+        };
+        "difftool \"kitty\"" = {
+          cmd = "${pkgs.kitty}/bin/kitten diff $LOCAL $REMOTE";
+        };
+        "difftool \"kitty.gui\"" = {
+          cmd = "${pkgs.kitty}/bin/kitten diff $LOCAL $REMOTE";
+        };
       };
       aliases = {
         A = "add .";

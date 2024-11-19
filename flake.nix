@@ -40,6 +40,11 @@
       url = "github:creativenull/efmls-configs-nvim";
     };
 
+    kitty-scrollback-nvim = {
+      flake = false;
+      url = "github:mikesmithgh/kitty-scrollback.nvim";
+    };
+
     luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";

@@ -10,7 +10,6 @@
   config = lib.mkIf config.tmux.enable {
     programs.tmux = {
       enable = true;
-      tmuxp.enable = true;
       aggressiveResize = true;
       baseIndex = 1;
       clock24 = true;
@@ -27,27 +26,6 @@
           plugin = tmux-fzf;
           extraConfig = ''
             TMUX_FZF_LAUNCH_KEY='C-Space'
-          '';
-        }
-        {
-          plugin = continuum;
-          extraConfig = ''
-            set -g @continuum-boot          'on'
-            set -g @continuum-restore       'on'
-            set -g @continuum-save-interval '5'
-          '';
-        }
-        {
-          plugin = resurrect;
-          extraConfig = let
-            resurrect_dir = "${parameters.home}/.tmux/resurrect";
-          in ''
-            set -g @resurrect-dir                   '${resurrect_dir}'
-            set -g @resurrect-capture-pane-contents 'on'
-            set -g @resurrect-restore               'C-r'
-            set -g @resurrect-save                  'C-s'
-            set -g @resurrect-strategy-nvim         'session'
-            set -g @resurrect-processes             'nvim "~nvim->nvim"'
           '';
         }
       ];
@@ -104,16 +82,14 @@
         bind -r ']' next-window
         bind -r '{' swap-window -t -1\; select-window -t -1
         bind -r '}' swap-window -t +1\; select-window -t +1
-
-        bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
-        bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
-        bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'
-        bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l' 'select-pane -R'
-
-        bind -n M-h if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
-        bind -n M-j if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
-        bind -n M-k if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
-        bind -n M-l if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
+        bind -r h   select-pane -L
+        bind -r j   select-pane -D
+        bind -r k   select-pane -U
+        bind -r l   select-pane -R
+        bind -r H   resize-pane -L 3
+        bind -r J   resize-pane -D 3
+        bind -r K   resize-pane -U 3
+        bind -r L   resize-pane -R 3
 
         bind -T copy-mode-vi C-h select-pane -L
         bind -T copy-mode-vi C-j select-pane -D

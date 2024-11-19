@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  parameters,
   ...
 }: {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
@@ -25,54 +26,82 @@
         scrollback_lines = 5000;
         shell_integration = "enabled";
         tab_bar_edge = "bottom";
-        tab_bar_min_tabs = 2;
+        tab_bar_min_tabs = 1;
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
-        tab_title_template = "{index}: {title.split('/')[-1].split(':')[-1]}{' (Z)' if layout_name == 'stack' else ''}";
+        tab_title_template = " {index}: {title.split('/')[-1].split(':')[-1]}{'  ' if layout_name == 'stack' else ''}";
         term = "xterm-256color";
         undercurl_style = "thin-sparse";
         update_check_interval = 0;
         window_padding_width = 5;
+        bell_on_tab = "  ";
       };
+      extraConfig = ''
+        action_alias kitty_scrollback_nvim kitten ${parameters.home}/.config/kitty/python/kitty_scrollback_nvim.py
+
+        map --when-focus-on var:IS_NVIM alt+h
+        map --when-focus-on var:IS_NVIM alt+j
+        map --when-focus-on var:IS_NVIM alt+k
+        map --when-focus-on var:IS_NVIM alt+l
+
+        map --when-focus-on var:IS_NVIM ctrl+h
+        map --when-focus-on var:IS_NVIM ctrl+j
+        map --when-focus-on var:IS_NVIM ctrl+k
+        map --when-focus-on var:IS_NVIM ctrl+l
+      '';
       keybindings = {
-        "ctrl+shift+enter" = "resize_window";
-        "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
-        "ctrl+shift+plus" = "increase_font_size";
-        "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
-        "ctrl+shift+[" = "previous_tab";
-        "ctrl+shift+]" = "next_tab";
-        "ctrl+shift+_" = "decrease_font_size";
-        "ctrl+shift+c" = "copy_to_clipboard";
-        "ctrl+shift+d" = "scroll_line_down";
-        "ctrl+shift+h" = "neighboring_window left";
-        "ctrl+shift+j" = "neighboring_window down";
-        "ctrl+shift+k" = "neighboring_window up";
-        "ctrl+shift+l" = "neighboring_window right";
-        "ctrl+shift+n" = "new_tab_with_cwd";
-        "ctrl+shift+q" = "close_window";
-        "ctrl+shift+r" = "set_tab_title";
-        "ctrl+shift+s" = "show_scrollback";
+        "ctrl+space>\\" = "launch --location=vsplit --cwd=current";
+        "ctrl+space>minus" = "launch --location=hsplit --cwd=current";
+        "ctrl+space>[" = "previous_tab";
+        "ctrl+space>]" = "next_tab";
+        "ctrl+space>f" = "kitty_scrollback_nvim --config search";
+        "ctrl+space>h" = "move_window left";
+        "ctrl+space>j" = "move_window down";
+        "ctrl+space>k" = "move_window up";
+        "ctrl+space>l" = "move_window right";
+        "ctrl+space>n" = "new_tab_with_cwd";
+        "ctrl+space>o" = "open_url_with_hints";
+        "ctrl+space>q" = "close_window";
+        "ctrl+space>r" = "set_tab_title";
+        "ctrl+space>s" = "kitty_scrollback_nvim";
+        "ctrl+space>z" = "combine : toggle_layout stack : scroll_prompt_to_bottom";
+        "ctrl+space>1" = "goto_tab 1";
+        "ctrl+space>2" = "goto_tab 2";
+        "ctrl+space>3" = "goto_tab 3";
+        "ctrl+space>4" = "goto_tab 4";
+        "ctrl+space>5" = "goto_tab 5";
+        "ctrl+space>6" = "goto_tab 6";
+        "ctrl+space>7" = "goto_tab 7";
+        "ctrl+space>8" = "goto_tab 8";
+        "ctrl+space>9" = "goto_tab 9";
+        "alt+h" = "kitten python/relative_resize.py left 3";
+        "alt+j" = "kitten python/relative_resize.py down 3";
+        "alt+k" = "kitten python/relative_resize.py up 3";
+        "alt+l" = "kitten python/relative_resize.py right 3";
+        "ctrl+h" = "neighboring_window left";
+        "ctrl+j" = "neighboring_window down";
+        "ctrl+k" = "neighboring_window up";
+        "ctrl+l" = "neighboring_window right";
         "ctrl+shift+u" = "scroll_line_up";
+        "ctrl+shift+d" = "scroll_line_down";
+        "ctrl+shift+f" = "scroll_page_up";
+        "ctrl+shift+b" = "scroll_page_down";
         "ctrl+shift+v" = "paste_from_clipboard";
-        "ctrl+shift+z" = "combine : toggle_layout stack : scroll_prompt_to_bottom";
-        "ctrl+shift+left" = "move_window left";
-        "ctrl+shift+down" = "move_window down";
-        "ctrl+shift+up" = "move_window up";
-        "ctrl+shift+right" = "move_window right";
-        "ctrl+shift+1" = "goto_tab 1";
-        "ctrl+shift+2" = "goto_tab 2";
-        "ctrl+shift+3" = "goto_tab 3";
-        "ctrl+shift+4" = "goto_tab 4";
-        "ctrl+shift+5" = "goto_tab 5";
-        "ctrl+shift+6" = "goto_tab 6";
-        "ctrl+shift+7" = "goto_tab 7";
-        "ctrl+shift+8" = "goto_tab 8";
-        "ctrl+shift+9" = "goto_tab 9";
+        "ctrl+shift+c" = "copy_to_clipboard";
+        "ctrl+shift+minus" = "decrease_font_size";
+        "ctrl+shift+equal" = "increase_font_size";
+        "ctrl+shift+backspace" = "change_font_size all 0";
+        "ctrl+shift+f1" = "debug_config";
       };
     };
 
     xdg.configFile = {
       "kitty/open-actions.conf".source = ../dotfiles/kitty/open-actions.conf;
+      "kitty/neighboring_window.py".source = ../dotfiles/kitty/neighboring_window.py;
+      "kitty/python" = {
+        source = ../dotfiles/kitty/python;
+        recursive = true;
+      };
     };
   };
 }

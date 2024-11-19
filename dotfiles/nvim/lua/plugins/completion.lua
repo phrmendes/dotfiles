@@ -22,7 +22,6 @@ cmp.setup({
 				end
 			end,
 		}),
-		["<c-y>"] = cmp.mapping.complete(),
 		["<c-u>"] = cmp.mapping.scroll_docs(-4),
 		["<c-d>"] = cmp.mapping.scroll_docs(4),
 		["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),

@@ -30,20 +30,26 @@
       ];
       shellAliases = let
         inherit (lib) getExe;
-      in {
+        kitten = "${pkgs.kitty}/bin/kitten";
+      in rec {
         cat = getExe pkgs.bat;
+        d = "${kitten} diff";
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;
         grep = getExe pkgs.ripgrep;
+        hg = "${kitten} hyperlinked-grep";
         k = "${pkgs.kubectl}/bin/kubectl";
         lg = getExe pkgs.lazygit;
         open = "${pkgs.xdg-utils}/bin/xdg-open";
         ps = getExe pkgs.procs;
+        s = "${kitten} ssh";
         sed = getExe pkgs.gnused;
+        t = getExe pkgs.tmux;
+        ta = "${t} new-session -A -s default";
         top = getExe pkgs.btop;
+        transfer = "${kitten} transfer";
         v = "nvim";
-        gm = getExe pkgs.gnome-commander;
       };
     };
   };

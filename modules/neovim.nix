@@ -67,7 +67,6 @@
         nvim-dap-vscode-js
         nvim-highlight-colors
         nvim-lspconfig
-        nvim-luapad
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars

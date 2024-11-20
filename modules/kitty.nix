@@ -37,7 +37,7 @@
         bell_on_tab = "  ";
       };
       extraConfig = ''
-        action_alias kitty_scrollback_nvim kitten ${parameters.home}/.config/kitty/python/kitty_scrollback_nvim.py
+        action_alias kitty_scrollback_nvim kitten ${parameters.home}/.config/kitty/kitty_scrollback_nvim.py
 
         map --when-focus-on var:IS_NVIM alt+h
         map --when-focus-on var:IS_NVIM alt+j
@@ -97,11 +97,11 @@
 
     xdg.configFile = {
       "kitty/open-actions.conf".source = ../dotfiles/kitty/open-actions.conf;
-      "kitty/neighboring_window.py".source = ../dotfiles/kitty/neighboring_window.py;
-      "kitty/python" = {
-        source = ../dotfiles/kitty/python;
-        recursive = true;
-      };
+      "kitty/kitty_scrollback_nvim.py".source = ../dotfiles/kitty/python/kitty_scrollback_nvim.py;
+      "kitty/neighboring_window.py".source = ../dotfiles/kitty/python/neighboring_window.py;
+      "kitty/relative_resize.py".source = ../dotfiles/kitty/python/relative_resize.py;
+      "kitty/python/kitty_scroll_prompt.py".source = ../dotfiles/kitty/python/kitty_scroll_prompt.py;
+      "kitty/python/loading.py".source = ../dotfiles/kitty/python/loading.py;
     };
   };
 }

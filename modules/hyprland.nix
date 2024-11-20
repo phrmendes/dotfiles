@@ -110,6 +110,7 @@
           "float,stayfocused,opaque,class:(wofi)"
           "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
           "float,title:^(Picture-in-Picture)$"
+          "float,title:^(OpenSSH Authentication Passphrase request)$"
           "opaque,class:^(chromium)$"
           "opaque,class:^(firefox)$"
           "opaque,class:^(vlc)$"

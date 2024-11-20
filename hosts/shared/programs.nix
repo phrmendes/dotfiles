@@ -10,6 +10,8 @@
     kdeconnect.enable = true;
     zsh.enable = true;
 
+    ssh.askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

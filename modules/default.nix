@@ -1,5 +1,6 @@
 {parameters, ...}: {
   imports = [
+    ./alacritty.nix
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
@@ -16,7 +17,6 @@
     ./hyprland.nix
     ./hyprpaper.nix
     ./k9s.nix
-    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -38,6 +38,7 @@
     ./zsh.nix
   ];
 
+  alacritty.enable = true;
   bat.enable = true;
   blueman-applet.enable = true;
   btop.enable = true;
@@ -54,7 +55,6 @@
   hyprland.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
-  kitty.enable = true;
   lazygit.enable = true;
   neovim.enable = true;
   nm-applet.enable = true;
@@ -66,6 +66,7 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
+  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;
@@ -82,7 +83,7 @@
       MOZ_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
-      TERMINAL = "kitty";
+      TERMINAL = "alacritty";
       XDG_CURRENT_DESKTOP = "hyprland";
       XDG_SESSION_DESKTOP = "hyprland";
       XDG_SESSION_TYPE = "wayland";

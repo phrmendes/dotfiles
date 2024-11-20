@@ -32,6 +32,7 @@ clue.setup({
 		{ mode = "n", keys = "<leader><tab>", desc = "Tabs" },
 		{ mode = "n", keys = "<leader>b", desc = "Buffers" },
 		{ mode = "n", keys = "<leader>c", desc = "Copilot" },
+		{ mode = "x", keys = "<leader>c", desc = "Copilot" },
 		{ mode = "n", keys = "<leader>g", desc = "Git" },
 		{ mode = "x", keys = "<leader>g", desc = "Git" },
 		{ mode = "n", keys = "<leader>o", desc = "Obsidian" },

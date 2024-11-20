@@ -264,22 +264,6 @@
         "type": "github"
       }
     },
-    "kitty-scrollback-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731689360,
-        "narHash": "sha256-PpBaVuZqlU5A9a7ryEvs5TcsM/uz3dzx7KGjA3tt3NU=",
-        "owner": "mikesmithgh",
-        "repo": "kitty-scrollback.nvim",
-        "rev": "d52825b2a076586d1af156a066db2d18cd1fd8cb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mikesmithgh",
-        "repo": "kitty-scrollback.nvim",
-        "type": "github"
-      }
-    },
     "luasnip-latex-snippets": {
       "flake": false,
       "locked": {
@@ -352,7 +336,6 @@
         "efmls-configs-nvim": "efmls-configs-nvim",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "kitty-scrollback-nvim": "kitty-scrollback-nvim",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "nvim-dap-vscode-js": "nvim-dap-vscode-js",

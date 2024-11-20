@@ -10,6 +10,7 @@
   config = lib.mkIf config.tmux.enable {
     programs.tmux = {
       enable = true;
+      tmuxp.enable = true;
       aggressiveResize = true;
       baseIndex = 1;
       clock24 = true;
@@ -18,6 +19,7 @@
       historyLimit = 5000;
       keyMode = "vi";
       mouse = true;
+      newSession = true;
       prefix = "C-Space";
       shell = lib.getExe pkgs.zsh;
       terminal = "xterm-256color";
@@ -26,6 +28,27 @@
           plugin = tmux-fzf;
           extraConfig = ''
             TMUX_FZF_LAUNCH_KEY='C-Space'
+          '';
+        }
+        {
+          plugin = continuum;
+          extraConfig = ''
+            set -g @continuum-boot          'on'
+            set -g @continuum-restore       'on'
+            set -g @continuum-save-interval '5'
+          '';
+        }
+        {
+          plugin = resurrect;
+          extraConfig = let
+            resurrect_dir = "${parameters.home}/.tmux/resurrect";
+          in ''
+            set -g @resurrect-dir                   '${resurrect_dir}'
+            set -g @resurrect-capture-pane-contents 'on'
+            set -g @resurrect-restore               'C-r'
+            set -g @resurrect-save                  'C-s'
+            set -g @resurrect-strategy-nvim         'session'
+            set -g @resurrect-processes             'nvim "~nvim->nvim"'
           '';
         }
       ];
@@ -73,6 +96,7 @@
         bind r     command-prompt -I "#W" "rename-window '%%'"
         bind y     copy-mode
         bind z     resize-pane -Z
+        bind m     set-window-option synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
 
         bind -r ',' swap-pane -U
         bind -r '.' swap-pane -D
@@ -82,14 +106,18 @@
         bind -r ']' next-window
         bind -r '{' swap-window -t -1\; select-window -t -1
         bind -r '}' swap-window -t +1\; select-window -t +1
-        bind -r h   select-pane -L
-        bind -r j   select-pane -D
-        bind -r k   select-pane -U
-        bind -r l   select-pane -R
-        bind -r H   resize-pane -L 3
-        bind -r J   resize-pane -D 3
-        bind -r K   resize-pane -U 3
-        bind -r L   resize-pane -R 3
+        bind -r ')' switch-client -n
+        bind -r '(' switch-client -p
+
+        bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
+        bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
+        bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'
+        bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l' 'select-pane -R'
+
+        bind -n M-h if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
+        bind -n M-j if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
+        bind -n M-k if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
+        bind -n M-l if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
 
         bind -T copy-mode-vi C-h select-pane -L
         bind -T copy-mode-vi C-j select-pane -D
@@ -98,6 +126,8 @@
         bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind -T copy-mode-vi v   send-keys -X begin-selection
         bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
+
+        run-shell "tmux has-session -t 0 2>/dev/null && tmux kill-session -t 0"
       '';
     };
   };

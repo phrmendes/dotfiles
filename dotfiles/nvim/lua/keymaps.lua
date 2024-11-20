@@ -24,7 +24,7 @@ local keys = {
 		map("t", "<c-j>", "<cmd>wincmd j<cr>", opts)
 		map("t", "<c-k>", "<cmd>wincmd k<cr>", opts)
 		map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
-		map({ "n", "t" }, "<c-;>", require("snacks").terminal.toggle, opts)
+		map({ "n", "t" }, "<c-\\>", require("snacks").terminal.toggle, opts)
 
 		opts.desc = "List buffers"
 		map("n", "<c-p>", function()
@@ -124,6 +124,7 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Quick chat"
+		map("x", "<leader>cc", "<cmd>CopilotChat<cr>", opts)
 		map("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 

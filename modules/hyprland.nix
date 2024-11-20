@@ -17,7 +17,7 @@
       dmenu = "${getExe pkgs.wofi} --show dmenu";
       pactl = "${pkgs.pulseaudio}/bin/pactl";
       systemctl = "${pkgs.systemd}/bin/systemctl";
-      terminal = getExe pkgs.kitty;
+      terminal = getExe pkgs.alacritty;
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;

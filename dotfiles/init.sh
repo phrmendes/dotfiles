@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
@@ -38,5 +38,44 @@ function unlock_bw() {
 	export BW_SESSION
 
 	echo "Bitwarden unlocked."
+    fi
+}
+
+function ta() {
+    DIR_BASENAME=$(basename "$PWD")
+
+    tmux new-session -d -s "$DIR_BASENAME"
+    tmux switch-client -t "$DIR_BASENAME"
+}
+
+function tf() {
+    echo "Local or global configuration? (local/global)"
+    read -r CONFIGURATION
+
+    DIR_BASENAME=$(basename "$PWD")
+    TMUXP_DIR="$HOME/.config/tmuxp"
+
+    if [[ $CONFIGURATION == "local" ]]; then
+	tmuxp freeze -y -f yaml -o .tmuxp.yaml
+    else
+	tmuxp freeze -y -f yaml -o "$TMUXP_DIR/$DIR_BASENAME.yaml"
+    fi
+}
+
+function tl() {
+    DIR_BASENAME=$(basename "$PWD")
+    TMUXP_DIR="$HOME/.config/tmuxp"
+
+    if [[ -e ./.tmuxp.yaml ]]; then
+	tmuxp load -a ./.tmuxp.yaml
+    elif [[ -e $TMUXP_DIR/$DIR_BASENAME.yaml ]]; then
+	tmuxp load -a "$DIR_BASENAME"
+    else
+	tmuxp load -a "$(fd . "$TMUXP_DIR" | fzf --delimiter / \
+	    --with-nth -1 \
+	    --height 40% \
+	    --reverse \
+	    --preview "bat --color=always {}" \
+	    --bind ctrl-u:preview-up,ctrl-d:preview-down)"
     fi
 }

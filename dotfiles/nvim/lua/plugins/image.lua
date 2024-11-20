@@ -1,3 +1,3 @@
-if not vim.g.neovide or vim.env.KITTY_SCROLLBACK_NVIM ~= "true" then
+if not vim.g.neovide then
 	require("image").setup()
 end

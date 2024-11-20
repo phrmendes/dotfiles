@@ -163,10 +163,10 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Add (file)"
-		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
+		map("n", "<leader>ga", require("utils").mini.git.add_file, opts)
 
 		opts.desc = "Add (repo)"
-		map("n", "<leader>gA", "<cmd>Git add .<cr>", opts)
+		map("n", "<leader>gA", require("utils").mini.git.add_repo, opts)
 
 		opts.desc = "Blame"
 		map("n", "<leader>gb", require("snacks").git.blame_line, opts)

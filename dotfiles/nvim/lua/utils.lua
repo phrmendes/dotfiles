@@ -7,6 +7,7 @@ M.mini.buffers = {}
 M.mini.files = {}
 M.mini.notify = {}
 M.mini.pick = {}
+M.mini.git = {}
 
 M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
@@ -237,6 +238,25 @@ M.mini.pick.move_up_and_unmark = function()
 	local mappings = require("mini.pick").get_picker_opts().mappings
 	local keys = mappings.move_up .. mappings.mark
 	vim.api.nvim_input(vim.api.nvim_replace_termcodes(keys, true, true, true))
+end
+
+M.mini.git.add_file = function()
+	local success = pcall(vim.cmd, "Git add %")
+
+	if success then
+		vim.notify("Git: added '" .. vim.fn.expand("%:t") .. "' file")
+	end
+end
+
+M.mini.git.add_repo = function()
+	local success = pcall(vim.cmd, "Git add --all")
+
+	if success then
+		local cwd = vim.uv.cwd()
+		if cwd ~= nil then
+			vim.notify("Git: added '" .. vim.fn.fnamemodify(cwd, ":t") .. "' repo")
+		end
+	end
 end
 
 return M

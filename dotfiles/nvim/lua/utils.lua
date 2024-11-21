@@ -13,6 +13,7 @@ M.augroups = {
 	filetype = augroup("UserFileType", { clear = true }),
 	mini = augroup("UserMini", { clear = true }),
 	yank = augroup("UserYank", { clear = true }),
+	windows = augroup("UserWindows", { clear = true }),
 	lsp = {
 		attach = augroup("UserLspAttach", { clear = true }),
 		detach = augroup("UserLspDetach", { clear = true }),

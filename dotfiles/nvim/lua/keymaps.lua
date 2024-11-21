@@ -69,8 +69,11 @@ local keys = {
 		opts.desc = "Quit"
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
 
+		opts.desc = "Paste (no register)"
+		vim.keymap.set("x", "<leader>P", [["_dP]], opts)
+
 		opts.desc = "Write"
-		map("n", "<leader>w", "<cmd>w!<cr>", opts)
+		map("n", "<leader>w", "<cmd>silent w!<cr>", opts)
 
 		opts.desc = "Quickfix"
 		map("n", "<leader>x", "<cmd>copen<cr>", opts)

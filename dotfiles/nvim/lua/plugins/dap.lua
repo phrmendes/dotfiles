@@ -152,7 +152,7 @@ setup.js_ts = function()
 				processId = require("dap.utils").pick_process,
 				sourceMaps = true,
 				resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
-				skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+				skipFiles = { "<node_internals>/**", "${workspaceFolder}/node_modules/**" },
 			},
 			{
 				type = "pwa-chrome",

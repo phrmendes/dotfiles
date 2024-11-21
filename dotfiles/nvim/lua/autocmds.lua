@@ -64,6 +64,17 @@ autocmd("LspAttach", {
 		end
 	end,
 })
+
+autocmd("WinEnter", {
+	desc = "Automatically close Vim if the quickfix window is the only one open",
+	group = augroups.windows,
+	callback = function()
+		if vim.fn.winnr("$") == 1 and vim.fn.win_gettype() == "quickfix" then
+			vim.cmd.q()
+		end
+	end,
+})
+
 autocmd("User", {
 	desc = "Set border for mini.files window",
 	group = augroups.mini,
@@ -97,7 +108,7 @@ autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
 	callback = function()
-		vim.highlight.on_yank()
+		require("vim.highlight").on_yank({ higroup = "Substitute", timeout = 200 })
 	end,
 })
 

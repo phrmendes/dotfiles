@@ -30,7 +30,7 @@
         window = {
           dynamic_padding = false;
           padding = {
-            x = 15;
+            x = 10;
             y = 10;
           };
         };

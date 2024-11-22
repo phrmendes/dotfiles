@@ -10,9 +10,6 @@
     programs.alacritty = {
       enable = true;
       settings = {
-        env = {
-          TERM = "xterm-256color";
-        };
         terminal = let
           inherit (lib) getExe;
           tmux = getExe pkgs.tmux;

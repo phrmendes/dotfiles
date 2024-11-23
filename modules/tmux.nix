@@ -48,6 +48,7 @@
             set -g @resurrect-save                  'C-s'
             set -g @resurrect-strategy-nvim         'session'
             set -g @resurrect-processes             'nvim "~nvim->nvim"'
+            set -g @resurrect-hook-post-save-all    "sed -i 's/--cmd lua.*--cmd set packpath/--cmd \"lua/g; s/--cmd set rtp.*\$/\"/' ${resurrect_dir}/last"
           '';
         }
       ];

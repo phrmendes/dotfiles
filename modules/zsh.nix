@@ -37,6 +37,7 @@
         fs = getExe pkgs.fselect;
         grep = getExe pkgs.ripgrep;
         k = "${pkgs.kubectl}/bin/kubectl";
+        ld = getExe pkgs.lazydocker;
         lg = getExe pkgs.lazygit;
         open = "${pkgs.xdg-utils}/bin/xdg-open";
         ps = getExe pkgs.procs;

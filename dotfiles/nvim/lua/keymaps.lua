@@ -202,8 +202,8 @@ local keys = {
 		opts.desc = "Push"
 		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 
-		opts.desc = "Open repo in browser"
-		map("n", "<leader>go", require("snacks").gitbrowse.open, opts)
+		opts.desc = "Open in browser"
+		map({ "n", "v" }, "<leader>go", require("snacks").gitbrowse.open, opts)
 	end,
 	luasnip = function()
 		local opts = { noremap = true, silent = true }

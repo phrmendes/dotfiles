@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    CopilotChat-nvim = {
-      flake = false;
-      url = "github:CopilotC-Nvim/CopilotChat.nvim";
-    };
-
     efmls-configs-nvim = {
       flake = false;
       url = "github:creativenull/efmls-configs-nvim";
@@ -53,11 +48,6 @@
     snacks-nvim = {
       flake = false;
       url = "github:folke/snacks.nvim";
-    };
-
-    vim-dadbod-ui = {
-      flake = false;
-      url = "github:kristijanhusak/vim-dadbod-ui";
     };
   };
 

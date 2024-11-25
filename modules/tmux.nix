@@ -55,9 +55,9 @@
       extraConfig = let
         status_bar = "  #I: #W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
       in ''
-        set -g default-terminal    "alacritty"
-        set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # colored underscores
-        set -as terminal-overrides ',alacritty:RGB'                                                                # true-color support
+        set -g  default-terminal    "alacritty"
+        set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d%;m'  # colored underscores
+        set -as terminal-overrides ',alacritty:RGB'                                                 # true-color support
 
         unbind ','
 
@@ -70,10 +70,8 @@
         set -g status-interval     3
         set -g status-justify      'left'
         set -g status-left         ""
-        set -g status-left-length  '80'
-        set -g status-left-style   none
         set -g status-position     top
-        set -g status-right        '  #S '
+        set -g status-right        '  #S   #H '
         set -g status-right-length '80'
         set -g status-right-style  none
         set -g visual-activity     'off'
@@ -93,7 +91,7 @@
         bind Q     kill-window
         bind d     detach-client
         bind k     kill-session
-        bind n     new-window
+        bind n     new-window -c '#{pane_current_path}'
         bind p     paste-buffer
         bind q     kill-pane
         bind r     command-prompt -I "#W" "rename-window '%%'"

@@ -39,7 +39,6 @@
         k = "${pkgs.kubectl}/bin/kubectl";
         ld = getExe pkgs.lazydocker;
         lg = getExe pkgs.lazygit;
-        open = "${pkgs.xdg-utils}/bin/xdg-open";
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
         top = getExe pkgs.btop;

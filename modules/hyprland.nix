@@ -10,14 +10,15 @@
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
       brightnessctl = lib.getExe pkgs.brightnessctl;
-      playerctl = getExe pkgs.playerctl;
-      swaylock = getExe pkgs.swaylock;
-      wofi = getExe pkgs.wofi;
-      wofi-emoji = getExe pkgs.wofi-emoji;
       dmenu = "${getExe pkgs.wofi} --show dmenu";
       pactl = "${pkgs.pulseaudio}/bin/pactl";
+      playerctl = getExe pkgs.playerctl;
+      swaylock = getExe pkgs.swaylock;
       systemctl = "${pkgs.systemd}/bin/systemctl";
       terminal = getExe pkgs.alacritty;
+      wofi = getExe pkgs.wofi;
+      wofi-emoji = getExe pkgs.wofi-emoji;
+      zsh = getExe pkgs.zsh;
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
@@ -157,6 +158,7 @@
             "SUPER,space,exec,${wofi}"
             "SUPER,tab,changegroupactive,f"
             "SUPER,return,exec,${terminal}"
+            "SUPER SHIFT,return,exec,${terminal} -e ${zsh} -l"
             "SUPER,V,exec,${lib.getExe clipboard}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

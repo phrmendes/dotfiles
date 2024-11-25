@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
@@ -44,8 +44,12 @@ function unlock_bw() {
 function ta() {
     DIR_BASENAME=$(basename "$PWD")
 
-    tmux new-session -d -s "$DIR_BASENAME"
-    tmux switch-client -t "$DIR_BASENAME"
+    if [[ -z $TMUX ]]; then
+	tmux new-session -A -s "$DIR_BASENAME"
+    else
+	tmux new-session -d -s "$DIR_BASENAME"
+	tmux switch-client -t "$DIR_BASENAME"
+    fi
 }
 
 function tf() {
@@ -68,7 +72,7 @@ function tl() {
 
     if [[ -e ./.tmuxp.yaml ]]; then
 	tmuxp load -a ./.tmuxp.yaml
-    elif [[ -e $TMUXP_DIR/$DIR_BASENAME.yaml ]]; then
+    elif [[ -e "$TMUXP_DIR/$DIR_BASENAME.yaml" ]]; then
 	tmuxp load -a "$DIR_BASENAME"
     else
 	tmuxp load -a "$(fd . "$TMUXP_DIR" | fzf --delimiter / \
@@ -77,5 +81,21 @@ function tl() {
 	    --reverse \
 	    --preview "bat --color=always {}" \
 	    --bind ctrl-u:preview-up,ctrl-d:preview-down)"
+    fi
+}
+
+function connect_ssh() {
+    HOSTS=$(awk '{print $1}' "$HOME"/.ssh/known_hosts | cut -d ',' -f1 | sort -u)
+
+    SELECTED_HOST=$(printf "%s\n" "${HOSTS[@]}" | fzf --prompt="Select SSH host: " \
+	--with-nth -1 \
+	--height=40% \
+	--reverse \
+	--bind ctrl-u:preview-up,ctrl-d:preview-down)
+
+    if [ "$SELECTED_HOST" != "" ]; then
+      ssh "$SELECTED_HOST"
+    else
+      echo "No host selected."
     fi
 }

@@ -64,11 +64,11 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "copilot" },
 		{ name = "lazydev", group_index = 0 },
 		{ name = "luasnip" },
 		{ name = "async_path" },
 	}, {
+		{ name = "copilot" },
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
 	window = {

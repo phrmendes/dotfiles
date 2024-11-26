@@ -23,6 +23,7 @@
         chromium
         cloudflared
         deluge
+        docker-credential-helpers
         droidcam
         elixir
         evince

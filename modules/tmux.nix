@@ -10,7 +10,6 @@
   config = lib.mkIf config.tmux.enable {
     programs.tmux = {
       enable = true;
-      tmuxp.enable = true;
       aggressiveResize = true;
       baseIndex = 1;
       clock24 = true;
@@ -23,12 +22,6 @@
       prefix = "C-Space";
       shell = lib.getExe pkgs.zsh;
       plugins = with pkgs.tmuxPlugins; [
-        {
-          plugin = tmux-fzf;
-          extraConfig = ''
-            TMUX_FZF_LAUNCH_KEY='C-Space'
-          '';
-        }
         {
           plugin = continuum;
           extraConfig = ''
@@ -98,6 +91,18 @@
         bind y     copy-mode
         bind z     resize-pane -Z
         bind m     set-window-option synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
+        bind Space run-shell "sesh connect \"$(
+          ${lib.getExe pkgs.sesh} list --icons | fzf-tmux -p 55%,60% \
+            --no-sort --ansi --border-label ' sesh ' --prompt '⚡' \
+            --header '  ^a all ^t tmux ^g configs ^x zoxide ^d kill ^f find' \
+            --bind 'tab:down,btab:up' \
+            --bind 'ctrl-a:change-prompt(⚡)+reload(sesh list --icons)' \
+            --bind 'ctrl-t:change-prompt( )+reload(sesh list -t --icons)' \
+            --bind 'ctrl-g:change-prompt(⚙️ )+reload(sesh list -c --icons)' \
+            --bind 'ctrl-x:change-prompt( )+reload(sesh list -z --icons)' \
+            --bind 'ctrl-f:change-prompt(󰍉 )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+            --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡)+reload(sesh list --icons)' \
+        )\""
 
         bind -r ',' swap-pane -U
         bind -r '.' swap-pane -D

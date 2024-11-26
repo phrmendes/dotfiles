@@ -77,6 +77,7 @@
         qview
         satty
         scrcpy
+        sesh
         slurp
         sqlc
         sshfs

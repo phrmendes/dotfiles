@@ -133,11 +133,6 @@
         devices = ["desktop" "orangepizero2" "phone" "tablet"];
         versioning = versioning.trashcan;
       };
-      "tmuxp" = {
-        path = "${parameters.home}/.config/tmuxp";
-        devices = ["desktop" "orangepizero2"];
-        versioning = versioning.trashcan;
-      };
     };
   };
 }

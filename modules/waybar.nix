@@ -69,7 +69,7 @@
           max-length = 10;
         };
         nix = {
-          format = "  ";
+          format = " ";
         };
         separator = {
           format = "";

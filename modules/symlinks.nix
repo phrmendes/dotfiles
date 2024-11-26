@@ -10,6 +10,7 @@
   config = lib.mkIf config.symlinks.enable {
     home.file = {
       ".face.icon".source = ../dotfiles/face.png;
+      ".config/sesh/sesh.toml".source = ../dotfiles/sesh.toml;
       ".config/satty/config.toml".text = ''
         [general]
         fullscreen = true

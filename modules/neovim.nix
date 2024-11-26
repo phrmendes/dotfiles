@@ -83,8 +83,6 @@
         vim-helm
         vim-sleuth
         vim-slime
-        vim-test
-        vimux
       ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [

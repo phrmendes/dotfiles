@@ -328,24 +328,6 @@ local keys = {
 		opts.desc = "Edit"
 		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
-	tests = function()
-		local opts = { noremap = true }
-
-		opts.desc = "Nearest"
-		map("n", "<leader>tt", "<cmd>TestNearest<cmd>", opts)
-
-		opts.desc = "File"
-		map("n", "<leader>tf", "<cmd>TestFile<cmd>", opts)
-
-		opts.desc = "Suite"
-		map("n", "<leader>ts", "<cmd>TestSuite<cmd>", opts)
-
-		opts.desc = "Last"
-		map("n", "<leader>tl", "<cmd>TestLast<cmd>", opts)
-
-		opts.desc = "Visit"
-		map("n", "<leader>tv", "<cmd>TestVisit<cmd>", opts)
-	end,
 }
 
 M.lsp = function(client, bufnr)

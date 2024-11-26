@@ -16,6 +16,7 @@
         "Zotero"
         ".ansible"
         ".config"
+        ".docker"
         ".gnupg"
         ".kube"
         ".mongodb"

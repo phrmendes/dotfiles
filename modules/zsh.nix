@@ -42,6 +42,7 @@
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
         top = getExe pkgs.btop;
+        t = "${getExe pkgs.tmux} new-session -A -s default";
         v = "nvim";
       };
     };

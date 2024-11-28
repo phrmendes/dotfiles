@@ -40,14 +40,3 @@ function unlock_bw() {
 	echo "Bitwarden unlocked."
     fi
 }
-
-function ta() {
-    DIR_BASENAME=$(basename "$PWD")
-
-    if [[ -z $TMUX ]]; then
-	tmux new-session -A -s "$DIR_BASENAME"
-    else
-	tmux new-session -d -s "$DIR_BASENAME"
-	tmux switch-client -t "$DIR_BASENAME"
-    fi
-}

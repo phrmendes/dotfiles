@@ -129,46 +129,6 @@ setup.elixir = function()
 	}
 end
 
-setup.js_ts = function()
-	require("dap-vscode-js").setup({
-		debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
-		adapters = { "pwa-node", "pwa-chrome" },
-	})
-
-	for _, language in ipairs({ "javascript", "typescript" }) do
-		dap.configurations[language] = {
-			{
-				type = "pwa-node",
-				request = "launch",
-				name = "Launch current file in new node process",
-				program = "${file}",
-				cwd = "${workspaceFolder}",
-			},
-			{
-				type = "pwa-node",
-				request = "attach",
-				name = "Attach debugger to existing `node --inspect` process",
-				cwd = "${workspaceFolder}/src",
-				processId = require("dap.utils").pick_process,
-				sourceMaps = true,
-				resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
-				skipFiles = { "<node_internals>/**", "${workspaceFolder}/node_modules/**" },
-			},
-			{
-				type = "pwa-chrome",
-				request = "launch",
-				name = "Launch Chrome to debug client side code",
-				url = "http://localhost:5173",
-				sourceMaps = true,
-				webRoot = "${workspaceFolder}/src",
-				protocol = "inspector",
-				port = 9222,
-				skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
-			},
-		}
-	end
-end
-
 for _, fn in pairs(setup) do
 	fn()
 end

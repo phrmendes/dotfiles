@@ -16,7 +16,6 @@
         };
       efmls-configs-nvim = fromGitHub "efmls-configs-nvim" inputs.efmls-configs-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      nvim-dap-vscode-js = fromGitHub "nvim-dap-vscode-js" inputs.nvim-dap-vscode-js;
       snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
     in {
       enable = true;
@@ -62,7 +61,6 @@
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
-        nvim-dap-vscode-js
         nvim-highlight-colors
         nvim-lspconfig
         nvim-treesitter-context
@@ -128,8 +126,6 @@
           taplo
           terraform-ls
           texlab
-          typescript-language-server
-          vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server
         ]
@@ -147,9 +143,6 @@
       };
       "nvim/lua/paths/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
-      '';
-      "nvim/lua/paths/vscode-js-debug.lua".text = ''
-        return "${pkgs.vscode-js-debug}"
       '';
       "nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {

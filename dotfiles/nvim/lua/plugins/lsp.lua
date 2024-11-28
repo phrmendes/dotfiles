@@ -12,7 +12,6 @@ local efm = {
 	elixir = { require("efmls-configs.formatters.mix") },
 	html = { require("efmls-configs.formatters.prettier") },
 	htmldjango = { require("efmls-configs.linters.djlint"), require("efmls-configs.formatters.djlint") },
-	javascript = { require("efmls-configs.formatters.prettier") },
 	jinja2 = { require("efmls-configs.linters.djlint"), require("efmls-configs.formatters.djlint") },
 	json = { require("efmls-configs.formatters.prettier") },
 	lua = { require("efmls-configs.formatters.stylua") },
@@ -24,7 +23,6 @@ local efm = {
 	sql = { require("efmls-configs.formatters.sql-formatter") },
 	terraform = { require("efmls-configs.formatters.terraform_fmt") },
 	toml = { require("efmls-configs.formatters.taplo") },
-	typescript = { require("efmls-configs.formatters.prettier") },
 	yaml = { require("efmls-configs.formatters.prettier") },
 }
 
@@ -54,7 +52,6 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-	ts_ls = {},
 }
 
 servers.basedpyright = {
@@ -84,57 +81,10 @@ servers.elixirls = {
 }
 
 servers.gopls = {
-	on_attach = function(client, bufnr)
+	on_attach = function(_, bufnr)
 		require("keymaps").dap(bufnr)
-
-		if not client.server_capabilities.semanticTokensProvider then
-			local semantic = client.config.capabilities.textDocument.semanticTokens
-			client.server_capabilities.semanticTokensProvider = {
-				full = true,
-				legend = {
-					tokenTypes = semantic.tokenTypes,
-					tokenModifiers = semantic.tokenModifiers,
-				},
-				range = true,
-			}
-		end
+		require("keymaps").go(bufnr)
 	end,
-	settings = {
-		gopls = {
-			gofumpt = true,
-			codelenses = {
-				gc_details = false,
-				generate = true,
-				regenerate_cgo = true,
-				run_govulncheck = true,
-				test = true,
-				tidy = true,
-				upgrade_dependency = true,
-				vendor = true,
-			},
-			hints = {
-				assignVariableTypes = true,
-				compositeLiteralFields = true,
-				compositeLiteralTypes = true,
-				constantValues = true,
-				functionTypeParameters = true,
-				parameterNames = true,
-				rangeVariableTypes = true,
-			},
-			analyses = {
-				fieldalignment = true,
-				nilness = true,
-				unusedparams = true,
-				unusedwrite = true,
-				useany = true,
-			},
-			usePlaceholders = true,
-			completeUnimported = true,
-			staticcheck = true,
-			directoryFilters = { "-.git", "-node_modules" },
-			semanticTokens = true,
-		},
-	},
 }
 
 servers.helm_ls = {

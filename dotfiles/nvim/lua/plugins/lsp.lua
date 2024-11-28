@@ -123,16 +123,14 @@ servers.lua_ls = {
 
 servers.ltex = {
 	filetypes = { "markdown", "quarto" },
-	on_attach = function()
-		require("ltex_extra").setup({
-			init_check = true,
-			load_langs = { "en-US", "pt-BR" },
-			path = vim.fn.stdpath("data") .. "/ltex-ls",
-		})
-	end,
 	settings = {
 		ltex = {
-			language = "none",
+			checkFrequency = "save",
+			language = { "en-US", "pt-BR" },
+			additionalRules = {
+				enablePickyRules = true,
+				motherTongue = "pt-BR",
+			},
 		},
 	},
 }

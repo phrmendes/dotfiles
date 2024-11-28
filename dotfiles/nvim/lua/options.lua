@@ -76,7 +76,7 @@ vim.opt.conceallevel = 2
 -- fold
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevelstart = 99
+vim.opt.foldenable = false
 
 -- clipboard
 vim.schedule(function()

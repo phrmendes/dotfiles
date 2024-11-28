@@ -20,7 +20,6 @@
       brightnessctl
       bws
       chromium
-      cloudflared
       deluge
       docker-credential-helpers
       droidcam
@@ -43,12 +42,14 @@
       gparted
       graphviz
       grim
+      gthumb
       hugo
       imagemagick
       infisical
       inkscape
       jdk
       jq
+      just
       kooha
       kubectl
       kubernetes-helm
@@ -57,7 +58,6 @@
       livebook
       minikube
       mongosh
-      neovide
       networkmanagerapplet
       ngrok
       nix-prefetch-github
@@ -71,15 +71,13 @@
       poppler
       postgresql
       protonvpn-gui
-      python312
+      python313
       qalculate-gtk
       quarto
-      qview
       satty
       scrcpy
       sesh
       slurp
-      sqlc
       sshfs
       sshs
       stremio

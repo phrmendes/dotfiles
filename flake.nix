@@ -30,24 +30,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    efmls-configs-nvim = {
-      flake = false;
-      url = "github:creativenull/efmls-configs-nvim";
-    };
-
     luasnip-latex-snippets = {
       flake = false;
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
     };
 
-    nvim-dap-vscode-js = {
+    ltex_extra-nvim = {
       flake = false;
-      url = "github:mxsdev/nvim-dap-vscode-js";
-    };
-
-    snacks-nvim = {
-      flake = false;
-      url = "github:folke/snacks.nvim";
+      url = "github:barreiroleo/ltex_extra.nvim/dev";
     };
   };
 

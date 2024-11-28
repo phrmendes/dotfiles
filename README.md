@@ -29,7 +29,7 @@ sudo nixos-install --flake .#{device} --root /mnt --no-root-passwd
 2. Insert a USB with the NixOS ISO
 3. Boot from the USB
 
-When using a minimal NixOS ISO, run this to connect to wifi:
+When using a minimal NixOS ISO, run this to connect to Wi-Fi:
 
 ```sh
 wpa_passphrase "{ssid}" > wifi.conf

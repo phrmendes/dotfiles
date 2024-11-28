@@ -40,3 +40,6 @@ function unlock_bw() {
 	echo "Bitwarden unlocked."
     fi
 }
+
+eval "$(just --completions zsh)"
+eval "$(uv generate-shell-completion zsh)"

@@ -10,7 +10,6 @@
 
   hardware = {
     enableAllFirmware = true;
-    pulseaudio.enable = false;
     uinput.enable = true;
 
     bluetooth = {

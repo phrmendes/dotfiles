@@ -6,8 +6,9 @@
     pam = {
       services = {
         swaylock = {};
-        login = {
+        greetd = {
           gnupg.enable = true;
+          enableGnomeKeyring = true;
         };
       };
     };

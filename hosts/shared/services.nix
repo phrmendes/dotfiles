@@ -1,6 +1,7 @@
 {
   parameters,
   pkgs,
+  lib,
   ...
 }: {
   services = {
@@ -44,16 +45,17 @@
       };
     };
 
-    greetd = let
-      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-      hyprland = "${pkgs.hyprland}/bin/Hyprland";
-    in {
+    greetd = {
       enable = true;
-      settings = rec {
-        default_session = initial_session;
-        initial_session = {
+      settings = let
+        session = "${pkgs.hyprland}/bin/Hyprland";
+        tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
+      in rec {
+        terminal.vt = 1;
+        initial_session = default_session;
+        default_session = {
           inherit (parameters) user;
-          command = "${tuigreet} --time --remember --asterisks --cmd ${hyprland}";
+          command = "${tuigreet} --time --remember --cmd ${session}";
         };
       };
     };

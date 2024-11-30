@@ -78,15 +78,5 @@
     stateVersion = "25.05";
     username = parameters.user;
     homeDirectory = parameters.home;
-    sessionVariables = {
-      GDK_BACKEND = "wayland";
-      MOZ_ENABLE_WAYLAND = "1";
-      NIXOS_OZONE_WL = "1";
-      QT_QPA_PLATFORM = "wayland";
-      TERMINAL = "alacritty";
-      XDG_CURRENT_DESKTOP = "hyprland";
-      XDG_SESSION_DESKTOP = "hyprland";
-      XDG_SESSION_TYPE = "wayland";
-    };
   };
 }

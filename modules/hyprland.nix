@@ -185,6 +185,22 @@
           ++ workspace.move
           ++ workspace.moveSilent;
       };
+      extraConfig = ''
+        env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+        env = CLUTTER_BACKEND,wayland
+        env = GDK_BACKEND,wayland,x11
+        env = LIBVA_DRIVER_NAME,nvidia
+        env = MOZ_ENABLE_WAYLAND,1
+        env = NIXOS_OZONE_WL,1
+        env = NVD_BACKEND,direct
+        env = QT_QPA_PLATFORM,wayland;xcb
+        env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+        env = SDL_VIDEODRIVER,windows,x11
+        env = USE_WAYLAND_GRIM,1
+        env = XDG_CURRENT_DESKTOP,Hyprland
+        env = XDG_SESSION_DESKTOP,Hyprland
+        env = XDG_SESSION_TYPE,wayland
+      '';
     };
   };
 }

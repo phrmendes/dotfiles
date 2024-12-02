@@ -1,3 +1,5 @@
+require("quicker").setup()
+
 require("bqf").setup({
 	func_map = {
 		drop = "o",

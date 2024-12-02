@@ -297,6 +297,22 @@
         "type": "github"
       }
     },
+    "quicker-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731565503,
+        "narHash": "sha256-XdzL/rm1KAYnHE/1+iBx1OrRxElbx4s3QPCNKR/WSxQ=",
+        "owner": "stevearc",
+        "repo": "quicker.nvim",
+        "rev": "049d66534d3de5920663ee1b8dd0096d70f55a67",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "quicker.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
@@ -306,6 +322,7 @@
         "ltex_extra-nvim": "ltex_extra-nvim",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
+        "quicker-nvim": "quicker-nvim",
         "stylix": "stylix"
       }
     },

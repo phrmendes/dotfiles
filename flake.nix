@@ -39,6 +39,11 @@
       flake = false;
       url = "github:barreiroleo/ltex_extra.nvim/dev";
     };
+
+    quicker-nvim = {
+      flake = false;
+      url = "github:stevearc/quicker.nvim";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

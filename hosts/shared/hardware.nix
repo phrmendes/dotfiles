@@ -9,6 +9,7 @@
   nixpkgs.hostPlatform = lib.mkDefault parameters.system;
 
   hardware = {
+    keyboard.qmk.enable = true;
     enableAllFirmware = true;
     uinput.enable = true;
 

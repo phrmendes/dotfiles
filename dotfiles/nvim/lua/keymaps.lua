@@ -5,7 +5,7 @@ local M = {}
 
 local keys = {
 	disable = function()
-		map({ "n", "x" }, "s", "<nop>")
+		map({ "n", "v" }, "s", "<nop>")
 	end,
 	random = function()
 		local opts = { noremap = true }
@@ -70,7 +70,7 @@ local keys = {
 		map("n", "<leader>q", "<cmd>q<cr>", opts)
 
 		opts.desc = "Paste (no register)"
-		vim.keymap.set("x", "<leader>P", [["_dP]], opts)
+		vim.keymap.set("v", "<leader>P", [["_dP]], opts)
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>silent w!<cr>", opts)
@@ -100,10 +100,10 @@ local keys = {
 		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
 		map("n", "N", "'nN'[v:searchforward].'zv'", opts)
 		map("o", "N", "'nN'[v:searchforward]", opts)
-		map("x", "N", "'nN'[v:searchforward]", opts)
+		map("v", "N", "'nN'[v:searchforward]", opts)
 		map("n", "n", "'Nn'[v:searchforward].'zv'", opts)
 		map("o", "n", "'Nn'[v:searchforward]", opts)
-		map("x", "n", "'Nn'[v:searchforward]", opts)
+		map("v", "n", "'Nn'[v:searchforward]", opts)
 	end,
 	buffers = function()
 		local opts = { noremap = true }
@@ -127,7 +127,7 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Quick chat"
-		map("x", "<leader>cc", "<cmd>CopilotChat<cr>", opts)
+		map("v", "<leader>cc", "<cmd>CopilotChat<cr>", opts)
 		map("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 
@@ -191,7 +191,7 @@ local keys = {
 		map("n", "<leader>gL", require("snacks").lazygit.log, opts)
 
 		opts.desc = "History"
-		map({ "n", "x" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
+		map({ "n", "v" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
 
 		opts.desc = "Hunks"
 		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
@@ -229,7 +229,7 @@ local keys = {
 		map("n", "Q", "@q", opts)
 
 		opts.desc = "Replace with macro"
-		map("x", "Q", "<cmd>norm @q<cr>", opts)
+		map("v", "Q", "<cmd>norm @q<cr>", opts)
 	end,
 	neogen = function()
 		local opts = { noremap = true }
@@ -247,13 +247,13 @@ local keys = {
 		map("n", "<leader>on", "<cmd>ObsidianNew<cr>", opts)
 
 		opts.desc = "Extract to new note"
-		map("x", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
+		map("v", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
 
 		opts.desc = "Add link"
-		map("x", "<leader>oa", "<cmd>ObsidianLink<cr>", opts)
+		map("v", "<leader>oa", "<cmd>ObsidianLink<cr>", opts)
 
 		opts.desc = "Add link to new file"
-		map("x", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
+		map("v", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
 
 		opts.desc = "Search"
 		map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", opts)
@@ -385,7 +385,7 @@ M.lsp = function(client, bufnr)
 
 	if client.supports_method("textDocument/codeAction") then
 		opts.desc = "LSP: code actions"
-		map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
+		map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
 	end
 
 	if client.supports_method("textDocument/publishDiagnostics") then
@@ -486,10 +486,10 @@ M.markdown = function(bufnr)
 	map({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
 
 	opts.desc = "Markdown: toggle italic"
-	map("x", "<c-i>", require("utils").toggle_emphasis("i"), opts)
+	map("v", "<c-i>", require("utils").toggle_emphasis("i"), opts)
 
 	opts.desc = "Markdown: toggle bold"
-	map("x", "<c-b>", require("utils").toggle_emphasis("b"), opts)
+	map("v", "<c-b>", require("utils").toggle_emphasis("b"), opts)
 
 	opts.desc = "Markdown: preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
@@ -508,7 +508,7 @@ M.python = function(bufnr)
 	map("n", "<localleader>c", require("dap-python").test_class, opts)
 
 	opts.desc = "Python: debug selection"
-	map("x", "<localleader>s", require("dap-python").debug_selection, opts)
+	map("v", "<localleader>s", require("dap-python").debug_selection, opts)
 end
 
 M.go = function(bufnr)
@@ -519,6 +519,19 @@ M.go = function(bufnr)
 
 	opts.desc = "Go: debug last test"
 	map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
+end
+
+M.lua = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "Lua: source file"
+	map("n", "<leader>%", "<cmd>source %<cr>", opts)
+
+	opts.desc = "Lua: run line"
+	map("n", "<leader>.", ":.lua<cr>", opts)
+
+	opts.desc = "Lua: run"
+	map("v", "<leader>.", ":lua<cr>", opts)
 end
 
 M.mini = {

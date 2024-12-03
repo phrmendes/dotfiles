@@ -148,3 +148,12 @@ autocmd("FileType", {
 		require("keymaps").rest(event.bufnr)
 	end,
 })
+
+autocmd("FileType", {
+	desc = "Lua keymaps",
+	group = augroups.filetype,
+	pattern = "lua",
+	callback = function(event)
+		require("keymaps").lua(event.bufnr)
+	end,
+})

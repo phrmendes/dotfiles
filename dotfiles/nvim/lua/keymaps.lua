@@ -430,22 +430,22 @@ M.dap = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "DAP: step out"
-	map("n", "<f3>", require("dap").step_out, opts)
+	map("n", "<localleader>o", require("dap").step_out, opts)
 
 	opts.desc = "DAP: step into"
-	map("n", "<f4>", require("dap").step_into, opts)
+	map("n", "<localleader>i", require("dap").step_into, opts)
 
 	opts.desc = "DAP: step back"
-	map("n", "<f5>", require("dap").step_back, opts)
+	map("n", "<f7>", require("dap").step_back, opts)
 
 	opts.desc = "DAP: continue"
-	map("n", "<f6>", require("dap").continue, opts)
+	map("n", "<f8>", require("dap").continue, opts)
 
 	opts.desc = "DAP: step over"
-	map("n", "<f7>", require("dap").step_over, opts)
+	map("n", "<f9>", require("dap").step_over, opts)
 
 	opts.desc = "DAP: pause"
-	map("n", "<s-f6>", require("dap").pause, opts)
+	map("n", "<s-f8>", require("dap").pause, opts)
 
 	opts.desc = "DAP: terminate"
 	map("n", "<del>", require("dap").terminate, opts)

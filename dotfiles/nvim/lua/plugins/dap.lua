@@ -88,14 +88,9 @@ setup.python = function()
 		type = "python",
 		request = "launch",
 		name = "Launch FastAPI app",
-		program = "fastapi",
-		args = function()
-			return {
-				vim.fn.input("File: ", vim.uv.cwd() .. "/main.py"),
-				"--use-colors",
-			}
-		end,
-		pythonPath = "python",
+		module = "fastapi",
+		args = { "dev", "src/main.py" },
+		justMyCode = true,
 		console = "integratedTerminal",
 	})
 end

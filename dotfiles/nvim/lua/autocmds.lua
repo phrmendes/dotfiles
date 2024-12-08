@@ -8,7 +8,7 @@ autocmd("LspAttach", {
 		local id = vim.tbl_get(event, "data", "client_id")
 		local client = id and vim.lsp.get_client_by_id(id)
 
-		if client == nil then
+		if not client then
 			return
 		end
 
@@ -55,6 +55,7 @@ autocmd("LspAttach", {
 						async = false,
 						bufnr = ev.buf,
 						timeout_ms = 10000,
+						id = client.id,
 						filter = function(c)
 							return c.name == "efm"
 						end,

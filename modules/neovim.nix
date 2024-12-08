@@ -16,7 +16,6 @@
         };
       ltex_extra-nvim = fromGitHub "ltex_extra.nvim" inputs.ltex_extra-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
-      quicker-nvim = fromGitHub "quicker.nvim" inputs.quicker-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -29,6 +28,7 @@
         CopilotChat-nvim
         SchemaStore-nvim
         ansible-vim
+        better-escape-nvim
         cmp-async-path
         cmp-buffer
         cmp-cmdline
@@ -43,9 +43,9 @@
         efmls-configs-nvim
         friendly-snippets
         fzfWrapper
+        grug-far-nvim
         image-nvim
         lazydev-nvim
-        better-escape-nvim
         ltex_extra-nvim
         luasnip
         luasnip-latex-snippets
@@ -69,7 +69,6 @@
         nvim-ts-context-commentstring
         obsidian-nvim
         one-small-step-for-vimkind
-        quicker-nvim
         rest-nvim
         smart-splits-nvim
         snacks-nvim

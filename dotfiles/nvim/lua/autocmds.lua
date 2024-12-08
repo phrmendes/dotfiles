@@ -55,7 +55,6 @@ autocmd("LspAttach", {
 						async = false,
 						bufnr = ev.buf,
 						timeout_ms = 10000,
-						id = client.id,
 						filter = function(c)
 							return c.name == "efm"
 						end,

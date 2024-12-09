@@ -10,7 +10,6 @@ now(function()
 end)
 
 later(function()
-	require("plugins.better-escape")
 	require("plugins.completion")
 	require("plugins.copilot")
 	require("plugins.dap")

@@ -3,7 +3,6 @@ local luasnip = require("luasnip")
 local borders = require("utils").borders
 
 require("cmp_pandoc").setup({ filetypes = { "quarto" }, crossref = { enable_nabla = true } })
-require("copilot_cmp").setup()
 
 cmp.setup({
 	snippet = {
@@ -68,7 +67,6 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "async_path" },
 	}, {
-		{ name = "copilot" },
 		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
 	}),
 	window = {

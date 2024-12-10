@@ -37,8 +37,7 @@
         cmp-nvim-lsp-signature-help
         cmp-pandoc-nvim
         cmp_luasnip
-        copilot-cmp
-        copilot-lua
+        copilot-vim
         dressing-nvim
         efmls-configs-nvim
         friendly-snippets

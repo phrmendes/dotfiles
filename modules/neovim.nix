@@ -52,7 +52,6 @@
         markdown-preview-nvim
         mini-nvim
         nabla-nvim
-        neogen
         nvim-bqf
         nvim-cmp
         nvim-dap

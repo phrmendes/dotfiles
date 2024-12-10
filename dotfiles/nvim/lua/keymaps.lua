@@ -237,12 +237,6 @@ local keys = {
 		opts.desc = "Replace with macro"
 		map("v", "Q", "<cmd>norm @q<cr>", opts)
 	end,
-	neogen = function()
-		local opts = { noremap = true }
-
-		opts.desc = "Generate documentation"
-		map("n", "<leader>G", require("neogen").generate, opts)
-	end,
 	obsidian = function()
 		local opts = { noremap = true }
 

@@ -306,7 +306,24 @@
         "ltex_extra-nvim": "ltex_extra-nvim",
         "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
+        "snacks-nvim": "snacks-nvim",
         "stylix": "stylix"
+      }
+    },
+    "snacks-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733840615,
+        "narHash": "sha256-PBeYr57jvR02fIoFmotRgb1tt+F3ZtdYZPnYL2h3EI4=",
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "rev": "66f7daa2b5b46213d98b94b8702e5b9377c6b976",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "type": "github"
       }
     },
     "stylix": {

@@ -36,6 +36,9 @@ local keys = {
 		opts.desc = "Commands"
 		map("n", "<c-s-p>", require("mini.extra").pickers.commands, opts)
 
+		opts.desc = "Scratch"
+		map("n", "<leader>.", require("snacks").scratch.open, opts)
+
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 
@@ -79,7 +82,10 @@ local keys = {
 		map("n", "<leader>x", "<cmd>copen<cr>", opts)
 
 		opts.desc = "Zoom"
-		map("n", "<leader>z", require("mini.misc").zoom, opts)
+		map("n", "<leader>z", require("snacks").zen.zoom, opts)
+
+		opts.desc = "Zen"
+		map("n", "<leader>Z", require("snacks").zen.zen, opts)
 
 		opts.desc = "Explorer"
 		map("n", "<leader>e", function()
@@ -334,12 +340,12 @@ M.lsp = function(client, bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "LSP: go to next reference"
-	map("n", "]]", function()
+	map("n", "]r", function()
 		require("snacks").words.jump(vim.v.count1)
 	end, opts)
 
 	opts.desc = "LSP: go to previous reference"
-	map("n", "[[", function()
+	map("n", "[r", function()
 		require("snacks").words.jump(-vim.v.count1)
 	end, opts)
 
@@ -528,10 +534,10 @@ M.lua = function(bufnr)
 	map("n", "<leader>%", "<cmd>source %<cr>", opts)
 
 	opts.desc = "Lua: run line"
-	map("n", "<leader>.", ":.lua<cr>", opts)
+	map("n", "<localleader>.", ":.lua<cr>", opts)
 
 	opts.desc = "Lua: run"
-	map("v", "<leader>.", ":lua<cr>", opts)
+	map("v", "<localleader>.", ":lua<cr>", opts)
 end
 
 M.mini = {

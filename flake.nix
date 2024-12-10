@@ -39,6 +39,11 @@
       flake = false;
       url = "github:barreiroleo/ltex_extra.nvim/dev";
     };
+
+    snacks-nvim = {
+      flake = false;
+      url = "github:folke/snacks.nvim";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

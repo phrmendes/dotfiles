@@ -16,6 +16,7 @@
         };
       ltex_extra-nvim = fromGitHub "ltex_extra.nvim" inputs.ltex_extra-nvim;
       luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
+      snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -38,7 +39,6 @@
         cmp-pandoc-nvim
         cmp_luasnip
         copilot-vim
-        dressing-nvim
         efmls-configs-nvim
         friendly-snippets
         fzfWrapper

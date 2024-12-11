@@ -25,6 +25,7 @@
     ./ripgrep.nix
     ./starship.nix
     ./swaylock.nix
+    ./swayosd.nix
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
@@ -63,6 +64,7 @@
   ripgrep.enable = true;
   starship.enable = true;
   swaylock.enable = true;
+  swayosd.enable = true;
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;

@@ -9,9 +9,8 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
-      brightnessctl = lib.getExe pkgs.brightnessctl;
       dmenu = "${getExe pkgs.wofi} --show dmenu";
-      pactl = "${pkgs.pulseaudio}/bin/pactl";
+      swayosd = "${pkgs.swayosd}/bin/swayosd-client";
       playerctl = getExe pkgs.playerctl;
       swaylock = getExe pkgs.swaylock;
       systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -136,11 +135,12 @@
           "SUPER,mouse:273,resizewindow"
         ];
         binde = [
-          ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-          ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-          ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-          (lib.mkIf parameters.laptop ",XF86MonBrightnessUp,exec,${brightnessctl} set +5%")
-          (lib.mkIf parameters.laptop ",XF86MonBrightnessDown,exec,${brightnessctl} set 5%-")
+          ",XF86AudioRaiseVolume,exec,${swayosd} --output-volume raise --max-volume 150"
+          ",XF86AudioLowerVolume,exec,${swayosd} --output-volume lower"
+          ",XF86AudioMute,exec,${swayosd} --output-volume mute-toggle"
+          ",XF86AudioMicMute,exec,${swayosd} --input-volume mute-toggle"
+          (lib.mkIf parameters.laptop ",XF86MonBrightnessUp,exec,${swayosd} --brightness raise")
+          (lib.mkIf parameters.laptop ",XF86MonBrightnessDown,exec,${swayosd} --brightness lower")
           "SUPER ALT,h,resizeactive,-20 0"
           "SUPER ALT,j,resizeactive,0 20"
           "SUPER ALT,k,resizeactive,0 -20"

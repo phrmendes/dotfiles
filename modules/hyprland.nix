@@ -61,6 +61,8 @@
     in {
       enable = true;
       settings = {
+        misc.vfr = 0;
+        debug.damage_tracking = 0;
         input = {
           kb_layout = "us,br";
           kb_model = "pc104";
@@ -99,6 +101,14 @@
         misc = {
           force_default_wallpaper = 0;
           disable_hyprland_logo = true;
+        };
+        render = {
+          explicit_sync = 2;
+          explicit_sync_kms = 0;
+        };
+        opengl = {
+          nvidia_anti_flicker = 0;
+          force_introspection = 2;
         };
         monitor = with parameters.monitors; [
           "${primary},preferred,auto,1"

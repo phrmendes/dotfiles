@@ -17,9 +17,9 @@
       ansible
       bitwarden
       bitwarden-cli
+      brave
       brightnessctl
       bws
-      chromium
       deluge
       docker-credential-helpers
       droidcam
@@ -30,7 +30,6 @@
       ffmpeg
       ffmpegthumbnailer
       file-roller
-      firefox
       foliate
       gcloud
       gdu

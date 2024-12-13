@@ -78,7 +78,10 @@ setup.python = function()
 		request = "launch",
 		name = "Launch Django app",
 		program = vim.uv.cwd() .. "/manage.py",
-		args = { "runserver", "--noreload", "8001" },
+		args = function()
+			local input = vim.fn.input("Enter the port for the Django app: ", "8001")
+			return { "runserver", "--noreload", input }
+		end,
 		justMyCode = true,
 		django = true,
 		console = "integratedTerminal",
@@ -89,7 +92,10 @@ setup.python = function()
 		request = "launch",
 		name = "Launch FastAPI app",
 		module = "fastapi",
-		args = { "dev", "src/main.py" },
+		args = function()
+			local input = vim.fn.input("Enter the path to the FastAPI app: ", "src/main.py")
+			return { "run", input }
+		end,
 		justMyCode = true,
 		console = "integratedTerminal",
 	})

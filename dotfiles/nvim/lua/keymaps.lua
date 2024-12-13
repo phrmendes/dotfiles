@@ -57,23 +57,26 @@ local keys = {
 		opts.desc = "Find"
 		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
 
+		opts.desc = "GrugFar"
+		map({ "n", "v" }, "<leader>G", ":GrugFar<cr>", opts)
+
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
+		opts.desc = "Paste (no register)"
+		map("v", "<leader>P", [["_dP]], opts)
+
 		opts.desc = "Write all"
 		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
+
+		opts.desc = "Quit"
+		map("n", "<leader>q", "<cmd>q<cr>", opts)
 
 		opts.desc = "Undo tree"
 		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
 		opts.desc = "Visits"
 		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
-
-		opts.desc = "Quit"
-		map("n", "<leader>q", "<cmd>q<cr>", opts)
-
-		opts.desc = "Paste (no register)"
-		vim.keymap.set("v", "<leader>P", [["_dP]], opts)
 
 		opts.desc = "Write"
 		map("n", "<leader>w", "<cmd>silent w!<cr>", opts)
@@ -133,7 +136,7 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Quick chat"
-		map("v", "<leader>cc", "<cmd>CopilotChat<cr>", opts)
+		map("v", "<leader>cc", ":CopilotChat<cr>", opts)
 		map("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 
@@ -501,10 +504,10 @@ end
 M.python = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
-	opts.desc = "Python: debug function/method"
+	opts.desc = "Python: test function/method"
 	map("n", "<localleader>f", require("dap-python").test_method, opts)
 
-	opts.desc = "Python: debug class"
+	opts.desc = "Python: test class"
 	map("n", "<localleader>c", require("dap-python").test_class, opts)
 
 	opts.desc = "Python: debug selection"

@@ -14,7 +14,7 @@
       playerctl = getExe pkgs.playerctl;
       swaylock = getExe pkgs.swaylock;
       systemctl = "${pkgs.systemd}/bin/systemctl";
-      terminal = getExe pkgs.alacritty;
+      terminal = getExe pkgs.wezterm;
       wofi = getExe pkgs.wofi;
       wofi-emoji = getExe pkgs.wofi-emoji;
       zsh = getExe pkgs.zsh;
@@ -167,8 +167,7 @@
             ",XF86AudioNext,exec,${playerctl} next"
             "SUPER,space,exec,${wofi}"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,return,exec,${terminal}"
-            "SUPER SHIFT,return,exec,${terminal} -e ${zsh} -l"
+            "SUPER,return,exec,[float;tile] ${terminal} start --always-new-process"
             "SUPER,V,exec,${lib.getExe clipboard}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

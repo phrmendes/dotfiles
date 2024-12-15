@@ -32,6 +32,7 @@
     ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -71,6 +72,7 @@
   tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
+  wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
   zoxide.enable = true;

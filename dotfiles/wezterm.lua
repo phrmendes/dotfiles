@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local action = wezterm.action
+local callback = wezterm.action_callback
 local nf = wezterm.nerdfonts
 local mux = wezterm.mux
 
@@ -18,7 +19,7 @@ end
 
 config.automatically_reload_config = true
 config.check_for_updates = false
-config.command_palette_font_size = 16.0
+config.command_palette_font_size = 14.0
 config.default_prog = { "zsh" }
 config.enable_kitty_keyboard = true
 config.enable_wayland = true
@@ -65,7 +66,7 @@ config.keys = {
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
 	{ key = "t", mods = "LEADER", action = action.ShowTabNavigator },
-	{ key = "w", mods = "LEADER", action = ws.switch_workspace({ extra_args = " | rg -v 'venv|git|persist'" }) },
+	{ key = "w", mods = "LEADER", action = ws.switch_workspace() },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
 	{
@@ -73,7 +74,7 @@ config.keys = {
 		mods = "LEADER",
 		action = action.PromptInputLine({
 			description = "Rename session: ",
-			action = wezterm.action_callback(function(window, _, line)
+			action = callback(function(window, _, line)
 				if line then
 					mux.rename_workspace(window:mux_window():get_workspace(), line)
 				end
@@ -83,9 +84,9 @@ config.keys = {
 	{
 		key = "r",
 		mods = "LEADER",
-		action = wezterm.action.PromptInputLine({
-			description = "Rename tab:",
-			action = wezterm.action_callback(function(window, _, line)
+		action = action.PromptInputLine({
+			description = "Rename tab: ",
+			action = callback(function(window, _, line)
 				if line then
 					window:active_tab():set_title(line)
 				end
@@ -95,7 +96,7 @@ config.keys = {
 	{
 		key = "r",
 		mods = "LEADER|CTRL",
-		action = wezterm.action_callback(function(win, pane)
+		action = callback(function(win, pane)
 			rr.fuzzy_load(win, pane, function(id)
 				id = get_base_path(id)
 				id = remove_file_extension(id)
@@ -113,7 +114,7 @@ config.keys = {
 	{
 		key = "s",
 		mods = "LEADER|CTRL",
-		action = wezterm.action_callback(function()
+		action = callback(function()
 			rr.save_state(rr.workspace_state.get_workspace_state())
 			rr.periodic_save()
 		end),
@@ -148,42 +149,35 @@ wezterm.on("update-status", function(window)
 end)
 
 wezterm.on("format-tab-title", function(tab)
-	local title = function(t)
-		local title
+	local icon_index
 
-		if title and #title > 0 then
-			title = t.tab_title
-		end
+	local index = tab.tab_index + 1
+	local pane = tab.active_pane
+	local title = tab.tab_title
 
-		title = t.active_pane.title
-
-		return title
+	if not title or #title == 0 then
+		title = pane.title
 	end
 
-	local index = function(t)
-		local index = t.tab_index + 1
-
-		if index < 10 then
-			return nf[string.format("md_numeric_%d_box_outline", index)]
-		end
-
-		return nf.md_numeric_9_plus_box_outline
+	if pane.domain_name and pane.domain_name ~= "local" then
+		title = title .. " (" .. pane.domain_name .. ")"
 	end
 
-	local zoom = function(t)
-		if t.active_pane.is_zoomed then
-			return " " .. nf.cod_zoom_in
-		end
+	if pane.is_zoomed then
+		title = nf.cod_zoom_in .. " " .. title
+	end
 
-		return ""
+	if index < 10 then
+		icon_index = nf[string.format("md_numeric_%d_box_outline", index)]
+	else
+		icon_index = nf.md_numeric_9_plus_box_outline
 	end
 
 	return {
 		{ Text = " " },
-		{ Text = index(tab) },
-		{ Text = zoom(tab) },
+		{ Text = icon_index },
 		{ Text = " " },
-		{ Text = title(tab) },
+		{ Text = title },
 		{ Text = " " },
 	}
 end)

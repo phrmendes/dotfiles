@@ -1,6 +1,5 @@
 {parameters, ...}: {
   imports = [
-    ./alacritty.nix
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
@@ -29,7 +28,6 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
     ./wezterm.nix
@@ -40,7 +38,6 @@
     ./zsh.nix
   ];
 
-  alacritty.enable = true;
   bat.enable = true;
   blueman-applet.enable = true;
   btop.enable = true;
@@ -69,7 +66,6 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
   wezterm.enable = true;

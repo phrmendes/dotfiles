@@ -14,10 +14,9 @@
       playerctl = getExe pkgs.playerctl;
       swaylock = getExe pkgs.swaylock;
       systemctl = "${pkgs.systemd}/bin/systemctl";
-      terminal = getExe pkgs.wezterm;
+      terminal = getExe pkgs.kitty;
       wofi = getExe pkgs.wofi;
       wofi-emoji = getExe pkgs.wofi-emoji;
-      zsh = getExe pkgs.zsh;
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
@@ -167,7 +166,7 @@
             ",XF86AudioNext,exec,${playerctl} next"
             "SUPER,space,exec,${wofi}"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,return,exec,[float;tile] ${terminal} start --always-new-process"
+            "SUPER,return,exec,${terminal}"
             "SUPER,V,exec,${lib.getExe clipboard}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

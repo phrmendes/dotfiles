@@ -16,6 +16,7 @@
     ./hyprland.nix
     ./hyprpaper.nix
     ./k9s.nix
+    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -30,7 +31,6 @@
     ./tealdeer.nix
     ./udiskie.nix
     ./waybar.nix
-    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -54,6 +54,7 @@
   hyprland.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
+  kitty.enable = true;
   lazygit.enable = true;
   neovim.enable = true;
   nm-applet.enable = true;
@@ -68,7 +69,6 @@
   tealdeer.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
-  wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
   zoxide.enable = true;

@@ -14,9 +14,10 @@
           inherit src pname;
           version = src.rev;
         };
-      ltex_extra-nvim = fromGitHub "ltex_extra.nvim" inputs.ltex_extra-nvim;
-      snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
       blink-compat = fromGitHub "blink.compat" inputs.blink-compat;
+      kitty-scrollback-nvim = fromGitHub "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
+      ltex-extra-nvim = fromGitHub "ltex_extra.nvim" inputs.ltex_extra-nvim;
+      snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -38,8 +39,9 @@
         fzfWrapper
         grug-far-nvim
         image-nvim
+        kitty-scrollback-nvim
         lazydev-nvim
-        ltex_extra-nvim
+        ltex-extra-nvim
         markdown-nvim
         markdown-preview-nvim
         mini-nvim

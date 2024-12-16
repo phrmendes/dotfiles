@@ -75,7 +75,6 @@
       quarto
       satty
       scrcpy
-      sesh
       slurp
       sshfs
       sshs

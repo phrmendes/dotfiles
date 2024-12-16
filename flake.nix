@@ -44,6 +44,11 @@
       flake = false;
       url = "github:Saghen/blink.compat";
     };
+
+    kitty-scrollback-nvim = {
+      flake = false;
+      url = "github:mikesmithgh/kitty-scrollback.nvim";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

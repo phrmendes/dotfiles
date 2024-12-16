@@ -15,8 +15,8 @@
           version = src.rev;
         };
       ltex_extra-nvim = fromGitHub "ltex_extra.nvim" inputs.ltex_extra-nvim;
-      luasnip-latex-snippets = fromGitHub "luasnip-latex-snippets" inputs.luasnip-latex-snippets;
       snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
+      blink-compat = fromGitHub "blink.compat" inputs.blink-compat;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -29,15 +29,9 @@
         CopilotChat-nvim
         SchemaStore-nvim
         ansible-vim
-        better-escape-nvim
-        cmp-async-path
-        cmp-buffer
-        cmp-cmdline
-        cmp-latex-symbols
-        cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
+        blink-cmp
+        blink-compat
         cmp-pandoc-nvim
-        cmp_luasnip
         copilot-vim
         efmls-configs-nvim
         friendly-snippets
@@ -46,20 +40,16 @@
         image-nvim
         lazydev-nvim
         ltex_extra-nvim
-        luasnip
-        luasnip-latex-snippets
         markdown-nvim
         markdown-preview-nvim
         mini-nvim
         nabla-nvim
         nvim-bqf
-        nvim-cmp
         nvim-dap
         nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
-        nvim-highlight-colors
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -82,13 +72,11 @@
       ];
       extraLuaPackages = luaPkgs:
         with luaPkgs; [
-          jsregexp
           magick
           mimetypes
           nvim-nio
           plenary-nvim
           tiktoken_core
-          xml2lua
         ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [debugpy];
@@ -120,7 +108,6 @@
           shellcheck
           shellharden
           stylua
-          tailwindcss-language-server
           taplo
           terraform-ls
           texlab

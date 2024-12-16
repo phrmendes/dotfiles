@@ -1,3 +1,1 @@
-local icons = require("mini.icons")
-
-icons.setup()
+require("mini.icons").setup()

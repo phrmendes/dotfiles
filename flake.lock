@@ -86,6 +86,22 @@
         "type": "github"
       }
     },
+    "blink-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733256820,
+        "narHash": "sha256-QW5QG7nqdHdyOodac06Cnq8/WKfbg3YyX/yPh87ENJQ=",
+        "owner": "Saghen",
+        "repo": "blink.compat",
+        "rev": "73249d35c8737b614bed64c2f33277387035f8ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Saghen",
+        "repo": "blink.compat",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -249,22 +265,6 @@
         "type": "github"
       }
     },
-    "luasnip-latex-snippets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1732280342,
-        "narHash": "sha256-HGVm0VG8ig8w6gEf5SlIbnrs1c12FAo+LSvESmx2tGM=",
-        "owner": "iurimateus",
-        "repo": "luasnip-latex-snippets.nvim",
-        "rev": "cab134611eb755abe9ba95f5d86969f5cece448d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "iurimateus",
-        "repo": "luasnip-latex-snippets.nvim",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1734126203,
@@ -300,11 +300,11 @@
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
+        "blink-compat": "blink-compat",
         "disko": "disko",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "ltex_extra-nvim": "ltex_extra-nvim",
-        "luasnip-latex-snippets": "luasnip-latex-snippets",
         "nixpkgs": "nixpkgs",
         "snacks-nvim": "snacks-nvim",
         "stylix": "stylix"

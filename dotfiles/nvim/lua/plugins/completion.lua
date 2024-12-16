@@ -1,105 +1,51 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-local borders = require("utils").borders
+require("blink.cmp").setup({
+	completion = {
+		list = {
+			selection = "manual",
+		},
+		documentation = {
+			auto_show = true,
+			auto_show_delay_ms = 200,
+		},
+		menu = {
+			draw = {
+				components = {
+					kind_icon = {
+						text = function(ctx)
+							return require("mini.icons").get("lsp", ctx.kind) .. ctx.icon_gap
+						end,
+					},
+				},
+			},
+		},
+	},
+	keymap = {
+		["<c-y>"] = { "show", "show_documentation", "hide_documentation" },
+		["<c-e>"] = { "hide", "fallback" },
+		["<cr>"] = { "accept", "fallback" },
+		["<c-l>"] = { "snippet_forward", "fallback" },
+		["<c-h>"] = { "snippet_backward", "fallback" },
+		["<c-p>"] = { "select_prev", "fallback" },
+		["<c-n>"] = { "select_next", "fallback" },
+		["<c-u>"] = { "scroll_documentation_up", "fallback" },
+		["<c-d>"] = { "scroll_documentation_down", "fallback" },
+	},
+	sources = {
+		default = function()
+			local sources = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev" }
 
-require("cmp_pandoc").setup({ filetypes = { "quarto" }, crossref = { enable_nabla = true } })
+			if vim.bo.filetype == "markdown" or vim.bo.filetype == "quarto" then
+				table.insert(sources, 1, "pandoc")
+			end
 
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			return sources
 		end,
+		signature = { enabled = true },
+		providers = {
+			lsp = { fallback_for = { "lazydev" } },
+			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+			pandoc = { name = "cmp_pandoc", module = "blink.compat.source" },
+		},
 	},
-	mapping = cmp.mapping.preset.insert({
-		["<cr>"] = cmp.mapping({
-			s = cmp.mapping.confirm({ select = true }),
-			i = function(fallback)
-				if cmp.visible() and cmp.get_active_entry() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-				else
-					fallback()
-				end
-			end,
-		}),
-		["<c-/>"] = cmp.mapping.complete(),
-		["<c-u>"] = cmp.mapping.scroll_docs(-4),
-		["<c-d>"] = cmp.mapping.scroll_docs(4),
-		["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<bs>"] = cmp.mapping(function(fallback)
-			cmp.abort()
-			fallback()
-		end, { "i", "s" }),
-		["<c-l>"] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_locally_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<c-h>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	}),
-	formatting = {
-		format = function(entry, item)
-			local icon, hl = require("mini.icons").get("lsp", item.kind)
-			local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
-
-			if color_item.abbr_hl_group then
-				item.kind = color_item.abbr
-				item.kind_hl_group = color_item.abbr_hl_group
-			else
-				item.kind = icon .. " " .. item.kind
-				item.kind_hl_group = hl
-			end
-
-			return item
-		end,
-	},
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "lazydev", group_index = 0 },
-		{ name = "luasnip" },
-		{ name = "async_path" },
-	}, {
-		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
-	}),
-	window = {
-		completion = borders,
-		documentation = borders,
-	},
-})
-
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	matching = { disallow_symbol_nonprefix_matching = false },
-	sources = cmp.config.sources({
-		{ name = "cmdline" },
-		{ name = "async_path" },
-	}),
-})
-
-cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
-	sources = cmp.config.sources({
-		{ name = "vim-dadbod-completion" },
-	}, {
-		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
-	}),
-})
-
-cmp.setup.filetype({ "quarto", "markdown" }, {
-	sources = cmp.config.sources({
-		{ name = "luasnip" },
-		{ name = "cmp_pandoc" },
-		{ name = "async_path" },
-		{ name = "latex_symbols", option = { strategy = 2 } },
-	}, {
-		{ name = "buffer", keyword_length = 5, max_item_count = 3 },
-	}),
 })

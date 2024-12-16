@@ -135,18 +135,6 @@ servers.ltex = {
 	},
 }
 
-servers.tailwindcss = {
-	settings = {
-		tailwindCSS = {
-			includeLanguages = {
-				elixir = "html-eex",
-				eelixir = "html-eex",
-				heex = "html-eex",
-			},
-		},
-	},
-}
-
 servers.yamlls = {
 	on_attach = function(_, bufnr)
 		if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then

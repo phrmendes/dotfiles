@@ -1,4 +1,3 @@
-local luasnip = require("luasnip")
 local map = vim.keymap.set
 
 local M = {}
@@ -25,6 +24,7 @@ local keys = {
 		map("t", "<c-k>", "<cmd>wincmd k<cr>", opts)
 		map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
 		map({ "n", "t" }, "<c-\\>", require("snacks").terminal.toggle, opts)
+		map({ "n", "t" }, "<c-s-\\>", require("snacks").terminal.open, opts)
 
 		opts.desc = "List buffers"
 		map("n", "<c-p>", function()
@@ -213,23 +213,6 @@ local keys = {
 
 		opts.desc = "Open in browser"
 		map({ "n", "v" }, "<leader>go", require("snacks").gitbrowse.open, opts)
-	end,
-	luasnip = function()
-		local opts = { noremap = true, silent = true }
-
-		opts.desc = "Next snippet choice"
-		map({ "i", "s" }, "<c-j>", function()
-			if luasnip.choice_active() then
-				luasnip.change_choice(1)
-			end
-		end, opts)
-
-		opts.desc = "Previous snippet choice"
-		map({ "i", "s" }, "<c-k>", function()
-			if luasnip.choice_active() then
-				luasnip.change_choice(-1)
-			end
-		end, opts)
 	end,
 	macros = function()
 		local opts = { noremap = true, expr = true }

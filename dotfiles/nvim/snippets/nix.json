@@ -15,5 +15,13 @@
     ],
     "description": "Home-manager module",
     "prefix": "hmm"
+  },
+  "Flake github input": {
+    "body": [
+      "${name}: {",
+      "  flake = false;",
+      "  url = \"github:${owner}/${repo}\";",
+      "}"
+    ]
   }
 }

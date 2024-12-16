@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    luasnip-latex-snippets = {
-      flake = false;
-      url = "github:iurimateus/luasnip-latex-snippets.nvim";
-    };
-
     ltex_extra-nvim = {
       flake = false;
       url = "github:barreiroleo/ltex_extra.nvim/dev";
@@ -43,6 +38,11 @@
     snacks-nvim = {
       flake = false;
       url = "github:folke/snacks.nvim";
+    };
+
+    blink-compat = {
+      flake = false;
+      url = "github:Saghen/blink.compat";
     };
   };
 

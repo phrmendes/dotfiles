@@ -40,25 +40,20 @@ utils.config_diagnostics({ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info
 
 local servers = {
 	ansiblels = {},
+	basedpyright = {},
 	bashls = {},
 	cssls = {},
 	dockerls = {},
 	dotls = {},
 	emmet_language_server = {},
 	eslint = {},
+	gopls = {},
 	html = {},
 	nil_ls = {},
 	ruff = {},
 	taplo = {},
 	terraformls = {},
 	texlab = {},
-}
-
-servers.basedpyright = {
-	on_attach = function(_, bufnr)
-		require("keymaps").dap(bufnr)
-		require("keymaps").python(bufnr)
-	end,
 }
 
 servers.efm = {
@@ -75,16 +70,6 @@ servers.efm = {
 
 servers.elixirls = {
 	cmd = { vim.fn.exepath("elixir-ls") },
-	on_attach = function(_, bufnr)
-		require("keymaps").dap(bufnr)
-	end,
-}
-
-servers.gopls = {
-	on_attach = function(_, bufnr)
-		require("keymaps").dap(bufnr)
-		require("keymaps").go(bufnr)
-	end,
 }
 
 servers.helm_ls = {
@@ -106,9 +91,6 @@ servers.jsonls = {
 }
 
 servers.lua_ls = {
-	on_attach = function(_, bufnr)
-		require("keymaps").dap(bufnr)
-	end,
 	settings = {
 		Lua = {
 			completion = { callSnippet = "Replace" },

@@ -221,7 +221,7 @@ local keys = {
 		map("n", "Q", "@q", opts)
 
 		opts.desc = "Replace with macro"
-		map("v", "Q", "<cmd>norm @q<cr>", opts)
+		map("v", "Q", ":norm @q<cr>", opts)
 	end,
 	obsidian = function()
 		local opts = { noremap = true }
@@ -460,6 +460,13 @@ M.dap = function(bufnr)
 	map("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
+end
+
+M.refactoring = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "Refactoring"
+	map({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
 end
 
 M.markdown = function(bufnr)

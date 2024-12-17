@@ -1,3 +1,5 @@
+local border = require("utils").borders.border
+
 require("blink.cmp").setup({
 	completion = {
 		list = {
@@ -6,8 +8,14 @@ require("blink.cmp").setup({
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
+			window = { border = border },
+		},
+		signature = {
+			enabled = true,
+			window = { border = border },
 		},
 		menu = {
+			border = border,
 			draw = {
 				components = {
 					kind_icon = {

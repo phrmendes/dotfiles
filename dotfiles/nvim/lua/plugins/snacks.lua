@@ -1,4 +1,6 @@
-require("snacks").setup({
+local snacks = require("snacks")
+
+snacks.setup({
 	indent = { enabled = true },
 	input = { enabled = true },
 	bigfile = { enabled = true },
@@ -10,3 +12,12 @@ require("snacks").setup({
 		git = { patterns = { "MiniDiffSign" } },
 	},
 })
+
+_G.dd = function(...)
+	snacks.debug.inspect(...)
+end
+_G.bt = function()
+	snacks.debug.backtrace()
+end
+
+vim.print = _G.dd

@@ -107,8 +107,9 @@ vim.filetype.add({
 	filename = {
 		["*/.kube/config"] = "yaml",
 		["*/.envrc"] = "sh",
-	},
-	extension = {
-		["curl"] = "curl",
+		["todo.txt"] = "todotxt",
 	},
 })
+
+-- todo.txt
+vim.g.todo_done_filename = "done.txt"

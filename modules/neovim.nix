@@ -37,8 +37,8 @@
         efmls-configs-nvim
         friendly-snippets
         fzfWrapper
-        grug-far-nvim
         image-nvim
+        img-clip-nvim
         kitty-scrollback-nvim
         lazydev-nvim
         ltex-extra-nvim
@@ -62,6 +62,7 @@
         rest-nvim
         smart-splits-nvim
         snacks-nvim
+        todo-txt-vim
         undotree
         vim-abolish
         vim-dadbod
@@ -76,6 +77,7 @@
         with luaPkgs; [
           magick
           mimetypes
+          nui-nvim
           nvim-nio
           plenary-nvim
           tiktoken_core

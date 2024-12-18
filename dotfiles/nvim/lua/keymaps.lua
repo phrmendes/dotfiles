@@ -57,9 +57,6 @@ local keys = {
 		opts.desc = "Find"
 		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
 
-		opts.desc = "GrugFar"
-		map({ "n", "v" }, "<leader>G", ":GrugFar<cr>", opts)
-
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
@@ -100,6 +97,11 @@ local keys = {
 		opts.desc = "Explorer (cwd)"
 		map("n", "<leader>E", function()
 			require("mini.files").open(vim.uv.cwd(), true)
+		end, opts)
+
+		opts.desc = "todo.txt"
+		map("n", "<leader>t", function()
+			vim.cmd("split " .. vim.env.HOME .. "/Documents/notes/todo.txt")
 		end, opts)
 	end,
 	better_keys = function()
@@ -222,6 +224,48 @@ local keys = {
 
 		opts.desc = "Replace with macro"
 		map("v", "Q", ":norm @q<cr>", opts)
+	end,
+	notes = function()
+		local opts = { noremap = true }
+		local local_opts = { globs = { "*.md" } }
+		local global_opts = { source = { name = "Notes", cwd = vim.env.HOME .. "/Documents/notes" } }
+
+		opts.desc = "Search"
+		map("n", "<leader>ns", function()
+			require("mini.pick").builtin.files(local_opts, global_opts)
+		end, opts)
+
+		opts.desc = "Live grep"
+		map("n", "<leader>n/", function()
+			local custom_global_opts = vim.deepcopy(global_opts)
+			custom_global_opts.source.name = "Notes (rg)"
+
+			require("mini.pick").builtin.grep_live(local_opts, custom_global_opts)
+		end, opts)
+
+		opts.desc = "New"
+		map("n", "<leader>nn", function()
+			local input = vim.fn.input("Title: ")
+
+			if input ~= "" then
+				local normalized_input = require("utils").normalize(input)
+				local file_path = vim.env.HOME .. "/Documents/notes/" .. normalized_input .. ".md"
+				local today = os.date("%d/%m/%Y")
+
+				vim.cmd("vnew " .. file_path)
+
+				local buf = vim.api.nvim_get_current_buf()
+
+				vim.api.nvim_buf_set_lines(buf, 0, -1, false, {
+					"---",
+					"date: " .. today,
+					"---",
+					"",
+					"# " .. input,
+					"",
+				})
+			end
+		end, opts)
 	end,
 	slime = function()
 		local opts = { noremap = true }
@@ -445,6 +489,9 @@ M.markdown = function(bufnr)
 	opts.desc = "Markdown: add item above"
 	map({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
 
+	opts.desc = "Markdown: toggle checkbox"
+	map("n", "<c-cr>", require("utils").toggle_checkbox, opts)
+
 	opts.desc = "Markdown: toggle italic"
 	map("v", "<c-i>", require("utils").toggle_emphasis("i"), opts)
 
@@ -454,8 +501,8 @@ M.markdown = function(bufnr)
 	opts.desc = "Markdown: preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
 
-	opts.desc = "Markdown: preview equation"
-	map("n", "<localleader>e", require("nabla").popup, opts)
+	opts.desc = "Markdown: paste image"
+	map("n", "<leader>P", "<cmd>PasteImage<cr>", opts)
 end
 
 M.python = function(bufnr)
@@ -485,7 +532,7 @@ M.lua = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Lua: source file"
-	map("n", "<leader>%", "<cmd>source %<cr>", opts)
+	map("n", "<localleader>%", "<cmd>source %<cr>", opts)
 
 	opts.desc = "Lua: run line"
 	map("n", "<localleader>.", ":.lua<cr>", opts)

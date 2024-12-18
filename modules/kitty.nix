@@ -2,6 +2,8 @@
   lib,
   config,
   parameters,
+  inputs,
+  pkgs,
   ...
 }: {
   options.kitty.enable = lib.mkEnableOption "enable kitty";
@@ -26,7 +28,7 @@
         scrollback_lines = 5000;
         shell_integration = "enabled";
         tab_bar_edge = "bottom";
-        tab_bar_min_tabs = 2;
+        tab_bar_min_tabs = 1;
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
         tab_title_template = " {index}: {title.split('/')[-1].split(':')[-1]}{'  ' if layout_name == 'stack' else ''}";
@@ -37,7 +39,7 @@
         bell_on_tab = "  ";
       };
       extraConfig = ''
-        action_alias kitty_scrollback_nvim kitten ${parameters.home}/.config/kitty/python/kitty_scrollback_nvim.py
+        action_alias kitty_scrollback_nvim kitten ${inputs.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
         action_alias relative_resize kitten ${parameters.home}/.config/kitty/relative_resize.py
 
         map --when-focus-on var:IS_NVIM alt+h
@@ -95,13 +97,12 @@
       };
     };
 
-    xdg.configFile = {
+    xdg.configFile = let
+      smart-splits = pkgs.vimPlugins.smart-splits-nvim;
+    in {
       "kitty/open-actions.conf".source = ../dotfiles/kitty/open-actions.conf;
-      "kitty/neighboring_window.py".source = ../dotfiles/kitty/python/neighboring_window.py;
-      "kitty/relative_resize.py".source = ../dotfiles/kitty/python/relative_resize.py;
-      "kitty/python/kitty_scroll_prompt.py".source = ../dotfiles/kitty/python/kitty_scroll_prompt.py;
-      "kitty/python/kitty_scrollback_nvim.py".source = ../dotfiles/kitty/python/kitty_scrollback_nvim.py;
-      "kitty/python/loading.py".source = ../dotfiles/kitty/python/loading.py;
+      "kitty/neighboring_window.py".source = smart-splits + "/kitty/neighboring_window.py";
+      "kitty/relative_resize.py".source = smart-splits + "/kitty/relative_resize.py";
     };
   };
 }

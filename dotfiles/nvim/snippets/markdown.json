@@ -1,82 +1,17 @@
 {
-  "Block math": {
-    "body": ["$$", "${1:equation}", "$$", "$0"],
-    "description": "Add block math",
-    "prefix": "bm"
-  },
   "Enable ltex-ls": {
     "body": ["<!-- LTeX: SETTINGS language=${1:pt-BR}-->", "$0"],
     "description": "Enable ltex for the current document",
     "prefix": "ltex"
   },
+  "Block math": {
+    "body": ["$$", "${1:equation}", "$$", "$0"],
+    "description": "Add block math",
+    "prefix": "bm"
+  },
   "Inline math": {
     "body": ["$${1:equation}$$0"],
     "description": "Add inline math",
     "prefix": "im"
-  },
-  "Task": {
-    "body": [
-      "- [ ] #todo ${1:task} [created:: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}]$0"
-    ],
-    "description": "Add a task",
-    "prefix": "todo"
-  },
-  "Task - due date": {
-    "body": ["[due:: ${1:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}]$0"],
-    "description": "Add a due date",
-    "prefix": "due"
-  },
-  "Task - start date": {
-    "body": [
-      "[start:: ${1:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}]$0"
-    ],
-    "description": "Add a start date",
-    "prefix": "start"
-  },
-  "Task - done": {
-    "body": [
-      "[completion:: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}]$0"
-    ],
-    "description": "Mark a task as done",
-    "prefix": "done"
-  },
-  "Task - canceled": {
-    "body": [
-      "[cancelled:: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}]$0"
-    ],
-    "description": "Mark a task as canceled",
-    "prefix": "cancel"
-  },
-  "Task - scheduled": {
-    "body": [
-      "[scheduled:: ${1:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}]$0"
-    ],
-    "description": "Mark a task as scheduled",
-    "prefix": "scheduled"
-  },
-  "Task - priority": {
-    "body": ["[priority:: ${1|lowest,low, ,medium,high,highest|}]$0"],
-    "description": "Add a priority to a task",
-    "prefix": "priority"
-  },
-  "Task - recurring tasks": {
-    "body": ["[repeat:: every ${1:time}]$0"],
-    "description": "Add a recurring task",
-    "prefix": "repeat"
-  },
-  "Task - on completion": {
-    "body": ["[onCompletion:: ${1|keep,delete}]$0"],
-    "description": "On completion",
-    "prefix": "completion"
-  },
-  "Task - id": {
-    "body": ["[id:: ${1:${RANDOM}}]$0"],
-    "description": "Add an id to a task",
-    "prefix": "id"
-  },
-  "Task - depends on": {
-    "body": ["[dependsOn:: ${1:task}]$0"],
-    "description": "Add a dependency to a task",
-    "prefix": "depends"
   }
 }

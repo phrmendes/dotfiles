@@ -1,6 +1,10 @@
 local border = require("utils").borders.border
 
 require("blink.cmp").setup({
+	signature = {
+		enabled = true,
+		window = { border = border },
+	},
 	completion = {
 		list = {
 			selection = "manual",
@@ -8,10 +12,6 @@ require("blink.cmp").setup({
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
-			window = { border = border },
-		},
-		signature = {
-			enabled = true,
 			window = { border = border },
 		},
 		menu = {
@@ -28,8 +28,8 @@ require("blink.cmp").setup({
 		},
 	},
 	keymap = {
-		["<c-y>"] = { "show", "show_documentation", "hide_documentation" },
-		["<c-e>"] = { "hide", "fallback" },
+		["<c-space>"] = { "show", "show_documentation", "hide_documentation" },
+		["<c-e>"] = { "hide" },
 		["<cr>"] = { "accept", "fallback" },
 		["<c-l>"] = { "snippet_forward", "fallback" },
 		["<c-h>"] = { "snippet_backward", "fallback" },
@@ -48,7 +48,6 @@ require("blink.cmp").setup({
 
 			return sources
 		end,
-		signature = { enabled = true },
 		providers = {
 			lsp = { fallback_for = { "lazydev" } },
 			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },

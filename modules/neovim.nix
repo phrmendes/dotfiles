@@ -57,7 +57,6 @@
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
         nvim-ts-context-commentstring
-        obsidian-nvim
         one-small-step-for-vimkind
         refactoring-nvim
         rest-nvim
@@ -105,6 +104,7 @@
           helm-ls
           ltex-ls
           lua-language-server
+          marksman
           neovim-remote
           nil
           ruff

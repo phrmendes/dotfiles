@@ -35,8 +35,6 @@ clue.setup({
 		{ mode = "x", keys = "<leader>c", desc = "Copilot" },
 		{ mode = "n", keys = "<leader>g", desc = "Git" },
 		{ mode = "x", keys = "<leader>g", desc = "Git" },
-		{ mode = "n", keys = "<leader>o", desc = "Obsidian" },
-		{ mode = "x", keys = "<leader>o", desc = "Obsidian" },
 	},
 	window = {
 		delay = 500,

@@ -4,7 +4,6 @@ require("plugins.mini")
 
 now(function()
 	require("plugins.dadbod")
-	require("plugins.obsidian")
 	require("plugins.snacks")
 end)
 

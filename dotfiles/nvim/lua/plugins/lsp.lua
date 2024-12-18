@@ -49,6 +49,7 @@ local servers = {
 	eslint = {},
 	gopls = {},
 	html = {},
+	marksman = {},
 	nil_ls = {},
 	ruff = {},
 	taplo = {},

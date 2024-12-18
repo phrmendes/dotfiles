@@ -60,7 +60,6 @@
       networkmanagerapplet
       ngrok
       nix-prefetch-github
-      obsidian
       ouch
       parallel
       pavucontrol

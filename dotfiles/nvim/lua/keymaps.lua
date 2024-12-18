@@ -223,39 +223,6 @@ local keys = {
 		opts.desc = "Replace with macro"
 		map("v", "Q", ":norm @q<cr>", opts)
 	end,
-	obsidian = function()
-		local opts = { noremap = true }
-
-		opts.desc = "Backlinks"
-		map("n", "<leader>ob", "<cmd>ObsidianBacklinks<cr>", opts)
-
-		opts.desc = "New note"
-		map("n", "<leader>on", "<cmd>ObsidianNew<cr>", opts)
-
-		opts.desc = "Extract to new note"
-		map("v", "<leader>oe", "<cmd>ObsidianExtractNote<cr>", opts)
-
-		opts.desc = "Add link"
-		map("v", "<leader>oa", "<cmd>ObsidianLink<cr>", opts)
-
-		opts.desc = "Add link to new file"
-		map("v", "<leader>on", "<cmd>ObsidianLinkNew<cr>", opts)
-
-		opts.desc = "Search"
-		map("n", "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", opts)
-
-		opts.desc = "Paste image"
-		map("n", "<leader>op", "<cmd>ObsidianPasteImg<cr>", opts)
-
-		opts.desc = "Rename"
-		map("n", "<leader>or", "<cmd>ObsidianRename<cr>", opts)
-
-		opts.desc = "Live grep"
-		map("n", "<leader>og", "<cmd>ObsidianSearch<cr>", opts)
-
-		opts.desc = "Tags"
-		map("n", "<leader>ot", "<cmd>ObsidianTags<cr>", opts)
-	end,
 	slime = function()
 		local opts = { noremap = true }
 

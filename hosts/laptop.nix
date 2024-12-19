@@ -133,6 +133,11 @@
         devices = ["desktop" "orangepizero2" "phone" "tablet"];
         versioning = versioning.trashcan;
       };
+      "collections" = {
+        path = "${parameters.home}/Documents/collections";
+        devices = ["desktop" "orangepizero2"];
+        versioning = versioning.trashcan;
+      };
     };
   };
 }

@@ -140,7 +140,7 @@ servers.yamlls = {
 }
 
 for key, value in pairs(servers) do
-	utils.config_server({
+	utils.config_lsp_server({
 		server = key,
 		settings = value,
 	})

@@ -2,8 +2,8 @@ local augroup = vim.api.nvim_create_augroup
 
 local M = {}
 
+M.notes = {}
 M.mini = {}
-M.mini.buffers = {}
 M.mini.files = {}
 M.mini.notify = {}
 M.mini.pick = {}
@@ -67,7 +67,7 @@ M.config_diagnostics = function(signs, config)
 	vim.diagnostic.config(config)
 end
 
-M.config_server = function(opts)
+M.config_lsp_server = function(opts)
 	local settings = opts.settings or {}
 
 	settings.capabilities = vim.tbl_deep_extend("force", {}, {
@@ -80,40 +80,6 @@ M.config_server = function(opts)
 	}
 
 	require("lspconfig")[opts.server].setup(settings)
-end
-
-M.image_name = function()
-	local prefix = os.date("%Y%m%d%H%M%S")
-	local suffix = vim.fn.expand("%:p:t:r")
-
-	return prefix .. "-" .. suffix .. "-"
-end
-
-M.note_id = function(title)
-	local prefix = os.date("%Y%m%d%H%M%S")
-	local suffix = M.normalize(title)
-
-	return prefix .. "-" .. suffix
-end
-
-M.note_frontmatter = function(note)
-	if note.title then
-		note:add_alias(note.title)
-	end
-
-	local header = {
-		id = note.id,
-		aliases = note.aliases,
-		tags = note.tags,
-	}
-
-	if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-		for k, v in pairs(note.metadata) do
-			header[k] = v
-		end
-	end
-
-	return header
 end
 
 M.display_callback = function(variable)
@@ -129,22 +95,6 @@ M.setup_dap_signs = function(signs)
 		local hl = "Dap" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 	end
-end
-
-M.get_clients = function(opts)
-	local ret = {}
-
-	if vim.lsp.get_clients then
-		ret = vim.lsp.get_clients(opts)
-
-		if opts and opts.method then
-			ret = vim.tbl_filter(function(client)
-				return client.supports_method(opts.method, { bufnr = opts.bufnr })
-			end, ret)
-		end
-	end
-
-	return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
 end
 
 M.toggle_emphasis = function(key)
@@ -199,8 +149,6 @@ M.toggle_checkbox = function()
 		local start_line = cursor[1] - 1
 		local current_line = vim.api.nvim_buf_get_lines(bufnr, start_line, start_line + 1, false)[1] or ""
 
-		-- If the line contains a checked checkbox then uncheck it.
-		-- Otherwise, if it contains an unchecked checkbox, check it.
 		local new_line = ""
 
 		if not line_with_checkbox(current_line) then
@@ -218,28 +166,30 @@ M.toggle_checkbox = function()
 	return toggle()
 end
 
-M.mini.buffers.delete = function()
-	return {
-		wipeout = {
-			char = "<c-d>",
-			func = function()
-				vim.api.nvim_buf_delete(require("mini.pick").get_picker_matches().current.bufnr, {})
-			end,
+M.mini.buffers = function()
+	require("mini.pick").builtin.buffers(nil, {
+		mappings = {
+			wipeout = {
+				char = "<c-d>",
+				func = function()
+					vim.api.nvim_buf_delete(require("mini.pick").get_picker_matches().current.bufnr, {})
+				end,
+			},
 		},
-	}
-end
-
-M.mini.files.filter_show = function()
-	return true
-end
-
-M.mini.files.filter_hide = function(fs_entry)
-	return not vim.startswith(fs_entry.name, ".")
+	})
 end
 
 M.mini.files.toggle_dotfiles = function()
+	local filter_show = function()
+		return true
+	end
+
+	local filter_hide = function(fs_entry)
+		return not vim.startswith(fs_entry.name, ".")
+	end
+
 	vim.g.mini_show_dotfiles = not vim.g.mini_show_dotfiles
-	local new_filter = vim.g.mini_show_dotfiles and M.mini.files.filter_show or M.mini.files.filter_hide
+	local new_filter = vim.g.mini_show_dotfiles and filter_show or filter_hide
 	require("mini.files").refresh({ content = { filter = new_filter } })
 end
 
@@ -287,20 +237,8 @@ M.mini.notify.filter_notifications = function(array)
 	return require("mini.notify").default_sort(array)
 end
 
-M.mini.pick.mark_and_move_down = function()
-	local mappings = require("mini.pick").get_picker_opts().mappings
-	local keys = mappings.mark .. mappings.move_down
-	vim.api.nvim_input(vim.api.nvim_replace_termcodes(keys, true, true, true))
-end
-
-M.mini.pick.move_up_and_unmark = function()
-	local mappings = require("mini.pick").get_picker_opts().mappings
-	local keys = mappings.move_up .. mappings.mark
-	vim.api.nvim_input(vim.api.nvim_replace_termcodes(keys, true, true, true))
-end
-
 M.mini.git.add_file = function()
-	local success = pcall(vim.cmd, "Git add %")
+	local success = pcall(vim.cmd.Git, "add %")
 
 	if success then
 		vim.notify("Git: added '" .. vim.fn.expand("%:t") .. "' file")
@@ -308,7 +246,7 @@ M.mini.git.add_file = function()
 end
 
 M.mini.git.add_repo = function()
-	local success = pcall(vim.cmd, "Git add --all")
+	local success = pcall(vim.cmd.Git, "add --all")
 
 	if success then
 		local cwd = vim.uv.cwd()
@@ -317,5 +255,7 @@ M.mini.git.add_repo = function()
 		end
 	end
 end
+
+M.notes = {}
 
 return M

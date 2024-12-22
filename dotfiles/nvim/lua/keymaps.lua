@@ -27,11 +27,7 @@ local keys = {
 		map({ "n", "t" }, "<c-s-\\>", require("snacks").terminal.open, opts)
 
 		opts.desc = "List buffers"
-		map("n", "<c-p>", function()
-			require("mini.pick").builtin.buffers(nil, {
-				mappings = require("utils").mini.buffers.delete(),
-			})
-		end, opts)
+		map("n", "<c-p>", require("utils").mini.buffers, opts)
 
 		opts.desc = "Commands"
 		map("n", "<c-s-p>", require("mini.extra").pickers.commands, opts)
@@ -138,7 +134,7 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Quick chat"
-		map("v", "<leader>cc", ":CopilotChat<cr>", opts)
+		map("v", "<leader>cc", "<cmd>CopilotChat<cr>", opts)
 		map("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 

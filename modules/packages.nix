@@ -55,6 +55,7 @@
       lazydocker
       libreoffice
       livebook
+      lynx
       minikube
       mongosh
       networkmanagerapplet

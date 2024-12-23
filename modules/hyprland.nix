@@ -12,7 +12,7 @@
       dmenu = "${getExe pkgs.wofi} --show dmenu";
       swayosd = "${pkgs.swayosd}/bin/swayosd-client";
       playerctl = getExe pkgs.playerctl;
-      swaylock = getExe pkgs.swaylock;
+      hyprlock = getExe pkgs.hyprlock;
       systemctl = "${pkgs.systemd}/bin/systemctl";
       terminal = getExe pkgs.kitty;
       wofi = getExe pkgs.wofi;
@@ -50,7 +50,7 @@
                 ${systemctl} suspend
                 ;;
             "🔒 Lock")
-                ${swaylock}
+                ${hyprlock}
                 ;;
             *)
                 echo "No valid option selected."
@@ -157,7 +157,7 @@
         ];
         bind =
           [
-            "CTRL ALT, L, exec, ${swaylock}"
+            "CTRL ALT, L, exec, ${hyprlock}"
             "CTRL ALT, Delete, exec, ${lib.getExe powermenu}"
             ",print,exec,${lib.getExe screenshot}"
             ",XF86AudioPlay,exec,${playerctl} play-pause"

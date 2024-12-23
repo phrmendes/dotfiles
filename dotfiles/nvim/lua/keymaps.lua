@@ -19,12 +19,8 @@ local keys = {
 		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
 		opts.desc = "Terminal"
-		map("t", "<c-h>", "<cmd>wincmd h<cr>", opts)
-		map("t", "<c-j>", "<cmd>wincmd j<cr>", opts)
-		map("t", "<c-k>", "<cmd>wincmd k<cr>", opts)
-		map("t", "<c-l>", "<cmd>wincmd l<cr>", opts)
 		map({ "n", "t" }, "<c-\\>", require("snacks").terminal.toggle, opts)
-		map({ "n", "t" }, "<c-s-\\>", require("snacks").terminal.open, opts)
+		map({ "n", "t" }, "<a-\\>", require("snacks").terminal.open, opts)
 
 		opts.desc = "List buffers"
 		map("n", "<c-p>", require("utils").mini.buffers, opts)
@@ -174,10 +170,10 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Add (file)"
-		map("n", "<leader>ga", require("utils").mini.git.add_file, opts)
+		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
 
 		opts.desc = "Add (repo)"
-		map("n", "<leader>gA", require("utils").mini.git.add_repo, opts)
+		map("n", "<leader>gA", "<cmd>Git add --all<cr>", opts)
 
 		opts.desc = "Blame"
 		map("n", "<leader>gb", require("snacks").git.blame_line, opts)
@@ -223,45 +219,15 @@ local keys = {
 	end,
 	notes = function()
 		local opts = { noremap = true }
-		local local_opts = { globs = { "*.md" } }
-		local global_opts = { source = { name = "Notes", cwd = vim.env.HOME .. "/Documents/notes" } }
 
 		opts.desc = "Search"
-		map("n", "<leader>ns", function()
-			require("mini.pick").builtin.files(local_opts, global_opts)
-		end, opts)
+		map("n", "<leader>ns", require("dev.notes").search, opts)
 
 		opts.desc = "Live grep"
-		map("n", "<leader>n/", function()
-			local custom_global_opts = vim.deepcopy(global_opts)
-			custom_global_opts.source.name = "Notes (rg)"
-
-			require("mini.pick").builtin.grep_live(local_opts, custom_global_opts)
-		end, opts)
+		map("n", "<leader>n/", require("dev.notes").grep_live, opts)
 
 		opts.desc = "New"
-		map("n", "<leader>nn", function()
-			local input = vim.fn.input("Title: ")
-
-			if input ~= "" then
-				local normalized_input = require("utils").normalize(input)
-				local file_path = vim.env.HOME .. "/Documents/notes/" .. normalized_input .. ".md"
-				local today = os.date("%d/%m/%Y")
-
-				vim.cmd("vnew " .. file_path)
-
-				local buf = vim.api.nvim_get_current_buf()
-
-				vim.api.nvim_buf_set_lines(buf, 0, -1, false, {
-					"---",
-					"date: " .. today,
-					"---",
-					"",
-					"# " .. input,
-					"",
-				})
-			end
-		end, opts)
+		map("n", "<leader>nn", require("dev.notes").new, opts)
 	end,
 	slime = function()
 		local opts = { noremap = true }

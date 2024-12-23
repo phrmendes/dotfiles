@@ -14,6 +14,7 @@
     ./gtk.nix
     ./hypridle.nix
     ./hyprland.nix
+    ./hyprlock.nix
     ./hyprpaper.nix
     ./k9s.nix
     ./kitty.nix
@@ -24,7 +25,6 @@
     ./pasystray.nix
     ./ripgrep.nix
     ./starship.nix
-    ./swaylock.nix
     ./swayosd.nix
     ./symlinks.nix
     ./targets.nix
@@ -52,6 +52,7 @@
   gtk-settings.enable = true;
   hypridle.enable = true;
   hyprland.enable = true;
+  hyprlock.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
   kitty.enable = true;
@@ -62,7 +63,6 @@
   pasystray.enable = true;
   ripgrep.enable = true;
   starship.enable = true;
-  swaylock.enable = true;
   swayosd.enable = true;
   symlinks.enable = true;
   targets.enable = true;

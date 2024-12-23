@@ -14,6 +14,7 @@ end)
 
 later(function()
 	require("plugins.mini.ai")
+	require("plugins.mini.indentscope")
 	require("plugins.mini.align")
 	require("plugins.mini.bracketed")
 	require("plugins.mini.bufremove")

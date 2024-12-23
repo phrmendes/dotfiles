@@ -22,6 +22,7 @@
             critical = 15;
           };
           format = "{icon}  " + tt "{capacity}%";
+          format-charching = "  " + tt "{capacity}%";
           format-icons = ["" "" "" "" ""];
           max-length = 25;
         };

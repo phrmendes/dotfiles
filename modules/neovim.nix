@@ -9,15 +9,13 @@
 
   config = lib.mkIf config.neovim.enable {
     programs.neovim = let
-      fromGitHub = pname: src:
+      vimPlugin = pname: src:
         pkgs.vimUtils.buildVimPlugin {
           inherit src pname;
           version = src.rev;
         };
-      blink-compat = fromGitHub "blink.compat" inputs.blink-compat;
-      kitty-scrollback-nvim = fromGitHub "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
-      ltex-extra-nvim = fromGitHub "ltex_extra.nvim" inputs.ltex_extra-nvim;
-      snacks-nvim = fromGitHub "snacks.nvim" inputs.snacks-nvim;
+      kitty-scrollback-nvim = vimPlugin "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
+      ltex-extra-nvim = vimPlugin "ltex_extra.nvim" inputs.ltex_extra-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;

@@ -35,16 +35,6 @@
       url = "github:barreiroleo/ltex_extra.nvim/dev";
     };
 
-    snacks-nvim = {
-      flake = false;
-      url = "github:folke/snacks.nvim";
-    };
-
-    blink-compat = {
-      flake = false;
-      url = "github:Saghen/blink.compat";
-    };
-
     kitty-scrollback-nvim = {
       flake = false;
       url = "github:mikesmithgh/kitty-scrollback.nvim";

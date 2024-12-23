@@ -2,7 +2,6 @@ local augroup = vim.api.nvim_create_augroup
 
 local M = {}
 
-M.notes = {}
 M.mini = {}
 M.mini.files = {}
 M.mini.notify = {}
@@ -236,26 +235,5 @@ M.mini.notify.filter_notifications = function(array)
 
 	return require("mini.notify").default_sort(array)
 end
-
-M.mini.git.add_file = function()
-	local success = pcall(vim.cmd.Git, "add %")
-
-	if success then
-		vim.notify("Git: added '" .. vim.fn.expand("%:t") .. "' file")
-	end
-end
-
-M.mini.git.add_repo = function()
-	local success = pcall(vim.cmd.Git, "add --all")
-
-	if success then
-		local cwd = vim.uv.cwd()
-		if cwd ~= nil then
-			vim.notify("Git: added '" .. vim.fn.fnamemodify(cwd, ":t") .. "' repo")
-		end
-	end
-end
-
-M.notes = {}
 
 return M

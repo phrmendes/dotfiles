@@ -1,7 +1,6 @@
 local snacks = require("snacks")
 
 snacks.setup({
-	indent = { enabled = true },
 	input = { enabled = true },
 	bigfile = { enabled = true },
 	quickfile = { enabled = true },

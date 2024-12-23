@@ -37,6 +37,7 @@
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;
+        g = getExe pkgs.git;
         grep = getExe pkgs.ripgrep;
         hg = "${kitten} hyperlinked-grep";
         k = "${pkgs.kubectl}/bin/kubectl";

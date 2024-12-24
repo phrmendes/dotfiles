@@ -16,6 +16,7 @@
         };
       kitty-scrollback-nvim = vimPlugin "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
       ltex-extra-nvim = vimPlugin "ltex_extra.nvim" inputs.ltex_extra-nvim;
+      notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -44,6 +45,7 @@
         markdown-preview-nvim
         mini-nvim
         nabla-nvim
+        notes-nvim
         nvim-bqf
         nvim-dap
         nvim-dap-go

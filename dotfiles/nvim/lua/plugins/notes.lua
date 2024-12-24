@@ -1,1 +1,1 @@
-require("dev.notes").setup({ path = vim.env.HOME .. "/Documents/notes" })
+require("notes").setup({ path = vim.env.HOME .. "/Documents/notes" })

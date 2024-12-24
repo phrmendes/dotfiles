@@ -297,6 +297,22 @@
         "type": "github"
       }
     },
+    "notes-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735063956,
+        "narHash": "sha256-OBYeEbaO1xahg4kn1zp0j1K9LlWQ5KNLQ57CkkzC4xI=",
+        "owner": "phrmendes",
+        "repo": "notes.nvim",
+        "rev": "b67cfdc95be47d7ff9ba38ed2004bb7170da6d7c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "phrmendes",
+        "repo": "notes.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
@@ -306,6 +322,7 @@
         "kitty-scrollback-nvim": "kitty-scrollback-nvim",
         "ltex_extra-nvim": "ltex_extra-nvim",
         "nixpkgs": "nixpkgs",
+        "notes-nvim": "notes-nvim",
         "stylix": "stylix"
       }
     },

@@ -216,13 +216,13 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Search"
-		map("n", "<leader>ns", require("dev.notes").search, opts)
+		map("n", "<leader>ns", require("notes").search, opts)
 
 		opts.desc = "Live grep"
-		map("n", "<leader>n/", require("dev.notes").grep_live, opts)
+		map("n", "<leader>n/", require("notes").grep_live, opts)
 
 		opts.desc = "New"
-		map("n", "<leader>nn", require("dev.notes").new, opts)
+		map("n", "<leader>nn", require("notes").new, opts)
 	end,
 	todotxt = function()
 		local opts = { noremap = true }

@@ -60,7 +60,6 @@
         rest-nvim
         smart-splits-nvim
         snacks-nvim
-        todo-txt-vim
         undotree
         vim-abolish
         vim-dadbod

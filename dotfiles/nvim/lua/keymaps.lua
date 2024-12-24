@@ -90,11 +90,6 @@ local keys = {
 		map("n", "<leader>E", function()
 			require("mini.files").open(vim.uv.cwd(), true)
 		end, opts)
-
-		opts.desc = "todo.txt"
-		map("n", "<leader>t", function()
-			vim.cmd("split " .. vim.env.HOME .. "/Documents/notes/todo.txt")
-		end, opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
@@ -228,6 +223,15 @@ local keys = {
 
 		opts.desc = "New"
 		map("n", "<leader>nn", require("dev.notes").new, opts)
+	end,
+	todotxt = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Open"
+		map("n", "<leader>tt", require("dev.todotxt").open_todo_file, opts)
+
+		opts.desc = "New entry"
+		map("n", "<leader>tn", require("dev.todotxt").capture_todo, opts)
 	end,
 	slime = function()
 		local opts = { noremap = true }
@@ -519,6 +523,34 @@ M.rest = function(bufnr)
 
 	opts.desc = "Rest: run"
 	map("n", "<leader>r", "<cmd>Rest run<cr>", opts)
+end
+
+M.todotxt = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "todo.txt: toggle task state"
+	map("n", "<c-cr>", require("dev.todotxt").toggle_todo_state, opts)
+
+	opts.desc = "todo.txt: cycle priority"
+	map("n", "<a-cr>", require("dev.todotxt").cycle_priority, opts)
+
+	opts.desc = "Sort"
+	map("n", "<leader>ts", require("dev.todotxt").sort_tasks, opts)
+
+	opts.desc = "Sort by (priority)"
+	map("n", "<leader>tP", require("dev.todotxt").sort_tasks_by_priority, opts)
+
+	opts.desc = "Sort by @context"
+	map("n", "<leader>tc", require("dev.todotxt").sort_tasks_by_context, opts)
+
+	opts.desc = "Sort by +project"
+	map("n", "<leader>tp", require("dev.todotxt").sort_tasks_by_project, opts)
+
+	opts.desc = "Sort by due:date"
+	map("n", "<leader>tD", require("dev.todotxt").sort_tasks_by_due_date, opts)
+
+	opts.desc = "Move to done.txt"
+	map("n", "<leader>td", require("dev.todotxt").move_done_tasks, opts)
 end
 
 M.setup = function()

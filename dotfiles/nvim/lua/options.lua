@@ -105,9 +105,12 @@ vim.g.mkdp_auto_close = 0
 -- add filetypes
 vim.filetype.add({
 	filename = {
+		["todo.txt"] = "todotxt",
+		["done.txt"] = "todotxt",
+	},
+	pattern = {
 		["*/.kube/config"] = "yaml",
 		["*/.envrc"] = "sh",
-		["todo.txt"] = "todotxt",
 	},
 })
 

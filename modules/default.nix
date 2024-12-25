@@ -1,5 +1,6 @@
 {parameters, ...}: {
   imports = [
+    ./alacritty.nix
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
@@ -17,7 +18,6 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./k9s.nix
-    ./kitty.nix
     ./lazygit.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -36,8 +36,10 @@
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
+    ./tmux.nix
   ];
 
+  alacritty.enable = true;
   bat.enable = true;
   blueman-applet.enable = true;
   btop.enable = true;
@@ -55,7 +57,6 @@
   hyprlock.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
-  kitty.enable = true;
   lazygit.enable = true;
   neovim.enable = true;
   nm-applet.enable = true;
@@ -67,6 +68,7 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
+  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;

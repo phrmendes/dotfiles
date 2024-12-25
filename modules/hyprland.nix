@@ -9,14 +9,15 @@
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland = let
       inherit (lib) getExe;
-      dmenu = "${getExe pkgs.wofi} --show dmenu";
-      swayosd = "${pkgs.swayosd}/bin/swayosd-client";
-      playerctl = getExe pkgs.playerctl;
       hyprlock = getExe pkgs.hyprlock;
-      systemctl = "${pkgs.systemd}/bin/systemctl";
-      terminal = getExe pkgs.kitty;
+      playerctl = getExe pkgs.playerctl;
+      terminal = getExe pkgs.alacritty;
       wofi = getExe pkgs.wofi;
       wofi-emoji = getExe pkgs.wofi-emoji;
+      zsh = getExe pkgs.zsh;
+      dmenu = "${getExe pkgs.wofi} --show dmenu";
+      swayosd = "${pkgs.swayosd}/bin/swayosd-client";
+      systemctl = "${pkgs.systemd}/bin/systemctl";
       workspace = rec {
         workspaces = [1 2 3 4 5 6 7 8 9];
         move = map (x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}") workspaces;
@@ -167,6 +168,7 @@
             "SUPER,space,exec,${wofi}"
             "SUPER,tab,changegroupactive,f"
             "SUPER,return,exec,${terminal}"
+            "SUPER SHIFT,return,exec,${terminal} -e ${zsh} -l"
             "SUPER,V,exec,${lib.getExe clipboard}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

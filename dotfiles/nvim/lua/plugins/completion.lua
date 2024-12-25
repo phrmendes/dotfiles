@@ -28,7 +28,7 @@ require("blink.cmp").setup({
 		},
 	},
 	keymap = {
-		["<c-space>"] = { "show", "show_documentation", "hide_documentation" },
+		["<c-k>"] = { "show", "show_documentation", "hide_documentation" },
 		["<c-e>"] = { "hide" },
 		["<cr>"] = { "accept", "fallback" },
 		["<c-l>"] = { "snippet_forward", "fallback" },

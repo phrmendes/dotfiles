@@ -3,7 +3,6 @@
   config,
   pkgs,
   parameters,
-  inputs,
   ...
 }: {
   options.zsh.enable = lib.mkEnableOption "enable zsh";
@@ -30,24 +29,20 @@
           src = pkgs.zsh-nix-shell;
         }
       ];
-      shellAliases = let
-        kitten = "${pkgs.kitty}/bin/kitten";
-      in {
+      shellAliases = {
         cat = getExe pkgs.bat;
         du = getExe pkgs.gdu;
         find = getExe pkgs.fd;
         fs = getExe pkgs.fselect;
         g = getExe pkgs.git;
         grep = getExe pkgs.ripgrep;
-        hg = "${kitten} hyperlinked-grep";
         k = "${pkgs.kubectl}/bin/kubectl";
         ld = getExe pkgs.lazydocker;
         lg = getExe pkgs.lazygit;
         ps = getExe pkgs.procs;
-        s = "${kitten} ssh";
         sed = getExe pkgs.gnused;
+        t = "${getExe pkgs.tmux} new-session -A -s default";
         top = getExe pkgs.btop;
-        transfer = "${kitten} transfer";
         v = "nvim";
       };
       initExtra = ''
@@ -78,18 +73,11 @@
             fi
         }
 
-        autoload -Uz edit-command-line
-        zle -N edit-command-line
-
-        function kitty_scrollback_edit_command_line() {
-          local VISUAL="${inputs.kitty-scrollback-nvim}/scripts/edit_command_line.sh"
-          zle edit-command-line
-          zle kill-whole-line
+        function ta() {
+            DIR_BASENAME=$(basename "$PWD")
+            tmux new-session -d -s "$DIR_BASENAME"
+            tmux switch-client -t "$DIR_BASENAME"
         }
-
-        zle -N kitty_scrollback_edit_command_line
-
-        bindkey '^x^e' kitty_scrollback_edit_command_line
 
         eval "$(${getExe pkgs.just} --completions zsh)"
         eval "$(${getExe pkgs.uv} generate-shell-completion zsh)"

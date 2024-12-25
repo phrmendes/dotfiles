@@ -14,7 +14,6 @@
           inherit src pname;
           version = src.rev;
         };
-      kitty-scrollback-nvim = vimPlugin "kitty-scrollback.nvim" inputs.kitty-scrollback-nvim;
       ltex-extra-nvim = vimPlugin "ltex_extra.nvim" inputs.ltex_extra-nvim;
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
     in {
@@ -38,7 +37,6 @@
         fzfWrapper
         image-nvim
         img-clip-nvim
-        kitty-scrollback-nvim
         lazydev-nvim
         ltex-extra-nvim
         markdown-nvim

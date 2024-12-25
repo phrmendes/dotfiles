@@ -14,6 +14,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
 
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";
@@ -33,11 +34,6 @@
     ltex_extra-nvim = {
       flake = false;
       url = "github:barreiroleo/ltex_extra.nvim/dev";
-    };
-
-    kitty-scrollback-nvim = {
-      flake = false;
-      url = "github:mikesmithgh/kitty-scrollback.nvim";
     };
 
     notes-nvim = {

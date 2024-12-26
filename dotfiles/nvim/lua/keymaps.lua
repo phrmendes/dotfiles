@@ -484,16 +484,6 @@ M.python = function(bufnr)
 	map("v", "<localleader>s", require("dap-python").debug_selection, opts)
 end
 
-M.go = function(bufnr)
-	local opts = { noremap = true, buffer = bufnr }
-
-	opts.desc = "Go: debug test"
-	map("n", "<localleader>t", require("dap-go").debug_test, opts)
-
-	opts.desc = "Go: debug last test"
-	map("n", "<localleader>l", require("dap-go").debug_last_test, opts)
-end
-
 M.lua = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 

@@ -3,12 +3,6 @@ local utils = require("utils")
 local efm = {
 	css = { require("efmls-configs.formatters.prettier") },
 	dockerfile = { require("efmls-configs.linters.hadolint") },
-	go = {
-		require("efmls-configs.linters.golangci_lint"),
-		require("efmls-configs.formatters.gofumpt"),
-		require("efmls-configs.formatters.goimports"),
-		require("efmls-configs.formatters.golines"),
-	},
 	elixir = { require("efmls-configs.formatters.mix") },
 	html = { require("efmls-configs.formatters.prettier") },
 	htmldjango = { require("efmls-configs.linters.djlint"), require("efmls-configs.formatters.djlint") },
@@ -47,7 +41,6 @@ local servers = {
 	dotls = {},
 	emmet_language_server = {},
 	eslint = {},
-	gopls = {},
 	html = {},
 	marksman = {},
 	nil_ls = {},

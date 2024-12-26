@@ -46,7 +46,6 @@
         notes-nvim
         nvim-bqf
         nvim-dap
-        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -95,10 +94,6 @@
           efm-langserver
           elixir-ls
           emmet-language-server
-          gofumpt
-          golangci-lint
-          golines
-          gopls
           hadolint
           helm-ls
           ltex-ls

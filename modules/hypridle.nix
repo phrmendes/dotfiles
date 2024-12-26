@@ -10,15 +10,14 @@
     services.hypridle = let
       hyprlock = lib.getExe pkgs.hyprlock;
       brightnessctl = lib.getExe pkgs.brightnessctl;
-      loginctl = "${pkgs.systemd}/bin/loginctl";
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+      lock_cmd = "pidof ${hyprlock} || ${hyprlock}";
       systemctl = "${pkgs.systemd}/bin/systemctl";
-      lock_cmd = "pidof ${hyprlock} || ${hyprlock} -fF";
     in {
       enable = true;
       settings = {
         general = {
-          before_sleep_cmd = "${loginctl} lock-session";
+          before_sleep_cmd = lock_cmd;
           after_sleep_cmd = "${hyprctl} dispatch dpms on";
           ignore_dbus_inhibit = false;
           inherit lock_cmd;
@@ -32,7 +31,7 @@
           })
           {
             timeout = 300;
-            on-timeout = "${loginctl} lock-session";
+            on-timeout = "${lock_cmd}";
           }
           {
             timeout = 330;
@@ -40,7 +39,7 @@
             on-resume = "${hyprctl} dispatch dpms on";
           }
           {
-            timeout = 600;
+            timeout = 360;
             on-timeout = "${systemctl} suspend";
           }
         ];

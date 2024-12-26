@@ -1,5 +1,4 @@
 {
-  parameters,
   pkgs,
   lib,
   ...
@@ -48,14 +47,14 @@
     greetd = {
       enable = true;
       settings = let
-        session = "${pkgs.hyprland}/bin/Hyprland";
         tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
+        sessions = "${pkgs.hyprland}/share/wayland-sessions";
       in rec {
         terminal.vt = 1;
         initial_session = default_session;
         default_session = {
-          inherit (parameters) user;
-          command = "${tuigreet} --time --remember --cmd ${session}";
+          command = "${tuigreet} -t -r --asterisks -s ${sessions}";
+          user = "greeter";
         };
       };
     };

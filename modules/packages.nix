@@ -66,6 +66,7 @@
       nix-prefetch-github
       ouch
       parallel
+      pasystray
       pavucontrol
       phockup
       playerctl

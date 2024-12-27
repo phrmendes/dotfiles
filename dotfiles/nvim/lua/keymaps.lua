@@ -125,7 +125,7 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Quick chat"
-		map("v", "<leader>cc", "<cmd>CopilotChat<cr>", opts)
+		map("v", "<leader>cc", ":CopilotChat<cr>", opts)
 		map("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 
@@ -144,22 +144,22 @@ local keys = {
 		map("n", "<leader>cr", "<cmd>CopilotChatReset<cr>", opts)
 
 		opts.desc = "Explain"
-		map({ "n", "v" }, "<leader>ce", "<cmd>CopilotChatExplain<cr>", opts)
+		map({ "n", "v" }, "<leader>ce", ":CopilotChatExplain<cr>", opts)
 
 		opts.desc = "Fix"
-		map({ "n", "v" }, "<leader>cf", "<cmd>CopilotChatFix<cr>", opts)
+		map({ "n", "v" }, "<leader>cf", ":CopilotChatFix<cr>", opts)
 
 		opts.desc = "Optimize"
-		map({ "n", "v" }, "<leader>co", "<cmd>CopilotChatOptimize<cr>", opts)
+		map({ "n", "v" }, "<leader>co", ":CopilotChatOptimize<cr>", opts)
 
 		opts.desc = "Generate docs"
-		map({ "n", "v" }, "<leader>cd", "<cmd>CopilotChatDocs<cr>", opts)
+		map({ "n", "v" }, "<leader>cd", ":CopilotChatDocs<cr>", opts)
 
 		opts.desc = "Generate tests"
-		map({ "n", "v" }, "<leader>cT", "<cmd>CopilotChatTests<cr>", opts)
+		map({ "n", "v" }, "<leader>cT", ":CopilotChatTests<cr>", opts)
 
 		opts.desc = "Review"
-		map({ "n", "v" }, "<leader>cR", "<cmd>CopilotChatReview<cr>", opts)
+		map({ "n", "v" }, "<leader>cR", ":CopilotChatReview<cr>", opts)
 	end,
 	git = function()
 		local opts = { noremap = true }
@@ -456,7 +456,7 @@ M.markdown = function(bufnr)
 	map({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
 
 	opts.desc = "Markdown: toggle checkbox"
-	map("n", "<c-cr>", require("utils").toggle_checkbox, opts)
+	map({ "n", "v" }, "<c-x>", ":MDTaskToggle<cr>", opts)
 
 	opts.desc = "Markdown: toggle italic"
 	map("v", "<c-i>", require("utils").toggle_emphasis("i"), opts)

@@ -39,19 +39,10 @@ require("blink.cmp").setup({
 		["<c-d>"] = { "scroll_documentation_down", "fallback" },
 	},
 	sources = {
-		default = function()
-			local sources = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev" }
-
-			if vim.bo.filetype == "markdown" or vim.bo.filetype == "quarto" then
-				table.insert(sources, 1, "pandoc")
-			end
-
-			return sources
-		end,
+		default = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev" },
 		providers = {
 			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
 			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-			pandoc = { name = "cmp_pandoc", module = "blink.compat.source" },
 		},
 	},
 })

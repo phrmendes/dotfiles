@@ -35,7 +35,6 @@
       foliate
       gcloud
       gdu
-      gnome-commander
       gnumake
       gnused
       gparted
@@ -59,6 +58,7 @@
       lynx
       minikube
       mongosh
+      nautilus
       networkmanagerapplet
       ngrok
       nix-prefetch-github
@@ -74,7 +74,6 @@
       protonvpn-gui
       python313
       qalculate-gtk
-      quarto
       satty
       scrcpy
       sesh
@@ -84,6 +83,7 @@
       stremio
       tectonic
       terraform
+      typst
       ueberzugpp
       uv
       ventoy

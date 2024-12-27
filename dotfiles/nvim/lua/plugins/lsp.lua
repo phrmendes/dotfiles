@@ -17,6 +17,7 @@ local efm = {
 	sql = { require("efmls-configs.formatters.sql-formatter") },
 	terraform = { require("efmls-configs.formatters.terraform_fmt") },
 	toml = { require("efmls-configs.formatters.taplo") },
+	typst = { require("efmls-configs.formatters.typstyle") },
 	yaml = { require("efmls-configs.formatters.prettier") },
 }
 
@@ -47,7 +48,7 @@ local servers = {
 	ruff = {},
 	taplo = {},
 	terraformls = {},
-	texlab = {},
+	tinymist = {},
 }
 
 servers.efm = {
@@ -93,20 +94,6 @@ servers.lua_ls = {
 				disable = { "missing-fields" },
 			},
 			telemetry = { enable = false },
-		},
-	},
-}
-
-servers.ltex = {
-	filetypes = { "markdown", "quarto" },
-	settings = {
-		ltex = {
-			checkFrequency = "save",
-			language = "none",
-			additionalRules = {
-				enablePickyRules = true,
-				motherTongue = "pt-BR",
-			},
 		},
 	},
 }

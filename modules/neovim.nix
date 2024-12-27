@@ -14,7 +14,6 @@
           inherit src pname;
           version = src.rev;
         };
-      ltex-extra-nvim = vimPlugin "ltex_extra.nvim" inputs.ltex_extra-nvim;
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
     in {
       enable = true;
@@ -30,7 +29,6 @@
         ansible-vim
         blink-cmp
         blink-compat
-        cmp-pandoc-nvim
         copilot-vim
         efmls-configs-nvim
         friendly-snippets
@@ -38,7 +36,6 @@
         image-nvim
         img-clip-nvim
         lazydev-nvim
-        ltex-extra-nvim
         markdown-nvim
         markdown-preview-nvim
         mini-nvim
@@ -96,7 +93,6 @@
           emmet-language-server
           hadolint
           helm-ls
-          ltex-ls
           lua-language-server
           marksman
           neovim-remote
@@ -107,7 +103,8 @@
           stylua
           taplo
           terraform-ls
-          texlab
+          tinymist
+          typstyle
           vscode-langservers-extracted
           yaml-language-server
         ]

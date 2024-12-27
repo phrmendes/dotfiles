@@ -1,9 +1,4 @@
 {
-  "Enable ltex-ls": {
-    "body": ["<!-- LTeX: SETTINGS language=${1:pt-BR}-->", "$0"],
-    "description": "Enable ltex for the current document",
-    "prefix": "ltex"
-  },
   "Block math": {
     "body": ["$$", "${1:equation}", "$$", "$0"],
     "description": "Add block math",

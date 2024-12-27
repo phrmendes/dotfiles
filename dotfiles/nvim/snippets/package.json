@@ -8,7 +8,6 @@
     "snippets": [
       {
         "language": [
-          "quarto",
           "markdown"
         ],
         "path": "./markdown.json"

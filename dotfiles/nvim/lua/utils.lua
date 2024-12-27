@@ -220,7 +220,6 @@ M.mini.notify.filter_notifications = function(array)
 		"Diagnosing",
 		"Processing files",
 		"file to analyze",
-		"ltex",
 	}
 
 	local filter_generator = function(filter)

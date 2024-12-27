@@ -31,11 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ltex_extra-nvim = {
-      flake = false;
-      url = "github:barreiroleo/ltex_extra.nvim/dev";
-    };
-
     notes-nvim = {
       flake = false;
       url = "github:phrmendes/notes.nvim";

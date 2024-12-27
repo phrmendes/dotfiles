@@ -277,23 +277,6 @@
         "type": "github"
       }
     },
-    "ltex_extra-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1714578931,
-        "narHash": "sha256-sjYCAJkDSX+TPEtdMNgFXqcgv43/7Q48haanP5QycT0=",
-        "owner": "barreiroleo",
-        "repo": "ltex_extra.nvim",
-        "rev": "57192d7ae5ba8cef3c10e90f2cd62d4a7cdaab69",
-        "type": "github"
-      },
-      "original": {
-        "owner": "barreiroleo",
-        "ref": "dev",
-        "repo": "ltex_extra.nvim",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1734649271,
@@ -365,7 +348,6 @@
         "home-manager": "home-manager",
         "hyprland-qtutils": "hyprland-qtutils",
         "impermanence": "impermanence",
-        "ltex_extra-nvim": "ltex_extra-nvim",
         "nixpkgs": "nixpkgs_2",
         "notes-nvim": "notes-nvim",
         "stylix": "stylix"

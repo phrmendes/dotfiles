@@ -7,7 +7,7 @@ require("blink.cmp").setup({
 	},
 	completion = {
 		list = {
-			selection = "manual",
+			selection = "preselect",
 		},
 		documentation = {
 			auto_show = true,
@@ -19,8 +19,14 @@ require("blink.cmp").setup({
 			draw = {
 				components = {
 					kind_icon = {
+						ellipsis = false,
 						text = function(ctx)
-							return require("mini.icons").get("lsp", ctx.kind) .. ctx.icon_gap
+							local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+							return kind_icon
+						end,
+						highlight = function(ctx)
+							local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+							return hl
 						end,
 					},
 				},
@@ -45,4 +51,7 @@ require("blink.cmp").setup({
 			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 		},
 	},
+	enabled = function()
+		return not vim.tbl_contains({ "minifiles", "snacks_input" }, vim.bo.filetype)
+	end,
 })

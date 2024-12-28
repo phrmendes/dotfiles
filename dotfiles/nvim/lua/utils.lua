@@ -9,15 +9,15 @@ M.mini.pick = {}
 M.mini.git = {}
 
 M.augroups = {
-	filetype = augroup("UserFileType", { clear = true }),
-	mini = augroup("UserMini", { clear = true }),
-	yank = augroup("UserYank", { clear = true }),
-	windows = augroup("UserWindows", { clear = true }),
+	filetype = augroup("UserFileType", {}),
+	mini = augroup("UserMini", {}),
+	yank = augroup("UserYank", {}),
+	windows = augroup("UserWindows", {}),
 	lsp = {
-		attach = augroup("UserLspAttach", { clear = true }),
-		detach = augroup("UserLspDetach", { clear = true }),
-		efm = augroup("UserLspEfm", { clear = true }),
-		highlight = augroup("UserLspHighlight", { clear = true }),
+		attach = augroup("UserLspAttach", {}),
+		detach = augroup("UserLspDetach", {}),
+		efm = augroup("UserLspEfm", {}),
+		highlight = augroup("UserLspHighlight", {}),
 	},
 }
 

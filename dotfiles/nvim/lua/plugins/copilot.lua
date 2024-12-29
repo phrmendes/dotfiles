@@ -7,3 +7,8 @@ require("CopilotChat").setup({
 		},
 	},
 })
+
+vim.g.copilot_filetypes = {
+	["copilot-chat"] = false,
+	minifiles = false,
+}

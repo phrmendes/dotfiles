@@ -467,11 +467,11 @@
     "todotxt-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1735486549,
-        "narHash": "sha256-5BNGq6iKUm0Yar+RhVU6ccmpd+ZZZv4dKudm6qW1FZg=",
+        "lastModified": 1735515476,
+        "narHash": "sha256-Dq/UhKV+6whaK+WCpbcbXablo2Iz7vNq812cRee/YAE=",
         "owner": "phrmendes",
         "repo": "todotxt.nvim",
-        "rev": "8c3c608ef3da96dc12a731b87238c3ccc735c30d",
+        "rev": "c2e3a5b7df1a940b69db2dcd1801310ca6679440",
         "type": "github"
       },
       "original": {

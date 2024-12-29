@@ -35,6 +35,11 @@
       flake = false;
       url = "github:phrmendes/notes.nvim";
     };
+
+    todotxt-nvim = {
+      flake = false;
+      url = "github:phrmendes/todotxt.nvim";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

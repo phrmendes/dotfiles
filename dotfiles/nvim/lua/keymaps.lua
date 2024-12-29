@@ -228,10 +228,10 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Open"
-		map("n", "<leader>tt", require("dev.todotxt").open_todo_file, opts)
+		map("n", "<leader>tt", require("todotxt").open_todo_file, opts)
 
 		opts.desc = "New entry"
-		map("n", "<leader>tn", require("dev.todotxt").capture_todo, opts)
+		map("n", "<leader>tn", require("todotxt").capture_todo, opts)
 	end,
 	slime = function()
 		local opts = { noremap = true }
@@ -456,7 +456,7 @@ M.markdown = function(bufnr)
 	map({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
 
 	opts.desc = "Markdown: toggle checkbox"
-	map({ "n", "v" }, "<c-x>", ":MDTaskToggle<cr>", opts)
+	map({ "n", "v" }, "<c-c><c-x>", ":MDTaskToggle<cr>", opts)
 
 	opts.desc = "Markdown: toggle italic"
 	map("v", "<c-i>", require("utils").toggle_emphasis("i"), opts)
@@ -519,28 +519,28 @@ M.todotxt = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "todo.txt: toggle task state"
-	map("n", "<c-cr>", require("dev.todotxt").toggle_todo_state, opts)
+	map("n", "<c-c><c-x>", require("todotxt").toggle_todo_state, opts)
 
 	opts.desc = "todo.txt: cycle priority"
-	map("n", "<a-cr>", require("dev.todotxt").cycle_priority, opts)
+	map("n", "<c-c><c-p>", require("todotxt").cycle_priority, opts)
 
 	opts.desc = "Sort"
-	map("n", "<leader>ts", require("dev.todotxt").sort_tasks, opts)
+	map("n", "<leader>ts", require("todotxt").sort_tasks, opts)
 
 	opts.desc = "Sort by (priority)"
-	map("n", "<leader>tP", require("dev.todotxt").sort_tasks_by_priority, opts)
+	map("n", "<leader>tP", require("todotxt").sort_tasks_by_priority, opts)
 
 	opts.desc = "Sort by @context"
-	map("n", "<leader>tc", require("dev.todotxt").sort_tasks_by_context, opts)
+	map("n", "<leader>tc", require("todotxt").sort_tasks_by_context, opts)
 
 	opts.desc = "Sort by +project"
-	map("n", "<leader>tp", require("dev.todotxt").sort_tasks_by_project, opts)
+	map("n", "<leader>tp", require("todotxt").sort_tasks_by_project, opts)
 
 	opts.desc = "Sort by due:date"
-	map("n", "<leader>tD", require("dev.todotxt").sort_tasks_by_due_date, opts)
+	map("n", "<leader>tD", require("todotxt").sort_tasks_by_due_date, opts)
 
 	opts.desc = "Move to done.txt"
-	map("n", "<leader>td", require("dev.todotxt").move_done_tasks, opts)
+	map("n", "<leader>td", require("todotxt").move_done_tasks, opts)
 end
 
 M.setup = function()

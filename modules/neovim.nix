@@ -15,6 +15,7 @@
           version = src.rev;
         };
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
+      todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -56,6 +57,7 @@
         rest-nvim
         smart-splits-nvim
         snacks-nvim
+        todotxt-nvim
         undotree
         vim-abolish
         vim-dadbod

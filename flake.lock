@@ -328,11 +328,11 @@
     "notes-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1735063956,
-        "narHash": "sha256-OBYeEbaO1xahg4kn1zp0j1K9LlWQ5KNLQ57CkkzC4xI=",
+        "lastModified": 1735486517,
+        "narHash": "sha256-lGTRdGgwYzZjv/b5LExIJyEKmzmW0gdaAcLyv8bfVWs=",
         "owner": "phrmendes",
         "repo": "notes.nvim",
-        "rev": "b67cfdc95be47d7ff9ba38ed2004bb7170da6d7c",
+        "rev": "b3ec36a717e9656925bbe1cf371df9b15418c162",
         "type": "github"
       },
       "original": {
@@ -350,7 +350,8 @@
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs_2",
         "notes-nvim": "notes-nvim",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "todotxt-nvim": "todotxt-nvim"
       }
     },
     "stylix": {
@@ -460,6 +461,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
+        "type": "github"
+      }
+    },
+    "todotxt-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735486549,
+        "narHash": "sha256-5BNGq6iKUm0Yar+RhVU6ccmpd+ZZZv4dKudm6qW1FZg=",
+        "owner": "phrmendes",
+        "repo": "todotxt.nvim",
+        "rev": "8c3c608ef3da96dc12a731b87238c3ccc735c30d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "phrmendes",
+        "repo": "todotxt.nvim",
         "type": "github"
       }
     }

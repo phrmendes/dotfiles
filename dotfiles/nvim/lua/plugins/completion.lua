@@ -7,7 +7,7 @@ require("blink.cmp").setup({
 	},
 	completion = {
 		list = {
-			selection = "preselect",
+			selection = "manual",
 		},
 		documentation = {
 			auto_show = true,

@@ -30,6 +30,7 @@
         ansible-vim
         blink-cmp
         blink-compat
+        cmp-pandoc-nvim
         copilot-vim
         efmls-configs-nvim
         friendly-snippets

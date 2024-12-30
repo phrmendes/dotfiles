@@ -43,19 +43,10 @@ utils.config_diagnostics({ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info
 	},
 })
 
-require("lspconfig.configs").bibli_ls = {
-	default_config = {
-		cmd = { "bibli_ls" },
-		filetypes = { "markdown", "quarto" },
-		root_dir = require("lspconfig").util.root_pattern(".bibli.toml"),
-	},
-}
-
 local servers = {
 	ansiblels = {},
 	basedpyright = {},
 	bashls = {},
-	bibli_ls = {},
 	cssls = {},
 	dockerls = {},
 	dotls = {},

@@ -115,7 +115,7 @@ autocmd("TextYankPost", {
 autocmd("FileType", {
 	desc = "Close with <q>",
 	group = augroups.filetype,
-	pattern = { "dap-float", "diff", "git", "help", "man", "qf", "query", "scratch", "undotree" },
+	pattern = { "dap-float", "diff", "git", "help", "man", "qf", "query", "undotree" },
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })

@@ -74,6 +74,7 @@
       protonvpn-gui
       python313
       qalculate-gtk
+      quarto
       satty
       scrcpy
       sesh
@@ -83,7 +84,6 @@
       stremio
       tectonic
       terraform
-      typst
       ueberzugpp
       uv
       ventoy

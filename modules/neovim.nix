@@ -40,7 +40,6 @@
         markdown-nvim
         markdown-preview-nvim
         mini-nvim
-        nabla-nvim
         notes-nvim
         nvim-bqf
         nvim-dap
@@ -95,6 +94,7 @@
           emmet-language-server
           hadolint
           helm-ls
+          ltex-ls-plus
           lua-language-server
           marksman
           neovim-remote
@@ -105,8 +105,6 @@
           stylua
           taplo
           terraform-ls
-          tinymist
-          typstyle
           vscode-langservers-extracted
           yaml-language-server
         ]

@@ -88,9 +88,6 @@ for _, disable in ipairs({ "gzip", "netrwPlugin", "tarPlugin", "tohtml", "tutor"
 	vim.g["loaded_" .. disable] = 0
 end
 
--- language
-vim.cmd([[language en_US.UTF-8]])
-
 -- treat '-' as part of a word
 vim.cmd([[set iskeyword+=-]])
 
@@ -114,5 +111,7 @@ vim.filetype.add({
 	},
 })
 
--- todo.txt
-vim.g.todo_done_filename = "done.txt"
+-- spell
+vim.g.spell_enabled = false
+vim.opt.spell = vim.g.spell_enabled
+vim.opt.spelllang = "en"

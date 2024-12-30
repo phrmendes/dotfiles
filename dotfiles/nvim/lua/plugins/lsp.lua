@@ -1,5 +1,16 @@
 local utils = require("utils")
 
+local dicts = {
+	en = { path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add", words = {} },
+	pt = { path = vim.fn.stdpath("config") .. "/spell/pt.utf-8.add", words = {} },
+}
+
+for _, dict in pairs(dicts) do
+	for word in io.open(dict.path, "r"):lines() do
+		table.insert(dict.words, word)
+	end
+end
+
 local efm = {
 	css = { require("efmls-configs.formatters.prettier") },
 	dockerfile = { require("efmls-configs.linters.hadolint") },
@@ -17,7 +28,6 @@ local efm = {
 	sql = { require("efmls-configs.formatters.sql-formatter") },
 	terraform = { require("efmls-configs.formatters.terraform_fmt") },
 	toml = { require("efmls-configs.formatters.taplo") },
-	typst = { require("efmls-configs.formatters.typstyle") },
 	yaml = { require("efmls-configs.formatters.prettier") },
 }
 
@@ -33,10 +43,19 @@ utils.config_diagnostics({ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info
 	},
 })
 
+require("lspconfig.configs").bibli_ls = {
+	default_config = {
+		cmd = { "bibli_ls" },
+		filetypes = { "markdown", "quarto" },
+		root_dir = require("lspconfig").util.root_pattern(".bibli.toml"),
+	},
+}
+
 local servers = {
 	ansiblels = {},
 	basedpyright = {},
 	bashls = {},
+	bibli_ls = {},
 	cssls = {},
 	dockerls = {},
 	dotls = {},
@@ -48,7 +67,6 @@ local servers = {
 	ruff = {},
 	taplo = {},
 	terraformls = {},
-	tinymist = {},
 }
 
 servers.efm = {
@@ -81,6 +99,19 @@ servers.jsonls = {
 		json = {
 			schemas = require("schemastore").json.schemas(),
 			validate = { enable = true },
+		},
+	},
+}
+
+servers.ltex_plus = {
+	settings = {
+		ltex = {
+			dictionary = {
+				en = dicts.en.words,
+				pt = dicts.pt.words,
+				["en-US"] = dicts.en.words,
+				["pt-BR"] = dicts.pt.words,
+			},
 		},
 	},
 }

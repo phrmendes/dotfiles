@@ -25,12 +25,6 @@ local keys = {
 		opts.desc = "List buffers"
 		map("n", "<c-p>", require("utils").mini.buffers, opts)
 
-		opts.desc = "Commands"
-		map("n", "<c-s-p>", require("mini.extra").pickers.commands, opts)
-
-		opts.desc = "Scratch"
-		map("n", "<leader>.", require("snacks").scratch.open, opts)
-
 		opts.desc = "Split (H)"
 		map("n", "<leader>-", "<cmd>split<cr>", opts)
 

@@ -328,11 +328,11 @@
     "notes-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1735486517,
-        "narHash": "sha256-lGTRdGgwYzZjv/b5LExIJyEKmzmW0gdaAcLyv8bfVWs=",
+        "lastModified": 1735520749,
+        "narHash": "sha256-mFGRJUpD94Yfw8PzrCk4RKrX+O9jdIWKWIFCHU2iTI0=",
         "owner": "phrmendes",
         "repo": "notes.nvim",
-        "rev": "b3ec36a717e9656925bbe1cf371df9b15418c162",
+        "rev": "f7ded9631cf6718273632d7912bb0ccda9f16356",
         "type": "github"
       },
       "original": {
@@ -467,11 +467,11 @@
     "todotxt-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1735515476,
-        "narHash": "sha256-Dq/UhKV+6whaK+WCpbcbXablo2Iz7vNq812cRee/YAE=",
+        "lastModified": 1735660849,
+        "narHash": "sha256-KqEX4d1kNrhi2DCHJ81ogRfcB7g0wqE9BRYpTYLeWbo=",
         "owner": "phrmendes",
         "repo": "todotxt.nvim",
-        "rev": "c2e3a5b7df1a940b69db2dcd1801310ca6679440",
+        "rev": "d9ed7e90b0b5730ba82cbbb131f8d3b88743f9f6",
         "type": "github"
       },
       "original": {

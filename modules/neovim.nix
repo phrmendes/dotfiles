@@ -51,7 +51,6 @@
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
-        nvim-ts-context-commentstring
         one-small-step-for-vimkind
         refactoring-nvim
         rest-nvim
@@ -68,15 +67,6 @@
         vim-sleuth
         vim-slime
       ];
-      extraLuaPackages = luaPkgs:
-        with luaPkgs; [
-          magick
-          mimetypes
-          nui-nvim
-          nvim-nio
-          plenary-nvim
-          tiktoken_core
-        ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [debugpy];
       extraPackages = with pkgs;
@@ -86,7 +76,6 @@
           ansible-lint
           basedpyright
           bash-language-server
-          delve
           djlint
           dockerfile-language-server-nodejs
           dot-language-server

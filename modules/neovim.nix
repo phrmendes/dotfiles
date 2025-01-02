@@ -16,6 +16,7 @@
         };
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
       todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
+      kitty-scrollback-nvim = vimPlugin "kitty-scrollback-nvim" inputs.kitty-scrollback-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -37,6 +38,7 @@
         fzfWrapper
         image-nvim
         img-clip-nvim
+        kitty-scrollback-nvim
         lazydev-nvim
         markdown-nvim
         markdown-preview-nvim
@@ -75,6 +77,8 @@
         ];
       extraPackages = with pkgs;
         [
+          luajitPackages.tiktoken_core
+          luajitPackages.magick
           alejandra
           ansible-language-server
           # ansible-lint

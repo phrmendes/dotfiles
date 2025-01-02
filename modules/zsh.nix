@@ -41,7 +41,6 @@
         lg = getExe pkgs.lazygit;
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;
-        t = "${getExe pkgs.tmux} new-session -A -s default";
         top = getExe pkgs.btop;
         v = "nvim";
       };
@@ -71,12 +70,6 @@
 
             echo "Bitwarden unlocked."
             fi
-        }
-
-        function ta() {
-            DIR_BASENAME=$(basename "$PWD")
-            tmux new-session -d -s "$DIR_BASENAME"
-            tmux switch-client -t "$DIR_BASENAME"
         }
 
         eval "$(${getExe pkgs.just} --completions zsh)"

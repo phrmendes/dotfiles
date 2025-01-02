@@ -23,8 +23,8 @@
         name = "Fira Sans";
       };
       monospace = {
-        package = pkgs.nerd-fonts.fira-mono;
-        name = "FiraMono Nerd Font";
+        package = pkgs.nerd-fonts.fira-code;
+        name = "FiraCode Nerd Font";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

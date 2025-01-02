@@ -75,14 +75,12 @@
       quarto
       satty
       scrcpy
-      sesh
       slurp
       sshfs
       sshs
       stremio
       tectonic
       terraform
-      ueberzugpp
       uv
       ventoy
       vesktop

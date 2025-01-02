@@ -11,7 +11,7 @@
       inherit (lib) getExe;
       hyprlock = getExe pkgs.hyprlock;
       playerctl = getExe pkgs.playerctl;
-      terminal = getExe pkgs.alacritty;
+      terminal = getExe pkgs.kitty;
       wofi = getExe pkgs.wofi;
       wofi-emoji = getExe pkgs.wofi-emoji;
       zsh = getExe pkgs.zsh;
@@ -168,7 +168,6 @@
             "SUPER,space,exec,${wofi}"
             "SUPER,tab,changegroupactive,f"
             "SUPER,return,exec,${terminal}"
-            "SUPER SHIFT,return,exec,${terminal} -e ${zsh} -l"
             "SUPER,V,exec,${lib.getExe clipboard}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

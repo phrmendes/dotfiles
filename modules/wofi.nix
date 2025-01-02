@@ -26,7 +26,7 @@
         location = "center";
         mode = "drun";
         no_actions = true;
-        term = lib.getExe pkgs.alacritty;
+        term = lib.getExe pkgs.kitty;
         width = "25%";
       };
       style = with colors;

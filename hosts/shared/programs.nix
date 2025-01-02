@@ -44,6 +44,7 @@
         openssl
         readline
         stdenv.cc.cc
+        stdenv.cc.cc.lib
         systemd
         tk
         util-linux

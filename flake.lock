@@ -232,6 +232,22 @@
         "type": "github"
       }
     },
+    "kitty-scrollback-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735680510,
+        "narHash": "sha256-K4VbcnIFUjpmpfIuN38hFWXykx2MsN5E86bKoDzEtfM=",
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
+        "rev": "9f4e0684255efdc15f419e6aeba20289f49367ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1735617354,
@@ -286,6 +302,7 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "kitty-scrollback-nvim": "kitty-scrollback-nvim",
         "nixpkgs": "nixpkgs",
         "notes-nvim": "notes-nvim",
         "stylix": "stylix",

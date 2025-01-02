@@ -14,7 +14,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
     stylix.url = "github:danth/stylix";
-    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
 
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";

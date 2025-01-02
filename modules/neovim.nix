@@ -51,7 +51,6 @@
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
-        one-small-step-for-vimkind
         refactoring-nvim
         rest-nvim
         smart-splits-nvim
@@ -69,11 +68,16 @@
       ];
       extraPython3Packages = pythonPkgs:
         with pythonPkgs; [debugpy];
+      extraLuaPackages = luaPkgs:
+        with luaPkgs; [
+          magick
+          tiktoken_core
+        ];
       extraPackages = with pkgs;
         [
           alejandra
           ansible-language-server
-          ansible-lint
+          # ansible-lint
           basedpyright
           bash-language-server
           djlint

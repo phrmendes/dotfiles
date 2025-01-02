@@ -112,6 +112,5 @@ vim.filetype.add({
 })
 
 -- spell
-vim.g.spell_enabled = false
-vim.opt.spell = vim.g.spell_enabled
-vim.opt.spelllang = "en"
+vim.opt.spell = false
+vim.g.ltex_language = "en-US"

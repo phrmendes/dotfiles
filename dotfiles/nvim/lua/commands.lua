@@ -1,37 +1,30 @@
 local M = {
-	random = function()
-		vim.api.nvim_create_user_command("Spell", function(args)
-			if #args.fargs == 0 then
-				vim.g.spell_enabled = not vim.g.spell_enabled
-				vim.opt_local.spell = vim.g.spell_enabled
-
-				vim.notify("Spell " .. (vim.g.spell_enabled and "enabled" or "disabled"))
-
-				return
-			end
-
-			if args.fargs[1] == "pt" then
-				vim.opt_local.spell = true
+	ltex = function(bufnr)
+		vim.api.nvim_buf_create_user_command(bufnr, "Ltex", function()
+			if vim.g.ltex_language == "en-US" then
+				vim.g.ltex_language = "pt-BR"
 				vim.opt_local.spelllang = "pt"
-				vim.notify("Spell language set to `pt`")
+				vim.notify("Setting language to `pt-BR`", vim.log.levels.INFO)
+			else
+				vim.g.ltex_language = "en-US"
+				vim.notify("Setting language to `en-US`", vim.log.levels.INFO)
+			end
+
+			local client = vim.lsp.get_clients({ name = "ltex_plus" })[1]
+			local settings = client.config.settings
+
+			if not settings then
 				return
 			end
 
-			if args.fargs[1] == "en" then
-				vim.opt_local.spell = true
-				vim.opt_local.spelllang = "en"
-				vim.notify("Spell language set to `en`")
-				return
-			end
+			settings.ltex.language = vim.g.ltex_language
+
+			client.notify("workspace/didChangeConfiguration", { settings = settings })
 		end, {
-			desc = "Select language",
-			nargs = "*",
+			desc = "Toggle Ltex Language",
+			nargs = 0,
 		})
 	end,
 }
-
-M.setup = function()
-	M.random()
-end
 
 return M

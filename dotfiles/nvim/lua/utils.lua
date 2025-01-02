@@ -47,16 +47,6 @@ M.borders = {
 	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 }
 
-M.capabilities = function()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-	return capabilities
-end
-
 M.config_diagnostics = function(signs, config)
 	for type, icon in pairs(signs) do
 		local hl = "DiagnosticSign" .. type
@@ -67,18 +57,17 @@ M.config_diagnostics = function(signs, config)
 end
 
 M.config_lsp_server = function(opts)
-	local settings = opts.settings or {}
+	local config = opts.config or {}
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-	settings.capabilities = vim.tbl_deep_extend("force", {}, {
-		capabilites = opts.capabilities or M.capabilities(),
-	})
+	config.capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
-	settings.handlers = {
+	config.handlers = {
 		["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, M.borders),
 		["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, M.borders),
 	}
 
-	require("lspconfig")[opts.server].setup(settings)
+	require("lspconfig")[opts.server].setup(config)
 end
 
 M.display_callback = function(variable)
@@ -98,6 +87,53 @@ end
 
 M.toggle_emphasis = function(key)
 	return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual("]] .. key .. [[")<cr>]]
+end
+
+M.get_dictionary_words = function(lang)
+	local file = vim.env.HOME .. "/Documents/notes/dictionaries/" .. lang .. ".add"
+	local words = {}
+
+	if vim.loop.fs_stat(file) == nil then
+		vim.notify("File does not exist: " .. file)
+		return
+	end
+
+	for word in io.lines(file) do
+		table.insert(words, word)
+	end
+
+	return words
+end
+
+M.add_word_to_dictionary = function(lang, word)
+	local file = vim.env.HOME .. "/Documents/notes/dictionaries/" .. lang .. ".add"
+	local words = {}
+	local unique_words = {}
+
+	local f = io.open(file, "r")
+
+	if f then
+		for line in f:lines() do
+			words[line] = true
+		end
+
+		f:close()
+	end
+
+	words[word] = true
+
+	f = io.open(file, "w")
+
+	if f then
+		for w in pairs(words) do
+			f:write(w .. "\n")
+			table.insert(unique_words, w)
+		end
+
+		f:close()
+	end
+
+	return unique_words
 end
 
 M.mini.buffers = function()

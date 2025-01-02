@@ -46,9 +46,6 @@ local keys = {
 		opts.desc = "Keymaps"
 		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
-		opts.desc = "Paste (no register)"
-		map("v", "<leader>P", [["_dP]], opts)
-
 		opts.desc = "Write all"
 		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
 
@@ -535,6 +532,27 @@ M.todotxt = function(bufnr)
 
 	opts.desc = "Move to done.txt"
 	map("n", "<leader>td", require("todotxt").move_done_tasks, opts)
+end
+
+M.ltex = function(client, bufnr)
+	local opts = { buffer = bufnr }
+
+	opts.desc = "Add word to dictionary"
+	map({ "n", "x" }, "zg", function()
+		local word = vim.fn.expand("<cword>")
+
+		local words = require("utils").add_word_to_dictionary(vim.g.ltex_language, word)
+
+		local settings = client.config.settings
+
+		if not settings then
+			return
+		end
+
+		settings.ltex.dictionary[vim.g.ltex_language] = words
+
+		client.notify("workspace/didChangeConfiguration", { settings = settings })
+	end, opts)
 end
 
 M.setup = function()

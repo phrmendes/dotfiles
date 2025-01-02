@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: {
   options.packages.enable = lib.mkEnableOption "enable packages";
@@ -12,7 +11,6 @@
       gcloud = google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [
         gke-gcloud-auth-plugin
       ]);
-      hyprland-qtutils = inputs.hyprland-qtutils.packages."${pkgs.system}".default;
     in [
       age
       android-tools

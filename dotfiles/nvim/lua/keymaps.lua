@@ -457,9 +457,6 @@ M.markdown = function(bufnr)
 
 	opts.desc = "Markdown: preview document"
 	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
-
-	opts.desc = "Markdown: paste image"
-	map("n", "<leader>P", "<cmd>PasteImage<cr>", opts)
 end
 
 M.python = function(bufnr)

@@ -8,6 +8,7 @@
     fuse.userAllowOther = true;
     hyprland.enable = true;
     kdeconnect.enable = true;
+    nix-ld.enable = true;
     zsh.enable = true;
 
     ssh.askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
@@ -29,29 +30,6 @@
         enable = true;
         extraArgs = "--keep-since 3d --keep 5";
       };
-    };
-
-    nix-ld = {
-      enable = true;
-      package = pkgs.nix-ld-rs;
-      libraries = with pkgs; [
-        acl
-        attr
-        bzip2
-        libsodium
-        libssh
-        libxml2
-        openssl
-        readline
-        stdenv.cc.cc
-        stdenv.cc.cc.lib
-        systemd
-        tk
-        util-linux
-        xz
-        zlib
-        zstd
-      ];
     };
   };
 }

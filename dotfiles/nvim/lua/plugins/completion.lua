@@ -11,7 +11,9 @@ require("blink.cmp").setup({
 	},
 	completion = {
 		list = {
-			selection = "manual",
+			selection = function(ctx)
+				return ctx.mode == "cmdline" and "auto_insert" or "manual"
+			end,
 		},
 		documentation = {
 			auto_show = true,

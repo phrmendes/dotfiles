@@ -36,8 +36,6 @@
         efmls-configs-nvim
         friendly-snippets
         fzfWrapper
-        image-nvim
-        img-clip-nvim
         kitty-scrollback-nvim
         lazydev-nvim
         markdown-nvim
@@ -68,20 +66,13 @@
         vim-sleuth
         vim-slime
       ];
-      extraPython3Packages = pythonPkgs:
-        with pythonPkgs; [debugpy];
-      extraLuaPackages = luaPkgs:
-        with luaPkgs; [
-          magick
-          tiktoken_core
-        ];
+      extraPython3Packages = pythonPkgs: with pythonPkgs; [debugpy];
+      extraLuaPackages = luaPkgs: with luaPkgs; [tiktoken_core];
       extraPackages = with pkgs;
         [
-          luajitPackages.tiktoken_core
-          luajitPackages.magick
           alejandra
           ansible-language-server
-          # ansible-lint
+          ansible-lint
           basedpyright
           bash-language-server
           djlint

@@ -25,7 +25,7 @@
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "yes";
         open_url_with = "default";
-        scrollback_lines = 5000;
+        scrollback_lines = 10000;
         shell_integration = "enabled";
         tab_bar_edge = "bottom";
         tab_bar_min_tabs = 1;

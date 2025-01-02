@@ -36,6 +36,7 @@
     ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
+    ./zellij.nix
   ];
 
   bat.enable = true;
@@ -71,6 +72,7 @@
   waybar.enable = true;
   wofi.enable = true;
   yazi.enable = true;
+  zellij.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
 

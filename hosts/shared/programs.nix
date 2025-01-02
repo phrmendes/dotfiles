@@ -27,7 +27,7 @@
       flake = "/home/${parameters.user}/Projects/dotfiles";
       clean = {
         enable = true;
-        extraArgs = "--keep-since 3d --keep 3";
+        extraArgs = "--keep-since 3d --keep 5";
       };
     };
 

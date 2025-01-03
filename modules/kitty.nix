@@ -59,11 +59,10 @@
         "ctrl+shift+[" = "previous_tab";
         "ctrl+shift+]" = "next_tab";
         "ctrl+shift+b" = "scroll_page_down";
-        "ctrl+shift+f" = "scroll_page_up";
         "ctrl+shift+c" = "copy_to_clipboard";
-        "ctrl+shift+v" = "paste_from_clipboard";
         "ctrl+shift+d" = "scroll_line_down";
-        "ctrl+shift+u" = "scroll_line_up";
+        "ctrl+shift+e" = "kitty_scrollback_nvim";
+        "ctrl+shift+f" = "scroll_page_up";
         "ctrl+shift+h" = "move_window left";
         "ctrl+shift+j" = "move_window down";
         "ctrl+shift+k" = "move_window up";
@@ -72,7 +71,8 @@
         "ctrl+shift+o" = "open_url_with_hints";
         "ctrl+shift+q" = "close_window";
         "ctrl+shift+r" = "set_tab_title";
-        "ctrl+shift+s" = "kitty_scrollback_nvim";
+        "ctrl+shift+u" = "scroll_line_up";
+        "ctrl+shift+v" = "paste_from_clipboard";
         "ctrl+shift+z" = "combine : toggle_layout stack : scroll_prompt_to_bottom";
         "ctrl+shift+1" = "goto_tab 1";
         "ctrl+shift+2" = "goto_tab 2";

@@ -12,7 +12,6 @@
       brightnessctl = lib.getExe pkgs.brightnessctl;
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       lock_cmd = "pidof ${hyprlock} || ${hyprlock}";
-      systemctl = "${pkgs.systemd}/bin/systemctl";
     in {
       enable = true;
       settings = {
@@ -37,10 +36,6 @@
             timeout = 330;
             on-timeout = "${hyprctl} dispatch dpms off";
             on-resume = "${hyprctl} dispatch dpms on";
-          }
-          {
-            timeout = 360;
-            on-timeout = "${systemctl} suspend";
           }
         ];
       };

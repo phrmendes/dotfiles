@@ -54,11 +54,11 @@
             "bind \"Q\"" = {
               Quit = {};
             };
-            "bind \"S\"" = {
-              SwitchToMode = "Scroll";
-            };
             "bind \"d\"" = {
               Detach = {};
+            };
+            "bind \"e\"" = {
+              EditScrollback = {};
             };
             "bind \"h\"" = {
               MoveFocus = "Left";

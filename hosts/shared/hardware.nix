@@ -1,12 +1,5 @@
-{
-  lib,
-  modulesPath,
-  parameters,
-  ...
-}: {
+{modulesPath, ...}: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
-
-  nixpkgs.hostPlatform = lib.mkDefault parameters.system;
 
   hardware = {
     keyboard.qmk.enable = true;

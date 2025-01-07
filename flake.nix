@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kitty-scrollback-nvim = {
-      flake = false;
-      url = "github:mikesmithgh/kitty-scrollback.nvim";
-    };
-
     notes-nvim = {
       flake = false;
       url = "github:phrmendes/notes.nvim";

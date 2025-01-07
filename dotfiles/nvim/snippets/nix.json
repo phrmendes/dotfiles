@@ -1,5 +1,22 @@
 {
-  "Home-manager module": {
+  "Home-manager service module": {
+    "body": [
+      "{",
+      "  lib,",
+      "  config,",
+      "  ...",
+      "}: {",
+      "  options.${1:service}.enable = lib.mkEnableOption \"enable ${1}\";",
+      "",
+      "  config = lib.mkIf config.${1}.enable {",
+      "    services.${1}.enable = true;",
+      "  };",
+      "}"
+    ],
+    "description": "Home-manager service module",
+    "prefix": "shmm"
+  },
+  "Home-manager program module": {
     "body": [
       "{",
       "  lib,",
@@ -13,7 +30,7 @@
       "  };",
       "}"
     ],
-    "description": "Home-manager module",
+    "description": "Home-manager program module",
     "prefix": "hmm"
   },
   "Flake github input": {

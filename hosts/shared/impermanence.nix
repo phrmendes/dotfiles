@@ -35,6 +35,7 @@
         ".local/share/plex"
         ".local/share/syncthing"
         ".local/share/uv"
+        ".local/share/wezterm"
         ".local/share/zoxide"
         ".local/state/lazygit"
         ".local/state/nix"

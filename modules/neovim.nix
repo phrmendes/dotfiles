@@ -16,7 +16,6 @@
         };
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
       todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
-      kitty-scrollback-nvim = vimPlugin "kitty-scrollback-nvim" inputs.kitty-scrollback-nvim;
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -36,7 +35,6 @@
         efmls-configs-nvim
         friendly-snippets
         fzfWrapper
-        kitty-scrollback-nvim
         lazydev-nvim
         markdown-nvim
         markdown-preview-nvim

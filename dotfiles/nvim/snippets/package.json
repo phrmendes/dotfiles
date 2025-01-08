@@ -1,27 +1,17 @@
 {
   "name": "snippets",
-  "author": "phrmendes",
-  "engines": {
-    "vscode": "^1.11.0"
-  },
   "contributes": {
     "snippets": [
       {
-        "language": [
-          "markdown"
-        ],
+        "language": "markdown",
         "path": "./markdown.json"
       },
       {
-        "language": [
-          "nix"
-        ],
+        "language": "nix",
         "path": "./nix.json"
       },
       {
-        "language": [
-          "sql"
-        ],
+        "language": "sql",
         "path": "./sql.json"
       }
     ]

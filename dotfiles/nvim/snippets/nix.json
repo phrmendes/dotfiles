@@ -2,15 +2,15 @@
   "Home-manager service module": {
     "body": [
       "{",
-      "  lib,",
-      "  config,",
-      "  ...",
+      "\tlib,",
+      "\tconfig,",
+      "\t...",
       "}: {",
-      "  options.${1:service}.enable = lib.mkEnableOption \"enable ${1}\";",
+      "\toptions.${1:service}.enable = lib.mkEnableOption \"enable ${1}\";",
       "",
-      "  config = lib.mkIf config.${1}.enable {",
-      "    services.${1}.enable = true;",
-      "  };",
+      "\tconfig = lib.mkIf config.${1}.enable {",
+      "\t\tservices.${1}.enable = true;",
+      "\t};",
       "}"
     ],
     "description": "Home-manager service module",
@@ -19,15 +19,15 @@
   "Home-manager program module": {
     "body": [
       "{",
-      "  lib,",
-      "  config,",
-      "  ...",
+      "\tlib,",
+      "\tconfig,",
+      "\t...",
       "}: {",
-      "  options.${1:program}.enable = lib.mkEnableOption \"enable ${1}\";",
+      "\toptions.${1:program}.enable = lib.mkEnableOption \"enable ${1}\";",
       "",
-      "  config = lib.mkIf config.${1}.enable {",
-      "    programs.${1}.enable = true;",
-      "  };",
+      "\tconfig = lib.mkIf config.${1}.enable {",
+      "\t\tprograms.${1}.enable = true;",
+      "\t};",
       "}"
     ],
     "description": "Home-manager program module",
@@ -36,8 +36,8 @@
   "Flake github input": {
     "body": [
       "${name}: {",
-      "  flake = false;",
-      "  url = \"github:${owner}/${repo}\";",
+      "\tflake = false;",
+      "\turl = \"github:${owner}/${repo}\";",
       "}"
     ]
   }

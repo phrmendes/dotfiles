@@ -36,3 +36,9 @@ wpa_passphrase "{ssid}" > wifi.conf
 sudo wpa_supplicant -i {interface} -c wifi.conf -B
 sudo dhcpcd
 ```
+
+## TODO
+
+- [ ] Use [`basics-language-server`](https://github.com/antonk52/basics-language-server) (submit PR to add to Nixpkgs)
+- [ ] Use [`mini.snippets`](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-snippets.md)
+- [ ] Use [`mini.completion`](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-completion.md) when [`mini.snippets`](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-snippets.md) support is added

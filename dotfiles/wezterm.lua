@@ -46,6 +46,8 @@ config.ssh_domains = {
 }
 
 config.keys = {
+	{ key = "C", mods = "CTRL", action = action.CopyTo("Clipboard") },
+	{ key = "V", mods = "CTRL", action = action.PasteFrom("Clipboard") },
 	{ key = "Space", mods = "LEADER|CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
 	{ key = "Enter", mods = "LEADER", action = action.SpawnWindow },
 	{ key = "'", mods = "LEADER", action = action.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },

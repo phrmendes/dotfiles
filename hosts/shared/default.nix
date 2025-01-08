@@ -16,7 +16,7 @@
     ./i18n.nix
     ./impermanence.nix
     ./networking.nix
-    ./nix-settings.nix
+    ./nix.nix
     ./programs.nix
     ./security.nix
     ./services.nix

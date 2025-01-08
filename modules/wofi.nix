@@ -26,7 +26,7 @@
         location = "center";
         mode = "drun";
         no_actions = true;
-        term = lib.getExe pkgs.kitty;
+        terminal = "${pkgs.stable.wezterm}/bin/wezterm start --always-new-process";
         width = "25%";
       };
       style = with colors;

@@ -1,18 +1,10 @@
 {
   description = "My personal nixOS/nix-darwin configuration";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     stylix.url = "github:danth/stylix";
 
     auto-cpufreq = {
@@ -41,7 +33,11 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  } @ inputs: {
     nixosConfigurations = let
       global = rec {
         name = "Pedro Mendes";
@@ -50,9 +46,16 @@
         home = "/home/${user}";
         system = "x86_64-linux";
       };
+      pkgs-stable = final: prev: {
+        stable = import nixpkgs-stable {
+          inherit (global) system;
+          config.allowUnfree = true;
+        };
+      };
       pkgs = import nixpkgs {
         inherit (global) system;
         config.allowUnfree = true;
+        overlays = [pkgs-stable];
       };
     in {
       desktop = let
@@ -72,6 +75,7 @@
           modules = [./hosts/desktop.nix];
           specialArgs = {
             inherit inputs pkgs parameters;
+            nixpkgs.pkgs = pkgs;
           };
         };
 

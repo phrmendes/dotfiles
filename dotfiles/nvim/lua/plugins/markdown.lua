@@ -3,3 +3,5 @@ require("markdown").setup({
 		require("keymaps").markdown(bufnr)
 	end,
 })
+
+vim.g.markdown_fenced_languages = { "ts=typescript" }

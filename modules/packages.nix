@@ -21,6 +21,7 @@
       brightnessctl
       bws
       deluge
+      deno
       docker-credential-helpers
       droidcam
       elixir

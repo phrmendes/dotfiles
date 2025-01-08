@@ -58,7 +58,6 @@ config.keys = {
 	{ key = ".", mods = "LEADER", action = action.RotatePanes("Clockwise") },
 	{ key = ",", mods = "LEADER", action = action.RotatePanes("CounterClockwise") },
 	{ key = "Q", mods = "LEADER", action = action.CloseCurrentTab({ confirm = true }) },
-	{ key = "W", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
 	{ key = "a", mods = "LEADER", action = action.AttachDomain("unix") },
 	{ key = "d", mods = "LEADER", action = action.DetachDomain({ DomainName = "unix" }) },
 	{ key = "l", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|DOMAINS" }) },

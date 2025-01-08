@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  parameters,
   ...
 }: {
   options.direnv.enable = lib.mkEnableOption "enable direnv";
@@ -16,6 +17,9 @@
           load_dotenv = true;
           strict_env = true;
           warn_timeout = 0;
+        };
+        whitelist = {
+          prefix = ["${parameters.home}/Projects"];
         };
       };
     };

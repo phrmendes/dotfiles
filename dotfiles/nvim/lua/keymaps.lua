@@ -155,6 +155,9 @@ local keys = {
 	git = function()
 		local opts = { noremap = true }
 
+		opts.desc = "Commit"
+		map("n", "<leader>g.", "<cmd>Git commit<cr>", opts)
+
 		opts.desc = "Add (file)"
 		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
 
@@ -164,20 +167,19 @@ local keys = {
 		opts.desc = "Blame"
 		map("n", "<leader>gb", require("snacks").git.blame_line, opts)
 
-		opts.desc = "Commit"
-		map("n", "<leader>gc", "<cmd>Git commit<cr>", opts)
+		opts.desc = "Commits (file)"
+		map("n", "<leader>gc", function()
+			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
+		end, opts)
+
+		opts.desc = "Commits (repo)"
+		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
 
 		opts.desc = "Diff"
 		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
 
 		opts.desc = "LazyGit"
 		map("n", "<leader>gg", require("snacks").lazygit.open, opts)
-
-		opts.desc = "Log (file)"
-		map("n", "<leader>gl", require("snacks").lazygit.log_file, opts)
-
-		opts.desc = "Log (repo)"
-		map("n", "<leader>gL", require("snacks").lazygit.log, opts)
 
 		opts.desc = "History"
 		map({ "n", "v" }, "<leader>gh", require("mini.git").show_at_cursor, opts)

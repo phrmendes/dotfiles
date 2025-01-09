@@ -122,18 +122,6 @@ config.keys = {
 	},
 }
 
-config.keys_table.copy_mode = {
-	{
-		key = "y",
-		mods = "NONE",
-		action = action.Multiple({
-			action.CopyTo("Clipboard"),
-			action.ClearSelection,
-			action.CopyMode({ "ClearSelectionMode" }),
-		}),
-	},
-}
-
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),

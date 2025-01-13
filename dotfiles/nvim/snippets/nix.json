@@ -35,10 +35,10 @@
   },
   "Flake github input": {
     "body": [
-      "${name}: {",
+      "${name} = {",
       "\tflake = false;",
       "\turl = \"github:${owner}/${repo}\";",
-      "}"
+      "};"
     ]
   }
 }

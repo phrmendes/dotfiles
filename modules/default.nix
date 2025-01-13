@@ -32,8 +32,8 @@
     ./waybar.nix
     ./wezterm.nix
     ./wofi.nix
-    ./xdg.nix
     ./yazi.nix
+    ./zathura.nix
     ./zoxide.nix
     ./zsh.nix
   ];

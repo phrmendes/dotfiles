@@ -12,26 +12,20 @@
         gke-gcloud-auth-plugin
       ]);
     in [
-      age
-      android-tools
       ansible
       bitwarden
       bitwarden-cli
       brave
       brightnessctl
-      bws
       deluge
       deno
       docker-credential-helpers
       droidcam
       elixir
-      evince
       exiftool
       fd
       ffmpeg
       ffmpegthumbnailer
-      file-roller
-      foliate
       gcloud
       gdu
       gnumake
@@ -39,11 +33,9 @@
       gparted
       graphviz
       grim
-      gthumb
       hugo
       hyprland-qtutils
       imagemagick
-      infisical
       inkscape
       jdk
       jq
@@ -53,15 +45,11 @@
       kubernetes-helm
       lazydocker
       libreoffice
-      livebook
       lynx
       minikube
       mongosh
-      nautilus
       networkmanagerapplet
-      ngrok
       nix-prefetch-github
-      ouch
       parallel
       pasystray
       pavucontrol
@@ -74,8 +62,8 @@
       python313
       qalculate-gtk
       quarto
+      qview
       satty
-      scrcpy
       slurp
       sshfs
       sshs

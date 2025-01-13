@@ -1,8 +1,4 @@
-{
-  inputs,
-  parameters,
-  ...
-}: {
+{inputs, ...}: {
   nix = {
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
@@ -11,7 +7,7 @@
       auto-optimise-store = true;
       accept-flake-config = true;
       trusted-users = ["root" "@wheel"];
-      experimental-features = ["flakes" "nix-command"];
+      experimental-features = ["flakes" "nix-command" "pipe-operators"];
       substituters = [
         "https://cache.nixos.org/"
         "https://nix-community.cachix.org"

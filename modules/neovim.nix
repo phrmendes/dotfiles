@@ -16,7 +16,7 @@
         };
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
       todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
-      nvim-treesitter-with-grammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (parsers:
+      treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (parsers:
         with parsers; [
           bash
           bibtex
@@ -96,12 +96,12 @@
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
-        nvim-treesitter-with-grammars
         refactoring-nvim
         rest-nvim
         smart-splits-nvim
         snacks-nvim
         todotxt-nvim
+        treesitter
         undotree
         vim-abolish
         vim-dadbod

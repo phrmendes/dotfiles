@@ -16,6 +16,54 @@
         };
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
       todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
+      nvim-treesitter-with-grammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (parsers:
+        with parsers; [
+          bash
+          bibtex
+          css
+          csv
+          cuda
+          diff
+          dockerfile
+          dot
+          elixir
+          erlang
+          git_config
+          git_rebase
+          gitattributes
+          gitcommit
+          gitignore
+          hcl
+          helm
+          html
+          htmldjango
+          hyprlang
+          javascript
+          json
+          jsonc
+          just
+          latex
+          lua
+          luadoc
+          luap
+          make
+          markdown
+          markdown_inline
+          mermaid
+          nginx
+          nix
+          python
+          requirements
+          sql
+          ssh_config
+          terraform
+          todotxt
+          toml
+          typescript
+          vim
+          vimdoc
+          yaml
+        ]);
     in {
       enable = true;
       package = pkgs.neovim-unwrapped;
@@ -48,7 +96,7 @@
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
-        nvim-treesitter.withAllGrammars
+        nvim-treesitter-with-grammars
         refactoring-nvim
         rest-nvim
         smart-splits-nvim

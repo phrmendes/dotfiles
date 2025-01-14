@@ -24,6 +24,7 @@
         ".pki"
         ".prefect"
         ".ssh"
+        ".steam"
         ".zotero"
         ".cache/cliphist"
         ".cache/neovim"

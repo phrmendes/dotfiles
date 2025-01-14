@@ -8,6 +8,7 @@
     gzip
     mlocate
     p7zip
+    protonup
     psmisc
     rar
     sqlite

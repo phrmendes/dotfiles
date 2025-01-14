@@ -18,5 +18,11 @@
     wl-clipboard
     xdg-utils
     zip
+    (where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        background = "${../../dotfiles/background.png}";
+        backgroundMode = "fill";
+      };
+    })
   ];
 }

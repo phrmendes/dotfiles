@@ -15,7 +15,6 @@
       ansible
       bitwarden
       bitwarden-cli
-      brave
       brightnessctl
       deluge
       deno
@@ -26,6 +25,7 @@
       fd
       ffmpeg
       ffmpegthumbnailer
+      firefox
       gcloud
       gdu
       gnumake

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   services = {
     blueman.enable = true;
     envfs.enable = true;
@@ -44,19 +40,10 @@
       };
     };
 
-    greetd = {
+    displayManager.sddm = {
       enable = true;
-      settings = let
-        tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-        sessions = "${pkgs.hyprland}/share/wayland-sessions";
-      in rec {
-        terminal.vt = 1;
-        initial_session = default_session;
-        default_session = {
-          command = "${tuigreet} -t -r --asterisks -s ${sessions}";
-          user = "greeter";
-        };
-      };
+      wayland.enable = true;
+      theme = "where_is_my_sddm_theme";
     };
 
     xserver = {

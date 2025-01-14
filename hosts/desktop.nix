@@ -16,6 +16,7 @@
   };
 
   hardware = {
+    xpadneo.enable = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
     nvidia-container-toolkit.enable = true;
     nvidia = {

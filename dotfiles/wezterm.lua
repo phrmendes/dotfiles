@@ -46,8 +46,6 @@ config.ssh_domains = {
 }
 
 config.keys = {
-	{ key = "C", mods = "CTRL", action = action.CopyTo("Clipboard") },
-	{ key = "V", mods = "CTRL", action = action.PasteFrom("Clipboard") },
 	{ key = "Space", mods = "LEADER|CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
 	{ key = "Enter", mods = "LEADER", action = action.SpawnWindow },
 	{ key = "'", mods = "LEADER", action = action.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
@@ -61,12 +59,14 @@ config.keys = {
 	{ key = ",", mods = "LEADER", action = action.RotatePanes("CounterClockwise") },
 	{ key = "Q", mods = "LEADER", action = action.CloseCurrentTab({ confirm = true }) },
 	{ key = "a", mods = "LEADER", action = action.AttachDomain("unix") },
+	{ key = "c", mods = "LEADER", action = action.CopyTo("Clipboard") },
 	{ key = "d", mods = "LEADER", action = action.DetachDomain({ DomainName = "unix" }) },
 	{ key = "l", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|DOMAINS" }) },
 	{ key = "n", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
 	{ key = "t", mods = "LEADER", action = action.ShowTabNavigator },
+	{ key = "v", mods = "LEADER", action = action.PasteFrom("Clipboard") },
 	{ key = "w", mods = "LEADER", action = ws.switch_workspace() },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },

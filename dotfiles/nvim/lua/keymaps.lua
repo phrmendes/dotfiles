@@ -492,9 +492,9 @@ M.mini = {
 		local opts = { noremap = true, buffer = event.data.buf_id }
 
 		map("n", ".", require("utils").mini.files.toggle_dotfiles, opts)
-		map("n", "<c-;>", require("utils").mini.files.set_cwd, opts)
-		map("n", "<c-->", require("utils").mini.files.map_split("horizontal", true), opts)
-		map("n", "<c-\\>", require("utils").mini.files.map_split("vertical", true), opts)
+		map("n", "<leader>.", require("utils").mini.files.set_cwd, opts)
+		map("n", "<leader>-", require("utils").mini.files.map_split("horizontal", true), opts)
+		map("n", "<leader>\\", require("utils").mini.files.map_split("vertical", true), opts)
 	end,
 }
 

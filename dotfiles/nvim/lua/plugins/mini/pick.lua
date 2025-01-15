@@ -1,8 +1,8 @@
 require("mini.pick").setup({
 	mappings = {
-		choose_in_split = "<c-->",
+		choose_in_split = "<c-s>",
 		choose_in_tabpage = "<c-t>",
-		choose_in_vsplit = "<c-\\>",
+		choose_in_vsplit = "<c-v>",
 		choose_marked = "<c-q>",
 		refine = "<a-r>",
 		refine_marked = "<c-r>",

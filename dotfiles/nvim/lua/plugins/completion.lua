@@ -10,6 +10,16 @@ require("blink.cmp").setup({
 		window = { border = border },
 	},
 	completion = {
+		list = {
+			selection = {
+				auto_insert = function(ctx)
+					return ctx.mode == "cmdline"
+				end,
+				preselect = function(ctx)
+					return ctx.mode == "cmdline"
+				end,
+			},
+		},
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
@@ -44,6 +54,11 @@ require("blink.cmp").setup({
 		["<c-n>"] = { "select_next", "fallback" },
 		["<c-u>"] = { "scroll_documentation_up", "fallback" },
 		["<c-d>"] = { "scroll_documentation_down", "fallback" },
+		cmdline = {
+			["<s-tab>"] = { "select_prev", "fallback" },
+			["<tab>"] = { "select_next", "fallback" },
+			["<cr>"] = { "select_and_accept", "fallback" },
+		},
 	},
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev", "pandoc" },

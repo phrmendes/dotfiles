@@ -4,8 +4,8 @@ require("mini.pick").setup({
 		choose_in_tabpage = "<c-t>",
 		choose_in_vsplit = "<c-v>",
 		choose_marked = "<c-q>",
-		refine = "<a-r>",
-		refine_marked = "<c-r>",
+		refine = "<c-r>",
+		refine_marked = "<a-r>",
 		paste = "<c-y>",
 	},
 	window = {

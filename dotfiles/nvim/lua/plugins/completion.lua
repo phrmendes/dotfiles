@@ -10,11 +10,6 @@ require("blink.cmp").setup({
 		window = { border = border },
 	},
 	completion = {
-		list = {
-			selection = function(ctx)
-				return ctx.mode == "cmdline" and "auto_insert" or "manual"
-			end,
-		},
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,

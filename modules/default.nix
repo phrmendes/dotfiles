@@ -71,6 +71,7 @@
   wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
+  zathura.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
 

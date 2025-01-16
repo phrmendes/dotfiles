@@ -13,14 +13,6 @@
 
     ssh.askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
 
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

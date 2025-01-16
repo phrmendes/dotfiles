@@ -25,9 +25,11 @@
       fd
       ffmpeg
       ffmpegthumbnailer
+      file-roller
       firefox
       gcloud
       gdu
+      gnome-commander
       gnumake
       gnused
       gparted

@@ -3,6 +3,8 @@
     hideMounts = true;
     directories = [
       "/etc"
+      "/var/cache/tuigreet"
+      "/var/db"
       "/var/lib"
       "/var/log"
     ];
@@ -30,19 +32,8 @@
         ".cache/neovim"
         ".cache/tealdeer"
         ".cache/uv"
-        ".local/bin"
-        ".local/share/keyrings"
-        ".local/share/nvim"
-        ".local/share/plex"
-        ".local/share/syncthing"
-        ".local/share/uv"
-        ".local/share/wezterm"
-        ".local/share/zoxide"
-        ".local/state/lazygit"
-        ".local/state/nix"
-        ".local/state/nvim"
-        ".local/state/uv"
-        ".local/state/wireplumber"
+        ".local/share"
+        ".local/state"
       ];
     };
   };

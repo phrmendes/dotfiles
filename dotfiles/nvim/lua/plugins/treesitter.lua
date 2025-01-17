@@ -1,6 +1,7 @@
 require("nvim-treesitter.configs").setup({
 	indent = { enable = true },
 	textobjects = {
+		select = { enable = false },
 		move = {
 			enable = true,
 			goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
@@ -18,8 +19,8 @@ require("nvim-treesitter.configs").setup({
 		keymaps = {
 			init_selection = "<c-s>",
 			node_incremental = "<c-s>",
-			scope_incremental = false,
-			node_decremental = "<bs>",
+			scope_incremental = "<c-a>",
+			node_decremental = "<c-bs>",
 		},
 	},
 })

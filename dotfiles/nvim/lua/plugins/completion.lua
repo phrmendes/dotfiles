@@ -42,7 +42,7 @@ require("blink.cmp").setup({
 	},
 	keymap = {
 		["<c-k>"] = { "show", "show_documentation", "hide_documentation" },
-		["<c-e>"] = { "hide" },
+		["<c-c>"] = { "hide", "fallback" },
 		["<cr>"] = { "accept", "fallback" },
 		["<c-l>"] = { "snippet_forward", "fallback" },
 		["<c-h>"] = { "snippet_backward", "fallback" },
@@ -54,6 +54,7 @@ require("blink.cmp").setup({
 			["<s-tab>"] = { "select_prev", "fallback" },
 			["<tab>"] = { "select_next", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
+			["<c-c>"] = { "hide", "fallback" },
 		},
 	},
 	sources = {

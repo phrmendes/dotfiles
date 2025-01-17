@@ -27,20 +27,9 @@
     };
   };
 
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATH = "/home/${parameters.user}/.steam/root/compatibilitytools.d";
-  };
-
   networking.hostName = "desktop";
 
-  programs = {
-    virt-manager.enable = true;
-    gamemode.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-    };
-  };
+  programs.virt-manager.enable = true;
 
   services = {
     xserver.videoDrivers = ["nvidia"];

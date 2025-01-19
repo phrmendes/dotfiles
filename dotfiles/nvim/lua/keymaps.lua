@@ -422,7 +422,7 @@ M.dap = function(bufnr)
 	map("n", "<localleader>u", require("dapui").toggle, opts)
 
 	opts.desc = "DAP: eval"
-	map("n", "<localleader>?", function()
+	map("n", "<localleader>e", function()
 		require("dapui").eval(nil, { enter = true })
 	end, opts)
 
@@ -485,6 +485,11 @@ M.lua = function(bufnr)
 
 	opts.desc = "Lua: run"
 	map("v", "<localleader>.", ":lua<cr>", opts)
+
+	opts.desc = "Lua: run DAP server"
+	map("n", "<localleader>l", function()
+		require("osv").launch({ port = 8086 })
+	end, opts)
 end
 
 M.mini = {

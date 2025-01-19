@@ -96,6 +96,7 @@
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
+        one-small-step-for-vimkind
         refactoring-nvim
         rest-nvim
         smart-splits-nvim

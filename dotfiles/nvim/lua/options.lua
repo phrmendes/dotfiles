@@ -113,4 +113,3 @@ vim.filetype.add({
 
 -- spell
 vim.opt.spell = false
-vim.g.ltex_language = "en-US"

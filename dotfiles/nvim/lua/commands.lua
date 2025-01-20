@@ -1,4 +1,4 @@
-local M = {
+return {
 	ltex = function(bufnr)
 		vim.api.nvim_buf_create_user_command(bufnr, "Ltex", function()
 			if vim.g.ltex_language == "en-US" then
@@ -26,5 +26,3 @@ local M = {
 		})
 	end,
 }
-
-return M

@@ -1,123 +1,121 @@
-local map = vim.keymap.set
-
 local M = {}
 
 local keys = {
 	disable = function()
-		map({ "n", "v" }, "s", "<nop>")
+		vim.keymap.set({ "n", "v" }, "s", "<nop>")
 	end,
 	random = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Half page down"
-		map("n", "<c-d>", "<c-d>zz", opts)
+		vim.keymap.set("n", "<c-d>", "<c-d>zz", opts)
 
 		opts.desc = "Half page up"
-		map("n", "<c-u>", "<c-u>zz", opts)
+		vim.keymap.set("n", "<c-u>", "<c-u>zz", opts)
 
 		opts.desc = "Clear highlights"
-		map("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
+		vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", opts)
 
 		opts.desc = "Terminal"
-		map({ "n", "t" }, "<c-\\>", require("snacks").terminal.toggle, opts)
-		map({ "n", "t" }, "<a-\\>", require("snacks").terminal.open, opts)
+		vim.keymap.set({ "n", "t" }, "<c-\\>", require("snacks").terminal.toggle, opts)
+		vim.keymap.set({ "n", "t" }, "<a-\\>", require("snacks").terminal.open, opts)
 
 		opts.desc = "List buffers"
-		map("n", "<c-p>", require("utils").mini.buffers, opts)
+		vim.keymap.set("n", "<c-p>", require("utils").mini.buffers, opts)
 
 		opts.desc = "Split (H)"
-		map("n", "<leader>-", "<cmd>split<cr>", opts)
+		vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", opts)
 
 		opts.desc = "Split (V)"
-		map("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
+		vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", opts)
 
 		opts.desc = "Live grep"
-		map("n", "<leader>/", require("mini.pick").builtin.grep_live, opts)
+		vim.keymap.set("n", "<leader>/", require("mini.pick").builtin.grep_live, opts)
 
 		opts.desc = "Resize and make windows equal"
-		map("n", "<leader>=", "<c-w>=", opts)
+		vim.keymap.set("n", "<leader>=", "<c-w>=", opts)
 
 		opts.desc = "Help"
-		map("n", "<leader>?", require("mini.pick").builtin.help, opts)
+		vim.keymap.set("n", "<leader>?", require("mini.pick").builtin.help, opts)
 
 		opts.desc = "Find"
-		map("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
+		vim.keymap.set("n", "<leader><leader>", require("mini.pick").builtin.files, opts)
 
 		opts.desc = "Keymaps"
-		map("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
+		vim.keymap.set("n", "<leader>K", require("mini.extra").pickers.keymaps, opts)
 
 		opts.desc = "Write all"
-		map("n", "<leader>W", "<cmd>wall!<cr>", opts)
+		vim.keymap.set("n", "<leader>W", "<cmd>wall!<cr>", opts)
 
 		opts.desc = "Quit"
-		map("n", "<leader>q", "<cmd>q<cr>", opts)
+		vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", opts)
 
 		opts.desc = "Undo tree"
-		map("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+		vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
 		opts.desc = "Visits"
-		map("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
+		vim.keymap.set("n", "<leader>v", require("mini.extra").pickers.visit_paths, opts)
 
 		opts.desc = "Write"
-		map("n", "<leader>w", "<cmd>silent w!<cr>", opts)
+		vim.keymap.set("n", "<leader>w", "<cmd>silent w!<cr>", opts)
 
 		opts.desc = "Quickfix"
-		map("n", "<leader>x", "<cmd>copen<cr>", opts)
+		vim.keymap.set("n", "<leader>x", "<cmd>copen<cr>", opts)
 
 		opts.desc = "Zoom"
-		map("n", "<leader>z", require("snacks").zen.zoom, opts)
+		vim.keymap.set("n", "<leader>z", require("snacks").zen.zoom, opts)
 
 		opts.desc = "Zen"
-		map("n", "<leader>Z", require("snacks").zen.zen, opts)
+		vim.keymap.set("n", "<leader>Z", require("snacks").zen.zen, opts)
 
 		opts.desc = "Explorer"
-		map("n", "<leader>e", function()
+		vim.keymap.set("n", "<leader>e", function()
 			if not require("mini.files").close() then
 				require("mini.files").open(vim.fn.expand("%:p:h"), true)
 			end
 		end, opts)
 
 		opts.desc = "Explorer (cwd)"
-		map("n", "<leader>E", function()
+		vim.keymap.set("n", "<leader>E", function()
 			require("mini.files").open(vim.uv.cwd(), true)
 		end, opts)
 	end,
 	better_keys = function()
 		local opts = { expr = true, noremap = true, silent = true, desc = "Better keys" }
 
-		map("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
-		map("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
-		map("n", "N", "'nN'[v:searchforward].'zv'", opts)
-		map("o", "N", "'nN'[v:searchforward]", opts)
-		map("v", "N", "'nN'[v:searchforward]", opts)
-		map("n", "n", "'Nn'[v:searchforward].'zv'", opts)
-		map("o", "n", "'Nn'[v:searchforward]", opts)
-		map("v", "n", "'Nn'[v:searchforward]", opts)
+		vim.keymap.set("n", "j", [[v:count == 0 ? 'gj' : 'j']], opts)
+		vim.keymap.set("n", "k", [[v:count == 0 ? 'gk' : 'k']], opts)
+		vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", opts)
+		vim.keymap.set("o", "N", "'nN'[v:searchforward]", opts)
+		vim.keymap.set("v", "N", "'nN'[v:searchforward]", opts)
+		vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", opts)
+		vim.keymap.set("o", "n", "'Nn'[v:searchforward]", opts)
+		vim.keymap.set("v", "n", "'Nn'[v:searchforward]", opts)
 	end,
 	buffers = function()
 		local opts = { noremap = true }
 
 		opts.desc = "First"
-		map("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
+		vim.keymap.set("n", "<leader>bg", "<cmd>bfirst<cr>", opts)
 
 		opts.desc = "Last"
-		map("n", "<leader>bG", "<cmd>blast<cr>", opts)
+		vim.keymap.set("n", "<leader>bG", "<cmd>blast<cr>", opts)
 
 		opts.desc = "Keep this"
-		map("n", "<leader>bk", "<cmd>wall!<bar>%bdelete<bar>edit#<bar>bdelete#<cr>", opts)
+		vim.keymap.set("n", "<leader>bk", "<cmd>wall!<bar>%bdelete<bar>edit#<bar>bdelete#<cr>", opts)
 
 		opts.desc = "Delete"
-		map("n", "<leader>bd", require("mini.bufremove").delete, opts)
+		vim.keymap.set("n", "<leader>bd", require("mini.bufremove").delete, opts)
 
 		opts.desc = "Wipeout"
-		map("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
+		vim.keymap.set("n", "<leader>bw", require("mini.bufremove").wipeout, opts)
 	end,
 	copilot = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Quick chat"
-		map("v", "<leader>cc", ":CopilotChat<cr>", opts)
-		map("n", "<leader>cc", function()
+		vim.keymap.set("v", "<leader>cc", ":CopilotChat<cr>", opts)
+		vim.keymap.set("n", "<leader>cc", function()
 			local input = vim.fn.input("Quick Chat: ")
 
 			if input ~= "" then
@@ -126,163 +124,188 @@ local keys = {
 		end, opts)
 
 		opts.desc = "Toggle chat"
-		map("n", "<leader>ct", "<cmd>CopilotChatToggle<cr>", opts)
+		vim.keymap.set("n", "<leader>ct", "<cmd>CopilotChatToggle<cr>", opts)
 
 		opts.desc = "Stop chat"
-		map("n", "<leader>cs", "<cmd>CopilotChatStop<cr>", opts)
+		vim.keymap.set("n", "<leader>cs", "<cmd>CopilotChatStop<cr>", opts)
 
 		opts.desc = "Reset chat"
-		map("n", "<leader>cr", "<cmd>CopilotChatReset<cr>", opts)
+		vim.keymap.set("n", "<leader>cr", "<cmd>CopilotChatReset<cr>", opts)
 
 		opts.desc = "Explain"
-		map({ "n", "v" }, "<leader>ce", ":CopilotChatExplain<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>ce", ":CopilotChatExplain<cr>", opts)
 
 		opts.desc = "Fix"
-		map({ "n", "v" }, "<leader>cf", ":CopilotChatFix<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>cf", ":CopilotChatFix<cr>", opts)
 
 		opts.desc = "Optimize"
-		map({ "n", "v" }, "<leader>co", ":CopilotChatOptimize<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>co", ":CopilotChatOptimize<cr>", opts)
 
 		opts.desc = "Generate docs"
-		map({ "n", "v" }, "<leader>cd", ":CopilotChatDocs<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>cd", ":CopilotChatDocs<cr>", opts)
 
 		opts.desc = "Generate tests"
-		map({ "n", "v" }, "<leader>cT", ":CopilotChatTests<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>cT", ":CopilotChatTests<cr>", opts)
 
 		opts.desc = "Review"
-		map({ "n", "v" }, "<leader>cR", ":CopilotChatReview<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>cR", ":CopilotChatReview<cr>", opts)
 	end,
 	git = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Commit"
-		map("n", "<leader>g.", "<cmd>Git commit<cr>", opts)
+		vim.keymap.set("n", "<leader>g.", "<cmd>Git commit<cr>", opts)
 
 		opts.desc = "Add (file)"
-		map("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
+		vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>", opts)
 
 		opts.desc = "Add (repo)"
-		map("n", "<leader>gA", "<cmd>Git add --all<cr>", opts)
+		vim.keymap.set("n", "<leader>gA", "<cmd>Git add --all<cr>", opts)
 
 		opts.desc = "Blame"
-		map("n", "<leader>gb", require("snacks").git.blame_line, opts)
+		vim.keymap.set("n", "<leader>gb", require("snacks").git.blame_line, opts)
 
 		opts.desc = "Commits (file)"
-		map("n", "<leader>gc", function()
+		vim.keymap.set("n", "<leader>gc", function()
 			require("mini.extra").pickers.git_commits({ path = vim.fn.expand("%") })
 		end, opts)
 
 		opts.desc = "Commits (repo)"
-		map("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
+		vim.keymap.set("n", "<leader>gC", require("mini.extra").pickers.git_commits, opts)
 
 		opts.desc = "Diff"
-		map("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
+		vim.keymap.set("n", "<leader>gd", "<cmd>Git diff %<cr>", opts)
 
 		opts.desc = "LazyGit"
-		map("n", "<leader>gg", require("snacks").lazygit.open, opts)
+		vim.keymap.set("n", "<leader>gg", require("snacks").lazygit.open, opts)
 
 		opts.desc = "History"
-		map({ "n", "v" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
+		vim.keymap.set({ "n", "v" }, "<leader>gh", require("mini.git").show_at_cursor, opts)
 
 		opts.desc = "Hunks"
-		map("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
+		vim.keymap.set("n", "<leader>gH", require("mini.extra").pickers.git_hunks, opts)
 
 		opts.desc = "Pull"
-		map("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
+		vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", opts)
 
 		opts.desc = "Push"
-		map("n", "<leader>gP", "<cmd>Git push<cr>", opts)
+		vim.keymap.set("n", "<leader>gP", "<cmd>Git push<cr>", opts)
 
 		opts.desc = "Open in browser"
-		map({ "n", "v" }, "<leader>go", require("snacks").gitbrowse.open, opts)
+		vim.keymap.set({ "n", "v" }, "<leader>go", require("snacks").gitbrowse.open, opts)
+	end,
+	labels = function()
+		local opts = { noremap = true }
+
+		opts.desc = "Add label"
+		vim.keymap.set("n", "<leader>la", require("mini.visits").add_label, opts)
+
+		opts.desc = "Remove label"
+		vim.keymap.set("n", "<leader>lr", function()
+			local labels = require("mini.visits").list_labels()
+
+			local choosed = require("mini.pick").start({ source = {
+				items = labels,
+				name = "Remove label",
+			} })
+
+			if not choosed then
+				return
+			end
+
+			require("mini.visits").remove_label(choosed)
+		end, opts)
+
+		opts.desc = "List labels"
+		vim.keymap.set("n", "<leader>ll", require("mini.extra").pickers.visit_labels, opts)
 	end,
 	macros = function()
 		local opts = { noremap = true, expr = true }
 
 		opts.desc = "Record macro"
-		map("n", "Q", "@q", opts)
+		vim.keymap.set("n", "Q", "@q", opts)
 
 		opts.desc = "Replace with macro"
-		map("v", "Q", ":norm @q<cr>", opts)
+		vim.keymap.set("v", "Q", ":norm @q<cr>", opts)
 	end,
 	notes = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Search"
-		map("n", "<leader>ns", require("notes").search, opts)
+		vim.keymap.set("n", "<leader>ns", require("notes").search, opts)
 
 		opts.desc = "Live grep"
-		map("n", "<leader>n/", require("notes").grep_live, opts)
+		vim.keymap.set("n", "<leader>n/", require("notes").grep_live, opts)
 
 		opts.desc = "New"
-		map("n", "<leader>nn", require("notes").new, opts)
+		vim.keymap.set("n", "<leader>nn", require("notes").new, opts)
 	end,
 	todotxt = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Open"
-		map("n", "<leader>tt", require("todotxt").open_todo_file, opts)
+		vim.keymap.set("n", "<leader>tt", require("todotxt").open_todo_file, opts)
 
 		opts.desc = "New entry"
-		map("n", "<leader>tn", require("todotxt").capture_todo, opts)
+		vim.keymap.set("n", "<leader>tn", require("todotxt").capture_todo, opts)
 	end,
 	slime = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Slime: send to terminal"
-		map("n", "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
-		map("v", "<c-c><c-c>", "<Plug>SlimeRegionSend", opts)
+		vim.keymap.set("n", "<c-c><c-c>", "<Plug>SlimeParagraphSend", opts)
+		vim.keymap.set("v", "<c-c><c-c>", "<Plug>SlimeRegionSend", opts)
 
 		opts.desc = "Slime: settings"
-		map("n", "<c-c><c-s>", "<Plug>SlimeConfig", opts)
+		vim.keymap.set("n", "<c-c><c-s>", "<Plug>SlimeConfig", opts)
 	end,
 	smart_splits = function()
 		local opts = { desc = "Smart splits" }
 
 		opts.desc = "Smart splits: move cursor"
-		map({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
-		map({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
-		map({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
-		map({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
+		vim.keymap.set({ "n", "t" }, "<c-h>", require("smart-splits").move_cursor_left, opts)
+		vim.keymap.set({ "n", "t" }, "<c-j>", require("smart-splits").move_cursor_down, opts)
+		vim.keymap.set({ "n", "t" }, "<c-k>", require("smart-splits").move_cursor_up, opts)
+		vim.keymap.set({ "n", "t" }, "<c-l>", require("smart-splits").move_cursor_right, opts)
 
 		opts.desc = "Smart splits: resize panes"
-		map({ "n", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
-		map({ "n", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
-		map({ "n", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
-		map({ "n", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
+		vim.keymap.set({ "n", "t" }, "<a-h>", require("smart-splits").resize_left, opts)
+		vim.keymap.set({ "n", "t" }, "<a-j>", require("smart-splits").resize_down, opts)
+		vim.keymap.set({ "n", "t" }, "<a-k>", require("smart-splits").resize_up, opts)
+		vim.keymap.set({ "n", "t" }, "<a-l>", require("smart-splits").resize_right, opts)
 
 		opts.desc = "Smart splits: swap buffer"
-		map("n", "<c-left>", require("smart-splits").swap_buf_left, opts)
-		map("n", "<c-down>", require("smart-splits").swap_buf_down, opts)
-		map("n", "<c-up>", require("smart-splits").swap_buf_up, opts)
-		map("n", "<c-right>", require("smart-splits").swap_buf_right, opts)
+		vim.keymap.set("n", "<c-left>", require("smart-splits").swap_buf_left, opts)
+		vim.keymap.set("n", "<c-down>", require("smart-splits").swap_buf_down, opts)
+		vim.keymap.set("n", "<c-up>", require("smart-splits").swap_buf_up, opts)
+		vim.keymap.set("n", "<c-right>", require("smart-splits").swap_buf_right, opts)
 	end,
 	tabs = function()
 		local opts = { noremap = true }
 
 		opts.desc = "Previous"
-		map("n", "[<tab>", "<cmd>tabprevious<cr>", opts)
+		vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>", opts)
 
 		opts.desc = "Next"
-		map("n", "]<tab>", "<cmd>tabnext<cr>", opts)
+		vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>", opts)
 
 		opts.desc = "Last"
-		map("n", "<leader><tab>G", "<cmd>tablast<cr>", opts)
+		vim.keymap.set("n", "<leader><tab>G", "<cmd>tablast<cr>", opts)
 
 		opts.desc = "Close"
-		map("n", "<leader><tab>q", "<cmd>tabclose<cr>", opts)
+		vim.keymap.set("n", "<leader><tab>q", "<cmd>tabclose<cr>", opts)
 
 		opts.desc = "First"
-		map("n", "<leader><tab>g", "<cmd>tabfirst<cr>", opts)
+		vim.keymap.set("n", "<leader><tab>g", "<cmd>tabfirst<cr>", opts)
 
 		opts.desc = "Keep"
-		map("n", "<leader><tab>k", "<cmd>tabonly<cr>", opts)
+		vim.keymap.set("n", "<leader><tab>k", "<cmd>tabonly<cr>", opts)
 
 		opts.desc = "New"
-		map("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
+		vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", opts)
 
 		opts.desc = "Edit"
-		map("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
+		vim.keymap.set("n", "<leader><tab>e", "<cmd>tabedit %<cr>", opts)
 	end,
 }
 
@@ -290,93 +313,93 @@ M.lsp = function(client, bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "LSP: go to next reference"
-	map("n", "]r", function()
+	vim.keymap.set("n", "]r", function()
 		require("snacks").words.jump(vim.v.count1)
 	end, opts)
 
 	opts.desc = "LSP: go to previous reference"
-	map("n", "[r", function()
+	vim.keymap.set("n", "[r", function()
 		require("snacks").words.jump(-vim.v.count1)
 	end, opts)
 
 	if client.supports_method("textDocument/rename") then
 		opts.desc = "LSP: rename symbol"
-		map("n", "<f2>", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
 	end
 
 	if client.supports_method("textDocument/definition") then
 		opts.desc = "LSP: go to definition"
-		map("n", "gd", function()
+		vim.keymap.set("n", "gd", function()
 			require("mini.extra").pickers.lsp({ scope = "definition" })
 		end, opts)
 	end
 
 	if client.supports_method("textDocument/declaration") then
 		opts.desc = "LSP: go to declaration"
-		map("n", "gD", function()
+		vim.keymap.set("n", "gD", function()
 			require("mini.extra").pickers.lsp({ scope = "declaration" })
 		end, opts)
 	end
 
 	if client.supports_method("textDocument/implementation") then
 		opts.desc = "LSP: go to implementations"
-		map("n", "gi", function()
+		vim.keymap.set("n", "gi", function()
 			require("mini.extra").pickers.lsp({ scope = "implementation" })
 		end, opts)
 	end
 
 	if client.supports_method("textDocument/references") then
 		opts.desc = "LSP: go to references"
-		map("n", "gr", function()
+		vim.keymap.set("n", "gr", function()
 			require("mini.extra").pickers.lsp({ scope = "references" })
 		end, opts)
 	end
 
 	if client.supports_method("textDocument/typeDefinition") then
 		opts.desc = "LSP: go to type definition"
-		map("n", "gt", function()
+		vim.keymap.set("n", "gt", function()
 			require("mini.extra").pickers.lsp({ scope = "type_definition" })
 		end, opts)
 	end
 
 	if client.supports_method("textDocument/codeAction") then
 		opts.desc = "LSP: code actions"
-		map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+		vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
 	end
 
 	if client.supports_method("textDocument/publishDiagnostics") then
 		opts.desc = "LSP: diagnostics"
-		map("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
+		vim.keymap.set("n", "<leader>d", require("mini.extra").pickers.diagnostic, opts)
 
 		opts.desc = "LSP: diagnostics (float)"
-		map("n", "<leader>f", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts)
 	end
 
 	if client.supports_method("textDocument/signatureHelp") then
 		opts.desc = "LSP: signature help"
-		map("n", "<leader>h", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("n", "<leader>h", vim.lsp.buf.signature_help, opts)
 	end
 
 	if client.supports_method("textDocument/inlayHint") then
 		opts.desc = "LSP: toggle inlay hints"
-		map("n", "<leader>i", require("snacks").toggle.inlay_hints, opts)
+		vim.keymap.set("n", "<leader>i", require("snacks").toggle.inlay_hints, opts)
 	end
 
 	if client.supports_method("textDocument/hover") then
 		opts.desc = "LSP: hover"
-		map("n", "<leader>k", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
 	end
 
 	if client.supports_method("textDocument/documentSymbol") then
 		opts.desc = "LSP: symbols (document)"
-		map("n", "<leader>s", function()
+		vim.keymap.set("n", "<leader>s", function()
 			require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 		end, opts)
 	end
 
 	if client.supports_method("workspace/symbol") then
 		opts.desc = "LSP: symbols (workspace)"
-		map("n", "<leader>S", function()
+		vim.keymap.set("n", "<leader>S", function()
 			require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
 		end, opts)
 	end
@@ -386,48 +409,48 @@ M.dap = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "DAP: step out"
-	map("n", "<localleader>o", require("dap").step_out, opts)
+	vim.keymap.set("n", "<localleader>o", require("dap").step_out, opts)
 
 	opts.desc = "DAP: step into"
-	map("n", "<localleader>i", require("dap").step_into, opts)
+	vim.keymap.set("n", "<localleader>i", require("dap").step_into, opts)
 
 	opts.desc = "DAP: step back"
-	map("n", "<f7>", require("dap").step_back, opts)
+	vim.keymap.set("n", "<f7>", require("dap").step_back, opts)
 
 	opts.desc = "DAP: continue"
-	map("n", "<f8>", require("dap").continue, opts)
+	vim.keymap.set("n", "<f8>", require("dap").continue, opts)
 
 	opts.desc = "DAP: step over"
-	map("n", "<f9>", require("dap").step_over, opts)
+	vim.keymap.set("n", "<f9>", require("dap").step_over, opts)
 
 	opts.desc = "DAP: pause"
-	map("n", "<s-f8>", require("dap").pause, opts)
+	vim.keymap.set("n", "<s-f8>", require("dap").pause, opts)
 
 	opts.desc = "DAP: terminate"
-	map("n", "<del>", require("dap").terminate, opts)
+	vim.keymap.set("n", "<del>", require("dap").terminate, opts)
 
 	opts.desc = "DAP: breakpoint"
-	map("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
+	vim.keymap.set("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
 	opts.desc = "DAP: debug last"
-	map("n", "<localleader><bs>", require("dap").run_last, opts)
+	vim.keymap.set("n", "<localleader><bs>", require("dap").run_last, opts)
 
 	opts.desc = "DAP: clear all breakpoints"
-	map("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
+	vim.keymap.set("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
 
 	opts.desc = "DAP: show hover"
-	map("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
+	vim.keymap.set("n", "<localleader>k", require("dap.ui.widgets").hover, opts)
 
 	opts.desc = "DAP: toggle UI"
-	map("n", "<localleader>u", require("dapui").toggle, opts)
+	vim.keymap.set("n", "<localleader>u", require("dapui").toggle, opts)
 
 	opts.desc = "DAP: eval"
-	map("n", "<localleader>e", function()
+	vim.keymap.set("n", "<localleader>e", function()
 		require("dapui").eval(nil, { enter = true })
 	end, opts)
 
 	opts.desc = "DAP: conditional breakpoint"
-	map("n", "<localleader>B", function()
+	vim.keymap.set("n", "<localleader>B", function()
 		require("dap").set_breakpoint(vim.fn.input("Condition: "))
 	end, opts)
 end
@@ -436,58 +459,58 @@ M.refactoring = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Refactoring"
-	map({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
+	vim.keymap.set({ "n", "x" }, "<leader>r", require("refactoring").select_refactor, opts)
 end
 
 M.markdown = function(bufnr)
 	local opts = { buffer = bufnr }
 
 	opts.desc = "Markdown: add item below"
-	map({ "n", "i" }, "<c-c><c-j>", "<cmd>MDListItemBelow<cr>", opts)
+	vim.keymap.set({ "n", "i" }, "<c-c><c-j>", "<cmd>MDListItemBelow<cr>", opts)
 
 	opts.desc = "Markdown: add item above"
-	map({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
+	vim.keymap.set({ "n", "i" }, "<c-c><c-k>", "<cmd>MDListItemAbove<cr>", opts)
 
 	opts.desc = "Markdown: toggle checkbox"
-	map({ "n", "v" }, "<c-c><c-x>", ":MDTaskToggle<cr>", opts)
+	vim.keymap.set({ "n", "v" }, "<c-c><c-x>", ":MDTaskToggle<cr>", opts)
 
 	opts.desc = "Markdown: toggle italic"
-	map("v", "<c-i>", require("utils").toggle_emphasis("i"), opts)
+	vim.keymap.set("v", "<c-i>", require("utils").toggle_emphasis("i"), opts)
 
 	opts.desc = "Markdown: toggle bold"
-	map("v", "<c-b>", require("utils").toggle_emphasis("b"), opts)
+	vim.keymap.set("v", "<c-b>", require("utils").toggle_emphasis("b"), opts)
 
 	opts.desc = "Markdown: preview document"
-	map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
+	vim.keymap.set("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", opts)
 end
 
 M.python = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Python: test function/method"
-	map("n", "<localleader>f", require("dap-python").test_method, opts)
+	vim.keymap.set("n", "<localleader>f", require("dap-python").test_method, opts)
 
 	opts.desc = "Python: test class"
-	map("n", "<localleader>c", require("dap-python").test_class, opts)
+	vim.keymap.set("n", "<localleader>c", require("dap-python").test_class, opts)
 
 	opts.desc = "Python: debug selection"
-	map("v", "<localleader>s", require("dap-python").debug_selection, opts)
+	vim.keymap.set("v", "<localleader>s", require("dap-python").debug_selection, opts)
 end
 
 M.lua = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Lua: source file"
-	map("n", "<localleader>%", "<cmd>source %<cr>", opts)
+	vim.keymap.set("n", "<localleader>%", "<cmd>source %<cr>", opts)
 
 	opts.desc = "Lua: run line"
-	map("n", "<localleader>.", ":.lua<cr>", opts)
+	vim.keymap.set("n", "<localleader>.", ":.lua<cr>", opts)
 
 	opts.desc = "Lua: run"
-	map("v", "<localleader>.", ":lua<cr>", opts)
+	vim.keymap.set("v", "<localleader>.", ":lua<cr>", opts)
 
 	opts.desc = "Lua: run DAP server"
-	map("n", "<localleader>l", function()
+	vim.keymap.set("n", "<localleader>l", function()
 		require("osv").launch({ port = 8086 })
 	end, opts)
 end
@@ -496,10 +519,10 @@ M.mini = {
 	files = function(event)
 		local opts = { noremap = true, buffer = event.data.buf_id }
 
-		map("n", ".", require("utils").mini.files.toggle_dotfiles, opts)
-		map("n", "<leader>.", require("utils").mini.files.set_cwd, opts)
-		map("n", "<leader>-", require("utils").mini.files.map_split("horizontal", true), opts)
-		map("n", "<leader>\\", require("utils").mini.files.map_split("vertical", true), opts)
+		vim.keymap.set("n", ".", require("utils").mini.files.toggle_dotfiles, opts)
+		vim.keymap.set("n", "<leader>.", require("utils").mini.files.set_cwd, opts)
+		vim.keymap.set("n", "<leader>-", require("utils").mini.files.map_split("horizontal", true), opts)
+		vim.keymap.set("n", "<leader>\\", require("utils").mini.files.map_split("vertical", true), opts)
 	end,
 }
 
@@ -507,42 +530,42 @@ M.rest = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "Rest: run"
-	map("n", "<leader>r", "<cmd>Rest run<cr>", opts)
+	vim.keymap.set("n", "<leader>r", "<cmd>Rest run<cr>", opts)
 end
 
 M.todotxt = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
 	opts.desc = "todo.txt: toggle task state"
-	map("n", "<c-c><c-x>", require("todotxt").toggle_todo_state, opts)
+	vim.keymap.set("n", "<c-c><c-x>", require("todotxt").toggle_todo_state, opts)
 
 	opts.desc = "todo.txt: cycle priority"
-	map("n", "<c-c><c-p>", require("todotxt").cycle_priority, opts)
+	vim.keymap.set("n", "<c-c><c-p>", require("todotxt").cycle_priority, opts)
 
 	opts.desc = "Sort"
-	map("n", "<leader>ts", require("todotxt").sort_tasks, opts)
+	vim.keymap.set("n", "<leader>ts", require("todotxt").sort_tasks, opts)
 
 	opts.desc = "Sort by (priority)"
-	map("n", "<leader>tP", require("todotxt").sort_tasks_by_priority, opts)
+	vim.keymap.set("n", "<leader>tP", require("todotxt").sort_tasks_by_priority, opts)
 
 	opts.desc = "Sort by @context"
-	map("n", "<leader>tc", require("todotxt").sort_tasks_by_context, opts)
+	vim.keymap.set("n", "<leader>tc", require("todotxt").sort_tasks_by_context, opts)
 
 	opts.desc = "Sort by +project"
-	map("n", "<leader>tp", require("todotxt").sort_tasks_by_project, opts)
+	vim.keymap.set("n", "<leader>tp", require("todotxt").sort_tasks_by_project, opts)
 
 	opts.desc = "Sort by due:date"
-	map("n", "<leader>tD", require("todotxt").sort_tasks_by_due_date, opts)
+	vim.keymap.set("n", "<leader>tD", require("todotxt").sort_tasks_by_due_date, opts)
 
 	opts.desc = "Move to done.txt"
-	map("n", "<leader>td", require("todotxt").move_done_tasks, opts)
+	vim.keymap.set("n", "<leader>td", require("todotxt").move_done_tasks, opts)
 end
 
 M.ltex = function(client, bufnr)
 	local opts = { buffer = bufnr }
 
 	opts.desc = "Add word to dictionary"
-	map({ "n", "x" }, "zg", function()
+	vim.keymap.set({ "n", "x" }, "zg", function()
 		local word = vim.fn.expand("<cword>")
 
 		local words = require("utils").add_word_to_dictionary(vim.g.ltex_language, word)

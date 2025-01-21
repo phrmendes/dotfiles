@@ -50,8 +50,10 @@
       lynx
       minikube
       mongosh
+      neovide
       networkmanagerapplet
       nix-prefetch-github
+      nomacs
       parallel
       pasystray
       pavucontrol
@@ -64,7 +66,6 @@
       python313
       qalculate-gtk
       quarto
-      qview
       satty
       slurp
       sshfs
@@ -75,7 +76,6 @@
       uv
       ventoy
       vesktop
-      vlc
       wofi-emoji
       zotero
     ];

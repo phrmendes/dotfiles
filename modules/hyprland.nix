@@ -114,15 +114,14 @@
           (lib.mkIf (!parameters.laptop) "${secondary},preferred,auto-left,1")
         ];
         windowrulev2 = [
+          "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
           "float,stayfocused,opaque,class:(com.gabm.satty)"
           "float,stayfocused,opaque,class:(pavucontrol)"
           "float,stayfocused,opaque,class:(wofi)"
-          "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
-          "float,title:^(Picture-in-Picture)$"
           "float,title:^(OpenSSH Authentication Passphrase request)$"
-          "opaque,class:^(chromium)$"
+          "float,title:^(Picture-in-Picture)$"
           "opaque,class:^(firefox)$"
-          "opaque,class:^(vlc)$"
+          "opaque,class:^(mpv)$"
         ];
         workspace = with parameters.monitors; [
           "1,monitor:${primary}"

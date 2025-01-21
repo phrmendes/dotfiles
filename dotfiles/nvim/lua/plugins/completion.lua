@@ -12,7 +12,7 @@ require("blink.cmp").setup({
 	completion = {
 		list = {
 			selection = {
-				auto_insert = false,
+				auto_insert = true,
 				preselect = false,
 			},
 		},
@@ -53,7 +53,7 @@ require("blink.cmp").setup({
 		cmdline = {
 			["<s-tab>"] = { "select_prev", "fallback" },
 			["<tab>"] = { "select_next", "fallback" },
-			["<cr>"] = { "select_and_accept", "fallback" },
+			["<cr>"] = { "accept", "fallback" },
 			["<c-c>"] = { "hide", "fallback" },
 		},
 	},

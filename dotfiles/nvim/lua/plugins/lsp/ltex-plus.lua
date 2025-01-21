@@ -5,7 +5,7 @@ return {
 	end,
 	settings = {
 		ltex = {
-			language = vim.g.ltex_language or "none",
+			language = "none",
 			markdown = { nodes = { Link = "dummy" } },
 			dictionary = {
 				["en-US"] = require("utils").get_dictionary_words("en-US"),

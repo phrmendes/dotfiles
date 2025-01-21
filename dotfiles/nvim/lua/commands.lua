@@ -1,28 +1,46 @@
 return {
 	ltex = function(bufnr)
+		bufnr = bufnr or vim.api.nvim_get_current_buf()
 		vim.api.nvim_buf_create_user_command(bufnr, "Ltex", function()
-			if vim.g.ltex_language == "en-US" then
-				vim.g.ltex_language = "pt-BR"
-				vim.opt_local.spelllang = "pt"
-				vim.notify("Setting language to `pt-BR`", vim.log.levels.INFO)
-			else
-				vim.g.ltex_language = "en-US"
-				vim.notify("Setting language to `en-US`", vim.log.levels.INFO)
-			end
+			local index = vim.g.ltex_index or 0
+
+			local messages = {
+				{
+					lang = "en-US",
+					index = 1,
+					msg = "Setting language to `en-US`",
+				},
+				{
+					lang = "pt-BR",
+					index = 2,
+					msg = "Setting language to `pt-BR`",
+				},
+				{
+					lang = "none",
+					index = 3,
+					msg = "Ltex is now disabled",
+				},
+			}
+
+			local new_index = (index % #messages) + 1 or 1
+
+			local result = vim.tbl_filter(function(t)
+				return t.index == new_index
+			end, messages)[1]
+
+			vim.notify(result.msg, vim.log.levels.INFO)
 
 			local client = vim.lsp.get_clients({ name = "ltex_plus" })[1]
-			local settings = client.config.settings
 
-			if not settings then
-				return
+			if client and client.config.settings then
+				client.config.settings.ltex.language = result.lang
+				client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 			end
 
-			settings.ltex.language = vim.g.ltex_language
-
-			client.notify("workspace/didChangeConfiguration", { settings = settings })
+			vim.g.ltex_index = new_index
 		end, {
 			desc = "Toggle Ltex Language",
-			nargs = 0,
+			nargs = "*",
 		})
 	end,
 }

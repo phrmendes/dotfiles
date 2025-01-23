@@ -384,11 +384,11 @@
     "notes-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1737412667,
-        "narHash": "sha256-rkC8DB+ohXoo4jrL9FFJie/7pOxT1ZpMNwQ5D6gCzX0=",
+        "lastModified": 1737677130,
+        "narHash": "sha256-/N267T3lnm94oPSoC3hkq28BcyBvIdBDXd/8v3t/2rY=",
         "owner": "phrmendes",
         "repo": "notes.nvim",
-        "rev": "31cfdcffcec0fd8603e459c00e08d2f81cf4cd3d",
+        "rev": "5fa45da92397cc73a768f2bb22d6e0d066445c1f",
         "type": "github"
       },
       "original": {

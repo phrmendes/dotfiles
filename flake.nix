@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     stylix.url = "github:danth/stylix";
+    bibli-ls.url = "github:kha-dinh/bibli-ls";
 
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";

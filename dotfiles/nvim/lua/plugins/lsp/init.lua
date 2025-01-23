@@ -28,6 +28,7 @@ local servers = {
 	taplo = {},
 	terraformls = {},
 	denols = {},
+	bibli_ls = require("plugins.lsp.bibli-ls"),
 	efm = require("plugins.lsp.efm"),
 	elixirls = require("plugins.lsp.elixirls"),
 	helm_ls = require("plugins.lsp.helm-ls"),

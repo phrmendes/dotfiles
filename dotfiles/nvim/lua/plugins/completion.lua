@@ -1,9 +1,5 @@
 local border = require("utils").borders.border
 
-require("cmp_pandoc").setup({
-	filetypes = { "quarto", "markdown" },
-})
-
 require("blink.cmp").setup({
 	signature = {
 		enabled = true,
@@ -58,11 +54,10 @@ require("blink.cmp").setup({
 		},
 	},
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev", "pandoc" },
+		default = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev" },
 		providers = {
 			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
 			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-			pandoc = { name = "cmp_pandoc", module = "blink.compat.source" },
 		},
 	},
 	enabled = function()

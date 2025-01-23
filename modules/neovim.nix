@@ -14,6 +14,7 @@
           inherit src pname;
           version = src.rev;
         };
+      bibli-ls = inputs.bibli-ls.packages.${pkgs.system}.default;
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
       todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
       treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (parsers:
@@ -77,8 +78,6 @@
         SchemaStore-nvim
         ansible-vim
         blink-cmp
-        blink-compat
-        cmp-pandoc-nvim
         copilot-vim
         efmls-configs-nvim
         friendly-snippets
@@ -122,6 +121,7 @@
           ansible-lint
           basedpyright
           bash-language-server
+          bibli-ls
           djlint
           dockerfile-language-server-nodejs
           dot-language-server

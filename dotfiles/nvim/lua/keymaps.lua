@@ -116,11 +116,13 @@ local keys = {
 		opts.desc = "Quick chat"
 		vim.keymap.set("v", "<leader>cc", ":CopilotChat<cr>", opts)
 		vim.keymap.set("n", "<leader>cc", function()
-			local input = vim.fn.input("Quick Chat: ")
-
-			if input ~= "" then
-				require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-			end
+			vim.ui.input({ prompt = "Quick Chat: " }, function(input)
+				if input ~= "" then
+					require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+				else
+					vim.notify("Chat cannot be empty", vim.log.levels.ERROR)
+				end
+			end)
 		end, opts)
 
 		opts.desc = "Toggle chat"
@@ -198,22 +200,21 @@ local keys = {
 		local opts = { noremap = true }
 
 		opts.desc = "Add label"
-		vim.keymap.set("n", "<leader>la", require("mini.visits").add_label, opts)
+		vim.keymap.set("n", "<leader>la", function()
+			vim.ui.input({ prompt = "Label: " }, function(input)
+				if input == "" or input == nil then
+					vim.notify("Label cannot be empty", vim.log.levels.ERROR)
+				else
+					require("mini.visits").add_label(input)
+				end
+			end)
+		end, opts)
 
-		opts.desc = "Remove label"
-		vim.keymap.set("n", "<leader>lr", function()
-			local labels = require("mini.visits").list_labels()
-
-			local choosed = require("mini.pick").start({ source = {
-				items = labels,
-				name = "Remove label",
-			} })
-
-			if not choosed then
-				return
-			end
-
-			require("mini.visits").remove_label(choosed)
+		opts.desc = "Delete label"
+		vim.keymap.set("n", "<leader>ld", function()
+			vim.ui.select(require("mini.visits").list_labels(), { prompt = "Select label: " }, function(choosed)
+				require("mini.visits").remove_label(choosed)
+			end)
 		end, opts)
 
 		opts.desc = "List labels"

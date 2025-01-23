@@ -13,8 +13,13 @@ return {
 			name = "Debug Django app",
 			program = vim.uv.cwd() .. "/manage.py",
 			args = function()
-				local input = vim.fn.input("Enter the port for the Django app: ", "8001")
-				return { "runserver", "--noreload", input }
+				local port
+
+				vim.ui.input({ prompt = "Enter the port to the Django app: ", default = "8001" }, function(input)
+					port = input
+				end)
+
+				return { "runserver", "--noreload", port }
 			end,
 			justMyCode = true,
 			django = true,
@@ -27,8 +32,13 @@ return {
 			name = "Debug FastAPI app",
 			module = "fastapi",
 			args = function()
-				local input = vim.fn.input("Enter the path to the FastAPI app: ", "src/main.py")
-				return { "run", input }
+				local path
+
+				vim.ui.input({ prompt = "Enter the path to the FastAPI app: ", default = "src/main.py" }, function(input)
+					path = input
+				end)
+
+				return { "run", path }
 			end,
 			justMyCode = true,
 			console = "integratedTerminal",

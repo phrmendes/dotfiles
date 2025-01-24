@@ -71,7 +71,7 @@ config.keys = {
 		key = "w",
 		mods = "LEADER",
 		action = ws.switch_workspace({
-			extra_args = "| rg 'Projects|Documents' | rg -v 'persist|venv|.st' | cut -d '/' -f 1-6",
+			extra_args = "| rg 'Projects|Documents' | rg -v 'persist|venv|.st' | cut -d '/' -f 1-6 | uniq",
 		}),
 	},
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },

@@ -12,6 +12,7 @@
       bitwarden-cli
       brightnessctl
       deluge
+      docker-compose
       droidcam
       exiftool
       fd
@@ -26,7 +27,9 @@
       hyprland-qtutils
       imagemagick
       inkscape
+      kind
       kooha
+      kubectl
       libreoffice
       lynx
       neovide

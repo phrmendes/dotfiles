@@ -5,6 +5,7 @@
     file
     findutils
     gcc
+    gnused
     gzip
     mlocate
     p7zip

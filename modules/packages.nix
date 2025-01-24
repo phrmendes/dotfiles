@@ -7,73 +7,47 @@
   options.packages.enable = lib.mkEnableOption "enable packages";
 
   config = lib.mkIf config.packages.enable {
-    home.packages = with pkgs; let
-      gcloud = google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [
-        gke-gcloud-auth-plugin
-      ]);
-    in [
-      ansible
+    home.packages = with pkgs; [
       bitwarden
       bitwarden-cli
       brightnessctl
       deluge
-      deno
       docker-credential-helpers
       droidcam
-      elixir
       exiftool
       fd
       ffmpeg
       ffmpegthumbnailer
       file-roller
       firefox
-      gcloud
       gdu
       gnome-commander
-      gnumake
-      gnused
       gparted
-      graphviz
       grim
-      hugo
       hyprland-qtutils
       imagemagick
       inkscape
-      jdk
-      jq
-      just
       kooha
-      kubectl
-      kubernetes-helm
       lazydocker
       libreoffice
       lynx
-      minikube
-      mongosh
       neovide
       networkmanagerapplet
       nix-prefetch-github
       nomacs
-      parallel
       pasystray
       pavucontrol
       phockup
       playerctl
       plex
       poppler
-      postgresql
       protonvpn-gui
-      python313
       qalculate-gtk
-      quarto
       satty
       slurp
       sshfs
       sshs
       stremio
-      tectonic
-      terraform
-      uv
       ventoy
       vesktop
       wofi-emoji

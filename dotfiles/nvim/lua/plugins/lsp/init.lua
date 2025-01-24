@@ -27,7 +27,6 @@ local servers = {
 	ruff = {},
 	taplo = {},
 	terraformls = {},
-	denols = {},
 	bibli_ls = require("plugins.lsp.bibli-ls"),
 	efm = require("plugins.lsp.efm"),
 	elixirls = require("plugins.lsp.elixirls"),

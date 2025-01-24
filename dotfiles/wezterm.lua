@@ -67,7 +67,13 @@ config.keys = {
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
 	{ key = "t", mods = "LEADER", action = action.ShowTabNavigator },
 	{ key = "v", mods = "LEADER", action = action.PasteFrom("Clipboard") },
-	{ key = "w", mods = "LEADER", action = ws.switch_workspace() },
+	{
+		key = "w",
+		mods = "LEADER",
+		action = ws.switch_workspace({
+			extra_args = "| rg 'Projects|Documents' | rg -v 'persist|venv|.st' | cut -d '/' -f 1-6",
+		}),
+	},
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
 	{

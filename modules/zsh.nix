@@ -37,7 +37,6 @@
         g = getExe pkgs.git;
         grep = getExe pkgs.ripgrep;
         k = "${pkgs.kubectl}/bin/kubectl";
-        ld = getExe pkgs.lazydocker;
         lg = getExe pkgs.lazygit;
         ps = getExe pkgs.procs;
         sed = getExe pkgs.gnused;

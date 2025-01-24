@@ -12,7 +12,6 @@
       bitwarden-cli
       brightnessctl
       deluge
-      docker-credential-helpers
       droidcam
       exiftool
       fd
@@ -28,7 +27,6 @@
       imagemagick
       inkscape
       kooha
-      lazydocker
       libreoffice
       lynx
       neovide
@@ -40,6 +38,7 @@
       phockup
       playerctl
       plex
+      podman-desktop
       poppler
       protonvpn-gui
       qalculate-gtk

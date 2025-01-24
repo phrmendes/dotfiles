@@ -15,6 +15,14 @@
         "!.git"
         "--glob"
         "!.venv"
+        "--glob"
+        "!.github"
+        "--glob"
+        "!.stversions"
+        "--glob"
+        "!.stfolder"
+        "--glob"
+        "!.sync"
       ];
     };
   };

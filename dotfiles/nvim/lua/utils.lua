@@ -93,7 +93,7 @@ M.get_dictionary_words = function(lang)
 	local file = vim.env.HOME .. "/Documents/notes/dictionaries/" .. lang .. ".add"
 	local words = {}
 
-	if vim.loop.fs_stat(file) == nil then
+	if vim.uv.fs_stat(file) == nil then
 		vim.notify("File does not exist: " .. file)
 		return
 	end
@@ -184,6 +184,20 @@ M.mini.files.set_cwd = function()
 	if current_directory ~= nil then
 		vim.fn.chdir(current_directory)
 	end
+end
+
+M.mini.files.open_files = function()
+	local fs_entry = require("mini.files").get_fs_entry()
+
+	if not fs_entry then
+		vim.notify("No file selected")
+		return
+	end
+
+	vim.schedule(function()
+		vim.notify("Opening " .. fs_entry.name)
+		vim.ui.open(fs_entry.path)
+	end)
 end
 
 M.mini.notify.filter_notifications = function(array)

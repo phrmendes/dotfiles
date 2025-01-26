@@ -521,6 +521,7 @@ M.mini = {
 		local opts = { noremap = true, buffer = event.data.buf_id }
 
 		vim.keymap.set("n", ".", require("utils").mini.files.toggle_dotfiles, opts)
+		vim.keymap.set("n", "go", require("utils").mini.files.open_files, opts)
 		vim.keymap.set("n", "<leader>.", require("utils").mini.files.set_cwd, opts)
 		vim.keymap.set("n", "<leader>-", require("utils").mini.files.map_split("horizontal", true), opts)
 		vim.keymap.set("n", "<leader>\\", require("utils").mini.files.map_split("vertical", true), opts)

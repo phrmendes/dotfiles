@@ -27,6 +27,7 @@
           diff
           dockerfile
           dot
+          eex
           elixir
           erlang
           git_config
@@ -34,7 +35,12 @@
           gitattributes
           gitcommit
           gitignore
+          go
+          gomod
+          gosum
+          gowork
           hcl
+          heex
           helm
           html
           htmldjango
@@ -78,8 +84,8 @@
         SchemaStore-nvim
         ansible-vim
         blink-cmp
+        conform-nvim
         copilot-vim
-        efmls-configs-nvim
         friendly-snippets
         fzfWrapper
         lazydev-nvim
@@ -92,6 +98,7 @@
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
+        nvim-lint
         nvim-lspconfig
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -125,9 +132,11 @@
           djlint
           dockerfile-language-server-nodejs
           dot-language-server
-          efm-langserver
           elixir-ls
           emmet-language-server
+          gofumpt
+          golangci-lint
+          gopls
           hadolint
           helm-ls
           ltex-ls-plus
@@ -138,15 +147,17 @@
           ruff
           shellcheck
           shellharden
+          sqruff
           stylua
           taplo
           terraform-ls
+          tflint
           vscode-langservers-extracted
+          vtsls
           yaml-language-server
         ]
         ++ (with nodePackages_latest; [
           prettier
-          sql-formatter
           vscode-json-languageserver
         ]);
     };

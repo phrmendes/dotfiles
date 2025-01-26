@@ -14,6 +14,7 @@
       deluge
       docker-compose
       droidcam
+      elixir
       exiftool
       fd
       ffmpeg
@@ -22,6 +23,8 @@
       firefox
       gdu
       gnome-commander
+      go
+      gotools
       gparted
       grim
       hyprland-qtutils
@@ -35,6 +38,7 @@
       neovide
       networkmanagerapplet
       nix-prefetch-github
+      nodejs_23
       nomacs
       pasystray
       pavucontrol
@@ -44,6 +48,7 @@
       podman-desktop
       poppler
       protonvpn-gui
+      python313
       qalculate-gtk
       satty
       slurp

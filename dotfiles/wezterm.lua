@@ -70,9 +70,7 @@ config.keys = {
 	{
 		key = "w",
 		mods = "LEADER",
-		action = ws.switch_workspace({
-			extra_args = "| rg 'Projects|Documents' | rg -v 'persist|venv|.st' | cut -d '/' -f 1-6 | uniq -u",
-		}),
+		action = ws.switch_workspace({ extra_args = "| rg -F $HOME | rg -v '.venv|.st|.github|persist'" }),
 	},
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },

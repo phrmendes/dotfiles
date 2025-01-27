@@ -55,6 +55,7 @@
       sshfs
       sshs
       stremio
+      terraform
       ventoy
       vesktop
       wofi-emoji

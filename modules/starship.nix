@@ -15,8 +15,9 @@
         docker_context.disabled = true;
         gcloud.disabled = true;
         python.symbol = " ";
-        conda.symbol = "🐍 ";
+        conda.symbol = "󱔎 ";
         nix_shell.symbol = " ";
+        git_status.deleted = "x";
       };
     };
   };

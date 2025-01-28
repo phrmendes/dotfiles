@@ -94,11 +94,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1737910555,
-        "narHash": "sha256-KcuKmG2TH8xKjHJ6vMI8W+xLYC8HKbaBQxKBTtpcoxw=",
+        "lastModified": 1738046415,
+        "narHash": "sha256-6W0HRQpy6LhbtAEc8z2KMEekrV77wTiOzTw19XUjow8=",
         "owner": "kha-dinh",
         "repo": "bibli-ls",
-        "rev": "82e638aa121de007bb2dc8406f9875373c7ea285",
+        "rev": "4d173ef7dbd81a4d0f69f0e519f8f85a7af7b988",
         "type": "github"
       },
       "original": {

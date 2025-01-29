@@ -427,17 +427,17 @@ M.dap = function(bufnr)
 	opts.desc = "DAP: pause"
 	vim.keymap.set("n", "<s-f8>", require("dap").pause, opts)
 
-	opts.desc = "DAP: terminate"
-	vim.keymap.set("n", "<del>", require("dap").terminate, opts)
-
-	opts.desc = "DAP: breakpoint"
+	opts.desc = "DAP: toggle breakpoint"
 	vim.keymap.set("n", "<localleader>b", require("dap").toggle_breakpoint, opts)
 
 	opts.desc = "DAP: debug last"
 	vim.keymap.set("n", "<localleader><bs>", require("dap").run_last, opts)
 
 	opts.desc = "DAP: clear all breakpoints"
-	vim.keymap.set("n", "<localleader><del>", require("dap").clear_breakpoints, opts)
+	vim.keymap.set("n", "<localleader>C", require("dap").clear_breakpoints, opts)
+
+	opts.desc = "DAP: terminate"
+	vim.keymap.set("n", "<localleader>B", require("dap").terminate, opts)
 
 	opts.desc = "DAP: show hover"
 	vim.keymap.set("n", "<localleader>k", require("dap.ui.widgets").hover, opts)

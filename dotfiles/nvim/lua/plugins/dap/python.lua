@@ -1,9 +1,10 @@
 return {
 	debugpy = function()
 		local dap = require("dap")
-		local configs = dap.configurations.python or {}
 
 		require("dap-python").setup(vim.fn.exepath("nvim-python3"))
+
+		local configs = dap.configurations.python or {}
 
 		dap.configurations.python = configs
 

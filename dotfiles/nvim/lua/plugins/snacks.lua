@@ -6,6 +6,7 @@ snacks.setup({
 	quickfile = { enabled = true },
 	words = { enabled = true },
 	lazygit = { configure = false },
+	terminal = { win = { wo = { winbar = "" } } },
 	statuscolumn = {
 		enabled = true,
 		git = { patterns = { "MiniDiffSign" } },

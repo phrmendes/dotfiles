@@ -8,7 +8,7 @@
     services.cliphist = {
       enable = true;
       allowImages = true;
-      systemdTarget = "hyprland-session.target";
+      systemdTargets = ["hyprland-session.target"];
     };
   };
 }

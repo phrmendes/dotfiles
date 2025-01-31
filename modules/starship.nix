@@ -10,15 +10,7 @@
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      settings = {
-        command_timeout = 1000;
-        docker_context.disabled = true;
-        gcloud.disabled = true;
-        python.symbol = " ";
-        conda.symbol = "󱔎 ";
-        nix_shell.symbol = " ";
-        git_status.deleted = "x";
-      };
+      settings = builtins.fromTOML (builtins.readFile ../dotfiles/starship.toml);
     };
   };
 }

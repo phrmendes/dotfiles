@@ -488,10 +488,10 @@ end
 M.python = function(bufnr)
 	local opts = { noremap = true, buffer = bufnr }
 
-	opts.desc = "Python: test function/method"
+	opts.desc = "Python: debug function/method"
 	vim.keymap.set("n", "<localleader>f", require("dap-python").test_method, opts)
 
-	opts.desc = "Python: test class"
+	opts.desc = "Python: debug class"
 	vim.keymap.set("n", "<localleader>c", require("dap-python").test_class, opts)
 
 	opts.desc = "Python: debug selection"
@@ -511,9 +511,19 @@ M.lua = function(bufnr)
 	vim.keymap.set("v", "<localleader>.", ":lua<cr>", opts)
 
 	opts.desc = "Lua: run DAP server"
-	vim.keymap.set("n", "<localleader>l", function()
+	vim.keymap.set("n", "<localleader>r", function()
 		require("osv").launch({ port = 8086 })
 	end, opts)
+end
+
+M.go = function(bufnr)
+	local opts = { noremap = true, buffer = bufnr }
+
+	opts.desc = "Go: debug test"
+	vim.keymap.set("n", "<localleader>t", require("dap-go").debug_test, opts)
+
+	opts.desc = "Go: debug last test"
+	vim.keymap.set("n", "<localleader>l", require("dap-go").debug_test, opts)
 end
 
 M.mini = {

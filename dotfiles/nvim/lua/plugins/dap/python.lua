@@ -11,11 +11,13 @@ return {
 		table.insert(configs, {
 			type = "python",
 			request = "launch",
-			name = "Debug Django app",
+			name = "django server",
 			program = vim.uv.cwd() .. "/manage.py",
 			args = function()
-				local input = vim.fn.input("Enter the port for the Django app: ", "8001")
-				return { "runserver", "--noreload", input }
+				local entrypoint = vim.fn.input("Entrypoint: ", vim.uv.cwd() .. "/manage.py")
+				local port = vim.fn.input("Port:", "8000")
+
+				return { entrypoint, "runserver", "--noreload", port }
 			end,
 			justMyCode = true,
 			django = true,
@@ -25,11 +27,13 @@ return {
 		table.insert(configs, {
 			type = "python",
 			request = "launch",
-			name = "Debug FastAPI app",
+			name = "fastapi server",
 			module = "fastapi",
 			args = function()
-				local input = vim.fn.input("Enter the path to the FastAPI app: ", "src/main.py")
-				return { "run", input }
+				local entrypoint = vim.fn.input("Entrypoint: ", vim.uv.cwd() .. "src/main.py")
+				local port = vim.fn.input("Port:", "8000")
+
+				return { "run", entrypoint, "--port", port }
 			end,
 			justMyCode = true,
 			console = "integratedTerminal",

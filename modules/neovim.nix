@@ -95,6 +95,7 @@
         notes-nvim
         nvim-bqf
         nvim-dap
+        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -129,6 +130,7 @@
           basedpyright
           bash-language-server
           bibli-ls
+          delve
           djlint
           dockerfile-language-server-nodejs
           dot-language-server

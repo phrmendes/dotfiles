@@ -16,9 +16,9 @@ $character"""
 style = "blue"
 
 [character]
-success_symbol = "[λ](bold purple)"
-error_symbol = "[λ](bold red)"
-vimcmd_symbol = "[λ](bold green)"
+success_symbol = "[󰘧](bold purple)"
+error_symbol = "[󰘧](bold red)"
+vimcmd_symbol = "[󰘧](bold green)"
 
 [fill]
 symbol = " "
@@ -43,12 +43,16 @@ deleted = "x"
 stashed = "≡"
 
 [cmd_duration]
-format = " [$duration]($style) "
+format = " [ $duration]($style)"
 style = "yellow"
 
 [python]
-format = ' [\( $virtualenv\)]($style)'
-style = "bright-black"
+format = " [ $virtualenv]($style)"
+style = "green"
 
 [nix_shell]
-format = '[](bold blue) '
+format = '[]($style) '
+style = "bold blue"
+
+[hostname]
+ssh_symbol = " "

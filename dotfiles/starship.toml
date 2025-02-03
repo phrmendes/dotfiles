@@ -9,6 +9,7 @@ $fill\
 ($python)\
 ($cmd_duration)\
 $line_break\
+($nix_shell)\
 $character"""
 
 [directory]
@@ -46,5 +47,8 @@ format = " [$duration]($style) "
 style = "yellow"
 
 [python]
-format = ' [\($virtualenv\)]($style)'
+format = ' [\( $virtualenv\)]($style)'
 style = "bright-black"
+
+[nix_shell]
+format = '[](bold blue) '

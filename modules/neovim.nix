@@ -136,7 +136,6 @@
           djlint
           dockerfile-language-server-nodejs
           dot-language-server
-          elixir-ls
           emmet-language-server
           gofumpt
           golangci-lint
@@ -160,6 +159,9 @@
           vtsls
           yaml-language-server
         ]
+        ++ (with beam27Packages; [
+          elixir-ls
+        ])
         ++ (with nodePackages_latest; [
           prettier
           vscode-json-languageserver

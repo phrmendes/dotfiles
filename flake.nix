@@ -32,6 +32,11 @@
       flake = false;
       url = "github:phrmendes/todotxt.nvim";
     };
+
+    refactorex-nvim = {
+      flake = false;
+      url = "github:synic/refactorex.nvim";
+    };
   };
 
   outputs = {

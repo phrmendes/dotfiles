@@ -448,6 +448,22 @@
         "type": "github"
       }
     },
+    "refactorex-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737905530,
+        "narHash": "sha256-HJdC5LIc8lLqB5Th/8nyrBhyjXiwB7WCm/3/qazmYUg=",
+        "owner": "synic",
+        "repo": "refactorex.nvim",
+        "rev": "d76789b35562a85c2a5f63613c96e9fc32c47c26",
+        "type": "github"
+      },
+      "original": {
+        "owner": "synic",
+        "repo": "refactorex.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
@@ -458,6 +474,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "notes-nvim": "notes-nvim",
+        "refactorex-nvim": "refactorex-nvim",
         "stylix": "stylix",
         "todotxt-nvim": "todotxt-nvim"
       }

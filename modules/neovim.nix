@@ -17,6 +17,7 @@
       bibli-ls = inputs.bibli-ls.packages.${pkgs.system}.default;
       notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
       todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
+      refactorex-nvim = vimPlugin "refactorex.nvim" inputs.refactorex-nvim;
       treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (parsers:
         with parsers; [
           bash
@@ -104,6 +105,7 @@
         nvim-treesitter-context
         nvim-treesitter-textobjects
         one-small-step-for-vimkind
+        refactorex-nvim
         refactoring-nvim
         rest-nvim
         smart-splits-nvim

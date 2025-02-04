@@ -4,4 +4,5 @@ require("lint").linters_by_ft = {
 	dockerfile = { "hadolint" },
 	terraform = { "tflint" },
 	go = { "golangcilint" },
+	sql = { "sqruff" },
 }

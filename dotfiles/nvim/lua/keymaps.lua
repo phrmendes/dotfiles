@@ -437,7 +437,7 @@ M.dap = function(bufnr)
 	vim.keymap.set("n", "<localleader>C", require("dap").clear_breakpoints, opts)
 
 	opts.desc = "DAP: terminate"
-	vim.keymap.set("n", "<localleader>B", require("dap").terminate, opts)
+	vim.keymap.set("n", "<localleader>q", require("dap").terminate, opts)
 
 	opts.desc = "DAP: show hover"
 	vim.keymap.set("n", "<localleader>k", require("dap.ui.widgets").hover, opts)

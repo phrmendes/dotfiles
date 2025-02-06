@@ -14,10 +14,9 @@ return {
 			name = "django server",
 			program = vim.uv.cwd() .. "/manage.py",
 			args = function()
-				local entrypoint = vim.fn.input("Entrypoint: ", vim.uv.cwd() .. "/manage.py")
-				local port = vim.fn.input("Port:", "8000")
+				local port = vim.fn.input("Port: ", "8000")
 
-				return { entrypoint, "runserver", "--noreload", port }
+				return { "runserver", "--noreload", port }
 			end,
 			justMyCode = true,
 			django = true,
@@ -30,8 +29,8 @@ return {
 			name = "fastapi server",
 			module = "fastapi",
 			args = function()
-				local entrypoint = vim.fn.input("Entrypoint: ", vim.uv.cwd() .. "src/main.py")
-				local port = vim.fn.input("Port:", "8000")
+				local entrypoint = vim.fn.input("Entrypoint: ", "src/main.py")
+				local port = vim.fn.input("Port: ", "8000")
 
 				return { "run", entrypoint, "--port", port }
 			end,

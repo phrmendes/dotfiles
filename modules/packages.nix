@@ -12,6 +12,7 @@
         bitwarden
         bitwarden-cli
         brightnessctl
+        chromium
         deluge
         docker-compose
         droidcam

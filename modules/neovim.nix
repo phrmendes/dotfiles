@@ -144,7 +144,7 @@
             lua-language-server
             marksman
             neovim-remote
-            nil
+            nixd
             nixfmt-rfc-style
             ruff
             shellcheck

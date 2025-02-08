@@ -2,7 +2,8 @@
   parameters,
   pkgs,
   ...
-}: {
+}:
+{
   users = {
     mutableUsers = true;
     users = {

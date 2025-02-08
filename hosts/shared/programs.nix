@@ -2,7 +2,8 @@
   pkgs,
   parameters,
   ...
-}: {
+}:
+{
   programs = {
     dconf.enable = true;
     fuse.userAllowOther = true;

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   services = {
     blueman.enable = true;
     envfs.enable = true;
@@ -21,7 +22,7 @@
       interval = "monthly";
     };
 
-    dbus.packages = with pkgs; [gcr];
+    dbus.packages = with pkgs; [ gcr ];
 
     openssh = {
       enable = true;
@@ -46,23 +47,25 @@
 
     greetd = {
       enable = true;
-      settings = let
-        tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-        sessions = "${pkgs.hyprland}/share/wayland-sessions";
-      in rec {
-        terminal.vt = 1;
-        initial_session = default_session;
-        default_session = {
-          command = "${tuigreet} -t -r --asterisks -s ${sessions}";
-          user = "greeter";
+      settings =
+        let
+          tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
+          sessions = "${pkgs.hyprland}/share/wayland-sessions";
+        in
+        rec {
+          terminal.vt = 1;
+          initial_session = default_session;
+          default_session = {
+            command = "${tuigreet} -t -r --asterisks -s ${sessions}";
+            user = "greeter";
+          };
         };
-      };
     };
 
     xserver = {
       enable = true;
       autorun = true;
-      excludePackages = with pkgs; [xterm];
+      excludePackages = with pkgs; [ xterm ];
       xkb = {
         layout = "us,br";
         options = "grp:alt_space_toggle";

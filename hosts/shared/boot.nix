@@ -2,10 +2,14 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     tmp.cleanOnBoot = true;
-    supportedFilesystems = ["btrfs" "ntfs"];
+    supportedFilesystems = [
+      "btrfs"
+      "ntfs"
+    ];
     kernelPackages = pkgs.linuxPackages_zen;
     plymouth.enable = true;
 
@@ -20,12 +24,19 @@
         efiSupport = true;
         enableCryptodisk = true;
         useOSProber = true;
-        devices = ["nodev"];
+        devices = [ "nodev" ];
       };
     };
 
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "nvme"];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+        "nvme"
+      ];
       luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
       postDeviceCommands = lib.mkAfter ''
         mkdir /btrfs_tmp

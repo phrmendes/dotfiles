@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.tealdeer.enable = lib.mkEnableOption "enable tealdeer";
 
   config = lib.mkIf config.tealdeer.enable {

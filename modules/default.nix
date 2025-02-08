@@ -1,4 +1,5 @@
-{parameters, ...}: {
+{ parameters, ... }:
+{
   imports = [
     ./bat.nix
     ./blueman-applet.nix
@@ -87,16 +88,16 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = ["org.pwmt.zathura.desktop"];
-        "application/xhtml+xml" = ["firefox.desktop"];
-        "inode/directory" = ["org.gnome.gnome-commander.desktop"];
-        "text/html" = ["firefox.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "audio/*" = ["mpv.desktop"];
-        "image/*" = ["nomacs.desktop"];
-        "text/*" = ["neovide.desktop"];
-        "video/*" = ["mpv.desktop"];
+        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+        "application/xhtml+xml" = [ "firefox.desktop" ];
+        "inode/directory" = [ "org.gnome.gnome-commander.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "audio/*" = [ "mpv.desktop" ];
+        "image/*" = [ "nomacs.desktop" ];
+        "text/*" = [ "neovide.desktop" ];
+        "video/*" = [ "mpv.desktop" ];
       };
     };
   };

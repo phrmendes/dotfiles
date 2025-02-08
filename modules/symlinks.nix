@@ -4,7 +4,8 @@
   parameters,
   pkgs,
   ...
-}: {
+}:
+{
   options.symlinks.enable = lib.mkEnableOption "enable symlinks";
 
   config = lib.mkIf config.symlinks.enable {

@@ -1,4 +1,5 @@
-{parameters, ...}: {
+{ parameters, ... }:
+{
   services.syncthing = {
     inherit (parameters) user;
     enable = true;

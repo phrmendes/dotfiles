@@ -3,7 +3,8 @@
   config,
   parameters,
   ...
-}: {
+}:
+{
   options.dunst.enable = lib.mkEnableOption "enable dunst";
   config = lib.mkIf config.dunst.enable {
     services.dunst = {

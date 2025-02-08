@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.packages.enable = lib.mkEnableOption "enable packages";
 
   config = lib.mkIf config.packages.enable {
-    home.packages = with pkgs;
+    home.packages =
+      with pkgs;
       [
         bitwarden
         bitwarden-cli

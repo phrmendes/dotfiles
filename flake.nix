@@ -39,70 +39,72 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    nixpkgs-stable,
-    ...
-  } @ inputs: {
-    nixosConfigurations = let
-      global = rec {
-        name = "Pedro Mendes";
-        user = "phrmendes";
-        email = "pedrohrmendes@proton.me";
-        home = "/home/${user}";
-        system = "x86_64-linux";
-      };
-      pkgs-stable = final: prev: {
-        stable = import nixpkgs-stable {
-          inherit (global) system;
-          config.allowUnfree = true;
-        };
-      };
-      pkgs = import nixpkgs {
-        inherit (global) system;
-        config.allowUnfree = true;
-        overlays = [pkgs-stable];
-      };
-    in {
-      desktop = let
-        parameters =
-          {
-            laptop = false;
-            device = "/dev/sdc";
-            monitors = {
-              primary = "HDMI-A-1";
-              secondary = "DP-1";
-            };
-          }
-          // global;
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit (parameters) system;
-          modules = [./hosts/desktop.nix];
-          specialArgs = {
-            inherit inputs pkgs parameters;
-            nixpkgs.pkgs = pkgs;
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-stable,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations =
+        let
+          global = rec {
+            name = "Pedro Mendes";
+            user = "phrmendes";
+            email = "pedrohrmendes@proton.me";
+            home = "/home/${user}";
+            system = "x86_64-linux";
           };
-        };
+          pkgs-stable = final: prev: {
+            stable = import nixpkgs-stable {
+              inherit (global) system;
+              config.allowUnfree = true;
+            };
+          };
+          pkgs = import nixpkgs {
+            inherit (global) system;
+            config.allowUnfree = true;
+            overlays = [ pkgs-stable ];
+          };
+        in
+        {
+          desktop =
+            let
+              parameters = {
+                laptop = false;
+                device = "/dev/sdc";
+                monitors = {
+                  primary = "HDMI-A-1";
+                  secondary = "DP-1";
+                };
+              } // global;
+            in
+            nixpkgs.lib.nixosSystem {
+              inherit (parameters) system;
+              modules = [ ./hosts/desktop.nix ];
+              specialArgs = {
+                inherit inputs pkgs parameters;
+                nixpkgs.pkgs = pkgs;
+              };
+            };
 
-      laptop = let
-        parameters =
-          {
-            laptop = true;
-            device = "/dev/nvme0n1";
-            monitors = {
-              primary = "eDP-1";
+          laptop =
+            let
+              parameters = {
+                laptop = true;
+                device = "/dev/nvme0n1";
+                monitors = {
+                  primary = "eDP-1";
+                };
+              } // global;
+            in
+            nixpkgs.lib.nixosSystem {
+              inherit (parameters) system;
+              modules = [ ./hosts/laptop.nix ];
+              specialArgs = {
+                inherit inputs pkgs parameters;
+              };
             };
-          }
-          // global;
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit (parameters) system;
-          modules = [./hosts/laptop.nix];
-          specialArgs = {
-            inherit inputs pkgs parameters;
-          };
         };
     };
-  };
 }

@@ -5,7 +5,7 @@
     sudo.enable = true;
     pam = {
       services = {
-        hyprlock = {};
+        hyprlock = { };
         greetd = {
           gnupg.enable = true;
           enableGnomeKeyring = true;

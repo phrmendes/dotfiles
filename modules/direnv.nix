@@ -3,7 +3,8 @@
   config,
   parameters,
   ...
-}: {
+}:
+{
   options.direnv.enable = lib.mkEnableOption "enable direnv";
 
   config = lib.mkIf config.direnv.enable {
@@ -19,7 +20,7 @@
           warn_timeout = 0;
         };
         whitelist = {
-          prefix = ["${parameters.home}/Projects"];
+          prefix = [ "${parameters.home}/Projects" ];
         };
       };
     };

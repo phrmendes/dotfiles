@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.k9s.enable = lib.mkEnableOption "enable k9s";
 
   config = lib.mkIf config.k9s.enable {

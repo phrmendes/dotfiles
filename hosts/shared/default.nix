@@ -2,13 +2,14 @@
   inputs,
   parameters,
   ...
-}: {
+}:
+{
   imports = [
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
     inputs.stylix.nixosModules.stylix
-    (import ./disko.nix {inherit (parameters) device;})
+    (import ./disko.nix { inherit (parameters) device; })
     ./boot.nix
     ./file-systems.nix
     ./hardware.nix

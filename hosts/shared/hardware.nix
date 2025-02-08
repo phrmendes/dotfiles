@@ -1,5 +1,6 @@
-{modulesPath, ...}: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+{ modulesPath, ... }:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   hardware = {
     keyboard.qmk.enable = true;

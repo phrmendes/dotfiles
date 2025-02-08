@@ -516,16 +516,6 @@ M.lua = function(bufnr)
 	end, opts)
 end
 
-M.go = function(bufnr)
-	local opts = { noremap = true, buffer = bufnr }
-
-	opts.desc = "Go: debug test"
-	vim.keymap.set("n", "<localleader>t", require("dap-go").debug_test, opts)
-
-	opts.desc = "Go: debug last test"
-	vim.keymap.set("n", "<localleader>l", require("dap-go").debug_test, opts)
-end
-
 M.mini = {
 	files = function(event)
 		local opts = { noremap = true, buffer = event.data.buf_id }

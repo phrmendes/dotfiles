@@ -21,6 +21,5 @@ utils.setup_dap_signs({
 })
 
 require("plugins.dap.elixir").elixir_debug_adapter()
-require("plugins.dap.go").delve()
 require("plugins.dap.lua").osv()
 require("plugins.dap.python").debugpy()

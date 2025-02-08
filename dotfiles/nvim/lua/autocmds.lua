@@ -45,6 +45,23 @@ autocmd("LspAttach", {
 				end,
 			})
 		end
+
+		if client.supports_method("textDocument/formatting") then
+			autocmd("BufWritePre", {
+				buffer = event.buf,
+				group = augroups.lsp.efm,
+				callback = function(ev)
+					vim.lsp.buf.format({
+						async = false,
+						bufnr = ev.buf,
+						timeout_ms = 10000,
+						filter = function(c)
+							return c.name == "efm"
+						end,
+					})
+				end,
+			})
+		end
 	end,
 })
 

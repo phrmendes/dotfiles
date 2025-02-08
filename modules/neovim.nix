@@ -36,10 +36,6 @@
           gitattributes
           gitcommit
           gitignore
-          go
-          gomod
-          gosum
-          gowork
           hcl
           heex
           helm
@@ -87,6 +83,7 @@
         blink-cmp
         conform-nvim
         copilot-vim
+        efmls-configs-nvim
         friendly-snippets
         fzfWrapper
         lazydev-nvim
@@ -96,7 +93,6 @@
         notes-nvim
         nvim-bqf
         nvim-dap
-        nvim-dap-go
         nvim-dap-python
         nvim-dap-ui
         nvim-dap-virtual-text
@@ -126,20 +122,16 @@
       extraLuaPackages = luaPkgs: with luaPkgs; [tiktoken_core];
       extraPackages = with pkgs;
         [
-          alejandra
           ansible-language-server
           ansible-lint
           basedpyright
           bash-language-server
           bibli-ls
-          delve
           djlint
           dockerfile-language-server-nodejs
           dot-language-server
+          efm-langserver
           emmet-language-server
-          gofumpt
-          golangci-lint
-          gopls
           hadolint
           helm-ls
           ltex-ls-plus
@@ -147,6 +139,7 @@
           marksman
           neovim-remote
           nil
+          nixfmt-rfc-style
           ruff
           shellcheck
           shellharden
@@ -154,7 +147,6 @@
           stylua
           taplo
           terraform-ls
-          tflint
           vscode-langservers-extracted
           vtsls
           yaml-language-server

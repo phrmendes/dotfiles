@@ -24,8 +24,6 @@
         firefox
         gdu
         gnome-commander
-        go
-        gotools
         gparted
         grim
         hyprland-qtutils

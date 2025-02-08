@@ -16,6 +16,7 @@ M.augroups = {
 	lsp = {
 		attach = augroup("UserLspAttach", {}),
 		detach = augroup("UserLspDetach", {}),
+		efm = augroup("UserLspEfm", {}),
 		highlight = augroup("UserLspHighlight", {}),
 	},
 }

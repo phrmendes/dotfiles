@@ -77,7 +77,7 @@ local keys = {
 
 		opts.desc = "Explorer (cwd)"
 		vim.keymap.set("n", "<leader>E", function()
-			require("mini.files").open(vim.uv.cwd(), true)
+			require("mini.files").open(vim.fs.root(0, ".git"), true)
 		end, opts)
 	end,
 	better_keys = function()

@@ -58,7 +58,6 @@
         stremio
         terraform
         ventoy
-        vesktop
         wofi-emoji
         zotero
       ]

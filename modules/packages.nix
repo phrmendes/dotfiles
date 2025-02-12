@@ -10,6 +10,14 @@
   config = lib.mkIf config.packages.enable {
     home.packages =
       with pkgs;
+      let
+        gcloud = google-cloud-sdk.withExtraComponents (
+          with google-cloud-sdk.components;
+          [
+            gke-gcloud-auth-plugin
+          ]
+        );
+      in
       [
         bitwarden
         bitwarden-cli
@@ -24,6 +32,7 @@
         ffmpegthumbnailer
         file-roller
         firefox
+        gcloud
         gdu
         gnome-commander
         gparted

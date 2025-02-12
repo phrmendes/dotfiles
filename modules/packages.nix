@@ -43,6 +43,7 @@
         kind
         kooha
         kubectl
+        kubernetes-helm
         libreoffice
         lynx
         neovide

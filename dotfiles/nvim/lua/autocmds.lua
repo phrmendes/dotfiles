@@ -8,18 +8,14 @@ autocmd("LspAttach", {
 		local id = vim.tbl_get(event, "data", "client_id")
 		local client = id and vim.lsp.get_client_by_id(id)
 
-		if not client then
-			return
-		end
+		if not client then return end
 
-		require("keymaps").lsp(client, event.buf)
+		require("keymaps.lsp").setup(client, event.buf)
 
 		if client.supports_method("textDocument/codeLens") then
 			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 				buffer = event.buf,
-				callback = function(ev)
-					vim.lsp.codelens.refresh({ bufnr = ev.buf })
-				end,
+				callback = function(ev) vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
 			})
 		end
 
@@ -55,9 +51,7 @@ autocmd("LspAttach", {
 						async = false,
 						bufnr = ev.buf,
 						timeout_ms = 10000,
-						filter = function(c)
-							return c.name == "efm"
-						end,
+						filter = function(c) return c.name == "efm" end,
 					})
 				end,
 			})
@@ -69,47 +63,14 @@ autocmd("WinEnter", {
 	desc = "Automatically close Vim if the quickfix window is the only one open",
 	group = augroups.windows,
 	callback = function()
-		if vim.fn.winnr("$") == 1 and vim.fn.win_gettype() == "quickfix" then
-			vim.cmd.q()
-		end
-	end,
-})
-
-autocmd("User", {
-	desc = "Set border for mini.files window",
-	group = augroups.mini,
-	pattern = "MiniFilesWindowOpen",
-	callback = function(event)
-		local win_id = event.data.win_id
-
-		vim.api.nvim_win_set_config(win_id, { border = require("utils").borders.border })
-	end,
-})
-
-autocmd("User", {
-	desc = "Config mini.files keybindings",
-	group = augroups.mini,
-	pattern = "MiniFilesBufferCreate",
-	callback = function(event)
-		require("keymaps").mini.files(event)
-	end,
-})
-
-autocmd("User", {
-	desc = "Rename file in mini.files",
-	group = augroups.mini,
-	pattern = "MiniFilesActionRename",
-	callback = function(event)
-		require("snacks").rename.on_rename_file(event.data.from, event.data.to)
+		if vim.fn.winnr("$") == 1 and vim.fn.win_gettype() == "quickfix" then vim.cmd.q() end
 	end,
 })
 
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
-	callback = function()
-		require("vim.highlight").on_yank({ higroup = "Substitute", timeout = 200 })
-	end,
+	callback = function() require("vim.highlight").on_yank({ higroup = "Substitute", timeout = 200 }) end,
 })
 
 autocmd("FileType", {

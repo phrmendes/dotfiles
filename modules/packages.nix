@@ -44,7 +44,6 @@
         kubectl
         kubernetes-helm
         libreoffice
-        lynx
         neovide
         networkmanagerapplet
         nix-prefetch-github

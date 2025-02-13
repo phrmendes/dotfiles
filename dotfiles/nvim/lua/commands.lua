@@ -24,9 +24,7 @@ return {
 
 			local new_index = (index % #messages) + 1 or 1
 
-			local result = vim.tbl_filter(function(t)
-				return t.index == new_index
-			end, messages)[1]
+			local result = vim.tbl_filter(function(t) return t.index == new_index end, messages)[1]
 
 			vim.notify(result.msg, vim.log.levels.INFO)
 

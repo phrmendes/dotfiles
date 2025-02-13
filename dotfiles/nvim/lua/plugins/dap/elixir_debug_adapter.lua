@@ -1,5 +1,5 @@
 return {
-	elixir_debug_adapter = function()
+	setup = function()
 		local dap = require("dap")
 
 		dap.adapters.mix_task = {

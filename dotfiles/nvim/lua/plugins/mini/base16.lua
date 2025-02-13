@@ -1,4 +1,4 @@
 require("mini.base16").setup({
-	palette = require("base16").palette,
+	palette = require("nix.base16").palette,
 	use_cterm = true,
 })

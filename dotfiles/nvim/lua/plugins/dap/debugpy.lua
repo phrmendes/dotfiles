@@ -1,5 +1,5 @@
 return {
-	debugpy = function()
+	setup = function()
 		local dap = require("dap")
 
 		require("dap-python").setup(vim.fn.exepath("nvim-python3"))

@@ -1,6 +1,6 @@
 -- leader keys
-vim.g.mapleader = [[ ]]
-vim.g.maplocalleader = [[,]]
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- syntax
 vim.opt.syntax = "on"
@@ -79,25 +79,13 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 
 -- clipboard
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
-
--- disable native plugins
-for _, disable in ipairs({ "gzip", "netrwPlugin", "tarPlugin", "tohtml", "tutor", "zipPlugin" }) do
-	vim.g["loaded_" .. disable] = 0
-end
+vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 -- treat '-' as part of a word
 vim.cmd([[set iskeyword+=-]])
 
 -- nvim remote
-if vim.fn.executable("nvr") then
-	vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-end
-
--- markdown preview
-vim.g.mkdp_auto_close = 0
+if vim.fn.executable("nvr") then vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'" end
 
 -- add filetypes
 vim.filetype.add({

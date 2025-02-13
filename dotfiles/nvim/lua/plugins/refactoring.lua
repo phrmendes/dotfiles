@@ -1,4 +1,12 @@
-require("refactoring").setup({
-	prompt_func_return_type = { go = true },
-	prompt_func_param_type = { go = true },
-})
+return {
+	"ThePrimeagen/refactoring.nvim",
+	ft = { "lua", "python" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+	},
+	opts = {},
+	keys = {
+		{ mode = { "n", "x" }, "<leader>r", function() require("refactoring").select_refactor() end, desc = "Refactoring" },
+	},
+}

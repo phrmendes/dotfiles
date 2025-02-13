@@ -11,120 +11,23 @@
   config = lib.mkIf config.neovim.enable {
     programs.neovim =
       let
-        vimPlugin =
-          pname: src:
-          pkgs.vimUtils.buildVimPlugin {
-            inherit src pname;
-            version = src.rev;
-          };
         bibli-ls = inputs.bibli-ls.packages.${pkgs.system}.default;
-        notes-nvim = vimPlugin "notes.nvim" inputs.notes-nvim;
-        todotxt-nvim = vimPlugin "todotxt.nvim" inputs.todotxt-nvim;
-        refactorex-nvim = vimPlugin "refactorex.nvim" inputs.refactorex-nvim;
-        treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (
-          parsers: with parsers; [
-            bash
-            bibtex
-            css
-            csv
-            cuda
-            diff
-            dockerfile
-            dot
-            eex
-            elixir
-            erlang
-            git_config
-            git_rebase
-            gitattributes
-            gitcommit
-            gitignore
-            hcl
-            heex
-            helm
-            html
-            htmldjango
-            hyprlang
-            javascript
-            json
-            jsonc
-            just
-            latex
-            lua
-            luadoc
-            luap
-            make
-            markdown
-            markdown_inline
-            mermaid
-            nginx
-            nix
-            python
-            requirements
-            sql
-            ssh_config
-            terraform
-            todotxt
-            toml
-            typescript
-            vim
-            vimdoc
-            yaml
-          ]
-        );
       in
       {
         enable = true;
-        package = pkgs.neovim-unwrapped;
         vimAlias = true;
         vimdiffAlias = true;
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-        plugins = with pkgs.vimPlugins; [
-          CopilotChat-nvim
-          SchemaStore-nvim
-          ansible-vim
-          blink-cmp
-          conform-nvim
-          copilot-vim
-          efmls-configs-nvim
-          friendly-snippets
-          fzfWrapper
-          lazydev-nvim
-          markdown-nvim
-          markdown-preview-nvim
-          mini-nvim
-          notes-nvim
-          nvim-bqf
-          nvim-dap
-          nvim-dap-python
-          nvim-dap-ui
-          nvim-dap-virtual-text
-          nvim-lint
-          nvim-lspconfig
-          nvim-treesitter-context
-          nvim-treesitter-textobjects
-          one-small-step-for-vimkind
-          refactorex-nvim
-          refactoring-nvim
-          rest-nvim
-          smart-splits-nvim
-          snacks-nvim
-          todotxt-nvim
-          treesitter
-          undotree
-          vim-abolish
-          vim-dadbod
-          vim-dadbod-completion
-          vim-dadbod-ui
-          vim-eunuch
-          vim-helm
-          vim-sleuth
-          vim-slime
-        ];
-        extraPython3Packages = pythonPkgs: with pythonPkgs; [ debugpy ];
-        extraLuaPackages = luaPkgs: with luaPkgs; [ tiktoken_core ];
+        extraPython3Packages = p: with p; [ debugpy ];
+        extraLuaPackages =
+          p: with p; [
+            luarocks
+            mimetypes
+            tiktoken_core
+            xml2lua
+          ];
         extraPackages =
           with pkgs;
           [
@@ -142,6 +45,7 @@
             helm-ls
             ltex-ls-plus
             lua-language-server
+            lynx
             marksman
             neovim-remote
             nixd
@@ -149,10 +53,13 @@
             ruff
             shellcheck
             shellharden
+            sqlite
             sqruff
             stylua
             taplo
             terraform-ls
+            tree-sitter
+            tree-sitter
             vscode-langservers-extracted
             vtsls
             yaml-language-server
@@ -166,15 +73,15 @@
           ]);
       };
 
-    xdg.configFile = {
-      "nvim" = {
-        source = ../dotfiles/nvim;
-        recursive = true;
-      };
-      "nvim/lua/paths/luvit-meta.lua".text = ''
+    xdg.configFile."nvim/init.lua".enable = false;
+
+    home.file = {
+      ".config/nvim".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/dotfiles/nvim";
+      ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
       '';
-      "nvim/lua/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
+      ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {
             palette = {
                 base00 = "${base00}",

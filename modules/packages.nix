@@ -20,7 +20,6 @@
       in
       [
         bitwarden
-        bitwarden-cli
         brightnessctl
         chromium
         deluge

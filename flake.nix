@@ -22,21 +22,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    notes-nvim = {
-      flake = false;
-      url = "github:phrmendes/notes.nvim";
-    };
-
-    todotxt-nvim = {
-      flake = false;
-      url = "github:phrmendes/todotxt.nvim";
-    };
-
-    refactorex-nvim = {
-      flake = false;
-      url = "github:synic/refactorex.nvim";
-    };
   };
 
   outputs =

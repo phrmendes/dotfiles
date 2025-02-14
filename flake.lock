@@ -269,11 +269,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739458725,
-        "narHash": "sha256-k9AeUzs3phaTgfljRslR4iNTX9svBNhxoIw4QLd/V70=",
+        "lastModified": 1739470101,
+        "narHash": "sha256-NxNe32VB4XI/xIXrsKmIfrcgtEx5r/5s52pL3CpEcA4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "22b418c13fb0be43f4bc5c185f323a3237028594",
+        "rev": "5031c6d2978109336637977c165f82aa49fa16a7",
         "type": "github"
       },
       "original": {
@@ -352,11 +352,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1739214665,
-        "narHash": "sha256-26L8VAu3/1YRxS8MHgBOyOM8xALdo6N0I04PgorE7UM=",
+        "lastModified": 1739446958,
+        "narHash": "sha256-+/bYK3DbPxMIvSL4zArkMX0LQvS7rzBKXnDXLfKyRVc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "64e75cd44acf21c7933d61d7721e812eac1b5a0a",
+        "rev": "2ff53fe64443980e139eaa286017f53f88336dd0",
         "type": "github"
       },
       "original": {
@@ -379,22 +379,6 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "notes-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1737677130,
-        "narHash": "sha256-/N267T3lnm94oPSoC3hkq28BcyBvIdBDXd/8v3t/2rY=",
-        "owner": "phrmendes",
-        "repo": "notes.nvim",
-        "rev": "5fa45da92397cc73a768f2bb22d6e0d066445c1f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "phrmendes",
-        "repo": "notes.nvim",
         "type": "github"
       }
     },
@@ -448,22 +432,6 @@
         "type": "github"
       }
     },
-    "refactorex-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1737905530,
-        "narHash": "sha256-HJdC5LIc8lLqB5Th/8nyrBhyjXiwB7WCm/3/qazmYUg=",
-        "owner": "synic",
-        "repo": "refactorex.nvim",
-        "rev": "d76789b35562a85c2a5f63613c96e9fc32c47c26",
-        "type": "github"
-      },
-      "original": {
-        "owner": "synic",
-        "repo": "refactorex.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "auto-cpufreq": "auto-cpufreq",
@@ -473,10 +441,7 @@
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
-        "notes-nvim": "notes-nvim",
-        "refactorex-nvim": "refactorex-nvim",
-        "stylix": "stylix",
-        "todotxt-nvim": "todotxt-nvim"
+        "stylix": "stylix"
       }
     },
     "stylix": {
@@ -607,22 +572,6 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
-        "type": "github"
-      }
-    },
-    "todotxt-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736279298,
-        "narHash": "sha256-p37QnrvAOLyKqQDn62zfPEkr6CTako+p03Y7tMJ/w2o=",
-        "owner": "phrmendes",
-        "repo": "todotxt.nvim",
-        "rev": "c9afa84d7da01b279332d18317b6d533a97a6a82",
-        "type": "github"
-      },
-      "original": {
-        "owner": "phrmendes",
-        "repo": "todotxt.nvim",
         "type": "github"
       }
     },

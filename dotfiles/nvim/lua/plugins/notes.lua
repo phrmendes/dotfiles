@@ -1,6 +1,6 @@
 return {
 	"phrmendes/notes.nvim",
-	dependencies = { "echasnovski/mini.nvim" },
+	dependencies = { "folke/snacks.nvim" },
 	opts = {
 		path = vim.env.HOME .. "/Documents/notes",
 	},

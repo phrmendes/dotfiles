@@ -53,7 +53,6 @@
             ruff
             shellcheck
             shellharden
-            sqlite
             sqruff
             stylua
             taplo

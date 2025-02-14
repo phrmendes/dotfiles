@@ -1,7 +1,7 @@
 return {
 	on_attach = function(client, bufnr)
 		require("commands").ltex(bufnr)
-		require("keymaps").ltex(client, bufnr)
+		require("keymaps.ltex").setup(client, bufnr)
 	end,
 	settings = {
 		ltex = {

@@ -64,6 +64,6 @@ return {
 				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 			},
 		},
-		enabled = function() return not vim.tbl_contains({ "minifiles", "snacks_input" }, vim.bo.filetype) end,
+		enabled = function() return not vim.tbl_contains({ "snacks_picker_input", "snacks_input" }, vim.bo.filetype) end,
 	},
 }

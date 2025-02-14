@@ -2,14 +2,8 @@ local augroup = vim.api.nvim_create_augroup
 
 local M = {}
 
-M.mini = {}
-M.mini.notify = {}
-M.mini.pick = {}
-M.mini.git = {}
-
 M.augroups = {
 	filetype = augroup("UserFileType", {}),
-	mini = augroup("UserMini", {}),
 	yank = augroup("UserYank", {}),
 	windows = augroup("UserWindows", {}),
 	lsp = {
@@ -132,36 +126,6 @@ M.add_word_to_dictionary = function(lang, word)
 	end
 
 	return unique_words
-end
-
-M.mini.buffers = function()
-	require("mini.pick").builtin.buffers(nil, {
-		mappings = {
-			wipeout = {
-				char = "<c-d>",
-				func = function() vim.api.nvim_buf_delete(require("mini.pick").get_picker_matches().current.bufnr, {}) end,
-			},
-		},
-	})
-end
-
-M.mini.notify.filter_notifications = function(array)
-	local filters = {
-		"Diagnosing",
-		"Processing files",
-		"file to analyze",
-		"ltex",
-	}
-
-	local filter_generator = function(filter)
-		return function(notification) return not string.find(notification.msg, filter) end
-	end
-
-	for _, filter in pairs(filters) do
-		array = vim.tbl_filter(filter_generator(filter), array)
-	end
-
-	return require("mini.notify").default_sort(array)
 end
 
 return M

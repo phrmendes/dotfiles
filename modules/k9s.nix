@@ -14,6 +14,54 @@
           refreshRate = 1;
         };
       };
+      plugin = {
+        plugins = {
+          log-bat = {
+            shortCut = "Shift-L";
+            description = "Logs (bat)";
+            scopes = [ "po" ];
+            command = "bash";
+            background = false;
+            args = [
+              "-c"
+              "\"$@\" | bat"
+              "dummy-arg"
+              "kubectl"
+              "logs"
+              "$NAME"
+              "-n"
+              "$NAMESPACE"
+              "--context"
+              "$CONTEXT"
+              "--kubeconfig"
+              "$KUBECONFIG"
+            ];
+          };
+          log-bat-container = {
+            shortCut = "Shift-L";
+            description = "Logs (bat)";
+            scopes = [ "containers" ];
+            command = "bash";
+            background = false;
+            args = [
+              "-c"
+              "\"$@\" | bat"
+              "dummy-arg"
+              "kubectl"
+              "logs"
+              "-c"
+              "$NAME"
+              "$POD"
+              "-n"
+              "$NAMESPACE"
+              "--context"
+              "$CONTEXT"
+              "--kubeconfig"
+              "$KUBECONFIG"
+            ];
+          };
+        };
+      };
     };
   };
 }

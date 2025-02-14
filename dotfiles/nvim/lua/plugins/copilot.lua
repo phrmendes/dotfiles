@@ -4,6 +4,7 @@ return {
 		{ "github/copilot.vim" },
 		{ "nvim-lua/plenary.nvim", branch = "master" },
 	},
+	cmd = { "CopilotChat" },
 	init = function()
 		vim.g.copilot_filetypes = {
 			["copilot-chat"] = false,

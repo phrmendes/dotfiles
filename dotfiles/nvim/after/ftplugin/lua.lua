@@ -14,8 +14,3 @@ vim.keymap.set("v", "<localleader>.", ":lua<cr>", {
 	desc = "Lua: run",
 	buffer = bufnr,
 })
-
-vim.keymap.set("n", "<localleader>r", function() require("osv").launch({ port = 8086 }) end, {
-	desc = "Lua: run DAP server",
-	buffer = bufnr,
-})

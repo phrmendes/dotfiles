@@ -47,6 +47,7 @@ return {
 			"nginx",
 			"nix",
 			"python",
+			"regex",
 			"requirements",
 			"sql",
 			"ssh_config",

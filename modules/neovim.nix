@@ -23,7 +23,6 @@
         extraPython3Packages = p: with p; [ debugpy ];
         extraLuaPackages =
           p: with p; [
-            luarocks
             mimetypes
             tiktoken_core
             xml2lua
@@ -63,6 +62,12 @@
             vtsls
             yaml-language-server
           ]
+          ++ (with lua51Packages; [
+            lua
+          ])
+          ++ (with luajitPackages; [
+            luarocks
+          ])
           ++ (with beam27Packages; [
             elixir-ls
           ])

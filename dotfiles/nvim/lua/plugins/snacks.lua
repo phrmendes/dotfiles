@@ -55,7 +55,7 @@ return {
 		{ "<leader>gg", function() Snacks.lazygit() end, desc = "LazyGit" },
 		{ "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Log (file)" },
 		{ "<leader>go", function() Snacks.gitbrowse() end, desc = "Open in browser" },
-		{ mode = { "n", "t" }, "<c-\\>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
-		{ mode = { "n", "x" }, "<leader>.", function() Snacks.picker.grep_word() end, desc = "Grep word" },
+		{ "<c-\\>", function() Snacks.terminal() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
+		{ "<leader>.", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Grep word" },
 	},
 }

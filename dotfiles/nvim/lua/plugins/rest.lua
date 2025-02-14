@@ -7,4 +7,7 @@ return {
 	ft = "http",
 	build = false,
 	cmd = { "Rest" },
+	keys = {
+		{ "<c-c>r", "<cmd>Rest run<cr>", ft = "http", desc = "Rest: run" },
+	},
 }

@@ -5,7 +5,7 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 	},
 	build = ":TSUpdate",
-	event = { "VeryLazy" },
+	event = "BufReadPost",
 	lazy = vim.fn.argc(-1) == 0,
 	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 	opts = {

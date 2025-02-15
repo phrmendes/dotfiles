@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	event = "BufReadPre",
 	dependencies = {
 		"creativenull/efmls-configs-nvim",
 		"b0o/SchemaStore.nvim",

@@ -13,7 +13,7 @@ return {
 				desc = "Markdown: add item below",
 			},
 			{
-				"<c-c>j",
+				"<c-c>k",
 				"<cmd>MDListItemAbove<cr>",
 				mode = { "n", "i" },
 				ft = { "markdown", "quarto" },

@@ -2,8 +2,13 @@ local border = require("utils").borders.border
 
 return {
 	"saghen/blink.cmp",
-	dependencies = { "rafamadriz/friendly-snippets", "echasnovski/mini.nvim" },
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		"echasnovski/mini.nvim",
+		"folke/lazydev.nvim",
+	},
 	version = "*",
+	event = { "InsertEnter", "CmdLineEnter" },
 	opts = {
 		signature = {
 			enabled = true,
@@ -50,7 +55,9 @@ return {
 			["<c-n>"] = { "select_next", "fallback" },
 			["<c-u>"] = { "scroll_documentation_up", "fallback" },
 			["<c-d>"] = { "scroll_documentation_down", "fallback" },
-			cmdline = {
+		},
+		cmdline = {
+			keymap = {
 				["<s-tab>"] = { "select_prev", "fallback" },
 				["<tab>"] = { "select_next", "fallback" },
 				["<cr>"] = { "accept", "fallback" },
@@ -60,8 +67,17 @@ return {
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev" },
 			providers = {
-				lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
-				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 100,
+					enabled = function() return vim.tbl_contains({ "lua" }, vim.bo.filetype) end,
+				},
+				dadbod = {
+					name = "Dadbod",
+					module = "vim_dadbod_completion.blink",
+					enabled = function() return vim.tbl_contains({ "sql", "mysql", "plsql" }, vim.bo.filetype) end,
+				},
 			},
 		},
 		enabled = function() return not vim.tbl_contains({ "snacks_picker_input", "snacks_input" }, vim.bo.filetype) end,

@@ -1,5 +1,6 @@
 return {
 	"kevinhwang91/nvim-bqf",
+	event = "VeryLazy",
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	opts = {
 		func_map = {

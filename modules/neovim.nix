@@ -38,7 +38,6 @@
             djlint
             dockerfile-language-server-nodejs
             dot-language-server
-            efm-langserver
             emmet-language-server
             hadolint
             helm-ls
@@ -52,10 +51,11 @@
             ruff
             shellcheck
             shellharden
-            sqruff
+            sqlfluff
             stylua
             taplo
             terraform-ls
+            tflint
             tree-sitter
             tree-sitter
             vscode-langservers-extracted
@@ -64,8 +64,6 @@
           ]
           ++ (with lua51Packages; [
             lua
-          ])
-          ++ (with luajitPackages; [
             luarocks
           ])
           ++ (with beam27Packages; [

@@ -2,7 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
 	dependencies = {
-		"creativenull/efmls-configs-nvim",
 		"b0o/SchemaStore.nvim",
 	},
 	config = function()
@@ -36,7 +35,6 @@ return {
 			taplo = {},
 			terraformls = {},
 			vtsls = {},
-			efm = require("plugins.lsp.efm"),
 			bibli_ls = require("plugins.lsp.bibli-ls"),
 			elixirls = require("plugins.lsp.elixirls"),
 			helm_ls = require("plugins.lsp.helm-ls"),

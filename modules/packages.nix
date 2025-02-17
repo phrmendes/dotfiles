@@ -21,7 +21,6 @@
       [
         bitwarden
         brightnessctl
-        chromium
         deluge
         docker-compose
         droidcam
@@ -30,7 +29,6 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
-        firefox
         gcloud
         gdu
         gnome-commander
@@ -66,6 +64,7 @@
         stremio
         terraform
         ventoy
+        vivaldi
         wofi-emoji
         zotero
       ]

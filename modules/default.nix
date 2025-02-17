@@ -89,11 +89,11 @@
       enable = true;
       defaultApplications = {
         "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-        "application/xhtml+xml" = [ "firefox.desktop" ];
+        "application/xhtml+xml" = [ "vivaldi.desktop" ];
         "inode/directory" = [ "org.gnome.gnome-commander.desktop" ];
-        "text/html" = [ "firefox.desktop" ];
-        "x-scheme-handler/http" = [ "firefox.desktop" ];
-        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "text/html" = [ "vivaldi.desktop" ];
+        "x-scheme-handler/http" = [ "vivaldi.desktop" ];
+        "x-scheme-handler/https" = [ "vivaldi.desktop" ];
         "audio/*" = [ "mpv.desktop" ];
         "image/*" = [ "nomacs.desktop" ];
         "text/*" = [ "neovide.desktop" ];

@@ -137,7 +137,6 @@
             "float,stayfocused,opaque,class:(wofi)"
             "float,title:^(OpenSSH Authentication Passphrase request)$"
             "float,title:^(Picture-in-Picture)$"
-            "opaque,class:^(firefox)$"
             "opaque,class:^(mpv)$"
           ];
           workspace = with parameters.monitors; [

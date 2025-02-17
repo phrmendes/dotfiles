@@ -10,7 +10,7 @@ return {
 		{
 			"<c-c>n",
 			function() require("todotxt").cycle_priority() end,
-			desc = "Cycle priority",
+			desc = "todo.txt: cycle priority",
 			ft = "todotxt",
 		},
 		{

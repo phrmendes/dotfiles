@@ -58,6 +58,7 @@
         python313
         qalculate-gtk
         satty
+        sesh
         slurp
         sshfs
         sshs

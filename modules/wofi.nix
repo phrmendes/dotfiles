@@ -29,7 +29,7 @@
           location = "center";
           mode = "drun";
           no_actions = true;
-          terminal = "${pkgs.stable.wezterm}/bin/wezterm start --always-new-process";
+          terminal = "${pkgs.ghostty}/bin/ghostty";
           width = "25%";
         };
         style =

@@ -13,7 +13,7 @@
         inherit (lib) getExe;
         hyprlock = getExe pkgs.hyprlock;
         playerctl = getExe pkgs.playerctl;
-        terminal = "${pkgs.stable.wezterm}/bin/wezterm";
+        terminal = "${pkgs.ghostty}/bin/ghostty";
         wofi = getExe pkgs.wofi;
         wofi-emoji = getExe pkgs.wofi-emoji;
         dmenu = "${getExe pkgs.wofi} --show dmenu";
@@ -177,7 +177,7 @@
               ",XF86AudioNext,exec,${playerctl} next"
               "SUPER,space,exec,${wofi}"
               "SUPER,tab,changegroupactive,f"
-              "SUPER,return,exec,[float;tile] ${terminal} start --always-new-process"
+              "SUPER,return,exec,${terminal}"
               "SUPER,V,exec,${lib.getExe clipboard}"
               "SUPER,F,togglefloating"
               "SUPER,G,togglegroup"

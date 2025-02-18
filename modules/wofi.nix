@@ -29,7 +29,7 @@
           location = "center";
           mode = "drun";
           no_actions = true;
-          terminal = "${pkgs.ghostty}/bin/ghostty";
+          terminal = "${pkgs.kitty}/bin/kitty";
           width = "25%";
         };
         style =

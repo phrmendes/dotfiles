@@ -32,20 +32,29 @@
             src = pkgs.zsh-nix-shell;
           }
         ];
-        shellAliases = {
-          cat = getExe pkgs.bat;
-          du = getExe pkgs.gdu;
-          find = getExe pkgs.fd;
-          fs = getExe pkgs.fselect;
-          g = getExe pkgs.git;
-          grep = getExe pkgs.ripgrep;
-          k = "${pkgs.kubectl}/bin/kubectl";
-          lg = getExe pkgs.lazygit;
-          ps = getExe pkgs.procs;
-          sed = getExe pkgs.gnused;
-          top = getExe pkgs.btop;
-          v = "nvim";
-        };
+        shellAliases =
+          let
+            kitten = "${pkgs.kitty}/bin/kitten";
+          in
+          {
+            cat = getExe pkgs.bat;
+            du = getExe pkgs.gdu;
+            find = getExe pkgs.fd;
+            fs = getExe pkgs.fselect;
+            g = getExe pkgs.git;
+            grep = getExe pkgs.ripgrep;
+            hg = "${kitten} hyperlinked-grep";
+            k = "${pkgs.kubectl}/bin/kubectl";
+            ld = getExe pkgs.lazydocker;
+            lg = getExe pkgs.lazygit;
+            ps = getExe pkgs.procs;
+            s = "${kitten} ssh";
+            sed = getExe pkgs.gnused;
+            top = getExe pkgs.btop;
+            transfer = "${kitten} transfer";
+            v = "nvim";
+            zz = ''${getExe pkgs.zellij} attach --create "$(basename $PWD)"'';
+          };
         initExtra = ''
           export EDITOR="nvim"
           export GIT_EDITOR="nvim"
@@ -61,17 +70,6 @@
 
           function diff_persist() {
               sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
-          }
-
-          function unlock_bw() {
-              if [[ -z $BW_SESSION ]]; then
-              echo "Unlocking Bitwarden..."
-
-              BW_SESSION="$(bw unlock --raw)"
-              export BW_SESSION
-
-              echo "Bitwarden unlocked."
-              fi
           }
 
           eval "$(${getExe pkgs.just} --completions zsh)"

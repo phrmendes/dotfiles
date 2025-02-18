@@ -10,7 +10,6 @@
     ./eza.nix
     ./fzf.nix
     ./gh.nix
-    ./ghostty.nix
     ./git.nix
     ./gnome-keyring.nix
     ./gtk.nix
@@ -19,6 +18,7 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./k9s.nix
+    ./kitty.nix
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
@@ -31,12 +31,12 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
     ./wofi.nix
     ./yazi.nix
     ./zathura.nix
+    ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -50,7 +50,6 @@
   eza.enable = true;
   fzf.enable = true;
   gh.enable = true;
-  ghostty.enable = true;
   git.enable = true;
   gnome-keyring.enable = true;
   gtk-settings.enable = true;
@@ -59,6 +58,7 @@
   hyprlock.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
+  kitty.enable = true;
   lazygit.enable = true;
   mpv.enable = true;
   neovim.enable = true;
@@ -71,7 +71,6 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
   wofi.enable = true;

@@ -19,9 +19,13 @@
           tmux = lib.getExe pkgs.tmux;
         in
         {
-          window-padding-y = 5;
-          window-padding-x = 5;
+          clipboard-paste-protection = "true";
+          clipboard-read = "allow";
+          clipboard-trim-trailing-spaces = "true";
+          clipboard-write = "allow";
           confirm-close-surface = false;
+          window-padding-x = 5;
+          window-padding-y = 5;
           window-save-state = "never";
           command = [ "${tmux} new-session -A -s default" ];
           keybind = [

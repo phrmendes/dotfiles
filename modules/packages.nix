@@ -22,6 +22,7 @@
         bitwarden
         brightnessctl
         deluge
+        discord-canary
         docker-compose
         droidcam
         exiftool
@@ -29,6 +30,7 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
+        firefox
         gcloud
         gdu
         gnome-commander
@@ -64,8 +66,8 @@
         sshs
         stremio
         terraform
+        ungoogled-chromium
         ventoy
-        vivaldi
         wofi-emoji
         zotero
       ]

@@ -4,7 +4,6 @@
   inputs = {
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     stylix.url = "github:danth/stylix";
     bibli-ls.url = "github:kha-dinh/bibli-ls";
 
@@ -27,7 +26,6 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-stable,
       ...
     }@inputs:
     {
@@ -40,16 +38,9 @@
             home = "/home/${user}";
             system = "x86_64-linux";
           };
-          pkgs-stable = final: prev: {
-            stable = import nixpkgs-stable {
-              inherit (global) system;
-              config.allowUnfree = true;
-            };
-          };
           pkgs = import nixpkgs {
             inherit (global) system;
             config.allowUnfree = true;
-            overlays = [ pkgs-stable ];
           };
         in
         {

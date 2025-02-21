@@ -12,10 +12,7 @@
       with pkgs;
       let
         gcloud = google-cloud-sdk.withExtraComponents (
-          with google-cloud-sdk.components;
-          [
-            gke-gcloud-auth-plugin
-          ]
+          with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
         );
       in
       [
@@ -62,7 +59,6 @@
         python313
         qalculate-gtk
         satty
-        sesh
         slurp
         sshfs
         sshs

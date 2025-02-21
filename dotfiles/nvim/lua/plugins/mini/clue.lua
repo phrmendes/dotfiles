@@ -37,7 +37,7 @@ clue.setup({
 		{ mode = "x", keys = "<leader>g", desc = "Git" },
 		{ mode = "n", keys = "<leader>n", desc = "Notes" },
 		{ mode = "n", keys = "<leader>l", desc = "Labels" },
-		{ mode = "n", keys = "<leader>t", desc = "todotxt" },
+		{ mode = "n", keys = "<leader>t", desc = "todo.txt" },
 	},
 	window = {
 		delay = 500,

@@ -37,9 +37,9 @@ return {
 		})
 	end,
 	keys = {
+		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Search" },
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart picker" },
+		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
 		{ "<leader>?", function() Snacks.picker.help() end, desc = "Help" },
 		{ "<leader>H", function() Snacks.notifier.hide() end, desc = "Dismiss notifications" },
 		{ "<leader>K", function() Snacks.picker.keymaps() end, desc = "Keymaps" },

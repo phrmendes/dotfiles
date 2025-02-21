@@ -61,6 +61,7 @@
             vscode-langservers-extracted
             vtsls
             yaml-language-server
+            libxml2
           ]
           ++ (with lua51Packages; [
             lua

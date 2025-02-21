@@ -22,6 +22,7 @@
         bitwarden
         brightnessctl
         deluge
+        curl
         discord-canary
         docker-compose
         droidcam
@@ -39,6 +40,7 @@
         hyprland-qtutils
         imagemagick
         inkscape
+        jq
         kind
         kooha
         kubectl

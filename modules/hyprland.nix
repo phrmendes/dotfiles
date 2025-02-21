@@ -178,6 +178,7 @@
               "SUPER,space,exec,${wofi}"
               "SUPER,tab,changegroupactive,f"
               "SUPER,return,exec,${terminal}"
+              "SUPER,B,exec,${lib.getExe pkgs.firefox}"
               "SUPER,V,exec,${lib.getExe clipboard}"
               "SUPER,F,togglefloating"
               "SUPER,G,togglegroup"

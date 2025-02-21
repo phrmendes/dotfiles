@@ -10,7 +10,7 @@ return {
 		dap.configurations.elixir = {
 			{
 				type = "mix_task",
-				name = "mix test",
+				name = "mix:test",
 				request = "launch",
 				task = "test",
 				taskArgs = { "--trace" },
@@ -20,7 +20,7 @@ return {
 			},
 			{
 				type = "mix_task",
-				name = "phoenix server",
+				name = "phoenix:server",
 				request = "launch",
 				task = "phx.server",
 				projectDir = "${workspaceRoot}",

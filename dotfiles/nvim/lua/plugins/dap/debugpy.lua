@@ -11,7 +11,7 @@ return {
 		table.insert(configs, {
 			type = "python",
 			request = "launch",
-			name = "django server",
+			name = "django:server",
 			program = vim.uv.cwd() .. "/manage.py",
 			args = function()
 				local port = vim.fn.input("Port: ", "8000")
@@ -26,7 +26,7 @@ return {
 		table.insert(configs, {
 			type = "python",
 			request = "launch",
-			name = "fastapi server",
+			name = "fastapi:server",
 			module = "fastapi",
 			args = function()
 				local entrypoint = vim.fn.input("Entrypoint: ", "src/main.py")

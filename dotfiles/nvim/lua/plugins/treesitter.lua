@@ -58,6 +58,7 @@ return {
 			"vim",
 			"vimdoc",
 			"yaml",
+			"http",
 		},
 		indent = { enable = true },
 		textobjects = {

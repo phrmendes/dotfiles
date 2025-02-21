@@ -1,6 +1,5 @@
 return {
 	"phrmendes/todotxt.nvim",
-	ft = "todotxt",
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	opts = {
 		todotxt = vim.env.HOME .. "/Documents/notes/todo.txt",
@@ -65,7 +64,6 @@ return {
 			"<leader>tt",
 			function() require("todotxt").open_todo_file() end,
 			desc = "Open",
-			ft = "todotxt",
 		},
 	},
 }

@@ -97,6 +97,9 @@ vim.filetype.add({
 		["*/.kube/config"] = "yaml",
 		["*/.envrc"] = "sh",
 	},
+	extension = {
+		["http"] = "http",
+	},
 })
 
 -- spell

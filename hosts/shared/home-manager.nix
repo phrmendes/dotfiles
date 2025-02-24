@@ -1,7 +1,6 @@
 {
   inputs,
   parameters,
-  pkgs,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";
-    extraSpecialArgs = { inherit inputs pkgs parameters; };
+    extraSpecialArgs = { inherit inputs parameters; };
     users.${parameters.user} = {
       imports = [ ../../modules ];
     };

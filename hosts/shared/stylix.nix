@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   stylix = {
     enable = true;
@@ -31,6 +34,10 @@
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
+    };
+    targets = {
+      gnome-text-editor.enable = false;
+      nixos-icons.enable = false;
     };
   };
 }

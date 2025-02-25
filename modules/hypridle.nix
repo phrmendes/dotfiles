@@ -27,7 +27,7 @@
 
           listener = [
             (lib.mkIf parameters.laptop {
-              timeout = 150;
+              timeout = 290;
               on-timeout = "${brightnessctl} set 10%";
               on-resume = "${brightnessctl} --restore ";
             })

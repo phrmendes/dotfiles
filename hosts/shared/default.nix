@@ -4,11 +4,12 @@
   ...
 }:
 {
-  imports = [
-    inputs.disko.nixosModules.disko
-    inputs.home-manager.nixosModules.home-manager
-    inputs.impermanence.nixosModules.impermanence
-    inputs.stylix.nixosModules.stylix
+  imports = with inputs; [
+    disko.nixosModules.disko
+    home-manager.nixosModules.home-manager
+    impermanence.nixosModules.impermanence
+    nixpkgs.nixosModules.readOnlyPkgs
+    stylix.nixosModules.stylix
     (import ./disko.nix { inherit (parameters) device; })
     ./boot.nix
     ./file-systems.nix

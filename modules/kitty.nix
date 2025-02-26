@@ -27,7 +27,7 @@
         macos_option_as_alt = "yes";
         open_url_with = "default";
         scrollback_lines = 10000;
-        scrollback_pager = ''nvim -c "set norelativenumber nonumber nolist signcolumn=no showtabline=0 foldcolumn=0" -c "autocmd TermOpen * normal G" -c "autocmd TermClose * :!rm /tmp/scrollback" -c "silent! write /tmp/scrollback | terminal cat /tmp/scrollback -"'';
+        scrollback_pager = ''nvim -R -c "lua require('scrollback')(INPUT_LINE_NUMBER)" -'';
         shell_integration = "enabled";
         tab_bar_edge = "bottom";
         tab_bar_min_tabs = 2;

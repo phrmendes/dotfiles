@@ -21,12 +21,6 @@
         changeDirWidgetCommand = "${fd} --type d";
         fileWidgetCommand = "${fd} --type f";
         fileWidgetOptions = [ "--preview '${bat} --color=always {}'" ];
-        defaultOptions = [
-          "--height 40%"
-          "--tmux bottom,40%"
-          "--layout reverse"
-          "--border top"
-        ];
       };
   };
 }

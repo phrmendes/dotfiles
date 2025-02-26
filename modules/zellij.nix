@@ -14,6 +14,7 @@
       in
       {
         enable = true;
+        enableZshIntegration = false;
         settings = {
           default_layout = "compact";
           default_shell = "${zsh}";

@@ -53,7 +53,6 @@
         map --when-focus-on var:IS_NVIM ctrl+l
       '';
       keybindings = {
-        "ctrl+shift+enter" = "new_window_with_cwd";
         "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
         "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
         "ctrl+shift+f1" = "debug_config";
@@ -67,6 +66,7 @@
         "ctrl+shift+j" = "move_window down";
         "ctrl+shift+k" = "move_window up";
         "ctrl+shift+l" = "move_window right";
+        "ctrl+shift+e" = "show_scrollback";
         "ctrl+shift+n" = "new_tab_with_cwd";
         "ctrl+shift+o" = "open_url_with_hints";
         "ctrl+shift+q" = "close_window";
@@ -74,7 +74,6 @@
         "ctrl+shift+u" = "scroll_line_up";
         "ctrl+shift+v" = "paste_from_clipboard";
         "ctrl+shift+z" = "combine : toggle_layout stack : scroll_prompt_to_bottom";
-        "ctrl+shift+s" = "show_scrollback";
         "ctrl+shift+1" = "goto_tab 1";
         "ctrl+shift+2" = "goto_tab 2";
         "ctrl+shift+3" = "goto_tab 3";

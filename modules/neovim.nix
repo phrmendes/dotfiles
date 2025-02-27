@@ -21,12 +21,7 @@
         withPython3 = true;
         withRuby = false;
         extraPython3Packages = p: with p; [ debugpy ];
-        extraLuaPackages =
-          p: with p; [
-            mimetypes
-            tiktoken_core
-            xml2lua
-          ];
+        extraLuaPackages = p: with p; [ tiktoken_core ];
         extraPackages =
           with pkgs;
           [

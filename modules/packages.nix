@@ -18,8 +18,8 @@
       [
         bitwarden
         brightnessctl
-        deluge
         curl
+        deluge
         discord-canary
         docker-compose
         droidcam
@@ -31,6 +31,7 @@
         firefox
         gcloud
         gdu
+        ghostscript
         gnome-commander
         gparted
         grim
@@ -43,6 +44,7 @@
         kubectl
         kubernetes-helm
         libreoffice
+        mermaid-cli
         neovide
         networkmanagerapplet
         nix-prefetch-github
@@ -58,11 +60,14 @@
         protonvpn-gui
         python313
         qalculate-gtk
+        quarto
         satty
         slurp
+        sqlite
         sshfs
         sshs
         stremio
+        tectonic
         terraform
         ungoogled-chromium
         ventoy

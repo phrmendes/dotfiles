@@ -13,7 +13,6 @@
     protonup
     psmisc
     rar
-    sqlite
     unar
     unzip
     wget

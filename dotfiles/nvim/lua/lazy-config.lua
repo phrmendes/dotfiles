@@ -22,19 +22,19 @@ require("lazy").setup({
 	ui = { border = "rounded" },
 	performance = {
 		rtp = {
-			paths = {
-				vim.fn.stdpath("data") .. "/nix",
+			paths = { vim.fn.stdpath("data") .. "/nix" },
+			disabled_plugins = {
+				"editorconfig",
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"rplugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
 			},
-		},
-		disabled_plugins = {
-			"gzip",
-			"matchit",
-			"matchparen",
-			"netrwPlugin",
-			"tarPlugin",
-			"tohtml",
-			"tutor",
-			"zipPlugin",
 		},
 	},
 })

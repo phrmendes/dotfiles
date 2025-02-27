@@ -1,5 +1,16 @@
 local autocmd = vim.api.nvim_create_autocmd
-local augroups = require("utils").augroups
+local augroup = vim.api.nvim_create_augroup
+
+local augroups = {
+	filetype = augroup("UserFileType", {}),
+	yank = augroup("UserYank", {}),
+	windows = augroup("UserWindows", {}),
+	lsp = {
+		attach = augroup("UserLspAttach", {}),
+		detach = augroup("UserLspDetach", {}),
+		highlight = augroup("UserLspHighlight", {}),
+	},
+}
 
 autocmd("LspAttach", {
 	desc = "LSP options and keymaps",

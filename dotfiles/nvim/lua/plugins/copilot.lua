@@ -1,3 +1,18 @@
+local prompts = {
+	Explain = "Please explain how the following code works.",
+	Review = "Please review the following code and provide suggestions for improvement.",
+	Tests = "Please explain how the selected code works, then generate unit tests for it.",
+	Refactor = "Please refactor the following code to improve its clarity and readability.",
+	FixCode = "Please fix the following code to make it work as intended.",
+	FixError = "Please explain the error in the following text and provide a solution.",
+	BetterNamings = "Please provide better names for the following variables and functions.",
+	Documentation = "Please provide documentation for the following code.",
+	Summarize = "Please summarize the following text.",
+	Spelling = "Please correct any grammar and spelling errors in the following text.",
+	Wording = "Please improve the grammar and wording of the following text.",
+	Concise = "Please rewrite the following text to make it more concise.",
+}
+
 return {
 	{
 		"github/copilot.vim",
@@ -9,7 +24,6 @@ return {
 			{ "github/copilot.vim" },
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
-		cmd = { "CopilotChat" },
 		init = function()
 			vim.g.copilot_filetypes = {
 				["copilot-chat"] = false,
@@ -17,37 +31,16 @@ return {
 		end,
 		opts = {
 			chat_autocomplete = true,
+			prompts = prompts,
 			mappings = {
-				reset = {
-					normal = "<leader>r",
-					insert = "<c-r>",
-				},
+				submit_prompt = { normal = "<cr>", insert = "<c-s>" },
+				reset = { normal = "<leader><bs>", insert = "<c-r>" },
 			},
 		},
 		keys = {
-			{ "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "Reset chat" },
-			{ "<leader>cs", "<cmd>CopilotChatStop<cr>", desc = "Stop chat" },
-			{ "<leader>ct", "<cmd>CopilotChatToggle<cr>", desc = "Toogle chat" },
-			{ "<leader>cc", "<cmd>CopilotChat<cr>", mode = "v", desc = "Quick chat" },
-			{ "<leader>cR", "<cmd>CopilotChatReview<cr>", mode = { "n", "v" }, desc = "Review" },
-			{ "<leader>cT", "<cmd>CopilotChatTests<cr>", desc = "Generate tests", mode = { "n", "v" } },
-			{ "<leader>cd", "<cmd>CopilotChatDocs<cr>", mode = { "n", "v" }, desc = "Generate docs" },
-			{ "<leader>ce", "<cmd>CopilotChatExplain<cr>", mode = { "n", "v" }, desc = "Explain" },
-			{ "<leader>cf", "<cmd>CopilotChatFix<cr>", mode = { "n", "v" }, desc = "Fix" },
-			{ "<leader>co", "<cmd>CopilotChatOptimize<cr>", mode = { "n", "v" }, desc = "Optimize" },
-			{
-				"<leader>cc",
-				function()
-					vim.ui.input({ prompt = "Quick Chat: " }, function(input)
-						if input ~= "" then
-							require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-						else
-							vim.notify("Chat cannot be empty", vim.log.levels.ERROR)
-						end
-					end)
-				end,
-				desc = "Quick chat",
-			},
+			{ "<leader>cc", "<cmd>CopilotChat<cr>", mode = "v", desc = "Chat" },
+			{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Chat" },
+			{ "<leader>cp", function() require("CopilotChat").select_prompt() end, mode = { "n", "v" }, desc = "Prompts" },
 		},
 	},
 }

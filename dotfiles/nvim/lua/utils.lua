@@ -1,80 +1,9 @@
-local augroup = vim.api.nvim_create_augroup
-
 local M = {}
-
-M.augroups = {
-	filetype = augroup("UserFileType", {}),
-	yank = augroup("UserYank", {}),
-	windows = augroup("UserWindows", {}),
-	lsp = {
-		attach = augroup("UserLspAttach", {}),
-		detach = augroup("UserLspDetach", {}),
-		highlight = augroup("UserLspHighlight", {}),
-	},
-}
-
-M.match_pattern = function(string, pattern)
-	if string:match(pattern) then return true end
-
-	return false
-end
-
-M.normalize = function(word)
-	local normalized_word = word:lower():gsub(
-		"[%z\1-\127\194-\244][\128-\191]*",
-		function(c)
-			return c:gsub("[áàâ]", "a")
-				:gsub("[éèê]", "e")
-				:gsub("[íìî]", "i")
-				:gsub("[óòô]", "o")
-				:gsub("[úùû]", "u")
-				:gsub("[ç]", "c")
-		end
-	)
-
-	return normalized_word:gsub("[%s%W]", "_")
-end
 
 M.borders = {
 	border = "rounded",
 	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 }
-
-M.config_diagnostics = function(signs, config)
-	for type, icon in pairs(signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-	end
-
-	vim.diagnostic.config(config)
-end
-
-M.config_lsp_server = function(opts)
-	local config = opts.config or {}
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-	config.capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
-	config.handlers = {
-		["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, M.borders),
-		["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, M.borders),
-	}
-
-	require("lspconfig")[opts.server].setup(config)
-end
-
-M.display_callback = function(variable)
-	if #variable.value > 15 then return " " .. string.sub(variable.value, 1, 15) .. "... " end
-
-	return " " .. variable.value
-end
-
-M.setup_dap_signs = function(signs)
-	for type, icon in pairs(signs) do
-		local hl = "Dap" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-	end
-end
 
 M.toggle_emphasis = function(key)
 	return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual("]] .. key .. [[")<cr>]]

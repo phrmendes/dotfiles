@@ -2,13 +2,12 @@ local border = require("utils").borders.border
 
 return {
 	"saghen/blink.cmp",
+	version = "*",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 		"echasnovski/mini.nvim",
 		"folke/lazydev.nvim",
 	},
-	version = "*",
-	event = { "InsertEnter", "CmdLineEnter" },
 	opts = {
 		signature = {
 			enabled = true,
@@ -46,40 +45,44 @@ return {
 			},
 		},
 		keymap = {
-			["<c-k>"] = { "show", "show_documentation", "hide_documentation" },
-			["<c-c>"] = { "hide", "fallback" },
 			["<cr>"] = { "accept", "fallback" },
-			["<c-l>"] = { "snippet_forward", "fallback" },
-			["<c-h>"] = { "snippet_backward", "fallback" },
-			["<c-p>"] = { "select_prev", "fallback" },
-			["<c-n>"] = { "select_next", "fallback" },
-			["<c-u>"] = { "scroll_documentation_up", "fallback" },
+			["<c-c>"] = { "hide", "fallback" },
+			["<c-k>"] = { "show", "show_documentation", "hide_documentation" },
 			["<c-d>"] = { "scroll_documentation_down", "fallback" },
+			["<c-u>"] = { "scroll_documentation_up", "fallback" },
+			["<c-h>"] = { "snippet_backward", "fallback" },
+			["<c-l>"] = { "snippet_forward", "fallback" },
+			["<c-n>"] = { "select_next", "fallback" },
+			["<c-p>"] = { "select_prev", "fallback" },
 		},
 		cmdline = {
+			enabled = true,
 			keymap = {
-				["<s-tab>"] = { "select_prev", "fallback" },
-				["<tab>"] = { "select_next", "fallback" },
+				["<tab>"] = { "show_and_insert", "select_next" },
+				["<s-tab>"] = { "show_and_insert", "select_prev" },
+				["<c-n>"] = { "select_next" },
+				["<c-p>"] = { "select_prev" },
 				["<cr>"] = { "accept", "fallback" },
 				["<c-c>"] = { "hide", "fallback" },
 			},
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "dadbod", "lazydev" },
+			default = { "lazydev", "lsp", "path", "snippets", "omni", "buffer" },
+			per_filetype = { sql = { "dadbod" } },
 			providers = {
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
 					score_offset = 100,
-					enabled = function() return vim.tbl_contains({ "lua" }, vim.bo.filetype) end,
 				},
 				dadbod = {
 					name = "Dadbod",
 					module = "vim_dadbod_completion.blink",
-					enabled = function() return vim.tbl_contains({ "sql", "mysql", "plsql" }, vim.bo.filetype) end,
 				},
 			},
 		},
-		enabled = function() return not vim.tbl_contains({ "snacks_picker_input", "snacks_input" }, vim.bo.filetype) end,
+		enabled = function()
+			return not vim.tbl_contains({ "snacks_picker_input", "snacks_input", "copilot-chat" }, vim.bo.filetype)
+		end,
 	},
 }

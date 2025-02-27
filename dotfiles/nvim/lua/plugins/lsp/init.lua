@@ -3,20 +3,23 @@ return {
 	event = "BufReadPre",
 	dependencies = {
 		"b0o/SchemaStore.nvim",
+		"saghen/blink.cmp",
 	},
 	config = function()
 		local utils = require("utils")
 
-		utils.config_diagnostics({ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }, {
+		for type, icon in pairs({ Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		end
+
+		vim.diagnostic.config({
 			virtual_text = false,
 			signs = true,
 			underline = true,
 			update_in_insert = false,
 			severity_sort = true,
-			float = {
-				source = "always",
-				border = require("utils").borders.border,
-			},
+			float = { border = utils.borders.border },
 		})
 
 		local servers = {
@@ -44,11 +47,15 @@ return {
 			yamlls = require("plugins.lsp.yamlls"),
 		}
 
-		for key, value in pairs(servers) do
-			utils.config_lsp_server({
-				server = key,
-				config = value,
-			})
+		for server, config in pairs(servers) do
+			config.capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			config.handlers = {
+				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, utils.borders),
+				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, utils.borders),
+			}
+
+			require("lspconfig")[server].setup(config)
 		end
 	end,
 }

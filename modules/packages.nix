@@ -55,7 +55,6 @@
         phockup
         playerctl
         plex
-        podman-desktop
         poppler
         protonvpn-gui
         python313

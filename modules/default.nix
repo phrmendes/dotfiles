@@ -34,6 +34,7 @@
     ./udiskie.nix
     ./waybar.nix
     ./wofi.nix
+    ./xdg.nix
     ./yazi.nix
     ./zathura.nix
     ./zellij.nix
@@ -84,23 +85,5 @@
     stateVersion = "25.05";
     username = parameters.user;
     homeDirectory = parameters.home;
-  };
-
-  xdg = {
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-        "application/xhtml+xml" = [ "vivaldi.desktop" ];
-        "inode/directory" = [ "org.gnome.gnome-commander.desktop" ];
-        "text/html" = [ "vivaldi.desktop" ];
-        "x-scheme-handler/http" = [ "vivaldi.desktop" ];
-        "x-scheme-handler/https" = [ "vivaldi.desktop" ];
-        "audio/*" = [ "mpv.desktop" ];
-        "image/*" = [ "nomacs.desktop" ];
-        "text/*" = [ "neovide.desktop" ];
-        "video/*" = [ "mpv.desktop" ];
-      };
-    };
   };
 }

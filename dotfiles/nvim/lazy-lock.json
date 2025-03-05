@@ -26,7 +26,7 @@
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "8b2d4d519f3516d09910f5baf48d1a47b594f0ce" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "refactorex.nvim": { "branch": "main", "commit": "d76789b35562a85c2a5f63613c96e9fc32c47c26" },
-  "refactoring.nvim": { "branch": "master", "commit": "eaa096df3f3a8ce879f841faea750c7c3fb2bf1c" },
+  "refactoring.nvim": { "branch": "master", "commit": "bce639550c4e0f61c90f16e56e681405345e1e30" },
   "smart-splits.nvim": { "branch": "master", "commit": "baff41c382020e8b31037ca97a3339b310c23772" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "todotxt.nvim": { "branch": "main", "commit": "c9afa84d7da01b279332d18317b6d533a97a6a82" },

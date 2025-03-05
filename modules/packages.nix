@@ -14,42 +14,47 @@
         gcloud = google-cloud-sdk.withExtraComponents (
           with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
         );
+        thunar = (
+          xfce.thunar.override {
+            thunarPlugins = with xfce; [
+              thunar-archive-plugin
+              thunar-volman
+            ];
+          }
+        );
       in
       [
         bitwarden
+        brave
         brightnessctl
         curl
         deluge
         discord-canary
         docker-compose
         droidcam
+        elixir
         exiftool
         fd
         ffmpeg
         ffmpegthumbnailer
-        file-roller
-        firefox
         gcloud
         gdu
         ghostscript
-        gnome-commander
-        gparted
         grim
         hyprland-qtutils
         imagemagick
-        inkscape
+        imv
         jq
         kind
         kooha
         kubectl
         kubernetes-helm
+        libqalculate
         libreoffice
         mermaid-cli
-        neovide
         networkmanagerapplet
         nix-prefetch-github
-        nodejs_23
-        nomacs
+        nodejs
         pasystray
         pavucontrol
         phockup
@@ -57,24 +62,19 @@
         plex
         poppler
         protonvpn-gui
-        python313
-        qalculate-gtk
+        python3
         quarto
         satty
         slurp
         sqlite
         sshfs
-        sshs
-        stremio
         tectonic
         terraform
-        ungoogled-chromium
+        thunar
         ventoy
         wofi-emoji
+        xarchiver
         zotero
-      ]
-      ++ (with beam27Packages; [
-        elixir
-      ]);
+      ];
   };
 }

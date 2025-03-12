@@ -18,7 +18,6 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./k9s.nix
-    ./kitty.nix
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
@@ -33,11 +32,11 @@
     ./tealdeer.nix
     ./udiskie.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix
-    ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -59,7 +58,6 @@
   hyprlock.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
-  kitty.enable = true;
   lazygit.enable = true;
   mpv.enable = true;
   neovim.enable = true;
@@ -74,10 +72,10 @@
   tealdeer.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
+  wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
   zathura.enable = true;
-  zellij.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
 

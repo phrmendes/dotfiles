@@ -13,7 +13,7 @@
         inherit (lib) getExe;
         hyprlock = getExe pkgs.hyprlock;
         playerctl = getExe pkgs.playerctl;
-        terminal = "${pkgs.kitty}/bin/kitty";
+        terminal = "${pkgs.wezterm}/bin/wezterm";
         wofi = getExe pkgs.wofi;
         wofi-emoji = getExe pkgs.wofi-emoji;
         dmenu = "${getExe pkgs.wofi} --show dmenu";

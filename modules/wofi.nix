@@ -29,7 +29,7 @@
           location = "center";
           mode = "drun";
           no_actions = true;
-          terminal = "${pkgs.kitty}/bin/kitty";
+          terminal = "${pkgs.wezterm}/bin/wezterm";
           width = "25%";
         };
         style =

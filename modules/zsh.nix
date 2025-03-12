@@ -34,7 +34,6 @@
         ];
         shellAliases =
           let
-            kitten = "${pkgs.kitty}/bin/kitten";
           in
           {
             cat = getExe pkgs.bat;
@@ -43,17 +42,13 @@
             fs = getExe pkgs.fselect;
             g = getExe pkgs.git;
             grep = getExe pkgs.ripgrep;
-            hg = "${kitten} hyperlinked-grep";
             k = "${pkgs.kubectl}/bin/kubectl";
             ld = getExe pkgs.lazydocker;
             lg = getExe pkgs.lazygit;
             ps = getExe pkgs.procs;
-            s = "${kitten} ssh";
             sed = getExe pkgs.gnused;
             top = getExe pkgs.btop;
-            transfer = "${kitten} transfer";
             v = "nvim";
-            zz = ''${getExe pkgs.zellij} attach --create "$(basename $PWD)"'';
           };
         initExtra = ''
           export EDITOR="nvim"

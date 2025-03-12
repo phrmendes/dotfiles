@@ -56,4 +56,11 @@ M.add_word_to_dictionary = function(lang, word)
 	return unique_words
 end
 
+M.paste = function()
+	return {
+		vim.fn.split(vim.fn.getreg(""), "\n"),
+		vim.fn.getregtype(""),
+	}
+end
+
 return M

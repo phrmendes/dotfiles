@@ -19,8 +19,6 @@ vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true,
 vim.keymap.set("v", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
 
 -- leader keys
-vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]], { desc = "Paste from clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to clipboard" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })
 vim.keymap.set("n", "<leader>=", "<c-w>=", { noremap = true, desc = "Resize and make windows equal" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { noremap = true, desc = "Split (V)" })

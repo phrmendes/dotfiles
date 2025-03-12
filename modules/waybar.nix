@@ -10,47 +10,69 @@
   config = lib.mkIf config.waybar.enable {
     programs.waybar =
       let
-        tt = text: "<tt>${text}</tt>";
+        format =
+          {
+            icon,
+            content ? "",
+          }:
+          "<tt><span font='18' rise='-3000'>${icon}</span> ${content}</tt>";
         hyprctl = "${pkgs.hyprland}/bin/hyprctl";
         modules = {
           backlight = {
-            format = "{icon}  " + tt "{percent}%";
+            format = format { icon = "{icon}"; };
             format-icons = [
-              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
               ""
             ];
           };
           battery = {
-            interval = 60;
+            interval = 1;
             states = {
+              good = 90;
               warning = 30;
               critical = 15;
             };
-            format = "{icon}  " + tt "{capacity}%";
-            format-charching = "  " + tt "{capacity}%";
+            format = format {
+              icon = "{icon}";
+              content = "{capacity}%";
+            };
+            format-charching = format {
+              icon = "";
+              content = "{capacity}%";
+            };
             format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
+              "󰁻"
+              "󰁼"
+              "󰁾"
+              "󰂀"
+              "󰂂"
+              "󰁹"
             ];
             max-length = 25;
           };
           clock = {
-            format = tt "{:%H:%M}";
+            format = "{:%H:%M}";
             interval = 60;
             tooltip = true;
-            tooltip-format = tt "<small>{calendar}</small>";
+            tooltip-format = "<span font='12'><tt><small>{calendar}</small></tt></span>";
             calendar = {
               mode = "month";
               on-scroll = 1;
               format = with config.lib.stylix.colors.withHashtag; {
-                today = ''<span color="${base08}"><b><u>{}</u></b></span>'';
-                days = ''<span color="${base04}"><b>{}</b></span>'';
-                weekdays = ''<span color="${base04}"><b>{}</b></span>'';
-                weeks = ''<span color="${base04}"><b>W{}</b></span>'';
-                months = ''<span color="${base04}"><b>{}</b></span>'';
+                today = "<span color='${base08}'><b><u>{}</u></b></span>";
+                days = "<span color='${base04}'><b>{}</b></span>";
+                weekdays = "<span color='${base04}'><b>{}</b></span>";
+                weeks = "<span color='${base04}'><b>W{}</b></span>";
+                months = "<span color='${base04}'><b>{}</b></span>";
               };
             };
             actions = {
@@ -60,28 +82,37 @@
           };
           cpu = {
             interval = 10;
-            format = "  " + tt "{}%";
-            max-length = 10;
+            format = format {
+              icon = "";
+              content = "{usage}%";
+            };
+            max-length = 6;
           };
           idle_inhibitor = {
-            format = "{icon} ";
+            format = format { icon = "{icon}"; };
             format-icons = {
               activated = "";
               deactivated = "";
             };
           };
           language = {
-            format = "󰌌  " + tt "{}";
+            format = format {
+              icon = "󰌌";
+              content = "{}";
+            };
             format-en = "en-US";
             format-pt = "pt-BR";
           };
           memory = {
             interval = 30;
-            format = "󰘚  " + tt "{}%";
+            format = format {
+              icon = "󰘚";
+              content = "{percentage}%";
+            };
             max-length = 10;
           };
           nix = {
-            format = " ";
+            format = format { icon = ""; };
           };
           separator = {
             format = "";
@@ -98,11 +129,11 @@
             spacing = 15;
           };
           window = {
-            format = "  " + tt "{}";
+            format = "{title}";
             max-length = 25;
           };
           workspaces = {
-            format = tt "{name}";
+            format = "{name}";
             all-outputs = true;
             active-only = false;
             on-click = "activate";

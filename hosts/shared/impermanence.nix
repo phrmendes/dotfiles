@@ -26,6 +26,7 @@
         ".pki"
         ".prefect"
         ".ssh"
+        ".tmux"
         ".zotero"
         ".cache/cliphist"
         ".cache/neovim"

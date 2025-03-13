@@ -34,6 +34,7 @@
         ];
         shellAliases =
           let
+            tmux = getExe pkgs.tmux;
           in
           {
             cat = getExe pkgs.bat;
@@ -48,6 +49,12 @@
             ps = getExe pkgs.procs;
             sed = getExe pkgs.gnused;
             top = getExe pkgs.btop;
+            t = "${tmux} new-session -A -s default";
+            ta = "${tmux} attach -t";
+            tad = "${tmux} attach -t default";
+            tk = "${tmux} kill-session -t";
+            tka = "${tmux} kill-session -a";
+            tl = "${tmux} list-sessions";
             v = "nvim";
           };
         initExtra = ''

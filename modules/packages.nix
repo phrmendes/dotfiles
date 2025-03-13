@@ -65,6 +65,7 @@
         python3
         quarto
         satty
+        sesh
         slurp
         sqlite
         sshfs

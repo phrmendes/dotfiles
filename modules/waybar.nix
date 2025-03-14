@@ -15,7 +15,7 @@
             icon,
             content ? "",
           }:
-          "<tt><span font='18' rise='-3000'>${icon}</span> ${content}</tt>";
+          "<tt><span font='18' rise='-3000'>${icon}</span>${content}</tt>";
         hyprctl = "${pkgs.hyprland}/bin/hyprctl";
         modules = {
           backlight = {
@@ -43,11 +43,11 @@
             };
             format = format {
               icon = "{icon}";
-              content = "{capacity}%";
+              content = " {capacity}%";
             };
             format-charching = format {
               icon = "";
-              content = "{capacity}%";
+              content = " {capacity}%";
             };
             format-icons = [
               "󰁻"
@@ -84,7 +84,7 @@
             interval = 10;
             format = format {
               icon = "";
-              content = "{usage}%";
+              content = " {usage}%";
             };
             max-length = 6;
           };
@@ -98,7 +98,7 @@
           language = {
             format = format {
               icon = "󰌌";
-              content = "{}";
+              content = " {}";
             };
             format-en = "en-US";
             format-pt = "pt-BR";
@@ -107,7 +107,7 @@
             interval = 30;
             format = format {
               icon = "󰘚";
-              content = "{percentage}%";
+              content = " {percentage}%";
             };
             max-length = 10;
           };

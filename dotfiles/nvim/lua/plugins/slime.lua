@@ -7,8 +7,8 @@ return {
 		vim.g.slime_target = "wezterm"
 	end,
 	keys = {
-		{ "<c-c><c-c>", "<Plug>SlimeParagraphSend", desc = "Slime: send to terminal" },
-		{ "<c-c><c-s>", "<Plug>SlimeConfig", desc = "Slime: settings" },
-		{ mode = "v", "<c-c><c-c>", "<Plug>SlimeRegionSend", desc = "Slime: send to terminal" },
+		{ "<c-c><c-c>", "<Plug>SlimeParagraphSend", desc = "Slime: send to terminal", ft = "python" },
+		{ "<c-c><c-s>", "<Plug>SlimeConfig", desc = "Slime: settings", ft = "python" },
+		{ mode = "v", "<c-c><c-c>", "<Plug>SlimeRegionSend", desc = "Slime: send to terminal", ft = "python" },
 	},
 }

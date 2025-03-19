@@ -18,7 +18,6 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./k9s.nix
-    ./kitty.nix
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
@@ -31,9 +30,9 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -59,7 +58,6 @@
   hyprlock.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
-  kitty.enable = true;
   lazygit.enable = true;
   mpv.enable = true;
   neovim.enable = true;
@@ -72,9 +70,9 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
+  wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
   zathura.enable = true;

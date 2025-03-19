@@ -32,31 +32,21 @@
             src = pkgs.zsh-nix-shell;
           }
         ];
-        shellAliases =
-          let
-            tmux = getExe pkgs.tmux;
-          in
-          {
-            cat = getExe pkgs.bat;
-            du = getExe pkgs.gdu;
-            find = getExe pkgs.fd;
-            fs = getExe pkgs.fselect;
-            g = getExe pkgs.git;
-            grep = getExe pkgs.ripgrep;
-            k = "${pkgs.kubectl}/bin/kubectl";
-            ld = getExe pkgs.lazydocker;
-            lg = getExe pkgs.lazygit;
-            ps = getExe pkgs.procs;
-            sed = getExe pkgs.gnused;
-            top = getExe pkgs.btop;
-            t = "${tmux} new-session -A -s default";
-            ta = "${tmux} attach -t";
-            tad = "${tmux} attach -t default";
-            tk = "${tmux} kill-session -t";
-            tka = "${tmux} kill-session -a";
-            tl = "${tmux} list-sessions";
-            v = "nvim";
-          };
+        shellAliases = {
+          cat = getExe pkgs.bat;
+          du = getExe pkgs.gdu;
+          find = getExe pkgs.fd;
+          fs = getExe pkgs.fselect;
+          g = getExe pkgs.git;
+          grep = getExe pkgs.ripgrep;
+          k = "${pkgs.kubectl}/bin/kubectl";
+          ld = getExe pkgs.lazydocker;
+          lg = getExe pkgs.lazygit;
+          ps = getExe pkgs.procs;
+          sed = getExe pkgs.gnused;
+          top = getExe pkgs.btop;
+          v = "nvim";
+        };
         initExtra = ''
           export EDITOR="nvim"
           export GIT_EDITOR="nvim"

@@ -6,9 +6,11 @@
     file
     findutils
     gcc
+    gnumake
     gnused
     gzip
     mlocate
+    openssl
     p7zip
     protonup
     psmisc

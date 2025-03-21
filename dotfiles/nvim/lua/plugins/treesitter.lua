@@ -31,7 +31,9 @@ return {
 			"helm",
 			"html",
 			"htmldjango",
+			"http",
 			"hyprlang",
+			"java",
 			"javascript",
 			"json",
 			"jsonc",
@@ -58,7 +60,6 @@ return {
 			"vim",
 			"vimdoc",
 			"yaml",
-			"http",
 		},
 		indent = { enable = true },
 		textobjects = {

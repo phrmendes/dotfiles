@@ -29,6 +29,7 @@ return {
 				["copilot-chat"] = false,
 			}
 		end,
+		cmd = { "CopilotChat", "CopilotChatToggle" },
 		opts = {
 			chat_autocomplete = true,
 			prompts = prompts,

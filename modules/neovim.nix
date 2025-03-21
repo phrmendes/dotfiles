@@ -36,6 +36,8 @@
             emmet-language-server
             hadolint
             helm-ls
+            jdt-language-server
+            libxml2
             ltex-ls-plus
             lua-language-server
             lynx
@@ -56,7 +58,6 @@
             vscode-langservers-extracted
             vtsls
             yaml-language-server
-            libxml2
           ]
           ++ (with lua51Packages; [
             lua

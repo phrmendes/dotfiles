@@ -44,6 +44,7 @@
         hyprland-qtutils
         imagemagick
         imv
+        jdk
         jq
         kind
         kooha

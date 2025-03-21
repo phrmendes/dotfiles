@@ -22,6 +22,12 @@
             ];
           }
         );
+        python = python3.withPackages (
+          p: with p; [
+            pip
+            virtualenv
+          ]
+        );
       in
       [
         bitwarden
@@ -63,7 +69,7 @@
         plex
         poppler
         protonvpn-gui
-        python3
+        python
         quarto
         satty
         sesh
@@ -73,6 +79,7 @@
         tectonic
         terraform
         thunar
+        uv
         ventoy
         wofi-emoji
         xarchiver

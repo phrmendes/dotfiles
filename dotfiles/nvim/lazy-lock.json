@@ -1,6 +1,6 @@
 {
   "CopilotChat.nvim": { "branch": "main", "commit": "b8911c6da0d69f83fac46f613344fe9bbc6f670c" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "7823767e65bef7d30cc0acd6df89f3d2d7d420db" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "3ddaf211bf971f4d06bd971f4664ecdab9bf8bcb" },
   "ansible-vim": { "branch": "master", "commit": "3329367d2e5f90d203c8d340c53fa83c60a1ad41" },
   "blink.cmp": { "branch": "main", "commit": "1c8d8e45d6fba3d11512f4762b1fdf906bffca42" },
   "conform.nvim": { "branch": "master", "commit": "f9ef25a7ef00267b7d13bfc00b0dea22d78702d5" },

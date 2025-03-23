@@ -21,8 +21,6 @@ autocmd("LspAttach", {
 
 		if not client then return end
 
-		require("keymaps.lsp").setup(client, event.buf)
-
 		if client.supports_method("textDocument/codeLens") then
 			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 				buffer = event.buf,

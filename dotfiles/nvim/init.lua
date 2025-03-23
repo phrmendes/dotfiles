@@ -1,4 +1,4 @@
 require("options")
-require("keymaps.default")
+require("keymaps")
 require("lazy-config")
 require("autocmds")

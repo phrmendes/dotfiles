@@ -5,17 +5,23 @@ M.borders = {
 	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 }
 
+--- Toggle emphasis in visual mode.
+--- @param key string: The key to toggle.
+--- @return string: The keybinding.
 M.toggle_emphasis = function(key)
 	return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual("]] .. key .. [[")<cr>]]
 end
 
+--- Get the words from a dictionary file.
+--- @param lang string: The language of the dictionary.
+--- @return string[]: A list of words.
 M.get_dictionary_words = function(lang)
 	local file = vim.env.HOME .. "/Documents/notes/dictionaries/" .. lang .. ".add"
 	local words = {}
 
 	if vim.uv.fs_stat(file) == nil then
-		vim.notify("File does not exist: " .. file)
-		return
+		vim.notify("File does not exist: " .. file, vim.log.levels.ERROR)
+		return {}
 	end
 
 	for word in io.lines(file) do
@@ -25,6 +31,10 @@ M.get_dictionary_words = function(lang)
 	return words
 end
 
+--- Add a word to a dictionary file.
+--- @param lang string: The language of the dictionary.
+--- @param word string: The word to add.
+--- @return string[]: A list of unique words.
 M.add_word_to_dictionary = function(lang, word)
 	local file = vim.env.HOME .. "/Documents/notes/dictionaries/" .. lang .. ".add"
 	local words = {}
@@ -56,6 +66,8 @@ M.add_word_to_dictionary = function(lang, word)
 	return unique_words
 end
 
+--- Paste the contents of the system clipboard.
+--- @return table: A table containing clipboard lines and register type.
 M.paste = function()
 	return {
 		vim.fn.split(vim.fn.getreg(""), "\n"),

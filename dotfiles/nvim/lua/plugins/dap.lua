@@ -110,13 +110,9 @@ return {
 		ft = "python",
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = function()
-			local dap = require("dap")
-
 			require("dap-python").setup(vim.fn.exepath("nvim-python3"))
 
-			local config = dap.configurations.python or {}
-
-			table.insert(config, {
+			table.insert(require("dap").configurations.python, {
 				type = "python",
 				request = "launch",
 				name = "django:server",
@@ -127,7 +123,7 @@ return {
 				console = "integratedTerminal",
 			})
 
-			table.insert(config, {
+			table.insert(require("dap").configurations.python, {
 				type = "python",
 				request = "launch",
 				name = "fastapi:server",
@@ -138,8 +134,6 @@ return {
 				justMyCode = true,
 				console = "integratedTerminal",
 			})
-
-			dap.configurations.python = config
 		end,
 		keys = {
 			{

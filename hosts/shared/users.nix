@@ -16,6 +16,7 @@
         uid = 1000;
         extraGroups = [
           "audio"
+          "docker"
           "libvirtd"
           "networkmanager"
           "video"

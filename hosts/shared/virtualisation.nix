@@ -1,12 +1,10 @@
 {
   virtualisation = {
     containers.enable = true;
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
+      storageDriver = "btrfs";
       autoPrune.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
     };
   };
 }

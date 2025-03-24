@@ -36,7 +36,6 @@
             emmet-language-server
             hadolint
             helm-ls
-            jdt-language-server
             libxml2
             ltex-ls-plus
             lua-language-server

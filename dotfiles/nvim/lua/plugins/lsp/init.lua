@@ -32,7 +32,6 @@ return {
 			emmet_language_server = {},
 			eslint = {},
 			html = {},
-			jdtls = {},
 			marksman = {},
 			nixd = {},
 			ruff = {},

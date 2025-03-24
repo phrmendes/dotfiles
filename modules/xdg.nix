@@ -5,7 +5,6 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = "org.pwmt.zathura.desktop";
         "application/rar" = "xarchiver.desktop";
         "application/x-extension-htm" = "brave-browser.desktop";
         "application/x-extension-html" = "brave-browser.desktop";

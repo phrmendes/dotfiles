@@ -39,6 +39,7 @@
         docker-compose
         droidcam
         elixir
+        evince
         exiftool
         fd
         ffmpeg
@@ -52,13 +53,13 @@
         imv
         jdk
         jq
-        kind
         kooha
         kubectl
         kubernetes-helm
         libqalculate
         libreoffice
         mermaid-cli
+        minikube
         networkmanagerapplet
         nix-prefetch-github
         nodejs

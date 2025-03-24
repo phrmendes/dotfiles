@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  parameters,
   ...
 }:
 {
@@ -22,30 +21,12 @@
       newSession = true;
       prefix = "C-Space";
       shell = lib.getExe pkgs.zsh;
-      plugins = with pkgs.tmuxPlugins; [
+      plugins = [
         {
-          plugin = continuum;
+          plugin = pkgs.tmuxPlugins.tmux-fzf;
           extraConfig = ''
-            set -g @continuum-boot          'on'
-            set -g @continuum-restore       'on'
-            set -g @continuum-save-interval '5'
+            TMUX_FZF_LAUNCH_KEY="t"
           '';
-        }
-        {
-          plugin = resurrect;
-          extraConfig =
-            let
-              dir = "${parameters.home}/.tmux/resurrect";
-              inherit (parameters) user;
-            in
-            ''
-              set -g @resurrect-dir                   '${dir}'
-              set -g @resurrect-capture-pane-contents 'on'
-              set -g @resurrect-restore               'C-r'
-              set -g @resurrect-save                  'C-s'
-              set -g @resurrect-strategy-nvim         'session'
-              set -g @resurrect-hook-post-save-all    'sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/${user}/bin/||g; s|/home/${user}/.nix-profile/bin/||g" ${dir}/last | sponge ${dir}/last'
-            '';
         }
       ];
       extraConfig =

@@ -45,17 +45,20 @@
               icon = "{icon}";
               content = " {capacity}%";
             };
-            format-charching = format {
-              icon = "";
+            format-charging = format {
+              icon = "";
               content = " {capacity}%";
             };
+            format-full = format {
+              icon = "";
+              content = " Charged";
+            };
             format-icons = [
-              "󰁻"
-              "󰁼"
-              "󰁾"
-              "󰂀"
-              "󰂂"
-              "󰁹"
+              ""
+              ""
+              ""
+              ""
+              ""
             ];
             max-length = 25;
           };
@@ -90,6 +93,7 @@
           };
           idle_inhibitor = {
             format = format { icon = "{icon}"; };
+            tooltip = false;
             format-icons = {
               activated = "";
               deactivated = "";

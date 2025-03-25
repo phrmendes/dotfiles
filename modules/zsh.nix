@@ -55,11 +55,6 @@
             v = "nvim";
           };
         initExtra = ''
-          export EDITOR="nvim"
-          export GIT_EDITOR="nvim"
-          export SUDO_EDITOR="nvim"
-          export VISUAL="nvim"
-
           export PATH="$HOME/.local/bin:$PATH"
           export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
           export PATH="/run/current-system/sw/bin:$PATH"
@@ -73,6 +68,8 @@
 
           eval "$(${getExe pkgs.just} --completions zsh)"
           eval "$(${getExe pkgs.uv} generate-shell-completion zsh)"
+
+          [ -f "$HOME/.bitwarden/unlock_session.sh" ] && source "$HOME/.bitwarden/unlock_session.sh"
         '';
       };
   };

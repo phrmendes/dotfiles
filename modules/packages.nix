@@ -30,7 +30,8 @@
         );
       in
       [
-        bitwarden
+        bitwarden-cli
+        bitwarden-desktop
         brave
         brightnessctl
         curl

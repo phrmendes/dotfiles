@@ -16,6 +16,7 @@
         terminal = "${pkgs.kitty}/bin/kitty";
         wofi = getExe pkgs.wofi;
         wofi-emoji = getExe pkgs.wofi-emoji;
+        bitwarden = getExe pkgs.bitwarden-desktop;
         dmenu = "${getExe pkgs.wofi} --show dmenu";
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
         systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -206,7 +207,6 @@
             ++ workspace.moveSilent;
         };
         extraConfig = ''
-          env = __GLX_VENDOR_LIBRARY_NAME,nvidia
           env = CLUTTER_BACKEND,wayland
           env = GDK_BACKEND,wayland,x11
           env = LIBVA_DRIVER_NAME,nvidia
@@ -220,6 +220,9 @@
           env = XDG_CURRENT_DESKTOP,Hyprland
           env = XDG_SESSION_DESKTOP,Hyprland
           env = XDG_SESSION_TYPE,wayland
+          env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+
+          exec-once = ${bitwarden}
         '';
       };
   };

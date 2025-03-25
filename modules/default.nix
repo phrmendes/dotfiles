@@ -83,5 +83,12 @@
     stateVersion = "25.05";
     username = parameters.user;
     homeDirectory = parameters.home;
+    sessionVariables = {
+      EDITOR = "nvim";
+      GIT_EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
+      VISUAL = "nvim";
+      SSH_AUTH_SOCK = "${parameters.home}/.bitwarden-ssh-agent.sock";
+    };
   };
 }

@@ -1,10 +1,9 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "340f47ea089758beb408bf4acbe0ce61b7111aea" },
   "SchemaStore.nvim": { "branch": "main", "commit": "735e53aa42423239e1f862e3356bdda56a2ba30e" },
   "ansible-vim": { "branch": "master", "commit": "3329367d2e5f90d203c8d340c53fa83c60a1ad41" },
   "blink.cmp": { "branch": "main", "commit": "485c03400608cb6534bbf84da8c1c471fc4808c0" },
+  "codecompanion.nvim": { "branch": "main", "commit": "57bc5689a64a15b12251a8cd3c28dddd0d52c0cc" },
   "conform.nvim": { "branch": "master", "commit": "f9ef25a7ef00267b7d13bfc00b0dea22d78702d5" },
-  "copilot.vim": { "branch": "release", "commit": "a9228e015528c9307890c48083c925eb98a64a79" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "kulala.nvim": { "branch": "main", "commit": "bde8be17bf9983f302442ec91ad443f651bdef47" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },

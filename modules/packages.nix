@@ -57,6 +57,7 @@
         kooha
         kubectl
         kubernetes-helm
+        lazydocker
         libqalculate
         libreoffice
         mermaid-cli

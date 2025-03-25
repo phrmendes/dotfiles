@@ -59,7 +59,7 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
 -- better completion experience
-vim.opt.completeopt = { "noinsert", "menuone", "noselect" }
+vim.opt.completeopt = { "noinsert", "menuone", "noselect", "popup" }
 
 -- random
 vim.opt.iskeyword:append("-")

@@ -76,3 +76,14 @@ autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })
 	end,
 })
+
+autocmd("BufEnter", {
+	desc = "Options for copilot filetypes",
+	group = augroups.filetype,
+	pattern = "copilot-*",
+	callback = function()
+		vim.opt_local.relativenumber = false
+		vim.opt_local.number = false
+		vim.opt_local.conceallevel = 0
+	end,
+})

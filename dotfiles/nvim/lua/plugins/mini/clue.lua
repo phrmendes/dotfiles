@@ -31,10 +31,11 @@ clue.setup({
 		clue.gen_clues.z(),
 		{ mode = "n", keys = "<leader><tab>", desc = "Tabs" },
 		{ mode = "n", keys = "<leader>b", desc = "Buffers" },
+		{ mode = "n", keys = "<leader>c", desc = "Copilot" },
+		{ mode = "x", keys = "<leader>c", desc = "Copilot" },
 		{ mode = "n", keys = "<leader>g", desc = "Git" },
 		{ mode = "x", keys = "<leader>g", desc = "Git" },
 		{ mode = "n", keys = "<leader>n", desc = "Notes" },
-		{ mode = "n", keys = "<leader>l", desc = "Labels" },
 		{ mode = "n", keys = "<leader>t", desc = "todo.txt" },
 	},
 	window = {

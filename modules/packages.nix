@@ -38,6 +38,7 @@
         deluge
         discord-canary
         docker-compose
+        docker-credential-helpers
         droidcam
         elixir
         evince

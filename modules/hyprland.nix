@@ -21,17 +21,7 @@
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
         systemctl = "${pkgs.systemd}/bin/systemctl";
         workspace = rec {
-          workspaces = [
-            1
-            2
-            3
-            4
-            5
-            6
-            7
-            8
-            9
-          ];
+          workspaces = lib.range 1 9;
           move = map (
             x: "SUPER SHIFT, ${builtins.toString x}, movetoworkspace, ${builtins.toString x}"
           ) workspaces;
@@ -136,7 +126,6 @@
             "float,stayfocused,opaque,class:(com.gabm.satty)"
             "float,stayfocused,opaque,class:(pavucontrol)"
             "float,stayfocused,opaque,class:(wofi)"
-            "float,title:^(OpenSSH Authentication Passphrase request)$"
             "float,title:^(Picture-in-Picture)$"
             "opaque,class:^(mpv)$"
           ];

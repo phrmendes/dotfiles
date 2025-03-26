@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, parameters, ... }:
 {
   services = {
     blueman.enable = true;
@@ -47,19 +43,14 @@
 
     greetd = {
       enable = true;
-      settings =
-        let
-          tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-          sessions = "${pkgs.hyprland}/share/wayland-sessions";
-        in
-        rec {
-          terminal.vt = 1;
-          initial_session = default_session;
-          default_session = {
-            command = "${tuigreet} -t -r --asterisks -s ${sessions}";
-            user = "greeter";
-          };
+      settings = rec {
+        terminal.vt = 1;
+        initial_session = default_session;
+        default_session = {
+          command = "${pkgs.hyprland}/bin/Hyprland";
+          user = parameters.user;
         };
+      };
     };
 
     xserver = {

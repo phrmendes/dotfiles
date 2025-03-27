@@ -57,6 +57,7 @@
         mermaid-cli
         minikube
         nautilus
+        neovide
         networkmanagerapplet
         nix-prefetch-github
         nodejs

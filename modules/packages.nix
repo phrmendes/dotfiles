@@ -14,14 +14,6 @@
         gcloud = google-cloud-sdk.withExtraComponents (
           with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
         );
-        thunar = (
-          xfce.thunar.override {
-            thunarPlugins = with xfce; [
-              thunar-archive-plugin
-              thunar-volman
-            ];
-          }
-        );
         python = python3.withPackages (
           p: with p; [
             pip
@@ -46,6 +38,7 @@
         fd
         ffmpeg
         ffmpegthumbnailer
+        file-roller
         gcloud
         gdu
         ghostscript
@@ -63,6 +56,7 @@
         libreoffice
         mermaid-cli
         minikube
+        nautilus
         networkmanagerapplet
         nix-prefetch-github
         nodejs
@@ -82,11 +76,9 @@
         sshfs
         tectonic
         terraform
-        thunar
         uv
         ventoy
         wofi-emoji
-        xarchiver
         zotero
       ];
   };

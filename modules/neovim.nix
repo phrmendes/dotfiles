@@ -53,7 +53,6 @@
             terraform-ls
             tflint
             tree-sitter
-            tree-sitter
             vscode-langservers-extracted
             vtsls
             yaml-language-server

@@ -39,6 +39,7 @@ return {
 				submit_prompt = { normal = "<cr>", insert = "<c-s>" },
 				reset = { normal = "<leader><bs>", insert = "<c-r>" },
 			},
+			selection = function(source) return require("CopilotChat.select").visual(source) end,
 		},
 		keys = {
 			{ "<leader>cc", "<cmd>CopilotChat<cr>", mode = "v", desc = "Chat" },

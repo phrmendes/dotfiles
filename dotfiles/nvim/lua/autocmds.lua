@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local clear = vim.api.nvim_clear_autocmds
 
 local augroups = {
 	filetype = augroup("UserFileType", {}),
@@ -13,22 +14,23 @@ local augroups = {
 }
 
 autocmd("LspAttach", {
-	desc = "LSP options and keymaps",
+	desc = "LSP options",
 	group = augroups.lsp.attach,
 	callback = function(event)
-		local id = vim.tbl_get(event, "data", "client_id")
-		local client = id and vim.lsp.get_client_by_id(id)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 		if not client then return end
 
-		if client.supports_method("textDocument/codeLens") then
+		require("keymaps").lsp(client, event.buf)
+
+		if client:supports_method("textDocument/codeLens", event.buf) then
 			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 				buffer = event.buf,
 				callback = function(ev) vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
 			})
 		end
 
-		if client.supports_method("textDocument/documentHighlight") then
+		if client:supports_method("textDocument/documentHighlight", event.buf) then
 			autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
 				group = augroups.lsp.highlight,
@@ -46,7 +48,7 @@ autocmd("LspAttach", {
 				buffer = event.buf,
 				callback = function(ev)
 					vim.lsp.buf.clear_references()
-					vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
+					clear({ group = "UserLspHighlight", buffer = ev.buf })
 				end,
 			})
 		end
@@ -64,7 +66,7 @@ autocmd("WinEnter", {
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
-	callback = function() require("vim.highlight").on_yank({ higroup = "Substitute", timeout = 200 }) end,
+	callback = function() vim.highlight.on_yank() end,
 })
 
 autocmd("FileType", {

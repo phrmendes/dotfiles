@@ -42,7 +42,7 @@ clue.setup({
 		delay = 500,
 		config = {
 			width = "auto",
-			border = require("utils").borders.border,
+			border = require("utils").border,
 		},
 	},
 })

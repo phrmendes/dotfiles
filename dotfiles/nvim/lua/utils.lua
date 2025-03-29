@@ -1,9 +1,6 @@
 local M = {}
 
-M.borders = {
-	border = "rounded",
-	winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
-}
+M.border = "rounded"
 
 --- Toggle emphasis in visual mode.
 --- @param key string: The key to toggle.

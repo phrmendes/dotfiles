@@ -1,4 +1,4 @@
-local border = require("utils").borders.border
+local border = require("utils").border
 
 return {
 	"saghen/blink.cmp",

@@ -16,7 +16,7 @@ return {
 
 			settings.ltex.dictionary[language] = words
 
-			client.notify("workspace/didChangeConfiguration", { settings = settings })
+			client:notify("workspace/didChangeConfiguration", { settings = settings })
 
 			vim.notify("Word added to dictionary [`" .. language .. "`]: " .. word)
 		end, { desc = "Ltex: add word to dictionary", buffer = bufnr })
@@ -51,7 +51,7 @@ return {
 
 			settings.ltex.language = result.lang
 
-			client.notify("workspace/didChangeConfiguration", { settings = settings })
+			client:notify("workspace/didChangeConfiguration", { settings = settings })
 
 			vim.g.ltex_index = new_index
 		end, { desc = "Ltex: toggle language" })

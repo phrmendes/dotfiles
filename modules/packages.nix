@@ -29,7 +29,6 @@
         brightnessctl
         curl
         deluge
-        discord-canary
         docker-compose
         docker-credential-helpers
         droidcam
@@ -77,6 +76,7 @@
         terraform
         uv
         ventoy
+        vesktop
         wofi-emoji
         wofi-power-menu
         zotero

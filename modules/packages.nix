@@ -43,7 +43,6 @@
         gcloud
         gdu
         ghostscript
-        grim
         hyprland-qtutils
         imagemagick
         imv
@@ -71,9 +70,7 @@
         protonvpn-gui
         python
         quarto
-        satty
         sesh
-        slurp
         sqlite
         sshfs
         tectonic
@@ -81,6 +78,7 @@
         uv
         ventoy
         wofi-emoji
+        wofi-power-menu
         zotero
       ];
   };

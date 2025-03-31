@@ -63,14 +63,18 @@
 
           set -o vi
 
+          eval "$(${getExe pkgs.just} --completions zsh)"
+          eval "$(${getExe pkgs.uv} generate-shell-completion zsh)"
+
           function diff_persist() {
               sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
           }
 
-          eval "$(${getExe pkgs.just} --completions zsh)"
-          eval "$(${getExe pkgs.uv} generate-shell-completion zsh)"
+          function a() {
+              aider --model deepseek --api-key deepseek="$(bw get notes deepseek_api_key)"
+          }
 
-          [ -f "$HOME/.bitwarden/unlock_session.sh" ] && source "$HOME/.bitwarden/unlock_session.sh"
+          [ -f "$HOME/.bitwarden/unlock.sh" ] && source "$HOME/.bitwarden/unlock.sh"
         '';
       };
   };

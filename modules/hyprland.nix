@@ -15,11 +15,8 @@
         playerctl = getExe pkgs.playerctl;
         terminal = "${pkgs.kitty}/bin/kitty";
         wofi = getExe pkgs.wofi;
-        wofi-emoji = getExe pkgs.wofi-emoji;
         bitwarden = getExe pkgs.bitwarden-desktop;
-        dmenu = "${getExe pkgs.wofi} --show dmenu";
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
-        systemctl = "${pkgs.systemd}/bin/systemctl";
         workspace = rec {
           workspaces = lib.range 1 9;
           move = map (
@@ -30,40 +27,6 @@
             x: "SUPER SHIFT CTRL, ${builtins.toString x}, movetoworkspacesilent, ${builtins.toString x}"
           ) workspaces;
         };
-        screenshot = pkgs.writeShellScriptBin "screenshot" ''
-          #!/usr/bin/env bash
-
-          ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.satty}/bin/satty --filename -
-        '';
-        clipboard = pkgs.writeShellScriptBin "clipboard" ''
-          #!/usr/bin/env bash
-
-          ${pkgs.cliphist}/bin/cliphist list | ${dmenu} | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
-        '';
-        powermenu = pkgs.writeShellScriptBin "powermenu" ''
-          #!/usr/bin/env bash
-
-          OPTIONS="🔴 Shutdown\n🔁 Reboot\n🛑 Suspend\n🔒 Lock"
-          SELECTED=$(echo -e "$OPTIONS" | wofi --dmenu --width=250 --height=200 --prompt="Power Menu" --insensitive)
-
-          case "$SELECTED" in
-              "🔴 Shutdown")
-                  ${systemctl} poweroff
-                  ;;
-              "🔁 Reboot")
-                  ${systemctl} reboot
-                  ;;
-              "🛑 Suspend")
-                  ${systemctl} suspend
-                  ;;
-              "🔒 Lock")
-                  ${hyprlock}
-                  ;;
-              *)
-                  echo "No valid option selected."
-                  ;;
-          esac
-        '';
       in
       {
         enable = true;
@@ -155,8 +118,8 @@
           bind =
             [
               "CTRL ALT, L, exec, ${hyprlock}"
-              "CTRL ALT, Delete, exec, ${lib.getExe powermenu}"
-              ",print,exec,${lib.getExe screenshot}"
+              "CTRL ALT, Delete, exec, ${lib.getExe pkgs.wofi-power-menu}"
+              ",print,exec,screenshot"
               ",XF86AudioPlay,exec,${playerctl} play-pause"
               ",XF86AudioPause,exec,${playerctl} play-pause"
               ",XF86AudioPrev,exec,${playerctl} previous"
@@ -165,7 +128,7 @@
               "SUPER,tab,changegroupactive,f"
               "SUPER,return,exec,${terminal}"
               "SUPER,B,exec,${lib.getExe pkgs.brave}"
-              "SUPER,V,exec,${lib.getExe clipboard}"
+              "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist-wofi-img"
               "SUPER,F,togglefloating"
               "SUPER,G,togglegroup"
               "SUPER,H,movefocus,l"
@@ -177,7 +140,7 @@
               "SUPER,R,togglesplit"
               "SUPER,T,lockactivegroup,toggle"
               "SUPER,Z,fullscreen"
-              "SUPER,E,exec,${wofi-emoji}"
+              "SUPER,E,exec,${pkgs.wofi-emoji}"
               "SUPER CTRL,H,workspace,r-1"
               "SUPER CTRL,L,workspace,r+1"
               "SUPER SHIFT,H,movewindoworgroup,l"

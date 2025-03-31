@@ -1,0 +1,5 @@
+[menu.hibernate]
+enabled = "false"
+
+[menu.logout]
+enabled = "false"

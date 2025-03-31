@@ -1,6 +1,7 @@
 { parameters, ... }:
 {
   imports = [
+    ./aider.nix
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
@@ -26,6 +27,7 @@
     ./packages.nix
     ./pasystray.nix
     ./ripgrep.nix
+    ./screenshot.nix
     ./starship.nix
     ./swayosd.nix
     ./symlinks.nix
@@ -41,6 +43,7 @@
     ./zsh.nix
   ];
 
+  aider.enable = true;
   bat.enable = true;
   blueman-applet.enable = true;
   btop.enable = true;
@@ -66,6 +69,7 @@
   packages.enable = true;
   pasystray.enable = true;
   ripgrep.enable = true;
+  screenshot.enable = true;
   starship.enable = true;
   swayosd.enable = true;
   symlinks.enable = true;

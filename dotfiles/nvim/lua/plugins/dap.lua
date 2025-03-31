@@ -8,13 +8,14 @@ return {
 			local dap = require("dap")
 
 			for type, icon in pairs({
-				Breakpoint = "",
-				BreakpointCondition = "",
-				BreakpointRejected = "",
-				Stopped = "",
+				Breakpoint = " ",
+				BreakpointCondition = " ",
+				BreakpointRejected = " ",
+				Stopped = " ",
 			}) do
-				local hl = "Dap" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+				local thl = "Dap" .. type
+				local nhl = (type == "Stopped") and "DapStop" or "DapBreak"
+				vim.fn.sign_define(thl, { text = icon, texthl = thl, numhl = nhl })
 			end
 
 			dap.adapters.mix_task = {
@@ -73,37 +74,21 @@ return {
 		},
 	},
 	{
-		"rcarriga/nvim-dap-ui",
+		"igorlfs/nvim-dap-view",
 		ft = ft,
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		dependencies = { "mfussenegger/nvim-dap" },
+		opts = {},
 		config = function()
-			local dap = require("dap")
-			local dap_ui = require("dapui")
+			local dap, dap_view = require("dap"), require("dap-view")
 
-			dap_ui.setup()
-
-			dap.listeners.after.event_initialized["dapui_config"] = function() dap_ui.open({ reset = true }) end
-			dap.listeners.before.event_terminated["dapui_config"] = function() dap_ui.close() end
-			dap.listeners.before.event_exited["dapui_config"] = function() dap_ui.close() end
+			dap.listeners.before.attach["dap-view-config"] = function() dap_view.open() end
+			dap.listeners.before.launch["dap-view-config"] = function() dap_view.open() end
+			dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
+			dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
 		end,
 		keys = {
-			{ "<localleader>u", function() require("dapui").toggle() end, desc = "DAP: toggle UI", ft = ft },
-			{ "<localleader>e", function() require("dapui").eval(nil, { enter = true }) end, desc = "DAP: eval", ft = ft },
+			{ "<localleader>u", function() require("dap-view").toggle() end, desc = "DAP: toggle UI", ft = ft },
 		},
-	},
-	{
-		"theHamsta/nvim-dap-virtual-text",
-		ft = ft,
-		dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("nvim-dap-virtual-text").setup({
-				display_callback = function(variable)
-					if #variable.value > 15 then return " " .. string.sub(variable.value, 1, 15) .. "... " end
-
-					return " " .. variable.value
-				end,
-			})
-		end,
 	},
 	{
 		"mfussenegger/nvim-dap-python",

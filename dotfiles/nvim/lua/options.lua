@@ -59,7 +59,7 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
 -- better completion experience
-vim.opt.completeopt = { "noinsert", "menuone", "noselect", "popup" }
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 
 -- default terminal
 vim.opt.shell = "zsh"

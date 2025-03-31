@@ -53,6 +53,7 @@
             tka = "${tmux} kill -a";
             tl = "${tmux} list-sessions";
             v = "nvim";
+            s = "source .venv/bin/activate";
           };
         initExtra = ''
           export PATH="$HOME/.local/bin:$PATH"

@@ -85,7 +85,14 @@ return {
 			},
 		},
 		enabled = function()
-			return not vim.tbl_contains({ "snacks_picker_input", "snacks_input", "copilot-chat" }, vim.bo.filetype)
+			return not vim.tbl_contains({
+				"copilot-chat",
+				"dap-view",
+				"dap-view-term",
+				"dap-repl",
+				"snacks_input",
+				"snacks_picker_input",
+			}, vim.bo.filetype)
 		end,
 	},
 }

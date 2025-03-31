@@ -22,7 +22,6 @@
         );
       in
       [
-        aider-chat
         bitwarden-cli
         bitwarden-desktop
         brave

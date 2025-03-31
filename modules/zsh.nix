@@ -70,10 +70,6 @@
               sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
           }
 
-          function a() {
-              aider --model deepseek --api-key deepseek="$(bw get notes deepseek_api_key)"
-          }
-
           [ -f "$HOME/.bitwarden/unlock.sh" ] && source "$HOME/.bitwarden/unlock.sh"
         '';
       };

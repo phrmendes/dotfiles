@@ -1,7 +1,6 @@
 { parameters, ... }:
 {
   imports = [
-    ./aider.nix
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
@@ -43,7 +42,6 @@
     ./zsh.nix
   ];
 
-  aider.enable = true;
   bat.enable = true;
   blueman-applet.enable = true;
   btop.enable = true;

@@ -41,6 +41,7 @@
         gcloud
         gdu
         ghostscript
+        gnome-commander
         hyprland-qtutils
         imagemagick
         imv
@@ -54,7 +55,6 @@
         libreoffice
         mermaid-cli
         minikube
-        nautilus
         neovide
         networkmanagerapplet
         nix-prefetch-github

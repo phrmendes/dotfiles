@@ -8,7 +8,6 @@ return {
 			jinja2 = { "djlint" },
 			dockerfile = { "hadolint" },
 			terraform = { "tflint" },
-			sql = { "sqlfluff" },
 		},
 	},
 	config = function(_, opts)

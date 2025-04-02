@@ -17,6 +17,7 @@
         allow_remote_control = "yes";
         bell_on_tab = "  ";
         clear_all_shortcuts = "yes";
+        clipboard_control = "write-primary write-clipboard no-append";
         enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
         forward_remote_control = "yes";

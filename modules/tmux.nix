@@ -21,14 +21,6 @@
       newSession = true;
       prefix = "C-Space";
       shell = lib.getExe pkgs.zsh;
-      plugins = [
-        {
-          plugin = pkgs.tmuxPlugins.tmux-fzf;
-          extraConfig = ''
-            TMUX_FZF_LAUNCH_KEY="t"
-          '';
-        }
-      ];
       extraConfig =
         let
           status_bar = "  #I: #W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
@@ -41,6 +33,8 @@
           set -ag terminal-overrides ',xterm-256color:RGB'
 
           unbind ','
+
+          set -s copy-command 'wl-copy -f'
 
           set -g detach-on-destroy   'off'
           set -g display-time        4000
@@ -122,7 +116,7 @@
           bind -T copy-mode-vi C-l select-pane -R
           bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
           bind -T copy-mode-vi v   send-keys -X begin-selection
-          bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
+          bind -T copy-mode-vi y   send-keys -X copy-pipe-and-cancel 'wl-copy'
 
           run-shell "tmux has-session -t 0 2>/dev/null && tmux kill-session -t 0"
         '';

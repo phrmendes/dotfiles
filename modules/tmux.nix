@@ -34,7 +34,7 @@
 
           unbind ','
 
-          set -s copy-command 'wl-copy -f'
+          set -s copy-command 'wl-copy'
 
           set -g detach-on-destroy   'off'
           set -g display-time        4000
@@ -116,7 +116,7 @@
           bind -T copy-mode-vi C-l select-pane -R
           bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
           bind -T copy-mode-vi v   send-keys -X begin-selection
-          bind -T copy-mode-vi y   send-keys -X copy-pipe-and-cancel 'wl-copy'
+          bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
 
           run-shell "tmux has-session -t 0 2>/dev/null && tmux kill-session -t 0"
         '';

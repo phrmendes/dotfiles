@@ -10,6 +10,7 @@
     ./eza.nix
     ./fzf.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gnome-keyring.nix
     ./gtk.nix
@@ -18,7 +19,6 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./k9s.nix
-    ./kitty.nix
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
@@ -51,6 +51,7 @@
   eza.enable = true;
   fzf.enable = true;
   gh.enable = true;
+  ghostty.enable = true;
   git.enable = true;
   gnome-keyring.enable = true;
   gtk-settings.enable = true;
@@ -59,7 +60,6 @@
   hyprlock.enable = true;
   hyprpaper.enable = true;
   k9s.enable = true;
-  kitty.enable = true;
   lazygit.enable = true;
   mpv.enable = true;
   neovim.enable = true;

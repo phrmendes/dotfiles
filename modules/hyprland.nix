@@ -13,7 +13,6 @@
         inherit (lib) getExe;
         hyprlock = getExe pkgs.hyprlock;
         playerctl = getExe pkgs.playerctl;
-        terminal = "${pkgs.kitty}/bin/kitty";
         wofi = getExe pkgs.wofi;
         bitwarden = getExe pkgs.bitwarden-desktop;
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
@@ -126,7 +125,7 @@
               ",XF86AudioNext,exec,${playerctl} next"
               "SUPER,space,exec,${wofi}"
               "SUPER,tab,changegroupactive,f"
-              "SUPER,return,exec,${terminal}"
+              "SUPER,return,exec,${lib.getExe pkgs.ghostty}"
               "SUPER,B,exec,${lib.getExe pkgs.brave}"
               "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist-wofi-img | ${pkgs.wl-clipboard}/bin/wl-copy"
               "SUPER,F,togglefloating"

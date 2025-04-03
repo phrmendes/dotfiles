@@ -34,8 +34,6 @@
 
           unbind ','
 
-          set -s copy-command 'wl-copy'
-
           set -g detach-on-destroy   'off'
           set -g display-time        4000
           set -g focus-events        'on'

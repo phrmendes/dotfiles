@@ -131,7 +131,7 @@ vim.opt.winborder = require("utils").border
 -- diagnostics
 vim.diagnostic.config({
 	severity_sort = true,
-	virtual_lines = true,
+	virtual_lines = { current_line = true },
 	underline = false,
 	float = { border = require("utils").border },
 	signs = {

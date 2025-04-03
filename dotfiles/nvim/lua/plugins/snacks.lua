@@ -37,7 +37,7 @@ return {
 		})
 	end,
 	keys = {
-		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Search" },
+		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart" },
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
 		{ "<leader>?", function() Snacks.picker.help() end, desc = "Help" },
@@ -45,10 +45,11 @@ return {
 		{ "<leader>K", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
 		{ "<leader>N", function() Snacks.notifier.show_history() end, desc = "Show notification history" },
 		{ "<leader>Z", function() Snacks.zen() end, desc = "Zen" },
-		{ "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom" },
 		{ "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
+		{ "<leader>f", function() Snacks.picker.files() end, desc = "Files" },
 		{ "<leader>m", function() Snacks.picker.marks() end, desc = "Marks" },
 		{ "<leader>u", function() Snacks.picker.undo() end, desc = "Undo history" },
+		{ "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom" },
 		{ "<leader>gL", function() Snacks.picker.git_log() end, desc = "Log (repo)" },
 		{ "<leader>gb", function() Snacks.git.blame_line() end, desc = "Blame line" },
 		{ "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Diff" },

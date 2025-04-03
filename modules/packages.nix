@@ -22,6 +22,7 @@
         );
       in
       [
+        aider-chat
         bitwarden-cli
         bitwarden-desktop
         brave
@@ -47,6 +48,7 @@
         imv
         jdk
         jq
+        just
         kooha
         kubectl
         kubernetes-helm

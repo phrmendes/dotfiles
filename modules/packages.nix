@@ -60,6 +60,7 @@
         libreoffice
         mermaid-cli
         minikube
+        mongodb-compass
         neovide
         networkmanagerapplet
         nix-prefetch-github

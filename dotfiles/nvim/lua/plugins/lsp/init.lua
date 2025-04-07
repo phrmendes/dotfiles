@@ -22,6 +22,7 @@ return {
 			taplo = {},
 			terraformls = {},
 			vtsls = {},
+			gopls = {},
 			bibli_ls = require("plugins.lsp.bibli-ls"),
 			elixirls = require("plugins.lsp.elixirls"),
 			helm_ls = require("plugins.lsp.helm-ls"),

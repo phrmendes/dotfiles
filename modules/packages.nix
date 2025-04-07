@@ -44,6 +44,8 @@
         gdu
         ghostscript
         gnome-commander
+        go
+        gotools
         hyprland-qtutils
         imagemagick
         imv

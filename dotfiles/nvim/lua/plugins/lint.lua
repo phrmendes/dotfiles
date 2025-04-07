@@ -8,6 +8,7 @@ return {
 			jinja2 = { "djlint" },
 			dockerfile = { "hadolint" },
 			terraform = { "tflint" },
+			go = { "golangci_lint" },
 		},
 	},
 	config = function(_, opts)

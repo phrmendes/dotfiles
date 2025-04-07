@@ -91,6 +91,26 @@ return {
 		},
 	},
 	{
+		"leoluz/nvim-dap-go",
+		ft = "go",
+		dependencies = { "mfussenegger/nvim-dap" },
+		config = true,
+		keys = {
+			{
+				"<localleader>t",
+				function() require("dap-go").debug_test() end,
+				desc = "Go: debug test",
+				ft = "go",
+			},
+			{
+				"<localleader>T",
+				function() require("dap-go").debug_last() end,
+				desc = "Go: debug last",
+				ft = "go",
+			},
+		},
+	},
+	{
 		"mfussenegger/nvim-dap-python",
 		ft = "python",
 		dependencies = { "mfussenegger/nvim-dap" },

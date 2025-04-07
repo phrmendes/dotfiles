@@ -6,7 +6,8 @@ return {
 		formatters_by_ft = {
 			css = { "prettier" },
 			elixir = { "mix" },
-			html = { "prettier" },
+			go = { "golangci-lint" },
+			html = { "golines", "gofumpt", "goimports" },
 			htmldjango = { "djlint" },
 			jinja2 = { "djlint" },
 			json = { "prettier" },

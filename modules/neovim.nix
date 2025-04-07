@@ -30,12 +30,21 @@
             basedpyright
             bash-language-server
             bibli-ls
+            delve
             djlint
             dockerfile-language-server-nodejs
             dot-language-server
             emmet-language-server
+            gofumpt
+            golangci-lint
+            golines
+            gomodifytags
+            gopls
+            gotests
             hadolint
             helm-ls
+            iferr
+            impl
             libxml2
             ltex-ls-plus
             lua-language-server

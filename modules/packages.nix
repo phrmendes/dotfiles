@@ -29,6 +29,7 @@
         brightnessctl
         curl
         deluge
+        dig
         discord
         docker-compose
         docker-credential-helpers

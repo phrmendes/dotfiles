@@ -20,7 +20,6 @@ return {
 				Count = "{table}.countDocuments()",
 				Distinct = "{table}.distinct()",
 				EstimatedDocumentCount = "{table}.estimatedDocumentCount()",
-				Find = "{table}.find()",
 				FindOne = "{table}.findOne()",
 				Insert = "{table}.insertOne()",
 				InsertMany = "{table}.insertMany([])",

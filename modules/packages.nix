@@ -22,7 +22,7 @@
         );
       in
       [
-        aider-chat
+        aider-chat-full
         bitwarden-cli
         bitwarden-desktop
         brave

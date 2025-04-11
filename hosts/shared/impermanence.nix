@@ -27,7 +27,6 @@
         ".mozilla"
         ".pki"
         ".ssh"
-        ".tmux"
         ".zotero"
         ".cache/cliphist"
         ".cache/neovim"

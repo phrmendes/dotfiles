@@ -10,7 +10,6 @@
     ./eza.nix
     ./fzf.nix
     ./gh.nix
-    ./ghostty.nix
     ./git.nix
     ./gnome-keyring.nix
     ./gtk.nix
@@ -32,9 +31,9 @@
     ./symlinks.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -51,7 +50,6 @@
   eza.enable = true;
   fzf.enable = true;
   gh.enable = true;
-  ghostty.enable = true;
   git.enable = true;
   gnome-keyring.enable = true;
   gtk-settings.enable = true;
@@ -73,9 +71,9 @@
   symlinks.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
-  tmux.enable = true;
   udiskie.enable = true;
   waybar.enable = true;
+  wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
   zoxide.enable = true;

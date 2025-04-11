@@ -75,7 +75,6 @@
         protonvpn-gui
         python
         quarto
-        sesh
         sqlite
         sshfs
         tectonic

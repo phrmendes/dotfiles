@@ -15,9 +15,7 @@ return {
 		picker = {
 			enabled = true,
 			ui_select = true,
-			db = {
-				sqlite3_path = vim.fn.exepath("sqlite3"),
-			},
+			db = { sqlite3_path = vim.fn.exepath("sqlite3") },
 		},
 		statuscolumn = {
 			enabled = true,
@@ -37,7 +35,8 @@ return {
 		})
 	end,
 	keys = {
-		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart" },
+		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart (find files)" },
+		{ "<leader>.", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Grep word" },
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
 		{ "<leader>?", function() Snacks.picker.help() end, desc = "Help" },
@@ -57,6 +56,6 @@ return {
 		{ "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Log (file)" },
 		{ "<leader>go", function() Snacks.gitbrowse() end, desc = "Open in browser" },
 		{ "<c-\\>", function() Snacks.terminal() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
-		{ "<leader>.", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Grep word" },
+		{ "<c-p>", function() Snacks.picker.buffers() end, desc = "Buffers" },
 	},
 }

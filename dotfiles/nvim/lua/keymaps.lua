@@ -98,6 +98,9 @@ return {
 
 			opts.desc = "LSP: workspace diagnostics"
 			vim.keymap.set("n", "<leader>d", function() Snacks.picker.diagnostics() end, opts)
+
+			opts.desc = "LSP: diagnostics (float)"
+			vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts)
 		end
 
 		if client:supports_method("textDocument/signatureHelp", bufnr) then

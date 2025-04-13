@@ -33,9 +33,9 @@ return {
 		}
 
 		for server, config in pairs(servers) do
-			config.capabilities = require("blink.cmp").get_lsp_capabilities()
+			if not vim.tbl_isempty(config) then vim.lsp.config(server, config) end
 
-			require("lspconfig")[server].setup(config)
+			vim.lsp.enable(server)
 		end
 	end,
 }

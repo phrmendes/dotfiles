@@ -45,7 +45,6 @@ return {
 		{ "<leader>N", function() Snacks.notifier.show_history() end, desc = "Show notification history" },
 		{ "<leader>Z", function() Snacks.zen() end, desc = "Zen" },
 		{ "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
-		{ "<leader>f", function() Snacks.picker.files() end, desc = "Files" },
 		{ "<leader>m", function() Snacks.picker.marks() end, desc = "Marks" },
 		{ "<leader>u", function() Snacks.picker.undo() end, desc = "Undo history" },
 		{ "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom" },

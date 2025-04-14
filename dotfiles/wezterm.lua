@@ -41,10 +41,10 @@ config.ssh_domains = {
 config.keys = {
 	{ key = "Space", mods = "LEADER|CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
 	{ key = "Enter", mods = "LEADER", action = action.SpawnWindow },
+	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "'", mods = "LEADER", action = action.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
 	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "[", mods = "LEADER", action = action.ActivateTabRelative(-1) },
-	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "]", mods = "LEADER", action = action.ActivateTabRelative(1) },
 	{ key = "{", mods = "LEADER", action = action.MoveTabRelative(-1) },
 	{ key = "}", mods = "LEADER", action = action.MoveTabRelative(1) },

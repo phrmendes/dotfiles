@@ -8,5 +8,25 @@
     "body": ["$${1:equation}$$0"],
     "description": "Add inline math",
     "prefix": "im"
+  },
+  "Recipe": {
+    "body": [
+      "## ${1:title}",
+      "",
+      "### Ingredientes",
+      "",
+      "- $0",
+      "",
+      "### Modo de preparo",
+      "",
+      "1. "
+    ],
+    "description": "Basic structure for recipes",
+    "prefix": "rcp"
+  },
+  "Journal entry": {
+    "body": ["## $CURRENT_DATE-$CURRENT_MONTH-$CURRENT_YEAR"],
+    "description": "Journal entry",
+    "prefix": "entry"
   }
 }

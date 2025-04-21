@@ -38,6 +38,7 @@
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
+    ./zathura.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -78,6 +79,7 @@
   waybar.enable = true;
   wofi.enable = true;
   yazi.enable = true;
+  zathura.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
 

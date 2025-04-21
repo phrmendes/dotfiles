@@ -1,4 +1,4 @@
-local ft = { "elixir", "python" }
+local ft = { "elixir", "python", "go" }
 
 return {
 	{
@@ -97,15 +97,15 @@ return {
 		config = true,
 		keys = {
 			{
-				"<localleader>t",
+				"<localleader>gd",
 				function() require("dap-go").debug_test() end,
-				desc = "Go: debug test",
+				desc = "DAP: debug test",
 				ft = "go",
 			},
 			{
-				"<localleader>T",
+				"<localleader>gl",
 				function() require("dap-go").debug_last() end,
-				desc = "Go: debug last",
+				desc = "DAP: debug last",
 				ft = "go",
 			},
 		},
@@ -142,22 +142,22 @@ return {
 		end,
 		keys = {
 			{
-				"<localleader>c",
+				"<localleader>pc",
 				function() require("dap-python").test_class() end,
-				desc = "Python: debug class",
+				desc = "DAP: debug class",
 				ft = "python",
 			},
 			{
-				"<localleader>d",
+				"<localleader>pd",
 				function() require("dap-python").debug_selection() end,
 				mode = "v",
-				desc = "Python: debug",
+				desc = "DAP: debug",
 				ft = "python",
 			},
 			{
-				"<localleader>f",
+				"<localleader>pf",
 				function() require("dap-python").test_method() end,
-				desc = "Python: debug function/method",
+				desc = "DAP: debug function/method",
 				ft = "python",
 			},
 		},

@@ -87,6 +87,9 @@
       ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
       '';
+      ".local/share/nvim/nix/lua/nix/sqlite.lua".text = ''
+        return "${pkgs.sqlite}/bin/sqlite3"
+      '';
       ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {
             palette = {

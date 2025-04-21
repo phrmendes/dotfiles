@@ -8,7 +8,6 @@ return {
 		require("plugins.mini.base16")
 		require("plugins.mini.bracketed")
 		require("plugins.mini.bufremove")
-		require("plugins.mini.clue")
 		require("plugins.mini.comment")
 		require("plugins.mini.cursorword")
 		require("plugins.mini.diff")

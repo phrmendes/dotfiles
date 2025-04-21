@@ -4,9 +4,9 @@ return {
 	"saghen/blink.cmp",
 	version = "*",
 	dependencies = {
-		"rafamadriz/friendly-snippets",
 		"echasnovski/mini.nvim",
 		"folke/lazydev.nvim",
+		"rafamadriz/friendly-snippets",
 	},
 	opts = {
 		signature = {

@@ -33,6 +33,8 @@
           "ctrl+shift+left=resize_split:left,10"
           "ctrl+shift+right=resize_split:right,10"
           "ctrl+shift+0=equalize_splits"
+          "ctrl+shift+[=previous_tab"
+          "ctrl+shift+]=next_tab"
           "ctrl+0=reset_font_size"
           "ctrl+shift+1=goto_tab:1"
           "ctrl+shift+2=goto_tab:2"

@@ -35,7 +35,6 @@
         docker-credential-helpers
         droidcam
         elixir
-        evince
         exiftool
         fd
         ffmpeg
@@ -62,6 +61,8 @@
         mermaid-cli
         minikube
         mongodb-compass
+        muse-sounds-manager
+        musescore
         neovide
         networkmanagerapplet
         nix-prefetch-github

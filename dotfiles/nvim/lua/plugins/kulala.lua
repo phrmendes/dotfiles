@@ -55,14 +55,24 @@ return {
 			ft = "http",
 			desc = "kulala: paste curl from clipboard",
 		},
-		{ "<localleader>i", function() require("kulala").inspect() end, ft = "http", desc = "kulala: inspect" },
+		{
+			"<localleader>i",
+			function() require("kulala").inspect() end,
+			ft = "http",
+			desc = "kulala: inspect",
+		},
 		{
 			"<localleader>l",
 			function() require("kulala").replay() end,
 			ft = "http",
 			desc = "kulala: replay",
 		},
-		{ "<localleader>q", function() require("kulala").close() end, ft = "http", desc = "kulala: close" },
+		{
+			"<localleader>q",
+			function() require("kulala").close() end,
+			ft = "http",
+			desc = "kulala: close",
+		},
 		{
 			"<localleader>s",
 			function() require("kulala").run() end,

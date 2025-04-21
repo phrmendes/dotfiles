@@ -63,7 +63,6 @@
         mongodb-compass
         muse-sounds-manager
         musescore
-        neovide
         networkmanagerapplet
         nix-prefetch-github
         nodejs

@@ -88,7 +88,6 @@
     username = parameters.user;
     homeDirectory = parameters.home;
     sessionVariables = {
-      EDITOR = "nvim";
       GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";

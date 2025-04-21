@@ -117,14 +117,6 @@ vim.filetype.add({
 -- spell
 vim.opt.spell = false
 
--- neovide
-if vim.g.neovide then
-	vim.g.neovide_padding_top = 5
-	vim.g.neovide_padding_bottom = 5
-	vim.g.neovide_padding_right = 5
-	vim.g.neovide_padding_left = 5
-end
-
 -- hover
 vim.opt.winborder = require("utils").border
 

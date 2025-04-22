@@ -6,6 +6,7 @@ return {
 		donetxt = vim.env.HOME .. "/Documents/notes/done.txt",
 	},
 	keys = {
+		{ "<leader>t", "", desc = "+todo.txt" },
 		{
 			"<c-c>n",
 			function() require("todotxt").cycle_priority() end,

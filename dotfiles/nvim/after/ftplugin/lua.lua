@@ -10,7 +10,7 @@ vim.keymap.set("n", "<localleader>.", ":.lua<cr>", {
 	buffer = bufnr,
 })
 
-vim.keymap.set("v", "<localleader>.", ":lua<cr>", {
+vim.keymap.set("x", "<localleader>.", ":lua<cr>", {
 	desc = "lua: run",
 	buffer = bufnr,
 })

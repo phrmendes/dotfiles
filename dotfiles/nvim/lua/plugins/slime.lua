@@ -9,6 +9,6 @@ return {
 	keys = {
 		{ "<c-c><c-c>", "<Plug>SlimeParagraphSend", desc = "Slime: send to terminal", ft = "python" },
 		{ "<c-c><c-s>", "<Plug>SlimeConfig", desc = "Slime: settings", ft = "python" },
-		{ mode = "v", "<c-c><c-c>", "<Plug>SlimeRegionSend", desc = "Slime: send to terminal", ft = "python" },
+		{ "<c-c><c-c>", "<Plug>SlimeRegionSend", desc = "Slime: send to terminal", ft = "python", mode = "x" },
 	},
 }

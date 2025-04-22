@@ -96,6 +96,7 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = true,
 		keys = {
+			{ "<localleader>g", "", desc = "+go", ft = "go" },
 			{
 				"<localleader>gd",
 				function() require("dap-go").debug_test() end,
@@ -141,6 +142,7 @@ return {
 			})
 		end,
 		keys = {
+			{ "<localleader>p", "", desc = "+python", ft = "python" },
 			{
 				"<localleader>pc",
 				function() require("dap-python").test_class() end,
@@ -150,7 +152,7 @@ return {
 			{
 				"<localleader>pd",
 				function() require("dap-python").debug_selection() end,
-				mode = "v",
+				mode = "x",
 				desc = "DAP: debug",
 				ft = "python",
 			},

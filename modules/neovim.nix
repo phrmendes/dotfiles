@@ -71,10 +71,13 @@
             lua
             luarocks
           ])
-          ++ (with beam27Packages; [
+          ++ (with beamPackages; [
             elixir-ls
           ])
-          ++ (with nodePackages_latest; [
+          ++ (with python3Packages; [
+            chromadb
+          ])
+          ++ (with nodePackages; [
             prettier
             vscode-json-languageserver
           ]);

@@ -22,7 +22,7 @@ return {
 			{
 				"<c-c>x",
 				":MDTaskToggle<cr>",
-				mode = { "n", "v" },
+				mode = { "n", "x" },
 				ft = { "markdown", "quarto" },
 				desc = "Markdown: toggle checkbox",
 			},

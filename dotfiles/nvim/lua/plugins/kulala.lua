@@ -39,7 +39,7 @@ return {
 		{
 			"<localleader>a",
 			function() require("kulala").run_all() end,
-			mode = { "n", "v" },
+			mode = { "n", "x" },
 			desc = "kulala: send all",
 			ft = "http",
 		},
@@ -76,7 +76,7 @@ return {
 		{
 			"<localleader>s",
 			function() require("kulala").run() end,
-			mode = { "n", "v" },
+			mode = { "n", "x" },
 			ft = "http",
 			desc = "kulala: send",
 		},

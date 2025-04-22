@@ -7,7 +7,7 @@ return {
 		vim.keymap.del("n", "grr")
 
 		-- random
-		vim.keymap.set({ "n", "v" }, "s", "<nop>")
+		vim.keymap.set({ "n", "x" }, "s", "<nop>")
 		vim.keymap.set("n", "<c-d>", "<c-d>zz", { noremap = true, desc = "Half page down" })
 		vim.keymap.set("n", "<c-u>", "<c-u>zz", { noremap = true, desc = "Half page up" })
 		vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true, desc = "Clear highlights" })
@@ -17,10 +17,10 @@ return {
 		vim.keymap.set("n", "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true, noremap = true, silent = true })
 		vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, noremap = true, silent = true })
 		vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, noremap = true, silent = true })
-		vim.keymap.set("v", "N", "'nN'[v:searchforward]", { expr = true, noremap = true, silent = true })
+		vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, noremap = true, silent = true })
 		vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, noremap = true, silent = true })
 		vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
-		vim.keymap.set("v", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
+		vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
 
 		-- leader keys
 		vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })
@@ -89,7 +89,7 @@ return {
 
 		if client:supports_method("textDocument/codeAction", bufnr) then
 			opts.desc = "LSP: code actions"
-			vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+			vim.keymap.set({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, opts)
 		end
 
 		if client:supports_method("textDocument/publishDiagnostics", bufnr) then

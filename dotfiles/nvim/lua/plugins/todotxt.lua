@@ -59,7 +59,6 @@ return {
 			"<leader>tn",
 			function() require("todotxt").capture_todo() end,
 			desc = "New entry",
-			ft = "todotxt",
 		},
 		{
 			"<leader>tt",

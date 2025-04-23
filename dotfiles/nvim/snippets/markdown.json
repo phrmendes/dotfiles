@@ -23,10 +23,5 @@
     ],
     "description": "Basic structure for recipes",
     "prefix": "rcp"
-  },
-  "Journal entry": {
-    "body": ["## $CURRENT_DATE-$CURRENT_MONTH-$CURRENT_YEAR"],
-    "description": "Journal entry",
-    "prefix": "entry"
   }
 }

@@ -55,7 +55,7 @@
             v = "nvim";
             s = "source .venv/bin/activate";
           };
-        initExtra = ''
+        initContent = ''
           export PATH="$HOME/.local/bin:$PATH"
           export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
           export PATH="/run/current-system/sw/bin:$PATH"
@@ -68,10 +68,6 @@
 
           function diff_persist() {
               sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
-          }
-
-          function a() {
-              aider --api-key deepseek="$(bw get notes deepseek_api_key)"
           }
 
           [ -f "$HOME/.bitwarden/unlock.sh" ] && source "$HOME/.bitwarden/unlock.sh"

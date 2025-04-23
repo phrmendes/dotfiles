@@ -22,7 +22,6 @@
         );
       in
       [
-        aider-chat-full
         bitwarden-cli
         bitwarden-desktop
         brave
@@ -72,7 +71,6 @@
         playerctl
         plex
         poppler
-        protonvpn-gui
         python
         quarto
         sesh

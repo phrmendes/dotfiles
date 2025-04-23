@@ -1,7 +1,0 @@
-model: deepseek
-code-theme: gruvbox-dark
-dark-mode: true
-auto-commits: false
-dirty-commits: false
-auto-lint: false
-auto-test: false

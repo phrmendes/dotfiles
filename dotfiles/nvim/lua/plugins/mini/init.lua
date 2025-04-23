@@ -40,5 +40,11 @@ return {
 		{ "<leader>gc", "<cmd>Git commit<cr>", desc = "Commit" },
 		{ "<leader>gp", "<cmd>Git pull<cr>", desc = "Pull" },
 		{ "<leader>gP", "<cmd>Git push<cr>", desc = "Push" },
+		{
+			"<localleader>d",
+			function() require("mini.doc").generate() end,
+			desc = "mini: generate lua documentation",
+			ft = "lua",
+		},
 	},
 }

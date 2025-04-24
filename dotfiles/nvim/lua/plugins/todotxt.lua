@@ -1,5 +1,6 @@
 return {
 	"phrmendes/todotxt.nvim",
+	dev = true,
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	opts = {
 		todotxt = vim.env.HOME .. "/Documents/notes/todo.txt",
@@ -14,7 +15,7 @@ return {
 			ft = "todotxt",
 		},
 		{
-			"<c-c>x",
+			"<cr>",
 			function() require("todotxt").toggle_todo_state() end,
 			desc = "todo.txt: toggle task state",
 			ft = "todotxt",

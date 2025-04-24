@@ -32,29 +32,24 @@
             src = pkgs.zsh-nix-shell;
           }
         ];
-        shellAliases =
-          let
-            tmux = getExe pkgs.tmux;
-          in
-          {
-            cat = getExe pkgs.bat;
-            du = getExe pkgs.gdu;
-            find = getExe pkgs.fd;
-            fs = getExe pkgs.fselect;
-            g = getExe pkgs.git;
-            grep = getExe pkgs.ripgrep;
-            k = "${pkgs.kubectl}/bin/kubectl";
-            ld = getExe pkgs.lazydocker;
-            lg = getExe pkgs.lazygit;
-            ps = getExe pkgs.procs;
-            sed = getExe pkgs.gnused;
-            top = getExe pkgs.btop;
-            t = "${tmux} new-session -A -s default";
-            tka = "${tmux} kill -a";
-            tl = "${tmux} list-sessions";
-            v = "nvim";
-            s = "source .venv/bin/activate";
-          };
+        shellAliases = rec {
+          cat = getExe pkgs.bat;
+          du = getExe pkgs.gdu;
+          find = getExe pkgs.fd;
+          fs = getExe pkgs.fselect;
+          g = getExe pkgs.git;
+          grep = getExe pkgs.ripgrep;
+          k = "${pkgs.kubectl}/bin/kubectl";
+          ld = getExe pkgs.lazydocker;
+          lg = getExe pkgs.lazygit;
+          ps = getExe pkgs.procs;
+          sed = getExe pkgs.gnused;
+          top = getExe pkgs.btop;
+          t = getExe pkgs.tmux;
+          ta = "${t} new-session -A -s 0";
+          v = "nvim";
+          s = "source .venv/bin/activate";
+        };
         initContent = ''
           export PATH="$HOME/.local/bin:$PATH"
           export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
@@ -67,7 +62,7 @@
           eval "$(${getExe pkgs.uv} generate-shell-completion zsh)"
 
           function diff_persist() {
-              sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
+            sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
           }
 
           [ -f "$HOME/.bitwarden/unlock.sh" ] && source "$HOME/.bitwarden/unlock.sh"

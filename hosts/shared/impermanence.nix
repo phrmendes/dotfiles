@@ -29,6 +29,7 @@
         ".ssh"
         ".zotero"
         ".cache/cliphist"
+        ".cache/helm"
         ".cache/neovim"
         ".cache/tealdeer"
         ".cache/uv"

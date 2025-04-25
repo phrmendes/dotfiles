@@ -1,13 +1,15 @@
 return {
 	"phrmendes/todotxt.nvim",
 	dev = true,
-	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	cmd = { "TodoTxt", "DoneTxt" },
 	opts = {
 		todotxt = vim.env.HOME .. "/Documents/notes/todo.txt",
 		donetxt = vim.env.HOME .. "/Documents/notes/done.txt",
+		create_commands = true,
 	},
 	keys = {
 		{ "<leader>t", "", desc = "+todo.txt" },
+		{ "<leader>ts", "", desc = "+sort", ft = "todotxt" },
 		{
 			"<c-c>n",
 			function() require("todotxt").cycle_priority() end,
@@ -21,10 +23,14 @@ return {
 			ft = "todotxt",
 		},
 		{
-			"<leader>ts",
-			function() require("todotxt").sort_tasks() end,
-			desc = "Sort",
-			ft = "todotxt",
+			"<leader>tn",
+			function() require("todotxt").capture_todo() end,
+			desc = "New entry",
+		},
+		{
+			"<leader>tt",
+			function() require("todotxt").toggle_todotxt() end,
+			desc = "Open",
 		},
 		{
 			"<leader>td",
@@ -33,38 +39,34 @@ return {
 			ft = "todotxt",
 		},
 		{
-			"<leader>tD",
+			"<leader>tss",
+			function() require("todotxt").sort_tasks() end,
+			desc = "Sort",
+			ft = "todotxt",
+		},
+		{
+			"<leader>tsd",
 			function() require("todotxt").sort_tasks_by_due_date() end,
 			desc = "Sort by due:date",
 			ft = "todotxt",
 		},
 		{
-			"<leader>tP",
+			"<leader>tsP",
 			function() require("todotxt").sort_tasks_by_priority() end,
 			desc = "Sort by (priority)",
 			ft = "todotxt",
 		},
 		{
-			"<leader>tc",
+			"<leader>tsc",
 			function() require("todotxt").sort_tasks_by_context() end,
 			desc = "Sort by @context",
 			ft = "todotxt",
 		},
 		{
-			"<leader>tp",
+			"<leader>tsp",
 			function() require("todotxt").sort_tasks_by_project() end,
 			desc = "Sort by +project",
 			ft = "todotxt",
-		},
-		{
-			"<leader>tn",
-			function() require("todotxt").capture_todo() end,
-			desc = "New entry",
-		},
-		{
-			"<leader>tt",
-			function() require("todotxt").open_todo_file() end,
-			desc = "Open",
 		},
 	},
 }

@@ -7,7 +7,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "backup";
+    backupFileExtension = "old";
     extraSpecialArgs = { inherit inputs parameters; };
     users.${parameters.user} = {
       imports = [ ../../modules ];

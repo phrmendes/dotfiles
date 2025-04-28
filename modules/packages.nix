@@ -24,7 +24,6 @@
       [
         bitwarden-cli
         bitwarden-desktop
-        brave
         brightnessctl
         curl
         deluge
@@ -39,6 +38,7 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
+        firefox
         gcloud
         gdu
         ghostscript

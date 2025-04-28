@@ -32,7 +32,7 @@
             src = pkgs.zsh-nix-shell;
           }
         ];
-        shellAliases = rec {
+        shellAliases = {
           cat = getExe pkgs.bat;
           du = getExe pkgs.gdu;
           find = getExe pkgs.fd;
@@ -45,8 +45,7 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
-          t = getExe pkgs.tmux;
-          ta = "${t} new-session -A -s 0";
+          t = "${getExe pkgs.tmux} new-session -A -s 0";
           v = "nvim";
           s = "source .venv/bin/activate";
         };

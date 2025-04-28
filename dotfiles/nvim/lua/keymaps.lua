@@ -97,7 +97,7 @@ return {
 			vim.keymap.set("n", "<leader>d", function() Snacks.picker.diagnostics_buffer() end, opts)
 
 			opts.desc = "LSP: workspace diagnostics"
-			vim.keymap.set("n", "<leader>d", function() Snacks.picker.diagnostics() end, opts)
+			vim.keymap.set("n", "<leader>D", function() Snacks.picker.diagnostics() end, opts)
 
 			opts.desc = "LSP: diagnostics (float)"
 			vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts)

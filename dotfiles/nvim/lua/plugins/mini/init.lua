@@ -40,7 +40,8 @@ return {
 		{ "<leader>gc", "<cmd>Git commit<cr>", desc = "Commit" },
 		{ "<leader>gp", "<cmd>Git pull<cr>", desc = "Pull" },
 		{ "<leader>gP", "<cmd>Git push<cr>", desc = "Push" },
-		{ "<localleader>d", function() require("mini.doc").generate() end, desc = "mini: generate docs", ft = "lua" },
-		{ "<localleader>t", function() require("mini.test").run() end, desc = "mini: run tests", ft = "lua" },
+		{ "<leader>G", function() require("mini.doc").generate() end, desc = "mini: generate docs", ft = "lua" },
+		{ "<leader>T", function() require("mini.test").run_at_location() end, desc = "mini: run tests", ft = "lua" },
+		{ "<leader>A", function() require("mini.test").run() end, desc = "mini: run all tests", ft = "lua" },
 	},
 }

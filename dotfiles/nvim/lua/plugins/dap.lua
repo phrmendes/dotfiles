@@ -1,4 +1,4 @@
-local ft = { "elixir", "python", "go" }
+local ft = { "elixir", "go", "lua", "python" }
 
 return {
 	{
@@ -50,25 +50,21 @@ return {
 			{ "<f8>", function() require("dap").continue() end, desc = "DAP: continue", ft = ft },
 			{ "<f9>", function() require("dap").step_over() end, desc = "DAP: step over", ft = ft },
 			{ "<s-f8>", function() require("dap").pause() end, desc = "DAP: pause", ft = ft },
-			{ "<localleader>b", function() require("dap").toggle_breakpoint() end, desc = "DAP: toggle breakpoint", ft = ft },
-			{ "<localleader>i", function() require("dap").step_into() end, desc = "DAP: step into", ft = ft },
-			{ "<localleader>k", function() require("dap.ui.widgets").hover() end, desc = "DAP: show hover", ft = ft },
-			{ "<localleader>l", function() require("dap").run_last() end, desc = "DAP: debug last", ft = ft },
-			{ "<localleader>o", function() require("dap").step_out() end, desc = "DAP: step out", ft = ft },
-			{ "<localleader>q", function() require("dap").terminate() end, desc = "DAP: terminate", ft = ft },
-			{ "<localleader>s", function() require("dap").stop() end, desc = "DAP: stop", ft = ft },
+			{ "<bs>", function() require("dap").close() end, desc = "DAP: close", ft = ft },
+			{ "<localleader>d", "", desc = "+DAP", ft = ft },
+			{ "<localleader>dd", function() require("dap").run_last() end, desc = "Debug last", ft = ft },
+			{ "<localleader>db", function() require("dap").toggle_breakpoint() end, desc = "Breakpoint", ft = ft },
+			{ "<localleader>di", function() require("dap").step_into() end, desc = "Step into", ft = ft },
+			{ "<localleader>dk", function() require("dap.ui.widgets").hover() end, desc = "Show hover", ft = ft },
+			{ "<localleader>do", function() require("dap").step_out() end, desc = "Step out", ft = ft },
+			{ "<localleader>dq", function() require("dap").terminate() end, desc = "Terminate", ft = ft },
+			{ "<localleader>d<del>", function() require("dap").clear_breakpoints() end, desc = "Clear breakpoints", ft = ft },
 			{
-				"<localleader><del>",
-				function() require("dap").clear_breakpoints() end,
-				desc = "DAP: clear all breakpoints",
-				ft = ft,
-			},
-			{
-				"<localleader>B",
+				"<localleader>dc",
 				function()
 					vim.ui.input({ prompt = "Condition: " }, function(input) require("dap").set_breakpoint(input) end)
 				end,
-				desc = "DAP: conditional breakpoint",
+				desc = "Conditional breakpoint",
 				ft = ft,
 			},
 		},
@@ -79,15 +75,13 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		opts = {},
 		config = function()
-			local dap, dap_view = require("dap"), require("dap-view")
-
-			dap.listeners.before.attach["dap-view-config"] = function() dap_view.open() end
-			dap.listeners.before.launch["dap-view-config"] = function() dap_view.open() end
-			dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
-			dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
+			require("dap").listeners.before.attach["dap-view-config"] = function() require("dap-view").open() end
+			require("dap").listeners.before.launch["dap-view-config"] = function() require("dap-view").open() end
+			require("dap").listeners.before.event_terminated["dap-view-config"] = function() require("dap-view").close() end
+			require("dap").listeners.before.event_exited["dap-view-config"] = function() require("dap-view").close() end
 		end,
 		keys = {
-			{ "<localleader>u", function() require("dap-view").toggle() end, desc = "DAP: toggle UI", ft = ft },
+			{ "<localleader>du", function() require("dap-view").toggle() end, desc = "Toggle UI", ft = ft },
 		},
 	},
 	{
@@ -96,19 +90,9 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = true,
 		keys = {
-			{ "<localleader>g", "", desc = "+go", ft = "go" },
-			{
-				"<localleader>gd",
-				function() require("dap-go").debug_test() end,
-				desc = "DAP: debug test",
-				ft = "go",
-			},
-			{
-				"<localleader>gl",
-				function() require("dap-go").debug_last() end,
-				desc = "DAP: debug last",
-				ft = "go",
-			},
+			{ "<localleader>dg", "", desc = "+go", ft = "go" },
+			{ "<localleader>dgd", function() require("dap-go").debug_test() end, desc = "Debug test", ft = "go" },
+			{ "<localleader>dgl", function() require("dap-go").debug_last() end, desc = "Debug last", ft = "go" },
 		},
 	},
 	{
@@ -142,25 +126,46 @@ return {
 			})
 		end,
 		keys = {
-			{ "<localleader>p", "", desc = "+python", ft = "python" },
+			{ "<localleader>dp", "", desc = "+python", ft = "python" },
+			{ "<localleader>dpc", function() require("dap-python").test_class() end, desc = "Debug class", ft = "python" },
 			{
-				"<localleader>pc",
-				function() require("dap-python").test_class() end,
-				desc = "DAP: debug class",
-				ft = "python",
-			},
-			{
-				"<localleader>pd",
-				function() require("dap-python").debug_selection() end,
-				mode = "x",
-				desc = "DAP: debug",
-				ft = "python",
-			},
-			{
-				"<localleader>pf",
+				"<localleader>dpf",
 				function() require("dap-python").test_method() end,
-				desc = "DAP: debug function/method",
+				desc = "Debug function/method",
 				ft = "python",
+			},
+			{
+				"<localleader>dpd",
+				function() require("dap-python").debug_selection() end,
+				desc = "Debug selection",
+				ft = "python",
+				mode = "x",
+			},
+		},
+	},
+	{
+		"jbyuki/one-small-step-for-vimkind",
+		dependencies = { "mfussenegger/nvim-dap" },
+		ft = "lua",
+		config = function()
+			require("dap").configurations.lua = {
+				{
+					type = "nlua",
+					request = "attach",
+					name = "Attach to running Neovim instance",
+				},
+			}
+
+			require("dap").adapters.nlua = function(callback, config)
+				callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+			end
+		end,
+		keys = {
+			{
+				"<localleader>dl",
+				function() require("osv").launch({ port = 8086 }) end,
+				desc = "lua: launch debugger server",
+				ft = "lua",
 			},
 		},
 	},

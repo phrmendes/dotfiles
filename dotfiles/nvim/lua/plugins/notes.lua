@@ -1,5 +1,6 @@
 return {
 	"phrmendes/notes.nvim",
+	dev = true,
 	dependencies = { "folke/snacks.nvim" },
 	opts = {
 		path = vim.env.HOME .. "/Documents/notes",

@@ -49,6 +49,7 @@
         imagemagick
         imv
         jdk
+        jellyfin
         jq
         just
         kooha
@@ -69,7 +70,6 @@
         pavucontrol
         phockup
         playerctl
-        plex
         poppler
         python
         quarto

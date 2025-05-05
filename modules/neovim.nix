@@ -46,6 +46,7 @@
             helm-ls
             iferr
             impl
+            kulala-fmt
             libxml2
             ltex-ls-plus
             lua-language-server

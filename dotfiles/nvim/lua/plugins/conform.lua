@@ -20,6 +20,7 @@ return {
 			terraform = { "terraform_fmt" },
 			toml = { "taplo" },
 			yaml = { "prettier" },
+			http = { "kulala-fmt" },
 		},
 		format_on_save = {
 			timeout_ms = 500,

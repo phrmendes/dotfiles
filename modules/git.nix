@@ -19,7 +19,11 @@
         init.defaultBranch = "main";
         merge.tool = "nvimdiff";
         pull.rebase = true;
-        push.autoSetupRemote = true;
+        submodules.recurse = true;
+        push = {
+          autoSetupRemote = true;
+          recurseSubmodules = "on-demand";
+        };
       };
       aliases = {
         A = "add .";

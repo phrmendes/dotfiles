@@ -4,6 +4,23 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		ft = ft,
+		dependencies = {
+			{
+				"igorlfs/nvim-dap-view",
+				ft = ft,
+				dependencies = { "mfussenegger/nvim-dap" },
+				opts = {},
+				config = function()
+					require("dap").listeners.before.attach["dap-view-config"] = function() require("dap-view").open() end
+					require("dap").listeners.before.launch["dap-view-config"] = function() require("dap-view").open() end
+					require("dap").listeners.before.event_terminated["dap-view-config"] = function() require("dap-view").close() end
+					require("dap").listeners.before.event_exited["dap-view-config"] = function() require("dap-view").close() end
+				end,
+				keys = {
+					{ "<localleader>du", function() require("dap-view").toggle() end, desc = "Toggle UI", ft = ft },
+				},
+			},
+		},
 		config = function()
 			local dap = require("dap")
 
@@ -67,21 +84,6 @@ return {
 				desc = "Conditional breakpoint",
 				ft = ft,
 			},
-		},
-	},
-	{
-		"igorlfs/nvim-dap-view",
-		ft = ft,
-		dependencies = { "mfussenegger/nvim-dap" },
-		opts = {},
-		config = function()
-			require("dap").listeners.before.attach["dap-view-config"] = function() require("dap-view").open() end
-			require("dap").listeners.before.launch["dap-view-config"] = function() require("dap-view").open() end
-			require("dap").listeners.before.event_terminated["dap-view-config"] = function() require("dap-view").close() end
-			require("dap").listeners.before.event_exited["dap-view-config"] = function() require("dap-view").close() end
-		end,
-		keys = {
-			{ "<localleader>du", function() require("dap-view").toggle() end, desc = "Toggle UI", ft = ft },
 		},
 	},
 	{

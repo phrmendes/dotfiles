@@ -117,6 +117,7 @@
           };
           nix = {
             format = format { icon = ""; };
+            tooltip = false;
           };
           separator = {
             format = "";

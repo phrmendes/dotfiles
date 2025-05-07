@@ -49,7 +49,6 @@
         imagemagick
         imv
         jdk
-        jellyfin
         jq
         just
         kooha
@@ -75,6 +74,7 @@
         quarto
         sqlite
         sshfs
+        stremio
         tectonic
         terraform
         uv

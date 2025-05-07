@@ -59,7 +59,6 @@
         libreoffice
         mermaid-cli
         minikube
-        mongodb-compass
         muse-sounds-manager
         musescore
         networkmanagerapplet

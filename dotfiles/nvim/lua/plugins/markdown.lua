@@ -20,7 +20,7 @@ return {
 				desc = "Markdown: add item above",
 			},
 			{
-				"<c-c>x",
+				"<c-x>",
 				":MDTaskToggle<cr>",
 				mode = { "n", "x" },
 				ft = { "markdown", "quarto" },

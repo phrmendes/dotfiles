@@ -8,6 +8,7 @@
     ./direnv.nix
     ./dunst.nix
     ./eza.nix
+    ./fd.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
@@ -17,7 +18,10 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./imv.nix
+    ./jq.nix
     ./k9s.nix
+    ./lazydocker.nix
     ./lazygit.nix
     ./librewolf.nix
     ./mpv.nix
@@ -33,6 +37,7 @@
     ./targets.nix
     ./tealdeer.nix
     ./udiskie.nix
+    ./uv.nix
     ./waybar.nix
     ./wezterm.nix
     ./wofi.nix
@@ -50,6 +55,7 @@
   direnv.enable = true;
   dunst.enable = true;
   eza.enable = true;
+  fd.enable = true;
   fzf.enable = true;
   gh.enable = true;
   git.enable = true;
@@ -59,7 +65,10 @@
   hyprland.enable = true;
   hyprlock.enable = true;
   hyprpaper.enable = true;
+  imv.enable = true;
+  jq.enable = true;
   k9s.enable = true;
+  lazydocker.enable = true;
   lazygit.enable = true;
   librewolf.enable = true;
   mpv.enable = true;
@@ -75,6 +84,7 @@
   targets.enable = true;
   tealdeer.enable = true;
   udiskie.enable = true;
+  uv.enable = true;
   waybar.enable = true;
   wezterm.enable = true;
   wofi.enable = true;

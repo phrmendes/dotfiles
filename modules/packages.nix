@@ -18,36 +18,29 @@
       [
         bitwarden-cli
         bitwarden-desktop
-        brightnessctl
         curl
         deluge
         dig
         discord
         docker-compose
         docker-credential-helpers
-        droidcam
         elixir
         exiftool
-        fd
         ffmpeg
         ffmpegthumbnailer
-        file-roller
         gcloud
         gdu
         ghostscript
-        gnome-commander
         go
         gotools
         hyprland-qtutils
         imagemagick
-        imv
         jdk
         jq
         just
         kooha
         kubectl
         kubernetes-helm
-        lazydocker
         libqalculate
         libreoffice
         mermaid-cli
@@ -69,7 +62,6 @@
         stremio
         tectonic
         terraform
-        uv
         ventoy
         wofi-emoji
         wofi-power-menu

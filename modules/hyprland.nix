@@ -96,7 +96,7 @@
             "6,monitor:${primary}"
             "7,monitor:${primary}"
             "8,monitor:${primary}"
-            "9,monitor:${primary}"
+            "9,monitor:${secondary}"
           ];
           bindm = [
             "SUPER,mouse:272,movewindow"

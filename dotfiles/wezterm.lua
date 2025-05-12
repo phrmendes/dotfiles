@@ -34,7 +34,6 @@ config.window_decorations = "NONE"
 config.window_padding = { left = 6, right = 6, top = 6, bottom = 0 }
 config.ssh_domains = {
 	{ name = "desktop", remote_address = "desktop", username = "phrmendes" },
-	{ name = "laptop", remote_address = "laptop", username = "phrmendes" },
 	{ name = "orangepizero2", remote_address = "orangepizero2", username = "phrmendes" },
 }
 

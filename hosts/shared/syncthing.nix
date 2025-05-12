@@ -26,10 +26,6 @@
           id = "BVM7PXK-VIQOZQ4-Z3RFYNH-33GVYPJ-WYSRYBK-3DQ2N2X-JJXXI56-7OSSKQW";
           autoAcceptFolders = true;
         };
-        "laptop" = {
-          id = "UDC7ERC-4U3ANWI-FCND77N-MNIZHXG-IXQTU42-TMOGIOY-7SXE2DV-UOCCUAC";
-          autoAcceptFolders = true;
-        };
         "desktop" = {
           id = "V3YDAIH-HZAJKMP-GZEYKK4-WEA4F2H-MSVSXFA-6XUTGTF-XSXCSG7-TRFW5AZ";
           autoAcceptFolders = true;

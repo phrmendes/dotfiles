@@ -42,7 +42,6 @@
           let
             parameters = global // {
               device = "/dev/sdc";
-              laptop = false;
               monitors = {
                 primary = "HDMI-A-1";
                 secondary = "DP-1";
@@ -53,22 +52,6 @@
             inherit system;
             specialArgs = { inherit inputs parameters; };
             modules = [ ./hosts/desktop.nix ];
-          };
-
-        laptop =
-          let
-            parameters = global // {
-              laptop = true;
-              device = "/dev/nvme0n1";
-              monitors = {
-                primary = "eDP-1";
-              };
-            };
-          in
-          lib.nixosSystem {
-            inherit system;
-            specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/laptop.nix ];
           };
       };
     };

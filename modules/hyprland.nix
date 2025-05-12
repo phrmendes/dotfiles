@@ -77,7 +77,6 @@
           };
           monitor = with parameters.monitors; [
             "${primary},preferred,auto,1"
-            (lib.mkIf (!parameters.laptop) "${secondary},preferred,auto-left,1")
           ];
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
@@ -96,7 +95,7 @@
             "6,monitor:${primary}"
             "7,monitor:${primary}"
             "8,monitor:${primary}"
-            (if parameters.laptop then "9,monitor:${primary}" else "9,monitor:${secondary}")
+            "9,monitor:${primary}"
           ];
           bindm = [
             "SUPER,mouse:272,movewindow"
@@ -107,8 +106,6 @@
             ",XF86AudioLowerVolume,exec,${swayosd} --output-volume lower"
             ",XF86AudioMute,exec,${swayosd} --output-volume mute-toggle"
             ",XF86AudioMicMute,exec,${swayosd} --input-volume mute-toggle"
-            (lib.mkIf parameters.laptop ",XF86MonBrightnessUp,exec,${swayosd} --brightness raise")
-            (lib.mkIf parameters.laptop ",XF86MonBrightnessDown,exec,${swayosd} --brightness lower")
             "SUPER ALT,h,resizeactive,-20 0"
             "SUPER ALT,j,resizeactive,0 20"
             "SUPER ALT,k,resizeactive,0 -20"

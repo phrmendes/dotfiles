@@ -171,10 +171,6 @@
               "custom/separator"
               "memory"
               "custom/separator"
-              (lib.mkIf laptop "backlight")
-              (lib.mkIf laptop "custom/separator")
-              (lib.mkIf laptop "battery")
-              (lib.mkIf laptop "custom/separator")
               "tray"
               "custom/separator"
               "clock"
@@ -195,7 +191,7 @@
             battery = modules.battery;
             backlight = modules.backlight;
           }
-          (lib.mkIf (!laptop) {
+          {
             output = monitors.secondary;
             layer = "top";
             position = "top";
@@ -209,7 +205,7 @@
             "custom/nix" = modules.nix;
             "custom/spacer" = modules.spacer;
             "hyprland/workspaces" = modules.workspaces;
-          })
+          }
         ];
       };
   };

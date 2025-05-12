@@ -63,95 +63,76 @@
       {
         "camera" = {
           path = "${parameters.home}/Pictures/camera";
+          versioning = versioning.trashcan;
           devices = [
             "orangepizero2"
             "phone"
           ];
-          versioning = versioning.trashcan;
         };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
+          versioning = versioning.trashcan;
           devices = [
-            "laptop"
             "orangepizero2"
             "phone"
           ];
-          versioning = versioning.trashcan;
         };
         "images" = {
           path = "${parameters.home}/Pictures/images";
-          devices = [
-            "orangepizero2"
-            "laptop"
-          ];
           versioning = versioning.trashcan;
+          devices = [ "orangepizero2" ];
         };
         "notes" = {
           path = "${parameters.home}/Documents/notes";
+          versioning = versioning.simple;
           devices = [
-            "laptop"
             "orangepizero2"
             "phone"
             "tablet"
           ];
-          versioning = versioning.simple;
         };
         "ufabc" = {
           path = "${parameters.home}/Documents/ufabc";
+          versioning = versioning.trashcan;
           devices = [
-            "laptop"
             "orangepizero2"
             "phone"
             "tablet"
           ];
-          versioning = versioning.trashcan;
         };
         "comics" = {
           path = "${parameters.home}/Documents/library/comics";
-          devices = [ "orangepizero2" ];
           versioning = versioning.trashcan;
+          devices = [ "orangepizero2" ];
         };
         "IT" = {
           path = "${parameters.home}/Documents/library/IT";
-          devices = [
-            "laptop"
-            "orangepizero2"
-          ];
           versioning = versioning.trashcan;
+          devices = [ "orangepizero2" ];
         };
         "math" = {
           path = "${parameters.home}/Documents/library/math";
-          devices = [
-            "laptop"
-            "orangepizero2"
-          ];
           versioning = versioning.trashcan;
+          devices = [ "orangepizero2" ];
         };
         "social_sciences" = {
           path = "${parameters.home}/Documents/library/social_sciences";
-          devices = [
-            "laptop"
-            "orangepizero2"
-          ];
           versioning = versioning.trashcan;
+          devices = [ "orangepizero2" ];
         };
         "zotero" = {
           path = "${parameters.home}/Documents/library/zotero";
+          versioning = versioning.trashcan;
           devices = [
-            "laptop"
             "orangepizero2"
             "phone"
             "tablet"
           ];
-          versioning = versioning.trashcan;
         };
         "collections" = {
           path = "${parameters.home}/Documents/collections";
-          devices = [
-            "laptop"
-            "orangepizero2"
-          ];
           versioning = versioning.trashcan;
+          devices = [ "orangepizero2" ];
         };
       };
   };

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  parameters,
   pkgs,
   ...
 }:
@@ -11,7 +10,6 @@
     services.hypridle =
       let
         hyprlock = lib.getExe pkgs.hyprlock;
-        brightnessctl = lib.getExe pkgs.brightnessctl;
         hyprctl = "${pkgs.hyprland}/bin/hyprctl";
         lock_cmd = "pidof ${hyprlock} || ${hyprlock}";
       in
@@ -26,11 +24,6 @@
           };
 
           listener = [
-            (lib.mkIf parameters.laptop {
-              timeout = 290;
-              on-timeout = "${brightnessctl} set 10%";
-              on-resume = "${brightnessctl} --restore ";
-            })
             {
               timeout = 300;
               on-timeout = "${lock_cmd}";

@@ -93,7 +93,7 @@
         return "${pkgs.vimPlugins.luvit-meta}/library"
       '';
       ".local/share/nvim/nix/lua/nix/sqlite.lua".text = ''
-        return "${pkgs.sqlite}/bin/sqlite3"
+        return "${pkgs.sqlite.out}/lib/libsqlite3.so"
       '';
       ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {

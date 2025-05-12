@@ -14,12 +14,6 @@
         gcloud = google-cloud-sdk.withExtraComponents (
           with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
         );
-        python = python3.withPackages (
-          p: with p; [
-            pip
-            virtualenv
-          ]
-        );
       in
       [
         bitwarden-cli
@@ -38,7 +32,6 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
-        firefox
         gcloud
         gdu
         ghostscript
@@ -69,7 +62,7 @@
         phockup
         playerctl
         poppler
-        python
+        python313
         quarto
         sqlite
         sshfs

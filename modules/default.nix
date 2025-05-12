@@ -19,6 +19,7 @@
     ./hyprpaper.nix
     ./k9s.nix
     ./lazygit.nix
+    ./librewolf.nix
     ./mpv.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -60,6 +61,7 @@
   hyprpaper.enable = true;
   k9s.enable = true;
   lazygit.enable = true;
+  librewolf.enable = true;
   mpv.enable = true;
   neovim.enable = true;
   nm-applet.enable = true;

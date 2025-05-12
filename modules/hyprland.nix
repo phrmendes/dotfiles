@@ -126,7 +126,7 @@
               "SUPER,space,exec,${wofi}"
               "SUPER,tab,changegroupactive,f"
               "SUPER,return,exec,${lib.getExe pkgs.wezterm}"
-              "SUPER,B,exec,${lib.getExe pkgs.firefox}"
+              "SUPER,B,exec,${lib.getExe pkgs.librewolf}"
               "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist-wofi-img | ${pkgs.wl-clipboard}/bin/wl-copy"
               "SUPER,F,togglefloating"
               "SUPER,G,togglegroup"

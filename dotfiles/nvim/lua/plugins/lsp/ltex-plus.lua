@@ -8,7 +8,7 @@ return {
 			local language = settings.ltex.language
 
 			if language == "none" then
-				vim.notify("Ltex is disabled", vim.log.levels.ERROR)
+				vim.notify("No language enabled", vim.log.levels.ERROR, { title = "Ltex" })
 				return
 			end
 
@@ -18,7 +18,7 @@ return {
 
 			client:notify("workspace/didChangeConfiguration", { settings = settings })
 
-			vim.notify("Word added to dictionary [`" .. language .. "`]: " .. word)
+			vim.notify("Word added to dictionary [`" .. language .. "`]: " .. word, vim.log.levels.INFO, { title = "Ltex" })
 		end, { desc = "Ltex: add word to dictionary", buffer = bufnr })
 
 		vim.api.nvim_buf_create_user_command(bufnr, "Ltex", function()
@@ -29,17 +29,17 @@ return {
 				{
 					lang = "en-US",
 					index = 1,
-					msg = "Ltex language: `en-US`",
+					msg = "Language: `en-US`",
 				},
 				{
 					lang = "pt-BR",
 					index = 2,
-					msg = "Ltex language: `pt-BR`",
+					msg = "Language: `pt-BR`",
 				},
 				{
 					lang = "none",
 					index = 3,
-					msg = "Ltex is disabled",
+					msg = "Language: `none`",
 				},
 			}
 
@@ -47,7 +47,7 @@ return {
 
 			local result = vim.tbl_filter(function(t) return t.index == new_index end, messages)[1]
 
-			vim.notify(result.msg)
+			vim.notify(result.msg, vim.log.levels.INFO, { title = "Ltex" })
 
 			settings.ltex.language = result.lang
 

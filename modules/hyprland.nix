@@ -77,6 +77,7 @@
           };
           monitor = with parameters.monitors; [
             "${primary},preferred,auto,1"
+            "${secondary},preferred,auto-left,1"
           ];
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"

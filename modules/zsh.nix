@@ -45,8 +45,10 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
+          t = "${getExe pkgs.tmux} new-session -A -s 0";
+          s = "${getExe pkgs.sesh} connect $(${getExe pkgs.sesh} list | ${getExe pkgs.fzf} --border --height 50% --preview '${getExe pkgs.sesh} preview {}')";
           v = "nvim";
-          s = "source .venv/bin/activate";
+          src = "source .venv/bin/activate";
         };
         initContent = ''
           export PATH="$HOME/.local/bin:$PATH"

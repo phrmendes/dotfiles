@@ -58,6 +58,7 @@
         poppler
         python313
         quarto
+        sesh
         sqlite
         sshfs
         stremio

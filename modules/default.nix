@@ -23,7 +23,6 @@
     ./k9s.nix
     ./lazydocker.nix
     ./lazygit.nix
-    ./librewolf.nix
     ./mpv.nix
     ./neovim.nix
     ./nm-applet.nix
@@ -70,7 +69,6 @@
   k9s.enable = true;
   lazydocker.enable = true;
   lazygit.enable = true;
-  librewolf.enable = true;
   mpv.enable = true;
   neovim.enable = true;
   nm-applet.enable = true;

@@ -28,6 +28,7 @@
         exiftool
         ffmpeg
         ffmpegthumbnailer
+        firefox
         gcloud
         gdu
         ghostscript

@@ -64,7 +64,6 @@
         stremio
         tectonic
         terraform
-        ventoy
         wofi-emoji
         wofi-power-menu
         zotero

@@ -30,7 +30,6 @@
         ".zotero"
         ".cache/cliphist"
         ".cache/helm"
-        ".cache/jellyfin"
         ".cache/neovim"
         ".cache/tealdeer"
         ".cache/uv"

@@ -115,6 +115,8 @@
               --preview-window 'right:55%' \
               --preview '${sesh} preview {}'
           )\""
+
+          run-shell "tmux has-session -t 0 2>/dev/null && tmux kill-session -t 0"
         '';
     };
   };

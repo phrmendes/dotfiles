@@ -55,7 +55,7 @@
             ps = getExe pkgs.procs;
             sed = getExe pkgs.gnused;
             top = getExe pkgs.btop;
-            t = "${getExe pkgs.tmux} new-session -A -s 0";
+            t = "${getExe pkgs.tmux} new-session -A -s default";
             s = sesh;
             v = "nvim";
             src = "source .venv/bin/activate";

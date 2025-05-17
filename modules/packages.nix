@@ -18,6 +18,7 @@
       [
         bitwarden-cli
         bitwarden-desktop
+        chromium
         curl
         deluge
         dig

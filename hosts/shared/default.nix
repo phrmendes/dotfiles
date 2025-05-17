@@ -11,7 +11,6 @@
     stylix.nixosModules.stylix
     (import ./disko.nix { inherit (parameters) device; })
     ./boot.nix
-    ./duplicati.nix
     ./file-systems.nix
     ./hardware.nix
     ./home-manager.nix

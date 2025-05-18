@@ -16,6 +16,7 @@ return {
 			enabled = true,
 			ui_select = true,
 			db = { sqlite3_path = require("nix.sqlite") },
+			layout = { preview = "main", preset = "ivy" },
 		},
 		statuscolumn = {
 			enabled = true,
@@ -50,7 +51,7 @@ return {
 		{ "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom" },
 		{ "<leader>gL", function() Snacks.picker.git_log() end, desc = "Log (repo)" },
 		{ "<leader>gb", function() Snacks.git.blame_line() end, desc = "Blame line" },
-		{ "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Diff" },
+		{ "<leader>gD", function() Snacks.picker.git_diff() end, desc = "Diff (repo)" },
 		{ "<leader>gg", function() Snacks.lazygit() end, desc = "LazyGit" },
 		{ "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Log (file)" },
 		{ "<leader>go", function() Snacks.gitbrowse() end, desc = "Open in browser" },

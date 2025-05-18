@@ -10,7 +10,6 @@ return {
 		vim.keymap.set({ "n", "x" }, "s", "<nop>")
 		vim.keymap.set("n", "<c-d>", "<c-d>zz", { noremap = true, desc = "Half page down" })
 		vim.keymap.set("n", "<c-u>", "<c-u>zz", { noremap = true, desc = "Half page up" })
-		vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true, desc = "Clear highlights" })
 
 		-- better default keys
 		vim.keymap.set("n", "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true, noremap = true, silent = true })

@@ -1,7 +1,6 @@
 return {
 	"echasnovski/mini.nvim",
 	event = "VimEnter",
-	version = "*",
 	config = function()
 		require("plugins.mini.ai")
 		require("plugins.mini.align")
@@ -19,6 +18,7 @@ return {
 		require("plugins.mini.indentscope")
 		require("plugins.mini.jump")
 		require("plugins.mini.jump2d")
+		require("plugins.mini.keymap")
 		require("plugins.mini.misc")
 		require("plugins.mini.move")
 		require("plugins.mini.operators")
@@ -43,6 +43,7 @@ return {
 		{ "<leader>ga", "<cmd>Git add %<cr>", desc = "Add (file)" },
 		{ "<leader>gc", "<cmd>Git commit<cr>", desc = "Commit" },
 		{ "<leader>gp", "<cmd>Git pull<cr>", desc = "Pull" },
+		{ "<leader>gd", function() require("mini.diff").toggle_overlay(0) end, desc = "Diff (file)" },
 		{
 			"<leader>gs",
 			function() require("mini.git").show_at_cursor({ split = "horizontal" }) end,

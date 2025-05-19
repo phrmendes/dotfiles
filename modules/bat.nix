@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -12,6 +13,7 @@
       config = {
         pager = "less -FR";
       };
+      extraPackages = with pkgs.bat-extras; [ core ];
     };
   };
 }

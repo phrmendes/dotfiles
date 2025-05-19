@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
@@ -33,13 +34,9 @@
           gofumpt
           golangci-lint
           golines
-          gomodifytags
           gopls
-          gotests
           hadolint
           helm-ls
-          iferr
-          impl
           kulala-fmt
           libxml2
           ltex-ls-plus
@@ -52,7 +49,6 @@
           ruff
           shellcheck
           shellharden
-          simple-completion-language-server
           sqlfluff
           stylua
           taplo
@@ -62,13 +58,11 @@
           vscode-langservers-extracted
           vtsls
           yaml-language-server
+          inputs.scls.defaultPackage.${pkgs.system}
         ]
         ++ (with lua51Packages; [
           lua
           luarocks
-        ])
-        ++ (with beamPackages; [
-          elixir-ls
         ])
         ++ (with python3Packages; [
           chromadb
@@ -86,9 +80,6 @@
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/dotfiles/nvim";
       ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
-      '';
-      ".local/share/nvim/nix/lua/nix/sqlite.lua".text = ''
-        return "${pkgs.sqlite.out}/lib/libsqlite3.so"
       '';
       ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {

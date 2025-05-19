@@ -1,8 +1,14 @@
 local ai = require("mini.ai")
+local extra = require("mini.extra")
 
 ai.setup({
 	n_lines = 500,
 	custom_textobjects = {
+		B = extra.gen_ai_spec.buffer(),
+		D = extra.gen_ai_spec.diagnostic(),
+		I = extra.gen_ai_spec.indent(),
+		L = extra.gen_ai_spec.line(),
+		N = extra.gen_ai_spec.number(),
 		o = ai.gen_spec.treesitter({
 			a = { "@block.outer", "@conditional.outer", "@loop.outer" },
 			i = { "@block.inner", "@conditional.inner", "@loop.inner" },

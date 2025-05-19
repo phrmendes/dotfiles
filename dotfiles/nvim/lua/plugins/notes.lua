@@ -4,6 +4,7 @@ return {
 	dependencies = { "folke/snacks.nvim" },
 	opts = {
 		path = vim.env.HOME .. "/Documents/notes",
+		picker = "mini",
 	},
 	keys = {
 		{ "<leader>n", "", desc = "+notes" },

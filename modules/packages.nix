@@ -24,7 +24,6 @@
         discord
         docker-compose
         docker-credential-helpers
-        elixir
         exiftool
         ffmpeg
         ffmpegthumbnailer

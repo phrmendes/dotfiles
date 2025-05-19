@@ -2,7 +2,11 @@ return {
 	{
 		"github/copilot.vim",
 		event = "InsertEnter",
-		init = function() vim.g.copilot_filetypes = { ["copilot-chat"] = false } end,
+		init = function()
+			vim.g.copilot_filetypes = { ["copilot-chat"] = false }
+			vim.g.copilot_no_tab_map = true
+			vim.keymap.set("i", "<c-l>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+		end,
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",

@@ -72,4 +72,25 @@ M.paste = function()
 	}
 end
 
+--- Open files from mini.files in split windows.
+--- @param direction "vertical"|"horizontal" Direction of the split
+--- @param close_on_file boolean Close mini.files when opening the file
+M.mini_files_split = function(direction, close_on_file)
+	return function()
+		local new_win
+		local files = require("mini.files")
+		local win = files.get_explorer_state().target_window
+
+		if win ~= nil then
+			vim.api.nvim_win_call(win, function()
+				vim.cmd("belowright " .. direction .. " split")
+				new_win = vim.api.nvim_get_current_win()
+			end)
+
+			files.set_target_window(new_win)
+			files.go_in({ close_on_file = close_on_file })
+		end
+	end
+end
+
 return M

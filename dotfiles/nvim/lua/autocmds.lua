@@ -21,7 +21,7 @@ autocmd("LspAttach", {
 
 		if not client then return end
 
-		require("keymaps").lsp(client, event.buf)
+		require("keymaps.lsp")(client, event.buf)
 
 		if client:supports_method("textDocument/codeLens", event.buf) then
 			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -66,7 +66,7 @@ autocmd("WinEnter", {
 autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
-	callback = function() vim.highlight.on_yank() end,
+	callback = function() vim.hl.on_yank() end,
 })
 
 autocmd("FileType", {

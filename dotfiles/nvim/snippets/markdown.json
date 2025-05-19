@@ -1,15 +1,16 @@
 {
   "Block math": {
+    "prefix": "bm",
     "body": ["$$", "${1:equation}", "$$", "$0"],
-    "description": "Add block math",
-    "prefix": "bm"
+    "description": "Add block math"
   },
   "Inline math": {
+    "prefix": "im",
     "body": ["$${1:equation}$$0"],
-    "description": "Add inline math",
-    "prefix": "im"
+    "description": "Add inline math"
   },
   "Recipe": {
+    "prefix": "rcp",
     "body": [
       "## ${1:title}",
       "",
@@ -21,7 +22,11 @@
       "",
       "1. "
     ],
-    "description": "Basic structure for recipes",
-    "prefix": "rcp"
+    "description": "Basic structure for recipes"
+  },
+  "Date": {
+    "prefix": "date",
+    "body": ["$CURRENT_DATE/$CURRENT_MONTH/$CURRENT_YEAR"],
+    "description": "Current date (DD/MM/YYYY)"
   }
 }

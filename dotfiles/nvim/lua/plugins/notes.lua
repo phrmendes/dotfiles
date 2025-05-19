@@ -1,9 +1,10 @@
 return {
 	"phrmendes/notes.nvim",
 	dev = true,
-	dependencies = { "folke/snacks.nvim" },
+	dependencies = { "echasnovski/mini.nvim" },
 	opts = {
 		path = vim.env.HOME .. "/Documents/notes",
+		picker = "mini",
 	},
 	keys = {
 		{ "<leader>n", "", desc = "+notes" },

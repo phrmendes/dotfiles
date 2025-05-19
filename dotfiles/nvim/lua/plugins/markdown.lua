@@ -1,7 +1,9 @@
+local ft = { "markdown", "quarto" }
+
 return {
 	{
 		"tadmccorkle/markdown.nvim",
-		ft = { "markdown", "quarto" },
+		ft = ft,
 		init = function() vim.g.markdown_fenced_languages = { "ts=typescript" } end,
 		opts = {},
 		keys = {
@@ -9,33 +11,33 @@ return {
 				"<c-c>j",
 				"<cmd>MDListItemBelow<cr>",
 				mode = { "n", "i" },
-				ft = { "markdown", "quarto" },
+				ft = ft,
 				desc = "Markdown: add item below",
 			},
 			{
 				"<c-c>k",
 				"<cmd>MDListItemAbove<cr>",
 				mode = { "n", "i" },
-				ft = { "markdown", "quarto" },
+				ft = ft,
 				desc = "Markdown: add item above",
 			},
 			{
 				"<c-x>",
 				":MDTaskToggle<cr>",
 				mode = { "n", "x" },
-				ft = { "markdown", "quarto" },
+				ft = ft,
 				desc = "Markdown: toggle checkbox",
 			},
 			{
 				"<c-i>",
 				require("utils").toggle_emphasis("i"),
-				ft = { "markdown", "quarto" },
+				ft = ft,
 				desc = "Markdown: toggle italic",
 			},
 			{
 				"<c-b>",
 				require("utils").toggle_emphasis("b"),
-				ft = { "markdown", "quarto" },
+				ft = ft,
 				desc = "Markdown: toggle bold",
 			},
 		},
@@ -43,11 +45,11 @@ return {
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown", "quarto" },
+		ft = ft,
 		build = "cd app && npm install",
 		init = function() vim.g.mkdp_auto_close = 0 end,
 		keys = {
-			{ "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", ft = { "markdown", "quarto" }, desc = "Preview markdown file" },
+			{ "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", ft = ft },
 		},
 	},
 }

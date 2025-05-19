@@ -1,4 +1,4 @@
-local ft = { "elixir", "go", "lua", "python" }
+local ft = { "go", "lua", "python" }
 
 return {
 	{
@@ -34,33 +34,6 @@ return {
 				local nhl = (type == "Stopped") and "DapStop" or "DapBreak"
 				vim.fn.sign_define(thl, { text = icon, texthl = thl, numhl = nhl })
 			end
-
-			dap.adapters.mix_task = {
-				type = "executable",
-				command = vim.fn.exepath("elixir-debug-adapter"),
-			}
-
-			dap.configurations.elixir = {
-				{
-					type = "mix_task",
-					name = "mix:test",
-					request = "launch",
-					task = "test",
-					taskArgs = { "--trace" },
-					startApps = true,
-					projectDir = "${workspaceFolder}",
-					requireFiles = { "test/**/test_helper.exs", "test/**/*_test.exs" },
-				},
-				{
-					type = "mix_task",
-					name = "phoenix:server",
-					request = "launch",
-					task = "phx.server",
-					projectDir = "${workspaceRoot}",
-					exitAfterTaskReturns = false,
-					debugAutoInterpretAlModules = false,
-				},
-			}
 		end,
 		keys = {
 			{ "<f7>", function() require("dap").step_back() end, ft = ft, desc = "DAP: step back" },

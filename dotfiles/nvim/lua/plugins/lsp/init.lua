@@ -1,10 +1,7 @@
 return {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
-	dependencies = {
-		"b0o/SchemaStore.nvim",
-		"saghen/blink.cmp",
-	},
+	dependencies = { "b0o/SchemaStore.nvim" },
 	config = function()
 		local servers = {
 			ansiblels = {},
@@ -23,7 +20,6 @@ return {
 			taplo = {},
 			terraformls = {},
 			vtsls = {},
-			elixirls = require("plugins.lsp.elixirls"),
 			helm_ls = require("plugins.lsp.helm-ls"),
 			jsonls = require("plugins.lsp.jsonls"),
 			ltex_plus = require("plugins.lsp.ltex-plus"),
@@ -32,10 +28,11 @@ return {
 			yamlls = require("plugins.lsp.yamlls"),
 		}
 
-		for server, config in pairs(servers) do
-			if not vim.tbl_isempty(config) then vim.lsp.config(server, config) end
+		vim.iter(pairs(servers)):each(function(server, config)
+			if vim.tbl_isempty(config) then return end
+			vim.lsp.config(server, config)
+		end)
 
-			vim.lsp.enable(server)
-		end
+		vim.lsp.enable(vim.tbl_keys(servers))
 	end,
 }

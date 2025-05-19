@@ -19,8 +19,6 @@ return {
 			"dockerfile",
 			"dot",
 			"eex",
-			"elixir",
-			"erlang",
 			"git_config",
 			"git_rebase",
 			"gitattributes",

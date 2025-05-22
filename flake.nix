@@ -5,7 +5,6 @@
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stylix.url = "github:danth/stylix";
-    bibli-ls.url = "github:kha-dinh/bibli-ls";
 
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";

@@ -21,7 +21,6 @@ return {
 		cmd = { "CopilotChat", "CopilotChatToggle" },
 		opts = {
 			chat_autocomplete = true,
-			model = "claude-3.7-sonnet",
 			prompts = prompts,
 			mappings = {
 				submit_prompt = { normal = "<cr>", insert = "<c-s>" },

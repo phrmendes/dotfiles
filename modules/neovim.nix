@@ -2,87 +2,82 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
   options.neovim.enable = lib.mkEnableOption "enable neovim";
 
   config = lib.mkIf config.neovim.enable {
-    programs.neovim =
-      let
-        bibli-ls = inputs.bibli-ls.packages.${pkgs.system}.default;
-      in
-      {
-        enable = true;
-        defaultEditor = true;
-        vimAlias = true;
-        vimdiffAlias = true;
-        withNodeJs = true;
-        withPython3 = true;
-        withRuby = false;
-        extraPython3Packages = p: with p; [ debugpy ];
-        extraLuaPackages = p: with p; [ tiktoken_core ];
-        extraPackages =
-          with pkgs;
-          [
-            ansible-language-server
-            ansible-lint
-            basedpyright
-            bash-language-server
-            bibli-ls
-            delve
-            djlint
-            dockerfile-language-server-nodejs
-            dot-language-server
-            emmet-language-server
-            gofumpt
-            golangci-lint
-            golines
-            gomodifytags
-            gopls
-            gotests
-            hadolint
-            helm-ls
-            iferr
-            impl
-            kulala-fmt
-            libxml2
-            ltex-ls-plus
-            lua-language-server
-            lynx
-            marksman
-            neovim-remote
-            nixd
-            nixfmt-rfc-style
-            ruff
-            shellcheck
-            shellharden
-            sqlfluff
-            stylua
-            taplo
-            terraform-ls
-            tflint
-            tree-sitter
-            vscode-langservers-extracted
-            vtsls
-            yaml-language-server
-          ]
-          ++ (with lua51Packages; [
-            lua
-            luarocks
-          ])
-          ++ (with beamPackages; [
-            elixir-ls
-          ])
-          ++ (with python3Packages; [
-            chromadb
-          ])
-          ++ (with nodePackages; [
-            prettier
-            vscode-json-languageserver
-          ]);
-      };
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      withNodeJs = true;
+      withPython3 = true;
+      withRuby = false;
+      extraPython3Packages = p: with p; [ debugpy ];
+      extraLuaPackages = p: with p; [ tiktoken_core ];
+      extraPackages =
+        with pkgs;
+        [
+          ansible-language-server
+          ansible-lint
+          basedpyright
+          bash-language-server
+          delve
+          djlint
+          dockerfile-language-server-nodejs
+          dot-language-server
+          emmet-language-server
+          gofumpt
+          golangci-lint
+          golines
+          gomodifytags
+          gopls
+          gotests
+          hadolint
+          helm-ls
+          iferr
+          impl
+          kulala-fmt
+          libxml2
+          ltex-ls-plus
+          lua-language-server
+          lynx
+          marksman
+          neovim-remote
+          nixd
+          nixfmt-rfc-style
+          ruff
+          shellcheck
+          shellharden
+          simple-completion-language-server
+          sqlfluff
+          stylua
+          taplo
+          terraform-ls
+          tflint
+          tree-sitter
+          vscode-langservers-extracted
+          vtsls
+          yaml-language-server
+        ]
+        ++ (with lua51Packages; [
+          lua
+          luarocks
+        ])
+        ++ (with beamPackages; [
+          elixir-ls
+        ])
+        ++ (with python3Packages; [
+          chromadb
+        ])
+        ++ (with nodePackages; [
+          prettier
+          vscode-json-languageserver
+        ]);
+    };
 
     xdg.configFile."nvim/init.lua".enable = false;
 

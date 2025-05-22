@@ -10,6 +10,7 @@ return {
 		vim.keymap.set({ "n", "x" }, "s", "<nop>")
 		vim.keymap.set("n", "<c-d>", "<c-d>zz", { noremap = true, desc = "Half page down" })
 		vim.keymap.set("n", "<c-u>", "<c-u>zz", { noremap = true, desc = "Half page up" })
+		vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true, desc = "Clear search highlight" })
 
 		-- better default keys
 		vim.keymap.set("n", "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true, noremap = true, silent = true })
@@ -114,7 +115,7 @@ return {
 
 		if client:supports_method("textDocument/hover", bufnr) then
 			opts.desc = "LSP: hover"
-			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		end
 
 		if client:supports_method("textDocument/documentSymbol", bufnr) then

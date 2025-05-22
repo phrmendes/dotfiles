@@ -18,7 +18,6 @@ return {
 		require("plugins.mini.indentscope")
 		require("plugins.mini.jump")
 		require("plugins.mini.jump2d")
-		require("plugins.mini.keymap")
 		require("plugins.mini.misc")
 		require("plugins.mini.move")
 		require("plugins.mini.operators")

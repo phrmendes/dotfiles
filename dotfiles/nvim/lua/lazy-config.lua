@@ -20,6 +20,7 @@ require("lazy").setup({
 	spec = { { import = "plugins" } },
 	checker = { enabled = true },
 	ui = { border = "rounded" },
+	rocks = { enabled = false },
 	dev = { path = vim.env.HOME .. "/Projects/vim_plugins", fallback = true },
 	performance = {
 		rtp = {

@@ -70,6 +70,7 @@
 
           eval "$(${getExe pkgs.just} --completions zsh)"
           eval "$(${getExe pkgs.uv} generate-shell-completion zsh)"
+          eval "$(${getExe pkgs.helm} completion zsh)"
 
           function diff_persist() {
             sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'

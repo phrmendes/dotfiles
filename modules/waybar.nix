@@ -15,7 +15,7 @@
             icon,
             content ? "",
           }:
-          "<tt><span font='18' rise='-3000'>${icon}</span>${content}</tt>";
+          "<span font='12'>${icon} </span>${content}";
         hyprctl = "${pkgs.hyprland}/bin/hyprctl";
         modules = {
           backlight = {

@@ -27,8 +27,8 @@
         name = "Fira Sans";
       };
       monospace = {
-        package = pkgs.nerd-fonts.zed-mono;
-        name = "ZedMono Nerd Font";
+        package = pkgs.nerd-fonts.victor-mono;
+        name = "VictorMono Nerd Font";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

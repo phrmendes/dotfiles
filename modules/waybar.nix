@@ -89,7 +89,7 @@
               icon = "";
               content = " {usage}%";
             };
-            max-length = 6;
+            max-length = 10;
           };
           idle_inhibitor = {
             format = format { icon = "{icon}"; };

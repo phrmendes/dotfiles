@@ -16,7 +16,6 @@ return {
 			enabled = true,
 			ui_select = true,
 			db = { sqlite3_path = require("nix.sqlite") },
-			layout = { preview = "main", preset = "ivy" },
 		},
 		statuscolumn = {
 			enabled = true,

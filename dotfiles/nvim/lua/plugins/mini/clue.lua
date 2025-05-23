@@ -13,6 +13,9 @@ clue.setup({
 		-- `g` key
 		{ mode = "n", keys = "g" },
 		{ mode = "x", keys = "g" },
+		-- `s` key
+		{ mode = "n", keys = "s" },
+		{ mode = "x", keys = "s" },
 		-- marks
 		{ mode = "n", keys = "'" },
 		{ mode = "n", keys = "`" },

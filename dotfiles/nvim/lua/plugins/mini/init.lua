@@ -10,7 +10,6 @@ return {
 		require("plugins.mini.bufremove")
 		require("plugins.mini.clue")
 		require("plugins.mini.comment")
-		require("plugins.mini.completion")
 		require("plugins.mini.cursorword")
 		require("plugins.mini.diff")
 		require("plugins.mini.doc")

@@ -11,6 +11,7 @@
     ./fd.nix
     ./fzf.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gnome-keyring.nix
     ./gtk.nix
@@ -21,7 +22,6 @@
     ./imv.nix
     ./jq.nix
     ./k9s.nix
-    ./kitty.nix
     ./lazydocker.nix
     ./lazygit.nix
     ./mpv.nix
@@ -58,6 +58,7 @@
   fd.enable = true;
   fzf.enable = true;
   gh.enable = true;
+  ghostty.enable = true;
   git.enable = true;
   gnome-keyring.enable = true;
   gtk-settings.enable = true;
@@ -68,7 +69,6 @@
   imv.enable = true;
   jq.enable = true;
   k9s.enable = true;
-  kitty.enable = true;
   lazydocker.enable = true;
   lazygit.enable = true;
   mpv.enable = true;

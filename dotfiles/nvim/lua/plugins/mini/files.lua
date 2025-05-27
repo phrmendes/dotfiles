@@ -5,7 +5,7 @@ require("mini.files").setup({
 		go_in_plus = "<cr>",
 		go_out = "h",
 		go_out_plus = "<bs>",
-		reset = "-",
+		reset = "<del>",
 		reveal_cwd = "@",
 		show_help = "?",
 		synchronize = "=",
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("User", {
 	callback = function(event)
 		local opts = { noremap = true, buffer = event.data.buf_id }
 
-		opts.desc = "mini.files: toggle dotfiles"
+		opts.desc = "Toggle dotfiles"
 		vim.keymap.set("n", ".", function()
 			local filter_show = function() return true end
 
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("User", {
 			})
 		end, opts)
 
-		opts.desc = "mini.files: open files"
+		opts.desc = "Open file"
 		vim.keymap.set("n", "go", function()
 			local fs_entry = require("mini.files").get_fs_entry()
 
@@ -62,17 +62,17 @@ vim.api.nvim_create_autocmd("User", {
 			end)
 		end, opts)
 
-		opts.desc = "mini.files: set current workdir"
-		vim.keymap.set("n", "<leader>.", function()
+		opts.desc = "Set current workdir"
+		vim.keymap.set("n", "g.", function()
 			local current_entry_path = require("mini.files").get_fs_entry().path
 			local current_directory = vim.fs.dirname(current_entry_path)
 			if current_directory ~= nil then vim.fn.chdir(current_directory) end
 		end, opts)
 
-		opts.desc = "mini.files: open file in horizontal split"
-		vim.keymap.set("n", "<leader>-", require("utils").mini_files_split("horizontal", true), opts)
+		opts.desc = "Open file in horizontal split"
+		vim.keymap.set("n", "-", require("utils").mini_files_split("horizontal", true), opts)
 
-		opts.desc = "mini.files: open file in vertical split"
-		vim.keymap.set("n", "<leader>\\", require("utils").mini_files_split("vertical", true), opts)
+		opts.desc = "Open file in vertical split"
+		vim.keymap.set("n", "\\", require("utils").mini_files_split("vertical", true), opts)
 	end,
 })

@@ -40,7 +40,6 @@ return {
 	end,
 	keys = {
 		{ "<leader>/", function() require("mini.pick").builtin.grep_live() end, desc = "Live grep" },
-		{ "<leader>:", function() require("mini.extra").pickers.commands() end, desc = "Command history" },
 		{ "<leader>?", function() require("mini.pick").builtin.help() end, desc = "Help" },
 		{
 			"<leader>.",

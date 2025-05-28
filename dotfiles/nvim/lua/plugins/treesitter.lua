@@ -51,6 +51,7 @@ return {
 			"requirements",
 			"sql",
 			"ssh_config",
+			"templ",
 			"terraform",
 			"todotxt",
 			"toml",

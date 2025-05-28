@@ -39,7 +39,7 @@ return {
 
 			vim.api.nvim_create_autocmd("BufEnter", {
 				desc = "Options for copilot filetypes",
-				group = vim.api.nvim_create_augroup("UserCopilotFiletype", { clear = true }),
+				group = vim.api.nvim_create_augroup("UserCopilotFileType", { clear = true }),
 				pattern = "copilot-*",
 				callback = function()
 					vim.opt_local.relativenumber = false

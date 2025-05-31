@@ -80,6 +80,9 @@
       ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
       '';
+      ".local/share/nvim/nix/lua/nix/copilot.lua".text = ''
+        return "${pkgs.copilot-language-server}/bin/copilot-language-server"
+      '';
       ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {
             palette = {

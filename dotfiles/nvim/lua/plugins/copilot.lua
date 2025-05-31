@@ -7,6 +7,10 @@ return {
 			suggestion = { enabled = false },
 			panel = { enabled = false },
 			filetypes = { markdown = false, help = true },
+			server = {
+				type = "binary",
+				custom_server_filepath = require("nix.copilot"),
+			},
 		},
 	},
 	{

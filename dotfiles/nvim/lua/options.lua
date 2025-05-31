@@ -120,6 +120,9 @@ vim.opt.spell = false
 -- hover
 vim.opt.winborder = require("utils").border
 
+-- disable native show mode message
+vim.opt.showmode = false
+
 -- diagnostics
 vim.diagnostic.config({
 	severity_sort = true,

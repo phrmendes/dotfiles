@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
@@ -49,6 +48,7 @@
           ruff
           shellcheck
           shellharden
+          simple-completion-language-server
           sqlfluff
           stylua
           taplo
@@ -58,7 +58,6 @@
           vscode-langservers-extracted
           vtsls
           yaml-language-server
-          inputs.scls.defaultPackage.${pkgs.system}
         ]
         ++ (with lua51Packages; [
           lua

@@ -7,7 +7,6 @@ return {
 		"echasnovski/mini.nvim",
 		"folke/lazydev.nvim",
 		"rafamadriz/friendly-snippets",
-		"fang2hou/blink-copilot",
 	},
 	opts = {
 		signature = {
@@ -69,15 +68,9 @@ return {
 			},
 		},
 		sources = {
-			default = { "lazydev", "copilot", "lsp", "path", "snippets", "omni", "buffer" },
+			default = { "lazydev", "lsp", "path", "snippets", "omni", "buffer" },
 			per_filetype = { sql = { "dadbod" } },
 			providers = {
-				copilot = {
-					name = "copilot",
-					module = "blink-copilot",
-					score_offset = 100,
-					async = true,
-				},
 				dadbod = {
 					name = "Dadbod",
 					module = "vim_dadbod_completion.blink",

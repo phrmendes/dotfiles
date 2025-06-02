@@ -59,7 +59,7 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
 -- better completion experience
-vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "nosort" }
+vim.opt.completeopt = { "menuone", "noselect", "fuzzy" }
 
 -- default terminal
 vim.opt.shell = "zsh"
@@ -138,3 +138,30 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+-- disable builtin plugins
+local builtin_plugins = {
+	"2html_plugin",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logipat",
+	"matchit",
+	"netrw",
+	"netrwFileHandlers",
+	"netrwPlugin",
+	"netrwSettings",
+	"rrhelper",
+	"spellfile_plugin",
+	"tar",
+	"tarPlugin",
+	"tarPlugin",
+	"tohtml",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
+	"tutor",
+}
+
+vim.iter(builtin_plugins):each(function(plugin) vim.g["loaded_" .. plugin] = true end)

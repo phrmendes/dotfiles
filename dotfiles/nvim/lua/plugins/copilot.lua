@@ -1,56 +1,63 @@
-return {
-	{
-		"github/copilot.vim",
-		event = "InsertEnter",
-		init = function()
-			vim.g.copilot_filetypes = { ["copilot-chat"] = false }
-			vim.g.copilot_no_tab_map = true
-			vim.keymap.set("i", "<c-l>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
-		end,
-	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		dependencies = {
-			"github/copilot.vim",
-			"nvim-lua/plenary.nvim",
-		},
-		cmd = { "CopilotChat", "CopilotChatToggle" },
-		opts = {
-			chat_autocomplete = true,
-			selection = function(source) return require("CopilotChat.select").visual(source) end,
-			question_header = "# User ",
-			answer_header = "# Copilot ",
-			error_header = "# Error ",
-			separator = "───",
-			mappings = {
-				submit_prompt = { normal = "<cr>", insert = "<c-s>" },
-				reset = { normal = "<leader><bs>", insert = "<c-r>" },
-			},
-			prompts = {
-				Concise = "Rewrite the following text to make it more concise:\n",
-				Documentation = "Provide documentation for the following code:\n",
-				Spelling = "Correct and improve any grammar or spelling errors in the following text:\n",
-				Summarize = "Summarize the following text:\n",
-			},
-		},
-		config = function(_, opts)
-			require("CopilotChat").setup(opts)
+local add = MiniDeps.add
 
-			vim.api.nvim_create_autocmd("BufEnter", {
-				desc = "Options for copilot filetypes",
-				group = vim.api.nvim_create_augroup("UserCopilotFiletype", { clear = true }),
-				pattern = "copilot-*",
-				callback = function()
-					vim.opt_local.relativenumber = false
-					vim.opt_local.number = false
-				end,
-			})
-		end,
-		keys = {
-			{ "<leader>c", "", desc = "+copilot", mode = { "n", "x" } },
-			{ "<leader>cc", "<cmd>CopilotChat<cr>", mode = "x", desc = "Chat" },
-			{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Chat" },
-			{ "<leader>cp", "<cmd>CopilotChatPrompts<cr>", mode = { "n", "x" }, desc = "Prompts" },
+add({ source = "zbirenbaum/copilot.lua" })
+
+add({
+	source = "CopilotC-Nvim/CopilotChat.nvim",
+	depends = {
+		"zbirenbaum/copilot.lua",
+		"nvim-lua/plenary.nvim",
+	},
+})
+
+vim.g.copilot_filetypes = { ["copilot-chat"] = false }
+
+require("copilot").setup({
+	suggestion = {
+		enabled = true,
+		auto_trigger = true,
+		hide_during_completion = true,
+		keymap = {
+			accept = "<c-l>",
+			next = "<c-right>",
+			prev = "<c-left>",
+			dismiss = "<c-e>",
 		},
 	},
-}
+	server = {
+		type = "binary",
+		custom_server_filepath = require("nix.copilot"),
+	},
+})
+
+require("CopilotChat").setup({
+	chat_autocomplete = true,
+	selection = function(source) return require("CopilotChat.select").visual(source) end,
+	question_header = "# User ",
+	answer_header = "# Copilot ",
+	error_header = "# Error ",
+	separator = "───",
+	mappings = {
+		submit_prompt = { normal = "<cr>", insert = "<c-s>" },
+		reset = { normal = "<leader><bs>", insert = "<c-r>" },
+	},
+	prompts = {
+		Concise = "Rewrite the following text to make it more concise:\n",
+		Documentation = "Provide documentation for the following code:\n",
+		Spelling = "Correct and improve any grammar or spelling errors in the following text:\n",
+		Summarize = "Summarize the following text:\n",
+	},
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	desc = "Options for copilot filetypes",
+	group = vim.api.nvim_create_augroup("UserCopilotFileType", { clear = true }),
+	pattern = "copilot-*",
+	callback = function()
+		vim.opt_local.relativenumber = false
+		vim.opt_local.number = false
+	end,
+})
+
+vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "Chat" })
+vim.keymap.set({ "n", "x" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Chat" })

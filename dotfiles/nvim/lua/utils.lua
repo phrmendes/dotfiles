@@ -93,4 +93,68 @@ M.mini_files_split = function(direction, close_on_file)
 	end
 end
 
+--- Open files in mini.files
+M.mini_files_open = function()
+	if not require("mini.files").close() then
+		local path = vim.fn.expand("%:p:h")
+		if vim.uv.fs_stat(path) then
+			require("mini.files").open(path, true)
+			return
+		end
+		require("mini.files").open(nil, true)
+	end
+end
+
+--- Open the mini.pick buffer picker with a custom mapping for wiping out buffers
+M.mini_pick_buffers = function()
+	MiniPick.builtin.buffers(nil, {
+		mappings = {
+			wipeout = {
+				char = "<c-d>",
+				func = function() vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {}) end,
+			},
+		},
+	})
+end
+
+--- Open the mini.pick grep picker with a custom mapping for grepping the word under the cursor or in visual selection
+M.mini_pick_grep_word = function()
+	local mode = vim.api.nvim_get_mode().mode
+
+	if mode == "n" then
+		MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") })
+		return
+	end
+
+	local v_start = vim.fn.getpos(".")
+	local v_end = vim.fn.getpos("v")
+	local region = table.concat(vim.fn.getregion(v_start, v_end)):gsub("\t", "")
+
+	MiniPick.builtin.grep({ pattern = region })
+end
+
+--- Add mini.visits label using `vim.ui.input`
+M.mini_visits_add_label = function()
+	vim.ui.input({ prompt = "Label: " }, function(input)
+		if input == "" or input == nil then
+			vim.notify("Label cannot be empty", vim.log.levels.ERROR)
+			return
+		end
+
+		MiniVisits.add_label(input)
+	end)
+end
+
+--- Remove mini.visits label using `vim.ui.select`
+M.mini_visits_remove_label = function()
+	vim.ui.select(MiniVisits.list_labels(), { prompt = "Select label: " }, function(input)
+		if input == "" or input == nil then
+			vim.notify("Label cannot be empty", vim.log.levels.ERROR)
+			return
+		end
+
+		MiniVisits.remove_label(input)
+	end)
+end
+
 return M

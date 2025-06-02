@@ -1,4 +1,3 @@
-return {
-	"MagicDuck/grug-far.nvim",
-	cmd = { "GrugFar" },
-}
+MiniDeps.add({ source = "MagicDuck/grug-far.nvim" })
+
+require("grug-far").setup()

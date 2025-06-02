@@ -1,4 +1,1 @@
-return {
-	"towolf/vim-helm",
-	ft = "helm",
-}
+MiniDeps.add({ source = "towolf/vim-helm" })

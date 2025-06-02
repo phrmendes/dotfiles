@@ -20,4 +20,4 @@ require("mini.notify").setup({
 	window = { config = { border = require("utils").border } },
 })
 
-vim.notify = require("mini.notify").make_notify()
+vim.notify = MiniNotify.make_notify()

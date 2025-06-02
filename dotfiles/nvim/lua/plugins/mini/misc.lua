@@ -1,5 +1,5 @@
-local misc = require("mini.misc")
+require("mini.misc").setup()
 
-misc.setup()
-misc.setup_auto_root()
-misc.setup_restore_cursor()
+MiniMisc.setup_auto_root()
+MiniMisc.setup_restore_cursor()
+MiniMisc.setup_termbg_sync()

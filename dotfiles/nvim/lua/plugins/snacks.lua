@@ -1,25 +1,20 @@
-return {
-	"folke/snacks.nvim",
-	priority = 1000,
-	lazy = false,
-	opts = {
-		input = { enabled = true },
-		bigfile = { enabled = true },
-		quickfile = { enabled = true },
-		words = { enabled = true },
-		lazygit = { configure = false },
-		terminal = { win = { wo = { winbar = "" } } },
-		statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
-		image = { enabled = true },
-	},
-	keys = {
-		{ "<leader>Z", function() Snacks.zen() end, desc = "Zen" },
-		{ "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom" },
-		{ "<leader>gb", function() Snacks.git.blame_line() end, desc = "Blame line" },
-		{ "<leader>gg", function() Snacks.lazygit() end, desc = "LazyGit" },
-		{ "<leader>go", function() Snacks.gitbrowse() end, desc = "Open in browser" },
-		{ "<leader>m", function() Snacks.picker.marks() end, desc = "Marks" },
-		{ "<leader>z", function() Snacks.zen.zoom() end, desc = "Zoom" },
-		{ "<c-\\>", function() Snacks.terminal() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
-	},
-}
+MiniDeps.add({
+	source = "folke/snacks.nvim",
+	depends = { "echasnovski/mini.nvim" },
+})
+
+require("snacks").setup({
+	input = { enabled = true },
+	bigfile = { enabled = true },
+	quickfile = { enabled = true },
+	words = { enabled = true },
+	lazygit = { configure = false },
+	terminal = { win = { wo = { winbar = "" } } },
+	statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
+	image = { enabled = true },
+})
+
+vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
+vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
+vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
+vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })

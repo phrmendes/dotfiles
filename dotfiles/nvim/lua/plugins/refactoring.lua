@@ -1,89 +1,9 @@
-local ft = { "go", "lua", "python" }
+MiniDeps.add({
+	source = "ThePrimeagen/refactoring.nvim",
+	depends = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+})
 
-return {
-	"ThePrimeagen/refactoring.nvim",
-	ft = ft,
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-	},
-	opts = {
-		prompt_func_return_type = { go = true },
-		prompt_func_param_type = { go = true },
-	},
-	keys = {
-		{ "<leader>r", "", desc = "+refactoring", ft = ft, mode = { "n", "x" } },
-		{ "<leader>re", "", desc = "+extract", ft = ft, mode = { "n", "x" } },
-		{ "<leader>ri", "", desc = "+inline", ft = ft, mode = { "n", "x" } },
-		{
-			"<leader>ref",
-			function() return require("refactoring").refactor("Extract Function") end,
-			desc = "Function",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>reF",
-			function() return require("refactoring").refactor("Extract Function To File") end,
-			desc = "Function to file",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>rev",
-			function() return require("refactoring").refactor("Extract Variable") end,
-			desc = "Variable",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>reb",
-			function() return require("refactoring").refactor("Extract Block") end,
-			desc = "Block",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>reB",
-			function() return require("refactoring").refactor("Extract Block To File") end,
-			desc = "Block to file",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>rif",
-			function() return require("refactoring").refactor("Inline Function") end,
-			desc = "Function",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>riv",
-			function() return require("refactoring").refactor("Inline Variable") end,
-			desc = "Variable",
-			mode = { "n", "x" },
-			expr = true,
-			ft = ft,
-		},
-		{
-			"<leader>rp",
-			function() require("refactoring").debug.print_var({}) end,
-			desc = "Print variable",
-			mode = { "n", "x" },
-			ft = ft,
-		},
-		{
-			"<leader>rc",
-			function() require("refactoring").debug.cleanup({}) end,
-			desc = "Clear print statements",
-			ft = ft,
-		},
-	},
-}
+require("refactoring").setup({
+	prompt_func_return_type = { go = true },
+	prompt_func_param_type = { go = true },
+})

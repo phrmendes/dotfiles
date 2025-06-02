@@ -23,7 +23,6 @@ map("x", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = t
 
 -- leader keys
 map("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })
-map("n", "<leader>=", "<c-w>=", { noremap = true, desc = "Resize and make windows equal" })
 map("n", "<leader>\\", "<cmd>vsplit<cr>", { noremap = true, desc = "Split (V)" })
 map("n", "<leader>W", "<cmd>wall!<cr>", { noremap = true, desc = "Write all" })
 map("n", "<leader>q", "<cmd>q<cr>", { noremap = true, desc = "Quit" })

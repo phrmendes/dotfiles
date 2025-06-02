@@ -1,1 +1,1 @@
-return { "tpope/vim-abolish" }
+MiniDeps.add({ source = "tpope/vim-abolish" })

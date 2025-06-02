@@ -1,4 +1,1 @@
-return {
-	"pearofducks/ansible-vim",
-	ft = "ansible",
-}
+MiniDeps.add({ source = "pearofducks/ansible-vim" })

@@ -11,4 +11,4 @@ require("mini.pick").setup({
 	},
 })
 
-vim.ui.select = require("mini.pick").ui_select
+vim.ui.select = MiniPick.ui_select

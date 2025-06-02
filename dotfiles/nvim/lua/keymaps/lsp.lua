@@ -16,27 +16,27 @@ return function(client, bufnr)
 
 	if client:supports_method("textDocument/definition", bufnr) then
 		opts.desc = "LSP: go to definition"
-		map("n", "gd", function() require("mini.extra").pickers.lsp({ scope = "definition" }) end, opts)
+		map("n", "gd", function() MiniExtra.pickers.lsp({ scope = "definition" }) end, opts)
 	end
 
 	if client:supports_method("textDocument/declaration", bufnr) then
 		opts.desc = "LSP: go to declaration"
-		map("n", "gD", function() require("mini.extra").pickers.lsp({ scope = "declaration" }) end, opts)
+		map("n", "gD", function() MiniExtra.pickers.lsp({ scope = "declaration" }) end, opts)
 	end
 
 	if client:supports_method("textDocument/implementation", bufnr) then
 		opts.desc = "LSP: go to implementations"
-		map("n", "gi", function() require("mini.extra").pickers.lsp({ scope = "implementation" }) end, opts)
+		map("n", "gi", function() MiniExtra.pickers.lsp({ scope = "implementation" }) end, opts)
 	end
 
 	if client:supports_method("textDocument/references", bufnr) then
 		opts.desc = "LSP: go to references"
-		map("n", "gr", function() require("mini.extra").pickers.lsp({ scope = "references" }) end, opts)
+		map("n", "gr", function() MiniExtra.pickers.lsp({ scope = "references" }) end, opts)
 	end
 
 	if client:supports_method("textDocument/typeDefinition", bufnr) then
 		opts.desc = "LSP: go to type definition"
-		map("n", "gt", function() require("mini.extra").pickers.lsp({ scope = "type_definition" }) end, opts)
+		map("n", "gt", function() MiniExtra.pickers.lsp({ scope = "type_definition" }) end, opts)
 	end
 
 	if client:supports_method("textDocument/codeAction", bufnr) then
@@ -46,10 +46,10 @@ return function(client, bufnr)
 
 	if client:supports_method("textDocument/publishDiagnostics", bufnr) then
 		opts.desc = "LSP: diagnostics"
-		map("n", "<leader>d", function() require("mini.extra").pickers.diagnostic({ scope = "current" }) end, opts)
+		map("n", "<leader>d", function() MiniExtra.pickers.diagnostic({ scope = "current" }) end, opts)
 
 		opts.desc = "LSP: workspace diagnostics"
-		map("n", "<leader>D", function() require("mini.extra").pickers.diagnostic() end, opts)
+		map("n", "<leader>D", function() MiniExtra.pickers.diagnostic() end, opts)
 
 		opts.desc = "LSP: diagnostics (float)"
 		map("n", "<leader>f", vim.diagnostic.open_float, opts)
@@ -72,11 +72,11 @@ return function(client, bufnr)
 
 	if client:supports_method("textDocument/documentSymbol", bufnr) then
 		opts.desc = "LSP: symbols (document)"
-		map("n", "<leader>s", function() require("mini.extra").pickers.lsp({ scope = "document_symbol" }) end, opts)
+		map("n", "<leader>s", function() MiniExtra.pickers.lsp({ scope = "document_symbol" }) end, opts)
 	end
 
 	if client:supports_method("workspace/symbol", bufnr) then
 		opts.desc = "LSP: symbols (workspace)"
-		map("n", "<leader>S", function() require("mini.extra").pickers.lsp({ scope = "workspace_symbol" }) end, opts)
+		map("n", "<leader>S", function() MiniExtra.pickers.lsp({ scope = "workspace_symbol" }) end, opts)
 	end
 end

@@ -1,7 +1,3 @@
-return {
-	"mbbill/undotree",
-	cmd = { "UndotreeToggle" },
-	keys = {
-		{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree" },
-	},
-}
+MiniDeps.add({ source = "mbbill/undotree" })
+
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo Tree" })

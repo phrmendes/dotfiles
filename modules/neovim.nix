@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
@@ -25,6 +26,7 @@
           ansible-lint
           basedpyright
           bash-language-server
+          copilot-language-server
           delve
           djlint
           dockerfile-language-server-nodejs
@@ -48,7 +50,6 @@
           ruff
           shellcheck
           shellharden
-          simple-completion-language-server
           sqlfluff
           stylua
           taplo
@@ -58,6 +59,7 @@
           vscode-langservers-extracted
           vtsls
           yaml-language-server
+          inputs.scls.defaultPackage.${pkgs.system}
         ]
         ++ (with lua51Packages; [
           lua

@@ -54,7 +54,7 @@ clue.setup({
 		delay = 500,
 		config = {
 			width = "auto",
-			border = require("utils").border,
+			border = vim.g.border,
 		},
 	},
 })

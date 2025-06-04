@@ -6,4 +6,4 @@ snippets.setup({
 	},
 })
 
-snippets.start_lsp_server()
+MiniSnippets.start_lsp_server()

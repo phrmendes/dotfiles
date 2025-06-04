@@ -86,8 +86,8 @@ if vim.env.SSH_TTY then
 			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
 		},
 		paste = {
-			["+"] = require("utils").paste,
-			["*"] = require("utils").paste,
+			["+"] = require("helpers").paste,
+			["*"] = require("helpers").paste,
 		},
 	}
 end
@@ -117,8 +117,11 @@ vim.filetype.add({
 -- spell
 vim.opt.spell = false
 
+-- border
+vim.g.border = "rounded"
+
 -- hover
-vim.opt.winborder = require("utils").border
+vim.opt.winborder = vim.g.border
 
 -- disable native show mode message
 vim.opt.showmode = false
@@ -128,7 +131,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 	virtual_lines = { current_line = true },
 	underline = false,
-	float = { border = require("utils").border },
+	float = { border = vim.g.border },
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",

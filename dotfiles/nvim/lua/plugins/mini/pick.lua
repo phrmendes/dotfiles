@@ -6,7 +6,7 @@ require("mini.pick").setup({
 	},
 	window = {
 		config = {
-			border = require("utils").border,
+			border = vim.g.border,
 		},
 	},
 })

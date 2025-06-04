@@ -1,4 +1,7 @@
-require("mini.notify").setup({
+local notify = require("mini.notify")
+
+notify.setup({
+	window = { config = { border = vim.g.border } },
 	content = {
 		sort = function(array)
 			local filter_generator = function(filter)
@@ -14,10 +17,9 @@ require("mini.notify").setup({
 				array = vim.tbl_filter(filter_generator(filter), array)
 			end
 
-			return require("mini.notify").default_sort(array)
+			return notify.default_sort(array)
 		end,
 	},
-	window = { config = { border = require("utils").border } },
 })
 
 vim.notify = MiniNotify.make_notify()

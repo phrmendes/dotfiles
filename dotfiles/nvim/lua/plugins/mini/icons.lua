@@ -1,5 +1,3 @@
-local icons = require("mini.icons")
-
-icons.setup()
+require("mini.icons").setup()
 
 MiniDeps.later(MiniIcons.tweak_lsp_kind)

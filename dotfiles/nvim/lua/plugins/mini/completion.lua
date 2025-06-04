@@ -1,7 +1,7 @@
 require("mini.completion").setup({
 	window = {
-		info = { height = 25, width = 80, border = require("utils").border },
-		signature = { height = 25, width = 80, border = require("utils").border },
+		info = { height = 25, width = 80, border = vim.g.border },
+		signature = { height = 25, width = 80, border = vim.g.border },
 	},
 	fallback_action = "<c-n>",
 	lsp_completion = {

@@ -1,4 +1,4 @@
-local get_dictionary_words = require("utils").get_dictionary_words
+local get_dictionary_words = require("helpers").get_dictionary_words
 
 return {
 	on_attach = function(client, bufnr)
@@ -12,7 +12,7 @@ return {
 				return
 			end
 
-			local words = require("utils").add_word_to_dictionary(language, word)
+			local words = require("helpers").add_word_to_dictionary(language, word)
 
 			settings.ltex.dictionary[language] = words
 

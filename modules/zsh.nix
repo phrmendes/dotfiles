@@ -59,6 +59,7 @@
             s = sesh;
             v = "nvim";
             src = "source .venv/bin/activate";
+            apply = "git add . && nh os switch";
           };
         initContent = ''
           export PATH="$HOME/.local/bin:$PATH"

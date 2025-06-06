@@ -10,6 +10,7 @@ return {
   ["lazydev.nvim"] = "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c",
   ["markdown-preview.nvim"] = "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
   ["markdown.nvim"] = "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2",
+  ["mdx.nvim"] = "464a74be368dce212cff02f6305845dc7f209ab3",
   ["mini.nvim"] = "29586b1271403f927814affdc5441d335a0e8ea9",
   ["notes.nvim"] = "dd76e7d9ce866e73664ab3b5257f65943e69eec9",
   ["nvim-bqf"] = "e20417d5e589e03eaaaadc4687904528500608be",

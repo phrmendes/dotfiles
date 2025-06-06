@@ -2,6 +2,7 @@ local add = MiniDeps.add
 local later = MiniDeps.later
 
 add({ source = "tadmccorkle/markdown.nvim" })
+add({ source = "davidmh/mdx.nvim", depends = { "nvim-treesitter/nvim-treesitter" } })
 
 local build = function() vim.fn["mkdp#util#install"]() end
 
@@ -26,3 +27,5 @@ require("markdown").setup({
 		map("n", "<leader>p", "<cmd>MarkdownPreviewToggle<CR>", { buffer = bufnr, desc = "markdown: toggle preview" })
 	end,
 })
+
+require("mdx").setup()

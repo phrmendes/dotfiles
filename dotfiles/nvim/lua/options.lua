@@ -109,8 +109,8 @@ vim.filetype.add({
 		["*/.envrc"] = "sh",
 	},
 	extension = {
-		["http"] = "http",
-		["tf"] = "terraform",
+		http = "http",
+		tf = "terraform",
 	},
 })
 

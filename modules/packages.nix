@@ -16,6 +16,7 @@
         );
       in
       [
+        ast-grep
         bitwarden-cli
         bitwarden-desktop
         curl
@@ -33,6 +34,7 @@
         ghostscript
         go
         gotools
+        grpcurl
         hyprland-qtutils
         imagemagick
         jdk
@@ -63,6 +65,7 @@
         stremio
         tectonic
         terraform
+        websocat
         wofi-emoji
         wofi-power-menu
         zotero

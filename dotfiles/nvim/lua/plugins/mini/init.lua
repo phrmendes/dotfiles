@@ -55,7 +55,6 @@ end)
 
 map("n", "<leader>/", function() MiniPick.builtin.grep_live() end, { desc = "Live grep" })
 map("n", "<leader>?", function() MiniPick.builtin.help() end, { desc = "Help" })
-map("n", "<leader>.", function() helpers_mini.pick.grep_word() end, { desc = "Files" })
 map("n", "<leader>=", function() MiniMisc.resize_window() end, { noremap = true, desc = "Resize to default size" })
 map("n", "<leader><leader>", function() MiniPick.builtin.files() end, { desc = "Files" })
 map("n", "<leader><del>", function() MiniNotify.clear() end, { desc = "Clear notifications" })

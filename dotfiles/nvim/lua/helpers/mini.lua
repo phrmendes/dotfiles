@@ -24,7 +24,7 @@ M.files.split = function(direction, close_on_file)
 	end
 end
 
---- Open files in mini.files
+--- Toggle mini.files
 M.files.open = function()
 	if not MiniFiles.close() then
 		local path = vim.fn.expand("%:p:h")
@@ -33,6 +33,60 @@ M.files.open = function()
 			return
 		end
 		MiniFiles.open(nil, true)
+	end
+end
+
+--- Toggle dotfiles in mini.files
+M.files.toggle_dotfiles = function()
+	local filter_show = function() return true end
+
+	local filter_hide = function(fs_entry) return not vim.startswith(fs_entry.name, ".") end
+
+	vim.g.mini_show_dotfiles = not vim.g.mini_show_dotfiles
+
+	MiniFiles.refresh({
+		content = { filter = vim.g.mini_show_dotfiles and filter_show or filter_hide },
+	})
+end
+
+--- Open file from mini.files
+M.files.open_file = function()
+	local fs_entry = MiniFiles.get_fs_entry()
+
+	if not fs_entry then
+		vim.notify("No file selected", vim.log.levels.ERROR, { title = "mini.nvim" })
+		return
+	end
+
+	vim.schedule(function()
+		vim.notify("Opening " .. fs_entry.name, vim.log.levels.INFO, { title = "mini.nvim" })
+		vim.ui.open(fs_entry.path)
+	end)
+end
+
+--- Set current workdir in mini.files
+M.files.set_cwd = function()
+	local current_entry_path = MiniFiles.get_fs_entry().path
+	local current_directory = vim.fs.dirname(current_entry_path)
+	if current_directory ~= nil then vim.fn.chdir(current_directory) end
+end
+
+--- Search limited to focused directory in mini.files
+M.files.grug_far_replace = function()
+	local grug_far = require("grug-far")
+
+	local cur_entry_path = MiniFiles.get_fs_entry().path
+	local prefills = { paths = vim.fs.dirname(cur_entry_path) }
+
+	if not grug_far.has_instance("explorer") then
+		grug_far.open({
+			instanceName = "explorer",
+			prefills = prefills,
+			staticTitle = "Find and Replace from Explorer",
+		})
+	else
+		grug_far.get_instance("explorer"):open()
+		grug_far.get_instance("explorer"):update_input_values(prefills, false)
 	end
 end
 

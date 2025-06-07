@@ -3,6 +3,7 @@ require("mini.pick").setup({
 		refine = "<c-r>",
 		refine_marked = "<a-r>",
 		paste = "<c-y>",
+		choose_marked = "<c-q>",
 	},
 	window = {
 		config = {

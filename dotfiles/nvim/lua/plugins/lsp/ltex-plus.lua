@@ -18,7 +18,7 @@ return {
 
 			client:notify("workspace/didChangeConfiguration", { settings = settings })
 
-			vim.notify("Word added to dictionary [`" .. language .. "`]: " .. word, vim.log.levels.INFO, { title = "Ltex" })
+			vim.notify("Word added to dictionary `" .. language .. "`: " .. word, vim.log.levels.INFO, { title = "Ltex" })
 		end, { desc = "Ltex: add word to dictionary", buffer = bufnr })
 
 		vim.api.nvim_buf_create_user_command(bufnr, "Ltex", function()

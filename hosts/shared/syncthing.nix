@@ -23,7 +23,7 @@
           autoAcceptFolders = true;
         };
         "orangepizero2" = {
-          id = "BVM7PXK-VIQOZQ4-Z3RFYNH-33GVYPJ-WYSRYBK-3DQ2N2X-JJXXI56-7OSSKQW";
+          id = "JWNCU2I-XBHGNBJ-LRH4TME-FGDYYF7-NNKO7XB-ZEYZQOU-3JJBOG7-T7KQDQP";
           autoAcceptFolders = true;
         };
         "desktop" = {

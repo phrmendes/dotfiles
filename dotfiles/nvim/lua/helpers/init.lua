@@ -70,4 +70,15 @@ M.paste = function()
 	}
 end
 
+--- Returns all subdirectories under a path. The path is absolute.
+--- @param path string: The path to search for subdirectories.
+--- @return string[]: A list of subdirectory paths.
+M.get_subdirectories = function(path)
+	return vim
+		.iter(vim.fs.dir(path))
+		:filter(function(_, type) return type == "directory" end)
+		:map(function(name, _) return vim.fs.joinpath(path, name) end)
+		:totable()
+end
+
 return M

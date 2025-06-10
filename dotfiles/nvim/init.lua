@@ -1,7 +1,8 @@
-local package_path = vim.fn.stdpath("data") .. "/site/"
-local mini_path = package_path .. "pack/deps/start/mini.nvim"
-local dev_path = vim.env.HOME .. "/Projects/vim_plugins"
+local plugins_path = vim.fs.joinpath(vim.fn.stdpath("data"), "site")
+local mini_path = vim.fs.joinpath(plugins_path, "/pack", "deps", "start", "mini.nvim")
 local nix_path = vim.fn.stdpath("data") .. "/nix"
+local dev_plugins_paths = require("helpers").get_subdirectories(vim.env.HOME .. "/Projects/vim_plugins")
+local paths = vim.iter({ mini_path, nix_path, dev_plugins_paths }):flatten():totable()
 
 if not vim.uv.fs_stat(mini_path) then
 	local mini_repo = "https://github.com/echasnovski/mini.nvim"
@@ -14,9 +15,9 @@ if not vim.uv.fs_stat(mini_path) then
 	end
 end
 
-require("mini.deps").setup({ path = { package = package_path } })
+require("mini.deps").setup({ path = { package = plugins_path } })
 
-vim.iter({ mini_path, dev_path, nix_path }):each(function(path) vim.opt.rtp:prepend(path) end)
+vim.iter(paths):each(function(path) vim.opt.rtp:prepend(path) end)
 
 require("options")
 require("autocmds")

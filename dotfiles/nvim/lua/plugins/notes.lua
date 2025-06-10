@@ -1,10 +1,5 @@
 local map = vim.keymap.set
 
-MiniDeps.add({
-	source = "phrmendes/notes.nvim",
-	depends = { "echasnovski/mini.nvim" },
-})
-
 require("notes").setup({
 	path = vim.env.HOME .. "/Documents/notes",
 	picker = "mini",

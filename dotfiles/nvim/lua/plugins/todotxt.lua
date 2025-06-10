@@ -1,5 +1,3 @@
-MiniDeps.add({ source = "phrmendes/todotxt.nvim" })
-
 local map = vim.keymap.set
 
 require("todotxt").setup({

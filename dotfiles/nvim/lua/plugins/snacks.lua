@@ -1,20 +1,22 @@
-MiniDeps.add({
-	source = "folke/snacks.nvim",
-	depends = { "echasnovski/mini.nvim" },
-})
+local add, now = MiniDeps.add, MiniDeps.now
+local map = vim.keymap.set
 
-require("snacks").setup({
-	input = { enabled = true },
-	bigfile = { enabled = true },
-	quickfile = { enabled = true },
-	words = { enabled = true },
-	lazygit = { configure = false },
-	terminal = { win = { wo = { winbar = "" } } },
-	statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
-	image = { enabled = true },
-})
+now(function()
+	add({ source = "folke/snacks.nvim", depends = { "echasnovski/mini.nvim" } })
 
-vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
-vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
-vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
-vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
+	require("snacks").setup({
+		input = { enabled = true },
+		bigfile = { enabled = true },
+		quickfile = { enabled = true },
+		words = { enabled = true },
+		lazygit = { configure = false },
+		terminal = { win = { wo = { winbar = "" } } },
+		statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
+		image = { enabled = true },
+	})
+
+	map("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
+	map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
+	map("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
+	map({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
+end)

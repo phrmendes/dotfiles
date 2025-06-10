@@ -1,1 +1,1 @@
-require("mini.statusline").setup()
+MiniDeps.now(function() require("mini.statusline").setup() end)

@@ -1,1 +1,1 @@
-require("mini.visits").setup()
+MiniDeps.later(function() require("mini.visits").setup() end)

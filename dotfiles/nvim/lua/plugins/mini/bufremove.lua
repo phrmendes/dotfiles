@@ -1,1 +1,1 @@
-require("mini.bufremove").setup()
+MiniDeps.later(function() require("mini.bufremove").setup() end)

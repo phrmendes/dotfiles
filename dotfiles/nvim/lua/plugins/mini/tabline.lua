@@ -1,1 +1,1 @@
-require("mini.tabline").setup()
+MiniDeps.now(function() require("mini.tabline").setup() end)

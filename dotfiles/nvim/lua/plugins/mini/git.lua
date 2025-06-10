@@ -1,1 +1,1 @@
-require("mini.git").setup({ command = { split = "horizontal" } })
+MiniDeps.later(function() require("mini.git").setup({ command = { split = "horizontal" } }) end)

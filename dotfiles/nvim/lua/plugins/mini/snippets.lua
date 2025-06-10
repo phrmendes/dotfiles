@@ -1,9 +1,11 @@
-local snippets = require("mini.snippets")
+MiniDeps.later(function()
+	local snippets = require("mini.snippets")
 
-snippets.setup({
-	snippets = {
-		snippets.gen_loader.from_lang(),
-	},
-})
+	snippets.setup({
+		snippets = {
+			snippets.gen_loader.from_lang(),
+		},
+	})
 
-MiniSnippets.start_lsp_server()
+	MiniSnippets.start_lsp_server()
+end)

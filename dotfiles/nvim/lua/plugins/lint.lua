@@ -1,17 +1,21 @@
-MiniDeps.add({ source = "mfussenegger/nvim-lint" })
+local add, later = MiniDeps.add, MiniDeps.later
 
-local lint = require("lint")
+later(function()
+	add({ source = "mfussenegger/nvim-lint" })
 
-lint.linters_by_ft = {
-	htmldjango = { "djlint" },
-	jinja2 = { "djlint" },
-	dockerfile = { "hadolint" },
-	terraform = { "tflint" },
-	go = { "golangcilint" },
-}
+	local lint = require("lint")
 
-vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
-	desc = "Run linters on file save, read, or leave insert mode",
-	group = vim.api.nvim_create_augroup("UserLint", { clear = true }),
-	callback = function() lint.try_lint() end,
-})
+	lint.linters_by_ft = {
+		htmldjango = { "djlint" },
+		jinja2 = { "djlint" },
+		dockerfile = { "hadolint" },
+		terraform = { "tflint" },
+		go = { "golangcilint" },
+	}
+
+	vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+		desc = "Run linters on file save, read, or leave insert mode",
+		group = vim.api.nvim_create_augroup("UserLint", { clear = true }),
+		callback = function() lint.try_lint() end,
+	})
+end)

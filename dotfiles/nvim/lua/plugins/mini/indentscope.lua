@@ -1,1 +1,1 @@
-require("mini.indentscope").setup({ symbol = "│" })
+MiniDeps.later(function() require("mini.indentscope").setup({ symbol = "│" }) end)

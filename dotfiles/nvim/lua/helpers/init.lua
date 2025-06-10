@@ -81,4 +81,34 @@ M.get_subdirectories = function(path)
 		:totable()
 end
 
+--- Load all plugins in a directory.
+--- @param path string: The path to the plugins directory.
+--- @return nil
+M.load_plugins = function(path)
+	if not vim.uv.fs_stat(path) then
+		vim.notify("Plugins directory does not exist: " .. path, vim.log.levels.ERROR)
+		return
+	end
+
+	vim
+		.iter(vim.fs.dir(path))
+		:map(function(name, type)
+			if type == "file" then return name:sub(1, -5) end
+			return name
+		end)
+		:filter(function(name, _) return name ~= "init" end)
+		:each(function(name, _)
+			local rel = path:match(".-/plugins/(.+)")
+			local plugin
+
+			if rel then
+				plugin = "plugins." .. rel:gsub("/", ".") .. "." .. name
+			else
+				plugin = "plugins." .. name
+			end
+
+			require(plugin)
+		end)
+end
+
 return M

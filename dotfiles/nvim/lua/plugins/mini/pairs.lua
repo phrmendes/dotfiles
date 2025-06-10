@@ -1,1 +1,3 @@
-require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } })
+MiniDeps.later(
+	function() require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } }) end
+)

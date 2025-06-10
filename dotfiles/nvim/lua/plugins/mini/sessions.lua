@@ -1,1 +1,1 @@
-require("mini.sessions").setup()
+MiniDeps.now(function() require("mini.sessions").setup() end)

@@ -1,1 +1,1 @@
-require("mini.test").setup()
+MiniDeps.later(function() require("mini.test").setup() end)

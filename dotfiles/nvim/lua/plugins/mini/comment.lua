@@ -1,1 +1,1 @@
-require("mini.comment").setup()
+MiniDeps.later(function() require("mini.comment").setup() end)

@@ -1,3 +1,7 @@
-MiniDeps.add({ source = "mbbill/undotree" })
+local add, later = MiniDeps.add, MiniDeps.later
 
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo Tree" })
+later(function()
+	add({ source = "mbbill/undotree" })
+
+	vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo Tree" })
+end)

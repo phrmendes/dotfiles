@@ -1,6 +1,6 @@
 local plugins_path = vim.fs.joinpath(vim.fn.stdpath("data"), "site")
 local mini_path = vim.fs.joinpath(plugins_path, "/pack", "deps", "start", "mini.nvim")
-local nix_path = vim.fn.stdpath("data") .. "/nix"
+local nix_path = vim.fs.joinpath(vim.fn.stdpath("data"), "nix")
 local dev_plugins_paths = require("helpers").get_subdirectories(vim.env.HOME .. "/Projects/vim_plugins")
 local paths = vim.iter({ mini_path, nix_path, dev_plugins_paths }):flatten():totable()
 

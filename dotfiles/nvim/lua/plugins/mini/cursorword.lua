@@ -1,1 +1,1 @@
-require("mini.cursorword").setup()
+MiniDeps.later(function() require("mini.cursorword").setup() end)

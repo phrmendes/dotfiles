@@ -23,7 +23,7 @@
       shell = lib.getExe pkgs.zsh;
       extraConfig =
         let
-          status_bar = "  #I: #W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
+          status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
           fd = lib.getExe pkgs.fd;
           fzf = lib.getExe pkgs.fzf;
           sesh = lib.getExe pkgs.sesh;
@@ -42,7 +42,7 @@
           set -g status              'on'
           set -g status-interval     3
           set -g status-justify      'left'
-          set -g status-left         ""
+          set -g status-left         '  '
           set -g status-position     top
           set -g status-right        '  #S   #H '
           set -g status-right-length '80'

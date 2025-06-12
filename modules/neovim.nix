@@ -50,7 +50,7 @@
           ruff
           shellcheck
           shellharden
-          sqlfluff
+          sqruff
           stylua
           taplo
           terraform-ls

@@ -27,7 +27,6 @@ later(function()
 
 	require("CopilotChat").setup({
 		chat_autocomplete = true,
-		selection = function(source) return require("CopilotChat.select").visual(source) end,
 		question_header = "# User ",
 		answer_header = "# Copilot ",
 		error_header = "# Error ",

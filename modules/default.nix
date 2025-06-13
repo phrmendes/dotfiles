@@ -1,6 +1,7 @@
 { parameters, ... }:
 {
   imports = [
+    ./atuin.nix
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
@@ -48,6 +49,7 @@
     ./zsh.nix
   ];
 
+  atuin.enable = true;
   bat.enable = true;
   blueman-applet.enable = true;
   btop.enable = true;

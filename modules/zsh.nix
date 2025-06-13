@@ -43,6 +43,8 @@
             '';
           in
           {
+            apply = "git add . && nh os switch";
+            asr = "${getExe pkgs.atuin} scripts run";
             cat = getExe pkgs.bat;
             du = getExe pkgs.gdu;
             find = getExe pkgs.fd;
@@ -53,13 +55,12 @@
             ld = getExe pkgs.lazydocker;
             lg = getExe pkgs.lazygit;
             ps = getExe pkgs.procs;
-            sed = getExe pkgs.gnused;
-            top = getExe pkgs.btop;
-            t = "${getExe pkgs.tmux} new-session -A -s default";
             s = sesh;
-            v = "nvim";
+            sed = getExe pkgs.gnused;
             src = "source .venv/bin/activate";
-            apply = "git add . && nh os switch";
+            t = "${getExe pkgs.tmux} new-session -A -s default";
+            top = getExe pkgs.btop;
+            v = "nvim";
           };
         initContent = ''
           export PATH="$HOME/.local/bin:$PATH"

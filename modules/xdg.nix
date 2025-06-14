@@ -2,6 +2,10 @@
   xdg = {
     enable = true;
     mime.enable = true;
+    portal.config = {
+      common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+      hyprland."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+    };
     desktopEntries = {
       neovim = {
         name = "Neovim";

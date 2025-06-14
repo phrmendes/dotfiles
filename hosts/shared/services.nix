@@ -9,7 +9,6 @@
     ntpd-rs.enable = true;
     tailscale.enable = true;
     udev.enable = true;
-    gnome.gnome-keyring.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";
 
@@ -22,6 +21,7 @@
 
     openssh = {
       enable = true;
+      ports = [ 22 ];
       allowSFTP = true;
       settings = {
         PasswordAuthentication = false;

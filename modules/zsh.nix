@@ -77,8 +77,6 @@
           function diff_persist() {
             sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
           }
-
-          [ -f "$HOME/.bitwarden/unlock.sh" ] && source "$HOME/.bitwarden/unlock.sh"
         '';
       };
   };

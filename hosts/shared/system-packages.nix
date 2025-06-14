@@ -9,6 +9,7 @@
     gnumake
     gnused
     gzip
+    libsecret
     mlocate
     openssl
     p7zip

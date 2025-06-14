@@ -22,16 +22,9 @@
       ];
     };
 
-    ssh.askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
-
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
-      settings = {
-        default-cache-ttl = 2592000;
-        max-cache-ttl = 2592000;
-      };
+    ssh = {
+      startAgent = true;
+      askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
     };
 
     nh = {

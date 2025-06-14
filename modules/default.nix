@@ -14,7 +14,6 @@
     ./gh.nix
     ./ghostty.nix
     ./git.nix
-    ./gnome-keyring.nix
     ./gtk.nix
     ./hypridle.nix
     ./hyprland.nix
@@ -23,6 +22,7 @@
     ./imv.nix
     ./jq.nix
     ./k9s.nix
+    ./keepassxc.nix
     ./lazydocker.nix
     ./lazygit.nix
     ./mpv.nix
@@ -35,6 +35,7 @@
     ./starship.nix
     ./swayosd.nix
     ./symlinks.nix
+    ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
     ./tmux.nix
@@ -62,7 +63,6 @@
   gh.enable = true;
   ghostty.enable = true;
   git.enable = true;
-  gnome-keyring.enable = true;
   gtk-settings.enable = true;
   hypridle.enable = true;
   hyprland.enable = true;
@@ -71,6 +71,7 @@
   imv.enable = true;
   jq.enable = true;
   k9s.enable = true;
+  keepassxc.enable = true;
   lazydocker.enable = true;
   lazygit.enable = true;
   mpv.enable = true;
@@ -83,6 +84,7 @@
   starship.enable = true;
   swayosd.enable = true;
   symlinks.enable = true;
+  syncthingtray.enable = true;
   targets.enable = true;
   tealdeer.enable = true;
   tmux.enable = true;
@@ -103,7 +105,6 @@
       GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
-      SSH_AUTH_SOCK = "${parameters.home}/.bitwarden-ssh-agent.sock";
     };
   };
 }

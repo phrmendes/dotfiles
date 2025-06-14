@@ -14,7 +14,6 @@
         hyprlock = getExe pkgs.hyprlock;
         playerctl = getExe pkgs.playerctl;
         wofi = getExe pkgs.wofi;
-        bitwarden = getExe pkgs.bitwarden-desktop;
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
         workspace = rec {
           workspaces = lib.range 1 9;
@@ -82,6 +81,7 @@
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
             "float,stayfocused,opaque,class:(com.gabm.satty)"
+            "float,stayfocused,opaque,class:(org.keepassxc.KeePassXC)"
             "float,stayfocused,opaque,class:(pavucontrol)"
             "float,stayfocused,opaque,class:(wofi)"
             "float,title:^(Picture-in-Picture)$"
@@ -150,25 +150,22 @@
             ++ workspace.switch
             ++ workspace.move
             ++ workspace.moveSilent;
+          env = [
+            "GDK_BACKEND,wayland"
+            "LIBVA_DRIVER_NAME,nvidia"
+            "MOZ_ENABLE_WAYLAND,1"
+            "NIXOS_OZONE_WL,1"
+            "NVD_BACKEND,direct"
+            "QT_QPA_PLATFORM,wayland"
+            "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+            "SDL_VIDEODRIVER,wayland"
+            "USE_WAYLAND_GRIM,1"
+            "XDG_CURRENT_DESKTOP,Hyprland"
+            "XDG_SESSION_DESKTOP,Hyprland"
+            "XDG_SESSION_TYPE,wayland"
+            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+          ];
         };
-        extraConfig = ''
-          env = CLUTTER_BACKEND,wayland
-          env = GDK_BACKEND,wayland,x11
-          env = LIBVA_DRIVER_NAME,nvidia
-          env = MOZ_ENABLE_WAYLAND,1
-          env = NIXOS_OZONE_WL,1
-          env = NVD_BACKEND,direct
-          env = QT_QPA_PLATFORM,wayland;xcb
-          env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-          env = SDL_VIDEODRIVER,windows,x11
-          env = USE_WAYLAND_GRIM,1
-          env = XDG_CURRENT_DESKTOP,Hyprland
-          env = XDG_SESSION_DESKTOP,Hyprland
-          env = XDG_SESSION_TYPE,wayland
-          env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-
-          exec-once = ${bitwarden}
-        '';
       };
   };
 }

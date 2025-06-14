@@ -8,7 +8,6 @@
         hyprlock = { };
         greetd = {
           gnupg.enable = true;
-          enableGnomeKeyring = true;
         };
       };
     };

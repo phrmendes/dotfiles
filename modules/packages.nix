@@ -17,8 +17,6 @@
       in
       [
         ast-grep
-        bitwarden-cli
-        bitwarden-desktop
         curl
         deluge
         dig
@@ -38,7 +36,6 @@
         hyprland-qtutils
         imagemagick
         jdk
-        jq
         just
         kooha
         kubectl
@@ -58,6 +55,7 @@
         playerctl
         poppler
         python313
+        python313Packages.pyqt6
         quarto
         sesh
         sqlite

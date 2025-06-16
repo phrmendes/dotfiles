@@ -26,6 +26,7 @@
         exiftool
         ffmpeg
         ffmpegthumbnailer
+        filezilla
         firefox
         gcloud
         gdu

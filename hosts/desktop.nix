@@ -72,10 +72,7 @@
         "documents" = {
           path = "${parameters.home}/Documents/documents";
           versioning = versioning.trashcan;
-          devices = [
-            "orangepizero2"
-            "phone"
-          ];
+          devices = [ "orangepizero2" ];
         };
         "images" = {
           path = "${parameters.home}/Pictures/images";
@@ -94,11 +91,7 @@
         "ufabc" = {
           path = "${parameters.home}/Documents/ufabc";
           versioning = versioning.trashcan;
-          devices = [
-            "orangepizero2"
-            "phone"
-            "tablet"
-          ];
+          devices = [ "orangepizero2" ];
         };
         "comics" = {
           path = "${parameters.home}/Documents/library/comics";
@@ -125,7 +118,6 @@
           versioning = versioning.trashcan;
           devices = [
             "orangepizero2"
-            "phone"
             "tablet"
           ];
         };

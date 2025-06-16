@@ -56,9 +56,7 @@
         playerctl
         poppler
         python313
-        python313Packages.pyqt6
         quarto
-        sesh
         sqlite
         sshfs
         stremio

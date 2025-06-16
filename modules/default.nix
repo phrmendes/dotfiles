@@ -12,7 +12,6 @@
     ./fd.nix
     ./fzf.nix
     ./gh.nix
-    ./ghostty.nix
     ./git.nix
     ./gtk.nix
     ./hypridle.nix
@@ -42,6 +41,7 @@
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -61,7 +61,6 @@
   fd.enable = true;
   fzf.enable = true;
   gh.enable = true;
-  ghostty.enable = true;
   git.enable = true;
   gtk-settings.enable = true;
   hypridle.enable = true;
@@ -91,6 +90,7 @@
   udiskie.enable = true;
   uv.enable = true;
   waybar.enable = true;
+  wezterm.enable = true;
   wofi.enable = true;
   yazi.enable = true;
   zathura.enable = true;

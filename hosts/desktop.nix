@@ -126,6 +126,14 @@
           versioning = versioning.trashcan;
           devices = [ "orangepizero2" ];
         };
+        "keepassxc" = {
+          path = "${parameters.home}/Documents/keepassxc";
+          versioning = versioning.trashcan;
+          devices = [
+            "orangepizero2"
+            "phone"
+          ];
+        };
       };
   };
 

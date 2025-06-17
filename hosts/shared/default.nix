@@ -5,11 +5,13 @@
 }:
 {
   imports = with inputs; [
+    agenix.nixosModules.default
     disko.nixosModules.disko
     home-manager.nixosModules.home-manager
     impermanence.nixosModules.impermanence
     stylix.nixosModules.stylix
     (import ./disko.nix { inherit (parameters) device; })
+    ./age.nix
     ./boot.nix
     ./file-systems.nix
     ./hardware.nix
@@ -26,6 +28,7 @@
     ./stylix.nix
     ./syncthing.nix
     ./system-packages.nix
+    ./tailscale.nix
     ./time.nix
     ./users.nix
     ./virtualisation.nix

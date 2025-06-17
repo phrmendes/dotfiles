@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    inputs.agenix.packages.${pkgs.system}.default
     cachix
     coreutils-full
     file

@@ -65,25 +65,25 @@
           path = "${parameters.home}/Pictures/camera";
           versioning = versioning.trashcan;
           devices = [
-            "orangepizero2"
+            "server"
             "phone"
           ];
         };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "images" = {
           path = "${parameters.home}/Pictures/images";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "notes" = {
           path = "${parameters.home}/Documents/notes";
           versioning = versioning.simple;
           devices = [
-            "orangepizero2"
+            "server"
             "phone"
             "tablet"
           ];
@@ -91,46 +91,46 @@
         "ufabc" = {
           path = "${parameters.home}/Documents/ufabc";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "comics" = {
           path = "${parameters.home}/Documents/library/comics";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "IT" = {
           path = "${parameters.home}/Documents/library/IT";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "math" = {
           path = "${parameters.home}/Documents/library/math";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "social_sciences" = {
           path = "${parameters.home}/Documents/library/social_sciences";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "zotero" = {
           path = "${parameters.home}/Documents/library/zotero";
           versioning = versioning.trashcan;
           devices = [
-            "orangepizero2"
+            "server"
             "tablet"
           ];
         };
         "collections" = {
           path = "${parameters.home}/Documents/collections";
           versioning = versioning.trashcan;
-          devices = [ "orangepizero2" ];
+          devices = [ "server" ];
         };
         "keepassxc" = {
           path = "${parameters.home}/Documents/keepassxc";
           versioning = versioning.trashcan;
           devices = [
-            "orangepizero2"
+            "server"
             "phone"
           ];
         };

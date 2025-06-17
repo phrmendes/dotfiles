@@ -2,6 +2,7 @@
   description = "My personal nixOS/nix-darwin configuration";
 
   inputs = {
+    agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     scls.url = "github:estin/simple-completion-language-server";
@@ -53,6 +54,18 @@
             inherit system;
             specialArgs = { inherit inputs parameters; };
             modules = [ ./hosts/desktop.nix ];
+          };
+        server =
+          let
+            parameters = global // {
+              device = "/dev/sda";
+              homelab_domain = "server.codlet-catfish.ts.net";
+            };
+          in
+          lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit inputs parameters; };
+            modules = [ ./hosts/server.nix ];
           };
       };
     };

@@ -7,7 +7,6 @@
     fstrim.enable = true;
     gvfs.enable = true;
     ntpd-rs.enable = true;
-    tailscale.enable = true;
     udev.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";

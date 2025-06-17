@@ -6,11 +6,9 @@
     configDir = "${parameters.home}/.config/syncthing";
     openDefaultPorts = true;
     overrideDevices = true;
-    relay.enable = true;
     settings = {
       options = {
-        globalAnnounceEnabled = true;
-        relaysEnabled = true;
+        localAnnounceEnabled = true;
         urAccepted = 1;
       };
       devices = {
@@ -22,7 +20,7 @@
           id = "ME77KQY-MGUM34F-M6RI4DI-EPNNS2P-FSPEYB6-2XUHYZB-5MGG7BV-XJTGAQO";
           autoAcceptFolders = true;
         };
-        "orangepizero2" = {
+        "server" = {
           id = "442LDW4-RWT5SEJ-KMUTPBG-GHP2GER-QQOE5JV-LQQNWOG-V4S5ZGQ-47FUEAS";
           autoAcceptFolders = true;
         };

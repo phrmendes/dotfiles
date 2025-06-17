@@ -2,12 +2,13 @@
 {
   boot = {
     tmp.cleanOnBoot = true;
+    kernelPackages = pkgs.linuxPackages_latest;
+    plymouth.enable = true;
+
     supportedFilesystems = [
       "btrfs"
       "ntfs"
     ];
-    kernelPackages = pkgs.linuxPackages_latest;
-    plymouth.enable = true;
 
     loader = {
       timeout = 5;

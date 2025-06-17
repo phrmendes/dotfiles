@@ -1,9 +1,7 @@
-{ pkgs, parameters, ... }:
+{ pkgs, ... }:
 {
   services = {
-    blueman.enable = true;
     envfs.enable = true;
-    flatpak.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
     ntpd-rs.enable = true;
@@ -27,28 +25,6 @@
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         PubKeyAuthentication = true;
-      };
-    };
-
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      jack.enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-    };
-
-    greetd = {
-      enable = true;
-      settings = rec {
-        terminal.vt = 1;
-        initial_session = default_session;
-        default_session = {
-          command = "${pkgs.hyprland}/bin/Hyprland";
-          user = parameters.user;
-        };
       };
     };
 

@@ -14,7 +14,6 @@
     mlocate
     openssl
     p7zip
-    protonup
     psmisc
     rar
     unar

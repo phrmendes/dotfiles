@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   parameters,
@@ -15,6 +16,11 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
   networking.hostName = "server";
   programs.nh.flake = "/home/${parameters.user}/dotfiles";
+
+  environment.systemPackages = with pkgs; [
+    python313
+    helix
+  ];
 
   services = {
     tailscale = {

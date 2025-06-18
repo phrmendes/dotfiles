@@ -86,13 +86,15 @@ services:
       - tsdproxy.dash.icon=sh/syncthing
 
   tsdproxy:
-    image: docker.io/almeidapaulopt/tsdproxy:1
+    image: docker.io/almeidapaulopt/tsdproxy:2
     container_name: tsdproxy
     restart: always
     volumes:
-      - tsdproxy_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
       - ./tsdproxy.yaml:/config/tsdproxy.yaml
+      - tsdproxy_data:/data
+    extra_hosts:
+      - host.docker.internal:host-gateway
     environment:
       - APP_URL=https://beszel.codlet-catfish.ts.net
     ports:

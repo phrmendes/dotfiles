@@ -26,7 +26,7 @@
         description = "Reload Docker Compose on config change";
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${pkgs.docker}/bin/docker compose restart";
+          ExecStart = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans";
           WorkingDirectory = "/etc/compose";
         };
       };

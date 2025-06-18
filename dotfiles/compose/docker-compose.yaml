@@ -90,6 +90,8 @@ services:
       - tsdproxy_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
       - ./tsdproxy.yaml:/config/tsdproxy.yaml
+    environment:
+      - APP_URL=https://beszel.codlet-catfish.ts.net
     ports:
       - 8081:8080
     secrets:
@@ -148,11 +150,34 @@ services:
       - tsdproxy.dash.label=Dozzle
       - tsdproxy.dash.icon=sh/dozzle
 
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    restart: always
+    command:
+      - serve
+    ports:
+      - 8084:80
+    volumes:
+      - ntfy_cache:/var/cache/ntfy
+      - ntfy_data:/etc/ntfy
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=ntfy
+      - tsdproxy.container_port=80
+      - tsdproxy.dash.visible=false
+
 secrets:
   auth_key:
     file: /run/agenix/tailscale_tsdproxy_key
 
 volumes:
+  ntfy_cache:
+  ntfy_data:
   adguardhome_conf:
   adguardhome_work:
   beszel_data:

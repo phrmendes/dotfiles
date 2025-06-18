@@ -217,6 +217,7 @@ in
 
   environment.persistence."/persist".users.${parameters.user}.directories = [
     "Syncthing"
+    "dotfiles"
     ".config"
     ".ssh"
     ".zotero"

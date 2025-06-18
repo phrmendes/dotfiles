@@ -17,8 +17,9 @@ in
   imports = [
     inputs.stylix.nixosModules.stylix
     ../shared
-    ./syncthing.nix
+    ./age.nix
     ./stylix.nix
+    ./syncthing.nix
   ];
 
   boot = {

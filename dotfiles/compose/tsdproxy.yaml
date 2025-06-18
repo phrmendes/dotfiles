@@ -2,8 +2,8 @@ defaultProxyProvider: default
 
 docker:
   local:
-    host: host.docker.internal
-    targetHostname: 172.31.0.1
+    host: unix:///var/run/docker.sock
+    targetHostname: host.docker.internal
     defaultProxyProvider: default
 
 tailscale:

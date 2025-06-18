@@ -12,4 +12,5 @@ in
     main
     server
   ];
+  "server-password.age".publicKeys = [ main ];
 }

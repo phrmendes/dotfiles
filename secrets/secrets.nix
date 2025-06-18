@@ -8,9 +8,5 @@ in
     main
     server
   ];
-  "tailscale-tsdproxy-key.age".publicKeys = [
-    main
-    server
-  ];
   "server-password.age".publicKeys = [ main ];
 }

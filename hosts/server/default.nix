@@ -9,7 +9,6 @@
   imports = [
     ../shared
     ./age.nix
-    ./docker-compose.nix
     ./systemd.nix
   ];
 
@@ -62,12 +61,21 @@
     zathura.enable = false;
   };
 
-  environment.persistence."/persist".users.${parameters.user}.directories = [
-    "dotfiles"
-    ".config"
-    ".ssh"
-    ".zotero"
-    ".local/share"
-    ".local/state"
-  ];
+  environment = {
+    persistence."/persist".users.${parameters.user}.directories = [
+      "dotfiles"
+      ".config"
+      ".ssh"
+      ".zotero"
+      ".local/share"
+      ".local/state"
+    ];
+    etc = {
+      "compose/docker-compose.yaml" = {
+        source = ../../dotfiles/docker-compose.yaml;
+        mode = "0644";
+      };
+    };
+  };
+
 }

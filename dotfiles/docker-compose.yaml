@@ -1,0 +1,316 @@
+services:
+  tailscale:
+    image: docker.io/tailscale/tailscale:latest
+    container_name: tailscale
+    restart: always
+    hostname: traefik
+    volumes:
+      - tailscale_data:/var/lib/tailscale
+      - tailscale_socket:/var/run/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    environment:
+      - TS_AUTHKEY=${TAILSCALE_AUTH_KEY}
+      - TS_EXTRA_ARGS=--advertise-tags=tag:server
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+
+  traefik:
+    image: docker.io/traefik:latest
+    container_name: traefik
+    network_mode: service:tailscale
+    command:
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+      - "--certificatesresolvers.tailscale.tailscale=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--providers.docker=true"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--providers.docker.exposedbydefault=false"
+    volumes:
+      - tailscale_data:/var/lib/tailscale
+      - tailscale_socket:/var/run/tailscale
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - tailscale
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dashboard.entrypoints=websecure
+      - traefik.http.routers.dashboard.rule=Host(`dashboard.codlet-catfish.ts.net`)
+      - traefik.http.routers.dashboard.service=api@internal
+      - traefik.http.routers.dashboard.tls.certresolver=tailscale
+      - traefik.http.routers.dashboard.tls=true
+
+  adguardhome:
+    image: docker.io/adguard/adguardhome:latest
+    container_name: adguardhome
+    restart: always
+    volumes:
+      - adguardhome_conf:/opt/adguardhome/conf
+      - adguardhome_work:/opt/adguardhome/work
+    ports:
+      - 53:53
+      - 53:53/udp
+      - 8081:80
+      - 3000:3000
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.adguardhome.entrypoints=websecure
+      - traefik.http.routers.adguardhome.rule=Host(`adguardhome.codlet-catfish.ts.net`)
+      - traefik.http.routers.adguardhome.tls.certresolver=tailscale
+      - traefik.http.routers.adguardhome.tls=true
+      - traefik.http.services.adguardhome.loadbalancer.server.port=80
+
+  duplicati:
+    image: docker.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
+      - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
+    volumes:
+      - duplicati_config:/config
+      - duplicati_backups:/backups
+      - duplicati_source:/source
+      - syncthing_data:/syncthing:ro
+    ports:
+      - 8200:8200
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.duplicati.entrypoints=websecure
+      - traefik.http.routers.duplicati.rule=Host(`duplicati.codlet-catfish.ts.net`)
+      - traefik.http.routers.duplicati.tls.certresolver=tailscale
+      - traefik.http.routers.duplicati.tls=true
+      - traefik.http.services.duplicati.loadbalancer.server.port=8200
+
+  sftpgo:
+    image: docker.io/drakkan/sftpgo:latest
+    container_name: sftpgo
+    restart: always
+    volumes:
+      - sftpgo_data:/var/lib/sftpgo
+      - deluge_downloads:/downloads
+      - jellyfin_movies:/movies
+      - jellyfin_tvshows:/tvshows
+      - syncthing_data:/syncthing
+    ports:
+      - 8080:8080
+      - 2022:2022
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sftpgo.entrypoints=websecure
+      - traefik.http.routers.sftpgo.rule=Host(`sftpgo.codlet-catfish.ts.net`)
+      - traefik.http.routers.sftpgo.tls.certresolver=tailscale
+      - traefik.http.routers.sftpgo.tls=true
+      - traefik.http.services.sftpgo.loadbalancer.server.port=8080
+
+  syncthing:
+    image: docker.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - syncthing_config:/config
+      - syncthing_data:/data
+    ports:
+      - 21027:21027/udp
+      - 22000:22000
+      - 22000:22000/udp
+      - 8384:8384
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.syncthing.entrypoints=websecure
+      - traefik.http.routers.syncthing.rule=Host(`syncthing.codlet-catfish.ts.net`)
+      - traefik.http.routers.syncthing.tls.certresolver=tailscale
+      - traefik.http.routers.syncthing.tls=true
+      - traefik.http.services.syncthing.loadbalancer.server.port=8384
+
+  beszel-agent:
+    image: docker.io/henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: always
+    network_mode: host
+    volumes:
+      - beszel_socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - LISTEN=/beszel_socket/beszel.sock
+      - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHh93kUCxYYQhVuU5nGtdD43Sc/F/5m+1vqL25kqbWT2
+
+  beszel:
+    image: docker.io/henrygd/beszel:latest
+    container_name: beszel
+    restart: always
+    ports:
+      - 8090:8090
+    volumes:
+      - beszel_data:/beszel_data
+      - beszel_socket:/beszel_socket
+    depends_on:
+      - beszel-agent
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.beszel.entrypoints=websecure
+      - traefik.http.routers.beszel.rule=Host(`beszel.codlet-catfish.ts.net`)
+      - traefik.http.routers.beszel.tls.certresolver=tailscale
+      - traefik.http.routers.beszel.tls=true
+      - traefik.http.services.beszel.loadbalancer.server.port=8090
+
+  dozzle:
+    image: docker.io/amir20/dozzle:latest
+    container_name: dozzle
+    restart: always
+    ports:
+      - 8082:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_ENABLE_SHELL=true
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dozzle.entrypoints=websecure
+      - traefik.http.routers.dozzle.rule=Host(`dozzle.codlet-catfish.ts.net`)
+      - traefik.http.routers.dozzle.tls.certresolver=tailscale
+      - traefik.http.routers.dozzle.tls=true
+      - traefik.http.services.dozzle.loadbalancer.server.port=8080
+
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    restart: always
+    command: serve
+    ports:
+      - 8083:80
+    volumes:
+      - ntfy_cache:/var/cache/ntfy
+      - ntfy_data:/etc/ntfy
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ntfy.entrypoints=websecure
+      - traefik.http.routers.ntfy.rule=Host(`ntfy.codlet-catfish.ts.net`)
+      - traefik.http.routers.ntfy.tls.certresolver=tailscale
+      - traefik.http.routers.ntfy.tls=true
+      - traefik.http.services.ntfy.loadbalancer.server.port=80
+
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - deluge_config:/config
+      - deluge_downloads:/downloads
+      - jellyfin_movies:/movies
+      - jellyfin_tvshows:/tvshows
+    ports:
+      - 8112:8112
+      - 6881:6881
+      - 6881:6881/udp
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.deluge.entrypoints=websecure
+      - traefik.http.routers.deluge.rule=Host(`deluge.codlet-catfish.ts.net`)
+      - traefik.http.routers.deluge.tls.certresolver=tailscale
+      - traefik.http.routers.deluge.tls=true
+      - traefik.http.services.deluge.loadbalancer.server.port=8112
+
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - jellyfin_data:/config
+      - jellyfin_movies:/data/tvshows
+      - jellyfin_tvshows:/data/movies
+    ports:
+      - 8096:8096
+      - 7359:7359/udp
+      - 1900:1900/udp
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin.entrypoints=websecure
+      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.codlet-catfish.ts.net`)
+      - traefik.http.routers.jellyfin.tls.certresolver=tailscale
+      - traefik.http.routers.jellyfin.tls=true
+      - traefik.http.services.jellyfin.loadbalancer.server.port=8096
+
+  atuin:
+    image: ghcr.io/atuinsh/atuin:latest
+    container_name: atuin
+    restart: always
+    command: server start
+    volumes:
+      - atuin_config:/config
+    ports:
+      - 8888:8888
+    environment:
+      - ATUIN_HOST=0.0.0.0
+      - ATUIN_OPEN_REGISTRATION=true
+      - ATUIN_DB_URI=postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@postgres/${ATUIN_DB_NAME}
+      - RUST_LOG=info,atuin_server=debug
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.atuin.entrypoints=websecure
+      - traefik.http.routers.atuin.rule=Host(`atuin.codlet-catfish.ts.net`)
+      - traefik.http.routers.atuin.tls.certresolver=tailscale
+      - traefik.http.routers.atuin.tls=true
+      - traefik.http.services.atuin.loadbalancer.server.port=8888
+
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${ATUIN_DB_USERNAME}
+      - POSTGRES_PASSWORD=${ATUIN_DB_PASSWORD}
+      - POSTGRES_DB=${ATUIN_DB_NAME}
+
+volumes:
+  adguardhome_conf:
+  adguardhome_work:
+  atuin_config:
+  beszel_data:
+  beszel_socket:
+  deluge_config:
+  deluge_downloads:
+  duplicati_backups:
+  duplicati_config:
+  duplicati_source:
+  jellyfin_data:
+  jellyfin_movies:
+  jellyfin_tvshows:
+  ntfy_cache:
+  ntfy_data:
+  postgres_data:
+  sftpgo_data:
+  syncthing_config:
+  syncthing_data:
+  tailscale_data:
+  tailscale_socket:

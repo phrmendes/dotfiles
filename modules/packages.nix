@@ -16,6 +16,7 @@
         );
       in
       [
+        ansible
         ast-grep
         curl
         deluge

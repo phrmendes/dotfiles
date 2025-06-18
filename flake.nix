@@ -53,7 +53,7 @@
           lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/desktop.nix ];
+            modules = [ ./hosts/desktop ];
           };
         server =
           let
@@ -65,7 +65,7 @@
           lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/server.nix ];
+            modules = [ ./hosts/server ];
           };
       };
     };

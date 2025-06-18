@@ -24,9 +24,7 @@
     ./security.nix
     ./services.nix
     ./session-variables.nix
-    ./syncthing.nix
     ./system-packages.nix
-    ./tailscale.nix
     ./time.nix
     ./users.nix
     ./virtualisation.nix

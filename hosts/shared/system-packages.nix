@@ -4,6 +4,7 @@
     inputs.agenix.packages.${pkgs.system}.default
     cachix
     coreutils-full
+    docker-compose
     file
     findutils
     gcc

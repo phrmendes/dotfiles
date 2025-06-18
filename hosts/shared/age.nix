@@ -1,5 +1,4 @@
+{ parameters, ... }:
 {
-  age.secrets = {
-    tailscale.file = ../../secrets/tailscale.age;
-  };
+  age.identityPaths = [ "/persist/${parameters.home}/.ssh/id_ed25519" ];
 }

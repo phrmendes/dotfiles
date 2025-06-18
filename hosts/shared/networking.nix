@@ -7,8 +7,17 @@
       127.0.0.1 kubernetes.default.svc.cluster.local
     '';
     firewall = {
-      allowedTCPPorts = [ 53 ];
-      allowedUDPPorts = [ 53 ];
+      enable = true;
+      allowedTCPPorts = [
+        80
+        53
+        22000
+      ];
+      allowedUDPPorts = [
+        53
+        22000
+        21027
+      ];
     };
   };
 }

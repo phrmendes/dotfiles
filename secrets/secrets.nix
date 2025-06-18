@@ -1,7 +1,15 @@
 let
-  phrmendes = builtins.readFile ../dotfiles/public-key.txt;
+  main = builtins.readFile ../dotfiles/ssh-keys/main.txt;
+  server = builtins.readFile ../dotfiles/ssh-keys/server.txt;
 in
-{
 
-  "tailscale.age".publicKeys = [ phrmendes ];
+{
+  "docker-compose-env.age".publicKeys = [
+    main
+    server
+  ];
+  "tailscale-tsdproxy-key.age".publicKeys = [
+    main
+    server
+  ];
 }

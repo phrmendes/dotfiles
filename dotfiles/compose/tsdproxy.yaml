@@ -1,0 +1,20 @@
+defaultProxyProvider: default
+docker:
+  local:
+    host: unix:///var/run/docker.sock
+    targetHostname: 172.31.0.1
+    defaultProxyProvider: default
+files: {}
+tailscale:
+  providers:
+    default:
+      authKeyFile: /run/secrets/auth_key
+      controlUrl: https://controlplane.tailscale.com
+  dataDir: /data/
+http:
+  hostname: 0.0.0.0
+  port: 8080
+log:
+  level: info
+  json: false
+proxyAccessLog: true

@@ -21,7 +21,6 @@
         deluge
         dig
         discord
-        docker-compose
         docker-credential-helpers
         exiftool
         ffmpeg

@@ -1,0 +1,166 @@
+services:
+  adguardhome:
+    image: docker.io/adguard/adguardhome:latest
+    container_name: adguardhome
+    restart: always
+    volumes:
+      - adguardhome_conf:/opt/adguardhome/conf
+      - adguardhome_work:/opt/adguardhome/work
+    ports:
+      - 53:53
+      - 53:53/udp
+      - 80:80
+      - 3000:3000
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=adguardhome
+      - tsdproxy.container_port=80
+      - tsdproxy.dash.label=Adguard Home
+      - tsdproxy.dash.icon=sh/adguard-home
+
+  duplicati:
+    image: docker.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
+      - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
+    volumes:
+      - duplicati_config:/config
+      - duplicati_backups:/backups
+      - duplicati_source:/source
+      - syncthing_data:/syncthing:ro
+    ports:
+      - 8200:8200
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=duplicati
+      - tsdproxy.container_port=8200
+      - tsdproxy.dash.label=Duplicati
+      - tsdproxy.dash.icon=sh/duplicati
+
+  sftpgo:
+    image: docker.io/drakkan/sftpgo:latest
+    container_name: sftpgo
+    restart: always
+    volumes:
+      - sftpgo_data:/var/lib/sftpgo
+      - syncthing_data:/syncthing
+    ports:
+      - 8080:8080
+      - 2022:2022
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=sftpgo
+      - tsdproxy.container_port=8080
+      - tsdproxy.dash.label=SFTPGo
+      - tsdproxy.dash.icon=sh/sftpgo
+
+  syncthing:
+    image: docker.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - syncthing_config:/config
+      - syncthing_data:/data
+    ports:
+      - 21027:21027/udp
+      - 22000:22000
+      - 22000:22000/udp
+      - 8384:8384
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=syncthing
+      - tsdproxy.container_port=8384
+      - tsdproxy.dash.label=Syncthing
+      - tsdproxy.dash.icon=sh/syncthing
+
+  tsdproxy:
+    image: docker.io/almeidapaulopt/tsdproxy:1
+    container_name: tsdproxy
+    restart: always
+    volumes:
+      - tsdproxy_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./tsdproxy.yaml:/config/tsdproxy.yaml
+    ports:
+      - 8081:8080
+    secrets:
+      - auth_key
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=dashboard
+      - tsdproxy.container_port=8080
+      - tsdproxy.dash.label=Dashboard
+      - tsdproxy.dash.icon=sh/tailscale
+
+  beszel-agent:
+    image: docker.io/henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: always
+    network_mode: host
+    volumes:
+      - beszel_socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - LISTEN=/beszel_socket/beszel.sock
+      - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHh93kUCxYYQhVuU5nGtdD43Sc/F/5m+1vqL25kqbWT2
+  beszel:
+    image: docker.io/henrygd/beszel:latest
+    container_name: beszel
+    restart: always
+    ports:
+      - 8090:8090
+    volumes:
+      - beszel_data:/beszel_data
+      - beszel_socket:/beszel_socket
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=beszel
+      - tsdproxy.container_port=8090
+      - tsdproxy.dash.label=Beszel
+      - tsdproxy.dash.icon=sh/beszel
+    depends_on:
+      - beszel-agent
+
+  dozzle:
+    image: docker.io/amir20/dozzle:latest
+    container_name: dozzle
+    restart: always
+    ports:
+      - 8083:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_ENABLE_SHELL=true
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=dozzle
+      - tsdproxy.container_port=8080
+      - tsdproxy.dash.label=Dozzle
+      - tsdproxy.dash.icon=sh/dozzle
+
+secrets:
+  auth_key:
+    file: /run/agenix/tailscale_tsdproxy_key
+
+volumes:
+  adguardhome_conf:
+  adguardhome_work:
+  beszel_data:
+  beszel_socket:
+  duplicati_backups:
+  duplicati_config:
+  duplicati_source:
+  sftpgo_data:
+  syncthing_config:
+  syncthing_data:
+  tsdproxy_data:

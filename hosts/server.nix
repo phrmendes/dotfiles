@@ -36,7 +36,7 @@ in
       enable = true;
       mutableSettings = true;
       openFirewall = true;
-      port = 80;
+      port = 8081;
     };
 
     homepage-dashboard = {

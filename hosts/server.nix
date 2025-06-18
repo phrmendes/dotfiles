@@ -181,4 +181,46 @@ in
       };
     };
   };
+
+  home-manager.users.${parameters.user} = {
+    blueman-applet.enable = false;
+    cliphist.enable = false;
+    direnv.enable = false;
+    dunst.enable = false;
+    gh.enable = false;
+    gtk-settings.enable = false;
+    hypridle.enable = false;
+    hyprland.enable = false;
+    hyprlock.enable = false;
+    hyprpaper.enable = false;
+    imv.enable = false;
+    k9s.enable = false;
+    keepassxc.enable = false;
+    lazydocker.enable = false;
+    lazygit.enable = false;
+    mpv.enable = false;
+    neovim.enable = false;
+    nm-applet.enable = false;
+    packages.enable = false;
+    pasystray.enable = false;
+    screenshot.enable = false;
+    swayosd.enable = false;
+    symlinks.enable = false;
+    syncthingtray.enable = false;
+    tealdeer.enable = false;
+    udiskie.enable = false;
+    uv.enable = false;
+    waybar.enable = false;
+    wofi.enable = false;
+    zathura.enable = false;
+  };
+
+  environment.persistence."/persist".users.${parameters.user}.directories = [
+    "Syncthing"
+    ".config"
+    ".ssh"
+    ".zotero"
+    ".local/share"
+    ".local/state"
+  ];
 }

@@ -1,4 +1,8 @@
-{ parameters, ... }:
+{
+  parameters,
+  lib,
+  ...
+}:
 {
   imports = [
     ./atuin.nix
@@ -50,52 +54,52 @@
     ./zsh.nix
   ];
 
-  atuin.enable = true;
-  bat.enable = true;
-  blueman-applet.enable = true;
-  btop.enable = true;
-  cliphist.enable = true;
-  direnv.enable = true;
-  dunst.enable = true;
-  eza.enable = true;
-  fd.enable = true;
-  fzf.enable = true;
-  gh.enable = true;
-  git.enable = true;
-  gtk-settings.enable = true;
-  hypridle.enable = true;
-  hyprland.enable = true;
-  hyprlock.enable = true;
-  hyprpaper.enable = true;
-  imv.enable = true;
-  jq.enable = true;
-  k9s.enable = true;
-  keepassxc.enable = true;
-  lazydocker.enable = true;
-  lazygit.enable = true;
-  mpv.enable = true;
-  neovim.enable = true;
-  nm-applet.enable = true;
-  packages.enable = true;
-  pasystray.enable = true;
-  ripgrep.enable = true;
-  screenshot.enable = true;
-  starship.enable = true;
-  swayosd.enable = true;
-  symlinks.enable = true;
-  syncthingtray.enable = true;
-  targets.enable = true;
-  tealdeer.enable = true;
-  tmux.enable = true;
-  udiskie.enable = true;
-  uv.enable = true;
-  waybar.enable = true;
-  wezterm.enable = true;
-  wofi.enable = true;
-  yazi.enable = true;
-  zathura.enable = true;
-  zoxide.enable = true;
-  zsh.enable = true;
+  atuin.enable = lib.mkDefault true;
+  bat.enable = lib.mkDefault true;
+  blueman-applet.enable = lib.mkDefault true;
+  btop.enable = lib.mkDefault true;
+  cliphist.enable = lib.mkDefault true;
+  direnv.enable = lib.mkDefault true;
+  dunst.enable = lib.mkDefault true;
+  eza.enable = lib.mkDefault true;
+  fd.enable = lib.mkDefault true;
+  fzf.enable = lib.mkDefault true;
+  gh.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault true;
+  gtk-settings.enable = lib.mkDefault true;
+  hypridle.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault true;
+  hyprlock.enable = lib.mkDefault true;
+  hyprpaper.enable = lib.mkDefault true;
+  imv.enable = lib.mkDefault true;
+  jq.enable = lib.mkDefault true;
+  k9s.enable = lib.mkDefault true;
+  keepassxc.enable = lib.mkDefault true;
+  lazydocker.enable = lib.mkDefault true;
+  lazygit.enable = lib.mkDefault true;
+  mpv.enable = lib.mkDefault true;
+  neovim.enable = lib.mkDefault true;
+  nm-applet.enable = lib.mkDefault true;
+  packages.enable = lib.mkDefault true;
+  pasystray.enable = lib.mkDefault true;
+  ripgrep.enable = lib.mkDefault true;
+  screenshot.enable = lib.mkDefault true;
+  starship.enable = lib.mkDefault true;
+  swayosd.enable = lib.mkDefault true;
+  symlinks.enable = lib.mkDefault true;
+  syncthingtray.enable = lib.mkDefault true;
+  targets.enable = lib.mkDefault true;
+  tealdeer.enable = lib.mkDefault true;
+  tmux.enable = lib.mkDefault true;
+  udiskie.enable = lib.mkDefault true;
+  uv.enable = lib.mkDefault true;
+  waybar.enable = lib.mkDefault true;
+  wezterm.enable = lib.mkDefault true;
+  wofi.enable = lib.mkDefault true;
+  yazi.enable = lib.mkDefault true;
+  zathura.enable = lib.mkDefault true;
+  zoxide.enable = lib.mkDefault true;
+  zsh.enable = lib.mkDefault true;
 
   home = {
     stateVersion = "25.05";

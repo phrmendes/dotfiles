@@ -12,7 +12,7 @@
     (import ./disko.nix { inherit (parameters) device; })
     ./age.nix
     ./boot.nix
-    ./file-systems.nix
+    ./filesystems.nix
     ./hardware.nix
     ./home-manager.nix
     ./i18n.nix

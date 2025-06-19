@@ -84,4 +84,11 @@
     };
   };
 
+  fileSystems = {
+    "/mnt/external" = {
+      device = "/dev/disk/by-label/external";
+      fsType = "ext4";
+      options = [ "defaults" ];
+    };
+  };
 }

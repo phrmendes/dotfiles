@@ -4,9 +4,13 @@ let
 in
 
 {
+  "server-password.age".publicKeys = [ main ];
   "docker-compose-env.age".publicKeys = [
     main
     server
   ];
-  "server-password.age".publicKeys = [ main ];
+  "tailscale-auth-key.age".publicKeys = [
+    main
+    server
+  ];
 }

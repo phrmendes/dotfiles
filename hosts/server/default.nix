@@ -43,7 +43,6 @@
     imv.enable = false;
     k9s.enable = false;
     keepassxc.enable = false;
-    lazydocker.enable = false;
     lazygit.enable = false;
     mpv.enable = false;
     neovim.enable = false;
@@ -72,8 +71,8 @@
       ".local/state"
     ];
     etc = {
-      "compose/Caddyfile" = {
-        source = ../../dotfiles/compose/Caddyfile;
+      "compose/tsdproxy.yaml" = {
+        source = ../../dotfiles/compose/tsdproxy.yaml;
         mode = "0644";
       };
       "compose/docker-compose.yaml" = {

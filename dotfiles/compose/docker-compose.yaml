@@ -1,40 +1,22 @@
 services:
-  tailscale:
-    image: docker.io/tailscale/tailscale:latest
-    container_name: tailscale
+  tsdproxy:
+    image: docker.io/almeidapaulopt/tsdproxy:1
+    container_name: tsdproxy
     restart: always
-    network_mode: host
-    hostname: homelab
     volumes:
-      - tailscale_data:/var/lib/tailscale
-      - tailscale_socket:/var/run/tailscale
-      - /dev/net/tun:/dev/net/tun
-    cap_add:
-      - net_admin
-      - sys_module
-    environment:
-      - TS_AUTHKEY=${TAILSCALE_AUTHKEY}
-      - TS_EXTRA_ARGS=--advertise-tags=tag:containers
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
-
-  caddy:
-    image: docker.io/caddy:latest
-    restart: always
-    container_name: caddy
-    networks:
-      - server
-    depends_on:
-      - tailscale
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./tsdproxy.yaml:/config/tsdproxy.yaml
+      - tsdproxy_data:/data
     ports:
-      - 80:80
-      - 443:443
-      - 443:443/udp
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-      - tailscale_socket:/var/run/tailscale
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - 8081:8080
+    secrets:
+      - auth_key
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=dashboard
+      - tsdproxy.container_port=8080
+      - tsdproxy.dash.label=Dashboard
+      - tsdproxy.dash.icon=sh/tailscale
 
   adguardhome:
     image: docker.io/adguard/adguardhome:latest
@@ -46,8 +28,14 @@ services:
     ports:
       - 53:53
       - 53:53/udp
-      - 8081:80
+      - 80:80
       - 3000:3000
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=adguardhome
+      - tsdproxy.container_port=80
+      - tsdproxy.dash.label=Adguard Home
+      - tsdproxy.dash.icon=sh/adguard-home
 
   duplicati:
     image: docker.io/linuxserver/duplicati:latest
@@ -66,6 +54,12 @@ services:
       - syncthing_data:/syncthing:ro
     ports:
       - 8200:8200
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=duplicati
+      - tsdproxy.container_port=8200
+      - tsdproxy.dash.label=Duplicati
+      - tsdproxy.dash.icon=sh/duplicati
 
   sftpgo:
     image: docker.io/drakkan/sftpgo:latest
@@ -73,13 +67,19 @@ services:
     restart: always
     volumes:
       - sftpgo_data:/var/lib/sftpgo
-      - deluge_downloads:/downloads
-      - jellyfin_movies:/movies
-      - jellyfin_tvshows:/tvshows
-      - syncthing_data:/syncthing
+      - deluge_downloads:/files/downloads
+      - jellyfin_movies:/files/movies
+      - jellyfin_tvshows:/files/tvshows
+      - syncthing_data:/files/syncthing
     ports:
       - 8080:8080
       - 2022:2022
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=sftpgo
+      - tsdproxy.container_port=8080
+      - tsdproxy.dash.label=SFTPGo
+      - tsdproxy.dash.icon=sh/sftpgo
 
   syncthing:
     image: docker.io/linuxserver/syncthing:latest
@@ -97,6 +97,12 @@ services:
       - 22000:22000
       - 22000:22000/udp
       - 8384:8384
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=syncthing
+      - tsdproxy.container_port=8384
+      - tsdproxy.dash.label=Syncthing
+      - tsdproxy.dash.icon=sh/syncthing
 
   beszel-agent:
     image: docker.io/henrygd/beszel-agent:latest
@@ -119,6 +125,14 @@ services:
     volumes:
       - beszel_data:/beszel_data
       - beszel_socket:/beszel_socket
+    environment:
+      - APP_URL=https://beszel.codlet-catfish.ts.net
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=beszel
+      - tsdproxy.container_port=8090
+      - tsdproxy.dash.label=Beszel
+      - tsdproxy.dash.icon=sh/beszel
     depends_on:
       - beszel-agent
 
@@ -127,20 +141,27 @@ services:
     container_name: dozzle
     restart: always
     ports:
-      - 8082:8080
+      - 8083:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=dozzle
+      - tsdproxy.container_port=8080
+      - tsdproxy.dash.label=Dozzle
+      - tsdproxy.dash.icon=sh/dozzle
 
   ntfy:
     image: binwiederhier/ntfy
     container_name: ntfy
     restart: always
-    command: serve
+    command:
+      - serve
     ports:
-      - 8083:80
+      - 8084:80
     volumes:
       - ntfy_cache:/var/cache/ntfy
       - ntfy_data:/etc/ntfy
@@ -148,6 +169,11 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=ntfy
+      - tsdproxy.container_port=80
+      - tsdproxy.dash.visible=false
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest
@@ -166,6 +192,12 @@ services:
       - 8112:8112
       - 6881:6881
       - 6881:6881/udp
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=deluge
+      - tsdproxy.container_port=8112
+      - tsdproxy.dash.label=Deluge
+      - tsdproxy.dash.icon=sh/deluge
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -183,6 +215,12 @@ services:
       - 8096:8096
       - 7359:7359/udp
       - 1900:1900/udp
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=jellyfin
+      - tsdproxy.container_port=8096
+      - tsdproxy.dash.label=Jellyfin
+      - tsdproxy.dash.icon=sh/jellyfin
 
   atuin:
     image: ghcr.io/atuinsh/atuin:latest
@@ -198,6 +236,11 @@ services:
       - ATUIN_OPEN_REGISTRATION=true
       - ATUIN_DB_URI=postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@postgres/${ATUIN_DB_NAME}
       - RUST_LOG=info,atuin_server=debug
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=atuin
+      - tsdproxy.container_port=8888
+      - tsdproxy.dash.visible=false
 
   postgres:
     image: postgres:17
@@ -210,14 +253,16 @@ services:
       - POSTGRES_PASSWORD=${ATUIN_DB_PASSWORD}
       - POSTGRES_DB=${ATUIN_DB_NAME}
 
+secrets:
+  auth_key:
+    file: /run/agenix/tailscale_auth_key
+
 volumes:
   adguardhome_conf:
   adguardhome_work:
   atuin_config:
   beszel_data:
   beszel_socket:
-  caddy_config:
-  caddy_data:
   deluge_config:
   deluge_downloads:
   duplicati_backups:
@@ -232,9 +277,4 @@ volumes:
   sftpgo_data:
   syncthing_config:
   syncthing_data:
-  tailscale_data:
-  tailscale_socket:
-
-networks:
-  server:
-    name: server
+  tsdproxy_data:

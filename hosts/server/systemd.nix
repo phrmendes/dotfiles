@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, parameters, ... }:
 {
   systemd = {
     paths = {
@@ -28,6 +28,24 @@
           Type = "oneshot";
           ExecStart = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans";
           WorkingDirectory = "/etc/compose";
+        };
+      };
+      "chown-mnt-external" = {
+        description = "Set owner for /mnt/external";
+        after = [ "mnt-external.mount" ];
+        wantedBy = [ "mnt-external.mount" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.coreutils}/bin/chown -R ${parameters.user}:users /mnt/external";
+        };
+      };
+      "chown-docker-volumes" = {
+        description = "Set owner for /var/lib/docker/volumes";
+        after = [ "docker.service" ];
+        wantedBy = [ "docker.service" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.coreutils}/bin/chown -R ${parameters.user}:users /var/lib/docker/volumes";
         };
       };
     };

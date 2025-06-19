@@ -3,11 +3,11 @@ services:
     image: docker.io/tailscale/tailscale:latest
     container_name: tailscale
     restart: always
-    hostname: traefik
+    hostname: homelab
     volumes:
       - tailscale_data:/var/lib/tailscale
       - tailscale_socket:/var/run/tailscale
-    devices:
+      - ./traefik.json:/config/traefik.json
       - /dev/net/tun:/dev/net/tun
     cap_add:
       - net_admin
@@ -16,8 +16,8 @@ services:
       - TS_AUTHKEY=${TAILSCALE_AUTH_KEY}
       - TS_EXTRA_ARGS=--advertise-tags=tag:server
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+      - TS_SERVE_CONFIG=/config/traefik.json
 
   traefik:
     image: docker.io/traefik:latest
@@ -26,7 +26,7 @@ services:
     command:
       - "--api.dashboard=true"
       - "--api.insecure=true"
-      - "--certificatesresolvers.tailscale.tailscale=true"
+      - "--certificatesresolvers.ts-resolver.tailscale=true"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
@@ -43,10 +43,10 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.dashboard.entrypoints=websecure
-      - traefik.http.routers.dashboard.rule=Host(`dashboard.codlet-catfish.ts.net`)
-      - traefik.http.routers.dashboard.service=api@internal
-      - traefik.http.routers.dashboard.tls.certresolver=tailscale
+      - traefik.http.routers.dashboard.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/dashboard`)
+      - traefik.http.routers.dashboard.tls.certresolver=ts-resolver
       - traefik.http.routers.dashboard.tls=true
+      - traefik.http.services.dashboard.loadbalancer.server.port=443
 
   adguardhome:
     image: docker.io/adguard/adguardhome:latest
@@ -64,7 +64,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.adguardhome.entrypoints=websecure
       - traefik.http.routers.adguardhome.rule=Host(`adguardhome.codlet-catfish.ts.net`)
-      - traefik.http.routers.adguardhome.tls.certresolver=tailscale
+      - traefik.http.routers.adguardhome.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/adguardhome`)
       - traefik.http.routers.adguardhome.tls=true
       - traefik.http.services.adguardhome.loadbalancer.server.port=80
 
@@ -89,7 +89,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.duplicati.entrypoints=websecure
       - traefik.http.routers.duplicati.rule=Host(`duplicati.codlet-catfish.ts.net`)
-      - traefik.http.routers.duplicati.tls.certresolver=tailscale
+      - traefik.http.routers.duplicati.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/duplicati`)
       - traefik.http.routers.duplicati.tls=true
       - traefik.http.services.duplicati.loadbalancer.server.port=8200
 
@@ -110,7 +110,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.sftpgo.entrypoints=websecure
       - traefik.http.routers.sftpgo.rule=Host(`sftpgo.codlet-catfish.ts.net`)
-      - traefik.http.routers.sftpgo.tls.certresolver=tailscale
+      - traefik.http.routers.sftpgo.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/sftpgo`)
       - traefik.http.routers.sftpgo.tls=true
       - traefik.http.services.sftpgo.loadbalancer.server.port=8080
 
@@ -134,7 +134,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.syncthing.entrypoints=websecure
       - traefik.http.routers.syncthing.rule=Host(`syncthing.codlet-catfish.ts.net`)
-      - traefik.http.routers.syncthing.tls.certresolver=tailscale
+      - traefik.http.routers.syncthing.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/syncthing`)
       - traefik.http.routers.syncthing.tls=true
       - traefik.http.services.syncthing.loadbalancer.server.port=8384
 
@@ -165,7 +165,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.beszel.entrypoints=websecure
       - traefik.http.routers.beszel.rule=Host(`beszel.codlet-catfish.ts.net`)
-      - traefik.http.routers.beszel.tls.certresolver=tailscale
+      - traefik.http.routers.beszel.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/beszel`)
       - traefik.http.routers.beszel.tls=true
       - traefik.http.services.beszel.loadbalancer.server.port=8090
 
@@ -184,7 +184,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.dozzle.entrypoints=websecure
       - traefik.http.routers.dozzle.rule=Host(`dozzle.codlet-catfish.ts.net`)
-      - traefik.http.routers.dozzle.tls.certresolver=tailscale
+      - traefik.http.routers.dozzle.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/dozzle`)
       - traefik.http.routers.dozzle.tls=true
       - traefik.http.services.dozzle.loadbalancer.server.port=8080
 
@@ -206,7 +206,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.ntfy.entrypoints=websecure
       - traefik.http.routers.ntfy.rule=Host(`ntfy.codlet-catfish.ts.net`)
-      - traefik.http.routers.ntfy.tls.certresolver=tailscale
+      - traefik.http.routers.ntfy.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/ntfy`)
       - traefik.http.routers.ntfy.tls=true
       - traefik.http.services.ntfy.loadbalancer.server.port=80
 
@@ -231,7 +231,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.deluge.entrypoints=websecure
       - traefik.http.routers.deluge.rule=Host(`deluge.codlet-catfish.ts.net`)
-      - traefik.http.routers.deluge.tls.certresolver=tailscale
+      - traefik.http.routers.deluge.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/deluge`)
       - traefik.http.routers.deluge.tls=true
       - traefik.http.services.deluge.loadbalancer.server.port=8112
 
@@ -255,7 +255,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.jellyfin.entrypoints=websecure
       - traefik.http.routers.jellyfin.rule=Host(`jellyfin.codlet-catfish.ts.net`)
-      - traefik.http.routers.jellyfin.tls.certresolver=tailscale
+      - traefik.http.routers.jellyfin.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/jellyfin`)
       - traefik.http.routers.jellyfin.tls=true
       - traefik.http.services.jellyfin.loadbalancer.server.port=8096
 
@@ -277,7 +277,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.atuin.entrypoints=websecure
       - traefik.http.routers.atuin.rule=Host(`atuin.codlet-catfish.ts.net`)
-      - traefik.http.routers.atuin.tls.certresolver=tailscale
+      - traefik.http.routers.atuin.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/atuin`)
       - traefik.http.routers.atuin.tls=true
       - traefik.http.services.atuin.loadbalancer.server.port=8888
 

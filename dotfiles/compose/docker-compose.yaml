@@ -67,10 +67,8 @@ services:
     restart: always
     volumes:
       - sftpgo_data:/var/lib/sftpgo
-      - deluge_downloads:/files/downloads
-      - jellyfin_movies:/files/movies
-      - jellyfin_tvshows:/files/tvshows
       - syncthing_data:/files/syncthing
+      - /mnt/external/:/files/external
     ports:
       - 8080:8080
       - 2022:2022
@@ -185,9 +183,7 @@ services:
       - TZ=${TZ}
     volumes:
       - deluge_config:/config
-      - deluge_downloads:/downloads
-      - jellyfin_movies:/movies
-      - jellyfin_tvshows:/tvshows
+      - /mnt/external:/files
     ports:
       - 8112:8112
       - 6881:6881
@@ -209,8 +205,8 @@ services:
       - TZ=${TZ}
     volumes:
       - jellyfin_data:/config
-      - jellyfin_movies:/data/movies
-      - jellyfin_tvshows:/data/tvshows
+      - /mnt/external/movies:/data/movies
+      - /mnt/external/tvshows:/data/tvshows
     ports:
       - 8096:8096
       - 7359:7359/udp
@@ -236,6 +232,8 @@ services:
       - ATUIN_OPEN_REGISTRATION=true
       - ATUIN_DB_URI=postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@postgres/${ATUIN_DB_NAME}
       - RUST_LOG=info,atuin_server=debug
+    depends_on:
+      - postgres
     labels:
       - tsdproxy.enable=true
       - tsdproxy.name=atuin
@@ -264,13 +262,10 @@ volumes:
   beszel_data:
   beszel_socket:
   deluge_config:
-  deluge_downloads:
   duplicati_backups:
   duplicati_config:
   duplicati_source:
   jellyfin_data:
-  jellyfin_movies:
-  jellyfin_tvshows:
   ntfy_cache:
   ntfy_data:
   postgres_data:

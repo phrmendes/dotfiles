@@ -209,8 +209,8 @@ services:
       - TZ=${TZ}
     volumes:
       - jellyfin_data:/config
-      - jellyfin_movies:/data/tvshows
-      - jellyfin_tvshows:/data/movies
+      - jellyfin_movies:/data/movies
+      - jellyfin_tvshows:/data/tvshows
     ports:
       - 8096:8096
       - 7359:7359/udp

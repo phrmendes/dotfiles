@@ -72,8 +72,8 @@
       ".local/state"
     ];
     etc = {
-      "compose/traefik.json" = {
-        source = ../../dotfiles/compose/traefik.json;
+      "compose/Caddyfile" = {
+        source = ../../dotfiles/compose/Caddyfile;
         mode = "0644";
       };
       "compose/docker-compose.yaml" = {

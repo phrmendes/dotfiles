@@ -1,0 +1,40 @@
+(network_paths) {
+	handle_path /syncthing/* {
+		reverse_proxy /* syncthing:8384
+	}
+	handle_path /dozzle/* {
+		reverse_proxy /* dozzle:8080
+	}
+	handle_path /adguardhome/* {
+		reverse_proxy /* adguardhome:80
+	}
+	handle_path /duplicati/* {
+		reverse_proxy /* duplicati:8200
+	}
+	handle_path /sftpgo/* {
+		reverse_proxy /* sftpgo:8080
+	}
+	handle_path /ntfy/* {
+		reverse_proxy /* ntfy:80
+	}
+	handle_path /deluge/* {
+		reverse_proxy /* deluge:8112
+	}
+	handle_path /jellyfin/* {
+		reverse_proxy /* jellyfin:8096
+	}
+	handle_path /atuin/* {
+		reverse_proxy /* atuin:8888
+	}
+	handle_path /beszel/* {
+		reverse_proxy /* beszel:8090
+	}
+}
+
+homelab.codlet-catfish.ts.net {
+	import network_paths
+}
+
+http://192.168.0.15 {
+	import network_paths
+}

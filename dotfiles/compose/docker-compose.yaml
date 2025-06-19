@@ -3,50 +3,38 @@ services:
     image: docker.io/tailscale/tailscale:latest
     container_name: tailscale
     restart: always
+    network_mode: host
     hostname: homelab
     volumes:
       - tailscale_data:/var/lib/tailscale
       - tailscale_socket:/var/run/tailscale
-      - ./traefik.json:/config/traefik.json
       - /dev/net/tun:/dev/net/tun
     cap_add:
       - net_admin
       - sys_module
     environment:
-      - TS_AUTHKEY=${TAILSCALE_AUTH_KEY}
-      - TS_EXTRA_ARGS=--advertise-tags=tag:server
+      - TS_AUTHKEY=${TAILSCALE_AUTHKEY}
+      - TS_EXTRA_ARGS=--advertise-tags=tag:containers
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock
-      - TS_SERVE_CONFIG=/config/traefik.json
 
-  traefik:
-    image: docker.io/traefik:latest
-    container_name: traefik
-    network_mode: service:tailscale
-    command:
-      - "--api.dashboard=true"
-      - "--api.insecure=true"
-      - "--certificatesresolvers.ts-resolver.tailscale=true"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-      - "--providers.docker=true"
-      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
-      - "--providers.docker.exposedbydefault=false"
-    volumes:
-      - tailscale_data:/var/lib/tailscale
-      - tailscale_socket:/var/run/tailscale
-      - /var/run/docker.sock:/var/run/docker.sock
+  caddy:
+    image: docker.io/caddy:latest
+    restart: always
+    container_name: caddy
+    networks:
+      - server
     depends_on:
       - tailscale
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.dashboard.entrypoints=websecure
-      - traefik.http.routers.dashboard.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/dashboard`)
-      - traefik.http.routers.dashboard.tls.certresolver=ts-resolver
-      - traefik.http.routers.dashboard.tls=true
-      - traefik.http.services.dashboard.loadbalancer.server.port=443
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - tailscale_socket:/var/run/tailscale
+      - ./Caddyfile:/etc/caddy/Caddyfile
 
   adguardhome:
     image: docker.io/adguard/adguardhome:latest
@@ -60,13 +48,6 @@ services:
       - 53:53/udp
       - 8081:80
       - 3000:3000
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.adguardhome.entrypoints=websecure
-      - traefik.http.routers.adguardhome.rule=Host(`adguardhome.codlet-catfish.ts.net`)
-      - traefik.http.routers.adguardhome.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/adguardhome`)
-      - traefik.http.routers.adguardhome.tls=true
-      - traefik.http.services.adguardhome.loadbalancer.server.port=80
 
   duplicati:
     image: docker.io/linuxserver/duplicati:latest
@@ -85,13 +66,6 @@ services:
       - syncthing_data:/syncthing:ro
     ports:
       - 8200:8200
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.duplicati.entrypoints=websecure
-      - traefik.http.routers.duplicati.rule=Host(`duplicati.codlet-catfish.ts.net`)
-      - traefik.http.routers.duplicati.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/duplicati`)
-      - traefik.http.routers.duplicati.tls=true
-      - traefik.http.services.duplicati.loadbalancer.server.port=8200
 
   sftpgo:
     image: docker.io/drakkan/sftpgo:latest
@@ -106,13 +80,6 @@ services:
     ports:
       - 8080:8080
       - 2022:2022
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.sftpgo.entrypoints=websecure
-      - traefik.http.routers.sftpgo.rule=Host(`sftpgo.codlet-catfish.ts.net`)
-      - traefik.http.routers.sftpgo.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/sftpgo`)
-      - traefik.http.routers.sftpgo.tls=true
-      - traefik.http.services.sftpgo.loadbalancer.server.port=8080
 
   syncthing:
     image: docker.io/linuxserver/syncthing:latest
@@ -130,13 +97,6 @@ services:
       - 22000:22000
       - 22000:22000/udp
       - 8384:8384
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.syncthing.entrypoints=websecure
-      - traefik.http.routers.syncthing.rule=Host(`syncthing.codlet-catfish.ts.net`)
-      - traefik.http.routers.syncthing.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/syncthing`)
-      - traefik.http.routers.syncthing.tls=true
-      - traefik.http.services.syncthing.loadbalancer.server.port=8384
 
   beszel-agent:
     image: docker.io/henrygd/beszel-agent:latest
@@ -161,13 +121,6 @@ services:
       - beszel_socket:/beszel_socket
     depends_on:
       - beszel-agent
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.beszel.entrypoints=websecure
-      - traefik.http.routers.beszel.rule=Host(`beszel.codlet-catfish.ts.net`)
-      - traefik.http.routers.beszel.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/beszel`)
-      - traefik.http.routers.beszel.tls=true
-      - traefik.http.services.beszel.loadbalancer.server.port=8090
 
   dozzle:
     image: docker.io/amir20/dozzle:latest
@@ -180,13 +133,6 @@ services:
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.dozzle.entrypoints=websecure
-      - traefik.http.routers.dozzle.rule=Host(`dozzle.codlet-catfish.ts.net`)
-      - traefik.http.routers.dozzle.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/dozzle`)
-      - traefik.http.routers.dozzle.tls=true
-      - traefik.http.services.dozzle.loadbalancer.server.port=8080
 
   ntfy:
     image: binwiederhier/ntfy
@@ -202,13 +148,6 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.ntfy.entrypoints=websecure
-      - traefik.http.routers.ntfy.rule=Host(`ntfy.codlet-catfish.ts.net`)
-      - traefik.http.routers.ntfy.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/ntfy`)
-      - traefik.http.routers.ntfy.tls=true
-      - traefik.http.services.ntfy.loadbalancer.server.port=80
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest
@@ -227,13 +166,6 @@ services:
       - 8112:8112
       - 6881:6881
       - 6881:6881/udp
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.deluge.entrypoints=websecure
-      - traefik.http.routers.deluge.rule=Host(`deluge.codlet-catfish.ts.net`)
-      - traefik.http.routers.deluge.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/deluge`)
-      - traefik.http.routers.deluge.tls=true
-      - traefik.http.services.deluge.loadbalancer.server.port=8112
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -251,13 +183,6 @@ services:
       - 8096:8096
       - 7359:7359/udp
       - 1900:1900/udp
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.jellyfin.entrypoints=websecure
-      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.codlet-catfish.ts.net`)
-      - traefik.http.routers.jellyfin.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/jellyfin`)
-      - traefik.http.routers.jellyfin.tls=true
-      - traefik.http.services.jellyfin.loadbalancer.server.port=8096
 
   atuin:
     image: ghcr.io/atuinsh/atuin:latest
@@ -273,13 +198,6 @@ services:
       - ATUIN_OPEN_REGISTRATION=true
       - ATUIN_DB_URI=postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@postgres/${ATUIN_DB_NAME}
       - RUST_LOG=info,atuin_server=debug
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.atuin.entrypoints=websecure
-      - traefik.http.routers.atuin.rule=Host(`atuin.codlet-catfish.ts.net`)
-      - traefik.http.routers.atuin.rule=Host(`homelab.codlet-catfish.ts.net`) && Path(`/atuin`)
-      - traefik.http.routers.atuin.tls=true
-      - traefik.http.services.atuin.loadbalancer.server.port=8888
 
   postgres:
     image: postgres:17
@@ -298,6 +216,8 @@ volumes:
   atuin_config:
   beszel_data:
   beszel_socket:
+  caddy_config:
+  caddy_data:
   deluge_config:
   deluge_downloads:
   duplicati_backups:
@@ -314,3 +234,7 @@ volumes:
   syncthing_data:
   tailscale_data:
   tailscale_socket:
+
+networks:
+  server:
+    name: server

@@ -32,25 +32,36 @@
             src = pkgs.zsh-nix-shell;
           }
         ];
-        shellAliases = {
-          apply = "git add . && nh os switch";
-          asr = "${getExe pkgs.atuin} scripts run";
-          cat = getExe pkgs.bat;
-          du = getExe pkgs.gdu;
-          find = getExe pkgs.fd;
-          fs = getExe pkgs.fselect;
-          g = getExe pkgs.git;
-          grep = getExe pkgs.ripgrep;
-          k = "${pkgs.kubectl}/bin/kubectl";
-          ld = getExe pkgs.lazydocker;
-          lg = getExe pkgs.lazygit;
-          ps = getExe pkgs.procs;
-          sed = getExe pkgs.gnused;
-          src = "source .venv/bin/activate";
-          t = "${getExe pkgs.tmux} new-session -A -s default";
-          top = getExe pkgs.btop;
-          v = "nvim";
-        };
+        shellAliases =
+          let
+            sesh = ''
+              ${getExe pkgs.sesh} connect $(${getExe pkgs.sesh} list --icons | \
+                ${getExe pkgs.fzf} --border --border-label " sesh "\
+                --ansi --reverse --height 50% \
+                --prompt "⚡ " \
+                --preview "${getExe pkgs.sesh} preview {}")
+            '';
+          in
+          {
+            apply = "git add . && nh os switch";
+            asr = "${getExe pkgs.atuin} scripts run";
+            cat = getExe pkgs.bat;
+            du = getExe pkgs.gdu;
+            find = getExe pkgs.fd;
+            fs = getExe pkgs.fselect;
+            g = getExe pkgs.git;
+            grep = getExe pkgs.ripgrep;
+            k = "${pkgs.kubectl}/bin/kubectl";
+            ld = getExe pkgs.lazydocker;
+            lg = getExe pkgs.lazygit;
+            ps = getExe pkgs.procs;
+            s = sesh;
+            sed = getExe pkgs.gnused;
+            src = "source .venv/bin/activate";
+            t = "${getExe pkgs.tmux} new-session -A -s default";
+            top = getExe pkgs.btop;
+            v = "nvim";
+          };
         initContent = ''
           export PATH="$HOME/.local/bin:$PATH"
           export PATH="/etc/profiles/per-user/$USER/bin:$PATH"

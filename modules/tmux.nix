@@ -21,15 +21,12 @@
       newSession = true;
       prefix = "C-Space";
       shell = lib.getExe pkgs.zsh;
-      plugins = with pkgs.tmuxPlugins; [
-        {
-          plugin = tmux-fzf;
-          extraConfig = "TMUX_FZF_LAUNCH_KEY='C-Space'";
-        }
-      ];
       extraConfig =
         let
           status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
+          fd = lib.getExe pkgs.fd;
+          fzf = lib.getExe pkgs.fzf;
+          sesh = lib.getExe pkgs.sesh;
         in
         ''
           set -g default-terminal    'tmux-256color'
@@ -103,6 +100,21 @@
           bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
           bind -T copy-mode-vi v   send-keys -X begin-selection
           bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
+
+          bind C-Space run-shell "${sesh} connect \"$(
+            ${sesh} list --icons | ${fzf} --tmux 80%,70% \
+              --no-sort --ansi --border-label ' sesh ' --prompt '⚡ ' \
+              --header ' ^a all ^t tmux ^g configs ^x zoxide ^d kill ^f find' \
+              --bind 'tab:down,btab:up' \
+              --bind 'ctrl-a:change-prompt(⚡)+reload(${sesh} list --icons)' \
+              --bind 'ctrl-t:change-prompt( )+reload(${sesh} list -t --icons)' \
+              --bind 'ctrl-g:change-prompt( )+reload(${sesh} list -c --icons)' \
+              --bind 'ctrl-x:change-prompt( )+reload(${sesh} list -z --icons)' \
+              --bind 'ctrl-f:change-prompt(󰍉 )+reload(${fd} -H -d 2 -t d -E .Trash . ~)' \
+              --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡)+reload(${sesh} list --icons)' \
+              --preview-window 'right:55%' \
+              --preview '${sesh} preview {}'
+          )\""
 
           run-shell "tmux has-session -t 0 2>/dev/null && tmux kill-session -t 0"
         '';

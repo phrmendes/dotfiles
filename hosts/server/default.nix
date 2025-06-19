@@ -34,6 +34,7 @@
     direnv.enable = false;
     dunst.enable = false;
     gh.enable = false;
+    ghostty.enable = false;
     gtk-settings.enable = false;
     hypridle.enable = false;
     hyprland.enable = false;

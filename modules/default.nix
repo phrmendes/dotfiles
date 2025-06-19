@@ -16,6 +16,7 @@
     ./fd.nix
     ./fzf.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gtk.nix
     ./hypridle.nix
@@ -45,7 +46,6 @@
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix
-    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
@@ -65,6 +65,7 @@
   fd.enable = lib.mkDefault true;
   fzf.enable = lib.mkDefault true;
   gh.enable = lib.mkDefault true;
+  ghostty.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
   gtk-settings.enable = lib.mkDefault true;
   hypridle.enable = lib.mkDefault true;
@@ -94,7 +95,6 @@
   udiskie.enable = lib.mkDefault true;
   uv.enable = lib.mkDefault true;
   waybar.enable = lib.mkDefault true;
-  wezterm.enable = lib.mkDefault true;
   wofi.enable = lib.mkDefault true;
   yazi.enable = lib.mkDefault true;
   zathura.enable = lib.mkDefault true;

@@ -17,8 +17,9 @@
   programs.nh.flake = "/home/${parameters.user}/dotfiles";
 
   environment.systemPackages = with pkgs; [
-    python313
     helix
+    python313
+    zellij
   ];
 
   services = {
@@ -54,6 +55,7 @@
     symlinks.enable = false;
     syncthingtray.enable = false;
     tealdeer.enable = false;
+    tmux.enable = false;
     udiskie.enable = false;
     uv.enable = false;
     waybar.enable = false;

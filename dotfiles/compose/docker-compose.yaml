@@ -59,6 +59,7 @@ services:
       - sftpgo_data:/var/lib/sftpgo
       - syncthing_data:/files/syncthing
       - postgres_dumps:/files/postgres_dumps:ro
+      - transmission_watch:/files/transmission_watch
       - /mnt/external/:/files/external
     ports:
       - 8081:8080
@@ -147,6 +148,7 @@ services:
       - PASS=${TRANSMISSION_PASSWORD}
     volumes:
       - transmission_config:/config
+      - transmission_watch:/watch
       - /mnt/external:/files
     ports:
       - 9091:9091
@@ -232,7 +234,6 @@ volumes:
   atuin_config:
   beszel_data:
   beszel_socket:
-  transmission_config:
   duplicati_backups:
   duplicati_config:
   duplicati_source:
@@ -246,3 +247,5 @@ volumes:
   sftpgo_data:
   syncthing_config:
   syncthing_data:
+  transmission_config:
+  transmission_watch:

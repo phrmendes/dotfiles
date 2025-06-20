@@ -16,7 +16,7 @@
       settings = {
         auto_sync = true;
         sync_frequency = "1h";
-        sync_address = "https://atuin.codlet-catfish.ts.net";
+        sync_address = "https://atuin.ohlongjohnson.duckdns.org";
       };
     };
   };

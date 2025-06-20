@@ -73,8 +73,8 @@
       ".local/state"
     ];
     etc = {
-      "compose/tsdproxy.yaml" = {
-        source = ../../dotfiles/compose/tsdproxy.yaml;
+      "compose/init.sh" = {
+        source = ../../dotfiles/compose/init.sh;
         mode = "0644";
       };
       "compose/docker-compose.yaml" = {

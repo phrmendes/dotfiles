@@ -9,8 +9,4 @@ in
     main
     server
   ];
-  "tailscale-auth-key.age".publicKeys = [
-    main
-    server
-  ];
 }

@@ -1,22 +1,23 @@
 services:
-  tsdproxy:
-    image: docker.io/almeidapaulopt/tsdproxy:1
-    container_name: tsdproxy
+  npm:
+    image: docker.io/jc21/nginx-proxy-manager:latest
+    container_name: npm
     restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./tsdproxy.yaml:/config/tsdproxy.yaml
-      - tsdproxy_data:/data
     ports:
-      - 8081:8080
-    secrets:
-      - auth_key
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=dashboard
-      - tsdproxy.container_port=8080
-      - tsdproxy.dash.label=Dashboard
-      - tsdproxy.dash.icon=sh/tailscale
+      - 80:80
+      - 81:81
+      - 443:443
+    volumes:
+      - npm_data:/data
+      - letsencrypt:/etc/letsencrypt
+    environment:
+      - DB_POSTGRES_HOST=postgres
+      - DB_POSTGRES_PORT=5432
+      - DB_POSTGRES_USER=${PG_USER}
+      - DB_POSTGRES_PASSWORD=${PG_PASSWORD}
+      - DB_POSTGRES_NAME=npm
+    depends_on:
+      - postgres
 
   adguardhome:
     image: docker.io/adguard/adguardhome:latest
@@ -28,14 +29,8 @@ services:
     ports:
       - 53:53
       - 53:53/udp
-      - 80:80
+      - 8080:80
       - 3000:3000
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=adguardhome
-      - tsdproxy.container_port=80
-      - tsdproxy.dash.label=Adguard Home
-      - tsdproxy.dash.icon=sh/adguard-home
 
   duplicati:
     image: docker.io/linuxserver/duplicati:latest
@@ -52,14 +47,9 @@ services:
       - duplicati_backups:/backups
       - duplicati_source:/source
       - syncthing_data:/syncthing:ro
+      - postgres_dumps:/postgres_dumps:ro
     ports:
       - 8200:8200
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=duplicati
-      - tsdproxy.container_port=8200
-      - tsdproxy.dash.label=Duplicati
-      - tsdproxy.dash.icon=sh/duplicati
 
   sftpgo:
     image: docker.io/drakkan/sftpgo:latest
@@ -68,16 +58,11 @@ services:
     volumes:
       - sftpgo_data:/var/lib/sftpgo
       - syncthing_data:/files/syncthing
+      - postgres_dumps:/files/postgres_dumps:ro
       - /mnt/external/:/files/external
     ports:
-      - 8080:8080
+      - 8081:8080
       - 2022:2022
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=sftpgo
-      - tsdproxy.container_port=8080
-      - tsdproxy.dash.label=SFTPGo
-      - tsdproxy.dash.icon=sh/sftpgo
 
   syncthing:
     image: docker.io/linuxserver/syncthing:latest
@@ -95,12 +80,6 @@ services:
       - 22000:22000
       - 22000:22000/udp
       - 8384:8384
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=syncthing
-      - tsdproxy.container_port=8384
-      - tsdproxy.dash.label=Syncthing
-      - tsdproxy.dash.icon=sh/syncthing
 
   beszel-agent:
     image: docker.io/henrygd/beszel-agent:latest
@@ -125,12 +104,6 @@ services:
       - beszel_socket:/beszel_socket
     environment:
       - APP_URL=https://beszel.codlet-catfish.ts.net
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=beszel
-      - tsdproxy.container_port=8090
-      - tsdproxy.dash.label=Beszel
-      - tsdproxy.dash.icon=sh/beszel
     depends_on:
       - beszel-agent
 
@@ -139,18 +112,12 @@ services:
     container_name: dozzle
     restart: always
     ports:
-      - 8083:8080
+      - 8082:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=dozzle
-      - tsdproxy.container_port=8080
-      - tsdproxy.dash.label=Dozzle
-      - tsdproxy.dash.icon=sh/dozzle
 
   ntfy:
     image: binwiederhier/ntfy
@@ -167,11 +134,6 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=ntfy
-      - tsdproxy.container_port=80
-      - tsdproxy.dash.visible=false
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest
@@ -188,12 +150,6 @@ services:
       - 8112:8112
       - 6881:6881
       - 6881:6881/udp
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=deluge
-      - tsdproxy.container_port=8112
-      - tsdproxy.dash.label=Deluge
-      - tsdproxy.dash.icon=sh/deluge
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -211,12 +167,6 @@ services:
       - 8096:8096
       - 7359:7359/udp
       - 1900:1900/udp
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=jellyfin
-      - tsdproxy.container_port=8096
-      - tsdproxy.dash.label=Jellyfin
-      - tsdproxy.dash.icon=sh/jellyfin
 
   atuin:
     image: ghcr.io/atuinsh/atuin:latest
@@ -230,30 +180,49 @@ services:
     environment:
       - ATUIN_HOST=0.0.0.0
       - ATUIN_OPEN_REGISTRATION=true
-      - ATUIN_DB_URI=postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@postgres/${ATUIN_DB_NAME}
+      - ATUIN_DB_URI=postgres://${PG_USER}:${PG_PASSWORD}@postgres/atuin
       - RUST_LOG=info,atuin_server=debug
     depends_on:
       - postgres
-    labels:
-      - tsdproxy.enable=true
-      - tsdproxy.name=atuin
-      - tsdproxy.container_port=8888
-      - tsdproxy.dash.visible=false
 
   postgres:
-    image: postgres:17
+    image: docker.io/postgres:17
     container_name: postgres
-    restart: unless-stopped
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+      - ./init.sh:/docker-entrypoint-initdb.d/init.sh:ro
     environment:
-      - POSTGRES_USER=${ATUIN_DB_USERNAME}
-      - POSTGRES_PASSWORD=${ATUIN_DB_PASSWORD}
-      - POSTGRES_DB=${ATUIN_DB_NAME}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DATABASES=atuin,npm
 
-secrets:
-  auth_key:
-    file: /run/agenix/tailscale_auth_key
+  pgbackup:
+    image: docker.io/prodrigestivill/postgres-backup-local:latest
+    container_name: pgbackup
+    restart: always
+    volumes:
+      - postgres_dumps:/dumps
+    environment:
+      - TZ=${TZ}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=atuin,npm
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - SCHEDULE=@daily
+      - BACKUP_ON_START=TRUE
+      - BACKUP_DIR=/dumps
+      - WEBHOOK_URL=https://ntfy.codlet-catfish.ts.net/postgres_dump
+      - WEBHOOK_ERROR_URL=https://ntfy.codlet-catfish.ts.net/postgres_dump
+    depends_on:
+      - postgres
+
+  adminer:
+    image: docker.io/adminer:latest
+    container_name: adminer
+    restart: always
+    ports:
+      - 8083:8080
 
 volumes:
   adguardhome_conf:
@@ -266,10 +235,12 @@ volumes:
   duplicati_config:
   duplicati_source:
   jellyfin_data:
+  letsencrypt:
+  npm_data:
   ntfy_cache:
   ntfy_data:
   postgres_data:
+  postgres_dumps:
   sftpgo_data:
   syncthing_config:
   syncthing_data:
-  tsdproxy_data:

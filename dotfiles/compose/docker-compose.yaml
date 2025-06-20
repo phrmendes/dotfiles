@@ -135,21 +135,23 @@ services:
       - PUID=${PUID}
       - TZ=${TZ}
 
-  deluge:
-    image: lscr.io/linuxserver/deluge:latest
-    container_name: deluge
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
     restart: always
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
+      - USER=phrmendes
+      - PASS=${TRANSMISSION_PASSWORD}
     volumes:
-      - deluge_config:/config
+      - transmission_config:/config
       - /mnt/external:/files
     ports:
-      - 8112:8112
-      - 6881:6881
-      - 6881:6881/udp
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -230,7 +232,7 @@ volumes:
   atuin_config:
   beszel_data:
   beszel_socket:
-  deluge_config:
+  transmission_config:
   duplicati_backups:
   duplicati_config:
   duplicati_source:

@@ -75,8 +75,8 @@
             explicit_sync_kms = 0;
           };
           monitor = with parameters.monitors; [
-            "${primary},preferred,auto,1"
-            "${secondary},preferred,auto-left,1"
+            "${primary},2560x1080,0x0,1"
+            "${secondary},1920x1080,2560x0,1"
           ];
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"

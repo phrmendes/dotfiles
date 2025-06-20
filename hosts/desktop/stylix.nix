@@ -15,7 +15,7 @@
     fonts = {
       sizes = {
         applications = 12;
-        terminal = 12;
+        terminal = 13;
       };
       serif = {
         package = pkgs.fira;

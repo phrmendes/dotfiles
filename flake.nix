@@ -45,8 +45,8 @@
             parameters = global // {
               device = "/dev/sdc";
               monitors = {
-                primary = "HDMI-A-1";
-                secondary = "DP-1";
+                primary = "DP-1";
+                secondary = "HDMI-A-1";
               };
             };
           in

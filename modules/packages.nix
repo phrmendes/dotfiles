@@ -19,7 +19,6 @@
         ansible
         ast-grep
         curl
-        deluge
         dig
         discord
         docker-credential-helpers
@@ -64,6 +63,7 @@
         stremio
         tectonic
         terraform
+        transmission_4
         websocat
         wofi-emoji
         wofi-power-menu

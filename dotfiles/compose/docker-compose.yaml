@@ -48,6 +48,8 @@ services:
       - duplicati_source:/source
       - syncthing_data:/backups/syncthing
       - postgres_dumps:/backups/postgres_dumps
+      - npm_data:/backups/npm/data
+      - letsencrypt:/backups/npm/letsencrypt
     ports:
       - 8200:8200
 
@@ -104,7 +106,7 @@ services:
       - beszel_data:/beszel_data
       - beszel_socket:/beszel_socket
     environment:
-      - APP_URL=https://beszel.codlet-catfish.ts.net
+      - APP_URL=https://beszel.local.ohlongjohnson.tech.ts.net
     depends_on:
       - beszel-agent
 
@@ -216,8 +218,8 @@ services:
       - SCHEDULE=@daily
       - BACKUP_ON_START=TRUE
       - BACKUP_DIR=/dumps
-      - WEBHOOK_URL=https://ntfy.codlet-catfish.ts.net/postgres_dump
-      - WEBHOOK_ERROR_URL=https://ntfy.codlet-catfish.ts.net/postgres_dump
+      - WEBHOOK_URL=https://ntfy.local.ohlongjohnson.tech.ts.net/postgres_dump
+      - WEBHOOK_ERROR_URL=https://ntfy.local.ohlongjohnson.tech.ts.net/postgres_dump
     depends_on:
       - postgres
 

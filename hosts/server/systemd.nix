@@ -7,6 +7,11 @@
         pathConfig.PathChanged = "/etc/compose/docker-compose.yaml";
         wantedBy = [ "multi-user.target" ];
       };
+      docker-volumes-chown = {
+        description = "Watch for new Docker volumes";
+        pathConfig.PathChanged = "/var/lib/docker/volumes";
+        wantedBy = [ "docker.service" ];
+      };
     };
     services = {
       docker-compose = {
@@ -42,7 +47,10 @@
       "chown-docker-volumes" = {
         description = "Set owner for /var/lib/docker/volumes";
         after = [ "docker.service" ];
-        wantedBy = [ "docker.service" ];
+        wantedBy = [
+          "docker.service"
+          "docker-volumes-chown.path"
+        ];
         serviceConfig = {
           Type = "oneshot";
           ExecStart = "${pkgs.coreutils}/bin/chown -R ${parameters.user}:users /var/lib/docker/volumes";

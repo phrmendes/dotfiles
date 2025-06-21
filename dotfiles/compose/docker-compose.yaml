@@ -46,8 +46,8 @@ services:
       - duplicati_config:/config
       - duplicati_backups:/backups
       - duplicati_source:/source
-      - syncthing_data:/syncthing:ro
-      - postgres_dumps:/postgres_dumps:ro
+      - syncthing_data:/backups/syncthing
+      - postgres_dumps:/backups/postgres_dumps
     ports:
       - 8200:8200
 

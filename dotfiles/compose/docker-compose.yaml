@@ -122,22 +122,6 @@ services:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
 
-  ntfy:
-    image: binwiederhier/ntfy
-    container_name: ntfy
-    restart: always
-    command:
-      - serve
-    ports:
-      - 8084:80
-    volumes:
-      - ntfy_cache:/var/cache/ntfy
-      - ntfy_data:/etc/ntfy
-    environment:
-      - PGID=${PGID}
-      - PUID=${PUID}
-      - TZ=${TZ}
-
   transmission:
     image: lscr.io/linuxserver/transmission:latest
     container_name: transmission
@@ -218,8 +202,6 @@ services:
       - SCHEDULE=@daily
       - BACKUP_ON_START=TRUE
       - BACKUP_DIR=/dumps
-      - WEBHOOK_URL=https://ntfy.local.ohlongjohnson.tech.ts.net/postgres_dump
-      - WEBHOOK_ERROR_URL=https://ntfy.local.ohlongjohnson.tech.ts.net/postgres_dump
     depends_on:
       - postgres
 
@@ -242,8 +224,6 @@ volumes:
   jellyfin_data:
   letsencrypt:
   npm_data:
-  ntfy_cache:
-  ntfy_data:
   postgres_data:
   postgres_dumps:
   sftpgo_data:

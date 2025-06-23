@@ -1,8 +1,4 @@
-{
-  parameters,
-  pkgs,
-  ...
-}:
+{ parameters, pkgs, ... }:
 {
   users = {
     mutableUsers = true;
@@ -10,10 +6,12 @@
       root.initialPassword = "password";
       ${parameters.user} = {
         inherit (parameters) home;
-        openssh.authorizedKeys.keys = [ (builtins.readFile ../../dotfiles/ssh-keys/main.txt) ];
+        openssh.authorizedKeys.keys = [
+          (builtins.readFile ../../dotfiles/ssh-keys/main.txt)
+          (builtins.readFile ../../dotfiles/ssh-keys/phone.txt)
+        ];
         isNormalUser = true;
         initialPassword = "password";
-        shell = pkgs.zsh;
         uid = 1000;
         extraGroups = [
           "audio"

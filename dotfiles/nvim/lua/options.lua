@@ -5,6 +5,9 @@ vim.g.maplocalleader = ","
 -- syntax
 vim.opt.syntax = "on"
 
+-- confirm before operations in files with unsaved changes
+vim.opt.confirm = true
+
 -- file type plugin
 vim.cmd([[filetype plugin on]])
 

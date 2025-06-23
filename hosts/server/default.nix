@@ -14,12 +14,37 @@
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
   networking.hostName = "server";
-  programs.nh.flake = "/home/${parameters.user}/dotfiles";
+  users.users.${parameters.user}.shell = pkgs.fish;
+
+  programs = {
+    nh.flake = "/home/${parameters.user}/dotfiles";
+    fish.enable = true;
+
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    tmux = {
+      enable = true;
+      newSession = true;
+      aggressiveResize = true;
+      escapeTime = 0;
+      keyMode = "vi";
+      extraConfig = lib.fileContents ../../dotfiles/tmux.conf;
+    };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      configure.customRC = lib.fileContents ../../dotfiles/init.vim;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
-    helix
     python313
-    zellij
   ];
 
   services = {
@@ -27,40 +52,6 @@
       useRoutingFeatures = "both";
       extraSetFlags = [ "--advertise-exit-node" ];
     };
-  };
-
-  home-manager.users.${parameters.user} = {
-    blueman-applet.enable = false;
-    cliphist.enable = false;
-    direnv.enable = false;
-    dunst.enable = false;
-    gh.enable = false;
-    ghostty.enable = false;
-    gtk-settings.enable = false;
-    hypridle.enable = false;
-    hyprland.enable = false;
-    hyprlock.enable = false;
-    hyprpaper.enable = false;
-    imv.enable = false;
-    k9s.enable = false;
-    keepassxc.enable = false;
-    lazygit.enable = false;
-    mpv.enable = false;
-    neovim.enable = false;
-    nm-applet.enable = false;
-    packages.enable = false;
-    pasystray.enable = false;
-    screenshot.enable = false;
-    swayosd.enable = false;
-    symlinks.enable = false;
-    syncthingtray.enable = false;
-    tealdeer.enable = false;
-    tmux.enable = false;
-    udiskie.enable = false;
-    uv.enable = false;
-    waybar.enable = false;
-    wofi.enable = false;
-    zathura.enable = false;
   };
 
   environment = {
@@ -90,5 +81,16 @@
       fsType = "ext4";
       options = [ "defaults" ];
     };
+  };
+
+  home-manager.users.${parameters.user} = {
+    bat.enable = true;
+    btop.enable = true;
+    eza.enable = true;
+    fd.enable = true;
+    fzf.enable = true;
+    git.enable = true;
+    jq.enable = true;
+    ripgrep.enable = true;
   };
 }

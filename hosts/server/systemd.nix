@@ -35,7 +35,7 @@
           WorkingDirectory = "/etc/compose";
         };
       };
-      "chown-mnt-external" = {
+      chown-mnt-external = {
         description = "Set owner for /mnt/external";
         after = [ "mnt-external.mount" ];
         wantedBy = [ "mnt-external.mount" ];
@@ -44,7 +44,7 @@
           ExecStart = "${pkgs.coreutils}/bin/chown -R ${parameters.user}:users /mnt/external";
         };
       };
-      "chown-docker-volumes" = {
+      chown-docker-volumes = {
         description = "Set owner for /var/lib/docker/volumes";
         after = [ "docker.service" ];
         wantedBy = [

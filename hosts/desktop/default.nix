@@ -6,13 +6,6 @@
   pkgs,
   ...
 }:
-let
-  fd =
-    (pkgs.OVMF.override {
-      secureBoot = true;
-      tpmSupport = true;
-    }).fd;
-in
 {
   imports = [
     inputs.stylix.nixosModules.stylix
@@ -111,7 +104,12 @@ in
       swtpm.enable = true;
       ovmf = {
         enable = true;
-        packages = [ fd ];
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
       };
     };
   };

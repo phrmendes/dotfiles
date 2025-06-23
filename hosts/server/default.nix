@@ -43,11 +43,10 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    python313
-  ];
+  environment.systemPackages = with pkgs; [ python313 ];
 
   services = {
+    xserver.displayManager.lightdm.enable = false;
     tailscale = {
       useRoutingFeatures = "both";
       extraSetFlags = [ "--advertise-exit-node" ];
@@ -86,7 +85,6 @@
   home-manager.users.${parameters.user} = {
     bat.enable = true;
     btop.enable = true;
-    eza.enable = true;
     fd.enable = true;
     fzf.enable = true;
     git.enable = true;

@@ -14,7 +14,7 @@
     };
 
     disko = {
-      url = "github:nix-community/disko";
+      url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,7 +43,7 @@
         desktop =
           let
             parameters = global // {
-              device = "/dev/sdc";
+              device = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
               monitors = {
                 primary = "DP-1";
                 secondary = "HDMI-A-1";
@@ -58,8 +58,8 @@
         server =
           let
             parameters = global // {
-              device = "/dev/sda";
-              homelab_domain = "server.codlet-catfish.ts.net";
+              device = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
+              domain = "ohlongjohnson.tech";
             };
           in
           lib.nixosSystem {

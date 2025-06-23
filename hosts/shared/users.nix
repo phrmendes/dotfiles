@@ -1,9 +1,13 @@
-{ parameters, pkgs, ... }:
+{
+  parameters,
+  config,
+  ...
+}:
 {
   users = {
     mutableUsers = true;
     users = {
-      root.initialPassword = "password";
+      root.hashedPasswordFile = config.age.secrets.hashed-password.path;
       ${parameters.user} = {
         inherit (parameters) home;
         openssh.authorizedKeys.keys = [
@@ -11,7 +15,7 @@
           (builtins.readFile ../../dotfiles/ssh-keys/phone.txt)
         ];
         isNormalUser = true;
-        initialPassword = "password";
+        hashedPasswordFile = config.age.secrets.hashed-password.path;
         uid = 1000;
         extraGroups = [
           "audio"

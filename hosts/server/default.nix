@@ -49,6 +49,7 @@
     xserver.displayManager.lightdm.enable = false;
     tailscale = {
       useRoutingFeatures = "both";
+      extraUpFlags = [ "--advertise-tags=tags:main" ];
       extraSetFlags = [ "--advertise-exit-node" ];
     };
   };

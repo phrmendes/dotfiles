@@ -1,11 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services = {
     envfs.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
     ntpd-rs.enable = true;
-    tailscale.enable = true;
     udev.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";
@@ -16,6 +15,15 @@
     };
 
     dbus.packages = with pkgs; [ gcr ];
+
+    tailscale = {
+      enable = true;
+      authKeyFile = config.age.secrets.tailscale-authkey.path;
+      authKeyParameters = {
+        ephemeral = false;
+        preauthorized = true;
+      };
+    };
 
     openssh = {
       enable = true;

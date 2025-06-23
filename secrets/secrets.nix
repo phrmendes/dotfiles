@@ -1,12 +1,13 @@
 let
   main = builtins.readFile ../dotfiles/ssh-keys/main.txt;
   server = builtins.readFile ../dotfiles/ssh-keys/server.txt;
-in
-
-{
-  "server-password.age".publicKeys = [ main ];
-  "docker-compose-env.age".publicKeys = [
+  all_keys = [
     main
     server
   ];
+in
+{
+  "hashed-password.age".publicKeys = all_keys;
+  "docker-compose-env.age".publicKeys = all_keys;
+  "tailscale-authkey.age".publicKeys = all_keys;
 }

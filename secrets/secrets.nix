@@ -7,7 +7,7 @@ let
   ];
 in
 {
-  "hashed-password.age".publicKeys = all_keys;
   "docker-compose-env.age".publicKeys = all_keys;
+  "hashed-password.age".publicKeys = all_keys;
   "tailscale-authkey.age".publicKeys = all_keys;
 }

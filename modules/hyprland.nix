@@ -95,7 +95,7 @@
             "5,monitor:${primary}"
             "6,monitor:${primary}"
             "7,monitor:${primary}"
-            "8,monitor:${primary}"
+            "8,monitor:${secondary}"
             "9,monitor:${secondary}"
           ];
           bindm = [

@@ -10,6 +10,7 @@
   imports = [
     inputs.stylix.nixosModules.stylix
     ../shared
+    ./age.nix
     ./stylix.nix
     ./syncthing.nix
   ];

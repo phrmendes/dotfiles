@@ -42,6 +42,7 @@
   };
 
   networking.hostName = "desktop";
+  users.users.${parameters.user}.shell = pkgs.zsh;
 
   programs = {
     dconf.enable = true;

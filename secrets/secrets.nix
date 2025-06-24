@@ -10,4 +10,5 @@ in
   "docker-compose-env.age".publicKeys = all_keys;
   "hashed-password.age".publicKeys = all_keys;
   "tailscale-authkey.age".publicKeys = all_keys;
+  "server-password.age".publicKeys = [ main ];
 }

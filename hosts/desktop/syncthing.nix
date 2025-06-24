@@ -36,7 +36,7 @@ in
           autoAcceptFolders = true;
         };
         "server" = {
-          id = "CUV7VHX-6NLNH7N-54ADUG7-GQCH66D-GUPR5AM-XHX2WKA-NDLZARR-UAVNPQM";
+          id = "WIPV7YV-QSYVBJX-IXFX5RA-DPZGVFX-VCA5K3S-3EZ6CN4-J36EY5S-HCZUMAG";
           autoAcceptFolders = true;
         };
         "desktop" = {

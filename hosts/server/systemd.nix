@@ -7,11 +7,6 @@
         pathConfig.PathChanged = "/etc/compose/docker-compose.yaml";
         wantedBy = [ "multi-user.target" ];
       };
-      docker-volumes-chown = {
-        description = "Watch for new Docker volumes";
-        pathConfig.PathChanged = "/var/lib/docker/volumes";
-        wantedBy = [ "docker.service" ];
-      };
     };
     services = {
       docker-compose = {
@@ -36,26 +31,38 @@
         };
       };
       chown-mnt-external = {
-        description = "Set owner for /mnt/external";
-        after = [ "mnt-external.mount" ];
-        wantedBy = [ "mnt-external.mount" ];
+        description = "Set owner and permissions for /mnt/external";
+        after = [
+          "mnt-external.mount"
+          "multi-user.target"
+        ];
+        wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${pkgs.coreutils}/bin/chown -R ${parameters.user}:users /mnt/external";
+          ExecStart = ''
+            ${pkgs.coreutils}/bin/chown -R ${parameters.user}:docker /mnt/external
+            ${pkgs.coreutils}/bin/chmod -R 2775 /mnt/external
+          '';
         };
       };
       chown-docker-volumes = {
-        description = "Set owner for /var/lib/docker/volumes";
-        after = [ "docker.service" ];
-        wantedBy = [
+        description = "Set owner and permissions for /var/lib/docker/volumes";
+        after = [
           "docker.service"
-          "docker-volumes-chown.path"
+          "multi-user.target"
+        ];
+        wantedBy = [
+          "multi-user.target"
         ];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${pkgs.coreutils}/bin/chown -R ${parameters.user}:users /var/lib/docker/volumes";
+          ExecStart = ''
+            ${pkgs.coreutils}/bin/chown -R ${parameters.user}:docker /var/lib/docker/volumes
+            ${pkgs.coreutils}/bin/chmod -R 2775 /var/lib/docker/volumes
+          '';
         };
       };
     };
   };
+
 }

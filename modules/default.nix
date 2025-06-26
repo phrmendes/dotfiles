@@ -36,14 +36,12 @@
     ./pasystray.nix
     ./ripgrep.nix
     ./screenshot.nix
-    ./sesh.nix
     ./starship.nix
     ./swayosd.nix
     ./symlinks.nix
     ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix
@@ -51,6 +49,7 @@
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix
+    ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -86,20 +85,19 @@
   pasystray.enable = lib.mkDefault false;
   ripgrep.enable = lib.mkDefault false;
   screenshot.enable = lib.mkDefault false;
-  sesh.enable = lib.mkDefault false;
   starship.enable = lib.mkDefault false;
   swayosd.enable = lib.mkDefault false;
   symlinks.enable = lib.mkDefault false;
   syncthingtray.enable = lib.mkDefault false;
   targets.enable = lib.mkDefault false;
   tealdeer.enable = lib.mkDefault false;
-  tmux.enable = lib.mkDefault false;
   udiskie.enable = lib.mkDefault false;
   uv.enable = lib.mkDefault false;
   waybar.enable = lib.mkDefault false;
   wofi.enable = lib.mkDefault false;
   yazi.enable = lib.mkDefault false;
   zathura.enable = lib.mkDefault false;
+  zellij.enable = lib.mkDefault false;
   zoxide.enable = lib.mkDefault false;
   zsh.enable = lib.mkDefault false;
 

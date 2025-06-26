@@ -47,8 +47,8 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           src = "source .venv/bin/activate";
-          t = "${getExe pkgs.tmux} new-session -A -s default";
           top = getExe pkgs.btop;
+          zz = ''${getExe pkgs.zellij} attach --create "$(basename "$PWD")"'';
           v = "nvim";
         };
         initContent = ''

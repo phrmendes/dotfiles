@@ -40,7 +40,7 @@
         serviceConfig = {
           Type = "oneshot";
           ExecStart = ''
-            ${pkgs.coreutils}/bin/chown -R ${parameters.user}:docker /mnt/external
+            ${pkgs.coreutils}/bin/chown -R 1000:1000 /mnt/external
             ${pkgs.coreutils}/bin/chmod -R 2775 /mnt/external
           '';
         };
@@ -55,10 +55,12 @@
           "multi-user.target"
         ];
         serviceConfig = {
+          WorkingDirectory = "/etc/compose";
           Type = "oneshot";
           ExecStart = ''
-            ${pkgs.coreutils}/bin/chown -R ${parameters.user}:docker /var/lib/docker/volumes
+            ${pkgs.coreutils}/bin/chown -R 1000:1000 /var/lib/docker/volumes
             ${pkgs.coreutils}/bin/chmod -R 2775 /var/lib/docker/volumes
+            ${pkgs.docker}/bin/docker compose restart
           '';
         };
       };

@@ -18,6 +18,25 @@ services:
       - DB_POSTGRES_NAME=npm
     depends_on:
       - postgres
+    labels:
+      - diun.enable=true
+
+  diun:
+    image: docker.io/crazymax/diun:latest
+    container_name: diun
+    restart: always
+    command: serve
+    volumes:
+      - diun_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=${TZ}
+      - DIUN_WATCH_WORKERS=20
+      - DIUN_WATCH_SCHEDULE=0 */6 * * *
+      - DIUN_WATCH_JITTER=30s
+      - DIUN_PROVIDERS_DOCKER=true
+    labels:
+      - diun.enable=true
 
   adguardhome:
     image: docker.io/adguard/adguardhome:latest
@@ -31,9 +50,11 @@ services:
       - 53:53/udp
       - 8080:80
       - 3000:3000
+    labels:
+      - diun.enable=true
 
   duplicati:
-    image: docker.io/linuxserver/duplicati:latest
+    image: lscr.io/linuxserver/duplicati:latest
     container_name: duplicati
     restart: always
     environment:
@@ -52,6 +73,8 @@ services:
       - letsencrypt:/backups/npm/letsencrypt
     ports:
       - 8200:8200
+    labels:
+      - diun.enable=true
 
   sftpgo:
     image: docker.io/drakkan/sftpgo:latest
@@ -66,9 +89,11 @@ services:
     ports:
       - 8081:8080
       - 2022:2022
+    labels:
+      - diun.enable=true
 
   syncthing:
-    image: docker.io/linuxserver/syncthing:latest
+    image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
     restart: always
     environment:
@@ -83,6 +108,8 @@ services:
       - 22000:22000
       - 22000:22000/udp
       - 8384:8384
+    labels:
+      - diun.enable=true
 
   beszel-agent:
     image: docker.io/henrygd/beszel-agent:latest
@@ -95,6 +122,8 @@ services:
     environment:
       - LISTEN=/beszel_socket/beszel.sock
       - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlh9LAAR9jXqvrkeP1dpOvQPbrcAzQVcyK90s97MaxR
+    labels:
+      - diun.enable=true
 
   beszel:
     image: docker.io/henrygd/beszel:latest
@@ -109,6 +138,8 @@ services:
       - APP_URL=https://beszel.local.ohlongjohnson.tech
     depends_on:
       - beszel-agent
+    labels:
+      - diun.enable=true
 
   dozzle:
     image: docker.io/amir20/dozzle:latest
@@ -121,6 +152,8 @@ services:
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
+    labels:
+      - diun.enable=true
 
   transmission:
     image: lscr.io/linuxserver/transmission:latest
@@ -135,11 +168,13 @@ services:
     volumes:
       - transmission_config:/config
       - transmission_watch:/watch
-      - /mnt/external:/files
+      - /mnt/external/downloads:/downloads
     ports:
       - 9091:9091
       - 51413:51413
       - 51413:51413/udp
+    labels:
+      - diun.enable=true
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -157,6 +192,8 @@ services:
       - 8096:8096
       - 7359:7359/udp
       - 1900:1900/udp
+    labels:
+      - diun.enable=true
 
   atuin:
     image: ghcr.io/atuinsh/atuin:latest
@@ -174,6 +211,8 @@ services:
       - RUST_LOG=info,atuin_server=debug
     depends_on:
       - postgres
+    labels:
+      - diun.enable=true
 
   postgres:
     image: docker.io/postgres:17
@@ -191,6 +230,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    labels:
+      - diun.enable=true
 
   pgbackup:
     image: docker.io/prodrigestivill/postgres-backup-local:latest
@@ -209,6 +250,8 @@ services:
       - BACKUP_DIR=/dumps
     depends_on:
       - postgres
+    labels:
+      - diun.enable=true
 
   adminer:
     image: docker.io/adminer:latest
@@ -216,6 +259,8 @@ services:
     restart: always
     ports:
       - 8083:8080
+    labels:
+      - diun.enable=true
 
 volumes:
   adguardhome_conf:
@@ -223,6 +268,7 @@ volumes:
   atuin_config:
   beszel_data:
   beszel_socket:
+  diun_data:
   duplicati_backups:
   duplicati_config:
   duplicati_source:

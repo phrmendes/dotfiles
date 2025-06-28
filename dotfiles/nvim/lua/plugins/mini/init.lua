@@ -12,6 +12,7 @@ MiniDeps.add({
 
 require("helpers").load_plugins(vim.env.HOME .. "/.config/nvim/lua/plugins/mini")
 
+map("n", "<c-p>", function() helpers_mini.pick.buffers() end, { desc = "Buffers" })
 map("n", "<leader>/", function() MiniPick.builtin.grep_live() end, { desc = "Live grep" })
 map("n", "<leader>?", function() MiniPick.builtin.help() end, { desc = "Help" })
 map("n", "<leader>=", function() MiniMisc.resize_window() end, { noremap = true, desc = "Resize to default size" })
@@ -19,7 +20,6 @@ map("n", "<leader><leader>", function() MiniPick.builtin.files() end, { desc = "
 map("n", "<leader><del>", function() MiniNotify.clear() end, { desc = "Clear notifications" })
 map("n", "<leader>K", function() MiniExtra.pickers.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>N", function() MiniNotify.show_history() end, { desc = "Notifications" })
-map("n", "<leader>bb", function() helpers_mini.pick.buffers() end, { desc = "List" })
 map("n", "<leader>bd", function() MiniBufremove.delete() end, { desc = "Delete" })
 map("n", "<leader>bw", function() MiniBufremove.wipeout() end, { desc = "Wipeout" })
 map("n", "<leader>e", function() helpers_mini.files.open() end, { desc = "Explorer" })

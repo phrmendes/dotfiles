@@ -54,6 +54,22 @@
     };
   };
 
+  networking.firewall = {
+    allowedTCPPorts = [
+      22
+      53
+      80
+      443
+      22000
+    ];
+    allowedUDPPorts = [
+      53
+      51413
+      22000
+      21027
+    ];
+  };
+
   environment = {
     persistence."/persist".users.${parameters.user}.directories = [
       "dotfiles"

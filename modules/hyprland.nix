@@ -81,11 +81,12 @@
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
             "float,stayfocused,opaque,class:(com.gabm.satty)"
-            "float,stayfocused,opaque,class:(org.keepassxc.KeePassXC)"
-            "float,stayfocused,opaque,class:(pavucontrol)"
+            "float,stayfocused,opaque,class:(KeePassXC)"
+            "float,stayfocused,opaque,class:(org.pulseaudio.pavucontrol)"
             "float,stayfocused,opaque,class:(wofi)"
             "float,title:^(Picture-in-Picture)$"
-            "opaque,class:^(mpv)$"
+            "opaque,class:(firefox)"
+            "opaque,class:(mpv)"
           ];
           workspace = with parameters.monitors; [
             "1,monitor:${primary}"

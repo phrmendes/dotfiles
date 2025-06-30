@@ -79,9 +79,42 @@
                 SwitchToMode = "Tmux";
               };
             };
-            "tmux clear-defaults=true" = {
+            "renametab clear-defaults=true" = {
+              "bind \"Esc\"" = {
+                UndoRenameTab = { };
+                SwitchToMode = "Normal";
+              };
+            };
+            "scroll clear-defaults=true" = {
               "bind \"Enter\"" = {
-                SwitchToMode = "Resize";
+                SwitchToMode = "Normal";
+              };
+              "bind \"Esc\"" = {
+                SwitchToMode = "Normal";
+              };
+              "bind \"j\"" = {
+                ScrollDown = { };
+              };
+              "bind \"k\"" = {
+                ScrollUp = { };
+              };
+              "bind \"d\"" = {
+                HalfPageScrollDown = { };
+              };
+              "bind \"u\"" = {
+                HalfPageScrollUp = { };
+              };
+            };
+            "tmux clear-defaults=true" = {
+              "bind \"Ctrl Space\"" = {
+                "LaunchOrFocusPlugin \"zellij:session-manager\"" = {
+                  floating = true;
+                  move_to_focused_tab = true;
+                };
+                SwitchToMode = "Normal";
+              };
+              "bind \"Enter\"" = {
+                SwitchToMode = "Normal";
               };
               "bind \"Esc\"" = {
                 SwitchToMode = "Normal";
@@ -115,6 +148,10 @@
               "bind \"e\"" = {
                 EditScrollback = { };
               };
+              "bind \"f\"" = {
+                ToggleFloatingPanes = { };
+                SwitchToMode = "Normal";
+              };
               "bind \"h\"" = {
                 MoveFocus = "Left";
                 SwitchToMode = "Normal";
@@ -145,11 +182,7 @@
                 TabNameInput = 0;
               };
               "bind \"s\"" = {
-                "LaunchOrFocusPlugin \"zellij:session-manager\"" = {
-                  floating = true;
-                  move_to_focused_tab = true;
-                };
-                SwitchToMode = "Normal";
+                SwitchToMode = "Scroll";
               };
               "bind \"z\"" = {
                 "ToggleFocusFullscreen; SwitchToMode" = "Normal";

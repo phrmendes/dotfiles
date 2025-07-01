@@ -33,7 +33,6 @@
           }
         ];
         shellAliases = {
-          apply = "git add . && nh os switch";
           asr = "${getExe pkgs.atuin} scripts run";
           cat = getExe pkgs.bat;
           du = getExe pkgs.gdu;
@@ -46,7 +45,6 @@
           lg = getExe pkgs.lazygit;
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
-          src = "source .venv/bin/activate";
           top = getExe pkgs.btop;
           zz = ''${getExe pkgs.zellij} attach --create "$(basename "$PWD")"'';
           v = "nvim";

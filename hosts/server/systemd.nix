@@ -12,7 +12,7 @@
         Type = "oneshot";
         WorkingDirectory = "${parameters.home}/compose";
         ExecStart = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans --env-file ${config.age.secrets.docker-compose-env.path}";
-        ExecStop = "${pkgs.docker}/bin/docker compose down";
+        ExecStop = "${pkgs.docker}/bin/docker compose down --env-file ${config.age.secrets.docker-compose-env.path}";
         ExecReload = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans --env-file ${config.age.secrets.docker-compose-env.path}";
       };
     };

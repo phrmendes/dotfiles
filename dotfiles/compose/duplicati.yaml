@@ -1,0 +1,29 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
+      - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
+    volumes:
+      - duplicati_backups:/backups
+      - duplicati_config:/config
+      - duplicati_source:/source
+      - forgejo_data:/backups/forgejo
+      - letsencrypt:/backups/npm/letsencrypt
+      - npm_data:/backups/npm/data
+      - postgres_dumps:/backups/postgres_dumps
+      - syncthing_data:/backups/syncthing
+    ports:
+      - 8200:8200
+    labels:
+      - diun.enable=true
+
+volumes:
+  duplicati_backups:
+  duplicati_config:
+  duplicati_source:

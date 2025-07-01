@@ -1,0 +1,20 @@
+services:
+  diun:
+    image: docker.io/crazymax/diun:latest
+    container_name: diun
+    restart: always
+    command: serve
+    volumes:
+      - diun_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=${TZ}
+      - DIUN_WATCH_WORKERS=20
+      - DIUN_WATCH_SCHEDULE=0 */6 * * *
+      - DIUN_WATCH_JITTER=30s
+      - DIUN_PROVIDERS_DOCKER=true
+    labels:
+      - diun.enable=true
+
+volumes:
+  diun_data:

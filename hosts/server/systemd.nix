@@ -4,7 +4,7 @@
     paths = {
       docker-compose-reload = {
         description = "Watch for changes in Docker Compose configuration";
-        pathConfig.PathChanged = "/etc/compose/docker-compose.yaml";
+        pathConfig.PathChanged = "/etc/compose";
         wantedBy = [ "multi-user.target" ];
       };
     };

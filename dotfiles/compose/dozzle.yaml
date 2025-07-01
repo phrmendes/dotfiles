@@ -1,0 +1,14 @@
+services:
+  dozzle:
+    image: docker.io/amir20/dozzle:latest
+    container_name: dozzle
+    restart: always
+    ports:
+      - 8082:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_ENABLE_SHELL=true
+    labels:
+      - diun.enable=true

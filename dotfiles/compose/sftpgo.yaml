@@ -1,0 +1,19 @@
+services:
+  sftpgo:
+    image: docker.io/drakkan/sftpgo:latest
+    container_name: sftpgo
+    restart: always
+    volumes:
+      - sftpgo_data:/var/lib/sftpgo
+      - syncthing_data:/files/syncthing
+      - postgres_dumps:/files/dumps:ro
+      - transmission_watch:/files/watch
+      - /mnt/external/:/files/external
+    ports:
+      - 8081:8080
+      - 2022:2022
+    labels:
+      - diun.enable=true
+
+volumes:
+  sftpgo_data:

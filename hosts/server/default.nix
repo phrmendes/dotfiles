@@ -80,12 +80,8 @@
       ".local/state"
     ];
     etc = {
-      "compose/init.sh" = {
-        source = ../../dotfiles/compose/init.sh;
-        mode = "0644";
-      };
-      "compose/docker-compose.yaml" = {
-        source = ../../dotfiles/compose/docker-compose.yaml;
+      "compose" = {
+        source = ../../dotfiles/compose;
         mode = "0644";
       };
     };

@@ -224,7 +224,7 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DATABASES=atuin,npm
+      - POSTGRES_DATABASES=atuin,npm,forgejo
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
       interval: 30s
@@ -242,7 +242,7 @@ services:
     environment:
       - TZ=${TZ}
       - POSTGRES_HOST=postgres
-      - POSTGRES_DB=atuin,npm
+      - POSTGRES_DB=atuin,npm,forgejo
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SCHEDULE=@daily
@@ -262,6 +262,28 @@ services:
     labels:
       - diun.enable=true
 
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:11
+    container_name: forgejo
+    restart: always
+    environment:
+      - USER_GID=${PGID}
+      - USER_UID=${PUID}
+      - FORGEJO__database__DB_TYPE=postgres
+      - FORGEJO__database__HOST=postgres:5432
+      - FORGEJO__database__NAME=forgejo
+      - FORGEJO__database__USER=${POSTGRES_USER}
+      - FORGEJO__database__PASSWD=${POSTGRES_PASSWORD}
+    volumes:
+      - forgejo_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 3001:3000
+      - 222:22
+    depends_on:
+      - postgres
+
 volumes:
   adguardhome_conf:
   adguardhome_work:
@@ -272,6 +294,7 @@ volumes:
   duplicati_backups:
   duplicati_config:
   duplicati_source:
+  forgejo_data:
   jellyfin_data:
   letsencrypt:
   npm_data:

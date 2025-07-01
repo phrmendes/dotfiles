@@ -1,4 +1,4 @@
-{ pkgs, parameters, ... }:
+{ pkgs, ... }:
 {
   systemd = {
     paths = {
@@ -11,22 +11,32 @@
     services = {
       docker-compose = {
         description = "Docker Compose service";
-        after = [ "docker.service" ];
-        requires = [ "docker.service" ];
+        after = [
+          "docker.service"
+          "chown-mnt-external.service"
+          "chown-docker-volumes.service"
+        ];
+        requires = [
+          "docker.service"
+          "chown-mnt-external.service"
+          "chown-docker-volumes.service"
+        ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           WorkingDirectory = "/etc/compose";
           ExecStart = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans";
           ExecStop = "${pkgs.docker}/bin/docker compose down";
+          ExecReload = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans";
           Restart = "always";
           RemainAfterExit = true;
         };
       };
       docker-compose-reload = {
         description = "Reload Docker Compose on config change";
+        after = [ "docker-compose.service" ];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${pkgs.docker}/bin/docker compose up --detach --remove-orphans";
+          ExecStart = "${pkgs.systemd}/bin/systemctl reload docker-compose.service";
           WorkingDirectory = "/etc/compose";
         };
       };
@@ -43,6 +53,7 @@
             ${pkgs.coreutils}/bin/chown -R 1000:1000 /mnt/external
             ${pkgs.coreutils}/bin/chmod -R 2775 /mnt/external
           '';
+          ExecReload = "@${pkgs.systemd}/bin/systemctl restart chown-mnt-external.service";
         };
       };
       chown-docker-volumes = {
@@ -55,16 +66,15 @@
           "multi-user.target"
         ];
         serviceConfig = {
-          WorkingDirectory = "/etc/compose";
           Type = "oneshot";
           ExecStart = ''
             ${pkgs.coreutils}/bin/chown -R 1000:1000 /var/lib/docker/volumes
             ${pkgs.coreutils}/bin/chmod -R 2775 /var/lib/docker/volumes
             ${pkgs.docker}/bin/docker compose restart
           '';
+          ExecReload = "@${pkgs.systemd}/bin/systemctl restart chown-docker-volumes.service";
         };
       };
     };
   };
-
 }

@@ -64,13 +64,14 @@ services:
       - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
       - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
     volumes:
-      - duplicati_config:/config
       - duplicati_backups:/backups
+      - duplicati_config:/config
       - duplicati_source:/source
-      - syncthing_data:/backups/syncthing
-      - postgres_dumps:/backups/postgres_dumps
-      - npm_data:/backups/npm/data
+      - forgejo_data:/backups/forgejo
       - letsencrypt:/backups/npm/letsencrypt
+      - npm_data:/backups/npm/data
+      - postgres_dumps:/backups/postgres_dumps
+      - syncthing_data:/backups/syncthing
     ports:
       - 8200:8200
     labels:
@@ -85,7 +86,6 @@ services:
       - syncthing_data:/files/syncthing
       - postgres_dumps:/files/dumps:ro
       - transmission_watch:/files/watch
-      - forgejo_data:/files/forgejo
       - /mnt/external/:/files/external
     ports:
       - 8081:8080

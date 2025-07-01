@@ -85,6 +85,7 @@ services:
       - syncthing_data:/files/syncthing
       - postgres_dumps:/files/dumps:ro
       - transmission_watch:/files/watch
+      - forgejo_data:/files/forgejo
       - /mnt/external/:/files/external
     ports:
       - 8081:8080
@@ -283,6 +284,8 @@ services:
       - 222:22
     depends_on:
       - postgres
+    labels:
+      - diun.enable=true
 
 volumes:
   adguardhome_conf:

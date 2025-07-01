@@ -34,7 +34,8 @@ services:
       - BACKUP_ON_START=TRUE
       - BACKUP_DIR=/dumps
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     labels:
       - diun.enable=true
 
@@ -45,7 +46,8 @@ services:
     ports:
       - 8083:8080
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     labels:
       - diun.enable=true
 

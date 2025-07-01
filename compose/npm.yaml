@@ -17,7 +17,8 @@ services:
       - DB_POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - DB_POSTGRES_NAME=npm
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     labels:
       - diun.enable=true
 volumes:

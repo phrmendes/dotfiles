@@ -19,7 +19,8 @@ services:
       - 3001:3000
       - 222:22
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     labels:
       - diun.enable=true
 

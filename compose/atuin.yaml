@@ -14,7 +14,8 @@ services:
       - ATUIN_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/atuin
       - RUST_LOG=info,atuin_server=debug
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     labels:
       - diun.enable=true
 

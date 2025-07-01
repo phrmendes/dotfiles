@@ -97,15 +97,5 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
-
-    home.file."compose" = {
-      source = ../../dotfiles/compose;
-      recursive = true;
-      onChange = ''
-        ${pkgs.systemd}/bin/systemctl restart docker-compose.service
-        ${pkgs.systemd}/bin/systemctl restart chown-mnt-external.service
-        ${pkgs.systemd}/bin/systemctl restart chown-docker-volumes.service
-      '';
-    };
   };
 }

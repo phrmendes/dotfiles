@@ -1,8 +1,28 @@
 services:
+  ts-forgejo:
+    image: docker.io/tailscale:tailscale:latest
+    container_name: ts-forgejo
+    hostname: forgejo
+    restart: always
+    environment:
+      - TS_AUTHKEY=${TAILSCALE_AUTHKEY}
+      - TS_EXTRA_ARGS=--advertise-tags=tag:container
+      - TS_STATE_DIR=/var/lib/tailscale
+    volumes:
+      - ts_forgejo:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    labels:
+      - diun.enable=true
+
   forgejo:
     image: codeberg.org/forgejo/forgejo:11
     container_name: forgejo
     restart: always
+    network_mode: service:ts-forgejo
     environment:
       - USER_GID=${PGID}
       - USER_UID=${PUID}
@@ -26,3 +46,4 @@ services:
 
 volumes:
   forgejo_data:
+  ts_forgejo:

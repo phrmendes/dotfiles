@@ -24,6 +24,7 @@
         [
           ansible-language-server
           ansible-lint
+          astro-language-server
           basedpyright
           bash-language-server
           copilot-language-server
@@ -52,12 +53,13 @@
           shellharden
           sqruff
           stylua
+          tailwindcss-language-server
           taplo
           terraform-ls
           tflint
           tree-sitter
+          typescript-language-server
           vscode-langservers-extracted
-          vtsls
           yaml-language-server
           inputs.scls.defaultPackage.${pkgs.system}
         ]
@@ -84,6 +86,9 @@
       '';
       ".local/share/nvim/nix/lua/nix/copilot.lua".text = ''
         return "${pkgs.copilot-language-server}/bin/copilot-language-server"
+      '';
+      ".local/share/nvim/nix/lua/nix/typescript.lua".text = ''
+        return "${pkgs.typescript}/lib/node_modules/typescript/lib"
       '';
       ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {

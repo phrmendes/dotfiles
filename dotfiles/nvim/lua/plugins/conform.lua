@@ -6,9 +6,11 @@ later(function()
 	require("conform").setup({
 		notify_on_error = false,
 		formatters_by_ft = {
+			astro = { "prettier" },
 			css = { "prettier" },
 			go = { "golines", "gofumpt", "goimports" },
 			htmldjango = { "djlint" },
+			http = { "kulala-fmt" },
 			jinja2 = { "djlint" },
 			json = { "prettier" },
 			lua = { "stylua" },
@@ -20,7 +22,6 @@ later(function()
 			terraform = { "terraform_fmt" },
 			toml = { "taplo" },
 			yaml = { "prettier" },
-			http = { "kulala-fmt" },
 		},
 		format_on_save = {
 			timeout_ms = 500,

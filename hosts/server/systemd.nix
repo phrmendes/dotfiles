@@ -13,10 +13,24 @@
       };
     };
     services = {
+      nixos-rebuild-switch = {
+        description = "Rebuild NixOS configuration";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ${parameters.home}/dotfiles#${config.networking.hostName}";
+          RemainAfterExit = true;
+        };
+      };
       docker-compose = {
         description = "Start, stop, and reload Docker Compose services";
-        requires = [ "chown-volumes.service" ];
-        after = [ "chown-volumes.service" ];
+        requires = [
+          "chown-volumes.service"
+          "nixos-rebuild-switch.service"
+        ];
+        after = [
+          "chown-volumes.service"
+          "nixos-rebuild-switch.service"
+        ];
         serviceConfig = {
           Type = "oneshot";
           WorkingDirectory = "${parameters.home}/dotfiles/compose";

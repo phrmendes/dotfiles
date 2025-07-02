@@ -1,11 +1,11 @@
 services:
   ts-forgejo:
-    image: docker.io/tailscale:tailscale:latest
+    image: docker.io/tailscale/tailscale:latest
     container_name: ts-forgejo
     hostname: forgejo
     restart: always
     environment:
-      - TS_AUTHKEY=${TAILSCALE_AUTHKEY}
+      - TS_AUTHKEY=${TAILSCALE_FORGEJO_AUTHKEY}
       - TS_EXTRA_ARGS=--advertise-tags=tag:container
       - TS_STATE_DIR=/var/lib/tailscale
     volumes:
@@ -35,9 +35,9 @@ services:
       - forgejo_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    ports:
-      - 3001:3000
-      - 222:22
+    # ports:
+    #   - 3001:3000
+    #   - 222:22
     depends_on:
       postgres:
         condition: service_healthy

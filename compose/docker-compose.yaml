@@ -5,7 +5,6 @@ include:
   - diun.yaml
   - dozzle.yaml
   - duplicati.yaml
-  - forgejo.yaml
   - jellyfin.yaml
   - npm.yaml
   - postgres.yaml

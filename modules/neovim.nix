@@ -59,6 +59,7 @@
           tflint
           tree-sitter
           typescript-language-server
+          vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server
           inputs.scls.defaultPackage.${pkgs.system}
@@ -89,6 +90,9 @@
       '';
       ".local/share/nvim/nix/lua/nix/typescript.lua".text = ''
         return "${pkgs.typescript}/lib/node_modules/typescript/lib"
+      '';
+      ".local/share/nvim/nix/lua/nix/vscode-js-debug.lua".text = ''
+        return "${pkgs.vscode-js-debug}/bin/js-debug"
       '';
       ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
         return {

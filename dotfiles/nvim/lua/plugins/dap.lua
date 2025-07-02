@@ -5,6 +5,7 @@ later(function()
 	add({ source = "leoluz/nvim-dap-go", depends = { "mfussenegger/nvim-dap" } })
 	add({ source = "mfussenegger/nvim-dap-python", depends = { "mfussenegger/nvim-dap" } })
 	add({ source = "jbyuki/one-small-step-for-vimkind", depends = { "mfussenegger/nvim-dap" } })
+	add({ source = "mxsdev/nvim-dap-vscode-js", depends = { "mfussenegger/nvim-dap" } })
 
 	local dap = require("dap")
 	local dap_view = require("dap-view")
@@ -49,6 +50,10 @@ later(function()
 
 	require("dap-go").setup()
 	require("dap-python").setup(vim.fn.exepath("nvim-python3"))
+	require("dap-vscode-js").setup({
+		debugger_path = require("nix.vscode-js-debug"),
+		adapters = { "pwa-node", "pwa-chrome" },
+	})
 
 	vim.iter(pairs(dap_icons)):each(function(type, icon)
 		local thl = "Dap" .. type

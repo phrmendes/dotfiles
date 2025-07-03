@@ -193,6 +193,7 @@
     udiskie.enable = true;
     uv.enable = true;
     waybar.enable = true;
+    wezterm.enable = true;
     wofi.enable = true;
     yazi.enable = true;
     zathura.enable = true;

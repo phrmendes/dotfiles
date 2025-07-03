@@ -6,6 +6,7 @@
     gvfs.enable = true;
     ntpd-rs.enable = true;
     udev.enable = true;
+    gnome.gnome-keyring.enable = true;
 
     journald.extraConfig = "SystemMaxUse=1G";
 

@@ -94,7 +94,10 @@
 
   security.pam.services = {
     hyprlock.gnupg.enable = true;
-    greetd.gnupg.enable = true;
+    greetd = {
+      gnupg.enable = true;
+      enableGnomeKeyring = true;
+    };
   };
 
   virtualisation.libvirtd = {

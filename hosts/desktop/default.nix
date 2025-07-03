@@ -165,7 +165,6 @@
     fd.enable = true;
     fzf.enable = true;
     gh.enable = true;
-    ghostty.enable = true;
     git.enable = true;
     gtk-settings.enable = true;
     hypridle.enable = true;
@@ -197,7 +196,6 @@
     wofi.enable = true;
     yazi.enable = true;
     zathura.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
     zsh.enable = true;
   };

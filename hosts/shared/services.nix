@@ -6,7 +6,11 @@
     gvfs.enable = true;
     ntpd-rs.enable = true;
     udev.enable = true;
-    gnome.gnome-keyring.enable = true;
+
+    gnome = {
+      gnome-keyring.enable = true;
+      gcr-ssh-agent.enable = false;
+    };
 
     journald.extraConfig = "SystemMaxUse=1G";
 

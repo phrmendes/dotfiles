@@ -33,6 +33,7 @@
           }
         ];
         shellAliases = {
+          apply = "git add . && nh os switch";
           asr = "${getExe pkgs.atuin} scripts run";
           cat = getExe pkgs.bat;
           du = getExe pkgs.gdu;
@@ -46,7 +47,6 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
-          zz = ''${getExe pkgs.zellij} attach --create "$(basename "$PWD")"'';
           v = "nvim";
         };
         initContent = ''

@@ -24,26 +24,14 @@
       enable = true;
       enableFishIntegration = true;
     };
-
-    tmux = {
-      enable = true;
-      newSession = true;
-      aggressiveResize = true;
-      escapeTime = 0;
-      keyMode = "vi";
-      extraConfig = lib.fileContents ../../dotfiles/tmux.conf;
-    };
-
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      configure.customRC = lib.fileContents ../../dotfiles/init.vim;
-    };
   };
 
-  environment.systemPackages = with pkgs; [ python313 ];
+  environment.systemPackages = with pkgs; [
+    python313
+    helix
+    wezterm
+    zellij
+  ];
 
   services = {
     xserver.displayManager.lightdm.enable = false;
@@ -54,20 +42,37 @@
     };
   };
 
-  networking.firewall = {
-    allowedTCPPorts = [
-      22
-      53
-      80
-      443
-      22000
-    ];
-    allowedUDPPorts = [
-      53
-      51413
-      22000
-      21027
-    ];
+  home-manager.users.${parameters.user} = {
+    blueman-applet.enable = false;
+    cliphist.enable = false;
+    direnv.enable = false;
+    dunst.enable = false;
+    gh.enable = false;
+    gtk-settings.enable = false;
+    hypridle.enable = false;
+    hyprland.enable = false;
+    hyprlock.enable = false;
+    hyprpaper.enable = false;
+    imv.enable = false;
+    k9s.enable = false;
+    keepassxc.enable = false;
+    lazydocker.enable = false;
+    lazygit.enable = false;
+    mpv.enable = false;
+    neovim.enable = false;
+    nm-applet.enable = false;
+    packages.enable = false;
+    pasystray.enable = false;
+    screenshot.enable = false;
+    swayosd.enable = false;
+    symlinks.enable = false;
+    syncthingtray.enable = false;
+    tealdeer.enable = false;
+    udiskie.enable = false;
+    uv.enable = false;
+    waybar.enable = false;
+    wofi.enable = false;
+    zathura.enable = false;
   };
 
   environment = {
@@ -75,7 +80,6 @@
       "dotfiles"
       ".config"
       ".ssh"
-      ".zotero"
       ".local/share"
       ".local/state"
     ];

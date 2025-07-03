@@ -81,7 +81,6 @@
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
             "float,stayfocused,opaque,class:(com.gabm.satty)"
-            "float,stayfocused,opaque,class:(KeePassXC)"
             "float,stayfocused,opaque,class:(org.pulseaudio.pavucontrol)"
             "float,stayfocused,opaque,class:(wofi)"
             "float,title:^(Picture-in-Picture)$"

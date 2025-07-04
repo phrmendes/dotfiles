@@ -174,6 +174,7 @@
     jq.enable = true;
     k9s.enable = true;
     keepassxc.enable = true;
+    kitty.enable = true;
     lazydocker.enable = true;
     lazygit.enable = true;
     mpv.enable = true;
@@ -191,10 +192,10 @@
     udiskie.enable = true;
     uv.enable = true;
     waybar.enable = true;
-    wezterm.enable = true;
     wofi.enable = true;
     yazi.enable = true;
     zathura.enable = true;
+    zellij.enable = true;
     zoxide.enable = true;
   };
 }

@@ -23,6 +23,7 @@
     ./jq.nix
     ./k9s.nix
     ./keepassxc.nix
+    ./kitty.nix
     ./lazydocker.nix
     ./lazygit.nix
     ./mpv.nix
@@ -40,11 +41,11 @@
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix
-    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix
+    ./zellij.nix
     ./zoxide.nix
   ];
 

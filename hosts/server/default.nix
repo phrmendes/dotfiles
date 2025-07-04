@@ -17,9 +17,8 @@
   programs.nh.flake = "/home/${parameters.user}/dotfiles";
 
   environment.systemPackages = with pkgs; [
-    python313
     helix
-    wezterm
+    python313
     zellij
   ];
 

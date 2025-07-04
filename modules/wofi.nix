@@ -29,7 +29,7 @@
           location = "center";
           mode = "drun";
           no_actions = true;
-          terminal = "${lib.getExe pkgs.wezterm}";
+          terminal = "${lib.getExe pkgs.kitty}";
           width = "25%";
         };
         style =

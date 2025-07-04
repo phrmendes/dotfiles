@@ -44,9 +44,9 @@
         shellAbbrs = {
           diff_persist = "sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'";
           apply = "git add . && nh os switch";
+          asr = "${getExe pkgs.atuin} scripts run";
         };
         shellAliases = {
-          asr = "${getExe pkgs.atuin} scripts run";
           cat = getExe pkgs.bat;
           du = getExe pkgs.gdu;
           find = getExe pkgs.fd;
@@ -60,6 +60,7 @@
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
           v = "nvim";
+          zz = getExe pkgs.zellij;
         };
       };
   };

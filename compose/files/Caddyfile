@@ -1,0 +1,11 @@
+{
+  acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+}
+
+(service) {
+    reverse_proxy "{args[0]}:{args[1]}"
+}
+
+adguardhome.local.ohlongjohnson.tech {
+    import service adguardhome 80
+}

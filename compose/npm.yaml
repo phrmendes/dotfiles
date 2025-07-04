@@ -21,6 +21,7 @@ services:
         condition: service_healthy
     labels:
       - diun.enable=true
+
 volumes:
   npm_data:
   letsencrypt:

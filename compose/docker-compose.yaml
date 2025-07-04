@@ -2,11 +2,12 @@ include:
   - adguardhome.yaml
   - atuin.yaml
   - beszel.yaml
+  - caddy.yaml
   - diun.yaml
   - dozzle.yaml
-  - duplicati.yaml
+  # - duplicati.yaml
   - jellyfin.yaml
-  - npm.yaml
+  # - npm.yaml
   - postgres.yaml
   - sftpgo.yaml
   - syncthing.yaml

@@ -1,0 +1,22 @@
+services:
+  npm:
+    image: docker.io/caddybuilds/caddy-cloudflare:latest
+    container_name: caddy
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./files/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+    labels:
+      - diun.enable=true
+
+volumes:
+  caddy_data:
+  caddy_config:

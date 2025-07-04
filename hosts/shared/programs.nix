@@ -4,6 +4,7 @@
     fuse.userAllowOther = true;
     nix-ld.enable = true;
     command-not-found.enable = true;
+    fish.enable = true;
 
     ssh = {
       startAgent = true;

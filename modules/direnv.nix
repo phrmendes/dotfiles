@@ -10,8 +10,7 @@
   config = lib.mkIf config.direnv.enable {
     programs.direnv = {
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+      # enableFishIntegration = true;
       nix-direnv.enable = true;
       config = {
         global = {

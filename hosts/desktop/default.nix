@@ -42,7 +42,6 @@
   };
 
   networking.hostName = "desktop";
-  users.users.${parameters.user}.shell = pkgs.zsh;
 
   programs = {
     dconf.enable = true;
@@ -51,7 +50,6 @@
     hyprland.enable = true;
     kdeconnect.enable = true;
     virt-manager.enable = true;
-    zsh.enable = true;
 
     nh.flake = "/home/${parameters.user}/Projects/dotfiles";
 
@@ -163,6 +161,7 @@
     dunst.enable = true;
     eza.enable = true;
     fd.enable = true;
+    fish.enable = true;
     fzf.enable = true;
     gh.enable = true;
     git.enable = true;
@@ -184,7 +183,6 @@
     pasystray.enable = true;
     ripgrep.enable = true;
     screenshot.enable = true;
-    starship.enable = true;
     swayosd.enable = true;
     symlinks.enable = true;
     syncthingtray.enable = true;
@@ -198,6 +196,5 @@
     yazi.enable = true;
     zathura.enable = true;
     zoxide.enable = true;
-    zsh.enable = true;
   };
 }

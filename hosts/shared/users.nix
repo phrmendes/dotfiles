@@ -1,6 +1,7 @@
 {
   parameters,
   config,
+  pkgs,
   ...
 }:
 {
@@ -10,6 +11,7 @@
       root.hashedPasswordFile = config.age.secrets.hashed-password.path;
       ${parameters.user} = {
         inherit (parameters) home;
+        shell = pkgs.fish;
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../../dotfiles/ssh-keys/main.txt)
           (builtins.readFile ../../dotfiles/ssh-keys/phone.txt)

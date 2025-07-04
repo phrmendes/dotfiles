@@ -65,7 +65,7 @@ vim.opt.timeoutlen = 300
 vim.opt.completeopt = { "menuone", "noselect", "fuzzy" }
 
 -- default terminal
-vim.opt.shell = "zsh"
+vim.opt.shell = "fish"
 
 -- preview substitutions live
 vim.opt.inccommand = "split"

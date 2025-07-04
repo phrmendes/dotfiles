@@ -10,6 +10,7 @@
     ./dunst.nix
     ./eza.nix
     ./fd.nix
+    ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
@@ -31,7 +32,6 @@
     ./pasystray.nix
     ./ripgrep.nix
     ./screenshot.nix
-    ./starship.nix
     ./swayosd.nix
     ./symlinks.nix
     ./syncthingtray.nix
@@ -46,7 +46,6 @@
     ./yazi.nix
     ./zathura.nix
     ./zoxide.nix
-    ./zsh.nix
   ];
 
   home = {

@@ -14,17 +14,7 @@
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
   networking.hostName = "server";
-  users.users.${parameters.user}.shell = pkgs.fish;
-
-  programs = {
-    nh.flake = "/home/${parameters.user}/dotfiles";
-    fish.enable = true;
-
-    zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-  };
+  programs.nh.flake = "/home/${parameters.user}/dotfiles";
 
   environment.systemPackages = with pkgs; [
     python313
@@ -64,9 +54,11 @@
     bat.enable = true;
     btop.enable = true;
     fd.enable = true;
+    fish.enable = true;
     fzf.enable = true;
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
+    zoxide.enable = true;
   };
 }

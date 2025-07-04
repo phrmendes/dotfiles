@@ -15,7 +15,7 @@
       in
       {
         enable = true;
-        enableZshIntegration = true;
+        enableFishIntegration = true;
         defaultCommand = "${fd} --type f";
         changeDirWidgetCommand = "${fd} --type d";
         fileWidgetCommand = "${fd} --type f";

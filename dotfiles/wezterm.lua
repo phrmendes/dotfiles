@@ -13,7 +13,7 @@ local get_base_path = function(path) return path:gsub("(.*[/\\])(.*)", "%2") end
 config.automatically_reload_config = true
 config.check_for_updates = false
 config.command_palette_font_size = 14.0
-config.default_prog = { "zsh" }
+config.default_prog = { "fish" }
 config.enable_kitty_keyboard = true
 config.enable_wayland = true
 config.front_end = "OpenGL"
@@ -125,7 +125,7 @@ wezterm.on("format-tab-title", function(tab)
 
 	if pane.domain_name and pane.domain_name ~= "local" then title = title .. " (" .. pane.domain_name .. ")" end
 
-	if pane.is_zoomed then title = nf.cod_zoom_in .. " " .. title end
+	if pane.is_zoomed then title = title .. " " .. nf.cod_zoom_in end
 
 	return {
 		{ Text = " " },

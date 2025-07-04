@@ -9,7 +9,7 @@
   config = lib.mkIf config.zoxide.enable {
     programs.zoxide = {
       enable = true;
-      enableZshIntegration = true;
+      enableFishIntegration = true;
     };
   };
 }

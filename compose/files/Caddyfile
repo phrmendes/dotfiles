@@ -3,9 +3,9 @@
 }
 
 (service) {
-    reverse_proxy "{args[0]}:{args[1]}"
+    reverse_proxy {args[0]}:{args[1]}
 }
 
-adguardhome.local.ohlongjohnson.tech {
+adguardhome.local.ohlongjohnson.tech, adguardhome.ts.ohlongjohnson.tech {
     import service adguardhome 80
 }

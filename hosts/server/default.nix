@@ -19,7 +19,6 @@
   environment.systemPackages = with pkgs; [
     helix
     python313
-    zellij
   ];
 
   services = {
@@ -58,6 +57,7 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
+    zellij.enable = true;
     zoxide.enable = true;
   };
 }

@@ -1,5 +1,5 @@
 services:
-  npm:
+  caddy:
     image: docker.io/caddybuilds/caddy-cloudflare:latest
     container_name: caddy
     restart: always

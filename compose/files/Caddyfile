@@ -9,3 +9,39 @@
 adguardhome.local.ohlongjohnson.tech, adguardhome.ts.ohlongjohnson.tech {
     import service adguardhome 80
 }
+
+adminer.local.ohlongjohnson.tech, adminer.ts.ohlongjohnson.tech {
+    import service adminer 8080
+}
+
+atuin.local.ohlongjohnson.tech, atuin.ts.ohlongjohnson.tech {
+    import service atuin 8888
+}
+
+beszel.local.ohlongjohnson.tech, beszel.ts.ohlongjohnson.tech {
+    import service beszel 8090
+}
+
+dozzle.local.ohlongjohnson.tech, dozzle.ts.ohlongjohnson.tech {
+    import service dozzle 8080
+}
+
+duplicati.local.ohlongjohnson.tech, duplicati.ts.ohlongjohnson.tech {
+    import service duplicati 8200
+}
+
+jellyfin.local.ohlongjohnson.tech, jellyfin.ts.ohlongjohnson.tech {
+    import service jellyfin 8096
+}
+
+sftpgo.local.ohlongjohnson.tech, sftpgo.ts.ohlongjohnson.tech {
+    import service sftpgo 8080
+}
+
+syncthing.local.ohlongjohnson.tech, syncthing.ts.ohlongjohnson.tech {
+    import service syncthing 8384
+}
+
+transmission.local.ohlongjohnson.tech, transmission.ts.ohlongjohnson.tech {
+    import service transmission 9091
+}

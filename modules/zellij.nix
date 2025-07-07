@@ -18,7 +18,7 @@
         attach_to_session = true;
         keybinds =
           let
-            zellij-navigator-version = "0.2.1";
+            zellij-navigator-version = "0.3.0";
             zellij-navigator = "https://github.com/hiasr/vim-zellij-navigator/releases/download/${zellij-navigator-version}/vim-zellij-navigator.wasm";
           in
           {
@@ -75,7 +75,7 @@
                 SwitchToMode = "Tmux";
               };
             };
-            "renametab clear-defaults=true" = {
+            "renametab" = {
               "bind \"Esc\"" = {
                 UndoRenameTab = { };
                 SwitchToMode = "Normal";

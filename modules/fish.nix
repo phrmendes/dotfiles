@@ -43,8 +43,12 @@
         '';
         shellAbbrs = {
           diff_persist = "sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'";
+          dc_down = "docker compose --env-file=/run/agenix/docker-compose.env down";
+          dc_up = "docker compose --env-file=/run/agenix/docker-compose.env up --detach --remove-orphans";
+          dc_ps = "docker compose --env-file=/run/agenix/docker-compose.env ps";
+          dc_restart = "docker compose --env-file=/run/agenix/docker-compose.env restart";
           apply = "git add . && nh os switch";
-          asr = "${getExe pkgs.atuin} scripts run";
+          asr = "atuin scripts run";
         };
         shellAliases = {
           cat = getExe pkgs.bat;

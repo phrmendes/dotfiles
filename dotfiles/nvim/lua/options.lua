@@ -106,6 +106,7 @@ vim.filetype.add({
 	filename = {
 		["todo.txt"] = "todotxt",
 		["done.txt"] = "todotxt",
+		["Caddyfile"] = "caddy",
 	},
 	pattern = {
 		["*/.kube/config"] = "yaml",

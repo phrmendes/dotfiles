@@ -59,6 +59,7 @@ now(function()
 			"vim",
 			"vimdoc",
 			"yaml",
+			"caddy",
 		},
 		indent = { enable = true },
 		textobjects = {

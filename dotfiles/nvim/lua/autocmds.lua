@@ -3,6 +3,7 @@ local augroup = vim.api.nvim_create_augroup
 local clear = vim.api.nvim_clear_autocmds
 
 local augroups = {
+	line_numbers = augroup("UserLineNumbers", {}),
 	filetype = augroup("UserFileType", {}),
 	yank = augroup("UserYank", {}),
 	windows = augroup("UserWindows", {}),
@@ -77,4 +78,18 @@ autocmd("FileType", {
 		vim.bo[event.buf].buflisted = false
 		vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = event.buf })
 	end,
+})
+
+autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+	desc = "Enable relative line numbers in normal mode",
+	group = augroups.line_numbers,
+	pattern = "*",
+	command = "if &nu && mode() != 'i' | set rnu | endif",
+})
+
+autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+	desc = "Disable relative line numbers in insert mode",
+	group = augroups.line_numbers,
+	pattern = "*",
+	command = "if &nu | set nornu | endif",
 })

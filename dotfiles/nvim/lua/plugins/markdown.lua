@@ -1,16 +1,13 @@
-local add, later = MiniDeps.add, MiniDeps.later
-local map = vim.keymap.set
-
-later(function()
-	add({ source = "tadmccorkle/markdown.nvim" })
-	add({ source = "davidmh/mdx.nvim", depends = { "nvim-treesitter/nvim-treesitter" } })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "tadmccorkle/markdown.nvim" })
+	MiniDeps.add({ source = "davidmh/mdx.nvim", depends = { "nvim-treesitter/nvim-treesitter" } })
 
 	local build = function() vim.fn["mkdp#util#install"]() end
 
-	add({
+	MiniDeps.add({
 		source = "iamcco/markdown-preview.nvim",
 		hooks = {
-			post_install = function() later(build) end,
+			post_install = function() MiniDeps.later(build) end,
 			post_checkout = build,
 		},
 	})

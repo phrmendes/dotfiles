@@ -1,7 +1,5 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function()
-	add({ source = "jpalardy/vim-slime" })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "jpalardy/vim-slime" })
 
 	vim.g.slime_target = "zellij"
 	vim.g.slime_default_config = { session_id = "current", relative_pane = "right" }

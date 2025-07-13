@@ -1,9 +1,9 @@
-local add, later = MiniDeps.add, MiniDeps.later
-local map = vim.keymap.set
-
-later(function()
-	add({ source = "zbirenbaum/copilot.lua" })
-	add({ source = "CopilotC-Nvim/CopilotChat.nvim", depends = { "zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim" } })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "zbirenbaum/copilot.lua" })
+	MiniDeps.add({
+		source = "CopilotC-Nvim/CopilotChat.nvim",
+		depends = { "zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim" },
+	})
 
 	vim.g.copilot_filetypes = { ["copilot-chat"] = false }
 
@@ -53,6 +53,6 @@ later(function()
 		end,
 	})
 
-	map("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "Chat" })
-	map({ "n", "x" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Chat" })
+	vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "Chat" })
+	vim.keymap.set({ "n", "x" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Chat" })
 end)

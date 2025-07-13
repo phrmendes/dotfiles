@@ -1,7 +1,5 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function()
-	add({
+MiniDeps.later(function()
+	MiniDeps.add({
 		source = "ThePrimeagen/refactoring.nvim",
 		depends = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
 	})

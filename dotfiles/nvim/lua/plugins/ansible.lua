@@ -1,3 +1,1 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function() add({ source = "pearofducks/ansible-vim" }) end)
+MiniDeps.later(function() MiniDeps.add({ source = "pearofducks/ansible-vim" }) end)

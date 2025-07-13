@@ -1,8 +1,7 @@
-local add, now = MiniDeps.add, MiniDeps.now
 local map = vim.keymap.set
 
-now(function()
-	add({ source = "folke/snacks.nvim", depends = { "echasnovski/mini.nvim" } })
+MiniDeps.now(function()
+	MiniDeps.add({ source = "folke/snacks.nvim", depends = { "echasnovski/mini.nvim" } })
 
 	require("snacks").setup({
 		input = { enabled = true },

@@ -1,7 +1,5 @@
-local add, now = MiniDeps.add, MiniDeps.now
-
-now(function()
-	add({
+MiniDeps.now(function()
+	MiniDeps.add({
 		source = "nvim-treesitter/nvim-treesitter",
 		depends = { "nvim-treesitter/nvim-treesitter-textobjects", "nvim-treesitter/nvim-treesitter-context" },
 		hooks = { post_checkout = function() vim.cmd("TSUpdate") end },

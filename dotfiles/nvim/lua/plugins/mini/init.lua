@@ -4,7 +4,6 @@ local helpers_mini = require("helpers.mini")
 MiniDeps.add({
 	source = "echasnovski/mini.nvim",
 	depends = {
-		"rafamadriz/friendly-snippets",
 		"folke/snacks.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},

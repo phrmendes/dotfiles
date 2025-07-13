@@ -35,6 +35,7 @@ vim.opt.hlsearch = true
 
 -- config cursor line
 vim.opt.cursorline = true
+vim.opt.cursorlineopt = "screenline"
 
 -- appearance
 vim.opt.background = "dark"

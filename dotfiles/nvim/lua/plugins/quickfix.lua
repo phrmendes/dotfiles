@@ -1,7 +1,5 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function()
-	add({ source = "kevinhwang91/nvim-bqf", depends = { "nvim-treesitter/nvim-treesitter" } })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "kevinhwang91/nvim-bqf", depends = { "nvim-treesitter/nvim-treesitter" } })
 
 	require("bqf").setup({
 		func_map = {

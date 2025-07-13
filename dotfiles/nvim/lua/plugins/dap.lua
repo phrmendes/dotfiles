@@ -1,11 +1,9 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function()
-	add({ source = "igorlfs/nvim-dap-view", depends = { "mfussenegger/nvim-dap" } })
-	add({ source = "leoluz/nvim-dap-go", depends = { "mfussenegger/nvim-dap" } })
-	add({ source = "mfussenegger/nvim-dap-python", depends = { "mfussenegger/nvim-dap" } })
-	add({ source = "jbyuki/one-small-step-for-vimkind", depends = { "mfussenegger/nvim-dap" } })
-	add({ source = "mxsdev/nvim-dap-vscode-js", depends = { "mfussenegger/nvim-dap" } })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "igorlfs/nvim-dap-view", depends = { "mfussenegger/nvim-dap" } })
+	MiniDeps.add({ source = "leoluz/nvim-dap-go", depends = { "mfussenegger/nvim-dap" } })
+	MiniDeps.add({ source = "mfussenegger/nvim-dap-python", depends = { "mfussenegger/nvim-dap" } })
+	MiniDeps.add({ source = "jbyuki/one-small-step-for-vimkind", depends = { "mfussenegger/nvim-dap" } })
+	MiniDeps.add({ source = "mxsdev/nvim-dap-vscode-js", depends = { "mfussenegger/nvim-dap" } })
 
 	local dap = require("dap")
 	local dap_view = require("dap-view")

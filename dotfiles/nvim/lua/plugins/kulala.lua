@@ -1,7 +1,5 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function()
-	add({ source = "mistweaverco/kulala.nvim" })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "mistweaverco/kulala.nvim" })
 
 	require("kulala").setup({
 		ui = {

@@ -1,7 +1,5 @@
-local add, later = MiniDeps.add, MiniDeps.later
-
-later(function()
-	add({ source = "mfussenegger/nvim-lint" })
+MiniDeps.later(function()
+	MiniDeps.add({ source = "mfussenegger/nvim-lint" })
 
 	local lint = require("lint")
 

@@ -1,19 +1,19 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup("UserBlinkCmp", {})
 
-local build_blink = function(params)
-	vim.notify("Building blink.cmp", vim.log.levels.INFO)
+local build = function(params)
+	MiniDeps.later(function()
+		vim.notify("Building `blink.cmp`...")
 
-	print(params.path)
+		local out = vim.system({ "nix", "run", ".#build-plugin" }, { cwd = params.path }):wait()
 
-	local out = vim.system({ "nix", "run", ".#build-plugin" }, { cwd = params.path }):wait()
+		if out.code ~= 0 then
+			vim.notify("Building `blink.cmp` failed", vim.log.levels.ERROR)
+			return
+		end
 
-	if out.code ~= 0 then
-		vim.notify("Building blink.cmp failed", vim.log.levels.ERROR)
-		return
-	end
-
-	vim.notify("Building blink.cmp done", vim.log.levels.INFO)
+		vim.notify("Building `blink.cmp` done")
+	end)
 end
 
 MiniDeps.now(function()
@@ -26,8 +26,8 @@ MiniDeps.now(function()
 			"rafamadriz/friendly-snippets",
 		},
 		hooks = {
-			post_install = build_blink,
-			post_checkout = build_blink,
+			post_install = build,
+			post_checkout = build,
 		},
 	})
 

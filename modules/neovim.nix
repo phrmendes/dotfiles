@@ -17,7 +17,11 @@
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;
-      extraPython3Packages = p: with p; [ debugpy ];
+      extraPython3Packages =
+        p: with p; [
+          debugpy
+          pylatexenc
+        ];
       extraLuaPackages = p: with p; [ tiktoken_core ];
       extraPackages =
         with pkgs;

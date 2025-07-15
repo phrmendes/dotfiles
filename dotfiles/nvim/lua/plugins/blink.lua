@@ -2,17 +2,22 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup("UserBlinkCmp", {})
 
 local build = function(params)
-	MiniDeps.later(function()
-		vim.notify("Building `blink.cmp`...")
+	local notify = {
+		error = vim.schedule_wrap(
+			function(err) vim.notify(("Building `blink.cmp` failed:\n%s"):format(err), vim.log.levels.ERROR) end
+		),
+		success = vim.schedule_wrap(
+			function(path) vim.notify(("Built `blink.cmp` successfully in %s"):format(path), vim.log.levels.INFO) end
+		),
+	}
 
-		local out = vim.system({ "nix", "run", ".#build-plugin" }, { cwd = params.path }):wait()
-
+	vim.system({ "nix", "run", ".#build-plugin" }, { cwd = params.path }, function(out)
 		if out.code ~= 0 then
-			vim.notify("Building `blink.cmp` failed", vim.log.levels.ERROR)
+			notify.error(out.stderr or out.stdout or "Unknown error")
 			return
 		end
 
-		vim.notify("Building `blink.cmp` done")
+		notify.success(params.path)
 	end)
 end
 

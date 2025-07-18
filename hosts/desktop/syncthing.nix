@@ -110,6 +110,11 @@ in
           versioning = versioning.trashcan;
           devices = [ "server" ];
         };
+        "excalidraw" = {
+          path = "${parameters.home}/Documents/excalidraw";
+          versioning = versioning.trashcan;
+          devices = [ "server" ];
+        };
         "keepassxc" = {
           path = "${parameters.home}/Documents/keepassxc";
           versioning = versioning.trashcan;

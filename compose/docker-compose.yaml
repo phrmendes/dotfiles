@@ -6,6 +6,7 @@ include:
   - diun.yaml
   - dozzle.yaml
   - duplicati.yaml
+  - excalidraw.yaml
   - jellyfin.yaml
   - postgres.yaml
   - sftpgo.yaml

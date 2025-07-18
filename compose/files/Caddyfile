@@ -45,3 +45,7 @@ syncthing.local.ohlongjohnson.tech, syncthing.ts.ohlongjohnson.tech {
 transmission.local.ohlongjohnson.tech, transmission.ts.ohlongjohnson.tech {
     import service transmission 9091
 }
+
+excalidraw.local.ohlongjohnson.tech, excalidraw.ts.ohlongjohnson.tech {
+    import service excalidraw 80
+}

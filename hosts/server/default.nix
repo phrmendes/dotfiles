@@ -17,7 +17,9 @@
   programs.nh.flake = "/home/${parameters.user}/dotfiles";
 
   environment.systemPackages = with pkgs; [
+    gh
     helix
+    lazydocker
     python313
   ];
 

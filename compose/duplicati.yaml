@@ -13,6 +13,7 @@ services:
       - duplicati_backups:/backups
       - duplicati_config:/config
       - duplicati_source:/source
+      - linkding_data:/backups/linkding
       - postgres_dumps:/backups/postgres_dumps
       - syncthing_data:/backups/syncthing
     ports:

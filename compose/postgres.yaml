@@ -9,7 +9,7 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DATABASES=atuin
+      - POSTGRES_DATABASES=${POSTGRES_DATABASES}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
       interval: 30s
@@ -27,7 +27,7 @@ services:
     environment:
       - TZ=${TZ}
       - POSTGRES_HOST=postgres
-      - POSTGRES_DB=atuin
+      - POSTGRES_DB=${POSTGRES_DATABASES}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SCHEDULE=@daily

@@ -49,3 +49,7 @@ transmission.local.ohlongjohnson.tech, transmission.ts.ohlongjohnson.tech {
 excalidraw.local.ohlongjohnson.tech, excalidraw.ts.ohlongjohnson.tech {
     import service excalidraw 80
 }
+
+linkding.local.ohlongjohnson.tech, linkding.ts.ohlongjohnson.tech {
+    import service linkding 9090
+}

@@ -62,6 +62,7 @@
         tectonic
         terraform
         transmission_4
+        tridactyl-native
         websocat
         wofi-emoji
         wofi-power-menu

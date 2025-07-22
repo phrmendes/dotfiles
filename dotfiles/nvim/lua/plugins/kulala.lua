@@ -5,6 +5,7 @@ MiniDeps.later(function()
 		ui = {
 			formatter = true,
 			icons = { inlay = { done = "", error = "󰅚", loading = "" } },
+			split_direction = "horizontal",
 		},
 		kulala_keymaps = {
 			["show headers"] = { "H", function() require("kulala.ui").show_headers() end },

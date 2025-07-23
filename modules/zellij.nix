@@ -9,13 +9,14 @@
       settings = {
         default_layout = "compact";
         default_shell = "fish";
-        mouse_mode = true;
         on_force_close = "detach";
-        pane_frames = false;
-        simplified_ui = true;
-        show_startup_tips = false;
         session_name = "default";
         attach_to_session = true;
+        mouse_mode = true;
+        pane_frames = false;
+        show_release_notes = true;
+        show_startup_tips = false;
+        simplified_ui = true;
         keybinds =
           let
             zellij-navigator-version = "0.3.0";

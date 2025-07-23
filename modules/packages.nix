@@ -30,6 +30,7 @@
         gcloud
         gdu
         ghostscript
+        github-mcp-server
         go
         gotools
         grpcurl
@@ -49,6 +50,7 @@
         networkmanagerapplet
         nix-prefetch-github
         nodejs
+        opencode
         pasystray
         pavucontrol
         phockup

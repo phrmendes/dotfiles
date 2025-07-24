@@ -13,3 +13,7 @@ default: down up
 
 @ps:
     {{compose_command}} ps
+
+@clean:
+    docker system prune --all
+    docker volume prune --all

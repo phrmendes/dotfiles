@@ -3,7 +3,6 @@ services:
     image: docker.io/dpage/pgadmin4:latest
     container_name: pgadmin
     restart: always
-    user: 1000:1000
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - postgres_dumps:/var/lib/pgadmin/storage/dumps

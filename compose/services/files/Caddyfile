@@ -10,16 +10,8 @@ adguardhome.local.ohlongjohnson.tech, adguardhome.ts.ohlongjohnson.tech {
     import service adguardhome 80
 }
 
-adminer.local.ohlongjohnson.tech, adminer.ts.ohlongjohnson.tech {
-    import service adminer 8080
-}
-
 atuin.local.ohlongjohnson.tech, atuin.ts.ohlongjohnson.tech {
     import service atuin 8888
-}
-
-beszel.local.ohlongjohnson.tech, beszel.ts.ohlongjohnson.tech {
-    import service beszel 8090
 }
 
 dozzle.local.ohlongjohnson.tech, dozzle.ts.ohlongjohnson.tech {
@@ -32,6 +24,10 @@ duplicati.local.ohlongjohnson.tech, duplicati.ts.ohlongjohnson.tech {
 
 jellyfin.local.ohlongjohnson.tech, jellyfin.ts.ohlongjohnson.tech {
     import service jellyfin 8096
+}
+
+pgadmin.local.ohlongjohnson.tech, pgadmin.ts.ohlongjohnson.tech {
+    import service pgadmin 80
 }
 
 sftpgo.local.ohlongjohnson.tech, sftpgo.ts.ohlongjohnson.tech {

@@ -5,8 +5,8 @@ services:
     restart: always
     volumes:
       - sftpgo_data:/var/lib/sftpgo
+      - postgres_dumps:/files/dumps
       - syncthing_data:/files/syncthing
-      - postgres_dumps:/files/dumps:ro
       - transmission_watch:/files/watch
       - /mnt/external/:/files/external
     ports:

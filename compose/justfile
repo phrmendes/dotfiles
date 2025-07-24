@@ -1,0 +1,15 @@
+compose_command := "docker compose --env-file=/run/agenix/docker-compose.env"
+
+default: down up
+
+@down svc="":
+    {{compose_command}} down {{svc}}
+
+@up svc="":
+    {{compose_command}} up --detach --remove-orphans {{svc}}
+
+@restart svc="":
+    {{compose_command}} restart {{svc}}
+
+@ps:
+    {{compose_command}} ps

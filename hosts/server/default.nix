@@ -19,8 +19,10 @@
   environment.systemPackages = with pkgs; [
     gh
     helix
+    just
     lazydocker
     python313
+    zellij
   ];
 
   services = {
@@ -59,7 +61,6 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
   };
 }

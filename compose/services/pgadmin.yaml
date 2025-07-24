@@ -1,0 +1,19 @@
+services:
+  pgadmin:
+    image: docker.io/dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: always
+    user: 1000:1000
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - postgres_dumps:/var/lib/pgadmin/storage/dumps
+      - ./files/pgadmin_config.py:/pgadmin4/config_local.py
+      - ./files/pgadmin_preferences.json:/pgadmin4/preferences.json
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pedrohrmendes_logins@proton.me
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - 8083:80
+
+volumes:
+  pgadmin_data:

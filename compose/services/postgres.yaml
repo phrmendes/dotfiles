@@ -5,7 +5,7 @@ services:
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-      - ./files/init.sh:/docker-entrypoint-initdb.d/init.sh:ro
+      - ./files/postgres_init.sh:/docker-entrypoint-initdb.d/init.sh:ro
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -33,18 +33,6 @@ services:
       - SCHEDULE=@daily
       - BACKUP_ON_START=TRUE
       - BACKUP_DIR=/dumps
-    depends_on:
-      postgres:
-        condition: service_healthy
-    labels:
-      - diun.enable=true
-
-  adminer:
-    image: docker.io/adminer:latest
-    container_name: adminer
-    restart: always
-    ports:
-      - 8083:8080
     depends_on:
       postgres:
         condition: service_healthy

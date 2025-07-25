@@ -18,6 +18,7 @@
       [
         ansible
         ast-grep
+        butterfly
         curl
         dig
         discord

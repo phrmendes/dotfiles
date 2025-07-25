@@ -64,6 +64,7 @@
 
   services = {
     blueman.enable = true;
+    flatpak.enable = true;
 
     xserver.videoDrivers = [ "nvidia" ];
 

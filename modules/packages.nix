@@ -18,7 +18,6 @@
       [
         ansible
         ast-grep
-        butterfly
         curl
         dig
         discord
@@ -38,6 +37,7 @@
         hyprland-qtutils
         imagemagick
         jdk
+        jpegoptim
         just
         kooha
         kubectl
@@ -52,6 +52,8 @@
         nix-prefetch-github
         nodejs
         opencode
+        optipng
+        parallel
         pasystray
         pavucontrol
         phockup

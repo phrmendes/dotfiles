@@ -70,10 +70,6 @@
             force_default_wallpaper = 0;
             disable_hyprland_logo = true;
           };
-          render = {
-            explicit_sync = 2;
-            explicit_sync_kms = 0;
-          };
           monitor = with parameters.monitors; [
             "${primary},2560x1080,0x0,1"
             "${secondary},1920x1080,2560x0,1"
@@ -112,44 +108,43 @@
             "SUPER ALT,k,resizeactive,0 -20"
             "SUPER ALT,l,resizeactive,20 0"
           ];
-          bind =
-            [
-              "CTRL ALT, L, exec, ${hyprlock}"
-              "CTRL ALT, Delete, exec, ${lib.getExe pkgs.wofi-power-menu}"
-              ",print,exec,screenshot"
-              ",XF86AudioPlay,exec,${playerctl} play-pause"
-              ",XF86AudioPause,exec,${playerctl} play-pause"
-              ",XF86AudioPrev,exec,${playerctl} previous"
-              ",XF86AudioNext,exec,${playerctl} next"
-              "SUPER,space,exec,${wofi}"
-              "SUPER,tab,changegroupactive,f"
-              "SUPER,return,exec,${lib.getExe pkgs.wezterm}"
-              "SUPER,B,exec,${lib.getExe pkgs.firefox}"
-              "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist-wofi-img | ${pkgs.wl-clipboard}/bin/wl-copy"
-              "SUPER,F,togglefloating"
-              "SUPER,G,togglegroup"
-              "SUPER,H,movefocus,l"
-              "SUPER,J,movefocus,d"
-              "SUPER,K,movefocus,u"
-              "SUPER,L,movefocus,r"
-              "SUPER,P,pseudo"
-              "SUPER,Q,killactive"
-              "SUPER,R,togglesplit"
-              "SUPER,T,lockactivegroup,toggle"
-              "SUPER,Z,fullscreen"
-              "SUPER,E,exec,${pkgs.wofi-emoji}"
-              "SUPER CTRL,H,workspace,r-1"
-              "SUPER CTRL,L,workspace,r+1"
-              "SUPER SHIFT,H,movewindoworgroup,l"
-              "SUPER SHIFT,J,movewindoworgroup,d"
-              "SUPER SHIFT,K,movewindoworgroup,u"
-              "SUPER SHIFT,L,movewindoworgroup,r"
-              "SUPER SHIFT CTRL,H,movetoworkspace,r-1"
-              "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
-            ]
-            ++ workspace.switch
-            ++ workspace.move
-            ++ workspace.moveSilent;
+          bind = [
+            "CTRL ALT, L, exec, ${hyprlock}"
+            "CTRL ALT, Delete, exec, ${lib.getExe pkgs.wofi-power-menu}"
+            ",print,exec,screenshot"
+            ",XF86AudioPlay,exec,${playerctl} play-pause"
+            ",XF86AudioPause,exec,${playerctl} play-pause"
+            ",XF86AudioPrev,exec,${playerctl} previous"
+            ",XF86AudioNext,exec,${playerctl} next"
+            "SUPER,space,exec,${wofi}"
+            "SUPER,tab,changegroupactive,f"
+            "SUPER,return,exec,${lib.getExe pkgs.wezterm}"
+            "SUPER,B,exec,${lib.getExe pkgs.firefox}"
+            "SUPER,V,exec,${pkgs.cliphist}/bin/cliphist-wofi-img | ${pkgs.wl-clipboard}/bin/wl-copy"
+            "SUPER,F,togglefloating"
+            "SUPER,G,togglegroup"
+            "SUPER,H,movefocus,l"
+            "SUPER,J,movefocus,d"
+            "SUPER,K,movefocus,u"
+            "SUPER,L,movefocus,r"
+            "SUPER,P,pseudo"
+            "SUPER,Q,killactive"
+            "SUPER,R,togglesplit"
+            "SUPER,T,lockactivegroup,toggle"
+            "SUPER,Z,fullscreen"
+            "SUPER,E,exec,${pkgs.wofi-emoji}"
+            "SUPER CTRL,H,workspace,r-1"
+            "SUPER CTRL,L,workspace,r+1"
+            "SUPER SHIFT,H,movewindoworgroup,l"
+            "SUPER SHIFT,J,movewindoworgroup,d"
+            "SUPER SHIFT,K,movewindoworgroup,u"
+            "SUPER SHIFT,L,movewindoworgroup,r"
+            "SUPER SHIFT CTRL,H,movetoworkspace,r-1"
+            "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
+          ]
+          ++ workspace.switch
+          ++ workspace.move
+          ++ workspace.moveSilent;
           env = [
             "GDK_BACKEND,wayland"
             "LIBVA_DRIVER_NAME,nvidia"

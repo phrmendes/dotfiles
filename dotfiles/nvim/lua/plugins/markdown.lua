@@ -22,7 +22,7 @@ MiniDeps.later(function()
 	})
 
 	require("render-markdown").setup({
-		completions = { blink = { enabled = true } },
+		completions = { lsp = { enabled = true } },
 		heading = { position = "inline" },
 		file_types = { "markdown", "quarto", "copilot-chat" },
 	})

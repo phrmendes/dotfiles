@@ -5,6 +5,7 @@
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
     scls.url = "github:estin/simple-completion-language-server";
     stylix.url = "github:danth/stylix";
 
@@ -22,14 +23,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs =
     inputs@{ nixpkgs, ... }:
 
     let
-      lib = nixpkgs.lib;
       system = "x86_64-linux";
       global = rec {
         name = "Pedro Mendes";
@@ -50,7 +49,7 @@
               };
             };
           in
-          lib.nixosSystem {
+          nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs parameters; };
             modules = [ ./hosts/desktop ];
@@ -59,10 +58,9 @@
           let
             parameters = global // {
               device = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
-              domain = "ohlongjohnson.tech";
             };
           in
-          lib.nixosSystem {
+          nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs parameters; };
             modules = [ ./hosts/server ];

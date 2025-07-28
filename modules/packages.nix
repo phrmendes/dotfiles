@@ -25,12 +25,12 @@
         exiftool
         ffmpeg
         ffmpegthumbnailer
-        filezilla
         firefox
         gcloud
         gdu
         ghostscript
         github-mcp-server
+        stable.gnome-commander
         go
         gotools
         grpcurl

@@ -52,14 +52,6 @@
     virt-manager.enable = true;
 
     nh.flake = "/home/${parameters.user}/Projects/dotfiles";
-
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
   };
 
   services = {

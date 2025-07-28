@@ -6,6 +6,7 @@ MiniDeps.add({
 	depends = {
 		"folke/snacks.nvim",
 		"nvim-treesitter/nvim-treesitter",
+		"rafamadriz/friendly-snippets",
 	},
 })
 

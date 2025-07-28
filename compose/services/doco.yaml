@@ -1,0 +1,22 @@
+# deploy settings: https://github.com/kimdre/doco-cd/wiki/Deploy-Settings
+services:
+  dococd:
+    image: ghcr.io/kimdre/doco-cd:latest
+    container_name: dococd
+    restart: always
+    environment:
+      - TZ=${TZ}
+      - GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN}
+      - WEBHOOK_SECRET=${DOCOCD_WEBHOOK_SECRET}
+      - POLL_CONFIG_FILE=/doco-poll.yaml
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./files/doco-poll.yaml:/doco-poll.yaml
+      - dococd_data:/data
+    ports:
+      - 82:82
+    labels:
+      - diun.enable=true
+
+volumes:
+  dococd_data:

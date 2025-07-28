@@ -6,7 +6,7 @@ default: down up
     {{compose_command}} down {{svc}}
 
 @up svc="":
-    {{compose_command}} up --detach --remove-orphans {{svc}}
+    {{compose_command}} up --build --detach --remove-orphans {{svc}}
 
 @restart svc="":
     {{compose_command}} restart {{svc}}

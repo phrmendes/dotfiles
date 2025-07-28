@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "gruvbox",
+  "model": "github-copilot/claude-sonnet-4",
+  "small_model": "github-copilot/gemini-2.0-flash-001",
+  "mcp": {
+    "k8s": {
+      "type": "local",
+      "command": ["mcp-k8s-go", "--readonly"],
+      "enabled": true
+    }
+  }
+}

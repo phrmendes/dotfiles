@@ -77,28 +77,8 @@ in
           versioning = versioning.trashcan;
           devices = [ "server" ];
         };
-        "comics" = {
-          path = "${parameters.home}/Documents/library/comics";
-          versioning = versioning.trashcan;
-          devices = [ "server" ];
-        };
-        "IT" = {
-          path = "${parameters.home}/Documents/library/IT";
-          versioning = versioning.trashcan;
-          devices = [ "server" ];
-        };
-        "math" = {
-          path = "${parameters.home}/Documents/library/math";
-          versioning = versioning.trashcan;
-          devices = [ "server" ];
-        };
-        "social_sciences" = {
-          path = "${parameters.home}/Documents/library/social_sciences";
-          versioning = versioning.trashcan;
-          devices = [ "server" ];
-        };
         "zotero" = {
-          path = "${parameters.home}/Documents/library/zotero";
+          path = "${parameters.home}/Documents/zotero";
           versioning = versioning.trashcan;
           devices = [
             "server"

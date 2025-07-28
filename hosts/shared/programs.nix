@@ -2,9 +2,9 @@
 {
   programs = {
     fuse.userAllowOther = true;
-    nix-ld.enable = true;
-    command-not-found.enable = true;
+    command-not-found.enable = false;
     fish.enable = true;
+    nix-ld.enable = true;
 
     ssh = {
       startAgent = true;

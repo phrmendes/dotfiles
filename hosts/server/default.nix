@@ -22,7 +22,7 @@
     just
     lazydocker
     python313
-    zellij
+    wezterm
   ];
 
   services = {
@@ -61,6 +61,7 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
+    zellij.enable = true;
     zoxide.enable = true;
   };
 }

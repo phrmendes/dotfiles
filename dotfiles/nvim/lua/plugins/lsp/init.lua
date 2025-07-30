@@ -21,6 +21,7 @@ now(function()
 		taplo = {},
 		terraformls = {},
 		ts_ls = {},
+		elixirls = require("plugins.lsp.elixir-ls"),
 		astro = require("plugins.lsp.astro"),
 		helm_ls = require("plugins.lsp.helm-ls"),
 		jsonls = require("plugins.lsp.jsonls"),

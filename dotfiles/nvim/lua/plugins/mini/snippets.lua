@@ -5,7 +5,11 @@ MiniDeps.later(function()
 		snippets = {
 			snippets.gen_loader.from_lang(),
 		},
+		mappings = {
+			expand = "<c-j>",
+			stop = "<c-c>",
+			jump_next = "",
+			jump_prev = "",
+		},
 	})
-
-	MiniSnippets.start_lsp_server()
 end)

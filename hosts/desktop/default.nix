@@ -189,6 +189,7 @@
     syncthingtray.enable = true;
     targets.enable = true;
     tealdeer.enable = true;
+    tmux.enable = true;
     udiskie.enable = true;
     uv.enable = true;
     waybar.enable = true;
@@ -196,7 +197,6 @@
     wofi.enable = true;
     yazi.enable = true;
     zathura.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
   };
 }

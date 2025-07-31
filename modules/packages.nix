@@ -72,6 +72,7 @@
         websocat
         wofi-emoji
         wofi-power-menu
+        yq-go
         zotero
       ];
   };

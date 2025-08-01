@@ -1,10 +1,7 @@
-local add, now = MiniDeps.add, MiniDeps.now
-
-now(function()
-	add({ source = "neovim/nvim-lspconfig", depends = { "b0o/SchemaStore.nvim" } })
+MiniDeps.now(function()
+	MiniDeps.add({ source = "neovim/nvim-lspconfig", depends = { "b0o/SchemaStore.nvim" } })
 
 	local servers = {
-		ansiblels = {},
 		basedpyright = {},
 		bashls = {},
 		cssls = {},
@@ -13,6 +10,7 @@ now(function()
 		emmet_language_server = {},
 		eslint = {},
 		gopls = {},
+		helm_ls = {},
 		html = {},
 		marksman = {},
 		nixd = {},
@@ -23,7 +21,6 @@ now(function()
 		ts_ls = {},
 		elixirls = require("plugins.lsp.elixir-ls"),
 		astro = require("plugins.lsp.astro"),
-		helm_ls = require("plugins.lsp.helm-ls"),
 		jsonls = require("plugins.lsp.jsonls"),
 		ltex_plus = require("plugins.lsp.ltex-plus"),
 		lua_ls = require("plugins.lsp.lua-ls"),

@@ -132,7 +132,6 @@
     "Projects"
     "Videos"
     "Zotero"
-    ".ansible"
     ".config"
     ".docker"
     ".gnupg"

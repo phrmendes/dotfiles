@@ -26,8 +26,6 @@
       extraPackages =
         with pkgs;
         [
-          ansible-language-server
-          ansible-lint
           astro-language-server
           basedpyright
           bash-language-server

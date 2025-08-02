@@ -6,7 +6,6 @@ local nf = wezterm.nerdfonts
 local mux = wezterm.mux
 
 local ss = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
-local ws = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 local get_base_path = function(path) return path:gsub("(.*[/\\])(.*)", "%2") end
 
@@ -57,16 +56,13 @@ config.keys = {
 	{ key = "l", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|DOMAINS" }) },
 	{ key = "n", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
 	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
-	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
-	{ key = "t", mods = "LEADER", action = action.ShowTabNavigator },
+	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane },
+	{ key = "s", mods = "LEADER", action = action.QuickSelect },
+	{ key = "t", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
 	{ key = "v", mods = "LEADER", action = action.PasteFrom("Clipboard") },
+	{ key = "w", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
 	{ key = "z", mods = "LEADER", action = action.TogglePaneZoomState },
-	{
-		key = "w",
-		mods = "LEADER",
-		action = ws.switch_workspace({ extra_args = [[| rg -F $HOME | rg -v ".venv|.st|.github|persist"]] }),
-	},
 	{
 		key = "R",
 		mods = "LEADER",
@@ -141,14 +137,5 @@ ss.apply_to_config(config, {
 		resize = "ALT",
 	},
 })
-
-ws.workspace_formatter = function(label)
-	return wezterm.format({
-		{ Attribute = { Italic = true } },
-		{ Text = nf.md_dock_window },
-		{ Text = " " },
-		{ Text = label },
-	})
-end
 
 return config

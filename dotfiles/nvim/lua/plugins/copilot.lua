@@ -53,6 +53,6 @@ MiniDeps.later(function()
 		end,
 	})
 
-	vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "Chat" })
-	vim.keymap.set({ "n", "x" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Chat" })
+	vim.keymap.set("n", "<leader>c", "<cmd>CopilotChatToggle<cr>", { desc = "Chat" })
+	vim.keymap.set({ "n", "x" }, "<leader>c", "<cmd>CopilotChat<cr>", { desc = "Chat" })
 end)

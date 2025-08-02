@@ -20,6 +20,7 @@ map("n", "<leader><leader>", function() MiniPick.builtin.files() end, { desc = "
 map("n", "<leader><del>", function() MiniNotify.clear() end, { desc = "Clear notifications" })
 map("n", "<leader>K", function() MiniExtra.pickers.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>N", function() MiniNotify.show_history() end, { desc = "Notifications" })
+map("n", "<leader>W", function() MiniMisc.setup_auto_root() end, { desc = "Change working dir" })
 map("n", "<leader>bd", function() MiniBufremove.delete() end, { desc = "Delete" })
 map("n", "<leader>bw", function() MiniBufremove.wipeout() end, { desc = "Wipeout" })
 map("n", "<leader>e", function() helpers_mini.files.open() end, { desc = "Explorer" })

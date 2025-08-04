@@ -45,7 +45,8 @@
           diff_persist = "sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'";
           apply = "git add . && nh os switch";
           asr = "atuin scripts run";
-          t = "tmux -CC new -A -s default";
+          kssh = "kitten ssh";
+          ktransfer = "kitten transfer";
         };
         shellAliases = {
           cat = getExe pkgs.bat;

@@ -22,7 +22,6 @@
     just
     lazydocker
     python313
-    wezterm
   ];
 
   services = {

@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 MiniDeps.now(function()
 	MiniDeps.add({ source = "folke/snacks.nvim", depends = { "echasnovski/mini.nvim" } })
 
@@ -14,8 +12,8 @@ MiniDeps.now(function()
 		image = { enabled = true },
 	})
 
-	map("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
-	map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
-	map("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
-	map({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
+	vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
+	vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
+	vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
+	vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
 end)

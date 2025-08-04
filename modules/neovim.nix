@@ -29,7 +29,6 @@
           astro-language-server
           basedpyright
           bash-language-server
-          copilot-language-server
           delve
           djlint
           dockerfile-language-server-nodejs

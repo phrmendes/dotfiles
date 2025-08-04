@@ -32,7 +32,6 @@
         gdu
         ghostscript
         go
-        goose-cli
         gotools
         grpcurl
         hyprland-qtutils

@@ -42,13 +42,11 @@ MiniDeps.later(function()
 			clue.gen_clues.z(),
 			{ mode = "n", keys = "<leader><tab>", desc = "+tabs" },
 			{ mode = "n", keys = "<leader>b", desc = "+buffers" },
-			{ mode = "n", keys = "<leader>c", desc = "+copilot" },
 			{ mode = "n", keys = "<leader>g", desc = "+git" },
 			{ mode = "n", keys = "<leader>k", desc = "+kulala" },
 			{ mode = "n", keys = "<leader>l", desc = "+labels" },
 			{ mode = "n", keys = "<leader>n", desc = "+notes" },
 			{ mode = "n", keys = "<leader>t", desc = "+todotxt" },
-			{ mode = "x", keys = "<leader>c", desc = "+copilot" },
 			{ mode = "x", keys = "<leader>g", desc = "+git" },
 		},
 		window = {

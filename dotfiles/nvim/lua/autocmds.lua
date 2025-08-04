@@ -1,20 +1,16 @@
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local clear = vim.api.nvim_clear_autocmds
-
 local augroups = {
-	line_numbers = augroup("UserLineNumbers", {}),
-	filetype = augroup("UserFileType", {}),
-	yank = augroup("UserYank", {}),
-	windows = augroup("UserWindows", {}),
+	line_numbers = vim.api.nvim_create_augroup("UserLineNumbers", {}),
+	filetype = vim.api.nvim_create_augroup("UserFileType", {}),
+	yank = vim.api.nvim_create_augroup("UserYank", {}),
+	windows = vim.api.nvim_create_augroup("UserWindows", {}),
 	lsp = {
-		attach = augroup("UserLspAttach", {}),
-		detach = augroup("UserLspDetach", {}),
-		highlight = augroup("UserLspHighlight", {}),
+		attach = vim.api.nvim_create_augroup("UserLspAttach", {}),
+		detach = vim.api.nvim_create_augroup("UserLspDetach", {}),
+		highlight = vim.api.nvim_create_augroup("UserLspHighlight", {}),
 	},
 }
 
-autocmd("LspAttach", {
+vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options",
 	group = augroups.lsp.attach,
 	callback = function(event)
@@ -25,38 +21,38 @@ autocmd("LspAttach", {
 		require("keymaps.lsp")(client, event.buf)
 
 		if client:supports_method("textDocument/codeLens", event.buf) then
-			autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+			vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 				buffer = event.buf,
 				callback = function(ev) vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
 			})
 		end
 
 		if client:supports_method("textDocument/documentHighlight", event.buf) then
-			autocmd({ "CursorHold", "CursorHoldI" }, {
+			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
 				group = augroups.lsp.highlight,
 				callback = vim.lsp.buf.document_highlight,
 			})
 
-			autocmd({ "CursorMoved", "CursorMovedI" }, {
+			vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 				buffer = event.buf,
 				group = augroups.lsp.highlight,
 				callback = vim.lsp.buf.clear_references,
 			})
 
-			autocmd("LspDetach", {
+			vim.api.nvim_create_autocmd("LspDetach", {
 				group = augroups.lsp.detach,
 				buffer = event.buf,
 				callback = function(ev)
 					vim.lsp.buf.clear_references()
-					clear({ group = "UserLspHighlight", buffer = ev.buf })
+					vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
 				end,
 			})
 		end
 	end,
 })
 
-autocmd("WinEnter", {
+vim.api.nvim_create_autocmd("WinEnter", {
 	desc = "Automatically close Vim if the quickfix window is the only one open",
 	group = augroups.windows,
 	callback = function()
@@ -64,13 +60,13 @@ autocmd("WinEnter", {
 	end,
 })
 
-autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = augroups.yank,
 	callback = function() vim.hl.on_yank() end,
 })
 
-autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
 	desc = "Close with <q>",
 	group = augroups.filetype,
 	pattern = { "dap-float", "dap-repl", "dap-view", "dap-view-term", "diff", "git", "help", "man", "qf", "query" },
@@ -80,14 +76,14 @@ autocmd("FileType", {
 	end,
 })
 
-autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
 	desc = "Enable relative line numbers in normal mode",
 	group = augroups.line_numbers,
 	pattern = "*",
 	command = "if &nu && mode() != 'i' | set rnu | endif",
 })
 
-autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
 	desc = "Disable relative line numbers in insert mode",
 	group = augroups.line_numbers,
 	pattern = "*",

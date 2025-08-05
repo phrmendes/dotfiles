@@ -39,6 +39,7 @@
         jdk
         jpegoptim
         just
+        jwt-cli
         kooha
         kubectl
         kubernetes-helm

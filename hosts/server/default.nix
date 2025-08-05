@@ -60,7 +60,7 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
-    tmux.enable = true;
+    zellij.enable = true;
     zoxide.enable = true;
   };
 }

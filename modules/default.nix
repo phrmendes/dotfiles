@@ -38,7 +38,6 @@
     ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix
@@ -46,6 +45,7 @@
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix
+    ./zellij.nix
     ./zoxide.nix
   ];
 

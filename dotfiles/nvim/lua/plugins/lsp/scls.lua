@@ -1,5 +1,6 @@
 return {
 	cmd = { "simple-completion-language-server" },
+	filetypes = { "markdown", "quarto" },
 	settings = {
 		feature_citations = true,
 		feature_paths = false,

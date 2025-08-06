@@ -64,13 +64,6 @@ M.files.open_file = function()
 	end)
 end
 
---- Set current workdir in mini.files
-M.files.set_cwd = function()
-	local current_entry_path = MiniFiles.get_fs_entry().path
-	local current_directory = vim.fs.dirname(current_entry_path)
-	if current_directory ~= nil then vim.fn.chdir(current_directory) end
-end
-
 --- Search limited to focused directory in mini.files
 M.files.grug_far_replace = function()
 	local grug_far = require("grug-far")
@@ -100,46 +93,6 @@ M.pick.buffers = function()
 			},
 		},
 	})
-end
-
---- Open the mini.pick grep picker with a custom mapping for grepping the word under the cursor or in visual selection
-M.pick.grep_word = function()
-	local mode = vim.api.nvim_get_mode().mode
-
-	if mode == "n" then
-		MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") })
-		return
-	end
-
-	local v_start = vim.fn.getpos(".")
-	local v_end = vim.fn.getpos("v")
-	local region = table.concat(vim.fn.getregion(v_start, v_end)):gsub("\t", "")
-
-	MiniPick.builtin.grep({ pattern = region })
-end
-
---- Add mini.visits label using `vim.ui.input`
-M.visits.add_label = function()
-	vim.ui.input({ prompt = "Label: " }, function(input)
-		if input == "" or input == nil then
-			vim.notify("Label cannot be empty", vim.log.levels.ERROR)
-			return
-		end
-
-		MiniVisits.add_label(input)
-	end)
-end
-
---- Remove mini.visits label using `vim.ui.select`
-M.visits.remove_label = function()
-	vim.ui.select(MiniVisits.list_labels(), { prompt = "Select label: " }, function(input)
-		if input == "" or input == nil then
-			vim.notify("Label cannot be empty", vim.log.levels.ERROR)
-			return
-		end
-
-		MiniVisits.remove_label(input)
-	end)
 end
 
 return M

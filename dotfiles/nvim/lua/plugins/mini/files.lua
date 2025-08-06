@@ -41,9 +41,6 @@ MiniDeps.now(function()
 			opts.desc = "Open file"
 			vim.keymap.set("n", "go", function() require("helpers.mini").files.open_file() end, opts)
 
-			opts.desc = "Set current workdir"
-			vim.keymap.set("n", "g.", function() require("helpers.mini").files.set_cwd() end, opts)
-
 			opts.desc = "Open file in horizontal split"
 			vim.keymap.set("n", "-", require("helpers.mini").files.split("horizontal", true), opts)
 

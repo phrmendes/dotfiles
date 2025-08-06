@@ -1,6 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup("UserBlinkCmp", {})
-
 local build = function(params)
 	local notify = {
 		error = vim.schedule_wrap(
@@ -123,14 +120,16 @@ MiniDeps.now(function()
 		end,
 	})
 
-	autocmd("User", {
+	local augroup = vim.api.nvim_create_augroup("UserBlinkCmp", {})
+
+	vim.api.nvim_create_autocmd("User", {
 		desc = "Hide Copilot suggestions when BlinkCmp menu is open",
 		group = augroup,
 		pattern = "BlinkCmpMenuOpen",
 		callback = function() vim.b.copilot_suggestion_hidden = true end,
 	})
 
-	autocmd("User", {
+	vim.api.nvim_create_autocmd("User", {
 		desc = "Show Copilot suggestions when BlinkCmp menu is closed",
 		group = augroup,
 		pattern = "BlinkCmpMenuClose",

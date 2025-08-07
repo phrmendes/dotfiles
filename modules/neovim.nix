@@ -46,7 +46,6 @@
           lua-language-server
           lynx
           marksman
-          neovim-remote
           nixd
           nixfmt-rfc-style
           ruff

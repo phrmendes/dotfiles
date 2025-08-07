@@ -99,9 +99,6 @@ end
 -- treat '-' as part of a word
 vim.cmd([[set iskeyword+=-]])
 
--- nvim remote
-if vim.fn.executable("nvr") then vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'" end
-
 -- add filetypes
 vim.filetype.add({
 	filename = {

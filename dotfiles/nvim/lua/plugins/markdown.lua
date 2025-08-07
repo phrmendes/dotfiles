@@ -12,19 +12,8 @@ MiniDeps.later(function()
 		},
 	})
 
-	MiniDeps.add({
-		source = "MeanderingProgrammer/render-markdown.nvim",
-		depends = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
-	})
-
 	require("markdown").setup({
 		on_attach = function(bufnr) require("keymaps.markdown")(bufnr) end,
-	})
-
-	require("render-markdown").setup({
-		completions = { blink = { enabled = true } },
-		heading = { position = "inline" },
-		file_types = { "markdown", "quarto", "copilot-chat" },
 	})
 
 	require("mdx").setup()

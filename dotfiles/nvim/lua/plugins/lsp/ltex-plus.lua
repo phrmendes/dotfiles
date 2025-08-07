@@ -1,5 +1,3 @@
-local get_dictionary_words = require("helpers").get_dictionary_words
-
 return {
 	on_attach = function(client, bufnr)
 		vim.keymap.set({ "n", "x" }, "zg", function()
@@ -61,8 +59,8 @@ return {
 			language = "none",
 			markdown = { nodes = { Link = "dummy" } },
 			dictionary = {
-				["en-US"] = get_dictionary_words("en-US"),
-				["pt-BR"] = get_dictionary_words("pt-BR"),
+				["en-US"] = require("helpers").get_dictionary_words("en-US"),
+				["pt-BR"] = require("helpers").get_dictionary_words("pt-BR"),
 			},
 		},
 	},

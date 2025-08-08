@@ -1,39 +1,11 @@
 local bufnr = vim.api.nvim_get_current_buf()
 
 vim.keymap.set("n", "<leader>ts", "", { buffer = bufnr, desc = "+sort" })
-vim.keymap.set("n", "<leader>tss", function() require("todotxt").sort_tasks() end, { buffer = bufnr, desc = "Default" })
-
-vim.keymap.set("n", "<c-c>n", function() require("todotxt").cycle_priority() end, {
-	buffer = bufnr,
-	desc = "todo.txt: cycle priority",
-})
-
-vim.keymap.set("n", "<cr>", function() require("todotxt").toggle_todo_state() end, {
-	buffer = bufnr,
-	desc = "todo.txt: toggle task state",
-})
-
-vim.keymap.set("n", "<leader>td", function() require("todotxt").move_done_tasks() end, {
-	buffer = bufnr,
-	desc = "Move to done.txt",
-})
-
-vim.keymap.set("n", "<leader>tsd", function() require("todotxt").sort_tasks_by_due_date() end, {
-	buffer = bufnr,
-	desc = "By due:date",
-})
-
-vim.keymap.set("n", "<leader>tsP", function() require("todotxt").sort_tasks_by_priority() end, {
-	buffer = bufnr,
-	desc = "By (priority)",
-})
-
-vim.keymap.set("n", "<leader>tsc", function() require("todotxt").sort_tasks_by_context() end, {
-	buffer = bufnr,
-	desc = "By @context",
-})
-
-vim.keymap.set("n", "<leader>tsp", function() require("todotxt").sort_tasks_by_project() end, {
-	buffer = bufnr,
-	desc = "By +project",
-})
+vim.keymap.set("n", "<cr>", "<Plug>(TodoTxtToggleState)", { buffer = bufnr, desc = "Toggle task state" })
+vim.keymap.set("n", "<c-c>n", "<Plug>(TodoTxtCyclePriority)", { buffer = bufnr, desc = "Cycle priority" })
+vim.keymap.set("n", "<leader>tm", "<Plug>(TodoTxtMoveDone)", { buffer = bufnr, desc = "Move done tasks" })
+vim.keymap.set("n", "<leader>tss", "<Plug>(TodoTxtSortTasks)", { buffer = bufnr, desc = "Sort tasks (default)" })
+vim.keymap.set("n", "<leader>tsp", "<Plug>(TodoTxtSortByPriority)", { buffer = bufnr, desc = "Sort by priority" })
+vim.keymap.set("n", "<leader>tsc", "<Plug>(TodoTxtSortByContext)", { buffer = bufnr, desc = "Sort by context" })
+vim.keymap.set("n", "<leader>tsP", "<Plug>(TodoTxtSortByProject)", { buffer = bufnr, desc = "Sort by project" })
+vim.keymap.set("n", "<leader>tsd", "<Plug>(TodoTxtSortByDueDate)", { buffer = bufnr, desc = "Sort by due date" })

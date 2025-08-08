@@ -5,6 +5,7 @@ MiniDeps.now(function()
 		create_commands = true,
 	})
 
-	vim.keymap.set("n", "<leader>tn", function() require("todotxt").capture_todo() end, { desc = "New entry" })
-	vim.keymap.set("n", "<leader>tt", function() require("todotxt").toggle_todotxt() end, { desc = "Open" })
+	vim.keymap.set("n", "<leader>tn", "<cmd>TodoTxt new<cr>", { desc = "New todo entry" })
+	vim.keymap.set("n", "<leader>tt", "<cmd>TodoTxt<cr>", { desc = "Toggle todo.txt" })
+	vim.keymap.set("n", "<leader>td", "<cmd>DoneTxt<cr>", { desc = "Toggle done.txt" })
 end)

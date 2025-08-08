@@ -107,7 +107,7 @@ MiniDeps.now(function()
 			},
 		},
 		enabled = function()
-			return not vim.tbl_contains({
+			return not vim.list_contains({
 				"copilot-chat",
 				"dap-repl",
 				"dap-view",

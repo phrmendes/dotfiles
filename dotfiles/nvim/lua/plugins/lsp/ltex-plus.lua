@@ -43,7 +43,7 @@ return {
 
 			local new_index = (index % #messages) + 1 or 1
 
-			local result = vim.tbl_filter(function(t) return t.index == new_index end, messages)[1]
+			local result = vim.iter(messages):filter(function(t) return t.index == new_index end):next()
 
 			vim.notify(result.msg, vim.log.levels.INFO, { title = "Ltex" })
 

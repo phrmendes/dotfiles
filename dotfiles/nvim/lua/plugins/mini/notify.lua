@@ -15,7 +15,7 @@ MiniDeps.now(function()
 					"file to analyze",
 					"ltex",
 				}) do
-					array = vim.tbl_filter(filter_generator(filter), array)
+					array = vim.iter(array):filter(filter_generator(filter)):totable()
 				end
 
 				return notify.default_sort(array)

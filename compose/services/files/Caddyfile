@@ -26,6 +26,10 @@ excalidraw.local.ohlongjohnson.tech, excalidraw.ts.ohlongjohnson.tech {
     import service excalidraw 80
 }
 
+gotify.local.ohlongjohnson.tech, gotify.ts.ohlongjohnson.tech {
+    import service gotify 80
+}
+
 jellyfin.local.ohlongjohnson.tech, jellyfin.ts.ohlongjohnson.tech {
     import service jellyfin 8096
 }

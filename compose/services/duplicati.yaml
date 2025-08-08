@@ -7,7 +7,10 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
+      - GOTIFY_URL=http://gotify/message
+      - CLI_ARGS="--run-script-after = duplicati-gotify-notification.sh"
       - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
+      - GOTIFY_DUPLICATI_TOKEN=${GOTIFY_DUPLICATI_TOKEN}
       - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
     volumes:
       - duplicati_backups:/backups
@@ -16,6 +19,7 @@ services:
       - linkding_data:/backups/linkding
       - postgres_dumps:/backups/postgres_dumps
       - syncthing_data:/backups/syncthing
+      - ./files/duplicati-gotify-notification.sh:/app/duplicati/duplicati-gotify-notification.sh
     ports:
       - 8200:8200
     labels:

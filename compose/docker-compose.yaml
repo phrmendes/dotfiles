@@ -6,6 +6,7 @@ include:
   - ./services/dozzle.yaml
   - ./services/duplicati.yaml
   - ./services/excalidraw.yaml
+  - ./services/gotify.yaml
   - ./services/jellyfin.yaml
   - ./services/linkding.yaml
   - ./services/pgadmin.yaml

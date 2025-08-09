@@ -32,6 +32,7 @@
     ./packages.nix
     ./pasystray.nix
     ./ripgrep.nix
+    ./screenrecorder.nix
     ./screenshot.nix
     ./swayosd.nix
     ./symlinks.nix

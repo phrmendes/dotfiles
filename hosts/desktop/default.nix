@@ -183,6 +183,7 @@
     packages.enable = true;
     pasystray.enable = true;
     ripgrep.enable = true;
+    screenrecorder.enable = true;
     screenshot.enable = true;
     swayosd.enable = true;
     symlinks.enable = true;

@@ -4,9 +4,5 @@ return {
 			tsdk = require("nix.typescript"),
 		},
 	},
-	filetypes = {
-		"javascript",
-		"typescript",
-		"astro",
-	},
+	filetypes = { "astro" },
 }

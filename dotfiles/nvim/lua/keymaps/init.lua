@@ -27,6 +27,11 @@ vim.keymap.set("n", "<leader>W", "<cmd>wall!<cr>", { noremap = true, desc = "Wri
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { noremap = true, desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>silent w!<cr>", { noremap = true, desc = "Write" })
 vim.keymap.set("n", "<leader>x", "<cmd>copen<cr>", { noremap = true, desc = "Quickfix" })
+vim.keymap.set("n", "<leader>T", function()
+	vim.ui.input({ prompt = "Name: " }, function(name)
+		if name then vim.cmd("terminal fish \\# " .. name) end
+	end)
+end, { noremap = true, desc = "Open new terminal" })
 
 -- buffer keys
 vim.keymap.set("n", "<leader>bG", "<cmd>blast<cr>", { noremap = true, desc = "Last" })

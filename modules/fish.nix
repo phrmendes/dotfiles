@@ -61,7 +61,6 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
-          zz = getExe pkgs.zellij;
           v = "nvim";
         };
       };

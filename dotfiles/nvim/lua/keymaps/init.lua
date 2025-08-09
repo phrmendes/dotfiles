@@ -18,6 +18,7 @@ vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, noremap = true,
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, noremap = true, silent = true })
 vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
 vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { silent = true })
 
 -- leader keys
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })

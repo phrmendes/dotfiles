@@ -195,7 +195,6 @@
     wofi.enable = true;
     yazi.enable = true;
     zathura.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
   };
 }

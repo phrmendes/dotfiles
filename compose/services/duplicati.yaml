@@ -7,7 +7,7 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-      - GOTIFY_URL=http://gotify/message
+      - GOTIFY_URL=${GOTIFY_URL}
       - CLI_ARGS="--run-script-after = duplicati-gotify-notification.sh"
       - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
       - GOTIFY_DUPLICATI_TOKEN=${GOTIFY_DUPLICATI_TOKEN}

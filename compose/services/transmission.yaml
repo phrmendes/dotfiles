@@ -7,12 +7,14 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-      - USER=phrmendes
-      - PASS=${TRANSMISSION_PASSWORD}
+      - GOTIFY_URL=${GOTIFY_URL}
+      - GOTIFY_TRANSMISSION_TOKEN=${GOTIFY_TRANSMISSION_TOKEN}
     volumes:
       - transmission_config:/config
       - transmission_watch:/watch
       - /mnt/external/downloads:/downloads
+      - ./files/transmission-gotify-notification.sh:/scripts/transmission-gotify-notification.sh
+      - /run/agenix/transmission.json:/config/settings.json
     ports:
       - 9091:9091
       - 51413:51413

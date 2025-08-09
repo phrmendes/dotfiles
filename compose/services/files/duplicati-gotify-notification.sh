@@ -15,7 +15,7 @@ send_notification() {
     local clean_url="${REMOTEURL%%\?*}"
 
     local message
- 
+
     case "$status" in
         "success")
             message="Backup completed successfully - Target: $clean_url - Source: $LOCALPATH"

@@ -51,3 +51,7 @@
         href: https://sabnzbd.ts.ohlongjohnson.tech
         icon: sh-sabnzbd
         description: The automated Usenet download tool
+    - Prowlarr:
+        href: https://prowlarr.ts.ohlongjohnson.tech
+        icon: sh-prowlarr
+        description: The ultimate indexer manager

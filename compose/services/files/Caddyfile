@@ -50,6 +50,10 @@ pgadmin.local.ohlongjohnson.tech, pgadmin.ts.ohlongjohnson.tech {
     import service pgadmin 80
 }
 
+prowlarr.local.ohlongjohnson.tech, prowlarr.ts.ohlongjohnson.tech {
+    import service prowlarr 9696
+}
+
 sabnzbd.local.ohlongjohnson.tech, sabnzbd.ts.ohlongjohnson.tech {
     import service sabnzbd 8080
 }

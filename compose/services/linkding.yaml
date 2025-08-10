@@ -20,6 +20,9 @@ services:
       - postgres
     labels:
       - diun.enable=true
+      - homepage.group=Bookmarks
+      - homepage.name=Linkding
+      - homepage.href=https://linkding.ts.ohlongjohnson.tech
 
 volumes:
   linkding_data:

@@ -17,6 +17,9 @@ services:
       - 8384:8384
     labels:
       - diun.enable=true
+      - homepage.group=File management
+      - homepage.name=Syncthing
+      - homepage.href=https://syncthing.ts.ohlongjohnson.tech
 
 volumes:
   syncthing_config:

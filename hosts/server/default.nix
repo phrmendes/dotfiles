@@ -10,7 +10,6 @@
     ../shared
     ./age.nix
     ./systemd.nix
-    ./virtualization.nix
   ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
@@ -18,7 +17,7 @@
 
   networking = {
     hostName = "server";
-    nftables = true;
+    nftables.enable = true;
     firewall.trustedInterfaces = [ "incusbr0" ];
   };
 

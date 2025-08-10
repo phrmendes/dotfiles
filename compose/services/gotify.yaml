@@ -12,6 +12,9 @@ services:
       - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
     labels:
       - diun.enable=true
+      - homepage.group=Observability
+      - homepage.name=Gotify
+      - homepage.href=https://gotify.ts.ohlongjohnson.tech
 
 volumes:
   gotify_data:

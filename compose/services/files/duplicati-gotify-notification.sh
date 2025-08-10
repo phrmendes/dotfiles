@@ -31,7 +31,7 @@ send_notification() {
             ;;
     esac
 
-    curl -s --max-time 10 "$GOTIFY_URL?token=$GOTIFY_DUPLICATI_TOKEN" \
+    curl -s --max-time 10 "$GOTIFY_URL/message?token=$GOTIFY_DUPLICATI_TOKEN" \
         -F "title=$title" \
         -F "message=$message" \
         -F "priority=$priority" >/dev/null 2>&1

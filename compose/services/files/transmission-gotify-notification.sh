@@ -5,7 +5,7 @@ send_notification() {
     local message="$2"
     local priority="$3"
 
-    curl -s --max-time 10 "$GOTIFY_URL?token=$GOTIFY_TRANSMISSION_TOKEN" \
+    curl -s --max-time 10 "$GOTIFY_URL/message?token=$GOTIFY_TRANSMISSION_TOKEN" \
         -F "title=$title" \
         -F "message=$message" \
         -F "priority=$priority" >/dev/null 2>&1

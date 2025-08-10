@@ -11,6 +11,9 @@ quicklaunch:
   hideVisitURL: true
   provider: duckduckgo
 layout:
+  Bookmarks:
+    style: row
+    columns: 2
   Services:
     style: row
     columns: 2

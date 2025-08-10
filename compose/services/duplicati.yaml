@@ -7,9 +7,9 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-      - GOTIFY_URL=${GOTIFY_URL}
       - CLI_ARGS="--run-script-after = gotify.sh"
       - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
+      - GOTIFY_URL=${GOTIFY_URL}
       - GOTIFY_DUPLICATI_TOKEN=${GOTIFY_DUPLICATI_TOKEN}
       - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
     volumes:

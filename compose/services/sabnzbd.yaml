@@ -1,0 +1,23 @@
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - GOTIFY_URL=${GOTIFY_URL}
+      - GOTIFY_SABNZBD_TOKEN=${GOTIFY_SABNZBD_TOKEN}
+    volumes:
+      - sabnzbd_config:/config
+      - ./files/gotify/sabnzbd.sh:/scripts/sabnzbd.sh
+      - /mnt/external/downloads/.incomplete:/incomplete-downloads
+      - /mnt/external/downloads:/downloads
+    ports:
+      - 8085:8080
+    labels:
+      - diun.enable=true
+
+volumes:
+  sabnzbd_config:

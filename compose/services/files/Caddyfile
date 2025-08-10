@@ -50,6 +50,10 @@ pgadmin.local.ohlongjohnson.tech, pgadmin.ts.ohlongjohnson.tech {
     import service pgadmin 80
 }
 
+sabnzbd.local.ohlongjohnson.tech, sabnzbd.ts.ohlongjohnson.tech {
+    import service sabnzbd 8080
+}
+
 sftpgo.local.ohlongjohnson.tech, sftpgo.ts.ohlongjohnson.tech {
     import service sftpgo 8080
 }

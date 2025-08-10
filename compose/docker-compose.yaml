@@ -13,6 +13,7 @@ include:
   - ./services/linkding.yaml
   - ./services/pgadmin.yaml
   - ./services/postgres.yaml
+  - ./services/sabnzbd.yaml
   - ./services/sftpgo.yaml
   - ./services/socket-proxy.yaml
   - ./services/syncthing.yaml

@@ -47,3 +47,7 @@
         href: https://transmission.ts.ohlongjohnson.tech
         icon: sh-transmission
         description: BitTorrent client with web interface
+    - SABnzbd:
+        href: https://sabnzbd.ts.ohlongjohnson.tech
+        icon: sh-sabnzbd
+        description: The automated Usenet download tool

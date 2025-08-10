@@ -1,6 +1,7 @@
 include:
   - ./services/adguardhome.yaml
   - ./services/atuin.yaml
+  - ./services/bazarr.yaml
   - ./services/beszel.yaml
   - ./services/caddy.yaml
   - ./services/diun.yaml
@@ -14,8 +15,10 @@ include:
   - ./services/pgadmin.yaml
   - ./services/postgres.yaml
   - ./services/prowlarr.yaml
+  - ./services/radarr.yaml
   - ./services/sabnzbd.yaml
   - ./services/sftpgo.yaml
   - ./services/socket-proxy.yaml
+  - ./services/sonarr.yaml
   - ./services/syncthing.yaml
   - ./services/transmission.yaml

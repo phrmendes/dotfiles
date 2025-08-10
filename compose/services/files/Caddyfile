@@ -14,6 +14,10 @@ atuin.local.ohlongjohnson.tech, atuin.ts.ohlongjohnson.tech {
     import service atuin 8888
 }
 
+bazarr.local.ohlongjohnson.tech, bazarr.ts.ohlongjohnson.tech {
+    import service bazarr 6767
+}
+
 beszel.local.ohlongjohnson.tech, beszel.ts.ohlongjohnson.tech {
     import service beszel 8090
 }
@@ -54,12 +58,20 @@ prowlarr.local.ohlongjohnson.tech, prowlarr.ts.ohlongjohnson.tech {
     import service prowlarr 9696
 }
 
+radarr.local.ohlongjohnson.tech, radarr.ts.ohlongjohnson.tech {
+    import service radarr 7878
+}
+
 sabnzbd.local.ohlongjohnson.tech, sabnzbd.ts.ohlongjohnson.tech {
     import service sabnzbd 8080
 }
 
 sftpgo.local.ohlongjohnson.tech, sftpgo.ts.ohlongjohnson.tech {
     import service sftpgo 8080
+}
+
+sonarr.local.ohlongjohnson.tech, sonarr.ts.ohlongjohnson.tech {
+    import service sonarr 8989
 }
 
 syncthing.local.ohlongjohnson.tech, syncthing.ts.ohlongjohnson.tech {

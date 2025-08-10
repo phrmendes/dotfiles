@@ -1,0 +1,18 @@
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: always
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - sonarr_config:/config
+      - /mnt/external/tvshows:/tv
+      - /mnt/external/downloads:/downloads
+    ports:
+      - 8989:8989
+
+volumes:
+  sonarr_config:

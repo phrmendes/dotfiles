@@ -55,3 +55,15 @@
         href: https://prowlarr.ts.ohlongjohnson.tech
         icon: sh-prowlarr
         description: The ultimate indexer manager
+    - Sonarr:
+        href: https://sonarr.ts.ohlongjohnson.tech
+        icon: sh-sonarr
+        description: TV shows manager for usenet and torrent users
+    - Radarr:
+        href: https://radarr.ts.ohlongjohnson.tech
+        icon: sh-radarr
+        description: Movie manager for usenet and torrent users
+    - Bazarr:
+        href: https://bazarr.ts.ohlongjohnson.tech
+        icon: sh-bazarr
+        description: Subtitle manager for *arr stack

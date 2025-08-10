@@ -7,6 +7,7 @@ include:
   - ./services/duplicati.yaml
   - ./services/excalidraw.yaml
   - ./services/gotify.yaml
+  - ./services/homepage.yaml
   - ./services/jellyfin.yaml
   - ./services/linkding.yaml
   - ./services/pgadmin.yaml

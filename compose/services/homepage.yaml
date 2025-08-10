@@ -1,0 +1,19 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: always
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=homepage.ts.ohlongjohnson.tech
+      - PGID=${PGID}
+      - PUID=${PUID}
+    volumes:
+      - homepage_config:/app/config
+      - ./files/homepage/settings.yaml:/app/config/settings.yaml
+      - ./files/homepage/services.yaml:/app/config/services.yaml
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3001:3000
+
+volumes:
+  homepage_config:

@@ -30,6 +30,10 @@ gotify.local.ohlongjohnson.tech, gotify.ts.ohlongjohnson.tech {
     import service gotify 80
 }
 
+homepage.local.ohlongjohnson.tech, homepage.ts.ohlongjohnson.tech {
+    import service homepage 3000
+}
+
 jellyfin.local.ohlongjohnson.tech, jellyfin.ts.ohlongjohnson.tech {
     import service jellyfin 8096
 }

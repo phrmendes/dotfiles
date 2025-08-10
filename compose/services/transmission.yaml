@@ -13,7 +13,7 @@ services:
       - transmission_config:/config
       - transmission_watch:/watch
       - /mnt/external/downloads:/downloads
-      - ./files/transmission-gotify-notification.sh:/scripts/transmission-gotify-notification.sh
+      - ./files/gotify/transmission.sh:/scripts/gotify.sh
       - /run/agenix/transmission.json:/config/settings.json
     ports:
       - 9091:9091

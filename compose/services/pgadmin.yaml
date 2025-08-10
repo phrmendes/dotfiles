@@ -6,13 +6,15 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - postgres_dumps:/var/lib/pgadmin/storage/dumps
-      - ./files/pgadmin_config.py:/pgadmin4/config_local.py
-      - ./files/pgadmin_preferences.json:/pgadmin4/preferences.json
+      - ./files/pgadmin/config.py:/pgadmin4/config_local.py
+      - ./files/pgadmin/preferences.json:/pgadmin4/preferences.json
     environment:
       - PGADMIN_DEFAULT_EMAIL=pedrohrmendes_logins@proton.me
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - 8083:80
+    labels:
+      - diun.enable=true
 
 volumes:
   pgadmin_data:

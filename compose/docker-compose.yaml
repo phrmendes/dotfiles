@@ -14,5 +14,6 @@ include:
   - ./services/pgadmin.yaml
   - ./services/postgres.yaml
   - ./services/sftpgo.yaml
+  - ./services/socket-proxy.yaml
   - ./services/syncthing.yaml
   - ./services/transmission.yaml

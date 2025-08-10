@@ -5,10 +5,11 @@ services:
     restart: always
     ports:
       - 8082:8080
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
+      - DOZZLE_REMOTE_HOST=tcp://socket-proxy:2375
     labels:
       - diun.enable=true
+    depends_on:
+      - socket-proxy

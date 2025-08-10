@@ -1,0 +1,39 @@
+---
+services:
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:latest
+    container_name: socket-proxy
+    restart: always
+    read_only: true
+    ports:
+      - 2375:2375
+    environment:
+      - LOG_LEVEL=info
+      - AUTH=0 # mmanages Docker daemon authentication
+      - BUILD=0 # allows building Docker images from Dockerfiles
+      - COMMIT=0 # allows creating new images from container changes
+      - CONFIGS=0 # manages Docker configs
+      - CONTAINERS=1 # beszel, diun, dozzle, doco container management
+      - DISTRIBUTION=0 # manages image distribution
+      - EVENTS=1 # needed for diun and beszel event monitoring
+      - EXEC=1 # dozzle shell access
+      - GRPC=0 # allows gRPC protocol access
+      - IMAGES=1 # diun image updates, doco deployments
+      - INFO=1 # system information for monitoring
+      - NETWORKS=1 # container networking info
+      - NODES=1 # swarm nodes (if used)
+      - PING=1 # health checks
+      - PLUGINS=0 # manages Docker plugins
+      - POST=1 # when disabled, only GET/HEAD allowed (read-only mode), needed for container operations
+      - SECRETS=0 # access to Docker secrets
+      - SERVICES=1 # swarm services (if used)
+      - SESSION=0 # manages build sessions
+      - SWARM=0 # manages Docker swarm cluster
+      - SYSTEM=1 # beszel system monitoring
+      - TASKS=1 # swarm tasks (if used)
+      - VERSION=1 # version compatibility
+      - VOLUMES=1 # volume management
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    tmpfs:
+      - /run

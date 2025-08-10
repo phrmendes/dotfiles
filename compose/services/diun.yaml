@@ -6,17 +6,19 @@ services:
     command: serve
     volumes:
       - diun_data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - TZ=${TZ}
       - DIUN_WATCH_WORKERS=20
       - DIUN_WATCH_SCHEDULE=0 */6 * * *
       - DIUN_WATCH_JITTER=30s
       - DIUN_PROVIDERS_DOCKER=true
+      - DIUN_PROVIDERS_DOCKER_ENDPOINT=tcp://socket-proxy:2375
       - DIUN_NOTIF_GOTIFY_ENDPOINT=${GOTIFY_URL}
       - DIUN_NOTIF_GOTIFY_TOKEN=${GOTIFY_DIUN_TOKEN}
     labels:
       - diun.enable=true
+    depends_on:
+      - socket-proxy
 
 volumes:
   diun_data:

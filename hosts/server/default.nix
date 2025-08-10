@@ -56,7 +56,23 @@
     };
   };
 
-  users.users.${parameters.user}.extraGroups = [ "incus-admin" ];
+  users = {
+    users = {
+      ${parameters.user} = {
+        extraGroups = [ "incus-admin" ];
+      };
+      media = {
+        uid = 1000;
+        group = "media";
+        isSystemUser = true;
+      };
+    };
+    groups = {
+      media = {
+        gid = 1000;
+      };
+    };
+  };
 
   virtualisation.incus = {
     enable = true;

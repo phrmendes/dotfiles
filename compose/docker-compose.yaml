@@ -1,6 +1,7 @@
 include:
   - ./services/adguardhome.yaml
   - ./services/atuin.yaml
+  - ./services/beszel.yaml
   - ./services/caddy.yaml
   - ./services/diun.yaml
   - ./services/dozzle.yaml

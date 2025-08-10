@@ -1,0 +1,33 @@
+services:
+  beszel-agent:
+    image: docker.io/henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: always
+    network_mode: host
+    volumes:
+      - beszel_socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - LISTEN=/beszel_socket/beszel.sock
+      - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHh93kUCxYYQhVuU5nGtdD43Sc/F/5m+1vqL25kqbWT2
+    labels:
+      - diun.enable=true
+
+  beszel:
+    image: docker.io/henrygd/beszel:latest
+    container_name: beszel
+    restart: always
+    ports:
+      - 8090:8090
+    volumes:
+      - beszel_data:/beszel_data
+      - beszel_socket:/beszel_socket
+    labels:
+      - diun.enable=true
+      - homepage.group=Observability
+      - homepage.name=Beszel
+      - homepage.href=https://beszel.ts.ohlongjohnson.tech
+
+volumes:
+  beszel_data:
+  beszel_socket:

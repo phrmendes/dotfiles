@@ -14,7 +14,7 @@ services:
       - 2022:2022
     labels:
       - diun.enable=true
-      - homepage.group=File management
+      - homepage.group=Files
       - homepage.name=SFTPGo
       - homepage.href=https://sftpgo.ts.ohlongjohnson.tech
 

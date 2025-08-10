@@ -23,3 +23,11 @@
         - abbr: TS
           href: https://login.tailscale.com/
           icon: sh-tailscale-light
+    - Mail:
+        - abbr: PM
+          href: https://mail.proton.me
+          icon: sh-proton-mail
+    - Calendar:
+        - abbr: PC
+          href: https://calendar.proton.me
+          icon: sh-proton-calendar

@@ -21,9 +21,6 @@ services:
       - 51413:51413/udp
     labels:
       - diun.enable=true
-      - homepage.group=Files
-      - homepage.name=Transmission
-      - homepage.href=https://transmission.ts.ohlongjohnson.tech
 
 volumes:
   transmission_config:

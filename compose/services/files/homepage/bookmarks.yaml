@@ -1,0 +1,25 @@
+- Bookmarks:
+    - Github:
+        - abbr: GH
+          href: https://github.com
+          icon: sh-github-light
+    - Hacker News:
+        - abbr: HN
+          href: https://news.ycombinator.com
+          icon: sh-hacker-news
+    - Nexo Jornal:
+        - abbr: NJ
+          href: https://www.nexojornal.com.br
+          icon: https://www.nexojornal.com.br/favicon.png
+    - NixOS Packages:
+        - abbr: NS
+          href: https://search.nixos.org/packages
+          icon: sh-nixos
+    - NixOS Options:
+        - abbr: NO
+          href: https://search.nixos.org/options
+          icon: sh-nixos
+    - Tailscale:
+        - abbr: TS
+          href: https://login.tailscale.com/
+          icon: sh-tailscale-light

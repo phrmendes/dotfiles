@@ -11,27 +11,6 @@ quicklaunch:
   hideVisitURL: true
   provider: duckduckgo
 layout:
-  Backups:
-    style: row
-    columns: 2
-  Bookmarks:
-    style: row
-    columns: 2
-  Databases:
-    style: row
-    columns: 2
-  Files:
-    style: row
-    columns: 2
-  Media:
-    style: row
-    columns: 2
-  Networking:
-    style: row
-    columns: 2
-  Notes:
-    style: row
-    columns: 2
-  Observability:
+  Services:
     style: row
     columns: 2

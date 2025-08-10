@@ -24,9 +24,6 @@ services:
       - beszel_socket:/beszel_socket
     labels:
       - diun.enable=true
-      - homepage.group=Observability
-      - homepage.name=Beszel
-      - homepage.href=https://beszel.ts.ohlongjohnson.tech
 
 volumes:
   beszel_data:

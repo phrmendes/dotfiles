@@ -14,6 +14,10 @@ atuin.local.ohlongjohnson.tech, atuin.ts.ohlongjohnson.tech {
     import service atuin 8888
 }
 
+beszel.local.ohlongjohnson.tech, beszel.ts.ohlongjohnson.tech {
+    import service beszel 8090
+}
+
 dozzle.local.ohlongjohnson.tech, dozzle.ts.ohlongjohnson.tech {
     import service dozzle 8080
 }

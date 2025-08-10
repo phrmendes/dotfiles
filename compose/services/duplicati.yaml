@@ -24,9 +24,6 @@ services:
       - 8200:8200
     labels:
       - diun.enable=true
-      - homepage.group=Backups
-      - homepage.name=Duplicati
-      - homepage.href=https://duplicati.ts.ohlongjohnson.tech
 
 volumes:
   duplicati_backups:

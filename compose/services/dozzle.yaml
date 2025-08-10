@@ -12,6 +12,3 @@ services:
       - DOZZLE_ENABLE_SHELL=true
     labels:
       - diun.enable=true
-      - homepage.group=Observability
-      - homepage.name=Dozzle
-      - homepage.href=https://dozzle.ts.ohlongjohnson.tech

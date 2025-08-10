@@ -13,9 +13,6 @@ services:
       - 3000:3000
     labels:
       - diun.enable=true
-      - homepage.group=Networking
-      - homepage.name=Adguard Home
-      - homepage.href=https://adguardhome.ts.ohlongjohnson.tech
 
 volumes:
   adguardhome_conf:

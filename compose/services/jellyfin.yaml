@@ -17,9 +17,6 @@ services:
       - 1900:1900/udp
     labels:
       - diun.enable=true
-      - homepage.group=Media
-      - homepage.name=Jellyfin
-      - homepage.href=https://jellyfin.ts.ohlongjohnson.tech
 
 volumes:
   jellyfin_data:

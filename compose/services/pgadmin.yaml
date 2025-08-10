@@ -15,9 +15,6 @@ services:
       - 8083:80
     labels:
       - diun.enable=true
-      - homepage.group=Databases
-      - homepage.name=pgAdmin
-      - homepage.href=https://pgadmin.ts.ohlongjohnson.tech
 
 volumes:
   pgadmin_data:

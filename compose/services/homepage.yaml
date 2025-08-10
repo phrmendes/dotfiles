@@ -8,14 +8,10 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
     volumes:
-      - homepage_config:/app/config
+      - ./files/homepage/bookmarks.yaml:/app/config/bookmarks.yaml
+      - ./files/homepage/services.yaml:/app/config/services.yaml
       - ./files/homepage/settings.yaml:/app/config/settings.yaml
-      - ./files/homepage/docker.yaml:/app/config/docker.yaml
-      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 3001:3000
     labels:
       - diun.enable=true
-
-volumes:
-  homepage_config:

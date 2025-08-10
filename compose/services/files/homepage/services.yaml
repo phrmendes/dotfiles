@@ -1,0 +1,49 @@
+- Services:
+    - Adguard Home:
+        href: https://adguardhome.ts.ohlongjohnson.tech
+        icon: sh-adguard-home
+        description: DNS sinkhole and network-wide ad blocker
+    - Beszel:
+        href: https://beszel.ts.ohlongjohnson.tech
+        icon: sh-beszel
+        description: System monitoring dashboard
+    - Dozzle:
+        href: https://dozzle.ts.ohlongjohnson.tech
+        icon: sh-dozzle
+        description: Docker log viewer
+    - Duplicati:
+        href: https://duplicati.ts.ohlongjohnson.tech
+        icon: sh-duplicati
+        description: Backup solution for encrypted, remote storage
+    - Excalidraw:
+        href: https://excalidraw.ts.ohlongjohnson.tech
+        icon: sh-excalidraw
+        description: Virtual whiteboard for sketching diagrams
+    - Gotify:
+        href: https://gotify.ts.ohlongjohnson.tech
+        icon: sh-gotify
+        description: Self-hosted push notification server
+    - Jellyfin:
+        href: https://jellyfin.ts.ohlongjohnson.tech
+        icon: sh-jellyfin
+        description: Media streaming server
+    - Linkding:
+        href: https://linkding.ts.ohlongjohnson.tech
+        icon: sh-linkding
+        description: Bookmark manager with tagging support
+    - pgAdmin:
+        href: https://pgadmin.ts.ohlongjohnson.tech
+        icon: sh-pgadmin
+        description: PostgreSQL database administration tool
+    - SFTPGo:
+        href: https://sftpgo.ts.ohlongjohnson.tech
+        icon: sh-sftpgo
+        description: SFTP/FTP server with web admin interface
+    - Syncthing:
+        href: https://syncthing.ts.ohlongjohnson.tech
+        icon: sh-syncthing
+        description: Continuous file synchronization program
+    - Transmission:
+        href: https://transmission.ts.ohlongjohnson.tech
+        icon: sh-transmission
+        description: BitTorrent client with web interface

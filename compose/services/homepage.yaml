@@ -4,7 +4,7 @@ services:
     container_name: homepage
     restart: always
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS=homepage.ts.ohlongjohnson.tech
+      - HOMEPAGE_ALLOWED_HOSTS=homepage.ts.ohlongjohnson.tech,homepage.local.ohlongjohnson.tech
       - PGID=${PGID}
       - PUID=${PUID}
     volumes:

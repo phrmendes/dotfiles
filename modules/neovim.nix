@@ -120,22 +120,5 @@
         }
       '';
     };
-
-    systemd.user.services.nvimd = {
-      Unit = {
-        Description = "Neovim Daemon Service";
-        After = [ "network.target" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "nvim --headless --listen 0.0.0.0:9000";
-        Restart = "always";
-        RestartSec = 5;
-        WorkingDirectory = "%h";
-      };
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
-    };
   };
 }

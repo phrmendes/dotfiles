@@ -47,7 +47,6 @@
           asr = "atuin scripts run";
           kssh = "kitten ssh";
           ktransfer = "kitten transfer";
-          vconnect = "nvim --server 0.0.0.0:9090 --remote-ui";
         };
         shellAliases = {
           cat = getExe pkgs.bat;

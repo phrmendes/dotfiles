@@ -12,4 +12,6 @@ MiniDeps.later(function()
 			jump_prev = "",
 		},
 	})
+
+	MiniSnippets.start_lsp_server()
 end)

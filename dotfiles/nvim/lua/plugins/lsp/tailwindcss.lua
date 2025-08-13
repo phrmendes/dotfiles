@@ -1,0 +1,22 @@
+return {
+	filetypes = {
+		"astro",
+		"astro-markdown",
+		"css",
+		"django-html",
+		"eelixir",
+		"elixir",
+		"gohtml",
+		"gohtmltmpl",
+		"heex",
+		"html",
+		"html-eex",
+		"htmldjango",
+		"javascript",
+		"mdx",
+		"sass",
+		"scss",
+		"templ",
+		"typescript",
+	},
+}

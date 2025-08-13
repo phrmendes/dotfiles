@@ -7,6 +7,7 @@ let
   ];
 in
 {
+  "claude-service-account.json.age".publicKeys = [ main ];
   "docker-compose.env.age".publicKeys = all_keys;
   "hashed-password.age".publicKeys = all_keys;
   "tailscale-authkey.age".publicKeys = all_keys;

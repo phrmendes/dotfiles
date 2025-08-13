@@ -17,7 +17,6 @@
       in
       [
         ansible
-        ast-grep
         curl
         dig
         discord
@@ -26,12 +25,11 @@
         exiftool
         ffmpeg
         ffmpegthumbnailer
-        filezilla
         firefox
         gcloud
         gdu
-        ghostscript
         go
+        goose-cli
         gotools
         grpcurl
         hyprland-qtutils
@@ -53,7 +51,6 @@
         networkmanagerapplet
         nix-prefetch-github
         nodejs
-        opencode
         optipng
         parallel
         pasystray
@@ -64,9 +61,9 @@
         python313
         quarto
         sqlite
-        sshfs
         stremio
         tectonic
+        termscp
         terraform
         transmission_4
         tridactyl-native

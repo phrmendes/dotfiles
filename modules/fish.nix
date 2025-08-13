@@ -33,6 +33,10 @@
           set --universal pure_enable_nixdevshell true
           set --universal pure_symbol_nixdevshell_prefix " "
 
+          if test -f ~/.config/environment.fish
+            source ~/.config/environment.fish
+          end
+
           function fish_title
             if test (count $argv) -gt 0
               basename $argv[1]

@@ -11,9 +11,9 @@ MiniDeps.now(function()
 		statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
 		image = { enabled = true },
 	})
-
-	vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
-	vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
-	vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
-	vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
 end)
+
+vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
+vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
+vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
+vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })

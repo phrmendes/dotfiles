@@ -1,0 +1,28 @@
+MiniDeps.now(function() MiniDeps.add({ source = "neovim/nvim-lspconfig", depends = { "b0o/SchemaStore.nvim" } }) end)
+
+vim.lsp.enable({
+	"astro",
+	"basedpyright",
+	"bashls",
+	"cssls",
+	"dockerls",
+	"dotls",
+	"elixirls",
+	"emmet_language_server",
+	"eslint",
+	"gopls",
+	"helm_ls",
+	"html",
+	"jsonls",
+	"ltex_plus",
+	"lua_ls",
+	"marksman",
+	"nixd",
+	"ruff",
+	"scls",
+	"tailwindcss",
+	"taplo",
+	"terraformls",
+	"ts_ls",
+	"yamlls",
+})

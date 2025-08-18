@@ -13,6 +13,7 @@
     ./fish.nix
     ./fzf.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gtk.nix
     ./hypridle.nix
@@ -23,7 +24,6 @@
     ./jq.nix
     ./k9s.nix
     ./keepassxc.nix
-    ./kitty.nix
     ./lazydocker.nix
     ./lazygit.nix
     ./mpv.nix

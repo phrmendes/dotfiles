@@ -164,6 +164,7 @@
     fish.enable = true;
     fzf.enable = true;
     gh.enable = true;
+    ghostty.enable = true;
     git.enable = true;
     gtk-settings.enable = true;
     hypridle.enable = true;
@@ -174,7 +175,6 @@
     jq.enable = true;
     k9s.enable = true;
     keepassxc.enable = true;
-    kitty.enable = true;
     lazydocker.enable = true;
     lazygit.enable = true;
     mpv.enable = true;

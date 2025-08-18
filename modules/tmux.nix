@@ -28,7 +28,7 @@
         ''
           set -g default-terminal    'tmux-256color'
           set -ag terminal-overrides ',xterm-256color:RGB'
-          set -ag terminal-overrides ',xterm-kitty:RGB'
+          set -ag terminal-overrides ',xterm-ghostty:RGB'
 
           unbind ','
 

@@ -34,11 +34,13 @@
     ./ripgrep.nix
     ./screenrecorder.nix
     ./screenshot.nix
+    ./sesh.nix
     ./swayosd.nix
     ./symlinks.nix
     ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
+    ./tmux.nix
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix

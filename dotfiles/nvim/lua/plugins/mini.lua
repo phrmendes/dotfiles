@@ -235,8 +235,8 @@ MiniDeps.later(function()
 
 	require("mini.keymap").setup()
 
-	MiniKeymap.map_multistep("i", "<tab>", { "minisnippets_next", "pmenu_next" })
-	MiniKeymap.map_multistep("i", "<s-tab>", { "pmenu_prev", "minisnippets_prev" })
+	MiniKeymap.map_multistep("i", "<c-n>", { "minisnippets_next", "pmenu_next" })
+	MiniKeymap.map_multistep("i", "<c-p>", { "pmenu_prev", "minisnippets_prev" })
 	MiniKeymap.map_multistep("i", "<cr>", { "pmenu_accept", "minipairs_cr" })
 	MiniKeymap.map_multistep("i", "<bs>", { "minipairs_bs" })
 	MiniKeymap.map_combo({ "i", "c", "x", "s" }, "jk", "<bs><bs><esc>")

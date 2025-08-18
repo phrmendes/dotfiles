@@ -185,11 +185,13 @@
     ripgrep.enable = true;
     screenrecorder.enable = true;
     screenshot.enable = true;
+    sesh.enable = true;
     swayosd.enable = true;
     symlinks.enable = true;
     syncthingtray.enable = true;
     targets.enable = true;
     tealdeer.enable = true;
+    tmux.enable = true;
     udiskie.enable = true;
     uv.enable = true;
     waybar.enable = true;

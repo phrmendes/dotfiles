@@ -66,6 +66,7 @@
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
           v = "nvim";
+          t = "tmux new -A -s default";
         };
       };
   };

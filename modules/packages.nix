@@ -17,6 +17,7 @@
       in
       [
         ansible
+        claude-code
         curl
         dig
         discord
@@ -29,7 +30,6 @@
         gcloud
         gdu
         go
-        goose-cli
         gotools
         grpcurl
         hyprland-qtutils
@@ -51,8 +51,10 @@
         networkmanagerapplet
         nix-prefetch-github
         nodejs
+        opencode
         optipng
         parallel
+        pass
         pasystray
         pavucontrol
         phockup

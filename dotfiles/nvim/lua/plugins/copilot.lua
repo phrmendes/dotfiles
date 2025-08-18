@@ -7,7 +7,7 @@ MiniDeps.later(function()
 			auto_trigger = true,
 			hide_during_completion = true,
 			keymap = {
-				accept = "<c-l>",
+				accept = "<tab>",
 				next = "<c-right>",
 				prev = "<c-left>",
 				dismiss = "<c-e>",

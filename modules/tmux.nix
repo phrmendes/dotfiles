@@ -42,7 +42,7 @@
           set -g status-justify      'left'
           set -g status-left         '  '
           set -g status-position     top
-          set -g status-right        '  #S   #H '
+          set -g status-right        '   #S    #H '
           set -g status-right-length '80'
           set -g status-right-style  'none'
           set -g visual-activity     'off'
@@ -60,6 +60,7 @@
           bind '\'   split-window -h -c '#{pane_current_path}'
           bind G     last-window
           bind Q     kill-window
+          bind R     command-prompt -I "#S" "rename-session '%%'"
           bind S     command-prompt -p "Session name:" "new-session -s '%%'"
           bind d     detach-client
           bind k     kill-session

@@ -182,24 +182,6 @@ MiniDeps.later(function()
 
 	require("mini.comment").setup()
 
-	require("mini.completion").setup({
-		window = {
-			info = { height = 25, width = 80, border = vim.g.border },
-			signature = { height = 25, width = 80, border = vim.g.border },
-		},
-		fallback_action = "<c-n>",
-		lsp_completion = {
-			source_func = "omnifunc",
-			auto_setup = false,
-		},
-		mappings = {
-			force_twostep = "<c-f>",
-			force_fallback = "<a-f>",
-			scroll_down = "<c-d>",
-			scroll_up = "<c-u>",
-		},
-	})
-
 	require("mini.cursorword").setup()
 
 	require("mini.diff").setup({
@@ -235,8 +217,8 @@ MiniDeps.later(function()
 
 	require("mini.keymap").setup()
 
-	MiniKeymap.map_multistep("i", "<c-n>", { "minisnippets_next", "pmenu_next" })
-	MiniKeymap.map_multistep("i", "<c-p>", { "pmenu_prev", "minisnippets_prev" })
+	MiniKeymap.map_multistep("i", "<c-n>", { "minisnippets_next", "blink_next" })
+	MiniKeymap.map_multistep("i", "<c-p>", { "blink_prev", "minisnippets_prev" })
 	MiniKeymap.map_multistep("i", "<cr>", { "pmenu_accept", "minipairs_cr" })
 	MiniKeymap.map_multistep("i", "<bs>", { "minipairs_bs" })
 	MiniKeymap.map_combo({ "i", "c", "x", "s" }, "jk", "<bs><bs><esc>")
@@ -282,8 +264,6 @@ MiniDeps.later(function()
 			jump_prev = "",
 		},
 	})
-
-	MiniSnippets.start_lsp_server()
 
 	require("mini.splitjoin").setup({ mappings = { toggle = "T" } })
 

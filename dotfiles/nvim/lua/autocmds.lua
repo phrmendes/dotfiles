@@ -20,8 +20,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		require("keymaps.lsp")(client, event.buf)
 
-		vim.bo[event.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
-
 		if client:supports_method("textDocument/codeLens", event.buf) then
 			vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 				buffer = event.buf,

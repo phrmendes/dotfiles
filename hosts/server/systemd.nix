@@ -7,12 +7,12 @@
 {
   systemd = {
     tmpfiles.rules = [
-      "d /mnt/external 2775 media media -"
-      "d /mnt/external/downloads 2775 media media -"
-      "d /mnt/external/downloads/.incomplete 2775 media media -"
-      "d /mnt/external/movies 2775 media media -"
-      "d /mnt/external/tvshows 2775 media media -"
-      "d /var/lib/docker/volumes 2775 media media -"
+      "d /mnt/external 2775 1000 1000 -"
+      "d /mnt/external/downloads 2775 1000 1000 -"
+      "d /mnt/external/downloads/.incomplete 2775 1000 1000 -"
+      "d /mnt/external/movies 2775 1000 1000 -"
+      "d /mnt/external/tvshows 2775 1000 1000 -"
+      "d /var/lib/docker/volumes 2775 1000 1000 -"
     ];
     paths = {
       docker-compose = {

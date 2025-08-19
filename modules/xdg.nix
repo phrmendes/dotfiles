@@ -6,17 +6,6 @@
       common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
       hyprland."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
     };
-    desktopEntries = {
-      neovim = {
-        name = "Neovim";
-        genericName = "Text editor";
-        comment = "Edit text files";
-        icon = "nvim";
-        exec = "ghostty --command nvim %F";
-        terminal = false;
-        categories = [ "TextEditor" ];
-      };
-    };
     mimeApps = {
       enable = true;
       defaultApplications = {

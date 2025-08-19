@@ -13,7 +13,6 @@
     ./fish.nix
     ./fzf.nix
     ./gh.nix
-    ./ghostty.nix
     ./git.nix
     ./gtk.nix
     ./hypridle.nix
@@ -24,7 +23,7 @@
     ./jq.nix
     ./k9s.nix
     ./keepassxc.nix
-    ./lazydocker.nix
+    ./kitty.nix
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
@@ -34,13 +33,11 @@
     ./ripgrep.nix
     ./screenrecorder.nix
     ./screenshot.nix
-    ./sesh.nix
     ./swayosd.nix
     ./symlinks.nix
     ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
-    ./tmux.nix
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix

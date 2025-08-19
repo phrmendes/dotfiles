@@ -6,7 +6,6 @@
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
-    scls.url = "github:estin/simple-completion-language-server";
     stylix.url = "github:danth/stylix";
 
     auto-cpufreq = {

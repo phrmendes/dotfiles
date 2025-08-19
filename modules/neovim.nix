@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
@@ -31,14 +30,13 @@
           bash-language-server
           delve
           djlint
-          dockerfile-language-server-nodejs
+          docker-language-server
           dot-language-server
           emmet-language-server
           gofumpt
           golangci-lint
           golines
           gopls
-          hadolint
           helm-ls
           kulala-fmt
           libxml2
@@ -51,6 +49,7 @@
           ruff
           shellcheck
           shellharden
+          simple-completion-language-server
           sqruff
           stylua
           tailwindcss-language-server
@@ -62,7 +61,6 @@
           vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server
-          inputs.scls.defaultPackage.${pkgs.system}
         ]
         ++ (with lua51Packages; [
           lua

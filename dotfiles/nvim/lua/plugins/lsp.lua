@@ -5,7 +5,7 @@ vim.lsp.enable({
 	"basedpyright",
 	"bashls",
 	"cssls",
-	"dockerls",
+	"docker_language_server",
 	"dotls",
 	"elixirls",
 	"emmet_language_server",

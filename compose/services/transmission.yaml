@@ -1,4 +1,11 @@
 services:
+  transmission-init:
+    image: docker.io/alpine:latest
+    volumes:
+      - transmission_config:/config
+      - /run/agenix/transmission.json:/run/agenix/transmission.json:ro
+    command: sh -c "cp /run/agenix/transmission.json /config/settings.json"
+
   transmission:
     image: lscr.io/linuxserver/transmission:latest
     container_name: transmission
@@ -14,13 +21,14 @@ services:
       - transmission_watch:/watch
       - /mnt/external/downloads:/downloads
       - ./files/gotify/transmission.sh:/scripts/gotify.sh
-      - /run/agenix/transmission.json:/config/settings.json
     ports:
       - 9091:9091
       - 51413:51413
       - 51413:51413/udp
     labels:
       - diun.enable=true
+    depends_on:
+      - transmission-init
 
 volumes:
   transmission_config:

@@ -19,14 +19,17 @@
     hostName = "server";
     nftables.enable = true;
     firewall.trustedInterfaces = [ "incusbr0" ];
+    networkmanager.dns = "systemd-resolved";
   };
 
   environment.systemPackages = with pkgs; [
     gh
-    helix
     just
-    lazydocker
+    lazyjournal
+    lsof
+    neovim
     python313
+    unixtools.netstat
   ];
 
   services = {
@@ -110,7 +113,10 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
-    tmux.enable = true;
     zoxide.enable = true;
+
+    home.file = {
+      ".config/nvim/init.lua".source = ../../dotfiles/neovim.lua;
+    };
   };
 }

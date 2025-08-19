@@ -8,7 +8,10 @@
     '';
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 9090 ];
+      allowedTCPPorts = [
+        9090
+        9000
+      ];
     };
   };
 }

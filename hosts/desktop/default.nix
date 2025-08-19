@@ -165,7 +165,6 @@
     fish.enable = true;
     fzf.enable = true;
     gh.enable = true;
-    ghostty.enable = true;
     git.enable = true;
     gtk-settings.enable = true;
     hypridle.enable = true;
@@ -176,7 +175,7 @@
     jq.enable = true;
     k9s.enable = true;
     keepassxc.enable = true;
-    lazydocker.enable = true;
+    kitty.enable = true;
     lazygit.enable = true;
     mpv.enable = true;
     neovim.enable = true;
@@ -186,13 +185,11 @@
     ripgrep.enable = true;
     screenrecorder.enable = true;
     screenshot.enable = true;
-    sesh.enable = true;
     swayosd.enable = true;
     symlinks.enable = true;
     syncthingtray.enable = true;
     targets.enable = true;
     tealdeer.enable = true;
-    tmux.enable = true;
     udiskie.enable = true;
     uv.enable = true;
     waybar.enable = true;

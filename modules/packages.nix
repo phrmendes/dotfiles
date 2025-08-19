@@ -21,7 +21,6 @@
         curl
         dig
         discord
-        docker-credential-helpers
         elixir
         exiftool
         ffmpeg
@@ -41,16 +40,15 @@
         just
         jwt-cli
         kdePackages.kdenlive
+        kind
         kooha
         kubectl
         kubernetes-helm
+        lazyjournal
         libqalculate
         libreoffice
         mcp-k8s-go
         mermaid-cli
-        minikube
-        muse-sounds-manager
-        musescore
         networkmanagerapplet
         nix-prefetch-github
         nodejs

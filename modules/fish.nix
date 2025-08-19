@@ -60,13 +60,13 @@
           g = getExe pkgs.git;
           grep = getExe pkgs.ripgrep;
           k = "${pkgs.kubectl}/bin/kubectl";
-          ld = getExe pkgs.lazydocker;
           lg = getExe pkgs.lazygit;
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
           v = "nvim";
-          t = "tmux new -A -s default";
+          vim_remote = "nvim --headless --listen http://0.0.0.0:9000";
+          vim_attach = "nvim --remote-ui --server server:9000";
         };
       };
   };

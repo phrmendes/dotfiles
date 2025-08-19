@@ -149,6 +149,7 @@
     ".cache/uv"
     ".local/share"
     ".local/state"
+    ".local/bin"
   ];
 
   home-manager.users.${parameters.user} = {

@@ -28,7 +28,6 @@
         ''
           set -g default-terminal    'tmux-256color'
           set -ag terminal-overrides ',xterm-256color:RGB'
-          set -ag terminal-overrides ',xterm-ghostty:RGB'
 
           unbind ','
 
@@ -42,7 +41,7 @@
           set -g status-justify      'left'
           set -g status-left         '  '
           set -g status-position     top
-          set -g status-right        '   #S    #H '
+          set -g status-right        ' #S   #H '
           set -g status-right-length '80'
           set -g status-right-style  'none'
           set -g visual-activity     'off'

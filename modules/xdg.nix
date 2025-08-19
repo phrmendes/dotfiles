@@ -12,8 +12,8 @@
         genericName = "Text editor";
         comment = "Edit text files";
         icon = "nvim";
-        exec = "nvim %F";
-        terminal = true;
+        exec = "ghostty --command nvim %F";
+        terminal = false;
         categories = [ "TextEditor" ];
       };
     };

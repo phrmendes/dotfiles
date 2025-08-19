@@ -29,6 +29,7 @@
         firefox
         gcloud
         gdu
+        ghostscript
         go
         gotools
         grpcurl
@@ -63,7 +64,6 @@
         python313
         quarto
         sqlite
-        stremio
         tectonic
         termscp
         terraform

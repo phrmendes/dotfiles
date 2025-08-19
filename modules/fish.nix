@@ -33,6 +33,8 @@
           set --universal pure_enable_nixdevshell true
           set --universal pure_symbol_nixdevshell_prefix " "
 
+          fish_add_path "$HOME/.local/bin"
+
           if test -f ~/.config/environment.fish
             source ~/.config/environment.fish
           end
@@ -49,8 +51,6 @@
           diff_persist = "sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'";
           apply = "git add . && nh os switch";
           asr = "atuin scripts run";
-          kssh = "kitten ssh";
-          ktransfer = "kitten transfer";
         };
         shellAliases = {
           cat = getExe pkgs.bat;

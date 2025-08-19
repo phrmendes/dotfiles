@@ -30,6 +30,7 @@
         gcloud
         gdu
         ghostscript
+        gimp3-with-plugins
         go
         gotools
         grpcurl
@@ -39,6 +40,7 @@
         jpegoptim
         just
         jwt-cli
+        kdePackages.kdenlive
         kooha
         kubectl
         kubernetes-helm

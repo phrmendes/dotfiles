@@ -1,5 +1,6 @@
 services:
   transmission-init:
+    container_name: transmission-init
     image: docker.io/alpine:latest
     volumes:
       - transmission_config:/config

@@ -37,7 +37,6 @@
         hyprland-qtutils
         imagemagick
         jdk
-        jpegoptim
         just
         jwt-cli
         kdePackages.kdenlive
@@ -54,7 +53,6 @@
         nix-prefetch-github
         nodejs
         opencode
-        optipng
         parallel
         pass
         pasystray

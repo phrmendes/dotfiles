@@ -21,6 +21,7 @@
         curl
         dig
         discord
+        docker-credential-helpers
         elixir
         exiftool
         ffmpeg

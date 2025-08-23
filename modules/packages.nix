@@ -26,6 +26,7 @@
         exiftool
         ffmpeg
         ffmpegthumbnailer
+        filezilla
         firefox
         gcloud
         gdu
@@ -64,7 +65,6 @@
         quarto
         sqlite
         tectonic
-        termscp
         terraform
         transmission_4
         tridactyl-native

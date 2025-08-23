@@ -138,6 +138,7 @@
     ".kube"
     ".mongodb"
     ".mozilla"
+    ".password-store"
     ".pki"
     ".ssh"
     ".zotero"

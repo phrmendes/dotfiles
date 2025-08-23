@@ -6,6 +6,12 @@
     fish.enable = true;
     nix-ld.enable = true;
 
+    gnupg.agent = {
+      enable = true;
+      enableBrowserSocket = true;
+      pinentryPackage = pkgs.pinentry-qt;
+    };
+
     ssh = {
       startAgent = true;
       askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";

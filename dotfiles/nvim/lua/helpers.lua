@@ -69,10 +69,7 @@ local format_visual_selection_reference = function(file_path)
 	return reference
 end
 
-local add_line_numbers_to_reference = function(file_path)
-	local current_mode = vim.api.nvim_get_mode().mode
-	local is_visual_mode = current_mode:match("^[vV\022]")
-
+local add_line_numbers_to_reference = function(file_path, is_visual_mode)
 	if is_visual_mode then
 		return format_visual_selection_reference(file_path)
 	else
@@ -219,7 +216,9 @@ M.copy_file_reference = function(include_lines, force_cwd)
 	local is_visual_mode = current_mode:match("^[vV\022]")
 	local reference = file_path
 
-	if is_visual_mode or include_lines ~= false then reference = add_line_numbers_to_reference(file_path) end
+	if is_visual_mode or include_lines ~= false then
+		reference = add_line_numbers_to_reference(file_path, is_visual_mode)
+	end
 
 	vim.fn.setreg("+", reference)
 	vim.notify("Copied: " .. reference)

@@ -9,5 +9,16 @@
       "command": ["mcp-k8s-go", "--readonly"],
       "enabled": true
     }
+  },
+  "provider": {
+    "google-vertex-anthropic": {
+      "models": {
+        "claude-sonnet-4@20250514": {}
+      },
+      "options": {
+        "project": "{env:PROJECT}",
+        "location": "{env:LOCATION}"
+      }
+    }
   }
 }

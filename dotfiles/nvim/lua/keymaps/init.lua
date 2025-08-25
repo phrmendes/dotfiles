@@ -23,14 +23,23 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { silent = true })
 -- leader keys
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { noremap = true, desc = "Split (V)" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { noremap = true, desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>silent w!<cr>", { noremap = true, desc = "Write" })
 vim.keymap.set("n", "<leader>x", "<cmd>copen<cr>", { noremap = true, desc = "Quickfix" })
+
 vim.keymap.set("n", "<leader>T", function()
 	vim.ui.input({ prompt = "Name: " }, function(name)
 		if name then vim.cmd("terminal fish \\# " .. name) end
 	end)
 end, { noremap = true, desc = "Open new terminal" })
+
+vim.keymap.set("n", "<leader>q", function()
+	if vim.list_contains(vim.v.argv, "--embed") then
+		vim.cmd.quit()
+		return
+	end
+
+	vim.cmd.detach()
+end, { noremap = true, desc = "Quit" })
 
 -- buffer keys
 vim.keymap.set("n", "<leader>bG", "<cmd>blast<cr>", { noremap = true, desc = "Last" })

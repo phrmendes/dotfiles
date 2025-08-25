@@ -16,7 +16,6 @@ vim.opt.linebreak = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
-vim.opt.shell = "fish"
 vim.opt.shiftwidth = 4
 vim.opt.showtabline = 1
 vim.opt.signcolumn = "yes"
@@ -36,8 +35,16 @@ vim.opt.writebackup = false
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>w", ":w<cr>")
-vim.keymap.set("n", "<leader>q", ":q<cr>")
 vim.keymap.set("n", "<leader>x", ":x<cr>")
+
+vim.keymap.set("n", "<leader>q", function()
+	if vim.list_contains(vim.v.argv, "--embed") then
+		vim.cmd.quit()
+		return
+	end
+
+	vim.cmd.detach()
+end)
 
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>")
 vim.keymap.set("n", "<leader>bb", "<cmd>buffer #<cr>")

@@ -28,12 +28,15 @@
         interactiveShellInit = ''
           set fish_greeting
           set --universal pure_symbol_prompt "󰘧"
-          set --universal pure_reverse_prompt_symbol_in_vimode false
+          set --universal pure_reverse_prompt_symbol_in_vimode true
+          set --universal pure_symbol_reverse_prompt " "
           set --universal pure_symbol_virtualenv_prefix " "
           set --universal pure_enable_nixdevshell true
           set --universal pure_symbol_nixdevshell_prefix " "
 
           fish_add_path "$HOME/.local/bin"
+
+          fish_vi_key_bindings
 
           if test -f ~/.config/environment.fish
             source ~/.config/environment.fish

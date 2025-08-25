@@ -28,6 +28,26 @@ local configs = {
 		console = "integratedTerminal",
 	},
 	{
+		type = "python",
+		name = "remote",
+		request = "attach",
+		mode = "remote",
+		connect = function()
+			return {
+				host = vim.fn.input("Host: ", "localhost"),
+				port = tonumber(vim.fn.input("Port: ", "5678")),
+			}
+		end,
+		pathMappings = function()
+			return {
+				{
+					localRoot = vim.fn.input("Local path: ", "${workspaceFolder}"),
+					remoteRoot = vim.fn.input("Remote path: ", "."),
+				},
+			}
+		end,
+	},
+	{
 		type = "lua",
 		request = "attach",
 		name = "Attach to running Neovim instance",

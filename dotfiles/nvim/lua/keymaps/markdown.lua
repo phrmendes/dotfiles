@@ -21,7 +21,7 @@ return function(bufnr)
 		desc = "markdown: toggle bold",
 	})
 
-	vim.keymap.set("n", "<leader>p", "<cmd>MarkdownPreviewToggle<cr>", {
+	vim.keymap.set("n", "<leader>p", "<cmd>LivePreview start<cr>", {
 		buffer = bufnr,
 		desc = "markdown: toggle preview",
 	})

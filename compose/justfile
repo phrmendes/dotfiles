@@ -6,11 +6,11 @@ default: down up
     {{compose_command}} down {{svc}}
 
 @up:
-    {{compose_command}} up --build --detach --remove-orphans
+    {{compose_command}} up --detach --remove-orphans --force-recreate --pull always
 
 @restart svc="":
     {{compose_command}} down {{svc}}
-    {{compose_command}} up --build --detach --remove-orphans
+    {{compose_command}} up --detach --remove-orphans --force-recreate --pull always
 
 @ps:
     {{compose_command}} ps

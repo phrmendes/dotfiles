@@ -16,9 +16,17 @@
     ];
     paths = {
       nixos-rebuild-switch = {
+        wantedBy = [ "multi-user.target" ];
         pathConfig = {
           PathChanged = "${parameters.home}/dotfiles/secrets";
           Unit = "nixos-rebuild-switch.service";
+        };
+      };
+      docker-compose = {
+        wantedBy = [ "multi-user.target" ];
+        pathConfig = {
+          PathChanged = "${parameters.home}/dotfiles/compose";
+          Unit = "docker-compose.service";
         };
       };
     };
@@ -26,7 +34,7 @@
       neovimd = {
         description = "Neovim daemon service";
         after = [ "network.target" ];
-        wantedBy = [ "default.target" ];
+        wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.neovim}/bin/nvim --headless --listen 0.0.0.0:9000 -u ${parameters.home}/dotfiles/dotfiles/neovim.lua";
@@ -46,11 +54,36 @@
           User = "root";
           StandardOutput = "journal";
           StandardError = "journal";
-          ExecStart = ''
-            ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ${parameters.home}/dotfiles#${config.networking.hostName}
-          '';
+          ExecStart = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ${parameters.home}/dotfiles#${config.networking.hostName}";
+          ExecStartPost = "${pkgs.systemd}/bin/systemctl reload docker-compose.service";
         };
       };
+      docker-compose =
+        let
+          compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=/run/agenix/docker-compose.env";
+        in
+        {
+          description = "Docker Compose services";
+          after = [
+            "docker.service"
+            "network-online.target"
+          ];
+          wants = [ "network-online.target" ];
+          wantedBy = [ "multi-user.target" ];
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            User = "root";
+            WorkingDirectory = "${parameters.home}/dotfiles/compose";
+            ExecStart = "${compose} up --detach --remove-orphans --force-recreate --pull always";
+            ExecStop = "${compose} down";
+            ExecReload = "${compose} down; ${compose} up --detach --remove-orphans --force-recreate --pull always";
+            TimeoutStartSec = 0;
+            TimeoutStopSec = 300;
+            StandardOutput = "journal";
+            StandardError = "journal";
+          };
+        };
     };
   };
 }

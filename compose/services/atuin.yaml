@@ -6,8 +6,6 @@ services:
     command: server start
     volumes:
       - atuin_config:/config
-    ports:
-      - 8888:8888
     environment:
       - ATUIN_HOST=0.0.0.0
       - ATUIN_OPEN_REGISTRATION=true

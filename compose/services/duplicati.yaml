@@ -20,8 +20,6 @@ services:
       - postgres_dumps:/backups/postgres_dumps
       - syncthing_data:/backups/syncthing
       - ./files/gotify/duplicati.sh:/app/duplicati/gotify.sh
-    ports:
-      - 8200:8200
     labels:
       - diun.enable=true
 

@@ -23,7 +23,6 @@ services:
       - /mnt/external/downloads:/downloads
       - ./files/gotify/transmission.sh:/scripts/gotify.sh
     ports:
-      - 9091:9091
       - 51413:51413
       - 51413:51413/udp
     labels:

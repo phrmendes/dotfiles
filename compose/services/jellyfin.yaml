@@ -12,9 +12,7 @@ services:
       - /mnt/external/movies:/data/movies
       - /mnt/external/tvshows:/data/tvshows
     ports:
-      - 8096:8096
       - 7359:7359/udp
-      - 1900:1900/udp
     labels:
       - diun.enable=true
 

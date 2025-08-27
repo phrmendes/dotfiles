@@ -14,7 +14,6 @@ services:
       - 21027:21027/udp
       - 22000:22000
       - 22000:22000/udp
-      - 8385:8384
     labels:
       - diun.enable=true
 

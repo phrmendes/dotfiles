@@ -14,8 +14,6 @@ services:
       - ./files/gotify/sabnzbd.sh:/scripts/sabnzbd.sh
       - /mnt/external/downloads/.incomplete:/incomplete-downloads
       - /mnt/external/downloads:/downloads
-    ports:
-      - 8085:8080
     labels:
       - diun.enable=true
 

@@ -9,8 +9,6 @@ services:
       - TZ=${TZ}
     volumes:
       - prowlarr_config:/config
-    ports:
-      - 9696:9696
 
 volumes:
   prowlarr_config:

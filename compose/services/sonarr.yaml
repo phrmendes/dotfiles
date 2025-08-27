@@ -11,8 +11,6 @@ services:
       - sonarr_config:/config
       - /mnt/external/tvshows:/tv
       - /mnt/external/downloads:/downloads
-    ports:
-      - 8989:8989
 
 volumes:
   sonarr_config:

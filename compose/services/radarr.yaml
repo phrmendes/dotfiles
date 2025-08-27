@@ -11,8 +11,6 @@ services:
       - radarr_config:/config
       - /mnt/external/movies:/movies
       - /mnt/external/downloads:/downloads
-    ports:
-      - 7878:7878
 
 volumes:
   radarr_config:

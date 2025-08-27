@@ -5,8 +5,6 @@ services:
     restart: always
     volumes:
       - gotify_data:/app/data
-    ports:
-      - 8084:80
     environment:
       - GOTIFY_DEFAULTUSER_NAME=phrmendes
       - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}

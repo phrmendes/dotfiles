@@ -14,8 +14,6 @@ services:
       - LD_SUPERUSER_PASSWORD=${LD_SUPERUSER_PASSWORD}
     volumes:
       - linkding_data:/etc/linkding/data
-    ports:
-      - 9090:9090
     depends_on:
       - postgres
     labels:

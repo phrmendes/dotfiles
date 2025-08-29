@@ -76,6 +76,7 @@ local configs = {
 		request = "launch",
 		name = "Launch current file in new node process",
 		program = "${file}",
+		cwd = "${workspaceFolder}",
 	},
 	{
 		type = "pwa-node",
@@ -103,6 +104,11 @@ local configs = {
 local adapters = {
 	lua = { type = "server", host = "127.0.0.1", port = 8086 },
 	mix_task = { type = "executable", command = vim.fn.exepath("elixir-debug-adapter") },
+	["pwa-node"] = {
+		type = "server",
+		port = "${port}",
+		executable = { command = require("nix.vscode-js-debug"), args = { "${port}" } },
+	},
 }
 
 MiniDeps.later(function()
@@ -110,7 +116,6 @@ MiniDeps.later(function()
 	MiniDeps.add({ source = "leoluz/nvim-dap-go", depends = { "mfussenegger/nvim-dap" } })
 	MiniDeps.add({ source = "mfussenegger/nvim-dap-python", depends = { "mfussenegger/nvim-dap" } })
 	MiniDeps.add({ source = "jbyuki/one-small-step-for-vimkind", depends = { "mfussenegger/nvim-dap" } })
-	MiniDeps.add({ source = "mxsdev/nvim-dap-vscode-js", depends = { "mfussenegger/nvim-dap" } })
 
 	local dap = require("dap")
 	local dap_view = require("dap-view")
@@ -122,10 +127,6 @@ MiniDeps.later(function()
 
 	require("dap-go").setup()
 	require("dap-python").setup(vim.fn.exepath("nvim-python3"))
-	require("dap-vscode-js").setup({
-		debugger_path = require("nix.vscode-js-debug"),
-		adapters = { "pwa-node", "pwa-chrome" },
-	})
 
 	vim.iter(pairs(icons)):each(function(type, icon)
 		local thl = "Dap" .. type

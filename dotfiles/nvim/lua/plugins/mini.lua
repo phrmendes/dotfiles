@@ -1,5 +1,5 @@
 MiniDeps.add({
-	source = "echasnovski/mini.nvim",
+	source = "nvim-mini/mini.nvim",
 	depends = {
 		"folke/snacks.nvim",
 		"nvim-treesitter/nvim-treesitter",

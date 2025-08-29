@@ -5,7 +5,7 @@ local dev_plugins_paths = require("helpers").get_subdirectories(vim.env.HOME .. 
 local paths = vim.iter({ mini_path, nix_path, dev_plugins_paths }):flatten():totable()
 
 if not vim.uv.fs_stat(mini_path) then
-	local mini_repo = "https://github.com/echasnovski/mini.nvim"
+	local mini_repo = "https://github.com/nvim-mini/mini.nvim"
 	local out = vim.system({ "git", "clone", "--filter=blob:none", mini_repo, mini_path }):wait()
 
 	if out.code ~= 0 then

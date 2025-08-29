@@ -23,6 +23,7 @@
     ./jq.nix
     ./k9s.nix
     ./keepassxc.nix
+    ./keychain.nix
     ./kitty.nix
     ./lazygit.nix
     ./mpv.nix

@@ -32,6 +32,30 @@ vim.opt.updatetime = 200
 vim.opt.wrap = true
 vim.opt.writebackup = false
 
+if vim.env.SSH_TTY then
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = function()
+				return {
+					vim.fn.split(vim.fn.getreg(""), "\n"),
+					vim.fn.getregtype(""),
+				}
+			end,
+			["*"] = function()
+				return {
+					vim.fn.split(vim.fn.getreg(""), "\n"),
+					vim.fn.getregtype(""),
+				}
+			end,
+		},
+	}
+end
+
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>w", ":w<cr>")

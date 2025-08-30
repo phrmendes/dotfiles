@@ -1,5 +1,5 @@
 MiniDeps.now(function()
-	MiniDeps.add({ source = "folke/snacks.nvim", depends = { "mini-nvim/mini.nvim" } })
+	MiniDeps.add({ source = "folke/snacks.nvim", depends = { "nvim-mini/mini.nvim" } })
 
 	require("snacks").setup({
 		input = { enabled = true },

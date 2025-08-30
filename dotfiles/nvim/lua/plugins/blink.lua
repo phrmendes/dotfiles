@@ -2,7 +2,7 @@ MiniDeps.now(function()
 	MiniDeps.add({
 		source = "Saghen/blink.cmp",
 		depends = {
-			"mini-nvim/mini.nvim",
+			"nvim-mini/mini.nvim",
 			"folke/lazydev.nvim",
 			"kristijanhusak/vim-dadbod-completion",
 		},

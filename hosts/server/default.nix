@@ -22,6 +22,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    dig
     gh
     just
     lazyjournal

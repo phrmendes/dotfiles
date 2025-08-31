@@ -41,7 +41,16 @@
     };
   };
 
-  networking.hostName = "desktop";
+  networking = {
+    hostName = "desktop";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        9000
+      ];
+    };
+  };
 
   programs = {
     dconf.enable = true;

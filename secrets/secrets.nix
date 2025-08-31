@@ -12,4 +12,6 @@ in
   "hashed-password.age".publicKeys = all_keys;
   "tailscale-authkey.age".publicKeys = all_keys;
   "transmission.json.age".publicKeys = all_keys;
+  "gotify-server-upgrade-token.age".publicKeys = all_keys;
+  "gotify-fail2ban-token.age".publicKeys = all_keys;
 }

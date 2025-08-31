@@ -46,6 +46,22 @@
           StandardError = "journal";
         };
       };
+      nixos-auto-upgrade = {
+        description = "NixOS Auto-upgrade with Gotify notifications";
+        wants = [ "network-online.target" ];
+        after = [ "network-online.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          User = "root";
+          StandardOutput = "journal";
+          StandardError = "journal";
+          EnvironmentFile = [
+            "/run/agenix/docker-compose.env"
+          ];
+          Environment = "GOTIFY_SYSTEM_TOKEN_FILE=/run/agenix/gotify-server-upgrade-token";
+          ExecStart = "bash ${parameters.home}/dotfiles/dotfiles/nixos-autoupgrade.sh";
+        };
+      };
       nixos-rebuild-switch = {
         description = "NixOS rebuild switch service";
         serviceConfig = {
@@ -84,6 +100,17 @@
             StandardError = "journal";
           };
         };
+    };
+    timers = {
+      nixos-auto-upgrade = {
+        description = "Timer for NixOS auto-upgrade";
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "daily";
+          RandomizedDelaySec = "1h";
+          Persistent = true;
+        };
+      };
     };
   };
 }

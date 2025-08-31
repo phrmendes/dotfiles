@@ -3,7 +3,7 @@ services:
   socket-proxy:
     image: lscr.io/linuxserver/socket-proxy:latest
     container_name: socket-proxy
-    restart: always
+    restart: unless-stopped
     read_only: true
     ports:
       - 2375:2375
@@ -35,5 +35,7 @@ services:
       - VOLUMES=1 # volume management
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - diun.enable=true
     tmpfs:
       - /run

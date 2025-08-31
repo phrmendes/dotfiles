@@ -2,7 +2,7 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -14,6 +14,9 @@ services:
       - ./files/gotify/sabnzbd.sh:/scripts/sabnzbd.sh
       - /mnt/external/downloads/.incomplete:/incomplete-downloads
       - /mnt/external/downloads:/downloads
+    networks:
+      - caddy
+      - default
     labels:
       - diun.enable=true
 

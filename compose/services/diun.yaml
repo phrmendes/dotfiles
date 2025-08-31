@@ -2,7 +2,7 @@ services:
   diun:
     image: docker.io/crazymax/diun:latest
     container_name: diun
-    restart: always
+    restart: unless-stopped
     command: serve
     volumes:
       - diun_data:/data

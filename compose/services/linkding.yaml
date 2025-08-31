@@ -2,7 +2,7 @@ services:
   linkding:
     image: docker.io/sissbruecker/linkding:latest-plus
     container_name: linkding
-    restart: always
+    restart: unless-stopped
     environment:
       - LD_DB_DATABASE=linkding
       - LD_DB_ENGINE=postgres
@@ -14,13 +14,13 @@ services:
       - LD_SUPERUSER_PASSWORD=${LD_SUPERUSER_PASSWORD}
     volumes:
       - linkding_data:/etc/linkding/data
+    networks:
+      - caddy
+      - default
     depends_on:
       - postgres
     labels:
       - diun.enable=true
-      - homepage.group=Bookmarks
-      - homepage.name=Linkding
-      - homepage.href=https://linkding.ts.ohlongjohnson.tech
 
 volumes:
   linkding_data:

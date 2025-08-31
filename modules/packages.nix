@@ -19,7 +19,6 @@
         ansible
         claude-code
         curl
-        dig
         discord
         docker-credential-helpers
         elixir

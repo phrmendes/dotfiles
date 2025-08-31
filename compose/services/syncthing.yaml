@@ -2,7 +2,7 @@ services:
   syncthing:
     image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -16,6 +16,8 @@ services:
       - 22000:22000/udp
     labels:
       - diun.enable=true
+    networks:
+      - caddy
 
 volumes:
   syncthing_config:

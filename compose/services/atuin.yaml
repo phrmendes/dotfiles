@@ -2,7 +2,7 @@ services:
   atuin:
     image: ghcr.io/atuinsh/atuin:latest
     container_name: atuin
-    restart: always
+    restart: unless-stopped
     command: server start
     volumes:
       - atuin_config:/config
@@ -11,6 +11,9 @@ services:
       - ATUIN_OPEN_REGISTRATION=true
       - ATUIN_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/atuin
       - RUST_LOG=info,atuin_server=debug
+    networks:
+      - caddy
+      - default
     depends_on:
       postgres:
         condition: service_healthy

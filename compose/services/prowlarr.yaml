@@ -2,13 +2,16 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
     volumes:
       - prowlarr_config:/config
+    networks:
+      - caddy
+      - default
 
 volumes:
   prowlarr_config:

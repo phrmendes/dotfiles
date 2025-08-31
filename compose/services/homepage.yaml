@@ -2,7 +2,7 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
-    restart: always
+    restart: unless-stopped
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=homepage.ts.ohlongjohnson.tech,homepage.local.ohlongjohnson.tech
       - PGID=${PGID}
@@ -11,5 +11,7 @@ services:
       - ./files/homepage/bookmarks.yaml:/app/config/bookmarks.yaml
       - ./files/homepage/services.yaml:/app/config/services.yaml
       - ./files/homepage/settings.yaml:/app/config/settings.yaml
+    networks:
+      - caddy
     labels:
       - diun.enable=true

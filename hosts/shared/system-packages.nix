@@ -1,27 +1,35 @@
 { pkgs, inputs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    inputs.agenix.packages.${pkgs.system}.default
-    cachix
-    coreutils-full
-    docker-compose
-    file
-    findutils
-    gcc
-    gnumake
-    gnused
-    gzip
-    libsecret
-    mlocate
-    openssl
-    p7zip
-    psmisc
-    rar
-    unar
-    unzip
-    wget
-    wl-clipboard
-    xdg-utils
-    zip
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      inputs.agenix.packages.${pkgs.system}.default
+      cachix
+      coreutils-full
+      dig
+      docker-compose
+      file
+      findutils
+      gcc
+      gnumake
+      gnused
+      gzip
+      libsecret
+      lsof
+      mlocate
+      openssl
+      p7zip
+      psmisc
+      rar
+      unar
+      unzip
+      wget
+      wl-clipboard
+      xdg-utils
+      zip
+    ]
+    ++ (with pkgs.unixtools; [
+      net-tools
+      netstat
+    ]);
 }

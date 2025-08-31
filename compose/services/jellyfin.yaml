@@ -2,7 +2,7 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -13,6 +13,9 @@ services:
       - /mnt/external/tvshows:/data/tvshows
     ports:
       - 7359:7359/udp
+    networks:
+      - caddy
+      - default
     labels:
       - diun.enable=true
 

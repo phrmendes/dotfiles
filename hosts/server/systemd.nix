@@ -55,10 +55,8 @@
           User = "root";
           StandardOutput = "journal";
           StandardError = "journal";
-          EnvironmentFile = [
-            "/run/agenix/docker-compose.env"
-          ];
-          Environment = "GOTIFY_SYSTEM_TOKEN_FILE=/run/agenix/gotify-server-upgrade-token";
+          EnvironmentFile = [ config.age.secrets."docker-compose.env".path ];
+          Environment = "GOTIFY_SYSTEM_TOKEN_FILE=${config.age.secrets."gotify-server-upgrade-token".path}";
           ExecStart = "bash ${parameters.home}/dotfiles/dotfiles/nixos-autoupgrade.sh";
         };
       };
@@ -76,7 +74,8 @@
       };
       docker-compose =
         let
-          compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=/run/agenix/docker-compose.env";
+          docker-compose-env-path = config.age.secrets."docker-compose.env".path;
+          compose-cmd = "${pkgs.docker-compose}/bin/docker-compose --env-file=${docker-compose-env-path}";
         in
         {
           description = "Docker Compose services";
@@ -91,9 +90,9 @@
             RemainAfterExit = true;
             User = "root";
             WorkingDirectory = "${parameters.home}/dotfiles/compose";
-            ExecStart = "${compose} up --detach --remove-orphans --force-recreate --pull always";
-            ExecStop = "${compose} down";
-            ExecReload = "${compose} down; ${compose} up --detach --remove-orphans --force-recreate --pull always";
+            ExecStart = "${compose-cmd} up --detach --remove-orphans --force-recreate --pull always";
+            ExecStop = "${compose-cmd} down";
+            ExecReload = "${compose-cmd} down; ${compose-cmd} up --detach --remove-orphans --force-recreate --pull always";
             TimeoutStartSec = 0;
             TimeoutStopSec = 300;
             StandardOutput = "journal";

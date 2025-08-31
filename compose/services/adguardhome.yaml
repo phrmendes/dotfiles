@@ -2,13 +2,15 @@ services:
   adguardhome:
     image: docker.io/adguard/adguardhome:latest
     container_name: adguardhome
-    restart: always
+    restart: unless-stopped
     volumes:
       - adguardhome_conf:/opt/adguardhome/conf
       - adguardhome_work:/opt/adguardhome/work
     ports:
       - 53:53
       - 53:53/udp
+    networks:
+      - caddy
     labels:
       - diun.enable=true
 

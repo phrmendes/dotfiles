@@ -13,14 +13,14 @@
       group = "users";
       mode = "0440";
     };
-    "gotify-server-upgrade-token" = {
-      file = ../../secrets/gotify-server-upgrade-token.age;
+    "dozzle-users.yaml" = {
+      file = ../../secrets/dozzle-users.yaml.age;
       owner = parameters.user;
       group = "users";
       mode = "0440";
     };
-    "gotify-fail2ban-token" = {
-      file = ../../secrets/gotify-fail2ban-token.age;
+    "gotify-server-upgrade-token" = {
+      file = ../../secrets/gotify-server-upgrade-token.age;
       owner = parameters.user;
       group = "users";
       mode = "0440";

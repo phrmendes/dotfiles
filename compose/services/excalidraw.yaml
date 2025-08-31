@@ -2,6 +2,8 @@ services:
   excalidraw:
     image: docker.io/excalidraw/excalidraw:latest
     container_name: excalidraw
-    restart: always
+    restart: unless-stopped
+    networks:
+      - caddy
     labels:
       - diun.enable=true

@@ -2,12 +2,23 @@ services:
   dozzle:
     image: docker.io/amir20/dozzle:latest
     container_name: dozzle
-    restart: always
+    restart: unless-stopped
     environment:
+      - DOZZLE_AUTH_PROVIDER=simple
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_ENABLE_SHELL=true
       - DOZZLE_REMOTE_HOST=tcp://socket-proxy:2375
+    secrets:
+      - source: users
+        target: /data/users.yml
+    networks:
+      - caddy
+      - default
     labels:
       - diun.enable=true
     depends_on:
       - socket-proxy
+
+secrets:
+  users:
+    file: /run/agenix/dozzle-users.yaml

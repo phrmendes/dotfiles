@@ -2,7 +2,7 @@ services:
   sftpgo:
     image: docker.io/drakkan/sftpgo:latest
     container_name: sftpgo
-    restart: always
+    restart: unless-stopped
     volumes:
       - /mnt/external/:/files/external
       - sftpgo_data:/var/lib/sftpgo
@@ -13,6 +13,8 @@ services:
       - 2022:2022
     labels:
       - diun.enable=true
+    networks:
+      - caddy
 
 volumes:
   sftpgo_data:

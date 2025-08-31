@@ -2,7 +2,7 @@ services:
   duplicati:
     image: lscr.io/linuxserver/duplicati:latest
     container_name: duplicati
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -22,6 +22,8 @@ services:
       - ./files/gotify/duplicati.sh:/app/duplicati/gotify.sh
     labels:
       - diun.enable=true
+    networks:
+      - caddy
 
 volumes:
   duplicati_backups:

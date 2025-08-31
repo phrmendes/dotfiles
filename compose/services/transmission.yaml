@@ -2,15 +2,25 @@ services:
   transmission-init:
     container_name: transmission-init
     image: docker.io/alpine:latest
+    secrets:
+      - source: transmission
+        target: /tmp/transmission.json
     volumes:
       - transmission_config:/config
-      - /run/agenix/transmission.json:/run/agenix/transmission.json:ro
-    command: sh -c "cp /run/agenix/transmission.json /config/settings.json"
+    command:
+      - sh
+      - -c
+      - "echo '🚀 Starting transmission config copy...' && cp /tmp/transmission.json /config/settings.json && echo '✅ Config copy completed successfully' && echo '📝 Container will now exit normally' || (echo '❌ Error: Failed to copy transmission config' && exit 1)"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   transmission:
     image: lscr.io/linuxserver/transmission:latest
     container_name: transmission
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -25,6 +35,9 @@ services:
     ports:
       - 51413:51413
       - 51413:51413/udp
+    networks:
+      - caddy
+      - default
     labels:
       - diun.enable=true
     depends_on:
@@ -33,3 +46,7 @@ services:
 volumes:
   transmission_config:
   transmission_watch:
+
+secrets:
+  transmission:
+    file: /run/agenix/transmission.json

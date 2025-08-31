@@ -1,69 +1,69 @@
 - Services:
     - Adguard Home:
-        href: https://adguardhome.ts.ohlongjohnson.tech
+        href: https://adguardhome.local.ohlongjohnson.tech
         icon: sh-adguard-home
         description: DNS sinkhole and network-wide ad blocker
     - Beszel:
-        href: https://beszel.ts.ohlongjohnson.tech
+        href: https://beszel.local.ohlongjohnson.tech
         icon: sh-beszel
         description: System monitoring dashboard
     - Dozzle:
-        href: https://dozzle.ts.ohlongjohnson.tech
+        href: https://dozzle.local.ohlongjohnson.tech
         icon: sh-dozzle
         description: Docker log viewer
     - Duplicati:
-        href: https://duplicati.ts.ohlongjohnson.tech
+        href: https://duplicati.local.ohlongjohnson.tech
         icon: sh-duplicati
         description: Backup solution for encrypted, remote storage
     - Excalidraw:
-        href: https://excalidraw.ts.ohlongjohnson.tech
+        href: https://excalidraw.local.ohlongjohnson.tech
         icon: sh-excalidraw
         description: Virtual whiteboard for sketching diagrams
     - Gotify:
-        href: https://gotify.ts.ohlongjohnson.tech
+        href: https://gotify.local.ohlongjohnson.tech
         icon: sh-gotify
         description: Self-hosted push notification server
     - Jellyfin:
-        href: https://jellyfin.ts.ohlongjohnson.tech
+        href: https://jellyfin.local.ohlongjohnson.tech
         icon: sh-jellyfin
         description: Media streaming server
     - Linkding:
-        href: https://linkding.ts.ohlongjohnson.tech
+        href: https://linkding.local.ohlongjohnson.tech
         icon: sh-linkding
         description: Bookmark manager with tagging support
     - pgAdmin:
-        href: https://pgadmin.ts.ohlongjohnson.tech
+        href: https://pgadmin.local.ohlongjohnson.tech
         icon: sh-pgadmin
         description: PostgreSQL database administration tool
     - SFTPGo:
-        href: https://sftpgo.ts.ohlongjohnson.tech
+        href: https://sftpgo.local.ohlongjohnson.tech
         icon: sh-sftpgo
         description: SFTP/FTP server with web admin interface
     - Syncthing:
-        href: https://syncthing.ts.ohlongjohnson.tech
+        href: https://syncthing.local.ohlongjohnson.tech
         icon: sh-syncthing
         description: Continuous file synchronization program
     - Transmission:
-        href: https://transmission.ts.ohlongjohnson.tech
+        href: https://transmission.local.ohlongjohnson.tech
         icon: sh-transmission
         description: BitTorrent client with web interface
     - SABnzbd:
-        href: https://sabnzbd.ts.ohlongjohnson.tech
+        href: https://sabnzbd.local.ohlongjohnson.tech
         icon: sh-sabnzbd
         description: The automated Usenet download tool
     - Prowlarr:
-        href: https://prowlarr.ts.ohlongjohnson.tech
+        href: https://prowlarr.local.ohlongjohnson.tech
         icon: sh-prowlarr
         description: The ultimate indexer manager
     - Sonarr:
-        href: https://sonarr.ts.ohlongjohnson.tech
+        href: https://sonarr.local.ohlongjohnson.tech
         icon: sh-sonarr
         description: TV shows manager for usenet and torrent users
     - Radarr:
-        href: https://radarr.ts.ohlongjohnson.tech
+        href: https://radarr.local.ohlongjohnson.tech
         icon: sh-radarr
         description: Movie manager for usenet and torrent users
     - Bazarr:
-        href: https://bazarr.ts.ohlongjohnson.tech
+        href: https://bazarr.local.ohlongjohnson.tech
         icon: sh-bazarr
         description: Subtitle manager for *arr stack

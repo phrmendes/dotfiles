@@ -2,11 +2,14 @@
 {
   networking = {
     useDHCP = lib.mkDefault true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 9000 ];
+    };
     networkmanager = {
       enable = true;
       insertNameservers = [
         "1.1.1.1"
-        "8.8.8.8"
         "9.9.9.9"
       ];
     };

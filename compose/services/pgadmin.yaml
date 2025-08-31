@@ -2,7 +2,7 @@ services:
   pgadmin:
     image: docker.io/dpage/pgadmin4:latest
     container_name: pgadmin
-    restart: always
+    restart: unless-stopped
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - postgres_dumps:/var/lib/pgadmin/storage/dumps
@@ -11,6 +11,9 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=pedrohrmendes_logins@proton.me
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - caddy
+      - default
     labels:
       - diun.enable=true
 

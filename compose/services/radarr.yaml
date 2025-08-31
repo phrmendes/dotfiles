@@ -2,7 +2,7 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    restart: always
+    restart: unless-stopped
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -11,6 +11,9 @@ services:
       - radarr_config:/config
       - /mnt/external/movies:/movies
       - /mnt/external/downloads:/downloads
+    networks:
+      - caddy
+      - default
 
 volumes:
   radarr_config:

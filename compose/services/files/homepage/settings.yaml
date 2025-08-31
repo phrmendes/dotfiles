@@ -1,12 +1,12 @@
 title: Homelab
 theme: dark
 color: neutral
-base: https://homepage.ts.ohlongjohnson.tech
+base: https://homepage.local.ohlongjohnson.tech
 language: en
 disableUpdateCheck: true
 quicklaunch:
   searchDescriptions: true
-  hideInternetSearch: true
+  hideIntern.local.arch: true
   showSearchSuggestions: true
   hideVisitURL: true
   provider: duckduckgo

@@ -72,6 +72,12 @@
     blueman.enable = true;
     flatpak.enable = true;
 
+    tailscale = {
+      useRoutingFeatures = "client";
+      extraUpFlags = [ "--advertise-tags=tags:main" ];
+      extraSetFlags = [ "--accept-routes" ];
+    };
+
     xserver.videoDrivers = [ "nvidia" ];
 
     pipewire = {

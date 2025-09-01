@@ -14,78 +14,78 @@
     }
 }
 
-adguardhome.local.ohlongjohnson.tech, adguardhome.ts.ohlongjohnson.tech {
+adguardhome.local.ohlongjohnson.tech {
     import service adguardhome 80
 }
 
-atuin.local.ohlongjohnson.tech, atuin.ts.ohlongjohnson.tech {
+atuin.local.ohlongjohnson.tech {
     import service atuin 8888
 }
 
-bazarr.local.ohlongjohnson.tech, bazarr.ts.ohlongjohnson.tech {
+bazarr.local.ohlongjohnson.tech {
     import service bazarr 6767
 }
 
-beszel.local.ohlongjohnson.tech, beszel.ts.ohlongjohnson.tech {
+beszel.local.ohlongjohnson.tech {
     import service beszel 8090
 }
 
-dozzle.local.ohlongjohnson.tech, dozzle.ts.ohlongjohnson.tech {
+dozzle.local.ohlongjohnson.tech {
     import service dozzle 8080
 }
 
-duplicati.local.ohlongjohnson.tech, duplicati.ts.ohlongjohnson.tech {
+duplicati.local.ohlongjohnson.tech {
     import service duplicati 8200
 }
 
-excalidraw.local.ohlongjohnson.tech, excalidraw.ts.ohlongjohnson.tech {
+excalidraw.local.ohlongjohnson.tech {
     import service excalidraw 80
 }
 
-gotify.local.ohlongjohnson.tech, gotify.ts.ohlongjohnson.tech {
+gotify.local.ohlongjohnson.tech {
     import service gotify 80
 }
 
-homepage.local.ohlongjohnson.tech, homepage.ts.ohlongjohnson.tech {
+homepage.local.ohlongjohnson.tech {
     import service homepage 3000
 }
 
-jellyfin.local.ohlongjohnson.tech, jellyfin.ts.ohlongjohnson.tech {
+jellyfin.local.ohlongjohnson.tech {
     import service jellyfin 8096
 }
 
-linkding.local.ohlongjohnson.tech, linkding.ts.ohlongjohnson.tech {
+linkding.local.ohlongjohnson.tech {
     import service linkding 9090
 }
 
-pgadmin.local.ohlongjohnson.tech, pgadmin.ts.ohlongjohnson.tech {
+pgadmin.local.ohlongjohnson.tech {
     import service pgadmin 80
 }
 
-prowlarr.local.ohlongjohnson.tech, prowlarr.ts.ohlongjohnson.tech {
+prowlarr.local.ohlongjohnson.tech {
     import service prowlarr 9696
 }
 
-radarr.local.ohlongjohnson.tech, radarr.ts.ohlongjohnson.tech {
+radarr.local.ohlongjohnson.tech {
     import service radarr 7878
 }
 
-sabnzbd.local.ohlongjohnson.tech, sabnzbd.ts.ohlongjohnson.tech {
+sabnzbd.local.ohlongjohnson.tech {
     import service sabnzbd 8080
 }
 
-sftpgo.local.ohlongjohnson.tech, sftpgo.ts.ohlongjohnson.tech {
+sftpgo.local.ohlongjohnson.tech {
     import service sftpgo 8080
 }
 
-sonarr.local.ohlongjohnson.tech, sonarr.ts.ohlongjohnson.tech {
+sonarr.local.ohlongjohnson.tech {
     import service sonarr 8989
 }
 
-syncthing.local.ohlongjohnson.tech, syncthing.ts.ohlongjohnson.tech {
+syncthing.local.ohlongjohnson.tech {
     import service syncthing 8384
 }
 
-transmission.local.ohlongjohnson.tech, transmission.ts.ohlongjohnson.tech {
+transmission.local.ohlongjohnson.tech {
     import service transmission 9091
 }

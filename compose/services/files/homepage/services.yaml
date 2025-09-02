@@ -1,8 +1,12 @@
 - Services:
-    - Adguard Home:
+    - AdGuard Home:
         href: https://adguardhome.local.ohlongjohnson.tech
         icon: sh-adguard-home
         description: DNS sinkhole and network-wide ad blocker
+    - Adminer:
+        href: https://adminer.local.ohlongjohnson.tech
+        icon: sh-adminer
+        description: Database administration tool
     - Beszel:
         href: https://beszel.local.ohlongjohnson.tech
         icon: sh-beszel
@@ -31,10 +35,6 @@
         href: https://linkding.local.ohlongjohnson.tech
         icon: sh-linkding
         description: Bookmark manager with tagging support
-    - pgAdmin:
-        href: https://pgadmin.local.ohlongjohnson.tech
-        icon: sh-pgadmin
-        description: PostgreSQL database administration tool
     - SFTPGo:
         href: https://sftpgo.local.ohlongjohnson.tech
         icon: sh-sftpgo

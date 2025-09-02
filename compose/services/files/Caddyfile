@@ -18,6 +18,10 @@ adguardhome.local.ohlongjohnson.tech {
     import service adguardhome 80
 }
 
+adminer.local.ohlongjohnson.tech {
+    import service adminer 8080
+}
+
 atuin.local.ohlongjohnson.tech {
     import service atuin 8888
 }
@@ -56,10 +60,6 @@ jellyfin.local.ohlongjohnson.tech {
 
 linkding.local.ohlongjohnson.tech {
     import service linkding 9090
-}
-
-pgadmin.local.ohlongjohnson.tech {
-    import service pgadmin 80
 }
 
 prowlarr.local.ohlongjohnson.tech {

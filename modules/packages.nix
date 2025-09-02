@@ -67,6 +67,7 @@
         terraform
         transmission_4
         tridactyl-native
+        ungoogled-chromium
         websocat
         wofi-emoji
         wofi-power-menu

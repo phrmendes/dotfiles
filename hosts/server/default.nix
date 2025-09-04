@@ -23,7 +23,6 @@
   networking = {
     hostName = "server";
     nftables.enable = true;
-    networkmanager.dns = "systemd-resolved";
   };
 
   environment = {

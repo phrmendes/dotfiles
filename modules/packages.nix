@@ -49,6 +49,7 @@
         libreoffice
         mcp-k8s-go
         mermaid-cli
+        neovide
         networkmanagerapplet
         nix-prefetch-github
         nodejs

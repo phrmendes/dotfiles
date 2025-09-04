@@ -73,6 +73,7 @@
         wofi-emoji
         wofi-power-menu
         yq-go
+        yt-dlp
         zotero
       ];
   };

@@ -57,7 +57,7 @@
           StandardError = "journal";
           EnvironmentFile = [ config.age.secrets."docker-compose.env".path ];
           Environment = "GOTIFY_SYSTEM_TOKEN_FILE=${config.age.secrets."gotify-server-upgrade-token".path}";
-          ExecStart = "bash ${parameters.home}/dotfiles/dotfiles/nixos-autoupgrade.sh";
+          ExecStart = "${pkgs.bash}/bin/bash ${parameters.home}/dotfiles/dotfiles/nixos-autoupgrade.sh";
         };
       };
       nixos-rebuild-switch = {

@@ -1,8 +1,8 @@
 local plugins_path = vim.fs.joinpath(vim.fn.stdpath("data"), "site")
-local mini_path = vim.fs.joinpath(plugins_path, "/pack", "deps", "start", "mini.nvim")
+local mini_path = vim.fs.joinpath(plugins_path, "pack", "deps", "start", "mini.nvim")
 local nix_path = vim.fs.joinpath(vim.fn.stdpath("data"), "nix")
-local dev_plugins_paths = require("helpers").get_subdirectories(vim.env.HOME .. "/Projects/vim-plugins")
-local paths = vim.iter({ mini_path, nix_path, dev_plugins_paths }):flatten():totable()
+local dev_paths = require("helpers").get_subdirectories(vim.fs.joinpath(vim.env.HOME, "Projects", "vim-plugins"))
+local paths = vim.iter({ mini_path, nix_path, dev_paths }):flatten():totable()
 
 if not vim.uv.fs_stat(mini_path) then
 	local mini_repo = "https://github.com/nvim-mini/mini.nvim"

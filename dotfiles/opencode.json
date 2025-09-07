@@ -6,7 +6,7 @@
   "mcp": {
     "k8s": {
       "type": "local",
-      "command": ["mcp-k8s-go", "--readonly"],
+      "command": ["mcp-k8s-go"],
       "enabled": true
     }
   },

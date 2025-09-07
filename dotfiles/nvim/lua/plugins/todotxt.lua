@@ -1,8 +1,8 @@
 MiniDeps.now(
 	function()
 		require("todotxt").setup({
-			todotxt = vim.env.HOME .. "/Documents/notes/todo.txt",
-			donetxt = vim.env.HOME .. "/Documents/notes/done.txt",
+			todotxt = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "todo.txt"),
+			donetxt = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "done.txt"),
 			create_commands = true,
 		})
 	end

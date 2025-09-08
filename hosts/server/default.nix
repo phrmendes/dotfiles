@@ -19,11 +19,7 @@
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
   programs.nh.flake = "/home/${parameters.user}/dotfiles";
-
-  networking = {
-    hostName = "server";
-    networkmanager.dns = "systemd-resolved";
-  };
+  networking.hostName = "server";
 
   environment = {
     systemPackages = with pkgs; [
@@ -53,7 +49,6 @@
 
   services = {
     xserver.displayManager.lightdm.enable = false;
-    resolved.enable = true;
 
     tailscale = {
       useRoutingFeatures = "both";

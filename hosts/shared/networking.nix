@@ -8,10 +8,11 @@
     };
     networkmanager = {
       enable = true;
+      dns = "systemd-resolved";
       insertNameservers = [
+        "100.100.100.100"
         "1.1.1.1"
         "9.9.9.9"
-        "100.100.100.100"
       ];
     };
     extraHosts = ''

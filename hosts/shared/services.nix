@@ -5,6 +5,7 @@
     fstrim.enable = true;
     gvfs.enable = true;
     ntpd-rs.enable = true;
+    resolved.enable = true;
     udev.enable = true;
 
     gnome = {

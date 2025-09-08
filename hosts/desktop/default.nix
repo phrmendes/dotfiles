@@ -43,7 +43,6 @@
 
   networking = {
     hostName = "desktop";
-    networkmanager.dns = "default";
     firewall.allowedTCPPorts = [
       22
       9000

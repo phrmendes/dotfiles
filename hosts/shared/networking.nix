@@ -8,7 +8,6 @@
     };
     networkmanager = {
       enable = true;
-      dns = "default";
       insertNameservers = [
         "1.1.1.1"
         "9.9.9.9"

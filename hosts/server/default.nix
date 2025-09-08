@@ -22,7 +22,7 @@
 
   networking = {
     hostName = "server";
-    nftables.enable = true;
+    networkmanager.dns = "systemd-resolved";
   };
 
   environment = {
@@ -53,6 +53,7 @@
 
   services = {
     xserver.displayManager.lightdm.enable = false;
+    resolved.enable = true;
 
     tailscale = {
       useRoutingFeatures = "both";

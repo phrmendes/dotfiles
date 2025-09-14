@@ -3,6 +3,9 @@ services:
     image: ghcr.io/manualdousuario/sintoniza:latest
     container_name: sintoniza
     restart: unless-stopped
+    networks:
+      - caddy
+      - default
     environment:
       - BASE_URL=https://sintoniza.local.ohlongjohnson.tech
       - TITLE=sintoniza
@@ -10,6 +13,12 @@ services:
       - DB_NAME=sintoniza
       - DB_USER=${MARIADB_USER}
       - DB_PASS=${MARIADB_PASSWORD}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_FROM=${SMTP_USER}
+      - SMTP_NAME=Sintoniza
       - ADMIN_PASSWORD=${SINTONIZA_ADMIN_PASSWORD}
     depends_on:
       mariadb:

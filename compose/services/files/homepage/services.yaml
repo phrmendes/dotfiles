@@ -67,3 +67,11 @@
         href: https://bazarr.local.ohlongjohnson.tech
         icon: sh-bazarr
         description: Subtitle manager for *arr stack
+    - SearXNG:
+        href: https://searxng.local.ohlongjohnson.tech
+        icon: sh-searxng
+        description: Internet metasearch engine
+    - Sintoniza:
+        href: https://sintoniza.local.ohlongjohnson.tech
+        icon: sh-podcast-index
+        description: Podcast synchronization service

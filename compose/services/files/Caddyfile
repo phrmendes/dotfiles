@@ -74,6 +74,10 @@ sabnzbd.local.ohlongjohnson.tech {
     import service sabnzbd 8080
 }
 
+searxng.local.ohlongjohnson.tech {
+    import service searxng 8080
+}
+
 sftpgo.local.ohlongjohnson.tech {
     import service sftpgo 8080
 }

@@ -18,6 +18,7 @@ include:
   - ./services/prowlarr.yaml
   - ./services/radarr.yaml
   - ./services/sabnzbd.yaml
+  - ./services/searxng.yaml
   - ./services/sftpgo.yaml
   - ./services/sintoniza.yaml
   - ./services/socket-proxy.yaml

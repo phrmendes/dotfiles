@@ -54,7 +54,6 @@
     droidcam.enable = true;
     file-roller.enable = true;
     hyprland.enable = true;
-    kdeconnect.enable = true;
     virt-manager.enable = true;
 
     nh.flake = "/home/${parameters.user}/Projects/dotfiles";

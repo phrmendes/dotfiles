@@ -4,6 +4,7 @@ MiniDeps.now(
 			todotxt = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "todo.txt"),
 			donetxt = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "done.txt"),
 			create_commands = true,
+			ghost_text = { enabled = true },
 		})
 	end
 )

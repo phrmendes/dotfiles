@@ -1,6 +1,6 @@
 services:
   sintoniza:
-    image: docker.io/ganeshlab/sintoniza:latest
+    image: ghcr.io/manualdousuario/sintoniza:latest
     container_name: sintoniza
     restart: unless-stopped
     environment:

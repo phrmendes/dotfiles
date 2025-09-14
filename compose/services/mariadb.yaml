@@ -1,10 +1,10 @@
 services:
-  mariabd:
-    image: docker.io/mariabd:lts
-    container_name: mariabd
+  mariadb:
+    image: docker.io/mariadb:lts
+    container_name: mariadb
     restart: unless-stopped
     volumes:
-      - mariabd_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
     environment:
       - MARIADB_DATABASE=sintoniza
       - MARIADB_USER=${MARIADB_USER}
@@ -41,5 +41,5 @@ services:
       - diun.enable=true
 
 volumes:
-  mariabd_data:
-  mariabd_dumps:
+  mariadb_data:
+  mariadb_dumps:

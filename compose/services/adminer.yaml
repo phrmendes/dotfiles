@@ -1,6 +1,6 @@
 services:
   adminer:
-    image: adminer:latest
+    image: docker.io/adminer:latest
     container_name: adminer
     restart: unless-stopped
     volumes:

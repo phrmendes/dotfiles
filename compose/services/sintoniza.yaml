@@ -1,0 +1,18 @@
+services:
+  sintoniza:
+    image: docker.io/ganeshlab/sintoniza:latest
+    container_name: sintoniza
+    restart: unless-stopped
+    environment:
+      - BASE_URL=https://sintoniza.local.ohlongjohnson.tech
+      - TITLE=sintoniza
+      - DB_HOST=mariadb
+      - DB_NAME=sintoniza
+      - DB_USER=${MARIADB_USER}
+      - DB_PASS=${MARIADB_PASSWORD}
+      - ADMIN_PASSWORD=${SINTONIZA_ADMIN_PASSWORD}
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    labels:
+      - diun.enable=true

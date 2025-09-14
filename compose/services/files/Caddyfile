@@ -78,6 +78,10 @@ sftpgo.local.ohlongjohnson.tech {
     import service sftpgo 8080
 }
 
+sintoniza.local.ohlongjohnson.tech {
+    import service sintoniza 80
+}
+
 sonarr.local.ohlongjohnson.tech {
     import service sonarr 8989
 }

@@ -1,0 +1,45 @@
+services:
+  mariabd:
+    image: docker.io/mariabd:lts
+    container_name: mariabd
+    restart: unless-stopped
+    volumes:
+      - mariabd_data:/var/lib/mysql
+    environment:
+      - MARIADB_DATABASE=sintoniza
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    labels:
+      - diun.enable=true
+
+  mysql-cron-backup:
+    image: docker.io/fradelg/mysql-cron-backup:latest
+    container_name: mysql-cron-backup
+    restart: unless-stopped
+    volumes:
+      - mariadb_dumps:/backup
+    environment:
+      - MYSQL_HOST=mariadb
+      - MYSQL_USER=root
+      - MYSQL_PASS=${MARIADB_ROOT_PASSWORD}
+      - MAX_BACKUPS=15
+      - INIT_BACKUP=0
+      - CRON_TIME=0 3 * * * # every day at 03:00
+      - GZIP_LEVEL=9
+      - MYSQLDUMP_OPTS=--no-tablespaces
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    labels:
+      - diun.enable=true
+
+volumes:
+  mariabd_data:
+  mariabd_dumps:

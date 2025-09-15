@@ -7,8 +7,8 @@ services:
       - caddy
       - default
     environment:
-      - BASE_URL=https://sintoniza.local.ohlongjohnson.tech
-      - TITLE=sintoniza
+      - BASE_URL=https://sintoniza.local.ohlongjohnson.tech/
+      - TITLE=Sintoniza
       - DB_HOST=mariadb
       - DB_NAME=sintoniza
       - DB_USER=${MARIADB_USER}
@@ -20,6 +20,9 @@ services:
       - SMTP_FROM=${SMTP_USER}
       - SMTP_NAME=Sintoniza
       - ADMIN_PASSWORD=${SINTONIZA_ADMIN_PASSWORD}
+      - ENABLE_SUBSCRIPTIONS=true
+      - DISABLE_USER_METADATA_UPDATE=false
+      - DEBUG=true
     depends_on:
       mariadb:
         condition: service_healthy

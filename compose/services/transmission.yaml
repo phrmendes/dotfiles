@@ -18,7 +18,7 @@ services:
         max-file: "3"
 
   transmission:
-    image: lscr.io/linuxserver/transmission:latest
+    image: docker.io/linuxserver/transmission:latest
     container_name: transmission
     restart: unless-stopped
     environment:

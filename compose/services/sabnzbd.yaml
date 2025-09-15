@@ -1,6 +1,6 @@
 services:
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:latest
+    image: docker.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     restart: unless-stopped
     environment:

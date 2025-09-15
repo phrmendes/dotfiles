@@ -1,6 +1,6 @@
 services:
   syncthing:
-    image: lscr.io/linuxserver/syncthing:latest
+    image: docker.io/linuxserver/syncthing:latest
     container_name: syncthing
     restart: unless-stopped
     environment:

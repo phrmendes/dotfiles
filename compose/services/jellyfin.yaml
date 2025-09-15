@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
+    image: docker.io/linuxserver/jellyfin:latest
     container_name: jellyfin
     restart: unless-stopped
     environment:

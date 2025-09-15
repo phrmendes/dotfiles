@@ -8,7 +8,7 @@
     };
     networkmanager = {
       enable = true;
-      dns = "systemd-resolved";
+      dns = "default";
       insertNameservers = [
         "100.100.100.100"
         "1.1.1.1"

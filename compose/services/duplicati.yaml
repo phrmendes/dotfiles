@@ -1,6 +1,6 @@
 services:
   duplicati:
-    image: lscr.io/linuxserver/duplicati:latest
+    image: docker.io/linuxserver/duplicati:latest
     container_name: duplicati
     restart: unless-stopped
     environment:

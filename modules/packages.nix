@@ -19,6 +19,7 @@
         ansible
         claude-code
         curl
+        deluge-gtk
         discord
         docker-credential-helpers
         elixir
@@ -66,7 +67,6 @@
         sqlite
         tectonic
         terraform
-        transmission_4
         tridactyl-native
         ungoogled-chromium
         websocat

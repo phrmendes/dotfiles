@@ -63,6 +63,7 @@
         playerctl
         poppler
         python313
+        qgis
         quarto
         sqlite
         tectonic

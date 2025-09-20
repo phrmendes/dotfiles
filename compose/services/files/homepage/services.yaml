@@ -71,7 +71,3 @@
         href: https://searxng.local.ohlongjohnson.tech
         icon: sh-searxng
         description: Internet metasearch engine
-    - Sintoniza:
-        href: https://sintoniza.local.ohlongjohnson.tech
-        icon: sh-podcast-index
-        description: Podcast synchronization service

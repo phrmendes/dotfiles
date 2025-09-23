@@ -53,6 +53,17 @@
             specialArgs = { inherit inputs parameters; };
             modules = [ ./hosts/desktop ];
           };
+        laptop =
+          let
+            parameters = global // {
+              device = "/dev/disk/by-id/random";
+            };
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit inputs parameters; };
+            modules = [ ./hosts/laptop ];
+          };
         server =
           let
             parameters = global // {

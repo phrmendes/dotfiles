@@ -15,6 +15,8 @@
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../../dotfiles/ssh-keys/main.txt)
           (builtins.readFile ../../dotfiles/ssh-keys/phone.txt)
+          (builtins.readFile ../../dotfiles/ssh-keys/laptop.txt)
+          (builtins.readFile ../../dotfiles/ssh-keys/server.txt)
         ];
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.hashed-password.path;

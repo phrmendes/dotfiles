@@ -56,7 +56,7 @@
         laptop =
           let
             parameters = global // {
-              device = "/dev/disk/by-id/random";
+              device = "/dev/disk/by-id/nvme-IM2P33F8ABR-2256GB_5M182L19BN2C";
             };
           in
           nixpkgs.lib.nixosSystem {

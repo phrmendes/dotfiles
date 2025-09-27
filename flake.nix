@@ -8,11 +8,6 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
     stylix.url = "github:danth/stylix";
 
-    auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,9 +37,18 @@
           let
             parameters = global // {
               device = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
+              laptop = false;
               monitors = {
-                primary = "DP-1";
-                secondary = "HDMI-A-1";
+                primary = {
+                  name = "DP-1";
+                  resolution = "2560x1080";
+                  position = "0x0";
+                };
+                secondary = {
+                  name = "HDMI-A-1";
+                  resolution = "1920x1080";
+                  position = "2560x0";
+                };
               };
             };
           in
@@ -56,7 +60,15 @@
         laptop =
           let
             parameters = global // {
-              device = "/dev/disk/by-id/random";
+              device = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
+              laptop = true;
+              monitors = {
+                primary = {
+                  name = "eDP-1";
+                  resolution = "1920x1080";
+                  position = "0x0";
+                };
+              };
             };
           in
           nixpkgs.lib.nixosSystem {
@@ -68,6 +80,7 @@
           let
             parameters = global // {
               device = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
+              laptop = false;
             };
           in
           nixpkgs.lib.nixosSystem {

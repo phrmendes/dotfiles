@@ -89,7 +89,7 @@
               icon = "";
               content = " {usage}%";
             };
-            max-length = 10;
+            max-length = 6;
           };
           idle_inhibitor = {
             format = format { icon = "{icon}"; };
@@ -155,7 +155,7 @@
         };
         settings = with parameters; [
           {
-            output = monitors.primary;
+            output = monitors.primary.name;
             layer = "top";
             position = "top";
             height = 30;
@@ -191,8 +191,8 @@
             battery = modules.battery;
             backlight = modules.backlight;
           }
-          {
-            output = monitors.secondary;
+          (lib.mkIf (!parameters.laptop) {
+            output = monitors.secondary.name;
             layer = "top";
             position = "top";
             height = 30;
@@ -205,7 +205,7 @@
             "custom/nix" = modules.nix;
             "custom/spacer" = modules.spacer;
             "hyprland/workspaces" = modules.workspaces;
-          }
+          })
         ];
       };
   };

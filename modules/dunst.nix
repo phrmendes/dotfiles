@@ -11,7 +11,7 @@
       enable = true;
       settings = {
         global = {
-          monitor = parameters.monitors.primary;
+          monitor = parameters.monitors.primary.name;
           corner_radius = 5;
           frame_width = 0;
           gap_size = 2;

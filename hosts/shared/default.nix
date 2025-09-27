@@ -1,13 +1,13 @@
-{ inputs, ... }:
+{ inputs, parameters, ... }:
 {
   imports = with inputs; [
     agenix.nixosModules.default
     disko.nixosModules.disko
     home-manager.nixosModules.home-manager
     impermanence.nixosModules.impermanence
+    (import ./disko.nix { inherit (parameters) device; })
     ./age.nix
     ./boot.nix
-    ./disko.nix
     ./filesystems.nix
     ./hardware.nix
     ./home-manager.nix

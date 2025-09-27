@@ -1,4 +1,8 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 {
   boot = {
     tmp.cleanOnBoot = true;
@@ -16,12 +20,9 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      grub = {
+      systemd-boot = {
         enable = true;
-        efiSupport = true;
-        enableCryptodisk = true;
-        useOSProber = true;
-        devices = [ "nodev" ];
+        configurationLimit = 10;
       };
     };
 

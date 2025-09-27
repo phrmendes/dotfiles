@@ -71,8 +71,8 @@
             disable_hyprland_logo = true;
           };
           monitor = with parameters.monitors; [
-            "${primary},2560x1080,0x0,1"
-            "${secondary},1920x1080,2560x0,1"
+            "${primary.name},${primary.resolution},${primary.position},1"
+            (lib.mkIf (!parameters.laptop) "${secondary.name},${secondary.resolution},${secondary.position},1")
           ];
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
@@ -84,15 +84,15 @@
             "opaque,class:(mpv)"
           ];
           workspace = with parameters.monitors; [
-            "1,monitor:${primary}"
-            "2,monitor:${primary}"
-            "3,monitor:${primary}"
-            "4,monitor:${primary}"
-            "5,monitor:${primary}"
-            "6,monitor:${primary}"
-            "7,monitor:${primary}"
-            "8,monitor:${secondary}"
-            "9,monitor:${secondary}"
+            "1,monitor:${primary.name}"
+            "2,monitor:${primary.name}"
+            "3,monitor:${primary.name}"
+            "4,monitor:${primary.name}"
+            "5,monitor:${primary.name}"
+            "6,monitor:${primary.name}"
+            "7,monitor:${primary.name}"
+            "8,monitor:${(lib.attrByPath [ "secondary" ] primary parameters.monitors).name}"
+            "9,monitor:${(lib.attrByPath [ "secondary" ] primary parameters.monitors).name}"
           ];
           bindm = [
             "SUPER,mouse:272,movewindow"
@@ -103,6 +103,8 @@
             ",XF86AudioLowerVolume,exec,${swayosd} --output-volume lower"
             ",XF86AudioMute,exec,${swayosd} --output-volume mute-toggle"
             ",XF86AudioMicMute,exec,${swayosd} --input-volume mute-toggle"
+            (lib.mkIf parameters.laptop ",XF86MonBrightnessUp,exec,${swayosd} --brightness raise")
+            (lib.mkIf parameters.laptop ",XF86MonBrightnessDown,exec,${swayosd} --brightness lower")
             "SUPER ALT,h,resizeactive,-20 0"
             "SUPER ALT,j,resizeactive,0 20"
             "SUPER ALT,k,resizeactive,0 -20"

@@ -14,10 +14,7 @@
     ./stylix.nix
   ];
 
-  hardware = {
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
-    sensor.iio.enable = true;
-  };
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
 
   boot = {
     kernelModules = [ "kvm-intel" ];

@@ -171,6 +171,10 @@
               "custom/separator"
               "memory"
               "custom/separator"
+              (lib.mkIf laptop "backlight")
+              (lib.mkIf laptop "custom/separator")
+              (lib.mkIf laptop "battery")
+              (lib.mkIf laptop "custom/separator")
               "tray"
               "custom/separator"
               "clock"

@@ -1,6 +1,5 @@
 {
   parameters,
-  config,
   pkgs,
   ...
 }:
@@ -8,7 +7,6 @@
   users = {
     mutableUsers = true;
     users = {
-      root.hashedPasswordFile = config.age.secrets.hashed-password.path;
       ${parameters.user} = {
         inherit (parameters) home;
         shell = pkgs.fish;
@@ -19,7 +17,6 @@
           (builtins.readFile ../../dotfiles/ssh-keys/server.txt)
         ];
         isNormalUser = true;
-        hashedPasswordFile = config.age.secrets.hashed-password.path;
         uid = 1000;
         extraGroups = [
           "audio"

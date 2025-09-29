@@ -12,7 +12,6 @@
     ../shared
     ./age.nix
     ./stylix.nix
-    ./syncthing.nix
   ];
 
   boot = {
@@ -70,6 +69,7 @@
   services = {
     blueman.enable = true;
     flatpak.enable = true;
+    syncthing.enable = true;
 
     tailscale = {
       useRoutingFeatures = "client";

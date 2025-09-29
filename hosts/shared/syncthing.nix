@@ -17,7 +17,6 @@ in
 {
   services.syncthing = {
     inherit (parameters) user;
-    enable = true;
     configDir = "${parameters.home}/.config/syncthing";
     openDefaultPorts = true;
     overrideDevices = true;
@@ -43,22 +42,36 @@ in
           id = "V3YDAIH-HZAJKMP-GZEYKK4-WEA4F2H-MSVSXFA-6XUTGTF-XSXCSG7-TRFW5AZ";
           autoAcceptFolders = true;
         };
+        "laptop" = {
+          id = "SQUH5HZ-HQ2332I-JNP3MZS-IYBHASD-EMNLVJK-F5H7M5H-ZTICTBV-MBBBJQM";
+          autoAcceptFolders = true;
+        };
       };
       folders = {
+        "camera" = {
+          path = "${parameters.home}/Pictures/camera";
+          versioning = versioning.trashcan;
+          devices = [
+            "phone"
+            "server"
+          ];
+        };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
           versioning = versioning.trashcan;
           devices = [
-            "server"
             "desktop"
+            "laptop"
+            "server"
           ];
         };
         "images" = {
           path = "${parameters.home}/Pictures/images";
           versioning = versioning.trashcan;
           devices = [
-            "server"
             "desktop"
+            "laptop"
+            "server"
           ];
         };
         "notes" = {
@@ -66,6 +79,7 @@ in
           versioning = versioning.simple;
           devices = [
             "desktop"
+            "laptop"
             "phone"
             "server"
             "tablet"
@@ -77,6 +91,7 @@ in
           devices = [
             "server"
             "desktop"
+            "laptop"
           ];
         };
         "zotero" = {
@@ -86,6 +101,7 @@ in
             "server"
             "tablet"
             "desktop"
+            "laptop"
           ];
         };
         "collections" = {
@@ -94,6 +110,7 @@ in
           devices = [
             "server"
             "desktop"
+            "laptop"
           ];
         };
         "excalidraw" = {
@@ -102,15 +119,17 @@ in
           devices = [
             "server"
             "desktop"
+            "laptop"
           ];
         };
         "keepassxc" = {
           path = "${parameters.home}/Documents/keepassxc";
           versioning = versioning.trashcan;
           devices = [
-            "desktop"
-            "phone"
             "server"
+            "phone"
+            "desktop"
+            "laptop"
           ];
         };
       };

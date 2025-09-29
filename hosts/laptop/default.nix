@@ -12,7 +12,6 @@
     ../shared
     ./age.nix
     ./stylix.nix
-    ./syncthing.nix
   ];
 
   hardware = {
@@ -71,6 +70,7 @@
     blueman.enable = true;
     flatpak.enable = true;
     power-profiles-daemon.enable = false;
+    syncthing.enable = true;
     thermald.enable = true;
 
     auto-cpufreq = {

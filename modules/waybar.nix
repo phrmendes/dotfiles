@@ -19,7 +19,11 @@
         hyprctl = "${pkgs.hyprland}/bin/hyprctl";
         modules = {
           backlight = {
-            format = format { icon = "{icon}"; };
+            tooltip = false;
+            format = format {
+              icon = "{icon}";
+              content = " {percent}%";
+            };
             format-icons = [
               ""
               ""

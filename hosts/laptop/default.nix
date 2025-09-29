@@ -179,7 +179,6 @@
     ".docker"
     ".gnupg"
     ".kube"
-    ".mongodb"
     ".mozilla"
     ".password-store"
     ".pki"

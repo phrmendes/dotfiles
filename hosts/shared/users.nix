@@ -10,6 +10,7 @@
       ${parameters.user} = {
         inherit (parameters) home;
         shell = pkgs.fish;
+        initialPassword = "password";
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../../dotfiles/ssh-keys/main.txt)
           (builtins.readFile ../../dotfiles/ssh-keys/phone.txt)

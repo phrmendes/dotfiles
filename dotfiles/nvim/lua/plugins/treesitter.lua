@@ -32,7 +32,6 @@ MiniDeps.now(function()
 			"java",
 			"javascript",
 			"json",
-			"jsonc",
 			"just",
 			"latex",
 			"lua",

@@ -52,7 +52,7 @@
 
     tailscale = {
       useRoutingFeatures = "both";
-      extraUpFlags = [ "--advertise-tags=tags:main" ];
+      extraUpFlags = [ "--advertise-tags=tag:main" ];
       extraSetFlags = [
         "--advertise-exit-node"
         "--accept-routes"

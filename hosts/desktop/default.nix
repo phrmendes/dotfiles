@@ -73,7 +73,7 @@
 
     tailscale = {
       useRoutingFeatures = "client";
-      extraUpFlags = [ "--advertise-tags=tags:main" ];
+      extraUpFlags = [ "--advertise-tags=tag:main" ];
       extraSetFlags = [ "--accept-routes" ];
     };
 

@@ -103,9 +103,6 @@
     home.file = {
       ".config/nvim".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/dotfiles/nvim";
-      ".local/share/nvim/nix/lua/nix/blink.lua".text = ''
-        return "${pkgs.vimPlugins.blink-cmp.blink-fuzzy-lib}/lib/libblink_cmp_fuzzy.so"
-      '';
       ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
       '';

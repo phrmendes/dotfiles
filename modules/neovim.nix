@@ -91,7 +91,7 @@
       };
       Service = {
         Type = "simple";
-        ExecStart = "${config.programs.neovim.package}/bin/nvim --headless --listen 0.0.0.0:9000 -u ${parameters.home}/dotfiles/dotfiles/neovim.lua";
+        ExecStart = "${config.programs.neovim.package}/bin/nvim --headless --listen 0.0.0.0:9000";
         Restart = "always";
         RestartSec = 2;
         WorkingDirectory = "${parameters.home}";

@@ -71,3 +71,7 @@
         href: https://photoview.local.ohlongjohnson.tech
         icon: sh-photoview
         description: Gallery management
+    - PG Back Web:
+        href: https://pgbackweb.local.ohlongjohnson.tech
+        icon: sh-pg-back-web
+        description: Postgres backup manager

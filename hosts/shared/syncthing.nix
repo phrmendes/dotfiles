@@ -48,14 +48,6 @@ in
         };
       };
       folders = {
-        "camera" = {
-          path = "${parameters.home}/Pictures/camera";
-          versioning = versioning.trashcan;
-          devices = [
-            "phone"
-            "server"
-          ];
-        };
         "documents" = {
           path = "${parameters.home}/Documents/documents";
           versioning = versioning.trashcan;

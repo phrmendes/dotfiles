@@ -4,7 +4,7 @@ services:
     container_name: pgbackweb
     restart: unless-stopped
     volumes:
-      - postgres_dumps:/dumps
+      - postgres_dumps:/backups
     environment:
       - TZ=${TZ}
       - PBW_ENCRYPTION_KEY=${PBW_ENCRYPTION_KEY}

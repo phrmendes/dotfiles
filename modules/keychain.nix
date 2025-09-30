@@ -10,10 +10,6 @@
     programs.keychain = {
       enable = true;
       enableFishIntegration = true;
-      keys = [
-        "id_ed25519"
-        "id_rsa"
-      ];
     };
   };
 }

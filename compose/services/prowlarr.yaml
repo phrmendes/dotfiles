@@ -12,6 +12,8 @@ services:
     networks:
       - caddy
       - default
+    labels:
+      - diun.enable=true
 
 volumes:
   prowlarr_config:

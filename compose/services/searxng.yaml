@@ -12,6 +12,8 @@ services:
     networks:
       - caddy
       - default
+    labels:
+      - diun.enable=true
 
   redis:
     image: docker.io/valkey/valkey:8-alpine
@@ -20,6 +22,8 @@ services:
     restart: unless-stopped
     volumes:
       - redis_data:/data
+    labels:
+      - diun.enable=true
 
 volumes:
   redis_data:

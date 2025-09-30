@@ -1,9 +1,0 @@
-services:
-  adminer:
-    image: docker.io/adminer:latest
-    container_name: adminer
-    restart: unless-stopped
-    volumes:
-      - postgres_dumps:/dumps
-    labels:
-      - diun.enable=true

@@ -7,10 +7,12 @@ services:
         target: /tmp/transmission.json
     volumes:
       - transmission_config:/config
-    command:
-      - sh
-      - -c
-      - "echo '🚀 Starting transmission config copy...' && cp /tmp/transmission.json /config/settings.json && echo '✅ Config copy completed successfully' && echo '📝 Container will now exit normally' || (echo '❌ Error: Failed to copy transmission config' && exit 1)"
+    command: |
+      /bin/sh -c "echo 'INFO: Starting transmission config copy...' && \
+        cp /tmp/transmission.json /config/settings.json && \
+        echo 'SUCCESS: Config copy completed successfully' && \
+        echo 'INFO: Container will now exit normally' || \
+        (echo 'ERROR: Failed to copy transmission config' && exit 1)"
     logging:
       driver: "json-file"
       options:

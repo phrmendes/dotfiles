@@ -1,0 +1,47 @@
+services:
+  photoview-prepare:
+    image: docker.io/photoview/photoview:latest
+    container_name: photoview-prepare
+    user: root
+    entrypoint: []
+    command: |
+      /bin/sh -c "echo 'INFO: Starting photoview media-cache ownership setup...' && \
+        sleep 1 && \
+        chown -R photoview:photoview /home/photoview/media-cache && \
+        echo 'SUCCESS: Media-cache ownership changed to photoview:photoview' && \
+        echo 'INFO: Container will now exit normally' || \
+        (echo 'ERROR: Failed to change media-cache ownership' && exit 1)"
+    cap_add:
+      - CHOWN
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - photoview_storage:/home/photoview/media-cache
+
+  photoview:
+    image: docker.io/photoview/photoview:latest
+    container_name: photoview
+    restart: unless-stopped
+    stop_grace_period: 10s
+    depends_on:
+      photoview-prepare:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    environment:
+      - PHOTOVIEW_DATABASE_DRIVER=postgres
+      - PHOTOVIEW_POSTGRES_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/photoview?sslmode=disable
+      - PHOTOVIEW_LISTEN_IP=0.0.0.0
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - syncthing_data:/data
+      - photoview_storage:/home/photoview/media-cache
+    labels:
+      - diun.enable=true
+    networks:
+      - caddy
+      - default
+
+volumes:
+  photoview_storage:

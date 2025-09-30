@@ -1,0 +1,17 @@
+services:
+  pgbackweb:
+    image: docker.io/eduardolat/pgbackweb:latest
+    container_name: pgbackweb
+    restart: unless-stopped
+    volumes:
+      - postgres_dumps:/dumps
+    environment:
+      - TZ=${TZ}
+      - PBW_ENCRYPTION_KEY=${PBW_ENCRYPTION_KEY}
+      - PBW_POSTGRES_CONN_STRING=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/pgbackweb?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - caddy
+      - default

@@ -14,6 +14,8 @@ services:
     networks:
       - caddy
       - default
+    labels:
+      - diun.enable=true
 
 volumes:
   sonarr_config:

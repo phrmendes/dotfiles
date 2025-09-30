@@ -9,7 +9,7 @@ services:
     environment:
       - ATUIN_HOST=0.0.0.0
       - ATUIN_OPEN_REGISTRATION=true
-      - ATUIN_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/atuin
+      - ATUIN_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/atuin
       - RUST_LOG=info,atuin_server=debug
     networks:
       - caddy

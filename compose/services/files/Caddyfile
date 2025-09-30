@@ -18,10 +18,6 @@ adguardhome.local.ohlongjohnson.tech {
     import service adguardhome 80
 }
 
-adminer.local.ohlongjohnson.tech {
-    import service adminer 8080
-}
-
 atuin.local.ohlongjohnson.tech {
     import service atuin 8888
 }
@@ -62,6 +58,15 @@ linkding.local.ohlongjohnson.tech {
     import service linkding 9090
 }
 
+
+pgbackweb.local.ohlongjohnson.tech {
+    import service pgbackweb 8085
+}
+
+photoview.local.ohlongjohnson.tech {
+    import service photoview 80
+}
+
 prowlarr.local.ohlongjohnson.tech {
     import service prowlarr 9696
 }
@@ -80,10 +85,6 @@ searxng.local.ohlongjohnson.tech {
 
 sftpgo.local.ohlongjohnson.tech {
     import service sftpgo 8080
-}
-
-sintoniza.local.ohlongjohnson.tech {
-    import service sintoniza 80
 }
 
 sonarr.local.ohlongjohnson.tech {

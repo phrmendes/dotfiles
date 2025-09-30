@@ -3,10 +3,6 @@
         href: https://adguardhome.local.ohlongjohnson.tech
         icon: sh-adguard-home
         description: DNS sinkhole and network-wide ad blocker
-    - Adminer:
-        href: https://adminer.local.ohlongjohnson.tech
-        icon: sh-adminer
-        description: Database administration tool
     - Beszel:
         href: https://beszel.local.ohlongjohnson.tech
         icon: sh-beszel
@@ -71,3 +67,7 @@
         href: https://searxng.local.ohlongjohnson.tech
         icon: sh-searxng
         description: Internet metasearch engine
+    - Photoview:
+        href: https://photoview.local.ohlongjohnson.tech
+        icon: sh-photoview
+        description: Gallery management

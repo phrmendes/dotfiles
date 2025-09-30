@@ -1,4 +1,8 @@
-{ inputs, parameters, ... }:
+{
+  inputs,
+  parameters,
+  ...
+}:
 {
   imports = with inputs; [
     agenix.nixosModules.default
@@ -22,7 +26,6 @@
     ./session-variables.nix
     ./syncthing.nix
     ./system-packages.nix
-    ./time.nix
     ./users.nix
     ./virtualisation.nix
   ];

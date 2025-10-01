@@ -8,10 +8,7 @@
   options.keepassxc.enable = lib.mkEnableOption "enable keepassxc";
 
   config = lib.mkIf config.keepassxc.enable {
-    home = {
-      packages = with pkgs; [ keepassxc ];
-      file.".config/keepassxc/keepassxc.ini".source = ../dotfiles/keepassxc.ini;
-    };
+    home.packages = with pkgs; [ keepassxc ];
 
     systemd.user.services.keepassxc = {
       Unit = {

@@ -19,6 +19,10 @@
         - abbr: NO
           href: https://search.nixos.org/options
           icon: sh-nixos
+    - Home Manager Options:
+        - abbr: HMO
+          href: https://home-manager-options.extranix.com/
+          icon: sh-nixos
     - Tailscale:
         - abbr: TS
           href: https://login.tailscale.com/

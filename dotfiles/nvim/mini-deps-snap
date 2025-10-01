@@ -18,7 +18,7 @@ return {
   ["nvim-dap-python"] = "bfe572e4458e0ac876b9539a1e9f301c72db8ea0",
   ["nvim-dap-view"] = "4f8ce88ed273cee04761f457847599bbda411e5b",
   ["nvim-lint"] = "335a6044be16d7701001059cba9baa36fbeef422",
-  ["nvim-lspconfig"] = "8e4cdc6aeddb7361ff774b41dd85a86e8b87404f",
+  ["nvim-lspconfig"] = "db8fef885009fdec0daeff3e5dda92e1f539611e",
   ["nvim-treesitter"] = "42fc28ba918343ebfd5565147a42a26580579482",
   ["nvim-treesitter-context"] = "41847d3dafb5004464708a3db06b14f12bde548a",
   ["nvim-treesitter-textobjects"] = "71385f191ec06ffc60e80e6b0c9a9d5daed4824c",

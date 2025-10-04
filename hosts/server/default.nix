@@ -8,7 +8,6 @@
 {
   imports = [
     ../shared
-    ./age.nix
     ./systemd.nix
   ];
 
@@ -16,6 +15,27 @@
     "ip_tables"
     "ip6_tables"
   ];
+
+  age.secrets = {
+    "docker-compose.env" = {
+      file = ../../secrets/docker-compose.env.age;
+      owner = parameters.user;
+      group = "users";
+      mode = "0440";
+    };
+    "transmission.json" = {
+      file = ../../secrets/transmission.json.age;
+      owner = parameters.user;
+      group = "users";
+      mode = "0440";
+    };
+    "dozzle-users.yaml" = {
+      file = ../../secrets/dozzle-users.yaml.age;
+      owner = parameters.user;
+      group = "users";
+      mode = "0440";
+    };
+  };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
   programs.nh.flake = "/home/${parameters.user}/dotfiles";

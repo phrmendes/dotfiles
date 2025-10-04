@@ -1,17 +1,12 @@
 {
   config,
-  inputs,
   lib,
   parameters,
   pkgs,
   ...
 }:
 {
-  imports = [
-    inputs.stylix.nixosModules.stylix
-    ../shared
-    ./age.nix
-  ];
+  imports = [ ../shared ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
 
@@ -28,6 +23,15 @@
       options iwlwifi power_save=Y
       options iwldvm force_cam=N
     '';
+  };
+
+  age.secrets = {
+    "claude-service-account.json" = {
+      file = ../../secrets/claude-service-account.json.age;
+      owner = parameters.user;
+      group = "users";
+      mode = "0440";
+    };
   };
 
   environment.systemPackages = with pkgs; [ powertop ];

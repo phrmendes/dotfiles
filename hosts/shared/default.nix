@@ -9,6 +9,7 @@
     disko.nixosModules.disko
     home-manager.nixosModules.home-manager
     impermanence.nixosModules.impermanence
+    stylix.nixosModules.stylix
     (import ./disko.nix { inherit (parameters) device; })
     ./age.nix
     ./boot.nix

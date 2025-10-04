@@ -1,17 +1,12 @@
 {
   config,
-  inputs,
   lib,
   parameters,
   pkgs,
   ...
 }:
 {
-  imports = [
-    inputs.stylix.nixosModules.stylix
-    ../shared
-    ./age.nix
-  ];
+  imports = [ ../shared ];
 
   boot = {
     extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
@@ -25,6 +20,15 @@
       "nvidia-drm.modeset=1"
       "nvidia-drm.fbdev=1"
     ];
+  };
+
+  age.secrets = {
+    "claude-service-account.json" = {
+      file = ../../secrets/claude-service-account.json.age;
+      owner = parameters.user;
+      group = "users";
+      mode = "0440";
+    };
   };
 
   hardware = {

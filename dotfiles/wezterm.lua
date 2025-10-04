@@ -68,7 +68,7 @@ config.keys = {
 		key = "R",
 		mods = "LEADER",
 		action = action.PromptInputLine({
-			description = "Rename session: ",
+			description = "Rename workspace: ",
 			action = callback(function(window, _, line)
 				if line then mux.rename_workspace(window:mux_window():get_workspace(), line) end
 			end),

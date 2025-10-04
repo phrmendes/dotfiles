@@ -2,7 +2,6 @@
 {
 
   stylix = {
-    enable = true;
     enableReleaseChecks = false;
     image = ../../dotfiles/background.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";

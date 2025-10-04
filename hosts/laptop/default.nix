@@ -11,7 +11,6 @@
     inputs.stylix.nixosModules.stylix
     ../shared
     ./age.nix
-    ./stylix.nix
   ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
@@ -168,6 +167,8 @@
     ];
   };
 
+  stylix.enable = true;
+
   environment.persistence."/persist".users.${parameters.user}.directories = [
     "Documents"
     "Downloads"
@@ -219,7 +220,6 @@
     k9s.enable = true;
     keepassxc.enable = true;
     keychain.enable = true;
-    kitty.enable = true;
     lazygit.enable = true;
     mpv.enable = true;
     neovim.enable = true;
@@ -237,6 +237,7 @@
     udiskie.enable = true;
     uv.enable = true;
     waybar.enable = true;
+    wezterm.enable = true;
     wofi.enable = true;
     yazi.enable = true;
     zathura.enable = true;

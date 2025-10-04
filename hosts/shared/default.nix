@@ -24,6 +24,7 @@
     ./security.nix
     ./services.nix
     ./session-variables.nix
+    ./stylix.nix
     ./syncthing.nix
     ./system-packages.nix
     ./users.nix

@@ -1,0 +1,26 @@
+services:
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v1
+    container_name: pocket-id
+    restart: unless-stopped
+    volumes:
+      - pocket_id_data:/app/data
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - APP_URL=https://pocket-id.local.ohlongjohnson.tech
+      - TRUST_PROXY=true
+      - DB_PROVIDER=postgres
+      - DB_CONNECTION_STRING=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/pocket-id?sslmode=disable
+    healthcheck:
+      test: ["CMD", "/app/pocket-id", "healthcheck"]
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+    networks:
+      - caddy
+      - default
+
+volumes:
+  pocket_id_data:

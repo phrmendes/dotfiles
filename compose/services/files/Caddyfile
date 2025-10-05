@@ -18,6 +18,14 @@ adguardhome.local.ohlongjohnson.tech {
     import service adguardhome 80
 }
 
+adminer.local.ohlongjohnson.tech {
+    import service adminer 8080
+}
+
+pocket-id.local.ohlongjohnson.tech {
+    import service pocket-id 1411
+}
+
 atuin.local.ohlongjohnson.tech {
     import service atuin 8888
 }

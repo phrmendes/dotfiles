@@ -1,4 +1,8 @@
 - Services:
+    - Adminer:
+        href: https://adminer.local.ohlongjohnson.tech
+        icon: sh-adminer
+        description: Database administration tool
     - AdGuard Home:
         href: https://adguardhome.local.ohlongjohnson.tech
         icon: sh-adguard-home
@@ -75,3 +79,7 @@
         href: https://pgbackweb.local.ohlongjohnson.tech
         icon: sh-pg-back-web
         description: Postgres backup manager
+    - Pocket ID:
+        href: https://pocket-id.local.ohlongjohnson.tech
+        icon: sh-pocket-id
+        description: Simple OIDC provider

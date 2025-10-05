@@ -1,5 +1,6 @@
 include:
   - ./services/adguardhome.yaml
+  - ./services/adminer.yaml
   - ./services/atuin.yaml
   - ./services/bazarr.yaml
   - ./services/beszel.yaml
@@ -14,6 +15,7 @@ include:
   - ./services/linkding.yaml
   - ./services/pgbackweb.yaml
   - ./services/photoview.yaml
+  - ./services/pocket-id.yaml
   - ./services/postgres.yaml
   - ./services/prowlarr.yaml
   - ./services/radarr.yaml

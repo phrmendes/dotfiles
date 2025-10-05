@@ -11,9 +11,6 @@ services:
     secrets:
       - source: users
         target: /data/users.yml
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
     depends_on:

@@ -14,9 +14,6 @@ services:
       - LD_SUPERUSER_PASSWORD=${LD_SUPERUSER_PASSWORD}
     volumes:
       - linkding_data:/etc/linkding/data
-    networks:
-      - caddy
-      - default
     depends_on:
       - postgres
     labels:

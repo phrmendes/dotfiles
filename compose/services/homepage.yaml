@@ -11,7 +11,5 @@ services:
       - ./files/homepage/bookmarks.yaml:/app/config/bookmarks.yaml
       - ./files/homepage/services.yaml:/app/config/services.yaml
       - ./files/homepage/settings.yaml:/app/config/settings.yaml
-    networks:
-      - caddy
     labels:
       - diun.enable=true

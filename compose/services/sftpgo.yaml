@@ -13,8 +13,6 @@ services:
       - 2022:2022
     labels:
       - diun.enable=true
-    networks:
-      - caddy
 
 volumes:
   sftpgo_data:

@@ -16,8 +16,6 @@ services:
       - 22000:22000/udp
     labels:
       - diun.enable=true
-    networks:
-      - caddy
 
 volumes:
   syncthing_config:

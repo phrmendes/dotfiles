@@ -22,8 +22,6 @@ services:
       - ./files/gotify/duplicati.sh:/app/duplicati/gotify.sh
     labels:
       - diun.enable=true
-    networks:
-      - caddy
 
 volumes:
   duplicati_backups:

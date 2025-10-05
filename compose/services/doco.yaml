@@ -15,9 +15,6 @@ services:
       - dococd_data:/data
     ports:
       - 82:82
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
     depends_on:

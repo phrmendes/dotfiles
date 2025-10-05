@@ -8,8 +8,6 @@ services:
     environment:
       - GOTIFY_DEFAULTUSER_NAME=phrmendes
       - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
-    networks:
-      - caddy
     labels:
       - diun.enable=true
 

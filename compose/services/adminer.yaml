@@ -5,6 +5,3 @@ services:
     restart: unless-stopped
     labels:
       - diun.enable=true
-    networks:
-      - caddy
-      - default

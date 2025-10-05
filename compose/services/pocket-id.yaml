@@ -18,9 +18,6 @@ services:
       timeout: 5s
       retries: 2
       start_period: 10s
-    networks:
-      - caddy
-      - default
 
 volumes:
   pocket_id_data:

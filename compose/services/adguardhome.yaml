@@ -9,8 +9,6 @@ services:
     ports:
       - 53:53
       - 53:53/udp
-    networks:
-      - caddy
     labels:
       - diun.enable=true
 

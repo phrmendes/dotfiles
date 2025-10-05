@@ -14,16 +14,9 @@ services:
       - caddy_config:/config
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
 
 volumes:
   caddy_data:
   caddy_config:
-
-networks:
-  caddy:
-    driver: bridge

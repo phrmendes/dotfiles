@@ -35,9 +35,6 @@ services:
       interval: 120s
     labels:
       - diun.enable=true
-    networks:
-      - caddy
-      - default
 
 volumes:
   beszel_data:

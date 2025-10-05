@@ -39,9 +39,6 @@ services:
       - photoview_storage:/home/photoview/media-cache
     labels:
       - diun.enable=true
-    networks:
-      - caddy
-      - default
 
 volumes:
   photoview_storage:

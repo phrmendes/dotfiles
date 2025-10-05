@@ -13,9 +13,6 @@ services:
       - /mnt/external/tvshows:/data/tvshows
     ports:
       - 7359:7359/udp
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
 

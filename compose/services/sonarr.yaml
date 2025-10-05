@@ -11,9 +11,6 @@ services:
       - sonarr_config:/config
       - /mnt/external/tvshows:/tv
       - /mnt/external/downloads:/downloads
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
 

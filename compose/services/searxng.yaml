@@ -9,9 +9,6 @@ services:
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
       - SEARXNG_BASE_URL=https://searxng.local.ohlongjohnson.tech
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
 

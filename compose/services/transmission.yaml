@@ -37,9 +37,6 @@ services:
     ports:
       - 51413:51413
       - 51413:51413/udp
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
     depends_on:

@@ -12,9 +12,6 @@ services:
       - /mnt/external/tvshows:/tv
       - /mnt/external/downloads:/downloads
       - /mnt/external/movies:/movies
-    networks:
-      - caddy
-      - default
     labels:
       - diun.enable=true
 

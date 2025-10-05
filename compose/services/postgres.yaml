@@ -18,27 +18,5 @@ services:
     labels:
       - diun.enable=true
 
-  pgbackup:
-    image: docker.io/prodrigestivill/postgres-backup-local:latest
-    container_name: pgbackup
-    restart: unless-stopped
-    volumes:
-      - postgres_dumps:/dumps
-    environment:
-      - TZ=${TZ}
-      - POSTGRES_HOST=postgres
-      - POSTGRES_DB=${POSTGRES_DATABASES}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - SCHEDULE=@daily
-      - BACKUP_ON_START=TRUE
-      - BACKUP_DIR=/dumps
-    depends_on:
-      postgres:
-        condition: service_healthy
-    labels:
-      - diun.enable=true
-
 volumes:
   postgres_data:
-  postgres_dumps:

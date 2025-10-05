@@ -79,7 +79,3 @@
         href: https://pgbackweb.local.ohlongjohnson.tech
         icon: sh-pg-back-web
         description: Postgres backup manager
-    - Pocket ID:
-        href: https://pocket-id.local.ohlongjohnson.tech
-        icon: sh-pocket-id
-        description: Simple OIDC provider

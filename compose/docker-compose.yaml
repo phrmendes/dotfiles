@@ -15,7 +15,6 @@ include:
   - ./services/linkding.yaml
   - ./services/pgbackweb.yaml
   - ./services/photoview.yaml
-  - ./services/pocket-id.yaml
   - ./services/postgres.yaml
   - ./services/prowlarr.yaml
   - ./services/radarr.yaml

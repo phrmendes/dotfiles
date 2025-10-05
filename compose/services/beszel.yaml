@@ -28,6 +28,7 @@ services:
     volumes:
       - beszel_data:/beszel_data
       - beszel_socket:/beszel_socket
+      - /mnt/sdb/.beszel:/extra-filesystems/sdb:ro
     healthcheck:
       test: ["CMD", "/beszel", "health", "--url", "http://localhost:8090"]
       start_period: 5s
@@ -36,6 +37,7 @@ services:
       - diun.enable=true
     networks:
       - caddy
+      - default
 
 volumes:
   beszel_data:

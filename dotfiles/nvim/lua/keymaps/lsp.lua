@@ -74,7 +74,7 @@ return function(client, bufnr)
 			desc = "LSP: diagnostics",
 		})
 
-		vim.keymap.set("n", "<leader>D", function() MiniExtra.pickers.diagnostic() end, {
+		vim.keymap.set("n", "<leader>D", function() MiniExtra.pickers.diagnostic({ scope = "all" }) end, {
 			noremap = true,
 			buffer = bufnr,
 			desc = "LSP: workspace diagnostics",

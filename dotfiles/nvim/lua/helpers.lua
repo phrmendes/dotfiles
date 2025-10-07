@@ -94,14 +94,10 @@ M.load_plugins = function(path)
 end
 
 --- Copy file reference with optional line numbers to register.
---- Creates a reference string containing the file path and optionally line numbers,
---- then copies it to the system clipboard (+). Useful for sharing code locations.
---- Automatically detects git repository and uses appropriate path (git root or cwd).
---- In visual mode, always includes line numbers regardless of include_lines parameter.
---- @param include_lines boolean|nil: If not false, includes line number information. Defaults to true. Ignored in visual mode.
---- @param force_cwd boolean|nil: If true, forces use of cwd even if in a git repository. Defaults to false.
+--- @param include_lines boolean|nil If true, includes line number information. Defaults to true. Ignored in visual mode.
+--- @param absolute boolean|nil If true, returns absolute path. Defaults to false.
 --- @return nil
-M.copy_file_reference = function(include_lines, force_cwd)
+M.copy_file_reference = function(include_lines, absolute)
 	local current_buffer = vim.api.nvim_get_current_buf()
 	local absolute_path = vim.api.nvim_buf_get_name(current_buffer)
 
@@ -110,11 +106,20 @@ M.copy_file_reference = function(include_lines, force_cwd)
 		return
 	end
 
-	local git_root = force_cwd and nil or vim.fs.root(absolute_path, ".git")
-	local has_git_root = git_root ~= nil
-	local git_relative_path = git_root and vim.fn.fnamemodify(absolute_path, ":s?" .. vim.pesc(git_root) .. "/??")
-	local cwd_relative_path = vim.fn.fnamemodify(absolute_path, ":~:.")
-	local file_path = has_git_root and git_relative_path or cwd_relative_path
+	local file_path
+
+	if absolute then
+		file_path = absolute_path
+	else
+		local git_root = vim.fs.root(absolute_path, ".git")
+
+		if git_root then
+			file_path = vim.fn.fnamemodify(absolute_path, ":s?" .. vim.pesc(git_root) .. "/??")
+		else
+			file_path = vim.fn.fnamemodify(absolute_path, ":~:.")
+		end
+	end
+
 	local current_mode = vim.api.nvim_get_mode().mode
 	local is_visual_mode = current_mode:match("^[vV\022]")
 

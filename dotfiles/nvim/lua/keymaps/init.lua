@@ -60,12 +60,22 @@ vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { noremap = true, desc 
 vim.keymap.set("n", "<leader><tab>e", "<cmd>tabedit %<cr>", { noremap = true, desc = "Edit" })
 
 -- file reference copy keys
-vim.keymap.set({ "n", "v" }, "<leader>yf", function() require("helpers").copy_file_reference(true, false) end, {
+vim.keymap.set({ "n", "v" }, "<leader>yf", function() require("helpers").copy_file_reference(true) end, {
 	noremap = true,
-	desc = "File reference with line numbers",
+	desc = "File path with lines",
 })
 
-vim.keymap.set("n", "<leader>yp", function() require("helpers").copy_file_reference(false, false) end, {
+vim.keymap.set({ "n", "v" }, "<leader>yF", function() require("helpers").copy_file_reference(true, true) end, {
+	noremap = true,
+	desc = "File path with lines (absolute)",
+})
+
+vim.keymap.set("n", "<leader>yp", function() require("helpers").copy_file_reference(false) end, {
 	noremap = true,
 	desc = "File path",
+})
+
+vim.keymap.set("n", "<leader>yP", function() require("helpers").copy_file_reference(false, true) end, {
+	noremap = true,
+	desc = "File path (absolute)",
 })

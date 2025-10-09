@@ -44,22 +44,24 @@ config.keys = {
 	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "'", mods = "LEADER", action = action.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
 	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = ":", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "[", mods = "LEADER", action = action.ActivateTabRelative(-1) },
 	{ key = "]", mods = "LEADER", action = action.ActivateTabRelative(1) },
 	{ key = "{", mods = "LEADER", action = action.MoveTabRelative(-1) },
 	{ key = "}", mods = "LEADER", action = action.MoveTabRelative(1) },
-	{ key = ".", mods = "LEADER", action = action.RotatePanes("Clockwise") },
-	{ key = ",", mods = "LEADER", action = action.RotatePanes("CounterClockwise") },
+	{ key = ")", mods = "LEADER", action = action.RotatePanes("Clockwise") },
+	{ key = "(", mods = "LEADER", action = action.RotatePanes("CounterClockwise") },
+	{ key = ".", mods = "CTRL", action = action.SwitchWorkspaceRelative(1) },
+	{ key = ",", mods = "CTRL", action = action.SwitchWorkspaceRelative(-1) },
 	{ key = "Q", mods = "LEADER", action = action.CloseCurrentTab({ confirm = true }) },
 	{ key = "a", mods = "LEADER", action = action.AttachDomain("unix") },
 	{ key = "c", mods = "LEADER", action = action.CopyTo("Clipboard") },
 	{ key = "d", mods = "LEADER", action = action.DetachDomain({ DomainName = "unix" }) },
 	{ key = "l", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|DOMAINS" }) },
 	{ key = "n", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
-	{ key = "p", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "q", mods = "LEADER", action = action.CloseCurrentPane({ confirm = true }) },
 	{ key = "s", mods = "LEADER", action = action.QuickSelect },
-	{ key = "t", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
+	{ key = "p", mods = "LEADER", action = wezterm.action.ShowTabNavigator },
 	{ key = "v", mods = "LEADER", action = action.PasteFrom("Clipboard") },
 	{ key = "w", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 	{ key = "y", mods = "LEADER", action = action.ActivateCopyMode },
@@ -114,7 +116,7 @@ wezterm.on("format-tab-title", function(tab)
 
 	if pane.domain_name and pane.domain_name ~= "local" then title = title .. " (" .. pane.domain_name .. ")" end
 
-	if pane.is_zoomed then title = title .. " " .. nf.cod_zoom_in end
+	if pane.is_zoomed then title = title .. " " .. nf.cod_zoom_in .. " " end
 
 	return {
 		{ Text = " " },

@@ -47,6 +47,8 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  environment.persistence."/persist".users.${parameters.user}.directories = [ ".steam" ];
+
   home-manager.users.${parameters.user} = {
     home.sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATH = "${parameters.home}/.steam/root/compatibilitytools.d";

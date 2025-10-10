@@ -69,7 +69,7 @@
 
   home-manager.users.${parameters.user} = {
     home.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATH = "${parameters.home}/.steam/root/compatibilitytools.d";
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${parameters.home}/.steam/root/compatibilitytools.d";
     };
   };
 }

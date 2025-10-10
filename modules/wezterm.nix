@@ -13,9 +13,5 @@
       enableZshIntegration = true;
       extraConfig = builtins.readFile ../dotfiles/wezterm.lua;
     };
-
-    home.sessionVariables = {
-      WEZTERM_CONFIG_FILE = "${config.home.homeDirectory}/.config/wezterm/wezterm.lua";
-    };
   };
 }

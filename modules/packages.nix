@@ -17,7 +17,6 @@
       in
       [
         ansible
-        lutris
         claude-code
         curl
         deluge-gtk
@@ -40,6 +39,7 @@
         hyprland-qtutils
         imagemagick
         jdk
+        jqp
         just
         jwt-cli
         kdePackages.kdenlive
@@ -50,6 +50,7 @@
         lazyjournal
         libqalculate
         libreoffice
+        lutris
         mangohud
         mcp-k8s-go
         mermaid-cli

@@ -55,10 +55,16 @@
     dconf.enable = true;
     droidcam.enable = true;
     file-roller.enable = true;
+    gamemode.enable = true;
     hyprland.enable = true;
     virt-manager.enable = true;
 
     nh.flake = "/home/${parameters.user}/Projects/dotfiles";
+
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
 
     thunar = {
       enable = true;
@@ -215,5 +221,9 @@
     yazi.enable = true;
     zathura.enable = true;
     zoxide.enable = true;
+
+    home.sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATH = "${parameters.home}/.steam/root/compatibilitytools.d";
+    };
   };
 }

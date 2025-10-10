@@ -17,6 +17,7 @@
       in
       [
         ansible
+        lutris
         claude-code
         curl
         deluge-gtk
@@ -35,6 +36,7 @@
         go
         gotools
         grpcurl
+        hydralauncher
         hyprland-qtutils
         imagemagick
         jdk
@@ -48,6 +50,7 @@
         lazyjournal
         libqalculate
         libreoffice
+        mangohud
         mcp-k8s-go
         mermaid-cli
         neovide
@@ -62,6 +65,7 @@
         phockup
         playerctl
         poppler
+        protonup
         python313
         qgis
         quarto

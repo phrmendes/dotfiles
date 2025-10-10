@@ -55,8 +55,11 @@
           nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/desktop ];
+            modules = [
+              ./hosts/desktop
+            ];
           };
+
         laptop =
           let
             parameters = global // {
@@ -74,8 +77,11 @@
           nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/laptop ];
+            modules = [
+              ./hosts/laptop
+            ];
           };
+
         server =
           let
             parameters = global // {

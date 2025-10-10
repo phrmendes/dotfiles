@@ -49,6 +49,19 @@
 
   environment.persistence."/persist".users.${parameters.user}.directories = [ ".steam" ];
 
+  fileSystems = {
+    "/mnt/small" = {
+      device = "/dev/disk/by-label/small";
+      fsType = "ext4";
+      options = [ "defaults" ];
+    };
+    "/mnt/big" = {
+      device = "/dev/disk/by-label/big";
+      fsType = "ext4";
+      options = [ "defaults" ];
+    };
+  };
+
   home-manager.users.${parameters.user} = {
     home.sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATH = "${parameters.home}/.steam/root/compatibilitytools.d";

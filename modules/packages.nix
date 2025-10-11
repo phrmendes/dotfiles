@@ -37,6 +37,7 @@
         hydralauncher
         hyprland-qtutils
         imagemagick
+        inkscape
         jdk
         jqp
         just

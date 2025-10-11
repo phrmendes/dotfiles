@@ -9,6 +9,7 @@ MiniDeps.now(function()
 		ensure_installed = {
 			"bash",
 			"bibtex",
+			"caddy",
 			"css",
 			"csv",
 			"cuda",
@@ -21,6 +22,8 @@ MiniDeps.now(function()
 			"gitattributes",
 			"gitcommit",
 			"gitignore",
+			"go",
+			"gotmpl",
 			"hcl",
 			"heex",
 			"helm",
@@ -55,7 +58,6 @@ MiniDeps.now(function()
 			"vim",
 			"vimdoc",
 			"yaml",
-			"caddy",
 		},
 		indent = { enable = true },
 		textobjects = {

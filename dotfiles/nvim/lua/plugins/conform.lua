@@ -7,6 +7,7 @@ MiniDeps.later(function()
 			css = { "prettier" },
 			go = { "golines", "gofumpt", "goimports" },
 			htmldjango = { "djlint" },
+			html = { "prettier" },
 			http = { "kulala-fmt" },
 			jinja2 = { "djlint" },
 			json = { "prettier" },

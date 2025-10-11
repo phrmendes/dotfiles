@@ -46,6 +46,7 @@
           marksman
           nixd
           nixfmt-rfc-style
+          prettier-plugin-go-template
           ruff
           shellcheck
           shellharden

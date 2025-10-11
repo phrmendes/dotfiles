@@ -26,7 +26,6 @@
       extraPackages =
         with pkgs;
         [
-          astro-language-server
           basedpyright
           bash-language-server
           delve

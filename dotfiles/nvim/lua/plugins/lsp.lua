@@ -1,7 +1,6 @@
 MiniDeps.now(function() MiniDeps.add({ source = "neovim/nvim-lspconfig", depends = { "b0o/SchemaStore.nvim" } }) end)
 
 vim.lsp.enable({
-	"astro",
 	"basedpyright",
 	"bashls",
 	"cssls",

@@ -1,7 +1,5 @@
 return {
 	filetypes = {
-		"astro",
-		"astro-markdown",
 		"css",
 		"django-html",
 		"eelixir",

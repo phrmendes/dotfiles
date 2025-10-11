@@ -4,7 +4,6 @@ MiniDeps.later(function()
 	require("conform").setup({
 		notify_on_error = false,
 		formatters_by_ft = {
-			astro = { "prettier" },
 			css = { "prettier" },
 			go = { "golines", "gofumpt", "goimports" },
 			htmldjango = { "djlint" },

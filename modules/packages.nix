@@ -34,6 +34,7 @@
         go
         gotools
         grpcurl
+        heroic
         hydralauncher
         hyprland-qtutils
         imagemagick
@@ -50,7 +51,6 @@
         lazyjournal
         libqalculate
         libreoffice
-        lutris
         mangohud
         mcp-k8s-go
         mermaid-cli

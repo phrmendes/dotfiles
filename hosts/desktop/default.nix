@@ -47,7 +47,10 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  environment.persistence."/persist".users.${parameters.user}.directories = [ ".steam" ];
+  environment.persistence."/persist".users.${parameters.user}.directories = [
+    ".steam"
+    ".heroic"
+  ];
 
   fileSystems = {
     "/mnt/small" = {

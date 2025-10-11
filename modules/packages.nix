@@ -17,7 +17,6 @@
       in
       [
         ansible
-        claude-code
         curl
         deluge-gtk
         discord

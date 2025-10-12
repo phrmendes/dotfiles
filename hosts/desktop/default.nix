@@ -49,7 +49,7 @@
 
   environment.persistence."/persist".users.${parameters.user}.directories = [
     ".steam"
-    ".heroic"
+    ".sops"
   ];
 
   fileSystems = {

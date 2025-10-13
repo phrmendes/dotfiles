@@ -76,23 +76,6 @@ M.get_subdirectories = function(path)
 		:totable()
 end
 
---- Load all plugins in a directory.
---- @param path string The path to the plugins directory.
---- @return nil
-M.load_plugins = function(path)
-	if not vim.uv.fs_stat(path) then
-		vim.notify("Plugins directory does not exist: " .. path, vim.log.levels.ERROR)
-		return
-	end
-
-	vim
-		.iter(vim.fs.dir(path))
-		:filter(function(_, type) return type == "file" end)
-		:map(function(name, _) return vim.fn.fnamemodify(name, ":r") end)
-		:filter(function(name, _) return name ~= "init" end)
-		:each(function(plugin) require("plugins." .. plugin) end)
-end
-
 --- Copy file reference with optional line numbers to register.
 --- @param include_lines boolean|nil If true, includes line number information. Defaults to true. Ignored in visual mode.
 --- @param absolute boolean|nil If true, returns absolute path. Defaults to false.

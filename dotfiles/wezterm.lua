@@ -44,7 +44,7 @@ config.keys = {
 	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "'", mods = "LEADER", action = action.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
 	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = ":", mods = "LEADER", action = action.ActivateCommandPalette },
+	{ key = ";", mods = "LEADER", action = action.ActivateCommandPalette },
 	{ key = "[", mods = "LEADER", action = action.ActivateTabRelative(-1) },
 	{ key = "]", mods = "LEADER", action = action.ActivateTabRelative(1) },
 	{ key = "{", mods = "LEADER", action = action.MoveTabRelative(-1) },
@@ -53,7 +53,6 @@ config.keys = {
 	{ key = "(", mods = "LEADER", action = action.RotatePanes("CounterClockwise") },
 	{ key = ".", mods = "CTRL", action = action.SwitchWorkspaceRelative(1) },
 	{ key = ",", mods = "CTRL", action = action.SwitchWorkspaceRelative(-1) },
-	{ key = "Q", mods = "LEADER", action = action.CloseCurrentTab({ confirm = true }) },
 	{ key = "a", mods = "LEADER", action = action.AttachDomain("unix") },
 	{ key = "c", mods = "LEADER", action = action.CopyTo("Clipboard") },
 	{ key = "d", mods = "LEADER", action = action.DetachDomain({ DomainName = "unix" }) },
@@ -87,6 +86,14 @@ config.keys = {
 		}),
 	},
 }
+
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = action.ActivateTab(i),
+	})
+end
 
 wezterm.on("update-status", function(window)
 	local status

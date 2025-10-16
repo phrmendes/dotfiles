@@ -90,7 +90,6 @@
     git.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
-    wezterm.enable = true;
     zoxide.enable = true;
 
     xdg.configFile."nvim/init.lua".source = ../../dotfiles/neovim.lua;

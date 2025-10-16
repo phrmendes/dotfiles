@@ -24,6 +24,7 @@
     ./k9s.nix
     ./keepassxc.nix
     ./keychain.nix
+    ./kitty.nix
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
@@ -41,7 +42,6 @@
     ./udiskie.nix
     ./uv.nix
     ./waybar.nix
-    ./wezterm.nix
     ./wofi.nix
     ./xdg.nix
     ./yazi.nix

@@ -105,6 +105,7 @@ vim.filetype.add({
 	},
 	pattern = {
 		["*/.kube/config"] = "yaml",
+		["*/kubeconfig"] = "yaml",
 		["*/.envrc"] = "sh",
 	},
 	extension = {

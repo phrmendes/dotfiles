@@ -52,7 +52,6 @@
         libqalculate
         libreoffice
         mangohud
-        mcp-k8s-go
         mermaid-cli
         neovide
         networkmanagerapplet

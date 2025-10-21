@@ -58,6 +58,7 @@
         nix-prefetch-github
         nodejs
         opencode
+        opentofu
         parallel
         pass
         pasystray

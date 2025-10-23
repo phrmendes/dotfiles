@@ -46,6 +46,7 @@
         kdePackages.kdenlive
         kind
         kooha
+        krew
         kubectl
         kubernetes-helm
         lazyjournal

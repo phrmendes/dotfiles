@@ -57,7 +57,7 @@
         neovide
         networkmanagerapplet
         nix-prefetch-github
-        nodejs
+        nodejs_latest
         opencode
         opentofu
         parallel

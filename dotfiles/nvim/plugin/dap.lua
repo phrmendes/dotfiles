@@ -103,7 +103,6 @@ local configs = {
 
 local adapters = {
 	lua = { type = "server", host = "127.0.0.1", port = 8086 },
-	mix_task = { type = "executable", command = vim.fn.exepath("elixir-debug-adapter") },
 	["pwa-node"] = {
 		type = "server",
 		port = "${port}",

@@ -53,7 +53,6 @@
           simple-completion-language-server
           sqruff
           stylua
-          tailwindcss-language-server
           taplo
           terraform-ls
           tflint
@@ -69,9 +68,6 @@
         ])
         ++ (with python3Packages; [
           chromadb
-        ])
-        ++ (with beamPackages; [
-          elixir-ls
         ])
         ++ (with nodePackages; [
           prettier

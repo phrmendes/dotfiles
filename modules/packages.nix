@@ -21,7 +21,6 @@
         deluge-gtk
         discord
         docker-credential-helpers
-        elixir
         exiftool
         ffmpeg
         ffmpegthumbnailer

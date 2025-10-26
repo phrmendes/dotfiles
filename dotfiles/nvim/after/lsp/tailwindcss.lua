@@ -2,8 +2,6 @@ return {
 	filetypes = {
 		"css",
 		"django-html",
-		"eelixir",
-		"elixir",
 		"gohtml",
 		"gohtmltmpl",
 		"heex",

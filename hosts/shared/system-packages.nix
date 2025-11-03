@@ -4,7 +4,6 @@
     with pkgs;
     [
       inputs.agenix.packages.${pkgs.system}.default
-      android-udev-rules
       cachix
       coreutils-full
       dig

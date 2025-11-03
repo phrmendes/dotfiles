@@ -66,7 +66,7 @@
         phockup
         playerctl
         poppler
-        protonup
+        protonup-ng
         python313
         qgis
         quarto

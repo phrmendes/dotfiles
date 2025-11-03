@@ -5,6 +5,7 @@
     command-not-found.enable = false;
     fish.enable = true;
     nix-ld.enable = true;
+    adb.enable = true;
 
     gnupg.agent = {
       enable = true;

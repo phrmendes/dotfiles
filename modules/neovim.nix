@@ -51,7 +51,6 @@
           shellcheck
           shellharden
           simple-completion-language-server
-          sqruff
           stylua
           taplo
           terraform-ls

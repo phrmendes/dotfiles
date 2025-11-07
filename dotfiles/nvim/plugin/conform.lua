@@ -16,7 +16,6 @@ MiniDeps.later(function()
 			nix = { "nixfmt" },
 			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 			sh = { "shellharden" },
-			sql = { "sqruff" },
 			terraform = { "terraform_fmt" },
 			toml = { "taplo" },
 			yaml = { "prettier" },

@@ -15,10 +15,12 @@
         disableStartupPopups = true;
         gui.nerdFontsVersion = "3";
         os.editPreset = "nvim-remote";
-        git.paging = {
-          colorArg = "always";
-          pager = "${lib.getExe pkgs.delta} --dark --paging=never";
-        };
+        git.pagers = [
+          {
+            colorArg = "always";
+            pager = "${lib.getExe pkgs.delta} --dark --paging=never";
+          }
+        ];
       };
     };
   };

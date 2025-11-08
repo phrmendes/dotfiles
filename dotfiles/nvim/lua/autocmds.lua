@@ -91,3 +91,16 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 	pattern = "*",
 	command = "if &nu | set nornu | endif",
 })
+
+vim.api.nvim_create_autocmd("VimResized", {
+	desc = "Equalize window sizes after resizing Vim",
+	group = augroups.windows,
+	command = "wincmd =",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "No auto continue comments on new lines",
+	group = augroups.filetype,
+	pattern = "*",
+	callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end,
+})

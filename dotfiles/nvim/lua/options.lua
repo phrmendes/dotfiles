@@ -102,11 +102,12 @@ vim.filetype.add({
 		["todo.txt"] = "todotxt",
 		["done.txt"] = "todotxt",
 		["Caddyfile"] = "caddy",
+		["kubeconfig"] = "yaml",
+		[".envrc"] = "sh",
+		[".env"] = "dosini",
 	},
 	pattern = {
 		["*/.kube/config"] = "yaml",
-		["*/kubeconfig"] = "yaml",
-		["*/.envrc"] = "sh",
 	},
 	extension = {
 		http = "http",

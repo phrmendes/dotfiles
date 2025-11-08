@@ -30,7 +30,6 @@
           bash-language-server
           delve
           djlint
-          docker-language-server
           dot-language-server
           emmet-language-server
           gofumpt
@@ -51,6 +50,7 @@
           shellcheck
           shellharden
           simple-completion-language-server
+          stable.docker-language-server
           stylua
           taplo
           terraform-ls

@@ -150,6 +150,7 @@
     keepassxc.enable = true;
     keychain.enable = true;
     kitty.enable = true;
+    lazydocker.enable = true;
     lazygit.enable = true;
     mpv.enable = true;
     neovim.enable = true;

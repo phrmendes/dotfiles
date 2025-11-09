@@ -3,6 +3,7 @@ MiniDeps.now(function() MiniDeps.add({ source = "neovim/nvim-lspconfig", depends
 vim.lsp.enable({
 	"basedpyright",
 	"bashls",
+	"copilot",
 	"cssls",
 	"docker_language_server",
 	"dotls",

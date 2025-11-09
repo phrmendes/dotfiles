@@ -3,6 +3,7 @@
   lib,
   config,
   parameters,
+  inputs,
   ...
 }:
 {
@@ -11,6 +12,7 @@
   config = lib.mkIf config.neovim.enable {
     programs.neovim = {
       enable = true;
+      package = inputs.neovim-nightly.packages.${pkgs.system}.default;
       defaultEditor = true;
       vimAlias = true;
       vimdiffAlias = true;
@@ -28,6 +30,7 @@
         [
           basedpyright
           bash-language-server
+          copilot-language-server
           delve
           djlint
           dot-language-server
@@ -100,9 +103,6 @@
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/dotfiles/nvim";
       ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
-      '';
-      ".local/share/nvim/nix/lua/nix/copilot.lua".text = ''
-        return "${pkgs.copilot-language-server}/bin/copilot-language-server"
       '';
       ".local/share/nvim/nix/lua/nix/typescript.lua".text = ''
         return "${pkgs.typescript}/lib/node_modules/typescript/lib"

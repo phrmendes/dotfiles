@@ -4,8 +4,9 @@
   inputs = {
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stylix.url = "github:danth/stylix";
 
     disko = {

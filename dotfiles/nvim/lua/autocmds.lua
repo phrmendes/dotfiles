@@ -14,22 +14,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options",
 	group = augroups.lsp.attach,
 	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-		if not client then return end
+		local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
 
 		require("keymaps.lsp")(client, event.buf)
 
 		vim.bo[event.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
 
-		if client:supports_method("textDocument/codeLens", event.buf) then
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf) then
+			vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
+
+			vim.api.nvim_buf_create_user_command(
+				event.buf,
+				"LspCopilotDisable",
+				function() vim.lsp.inline_completion.enable(false, { bufnr = event.buf }) end,
+				{ desc = "Disable LSP inline completions for the current buffer" }
+			)
+		end
+
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, event.buf) then
 			vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 				buffer = event.buf,
 				callback = function(ev) vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
 			})
 		end
 
-		if client:supports_method("textDocument/documentHighlight", event.buf) then
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
 				group = augroups.lsp.highlight,

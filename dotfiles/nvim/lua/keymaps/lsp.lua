@@ -11,7 +11,7 @@ return function(client, bufnr)
 		desc = "LSP: go to previous reference",
 	})
 
-	if client:supports_method("textDocument/rename", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_rename, bufnr) then
 		vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, {
 			noremap = true,
 			buffer = bufnr,
@@ -19,7 +19,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/definition", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition, bufnr) then
 		vim.keymap.set("n", "gd", function() MiniExtra.pickers.lsp({ scope = "definition" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -27,7 +27,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/declaration", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration, bufnr) then
 		vim.keymap.set("n", "gD", function() MiniExtra.pickers.lsp({ scope = "declaration" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -35,7 +35,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/implementation", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation, bufnr) then
 		vim.keymap.set("n", "gi", function() MiniExtra.pickers.lsp({ scope = "implementation" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -43,7 +43,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/references", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_references, bufnr) then
 		vim.keymap.set("n", "gr", function() MiniExtra.pickers.lsp({ scope = "references" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -51,7 +51,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/typeDefinition", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition, bufnr) then
 		vim.keymap.set("n", "gt", function() MiniExtra.pickers.lsp({ scope = "type_definition" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -59,7 +59,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/codeAction", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction, bufnr) then
 		vim.keymap.set({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, {
 			noremap = true,
 			buffer = bufnr,
@@ -67,7 +67,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/publishDiagnostics", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_publishDiagnostics, bufnr) then
 		vim.keymap.set("n", "<leader>d", function() MiniExtra.pickers.diagnostic({ scope = "current" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -87,15 +87,15 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/signatureHelp", bufnr) then
-		vim.keymap.set("n", "<leader>h", vim.lsp.buf.signature_help, {
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, bufnr) then
+		vim.keymap.set({ "n", "x" }, "<c-s>", vim.lsp.buf.signature_help, {
 			noremap = true,
 			buffer = bufnr,
 			desc = "LSP: signature help",
 		})
 	end
 
-	if client:supports_method("textDocument/inlayHint", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
 		vim.keymap.set("n", "<leader>i", function() Snacks.toggle.inlay_hints() end, {
 			noremap = true,
 			buffer = bufnr,
@@ -103,7 +103,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/hover", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_hover, bufnr) then
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {
 			noremap = true,
 			buffer = bufnr,
@@ -111,7 +111,7 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("textDocument/documentSymbol", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol, bufnr) then
 		vim.keymap.set("n", "<leader>s", function() MiniExtra.pickers.lsp({ scope = "document_symbol" }) end, {
 			noremap = true,
 			buffer = bufnr,
@@ -119,11 +119,23 @@ return function(client, bufnr)
 		})
 	end
 
-	if client:supports_method("workspace/symbol", bufnr) then
+	if client:supports_method(vim.lsp.protocol.Methods.workspace_symbol, bufnr) then
 		vim.keymap.set("n", "<leader>S", function() MiniExtra.pickers.lsp({ scope = "workspace_symbol" }) end, {
 			noremap = true,
 			buffer = bufnr,
 			desc = "LSP: symbols (workspace)",
+		})
+	end
+
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
+		vim.keymap.set("i", "<c-l>", vim.lsp.inline_completion.get, {
+			desc = "LSP: accept inline completion",
+			buffer = bufnr,
+		})
+
+		vim.keymap.set("i", "<c-n>", vim.lsp.inline_completion.select, {
+			desc = "LSP: switch inline completion",
+			buffer = bufnr,
 		})
 	end
 end

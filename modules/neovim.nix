@@ -28,6 +28,7 @@
       extraPackages =
         with pkgs;
         [
+          astro-language-server
           basedpyright
           bash-language-server
           copilot-language-server
@@ -55,6 +56,7 @@
           simple-completion-language-server
           stable.docker-language-server
           stylua
+          tailwindcss-language-server
           taplo
           terraform-ls
           tflint

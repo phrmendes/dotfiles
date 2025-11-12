@@ -5,6 +5,7 @@ MiniDeps.later(function()
 		notify_on_error = false,
 		formatters_by_ft = {
 			css = { "prettier" },
+			astro = { "prettier" },
 			go = { "golines", "gofumpt", "goimports" },
 			htmldjango = { "djlint" },
 			html = { "prettier" },

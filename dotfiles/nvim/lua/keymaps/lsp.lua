@@ -133,7 +133,7 @@ return function(client, bufnr)
 			buffer = bufnr,
 		})
 
-		vim.keymap.set("i", "<c-n>", vim.lsp.inline_completion.select, {
+		vim.keymap.set("i", "<c-]>", vim.lsp.inline_completion.select, {
 			desc = "LSP: switch inline completion",
 			buffer = bufnr,
 		})

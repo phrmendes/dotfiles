@@ -7,6 +7,7 @@ MiniDeps.now(function()
 
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
+			"astro",
 			"bash",
 			"bibtex",
 			"caddy",

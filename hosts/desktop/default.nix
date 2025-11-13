@@ -12,6 +12,9 @@
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
     kernelModules = [
       "kvm-amd"
+      "nvidia"
+      "nvidia_drm"
+      "nvidia_modeset"
       "snd-aloop"
       "v4l2loopback"
     ];

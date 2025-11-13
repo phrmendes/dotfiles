@@ -51,6 +51,8 @@
         lazyjournal
         libqalculate
         libreoffice
+        lutris
+        mangohud
         mangohud
         mermaid-cli
         neovide
@@ -66,7 +68,7 @@
         phockup
         playerctl
         poppler
-        protonup-ng
+        protonup-qt
         python313
         qgis
         quarto

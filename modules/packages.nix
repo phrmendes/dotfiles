@@ -40,6 +40,7 @@
         inkscape
         jdk
         jqp
+        jstest-gtk
         just
         jwt-cli
         kdePackages.kdenlive

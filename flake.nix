@@ -41,7 +41,7 @@
               laptop = false;
               monitors = {
                 primary = {
-                  name = "DP-1";
+                  name = "DP-2";
                   resolution = "2560x1080";
                   position = "0x0";
                 };

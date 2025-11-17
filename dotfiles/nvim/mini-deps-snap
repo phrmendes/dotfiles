@@ -1,6 +1,6 @@
 return {
   ["SchemaStore.nvim"] = "eed1834170f343c14a6768f085b26b3571a55302",
-  ["conform.nvim"] = "cde4da5c1083d3527776fee69536107d98dae6c9",
+  ["conform.nvim"] = "178b8f0d70ee63db616a8b3bda637218eef121dd",
   ["friendly-snippets"] = "572f5660cf05f8cd8834e096d7b4c921ba18e175",
   ["helm-ls.nvim"] = "d6f3a8d4ad59b4f54cd734267dfb5411679ea608",
   ["kitty-scrollback.nvim"] = "36d19dc85c0a1d0193e7c52d41129c4aa28b72e8",
@@ -15,7 +15,7 @@ return {
   ["nvim-dap-python"] = "64652d1ae1db80870d9aac7132d76e37acd86a26",
   ["nvim-dap-view"] = "4b0adae3dd2b1eb17b5ab69d69327bbb93d33939",
   ["nvim-lint"] = "baf7c91c2b868b12446df511d4cdddc98e9bf66e",
-  ["nvim-lspconfig"] = "abf6d190f2c06818489c0bd4b926e7e3a06c5e51",
+  ["nvim-lspconfig"] = "dc7e7c7699cc01b1b6fefa97f9b496d8f447d7a1",
   ["nvim-treesitter"] = "42fc28ba918343ebfd5565147a42a26580579482",
   ["nvim-treesitter-context"] = "660861b1849256398f70450afdf93908d28dc945",
   ["nvim-treesitter-textobjects"] = "5ca4aaa6efdcc59be46b95a3e876300cfead05ef",

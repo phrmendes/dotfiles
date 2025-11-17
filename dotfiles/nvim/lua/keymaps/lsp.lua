@@ -138,4 +138,15 @@ return function(client, bufnr)
 			buffer = bufnr,
 		})
 	end
+
+	if
+		client:supports_method(vim.lsp.protocol.Methods.workspace_didRenameFiles, bufnr)
+		or client:supports_method(vim.lsp.protocol.Methods.workspace_willRenameFiles, bufnr)
+	then
+		vim.keymap.set("n", "<leader>R", function() Snacks.rename.rename_file() end, {
+			noremap = true,
+			buffer = bufnr,
+			desc = "LSP: rename file",
+		})
+	end
 end

@@ -1,5 +1,8 @@
 MiniDeps.now(function()
-	MiniDeps.add({ source = "mrjones2014/smart-splits.nvim" })
+	MiniDeps.add({
+		source = "mrjones2014/smart-splits.nvim",
+		checkout = "v2.0.5",
+	})
 
 	require("smart-splits").setup({ cursor_follows_swapped_bufs = true })
 end)

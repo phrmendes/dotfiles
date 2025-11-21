@@ -88,7 +88,7 @@ return function(client, bufnr)
 	end
 
 	if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, bufnr) then
-		vim.keymap.set({ "n", "x" }, "<c-s>", vim.lsp.buf.signature_help, {
+		vim.keymap.set({ "n", "x" }, "<leader>h", vim.lsp.buf.signature_help, {
 			noremap = true,
 			buffer = bufnr,
 			desc = "LSP: signature help",

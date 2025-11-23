@@ -22,7 +22,6 @@
 
   programs = {
     dconf.enable = true;
-    file-roller.enable = true;
     hyprland.enable = true;
     virt-manager.enable = true;
 

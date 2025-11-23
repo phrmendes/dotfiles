@@ -24,6 +24,7 @@
         exiftool
         ffmpeg
         ffmpegthumbnailer
+        file-roller
         filezilla
         firefox
         gcloud

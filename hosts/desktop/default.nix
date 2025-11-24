@@ -15,6 +15,7 @@
       "nvidia"
       "nvidia_drm"
       "nvidia_modeset"
+      "nvidia_uvm"
       "snd-aloop"
       "v4l2loopback"
     ];
@@ -28,11 +29,16 @@
     xpadneo.enable = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
     nvidia-container-toolkit.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     nvidia = {
-      open = false;
+      open = true;
       nvidiaSettings = true;
       modesetting.enable = true;
-      package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
+      powerManagement.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
 

@@ -8,6 +8,7 @@
       coreutils-full
       dig
       docker-compose
+      egl-wayland
       file
       findutils
       gcc

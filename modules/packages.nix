@@ -55,7 +55,6 @@
         libreoffice
         lutris
         mangohud
-        mangohud
         mermaid-cli
         neovide
         networkmanagerapplet

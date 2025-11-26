@@ -240,6 +240,10 @@ later(function()
 		desc = "Hunks (file)",
 	})
 
+	vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, {
+		desc = "Modifieed files",
+	})
+
 	vim.keymap.set("n", "<leader>V", function() MiniExtra.pickers.visit_paths({ cwd = "" }) end, {
 		desc = "Visits (all)",
 	})

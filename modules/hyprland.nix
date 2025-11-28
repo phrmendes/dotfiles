@@ -157,10 +157,14 @@
             "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
             "SDL_VIDEODRIVER,wayland"
             "USE_WAYLAND_GRIM,1"
+            "WLR_NO_HARDWARE_CURSORS,1"
+            "WLR_RENDERER,gles2"
             "XDG_CURRENT_DESKTOP,Hyprland"
             "XDG_SESSION_DESKTOP,Hyprland"
             "XDG_SESSION_TYPE,wayland"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+            "__GL_SYNC_TO_VBLANK,0"
+            "__GL_THREADED_OPTIMIZATIONS,0"
           ];
         };
       };

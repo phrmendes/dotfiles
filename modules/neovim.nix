@@ -73,6 +73,9 @@
         ++ (with python3Packages; [
           chromadb
         ])
+        ++ (with beamPackages; [
+          elixir-ls
+        ])
         ++ (with nodePackages; [
           prettier
           vscode-json-languageserver

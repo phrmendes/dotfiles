@@ -3,11 +3,12 @@
   environment.systemPackages =
     with pkgs;
     [
-      inputs.agenix.packages.${pkgs.system}.default
+      inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
       cachix
       coreutils-full
       dig
       docker-compose
+      docker-credential-helpers
       egl-wayland
       file
       findutils

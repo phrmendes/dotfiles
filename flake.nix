@@ -5,7 +5,7 @@
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stylix.url = "github:danth/stylix";
 
@@ -24,7 +24,6 @@
     inputs@{ nixpkgs, ... }:
 
     let
-      system = "x86_64-linux";
       global = rec {
         name = "Pedro Mendes";
         user = "phrmendes";
@@ -54,7 +53,7 @@
             };
           in
           nixpkgs.lib.nixosSystem {
-            inherit system;
+            system = "x86_64-linux";
             specialArgs = { inherit inputs parameters; };
             modules = [
               ./hosts/desktop
@@ -76,7 +75,7 @@
             };
           in
           nixpkgs.lib.nixosSystem {
-            inherit system;
+            system = "x86_64-linux";
             specialArgs = { inherit inputs parameters; };
             modules = [
               ./hosts/laptop
@@ -91,7 +90,7 @@
             };
           in
           nixpkgs.lib.nixosSystem {
-            inherit system;
+            system = "x86_64-linux";
             specialArgs = { inherit inputs parameters; };
             modules = [ ./hosts/server ];
           };

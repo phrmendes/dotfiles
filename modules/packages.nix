@@ -16,11 +16,9 @@
         );
       in
       [
-        ansible
         curl
         deluge-gtk
         discord
-        docker-credential-helpers
         elixir
         exiftool
         ffmpeg
@@ -33,9 +31,6 @@
         ghostscript
         gimp3-with-plugins
         go
-        gotools
-        grpcurl
-        heroic
         hydralauncher
         hyprland-qtutils
         imagemagick
@@ -44,25 +39,18 @@
         jqp
         jstest-gtk
         just
-        jwt-cli
-        kdePackages.kdenlive
         kind
-        kooha
         krew
         kubectl
         kubernetes-helm
-        lazyjournal
         libqalculate
         libreoffice
         lutris
-        mangohud
-        mermaid-cli
         neovide
         networkmanagerapplet
         nix-prefetch-github
         nodejs_latest
         opencode
-        opentofu
         parallel
         pass
         pasystray
@@ -71,19 +59,14 @@
         playerctl
         poppler
         protonup-qt
-        python313
-        qgis
+        python314
         quarto
         sqlite
         tectonic
-        terraform
-        tridactyl-native
         ungoogled-chromium
-        websocat
         wofi-emoji
         wofi-power-menu
         yq-go
-        yt-dlp
         zotero
       ];
   };

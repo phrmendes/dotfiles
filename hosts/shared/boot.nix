@@ -7,7 +7,6 @@
   boot = {
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    plymouth.enable = true;
 
     supportedFilesystems = [
       "btrfs"

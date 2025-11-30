@@ -12,7 +12,7 @@
   config = lib.mkIf config.neovim.enable {
     programs.neovim = {
       enable = true;
-      package = inputs.neovim-nightly.packages.${pkgs.system}.default;
+      package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       vimAlias = true;
       vimdiffAlias = true;

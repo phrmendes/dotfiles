@@ -79,3 +79,7 @@
         href: https://pgbackweb.local.ohlongjohnson.tech
         icon: sh-pg-back-web
         description: Postgres backup manager
+    - PruneMate:
+        href: https://prunemate.local.ohlongjohnson.tech
+        icon: sh-docker
+        description: Automated pruning tool for Docker

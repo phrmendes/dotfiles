@@ -1,0 +1,22 @@
+services:
+  prunemate:
+    image: anoniemerd/prunemate:latest
+    container_name: prunemate
+    restart: unless-stopped
+    volumes:
+      - prunemate_logs:/var/log
+      - prunemate_config:/config
+    secrets:
+      - source: prunemate
+        target: /config/config.json
+    environment:
+      - PRUNEMATE_TZ=${TZ}
+      - PRUNEMATE_TIME_24H=true
+
+volumes:
+  prunemate_logs:
+  prunemate_config:
+
+secrets:
+  prunemate:
+    file: /run/agenix/prunemate.json

@@ -17,6 +17,7 @@ include:
   - ./services/photoview.yaml
   - ./services/postgres.yaml
   - ./services/prowlarr.yaml
+  - ./services/prunemate.yaml
   - ./services/radarr.yaml
   - ./services/sabnzbd.yaml
   - ./services/searxng.yaml

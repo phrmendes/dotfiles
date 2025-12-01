@@ -29,6 +29,12 @@
       group = "users";
       mode = "0440";
     };
+    "prunemate.json" = {
+      file = ../../secrets/prunemate.json.age;
+      owner = parameters.user;
+      group = "users";
+      mode = "0440";
+    };
     "dozzle-users.yaml" = {
       file = ../../secrets/dozzle-users.yaml.age;
       owner = parameters.user;

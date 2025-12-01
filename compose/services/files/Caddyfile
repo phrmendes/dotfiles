@@ -102,3 +102,7 @@ syncthing.local.ohlongjohnson.tech {
 transmission.local.ohlongjohnson.tech {
     import service transmission 9091
 }
+
+prunemate.local.ohlongjohnson.tech {
+    import service prunemate 8080
+}

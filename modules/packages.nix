@@ -59,6 +59,7 @@
         phockup
         playerctl
         poppler
+        prismlauncher
         protonup-qt
         python314
         quarto

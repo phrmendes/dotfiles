@@ -47,6 +47,7 @@
         libqalculate
         libreoffice
         lutris
+        mangohud
         neovide
         networkmanagerapplet
         nix-prefetch-github

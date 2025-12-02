@@ -31,21 +31,6 @@
       };
     };
     services = {
-      neovimd = {
-        description = "Neovim daemon service";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.neovim}/bin/nvim --headless --listen 0.0.0.0:9000 -u ${parameters.home}/dotfiles/dotfiles/neovim.lua";
-          Restart = "always";
-          RestartSec = 2;
-          User = parameters.user;
-          WorkingDirectory = "${parameters.home}";
-          StandardOutput = "journal";
-          StandardError = "journal";
-        };
-      };
       nixos-rebuild-switch = {
         description = "NixOS rebuild switch service";
         serviceConfig = {

@@ -35,6 +35,7 @@
         hyprland-qtutils
         imagemagick
         inkscape
+        javaPackages.openjfx25
         jdk
         jqp
         jstest-gtk

@@ -4,9 +4,17 @@
     fuse.userAllowOther = true;
     command-not-found.enable = false;
     fish.enable = true;
-    nix-ld.enable = true;
     adb.enable = true;
     nix-index.enable = true;
+
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        glib
+        libGL
+        libxxf86vm
+      ];
+    };
 
     gnupg.agent = {
       enable = true;

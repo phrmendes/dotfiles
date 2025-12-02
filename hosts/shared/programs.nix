@@ -6,6 +6,7 @@
     fish.enable = true;
     nix-ld.enable = true;
     adb.enable = true;
+    nix-index.enable = true;
 
     gnupg.agent = {
       enable = true;

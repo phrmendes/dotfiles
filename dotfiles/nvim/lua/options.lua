@@ -143,6 +143,9 @@ vim.diagnostic.config({
 	},
 })
 
+-- popup menu height
+vim.opt.pumheight = 10
+
 -- disable builtin plugins
 local builtin_plugins = {
 	"2html_plugin",

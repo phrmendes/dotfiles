@@ -1,13 +1,11 @@
-{ parameters, ... }:
+{ parameters, lib, ... }:
 {
   imports = [
     ./atuin.nix
     ./bat.nix
-    ./blueman-applet.nix
     ./btop.nix
-    ./cliphist.nix
+    ./dconf.nix
     ./direnv.nix
-    ./dunst.nix
     ./eza.nix
     ./fd.nix
     ./fish.nix
@@ -15,10 +13,6 @@
     ./gh.nix
     ./git.nix
     ./gtk.nix
-    ./hypridle.nix
-    ./hyprland.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
     ./imv.nix
     ./jq.nix
     ./k9s.nix
@@ -29,26 +23,19 @@
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
-    ./nm-applet.nix
     ./packages.nix
-    ./pasystray.nix
     ./ripgrep.nix
-    ./screenrecorder.nix
-    ./screenshot.nix
-    ./swayosd.nix
     ./symlinks.nix
     ./syncthingtray.nix
     ./targets.nix
     ./tealdeer.nix
-    ./udiskie.nix
-    ./uv.nix
-    ./waybar.nix
-    ./wofi.nix
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix
     ./zoxide.nix
   ];
+
+  qt.platformTheme.name = lib.mkForce "adwaita";
 
   home = {
     stateVersion = "25.11";

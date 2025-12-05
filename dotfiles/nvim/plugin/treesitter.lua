@@ -31,7 +31,6 @@ MiniDeps.now(function()
 			"html",
 			"htmldjango",
 			"http",
-			"hyprlang",
 			"java",
 			"javascript",
 			"json",

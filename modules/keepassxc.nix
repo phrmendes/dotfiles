@@ -13,21 +13,15 @@
     systemd.user.services.keepassxc = {
       Unit = {
         Description = "Offline password manager with many features";
-        PartOf = [ "hyprland-session.target" ];
-        Wants = [
-          "waybar.service"
-          "ssh-agent.service"
-        ];
-        After = [
-          "hyprland-session.target"
-          "waybar.service"
-        ];
+        PartOf = [ "multi-user.target" ];
+        Wants = [ "ssh-agent.service" ];
+        After = [ "multi-user.target" ];
       };
       Service = {
         ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
         Restart = "always";
       };
-      Install.WantedBy = [ "hyprland-session.target" ];
+      Install.WantedBy = [ "multi-user.target" ];
     };
   };
 }

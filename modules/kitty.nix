@@ -14,23 +14,24 @@
       enableGitIntegration = true;
       shellIntegration.enableFishIntegration = true;
       settings = {
-        shell = "fish";
+        active_tab_font_style = "bold";
         allow_remote_control = "yes";
         bell_on_tab = "  ";
         clear_all_shortcuts = "yes";
         enable_audio_bell = "no";
         enabled_layouts = "splits:split_axis=horizontal,stack";
         forward_remote_control = "yes";
+        hide_window_decorations = "yes";
         inactive_text_alpha = "0.9";
         listen_on = "unix:/tmp/kitty";
         macos_option_as_alt = "yes";
         open_url_with = "default";
+        shell = "fish";
         shell_integration = "enabled";
         tab_bar_edge = "bottom";
         tab_bar_min_tabs = 1;
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
-        active_tab_font_style = "bold";
         tab_title_template = "{index}:{title.split('/')[-1].split(':')[-1]}{'  ' if layout_name == 'stack' else ''}";
         term = "xterm-256color";
         undercurl_style = "thin-sparse";

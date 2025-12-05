@@ -82,6 +82,7 @@ now(function()
 end)
 
 later(function() require("mini.align").setup() end)
+later(function() require("mini.cmdline").setup() end)
 later(function() require("mini.comment").setup() end)
 later(function() require("mini.cursorword").setup() end)
 later(function() require("mini.doc").setup() end)

@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-
   stylix = {
     enableReleaseChecks = false;
     image = ../../dotfiles/background.png;

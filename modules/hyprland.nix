@@ -30,7 +30,7 @@
         enable = true;
         settings = {
           misc.vfr = 0;
-          debug.damage_tracking = 0;
+          debug.damage_tracking = 2;
           input = {
             kb_layout = "us,br";
             kb_model = "pc104";
@@ -53,10 +53,7 @@
             inactive_opacity = 0.9;
             rounding = 10;
             blur = {
-              enabled = true;
-              size = 3;
-              passes = 1;
-              vibrancy = 0.1696;
+              enabled = false;
             };
           };
           animations = {

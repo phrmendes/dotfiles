@@ -19,6 +19,7 @@
         curl
         deluge-gtk
         discord
+        drawing
         elixir
         exiftool
         ffmpeg
@@ -27,9 +28,12 @@
         filezilla
         firefox
         gcloud
+        gcolor3
         gdu
         ghostscript
         gimp3-with-plugins
+        gnome-screenshot
+        gnome-tweaks
         go
         hydralauncher
         hyprland-qtutils
@@ -48,6 +52,7 @@
         libreoffice
         lutris
         mangohud
+        nautilus
         neovide
         networkmanagerapplet
         nix-prefetch-github
@@ -55,10 +60,10 @@
         opencode
         parallel
         pass
-        pasystray
         pavucontrol
         phockup
         playerctl
+        pop-launcher
         poppler
         prismlauncher
         protonup-qt
@@ -71,6 +76,16 @@
         wofi-power-menu
         yq-go
         zotero
-      ];
+      ]
+      ++ (with gnomeExtensions; [
+        alphabetical-app-grid
+        appindicator
+        caffeine
+        clipboard-indicator
+        espresso
+        pop-shell
+        user-themes
+        vitals
+      ]);
   };
 }

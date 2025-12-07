@@ -20,6 +20,19 @@ vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true,
 vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, noremap = true, silent = true })
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { silent = true })
 
+-- navigation
+vim.keymap.set("n", "<leader><leader>", "<c-^>", { noremap = true, desc = "Alternate file" })
+vim.keymap.set("n", "<c-h>", "<c-w>h", { noremap = true, desc = "Left split" })
+vim.keymap.set("n", "<c-j>", "<c-w>j", { noremap = true, desc = "Bottom split" })
+vim.keymap.set("n", "<c-k>", "<c-w>k", { noremap = true, desc = "Top split" })
+vim.keymap.set("n", "<c-l>", "<c-w>l", { noremap = true, desc = "Right split" })
+
+-- resize splits
+vim.keymap.set("n", "<a-h>", "<cmd>vertical resize +2<cr>", { noremap = true, desc = "Resize left" })
+vim.keymap.set("n", "<a-j>", "<cmd>resize -2<cr>", { noremap = true, desc = "Resize down" })
+vim.keymap.set("n", "<a-k>", "<cmd>resize +2<cr>", { noremap = true, desc = "Resize up" })
+vim.keymap.set("n", "<a-l>", "<cmd>vertical resize -2<cr>", { noremap = true, desc = "Resize right" })
+
 -- leader keys
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { noremap = true, desc = "Split (V)" })

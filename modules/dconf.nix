@@ -14,7 +14,7 @@
           favorite-apps = [
             "org.gnome.Nautilus.desktop"
             "firefox.desktop"
-            "kitty.desktop"
+            "com.mitchellh.ghostty.desktop"
           ];
           enabled-extensions = [
             "AlphabeticalAppGrid@stuarthayhurst"
@@ -86,7 +86,7 @@
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<Super>t";
-          command = "kitty";
+          command = "ghostty";
           name = "Terminal";
         };
         "org/gnome/shell/extensions/vitals" = {

@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  parameters,
   inputs,
   ...
 }:
@@ -83,25 +82,6 @@
     };
 
     xdg.configFile."nvim/init.lua".enable = false;
-
-    systemd.user.services.neovimd = {
-      Unit = {
-        Description = "Neovim daemon service";
-        After = [ "network.target" ];
-      };
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "${config.programs.neovim.package}/bin/nvim --headless --listen 0.0.0.0:9000";
-        Restart = "always";
-        RestartSec = 2;
-        WorkingDirectory = "${parameters.home}";
-        StandardOutput = "journal";
-        StandardError = "journal";
-      };
-    };
 
     home.file = {
       ".config/nvim".source =

@@ -10,11 +10,6 @@
   config = lib.mkIf config.packages.enable {
     home.packages =
       with pkgs;
-      let
-        gcloud = google-cloud-sdk.withExtraComponents (
-          with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
-        );
-      in
       [
         curl
         deluge-gtk
@@ -27,7 +22,6 @@
         file-roller
         filezilla
         firefox
-        gcloud
         gcolor3
         gdu
         ghostscript
@@ -51,7 +45,7 @@
         lutris
         mangohud
         nautilus
-        neovide
+        neovim-qt
         networkmanagerapplet
         nix-prefetch-github
         nodejs_latest

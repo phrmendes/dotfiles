@@ -11,8 +11,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Pop";
-        package = pkgs.pop-icon-theme;
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
       };
     };
   };

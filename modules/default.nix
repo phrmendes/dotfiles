@@ -11,6 +11,7 @@
     ./fish.nix
     ./fzf.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gtk.nix
     ./imv.nix
@@ -18,7 +19,6 @@
     ./k9s.nix
     ./keepassxc.nix
     ./keychain.nix
-    ./kitty.nix
     ./lazydocker.nix
     ./lazygit.nix
     ./mpv.nix
@@ -45,6 +45,7 @@
       GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
+      TERMINAL = "ghostty";
     };
   };
 }

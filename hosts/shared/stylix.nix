@@ -6,8 +6,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
     polarity = "dark";
     cursor = {
-      name = "Pop";
-      package = pkgs.pop-icon-theme;
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
       size = 26;
     };
     fonts = {
@@ -24,17 +24,13 @@
         name = "Fira Sans";
       };
       monospace = {
-        package = pkgs.nerd-fonts.victor-mono;
-        name = "VictorMono Nerd Font";
+        package = pkgs.nerd-fonts.meslo-lg;
+        name = "MesloLGMDZ Nerd Font";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
-    };
-    targets = {
-      gnome-text-editor.enable = false;
-      nixos-icons.enable = false;
     };
   };
 }

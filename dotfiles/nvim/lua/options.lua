@@ -68,9 +68,6 @@ vim.opt.completeopt = { "menuone", "noselect", "fuzzy" }
 -- default terminal
 vim.opt.shell = "fish"
 
--- preview substitutions live
-vim.opt.inccommand = "split"
-
 -- fold
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -143,8 +140,9 @@ vim.diagnostic.config({
 	},
 })
 
--- popup menu height
+-- popup menu
 vim.opt.pumheight = 10
+vim.opt.pumborder = vim.g.border
 
 -- disable builtin plugins
 local builtin_plugins = {

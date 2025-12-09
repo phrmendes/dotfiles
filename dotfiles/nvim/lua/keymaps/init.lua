@@ -22,10 +22,10 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { silent = true })
 
 -- navigation
 vim.keymap.set("n", "<leader><leader>", "<c-^>", { noremap = true, desc = "Alternate file" })
-vim.keymap.set("n", "<c-h>", "<c-w>h", { noremap = true, desc = "Left split" })
-vim.keymap.set("n", "<c-j>", "<c-w>j", { noremap = true, desc = "Bottom split" })
-vim.keymap.set("n", "<c-k>", "<c-w>k", { noremap = true, desc = "Top split" })
-vim.keymap.set("n", "<c-l>", "<c-w>l", { noremap = true, desc = "Right split" })
+vim.keymap.set("n", "<c-h>", "<c-w><c-h>", { noremap = true, desc = "Left split" })
+vim.keymap.set("n", "<c-j>", "<c-w><c-j>", { noremap = true, desc = "Bottom split" })
+vim.keymap.set("n", "<c-k>", "<c-w><c-k>", { noremap = true, desc = "Top split" })
+vim.keymap.set("n", "<c-l>", "<c-w><c-l>", { noremap = true, desc = "Right split" })
 
 -- resize splits
 vim.keymap.set("n", "<a-h>", "<cmd>vertical resize +2<cr>", { noremap = true, desc = "Resize left" })

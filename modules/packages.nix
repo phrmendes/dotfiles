@@ -13,7 +13,6 @@
       [
         curl
         deluge-gtk
-        discord
         drawing
         elixir
         exiftool
@@ -64,6 +63,7 @@
         sqlite
         tectonic
         ungoogled-chromium
+        vesktop
         wofi-emoji
         wofi-power-menu
         yq-go

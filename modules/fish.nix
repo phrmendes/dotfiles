@@ -49,6 +49,10 @@
               echo fish
             end
           end
+
+          if status is-interactive
+              eval (${getExe pkgs.zellij} setup --generate-auto-start fish | string collect)
+          end
         '';
         shellAbbrs = {
           diff_persist = "sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'";
@@ -69,6 +73,7 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
+          zz = getExe pkgs.zellij;
           v = "nvim";
         };
       };

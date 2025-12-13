@@ -32,6 +32,7 @@
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix
+    ./zellij.nix
     ./zoxide.nix
   ];
 

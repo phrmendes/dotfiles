@@ -109,6 +109,7 @@ vim.filetype.add({
 	extension = {
 		http = "http",
 		tf = "terraform",
+		dump = "log",
 	},
 })
 

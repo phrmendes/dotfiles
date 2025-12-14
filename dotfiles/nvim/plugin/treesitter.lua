@@ -58,6 +58,7 @@ MiniDeps.now(function()
 			"vim",
 			"vimdoc",
 			"yaml",
+			"fish",
 		},
 		indent = { enable = true },
 		textobjects = {

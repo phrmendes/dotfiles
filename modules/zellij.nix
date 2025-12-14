@@ -5,9 +5,7 @@
   config = lib.mkIf config.zellij.enable {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = true;
-      attachExistingSession = true;
-      exitShellOnExit = false;
+      enableFishIntegration = false;
       settings = {
         default_layout = "compact";
         default_shell = "fish";

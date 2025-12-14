@@ -27,12 +27,13 @@
         ];
         interactiveShellInit = ''
           set fish_greeting
-          set --universal pure_symbol_prompt "󰘧"
+
+          set --universal pure_enable_nixdevshell true
           set --universal pure_reverse_prompt_symbol_in_vimode true
+          set --universal pure_symbol_nixdevshell_prefix " "
+          set --universal pure_symbol_prompt "󰘧"
           set --universal pure_symbol_reverse_prompt " "
           set --universal pure_symbol_virtualenv_prefix " "
-          set --universal pure_enable_nixdevshell true
-          set --universal pure_symbol_nixdevshell_prefix " "
 
           fish_add_path "$HOME/.local/bin"
 
@@ -41,17 +42,12 @@
           if test -f ~/.config/environment.fish
             source ~/.config/environment.fish
           end
-
-          function fish_title
-            if test (count $argv) -gt 0
-              basename $argv[1]
-            else
-              echo fish
-            end
-          end
         '';
+        functions = {
+          zz = builtins.readFile ../dotfiles/fish/zz.fish;
+          diff-persist = builtins.readFile ../dotfiles/fish/diff-persist.fish;
+        };
         shellAbbrs = {
-          diff_persist = "sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'";
           apply = "git add . && nh os switch";
           asr = "atuin scripts run";
           vremote = "nvim --headless --listen /tmp/nvim-server.pipe &";
@@ -69,7 +65,6 @@
           ps = getExe pkgs.procs;
           sed = getExe pkgs.gnused;
           top = getExe pkgs.btop;
-          zz = getExe pkgs.zellij;
           v = "nvim";
         };
       };

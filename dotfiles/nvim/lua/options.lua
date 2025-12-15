@@ -69,8 +69,6 @@ vim.opt.completeopt = { "menuone", "noselect", "fuzzy" }
 vim.opt.shell = "fish"
 
 -- fold
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = false
 
 -- clipboard
@@ -144,6 +142,9 @@ vim.diagnostic.config({
 -- popup menu
 vim.opt.pumheight = 10
 vim.opt.pumborder = vim.g.border
+
+-- disable plugin keymaps
+vim.g.no_plugin_maps = true
 
 -- disable builtin plugins
 local builtin_plugins = {

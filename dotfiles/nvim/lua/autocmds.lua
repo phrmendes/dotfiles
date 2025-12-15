@@ -3,6 +3,7 @@ local augroups = {
 	filetype = vim.api.nvim_create_augroup("UserFileType", {}),
 	yank = vim.api.nvim_create_augroup("UserYank", {}),
 	windows = vim.api.nvim_create_augroup("UserWindows", {}),
+	treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
 	lsp = {
 		attach = vim.api.nvim_create_augroup("UserLspAttach", {}),
 		detach = vim.api.nvim_create_augroup("UserLspDetach", {}),
@@ -60,6 +61,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroups.treesitter,
+	callback = function(event)
+		local language = vim.treesitter.language.get_lang(event.match) or event.match
+
+		if not vim.treesitter.language.add(language) then return end
+
+		vim.wo.foldmethod = "expr"
+		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.treesitter.start(event.buf, language)
+		vim.bo[event.buf].indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
 	end,
 })
 

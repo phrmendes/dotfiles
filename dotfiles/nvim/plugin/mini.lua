@@ -242,7 +242,7 @@ later(function()
 	})
 
 	vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, {
-		desc = "Modifieed files",
+		desc = "Modified files",
 	})
 
 	vim.keymap.set("n", "<leader>V", function() MiniExtra.pickers.visit_paths({ cwd = "" }) end, {

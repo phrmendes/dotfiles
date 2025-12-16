@@ -19,6 +19,9 @@
         show_startup_tips = false;
         simplified_ui = true;
         post_command_discovery_hook = "echo \"$RESURRECT_COMMAND\" | sed 's| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/nix/store/.*/bin/||g'";
+        "compact-bar location=\"zellij:compact-bar\"" = {
+          tooltip = "F1";
+        };
         keybinds =
           let
             zellij-navigator-version = "0.3.0";
@@ -107,6 +110,13 @@
             "tmux clear-defaults=true" = {
               "bind \"Ctrl Space\"" = {
                 "LaunchOrFocusPlugin \"zellij:session-manager\"" = {
+                  floating = true;
+                  move_to_focused_tab = true;
+                };
+                SwitchToMode = "Normal";
+              };
+              "bind \"w\"" = {
+                "LaunchOrFocusPlugin \"zellij:share\"" = {
                   floating = true;
                   move_to_focused_tab = true;
                 };

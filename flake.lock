@@ -431,7 +431,8 @@
         "neovim-nightly": "neovim-nightly",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "vim-zellij-navigator": "vim-zellij-navigator"
       }
     },
     "stylix": {
@@ -575,6 +576,18 @@
         "owner": "tinted-theming",
         "repo": "base16-zed",
         "type": "github"
+      }
+    },
+    "vim-zellij-navigator": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-uOd2rSDM4Ruwr8JrYd8ucQei2PJyAykpIyR09sKvnYg=",
+        "type": "file",
+        "url": "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm"
       }
     }
   },

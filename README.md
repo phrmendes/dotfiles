@@ -18,3 +18,11 @@ wpa_passphrase "{{ ssid }}" > wifi.conf
 sudo wpa_supplicant -i {{ interface }} -c wifi.conf -B
 sudo dhcpcd
 ```
+
+## Troubleshooting
+
+When Tailscale fails to start because of TPM lockout, run this command to clear it:
+
+```sh
+sudo tpm2_dictionarylockout -c -T device:/dev/tpmrm0
+```

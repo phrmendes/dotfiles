@@ -62,6 +62,7 @@
         quarto
         sqlite
         tectonic
+        tpm2-tools
         ungoogled-chromium
         vesktop
         wofi-emoji

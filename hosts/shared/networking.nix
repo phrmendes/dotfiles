@@ -9,11 +9,6 @@
     networkmanager = {
       enable = true;
       dns = "default";
-      insertNameservers = [
-        "100.100.100.100"
-        "1.1.1.1"
-        "9.9.9.9"
-      ];
     };
     extraHosts = ''
       127.0.0.1 kubernetes.default.svc.cluster.local

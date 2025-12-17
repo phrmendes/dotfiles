@@ -80,10 +80,4 @@
     "d /mnt/big 0755 ${parameters.user} users - -"
     "d /mnt/small 0755 ${parameters.user} users - -"
   ];
-
-  home-manager.users.${parameters.user} = {
-    home.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${parameters.home}/.steam/root/compatibilitytools.d";
-    };
-  };
 }

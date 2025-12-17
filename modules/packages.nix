@@ -75,7 +75,6 @@
         clipboard-indicator
         mosaic
         user-themes
-        vitals
       ]);
   };
 }

@@ -18,7 +18,6 @@
           ];
           enabled-extensions = [
             "AlphabeticalAppGrid@stuarthayhurst"
-            "Vitals@CoreCoding.com"
             "appindicatorsupport@rgcjonas.gmail.com"
             "caffeine@patapon.info"
             "clipboard-indicator@tudmotu.com"
@@ -88,18 +87,6 @@
           binding = "<Super>t";
           command = "ghostty";
           name = "Terminal";
-        };
-        "org/gnome/shell/extensions/vitals" = {
-          icon-style = 1;
-          show-gpu = true;
-          show-network = true;
-          show-storage = true;
-          show-voltage = false;
-          use-higher-precision = true;
-          hot-sensors = [
-            "_processor_usage_"
-            "_memory_usage_"
-          ];
         };
         "org/gnome/shell/extensions/caffeine" = {
           enable-mpris = true;

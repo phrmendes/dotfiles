@@ -65,8 +65,6 @@
         tpm2-tools
         ungoogled-chromium
         vesktop
-        wofi-emoji
-        wofi-power-menu
         yq-go
         zotero
       ]

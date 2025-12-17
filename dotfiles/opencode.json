@@ -13,16 +13,17 @@
       "type": "local",
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
       "enabled": true
+    },
+    "playright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
     }
   },
   "provider": {
     "google-vertex-anthropic": {
       "models": {
         "claude-sonnet-4@20250514": {}
-      },
-      "options": {
-        "project": "{env:PROJECT}",
-        "location": "{env:LOCATION}"
       }
     }
   }

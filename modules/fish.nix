@@ -44,14 +44,13 @@
           end
         '';
         functions = {
-          zz = builtins.readFile ../dotfiles/fish/zz.fish;
           diff-persist = builtins.readFile ../dotfiles/fish/diff-persist.fish;
+          oc = builtins.readFile ../dotfiles/fish/oc.fish;
+          zz = builtins.readFile ../dotfiles/fish/zz.fish;
         };
         shellAbbrs = {
           apply = "git add . && nh os switch";
           asr = "atuin scripts run";
-          vremote = "nvim --headless --listen /tmp/nvim-server.pipe &";
-          vattach = "nvim --remote-ui --server /tmp/nvim-server.pipe";
         };
         shellAliases = {
           cat = getExe pkgs.bat;

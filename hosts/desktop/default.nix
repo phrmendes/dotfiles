@@ -45,7 +45,6 @@
   networking.hostName = "desktop";
 
   programs = {
-    droidcam.enable = true;
     gamemode.enable = true;
 
     steam = {

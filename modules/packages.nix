@@ -48,6 +48,7 @@
         networkmanagerapplet
         nix-prefetch-github
         nodejs_latest
+        obs-studio
         onlyoffice-desktopeditors
         opencode
         parallel

@@ -23,50 +23,33 @@
         firefox
         gcolor3
         gdu
-        ghostscript
         gimp3-with-plugins
         gnome-screenshot
         gnome-tweaks
         go
-        hydralauncher
         imagemagick
         inkscape
-        javaPackages.openjfx25
         jdk
         jqp
-        jstest-gtk
         just
-        kind
-        krew
         kubectl
         kubernetes-helm
         libqalculate
-        lutris
-        mangohud
         nautilus
-        neovim-qt
         networkmanagerapplet
         nix-prefetch-github
         nodejs_latest
-        obs-studio
         onlyoffice-desktopeditors
         opencode
-        parallel
         pass
-        pavucontrol
         phockup
-        playerctl
         poppler
-        prismlauncher
-        protonup-qt
         python314
         quarto
-        sqlite
         tectonic
         tpm2-tools
         ungoogled-chromium
         vesktop
-        yq-go
         zotero
       ]
       ++ (with gnomeExtensions; [

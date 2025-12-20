@@ -29,7 +29,6 @@
   };
 
   hardware = {
-    xpadneo.enable = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
     nvidia-container-toolkit.enable = true;
     graphics = {
@@ -54,39 +53,7 @@
 
   networking.hostName = "desktop";
 
-  programs = {
-    gamemode.enable = true;
-
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-  };
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  environment.persistence."/persist".users.${parameters.user}.directories = [
-    ".steam"
-    ".sops"
-  ];
-
-  fileSystems = {
-    "/mnt/small" = {
-      device = "/dev/disk/by-label/small";
-      fsType = "ext4";
-      options = [ "defaults" ];
-    };
-    "/mnt/big" = {
-      device = "/dev/disk/by-label/big";
-      fsType = "ext4";
-      options = [ "defaults" ];
-    };
-  };
-
-  systemd.tmpfiles.rules = [
-    "d /mnt/big 0755 ${parameters.user} users - -"
-    "d /mnt/small 0755 ${parameters.user} users - -"
-  ];
+  environment.persistence."/persist".users.${parameters.user}.directories = [ ".sops" ];
 }

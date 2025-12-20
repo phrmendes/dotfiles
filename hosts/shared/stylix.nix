@@ -16,12 +16,12 @@
         terminal = 13;
       };
       serif = {
-        package = pkgs.fira;
-        name = "Fira Sans";
+        package = pkgs.adwaita-fonts;
+        name = "Adwaita Sans";
       };
       sansSerif = {
-        package = pkgs.fira;
-        name = "Fira Sans";
+        package = pkgs.adwaita-fonts;
+        name = "Adwaita Sans";
       };
       monospace = {
         package = pkgs.nerd-fonts.meslo-lg;

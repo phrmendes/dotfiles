@@ -9,7 +9,10 @@
 
   boot = {
     extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback.out
+      config.boot.kernelPackages.nvidia_x11
+    ];
     kernelModules = [
       "kvm-amd"
       "nvidia"
@@ -37,10 +40,17 @@
       open = true;
       nvidiaSettings = true;
       modesetting.enable = true;
-      powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      powerManagement.enable = false;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
+
+  swapDevices = [
+    {
+      device = "/persist/swapfile";
+      size = 8192;
+    }
+  ];
 
   networking.hostName = "desktop";
 

@@ -26,3 +26,27 @@ When Tailscale fails to start because of TPM lockout, run this command to clear 
 ```sh
 sudo tpm2_dictionarylockout -c -T device:/dev/tpmrm0
 ```
+
+When reinstalling Windows on a dual boot system, the Windows bootloader may overwrite the NixOS bootloader. To fix this, boot into a NixOS live USB and run:
+
+```sh
+sudo cryptsetup luksOpen /dev/sdX2 crypted
+
+sudo mount -t btrfs -o subvolid=5 /dev/mapper/crypted /mnt
+
+sudo mkdir -p /mnt/boot /mnt/nix /mnt/persist /mnt/etc
+
+sudo mount -t btrfs -o subvol=nix /dev/mapper/crypted /mnt/nix
+
+sudo mount -t btrfs -o subvol=persist /dev/mapper/crypted /mnt/persist
+
+sudo mount /dev/sdX1 /mnt/boot
+
+sudo mount --bind /mnt/persist/etc /mnt/etc
+
+sudo nixos-enter
+
+NIXOS_INSTALL_BOOTLOADER=1 /nix/var/nix/profiles/system/bin/switch-to-configuration boot
+```
+
+Where `X` is the disk letter where NixOS is installed.

@@ -23,12 +23,10 @@
         firefox
         gcolor3
         gdu
-        gimp3-with-plugins
         gnome-screenshot
         gnome-tweaks
         go
         imagemagick
-        inkscape
         jdk
         jqp
         just

@@ -1,5 +1,5 @@
-MiniDeps.later(function()
-	MiniDeps.add({ source = "NickvanDyke/opencode.nvim" })
+later(function()
+	vim.pack.add({ "https://github.com/NickvanDyke/opencode.nvim" })
 
 	vim.keymap.set({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, {
 		desc = "Ask",
@@ -9,7 +9,7 @@ MiniDeps.later(function()
 		desc = "Execute action",
 	})
 
-	vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end, {
+	vim.keymap.set({ "n", "t" }, "<c-.>", function() require("opencode").toggle() end, {
 		desc = "Toggle opencode",
 	})
 
@@ -21,13 +21,5 @@ MiniDeps.later(function()
 	vim.keymap.set("n", "goo", function() return require("opencode").operator("@this ") .. "_" end, {
 		expr = true,
 		desc = "Add line to opencode",
-	})
-
-	vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end, {
-		desc = "Half page up (opencode)",
-	})
-
-	vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, {
-		desc = "Half page down (opencode)",
 	})
 end)

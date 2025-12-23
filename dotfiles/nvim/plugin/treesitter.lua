@@ -1,15 +1,17 @@
-MiniDeps.now(function()
-	MiniDeps.add({
-		source = "nvim-treesitter/nvim-treesitter",
-		checkout = "main",
-		depends = { "nvim-treesitter/nvim-treesitter-context", "nvim-treesitter/nvim-treesitter-textobjects" },
-		hooks = { post_checkout = function() vim.cmd("TSUpdate") end },
+now(function()
+	vim.pack.add({
+		{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main", name = "ts" },
+		{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+		"https://github.com/nvim-treesitter/nvim-treesitter-context",
 	})
 
-	MiniDeps.add({
-		source = "nvim-treesitter/nvim-treesitter-textobjects",
-		checkout = "main",
-		depends = { "nvim-treesitter/nvim-treesitter" },
+	vim.g.no_plugin_maps = true
+
+	vim.api.nvim_create_autocmd("PackChanged", {
+		callback = function(ev)
+			local name, kind = ev.data.spec.name, ev.data.kind
+			if name == "ts" and (kind == "install" or kind == "update") then vim.cmd("TSUpdate") end
+		end,
 	})
 
 	require("nvim-treesitter").install({

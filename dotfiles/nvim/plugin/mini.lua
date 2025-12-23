@@ -1,13 +1,4 @@
-local now, later = MiniDeps.now, MiniDeps.later
-
-MiniDeps.add({
-	source = "nvim-mini/mini.nvim",
-	depends = {
-		"folke/snacks.nvim",
-		"nvim-treesitter/nvim-treesitter",
-		"rafamadriz/friendly-snippets",
-	},
-})
+local now, later = now, later
 
 now(function() require("mini.sessions").setup() end)
 now(function() require("mini.statusline").setup() end)
@@ -193,6 +184,8 @@ later(function()
 end)
 
 later(function()
+	vim.pack.add({ "https://github.com/rafamadriz/friendly-snippets" })
+
 	require("mini.completion").setup({
 		window = {
 			info = { height = 25, width = 80, border = vim.g.border },

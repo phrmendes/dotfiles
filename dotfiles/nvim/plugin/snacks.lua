@@ -1,5 +1,5 @@
-MiniDeps.now(function()
-	MiniDeps.add({ source = "folke/snacks.nvim", depends = { "nvim-mini/mini.nvim" } })
+now(function()
+	vim.pack.add({ "https://github.com/folke/snacks.nvim" })
 
 	require("snacks").setup({
 		input = { enabled = true },
@@ -11,9 +11,9 @@ MiniDeps.now(function()
 		statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
 		image = { enabled = true },
 	})
-end)
 
-vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
-vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
-vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
-vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
+	vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Blame line" })
+	vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
+	vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
+	vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
+end)

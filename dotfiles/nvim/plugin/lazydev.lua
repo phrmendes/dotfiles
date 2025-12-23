@@ -1,5 +1,5 @@
-MiniDeps.now(function()
-	MiniDeps.add({ source = "folke/lazydev.nvim" })
+now(function()
+	vim.pack.add({ "https://github.com/folke/lazydev.nvim" })
 
 	require("lazydev").setup({
 		library = {

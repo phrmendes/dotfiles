@@ -1,1 +1,1 @@
-MiniDeps.later(function() MiniDeps.add({ source = "qvalentin/helm-ls.nvim" }) end)
+later(function() vim.pack.add({ "https://github.com/qvalentin/helm-ls.nvim" }) end)

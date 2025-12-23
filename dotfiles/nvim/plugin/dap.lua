@@ -111,11 +111,14 @@ local adapters = {
 	},
 }
 
-MiniDeps.later(function()
-	MiniDeps.add({ source = "igorlfs/nvim-dap-view", depends = { "mfussenegger/nvim-dap" } })
-	MiniDeps.add({ source = "leoluz/nvim-dap-go", depends = { "mfussenegger/nvim-dap" } })
-	MiniDeps.add({ source = "mfussenegger/nvim-dap-python", depends = { "mfussenegger/nvim-dap" } })
-	MiniDeps.add({ source = "jbyuki/one-small-step-for-vimkind", depends = { "mfussenegger/nvim-dap" } })
+later(function()
+	vim.pack.add({
+		"https://github.com/mfussenegger/nvim-dap",
+		"https://github.com/igorlfs/nvim-dap-view",
+		"https://github.com/leoluz/nvim-dap-go",
+		"https://github.com/mfussenegger/nvim-dap-python",
+		"https://github.com/jbyuki/one-small-step-for-vimkind",
+	})
 
 	local dap = require("dap")
 	local dap_view = require("dap-view")

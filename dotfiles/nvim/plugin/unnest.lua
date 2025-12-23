@@ -1,1 +1,1 @@
-MiniDeps.now(function() MiniDeps.add({ source = "brianhuster/unnest.nvim" }) end)
+now(function() vim.pack.add({ "https://github.com/brianhuster/unnest.nvim" }) end)

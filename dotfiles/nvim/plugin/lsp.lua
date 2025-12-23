@@ -1,4 +1,11 @@
-MiniDeps.now(function() MiniDeps.add({ source = "neovim/nvim-lspconfig", depends = { "b0o/SchemaStore.nvim" } }) end)
+now(
+	function()
+		vim.pack.add({
+			"https://github.com/neovim/nvim-lspconfig",
+			"https://github.com/b0o/SchemaStore.nvim",
+		})
+	end
+)
 
 vim.lsp.enable({
 	"astro",

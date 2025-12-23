@@ -1,4 +1,4 @@
-MiniDeps.now(
+now(
 	function()
 		require("notes").setup({
 			path = vim.fs.joinpath(vim.env.HOME, "Documents", "notes"),

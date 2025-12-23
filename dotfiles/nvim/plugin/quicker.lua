@@ -1,5 +1,5 @@
-MiniDeps.later(function()
-	MiniDeps.add({ source = "stevearc/quicker.nvim" })
+later(function()
+	vim.pack.add({ "https://github.com/stevearc/quicker.nvim" })
 
 	require("quicker").setup({
 		keys = {

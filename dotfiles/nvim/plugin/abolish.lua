@@ -1,1 +1,1 @@
-MiniDeps.later(function() MiniDeps.add({ source = "tpope/vim-abolish" }) end)
+later(function() vim.pack.add({ "https://github.com/tpope/vim-abolish" }) end)

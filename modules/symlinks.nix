@@ -9,7 +9,6 @@
   config = lib.mkIf config.symlinks.enable {
     home.file = {
       ".face.icon".source = ../dotfiles/face.png;
-      ".config/opencode/opencode.json".source = ../dotfiles/opencode.json;
     };
   };
 }

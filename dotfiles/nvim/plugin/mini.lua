@@ -175,9 +175,11 @@ later(function()
 			{ mode = "n", keys = "<leader>g", desc = "+git" },
 			{ mode = "n", keys = "<leader>k", desc = "+kulala" },
 			{ mode = "n", keys = "<leader>n", desc = "+notes" },
+			{ mode = "n", keys = "<leader>o", desc = "+opencode" },
 			{ mode = "n", keys = "<leader>t", desc = "+todotxt" },
 			{ mode = "n", keys = "<leader>y", desc = "+yank" },
 			{ mode = "x", keys = "<leader>g", desc = "+git" },
+			{ mode = "x", keys = "<leader>o", desc = "+opencode" },
 			{ mode = "x", keys = "<leader>y", desc = "+yank" },
 		},
 		window = {

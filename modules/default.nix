@@ -23,6 +23,7 @@
     ./lazygit.nix
     ./mpv.nix
     ./neovim.nix
+    ./opencode.nix
     ./packages.nix
     ./ripgrep.nix
     ./symlinks.nix

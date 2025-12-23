@@ -8,6 +8,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stylix.url = "github:danth/stylix";
+
     vim-zellij-navigator = {
       url = "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm";
       flake = false;

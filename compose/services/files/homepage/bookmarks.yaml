@@ -21,17 +21,25 @@
           icon: sh-nixos
     - Home Manager Options:
         - abbr: HMO
-          href: https://home-manager-options.extranix.com/
+          href: https://home-manager-options.extranix.com
           icon: sh-nixos
     - Tailscale:
         - abbr: TS
-          href: https://login.tailscale.com/
+          href: https://login.tailscale.com
           icon: sh-tailscale-light
-    - Mail:
+    - Proton Mail:
         - abbr: PM
           href: https://mail.proton.me
           icon: sh-proton-mail
-    - Calendar:
+    - Proton Calendar:
         - abbr: PC
           href: https://calendar.proton.me
           icon: sh-proton-calendar
+    - Fastmail:
+        - abbr: FM
+          href: https://app.fastmail.com
+          icon: sh-fastmail
+    - NextDNS:
+        - abbr: NDNS
+          href: https://my.nextdns.io
+          icon: sh-nextdns

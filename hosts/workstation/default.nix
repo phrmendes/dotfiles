@@ -132,6 +132,7 @@
     lazygit.enable = true;
     mpv.enable = true;
     neovim.enable = true;
+    opencode.enable = true;
     packages.enable = true;
     ripgrep.enable = true;
     symlinks.enable = true;

@@ -128,7 +128,7 @@ return function(client, bufnr)
 	end
 
 	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
-		vim.keymap.set("i", "<c-;>", vim.lsp.inline_completion.get, {
+		vim.keymap.set("i", "<c-l>", vim.lsp.inline_completion.get, {
 			desc = "LSP: accept inline completion",
 			buffer = bufnr,
 		})

@@ -34,11 +34,9 @@
         kubernetes-helm
         libqalculate
         nautilus
-        networkmanagerapplet
         nix-prefetch-github
         nodejs_latest
         onlyoffice-desktopeditors
-        opencode
         pass
         phockup
         poppler

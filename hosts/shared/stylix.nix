@@ -6,8 +6,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
     polarity = "dark";
     cursor = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      name = "Cosmic";
+      package = pkgs.cosmic-icons;
       size = 26;
     };
     fonts = {
@@ -16,12 +16,12 @@
         terminal = 13;
       };
       serif = {
-        package = pkgs.adwaita-fonts;
-        name = "Adwaita Sans";
+        package = pkgs.fira;
+        name = "Fira Sans";
       };
       sansSerif = {
-        package = pkgs.adwaita-fonts;
-        name = "Adwaita Sans";
+        package = pkgs.fira;
+        name = "Fira Sans";
       };
       monospace = {
         package = pkgs.nerd-fonts.meslo-lg;

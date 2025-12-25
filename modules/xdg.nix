@@ -2,9 +2,8 @@
   xdg = {
     enable = true;
     mime.enable = true;
-    portal.config = {
-      common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
-    };
+    portal.config.common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+    configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
       defaultApplications = {

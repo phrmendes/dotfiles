@@ -4,11 +4,12 @@
     ./atuin.nix
     ./bat.nix
     ./btop.nix
-    ./dconf.nix
+    ./copyq.nix
     ./direnv.nix
     ./eza.nix
     ./fd.nix
     ./fish.nix
+    ./flameshot.nix
     ./fzf.nix
     ./gh.nix
     ./ghostty.nix

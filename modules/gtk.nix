@@ -11,8 +11,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
+        name = "Cosmic";
+        package = pkgs.cosmic-icons;
       };
     };
   };

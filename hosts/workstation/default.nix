@@ -28,16 +28,9 @@
   };
 
   services = {
-    flatpak.enable = true;
     syncthing.enable = true;
-
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-
-    gnome = {
-      core-apps.enable = false;
-      core-developer-tools.enable = false;
-    };
+    desktopManager.cosmic.enable = true;
+    displayManager.cosmic-greeter.enable = true;
 
     tailscale = {
       useRoutingFeatures = "client";
@@ -58,7 +51,6 @@
   security.pam.services = {
     login = {
       gnupg.enable = true;
-      enableGnomeKeyring = true;
     };
   };
 
@@ -81,43 +73,54 @@
 
   stylix.enable = true;
 
-  environment.persistence."/persist".users.${parameters.user}.directories = [
-    ".cache/clipboard-indicator@tudmotu.com"
-    ".cache/helm"
-    ".cache/keepassxc"
-    ".cache/neovim"
-    ".cache/tealdeer"
-    ".cache/uv"
-    ".cache/zelli"
-    ".config"
-    ".docker"
-    ".gnupg"
-    ".kube"
-    ".local/bin"
-    ".local/share"
-    ".local/state"
-    ".mozilla"
-    ".password-store"
-    ".pki"
-    ".ssh"
-    ".zotero"
-    "Documents"
-    "Downloads"
-    "Pictures"
-    "Projects"
-    "Videos"
-    "Zotero"
-  ];
+  environment = {
+    cosmic.excludePackages = with pkgs; [
+      cosmic-edit
+      cosmic-player
+      cosmic-reader
+      cosmic-screenshot
+      cosmic-store
+      cosmic-term
+    ];
+    persistence."/persist".users.${parameters.user}.directories = [
+      ".cache/clipboard-indicator@tudmotu.com"
+      ".cache/helm"
+      ".cache/keepassxc"
+      ".cache/neovim"
+      ".cache/tealdeer"
+      ".cache/uv"
+      ".cache/zelli"
+      ".config"
+      ".docker"
+      ".gnupg"
+      ".kube"
+      ".local/bin"
+      ".local/share"
+      ".local/state"
+      ".mozilla"
+      ".password-store"
+      ".pki"
+      ".ssh"
+      ".zotero"
+      "Documents"
+      "Downloads"
+      "Pictures"
+      "Projects"
+      "Videos"
+      "Zotero"
+    ];
+  };
 
   home-manager.users.${parameters.user} = {
     atuin.enable = true;
     bat.enable = true;
     btop.enable = true;
-    dconf-settings.enable = true;
+    copyq.enable = true;
     direnv.enable = true;
     eza.enable = true;
     fd.enable = true;
     fish.enable = true;
+    flameshot.enable = true;
     fzf.enable = true;
     gh.enable = true;
     ghostty.enable = true;

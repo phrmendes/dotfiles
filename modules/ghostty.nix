@@ -12,10 +12,12 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
       clearDefaultKeybinds = true;
+      systemd.enable = true;
       settings = {
         window-padding-x = 5;
         window-padding-y = 5;
         window-decoration = false;
+        quit-after-last-window-closed = false;
         keybind = [
           "ctrl+shift+minus=new_split:down"
           "ctrl+shift+\\=new_split:right"

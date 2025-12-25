@@ -66,7 +66,7 @@ now(function()
 		"vim",
 		"vimdoc",
 		"yaml",
-		"fish",
+		"zsh",
 	})
 
 	require("nvim-treesitter-textobjects").setup({ move = { set_jumps = true } })

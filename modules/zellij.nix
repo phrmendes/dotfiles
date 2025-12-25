@@ -10,10 +10,10 @@
   config = lib.mkIf config.zellij.enable {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = false;
+      enableZshIntegration = false;
       settings = {
         default_layout = "compact";
-        default_shell = "fish";
+        default_shell = "zsh";
         on_force_close = "detach";
         session_name = "default";
         mirror_session = false;

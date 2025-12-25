@@ -82,7 +82,7 @@ vim.keymap.set("n", "<leader><tab>e", "<cmd>tabedit %<cr>")
 
 vim.keymap.set("n", "<leader>t", function()
 	vim.ui.input({ prompt = "Name: " }, function(name)
-		if name then vim.cmd("terminal fish \\# " .. name) end
+		if name then vim.cmd("terminal zsh \\# " .. name) end
 	end)
 end)
 

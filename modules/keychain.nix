@@ -9,7 +9,7 @@
   config = lib.mkIf config.keychain.enable {
     programs.keychain = {
       enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
       keys = [ "id_ed25519" ];
     };
   };

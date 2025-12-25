@@ -10,7 +10,7 @@
     programs.atuin = {
       enable = true;
       daemon.enable = true;
-      enableFishIntegration = true;
+      enableZshIntegration = true;
       flags = [ "--disable-up-arrow" ];
       settings = {
         auto_sync = true;

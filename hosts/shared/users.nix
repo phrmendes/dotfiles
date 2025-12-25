@@ -9,7 +9,7 @@
     users = {
       ${parameters.user} = {
         inherit (parameters) home;
-        shell = pkgs.fish;
+        shell = pkgs.zsh;
         initialPassword = "password";
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../../dotfiles/ssh-keys/main.txt)

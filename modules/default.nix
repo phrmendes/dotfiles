@@ -8,7 +8,6 @@
     ./direnv.nix
     ./eza.nix
     ./fd.nix
-    ./fish.nix
     ./flameshot.nix
     ./fzf.nix
     ./gh.nix
@@ -27,6 +26,7 @@
     ./opencode.nix
     ./packages.nix
     ./ripgrep.nix
+    ./starship.nix
     ./symlinks.nix
     ./syncthingtray.nix
     ./targets.nix
@@ -36,6 +36,7 @@
     ./zathura.nix
     ./zellij.nix
     ./zoxide.nix
+    ./zsh.nix
   ];
 
   qt.platformTheme.name = lib.mkForce "adwaita";

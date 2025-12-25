@@ -119,7 +119,6 @@
     direnv.enable = true;
     eza.enable = true;
     fd.enable = true;
-    fish.enable = true;
     flameshot.enable = true;
     fzf.enable = true;
     gh.enable = true;
@@ -138,6 +137,7 @@
     opencode.enable = true;
     packages.enable = true;
     ripgrep.enable = true;
+    starship.enable = true;
     symlinks.enable = true;
     syncthingtray.enable = true;
     targets.enable = true;
@@ -146,5 +146,6 @@
     zathura.enable = true;
     zellij.enable = true;
     zoxide.enable = true;
+    zsh.enable = true;
   };
 }

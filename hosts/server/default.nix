@@ -91,7 +91,7 @@
     bat.enable = true;
     btop.enable = true;
     fd.enable = true;
-    fish.enable = true;
+    zsh.enable = true;
     fzf.enable = true;
     git.enable = true;
     jq.enable = true;

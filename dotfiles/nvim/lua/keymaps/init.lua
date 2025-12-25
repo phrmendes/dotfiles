@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>silent w!<cr>", { noremap = true, desc = 
 
 vim.keymap.set("n", "<leader>T", function()
 	vim.ui.input({ prompt = "Name: " }, function(name)
-		if name then vim.cmd("terminal fish \\# " .. name) end
+		if name then vim.cmd("terminal zsh \\# " .. name) end
 	end)
 end, { noremap = true, desc = "Open new terminal" })
 
@@ -58,24 +58,3 @@ vim.keymap.set("n", "<leader><tab>g", "<cmd>tabfirst<cr>", { noremap = true, des
 vim.keymap.set("n", "<leader><tab>k", "<cmd>tabonly<cr>", { noremap = true, desc = "Keep" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { noremap = true, desc = "New" })
 vim.keymap.set("n", "<leader><tab>e", "<cmd>tabedit %<cr>", { noremap = true, desc = "Edit" })
-
--- file reference copy keys
-vim.keymap.set({ "n", "v" }, "<leader>yf", function() require("helpers").copy_file_reference(true) end, {
-	noremap = true,
-	desc = "File path with lines",
-})
-
-vim.keymap.set({ "n", "v" }, "<leader>yF", function() require("helpers").copy_file_reference(true, true) end, {
-	noremap = true,
-	desc = "File path with lines (absolute)",
-})
-
-vim.keymap.set("n", "<leader>yp", function() require("helpers").copy_file_reference(false) end, {
-	noremap = true,
-	desc = "File path",
-})
-
-vim.keymap.set("n", "<leader>yP", function() require("helpers").copy_file_reference(false, true) end, {
-	noremap = true,
-	desc = "File path (absolute)",
-})

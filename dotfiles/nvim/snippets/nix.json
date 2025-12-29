@@ -1,11 +1,7 @@
 {
   "Home-manager service module": {
     "body": [
-      "{",
-      "\tlib,",
-      "\tconfig,",
-      "\t...",
-      "}: {",
+      "{ lib, config, ... }: {",
       "\toptions.${1:service}.enable = lib.mkEnableOption \"enable ${1}\";",
       "",
       "\tconfig = lib.mkIf config.${1}.enable {",

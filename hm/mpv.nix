@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.mpv.enable = lib.mkEnableOption "enable mpv";
 

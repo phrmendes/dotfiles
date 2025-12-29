@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.lazydocker.enable = lib.mkEnableOption "enable lazydocker";
 

@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.flameshot.enable = lib.mkEnableOption "enable flameshot";
 

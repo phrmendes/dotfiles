@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.k9s.enable = lib.mkEnableOption "enable k9s";
 

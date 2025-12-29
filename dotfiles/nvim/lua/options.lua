@@ -143,6 +143,9 @@ vim.diagnostic.config({
 vim.opt.pumheight = 10
 vim.opt.pumborder = vim.g.border
 
+-- incremental command preview
+vim.opt.inccommand = "split"
+
 -- disable plugin keymaps
 vim.g.no_plugin_maps = true
 

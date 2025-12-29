@@ -9,11 +9,6 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stylix.url = "github:danth/stylix";
 
-    vim-zellij-navigator = {
-      url = "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm";
-      flake = false;
-    };
-
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +38,18 @@
             parameters = global // {
               device = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
               laptop = false;
+              monitors = {
+                primary = {
+                  name = "HDMI-A-1";
+                  resolution = "2560x1080";
+                  position = "0x0";
+                };
+                secondary = {
+                  name = "DP-2";
+                  resolution = "1920x1080";
+                  position = "2560x0";
+                };
+              };
             };
           in
           nixpkgs.lib.nixosSystem {
@@ -58,6 +65,13 @@
             parameters = global // {
               device = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
               laptop = true;
+              monitors = {
+                primary = {
+                  name = "eDP-1";
+                  resolution = "1920x1080";
+                  position = "0x0";
+                };
+              };
             };
           in
           nixpkgs.lib.nixosSystem {

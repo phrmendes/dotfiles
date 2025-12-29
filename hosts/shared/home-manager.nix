@@ -10,7 +10,7 @@
     backupFileExtension = "bak";
     extraSpecialArgs = { inherit inputs parameters; };
     users.${parameters.user} = {
-      imports = [ ../../modules ];
+      imports = [ ../../hm ];
     };
   };
 }

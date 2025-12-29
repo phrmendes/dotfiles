@@ -9,8 +9,6 @@
 
   config = lib.mkIf config.packages.enable {
     home.packages = with pkgs; [
-      cosmic-ext-applet-caffeine
-      cosmic-ext-applet-external-monitor-brightness
       curl
       deluge-gtk
       drawing
@@ -32,10 +30,12 @@
       kubectl
       kubernetes-helm
       libqalculate
+      networkmanagerapplet
       nix-prefetch-github
       nodejs_latest
       onlyoffice-desktopeditors
       pass
+      pasystray
       phockup
       poppler
       python314

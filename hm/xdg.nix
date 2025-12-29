@@ -10,10 +10,10 @@
         "audio/*" = "mpv.desktop";
         "image/*" = "imv.desktop";
         "video/*" = "mpv.desktop";
-        "text/*" = "nvim-qt.desktop";
+        "text/*" = "nvim.desktop";
         "text/plain" = "nvim-qt.desktop";
-        "x-scheme-handler/terminal" = "com.mitchellh.ghostty.desktop";
-        "application/x-terminal-emulator" = "com.mitchellh.ghostty.desktop";
+        "x-scheme-handler/terminal" = "kitty.desktop";
+        "application/x-terminal-emulator" = "kitty.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";
         "text/html" = "firefox.desktop";
         "x-scheme-handler/http" = "firefox.desktop";

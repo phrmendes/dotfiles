@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.copyq.enable = lib.mkEnableOption "enable copyq";
 

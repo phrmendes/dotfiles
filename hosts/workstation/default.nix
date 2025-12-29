@@ -22,15 +22,15 @@
 
   programs = {
     dconf.enable = true;
+    hyprland.enable = true;
     virt-manager.enable = true;
 
     nh.flake = "/home/${parameters.user}/Projects/dotfiles";
   };
 
   services = {
+    blueman.enable = true;
     syncthing.enable = true;
-    desktopManager.cosmic.enable = true;
-    displayManager.cosmic-greeter.enable = true;
 
     tailscale = {
       useRoutingFeatures = "client";
@@ -40,17 +40,31 @@
 
     pipewire = {
       enable = true;
-      jack.enable = true;
+      pulse.enable = true;
       alsa = {
         enable = true;
         support32Bit = true;
       };
     };
+
+    greetd = {
+      enable = true;
+      settings = rec {
+        terminal.vt = 1;
+        initial_session = default_session;
+        default_session = {
+          command = "${pkgs.bash}/bin/bash -c 'sleep 5 && ${pkgs.hyprland}/bin/Hyprland'";
+          user = parameters.user;
+        };
+      };
+    };
   };
 
   security.pam.services = {
+    hyprlock.gnupg.enable = true;
     login = {
       gnupg.enable = true;
+      enableGnomeKeyring = true;
     };
   };
 
@@ -74,29 +88,17 @@
   stylix.enable = true;
 
   environment = {
-    cosmic.excludePackages = with pkgs; [
-      cosmic-edit
-      cosmic-player
-      cosmic-reader
-      cosmic-screenshot
-      cosmic-store
-      cosmic-term
-    ];
     persistence."/persist".users.${parameters.user}.directories = [
-      ".cache/clipboard-indicator@tudmotu.com"
       ".cache/helm"
       ".cache/keepassxc"
       ".cache/neovim"
       ".cache/tealdeer"
       ".cache/uv"
-      ".cache/zelli"
       ".config"
       ".docker"
       ".gnupg"
       ".kube"
-      ".local/bin"
-      ".local/share"
-      ".local/state"
+      ".local"
       ".mozilla"
       ".password-store"
       ".pki"
@@ -114,37 +116,49 @@
   home-manager.users.${parameters.user} = {
     atuin.enable = true;
     bat.enable = true;
+    blueman-applet.enable = true;
     btop.enable = true;
     copyq.enable = true;
     direnv.enable = true;
+    dunst.enable = true;
     eza.enable = true;
     fd.enable = true;
     flameshot.enable = true;
     fzf.enable = true;
     gh.enable = true;
-    ghostty.enable = true;
     git.enable = true;
     gtk-settings.enable = true;
+    hypridle.enable = true;
+    hyprland.enable = true;
+    hyprlock.enable = true;
+    hyprpaper.enable = true;
     imv.enable = true;
     jq.enable = true;
     k9s.enable = true;
     keepassxc.enable = true;
     keychain.enable = true;
+    kitty.enable = true;
     lazydocker.enable = true;
     lazygit.enable = true;
     mpv.enable = true;
     neovim.enable = true;
+    nm-applet.enable = true;
     opencode.enable = true;
     packages.enable = true;
+    pasystray.enable = true;
     ripgrep.enable = true;
     starship.enable = true;
+    swayosd.enable = true;
     symlinks.enable = true;
     syncthingtray.enable = true;
     targets.enable = true;
     tealdeer.enable = true;
+    udiskie.enable = true;
+    waybar.enable = true;
+    wofi.enable = true;
+    xdg.enable = true;
     yazi.enable = true;
     zathura.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
     zsh.enable = true;
   };

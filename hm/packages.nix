@@ -35,7 +35,7 @@
       nodejs_latest
       onlyoffice-desktopeditors
       pass
-      pasystray
+      stable.pasystray
       phockup
       poppler
       python314

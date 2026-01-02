@@ -54,7 +54,7 @@
   qt.platformTheme.name = lib.mkForce "adwaita";
 
   home = {
-    stateVersion = "25.11";
+    stateVersion = "26.05";
     username = parameters.user;
     homeDirectory = parameters.home;
     sessionVariables = {

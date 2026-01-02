@@ -1,5 +1,5 @@
 {
-  description = "My personal nixOS/nix-darwin configuration";
+  description = "My personal NixOS configuration";
 
   inputs = {
     agenix.url = "github:ryantm/agenix";
@@ -55,9 +55,7 @@
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs parameters; };
-            modules = [
-              ./hosts/desktop
-            ];
+            modules = [ ./hosts/desktop ];
           };
 
         laptop =
@@ -77,9 +75,7 @@
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs parameters; };
-            modules = [
-              ./hosts/laptop
-            ];
+            modules = [ ./hosts/laptop ];
           };
 
         server =

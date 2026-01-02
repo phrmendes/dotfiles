@@ -53,7 +53,7 @@
           shellcheck
           shellharden
           simple-completion-language-server
-          stable.docker-language-server
+          docker-language-server
           stylua
           tailwindcss-language-server
           taplo

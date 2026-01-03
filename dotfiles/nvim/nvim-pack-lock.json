@@ -109,6 +109,10 @@
       "rev": "fe7cfe9800a182274d0f868a74b7263b8c0c020b",
       "src": "https://github.com/folke/snacks.nvim"
     },
+    "tf.nvim": {
+      "rev": "ab88157901d5978564acb219d4c7585c6e41c41e",
+      "src": "https://github.com/Allaman/tf.nvim"
+    },
     "ts": {
       "rev": "737088f8571293f6a1ef8cd6c858d5daf9a38162",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",

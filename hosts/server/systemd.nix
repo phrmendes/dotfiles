@@ -1,7 +1,7 @@
 {
-  pkgs,
-  parameters,
   config,
+  parameters,
+  pkgs,
   ...
 }:
 {
@@ -22,10 +22,17 @@
           Unit = "nixos-rebuild-switch.service";
         };
       };
-      docker-compose = {
+      docker-compose-config = {
         wantedBy = [ "multi-user.target" ];
         pathConfig = {
           PathChanged = "${parameters.home}/dotfiles/compose";
+          Unit = "docker-compose.service";
+        };
+      };
+      docker-compose-env = {
+        wantedBy = [ "multi-user.target" ];
+        pathConfig = {
+          PathChanged = config.age.secrets."docker-compose.env".path;
           Unit = "docker-compose.service";
         };
       };
@@ -51,8 +58,7 @@
           Group = "users";
           StandardOutput = "journal";
           StandardError = "journal";
-          ExecStart = "${pkgs.sudo}/bin/sudo ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ${parameters.home}/dotfiles#${config.networking.hostName}";
-          ExecStartPost = "-${pkgs.sudo}/bin/sudo ${pkgs.systemd}/bin/systemctl reload docker-compose.service";
+          ExecStart = "/run/wrappers/bin/sudo ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ${parameters.home}/dotfiles#${config.networking.hostName}";
         };
       };
       docker-compose =
@@ -63,7 +69,6 @@
         {
           description = "Docker Compose services";
           after = [ "docker.service" ];
-          wants = [ "network-online.target" ];
           wantedBy = [ "multi-user.target" ];
           serviceConfig = {
             Type = "oneshot";
@@ -71,9 +76,9 @@
             User = parameters.user;
             Group = "users";
             WorkingDirectory = "${parameters.home}/dotfiles/compose";
-            ExecStart = "${pkgs.sudo}/bin/sudo ${compose} up --detach --remove-orphans --force-recreate --pull always";
-            ExecStop = "${pkgs.sudo}/bin/sudo ${compose} down";
-            ExecReload = "${pkgs.sudo}/bin/sudo ${compose} down; ${pkgs.sudo}/bin/sudo ${compose} up --detach --remove-orphans --force-recreate --pull always";
+            ExecStart = "${compose} up --detach --remove-orphans --force-recreate --pull always";
+            ExecStop = "${compose} down";
+            ExecReload = "${compose} down; ${compose} up --detach --remove-orphans --force-recreate --pull always";
             TimeoutStartSec = 0;
             TimeoutStopSec = 300;
             StandardOutput = "journal";
@@ -84,10 +89,12 @@
         description = "Git pull dotfiles repository";
         serviceConfig = {
           Type = "oneshot";
+          RemainAfterExit = true;
           User = parameters.user;
           Group = "users";
           WorkingDirectory = "${parameters.home}/dotfiles";
-          ExecStart = "${pkgs.git}/bin/git pull --ff-only";
+          ExecStartPre = "${pkgs.git}/bin/git fetch --quiet";
+          ExecStart = "${pkgs.git}/bin/git pull --ff-only --quiet";
           StandardOutput = "journal";
           StandardError = "journal";
         };

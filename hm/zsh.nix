@@ -53,7 +53,7 @@
 
           set -o vi
 
-          source "$HOME/.config/zsh/functions.sh"
+          [[ -f "$HOME/.config/zsh/functions.sh" ]] && source "$HOME/.config/zsh/functions.sh"
         '';
       };
   };

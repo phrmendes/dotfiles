@@ -18,7 +18,6 @@ vim.lsp.enable({
 	"elixirls",
 	"emmet_language_server",
 	"eslint",
-	"gopls",
 	"helm_ls",
 	"html",
 	"jsonls",

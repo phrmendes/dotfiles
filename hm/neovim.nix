@@ -35,10 +35,6 @@
           djlint
           dot-language-server
           emmet-language-server
-          gofumpt
-          golangci-lint
-          golines
-          gopls
           helm-ls
           kulala-fmt
           libxml2
@@ -48,7 +44,6 @@
           marksman
           nixd
           nixfmt-rfc-style
-          prettier-plugin-go-template
           ruff
           shellcheck
           shellharden

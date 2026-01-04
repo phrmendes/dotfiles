@@ -5,7 +5,6 @@ later(function()
 		htmldjango = { "djlint" },
 		jinja2 = { "djlint" },
 		terraform = { "tflint" },
-		go = { "golangcilint" },
 	}
 
 	vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {

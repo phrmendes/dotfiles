@@ -21,7 +21,6 @@
       firefox
       gcolor3
       gdu
-      go
       grim
       imagemagick
       jdk

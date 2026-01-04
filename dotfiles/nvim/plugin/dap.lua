@@ -115,7 +115,6 @@ later(function()
 	vim.pack.add({
 		"https://github.com/mfussenegger/nvim-dap",
 		"https://github.com/igorlfs/nvim-dap-view",
-		"https://github.com/leoluz/nvim-dap-go",
 		"https://github.com/mfussenegger/nvim-dap-python",
 		"https://github.com/jbyuki/one-small-step-for-vimkind",
 	})
@@ -128,7 +127,6 @@ later(function()
 	dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
 	dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
 
-	require("dap-go").setup()
 	require("dap-python").setup(vim.fn.exepath("nvim-python3"))
 
 	vim.iter(pairs(icons)):each(function(type, icon)

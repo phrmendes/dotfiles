@@ -31,8 +31,6 @@ now(function()
 		"gitattributes",
 		"gitcommit",
 		"gitignore",
-		"go",
-		"gotmpl",
 		"hcl",
 		"heex",
 		"helm",

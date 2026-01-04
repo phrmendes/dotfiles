@@ -53,7 +53,7 @@
         terminal.vt = 1;
         initial_session = default_session;
         default_session = {
-          command = "${pkgs.bash}/bin/bash -c 'sleep 5 && ${pkgs.hyprland}/bin/Hyprland'";
+          command = "${pkgs.bash}/bin/bash -c 'sleep 5 && ${pkgs.hyprland}/bin/start-hyprland'";
           user = parameters.user;
         };
       };

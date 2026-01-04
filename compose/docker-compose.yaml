@@ -20,7 +20,6 @@ include:
   - ./services/prunemate.yaml
   - ./services/radarr.yaml
   - ./services/sabnzbd.yaml
-  - ./services/searxng.yaml
   - ./services/sftpgo.yaml
   - ./services/socket-proxy.yaml
   - ./services/sonarr.yaml

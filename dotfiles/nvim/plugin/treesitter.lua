@@ -26,6 +26,7 @@ now(function()
 		"dockerfile",
 		"dot",
 		"eex",
+		"elixir",
 		"git_config",
 		"git_rebase",
 		"gitattributes",

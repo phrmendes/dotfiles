@@ -11,8 +11,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Cosmic";
-        package = pkgs.cosmic-icons;
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
       };
     };
   };

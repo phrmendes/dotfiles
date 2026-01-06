@@ -39,6 +39,7 @@
     ./swayosd.nix
     ./symlinks.nix
     ./syncthingtray.nix
+    ./systemd.nix
     ./targets.nix
     ./tealdeer.nix
     ./udiskie.nix

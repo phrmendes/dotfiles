@@ -92,6 +92,7 @@
       ".cache/helm"
       ".cache/keepassxc"
       ".cache/neovim"
+      ".cache/nix-index"
       ".cache/tealdeer"
       ".cache/uv"
       ".config"

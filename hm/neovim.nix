@@ -28,11 +28,11 @@
         with pkgs;
         [
           astro-language-server
-          basedpyright
           bash-language-server
           copilot-language-server
           delve
           djlint
+          docker-language-server
           dot-language-server
           emmet-language-server
           helm-ls
@@ -43,18 +43,18 @@
           lynx
           marksman
           nixd
-          nixfmt-rfc-style
+          nixfmt
           ruff
           shellcheck
           shellharden
           simple-completion-language-server
-          docker-language-server
           stylua
           tailwindcss-language-server
           taplo
           terraform-ls
           tflint
           tree-sitter
+          ty
           typescript-language-server
           vscode-js-debug
           vscode-langservers-extracted

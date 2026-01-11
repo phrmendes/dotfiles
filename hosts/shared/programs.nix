@@ -4,7 +4,6 @@
     fuse.userAllowOther = true;
     command-not-found.enable = false;
     zsh.enable = true;
-    adb.enable = true;
     nix-index.enable = true;
 
     nix-ld = {

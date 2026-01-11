@@ -52,8 +52,6 @@
           export PATH="$HOME/.local/bin:$PATH"
 
           set -o vi
-
-          [[ -f "$HOME/.config/zsh/functions.sh" ]] && source "$HOME/.config/zsh/functions.sh"
         '';
       };
   };

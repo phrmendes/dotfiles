@@ -1,6 +1,14 @@
 later(function()
 	vim.pack.add({ "https://github.com/NickvanDyke/opencode.nvim" })
 
+	vim.g.opencode_opts = {
+		provider = {
+			cmd = vim.fn.exepath("oc"),
+			enabled = "kitty",
+			kitty = { location = "tab" },
+		},
+	}
+
 	vim.keymap.set({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, {
 		desc = "Ask",
 	})

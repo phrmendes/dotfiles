@@ -9,7 +9,6 @@ now(
 
 vim.lsp.enable({
 	"astro",
-	"basedpyright",
 	"bashls",
 	"copilot",
 	"cssls",
@@ -31,5 +30,6 @@ vim.lsp.enable({
 	"taplo",
 	"terraformls",
 	"ts_ls",
+	"ty",
 	"yamlls",
 })

@@ -34,11 +34,12 @@
       nodejs_latest
       onlyoffice-desktopeditors
       pass
-      stable.pasystray
+      pavucontrol
       phockup
       poppler
       python314
       quarto
+      stable.pasystray
       tectonic
       tpm2-tools
       ungoogled-chromium

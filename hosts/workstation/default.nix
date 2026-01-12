@@ -119,7 +119,6 @@
     bat.enable = true;
     blueman-applet.enable = true;
     btop.enable = true;
-    copyq.enable = true;
     direnv.enable = true;
     dunst.enable = true;
     eza.enable = true;
@@ -156,8 +155,8 @@
     targets.enable = true;
     tealdeer.enable = true;
     udiskie.enable = true;
+    vicinae.enable = true;
     waybar.enable = true;
-    wofi.enable = true;
     xdg.enable = true;
     yazi.enable = true;
     zathura.enable = true;

@@ -6,7 +6,6 @@
     ./bat.nix
     ./blueman-applet.nix
     ./btop.nix
-    ./copyq.nix
     ./direnv.nix
     ./dunst.nix
     ./eza.nix
@@ -43,8 +42,8 @@
     ./targets.nix
     ./tealdeer.nix
     ./udiskie.nix
+    ./vicinae.nix
     ./waybar.nix
-    ./wofi.nix
     ./xdg.nix
     ./yazi.nix
     ./zathura.nix

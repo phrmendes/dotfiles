@@ -11,11 +11,10 @@
     wayland.windowManager.hyprland =
       let
         inherit (lib) getExe;
+        flameshot = getExe pkgs.flameshot;
         hyprlock = getExe pkgs.hyprlock;
         playerctl = getExe pkgs.playerctl;
-        wofi = getExe pkgs.wofi;
-        flameshot = getExe pkgs.flameshot;
-        copyq = getExe pkgs.copyq;
+        vicinae = getExe pkgs.vicinae;
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
         workspace = rec {
           workspaces = lib.range 1 9;
@@ -73,9 +72,7 @@
           ];
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
-            "float,stayfocused,opaque,class:(copyq)"
             "float,stayfocused,opaque,class:(org.pulseaudio.pavucontrol)"
-            "float,stayfocused,opaque,class:(wofi)"
             "float,title:^(Picture-in-Picture)$"
             "opaque,class:(firefox)"
             "opaque,class:(mpv)"
@@ -108,18 +105,16 @@
             "SUPER ALT,l,resizeactive,20 0"
           ];
           bind = [
-            "CTRL ALT,E,exec,${lib.getExe pkgs.wofi-power-menu} -d hibernate -d suspend -d logout"
             "CTRL ALT,L,exec,${hyprlock}"
             ",print,exec,${flameshot} gui"
             ",XF86AudioPlay,exec,${playerctl} play-pause"
             ",XF86AudioPause,exec,${playerctl} play-pause"
             ",XF86AudioPrev,exec,${playerctl} previous"
             ",XF86AudioNext,exec,${playerctl} next"
-            "SUPER,space,exec,${wofi}"
+            "SUPER,space,exec,${vicinae} toggle"
             "SUPER,tab,changegroupactive,f"
             "SUPER,return,exec,${lib.getExe pkgs.kitty}"
             "SUPER,B,exec,${lib.getExe pkgs.firefox}"
-            "SUPER,E,exec,${pkgs.wofi-emoji}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"
             "SUPER,H,movefocus,l"
@@ -130,7 +125,6 @@
             "SUPER,Q,killactive"
             "SUPER,R,togglesplit"
             "SUPER,T,lockactivegroup,toggle"
-            "SUPER,V,exec,${copyq} toggle"
             "SUPER,Z,fullscreen"
             "SUPER CTRL,H,workspace,r-1"
             "SUPER CTRL,L,workspace,r+1"

@@ -2,6 +2,11 @@
 {
   options.hyprpaper.enable = lib.mkEnableOption "enable hyprpaper";
   config = lib.mkIf config.hyprpaper.enable {
-    services.hyprpaper.enable = true;
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        splash = false;
+      };
+    };
   };
 }

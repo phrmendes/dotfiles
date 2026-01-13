@@ -24,8 +24,16 @@
         ];
       };
       Service = {
+        Type = "simple";
         ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
         Restart = "always";
+        RestartSec = "5s";
+        Environment = [
+          "QT_QPA_PLATFORM=wayland"
+          "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
+          "WAYLAND_DISPLAY=wayland-1"
+          "XDG_CURRENT_DESKTOP=Hyprland"
+        ];
       };
       Install.WantedBy = [ "hyprland-session.target" ];
     };

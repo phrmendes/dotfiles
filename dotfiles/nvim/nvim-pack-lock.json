@@ -1,11 +1,11 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "f35b7747d4d536fba96aa098a4144e5c85252828",
+      "rev": "2a8afcddb67a14dc80001f074f1eecedac2f27a7",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "conform.nvim": {
-      "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
+      "rev": "238f542a118984a88124fc915d5b981680418707",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "live-preview.nvim": {
-      "rev": "4b4cd2262f7fed487f112e18ddba46dabf0cb7d2",
+      "rev": "5f517e80c1ca734a2bd6ace2115b36c51464f7e9",
       "src": "https://github.com/brianhuster/live-preview.nvim"
     },
     "markdown.nvim": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap-python"
     },
     "nvim-dap-view": {
-      "rev": "526e597a67e959c9064bf29d5810a490e7cd5c18",
+      "rev": "6ccf5369470606a6265e475707030a5b6de08b19",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
@@ -77,16 +77,16 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "d0d12338230c1ce4ce27373f5b8d50a8c691794b",
+      "rev": "baa6b4ec28c8be5e4a96f9b1b6ae9db85ec422f8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
     "one-small-step-for-vimkind": {
-      "rev": "87eeca2bd4d90a94eed1ef0dbc66885117e7bacb",
+      "rev": "1af6ffb9b5229a856e8090fa2f690e0931a5aace",
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
     "opencode.nvim": {
-      "rev": "c327509760cb526e31a60c443fa4ba1666acdc5a",
+      "rev": "990c062d4036877a047cb3f5372e2f261a889f0a",
       "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "plenary.nvim": {
@@ -94,7 +94,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "quicker.nvim": {
-      "rev": "771437c3e3672dba9233156e1c2e2fc1888a5fff",
+      "rev": "fc041830fa7cf093786b0d5990d99cf3c7b0c129",
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "refactoring.nvim": {

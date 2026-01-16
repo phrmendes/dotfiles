@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "2a8afcddb67a14dc80001f074f1eecedac2f27a7",
+      "rev": "fb7b9034285a5658c746faa12eff8c1c9d9b11b1",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "conform.nvim": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {
-      "rev": "8dccba88fc4dce006ca0ad668067c9e0d5ce7702",
+      "rev": "19973fa2c13399d68bf8d2cd98b0cb7367a8a72a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nui.nvim": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap-python"
     },
     "nvim-dap-view": {
-      "rev": "6ccf5369470606a6265e475707030a5b6de08b19",
+      "rev": "b1eadfadf7f161a707a3ebc100fb3989d06eaa29",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
@@ -86,7 +86,7 @@
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
     "opencode.nvim": {
-      "rev": "990c062d4036877a047cb3f5372e2f261a889f0a",
+      "rev": "f6a099e2ebc38d3dbc1f8ee5ae103edfe991c353",
       "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "plenary.nvim": {
@@ -110,11 +110,11 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tf.nvim": {
-      "rev": "ab88157901d5978564acb219d4c7585c6e41c41e",
+      "rev": "7e3a93b411e07738f645e59cca598d779b8a5e19",
       "src": "https://github.com/Allaman/tf.nvim"
     },
     "ts": {
-      "rev": "5a7e5638e7d220575b1c22c8a2e099b52231886e",
+      "rev": "15b3416cc1f557c4932468e512a0bd45871167bc",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },

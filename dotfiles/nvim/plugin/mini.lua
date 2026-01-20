@@ -80,7 +80,6 @@ later(function() require("mini.operators").setup({ replace = { prefix = "gR", re
 later(function() require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } }) end)
 later(function() require("mini.splitjoin").setup({ mappings = { toggle = "T" } }) end)
 later(function() require("mini.test").setup() end)
-later(function() require("mini.trailspace").setup() end)
 later(function() require("mini.visits").setup() end)
 
 later(function()
@@ -511,4 +510,14 @@ later(function()
 		pattern = "MiniFilesWindowOpen",
 		callback = function(event) vim.api.nvim_win_set_config(event.data.win_id, { border = vim.g.border }) end,
 	})
+end)
+
+later(function()
+	require("mini.trailspace").setup()
+
+	vim.api.nvim_create_user_command("Trim", function()
+		MiniTrailspace.trim()
+		MiniTrailspace.trim_last_lines()
+		vim.cmd.write()
+	end, { desc = "Trim trailing whitespace and last empty lines" })
 end)

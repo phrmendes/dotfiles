@@ -34,6 +34,7 @@
       nodejs_latest
       obs-studio
       onlyoffice-desktopeditors
+      parallel
       pass
       pavucontrol
       phockup

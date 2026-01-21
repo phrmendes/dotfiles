@@ -8,6 +8,7 @@
       settings = {
         General = with config.lib.stylix.colors.withHashtag; {
           contrastUiColor = base0A;
+          disabledGrimWarning = true;
           disabledTrayIcon = true;
           drawColor = base08;
           showAbortNotification = false;

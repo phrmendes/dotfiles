@@ -73,7 +73,11 @@
           windowrulev2 = [
             "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
             "float,stayfocused,opaque,class:(org.pulseaudio.pavucontrol)"
+            "fakefullscreen,class:(flameshot),title:(flameshot)"
+            "float,class:(flameshot),title:(flameshot)"
             "float,title:^(Picture-in-Picture)$"
+            "in,class:(flameshot),title:(flameshot)"
+            "move 0 0,class:(flameshot),title:(flameshot)"
             "opaque,class:(firefox)"
             "opaque,class:(mpv)"
           ];

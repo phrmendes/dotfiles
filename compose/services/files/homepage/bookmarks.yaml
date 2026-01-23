@@ -39,7 +39,3 @@
         - abbr: FM
           href: https://app.fastmail.com
           icon: sh-fastmail
-    - NextDNS:
-        - abbr: NDNS
-          href: https://my.nextdns.io
-          icon: sh-nextdns

@@ -77,5 +77,5 @@
         description: Postgres backup manager
     - PruneMate:
         href: https://prunemate.local.ohlongjohnson.tech
-        icon: sh-docker
-        description: Automated pruning tool for Docker
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/prunemate.webp
+        description: Docker cleanup automation

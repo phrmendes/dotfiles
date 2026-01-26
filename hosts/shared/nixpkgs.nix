@@ -3,10 +3,12 @@
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      (final: prev: {
+      (final: _: {
         stable = import inputs.nixpkgs-stable {
           system = final.stdenv.hostPlatform.system;
-          config = prev.config;
+          config = {
+            allowUnfree = true;
+          };
         };
       })
     ];

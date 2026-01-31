@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ ../workstation ];
+  imports = [ ./workstation.nix ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
 

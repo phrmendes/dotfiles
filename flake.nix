@@ -22,8 +22,7 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, ... }:
-
+    inputs:
     let
       global = rec {
         name = "Pedro Mendes";
@@ -31,66 +30,66 @@
         email = "pedrohrmendes@proton.me";
         home = "/home/${user}";
       };
+      desktop = {
+        device = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
+        laptop = false;
+        monitors = {
+          primary = {
+            name = "HDMI-A-1";
+            resolution = "2560x1080";
+            position = "0x0";
+          };
+          secondary = {
+            name = "DP-2";
+            resolution = "1920x1080";
+            position = "2560x0";
+          };
+        };
+      };
+      laptop = {
+        device = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
+        laptop = true;
+        monitors = {
+          primary = {
+            name = "eDP-1";
+            resolution = "1920x1080";
+            position = "0x0";
+          };
+        };
+      };
+      server = {
+        device = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
+        laptop = false;
+      };
     in
     {
       nixosConfigurations = {
-        desktop =
-          let
-            parameters = global // {
-              device = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
-              laptop = false;
-              monitors = {
-                primary = {
-                  name = "HDMI-A-1";
-                  resolution = "2560x1080";
-                  position = "0x0";
-                };
-                secondary = {
-                  name = "DP-2";
-                  resolution = "1920x1080";
-                  position = "2560x0";
-                };
-              };
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/desktop ];
+        desktop = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./hosts/desktop.nix ];
+          specialArgs = {
+            inherit inputs;
+            parameters = global // desktop;
           };
+        };
 
-        laptop =
-          let
-            parameters = global // {
-              device = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
-              laptop = true;
-              monitors = {
-                primary = {
-                  name = "eDP-1";
-                  resolution = "1920x1080";
-                  position = "0x0";
-                };
-              };
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/laptop ];
+        laptop = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./hosts/laptop.nix ];
+          specialArgs = {
+            inherit inputs;
+            parameters = global // laptop;
           };
+        };
 
-        server =
-          let
-            parameters = global // {
-              device = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
-              laptop = false;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs parameters; };
-            modules = [ ./hosts/server ];
+        server = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./hosts/server.nix ];
+          specialArgs = {
+            inherit inputs;
+            parameters = global // server;
           };
+        };
       };
     };
 }

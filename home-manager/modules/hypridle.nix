@@ -7,6 +7,7 @@
 }:
 {
   options.hypridle.enable = lib.mkEnableOption "enable hypridle";
+
   config = lib.mkIf config.hypridle.enable {
     services.hypridle =
       let

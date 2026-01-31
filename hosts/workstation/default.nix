@@ -137,7 +137,6 @@
     k9s.enable = true;
     keepassxc.enable = true;
     keychain.enable = true;
-    kitty.enable = true;
     lazydocker.enable = true;
     lazygit.enable = true;
     mpv.enable = true;
@@ -157,6 +156,7 @@
     udiskie.enable = true;
     vicinae.enable = true;
     waybar.enable = true;
+    wezterm.enable = true;
     xdg.enable = true;
     yazi.enable = true;
     zathura.enable = true;

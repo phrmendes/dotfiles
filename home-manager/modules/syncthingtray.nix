@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.syncthingtray.enable = lib.mkEnableOption "enable syncthingtray";
 

@@ -3,8 +3,11 @@ later(function()
 
 	vim.g.opencode_opts = {
 		provider = {
-			enabled = "kitty",
-			kitty = { location = "tab" },
+			enabled = "wezterm",
+			wezterm = {
+				direction = "right",
+				top_level = true,
+			},
 		},
 	}
 

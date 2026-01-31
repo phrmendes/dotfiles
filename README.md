@@ -7,7 +7,7 @@ Dotfiles files for my personal computer.
 Clone the repo, enter in the directory and run these commmands:
 
 ```sh
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./hosts/shared/disko.nix --arg device '"/dev/{{ disk }}"'
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./hosts/shared/disko.nix --arg parameterts '{ device = "/dev/{{ disk }}"; }'
 sudo nixos-install --no-channel-copy --root /mnt --flake .#{{ machine }}
 ```
 

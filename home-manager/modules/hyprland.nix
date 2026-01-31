@@ -7,6 +7,7 @@
 }:
 {
   options.hyprland.enable = lib.mkEnableOption "enable hyprland";
+
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland =
       let
@@ -117,7 +118,7 @@
             ",XF86AudioNext,exec,${playerctl} next"
             "SUPER,space,exec,${vicinae} toggle"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,return,exec,${lib.getExe pkgs.kitty}"
+            "SUPER,return,exec,${lib.getExe pkgs.wezterm}"
             "SUPER,B,exec,${lib.getExe pkgs.firefox}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

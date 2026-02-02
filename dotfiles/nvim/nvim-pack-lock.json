@@ -82,7 +82,7 @@
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
     "opencode.nvim": {
-      "rev": "ed2a936b163df9e92ef210daad3a9ae89ca7e073",
+      "rev": "5de2380a4e87d493149838eab6599cf9f4b33a3e",
       "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "plenary.nvim": {
@@ -119,7 +119,7 @@
       "src": "https://github.com/mbbill/undotree"
     },
     "unnest.nvim": {
-      "rev": "4237a23ee158ff696b85c1c1615c38aa99be9ae5",
+      "rev": "64bf76a20b54a5042d3d87a143f49f1d34a93369",
       "src": "https://github.com/brianhuster/unnest.nvim"
     },
     "vim-abolish": {

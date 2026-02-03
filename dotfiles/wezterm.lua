@@ -30,7 +30,7 @@ config.unix_domains = { { name = "unix" } }
 config.use_fancy_tab_bar = false
 config.window_close_confirmation = "AlwaysPrompt"
 config.window_decorations = "NONE"
-config.window_padding = { left = 7, right = 7, top = 0, bottom = 0 }
+config.window_padding = { left = 7, right = 7, top = 1, bottom = 0 }
 
 config.ssh_domains = {
 	{ name = "desktop", remote_address = "desktop", username = "phrmendes" },
@@ -91,7 +91,7 @@ for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "LEADER",
-		action = action.ActivateTab(i),
+		action = action.ActivateTab(i - 1),
 	})
 end
 

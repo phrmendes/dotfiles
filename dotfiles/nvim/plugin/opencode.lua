@@ -3,11 +3,9 @@ later(function()
 
 	vim.g.opencode_opts = {
 		provider = {
+			cmd = vim.fn.exepath("oc"),
 			enabled = "wezterm",
-			wezterm = {
-				direction = "right",
-				top_level = true,
-			},
+			wezterm = { direction = "right" },
 		},
 	}
 

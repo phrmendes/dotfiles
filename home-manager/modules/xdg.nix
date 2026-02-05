@@ -12,8 +12,8 @@
         "video/*" = "mpv.desktop";
         "text/*" = "nvim.desktop";
         "text/plain" = "nvim-qt.desktop";
-        "x-scheme-handler/terminal" = "wezterm.desktop";
-        "application/x-terminal-emulator" = "wezterm.desktop";
+        "x-scheme-handler/terminal" = "kitty.desktop";
+        "application/x-terminal-emulator" = "kitty.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";
         "text/html" = "firefox.desktop";
         "x-scheme-handler/http" = "firefox.desktop";

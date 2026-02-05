@@ -118,7 +118,7 @@
             ",XF86AudioNext,exec,${playerctl} next"
             "SUPER,space,exec,${vicinae} toggle"
             "SUPER,tab,changegroupactive,f"
-            "SUPER,return,exec,${lib.getExe pkgs.wezterm}"
+            "SUPER,return,exec,${lib.getExe pkgs.kitty}"
             "SUPER,B,exec,${lib.getExe pkgs.firefox}"
             "SUPER,F,togglefloating"
             "SUPER,G,togglegroup"

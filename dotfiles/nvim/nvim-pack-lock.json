@@ -20,6 +20,10 @@
       "rev": "f0b9a1723890971a6d84890b50dbf5f40974ea1b",
       "src": "https://github.com/qvalentin/helm-ls.nvim"
     },
+    "kitty-scrollback.nvim": {
+      "rev": "5574df779fbe03205a08af4d9154279ff491be75",
+      "src": "https://github.com/mikesmithgh/kitty-scrollback.nvim"
+    },
     "kulala.nvim": {
       "rev": "ca06d823e33cee109622e01b653952d50bb41b55",
       "src": "https://github.com/mistweaverco/kulala.nvim"

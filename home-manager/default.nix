@@ -20,7 +20,7 @@
       GIT_EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
-      TERMINAL = "wezterm";
+      TERMINAL = "kitty";
     };
   };
 }

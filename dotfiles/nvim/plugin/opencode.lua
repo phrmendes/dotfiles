@@ -4,8 +4,8 @@ later(function()
 	vim.g.opencode_opts = {
 		provider = {
 			cmd = vim.fn.exepath("oc"),
-			enabled = "wezterm",
-			wezterm = { direction = "right" },
+			enabled = "kitty",
+			kitty = { location = "tab" },
 		},
 	}
 

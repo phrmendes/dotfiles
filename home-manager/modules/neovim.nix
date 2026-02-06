@@ -35,6 +35,7 @@
           docker-language-server
           dot-language-server
           emmet-language-server
+          eslint
           helm-ls
           kulala-fmt
           libxml2

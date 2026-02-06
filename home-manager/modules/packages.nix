@@ -45,6 +45,7 @@
       tectonic
       tpm2-tools
       ungoogled-chromium
+      uv
       vesktop
       zotero
     ];

@@ -111,6 +111,10 @@
       "Projects"
       "Videos"
       "Zotero"
+      {
+        directory = ".keychain";
+        mode = "u=rwx,go=";
+      }
     ];
   };
 

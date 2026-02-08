@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs = {
+    nano.enable = false;
     fuse.userAllowOther = true;
     command-not-found.enable = false;
     zsh.enable = true;

@@ -17,13 +17,11 @@
         playerctl = getExe pkgs.playerctl;
         vicinae = getExe pkgs.vicinae;
         swayosd = "${pkgs.swayosd}/bin/swayosd-client";
-        workspace = rec {
-          workspaces = lib.range 1 9;
-          move = map (x: "SUPER SHIFT, ${toString x}, movetoworkspace, ${toString x}") workspaces;
-          switch = map (x: "SUPER, ${toString x}, workspace, ${toString x}") workspaces;
-          moveSilent = map (
-            x: "SUPER SHIFT CTRL, ${toString x}, movetoworkspacesilent, ${toString x}"
-          ) workspaces;
+        ws = lib.range 1 9;
+        workspace = {
+          move = ws |> map (x: "SUPER SHIFT, ${toString x}, movetoworkspace, ${toString x}");
+          switch = ws |> map (x: "SUPER, ${toString x}, workspace, ${toString x}");
+          moveSilent = ws |> map (x: "SUPER SHIFT CTRL, ${toString x}, movetoworkspacesilent, ${toString x}");
         };
       in
       {

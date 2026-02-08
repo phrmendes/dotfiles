@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "9b6a3ab14cecc7da9f3aa4fa0ae2a7390748aca5",
+      "rev": "ff73799fc8df725d51eada87a113581ba4d3717b",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "conform.nvim": {
@@ -13,7 +13,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "grug-far.nvim": {
-      "rev": "14babc9b4520184d9696ef282eb7ac20687d4373",
+      "rev": "275dbedc96e61a6b8d1dfb28ba51586ddd233dcf",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "helm-ls.nvim": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {
-      "rev": "9b935c218ddba02e5dc75c94f90143bce1f7c646",
+      "rev": "8c40d95931cbe6138391af9180e59439ed2e69df",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nui.nvim": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap-python"
     },
     "nvim-dap-view": {
-      "rev": "821a6d049096fea7023d8f5628ad1d35a02c88d0",
+      "rev": "c4384f417dae719d21a4af0ab62c9a3ae3c518c8",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
@@ -69,7 +69,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "3f58aeca0c6ece8a9fb8782ea3fcb6024f285be3",
+      "rev": "66fd02ad1c7ea31616d3ca678fa04e6d0b360824",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-context": {
@@ -86,7 +86,7 @@
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
     "opencode.nvim": {
-      "rev": "5de2380a4e87d493149838eab6599cf9f4b33a3e",
+      "rev": "a13db1c0364319d3ebde65030005dea9f8a198cc",
       "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "plenary.nvim": {
@@ -102,7 +102,7 @@
       "src": "https://github.com/ThePrimeagen/refactoring.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "0e73ccf1d957c6d7b95435bd195dcbd62f44f8e2",
+      "rev": "208ac7ba3d56f76dda9fc55b004b84aaea7c7588",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "snacks.nvim": {
@@ -114,7 +114,7 @@
       "src": "https://github.com/Allaman/tf.nvim"
     },
     "ts": {
-      "rev": "4967fa48b0fe7a7f92cee546c76bb4bb61bb14d5",
+      "rev": "45a07f869b0cffba342276f2c77ba7c116d35db8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -123,7 +123,7 @@
       "src": "https://github.com/mbbill/undotree"
     },
     "unnest.nvim": {
-      "rev": "64bf76a20b54a5042d3d87a143f49f1d34a93369",
+      "rev": "cae9c79092a5a1294fa163086b9e93393985115f",
       "src": "https://github.com/brianhuster/unnest.nvim"
     },
     "vim-abolish": {

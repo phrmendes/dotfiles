@@ -5,7 +5,10 @@ later(function()
 		provider = {
 			cmd = vim.fn.exepath("oc"),
 			enabled = "kitty",
-			kitty = { location = "tab" },
+			kitty = {
+				cmd = "--copy-env " .. vim.fn.exepath("oc"),
+				location = "tab",
+			},
 		},
 	}
 

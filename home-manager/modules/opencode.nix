@@ -12,8 +12,8 @@
       enable = true;
       enableMcpIntegration = true;
       settings = {
-        model = "github-copilot/claude-sonnet-4";
-        small_model = "github-copilot/gemini-2.0-flash-001";
+        model = "github-copilot/claude-opus-4.5";
+        small_model = "github-copilot/claude-sonnet-4.5";
         mcp = {
           k8s = {
             type = "local";
@@ -29,7 +29,7 @@
         provider = {
           google-vertex-anthropic = {
             models = {
-              "claude-sonnet-4@20250514" = { };
+              "claude-opus-4-6@default" = { };
             };
           };
         };

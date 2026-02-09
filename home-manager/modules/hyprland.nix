@@ -69,16 +69,15 @@
             "${primary.name},${primary.resolution},${primary.position},1"
             (lib.mkIf (!parameters.laptop) "${secondary.name},${secondary.resolution},${secondary.position},1")
           ];
-          windowrulev2 = [
-            "float,stayfocused,opaque,class:(.blueman-manager-wrapped)"
-            "float,stayfocused,opaque,class:(org.pulseaudio.pavucontrol)"
-            "fakefullscreen,class:(flameshot),title:(flameshot)"
-            "float,class:(flameshot),title:(flameshot)"
-            "float,title:^(Picture-in-Picture)$"
-            "in,class:(flameshot),title:(flameshot)"
-            "move 0 0,class:(flameshot),title:(flameshot)"
-            "opaque,class:(firefox)"
-            "opaque,class:(mpv)"
+          windowrule = [
+            "float on, stay_focused on, opaque on, match:class (.blueman-manager-wrapped)"
+            "float on, stay_focused on, opaque on, match:class (org.pulseaudio.pavucontrol)"
+            "fullscreen_state 2 0, match:class (flameshot), match:title (flameshot)"
+            "float on, match:class (flameshot), match:title (flameshot)"
+            "float on, match:title ^(Picture-in-Picture)$"
+            "move 0 0, match:class (flameshot), match:title (flameshot)"
+            "opaque on, match:class (firefox)"
+            "opaque on, match:class (mpv)"
           ];
           workspace = with parameters.monitors; [
             "1,monitor:${primary.name}"

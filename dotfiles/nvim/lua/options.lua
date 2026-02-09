@@ -8,6 +8,9 @@ vim.opt.syntax = "on"
 -- confirm before operations in files with unsaved changes
 vim.opt.confirm = true
 
+-- autoread files changed outside of vim
+vim.opt.autoread = true
+
 -- file type plugin
 vim.cmd([[filetype plugin on]])
 

@@ -89,12 +89,7 @@
 
   environment = {
     persistence."/persist".users.${parameters.user}.directories = [
-      ".cache/helm"
-      ".cache/keepassxc"
-      ".cache/neovim"
-      ".cache/nix-index"
-      ".cache/tealdeer"
-      ".cache/uv"
+      ".cache"
       ".config"
       ".docker"
       ".gnupg"

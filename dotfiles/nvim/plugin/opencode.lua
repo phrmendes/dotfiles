@@ -4,7 +4,7 @@ later(function()
 	vim.g.opencode_opts = {
 		provider = {
 			cmd = vim.fn.exepath("oc"),
-			enabled = "kitty",
+			enabled = vim.env.ZELLIJ and "snacks" or "kitty",
 			kitty = {
 				cmd = "--copy-env " .. vim.fn.exepath("oc"),
 				location = "tab",

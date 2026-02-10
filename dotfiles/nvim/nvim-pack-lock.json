@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "ff73799fc8df725d51eada87a113581ba4d3717b",
+      "rev": "b850ab25279ba04ada90e8b696ef5d0624af103d",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "conform.nvim": {
@@ -20,12 +20,8 @@
       "rev": "f0b9a1723890971a6d84890b50dbf5f40974ea1b",
       "src": "https://github.com/qvalentin/helm-ls.nvim"
     },
-    "kitty-scrollback.nvim": {
-      "rev": "5574df779fbe03205a08af4d9154279ff491be75",
-      "src": "https://github.com/mikesmithgh/kitty-scrollback.nvim"
-    },
     "kulala.nvim": {
-      "rev": "ca06d823e33cee109622e01b653952d50bb41b55",
+      "rev": "6656c9d332735ca6a27725e0fb45a1715c4372d9",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "lazydev.nvim": {
@@ -41,7 +37,7 @@
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {
-      "rev": "8c40d95931cbe6138391af9180e59439ed2e69df",
+      "rev": "e5a9a3830f9c37211df4c82cac45bf728b95739d",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nui.nvim": {
@@ -49,7 +45,7 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-dap": {
-      "rev": "e47878dcf1ccc30136b30d19ab19fe76946d61cd",
+      "rev": "db321947bb289a2d4d76a32e76e4d2bd6103d7df",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-go": {
@@ -69,7 +65,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "66fd02ad1c7ea31616d3ca678fa04e6d0b360824",
+      "rev": "d1597791f8196519439b3a036b59b09023981e1d",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-context": {
@@ -86,7 +82,7 @@
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
     "opencode.nvim": {
-      "rev": "a13db1c0364319d3ebde65030005dea9f8a198cc",
+      "rev": "e876696dc93c1962eaeff8ca5114c23c20485d09",
       "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "plenary.nvim": {
@@ -114,7 +110,7 @@
       "src": "https://github.com/Allaman/tf.nvim"
     },
     "ts": {
-      "rev": "45a07f869b0cffba342276f2c77ba7c116d35db8",
+      "rev": "9f2dad22ef8bb14fd1e0a3aa8859cdc88170668b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -123,7 +119,7 @@
       "src": "https://github.com/mbbill/undotree"
     },
     "unnest.nvim": {
-      "rev": "cae9c79092a5a1294fa163086b9e93393985115f",
+      "rev": "a862fbd6a0c415ad7741f84089492f31dbb7963c",
       "src": "https://github.com/brianhuster/unnest.nvim"
     },
     "vim-abolish": {
@@ -139,7 +135,7 @@
       "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
     },
     "vim-dadbod-ui": {
-      "rev": "48c4f271da13d380592f4907e2d1d5558044e4e5",
+      "rev": "07e92e22114cc5b1ba4938d99897d85b58e20475",
       "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
     },
     "vim-slime": {

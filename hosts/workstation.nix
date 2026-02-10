@@ -135,7 +135,6 @@
     jq.enable = true;
     k9s.enable = true;
     keepassxc.enable = true;
-    keychain.enable = true;
     kitty.enable = true;
     lazydocker.enable = true;
     lazygit.enable = true;

@@ -19,12 +19,12 @@
     gnupg.agent = {
       enable = true;
       enableBrowserSocket = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentryPackage = pkgs.pinentry-gnome3;
     };
 
     ssh = {
       startAgent = true;
-      askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+      askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
     };
 
     nh = {

@@ -26,14 +26,12 @@
       Service = {
         Type = "simple";
         ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
-        Restart = "always";
+        Restart = "on-failure";
         RestartSec = "5s";
         Environment = [
-          "QT_QPA_PLATFORM=xcb"
-          "GDK_BACKEND=x11"
-          "DISPLAY=:0"
+          "QT_QPA_PLATFORM=wayland"
           "XDG_CURRENT_DESKTOP=Hyprland"
-          "WAYLAND_DISPLAY=wayland-1"
+          "SSH_AUTH_SOCK=%t/ssh-agent"
         ];
       };
       Install.WantedBy = [ "hyprland-session.target" ];

@@ -36,13 +36,14 @@
       onlyoffice-desktopeditors
       parallel
       pass
+      pasystray
       pavucontrol
       phockup
       poppler
       python314
       quarto
-      stable.pasystray
       tectonic
+      thunar
       tpm2-tools
       ungoogled-chromium
       uv

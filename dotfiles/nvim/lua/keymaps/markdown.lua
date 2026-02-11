@@ -6,19 +6,10 @@ return function(bufnr)
     buffer = bufnr,
     desc = "markdown: add item above",
   })
+
   vim.keymap.set({ "n", "i" }, "<c-c>j", "<cmd>MDListItemBelow<cr>", {
     buffer = bufnr,
     desc = "markdown: add item below",
-  })
-
-  vim.keymap.set("i", "<c-i>", require("helpers").toggle_emphasis("i"), {
-    buffer = bufnr,
-    desc = "markdown: toggle italic",
-  })
-
-  vim.keymap.set("i", "<c-b>", require("helpers").toggle_emphasis("b"), {
-    buffer = bufnr,
-    desc = "markdown: toggle bold",
   })
 
   vim.keymap.set("n", "<leader>p", "<cmd>LivePreview start<cr>", {

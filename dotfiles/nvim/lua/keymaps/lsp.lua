@@ -133,12 +133,12 @@ return function(client, bufnr)
       buffer = bufnr,
     })
 
-    vim.keymap.set("i", "<c-]>", function() vim.lsp.inline_completion.select({ bufnr = bufnr, count = vim.v.count1 }) end, {
+    vim.keymap.set("i", "<m-]>", function() vim.lsp.inline_completion.select({ bufnr = bufnr, count = vim.v.count1 }) end, {
       desc = "LSP: next inline completion",
       buffer = bufnr,
     })
 
-    vim.keymap.set("i", "<c-[>", function() vim.lsp.inline_completion.select({ bufnr = bufnr, count = -vim.v.count1 }) end, {
+    vim.keymap.set("i", "<m-[>", function() vim.lsp.inline_completion.select({ bufnr = bufnr, count = -vim.v.count1 }) end, {
       desc = "LSP: previous inline completion",
       buffer = bufnr,
     })

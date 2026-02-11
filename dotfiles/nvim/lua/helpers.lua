@@ -1,10 +1,5 @@
 local M = {}
 
---- Toggle emphasis in visual mode.
---- @param key string The key to toggle.
---- @return string The keybinding.
-M.toggle_emphasis = function(key) return [[<esc>gv<cmd>lua require("markdown.inline").toggle_emphasis_visual("]] .. key .. [[")<cr>]] end
-
 --- Get the words from a dictionary file.
 --- @param lang string The language of the dictionary.
 --- @return string[]: A list of words.

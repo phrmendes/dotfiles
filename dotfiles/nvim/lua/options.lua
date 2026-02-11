@@ -78,17 +78,17 @@ vim.opt.foldenable = false
 vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 if vim.env.SSH_TTY then
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-		paste = {
-			["+"] = require("helpers").paste,
-			["*"] = require("helpers").paste,
-		},
-	}
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("helpers").paste,
+      ["*"] = require("helpers").paste,
+    },
+  }
 end
 
 -- treat '-' as part of a word
@@ -96,22 +96,22 @@ vim.cmd([[set iskeyword+=-]])
 
 -- add filetypes
 vim.filetype.add({
-	filename = {
-		["todo.txt"] = "todotxt",
-		["done.txt"] = "todotxt",
-		["Caddyfile"] = "caddy",
-		["kubeconfig"] = "yaml",
-		[".envrc"] = "sh",
-		[".env"] = "dosini",
-	},
-	pattern = {
-		["*/.kube/config"] = "yaml",
-	},
-	extension = {
-		http = "http",
-		tf = "terraform",
-		dump = "log",
-	},
+  filename = {
+    ["todo.txt"] = "todotxt",
+    ["done.txt"] = "todotxt",
+    ["Caddyfile"] = "caddy",
+    ["kubeconfig"] = "yaml",
+    [".envrc"] = "sh",
+    [".env"] = "dosini",
+  },
+  pattern = {
+    ["*/.kube/config"] = "yaml",
+  },
+  extension = {
+    http = "http",
+    tf = "terraform",
+    dump = "log",
+  },
 })
 
 -- spell
@@ -128,18 +128,18 @@ vim.opt.showmode = false
 
 -- diagnostics
 vim.diagnostic.config({
-	severity_sort = true,
-	virtual_lines = { current_line = true },
-	underline = false,
-	float = { border = vim.g.border },
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "󰅚 ",
-			[vim.diagnostic.severity.WARN] = "󰀪 ",
-			[vim.diagnostic.severity.INFO] = "󰋽 ",
-			[vim.diagnostic.severity.HINT] = "󰌶 ",
-		},
-	},
+  severity_sort = true,
+  virtual_lines = { current_line = true },
+  underline = false,
+  float = { border = vim.g.border },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.INFO] = "󰋽 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+    },
+  },
 })
 
 -- popup menu
@@ -154,27 +154,27 @@ vim.g.no_plugin_maps = true
 
 -- disable builtin plugins
 local builtin_plugins = {
-	"2html_plugin",
-	"getscript",
-	"getscriptPlugin",
-	"gzip",
-	"logipat",
-	"matchit",
-	"netrw",
-	"netrwFileHandlers",
-	"netrwPlugin",
-	"netrwSettings",
-	"rrhelper",
-	"spellfile_plugin",
-	"tar",
-	"tarPlugin",
-	"tarPlugin",
-	"tohtml",
-	"vimball",
-	"vimballPlugin",
-	"zip",
-	"zipPlugin",
-	"tutor",
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "matchit",
+  "netrw",
+  "netrwFileHandlers",
+  "netrwPlugin",
+  "netrwSettings",
+  "rrhelper",
+  "spellfile_plugin",
+  "tar",
+  "tarPlugin",
+  "tarPlugin",
+  "tohtml",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+  "tutor",
 }
 
 vim.iter(builtin_plugins):each(function(plugin) vim.g["loaded_" .. plugin] = true end)

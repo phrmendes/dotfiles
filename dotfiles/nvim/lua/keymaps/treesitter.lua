@@ -3,19 +3,19 @@ local ts_repeat = require("nvim-treesitter-textobjects.repeatable_move")
 local modes = { "n", "x", "o" }
 
 vim.keymap.set(modes, "]f", function() ts_move.goto_next_start("@function.outer", "textobjects") end, {
-	desc = "Next function",
+  desc = "Next function",
 })
 
 vim.keymap.set(modes, "[f", function() ts_move.goto_previous_start("@function.outer", "textobjects") end, {
-	desc = "Previous function",
+  desc = "Previous function",
 })
 
 vim.keymap.set(modes, "]c", function() ts_move.goto_next_start("@class.outer", "textobjects") end, {
-	desc = "Next class",
+  desc = "Next class",
 })
 
 vim.keymap.set(modes, "[c", function() ts_move.goto_previous_start("@class.outer", "textobjects") end, {
-	desc = "Previous class",
+  desc = "Previous class",
 })
 
 vim.keymap.set(modes, ";", ts_repeat.repeat_last_move_next, { desc = "Repeat last move forward" })

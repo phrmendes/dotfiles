@@ -7,16 +7,16 @@ vim.keymap.set("n", "<leader>kr", function() require("kulala").replay() end, { b
 vim.keymap.set({ "n", "x" }, "<leader>kk", function() require("kulala").run() end, { buffer = bufnr, desc = "Send" })
 
 vim.keymap.set("n", "<leader>kc", function() require("kulala").copy() end, {
-	buffer = bufnr,
-	desc = "Copy as a curl command",
+  buffer = bufnr,
+  desc = "Copy as a curl command",
 })
 
 vim.keymap.set("n", "<leader>kf", function() require("kulala").from_curl() end, {
-	buffer = bufnr,
-	desc = "Paste curl from clipboard",
+  buffer = bufnr,
+  desc = "Paste curl from clipboard",
 })
 
 vim.keymap.set("n", "<leader>kS", function() require("kulala").show_stats() end, {
-	buffer = bufnr,
-	desc = "Statistics",
+  buffer = bufnr,
+  desc = "Statistics",
 })

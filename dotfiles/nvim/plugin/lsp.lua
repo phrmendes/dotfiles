@@ -1,35 +1,33 @@
-now(
-	function()
-		vim.pack.add({
-			"https://github.com/neovim/nvim-lspconfig",
-			"https://github.com/b0o/SchemaStore.nvim",
-		})
-	end
-)
+now(function()
+  vim.pack.add({
+    "https://github.com/neovim/nvim-lspconfig",
+    "https://github.com/b0o/SchemaStore.nvim",
+  })
+end)
 
 vim.lsp.enable({
-	"astro",
-	"bashls",
-	"copilot",
-	"cssls",
-	"docker_language_server",
-	"dotls",
-	"elixirls",
-	"emmet_language_server",
-	"eslint",
-	"helm_ls",
-	"html",
-	"jsonls",
-	"ltex_plus",
-	"lua_ls",
-	"marksman",
-	"nixd",
-	"ruff",
-	"scls",
-	"tailwindcss",
-	"taplo",
-	"terraformls",
-	"ts_ls",
-	"ty",
-	"yamlls",
+  "astro",
+  "bashls",
+  "copilot",
+  "cssls",
+  "docker_language_server",
+  "dotls",
+  "elixirls",
+  "emmet_language_server",
+  "eslint",
+  "helm_ls",
+  "html",
+  "jsonls",
+  "ltex_plus",
+  "lua_ls",
+  "marksman",
+  "nixd",
+  "ruff",
+  "scls",
+  "tailwindcss",
+  "taplo",
+  "terraformls",
+  "ts_ls",
+  "ty",
+  "yamlls",
 })

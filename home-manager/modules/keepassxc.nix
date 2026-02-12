@@ -25,11 +25,13 @@
       };
       Service = {
         Type = "simple";
+        ExecStartPre = "${pkgs.systemd}/bin/busctl --user --watch-bind=true status org.kde.StatusNotifierWatcher";
         ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
         Restart = "on-failure";
         RestartSec = "5s";
         Environment = [
           "QT_QPA_PLATFORM=wayland"
+          "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
           "XDG_CURRENT_DESKTOP=Hyprland"
           "SSH_AUTH_SOCK=%t/ssh-agent"
         ];

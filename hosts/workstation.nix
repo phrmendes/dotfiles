@@ -152,13 +152,13 @@
     systemd.enable = true;
     targets.enable = true;
     tealdeer.enable = true;
+    tmux.enable = true;
     udiskie.enable = true;
     vicinae.enable = true;
     waybar.enable = true;
     xdg.enable = true;
     yazi.enable = true;
     zathura.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
     zsh.enable = true;
   };

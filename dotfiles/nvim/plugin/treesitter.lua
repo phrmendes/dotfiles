@@ -1,10 +1,4 @@
 now(function()
-  vim.pack.add({
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main", name = "ts" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
-    "https://github.com/nvim-treesitter/nvim-treesitter-context",
-  })
-
   vim.g.no_plugin_maps = true
 
   vim.api.nvim_create_autocmd("PackChanged", {

@@ -24,6 +24,7 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { silent = true })
 vim.keymap.set("n", "<leader><leader>", "<c-^>", { noremap = true, desc = "Alternate file" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { noremap = true, desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { noremap = true, desc = "Split (V)" })
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo Tree" })
 vim.keymap.set("n", "<leader>w", "<cmd>silent w!<cr>", { noremap = true, desc = "Write" })
 
 vim.keymap.set("n", "<leader>T", function()

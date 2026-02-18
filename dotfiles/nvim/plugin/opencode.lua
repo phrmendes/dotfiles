@@ -1,6 +1,4 @@
-later(function()
-  vim.pack.add({ "https://github.com/NickvanDyke/opencode.nvim" })
-
+now(function()
   vim.g.opencode_opts = {
     provider = {
       cmd = vim.fn.exepath("oc"),

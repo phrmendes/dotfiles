@@ -1,10 +1,3 @@
-now(function()
-  vim.pack.add({
-    "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/b0o/SchemaStore.nvim",
-  })
-end)
-
 vim.lsp.enable({
   "astro",
   "bashls",

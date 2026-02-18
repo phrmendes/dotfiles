@@ -153,7 +153,7 @@ vim.opt.inccommand = "split"
 vim.g.no_plugin_maps = true
 
 -- disable builtin plugins
-local builtin_plugins = {
+local plugins = {
   "2html_plugin",
   "getscript",
   "getscriptPlugin",
@@ -177,4 +177,4 @@ local builtin_plugins = {
   "tutor",
 }
 
-vim.iter(builtin_plugins):each(function(plugin) vim.g["loaded_" .. plugin] = true end)
+vim.iter(plugins):each(function(plugin) vim.g["loaded_" .. plugin] = true end)

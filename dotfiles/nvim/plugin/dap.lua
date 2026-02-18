@@ -110,13 +110,6 @@ local adapters = {
 }
 
 later(function()
-  vim.pack.add({
-    "https://github.com/mfussenegger/nvim-dap",
-    "https://github.com/igorlfs/nvim-dap-view",
-    "https://github.com/mfussenegger/nvim-dap-python",
-    "https://github.com/jbyuki/one-small-step-for-vimkind",
-  })
-
   local dap = require("dap")
   local dap_view = require("dap-view")
 

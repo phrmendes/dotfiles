@@ -1,6 +1,4 @@
 now(function()
-  vim.pack.add({ "https://github.com/mrjones2014/smart-splits.nvim" })
-
   require("smart-splits").setup({ cursor_follows_swapped_bufs = true })
 
   vim.keymap.set({ "n", "t" }, "<a-h>", function() require("smart-splits").resize_left() end)

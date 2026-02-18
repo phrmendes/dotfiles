@@ -184,7 +184,7 @@ later(function()
       info = { height = 25, width = 80, border = vim.g.border },
       signature = { height = 25, width = 80, border = vim.g.border },
     },
-    fallback_action = "<c-n>",
+    fallback_action = "<c-x><c-o>",
     lsp_completion = {
       source_func = "omnifunc",
       auto_setup = false,

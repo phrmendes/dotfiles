@@ -1,16 +1,10 @@
 local bufnr = vim.api.nvim_get_current_buf()
 
+vim.opt_local.shiftwidth = 2
+
+require("keymaps.lua")(bufnr)
 require("keymaps.dap")(bufnr)
 require("keymaps.refactoring")(bufnr)
-
-vim.keymap.set("n", "<localleader>%", "<cmd>source %<cr>", { buffer = bufnr, desc = "lua: source file" })
-vim.keymap.set("n", "<localleader>.", ":.lua<cr>", { buffer = bufnr, desc = "lua: run line" })
-vim.keymap.set("x", "<localleader>.", ":lua<cr>", { buffer = bufnr, desc = "lua: run" })
-
-vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, {
-  buffer = bufnr,
-  desc = "Launch debugger",
-})
 
 vim.api.nvim_buf_create_user_command(bufnr, "RunAllTests", function() MiniTest.run() end, {
   nargs = 0,

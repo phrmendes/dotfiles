@@ -1,6 +1,4 @@
 later(function()
-  vim.pack.add({ "https://github.com/MagicDuck/grug-far.nvim" })
-
   require("grug-far").setup({ transient = true })
 
   vim.keymap.set("n", "<leader>G", function() require("grug-far").open() end, { desc = "grug-far" })

@@ -1,1 +1,0 @@
-now(function() vim.pack.add({ "https://github.com/brianhuster/unnest.nvim" }) end)

@@ -28,5 +28,30 @@
     "prefix": "date",
     "body": ["$CURRENT_DATE/$CURRENT_MONTH/$CURRENT_YEAR"],
     "description": "Current date (DD/MM/YYYY)"
+  },
+  "One star": {
+    "prefix": "star1",
+    "body": ["Nota: ⭐"],
+    "description": "One star rating"
+  },
+  "Two stars": {
+    "prefix": "star2",
+    "body": ["Nota: ⭐⭐"],
+    "description": "Two stars rating"
+  },
+  "Three stars": {
+    "prefix": "star3",
+    "body": ["Nota: ⭐⭐⭐"],
+    "description": "Three stars rating"
+  },
+  "Four stars": {
+    "prefix": "star4",
+    "body": ["Nota: ⭐⭐⭐⭐"],
+    "description": "Four stars rating"
+  },
+  "Five stars": {
+    "prefix": "star5",
+    "body": ["Nota: ⭐⭐⭐⭐⭐"],
+    "description": "Five stars rating"
   }
 }

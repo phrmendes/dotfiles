@@ -1,5 +1,6 @@
 vim.lsp.enable({
   "astro",
+  "basedpyright",
   "bashls",
   "copilot",
   "cssls",

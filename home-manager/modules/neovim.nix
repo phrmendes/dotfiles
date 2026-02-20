@@ -28,6 +28,7 @@
         with pkgs;
         [
           astro-language-server
+          basedpyright
           bash-language-server
           copilot-language-server
           delve
@@ -55,7 +56,6 @@
           terraform-ls
           tflint
           tree-sitter
-          ty
           typescript-language-server
           vscode-js-debug
           vscode-langservers-extracted

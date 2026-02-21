@@ -29,7 +29,7 @@
         provider = {
           google-vertex-anthropic = {
             models = {
-              "claude-opus-4-6@default" = { };
+              "claude-sonnet-4-5@20250929" = { };
             };
           };
         };

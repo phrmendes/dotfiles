@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "55ca969ceed5209d62cbf4c20cef023ff188b6c5",
+      "rev": "84d86aa49021aa8b48c0a6ff89cd92c39ddf7d5c",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "conform.nvim": {
@@ -29,7 +29,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "live-preview.nvim": {
-      "rev": "f056b4b859d54595afce53e67129f7684380d3ba",
+      "rev": "4bbcbe79948b2726f00b5217277abd1e2651e699",
       "src": "https://github.com/brianhuster/live-preview.nvim"
     },
     "markdown.nvim": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {
-      "rev": "dbb073bd2ed4a7bb35daafc7989567f0ff1426ee",
+      "rev": "0a6fe4ec57377526e9056fffb4204dbdfe860ebc",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-dap": {
@@ -57,7 +57,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "44acfe887d4056f704ccc4f17513ed41c9e2b2e6",
+      "rev": "5a855bcfec7973767a1a472335684bbd71d2fa2b",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-context": {
@@ -74,7 +74,7 @@
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
     "opencode.nvim": {
-      "rev": "c06a18288d5487498ff6be164bc3a7fe171615dd",
+      "rev": "6d00f3094af83748f94224647f62a215bca6a920",
       "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "plenary.nvim": {
@@ -90,7 +90,7 @@
       "src": "https://github.com/ThePrimeagen/refactoring.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "b9d563ea52c4926a4d91e5e795c68bb8f89f8ba0",
+      "rev": "23f1e57d5af462c69e988642c020430449a7b1b0",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "snacks.nvim": {
@@ -102,7 +102,7 @@
       "src": "https://github.com/Allaman/tf.nvim"
     },
     "ts": {
-      "rev": "3edb01f912867603c2aef9079f208f0244c0885b",
+      "rev": "dc42c209f3820bdfaae0956f15de29689aa6b451",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },

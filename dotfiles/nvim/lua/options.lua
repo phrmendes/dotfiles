@@ -29,8 +29,6 @@ vim.opt.tabstop = 4
 vim.opt.wrap = true
 
 -- line wrapping
-vim.opt.wrap = true
-
 -- search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

@@ -39,13 +39,11 @@ vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 })
 
-require("mini.deps").setup()
 require("mini.misc").setup()
 
-_G.now = require("mini.deps").now
-_G.later = require("mini.deps").later
 _G.safely = require("mini.misc").safely
 
 require("options")
 require("autocmds")
 require("keymaps")
+require("lsp")

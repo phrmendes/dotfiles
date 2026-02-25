@@ -1,6 +1,8 @@
-later(function()
-  require("grug-far").setup({ transient = true })
+safely("later", function()
+  local grug_far = require("grug-far")
 
-  vim.keymap.set("n", "<leader>G", function() require("grug-far").open() end, { desc = "grug-far" })
-  vim.keymap.set("v", "<leader>G", function() require("grug-far").with_visual_selection() end, { desc = "grug-far" })
+  grug_far.setup({ transient = true })
+
+  vim.keymap.set("n", "<leader>G", grug_far.open, { desc = "grug-far" })
+  vim.keymap.set("v", "<leader>G", grug_far.with_visual_selection, { desc = "grug-far" })
 end)

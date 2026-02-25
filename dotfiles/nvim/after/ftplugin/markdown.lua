@@ -1,5 +1,3 @@
-vim.opt_local.shiftwidth = 2
-
 vim.b.minisurround_config = {
   custom_surroundings = {
     L = {

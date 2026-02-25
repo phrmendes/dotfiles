@@ -1,4 +1,5 @@
-now(
+safely(
+  "filetype:lua",
   function()
     require("lazydev").setup({
       library = {

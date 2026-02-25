@@ -1,4 +1,5 @@
-later(
+safely(
+  "later",
   function()
     require("conform").setup({
       notify_on_error = false,

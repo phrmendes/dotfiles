@@ -69,4 +69,34 @@ M.get_subdirectories = function(path)
     :totable()
 end
 
+--- Setup LSP document highlight autocmds for a buffer.
+--- Creates autocmds to highlight references under cursor on CursorHold
+--- and clear them on CursorMoved. Also handles cleanup on LspDetach.
+--- @param bufnr number The buffer number to setup highlights for.
+M.setup_lsp_document_highlight = function(bufnr)
+  local highlight_group = vim.api.nvim_create_augroup("UserLspHighlight", { clear = false })
+  local detach_group = vim.api.nvim_create_augroup("UserLspDetach", { clear = false })
+
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    buffer = bufnr,
+    group = highlight_group,
+    callback = vim.lsp.buf.document_highlight,
+  })
+
+  vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    buffer = bufnr,
+    group = highlight_group,
+    callback = vim.lsp.buf.clear_references,
+  })
+
+  vim.api.nvim_create_autocmd("LspDetach", {
+    buffer = bufnr,
+    group = detach_group,
+    callback = function(ev)
+      vim.lsp.buf.clear_references()
+      vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
+    end,
+  })
+end
+
 return M

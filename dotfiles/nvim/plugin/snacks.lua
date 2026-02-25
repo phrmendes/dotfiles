@@ -1,4 +1,4 @@
-now(function()
+safely("now", function()
   require("snacks").setup({
     input = { enabled = true },
     bigfile = { enabled = true },

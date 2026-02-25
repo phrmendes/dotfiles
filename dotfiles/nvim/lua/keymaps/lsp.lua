@@ -1,157 +1,37 @@
 return function(client, bufnr)
-  vim.keymap.set("n", "]]", function() Snacks.words.jump(vim.v.count1) end, {
-    noremap = true,
-    buffer = bufnr,
-    desc = "LSP: go to next reference",
-  })
+  local Methods = vim.lsp.protocol.Methods
+  local select = vim.lsp.inline_completion.select
 
-  vim.keymap.set("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, {
-    noremap = true,
-    buffer = bufnr,
-    desc = "LSP: go to previous reference",
-  })
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_rename, bufnr) then
-    vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: rename symbol",
-    })
+  local opts = function(desc) return { buffer = bufnr, desc = "LSP: " .. desc } end
+  local supports = function(method) return client:supports_method(method, bufnr) end
+  local picker = function(scope)
+    return function() MiniExtra.pickers.lsp({ scope = scope }) end
   end
 
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition, bufnr) then
-    vim.keymap.set("n", "gd", function() MiniExtra.pickers.lsp({ scope = "definition" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: go to definition",
-    })
-  end
+  vim.keymap.set("n", "]]", function() Snacks.words.jump(vim.v.count1) end, opts("go to next reference"))
+  vim.keymap.set("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, opts("go to previous reference"))
+  vim.keymap.set("n", "<leader>d", function() MiniExtra.pickers.diagnostic({ scope = "current" }) end, opts("diagnostics"))
+  vim.keymap.set("n", "<leader>D", function() MiniExtra.pickers.diagnostic({ scope = "all" }) end, opts("workspace diagnostics"))
+  vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts("diagnostics (float)"))
 
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration, bufnr) then
-    vim.keymap.set("n", "gD", function() MiniExtra.pickers.lsp({ scope = "declaration" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: go to declaration",
-    })
-  end
+  local mappings = {
+    { Methods.textDocument_rename, "n", "<f2>", vim.lsp.buf.rename, "rename symbol" },
+    { Methods.textDocument_definition, "n", "gd", picker("definition"), "go to definition" },
+    { Methods.textDocument_declaration, "n", "gD", picker("declaration"), "go to declaration" },
+    { Methods.textDocument_implementation, "n", "gi", picker("implementation"), "go to implementations" },
+    { Methods.textDocument_references, "n", "gr", picker("references"), "go to references" },
+    { Methods.textDocument_typeDefinition, "n", "gt", picker("type_definition"), "go to type definition" },
+    { Methods.textDocument_codeAction, { "n", "x" }, "<leader>a", vim.lsp.buf.code_action, "code actions" },
+    { Methods.textDocument_signatureHelp, { "n", "x" }, "<leader>h", vim.lsp.buf.signature_help, "signature help" },
+    { Methods.textDocument_inlayHint, "n", "<leader>i", Snacks.toggle.inlay_hints, "toggle inlay hints" },
+    { Methods.textDocument_hover, "n", "K", vim.lsp.buf.hover, "hover" },
+    { Methods.textDocument_documentSymbol, "n", "<leader>s", picker("document_symbol"), "symbols (document)" },
+    { Methods.workspace_symbol, "n", "<leader>S", picker("workspace_symbol"), "symbols (workspace)" },
+    { Methods.textDocument_inlineCompletion, "i", "<c-l>", vim.lsp.inline_completion.get, "accept inline completion" },
+    { Methods.textDocument_inlineCompletion, "i", "<m-]>", function() select({ bufnr = bufnr, count = vim.v.count1 }) end, "next completion" },
+    { Methods.textDocument_inlineCompletion, "i", "<m-[>", function() select({ bufnr = bufnr, count = -vim.v.count1 }) end, "previous completion" },
+    { Methods.workspace_didRenameFiles or Methods.workspace_willRenameFiles, "n", "<leader>R", Snacks.rename.rename_file, "rename file" },
+  }
 
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation, bufnr) then
-    vim.keymap.set("n", "gi", function() MiniExtra.pickers.lsp({ scope = "implementation" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: go to implementations",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_references, bufnr) then
-    vim.keymap.set("n", "gr", function() MiniExtra.pickers.lsp({ scope = "references" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: go to references",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition, bufnr) then
-    vim.keymap.set("n", "gt", function() MiniExtra.pickers.lsp({ scope = "type_definition" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: go to type definition",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction, bufnr) then
-    vim.keymap.set({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: code actions",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_publishDiagnostics, bufnr) then
-    vim.keymap.set("n", "<leader>d", function() MiniExtra.pickers.diagnostic({ scope = "current" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: diagnostics",
-    })
-
-    vim.keymap.set("n", "<leader>D", function() MiniExtra.pickers.diagnostic({ scope = "all" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: workspace diagnostics",
-    })
-
-    vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: diagnostics (float)",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, bufnr) then
-    vim.keymap.set({ "n", "x" }, "<leader>h", vim.lsp.buf.signature_help, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: signature help",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
-    vim.keymap.set("n", "<leader>i", function() Snacks.toggle.inlay_hints() end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: toggle inlay hints",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_hover, bufnr) then
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: hover",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol, bufnr) then
-    vim.keymap.set("n", "<leader>s", function() MiniExtra.pickers.lsp({ scope = "document_symbol" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: symbols (document)",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.workspace_symbol, bufnr) then
-    vim.keymap.set("n", "<leader>S", function() MiniExtra.pickers.lsp({ scope = "workspace_symbol" }) end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: symbols (workspace)",
-    })
-  end
-
-  if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
-    vim.keymap.set("i", "<c-l>", vim.lsp.inline_completion.get, {
-      desc = "LSP: accept inline completion",
-      buffer = bufnr,
-    })
-
-    vim.keymap.set("i", "<m-]>", function() vim.lsp.inline_completion.select({ bufnr = bufnr, count = vim.v.count1 }) end, {
-      desc = "LSP: next inline completion",
-      buffer = bufnr,
-    })
-
-    vim.keymap.set("i", "<m-[>", function() vim.lsp.inline_completion.select({ bufnr = bufnr, count = -vim.v.count1 }) end, {
-      desc = "LSP: previous inline completion",
-      buffer = bufnr,
-    })
-  end
-
-  if
-    client:supports_method(vim.lsp.protocol.Methods.workspace_didRenameFiles, bufnr)
-    or client:supports_method(vim.lsp.protocol.Methods.workspace_willRenameFiles, bufnr)
-  then
-    vim.keymap.set("n", "<leader>R", function() Snacks.rename.rename_file() end, {
-      noremap = true,
-      buffer = bufnr,
-      desc = "LSP: rename file",
-    })
-  end
+  vim.iter(mappings):filter(function(m) return supports(m[1]) end):each(function(m) vim.keymap.set(m[2], m[3], m[4], opts(m[5])) end)
 end

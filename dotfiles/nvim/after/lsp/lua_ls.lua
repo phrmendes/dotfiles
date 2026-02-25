@@ -3,8 +3,10 @@ return {
     Lua = {
       completion = { callSnippet = "Replace" },
       telemetry = { enable = false },
-      globals = { "vim", "Snacks", "MiniDeps" },
-      diagnostics = { disable = { "missing-fields" } },
+      diagnostics = {
+        globals = { "vim", "Snacks" },
+        disable = { "missing-fields" },
+      },
     },
   },
 }

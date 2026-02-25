@@ -109,7 +109,7 @@ local adapters = {
   },
 }
 
-later(function()
+safely("later", function()
   local dap = require("dap")
   local dap_view = require("dap-view")
 
@@ -134,4 +134,38 @@ later(function()
   end)
 
   vim.iter(adapters):each(function(lang, adapter) dap.adapters[lang] = adapter end)
+end)
+
+safely("filetype:python,lua,elixir,javascript,typescript", function()
+  local dap = require("dap")
+  local dap_view = require("dap-view")
+
+  vim.keymap.set("n", "<F7>", dap.step_back, { desc = "DAP: step back" })
+  vim.keymap.set("n", "<F8>", dap.continue, { desc = "DAP: continue" })
+  vim.keymap.set("n", "<F9>", dap.step_over, { desc = "DAP: step over" })
+  vim.keymap.set("n", "<S-F8>", dap.pause, { desc = "DAP: pause" })
+  vim.keymap.set("n", "<BS>", dap.close, { desc = "DAP: close" })
+  vim.keymap.set("n", "<localleader>d", "", { desc = "+dap" })
+  vim.keymap.set("n", "<localleader>dd", dap.run_last, { desc = "Debug last" })
+  vim.keymap.set("n", "<localleader>di", dap.step_into, { desc = "Step into" })
+  vim.keymap.set("n", "<localleader>do", dap.step_out, { desc = "Step out" })
+  vim.keymap.set("n", "<localleader>dq", dap.terminate, { desc = "Terminate" })
+  vim.keymap.set("n", "<localleader>du", dap_view.toggle, { desc = "Toggle UI" })
+  vim.keymap.set("n", "<localleader>d<del>", dap.clear_breakpoints, { desc = "Clear breakpoints" })
+  vim.keymap.set("n", "<localleader>db", dap.toggle_breakpoint, { desc = "Breakpoint" })
+  vim.keymap.set("n", "<localleader>dB", function()
+    vim.ui.input({ prompt = "Condition: " }, function(input) dap.set_breakpoint(input) end)
+  end, { desc = "Conditional breakpoint" })
+end)
+
+safely("filetype:python", function()
+  local dap_python = require("dap-python")
+
+  vim.keymap.set("n", "<localleader>dc", dap_python.test_class, { desc = "Debug class" })
+  vim.keymap.set("n", "<localleader>df", dap_python.test_method, { desc = "Debug function/method" })
+  vim.keymap.set("x", "<localleader>ds", dap_python.debug_selection, { desc = "Debug selection" })
+end)
+
+safely("filetype:lua", function()
+  vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, { desc = "Launch debugger" })
 end)

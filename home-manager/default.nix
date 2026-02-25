@@ -7,6 +7,7 @@
 
 {
   imports = [
+    inputs.nix-index-database.homeModules.default
     (inputs.import-tree ./modules)
   ];
 

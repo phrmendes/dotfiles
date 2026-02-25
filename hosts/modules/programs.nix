@@ -5,7 +5,6 @@
     fuse.userAllowOther = true;
     command-not-found.enable = false;
     zsh.enable = true;
-    nix-index.enable = true;
 
     nix-ld = {
       enable = true;

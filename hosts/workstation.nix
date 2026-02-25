@@ -140,6 +140,7 @@
     lazygit.enable = true;
     mpv.enable = true;
     neovim.enable = true;
+    nix-index.enable = true;
     nm-applet.enable = true;
     opencode.enable = true;
     packages.enable = true;

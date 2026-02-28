@@ -17,6 +17,7 @@ vim.pack.add({
   "https://github.com/igorlfs/nvim-dap-view",
   "https://github.com/jbyuki/one-small-step-for-vimkind",
   "https://github.com/jpalardy/vim-slime",
+  "https://github.com/kevinhwang91/nvim-bqf",
   "https://github.com/kristijanhusak/vim-dadbod-completion",
   "https://github.com/kristijanhusak/vim-dadbod-ui",
   "https://github.com/mbbill/undotree",

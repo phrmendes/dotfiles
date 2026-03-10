@@ -27,7 +27,7 @@ return function(client, bufnr)
     { Methods.textDocument_hover, "n", "K", vim.lsp.buf.hover, "hover" },
     { Methods.textDocument_documentSymbol, "n", "<leader>s", picker("document_symbol"), "symbols (document)" },
     { Methods.workspace_symbol, "n", "<leader>S", picker("workspace_symbol"), "symbols (workspace)" },
-    { Methods.textDocument_inlineCompletion, "i", "<c-l>", vim.lsp.inline_completion.get, "accept inline completion" },
+    { Methods.textDocument_inlineCompletion, "i", "<c-a>", vim.lsp.inline_completion.get, "accept inline completion" },
     { Methods.textDocument_inlineCompletion, "i", "<m-]>", function() select({ bufnr = bufnr, count = vim.v.count1 }) end, "next completion" },
     { Methods.textDocument_inlineCompletion, "i", "<m-[>", function() select({ bufnr = bufnr, count = -vim.v.count1 }) end, "previous completion" },
     { Methods.workspace_didRenameFiles or Methods.workspace_willRenameFiles, "n", "<leader>R", Snacks.rename.rename_file, "rename file" },

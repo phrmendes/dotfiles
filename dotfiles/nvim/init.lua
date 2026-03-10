@@ -12,7 +12,6 @@ vim.pack.add({
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
   "https://github.com/brianhuster/unnest.nvim",
-  "https://github.com/esmuellert/codediff.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/snacks.nvim",
   "https://github.com/igorlfs/nvim-dap-view",

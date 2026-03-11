@@ -8,9 +8,12 @@
   options.git.enable = lib.mkEnableOption "enable git";
 
   config = lib.mkIf config.git.enable {
-    programs.delta = {
+    programs.difftastic = {
       enable = true;
-      enableGitIntegration = true;
+      git = {
+        enable = true;
+        diffToolMode = true;
+      };
     };
 
     programs.git = {

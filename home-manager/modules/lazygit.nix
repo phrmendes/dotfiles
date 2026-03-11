@@ -19,6 +19,7 @@
           {
             colorArg = "always";
             pager = "${lib.getExe pkgs.delta} --dark --paging=never";
+            externalDiffCommand = "${lib.getExe pkgs.difftastic} --color=always";
           }
         ];
       };

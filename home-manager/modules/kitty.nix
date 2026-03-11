@@ -5,7 +5,6 @@
   config = lib.mkIf config.kitty.enable {
     programs.kitty = {
       enable = true;
-      enableGitIntegration = true;
       shellIntegration.enableZshIntegration = true;
       settings = {
         active_tab_font_style = "bold";

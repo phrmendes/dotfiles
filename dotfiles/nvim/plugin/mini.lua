@@ -63,12 +63,12 @@ end)
 
 safely("later", function() require("mini.align").setup() end)
 safely("later", function() require("mini.comment").setup() end)
-safely("later", function() require("mini.cursorword").setup() end)
+safely("event:BufReadPost", function() require("mini.cursorword").setup() end)
 safely("later", function() require("mini.doc").setup() end)
-safely("later", function() require("mini.indentscope").setup({ symbol = "│" }) end)
+safely("event:BufReadPost", function() require("mini.indentscope").setup({ symbol = "│" }) end)
 safely("later", function() require("mini.jump").setup() end)
 safely("later", function() require("mini.operators").setup({ replace = { prefix = "gR", reindent_linewise = true } }) end)
-safely("later", function() require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } }) end)
+safely("event:InsertEnter", function() require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } }) end)
 safely("later", function() require("mini.splitjoin").setup({ mappings = { toggle = "T" } }) end)
 safely("later", function() require("mini.test").setup() end)
 safely("later", function() require("mini.visits").setup() end)
@@ -148,8 +148,7 @@ safely("later", function()
   })
 end)
 
-safely("later", function()
-  vim.pack.add({ "https://github.com/rafamadriz/friendly-snippets" })
+safely("event:InsertEnter", function()
   require("mini.completion").setup({
     window = {
       info = { height = 25, width = 80, border = vim.g.border },
@@ -163,7 +162,9 @@ safely("later", function()
     },
     mappings = { force_twostep = "<c-f>", force_fallback = "<a-f>", scroll_down = "<c-d>", scroll_up = "<c-u>" },
   })
+
   vim.lsp.config("*", { capabilities = MiniCompletion.get_lsp_capabilities() })
+
   vim.api.nvim_create_autocmd("FileType", {
     desc = "Disable completion in certain filetypes",
     pattern = { "dap-view", "dap-view-term", "dap-repl", "snacks_input", "minifiles", "grug-far", "opencode_ask" },
@@ -172,7 +173,7 @@ safely("later", function()
 end)
 
 safely(
-  "later",
+  "event:BufReadPost",
   function()
     require("mini.diff").setup({
       view = { style = "sign" },
@@ -183,7 +184,7 @@ safely(
 
 safely("later", function() require("mini.git").setup({ command = { split = "horizontal" } }) end)
 
-safely("later", function()
+safely("event:BufReadPost", function()
   local hipatterns = require("mini.hipatterns")
   hipatterns.setup({
     highlighters = {
@@ -242,7 +243,7 @@ safely(
   end
 )
 
-safely("later", function()
+safely("event:InsertEnter", function()
   local snippets = require("mini.snippets")
 
   snippets.setup({
@@ -366,7 +367,7 @@ safely("later", function()
   })
 end)
 
-safely("later", function()
+safely("event:BufReadPost", function()
   require("mini.trailspace").setup()
   vim.api.nvim_create_user_command("Trim", function()
     MiniTrailspace.trim()

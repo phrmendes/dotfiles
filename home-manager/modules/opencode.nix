@@ -14,10 +14,27 @@
       settings = {
         model = "github-copilot/claude-opus-4.5";
         small_model = "github-copilot/claude-sonnet-4.5";
+        rules = ''
+          # Rules
+
+          - Always use english for conversation
+          - Correct my spelling and grammar mistakes in my messages
+          - Never commit code if not explicitly asked to do so
+        '';
         mcp = {
           k8s = {
             type = "local";
             command = [ "${pkgs.mcp-k8s-go}/bin/mcp-k8s-go" ];
+            enabled = true;
+          };
+          terraform = {
+            type = "local";
+            command = [ "${pkgs.terraform-mcp-server}/bin/terraform-mcp-server" ];
+            enabled = true;
+          };
+          github = {
+            type = "local";
+            command = [ "${pkgs.github-mcp-server}/bin/github-mcp-server" ];
             enabled = true;
           };
           playright = {

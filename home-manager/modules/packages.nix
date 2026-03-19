@@ -40,6 +40,7 @@
       pavucontrol
       phockup
       poppler
+      protonvpn-gui
       python314
       quarto
       tectonic

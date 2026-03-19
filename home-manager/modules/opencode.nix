@@ -14,13 +14,6 @@
       settings = {
         model = "github-copilot/claude-opus-4.5";
         small_model = "github-copilot/claude-sonnet-4.5";
-        rules = ''
-          # Rules
-
-          - Always use english for conversation
-          - Correct my spelling and grammar mistakes in my messages
-          - Never commit code if not explicitly asked to do so
-        '';
         mcp = {
           k8s = {
             type = "local";

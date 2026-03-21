@@ -389,6 +389,15 @@ safely("later", function()
   vim.keymap.set("n", "<leader>m", extra_pickers.marks, { desc = "Marks" })
   vim.keymap.set("n", "<leader>v", extra_pickers.visit_paths, { desc = "Visits (cwd)" })
   vim.keymap.set("n", "<leader>V", function() extra_pickers.visit_paths({ cwd = "" }) end, { desc = "Visits (all)" })
+
+  -- MRU navigation using mini.visits (sorted by recency)
+  local sort_recent = MiniVisits.gen_sort.default({ recency_weight = 1 })
+  local iterate_opts = { sort = sort_recent, wrap = true }
+
+  vim.keymap.set("n", "[v", function() MiniVisits.iterate_paths("backward", nil, iterate_opts) end, { desc = "Previous visit (MRU)" })
+  vim.keymap.set("n", "]v", function() MiniVisits.iterate_paths("forward", nil, iterate_opts) end, { desc = "Next visit (MRU)" })
+  vim.keymap.set("n", "[V", function() MiniVisits.iterate_paths("first", nil, iterate_opts) end, { desc = "Most recent visit" })
+  vim.keymap.set("n", "]V", function() MiniVisits.iterate_paths("last", nil, iterate_opts) end, { desc = "Oldest visit" })
   vim.keymap.set("n", "<leader>gL", extra_pickers.git_commits, { desc = "Log (repo)" })
   vim.keymap.set("n", "<leader>gH", extra_pickers.git_hunks, { desc = "Hunks (repo)" })
   vim.keymap.set("n", "<leader>gh", function() extra_pickers.git_hunks({ path = vim.fn.expand("%") }) end, { desc = "Hunks (file)" })
@@ -412,7 +421,28 @@ safely("later", function()
       mappings = {
         wipeout = {
           char = "<c-d>",
-          func = function() vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {}) end,
+          func = function()
+            local matches = MiniPick.get_picker_matches()
+
+            if not matches then return end
+
+            local buffers = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
+
+            vim.iter(buffers):each(function(buf)
+              if buf then MiniBufremove.delete(buf.bufnr) end
+            end)
+
+            local items = vim
+              .iter(vim.fn.getbufinfo({ buflisted = 1 }))
+              :map(function(buf)
+                local name = vim.fn.fnamemodify(buf.name, ":~:.")
+
+                return { bufnr = buf.bufnr, text = name ~= "" and name or "[No Name]" }
+              end)
+              :totable()
+
+            MiniPick.set_picker_items(items)
+          end,
         },
       },
     })

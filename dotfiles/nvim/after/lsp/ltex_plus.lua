@@ -1,5 +1,3 @@
-local helpers = require("helpers")
-
 return {
   on_attach = function(client, bufnr)
     vim.keymap.set({ "n", "x" }, "zg", function()
@@ -9,7 +7,7 @@ return {
 
       if language == "none" then return vim.notify("No language enabled", vim.log.levels.ERROR, { title = "Ltex" }) end
 
-      local words = helpers.add_word_to_dictionary(language, word)
+      local words = require("helpers").add_word_to_dictionary(language, word)
       settings.ltex.dictionary[language] = words
       client:notify("workspace/didChangeConfiguration", { settings = settings })
       vim.notify("Word added to dictionary `" .. language .. "`: " .. word, vim.log.levels.INFO, { title = "Ltex" })
@@ -32,8 +30,8 @@ return {
       language = "none",
       markdown = { nodes = { Link = "dummy" } },
       dictionary = {
-        ["en-US"] = helpers.get_dictionary_words("en-US"),
-        ["pt-BR"] = helpers.get_dictionary_words("pt-BR"),
+        ["en-US"] = require("helpers").get_dictionary_words("en-US"),
+        ["pt-BR"] = require("helpers").get_dictionary_words("pt-BR"),
       },
     },
   },

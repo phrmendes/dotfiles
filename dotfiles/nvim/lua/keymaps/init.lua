@@ -27,23 +27,9 @@ vim.keymap.set("n", "<leader><tab>k", "<cmd>tabonly<cr>", { desc = "Keep" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { desc = "New" })
 vim.keymap.set("n", "<leader><tab>q", "<cmd>tabclose<cr>", { desc = "Close" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
+vim.keymap.set("n", "<leader>bk", require("helpers").keep_current_buffer, { desc = "Keep this" })
 vim.keymap.set("n", "<leader>bG", "<cmd>blast<cr>", { desc = "Last" })
 vim.keymap.set("n", "<leader>bg", "<cmd>bfirst<cr>", { desc = "First" })
-vim.keymap.set("n", "<leader>bk", "<cmd>wall!<bar>%bdelete<bar>edit#<bar>bdelete#<cr>", { desc = "Keep this" })
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Undo Tree" })
 vim.keymap.set("n", "<leader>w", "<cmd>silent w!<cr>", { desc = "Write" })
-
-vim.keymap.set("n", "<leader>T", function()
-  vim.ui.input({ prompt = "Name: " }, function(name)
-    if name then vim.cmd("terminal zsh \\# " .. name) end
-  end)
-end, { desc = "Open new terminal" })
-
-vim.keymap.set("n", "<leader>q", function()
-  if vim.list_contains(vim.v.argv, "--embed") then
-    vim.cmd.quit()
-    return
-  end
-
-  vim.cmd.detach()
-end, { desc = "Quit" })
+vim.keymap.set("n", "<leader>q", require("helpers").quit_or_detach, { desc = "Quit" })

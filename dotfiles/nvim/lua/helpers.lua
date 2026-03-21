@@ -99,4 +99,23 @@ M.setup_lsp_document_highlight = function(bufnr)
   })
 end
 
+--- Quit if embedded, otherwise detach.
+M.quit_or_detach = function()
+  if vim.list_contains(vim.v.argv, "--embed") then
+    vim.cmd.quit()
+    return
+  end
+
+  vim.cmd.detach()
+end
+
+--- Delete all buffers except the current one.
+M.keep_current_buffer = function()
+  local current = vim.api.nvim_get_current_buf()
+
+  vim.iter(vim.api.nvim_list_bufs())
+    :filter(function(buf) return buf ~= current and vim.bo[buf].buflisted end)
+    :each(function(buf) MiniBufremove.delete(buf) end)
+end
+
 return M

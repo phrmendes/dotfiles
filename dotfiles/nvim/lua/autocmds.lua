@@ -5,6 +5,7 @@ local augroups = {
   yank = vim.api.nvim_create_augroup("UserYank", {}),
   windows = vim.api.nvim_create_augroup("UserWindows", {}),
   treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
+  tabs = vim.api.nvim_create_augroup("UserTabs", {}),
 }
 
 vim.api.nvim_create_autocmd("FileType", {

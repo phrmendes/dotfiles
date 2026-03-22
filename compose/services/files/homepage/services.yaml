@@ -47,10 +47,6 @@
         href: https://transmission.local.ohlongjohnson.tech
         icon: sh-transmission
         description: BitTorrent client with web interface
-    - SABnzbd:
-        href: https://sabnzbd.local.ohlongjohnson.tech
-        icon: sh-sabnzbd
-        description: The automated Usenet download tool
     - Prowlarr:
         href: https://prowlarr.local.ohlongjohnson.tech
         icon: sh-prowlarr
@@ -58,11 +54,11 @@
     - Sonarr:
         href: https://sonarr.local.ohlongjohnson.tech
         icon: sh-sonarr
-        description: TV shows manager for usenet and torrent users
+        description: TV shows manager for torrent users
     - Radarr:
         href: https://radarr.local.ohlongjohnson.tech
         icon: sh-radarr
-        description: Movie manager for usenet and torrent users
+        description: Movie manager for torrent users
     - Bazarr:
         href: https://bazarr.local.ohlongjohnson.tech
         icon: sh-bazarr

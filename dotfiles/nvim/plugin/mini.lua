@@ -148,7 +148,7 @@ safely("later", function()
   })
 end)
 
-safely("event:InsertEnter", function()
+safely("later", function()
   require("mini.completion").setup({
     window = {
       info = { height = 25, width = 80, border = vim.g.border },

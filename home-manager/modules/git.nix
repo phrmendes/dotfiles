@@ -23,7 +23,6 @@
           email = parameters.email;
           name = parameters.name;
         };
-        credential.helper = "store";
         http.sslVerify = true;
         init.defaultBranch = "main";
         merge.tool = "nvimdiff";

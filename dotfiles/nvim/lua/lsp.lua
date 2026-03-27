@@ -17,6 +17,7 @@ vim.lsp.enable({
   "helm_ls",
   "html",
   "jsonls",
+  "just",
   "ltex_plus",
   "lua_ls",
   "marksman",

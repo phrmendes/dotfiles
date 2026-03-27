@@ -4,13 +4,14 @@ safely(
     require("conform").setup({
       notify_on_error = false,
       formatters_by_ft = {
-        css = { "prettier" },
         astro = { "prettier" },
-        htmldjango = { "djlint" },
+        css = { "prettier" },
         html = { "prettier" },
+        htmldjango = { "djlint" },
         http = { "kulala-fmt" },
         jinja2 = { "djlint" },
         json = { "prettier" },
+        just = { "just" },
         lua = { "stylua" },
         markdown = { "prettier" },
         nix = { "nixfmt" },

@@ -38,6 +38,7 @@
           emmet-language-server
           eslint
           helm-ls
+          just-lsp
           kulala-fmt
           libxml2
           ltex-ls-plus

@@ -52,6 +52,8 @@
           export PATH="$HOME/.local/bin:$PATH"
 
           set -o vi
+
+          source <(${pkgs.just}/bin/just --completions zsh)
         '';
       };
   };

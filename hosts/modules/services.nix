@@ -6,7 +6,6 @@
     gvfs.enable = true;
     ntpd-rs.enable = true;
     udev.enable = true;
-    localtimed.enable = true;
     geoclue2.enable = true;
 
     gnome = {

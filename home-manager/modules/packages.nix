@@ -44,6 +44,7 @@
       python314
       quarto
       tectonic
+      terraform
       thunar
       tpm2-tools
       ungoogled-chromium

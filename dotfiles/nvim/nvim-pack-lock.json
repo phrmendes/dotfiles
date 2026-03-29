@@ -12,6 +12,10 @@
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "direnv.nvim": {
+      "rev": "564146278b3d5fe4ffa389cd103bab20f9b515d6",
+      "src": "https://github.com/NotAShelf/direnv.nvim"
+    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"

@@ -149,7 +149,6 @@
     starship.enable = true;
     swayosd.enable = true;
     symlinks.enable = true;
-    syncthingtray.enable = true;
     systemd.enable = true;
     targets.enable = true;
     tealdeer.enable = true;

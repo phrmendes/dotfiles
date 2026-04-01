@@ -1,0 +1,6 @@
+[submodule "neovim/plugins/notes.nvim"]
+	path = neovim/plugins/notes.nvim
+	url = https://github.com/phrmendes/notes.nvim.git
+[submodule "neovim/plugins/todotxt.nvim"]
+	path = neovim/plugins/todotxt.nvim
+	url = https://github.com/phrmendes/todotxt.nvim.git

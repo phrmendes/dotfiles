@@ -5,6 +5,20 @@
   inputs,
   ...
 }:
+let
+  symlink = config.lib.file.mkOutOfStoreSymlink;
+  withHashtag = config.lib.stylix.colors.withHashtag;
+  localPlugins =
+    inputs.vim-plugins
+    |> builtins.readDir
+    |> lib.filterAttrs (_: type: type == "directory")
+    |> lib.mapAttrs' (
+      name: _:
+      lib.nameValuePair ".local/share/nvim/site/pack/local/opt/${name}" {
+        source = "${inputs.vim-plugins}/${name}";
+      }
+    );
+in
 {
   options.neovim.enable = lib.mkEnableOption "enable neovim";
 
@@ -80,9 +94,8 @@
 
     xdg.configFile."nvim/init.lua".enable = false;
 
-    home.file = {
-      ".config/nvim".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/dotfiles/nvim";
+    home.file = localPlugins // {
+      ".config/nvim".source = symlink "${config.home.homeDirectory}/Projects/dotfiles/neovim/config";
       ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
         return "${pkgs.vimPlugins.luvit-meta}/library"
       '';
@@ -92,7 +105,7 @@
       ".local/share/nvim/nix/lua/nix/vscode-js-debug.lua".text = ''
         return "${pkgs.vscode-js-debug}/bin/js-debug"
       '';
-      ".local/share/nvim/nix/lua/nix/base16.lua".text = with config.lib.stylix.colors.withHashtag; ''
+      ".local/share/nvim/nix/lua/nix/base16.lua".text = with withHashtag; ''
         return {
             palette = {
                 base00 = "${base00}",

@@ -2,6 +2,8 @@
   description = "My personal NixOS configuration";
 
   inputs = {
+    self.submodules = true;
+
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
@@ -23,6 +25,11 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vim-plugins = {
+      url = "path:./neovim/plugins";
+      flake = false;
     };
   };
 

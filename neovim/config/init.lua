@@ -1,8 +1,11 @@
 local nix_path = vim.fs.joinpath(vim.fn.stdpath("data"), "nix")
-local dev_path = require("helpers").get_subdirectories(vim.fs.joinpath(vim.env.HOME, "Projects", "vim-plugins"))
-local paths = vim.iter({ nix_path, dev_path }):flatten():totable()
+local local_plugins = vim.fs.joinpath(vim.fn.stdpath("data"), "site", "pack", "local", "opt")
 
-vim.iter(paths):each(function(path) vim.opt.rtp:prepend(path) end)
+vim.opt.rtp:prepend(nix_path)
+
+for name in vim.fs.dir(local_plugins) do
+  vim.cmd.packadd(name)
+end
 
 vim.pack.add({
   "https://github.com/Allaman/tf.nvim",

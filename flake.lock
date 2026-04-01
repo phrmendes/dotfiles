@@ -509,7 +509,8 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "vim-plugins": "vim-plugins"
       }
     },
     "stylix": {
@@ -654,6 +655,18 @@
         "repo": "base16-zed",
         "type": "github"
       }
+    },
+    "vim-plugins": {
+      "flake": false,
+      "locked": {
+        "path": "./neovim/plugins",
+        "type": "path"
+      },
+      "original": {
+        "path": "./neovim/plugins",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",

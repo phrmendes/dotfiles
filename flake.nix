@@ -4,13 +4,25 @@
   inputs = {
     self.submodules = true;
 
-    agenix.url = "github:ryantm/agenix";
-    impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
+    impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    stylix.url = "github:danth/stylix";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    neovim-nightly = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     disko = {
       url = "github:nix-community/disko/latest";

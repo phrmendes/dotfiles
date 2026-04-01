@@ -140,25 +140,28 @@
           ++ workspace.switch
           ++ workspace.move
           ++ workspace.moveSilent;
-          env = [
-            "GDK_BACKEND,wayland"
-            "LIBVA_DRIVER_NAME,nvidia"
-            "MOZ_ENABLE_WAYLAND,1"
-            "NIXOS_OZONE_WL,1"
-            "NVD_BACKEND,direct"
-            "QT_QPA_PLATFORM,wayland"
-            "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-            "SDL_VIDEODRIVER,wayland"
-            "USE_WAYLAND_GRIM,1"
-            "WLR_NO_HARDWARE_CURSORS,1"
-            "WLR_RENDERER,gles2"
-            "XDG_CURRENT_DESKTOP,Hyprland"
-            "XDG_SESSION_DESKTOP,Hyprland"
-            "XDG_SESSION_TYPE,wayland"
-            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-            "__GL_SYNC_TO_VBLANK,0"
-            "__GL_THREADED_OPTIMIZATIONS,0"
-          ];
+          env =
+            [
+              "GDK_BACKEND,wayland"
+              "MOZ_ENABLE_WAYLAND,1"
+              "NIXOS_OZONE_WL,1"
+              "QT_QPA_PLATFORM,wayland"
+              "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+              "SDL_VIDEODRIVER,wayland"
+              "USE_WAYLAND_GRIM,1"
+              "XDG_CURRENT_DESKTOP,Hyprland"
+              "XDG_SESSION_DESKTOP,Hyprland"
+              "XDG_SESSION_TYPE,wayland"
+            ]
+            ++ lib.optionals (!parameters.laptop) [
+              "LIBVA_DRIVER_NAME,nvidia"
+              "NVD_BACKEND,direct"
+              "WLR_NO_HARDWARE_CURSORS,1"
+              "WLR_RENDERER,gles2"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+              "__GL_SYNC_TO_VBLANK,0"
+              "__GL_THREADED_OPTIMIZATIONS,0"
+            ];
         };
       };
   };

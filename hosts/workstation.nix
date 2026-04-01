@@ -156,7 +156,7 @@
     udiskie.enable = true;
     vicinae.enable = true;
     waybar.enable = true;
-    xdg.enable = true;
+    xdg-config.enable = true;
     yazi.enable = true;
     zathura.enable = true;
     zoxide.enable = true;

@@ -191,6 +191,6 @@
     ripgrep.enable = true;
     zoxide.enable = true;
 
-    xdg.configFile."nvim/init.lua".source = ../dotfiles/neovim.lua;
+    xdg.configFile."nvim/init.lua".source = ../files/neovim.lua;
   };
 }

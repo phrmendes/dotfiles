@@ -2,10 +2,9 @@ local augroups = {
   line_numbers = vim.api.nvim_create_augroup("UserLineNumbers", {}),
   transient_buffers = vim.api.nvim_create_augroup("UserTransientBuffers", {}),
   format_options = vim.api.nvim_create_augroup("UserFormatOptions", {}),
-  yank = vim.api.nvim_create_augroup("UserYank", {}),
+  shiftwidth = vim.api.nvim_create_augroup("UserShiftwidth", {}),
   windows = vim.api.nvim_create_augroup("UserWindows", {}),
   treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
-  tabs = vim.api.nvim_create_augroup("UserTabs", {}),
 }
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -19,7 +18,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.foldmethod = "expr"
     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.treesitter.start(event.buf, language)
-    vim.bo[event.buf].indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
   end,
 })
 
@@ -29,12 +27,6 @@ vim.api.nvim_create_autocmd("WinEnter", {
   callback = function()
     if vim.fn.winnr("$") == 1 and vim.fn.win_gettype() == "quickfix" then vim.cmd.q() end
   end,
-})
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = augroups.yank,
-  callback = function() vim.hl.on_yank() end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -76,6 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Set shiftwidth to 2 for specific filetypes",
+  group = augroups.shiftwidth,
   pattern = { "json", "lua", "markdown", "nix", "sql", "terraform" },
   callback = function() vim.opt_local.shiftwidth = 2 end,
 })

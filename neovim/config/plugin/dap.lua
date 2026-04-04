@@ -10,7 +10,7 @@ local configs = {
     type = "python",
     request = "launch",
     name = "django:server",
-    program = vim.uv.cwd() .. "/manage.py",
+    program = function() return vim.uv.cwd() .. "/manage.py" end,
     args = function() return { "runserver", "--noreload", vim.fn.input("Port: ", "8000") } end,
     justMyCode = true,
     django = true,
@@ -79,7 +79,7 @@ local configs = {
   {
     type = "pwa-node",
     request = "attach",
-    processId = function() require("dap.utils").pick_process() end,
+    processId = function() return require("dap.utils").pick_process() end,
     name = "Attach debugger to existing `node --inspect` process",
     sourceMaps = true,
     resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
@@ -105,7 +105,7 @@ local adapters = {
   ["pwa-node"] = {
     type = "server",
     port = "${port}",
-    executable = { command = require("nix.vscode-js-debug"), args = { "${port}" } },
+    executable = { command = require("nix").vscode_js_debug, args = { "${port}" } },
   },
 }
 

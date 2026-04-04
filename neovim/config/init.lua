@@ -1,17 +1,6 @@
-local nix_path = vim.fs.joinpath(vim.fn.stdpath("data"), "nix")
-local local_plugins = vim.fs.joinpath(vim.fn.stdpath("data"), "site", "pack", "local", "opt")
-
-vim.opt.rtp:prepend(nix_path)
-
-for name in vim.fs.dir(local_plugins) do
-  vim.cmd.packadd(name)
-end
-
 vim.pack.add({
-  "https://github.com/Allaman/tf.nvim",
   "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/NickvanDyke/opencode.nvim",
-  "https://github.com/NotAShelf/direnv.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
@@ -28,7 +17,6 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/mfussenegger/nvim-lint",
-  "https://github.com/mistweaverco/kulala.nvim",
   "https://github.com/mrjones2014/smart-splits.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/nvim-lua/plenary.nvim",
@@ -41,9 +29,11 @@ vim.pack.add({
   "https://github.com/tadmccorkle/markdown.nvim",
   "https://github.com/tpope/vim-abolish",
   "https://github.com/tpope/vim-dadbod",
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main", name = "ts" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 })
+
+for name in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath("data"), "site", "pack", "local", "opt")) do
+  vim.cmd.packadd(name)
+end
 
 require("mini.misc").setup()
 
@@ -53,3 +43,11 @@ require("options")
 require("autocmds")
 require("keymaps")
 require("lsp")
+
+require("vim._core.ui2").enable({
+  enable = true,
+  msg = {
+    msg = { height = 0.3, timeout = 5000 },
+    pager = { height = 0.5 },
+  },
+})

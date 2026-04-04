@@ -1,70 +1,27 @@
--- leader keys
+-- leader keys (must be set before any <leader> mappings)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
-
--- syntax
-vim.opt.syntax = "on"
 
 -- confirm before operations in files with unsaved changes
 vim.opt.confirm = true
 
--- autoread files changed outside of vim
-vim.opt.autoread = true
-
--- file type plugin
-vim.cmd([[filetype plugin on]])
-
--- line numbers
-vim.opt.relativenumber = true
-vim.opt.number = true
+-- overrides for mini.basics defaults
+vim.opt.wrap = true
+vim.opt.completeopt = { "menuone", "noselect", "fuzzy" }
+vim.opt.cursorlineopt = "screenline"
+vim.opt.listchars:append({ tab = "▏ " })
 
 -- tabs and indentation
-vim.opt.autoindent = true
-vim.opt.breakindent = true
 vim.opt.expandtab = true
-vim.opt.linebreak = true
 vim.opt.shiftwidth = 4
-vim.opt.showtabline = 1
 vim.opt.tabstop = 4
-vim.opt.wrap = true
 
--- line wrapping
--- search settings
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = true
-
--- config cursor line
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "screenline"
-
--- appearance
-vim.opt.background = "dark"
-vim.opt.signcolumn = "yes"
-vim.opt.termguicolors = true
-
--- backspace
-vim.opt.backspace = { "indent", "eol", "start" }
-
--- split windows
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- disable backup files
-vim.opt.backup = false
-vim.opt.writebackup = false
+-- disable swap files
 vim.opt.swapfile = false
-
--- save undo history
-vim.opt.undofile = true
 
 -- decrease update time
 vim.opt.updatetime = 200
-vim.opt.timeout = true
 vim.opt.timeoutlen = 300
-
--- better completion experience
-vim.opt.completeopt = { "menuone", "noselect", "fuzzy" }
 
 -- default terminal
 vim.opt.shell = "zsh"
@@ -90,7 +47,7 @@ if vim.env.SSH_TTY then
 end
 
 -- treat '-' as part of a word
-vim.cmd([[set iskeyword+=-]])
+vim.opt.iskeyword:append("-")
 
 -- add filetypes
 vim.filetype.add({
@@ -112,24 +69,15 @@ vim.filetype.add({
   },
 })
 
--- spell
-vim.opt.spell = false
-
 -- border
 vim.g.border = "rounded"
-
--- hover
 vim.opt.winborder = vim.g.border
-
--- disable native show mode message
-vim.opt.showmode = false
 
 -- diagnostics
 vim.diagnostic.config({
   severity_sort = true,
   virtual_lines = { current_line = true },
   underline = false,
-  float = { border = vim.g.border },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -141,35 +89,22 @@ vim.diagnostic.config({
 })
 
 -- popup menu
-vim.opt.pumheight = 10
 vim.opt.pumborder = vim.g.border
 
 -- incremental command preview
 vim.opt.inccommand = "split"
 
--- disable plugin keymaps
-vim.g.no_plugin_maps = true
-
 -- disable builtin plugins
 local plugins = {
-  "2html_plugin",
-  "getscript",
-  "getscriptPlugin",
   "gzip",
-  "logipat",
   "matchit",
   "netrw",
   "netrwFileHandlers",
   "netrwPlugin",
   "netrwSettings",
-  "rrhelper",
   "spellfile_plugin",
   "tar",
   "tarPlugin",
-  "tarPlugin",
-  "tohtml",
-  "vimball",
-  "vimballPlugin",
   "zip",
   "zipPlugin",
   "tutor",

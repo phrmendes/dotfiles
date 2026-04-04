@@ -38,7 +38,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
 
-    vim.bo[event.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
+    if vim.bo[event.buf].filetype == "sql" then
+      vim.bo[event.buf].omnifunc = "vim_dadbod_completion#omni"
+    else
+      vim.bo[event.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
+    end
 
     if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf) then
       vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
@@ -57,10 +61,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         group = augroups.codelens,
         callback = function(ev) vim.lsp.codelens.enable(true, { bufnr = ev.buf }) end,
       })
-    end
-
-    if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-      require("helpers").setup_lsp_document_highlight(event.buf)
     end
 
     require("keymaps.lsp")(client, event.buf)

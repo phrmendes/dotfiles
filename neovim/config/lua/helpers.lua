@@ -5,18 +5,13 @@ local M = {}
 --- @return string[]: A list of words.
 M.get_dictionary_words = function(lang)
   local file = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "dictionaries", lang .. ".add")
-  local words = {}
 
-  if vim.uv.fs_stat(file) == nil then
+  if not vim.uv.fs_stat(file) then
     vim.notify("File does not exist: " .. file, vim.log.levels.ERROR)
     return {}
   end
 
-  for word in io.lines(file) do
-    table.insert(words, word)
-  end
-
-  return words
+  return vim.fn.readfile(file)
 end
 
 --- Add a word to a dictionary file.
@@ -25,28 +20,21 @@ end
 --- @return string[]: A list of unique words.
 M.add_word_to_dictionary = function(lang, word)
   local file = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "dictionaries", lang .. ".add")
+  local words = vim.uv.fs_stat(file) and vim.fn.readfile(file) or {}
+  local set = {}
 
-  local word_set = {}
-
-  if vim.uv.fs_stat(file) then
-    local content = vim.fn.readfile(file)
-
-    vim
-      .iter(content)
-      :filter(function(line) return line:match("^%s*(.-)%s*$") ~= "" end) -- remove empty lines
-      :map(function(line) return line:match("^%s*(.-)%s*$") end) -- trim whitespace
-      :each(function(trimmed_word) word_set[trimmed_word] = true end)
+  for _, w in ipairs(words) do
+    w = vim.trim(w)
+    if w ~= "" then set[w] = true end
   end
 
-  word_set[word:match("^%s*(.-)%s*$")] = true
+  set[vim.trim(word)] = true
 
-  local unique_words = vim.iter(word_set):map(function(w, _) return w end):totable()
+  local unique = vim.tbl_keys(set)
+  table.sort(unique)
+  vim.fn.writefile(unique, file)
 
-  table.sort(unique_words)
-
-  vim.fn.writefile(unique_words, file)
-
-  return unique_words
+  return unique
 end
 
 --- Paste the contents of the system clipboard.
@@ -69,36 +57,6 @@ M.get_subdirectories = function(path)
     :totable()
 end
 
---- Setup LSP document highlight autocmds for a buffer.
---- Creates autocmds to highlight references under cursor on CursorHold
---- and clear them on CursorMoved. Also handles cleanup on LspDetach.
---- @param bufnr number The buffer number to setup highlights for.
-M.setup_lsp_document_highlight = function(bufnr)
-  local highlight_group = vim.api.nvim_create_augroup("UserLspHighlight", { clear = false })
-  local detach_group = vim.api.nvim_create_augroup("UserLspDetach", { clear = false })
-
-  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    buffer = bufnr,
-    group = highlight_group,
-    callback = vim.lsp.buf.document_highlight,
-  })
-
-  vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-    buffer = bufnr,
-    group = highlight_group,
-    callback = vim.lsp.buf.clear_references,
-  })
-
-  vim.api.nvim_create_autocmd("LspDetach", {
-    buffer = bufnr,
-    group = detach_group,
-    callback = function(ev)
-      vim.lsp.buf.clear_references()
-      vim.api.nvim_clear_autocmds({ group = "UserLspHighlight", buffer = ev.buf })
-    end,
-  })
-end
-
 --- Quit if embedded, otherwise detach.
 M.quit_or_detach = function()
   if vim.list_contains(vim.v.argv, "--embed") then
@@ -115,7 +73,7 @@ M.keep_current_buffer = function()
 
   vim.iter(vim.api.nvim_list_bufs())
     :filter(function(buf) return buf ~= current and vim.bo[buf].buflisted end)
-    :each(function(buf) MiniBufremove.delete(buf) end)
+    :each(function(buf) require("mini.bufremove").delete(buf) end)
 end
 
 return M

@@ -8,7 +8,12 @@
 let
   symlink = config.lib.file.mkOutOfStoreSymlink;
   withHashtag = config.lib.stylix.colors.withHashtag;
-  localPlugins =
+  base16-palette =
+    withHashtag
+    |> lib.filterAttrs (n: _: builtins.match "base0[0-9A-F]" n != null)
+    |> lib.mapAttrsToList (name: value: ''${name} = "${value}"'')
+    |> lib.concatStringsSep ", ";
+  local-plugins =
     inputs.vim-plugins
     |> builtins.readDir
     |> lib.filterAttrs (_: type: type == "directory")
@@ -18,6 +23,12 @@ let
         source = "${inputs.vim-plugins}/${name}";
       }
     );
+  treesitter-parsers =
+    pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
+  treesitter-queries = pkgs.runCommand "nvim-treesitter-queries" { } ''
+    mkdir -p $out
+    ln -s ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
+  '';
 in
 {
   options.neovim.enable = lib.mkEnableOption "enable neovim";
@@ -25,106 +36,66 @@ in
   config = lib.mkIf config.neovim.enable {
     programs.neovim = {
       enable = true;
-      package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       vimAlias = true;
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;
-      extraPython3Packages =
-        p: with p; [
-          debugpy
-          pylatexenc
-        ];
-      extraLuaPackages = p: with p; [ tiktoken_core ];
+      extraPython3Packages = p: with p; [ debugpy ];
+      plugins = treesitter-parsers ++ [ treesitter-queries ];
       extraPackages =
         with pkgs;
         [
+          # lsp servers
           astro-language-server
           basedpyright
           bash-language-server
           copilot-language-server
-          delve
-          djlint
           docker-language-server
           dot-language-server
           emmet-language-server
-          eslint
           helm-ls
           just-lsp
-          kulala-fmt
-          libxml2
           ltex-ls-plus
           lua-language-server
-          lynx
           marksman
           nixd
-          nixfmt
-          ruff
-          shellcheck
-          shellharden
           simple-completion-language-server
-          stylua
           tailwindcss-language-server
           taplo
           terraform-ls
-          tflint
-          tree-sitter
           typescript-language-server
-          vscode-js-debug
           vscode-langservers-extracted
           yaml-language-server
+          # formatters
+          djlint
+          nixfmt
+          prettier
+          ruff
+          shellharden
+          stylua
+          # linters
+          shellcheck
+          tflint
+          # debug
+          vscode-js-debug
         ]
-        ++ (with lua51Packages; [
-          lua
-          luarocks
-        ])
-        ++ (with python3Packages; [
-          chromadb
-        ])
         ++ (with beamPackages; [
           elixir-ls
-        ])
-        ++ (with nodePackages; [
-          prettier
-          vscode-json-languageserver
         ]);
     };
 
     xdg.configFile."nvim/init.lua".enable = false;
 
-    home.file = localPlugins // {
+    home.file = local-plugins // {
       ".config/nvim".source = symlink "${config.home.homeDirectory}/Projects/dotfiles/neovim/config";
-      ".local/share/nvim/nix/lua/nix/luvit-meta.lua".text = ''
-        return "${pkgs.vimPlugins.luvit-meta}/library"
-      '';
-      ".local/share/nvim/nix/lua/nix/typescript.lua".text = ''
-        return "${pkgs.typescript}/lib/node_modules/typescript/lib"
-      '';
-      ".local/share/nvim/nix/lua/nix/vscode-js-debug.lua".text = ''
-        return "${pkgs.vscode-js-debug}/bin/js-debug"
-      '';
-      ".local/share/nvim/nix/lua/nix/base16.lua".text = with withHashtag; ''
+      ".local/share/nvim/site/lua/nix.lua".text = ''
         return {
-            palette = {
-                base00 = "${base00}",
-                base01 = "${base01}",
-                base02 = "${base02}",
-                base03 = "${base03}",
-                base04 = "${base04}",
-                base05 = "${base05}",
-                base06 = "${base06}",
-                base07 = "${base07}",
-                base08 = "${base08}",
-                base09 = "${base09}",
-                base0A = "${base0A}",
-                base0B = "${base0B}",
-                base0C = "${base0C}",
-                base0D = "${base0D}",
-                base0E = "${base0E}",
-                base0F = "${base0F}",
-            },
+            base16 = { palette = { ${base16-palette} } },
+            luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
+            typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
+            vscode_js_debug = "${pkgs.vscode-js-debug}/bin/js-debug",
         }
       '';
     };

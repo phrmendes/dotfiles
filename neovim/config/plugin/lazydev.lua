@@ -3,7 +3,7 @@ safely(
   function()
     require("lazydev").setup({
       library = {
-        { path = require("nix.luvit-meta"), words = { "vim%.uv" } },
+        { path = require("nix").luvit_meta, words = { "vim%.uv" } },
         { vim.fs.joinpath(vim.env.HOME, "Projects", "dotfiles", "dotfiles", "nvim", "lua") },
       },
     })

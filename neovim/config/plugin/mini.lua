@@ -1,3 +1,11 @@
+safely("now", function()
+  require("mini.basics").setup({
+    options = { basic = true, extra_ui = true },
+    mappings = { basic = true, option_toggle_prefix = "\\", windows = false, move_with_alt = true },
+    autocommands = { basic = true },
+  })
+end)
+
 safely("now", function() require("mini.sessions").setup() end)
 safely("now", function() require("mini.statusline").setup() end)
 safely("now", function() require("mini.tabline").setup() end)
@@ -10,7 +18,7 @@ end)
 
 safely("now", function()
   require("mini.base16").setup({
-    palette = require("nix.base16").palette,
+    palette = require("nix").base16.palette,
     use_cterm = true,
   })
 end)
@@ -19,8 +27,8 @@ safely(
   "now",
   function()
     require("mini.bracketed").setup({
-      file = { suffix = "" },
-      comment = { suffix = "" },
+      comment = { suffix = "k" },
+      file = { suffix = "e" },
       diagnostic = { options = { float = false } },
     })
   end
@@ -62,10 +70,9 @@ safely("now", function()
 end)
 
 safely("later", function() require("mini.align").setup() end)
-safely("later", function() require("mini.comment").setup() end)
+safely("later", function() require("mini.cmdline").setup() end)
 safely("event:BufReadPost", function() require("mini.cursorword").setup() end)
 safely("later", function() require("mini.doc").setup() end)
-safely("event:BufReadPost", function() require("mini.indentscope").setup({ symbol = "│" }) end)
 safely("later", function() require("mini.jump").setup() end)
 safely("later", function() require("mini.operators").setup({ replace = { prefix = "gR", reindent_linewise = true } }) end)
 safely("event:InsertEnter", function() require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } }) end)
@@ -97,6 +104,13 @@ safely("later", function()
       }),
     },
   })
+
+  local modes = { "n", "x", "o" }
+
+  vim.keymap.set(modes, "]f", function() ai.move_cursor("left", "a", "f", { search_method = "next" }) end, { desc = "Next function" })
+  vim.keymap.set(modes, "[f", function() ai.move_cursor("left", "a", "f", { search_method = "prev" }) end, { desc = "Previous function" })
+  vim.keymap.set(modes, "]c", function() ai.move_cursor("left", "a", "c", { search_method = "next" }) end, { desc = "Next class" })
+  vim.keymap.set(modes, "[c", function() ai.move_cursor("left", "a", "c", { search_method = "prev" }) end, { desc = "Previous class" })
 end)
 
 safely("later", function()
@@ -135,7 +149,6 @@ safely("later", function()
       { mode = "n", keys = "<leader><tab>", desc = "+tabs" },
       { mode = "n", keys = "<leader>b", desc = "+buffers" },
       { mode = "n", keys = "<leader>g", desc = "+git" },
-      { mode = "n", keys = "<leader>k", desc = "+kulala" },
       { mode = "n", keys = "<leader>n", desc = "+notes" },
       { mode = "n", keys = "<leader>o", desc = "+opencode" },
       { mode = "n", keys = "<leader>t", desc = "+todotxt" },
@@ -151,8 +164,8 @@ end)
 safely("later", function()
   require("mini.completion").setup({
     window = {
-      info = { height = 25, width = 80, border = vim.g.border },
-      signature = { height = 25, width = 80, border = vim.g.border },
+      info = { height = 25, width = 80 },
+      signature = { height = 25, width = 80 },
     },
     fallback_action = "<c-x><c-o>",
     lsp_completion = {
@@ -216,7 +229,7 @@ safely("later", function()
   MiniKeymap.map_multistep("i", "<bs>", { "minipairs_bs" })
   MiniKeymap.map_combo({ "i", "c", "x", "s" }, "jk", "<bs><bs><esc>")
   MiniKeymap.map_combo({ "i", "c", "x", "s" }, "kj", "<bs><bs><esc>")
-  MiniKeymap.map_combo({ "i", "c", "x", "s", "n" }, "<esc><esc>", function() vim.cmd("nohlsearch") end)
+  MiniKeymap.map_combo({ "i", "c", "x", "s" }, "<esc><esc>", function() vim.cmd("nohlsearch") end)
 end)
 
 safely("later", function()
@@ -408,7 +421,6 @@ safely("later", function()
   vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>", { desc = "Add (file)" })
   vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", { desc = "Commit" })
   vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
-  vim.keymap.set({ "n", "x" }, "<leader>gs", function() MiniGit.show_at_cursor({ split = "horizontal" }) end, { desc = "Show at cursor" })
   vim.keymap.set("n", "<leader>W", MiniMisc.setup_auto_root, { desc = "Change working dir" })
   vim.keymap.set("n", "<leader>z", MiniMisc.zoom, { desc = "Zoom" })
   vim.keymap.set("n", "<leader>=", MiniMisc.resize_window, { desc = "Resize to default size" })

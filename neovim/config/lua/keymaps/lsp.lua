@@ -5,14 +5,14 @@ return function(client, bufnr)
   local opts = function(desc) return { buffer = bufnr, desc = "LSP: " .. desc } end
   local supports = function(method) return client:supports_method(method, bufnr) end
   local picker = function(scope)
-    return function() MiniExtra.pickers.lsp({ scope = scope }) end
+    return function() require("mini.extra").pickers.lsp({ scope = scope }) end
   end
 
   vim.keymap.set("n", "]]", function() Snacks.words.jump(vim.v.count1) end, opts("go to next reference"))
   vim.keymap.set("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, opts("go to previous reference"))
-  vim.keymap.set("n", "<leader>d", function() MiniExtra.pickers.diagnostic({ scope = "current" }) end, opts("diagnostics"))
-  vim.keymap.set("n", "<leader>D", function() MiniExtra.pickers.diagnostic({ scope = "all" }) end, opts("workspace diagnostics"))
-  vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts("diagnostics (float)"))
+  vim.keymap.set("n", "<leader>d", function() require("mini.extra").pickers.diagnostic({ scope = "current" }) end, opts("diagnostics"))
+  vim.keymap.set("n", "<leader>D", function() require("mini.extra").pickers.diagnostic({ scope = "all" }) end, opts("workspace diagnostics"))
+  vim.keymap.set("n", "<leader>R", function() Snacks.rename.rename_file() end, opts("rename file"))
 
   local mappings = {
     { Methods.textDocument_rename, "n", "<f2>", vim.lsp.buf.rename, "rename symbol" },
@@ -27,10 +27,9 @@ return function(client, bufnr)
     { Methods.textDocument_hover, "n", "K", vim.lsp.buf.hover, "hover" },
     { Methods.textDocument_documentSymbol, "n", "<leader>s", picker("document_symbol"), "symbols (document)" },
     { Methods.workspace_symbol, "n", "<leader>S", picker("workspace_symbol"), "symbols (workspace)" },
-    { Methods.textDocument_inlineCompletion, "i", "<c-a>", vim.lsp.inline_completion.get, "accept inline completion" },
+    { Methods.textDocument_inlineCompletion, "i", "<c-a>", vim.lsp.inline_completion.get, "trigger inline completion" },
     { Methods.textDocument_inlineCompletion, "i", "<m-]>", function() select({ bufnr = bufnr, count = vim.v.count1 }) end, "next completion" },
     { Methods.textDocument_inlineCompletion, "i", "<m-[>", function() select({ bufnr = bufnr, count = -vim.v.count1 }) end, "previous completion" },
-    { Methods.workspace_didRenameFiles or Methods.workspace_willRenameFiles, "n", "<leader>R", Snacks.rename.rename_file, "rename file" },
   }
 
   vim.iter(mappings):filter(function(m) return supports(m[1]) end):each(function(m) vim.keymap.set(m[2], m[3], m[4], opts(m[5])) end)

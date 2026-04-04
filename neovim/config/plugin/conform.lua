@@ -8,7 +8,7 @@ safely(
         css = { "prettier" },
         html = { "prettier" },
         htmldjango = { "djlint" },
-        http = { "kulala-fmt" },
+        hurl = { "hurlfmt" },
         jinja2 = { "djlint" },
         json = { "prettier" },
         just = { "just" },

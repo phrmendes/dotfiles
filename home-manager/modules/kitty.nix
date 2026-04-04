@@ -17,7 +17,6 @@
         hide_window_decorations = "yes";
         inactive_text_alpha = "0.9";
         listen_on = "unix:/tmp/kitty";
-        macos_option_as_alt = "yes";
         open_url_with = "default";
         shell = "zsh";
         shell_integration = "enabled";

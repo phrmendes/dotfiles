@@ -150,7 +150,6 @@
     swayosd.enable = true;
     symlinks.enable = true;
     systemd.enable = true;
-    targets.enable = true;
     tealdeer.enable = true;
     tmux.enable = true;
     udiskie.enable = true;

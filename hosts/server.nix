@@ -70,8 +70,6 @@
   };
 
   services = {
-    xserver.displayManager.lightdm.enable = false;
-
     tailscale = {
       useRoutingFeatures = "both";
       extraUpFlags = [ "--advertise-tags=tag:main" ];

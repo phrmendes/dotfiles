@@ -36,7 +36,6 @@
       onlyoffice-desktopeditors
       parallel
       pass
-      pasystray
       pavucontrol
       phockup
       poppler

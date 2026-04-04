@@ -7,7 +7,6 @@
       cachix
       coreutils-full
       dig
-      docker-compose
       docker-credential-helpers
       egl-wayland
       file

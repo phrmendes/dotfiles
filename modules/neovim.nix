@@ -27,10 +27,16 @@
         );
       treesitter-parsers =
         pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
-      treesitter-queries = pkgs.runCommand "nvim-treesitter-queries" { } ''
-        mkdir -p $out
-        ln -s ${inputs.nvim-treesitter-queries}/runtime/queries $out/queries
-      '';
+      treesitter-queries =
+        pkgs.runCommandLocal "nvim-treesitter-queries"
+          {
+            nativeBuildInputs = [ pkgs.lndir ];
+          }
+          ''
+            mkdir -p $out/queries
+            lndir -silent ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
+            lndir -silent ${pkgs.vimPlugins.nvim-treesitter-textobjects}/queries $out/queries
+          '';
     in
     {
       programs.neovim = {

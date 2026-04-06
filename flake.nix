@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvim-treesitter-queries = {
-      url = "github:nvim-treesitter/nvim-treesitter";
-      flake = false;
-    };
-
     vim-plugins = {
       url = "path:./neovim/plugins";
       flake = false;

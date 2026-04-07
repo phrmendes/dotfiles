@@ -56,6 +56,7 @@
           gcolor3
           gdu
           grim
+          hurl
           imagemagick
           jdk
           jqp

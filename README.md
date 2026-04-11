@@ -79,7 +79,10 @@ imports =
 Clone the repo, enter the directory and run:
 
 ```sh
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./hosts/shared/disko.nix --arg parameters '{ device = "/dev/{{ disk }}"; }'
+cat /etc/nix/nix.conf > /tmp/nix.conf
+echo "experimental-features = nix-command flakes pipe-operators" >> /tmp/nix.conf
+sudo mv /tmp/nix.conf /etc/nix/nix.conf
+sudo nix --experimental-features "nix-command flakes pipe-operators" run github:nix-community/disko/latest#disko -- --mode disko --flake .#{{ machine }}
 sudo nixos-install --no-channel-copy --root /mnt --flake .#{{ machine }}
 ```
 

@@ -47,48 +47,48 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-        extraPython3Packages = p: with p; [ debugpy ];
+        extraPython3Packages =
+          p: with p; [
+            debugpy
+            pymupdf
+          ];
         plugins = treesitter-parsers ++ [ treesitter-queries ];
-        extraPackages =
-          with pkgs;
-          [
-            # lsp servers
-            astro-language-server
-            basedpyright
-            bash-language-server
-            copilot-language-server
-            docker-language-server
-            dot-language-server
-            emmet-language-server
-            helm-ls
-            just-lsp
-            ltex-ls-plus
-            lua-language-server
-            marksman
-            nixd
-            simple-completion-language-server
-            tailwindcss-language-server
-            taplo
-            terraform-ls
-            typescript-language-server
-            vscode-langservers-extracted
-            yaml-language-server
-            # formatters
-            djlint
-            nixfmt
-            prettier
-            ruff
-            shellharden
-            stylua
-            # linters
-            shellcheck
-            tflint
-            # debug
-            vscode-js-debug
-          ]
-          ++ (with beamPackages; [
-            elixir-ls
-          ]);
+        extraPackages = with pkgs; [
+          # lsp servers
+          astro-language-server
+          basedpyright
+          bash-language-server
+          beamPackages.elixir-ls
+          copilot-language-server
+          docker-language-server
+          dot-language-server
+          emmet-language-server
+          helm-ls
+          just-lsp
+          ltex-ls-plus
+          lua-language-server
+          marksman
+          nixd
+          simple-completion-language-server
+          tailwindcss-language-server
+          taplo
+          terraform-ls
+          typescript-language-server
+          vscode-langservers-extracted
+          yaml-language-server
+          # formatters
+          djlint
+          nixfmt
+          prettier
+          ruff
+          shellharden
+          stylua
+          # linters
+          shellcheck
+          tflint
+          # debug
+          vscode-js-debug
+        ];
       };
 
       xdg.configFile."nvim/init.lua".enable = false;

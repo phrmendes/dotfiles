@@ -71,9 +71,57 @@ end
 M.keep_current_buffer = function()
   local current = vim.api.nvim_get_current_buf()
 
-  vim.iter(vim.api.nvim_list_bufs())
+  vim
+    .iter(vim.api.nvim_list_bufs())
     :filter(function(buf) return buf ~= current and vim.bo[buf].buflisted end)
     :each(function(buf) require("mini.bufremove").delete(buf) end)
+end
+
+--- Pick a Zotero reference using mini.pick.
+--- Replaces zotcite's default Telescope picker.
+--- @param key string Pattern to filter references by author or title.
+--- @param cb function Callback receiving the selected reference as `{ value = item }`.
+M.zotcite_refs = function(key, cb)
+  local zotero = require("zotcite.zotero")
+  local zconfig = require("zotcite.config").get_config()
+
+  local pattern = key:gsub(" .*", "")
+  local matches = zotero.get_match(pattern, vim.api.nvim_buf_get_name(0))
+
+  if #matches == 0 then
+    vim.schedule(function() vim.api.nvim_echo({ { "No matches found." } }, false, {}) end)
+    return
+  end
+
+  local items = vim
+    .iter(matches)
+    :map(
+      function(v)
+        return {
+          text = string.format("%-20s  %4s  %s", v.alastnm or "", v.year or "", v.title or ""),
+          sort_val = v[zconfig.sort_key] or "0000-00-00 0000",
+          alastnm = v.alastnm,
+          year = v.year,
+          title = v.title,
+          abstract = v.abstractNote,
+          key = v.zotkey,
+          cite = v.citekey,
+        }
+      end
+    )
+    :totable()
+
+  table.sort(items, function(a, b) return a.sort_val > b.sort_val end)
+
+  MiniPick.start({
+    source = {
+      items = items,
+      name = "Zotero References",
+      choose = function(item)
+        if item then cb({ value = item }) end
+      end,
+    },
+  })
 end
 
 return M

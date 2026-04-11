@@ -69,6 +69,7 @@
           nodejs_latest
           obs-studio
           onlyoffice-desktopeditors
+          pandoc
           parallel
           pass
           pavucontrol
@@ -77,6 +78,7 @@
           proton-vpn
           python314
           quarto
+          sqlite
           tectonic
           terraform
           thunar

@@ -425,7 +425,7 @@ safely("later", function()
   vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
   vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
   vim.keymap.set("n", "<leader>v", MiniExtra.pickers.visit_paths, { desc = "Visits (cwd)" })
-  vim.keymap.set("n", "<leader>z", MiniMisc.zoom, { desc = "Zoom" })
+  vim.keymap.set("n", "<leader>Z", MiniMisc.zoom, { desc = "Zoom" })
   vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
 
   vim.keymap.set("n", "<c-p>", function()

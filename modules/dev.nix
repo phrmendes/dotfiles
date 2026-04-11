@@ -290,8 +290,8 @@
           enable = true;
           enableMcpIntegration = true;
           settings = {
-            model = "github-copilot/claude-opus-4.5";
-            small_model = "github-copilot/claude-sonnet-4.5";
+            model = "github-copilot/gpt-5.3-codex";
+            small_model = "github-copilot/gpt-5.4-mini";
             mcp = {
               k8s = {
                 type = "local";

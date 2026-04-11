@@ -1,10 +1,13 @@
-safely("now", function()
-  require("mini.basics").setup({
-    options = { basic = true, extra_ui = true },
-    mappings = { basic = true, option_toggle_prefix = "\\", windows = false, move_with_alt = true },
-    autocommands = { basic = true },
-  })
-end)
+safely(
+  "now",
+  function()
+    require("mini.basics").setup({
+      options = { basic = true, extra_ui = true },
+      mappings = { basic = true, option_toggle_prefix = "\\", windows = false, move_with_alt = true },
+      autocommands = { basic = true },
+    })
+  end
+)
 
 safely("now", function() require("mini.sessions").setup() end)
 safely("now", function() require("mini.statusline").setup() end)
@@ -390,20 +393,6 @@ safely("event:BufReadPost", function()
 end)
 
 safely("later", function()
-  local extra_pickers = MiniExtra.pickers
-
-  vim.keymap.set("n", "<leader>N", MiniNotify.show_history, { desc = "Notifications" })
-  vim.keymap.set("n", "<leader><del>", MiniNotify.clear, { desc = "Clear notifications" })
-  vim.keymap.set("n", "<leader>bd", MiniBufremove.delete, { desc = "Delete" })
-  vim.keymap.set("n", "<leader>bw", MiniBufremove.wipeout, { desc = "Wipeout" })
-  vim.keymap.set("n", "<leader>gd", function() MiniDiff.toggle_overlay(0) end, { desc = "Diff (file)" })
-  vim.keymap.set("n", "<leader>:", function() extra_pickers.history({ scope = ":" }) end, { desc = "`:` history" })
-  vim.keymap.set("n", "<leader>K", extra_pickers.keymaps, { desc = "Keymaps" })
-  vim.keymap.set("n", "<leader>m", extra_pickers.marks, { desc = "Marks" })
-  vim.keymap.set("n", "<leader>v", extra_pickers.visit_paths, { desc = "Visits (cwd)" })
-  vim.keymap.set("n", "<leader>V", function() extra_pickers.visit_paths({ cwd = "" }) end, { desc = "Visits (all)" })
-
-  -- MRU navigation using mini.visits (sorted by recency)
   local sort_recent = MiniVisits.gen_sort.default({ recency_weight = 1 })
   local iterate_opts = { sort = sort_recent, wrap = true }
 
@@ -411,22 +400,33 @@ safely("later", function()
   vim.keymap.set("n", "]v", function() MiniVisits.iterate_paths("forward", nil, iterate_opts) end, { desc = "Next visit (MRU)" })
   vim.keymap.set("n", "[V", function() MiniVisits.iterate_paths("first", nil, iterate_opts) end, { desc = "Most recent visit" })
   vim.keymap.set("n", "]V", function() MiniVisits.iterate_paths("last", nil, iterate_opts) end, { desc = "Oldest visit" })
-  vim.keymap.set("n", "<leader>gL", extra_pickers.git_commits, { desc = "Log (repo)" })
-  vim.keymap.set("n", "<leader>gH", extra_pickers.git_hunks, { desc = "Hunks (repo)" })
-  vim.keymap.set("n", "<leader>gh", function() extra_pickers.git_hunks({ path = vim.fn.expand("%") }) end, { desc = "Hunks (file)" })
-  vim.keymap.set("n", "<leader>gm", function() extra_pickers.git_files({ scope = "modified" }) end, { desc = "Modified files" })
-  vim.keymap.set("n", "<leader>gl", function() extra_pickers.git_commits({ paths = "%" }) end, { desc = "Log (file)" })
+  vim.keymap.set("n", "<leader>/", MiniPick.builtin.grep_live, { desc = "Live grep" })
+  vim.keymap.set("n", "<leader>:", function() MiniExtra.pickers.history({ scope = ":" }) end, { desc = "`:` history" })
+  vim.keymap.set("n", "<leader><del>", MiniNotify.clear, { desc = "Clear notifications" })
+  vim.keymap.set("n", "<leader><leader>", MiniPick.builtin.files, { desc = "Files" })
+  vim.keymap.set("n", "<leader>=", MiniMisc.resize_window, { desc = "Resize to default size" })
+  vim.keymap.set("n", "<leader>?", MiniPick.builtin.help, { desc = "Help" })
+  vim.keymap.set("n", "<leader>K", MiniExtra.pickers.keymaps, { desc = "Keymaps" })
+  vim.keymap.set("n", "<leader>N", MiniNotify.show_history, { desc = "Notifications" })
+  vim.keymap.set("n", "<leader>V", function() MiniExtra.pickers.visit_paths({ cwd = "" }) end, { desc = "Visits (all)" })
+  vim.keymap.set("n", "<leader>W", MiniMisc.setup_auto_root, { desc = "Change working dir" })
+  vim.keymap.set("n", "<leader>bd", MiniBufremove.delete, { desc = "Delete" })
+  vim.keymap.set("n", "<leader>bw", MiniBufremove.wipeout, { desc = "Wipeout" })
   vim.keymap.set("n", "<leader>gA", "<cmd>Git add --all<cr>", { desc = "Add (repo)" })
+  vim.keymap.set("n", "<leader>gH", MiniExtra.pickers.git_hunks, { desc = "Hunks (repo)" })
+  vim.keymap.set("n", "<leader>gL", MiniExtra.pickers.git_commits, { desc = "Log (repo)" })
   vim.keymap.set("n", "<leader>gP", "<cmd>Git push<cr>", { desc = "Push" })
   vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>", { desc = "Add (file)" })
   vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", { desc = "Commit" })
+  vim.keymap.set("n", "<leader>gd", function() MiniDiff.toggle_overlay(0) end, { desc = "Diff (file)" })
+  vim.keymap.set("n", "<leader>gh", function() MiniExtra.pickers.git_hunks({ path = vim.fn.expand("%") }) end, { desc = "Hunks (file)" })
+  vim.keymap.set("n", "<leader>gl", function() MiniExtra.pickers.git_commits({ paths = "%" }) end, { desc = "Log (file)" })
+  vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, { desc = "Modified files" })
   vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
-  vim.keymap.set("n", "<leader>W", MiniMisc.setup_auto_root, { desc = "Change working dir" })
+  vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
+  vim.keymap.set("n", "<leader>v", MiniExtra.pickers.visit_paths, { desc = "Visits (cwd)" })
   vim.keymap.set("n", "<leader>z", MiniMisc.zoom, { desc = "Zoom" })
-  vim.keymap.set("n", "<leader>=", MiniMisc.resize_window, { desc = "Resize to default size" })
-  vim.keymap.set("n", "<leader>/", MiniPick.builtin.grep_live, { desc = "Live grep" })
-  vim.keymap.set("n", "<leader>?", MiniPick.builtin.help, { desc = "Help" })
-  vim.keymap.set("n", "<leader><leader>", MiniPick.builtin.files, { desc = "Files" })
+  vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
 
   vim.keymap.set("n", "<c-p>", function()
     MiniPick.builtin.buffers(nil, {

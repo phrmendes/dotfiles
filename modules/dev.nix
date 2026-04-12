@@ -517,6 +517,25 @@
       programs.lazydocker.enable = true;
     };
 
+    docker =
+      { pkgs, lib, ... }:
+      let
+        configDrv = pkgs.writeText "docker-config.json" (builtins.toJSON {
+          credsStore = "secretservice";
+        });
+      in
+      {
+        home.file.".docker/.config.json.nix" = {
+          source = configDrv;
+          onChange = ''
+            config="$HOME/.docker/config.json"
+            mkdir -p "$(dirname "$config")"
+            cp ${configDrv} "$config"
+            chmod 600 "$config"
+          '';
+        };
+      };
+
     k9s = {
       programs.k9s = {
         enable = true;

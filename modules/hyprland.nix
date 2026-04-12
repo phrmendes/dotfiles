@@ -14,6 +14,7 @@ _: {
         {
           pkgs,
           lib,
+          config,
           osConfig,
           ...
         }:
@@ -127,7 +128,7 @@ _: {
                 "SUPER,space,exec,${vicinae} toggle"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"
-                "SUPER,B,exec,${getExe pkgs.firefox}"
+                "SUPER,B,exec,${getExe config.programs.firefox.package}"
                 "SUPER,F,togglefloating"
                 "SUPER,G,togglegroup"
                 "SUPER,H,movefocus,l"

@@ -1,5 +1,5 @@
 safely(
-  "event:BufWritePre",
+  "later",
   function()
     require("conform").setup({
       notify_on_error = false,

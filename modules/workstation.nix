@@ -1,7 +1,6 @@
 { config, ... }:
 let
   inherit (config.modules) homeManager nixos;
-  inherit (config) settings;
 in
 {
   modules = {

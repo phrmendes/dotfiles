@@ -239,16 +239,10 @@ in
             Unit = {
               Description = "Offline password manager with many features";
               PartOf = [ "hyprland-session.target" ];
-              Wants = [ "waybar.service" ];
-              After = [
-                "hyprland-session.target"
-                "waybar.service"
-              ];
+              After = [ "hyprland-session.target" ];
             };
             Service = {
               Type = "simple";
-              ExecCondition = "${pkgs.bash}/bin/bash -c '! ${pkgs.procps}/bin/pgrep -x keepassxc'";
-              ExecStartPre = "${pkgs.systemd}/bin/busctl --user --watch-bind=true status org.kde.StatusNotifierWatcher";
               ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
               Restart = "on-failure";
               RestartSec = "5s";

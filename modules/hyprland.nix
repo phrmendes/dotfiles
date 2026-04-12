@@ -40,7 +40,6 @@ _: {
           wayland.windowManager.hyprland = {
             enable = true;
             settings = {
-              misc.vfr = 0;
               debug.damage_tracking = 2;
               input = {
                 kb_layout = "us,br";
@@ -71,6 +70,7 @@ _: {
                 preserve_split = true;
               };
               misc = {
+                vfr = 0;
                 force_default_wallpaper = 0;
                 disable_hyprland_logo = true;
               };
@@ -169,8 +169,6 @@ _: {
               ++ lib.optionals (!isLaptop) [
                 "LIBVA_DRIVER_NAME,nvidia"
                 "NVD_BACKEND,direct"
-                "WLR_NO_HARDWARE_CURSORS,1"
-                "WLR_RENDERER,gles2"
                 "__GLX_VENDOR_LIBRARY_NAME,nvidia"
                 "__GL_SYNC_TO_VBLANK,0"
                 "__GL_THREADED_OPTIMIZATIONS,0"

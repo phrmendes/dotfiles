@@ -44,7 +44,6 @@ _: {
                       "/nix" = {
                         mountpoint = "/nix";
                         mountOptions = [
-                          "subvol=nix"
                           "compress=zstd"
                           "noatime"
                         ];
@@ -52,7 +51,6 @@ _: {
                       "/persist" = {
                         mountpoint = "/persist";
                         mountOptions = [
-                          "subvol=persist"
                           "compress=zstd"
                           "noatime"
                         ];

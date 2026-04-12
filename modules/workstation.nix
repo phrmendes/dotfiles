@@ -1,7 +1,28 @@
 { config, ... }:
+let
+  inherit (config.modules) homeManager nixos;
+  inherit (config) settings;
+in
 {
   modules = {
     nixos.workstation = {
+      common =
+        { ... }:
+        {
+          imports = with nixos.workstation; [
+            blueman
+            greetd
+            hyprland
+            libvirtd
+            pam
+            pipewire
+            persistence
+            secrets
+            xdg-portal
+            syncthing
+          ];
+        };
+
       greetd =
         { pkgs, ... }:
         {
@@ -11,7 +32,7 @@
               terminal.vt = 1;
               initial_session = default_session;
               default_session = {
-                command = "${pkgs.bash}/bin/bash -c 'sleep 5 && ${pkgs.hyprland}/bin/start-hyprland'";
+                command = "${pkgs.hyprland}/bin/hyprland";
                 user = config.settings.user;
               };
             };
@@ -224,6 +245,66 @@
           systemd.enable = true;
         };
       };
+
+      common =
+        { ... }:
+        {
+          imports =
+            (with homeManager.user; [
+              base
+              packages
+              symlinks
+            ])
+            ++ (with homeManager.dev; [
+              atuin
+              bat
+              btop
+              direnv
+              eza
+              fd
+              fzf
+              gh
+              git
+              jq
+              k9s
+              kitty
+              lazydocker
+              lazygit
+              neovim
+              nix-index
+              opencode
+              ripgrep
+              starship
+              tealdeer
+              tmux
+              yazi
+              zoxide
+              zsh
+            ])
+            ++ (with homeManager.workstation; [
+              blueman-applet
+              dunst
+              flameshot
+              gtk
+              hyprland
+              hypridle
+              hyprlock
+              hyprpaper
+              keepassxc
+              nm-applet
+              pasystray
+              swayosd
+              udiskie
+              vicinae
+              waybar
+              xdg
+            ])
+            ++ (with homeManager.media; [
+              imv
+              mpv
+              zathura
+            ]);
+        };
     };
   };
 }

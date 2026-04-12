@@ -9,7 +9,7 @@
           enableCompletion = true;
           enableVteIntegration = true;
           autosuggestion.enable = true;
-          history.path = "${config.settings.home}/.config/zsh_history";
+          history.path = "${config.settings.home}/.local/share/zsh/history";
           syntaxHighlighting.enable = true;
           plugins = [
             {
@@ -92,7 +92,6 @@
             enableZshIntegration = true;
             defaultCommand = "${fd} --type f";
             changeDirWidgetCommand = "${fd} --type d";
-            fileWidgetCommand = "${fd} --type f";
             fileWidgetOptions = [ "--preview '${bat} --color=always {}'" ];
           };
       };
@@ -303,7 +302,7 @@
                 command = [ "${pkgs.terraform-mcp-server}/bin/terraform-mcp-server" ];
                 enabled = true;
               };
-              playright = {
+              playwright = {
                 type = "local";
                 command = [ "${pkgs.playwright-mcp}/bin/mcp-server-playwright" ];
                 enabled = true;

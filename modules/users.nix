@@ -2,7 +2,10 @@
 {
   modules = {
     nixos.core.users =
-      { pkgs, ... }:
+      { pkgs, config, lib, ... }:
+      let
+        isWorkstation = config.machine.type != "server";
+      in
       {
         users = {
           mutableUsers = true;
@@ -20,13 +23,14 @@
               isNormalUser = true;
               uid = 1000;
               extraGroups = [
+                "docker"
+                "networkmanager"
+                "wheel"
+              ] ++ lib.optionals isWorkstation [
                 "adbusers"
                 "audio"
-                "docker"
                 "libvirtd"
-                "networkmanager"
                 "video"
-                "wheel"
               ];
             };
           };

@@ -8,7 +8,6 @@ state_file := "/run/sync/state"
 pull:
     #!/usr/bin/env bash
     set -euo pipefail
-    mkdir -p "$(dirname {{ state_file }})"
     prev=$(git rev-parse HEAD)
     git pull --ff-only --quiet
     next=$(git rev-parse HEAD)

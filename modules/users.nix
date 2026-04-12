@@ -44,15 +44,16 @@ in
       home.file =
         let
           scripts = ../files/scripts |> builtins.readDir |> builtins.attrNames;
-          executables = builtins.listToAttrs (
-            map (name: {
+          executables =
+            scripts
+            |> map (name: {
               name = ".local/bin/${name}" |> builtins.replaceStrings [ ".sh" ] [ "" ];
               value = {
                 executable = true;
                 source = ../files/scripts/${name};
               };
-            }) scripts
-          );
+            })
+            |> builtins.listToAttrs;
         in
         {
           ".face.icon".source = ../files/face.png;

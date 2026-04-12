@@ -17,20 +17,22 @@
   };
 
   config.flake = {
-    nixosConfigurations = lib.mapAttrs (
-      _:
-      { module }:
-      inputs.nixpkgs.lib.nixosSystem {
-        modules = with inputs; [
-          module
-          agenix.nixosModules.default
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          impermanence.nixosModules.impermanence
-          stylix.nixosModules.stylix
-        ];
-      }
-    ) config.configurations.nixos;
+    nixosConfigurations =
+      config.configurations.nixos
+      |> lib.mapAttrs (
+        _:
+        { module }:
+        inputs.nixpkgs.lib.nixosSystem {
+          modules = with inputs; [
+            module
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
+            impermanence.nixosModules.impermanence
+            stylix.nixosModules.stylix
+          ];
+        }
+      );
 
     checks =
       config.flake.nixosConfigurations

@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     read_only: true
     ports:
-      - 2375:2375
+      - 127.0.0.1:2375:2375
     environment:
       - LOG_LEVEL=info
       - AUTH=0 # mmanages Docker daemon authentication

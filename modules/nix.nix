@@ -32,17 +32,7 @@
     };
 
     nixpkgs = {
-      nixpkgs = {
-        config.allowUnfree = true;
-        overlays = [
-          (final: _: {
-            stable = import inputs.nixpkgs-stable {
-              inherit (final.stdenv.hostPlatform) system;
-              config.allowUnfree = true;
-            };
-          })
-        ];
-      };
+      nixpkgs.config.allowUnfree = true;
     };
   };
 }

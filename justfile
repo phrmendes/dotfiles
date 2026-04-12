@@ -16,6 +16,7 @@ pull:
 apply:
     #!/usr/bin/env bash
     set -euo pipefail
+    [[ -f {{ state_file }} ]] || { echo "No state file, skipping."; exit 0; }
     . {{ state_file }}
 
     if [ "$PREV" = "$NEXT" ]; then

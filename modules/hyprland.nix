@@ -6,10 +6,7 @@ _: {
         hyprland.enable = true;
       };
 
-      networking.firewall.allowedTCPPorts = [
-        22
-        9000
-      ];
+      networking.firewall.allowedTCPPorts = [ 22 ];
     };
 
     homeManager.workstation = {

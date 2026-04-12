@@ -6,7 +6,7 @@ language: en
 disableUpdateCheck: true
 quicklaunch:
   searchDescriptions: true
-  hideIntern.local.arch: true
+  hideInternaHost: true
   showSearchSuggestions: true
   hideVisitURL: true
   provider: duckduckgo

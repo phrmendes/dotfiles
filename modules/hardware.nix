@@ -1,16 +1,21 @@
 _: {
   modules.nixos.core = {
     hardware =
-      { modulesPath, ... }:
+      {
+        modulesPath,
+        config,
+        lib,
+        ...
+      }:
       {
         imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
         hardware = {
-          keyboard.qmk.enable = true;
+          keyboard.qmk = lib.mkIf (config.machine.type != "server") { enable = true; };
           enableAllFirmware = true;
           uinput.enable = true;
 
-          bluetooth = {
+          bluetooth = lib.mkIf (config.machine.type != "server") {
             enable = true;
             powerOnBoot = true;
             settings.Policy.AutoEnable = true;

@@ -22,6 +22,7 @@ in
       configDir = "${config.settings.home}/.config/syncthing";
       openDefaultPorts = true;
       overrideDevices = true;
+      overrideFolders = true;
       settings = {
         options = {
           localAnnounceEnabled = true;

@@ -9,6 +9,8 @@ services:
       - TZ=${TZ}
       - PBW_ENCRYPTION_KEY=${PBW_ENCRYPTION_KEY}
       - PBW_POSTGRES_CONN_STRING=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/pgbackweb?sslmode=disable
+    labels:
+      - diun.enable=true
     depends_on:
       postgres:
         condition: service_healthy

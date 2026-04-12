@@ -1,14 +1,14 @@
 _: {
   modules.nixos.core.services =
-    { pkgs, config, ... }:
+    { pkgs, config, lib, ... }:
     {
       services = {
         envfs.enable = true;
         fstrim.enable = true;
-        gvfs.enable = true;
+        gvfs.enable = lib.mkIf (config.machine.type != "server") true;
         ntpd-rs.enable = true;
         udev.enable = true;
-        geoclue2.enable = true;
+        geoclue2.enable = lib.mkIf (config.machine.type != "server") true;
 
         gnome = {
           gnome-keyring.enable = false;

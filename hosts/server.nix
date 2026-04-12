@@ -128,9 +128,6 @@ in
                 TimeoutStartSec = 120;
                 StandardOutput = "journal";
                 StandardError = "journal";
-                RuntimeDirectory = "sync";
-                RuntimeDirectoryMode = "0755";
-                RuntimeDirectoryPreserve = "yes";
                 Environment = [ "PATH=${basePath}" ];
               };
             };

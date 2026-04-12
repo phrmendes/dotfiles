@@ -1,7 +1,7 @@
 mod compose
 
 dotfiles_dir := justfile_directory()
-state_file := "/run/sync/state"
+state_file := "/run/dotfiles-sync-state"
 
 # Pull latest changes from remote, write prev/next SHAs to state file
 pull:
@@ -27,7 +27,7 @@ apply:
 
     if echo "$changed" | grep -qE '^(hosts|modules|files|secrets|flake\.nix|flake\.lock)'; then
         echo "NixOS config changed — rebuilding..."
-        sudo nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
+        nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
         exit 0
     fi
 

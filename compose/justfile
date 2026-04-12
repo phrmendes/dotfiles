@@ -1,5 +1,5 @@
 compose_command := "docker compose --env-file=/run/agenix/docker-compose.env"
-state_file := "/run/sync/state"
+state_file := "/run/dotfiles-sync-state"
 dotfiles_dir := parent_directory(justfile_directory())
 
 # Stop all services then bring them up

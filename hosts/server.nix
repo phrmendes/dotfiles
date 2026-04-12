@@ -84,6 +84,7 @@ in
                 "docker.service"
                 "network-online.target"
               ];
+              wants = [ "network-online.target" ];
               requires = [ "docker.service" ];
               bindsTo = [ "docker.service" ];
               wantedBy = [ "multi-user.target" ];

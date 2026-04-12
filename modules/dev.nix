@@ -303,11 +303,6 @@
                 command = [ "${pkgs.terraform-mcp-server}/bin/terraform-mcp-server" ];
                 enabled = true;
               };
-              github = {
-                type = "local";
-                command = [ "${pkgs.github-mcp-server}/bin/github-mcp-server" ];
-                enabled = true;
-              };
               playright = {
                 type = "local";
                 command = [ "${pkgs.playwright-mcp}/bin/mcp-server-playwright" ];

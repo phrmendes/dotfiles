@@ -54,7 +54,6 @@
           ];
         plugins = treesitter-parsers ++ [ treesitter-queries ];
         extraPackages = with pkgs; [
-          # lsp servers
           astro-language-server
           basedpyright
           bash-language-server
@@ -76,17 +75,14 @@
           typescript-language-server
           vscode-langservers-extracted
           yaml-language-server
-          # formatters
           djlint
           nixfmt
           prettier
           ruff
           shellharden
           stylua
-          # linters
           shellcheck
           tflint
-          # debug
           vscode-js-debug
         ];
       };

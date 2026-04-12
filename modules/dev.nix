@@ -210,8 +210,7 @@
         enable = true;
         settings = {
           user = {
-            email = config.settings.email;
-            name = config.settings.name;
+            inherit (config.settings) email name;
           };
           http.sslVerify = true;
           init.defaultBranch = "main";

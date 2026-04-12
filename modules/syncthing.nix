@@ -17,7 +17,7 @@ in
 {
   modules.nixos.workstation.syncthing = {
     services.syncthing = {
-      user = config.settings.user;
+      inherit (config.settings) user;
       enable = true;
       configDir = "${config.settings.home}/.config/syncthing";
       openDefaultPorts = true;

@@ -32,7 +32,7 @@ in
               initial_session = default_session;
               default_session = {
                 command = "${pkgs.hyprland}/bin/hyprland";
-                user = config.settings.user;
+                inherit (config.settings) user;
               };
             };
           };

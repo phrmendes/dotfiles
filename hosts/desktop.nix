@@ -58,6 +58,7 @@ in
         "snd-aloop"
       ];
 
+
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
         nvidia-container-toolkit.enable = true;

@@ -1,6 +1,7 @@
 { config, ... }:
 let
   inherit (config.modules) homeManager nixos;
+  inherit (config.settings) user;
 in
 {
   modules = {
@@ -115,11 +116,16 @@ in
 
     homeManager.workstation = {
       flameshot =
-        { config, ... }:
+        { pkgs, config, lib, ... }:
         {
-          services.flameshot = {
-            enable = true;
-            settings = {
+          home.packages = [ pkgs.flameshot ];
+
+          xdg.autostart.entries = [
+            "${pkgs.flameshot}/share/applications/org.flameshot.Flameshot.desktop"
+          ];
+
+          xdg.configFile."flameshot/flameshot.ini".text =
+            lib.generators.toINI { } {
               General = with config.lib.stylix.colors.withHashtag; {
                 contrastUiColor = base0A;
                 disabledGrimWarning = true;
@@ -132,7 +138,6 @@ in
                 useGrimAdapter = true;
               };
             };
-          };
         };
 
       gtk =
@@ -145,6 +150,30 @@ in
               package = pkgs.pop-icon-theme;
             };
           };
+        };
+
+      blueman-applet =
+        { pkgs, ... }:
+        {
+          xdg.autostart.entries = [
+            "${pkgs.blueman}/etc/xdg/autostart/blueman.desktop"
+          ];
+        };
+
+      nm-applet =
+        { pkgs, ... }:
+        {
+          xdg.autostart.entries = [
+            "${pkgs.networkmanagerapplet}/etc/xdg/autostart/nm-applet.desktop"
+          ];
+        };
+
+      pasystray =
+        { pkgs, ... }:
+        {
+          xdg.autostart.entries = [
+            "${pkgs.pasystray}/etc/xdg/autostart/pasystray.desktop"
+          ];
         };
 
       xdg = {
@@ -165,7 +194,6 @@ in
               "x-scheme-handler/terminal" = "kitty.desktop";
               "application/x-terminal-emulator" = "kitty.desktop";
               "application/pdf" = "org.pwmt.zathura.desktop";
-
             };
           };
         };
@@ -174,21 +202,6 @@ in
       swayosd = {
         services.swayosd.enable = true;
       };
-
-      blueman-applet = {
-        services.blueman-applet.enable = true;
-      };
-
-      nm-applet = {
-        services.network-manager-applet.enable = true;
-      };
-
-      pasystray =
-        { pkgs, ... }:
-        {
-          home.packages = with pkgs; [ pasystray ];
-          services.pasystray.enable = true;
-        };
 
       udiskie = {
         services.udiskie = {

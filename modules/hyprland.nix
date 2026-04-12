@@ -37,6 +37,7 @@ _: {
         {
           wayland.windowManager.hyprland = {
             enable = true;
+            systemd.enableXdgAutostart = true;
             settings = {
               debug.damage_tracking = 2;
               input = {

@@ -111,7 +111,6 @@ in
               };
             };
 
-            # Pulls dotfiles and writes prev/next SHAs to state file, then triggers downstream services
             git-pull = {
               description = "Pull dotfiles from remote";
               after = [ "network-online.target" ];
@@ -133,7 +132,6 @@ in
               };
             };
 
-            # Rebuilds NixOS if any config files changed since last pull
             nixos-apply = {
               description = "Apply NixOS configuration if changed";
               after = [ "git-pull.service" ];
@@ -149,7 +147,6 @@ in
               };
             };
 
-            # Reloads docker-compose if secrets or compose files changed; always runs after nixos-apply
             compose-reload = {
               description = "Reload docker-compose if changed";
               after = [
@@ -168,131 +165,6 @@ in
                 StandardError = "journal";
                 Environment = [ "PATH=${basePath}:${pkgs.docker-compose}/bin" ];
               };
-            };
-          };
-        };
-          };
-
-          services = {
-            docker-compose = {
-              description = "Docker Compose services";
-              after = [
-                "docker.service"
-                "network-online.target"
-              ];
-              wants = [ "network-online.target" ];
-              requires = [ "docker.service" ];
-              bindsTo = [ "docker.service" ];
-              wantedBy = [ "multi-user.target" ];
-              startLimitIntervalSec = 300;
-              startLimitBurst = 3;
-              serviceConfig = {
-                Type = "oneshot";
-                RemainAfterExit = true;
-                User = settings.user;
-                Group = "users";
-                WorkingDirectory = "${dotfiles}/compose";
-                ExecStart = "${compose} up --detach --remove-orphans --pull missing";
-                ExecStop = "${compose} down";
-                TimeoutStartSec = 0;
-                TimeoutStopSec = 300;
-                StandardOutput = "journal";
-                StandardError = "journal";
-                Restart = "on-failure";
-                RestartSec = "30s";
-              };
-            };
-
-            git-pull = {
-              description = "Pull dotfiles from remote";
-              after = [ "network-online.target" ];
-              wants = [
-                "network-online.target"
-                "nixos-apply.service"
-                "compose-reload.service"
-              ];
-              serviceConfig = {
-                Type = "oneshot";
-                User = settings.user;
-                Group = "users";
-                WorkingDirectory = dotfiles;
-                TimeoutStartSec = 120;
-                StandardOutput = "journal";
-                StandardError = "journal";
-                Environment = [ "PATH=${gitPath}" ];
-              };
-              script = ''
-                mkdir -p ${stateDir}
-                prev=$(git rev-parse HEAD)
-                git pull --ff-only --quiet
-                next=$(git rev-parse HEAD)
-                printf 'PREV=%s\nNEXT=%s\n' "$prev" "$next" > ${stateFile}
-              '';
-            };
-
-            nixos-apply = {
-              description = "Apply NixOS configuration if changed";
-              after = [ "git-pull.service" ];
-              requires = [ "git-pull.service" ];
-              serviceConfig = {
-                Type = "oneshot";
-                StandardOutput = "journal";
-                StandardError = "journal";
-                Environment = [
-                  "PATH=${pkgs.bash}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.nixos-rebuild}/bin:/run/wrappers/bin"
-                ];
-              };
-              script = ''
-                . ${stateFile}
-                if [ "$PREV" = "$NEXT" ]; then
-                  echo "No changes, skipping."
-                  exit 0
-                fi
-                changed=$(git -C ${dotfiles} diff --name-only "$PREV" "$NEXT")
-                if echo "$changed" | grep -qE '^(hosts|modules|files|secrets|flake\.nix|flake\.lock)'; then
-                  echo "NixOS config changed — rebuilding..."
-                  nixos-rebuild switch --flake "${dotfiles}#server"
-                else
-                  echo "No NixOS config changes."
-                fi
-              '';
-            };
-
-            # Reloads docker-compose if compose files changed since last pull; always runs after nixos-apply
-            compose-reload = {
-              description = "Reload docker-compose if changed";
-              after = [
-                "git-pull.service"
-                "nixos-apply.service"
-              ];
-              requires = [ "git-pull.service" ];
-              serviceConfig = {
-                Type = "oneshot";
-                User = settings.user;
-                Group = "users";
-                WorkingDirectory = "${dotfiles}/compose";
-                TimeoutStartSec = 0;
-                StandardOutput = "journal";
-                StandardError = "journal";
-                Environment = [
-                  "PATH=${pkgs.bash}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin"
-                ];
-              };
-              script = ''
-                . ${stateFile}
-                if [ "$PREV" = "$NEXT" ]; then
-                  echo "No changes, skipping."
-                  exit 0
-                fi
-                changed=$(git -C ${dotfiles} diff --name-only "$PREV" "$NEXT")
-                if echo "$changed" | grep -qE '^(secrets/|compose/(docker-compose\.yaml|services/))'; then
-                  echo "Secrets or compose files changed — reloading..."
-                  ${compose} pull
-                  ${compose} up --detach --remove-orphans
-                else
-                  echo "No compose changes."
-                fi
-              '';
             };
           };
         };

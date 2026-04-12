@@ -1,4 +1,6 @@
 compose_command := "docker compose --env-file=/run/agenix/docker-compose.env"
+state_file := "/run/sync/state"
+dotfiles_dir := parent_directory(justfile_directory())
 
 # Stop all services then bring them up
 default: down up
@@ -15,6 +17,27 @@ default: down up
 @reload:
     {{ compose_command }} pull --quiet
     {{ compose_command }} up --detach --remove-orphans --force-recreate
+
+# Sync docker-compose if secrets or compose files changed since last pull
+sync:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    . {{ state_file }}
+
+    if [ "$PREV" = "$NEXT" ]; then
+        echo "No changes, skipping."
+        exit 0
+    fi
+
+    changed=$(git -C {{ dotfiles_dir }} diff --name-only "$PREV" "$NEXT")
+
+    if echo "$changed" | grep -qE '^(secrets/|compose/(docker-compose\.yaml|services/))'; then
+        echo "Secrets or compose files changed — reloading..."
+        just reload
+        exit 0
+    fi
+
+    echo "No compose changes."
 
 # Restart a specific service (or all if svc is omitted)
 @restart svc="":

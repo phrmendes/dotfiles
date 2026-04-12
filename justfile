@@ -35,24 +35,7 @@ apply:
 
 # Sync docker-compose if secrets or compose files changed since last pull
 compose-sync:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    . {{ state_file }}
-
-    if [ "$PREV" = "$NEXT" ]; then
-        echo "No changes, skipping."
-        exit 0
-    fi
-
-    changed=$(git diff --name-only "$PREV" "$NEXT")
-
-    if echo "$changed" | grep -qE '^(secrets/|compose/(docker-compose\.yaml|services/))'; then
-        echo "Secrets or compose files changed — reloading..."
-        just compose::reload
-        exit 0
-    fi
-
-    echo "No compose changes."
+    just compose::sync
 
 # Pull latest changes on server and rebuild remotely via SSH
 rebuild-server:

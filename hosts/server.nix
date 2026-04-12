@@ -117,7 +117,7 @@ in
               wants = [
                 "network-online.target"
                 "nixos-apply.service"
-                "compose-reload.service"
+                "compose-sync.service"
               ];
               serviceConfig = {
                 Type = "oneshot";
@@ -150,8 +150,8 @@ in
               };
             };
 
-            compose-reload = {
-              description = "Reload docker-compose if changed";
+            compose-sync = {
+              description = "Sync docker-compose if secrets or compose files changed";
               after = [
                 "git-pull.service"
                 "nixos-apply.service"
@@ -162,7 +162,7 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${just} compose-reload";
+                ExecStart = "${just} compose-sync";
                 TimeoutStartSec = 0;
                 StandardOutput = "journal";
                 StandardError = "journal";

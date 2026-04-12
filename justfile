@@ -4,7 +4,6 @@ dotfiles_dir := justfile_directory()
 state_file := "/run/sync/state"
 
 # Pull latest changes from remote, write prev/next SHAs to state file
-[private]
 pull:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -14,7 +13,6 @@ pull:
     printf 'PREV=%s\nNEXT=%s\n' "$prev" "$next" > {{ state_file }}
 
 # Apply NixOS configuration if relevant files changed since last pull
-[private]
 apply:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -35,9 +33,8 @@ apply:
 
     echo "No NixOS config changes."
 
-# Reload docker-compose if secrets or compose files changed since last pull
-[private]
-compose-reload:
+# Sync docker-compose if secrets or compose files changed since last pull
+compose-sync:
     #!/usr/bin/env bash
     set -euo pipefail
     . {{ state_file }}

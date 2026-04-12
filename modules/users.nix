@@ -1,4 +1,7 @@
-_:
+{ config, ... }:
+let
+  inherit (config) settings;
+in
 {
   modules = {
     nixos.core.users =
@@ -10,8 +13,8 @@ _:
         users = {
           mutableUsers = true;
           users = {
-            ${config.settings.user} = {
-              inherit (config.settings) home;
+            ${settings.user} = {
+              home = settings.home;
               shell = pkgs.zsh;
               initialPassword = "password";
               openssh.authorizedKeys.keys = [

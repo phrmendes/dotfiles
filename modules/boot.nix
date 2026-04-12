@@ -101,8 +101,6 @@ _: {
             ];
             luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
             postDeviceCommands = lib.mkAfter ''
-              set -euo pipefail
-
               mkdir /btrfs_tmp
               mount /dev/mapper/crypted /btrfs_tmp
 
@@ -113,16 +111,17 @@ _: {
               fi
 
               delete_subvolume_recursively() {
-                  IFS=$'\n'
-                  for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-                      delete_subvolume_recursively "/btrfs_tmp/$i"
-                  done
+                  while IFS= read -r subvol; do
+                      delete_subvolume_recursively "/btrfs_tmp/$subvol"
+                  done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
                   btrfs subvolume delete "$1"
               }
 
-              for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
-                  delete_subvolume_recursively "$i"
-              done
+              if [[ -d /btrfs_tmp/old_roots ]]; then
+                  while IFS= read -r -d "" i; do
+                      delete_subvolume_recursively "$i"
+                  done < <(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -print0)
+              fi
 
               btrfs subvolume create /btrfs_tmp/root
               umount /btrfs_tmp

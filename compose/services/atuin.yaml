@@ -3,7 +3,7 @@ services:
     image: ghcr.io/atuinsh/atuin:latest
     container_name: atuin
     restart: unless-stopped
-    command: server start
+    command: start
     volumes:
       - atuin_config:/config
     environment:

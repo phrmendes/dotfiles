@@ -1,10 +1,13 @@
 { config, ... }:
+let
+  inherit (config) settings;
+in
 {
   modules.nixos.server = {
     automation =
       { pkgs, config, ... }:
       let
-        dotfiles = "${config.users.users.${config.settings.user}.home}/dotfiles";
+        dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
         just = "${pkgs.just}/bin/just";
         env = config.age.secrets."docker-compose.env".path;
         compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=${env}";

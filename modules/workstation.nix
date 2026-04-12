@@ -152,7 +152,7 @@ in
           enable = true;
           autostart.enable = true;
           mime.enable = true;
-          portal.config.common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+
           configFile."mimeapps.list".force = true;
           mimeApps = {
             enable = true;
@@ -201,46 +201,6 @@ in
         };
       };
 
-      keepassxc =
-        { pkgs, ... }:
-        {
-          programs.keepassxc = {
-            enable = true;
-            autostart = true;
-            settings = {
-              General = {
-                ConfigVersion = 2;
-                MinimizeAfterUnlock = false;
-              };
-              Browser.Enabled = true;
-              FdoSecrets.Enabled = true;
-              GUI = {
-                ApplicationTheme = "dark";
-                CompactMode = true;
-                MinimizeOnClose = true;
-                MinimizeToTray = true;
-                MonospaceNotes = true;
-                ShowExpiredEntriesOnDatabaseUnlockOffsetDays = 6;
-                ShowTrayIcon = true;
-                TrayIconAppearance = "monochrome-light";
-              };
-              PasswordGenerator = {
-                Type = 1;
-                WordCase = 2;
-                WordSeparator = "-";
-              };
-              SSHAgent = {
-                Enabled = true;
-                AuthSockOverride = "/run/user/1000/ssh-agent";
-              };
-              Security = {
-                ClearClipboardTimeout = 30;
-                IconDownloadFallback = true;
-              };
-            };
-          };
-        };
-
       vicinae = {
         programs.vicinae = {
           enable = true;
@@ -286,6 +246,7 @@ in
             ++ (with homeManager.workstation; [
               blueman-applet
               dunst
+              firefox
               flameshot
               gtk
               hyprland

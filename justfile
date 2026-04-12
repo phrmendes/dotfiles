@@ -1,7 +1,7 @@
 mod compose
 
 dotfiles_dir := justfile_directory()
-state_file := "/run/dotfiles-sync-state"
+state_file := "/run/sync/state"
 
 # Pull latest changes from remote, write prev/next SHAs to state file
 pull:

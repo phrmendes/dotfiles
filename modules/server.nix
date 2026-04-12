@@ -30,7 +30,7 @@
       };
 
       systemd.tmpfiles.rules = [
-        "f /run/dotfiles-sync-state 0600 ${config.settings.user} users -"
+        "d /run/sync 0700 ${config.settings.user} users -"
         "d /mnt/external 2775 ${config.settings.user} users -"
       ];
     };

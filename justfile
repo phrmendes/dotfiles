@@ -59,6 +59,5 @@ rebuild-server:
     ssh phrmendes@server "cd ~/dotfiles && git pull --ff-only && just rebuild"
 
 # Run nixos-rebuild switch for this host
-[private]
 rebuild:
     sudo nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"

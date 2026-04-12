@@ -203,7 +203,37 @@ in
       keepassxc =
         { pkgs, ... }:
         {
-          home.packages = with pkgs; [ keepassxc ];
+          programs.keepassxc = {
+            enable = true;
+            settings = {
+              General = {
+                ConfigVersion = 2;
+                MinimizeAfterUnlock = false;
+              };
+              Browser.Enabled = true;
+              FdoSecrets.Enabled = true;
+              GUI = {
+                ApplicationTheme = "dark";
+                CompactMode = true;
+                MinimizeOnClose = true;
+                MinimizeToTray = true;
+                MonospaceNotes = true;
+                ShowExpiredEntriesOnDatabaseUnlockOffsetDays = 6;
+                ShowTrayIcon = true;
+                TrayIconAppearance = "monochrome-light";
+              };
+              PasswordGenerator = {
+                Type = 1;
+                WordCase = 2;
+                WordSeparator = "-";
+              };
+              SSHAgent.Enabled = true;
+              Security = {
+                ClearClipboardTimeout = 30;
+                IconDownloadFallback = true;
+              };
+            };
+          };
 
           systemd.user.services.keepassxc = {
             Unit = {
@@ -217,6 +247,7 @@ in
             };
             Service = {
               Type = "simple";
+              ExecCondition = "${pkgs.bash}/bin/bash -c '! ${pkgs.procps}/bin/pgrep -x keepassxc'";
               ExecStartPre = "${pkgs.systemd}/bin/busctl --user --watch-bind=true status org.kde.StatusNotifierWatcher";
               ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
               Restart = "on-failure";

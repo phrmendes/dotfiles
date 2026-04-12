@@ -24,7 +24,7 @@ _: {
         };
 
         ssh = lib.mkIf (config.machine.type != "server") {
-          startAgent = false;
+          startAgent = true;
           askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
         };
 

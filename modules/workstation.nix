@@ -31,7 +31,7 @@ in
               terminal.vt = 1;
               initial_session = default_session;
               default_session = {
-                command = "${pkgs.hyprland}/bin/hyprland";
+                command = "${pkgs.hyprland}/bin/start-hyprland";
                 inherit (config.settings) user;
               };
             };
@@ -209,10 +209,7 @@ in
             Unit = {
               Description = "Offline password manager with many features";
               PartOf = [ "hyprland-session.target" ];
-              Wants = [
-                "waybar.service"
-                "ssh-agent.service"
-              ];
+              Wants = [ "waybar.service" ];
               After = [
                 "hyprland-session.target"
                 "waybar.service"

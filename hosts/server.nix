@@ -124,7 +124,7 @@ in
               StandardOutput = "journal";
               StandardError = "journal";
               Environment = [
-                "PATH=${pkgs.git}/bin:${pkgs.just}/bin:${pkgs.docker-compose}/bin:${pkgs.nixos-rebuild}/bin:/run/wrappers/bin"
+                "PATH=${pkgs.bash}/bin:${pkgs.git}/bin:${pkgs.just}/bin:${pkgs.docker-compose}/bin:${pkgs.nixos-rebuild}/bin:/run/wrappers/bin"
               ];
             };
           };

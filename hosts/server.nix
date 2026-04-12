@@ -130,6 +130,7 @@ in
                 StandardError = "journal";
                 RuntimeDirectory = "sync";
                 RuntimeDirectoryMode = "0755";
+                RuntimeDirectoryPreserve = "yes";
                 Environment = [ "PATH=${basePath}" ];
               };
             };

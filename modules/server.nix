@@ -41,7 +41,7 @@ in
               serviceConfig = {
                 Type = "oneshot";
                 RemainAfterExit = true;
-                User = config.settings.user;
+                User = settings.user;
                 Group = "users";
                 WorkingDirectory = "${dotfiles}/compose";
                 ExecStart = "${compose} up --detach --remove-orphans --pull missing";
@@ -61,7 +61,7 @@ in
               wants = [ "network-online.target" ];
               serviceConfig = {
                 Type = "oneshot";
-                User = config.settings.user;
+                User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
                 ExecStart = "${just} pull";
@@ -96,7 +96,7 @@ in
               requires = [ "git-pull.service" ];
               serviceConfig = {
                 Type = "oneshot";
-                User = config.settings.user;
+                User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
                 ExecStart = "${just} compose-sync";
@@ -111,7 +111,7 @@ in
       };
 
     persistence = {
-      environment.persistence."/persist".users.${config.settings.user}.directories = [
+      environment.persistence."/persist".users.${settings.user}.directories = [
         "dotfiles"
         ".config"
         ".ssh"
@@ -139,8 +139,8 @@ in
       };
 
       systemd.tmpfiles.rules = [
-        "d /run/sync 0700 ${config.settings.user} users -"
-        "d /mnt/external 2775 ${config.settings.user} users -"
+        "d /run/sync 0700 ${settings.user} users -"
+        "d /mnt/external 2775 ${settings.user} users -"
       ];
     };
   };

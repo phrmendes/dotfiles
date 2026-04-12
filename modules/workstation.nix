@@ -150,6 +150,7 @@ in
       xdg = {
         xdg = {
           enable = true;
+          autostart.enable = true;
           mime.enable = true;
           portal.config.common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
           configFile."mimeapps.list".force = true;
@@ -205,6 +206,7 @@ in
         {
           programs.keepassxc = {
             enable = true;
+            autostart = true;
             settings = {
               General = {
                 ConfigVersion = 2;
@@ -227,33 +229,15 @@ in
                 WordCase = 2;
                 WordSeparator = "-";
               };
-              SSHAgent.Enabled = true;
+              SSHAgent = {
+                Enabled = true;
+                AuthSockOverride = "/run/user/1000/ssh-agent";
+              };
               Security = {
                 ClearClipboardTimeout = 30;
                 IconDownloadFallback = true;
               };
             };
-          };
-
-          systemd.user.services.keepassxc = {
-            Unit = {
-              Description = "Offline password manager with many features";
-              PartOf = [ "hyprland-session.target" ];
-              After = [ "hyprland-session.target" ];
-            };
-            Service = {
-              Type = "simple";
-              ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
-              Restart = "on-failure";
-              RestartSec = "5s";
-              Environment = [
-                "QT_QPA_PLATFORM=wayland"
-                "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
-                "XDG_CURRENT_DESKTOP=Hyprland"
-                "SSH_AUTH_SOCK=%t/ssh-agent"
-              ];
-            };
-            Install.WantedBy = [ "hyprland-session.target" ];
           };
         };
 

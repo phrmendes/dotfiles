@@ -142,7 +142,7 @@ in
               serviceConfig = {
                 Type = "oneshot";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${just} nixos-apply";
+                ExecStart = "${just} apply";
                 TimeoutStartSec = 0;
                 StandardOutput = "journal";
                 StandardError = "journal";

@@ -63,31 +63,8 @@ in
       ];
 
       systemd = {
-        paths = {
-          nixos-rebuild-switch = {
-            wantedBy = [ "multi-user.target" ];
-            pathConfig = {
-              PathChanged = "${settings.home}/dotfiles/secrets";
-              Unit = "nixos-rebuild-switch.service";
-            };
-          };
-          docker-compose-config = {
-            wantedBy = [ "multi-user.target" ];
-            pathConfig = {
-              PathChanged = "${settings.home}/dotfiles/compose";
-              Unit = "docker-compose.service";
-            };
-          };
-          docker-compose-env = {
-            wantedBy = [ "multi-user.target" ];
-            pathConfig = {
-              PathChanged = config.age.secrets."docker-compose.env".path;
-              Unit = "docker-compose.service";
-            };
-          };
-        };
         timers.git-pull = {
-          description = "Timer for git pull service";
+          description = "Timer for git pull dotfiles";
           wantedBy = [ "timers.target" ];
           timerConfig = {
             OnCalendar = "*-*-* 06:00,18:00";
@@ -96,18 +73,6 @@ in
           };
         };
         services = {
-          nixos-rebuild-switch = {
-            description = "NixOS rebuild switch service";
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-              User = settings.user;
-              Group = "users";
-              StandardOutput = "journal";
-              StandardError = "journal";
-              ExecStart = "/run/wrappers/bin/sudo ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ${settings.home}/dotfiles#${config.networking.hostName}";
-            };
-          };
           docker-compose =
             let
               env = config.age.secrets."docker-compose.env".path;
@@ -115,7 +80,12 @@ in
             in
             {
               description = "Docker Compose services";
-              after = [ "docker.service" ];
+              after = [
+                "docker.service"
+                "network-online.target"
+              ];
+              requires = [ "docker.service" ];
+              bindsTo = [ "docker.service" ];
               wantedBy = [ "multi-user.target" ];
               serviceConfig = {
                 Type = "oneshot";
@@ -123,27 +93,39 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = "${settings.home}/dotfiles/compose";
-                ExecStart = "${compose} up --detach --remove-orphans --force-recreate --pull always";
+                ExecStart = "${compose} up --detach --remove-orphans --pull missing";
                 ExecStop = "${compose} down";
-                ExecReload = "${compose} down; ${compose} up --detach --remove-orphans --force-recreate --pull always";
                 TimeoutStartSec = 0;
                 TimeoutStopSec = 300;
                 StandardOutput = "journal";
                 StandardError = "journal";
+                Restart = "on-failure";
+                RestartSec = "30s";
+                StartLimitIntervalSec = 300;
+                StartLimitBurst = 3;
               };
             };
+
           git-pull = {
-            description = "Git pull dotfiles repository";
+            description = "Git pull dotfiles and apply changes";
+            after = [
+              "network-online.target"
+              "docker-compose.service"
+            ];
+            wants = [ "network-online.target" ];
+            requires = [ "docker-compose.service" ];
             serviceConfig = {
               Type = "oneshot";
-              RemainAfterExit = true;
               User = settings.user;
               Group = "users";
               WorkingDirectory = "${settings.home}/dotfiles";
-              ExecStartPre = "${pkgs.git}/bin/git fetch --quiet";
-              ExecStart = "${pkgs.git}/bin/git pull --ff-only --quiet";
+              ExecStart = "${pkgs.just}/bin/just sync";
+              TimeoutStartSec = 0;
               StandardOutput = "journal";
               StandardError = "journal";
+              Environment = [
+                "PATH=${pkgs.git}/bin:${pkgs.just}/bin:${pkgs.docker-compose}/bin:${pkgs.nixos-rebuild}/bin:/run/wrappers/bin"
+              ];
             };
           };
         };

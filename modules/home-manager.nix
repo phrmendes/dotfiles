@@ -15,6 +15,12 @@ in
   modules.homeManager.user.base = {
     imports = [ inputs.nix-index-database.homeModules.default ];
 
+    programs.ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      matchBlocks."*".addKeysToAgent = "yes";
+    };
+
     home = {
       stateVersion = "26.05";
       username = settings.user;

@@ -68,10 +68,7 @@ in
       pam = {
         security.pam.services = {
           hyprlock.gnupg.enable = true;
-          login = {
-            gnupg.enable = true;
-            enableGnomeKeyring = true;
-          };
+          login.gnupg.enable = true;
         };
       };
 

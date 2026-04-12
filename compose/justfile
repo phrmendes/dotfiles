@@ -1,20 +1,31 @@
 compose_command := "docker compose --env-file=/run/agenix/docker-compose.env"
 
+# Stop all services then bring them up
 default: down up
 
+# Stop all services, or a specific one if svc is provided
 @down svc="":
-    {{compose_command}} down {{svc}}
+    {{ compose_command }} down {{ svc }}
 
+# Start all services, pulling images only if not already present
 @up:
-    {{compose_command}} up --detach --remove-orphans --pull always
+    {{ compose_command }} up --detach --remove-orphans --pull missing
 
+# Pull latest images and recreate all containers
+@reload:
+    {{ compose_command }} pull --quiet
+    {{ compose_command }} up --detach --remove-orphans --force-recreate
+
+# Restart a specific service (or all if svc is omitted)
 @restart svc="":
-    {{compose_command}} down {{svc}}
-    {{compose_command}} up --detach --force-recreate {{svc}}
+    {{ compose_command }} down {{ svc }}
+    {{ compose_command }} up --detach --force-recreate {{ svc }}
 
+# List running containers and their status
 @ps:
-    {{compose_command}} ps
+    {{ compose_command }} ps
 
+# Remove all unused Docker images, containers, and volumes
 @clean:
     docker system prune --all
     docker volume prune --all

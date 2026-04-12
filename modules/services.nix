@@ -11,7 +11,7 @@ _: {
         geoclue2.enable = true;
 
         gnome = {
-          gnome-keyring.enable = true;
+          gnome-keyring.enable = false;
           gcr-ssh-agent.enable = false;
         };
 

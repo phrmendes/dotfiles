@@ -64,26 +64,10 @@ in
 
       disko.mainDiskDevice = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
 
-      boot = {
-        extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
-        extraModulePackages = with config.boot.kernelPackages; [
-          v4l2loopback.out
-          nvidia_x11
-        ];
-        kernelModules = [
-          "kvm-amd"
-          "nvidia"
-          "nvidia_drm"
-          "nvidia_modeset"
-          "nvidia_uvm"
-          "snd-aloop"
-          "v4l2loopback"
-        ];
-        kernelParams = [
-          "nvidia-drm.modeset=1"
-          "nvidia-drm.fbdev=1"
-        ];
-      };
+      boot.kernelModules = [
+        "kvm-amd"
+        "snd-aloop"
+      ];
 
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;

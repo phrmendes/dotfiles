@@ -88,6 +88,8 @@ in
               requires = [ "docker.service" ];
               bindsTo = [ "docker.service" ];
               wantedBy = [ "multi-user.target" ];
+              startLimitIntervalSec = 300;
+              startLimitBurst = 3;
               serviceConfig = {
                 Type = "oneshot";
                 RemainAfterExit = true;
@@ -102,8 +104,6 @@ in
                 StandardError = "journal";
                 Restart = "on-failure";
                 RestartSec = "30s";
-                StartLimitIntervalSec = 300;
-                StartLimitBurst = 3;
               };
             };
 

@@ -18,7 +18,7 @@ in
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*".addKeysToAgent = "yes";
+      matchBlocks."*".addKeysToAgent = "no";
     };
 
     home = {
@@ -30,7 +30,6 @@ in
         GIT_EDITOR = "nvim";
         SUDO_EDITOR = "nvim";
         VISUAL = "nvim";
-
       };
     };
   };

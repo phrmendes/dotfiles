@@ -11,7 +11,7 @@ in
   modules.nixos = {
     core.age = {
       age = {
-        identityPaths = [ "${config.settings.home}/.ssh/id_ed25519" ];
+        identityPaths = [ "${config.settings.home}/.ssh/age" ];
         secrets.tailscale-authkey.file = ../secrets/tailscale-authkey.age;
       };
     };

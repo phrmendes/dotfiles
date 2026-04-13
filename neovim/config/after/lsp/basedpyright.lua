@@ -1,3 +1,3 @@
 return {
-  root_markers = { ".git", "pyproject.toml" },
+  root_markers = { "pyproject.toml" },
 }

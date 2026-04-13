@@ -11,6 +11,5 @@ services:
       - prowlarr_config:/config
     labels:
       - diun.enable=true
-
 volumes:
   prowlarr_config:

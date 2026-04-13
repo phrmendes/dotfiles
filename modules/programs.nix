@@ -1,6 +1,11 @@
 _: {
   modules.nixos.core.programs =
-    { pkgs, config, lib, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     {
       programs = {
         nano.enable = false;
@@ -20,7 +25,8 @@ _: {
         gnupg.agent = {
           enable = true;
           enableBrowserSocket = true;
-          pinentryPackage = if config.machine.type == "server" then pkgs.pinentry-curses else pkgs.pinentry-gnome3;
+          pinentryPackage =
+            if config.machine.type == "server" then pkgs.pinentry-curses else pkgs.pinentry-gnome3;
         };
 
         ssh = lib.mkIf (config.machine.type != "server") {
@@ -36,7 +42,6 @@ _: {
           };
         };
       };
-
 
     };
 }

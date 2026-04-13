@@ -116,7 +116,12 @@ in
 
     homeManager.workstation = {
       flameshot =
-        { pkgs, config, lib, ... }:
+        {
+          pkgs,
+          config,
+          lib,
+          ...
+        }:
         {
           home.packages = [ pkgs.flameshot ];
 
@@ -124,20 +129,19 @@ in
             "${pkgs.flameshot}/share/applications/org.flameshot.Flameshot.desktop"
           ];
 
-          xdg.configFile."flameshot/flameshot.ini".text =
-            lib.generators.toINI { } {
-              General = with config.lib.stylix.colors.withHashtag; {
-                contrastUiColor = base0A;
-                disabledGrimWarning = true;
-                disabledTrayIcon = true;
-                drawColor = base08;
-                showAbortNotification = false;
-                showDesktopNotification = false;
-                showStartupLaunchMessage = false;
-                uiColor = base00;
-                useGrimAdapter = true;
-              };
+          xdg.configFile."flameshot/flameshot.ini".text = lib.generators.toINI { } {
+            General = with config.lib.stylix.colors.withHashtag; {
+              contrastUiColor = base0A;
+              disabledGrimWarning = true;
+              disabledTrayIcon = true;
+              drawColor = base08;
+              showAbortNotification = false;
+              showDesktopNotification = false;
+              showStartupLaunchMessage = false;
+              uiColor = base00;
+              useGrimAdapter = true;
             };
+          };
         };
 
       gtk =

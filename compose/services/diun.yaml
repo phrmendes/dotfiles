@@ -19,6 +19,5 @@ services:
       - diun.enable=true
     depends_on:
       - socket-proxy
-
 volumes:
   diun_data:

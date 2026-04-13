@@ -16,7 +16,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - photoview_storage:/home/photoview/media-cache
-
   photoview:
     image: docker.io/photoview/photoview:latest
     container_name: photoview
@@ -39,6 +38,5 @@ services:
       - photoview_storage:/home/photoview/media-cache
     labels:
       - diun.enable=true
-
 volumes:
   photoview_storage:

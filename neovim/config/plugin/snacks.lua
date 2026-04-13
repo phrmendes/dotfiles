@@ -17,7 +17,6 @@ safely("now", function()
   _G.dd = function(...) Snacks.debug.inspect(...) end
   _G.bt = function() Snacks.debug.backtrace() end
 
-
   vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
   vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
   vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })

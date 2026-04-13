@@ -16,6 +16,5 @@ services:
         condition: service_healthy
     labels:
       - diun.enable=true
-
 volumes:
   atuin_config:

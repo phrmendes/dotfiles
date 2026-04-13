@@ -33,27 +33,27 @@ vim.opt.wrap = true
 vim.opt.writebackup = false
 
 if vim.env.SSH_TTY then
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-		paste = {
-			["+"] = function()
-				return {
-					vim.fn.split(vim.fn.getreg(""), "\n"),
-					vim.fn.getregtype(""),
-				}
-			end,
-			["*"] = function()
-				return {
-					vim.fn.split(vim.fn.getreg(""), "\n"),
-					vim.fn.getregtype(""),
-				}
-			end,
-		},
-	}
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = function()
+        return {
+          vim.fn.split(vim.fn.getreg(""), "\n"),
+          vim.fn.getregtype(""),
+        }
+      end,
+      ["*"] = function()
+        return {
+          vim.fn.split(vim.fn.getreg(""), "\n"),
+          vim.fn.getregtype(""),
+        }
+      end,
+    },
+  }
 end
 
 vim.g.mapleader = " "
@@ -62,12 +62,12 @@ vim.keymap.set("n", "<leader>w", ":w<cr>")
 vim.keymap.set("n", "<leader>x", ":x<cr>")
 
 vim.keymap.set("n", "<leader>q", function()
-	if vim.list_contains(vim.v.argv, "--embed") then
-		vim.cmd.quit()
-		return
-	end
+  if vim.list_contains(vim.v.argv, "--embed") then
+    vim.cmd.quit()
+    return
+  end
 
-	vim.cmd.detach()
+  vim.cmd.detach()
 end)
 
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>")
@@ -81,9 +81,9 @@ vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "<leader><tab>e", "<cmd>tabedit %<cr>")
 
 vim.keymap.set("n", "<leader>t", function()
-	vim.ui.input({ prompt = "Name: " }, function(name)
-		if name then vim.cmd("terminal zsh \\# " .. name) end
-	end)
+  vim.ui.input({ prompt = "Name: " }, function(name)
+    if name then vim.cmd("terminal zsh \\# " .. name) end
+  end)
 end)
 
 vim.keymap.set("n", "[<tab>", "<cmd>tabprevious<cr>")
@@ -97,6 +97,6 @@ vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	callback = function() vim.highlight.on_yank() end,
+  desc = "Highlight when yanking text",
+  callback = function() vim.highlight.on_yank() end,
 })

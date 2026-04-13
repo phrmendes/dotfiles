@@ -22,7 +22,6 @@ services:
       - ./files/gotify/duplicati.sh:/app/duplicati/gotify.sh
     labels:
       - diun.enable=true
-
 volumes:
   duplicati_backups:
   duplicati_config:

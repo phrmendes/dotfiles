@@ -5,7 +5,12 @@ in
 {
   modules = {
     nixos.core.users =
-      { pkgs, config, lib, ... }:
+      {
+        pkgs,
+        config,
+        lib,
+        ...
+      }:
       let
         isWorkstation = config.machine.type != "server";
       in
@@ -29,7 +34,8 @@ in
                 "docker"
                 "networkmanager"
                 "wheel"
-              ] ++ lib.optionals isWorkstation [
+              ]
+              ++ lib.optionals isWorkstation [
                 "adbusers"
                 "audio"
                 "libvirtd"

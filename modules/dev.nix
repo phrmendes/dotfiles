@@ -520,9 +520,11 @@
     docker =
       { pkgs, lib, ... }:
       let
-        configDrv = pkgs.writeText "docker-config.json" (builtins.toJSON {
-          credsStore = "secretservice";
-        });
+        configDrv = pkgs.writeText "docker-config.json" (
+          builtins.toJSON {
+            credsStore = "secretservice";
+          }
+        );
       in
       {
         home.file.".docker/.config.json.nix" = {

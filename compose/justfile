@@ -5,6 +5,37 @@ dotfiles_dir := parent_directory(justfile_directory())
 # Stop all services then bring them up
 default: down up
 
+# Pull latest changes from remote and record revision window
+pull:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    prev=$(git -C {{ dotfiles_dir }} rev-parse HEAD)
+    git -C {{ dotfiles_dir }} pull --ff-only --quiet
+    next=$(git -C {{ dotfiles_dir }} rev-parse HEAD)
+    printf 'PREV=%s\nNEXT=%s\n' "$prev" "$next" > {{ state_file }}
+
+# Apply NixOS configuration only when relevant files changed
+apply:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    [[ -f {{ state_file }} ]] || { echo "No state file, skipping."; exit 0; }
+    . {{ state_file }}
+
+    if [ "$PREV" = "$NEXT" ]; then
+        echo "No changes, skipping."
+        exit 0
+    fi
+
+    changed=$(git -C {{ dotfiles_dir }} diff --name-only "$PREV" "$NEXT")
+
+    if echo "$changed" | grep -qE '^(hosts|modules|files|secrets|flake\.nix|flake\.lock)'; then
+        echo "NixOS config changed - rebuilding..."
+        nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
+        exit 0
+    fi
+
+    echo "No NixOS config changes."
+
 # Stop all services, or a specific one if svc is provided
 @down svc="":
     {{ compose_command }} down {{ svc }}

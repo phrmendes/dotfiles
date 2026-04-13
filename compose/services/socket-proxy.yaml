@@ -1,4 +1,3 @@
----
 services:
   socket-proxy:
     image: docker.io/linuxserver/socket-proxy:latest

@@ -20,7 +20,6 @@ services:
       - diun.enable=true
     depends_on:
       - socket-proxy
-
   beszel:
     image: docker.io/henrygd/beszel:latest
     container_name: beszel
@@ -35,7 +34,6 @@ services:
       interval: 120s
     labels:
       - diun.enable=true
-
 volumes:
   beszel_data:
   beszel_agent_data:

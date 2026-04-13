@@ -16,7 +16,6 @@ services:
       - 22000:22000/udp
     labels:
       - diun.enable=true
-
 volumes:
   syncthing_config:
   syncthing_data:

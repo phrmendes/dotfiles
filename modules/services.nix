@@ -1,6 +1,11 @@
 _: {
   modules.nixos.core.services =
-    { pkgs, config, lib, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     {
       services = {
         envfs.enable = true;

@@ -13,6 +13,5 @@ services:
       - /mnt/external/downloads:/downloads
     labels:
       - diun.enable=true
-
 volumes:
   radarr_config:

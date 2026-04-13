@@ -18,6 +18,5 @@ services:
       - postgres
     labels:
       - diun.enable=true
-
 volumes:
   linkding_data:

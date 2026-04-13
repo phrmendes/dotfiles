@@ -16,7 +16,6 @@ services:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
     labels:
       - diun.enable=true
-
 volumes:
   caddy_data:
   caddy_config:

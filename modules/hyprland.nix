@@ -28,6 +28,30 @@ _: {
           vicinae = getExe pkgs.vicinae;
           swayosd = "${pkgs.swayosd}/bin/swayosd-client";
           ws = lib.range 1 9;
+          mediaBinds = [
+            ",XF86AudioPlay,exec,${playerctl} play-pause"
+            ",XF86AudioPause,exec,${playerctl} play-pause"
+            ",XF86AudioPrev,exec,${playerctl} previous"
+            ",XF86AudioNext,exec,${playerctl} next"
+          ];
+          focusBinds = [
+            "SUPER,H,movefocus,l"
+            "SUPER,J,movefocus,d"
+            "SUPER,K,movefocus,u"
+            "SUPER,L,movefocus,r"
+          ];
+          moveBinds = [
+            "SUPER SHIFT,H,movewindoworgroup,l"
+            "SUPER SHIFT,J,movewindoworgroup,d"
+            "SUPER SHIFT,K,movewindoworgroup,u"
+            "SUPER SHIFT,L,movewindoworgroup,r"
+          ];
+          workspaceCycleBinds = [
+            "SUPER CTRL,H,workspace,r-1"
+            "SUPER CTRL,L,workspace,r+1"
+            "SUPER SHIFT CTRL,H,movetoworkspace,r-1"
+            "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
+          ];
           workspace = {
             move = ws |> map (x: "SUPER SHIFT, ${toString x}, movetoworkspace, ${toString x}");
             switch = ws |> map (x: "SUPER, ${toString x}, workspace, ${toString x}");
@@ -122,34 +146,22 @@ _: {
               bind = [
                 "CTRL ALT,L,exec,${hyprlock}"
                 ",print,exec,${flameshot} gui"
-                ",XF86AudioPlay,exec,${playerctl} play-pause"
-                ",XF86AudioPause,exec,${playerctl} play-pause"
-                ",XF86AudioPrev,exec,${playerctl} previous"
-                ",XF86AudioNext,exec,${playerctl} next"
                 "SUPER,space,exec,${vicinae} toggle"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"
                 "SUPER,B,exec,${getExe config.programs.firefox.package}"
                 "SUPER,F,togglefloating"
                 "SUPER,G,togglegroup"
-                "SUPER,H,movefocus,l"
-                "SUPER,J,movefocus,d"
-                "SUPER,K,movefocus,u"
-                "SUPER,L,movefocus,r"
                 "SUPER,P,pseudo"
                 "SUPER,Q,killactive"
                 "SUPER,R,togglesplit"
                 "SUPER,T,lockactivegroup,toggle"
                 "SUPER,Z,fullscreen"
-                "SUPER CTRL,H,workspace,r-1"
-                "SUPER CTRL,L,workspace,r+1"
-                "SUPER SHIFT,H,movewindoworgroup,l"
-                "SUPER SHIFT,J,movewindoworgroup,d"
-                "SUPER SHIFT,K,movewindoworgroup,u"
-                "SUPER SHIFT,L,movewindoworgroup,r"
-                "SUPER SHIFT CTRL,H,movetoworkspace,r-1"
-                "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
               ]
+              ++ mediaBinds
+              ++ focusBinds
+              ++ moveBinds
+              ++ workspaceCycleBinds
               ++ workspace.switch
               ++ workspace.move
               ++ workspace.moveSilent;

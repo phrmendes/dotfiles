@@ -13,6 +13,14 @@ in
         env = config.age.secrets."docker-compose.env".path;
         compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=${env}";
         basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin";
+        journalOutput = {
+          StandardOutput = "journal";
+          StandardError = "journal";
+        };
+        oneshotService = {
+          Type = "oneshot";
+        }
+        // journalOutput;
       in
       {
         systemd = {
@@ -39,8 +47,7 @@ in
               wantedBy = [ "multi-user.target" ];
               startLimitIntervalSec = 300;
               startLimitBurst = 3;
-              serviceConfig = {
-                Type = "oneshot";
+              serviceConfig = oneshotService // {
                 RemainAfterExit = true;
                 User = settings.user;
                 Group = "users";
@@ -49,8 +56,6 @@ in
                 ExecStop = "${compose} down";
                 TimeoutStartSec = 0;
                 TimeoutStopSec = 300;
-                StandardOutput = "journal";
-                StandardError = "journal";
                 Restart = "on-failure";
                 RestartSec = "30s";
               };
@@ -60,15 +65,12 @@ in
               description = "Pull dotfiles from remote";
               after = [ "network-online.target" ];
               wants = [ "network-online.target" ];
-              serviceConfig = {
-                Type = "oneshot";
+              serviceConfig = oneshotService // {
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
                 ExecStart = "${composeJust} pull";
                 TimeoutStartSec = 120;
-                StandardOutput = "journal";
-                StandardError = "journal";
                 Environment = [ "PATH=${basePath}" ];
               };
             };
@@ -77,13 +79,10 @@ in
               description = "Apply NixOS configuration if changed";
               after = [ "git-pull.service" ];
               requires = [ "git-pull.service" ];
-              serviceConfig = {
-                Type = "oneshot";
+              serviceConfig = oneshotService // {
                 WorkingDirectory = dotfiles;
                 ExecStart = "${composeJust} apply";
                 TimeoutStartSec = 0;
-                StandardOutput = "journal";
-                StandardError = "journal";
                 Environment = [ "PATH=${basePath}:${pkgs.nixos-rebuild}/bin:/run/wrappers/bin" ];
               };
             };
@@ -95,15 +94,12 @@ in
                 "nixos-apply.service"
               ];
               requires = [ "git-pull.service" ];
-              serviceConfig = {
-                Type = "oneshot";
+              serviceConfig = oneshotService // {
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
                 ExecStart = "${composeJust} sync";
                 TimeoutStartSec = 0;
-                StandardOutput = "journal";
-                StandardError = "journal";
                 Environment = [ "PATH=${basePath}:${pkgs.docker-compose}/bin" ];
               };
             };

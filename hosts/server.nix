@@ -2,6 +2,7 @@
 let
   inherit (config.modules) nixos homeManager;
   inherit (config) settings;
+  coreImports = import ./imports.nix { inherit nixos; };
 in
 {
   configurations.nixos.server.module =
@@ -13,28 +14,7 @@ in
     }:
     {
       imports =
-        (with nixos.core; [
-          age
-          boot
-          disko
-          filesystems
-          hardware
-          home-manager
-          i18n
-          impermanence
-          networking
-          nix-settings
-          nixpkgs
-          options
-          programs
-          security
-          services
-          stylix
-          swap
-          system-packages
-          users
-          virtualisation
-        ])
+        coreImports
         ++ (with nixos.server; [
           automation
           filesystems

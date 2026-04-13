@@ -2,35 +2,13 @@
 let
   inherit (config.modules) nixos homeManager;
   inherit (config) settings;
+  coreImports = import ./imports.nix { inherit nixos; };
 in
 {
   configurations.nixos.desktop.module =
     { config, lib, ... }:
     {
-      imports =
-        (with nixos.core; [
-          age
-          boot
-          disko
-          filesystems
-          hardware
-          home-manager
-          i18n
-          impermanence
-          networking
-          nix-settings
-          nixpkgs
-          options
-          programs
-          security
-          services
-          stylix
-          swap
-          system-packages
-          users
-          virtualisation
-        ])
-        ++ [ nixos.workstation.common ];
+      imports = coreImports ++ [ nixos.workstation.common ];
 
       networking.hostName = "desktop";
       programs.nh.flake = "/home/${settings.user}/Projects/dotfiles";

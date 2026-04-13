@@ -1,6 +1,70 @@
 { config, ... }:
 let
   inherit (config.modules) homeManager nixos;
+  commonDirs = [
+    ".cache"
+    ".config"
+    ".docker"
+    ".gnupg"
+    ".kube"
+    ".local"
+    ".mozilla"
+    ".password-store"
+    ".pki"
+    ".ssh"
+    ".zotero"
+    "Documents"
+    "Downloads"
+    "Pictures"
+    "Projects"
+    "Videos"
+    "Zotero"
+  ];
+  devModules = with homeManager.dev; [
+    atuin
+    bat
+    btop
+    direnv
+    docker
+    eza
+    fd
+    fzf
+    gh
+    git
+    jq
+    k8s
+    kitty
+    lazydocker
+    lazygit
+    neovim
+    nix-index
+    opencode
+    ripgrep
+    starship
+    tealdeer
+    tmux
+    yazi
+    zoxide
+    zsh
+  ];
+  workstationModules = with homeManager.workstation; [
+    dunst
+    firefox
+    flameshot
+    gtk
+    hyprland
+    hypridle
+    hyprlock
+    hyprpaper
+    keepassxc
+    nm-applet
+    packages
+    swayosd
+    udiskie
+    vicinae
+    waybar
+    xdg
+  ];
 in
 {
   modules = {
@@ -87,24 +151,7 @@ in
         };
 
       persistence = {
-        environment.persistence."/persist".users.${config.settings.user}.directories = [
-          ".cache"
-          ".config"
-          ".docker"
-          ".gnupg"
-          ".kube"
-          ".local"
-          ".mozilla"
-          ".password-store"
-          ".pki"
-          ".ssh"
-          ".zotero"
-          "Documents"
-          "Downloads"
-          "Pictures"
-          "Projects"
-          "Videos"
-          "Zotero"
+        environment.persistence."/persist".users.${config.settings.user}.directories = commonDirs ++ [
           {
             directory = ".keychain";
             mode = "u=rwx,go=";
@@ -231,51 +278,8 @@ in
               packages
               symlinks
             ])
-            ++ (with homeManager.dev; [
-              atuin
-              bat
-              btop
-              direnv
-              docker
-              eza
-              fd
-              fzf
-              gh
-              git
-              jq
-              k8s
-              kitty
-              lazydocker
-              lazygit
-              neovim
-              nix-index
-              opencode
-              ripgrep
-              starship
-              tealdeer
-              tmux
-              yazi
-              zoxide
-              zsh
-            ])
-            ++ (with homeManager.workstation; [
-              dunst
-              firefox
-              flameshot
-              gtk
-              hyprland
-              hypridle
-              hyprlock
-              hyprpaper
-              keepassxc
-              nm-applet
-              packages
-              swayosd
-              udiskie
-              vicinae
-              waybar
-              xdg
-            ])
+            ++ devModules
+            ++ workstationModules
             ++ (with homeManager.media; [
               imv
               mpv

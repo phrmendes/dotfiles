@@ -10,6 +10,40 @@ _: {
     let
       isLaptop = osConfig.machine.type == "laptop";
       inherit (osConfig.machine) monitors;
+      sharedWidgets = [
+        "clock"
+        "cpu"
+        "idle_inhibitor"
+        "memory"
+        "pulseaudio"
+        "bluetooth"
+        "tray"
+        "battery"
+        "backlight"
+      ];
+      primaryModulesRight = [
+        "idle_inhibitor"
+        "custom/separator"
+        "hyprland/language"
+        "custom/separator"
+        "cpu"
+        "custom/separator"
+        "memory"
+        "custom/separator"
+        "pulseaudio"
+        "custom/separator"
+        "bluetooth"
+        "custom/separator"
+        (lib.mkIf isLaptop "backlight")
+        (lib.mkIf isLaptop "custom/separator")
+        (lib.mkIf isLaptop "battery")
+        (lib.mkIf isLaptop "custom/separator")
+        "tray"
+        "custom/separator"
+        "clock"
+        "custom/nix"
+        "custom/spacer"
+      ];
       format =
         {
           icon,
@@ -205,29 +239,7 @@ _: {
               spacing = 5;
               modules-left = [ "hyprland/workspaces" ];
               modules-center = [ "hyprland/window" ];
-              modules-right = [
-                "idle_inhibitor"
-                "custom/separator"
-                "hyprland/language"
-                "custom/separator"
-                "cpu"
-                "custom/separator"
-                "memory"
-                "custom/separator"
-                "pulseaudio"
-                "custom/separator"
-                "bluetooth"
-                "custom/separator"
-                (lib.mkIf isLaptop "backlight")
-                (lib.mkIf isLaptop "custom/separator")
-                (lib.mkIf isLaptop "battery")
-                (lib.mkIf isLaptop "custom/separator")
-                "tray"
-                "custom/separator"
-                "clock"
-                "custom/nix"
-                "custom/spacer"
-              ];
+              modules-right = primaryModulesRight;
               "custom/nix" = widgets.nix;
               "custom/separator" = widgets.separator;
               "custom/spacer" = widgets.spacer;
@@ -235,17 +247,7 @@ _: {
               "hyprland/window" = widgets.window;
               "hyprland/workspaces" = widgets.workspaces;
             }
-            // (lib.getAttrs [
-              "clock"
-              "cpu"
-              "idle_inhibitor"
-              "memory"
-              "pulseaudio"
-              "bluetooth"
-              "tray"
-              "battery"
-              "backlight"
-            ] widgets)
+            // (lib.getAttrs sharedWidgets widgets)
           )
           (lib.mkIf (monitors.secondary != null) {
             output = monitors.secondary.name;

@@ -44,50 +44,31 @@
       {
         home.packages = with pkgs; [
           curl
-          deluge-gtk
-          drawing
           elixir
           exiftool
           ffmpeg
           ffmpegthumbnailer
-          file-roller
-          filezilla
-
-          gcolor3
           gdu
-          grim
           hurl
           imagemagick
           jdk
           jqp
           just
-          kubectl
-          kubernetes-helm
-          libqalculate
-          networkmanagerapplet
           nix-prefetch-github
           nodejs_latest
-          obs-studio
-          onlyoffice-desktopeditors
           pandoc
           parallel
           pass
-          pavucontrol
           phockup
           prek
           poppler
-          proton-vpn
           python314
           quarto
           sqlite
           tectonic
           terraform
-          thunar
           tpm2-tools
-          ungoogled-chromium
           uv
-          vesktop
-          zotero
         ];
       };
   };

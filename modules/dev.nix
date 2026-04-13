@@ -28,7 +28,6 @@
             cat = lib.getExe pkgs.bat;
             fs = lib.getExe pkgs.fselect;
             g = lib.getExe pkgs.git;
-            k = "${pkgs.kubectl}/bin/kubectl";
             ld = lib.getExe pkgs.lazydocker;
             lg = lib.getExe pkgs.lazygit;
             v = "nvim";
@@ -518,7 +517,7 @@
     };
 
     docker =
-      { pkgs, lib, ... }:
+      { pkgs, ... }:
       let
         configDrv = pkgs.writeText "docker-config.json" (
           builtins.toJSON {
@@ -538,58 +537,67 @@
         };
       };
 
-    k9s = {
-      programs.k9s = {
-        enable = true;
-        settings.k9s.refreshRate = 1;
-        plugins = {
-          log-bat = {
-            shortCut = "Shift-L";
-            description = "Logs (bat)";
-            scopes = [ "po" ];
-            command = "bash";
-            background = false;
-            args = [
-              "-c"
-              "\"$@\" | bat"
-              "dummy-arg"
-              "kubectl"
-              "logs"
-              "$NAME"
-              "-n"
-              "$NAMESPACE"
-              "--context"
-              "$CONTEXT"
-              "--kubeconfig"
-              "$KUBECONFIG"
-            ];
-          };
-          log-bat-container = {
-            shortCut = "Shift-L";
-            description = "Logs (bat)";
-            scopes = [ "containers" ];
-            command = "bash";
-            background = false;
-            args = [
-              "-c"
-              "\"$@\" | bat"
-              "dummy-arg"
-              "kubectl"
-              "logs"
-              "-c"
-              "$NAME"
-              "$POD"
-              "-n"
-              "$NAMESPACE"
-              "--context"
-              "$CONTEXT"
-              "--kubeconfig"
-              "$KUBECONFIG"
-            ];
+    k8s =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          kubectl
+          kubernetes-helm
+        ];
+
+        programs.zsh.shellAliases.k = "${pkgs.kubectl}/bin/kubectl";
+
+        programs.k9s = {
+          enable = true;
+          settings.k9s.refreshRate = 1;
+          plugins = {
+            log-bat = {
+              shortCut = "Shift-L";
+              description = "Logs (bat)";
+              scopes = [ "po" ];
+              command = "bash";
+              background = false;
+              args = [
+                "-c"
+                "\"$@\" | bat"
+                "dummy-arg"
+                "kubectl"
+                "logs"
+                "$NAME"
+                "-n"
+                "$NAMESPACE"
+                "--context"
+                "$CONTEXT"
+                "--kubeconfig"
+                "$KUBECONFIG"
+              ];
+            };
+            log-bat-container = {
+              shortCut = "Shift-L";
+              description = "Logs (bat)";
+              scopes = [ "containers" ];
+              command = "bash";
+              background = false;
+              args = [
+                "-c"
+                "\"$@\" | bat"
+                "dummy-arg"
+                "kubectl"
+                "logs"
+                "-c"
+                "$NAME"
+                "$POD"
+                "-n"
+                "$NAMESPACE"
+                "--context"
+                "$CONTEXT"
+                "--kubeconfig"
+                "$KUBECONFIG"
+              ];
+            };
           };
         };
       };
-    };
 
     yazi = {
       programs.yazi = {

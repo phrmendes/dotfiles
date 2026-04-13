@@ -1,7 +1,6 @@
 { config, ... }:
 let
   inherit (config.modules) homeManager nixos;
-  inherit (config.settings) user;
 in
 {
   modules = {
@@ -156,27 +155,36 @@ in
           };
         };
 
-      blueman-applet =
-        { pkgs, ... }:
-        {
-          xdg.autostart.entries = [
-            "${pkgs.blueman}/etc/xdg/autostart/blueman.desktop"
-          ];
-        };
-
       nm-applet =
         { pkgs, ... }:
         {
+          home.packages = [ pkgs.networkmanagerapplet ];
+
           xdg.autostart.entries = [
             "${pkgs.networkmanagerapplet}/etc/xdg/autostart/nm-applet.desktop"
           ];
         };
 
-      pasystray =
+      packages =
         { pkgs, ... }:
         {
-          xdg.autostart.entries = [
-            "${pkgs.pasystray}/etc/xdg/autostart/pasystray.desktop"
+          home.packages = with pkgs; [
+            blueman
+            deluge-gtk
+            drawing
+            file-roller
+            filezilla
+            gcolor3
+            grim
+            libqalculate
+            obs-studio
+            onlyoffice-desktopeditors
+            pavucontrol
+            proton-vpn
+            thunar
+            ungoogled-chromium
+            vesktop
+            zotero
           ];
         };
 
@@ -235,7 +243,7 @@ in
               gh
               git
               jq
-              k9s
+              k8s
               kitty
               lazydocker
               lazygit
@@ -251,7 +259,6 @@ in
               zsh
             ])
             ++ (with homeManager.workstation; [
-              blueman-applet
               dunst
               firefox
               flameshot
@@ -262,7 +269,7 @@ in
               hyprpaper
               keepassxc
               nm-applet
-              pasystray
+              packages
               swayosd
               udiskie
               vicinae

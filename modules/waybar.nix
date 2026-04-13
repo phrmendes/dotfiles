@@ -15,14 +15,15 @@ _: {
           icon,
           content ? "",
         }:
-        "<span font='12'>${icon} </span>${content}";
+        "<span font='12'>${icon}</span>${lib.optionalString (content != "") " "}${content}";
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       widgets = {
         backlight = {
-          tooltip = false;
+          tooltip = true;
+          tooltip-format = "Brightness: {percent}%";
           format = format {
             icon = "{icon}";
-            content = " {percent}%";
+            content = "{percent}%";
           };
           format-icons = [
             ""
@@ -47,15 +48,15 @@ _: {
           };
           format = format {
             icon = "{icon}";
-            content = " {capacity}%";
+            content = "{capacity}%";
           };
           format-charging = format {
             icon = "";
-            content = " {capacity}%";
+            content = "{capacity}%";
           };
           format-full = format {
             icon = "";
-            content = " Charged";
+            content = "Charged";
           };
           format-icons = [
             ""
@@ -65,6 +66,19 @@ _: {
             ""
           ];
           max-length = 25;
+        };
+        bluetooth = {
+          format = format { icon = "󰂯"; };
+          format-connected = format {
+            icon = "󰂱";
+            content = "{device_alias}";
+          };
+          format-disabled = format { icon = "󰂲"; };
+          format-off = format { icon = "󰂲"; };
+          format-no-controller = format { icon = "󰂲"; };
+          tooltip = true;
+          tooltip-format = "Status: {status}\nConnected: {num_connections}";
+          on-click = "blueman-manager";
         };
         clock = {
           format = "{:%H:%M}";
@@ -89,14 +103,16 @@ _: {
         };
         cpu = {
           interval = 10;
+          tooltip = true;
+          tooltip-format = "CPU usage: {usage}%";
           format = format {
             icon = "";
-            content = " {usage}%";
+            content = "{usage}%";
           };
           max-length = 10;
         };
         idle_inhibitor = {
-          format = format { icon = "{icon}"; };
+          format = "<span font='12'>{icon}</span> ";
           tooltip = false;
           format-icons = {
             activated = "";
@@ -104,20 +120,41 @@ _: {
           };
         };
         language = {
+          tooltip = true;
+          tooltip-format = "Keyboard layout: {}";
           format = format {
             icon = "󰌌";
-            content = " {}";
+            content = "{}";
           };
           format-en = "en-US";
           format-pt = "pt-BR";
         };
         memory = {
           interval = 30;
+          tooltip = true;
+          tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G ({percentage}%)";
           format = format {
             icon = "󰘚";
-            content = " {percentage}%";
+            content = "{percentage}%";
           };
           max-length = 10;
+        };
+        pulseaudio = {
+          tooltip = true;
+          tooltip-format = "{desc}\nVolume: {volume}%";
+          tooltip-format-muted = "{desc}\nVolume: {volume}% (muted)";
+          format = format { icon = "{icon}"; };
+          format-muted = format {
+            icon = "󰝟";
+          };
+          format-icons = {
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
+          };
+          on-click = "pavucontrol";
         };
         nix = {
           format = format { icon = ""; };
@@ -159,49 +196,57 @@ _: {
           targets = [ "hyprland-session.target" ];
         };
         settings = [
-          {
-            output = monitors.primary.name;
-            layer = "top";
-            position = "top";
-            height = 30;
-            spacing = 5;
-            modules-left = [ "hyprland/workspaces" ];
-            modules-center = [ "hyprland/window" ];
-            modules-right = [
-              "idle_inhibitor"
-              "custom/separator"
-              "hyprland/language"
-              "custom/separator"
-              "cpu"
-              "custom/separator"
-              "memory"
-              "custom/separator"
-              (lib.mkIf isLaptop "backlight")
-              (lib.mkIf isLaptop "custom/separator")
-              (lib.mkIf isLaptop "battery")
-              (lib.mkIf isLaptop "custom/separator")
-              "tray"
-              "custom/separator"
+          (
+            {
+              output = monitors.primary.name;
+              layer = "top";
+              position = "top";
+              height = 30;
+              spacing = 5;
+              modules-left = [ "hyprland/workspaces" ];
+              modules-center = [ "hyprland/window" ];
+              modules-right = [
+                "idle_inhibitor"
+                "custom/separator"
+                "hyprland/language"
+                "custom/separator"
+                "cpu"
+                "custom/separator"
+                "memory"
+                "custom/separator"
+                "pulseaudio"
+                "custom/separator"
+                "bluetooth"
+                "custom/separator"
+                (lib.mkIf isLaptop "backlight")
+                (lib.mkIf isLaptop "custom/separator")
+                (lib.mkIf isLaptop "battery")
+                (lib.mkIf isLaptop "custom/separator")
+                "tray"
+                "custom/separator"
+                "clock"
+                "custom/nix"
+                "custom/spacer"
+              ];
+              "custom/nix" = widgets.nix;
+              "custom/separator" = widgets.separator;
+              "custom/spacer" = widgets.spacer;
+              "hyprland/language" = widgets.language;
+              "hyprland/window" = widgets.window;
+              "hyprland/workspaces" = widgets.workspaces;
+            }
+            // (lib.getAttrs [
               "clock"
-              "custom/nix"
-              "custom/spacer"
-            ];
-            "custom/nix" = widgets.nix;
-            "custom/separator" = widgets.separator;
-            "custom/spacer" = widgets.spacer;
-            "hyprland/language" = widgets.language;
-            "hyprland/window" = widgets.window;
-            "hyprland/workspaces" = widgets.workspaces;
-            inherit (widgets)
-              clock
-              cpu
-              idle_inhibitor
-              memory
-              tray
-              battery
-              backlight
-              ;
-          }
+              "cpu"
+              "idle_inhibitor"
+              "memory"
+              "pulseaudio"
+              "bluetooth"
+              "tray"
+              "battery"
+              "backlight"
+            ] widgets)
+          )
           (lib.mkIf (monitors.secondary != null) {
             output = monitors.secondary.name;
             layer = "top";

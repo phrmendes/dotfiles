@@ -60,11 +60,12 @@
           parallel
           pass
           phockup
-          prek
           poppler
+          prek
           python314
           quarto
           sqlite
+          stremio-linux-shell
           tectonic
           terraform
           tpm2-tools

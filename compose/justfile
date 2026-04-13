@@ -20,6 +20,10 @@ apply:
     set -euo pipefail
     [[ -f {{ state_file }} ]] || { echo "No state file, skipping."; exit 0; }
     . {{ state_file }}
+    [[ ${PREV:-} =~ ^[0-9a-f]{40}$ && ${NEXT:-} =~ ^[0-9a-f]{40}$ ]] || {
+        echo "Invalid state file (PREV/NEXT are not SHAs), skipping."
+        exit 0
+    }
 
     if [ "$PREV" = "$NEXT" ]; then
         echo "No changes, skipping."
@@ -55,6 +59,10 @@ sync:
     set -euo pipefail
     [[ -f {{ state_file }} ]] || { echo "No state file, skipping."; exit 0; }
     . {{ state_file }}
+    [[ ${PREV:-} =~ ^[0-9a-f]{40}$ && ${NEXT:-} =~ ^[0-9a-f]{40}$ ]] || {
+        echo "Invalid state file (PREV/NEXT are not SHAs), skipping."
+        exit 0
+    }
 
     if [ "$PREV" = "$NEXT" ]; then
         echo "No changes, skipping."

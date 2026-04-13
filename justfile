@@ -4,7 +4,7 @@ dotfiles_dir := justfile_directory()
 
 # Pull latest changes on server and rebuild remotely via SSH
 rebuild-server:
-    ssh phrmendes@server "cd ~/dotfiles && just compose::pull && just compose::apply && just compose::sync"
+    ssh phrmendes@server "cd ~/dotfiles && git pull --ff-only && just --justfile compose/justfile pull && just --justfile compose/justfile apply && just --justfile compose/justfile sync"
 
 # Run nixos-rebuild switch for this host
 rebuild:

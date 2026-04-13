@@ -45,6 +45,28 @@ sudo nix --experimental-features "nix-command flakes pipe-operators" run github:
 sudo nixos-install --no-channel-copy --root /mnt --flake .#{{ machine }}
 ```
 
+## Workflow
+
+After cloning, install hooks once:
+
+```sh
+prek install
+```
+
+Common commands:
+
+```sh
+just fmt
+just lint
+just rebuild
+```
+
+Server automation checks:
+
+```sh
+sudo systemctl status git-pull.timer git-pull.service nixos-apply.service compose-sync.service
+```
+
 ## Troubleshooting
 
 If Tailscale fails due to TPM lockout:

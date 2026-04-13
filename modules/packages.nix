@@ -74,6 +74,7 @@
           pass
           pavucontrol
           phockup
+          prek
           poppler
           proton-vpn
           python314

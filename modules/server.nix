@@ -9,6 +9,7 @@ in
       let
         dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
         just = "${pkgs.just}/bin/just";
+        composeJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/compose/justfile";
         env = config.age.secrets."docker-compose.env".path;
         compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=${env}";
         basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin";
@@ -64,7 +65,7 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${just} pull";
+                ExecStart = "${composeJust} pull";
                 TimeoutStartSec = 120;
                 StandardOutput = "journal";
                 StandardError = "journal";
@@ -79,7 +80,7 @@ in
               serviceConfig = {
                 Type = "oneshot";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${just} apply";
+                ExecStart = "${composeJust} apply";
                 TimeoutStartSec = 0;
                 StandardOutput = "journal";
                 StandardError = "journal";
@@ -99,7 +100,7 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${just} compose-sync";
+                ExecStart = "${composeJust} sync";
                 TimeoutStartSec = 0;
                 StandardOutput = "journal";
                 StandardError = "journal";

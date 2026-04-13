@@ -174,7 +174,11 @@ safely("later", function()
     lsp_completion = {
       source_func = "omnifunc",
       auto_setup = false,
-      process_items = function(items, base) return MiniCompletion.default_process_items(items, base, { kind_priority = { Text = -1, Snippet = 99 } }) end,
+      process_items = function(items, base)
+        return MiniCompletion.default_process_items(items, base, {
+          kind_priority = { Text = -1, Snippet = 99 },
+        })
+      end,
     },
     mappings = { force_twostep = "<c-f>", force_fallback = "<a-f>", scroll_down = "<c-d>", scroll_up = "<c-u>" },
   })

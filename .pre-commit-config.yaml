@@ -1,0 +1,72 @@
+repos:
+  - repo: local
+    hooks:
+      - id: nixfmt
+        name: nixfmt
+        entry: nix run nixpkgs#nixfmt --
+        language: system
+        files: \.nix$
+
+      - id: deadnix
+        name: deadnix
+        entry: nix run nixpkgs#deadnix --
+        language: system
+        files: \.nix$
+
+      - id: stylua
+        name: stylua
+        entry: nix run nixpkgs#stylua --
+        language: system
+        files: \.lua$
+
+      - id: luacheck
+        name: luacheck
+        entry: nix run nixpkgs#luaPackages.luacheck -- --config .luacheckrc
+        language: system
+        files: \.lua$
+
+      - id: shfmt
+        name: shfmt
+        entry: nix run nixpkgs#shfmt -- -w -s
+        language: system
+        types: [shell]
+
+      - id: shellharden
+        name: shellharden
+        entry: nix run nixpkgs#shellharden -- --check
+        language: system
+        types: [shell]
+
+      - id: shellcheck
+        name: shellcheck
+        entry: nix run nixpkgs#shellcheck --
+        language: system
+        types: [shell]
+
+      - id: yamlfmt
+        name: prettier-yaml
+        entry: nix run nixpkgs#prettier -- --write
+        language: system
+        files: \.(yml|yaml)$
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: check-toml
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+
+  - repo: local
+    hooks:
+      - id: flake-check
+        name: nix-flake-check
+        entry: nix flake check
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

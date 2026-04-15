@@ -32,7 +32,6 @@ _: {
         tailscale = {
           enable = true;
           authKeyFile = config.age.secrets.tailscale-authkey.path;
-          extraUpFlags = [ "--advertise-tags=tag:main" ];
           authKeyParameters = {
             ephemeral = false;
             preauthorized = true;

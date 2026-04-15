@@ -10,6 +10,7 @@ _: {
     let
       isLaptop = osConfig.machine.type == "laptop";
       inherit (osConfig.machine) monitors;
+      maxLength = 40;
       sharedWidgets = [
         "clock"
         "cpu"
@@ -22,9 +23,9 @@ _: {
         "backlight"
       ];
       primaryModulesRight = [
-        "idle_inhibitor"
-        "custom/separator"
         "hyprland/language"
+        "custom/separator"
+        "idle_inhibitor"
         "custom/separator"
         "cpu"
         "custom/separator"
@@ -49,7 +50,9 @@ _: {
           icon,
           content ? "",
         }:
-        "<span font='12'>${icon}</span>${lib.optionalString (content != "") " "}${content}";
+        "<span font_size='12288' rise='-1024' letter_spacing='2048'>${icon}</span>${
+          lib.optionalString (content != "") "  "
+        }${content}";
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       widgets = {
         backlight = {
@@ -99,7 +102,6 @@ _: {
             ""
             ""
           ];
-          max-length = 25;
         };
         bluetooth = {
           format = format { icon = "󰂯"; };
@@ -143,7 +145,6 @@ _: {
             icon = "";
             content = "{usage}%";
           };
-          max-length = 10;
         };
         idle_inhibitor = {
           format = "<span font='12'>{icon}</span> ";
@@ -154,12 +155,8 @@ _: {
           };
         };
         language = {
-          tooltip = true;
-          tooltip-format = "Keyboard layout: {}";
-          format = format {
-            icon = "󰌌";
-            content = "{}";
-          };
+          tooltip = false;
+          format = "{}";
           format-en = "en-US";
           format-pt = "pt-BR";
         };
@@ -171,7 +168,6 @@ _: {
             icon = "󰘚";
             content = "{percentage}%";
           };
-          max-length = 10;
         };
         pulseaudio = {
           tooltip = true;
@@ -193,6 +189,7 @@ _: {
         nix = {
           format = format { icon = " "; };
           tooltip = false;
+          min-length = 3;
         };
         separator = {
           format = "";
@@ -210,7 +207,7 @@ _: {
         };
         window = {
           format = "{title}";
-          max-length = 25;
+          max-length = maxLength;
         };
         workspaces = {
           format = "{name}";

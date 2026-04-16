@@ -2,7 +2,12 @@
 {
   modules = {
     nixos.core.system-packages =
-      { pkgs, ... }:
+      {
+        pkgs,
+        lib,
+        config,
+        ...
+      }:
       {
         environment.systemPackages =
           with pkgs;
@@ -11,7 +16,6 @@
             cachix
             coreutils-full
             dig
-            docker-credential-helpers
             egl-wayland
             file
             findutils
@@ -19,7 +23,6 @@
             gnumake
             gnused
             gzip
-            libsecret
             lsof
             mlocate
             openssl
@@ -36,7 +39,11 @@
           ++ (with pkgs.unixtools; [
             net-tools
             netstat
-          ]);
+          ])
+          ++ lib.optionals (config.machine.type != "server") [
+            docker-credential-helpers
+            libsecret
+          ];
       };
 
     homeManager.user.packages =

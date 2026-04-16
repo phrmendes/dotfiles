@@ -83,6 +83,12 @@ sftpgo.local.ohlongjohnson.tech {
     import service sftpgo 8080
 }
 
+webdav.local.ohlongjohnson.tech {
+    reverse_proxy sftpgo:10080 {
+        header_up Host {host}
+    }
+}
+
 sonarr.local.ohlongjohnson.tech {
     import service sonarr 8989
 }

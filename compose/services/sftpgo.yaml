@@ -9,6 +9,8 @@ services:
       - postgres_dumps:/files/dumps
       - syncthing_data:/files/syncthing
       - transmission_watch:/files/watch
+    environment:
+      - SFTPGO_WEBDAVD__BINDINGS__0__PORT=10080
     ports:
       - 2022:2022
     labels:

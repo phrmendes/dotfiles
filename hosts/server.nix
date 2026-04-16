@@ -61,6 +61,10 @@ in
           ]);
 
         xdg.configFile."nvim/init.lua".source = ../files/neovim.lua;
+
+        home.file.".docker/config.json".text = builtins.toJSON {
+          credsStore = "";
+        };
       };
     };
 }

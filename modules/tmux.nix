@@ -52,7 +52,7 @@
 
             bind '-'   split-window -v -c "#{pane_current_path}"
             bind ':'   command-prompt
-            bind '\\'   split-window -h -c "#{pane_current_path}"
+            bind '\'   split-window -h -c "#{pane_current_path}"
             bind Enter rotate-window
             bind G     last-window
             bind Q     kill-window

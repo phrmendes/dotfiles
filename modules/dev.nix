@@ -287,8 +287,8 @@
           enable = true;
           enableMcpIntegration = true;
           settings = {
-            model = "github-copilot/gpt-5.3-codex";
-            small_model = "github-copilot/gpt-5.4-mini";
+            model = "google-vertex-anthropic/claude-sonnet-4-6@default";
+            small_model = "google-vertex/gemini-3-flash-preview";
             mcp = {
               k8s = {
                 type = "local";

@@ -113,12 +113,13 @@ M.zotcite_refs = function(key, cb)
 
   table.sort(items, function(a, b) return a.sort_val > b.sort_val end)
 
+  vim.cmd("stopinsert")
   MiniPick.start({
     source = {
       items = items,
       name = "Zotero References",
       choose = function(item)
-        if item then cb({ value = item }) end
+        if item then vim.schedule(function() cb({ value = item }) end) end
       end,
     },
   })

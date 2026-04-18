@@ -51,6 +51,7 @@
           p: with p; [
             debugpy
             pymupdf
+            pyqt5
           ];
         plugins = treesitter-parsers ++ [ treesitter-queries ];
         extraPackages = with pkgs; [

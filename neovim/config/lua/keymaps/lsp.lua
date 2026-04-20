@@ -11,6 +11,7 @@ return function(client, bufnr)
   vim.keymap.set("n", "]]", function() Snacks.words.jump(vim.v.count1) end, opts("go to next reference"))
   vim.keymap.set("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, opts("go to previous reference"))
   vim.keymap.set("n", "<leader>d", function() require("mini.extra").pickers.diagnostic({ scope = "current" }) end, opts("diagnostics"))
+  vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts("diagnostics"))
   vim.keymap.set("n", "<leader>D", function() require("mini.extra").pickers.diagnostic({ scope = "all" }) end, opts("workspace diagnostics"))
   vim.keymap.set("n", "<leader>R", function() Snacks.rename.rename_file() end, opts("rename file"))
 

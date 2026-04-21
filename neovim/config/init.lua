@@ -1,6 +1,7 @@
 vim.pack.add({
   "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/NickvanDyke/opencode.nvim",
+  "https://github.com/lewis6991/async.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
@@ -20,7 +21,6 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-lint",
   "https://github.com/mrjones2014/smart-splits.nvim",
   "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/nvim-mini/mini.nvim",
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
   "https://github.com/qvalentin/helm-ls.nvim",

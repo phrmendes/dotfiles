@@ -121,6 +121,8 @@ in
               zsh
             ]);
 
+          environment.systemPackages = [ pkgs.just ];
+
           networking.useHostResolvConf = lib.mkForce false;
           services.resolved.enable = true;
 

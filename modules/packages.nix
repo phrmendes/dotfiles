@@ -52,6 +52,7 @@
         home.packages = with pkgs; [
           curl
           elixir
+          just
           exiftool
           ffmpeg
           ffmpegthumbnailer
@@ -60,7 +61,6 @@
           imagemagick
           jdk
           jqp
-          just
           nix-prefetch-github
           nodejs_latest
           pandoc

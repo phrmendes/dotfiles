@@ -24,9 +24,15 @@ in
     server.secrets = {
       age.secrets = {
         "docker-compose.env" = secret ../secrets/docker-compose.env.age;
-        "dozzle-users.yaml" = secret ../secrets/dozzle-users.yaml.age;
-        "prunemate.json" = secret ../secrets/prunemate.json.age;
-        "transmission.json" = secret ../secrets/transmission.json.age;
+        "dozzle-users.yaml" = (secret ../secrets/dozzle-users.yaml.age) // {
+          mode = "0444";
+        };
+        "prunemate.json" = (secret ../secrets/prunemate.json.age) // {
+          mode = "0444";
+        };
+        "transmission.json" = (secret ../secrets/transmission.json.age) // {
+          mode = "0444";
+        };
       };
     };
   };

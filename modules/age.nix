@@ -23,7 +23,7 @@ in
 
     server.secrets = {
       age = {
-        secretsMountPoint = "/var/lib/agenix";
+        secretsDir = "/var/lib/agenix";
         secrets = {
           "docker-compose.env" = secret ../secrets/docker-compose.env.age;
           "dozzle-users.yaml" = secret ../secrets/dozzle-users.yaml.age;

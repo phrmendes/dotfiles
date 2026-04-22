@@ -26,12 +26,13 @@
             set -ag terminal-overrides  ",xterm-kitty:RGB"
             set -gq allow-passthrough   on
 
-            set -g detach-on-destroy off
-            set -g display-time      4000
-            set -g focus-events      on
-            set -g renumber-windows  on
-            set -g set-clipboard     on
-            set -g visual-activity   off
+            set -g detach-on-destroy  off
+            set -g display-time       4000
+            set -g focus-events       on
+            set -g renumber-windows   on
+            set -g set-clipboard      on
+            set -g visual-activity    off
+            set -g update-environment "WAYLAND_DISPLAY XDG_RUNTIME_DIR DISPLAY"
 
             set -g status              on
             set -g status-interval     3

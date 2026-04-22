@@ -14,7 +14,8 @@ services:
     labels:
       - diun.enable=true
     depends_on:
-      - socket-proxy
+      socket-proxy:
+        condition: service_healthy
 secrets:
   users:
     file: /var/lib/agenix/dozzle-users.yaml

@@ -40,6 +40,7 @@ let
     neovim
     nix-index
     opencode
+    packages
     pi
     ripgrep
     starship
@@ -214,16 +215,30 @@ in
             blueman
             deluge-gtk
             drawing
+            exiftool
+            ffmpeg
+            ffmpegthumbnailer
             file-roller
             filezilla
             gcolor3
+            gdu
             grim
+            imagemagick
             libqalculate
             obs-studio
             onlyoffice-desktopeditors
+            pandoc
+            pass
             pavucontrol
+            phockup
+            poppler
             proton-vpn
+            quarto
+            stremio-linux-shell
+            tectonic
+            terraform
             thunar
+            tpm2-tools
             ungoogled-chromium
             vesktop
             zotero
@@ -268,7 +283,6 @@ in
         imports =
           (with homeManager.user; [
             base
-            packages
             symlinks
           ])
           ++ devModules

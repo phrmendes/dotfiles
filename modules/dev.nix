@@ -440,5 +440,25 @@
         enableZshIntegration = true;
       };
     };
+
+    packages =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          curl
+          elixir
+          hurl
+          jdk
+          jqp
+          nix-prefetch-github
+          nodejs_latest
+          parallel
+          prek
+          python314
+          sqlite
+          uv
+          just
+        ];
+      };
   };
 }

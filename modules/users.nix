@@ -32,6 +32,7 @@ in
               uid = 1000;
               linger = true;
               extraGroups = [
+                "keys"
                 "networkmanager"
                 "wheel"
               ]

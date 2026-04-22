@@ -17,4 +17,4 @@ services:
       - socket-proxy
 secrets:
   users:
-    file: /run/agenix/dozzle-users.yaml
+    file: /var/lib/agenix/dozzle-users.yaml

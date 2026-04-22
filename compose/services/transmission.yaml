@@ -45,4 +45,4 @@ volumes:
   transmission_watch:
 secrets:
   transmission:
-    file: /run/agenix/transmission.json
+    file: /var/lib/agenix/transmission.json

@@ -2,7 +2,7 @@ _: {
   modules.nixos.core.virtualisation =
     { pkgs, ... }:
     {
-      boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
+      boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 53;
 
       virtualisation = {
         containers.enable = true;

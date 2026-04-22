@@ -10,6 +10,7 @@ let
     ".local"
     ".mozilla"
     ".password-store"
+    ".pi"
     ".pki"
     ".ssh"
     ".zotero"
@@ -39,6 +40,7 @@ let
     neovim
     nix-index
     opencode
+    pi
     ripgrep
     starship
     tealdeer
@@ -69,22 +71,19 @@ in
 {
   modules = {
     nixos.workstation = {
-      common =
-        { ... }:
-        {
-          imports = with nixos.workstation; [
-            blueman
-            greetd
-            hyprland
-            libvirtd
-            pam
-            pipewire
-            persistence
-            secrets
-            xdg-portal
-            syncthing
-          ];
-        };
+      common = _: {
+        imports = with nixos.workstation; [
+          greetd
+          hyprland
+          libvirtd
+          litellm
+          pam
+          pipewire
+          persistence
+          xdg-portal
+          syncthing
+        ];
+      };
 
       greetd =
         { pkgs, ... }:
@@ -111,10 +110,6 @@ in
             support32Bit = true;
           };
         };
-      };
-
-      blueman = {
-        services.blueman.enable = true;
       };
 
       xdg-portal =
@@ -269,23 +264,21 @@ in
         };
       };
 
-      common =
-        { ... }:
-        {
-          imports =
-            (with homeManager.user; [
-              base
-              packages
-              symlinks
-            ])
-            ++ devModules
-            ++ workstationModules
-            ++ (with homeManager.media; [
-              imv
-              mpv
-              zathura
-            ]);
-        };
+      common = _: {
+        imports =
+          (with homeManager.user; [
+            base
+            packages
+            symlinks
+          ])
+          ++ devModules
+          ++ workstationModules
+          ++ (with homeManager.media; [
+            imv
+            mpv
+            zathura
+          ]);
+      };
     };
   };
 }

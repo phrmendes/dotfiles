@@ -30,8 +30,8 @@ in
               ];
               isNormalUser = true;
               uid = 1000;
+              linger = true;
               extraGroups = [
-                "docker"
                 "networkmanager"
                 "wheel"
               ]

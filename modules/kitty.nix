@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   modules.homeManager.dev.kitty = {
     programs.kitty = {
       enable = true;

@@ -8,11 +8,13 @@ in
       { pkgs, config, ... }:
       let
         dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
-        just = "${pkgs.just}/bin/just";
         composeJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/compose/justfile";
         env = config.age.secrets."docker-compose.env".path;
         compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=${env}";
         basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin";
+        uid = toString config.users.users.${settings.user}.uid;
+        dockerSocket = "/run/user/${uid}/docker.sock";
+        dockerHost = "unix://${dockerSocket}";
         journalOutput = {
           StandardOutput = "journal";
           StandardError = "journal";
@@ -38,12 +40,13 @@ in
             docker-compose = {
               description = "Docker Compose services";
               after = [
-                "docker.service"
+                "user@${uid}.service"
                 "network-online.target"
               ];
-              wants = [ "network-online.target" ];
-              requires = [ "docker.service" ];
-              bindsTo = [ "docker.service" ];
+              wants = [
+                "user@${uid}.service"
+                "network-online.target"
+              ];
               wantedBy = [ "multi-user.target" ];
               startLimitIntervalSec = 300;
               startLimitBurst = 3;
@@ -52,12 +55,12 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = "${dotfiles}/compose";
+                ExecStartPre = "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'";
                 ExecStart = "${compose} up --detach --remove-orphans --pull missing";
                 ExecStop = "${compose} down";
                 TimeoutStartSec = 0;
                 TimeoutStopSec = 300;
-                Restart = "on-failure";
-                RestartSec = "30s";
+                Environment = [ "DOCKER_HOST=${dockerHost}" ];
               };
             };
 
@@ -100,7 +103,10 @@ in
                 WorkingDirectory = dotfiles;
                 ExecStart = "${composeJust} sync";
                 TimeoutStartSec = 0;
-                Environment = [ "PATH=${basePath}:${pkgs.docker-compose}/bin" ];
+                Environment = [
+                  "PATH=${basePath}:${pkgs.docker-compose}/bin"
+                  "DOCKER_HOST=${dockerHost}"
+                ];
               };
             };
           };

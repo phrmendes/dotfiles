@@ -17,7 +17,9 @@ in
         coreImports
         ++ (with nixos.server; [
           automation
+          container
           filesystems
+          litellm
           persistence
           secrets
           tailscale
@@ -54,13 +56,13 @@ in
             fd
             fzf
             git
+            helix
             jq
+            pi
             ripgrep
             zoxide
             zsh
           ]);
-
-        xdg.configFile."nvim/init.lua".source = ../files/neovim.lua;
       };
     };
 }

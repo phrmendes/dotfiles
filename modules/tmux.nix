@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   modules.homeManager.dev.tmux =
     { pkgs, lib, ... }:
     {

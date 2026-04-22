@@ -4,18 +4,35 @@ _: {
     {
       virtualisation = {
         containers.enable = true;
-        docker = {
+        docker.rootless = {
           enable = true;
-          storageDriver = "btrfs";
-          autoPrune.enable = true;
-          daemon.settings.dns = [
-            "8.8.8.8"
-            "1.1.1.1"
-          ];
-          extraPackages = with pkgs; [
-            docker-buildx
-            docker-compose
-          ];
+          setSocketVariable = true;
+          daemon.settings = {
+            storage-driver = "btrfs";
+            dns = [
+              "8.8.8.8"
+              "1.1.1.1"
+            ];
+          };
+        };
+      };
+
+      systemd.user.services.docker-prune = {
+        description = "Prune unused docker resources";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.docker}/bin/docker system prune --all --force";
+          Environment = [ "DOCKER_HOST=unix://%t/docker.sock" ];
+        };
+      };
+
+      systemd.user.timers.docker-prune = {
+        description = "Timer for docker system prune";
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "weekly";
+          Persistent = true;
+          RandomizedDelaySec = "1h";
         };
       };
     };

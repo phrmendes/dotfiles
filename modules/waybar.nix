@@ -51,7 +51,7 @@ _: {
           content ? "",
         }:
         "<span font_size='12288' rise='-1024' letter_spacing='2048'>${icon}</span>${
-          lib.optionalString (content != "") "  "
+          lib.optionalString (content != "") " "
         }${content}";
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       widgets = {

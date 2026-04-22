@@ -7,6 +7,7 @@ let
     group = "users";
     mode = "0440";
   };
+  dockerSecret = file: (secret file) // { mode = "0444"; };
 in
 {
   modules.nixos = {
@@ -24,9 +25,9 @@ in
     server.secrets = {
       age.secrets = {
         "docker-compose.env" = secret ../secrets/docker-compose.env.age;
-        "dozzle-users.yaml" = secret ../secrets/dozzle-users.yaml.age;
-        "prunemate.json" = secret ../secrets/prunemate.json.age;
-        "transmission.json" = secret ../secrets/transmission.json.age;
+        "dozzle-users.yaml" = dockerSecret ../secrets/dozzle-users.yaml.age;
+        "prunemate.json" = dockerSecret ../secrets/prunemate.json.age;
+        "transmission.json" = dockerSecret ../secrets/transmission.json.age;
       };
     };
   };

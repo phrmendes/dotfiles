@@ -35,7 +35,7 @@ services:
     volumes:
       - /run/user/1000/docker.sock:/var/run/docker.sock
     healthcheck:
-      test: ["CMD", "curl", "-sf", "http://localhost:2375/version"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:2375/version"]
       interval: 10s
       timeout: 5s
       retries: 3

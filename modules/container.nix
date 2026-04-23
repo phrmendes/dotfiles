@@ -93,10 +93,13 @@ in
             setSocketVariable = true;
           };
 
+          security.sudo.wheelNeedsPassword = false;
+
           programs.zsh.enable = true;
 
           users.users.${settings.user} = {
             isNormalUser = true;
+            extraGroups = [ "wheel" ];
             group = "users";
             shell = pkgs.zsh;
             openssh.authorizedKeys.keys = [

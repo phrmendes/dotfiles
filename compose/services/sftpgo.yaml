@@ -3,6 +3,7 @@ services:
     image: docker.io/drakkan/sftpgo:latest
     container_name: sftpgo
     restart: unless-stopped
+    user: "0:0"
     volumes:
       - /mnt/external/:/files/external
       - sftpgo_data:/var/lib/sftpgo

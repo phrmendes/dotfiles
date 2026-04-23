@@ -41,11 +41,13 @@ in
                 "user@${uid}.service"
                 "network-online.target"
                 "systemd-sysctl.service"
+                "mnt-external.mount"
               ];
               wants = [
                 "user@${uid}.service"
                 "network-online.target"
                 "systemd-sysctl.service"
+                "mnt-external.mount"
               ];
               wantedBy = [ "multi-user.target" ];
               startLimitIntervalSec = 300;

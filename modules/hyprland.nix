@@ -101,7 +101,7 @@ _: {
                 (lib.mkIf (secondary != null) "${secondary.name},${secondary.resolution},${secondary.position},1")
               ];
               windowrule = [
-                "float on, stay_focused on, opaque on, match:class (.blueman-manager-wrapped)"
+                "float on, opaque on, match:class (.blueman-manager-wrapped)"
                 "float on, stay_focused on, opaque on, match:class (org.pulseaudio.pavucontrol)"
                 "fullscreen_state 2 0, match:class (flameshot), match:title (flameshot)"
                 "float on, match:class (flameshot), match:title (flameshot)"

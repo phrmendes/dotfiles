@@ -16,4 +16,6 @@ in
   "prunemate.json.age".publicKeys = all_keys;
   "tailscale-authkey.age".publicKeys = all_keys;
   "transmission.json.age".publicKeys = all_keys;
+  "docker-config.json.age".publicKeys = all_keys;
+  "github-pat.age".publicKeys = all_keys;
 }

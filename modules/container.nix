@@ -41,6 +41,18 @@ in
               group = "users";
               mode = "0440";
             };
+            "docker-config.json" = {
+              file = ../secrets/docker-config.json.age;
+              owner = settings.user;
+              group = "users";
+              mode = "0400";
+            };
+            "github-pat" = {
+              file = ../secrets/github-pat.age;
+              owner = settings.user;
+              group = "users";
+              mode = "0400";
+            };
           };
 
           services.openssh = {
@@ -121,6 +133,24 @@ in
               zoxide
               zsh
             ]);
+
+          systemd.tmpfiles.rules = [
+            "L+ /home/${settings.user}/.docker/config.json - - - - ${
+              config.age.secrets."docker-config.json".path
+            }"
+          ];
+
+          home-manager.sharedModules = [
+            {
+              programs.gh.settings = {
+                git_protocol = "https";
+                prompt = "enabled";
+              };
+              home.sessionVariablesExtra = ''
+                export GITHUB_TOKEN="$(cat ${config.age.secrets."github-pat".path})"
+              '';
+            }
+          ];
 
           networking.useHostResolvConf = lib.mkForce false;
           services.resolved = {

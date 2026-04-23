@@ -27,7 +27,7 @@ let
         });
         host = "127.0.0.1";
         port = 14141;
-        environmentFile = "/run/agenix/litellm.env";
+        environmentFile = "/var/lib/agenix/litellm.env";
         settings = {
           model_list = [
             {

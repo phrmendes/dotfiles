@@ -24,19 +24,19 @@ in
           "CAP_NET_ADMIN"
           "CAP_NET_RAW"
         ];
-        bindMounts."/run/agenix/claude-service-account.json" = {
+        bindMounts."/var/lib/agenix/claude-service-account.json" = {
           hostPath = config.age.secrets."claude-service-account.json".path;
           isReadOnly = true;
         };
-        bindMounts."/run/agenix/litellm.env" = {
+        bindMounts."/var/lib/agenix/litellm.env" = {
           hostPath = config.age.secrets."litellm.env".path;
           isReadOnly = true;
         };
-        bindMounts."/run/agenix/docker-config.json" = {
+        bindMounts."/var/lib/agenix/docker-config.json" = {
           hostPath = config.age.secrets."docker-config.json".path;
           isReadOnly = true;
         };
-        bindMounts."/run/agenix/gh-hosts.yaml" = {
+        bindMounts."/var/lib/agenix/gh-hosts.yaml" = {
           hostPath = config.age.secrets."gh-hosts.yaml".path;
           isReadOnly = true;
         };
@@ -127,8 +127,8 @@ in
               ]);
 
             systemd.tmpfiles.rules = [
-              "L+ /home/${settings.user}/.docker/config.json - - - - /run/agenix/docker-config.json"
-              "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - /run/agenix/gh-hosts.yaml"
+              "L+ /home/${settings.user}/.docker/config.json - - - - /var/lib/agenix/docker-config.json"
+              "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - /var/lib/agenix/gh-hosts.yaml"
               "L+ /home/${settings.user}/pi - - - - /mnt/external/pi"
             ];
 

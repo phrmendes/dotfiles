@@ -285,8 +285,14 @@
     };
 
     opencode =
-      { pkgs, ... }:
+      { pkgs, osConfig, ... }:
       {
+        home.sessionVariables = {
+          GOOGLE_APPLICATION_CREDENTIALS = osConfig.age.secrets."claude-service-account.json".path;
+          GOOGLE_CLOUD_PROJECT = "rj-ia-desenvolvimento";
+          VERTEX_LOCATION = "us-east5";
+        };
+
         programs.opencode = {
           enable = true;
           enableMcpIntegration = true;

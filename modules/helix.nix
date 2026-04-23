@@ -80,6 +80,7 @@ _: {
           language = [
             {
               name = "python";
+              scope = "source.python";
               language-servers = [
                 "basedpyright"
                 "ruff"
@@ -89,6 +90,7 @@ _: {
             }
             {
               name = "bash";
+              scope = "source.bash";
               language-servers = [
                 "bash-language-server"
                 "scls"
@@ -104,6 +106,7 @@ _: {
             }
             {
               name = "nix";
+              scope = "source.nix";
               language-servers = [
                 "nixd"
                 "scls"
@@ -112,6 +115,7 @@ _: {
             }
             {
               name = "toml";
+              scope = "source.toml";
               language-servers = [
                 "taplo"
                 "scls"
@@ -119,7 +123,8 @@ _: {
               auto-format = true;
             }
             {
-              name = "terraform";
+              name = "hcl";
+              scope = "source.hcl";
               language-servers = [
                 "terraform-ls"
                 "scls"
@@ -128,13 +133,16 @@ _: {
             }
             {
               name = "tfvars";
+              scope = "source.tfvars";
               language-servers = [
                 "terraform-ls"
                 "scls"
               ];
+              auto-format = true;
             }
             {
               name = "yaml";
+              scope = "source.yaml";
               language-servers = [
                 "yaml-language-server"
                 "scls"
@@ -150,6 +158,7 @@ _: {
             }
             {
               name = "markdown";
+              scope = "source.md";
               language-servers = [ "scls" ];
               formatter = {
                 command = "${pkgs.prettier}/bin/prettier";

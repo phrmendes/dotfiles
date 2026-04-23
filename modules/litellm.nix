@@ -1,10 +1,9 @@
 _:
 let
   litellm =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       users.groups.users.members = [ "litellm" ];
-
       services.litellm = {
         enable = true;
         package = pkgs.litellm.overridePythonAttrs (old: {
@@ -27,7 +26,7 @@ let
         });
         host = "127.0.0.1";
         port = 14141;
-        environmentFile = "/var/lib/agenix/litellm.env";
+        environmentFile = config.age.secrets."litellm.env".path;
         settings = {
           model_list = [
             {

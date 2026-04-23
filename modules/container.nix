@@ -6,7 +6,7 @@ let
 in
 {
   modules.nixos.server.container =
-    { config, ... }:
+    { ... }:
     {
       boot.enableContainers = true;
       virtualisation.containers.enable = true;
@@ -14,30 +14,8 @@ in
 
       containers.dev = {
         autoStart = true;
-        allowedDevices = [
-          {
-            node = "/dev/net/tun";
-            modifier = "rwm";
-          }
-        ];
-        additionalCapabilities = [
-          "CAP_NET_ADMIN"
-          "CAP_NET_RAW"
-        ];
-        bindMounts."/var/lib/agenix/claude-service-account.json" = {
-          hostPath = config.age.secrets."claude-service-account.json".path;
-          isReadOnly = true;
-        };
-        bindMounts."/var/lib/agenix/litellm.env" = {
-          hostPath = config.age.secrets."litellm.env".path;
-          isReadOnly = true;
-        };
-        bindMounts."/var/lib/agenix/docker-config.json" = {
-          hostPath = config.age.secrets."docker-config.json".path;
-          isReadOnly = true;
-        };
-        bindMounts."/var/lib/agenix/gh-hosts.yaml" = {
-          hostPath = config.age.secrets."gh-hosts.yaml".path;
+        bindMounts."${settings.home}/.ssh/age" = {
+          hostPath = "/persist${settings.home}/.ssh/age";
           isReadOnly = true;
         };
         bindMounts."/mnt/external/pi" = {
@@ -54,9 +32,13 @@ in
           }:
           {
             imports = [
+              inputs.agenix.nixosModules.default
               inputs.home-manager.nixosModules.home-manager
               server.litellm
+              server.age
             ];
+
+            age.identityPaths = [ "${settings.home}/.ssh/age" ];
 
             services.openssh = {
               enable = true;
@@ -70,8 +52,6 @@ in
                   ForceCommand ${pkgs.tmux}/bin/tmux new-session -A -s default
               '';
             };
-
-            services.tailscale.enable = true;
 
             virtualisation.docker.rootless = {
               enable = true;
@@ -127,8 +107,10 @@ in
               ]);
 
             systemd.tmpfiles.rules = [
-              "L+ /home/${settings.user}/.docker/config.json - - - - /var/lib/agenix/docker-config.json"
-              "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - /var/lib/agenix/gh-hosts.yaml"
+              "L+ /home/${settings.user}/.docker/config.json - - - - ${
+                config.age.secrets."docker-config.json".path
+              }"
+              "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${config.age.secrets."gh-hosts.yaml".path}"
               "L+ /home/${settings.user}/pi - - - - /mnt/external/pi"
             ];
 

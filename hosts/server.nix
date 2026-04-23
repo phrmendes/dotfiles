@@ -19,10 +19,9 @@ in
           automation
           container
           filesystems
-          litellm
           networking
           persistence
-          secrets
+          age
           tailscale
         ]);
 

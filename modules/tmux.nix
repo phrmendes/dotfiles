@@ -31,6 +31,7 @@ _: {
             set -g renumber-windows   on
             set -g set-clipboard      on
             set -g visual-activity    off
+            set -g extended-keys      on
             set -g update-environment "WAYLAND_DISPLAY XDG_RUNTIME_DIR DISPLAY"
 
             set -g status              on

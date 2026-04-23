@@ -14,19 +14,18 @@ in
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
-          "claude-service-account.json" = secret' ../secrets/claude-service-account.json.age;
-          "litellm.env" = secret' ../secrets/litellm.env.age;
+          "claude-service-account.json" = secret ../secrets/claude-service-account.json.age "0444";
+          "litellm.env" = secret ../secrets/litellm.env.age "0444";
           "tailscale-authkey".file = ../secrets/tailscale-authkey.age;
         };
       };
     };
 
-    server.secrets = {
+    server.age = {
       age = {
-        secretsDir = "/var/lib/agenix";
         secrets = {
-          "claude-service-account.json" = secret' ../secrets/claude-service-account.json.age;
-          "litellm.env" = secret' ../secrets/litellm.env.age;
+          "claude-service-account.json" = secret ../secrets/claude-service-account.json.age "0444";
+          "litellm.env" = secret ../secrets/litellm.env.age "0444";
           "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
           "gh-hosts.yaml" = secret ../secrets/gh-hosts.yaml.age "0400";
           "docker-compose.env" = secret' ../secrets/docker-compose.env.age;

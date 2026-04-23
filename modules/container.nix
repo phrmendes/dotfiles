@@ -47,10 +47,7 @@ in
                 PasswordAuthentication = false;
                 PermitRootLogin = "no";
               };
-              extraConfig = ''
-                Match User ${settings.user}
-                  ForceCommand ${pkgs.tmux}/bin/tmux new-session -A -s default
-              '';
+
             };
 
             virtualisation.docker.rootless = {
@@ -120,6 +117,16 @@ in
                   git_protocol = "https";
                   prompt = "enabled";
                 };
+                home.packages = [
+                  (pkgs.writeShellApplication {
+                    name = "tt";
+                    runtimeInputs = [
+                      pkgs.fzf
+                      pkgs.tmux
+                    ];
+                    text = builtins.readFile ../files/scripts/tt.sh;
+                  })
+                ];
               }
             ];
 

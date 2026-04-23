@@ -1,7 +1,7 @@
 _:
 let
   litellm =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       users.groups.users.members = [ "litellm" ];
 
@@ -27,7 +27,7 @@ let
         });
         host = "127.0.0.1";
         port = 14141;
-        environmentFile = config.age.secrets."litellm.env".path;
+        environmentFile = "/run/agenix/litellm.env";
         settings = {
           model_list = [
             {

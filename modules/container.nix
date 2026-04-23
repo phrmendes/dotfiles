@@ -47,8 +47,8 @@ in
               group = "users";
               mode = "0400";
             };
-            "github-pat" = {
-              file = ../secrets/github-pat.age;
+            "gh-hosts.yaml" = {
+              file = ../secrets/gh-hosts.yaml.age;
               owner = settings.user;
               group = "users";
               mode = "0400";
@@ -138,6 +138,7 @@ in
             "L+ /home/${settings.user}/.docker/config.json - - - - ${
               config.age.secrets."docker-config.json".path
             }"
+            "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${config.age.secrets."gh-hosts.yaml".path}"
           ];
 
           home-manager.sharedModules = [
@@ -146,9 +147,6 @@ in
                 git_protocol = "https";
                 prompt = "enabled";
               };
-              home.sessionVariablesExtra = ''
-                export GITHUB_TOKEN="$(cat ${config.age.secrets."github-pat".path})"
-              '';
             }
           ];
 

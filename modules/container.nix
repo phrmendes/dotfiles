@@ -123,7 +123,11 @@ in
             ]);
 
           networking.useHostResolvConf = lib.mkForce false;
-          services.resolved.enable = true;
+          services.resolved = {
+            enable = true;
+            settings.Resolve.DNSStubListener = "no";
+          };
+          systemd.sockets.systemd-resolved.enable = false;
 
           system.stateVersion = "25.05";
         };

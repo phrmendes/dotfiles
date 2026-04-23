@@ -1,87 +1,23 @@
 compose_command := "docker compose --env-file=/var/lib/agenix/docker-compose.env"
-state_file := "/run/sync/state"
-dotfiles_dir := parent_directory(justfile_directory())
 
-# Stop all services then bring them up
-default: down up
+# Start all services
+default: up
 
-# Pull latest changes from remote and record revision window
-pull:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    prev=$(git -C {{ dotfiles_dir }} rev-parse HEAD)
-    git -C {{ dotfiles_dir }} pull --ff-only --quiet
-    next=$(git -C {{ dotfiles_dir }} rev-parse HEAD)
-    printf 'PREV=%s\nNEXT=%s\n' "$prev" "$next" > {{ state_file }}
-
-# Apply NixOS configuration only when relevant files changed
-apply:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    [[ -f {{ state_file }} ]] || { echo "No state file, skipping."; exit 0; }
-    . {{ state_file }}
-    [[ ${PREV:-} =~ ^[0-9a-f]{40}$ && ${NEXT:-} =~ ^[0-9a-f]{40}$ ]] || {
-        echo "Invalid state file (PREV/NEXT are not SHAs), skipping."
-        exit 0
-    }
-
-    if [ "$PREV" = "$NEXT" ]; then
-        echo "No changes, skipping."
-        exit 0
-    fi
-
-    changed=$(git -C {{ dotfiles_dir }} diff --name-only "$PREV" "$NEXT")
-
-    if echo "$changed" | grep -qE '^(hosts|modules|files|secrets|flake\.nix|flake\.lock)'; then
-        echo "NixOS config changed - rebuilding..."
-        nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
-        exit 0
-    fi
-
-    echo "No NixOS config changes."
-
-# Stop all services, or a specific one if svc is provided
-@down svc="":
-    {{ compose_command }} down {{ svc }}
-
-# Start all services, pulling images only if not already present
+# Start all services, pulling missing images
 @up:
     {{ compose_command }} up --detach --remove-orphans --pull missing
+
+# Stop all services, or a specific one
+@down svc="":
+    {{ compose_command }} down {{ svc }}
 
 # Pull latest images and recreate all containers
 @reload:
     {{ compose_command }} pull --quiet
     {{ compose_command }} up --detach --remove-orphans --force-recreate
 
-# Sync docker-compose if secrets or compose files changed since last pull
-sync:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    [[ -f {{ state_file }} ]] || { echo "No state file, skipping."; exit 0; }
-    . {{ state_file }}
-    [[ ${PREV:-} =~ ^[0-9a-f]{40}$ && ${NEXT:-} =~ ^[0-9a-f]{40}$ ]] || {
-        echo "Invalid state file (PREV/NEXT are not SHAs), skipping."
-        exit 0
-    }
-
-    if [ "$PREV" = "$NEXT" ]; then
-        echo "No changes, skipping."
-        exit 0
-    fi
-
-    changed=$(git -C {{ dotfiles_dir }} diff --name-only "$PREV" "$NEXT")
-
-    if echo "$changed" | grep -qE '^(secrets/|compose/(docker-compose\.yaml|services/))'; then
-        echo "Secrets or compose files changed — reloading..."
-        just reload
-        exit 0
-    fi
-
-    echo "No compose changes."
-
-# Restart a specific service (or all if svc is omitted)
+# Restart a specific service (or all if omitted)
 @restart svc="":
-    {{ compose_command }} down {{ svc }}
     {{ compose_command }} up --detach --force-recreate {{ svc }}
 
 # List running containers and their status
@@ -90,5 +26,5 @@ sync:
 
 # Remove all unused Docker images, containers, and volumes
 @clean:
-    docker system prune --all
-    docker volume prune --all
+    docker system prune --all --force
+    docker volume prune --all --force

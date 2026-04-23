@@ -20,6 +20,7 @@ in
           container
           filesystems
           litellm
+          networking
           persistence
           secrets
           tailscale

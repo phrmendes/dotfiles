@@ -8,10 +8,8 @@ in
       { pkgs, config, ... }:
       let
         dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
-        composeJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/compose/justfile";
-        env = config.age.secrets."docker-compose.env".path;
-        compose = "${pkgs.docker-compose}/bin/docker-compose --env-file=${env}";
-        basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin";
+        rootJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/justfile";
+        basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin";
         uid = toString config.users.users.${settings.user}.uid;
         dockerSocket = "/run/user/${uid}/docker.sock";
         dockerHost = "unix://${dockerSocket}";
@@ -42,10 +40,12 @@ in
               after = [
                 "user@${uid}.service"
                 "network-online.target"
+                "systemd-sysctl.service"
               ];
               wants = [
                 "user@${uid}.service"
                 "network-online.target"
+                "systemd-sysctl.service"
               ];
               wantedBy = [ "multi-user.target" ];
               startLimitIntervalSec = 300;
@@ -54,13 +54,16 @@ in
                 RemainAfterExit = true;
                 User = settings.user;
                 Group = "users";
-                WorkingDirectory = "${dotfiles}/compose";
+                WorkingDirectory = dotfiles;
                 ExecStartPre = "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'";
-                ExecStart = "${compose} up --detach --remove-orphans --pull missing";
-                ExecStop = "${compose} down";
+                ExecStart = "${rootJust} compose::up";
+                ExecStop = "${rootJust} compose::down";
                 TimeoutStartSec = 0;
                 TimeoutStopSec = 300;
-                Environment = [ "DOCKER_HOST=${dockerHost}" ];
+                Environment = [
+                  "PATH=${basePath}"
+                  "DOCKER_HOST=${dockerHost}"
+                ];
               };
             };
 
@@ -72,39 +75,24 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${composeJust} pull";
+                ExecStart = "${rootJust} pull";
                 TimeoutStartSec = 120;
                 Environment = [ "PATH=${basePath}" ];
               };
             };
 
-            nixos-apply = {
-              description = "Apply NixOS configuration if changed";
+            dotfiles-sync = {
+              description = "Rebuild NixOS or reload compose if relevant files changed";
               after = [ "git-pull.service" ];
-              requires = [ "git-pull.service" ];
-              serviceConfig = oneshotService // {
-                WorkingDirectory = dotfiles;
-                ExecStart = "${composeJust} apply";
-                TimeoutStartSec = 0;
-                Environment = [ "PATH=${basePath}:${pkgs.nixos-rebuild}/bin:/run/wrappers/bin" ];
-              };
-            };
-
-            compose-sync = {
-              description = "Sync docker-compose if secrets or compose files changed";
-              after = [
-                "git-pull.service"
-                "nixos-apply.service"
-              ];
               requires = [ "git-pull.service" ];
               serviceConfig = oneshotService // {
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
-                ExecStart = "${composeJust} sync";
+                ExecStart = "${rootJust} sync";
                 TimeoutStartSec = 0;
                 Environment = [
-                  "PATH=${basePath}:${pkgs.docker-compose}/bin"
+                  "PATH=${basePath}:${pkgs.nixos-rebuild}/bin:${pkgs.docker-compose}/bin:/run/wrappers/bin"
                   "DOCKER_HOST=${dockerHost}"
                 ];
               };
@@ -121,6 +109,14 @@ in
         ".local/share"
         ".local/state"
       ];
+    };
+
+    networking = {
+      systemd.sockets.systemd-resolved.enable = false;
+      environment.etc."systemd/resolved.conf.d/no-stub.conf".text = ''
+        [Resolve]
+        DNSStubListener=no
+      '';
     };
 
     tailscale = {

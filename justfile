@@ -9,7 +9,7 @@ rebuild:
 
 # Remotely rebuild a NixOS host from the desktop (usage: just deploy server)
 deploy host:
-    nixos-rebuild switch --flake "{{ dotfiles_dir }}#{{ host }}" --target-host "phrmendes@{{ host }}" --use-remote-sudo
+    nixos-rebuild switch --flake "{{ dotfiles_dir }}#{{ host }}" --target-host "phrmendes@{{ host }}" --sudo
 
 # Format all Nix files using flake formatter
 fmt:

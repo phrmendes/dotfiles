@@ -77,7 +77,6 @@ in
           greetd
           hyprland
           libvirtd
-          litellm
           pam
           pipewire
           persistence

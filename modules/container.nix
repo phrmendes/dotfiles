@@ -2,6 +2,7 @@
 let
   inherit (config) settings;
   inherit (config.modules) homeManager;
+  inherit (config.modules.nixos) server;
 in
 {
   modules.nixos.server.container = _: {
@@ -28,6 +29,7 @@ in
           imports = [
             inputs.agenix.nixosModules.default
             inputs.home-manager.nixosModules.home-manager
+            server.litellm
           ];
 
           age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -70,22 +72,6 @@ in
               Match User ${settings.user}
                 ForceCommand ${pkgs.tmux}/bin/tmux new-session -A -s default
             '';
-          };
-
-          services.litellm = {
-            enable = true;
-            host = "127.0.0.1";
-            port = 14141;
-            environmentFile = config.age.secrets."litellm.env".path;
-            settings = {
-              model_list = [
-                {
-                  model_name = "claude-sonnet-4-5@20250929";
-                  litellm_params.model = "vertex_ai/claude-sonnet-4-5@20250929";
-                }
-              ];
-              litellm_settings.drop_params = true;
-            };
           };
 
           virtualisation.docker.rootless = {

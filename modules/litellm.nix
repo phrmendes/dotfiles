@@ -1,15 +1,12 @@
 _:
 let
   litellm =
-    { config, pkgs, ... }:
+    { pkgs, config, ... }:
     {
       users.groups.users.members = [ "litellm" ];
 
       services.litellm = {
         enable = true;
-        host = "127.0.0.1";
-        port = 14141;
-        environmentFile = config.age.secrets."litellm.env".path;
         package = pkgs.litellm.overridePythonAttrs (old: {
           postPatch = (old.postPatch or "") + ''
             for f in \
@@ -28,18 +25,17 @@ let
             done
           '';
         });
+        host = "127.0.0.1";
+        port = 14141;
+        environmentFile = config.age.secrets."litellm.env".path;
         settings = {
           model_list = [
             {
               model_name = "claude-sonnet-4-5@20250929";
-              litellm_params = {
-                model = "vertex_ai/claude-sonnet-4-5@20250929";
-              };
+              litellm_params.model = "vertex_ai/claude-sonnet-4-5@20250929";
             }
           ];
-          litellm_settings = {
-            drop_params = true;
-          };
+          litellm_settings.drop_params = true;
         };
       };
     };

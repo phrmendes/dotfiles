@@ -2,7 +2,7 @@ _: {
   modules.homeManager.dev.pi =
     { pkgs, ... }:
     {
-      home.packages = [ pkgs.pi-coding-agent ];
+      home.packages = with pkgs; [ pi-coding-agent ];
 
       home.file.".pi/agent/models.json".text = builtins.toJSON {
         providers = {

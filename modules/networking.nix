@@ -4,7 +4,10 @@ _: {
     {
       networking = {
         useDHCP = lib.mkDefault true;
-        firewall.enable = true;
+        firewall = {
+          enable = true;
+          allowedTCPPorts = [ 22 ];
+        };
         networkmanager = {
           enable = true;
           dns = "default";

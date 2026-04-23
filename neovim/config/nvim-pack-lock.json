@@ -84,10 +84,6 @@
       "rev": "1af6ffb9b5229a856e8090fa2f690e0931a5aace",
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
     },
-    "opencode.nvim": {
-      "rev": "b3cdd746a5ca321b6884badefa0ba22c86c3d45e",
-      "src": "https://github.com/NickvanDyke/opencode.nvim"
-    },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
@@ -99,6 +95,10 @@
     "refactoring.nvim": {
       "rev": "f06ac3d457128f9d512103399b367c4be49a2421",
       "src": "https://github.com/ThePrimeagen/refactoring.nvim"
+    },
+    "sidekick.nvim": {
+      "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
+      "src": "https://github.com/folke/sidekick.nvim"
     },
     "smart-splits.nvim": {
       "rev": "78b9d3bd21fe479690ae5e08a1bf3602698466d8",

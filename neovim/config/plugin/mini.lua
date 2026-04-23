@@ -150,6 +150,7 @@ safely("later", function()
       clue.gen_clues.windows(),
       clue.gen_clues.z(),
       { mode = "n", keys = "<leader><tab>", desc = "+tabs" },
+      { mode = "n", keys = "<leader>a", desc = "+ai" },
       { mode = "n", keys = "<leader>b", desc = "+buffers" },
       { mode = "n", keys = "<leader>g", desc = "+git" },
       { mode = "n", keys = "<leader>n", desc = "+notes" },

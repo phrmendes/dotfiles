@@ -55,7 +55,7 @@
           ];
         plugins = treesitter-parsers ++ [ treesitter-queries ];
         extraPackages = with pkgs; [
-          # lsp servers
+          # language servers
           astro-language-server
           basedpyright
           bash-language-server

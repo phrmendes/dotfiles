@@ -1,6 +1,6 @@
 vim.pack.add({
   "https://github.com/MagicDuck/grug-far.nvim",
-  "https://github.com/NickvanDyke/opencode.nvim",
+  "https://github.com/folke/sidekick.nvim",
   "https://github.com/lewis6991/async.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",

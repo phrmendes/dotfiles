@@ -172,6 +172,11 @@ in
             networking = {
               useHostResolvConf = lib.mkForce false;
               defaultGateway = "10.250.0.1";
+              nameservers = [
+                "100.100.100.100"
+                "1.1.1.1"
+                "8.8.8.8"
+              ];
               interfaces.eth0.ipv4.routes = [
                 {
                   address = "0.0.0.0";
@@ -181,12 +186,7 @@ in
               ];
             };
 
-            services.resolved = {
-              enable = true;
-              settings.Resolve.DNSStubListener = "no";
-            };
-
-            systemd.sockets.systemd-resolved.enable = false;
+            services.resolved.enable = false;
             system.stateVersion = "25.05";
           };
       };

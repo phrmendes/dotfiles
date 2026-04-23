@@ -450,21 +450,34 @@
     packages =
       { pkgs, ... }:
       {
-        home.packages = with pkgs; [
-          curl
-          elixir
-          hurl
-          jdk
-          jqp
-          nix-prefetch-github
-          nodejs_latest
-          parallel
-          prek
-          python314
-          sqlite
-          uv
-          just
-        ];
+        home.packages =
+          with pkgs;
+          let
+            tt = writeShellApplication {
+              name = "tt";
+              runtimeInputs = [
+                pkgs.fzf
+                pkgs.tmux
+              ];
+              text = builtins.readFile ../files/scripts/tt.sh;
+            };
+          in
+          [
+            curl
+            elixir
+            hurl
+            jdk
+            jqp
+            just
+            nix-prefetch-github
+            nodejs_latest
+            parallel
+            prek
+            python314
+            sqlite
+            tt
+            uv
+          ];
       };
   };
 }

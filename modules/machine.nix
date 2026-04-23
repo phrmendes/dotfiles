@@ -1,5 +1,5 @@
 _: {
-  modules.nixos.core.options =
+  modules.nixos.core.machine =
     { lib, ... }:
     {
       options.machine = {
@@ -8,6 +8,7 @@ _: {
             "desktop"
             "laptop"
             "server"
+            "container"
           ];
           description = "The machine type, used to select appropriate modules and settings.";
         };

@@ -11,11 +11,13 @@ _: {
         imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
         hardware = {
-          keyboard.qmk = lib.mkIf (config.machine.type != "server") { enable = true; };
-          enableAllFirmware = true;
-          uinput.enable = true;
+          keyboard.qmk = lib.mkIf (config.machine.type != "server" && config.machine.type != "container") {
+            enable = true;
+          };
+          enableAllFirmware = lib.mkIf (config.machine.type != "container") true;
+          uinput.enable = lib.mkIf (config.machine.type != "container") true;
 
-          bluetooth = lib.mkIf (config.machine.type != "server") {
+          bluetooth = lib.mkIf (config.machine.type != "server" && config.machine.type != "container") {
             enable = true;
             powerOnBoot = true;
             settings.Policy.AutoEnable = true;

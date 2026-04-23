@@ -2,18 +2,68 @@
 let
   inherit (config) settings;
   inherit (config.modules) homeManager;
-  inherit (config.modules.nixos) server;
+  inherit (config.modules.nixos) server core;
 in
 {
   modules.nixos.server.container =
-    { ... }:
+    { pkgs, ... }:
     {
       boot.enableContainers = true;
       virtualisation.containers.enable = true;
       networking.firewall.allowedTCPPorts = [ 2222 ];
 
+      systemd.services."container@dev" = {
+        serviceConfig = {
+          MemoryMax = "5G";
+          CPUQuota = "400%";
+        };
+      };
+
+      networking.bridges."br-dev".interfaces = [ ];
+      networking.interfaces."br-dev".ipv4.addresses = [
+        {
+          address = "10.250.0.1";
+          prefixLength = 24;
+        }
+      ];
+
+      networking.nat = {
+        enable = true;
+        internalInterfaces = [ "br-dev" ];
+        externalInterface = "tailscale0";
+        forwardPorts = [
+          {
+            sourcePort = 2222;
+            destination = "10.250.0.10:2222";
+            proto = "tcp";
+          }
+        ];
+      };
+
+      networking.firewall.extraCommands = ''
+        iptables -t nat -A POSTROUTING -s 10.250.0.0/24 -o tailscale0 -j MASQUERADE
+      '';
+
       containers.dev = {
         autoStart = true;
+        privateNetwork = true;
+        hostBridge = "br-dev";
+        localAddress = "10.250.0.10/24";
+        localAddress6 = "fc00::10/64";
+
+        enableTun = true;
+
+        additionalCapabilities = [
+          "CAP_NET_ADMIN"
+        ];
+
+        allowedDevices = [
+          {
+            modifier = "rw";
+            node = "/dev/net/tun";
+          }
+        ];
+
         bindMounts."${settings.home}/.ssh/age" = {
           hostPath = "/persist${settings.home}/.ssh/age";
           isReadOnly = true;
@@ -22,57 +72,56 @@ in
           hostPath = "/mnt/external/pi";
           isReadOnly = false;
         };
+        bindMounts."${settings.home}/.ssh/authorized_keys" = {
+          hostPath = "/persist${settings.home}/.ssh/authorized_keys";
+          isReadOnly = true;
+        };
 
         config =
           {
             config,
             lib,
-            pkgs,
             ...
           }:
           {
             imports = [
               inputs.agenix.nixosModules.default
               inputs.home-manager.nixosModules.home-manager
-              server.litellm
+              core.nix-settings
+              core.nixpkgs
+              core.programs
+              core.virtualisation
+              core.security
+              core.home-manager
+              core.users
+              core.machine
+              core.services
+              core.age
               server.age
+              server.litellm
             ];
 
             age.identityPaths = [ "${settings.home}/.ssh/age" ];
 
-            services.openssh = {
-              enable = true;
-              ports = [ 2222 ];
-              settings = {
-                PasswordAuthentication = false;
-                PermitRootLogin = "no";
+            machine.type = "container";
+
+            services = {
+              openssh = {
+                enable = true;
+                ports = [ 2222 ];
               };
-
+              tailscale = {
+                enable = true;
+                authKeyFile = config.age.secrets.tailscale-authkey.path;
+                authKeyParameters = {
+                  ephemeral = false;
+                  preauthorized = true;
+                };
+                useRoutingFeatures = "client";
+                extraUpFlags = [ "--advertise-tags=tag:main" ];
+              };
             };
 
-            virtualisation.docker.rootless = {
-              enable = true;
-              setSocketVariable = true;
-            };
-
-            security.sudo.wheelNeedsPassword = false;
-
-            programs.zsh.enable = true;
-
-            users.users.${settings.user} = {
-              isNormalUser = true;
-              extraGroups = [ "wheel" ];
-              group = "users";
-              shell = pkgs.zsh;
-              openssh.authorizedKeys.keys = [
-                (builtins.readFile ../files/ssh-keys/main.txt)
-                (builtins.readFile ../files/ssh-keys/phone.txt)
-                (builtins.readFile ../files/ssh-keys/laptop.txt)
-              ];
-            };
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
             home-manager.users.${settings.user}.imports =
               (with homeManager.user; [ base ])
               ++ (with homeManager.dev; [
@@ -117,26 +166,27 @@ in
                   git_protocol = "https";
                   prompt = "enabled";
                 };
-                home.packages = [
-                  (pkgs.writeShellApplication {
-                    name = "tt";
-                    runtimeInputs = [
-                      pkgs.fzf
-                      pkgs.tmux
-                    ];
-                    text = builtins.readFile ../files/scripts/tt.sh;
-                  })
-                ];
               }
             ];
 
-            networking.useHostResolvConf = lib.mkForce false;
+            networking = {
+              useHostResolvConf = lib.mkForce false;
+              defaultGateway = "10.250.0.1";
+              interfaces.eth0.ipv4.routes = [
+                {
+                  address = "0.0.0.0";
+                  prefixLength = 0;
+                  via = "10.250.0.1";
+                }
+              ];
+            };
+
             services.resolved = {
               enable = true;
               settings.Resolve.DNSStubListener = "no";
             };
-            systemd.sockets.systemd-resolved.enable = false;
 
+            systemd.sockets.systemd-resolved.enable = false;
             system.stateVersion = "25.05";
           };
       };

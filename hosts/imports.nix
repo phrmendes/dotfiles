@@ -12,7 +12,7 @@ with nixos.core;
   networking
   nix-settings
   nixpkgs
-  options
+  machine
   programs
   security
   services

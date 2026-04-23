@@ -10,10 +10,12 @@ _: {
       services = {
         envfs.enable = true;
         fstrim.enable = true;
-        gvfs.enable = lib.mkIf (config.machine.type != "server") true;
+        gvfs.enable = lib.mkIf (config.machine.type != "server" && config.machine.type != "container") true;
         ntpd-rs.enable = true;
-        udev.enable = true;
-        geoclue2.enable = lib.mkIf (config.machine.type != "server") true;
+        udev.enable = lib.mkIf (config.machine.type != "container") true;
+        geoclue2.enable = lib.mkIf (
+          config.machine.type != "server" && config.machine.type != "container"
+        ) true;
 
         gnome = {
           gnome-keyring.enable = false;
@@ -22,14 +24,14 @@ _: {
 
         journald.extraConfig = "SystemMaxUse=1G";
 
-        btrfs.autoScrub = {
+        btrfs.autoScrub = lib.mkIf (config.machine.type != "container") {
           enable = true;
           interval = "monthly";
         };
 
         dbus.packages = with pkgs; [ gcr ];
 
-        tailscale = {
+        tailscale = lib.mkIf (config.machine.type != "container") {
           enable = true;
           authKeyFile = config.age.secrets.tailscale-authkey.path;
           authKeyParameters = {

@@ -10,7 +10,7 @@ let
         host = "127.0.0.1";
         port = 14141;
         environmentFile = config.age.secrets."litellm.env".path;
-        package = pkgs.python3Packages.litellm.overridePythonAttrs (old: {
+        package = pkgs.litellm.overridePythonAttrs (old: {
           postPatch = (old.postPatch or "") + ''
             for f in \
               litellm/llms/vertex_ai/vertex_ai_partner_models/main.py \

@@ -9,7 +9,7 @@ in
       let
         dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
         rootJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/justfile";
-        basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin";
+        basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin:${pkgs.docker}/bin";
         uid = toString config.users.users.${settings.user}.uid;
         dockerSocket = "/run/user/${uid}/docker.sock";
         dockerHost = "unix://${dockerSocket}";

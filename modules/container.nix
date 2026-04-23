@@ -12,6 +12,10 @@ in
     containers.dev = {
       autoStart = true;
       bindMounts."/etc/ssh/ssh_host_ed25519_key".isReadOnly = true;
+      bindMounts."/mnt/external/pi" = {
+        hostPath = "/mnt/external/pi";
+        isReadOnly = false;
+      };
 
       config =
         {
@@ -139,6 +143,7 @@ in
               config.age.secrets."docker-config.json".path
             }"
             "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${config.age.secrets."gh-hosts.yaml".path}"
+            "L+ /home/${settings.user}/pi - - - - /mnt/external/pi"
           ];
 
           home-manager.sharedModules = [

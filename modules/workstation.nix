@@ -10,7 +10,6 @@ let
     ".local"
     ".mozilla"
     ".password-store"
-    ".pi"
     ".pki"
     ".ssh"
     ".zotero"

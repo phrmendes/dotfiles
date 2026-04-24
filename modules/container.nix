@@ -79,6 +79,7 @@ in
         {
           config,
           lib,
+          pkgs,
           ...
         }:
         {
@@ -97,7 +98,6 @@ in
             core.users
             core.virtualisation
             server.age
-            server.litellm
           ];
 
           age.identityPaths = [ "${settings.home}/.ssh/age" ];
@@ -105,6 +105,13 @@ in
           machine.type = "container";
 
           services.openssh.ports = [ 2222 ];
+
+          environment.systemPackages = [ pkgs.chromium ];
+
+          environment.variables = {
+            CHROME_PATH = "${pkgs.chromium}/bin/chromium";
+            PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true";
+          };
 
           home-manager.users.${settings.user}.imports =
             (with homeManager.user; [ base ])
@@ -126,7 +133,6 @@ in
               lazygit
               nix-index
               packages
-              pi
               ripgrep
               starship
               tealdeer

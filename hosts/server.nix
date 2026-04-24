@@ -59,7 +59,6 @@ in
             helix
             jq
             packages
-            pi
             ripgrep
             zoxide
             zsh

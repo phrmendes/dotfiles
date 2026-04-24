@@ -92,7 +92,7 @@
         ];
       };
 
-      xdg.configFile."nvim/init.lua".enable = false;
+      xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
       home.file = local-plugins // {
         ".config/nvim".source = symlink "${config.home.homeDirectory}/Projects/dotfiles/neovim/config";

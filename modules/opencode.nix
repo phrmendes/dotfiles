@@ -4,7 +4,10 @@ _: {
     {
       home.sessionVariables = {
         CHROME_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
+        GOOGLE_APPLICATION_CREDENTIALS = osConfig.age.secrets."claude-service-account.json".path;
+        GOOGLE_CLOUD_PROJECT = "rj-ia-desenvolvimento";
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true";
+        VERTEX_LOCATION = "us-east5";
       };
 
       programs.opencode = {
@@ -34,9 +37,13 @@ _: {
           };
           provider = {
             opencode-go = {
-              options.apiKey = "{file:${osConfig.age.secrets."opencode-go-key.txt".path}}";
+              options.apiKey = "{file:${osConfig.age.secrets."opencode.txt".path}}";
             };
-            google-vertex-anthropic.models = { };
+            google-vertex-anthropic = {
+              models = {
+                "claude-sonnet-4-6@default" = { };
+              };
+            };
           };
         };
       };

@@ -1,11 +1,11 @@
-compose_command := "docker compose --env-file=/var/lib/agenix/docker-compose.env"
+compose_command := "docker compose --env-file=/run/agenix/docker-compose.env"
 
 # Start all services
 default: up
 
 # Start all services, pulling missing images
 @up:
-    {{ compose_command }} up --detach --remove-orphans --pull missing
+    {{ compose_command }} up --detach --remove-orphans --pull missing --no-recreate
 
 # Stop all services, or a specific one
 @down svc="":

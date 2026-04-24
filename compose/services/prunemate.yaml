@@ -19,4 +19,4 @@ volumes:
   prunemate_config:
 secrets:
   prunemate:
-    file: /var/lib/agenix/prunemate.json
+    file: /run/agenix/prunemate.json

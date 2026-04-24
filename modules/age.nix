@@ -15,7 +15,8 @@ in
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
-          "opencode-go-key.txt" = secret ../secrets/opencode-go-key.txt.age "0444";
+          "claude-service-account.json" = secret ../secrets/claude-service-account.json.age "0444";
+          "opencode.txt" = secret ../secrets/opencode.txt.age "0444";
           "tailscale-authkey".file = ../secrets/tailscale-authkey.age;
         };
       };
@@ -25,10 +26,11 @@ in
       imports = [ inputs.agenix.nixosModules.default ];
       age = {
         secrets = {
-          "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
-          "gh-hosts.yaml" = secret ../secrets/gh-hosts.yaml.age "0400";
+          "litellm.env" = secret ../secrets/litellm.env.age "0444";
           "docker-compose.env" = secret' ../secrets/docker-compose.env.age;
+          "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
           "dozzle-users.yaml" = secret' ../secrets/dozzle-users.yaml.age;
+          "gh-hosts.yaml" = secret ../secrets/gh-hosts.yaml.age "0400";
           "prunemate.json" = secret' ../secrets/prunemate.json.age;
           "transmission.json" = secret' ../secrets/transmission.json.age;
         };

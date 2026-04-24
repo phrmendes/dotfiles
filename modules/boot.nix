@@ -100,32 +100,42 @@
               "nvme"
             ];
             luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
-            postDeviceCommands = lib.mkAfter ''
-              mkdir /btrfs_tmp
-              mount /dev/mapper/crypted /btrfs_tmp
+            systemd = {
+              enable = true;
+              services.initrd-btrfs-cleanup = {
+                description = "Btrfs subvolume cleanup and recreation";
+                requiredBy = [ "sysroot.mount" ];
+                before = [ "sysroot.mount" ];
+                unitConfig.RequiresMountsFor = "/dev/mapper/crypted";
+                serviceConfig.Type = "oneshot";
+                script = ''
+                  mkdir /btrfs_tmp
+                  mount /dev/mapper/crypted /btrfs_tmp
 
-              if [[ -e /btrfs_tmp/root ]]; then
-                  mkdir -p /btrfs_tmp/old_roots
-                  timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-                  mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-              fi
+                  if [[ -e /btrfs_tmp/root ]]; then
+                      mkdir -p /btrfs_tmp/old_roots
+                      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+                      mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+                  fi
 
-              delete_subvolume_recursively() {
-                  while IFS= read -r subvol; do
-                      delete_subvolume_recursively "/btrfs_tmp/$subvol"
-                  done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
-                  btrfs subvolume delete "$1"
-              }
+                  delete_subvolume_recursively() {
+                      while IFS= read -r subvol; do
+                          delete_subvolume_recursively "/btrfs_tmp/$subvol"
+                      done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
+                      btrfs subvolume delete "$1"
+                  }
 
-              if [[ -d /btrfs_tmp/old_roots ]]; then
-                  while IFS= read -r -d "" i; do
-                      delete_subvolume_recursively "$i"
-                  done < <(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -print0)
-              fi
+                  if [[ -d /btrfs_tmp/old_roots ]]; then
+                      while IFS= read -r -d "" i; do
+                          delete_subvolume_recursively "$i"
+                      done < <(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -print0)
+                  fi
 
-              btrfs subvolume create /btrfs_tmp/root
-              umount /btrfs_tmp
-            '';
+                  btrfs subvolume create /btrfs_tmp/root
+                  umount /btrfs_tmp
+                '';
+              };
+            };
           };
         };
 

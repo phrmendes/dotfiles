@@ -53,6 +53,7 @@ in
 
       additionalCapabilities = [
         "CAP_NET_ADMIN"
+        "CAP_SYS_ADMIN"
       ];
 
       allowedDevices = [
@@ -60,14 +61,18 @@ in
           modifier = "rw";
           node = "/dev/net/tun";
         }
+        {
+          modifier = "rw";
+          node = "/dev/fuse";
+        }
       ];
 
       bindMounts."${settings.home}/.ssh/age" = {
         hostPath = "/persist${settings.home}/.ssh/age";
         isReadOnly = true;
       };
-      bindMounts."/mnt/external/opencode" = {
-        hostPath = "/mnt/external/opencode";
+      bindMounts."/mnt/external/pi" = {
+        hostPath = "/mnt/external/pi";
         isReadOnly = false;
       };
       bindMounts."${settings.home}/.ssh/authorized_keys" = {
@@ -98,6 +103,7 @@ in
             core.users
             core.virtualisation
             server.age
+            server.litellm
           ];
 
           age.identityPaths = [ "${settings.home}/.ssh/age" ];
@@ -105,13 +111,6 @@ in
           machine.type = "container";
 
           services.openssh.ports = [ 2222 ];
-
-          environment.systemPackages = [ pkgs.chromium ];
-
-          environment.variables = {
-            CHROME_PATH = "${pkgs.chromium}/bin/chromium";
-            PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true";
-          };
 
           home-manager.users.${settings.user}.imports =
             (with homeManager.user; [ base ])
@@ -132,8 +131,8 @@ in
               lazydocker
               lazygit
               nix-index
-              opencode
               packages
+              pi
               ripgrep
               starship
               tealdeer
@@ -148,7 +147,7 @@ in
               config.age.secrets."docker-config.json".path
             }"
             "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${config.age.secrets."gh-hosts.yaml".path}"
-            "L+ /home/${settings.user}/opencode - - - - /mnt/external/opencode"
+            "L+ /home/${settings.user}/pi - - - - /mnt/external/pi"
           ];
 
           home-manager.sharedModules = [

@@ -66,8 +66,8 @@ in
         hostPath = "/persist${settings.home}/.ssh/age";
         isReadOnly = true;
       };
-      bindMounts."/mnt/external/pi" = {
-        hostPath = "/mnt/external/pi";
+      bindMounts."/mnt/external/opencode" = {
+        hostPath = "/mnt/external/opencode";
         isReadOnly = false;
       };
       bindMounts."${settings.home}/.ssh/authorized_keys" = {
@@ -147,7 +147,7 @@ in
               config.age.secrets."docker-config.json".path
             }"
             "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${config.age.secrets."gh-hosts.yaml".path}"
-            "L+ /home/${settings.user}/pi - - - - /mnt/external/pi"
+            "L+ /home/${settings.user}/opencode - - - - /mnt/external/opencode"
           ];
 
           home-manager.sharedModules = [

@@ -25,7 +25,6 @@ in
       imports = [ inputs.agenix.nixosModules.default ];
       age = {
         secrets = {
-          "litellm.env" = secret ../secrets/litellm.env.age "0444";
           "docker-compose.env" = secret' ../secrets/docker-compose.env.age;
           "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
           "dozzle-users.yaml" = secret' ../secrets/dozzle-users.yaml.age;

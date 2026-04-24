@@ -17,7 +17,6 @@ _: {
         "idle_inhibitor"
         "memory"
         "pulseaudio"
-        "bluetooth"
         "tray"
         "battery"
         "backlight"
@@ -32,8 +31,6 @@ _: {
         "memory"
         "custom/separator"
         "pulseaudio"
-        "custom/separator"
-        "bluetooth"
         "custom/separator"
         (lib.mkIf isLaptop "backlight")
         (lib.mkIf isLaptop "custom/separator")
@@ -102,19 +99,6 @@ _: {
             ""
             ""
           ];
-        };
-        bluetooth = {
-          format = format { icon = "󰂯"; };
-          format-connected = format {
-            icon = "󰂱";
-            content = "{device_alias}";
-          };
-          format-disabled = format { icon = "󰂲"; };
-          format-off = format { icon = "󰂲"; };
-          format-no-controller = format { icon = "󰂲"; };
-          tooltip = true;
-          tooltip-format = "Status: {status}\nConnected: {num_connections}";
-          on-click = "blueman-manager";
         };
         clock = {
           format = "{:%H:%M}";

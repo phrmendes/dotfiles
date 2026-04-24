@@ -49,12 +49,13 @@ let
     zsh
   ];
   workstationModules = with homeManager.workstation; [
+    blueman
     dunst
     firefox
     flameshot
     gtk
-    hyprland
     hypridle
+    hyprland
     hyprlock
     hyprpaper
     keepassxc
@@ -195,6 +196,16 @@ in
           };
         };
 
+      blueman =
+        { pkgs, ... }:
+        {
+          home.packages = [ pkgs.blueman ];
+
+          xdg.autostart.entries = [
+            "${pkgs.blueman}/etc/xdg/autostart/blueman-applet.desktop"
+          ];
+        };
+
       nm-applet =
         { pkgs, ... }:
         {
@@ -209,7 +220,6 @@ in
         { pkgs, ... }:
         {
           home.packages = with pkgs; [
-            blueman
             deluge-gtk
             drawing
             exiftool

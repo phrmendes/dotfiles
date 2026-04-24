@@ -23,7 +23,16 @@
         _:
         { module }:
         inputs.nixpkgs.lib.nixosSystem {
-          modules = [ module ];
+          modules = [
+            module
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
+                })
+              ];
+            }
+          ];
         }
       );
 

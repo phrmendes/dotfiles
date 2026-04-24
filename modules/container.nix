@@ -3,6 +3,8 @@ let
   inherit (config) settings;
   inherit (config.modules) homeManager;
   inherit (config.modules.nixos) server core;
+  hostAddress = "10.250.0.1";
+  localAddress = "10.250.0.2";
 in
 {
   modules.nixos.server.container = _: {
@@ -17,37 +19,23 @@ in
       };
     };
 
-    networking.bridges."br-dev".interfaces = [ "vb-dev" ];
-    networking.interfaces."br-dev".ipv4.addresses = [
-      {
-        address = "10.250.0.1";
-        prefixLength = 24;
-      }
-    ];
-
     networking.nat = {
       enable = true;
-      internalInterfaces = [ "br-dev" ];
-      externalInterface = "tailscale0";
+      internalInterfaces = [ "ve-+" ];
+      externalInterface = "enp3s0";
       forwardPorts = [
         {
           sourcePort = 2222;
-          destination = "10.250.0.10:2222";
+          destination = "${localAddress}:2222";
           proto = "tcp";
         }
       ];
     };
 
-    networking.firewall.extraCommands = ''
-      iptables -t nat -A POSTROUTING -s 10.250.0.0/24 -o tailscale0 -j MASQUERADE
-    '';
-
     containers.dev = {
       autoStart = true;
       privateNetwork = true;
-      hostBridge = "br-dev";
-      localAddress = "10.250.0.10/24";
-      localAddress6 = "fc00::10/64";
+      inherit hostAddress localAddress;
 
       enableTun = true;
 
@@ -81,12 +69,7 @@ in
       };
 
       config =
-        {
-          config,
-          lib,
-          pkgs,
-          ...
-        }:
+        { config, lib, ... }:
         {
           imports = [
             inputs.agenix.nixosModules.default
@@ -161,14 +144,7 @@ in
 
           networking = {
             useHostResolvConf = lib.mkForce false;
-            defaultGateway = "10.250.0.1";
-            interfaces.eth0.ipv4.routes = [
-              {
-                address = "0.0.0.0";
-                prefixLength = 0;
-                via = "10.250.0.1";
-              }
-            ];
+            defaultGateway = hostAddress;
           };
 
           services.resolved = {
@@ -178,7 +154,8 @@ in
               LLMNR = "false";
             };
           };
-          system.stateVersion = "25.05";
+
+          system.stateVersion = "25.11";
         };
     };
   };

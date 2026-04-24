@@ -89,12 +89,11 @@ in
         {
           services.greetd = {
             enable = true;
-            settings = rec {
+            settings = {
               terminal.vt = 1;
-              initial_session = default_session;
               default_session = {
-                command = "${pkgs.hyprland}/bin/start-hyprland";
-                inherit (config.settings) user;
+                command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.hyprland}/bin/start-hyprland";
+                user = "greeter";
               };
             };
           };

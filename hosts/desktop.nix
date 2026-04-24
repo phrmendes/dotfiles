@@ -34,6 +34,7 @@ in
       boot.kernelModules = [
         "kvm-amd"
         "snd-aloop"
+        "tun"
       ];
 
       hardware = {

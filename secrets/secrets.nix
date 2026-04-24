@@ -17,6 +17,5 @@ in
   "litellm.env.age".publicKeys = all_keys;
   "opencode.txt.age".publicKeys = all_keys;
   "prunemate.json.age".publicKeys = all_keys;
-  "tailscale-authkey.age".publicKeys = all_keys;
   "transmission.json.age".publicKeys = all_keys;
 }

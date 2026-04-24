@@ -5,6 +5,7 @@ local augroups = {
   shiftwidth = vim.api.nvim_create_augroup("UserShiftwidth", {}),
   windows = vim.api.nvim_create_augroup("UserWindows", {}),
   treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
+  autoread = vim.api.nvim_create_augroup("UserAutoread", {}),
 }
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -64,6 +65,14 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroups.format_options,
   pattern = "*",
   callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end,
+})
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  desc = "Reload file on external changes",
+  group = augroups.autoread,
+  callback = function()
+    if vim.fn.mode() ~= "c" then vim.cmd.checktime() end
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {

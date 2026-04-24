@@ -24,7 +24,7 @@ _: {
           flameshot = getExe pkgs.flameshot;
           hyprlock = getExe pkgs.hyprlock;
           playerctl = getExe pkgs.playerctl;
-          vicinae = getExe pkgs.vicinae;
+          vicinae = getExe pkgs.stable.vicinae;
           swayosd = "${pkgs.swayosd}/bin/swayosd-client";
           ws = lib.range 1 9;
           mediaBinds = [

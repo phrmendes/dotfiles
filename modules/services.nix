@@ -31,14 +31,7 @@ _: {
 
         dbus.packages = with pkgs; [ gcr ];
 
-        tailscale = {
-          enable = true;
-          authKeyFile = config.age.secrets.tailscale-authkey.path;
-          authKeyParameters = {
-            ephemeral = false;
-            preauthorized = true;
-          };
-        };
+        tailscale.enable = true;
 
         openssh = {
           enable = true;

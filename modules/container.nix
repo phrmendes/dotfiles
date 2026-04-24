@@ -132,6 +132,7 @@ in
               lazydocker
               lazygit
               nix-index
+              opencode
               packages
               ripgrep
               starship

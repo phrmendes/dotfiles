@@ -171,7 +171,7 @@ _: {
           on-click = "pavucontrol";
         };
         nix = {
-          format = format { icon = " "; };
+          format = format { icon = ""; };
           tooltip = false;
           min-length = 3;
         };

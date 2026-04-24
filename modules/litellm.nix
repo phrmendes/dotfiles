@@ -110,6 +110,43 @@ _: {
                 additional_drop_params = [ "reasoningSummary" ];
               };
             }
+            {
+              model_name = "claude-sonnet-4-6@default";
+              litellm_params = {
+                model = "vertex_ai/claude-sonnet-4-6@default";
+                additional_drop_params = [ "reasoningSummary" ];
+              };
+            }
+            {
+              model_name = "glm-5.1";
+              litellm_params = {
+                model = "openai/glm-5.1";
+                api_base = "https://opencode.ai/zen/go/v1";
+                api_key = "os.environ/OPENCODE_GO_API_KEY";
+                additional_drop_params = [ "reasoningSummary" ];
+                stream = true;
+              };
+            }
+            {
+              model_name = "qwen3.6-plus";
+              litellm_params = {
+                model = "openai/qwen3.6-plus";
+                api_base = "https://opencode.ai/zen/go/v1";
+                api_key = "os.environ/OPENCODE_GO_API_KEY";
+                additional_drop_params = [ "reasoningSummary" ];
+                stream = true;
+              };
+            }
+            {
+              model_name = "kimi-k2.6";
+              litellm_params = {
+                model = "openai/kimi-k2.6";
+                api_base = "https://opencode.ai/zen/go/v1";
+                api_key = "os.environ/OPENCODE_GO_API_KEY";
+                additional_drop_params = [ "reasoningSummary" ];
+                stream = true;
+              };
+            }
           ];
           litellm_settings.drop_params = true;
         };

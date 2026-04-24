@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
   inherit (config) settings;
   secret = file: mode: {
@@ -11,6 +11,7 @@ in
 {
   modules.nixos = {
     core.age = {
+      imports = [ inputs.agenix.nixosModules.default ];
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
@@ -22,6 +23,7 @@ in
     };
 
     server.age = {
+      imports = [ inputs.agenix.nixosModules.default ];
       age = {
         secrets = {
           "claude-service-account.json" = secret ../secrets/claude-service-account.json.age "0444";

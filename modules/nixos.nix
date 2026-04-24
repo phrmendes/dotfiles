@@ -23,14 +23,7 @@
         _:
         { module }:
         inputs.nixpkgs.lib.nixosSystem {
-          modules = with inputs; [
-            module
-            agenix.nixosModules.default
-            disko.nixosModules.disko
-            home-manager.nixosModules.home-manager
-            impermanence.nixosModules.impermanence
-            stylix.nixosModules.stylix
-          ];
+          modules = [ module ];
         }
       );
 

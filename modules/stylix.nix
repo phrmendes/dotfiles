@@ -1,7 +1,9 @@
-_: {
+{ inputs, ... }:
+{
   modules.nixos.core.stylix =
     { pkgs, ... }:
     {
+      imports = [ inputs.stylix.nixosModules.stylix ];
       stylix = {
         enable = true;
         enableReleaseChecks = false;

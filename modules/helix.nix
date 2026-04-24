@@ -1,6 +1,6 @@
 _: {
   modules.homeManager.dev.helix =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       programs.helix = {
         enable = true;
@@ -19,7 +19,6 @@ _: {
           yaml-language-server
         ];
         settings = {
-          theme = lib.mkForce "gruvbox";
           editor = {
             line-number = "relative";
             mouse = false;

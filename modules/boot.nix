@@ -1,8 +1,10 @@
-_: {
+{ inputs, ... }:
+{
   modules.nixos.core = {
     disko =
       { lib, config, ... }:
       {
+        imports = [ inputs.disko.nixosModules.disko ];
         options.disko.mainDiskDevice = lib.mkOption {
           type = lib.types.str;
           description = "Device path for the main disk";

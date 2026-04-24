@@ -113,13 +113,16 @@ in
       ];
     };
 
-    networking = {
-      systemd.sockets.systemd-resolved.enable = false;
-      environment.etc."systemd/resolved.conf.d/no-stub.conf".text = ''
-        [Resolve]
-        DNSStubListener=no
-      '';
-    };
+    networking =
+      { lib, ... }:
+      {
+        services.resolved.enable = lib.mkForce false;
+        networking.nameservers = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
+        services.tailscale.extraUpFlags = [ "--accept-dns=false" ];
+      };
 
     tailscale = {
       services.tailscale = {

@@ -104,22 +104,7 @@ in
 
           machine.type = "container";
 
-          services = {
-            openssh = {
-              enable = true;
-              ports = [ 2222 ];
-            };
-            tailscale = {
-              enable = true;
-              authKeyFile = config.age.secrets.tailscale-authkey.path;
-              authKeyParameters = {
-                ephemeral = false;
-                preauthorized = true;
-              };
-              useRoutingFeatures = "client";
-              extraUpFlags = [ "--advertise-tags=tag:main" ];
-            };
-          };
+          services.openssh.ports = [ 2222 ];
 
           home-manager.users.${settings.user}.imports =
             (with homeManager.user; [ base ])
@@ -171,11 +156,6 @@ in
           networking = {
             useHostResolvConf = lib.mkForce false;
             defaultGateway = "10.250.0.1";
-            nameservers = [
-              "100.100.100.100"
-              "1.1.1.1"
-              "8.8.8.8"
-            ];
             interfaces.eth0.ipv4.routes = [
               {
                 address = "0.0.0.0";
@@ -185,7 +165,13 @@ in
             ];
           };
 
-          services.resolved.enable = false;
+          services.resolved = {
+            enable = true;
+            settings.Resolve = {
+              DNSSEC = "false";
+              LLMNR = "false";
+            };
+          };
           system.stateVersion = "25.05";
         };
     };

@@ -21,7 +21,19 @@ in
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks."*".addKeysToAgent = "no";
+        matchBlocks = {
+          "*".addKeysToAgent = "no";
+          "server" = {
+            hostname = "server.codlet-catfish.ts.net";
+            user = settings.user;
+            port = 22;
+          };
+          "dev" = {
+            hostname = "dev.codlet-catfish.ts.net";
+            user = settings.user;
+            port = 2222;
+          };
+        };
       };
 
       home = {

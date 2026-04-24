@@ -12,8 +12,8 @@ _: {
             apiKey = "dummy";
             models = [
               {
-                id = "claude-sonnet-4-5@20250929";
-                name = "Claude Sonnet 4.5 (Vertex)";
+                id = "claude-sonnet-4-6@default";
+                name = "Claude Sonnet 4.6 (Vertex)";
                 contextWindow = 200000;
                 maxTokens = 8192;
                 reasoning = false;

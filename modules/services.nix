@@ -31,7 +31,7 @@ _: {
 
         dbus.packages = with pkgs; [ gcr ];
 
-        tailscale = lib.mkIf (config.machine.type != "container") {
+        tailscale = {
           enable = true;
           authKeyFile = config.age.secrets.tailscale-authkey.path;
           authKeyParameters = {

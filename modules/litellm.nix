@@ -30,8 +30,8 @@ let
         settings = {
           model_list = [
             {
-              model_name = "claude-sonnet-4-5@20250929";
-              litellm_params.model = "vertex_ai/claude-sonnet-4-5@20250929";
+              model_name = "claude-sonnet-4-6@default";
+              litellm_params.model = "vertex_ai/claude-sonnet-4-6@default";
             }
           ];
           litellm_settings.drop_params = true;

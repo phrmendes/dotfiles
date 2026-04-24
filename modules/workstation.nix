@@ -41,7 +41,6 @@ let
     nix-index
     opencode
     packages
-    pi
     ripgrep
     starship
     tealdeer
@@ -77,7 +76,6 @@ in
           greetd
           hyprland
           libvirtd
-          litellm
           pam
           pipewire
           persistence

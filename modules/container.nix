@@ -17,7 +17,7 @@ in
       };
     };
 
-    networking.bridges."br-dev".interfaces = [ ];
+    networking.bridges."br-dev".interfaces = [ "vb-dev" ];
     networking.interfaces."br-dev".ipv4.addresses = [
       {
         address = "10.250.0.1";

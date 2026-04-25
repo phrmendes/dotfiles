@@ -32,7 +32,6 @@
             unar
             unzip
             wget
-            wl-clipboard
             xdg-utils
             zip
           ]

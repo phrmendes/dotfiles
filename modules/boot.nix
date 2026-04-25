@@ -93,6 +93,7 @@
           kernelModules = [ "tun" ];
 
           initrd = {
+            kernelModules = [ "tun" ];
             availableKernelModules = [
               "xhci_pci"
               "ahci"

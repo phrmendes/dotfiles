@@ -87,8 +87,7 @@ in
         { pkgs, ... }:
         let
           startScript = pkgs.writeShellScript "start-hyprland" ''
-            sleep 3
-            exec ${pkgs.hyprland}/bin/start-hyprland
+            exec ${pkgs.hyprland}/bin/Hyprland
           '';
         in
         {

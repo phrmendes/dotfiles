@@ -21,7 +21,6 @@ _: {
           inherit (lib) getExe;
           isLaptop = osConfig.machine.type == "laptop";
           inherit (osConfig.machine) monitors;
-          screenshot = "screenshot";
           hyprlock = getExe pkgs.hyprlock;
           playerctl = getExe pkgs.playerctl;
           vicinae = getExe pkgs.vicinae;
@@ -141,7 +140,7 @@ _: {
               ];
               bind = [
                 "CTRL ALT,L,exec,${hyprlock}"
-                ",print,exec,${screenshot}"
+                ",print,exec,screenshot"
                 "SUPER,space,exec,${vicinae} toggle"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"

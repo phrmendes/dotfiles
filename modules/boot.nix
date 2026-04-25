@@ -111,32 +111,30 @@
                 unitConfig.RequiresMountsFor = "/dev/mapper/crypted";
                 serviceConfig.Type = "oneshot";
                 script = ''
-                  set +e
+                  mkdir /btrfs_tmp
+                  mount /dev/mapper/crypted /btrfs_tmp
 
-                  cleanup() {
-                    mountpoint -q /btrfs_tmp && umount /btrfs_tmp
-                  }
-                  trap cleanup EXIT
-
-                  mkdir -p /btrfs_tmp
-
-                  mount -t btrfs -o subvol=/ /dev/mapper/crypted /btrfs_tmp || {
-                    echo "ERROR: failed to mount, skipping"
-                    exit 0
-                  }
+                  if [[ -e /btrfs_tmp/root ]]; then
+                    mkdir -p /btrfs_tmp/old_roots
+                    timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+                    mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+                  fi
 
                   delete_subvolume_recursively() {
-                    local subvol
                     while IFS= read -r subvol; do
                       delete_subvolume_recursively "/btrfs_tmp/$subvol"
                     done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
-                    btrfs subvolume delete "$1" || echo "WARNING: failed to delete $1"
+                    btrfs subvolume delete "$1"
                   }
 
-                  delete_subvolume_recursively /btrfs_tmp/root
-                  btrfs subvolume create /btrfs_tmp/root
+                  if [[ -d /btrfs_tmp/old_roots ]]; then
+                    while IFS= read -r -d "" i; do
+                      delete_subvolume_recursively "$i"
+                    done < <(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -print0)
+                  fi
 
-                  exit 0
+                  btrfs subvolume create /btrfs_tmp/root
+                  umount /btrfs_tmp
                 '';
               };
             };

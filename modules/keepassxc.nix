@@ -61,6 +61,10 @@ _: {
       '';
 
       xdg.portal.config.common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+      xdg.portal.config.hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
 
       systemd.user.services.keepassxc = {
         Unit = {
@@ -69,7 +73,6 @@ _: {
             "graphical-session.target"
             "tray.target"
           ];
-          Requires = [ "tray.target" ];
           PartOf = [ "graphical-session.target" ];
         };
         Service = {
@@ -85,10 +88,7 @@ _: {
         $DRY_RUN_CMD mkdir -p "$HOME/${configDir}"
         $DRY_RUN_CMD mkdir -p "$HOME/${localStateDir}"
 
-        if [[ ! -f "$HOME/${configDir}/keepassxc.ini" ]]; then
-          $DRY_RUN_CMD install -m 600 ${ini} "$HOME/${configDir}/keepassxc.ini"
-        fi
-
+        $DRY_RUN_CMD install -m 600 ${ini} "$HOME/${configDir}/keepassxc.ini"
         $DRY_RUN_CMD install -m 600 ${localIni} "$HOME/${localStateDir}/keepassxc.ini"
       '';
     };

@@ -90,6 +90,8 @@
             };
           };
 
+          kernelModules = [ "tun" ];
+
           initrd = {
             availableKernelModules = [
               "xhci_pci"
@@ -109,8 +111,8 @@
                 unitConfig.RequiresMountsFor = "/dev/mapper/crypted";
                 serviceConfig.Type = "oneshot";
                 script = ''
-                  mkdir /btrfs_tmp
-                  mount /dev/mapper/crypted /btrfs_tmp
+                  mkdir -p /btrfs_tmp
+                  mountpoint -q /btrfs_tmp || mount /dev/mapper/crypted /btrfs_tmp
 
                   if [[ -e /btrfs_tmp/root ]]; then
                       mkdir -p /btrfs_tmp/old_roots

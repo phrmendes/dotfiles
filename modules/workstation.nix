@@ -86,14 +86,20 @@ in
 
       greetd =
         { pkgs, ... }:
+        let
+          startScript = pkgs.writeShellScript "start-hyprland" ''
+            sleep 3
+            exec ${pkgs.hyprland}/bin/start-hyprland
+          '';
+        in
         {
           services.greetd = {
             enable = true;
             settings = {
               terminal.vt = 1;
               default_session = {
-                command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.hyprland}/bin/start-hyprland";
-                user = "greeter";
+                command = "${startScript}";
+                user = config.settings.user;
               };
             };
           };
@@ -113,11 +119,19 @@ in
       xdg-portal =
         { pkgs, ... }:
         {
+          environment.systemPackages = with pkgs; [
+            grim
+            slurp
+          ];
           xdg.portal = {
             enable = true;
             extraPortals = with pkgs; [
-              xdg-desktop-portal-wlr
+              xdg-desktop-portal-hyprland
               xdg-desktop-portal-gtk
+            ];
+            config.hyprland.default = [
+              "hyprland"
+              "gtk"
             ];
           };
         };
@@ -164,21 +178,15 @@ in
         {
           home.packages = [ pkgs.flameshot ];
 
-          xdg.autostart.entries = [
-            "${pkgs.flameshot}/share/applications/org.flameshot.Flameshot.desktop"
-          ];
-
           xdg.configFile."flameshot/flameshot.ini".text = lib.generators.toINI { } {
             General = with config.lib.stylix.colors.withHashtag; {
               contrastUiColor = base0A;
-              disabledGrimWarning = true;
               disabledTrayIcon = true;
               drawColor = base08;
               showAbortNotification = false;
               showDesktopNotification = false;
               showStartupLaunchMessage = false;
               uiColor = base00;
-              useGrimAdapter = true;
             };
           };
         };
@@ -228,7 +236,6 @@ in
             filezilla
             gcolor3
             gdu
-            grim
             imagemagick
             libqalculate
             obs-studio
@@ -271,6 +278,7 @@ in
               "application/pdf" = "org.pwmt.zathura.desktop";
             };
           };
+
         };
       };
 

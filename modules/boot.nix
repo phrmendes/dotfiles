@@ -67,7 +67,7 @@
       };
 
     boot =
-      { pkgs, lib, ... }:
+      { pkgs, ... }:
       {
         boot = {
           tmp.cleanOnBoot = true;
@@ -86,14 +86,14 @@
             };
             systemd-boot = {
               enable = true;
-              configurationLimit = 10;
+              configurationLimit = 30;
             };
           };
 
           kernelModules = [ "tun" ];
+          initrd.kernelModules = [ "tun" ];
 
           initrd = {
-            kernelModules = [ "tun" ];
             availableKernelModules = [
               "xhci_pci"
               "ahci"
@@ -110,16 +110,13 @@
                 requiredBy = [ "sysroot.mount" ];
                 before = [ "sysroot.mount" ];
                 unitConfig.RequiresMountsFor = "/dev/mapper/crypted";
-                serviceConfig.Type = "oneshot";
+                serviceConfig = {
+                  Type = "oneshot";
+                  RemainAfterExit = true;
+                };
                 script = ''
-                  mkdir /btrfs_tmp
+                  mkdir -p /btrfs_tmp
                   mount /dev/mapper/crypted /btrfs_tmp
-
-                  if [[ -e /btrfs_tmp/root ]]; then
-                    mkdir -p /btrfs_tmp/old_roots
-                    timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-                    mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-                  fi
 
                   delete_subvolume_recursively() {
                     while IFS= read -r subvol; do
@@ -128,10 +125,8 @@
                     btrfs subvolume delete "$1"
                   }
 
-                  if [[ -d /btrfs_tmp/old_roots ]]; then
-                    while IFS= read -r -d "" i; do
-                      delete_subvolume_recursively "$i"
-                    done < <(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -print0)
+                  if [[ -e /btrfs_tmp/root ]]; then
+                    delete_subvolume_recursively /btrfs_tmp/root
                   fi
 
                   btrfs subvolume create /btrfs_tmp/root

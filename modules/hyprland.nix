@@ -3,9 +3,11 @@ _: {
     nixos.workstation.hyprland = {
       programs = {
         dconf.enable = true;
-        hyprland.enable = true;
+        hyprland = {
+          enable = true;
+          withUWSM = true;
+        };
       };
-
     };
 
     homeManager.workstation = {
@@ -232,12 +234,16 @@ _: {
         programs.hyprlock.enable = true;
       };
 
-      hyprpaper = {
-        services.hyprpaper = {
-          enable = true;
-          settings.splash = false;
+      hyprpaper =
+        { lib, ... }:
+        {
+          services.hyprpaper = {
+            enable = true;
+            settings.splash = false;
+          };
+
+          systemd.user.services.hyprpaper.Service.RestartSec = lib.mkForce "2";
         };
-      };
     };
   };
 }

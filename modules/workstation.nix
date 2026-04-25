@@ -72,7 +72,7 @@ in
     nixos.workstation = {
       common = _: {
         imports = with nixos.workstation; [
-          greetd
+          ly
           hyprland
           libvirtd
           pam
@@ -83,29 +83,13 @@ in
         ];
       };
 
-      greetd =
-        { pkgs, ... }:
-        let
-          startScript = pkgs.writeShellScript "start-hyprland" ''
-            exec ${pkgs.hyprland}/bin/Hyprland
-          '';
-        in
-        {
-          services.greetd = {
-            enable = true;
-            settings = {
-              terminal.vt = 1;
-              default_session = {
-                command = "${startScript}";
-                user = config.settings.user;
-              };
-              initial_session = {
-                command = "${startScript}";
-                user = config.settings.user;
-              };
-            };
-          };
+      ly = {
+        services.displayManager.ly = {
+          enable = true;
+          settings.animation = "matrix";
         };
+        environment.binsh = "/run/current-system/sw/bin/bash";
+      };
 
       pipewire = {
         services.pipewire = {

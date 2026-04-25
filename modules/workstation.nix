@@ -60,7 +60,6 @@ let
     keepassxc
     nm-applet
     packages
-    screenshot
     swayosd
     udiskie
     vicinae
@@ -209,6 +208,7 @@ in
             filezilla
             gcolor3
             gdu
+            grim
             imagemagick
             libqalculate
             obs-studio
@@ -220,6 +220,8 @@ in
             poppler
             proton-vpn
             quarto
+            satty
+            slurp
             stremio-linux-shell
             tectonic
             terraform
@@ -227,6 +229,7 @@ in
             tpm2-tools
             ungoogled-chromium
             vesktop
+            wl-clipboard
             zotero
           ];
         };

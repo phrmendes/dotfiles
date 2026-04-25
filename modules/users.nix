@@ -66,6 +66,8 @@ in
           ".face.icon".source = ../files/face.png;
         }
         // executables;
+
+      xdg.configFile."satty/config.toml".source = ../files/satty.toml;
     };
   };
 }

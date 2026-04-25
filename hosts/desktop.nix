@@ -36,6 +36,8 @@ in
         "snd-aloop"
       ];
 
+      boot.kernelParams = [ "boot.shell_on_fail" ];
+
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
         nvidia-container-toolkit.enable = true;

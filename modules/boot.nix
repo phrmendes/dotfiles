@@ -91,7 +91,10 @@
           };
 
           kernelModules = [ "tun" ];
-          initrd.kernelModules = [ "tun" ];
+          initrd.kernelModules = [
+            "tun"
+            "fuse"
+          ];
 
           initrd = {
             availableKernelModules = [

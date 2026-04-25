@@ -52,7 +52,6 @@ let
     blueman
     dunst
     firefox
-    flameshot
     gtk
     hypridle
     hyprland
@@ -61,6 +60,7 @@ let
     keepassxc
     nm-applet
     packages
+    screenshot
     swayosd
     udiskie
     vicinae
@@ -119,10 +119,6 @@ in
       xdg-portal =
         { pkgs, ... }:
         {
-          environment.systemPackages = with pkgs; [
-            grim
-            slurp
-          ];
           xdg.portal = {
             enable = true;
             extraPortals = with pkgs; [
@@ -168,29 +164,6 @@ in
     };
 
     homeManager.workstation = {
-      flameshot =
-        {
-          pkgs,
-          config,
-          lib,
-          ...
-        }:
-        {
-          home.packages = [ pkgs.flameshot ];
-
-          xdg.configFile."flameshot/flameshot.ini".text = lib.generators.toINI { } {
-            General = with config.lib.stylix.colors.withHashtag; {
-              contrastUiColor = base0A;
-              disabledTrayIcon = true;
-              drawColor = base08;
-              showAbortNotification = false;
-              showDesktopNotification = false;
-              showStartupLaunchMessage = false;
-              uiColor = base00;
-            };
-          };
-        };
-
       gtk =
         { pkgs, ... }:
         {

@@ -21,7 +21,7 @@ _: {
           inherit (lib) getExe;
           isLaptop = osConfig.machine.type == "laptop";
           inherit (osConfig.machine) monitors;
-          flameshot = getExe pkgs.flameshot;
+          screenshot = "screenshot";
           hyprlock = getExe pkgs.hyprlock;
           playerctl = getExe pkgs.playerctl;
           vicinae = getExe pkgs.vicinae;
@@ -103,10 +103,7 @@ _: {
               windowrule = [
                 "float on, opaque on, match:class (.blueman-manager-wrapped)"
                 "float on, stay_focused on, opaque on, match:class (org.pulseaudio.pavucontrol)"
-                "fullscreen_state 2 0, match:class (flameshot), match:title (flameshot)"
-                "float on, match:class (flameshot), match:title (flameshot)"
                 "float on, match:title ^(Picture-in-Picture)$"
-                "move 0 0, match:class (flameshot), match:title (flameshot)"
                 "opaque on, match:class (firefox)"
                 "opaque on, match:class (mpv)"
               ];
@@ -144,7 +141,7 @@ _: {
               ];
               bind = [
                 "CTRL ALT,L,exec,${hyprlock}"
-                ",print,exec,${flameshot} gui"
+                ",print,exec,${screenshot}"
                 "SUPER,space,exec,${vicinae} toggle"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"

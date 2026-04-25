@@ -3,23 +3,14 @@ _: {
     {
       pkgs,
       config,
-      lib,
       ...
     }:
-    let
-      grim = lib.getExe pkgs.grim;
-      slurp = lib.getExe pkgs.slurp;
-      satty = lib.getExe pkgs.satty;
-      screenshot = pkgs.writeShellScriptBin "screenshot" ''
-        ${grim} -g "$(${slurp})" - | ${satty} --filename -
-      '';
-    in
     {
       home.packages = [
         pkgs.grim
         pkgs.slurp
         pkgs.satty
-        screenshot
+        pkgs.wl-clipboard
       ];
 
       xdg.configFile."satty/config.toml".text = ''

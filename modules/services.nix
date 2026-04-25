@@ -44,7 +44,5 @@ _: {
           };
         };
       };
-
-      systemd.services.tailscaled.after = [ "systemd-modules-load.service" ];
     };
 }

@@ -99,6 +99,10 @@ in
                 command = "${startScript}";
                 user = config.settings.user;
               };
+              initial_session = {
+                command = "${startScript}";
+                user = config.settings.user;
+              };
             };
           };
         };

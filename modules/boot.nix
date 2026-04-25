@@ -109,32 +109,68 @@
                 requiredBy = [ "sysroot.mount" ];
                 before = [ "sysroot.mount" ];
                 unitConfig.RequiresMountsFor = "/dev/mapper/crypted";
-                serviceConfig.Type = "oneshot";
+                serviceConfig = {
+                  Type = "oneshot";
+                  RemainAfterExit = true;
+                };
                 script = ''
+                  set +e
+
+                  cleanup() {
+                    mountpoint -q /btrfs_tmp && umount /btrfs_tmp
+                  }
+                  trap cleanup EXIT
+
                   mkdir -p /btrfs_tmp
-                  mountpoint -q /btrfs_tmp || mount /dev/mapper/crypted /btrfs_tmp
 
-                  if [[ -e /btrfs_tmp/root ]]; then
-                      mkdir -p /btrfs_tmp/old_roots
-                      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-                      mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-                  fi
-
-                  delete_subvolume_recursively() {
-                      while IFS= read -r subvol; do
-                          delete_subvolume_recursively "/btrfs_tmp/$subvol"
-                      done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
-                      btrfs subvolume delete "$1"
+                  mount -t btrfs -o subvol=/ /dev/mapper/crypted /btrfs_tmp || {
+                    echo "ERROR: failed to mount btrfs top-level, skipping cleanup"
+                    exit 0
                   }
 
-                  if [[ -d /btrfs_tmp/old_roots ]]; then
-                      while IFS= read -r -d "" i; do
-                          delete_subvolume_recursively "$i"
-                      done < <(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -print0)
-                  fi
+                  delete_subvolume_recursively() {
+                    local subvol
+                    while IFS= read -r subvol; do
+                      delete_subvolume_recursively "/btrfs_tmp/$subvol"
+                    done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
+                    btrfs subvolume delete "$1" || echo "WARNING: failed to delete subvolume $1"
+                  }
 
-                  btrfs subvolume create /btrfs_tmp/root
-                  umount /btrfs_tmp
+                  rotate_root() {
+                    btrfs subvolume list /btrfs_tmp | grep -q 'path root$' || return 0
+
+                    local timestamp
+                    timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
+
+                    mkdir -p /btrfs_tmp/old_roots
+
+                    btrfs subvolume snapshot /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp" || {
+                      echo "ERROR: failed to snapshot root, skipping deletion"
+                      return 0
+                    }
+
+                    delete_subvolume_recursively /btrfs_tmp/root || echo "WARNING: failed to delete old root subvolume"
+                  }
+
+                  cleanup_old_snapshots() {
+                    [ -d /btrfs_tmp/old_roots ] || return 0
+
+                    find /btrfs_tmp/old_roots -maxdepth 1 -mindepth 1 -mtime +30 | while read -r snapshot; do
+                      delete_subvolume_recursively "$snapshot" || echo "WARNING: failed to delete snapshot $snapshot"
+                    done
+                  }
+
+                  create_root() {
+                    btrfs subvolume list /btrfs_tmp | grep -q 'path root$' && return 0
+
+                    btrfs subvolume create /btrfs_tmp/root || echo "ERROR: failed to create root subvolume"
+                  }
+
+                  rotate_root
+                  cleanup_old_snapshots
+                  create_root
+
+                  exit 0
                 '';
               };
             };
@@ -160,6 +196,7 @@
           device = "/dev/mapper/crypted";
           fsType = "btrfs";
           options = [
+            "subvol=root"
             "compress=zstd"
             "noatime"
           ];

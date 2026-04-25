@@ -109,16 +109,34 @@
                 requiredBy = [ "sysroot.mount" ];
                 before = [ "sysroot.mount" ];
                 unitConfig.RequiresMountsFor = "/dev/mapper/crypted";
-                serviceConfig = {
-                  Type = "oneshot";
-                  RemainAfterExit = true;
-                };
+                serviceConfig.Type = "oneshot";
                 script = ''
+                  set +e
+
+                  cleanup() {
+                    mountpoint -q /btrfs_tmp && umount /btrfs_tmp
+                  }
+                  trap cleanup EXIT
+
                   mkdir -p /btrfs_tmp
-                  mount -t btrfs -o subvol=/ /dev/mapper/crypted /btrfs_tmp
-                  btrfs subvolume delete /btrfs_tmp/root
+
+                  mount -t btrfs -o subvol=/ /dev/mapper/crypted /btrfs_tmp || {
+                    echo "ERROR: failed to mount, skipping"
+                    exit 0
+                  }
+
+                  delete_subvolume_recursively() {
+                    local subvol
+                    while IFS= read -r subvol; do
+                      delete_subvolume_recursively "/btrfs_tmp/$subvol"
+                    done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
+                    btrfs subvolume delete "$1" || echo "WARNING: failed to delete $1"
+                  }
+
+                  delete_subvolume_recursively /btrfs_tmp/root
                   btrfs subvolume create /btrfs_tmp/root
-                  umount /btrfs_tmp
+
+                  exit 0
                 '';
               };
             };

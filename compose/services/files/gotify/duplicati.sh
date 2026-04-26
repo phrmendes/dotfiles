@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 EVENTNAME=$DUPLICATI__EVENTNAME
 OPERATIONNAME=$DUPLICATI__OPERATIONNAME

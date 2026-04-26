@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 if [ "$POSTGRES_DATABASES" = "" ]; then
 	echo "POSTGRES_DATABASES is not set. Exiting."

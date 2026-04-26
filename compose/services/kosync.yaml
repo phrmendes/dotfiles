@@ -1,0 +1,32 @@
+services:
+  kosync:
+    image: docker.io/koreader/kosync:latest
+    container_name: kosync
+    restart: unless-stopped
+    environment:
+      - ENABLE_USER_REGISTRATION=true
+    volumes:
+      - kosync_logs:/app/koreader-sync-server/logs
+      - kosync_redis_logs:/var/log/redis
+      - kosync_redis_data:/var/lib/redis
+    labels:
+      - diun.enable=true
+
+  kosync-setup:
+    image: docker.io/alpine:latest
+    container_name: kosync-setup
+    restart: no
+    environment:
+      - KOSYNC_USER=${KOSYNC_USER}
+      - KOSYNC_PASSWORD=${KOSYNC_PASSWORD}
+    volumes:
+      - ./files/kosync/setup.sh:/setup.sh:ro
+    command: /bin/sh -c "apk add --no-cache curl && /setup.sh"
+    depends_on:
+      kosync:
+        condition: service_healthy
+
+volumes:
+  kosync_logs:
+  kosync_redis_logs:
+  kosync_redis_data:

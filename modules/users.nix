@@ -48,24 +48,7 @@ in
       };
 
     homeManager.user.symlinks = {
-      home.file =
-        let
-          scripts = ../files/scripts |> builtins.readDir |> builtins.attrNames;
-          executables =
-            scripts
-            |> map (name: {
-              name = ".local/bin/${name}" |> builtins.replaceStrings [ ".sh" ] [ "" ];
-              value = {
-                executable = true;
-                source = ../files/scripts/${name};
-              };
-            })
-            |> builtins.listToAttrs;
-        in
-        {
-          ".face.icon".source = ../files/face.png;
-        }
-        // executables;
+      home.file.".face.icon".source = ../files/face.png;
 
       xdg.configFile."satty/config.toml".source = ../files/satty.toml;
     };

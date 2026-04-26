@@ -3,15 +3,20 @@ let
   inherit (config) settings;
 in
 {
-  modules.nixos.core.home-manager = _: {
-    imports = [ inputs.home-manager.nixosModules.home-manager ];
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      backupFileExtension = "bak";
-      extraSpecialArgs = { inherit inputs; };
+  modules.nixos.core.home-manager =
+    { pkgs, localPackages, ... }:
+    {
+      imports = [ inputs.home-manager.nixosModules.home-manager ];
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "bak";
+        extraSpecialArgs = {
+          inherit inputs;
+          localPackages = localPackages pkgs;
+        };
+      };
     };
-  };
 
   modules.homeManager.user.base =
     { lib, ... }:

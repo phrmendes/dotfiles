@@ -17,6 +17,7 @@ _: {
           lib,
           config,
           osConfig,
+          localPackages,
           ...
         }:
         let
@@ -27,6 +28,7 @@ _: {
           playerctl = getExe pkgs.playerctl;
           vicinae = getExe pkgs.vicinae;
           swayosd = "${pkgs.swayosd}/bin/swayosd-client";
+          screenshot = getExe localPackages.screenshot;
           ws = lib.range 1 9;
           mediaBinds = [
             ",XF86AudioPlay,exec,${playerctl} play-pause"
@@ -142,7 +144,7 @@ _: {
               ];
               bind = [
                 "CTRL ALT,L,exec,${hyprlock}"
-                ",print,exec,screenshot"
+                ",print,exec,${screenshot}"
                 "SUPER,space,exec,${vicinae} toggle"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"

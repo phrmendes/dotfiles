@@ -23,6 +23,14 @@
         _:
         { module }:
         inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            localPackages =
+              pkgs:
+              import ../pkgs {
+                inherit pkgs;
+              };
+          };
           modules = [
             module
             {

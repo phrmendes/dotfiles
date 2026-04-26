@@ -183,42 +183,42 @@ in
         };
 
       packages =
-        { pkgs, ... }:
+        { pkgs, localPackages, ... }:
         {
-          home.packages = with pkgs; [
-            deluge-gtk
-            drawing
-            exiftool
-            ffmpeg
-            ffmpegthumbnailer
-            file-roller
-            filezilla
-            gcolor3
-            gdu
-            grim
-            imagemagick
-            libqalculate
-            obs-studio
-            onlyoffice-desktopeditors
-            pandoc
-            pass
-            pavucontrol
-            phockup
-            poppler
-            proton-vpn
-            quarto
-            satty
-            slurp
-            stremio-linux-shell
-            tectonic
-            terraform
-            thunar
-            tpm2-tools
-            ungoogled-chromium
-            vesktop
-            wl-clipboard
-            zotero
-          ];
+          home.packages =
+            with pkgs;
+            [
+              deluge-gtk
+              drawing
+              exiftool
+              ffmpeg
+              ffmpegthumbnailer
+              file-roller
+              filezilla
+              gcolor3
+              gdu
+              imagemagick
+              libqalculate
+              obs-studio
+              onlyoffice-desktopeditors
+              pandoc
+              pass
+              pavucontrol
+              phockup
+              poppler
+              proton-vpn
+              quarto
+              stremio-linux-shell
+              tectonic
+              terraform
+              thunar
+              tpm2-tools
+              ungoogled-chromium
+              vesktop
+              wl-clipboard
+              zotero
+            ]
+            ++ [ localPackages.screenshot ];
         };
 
       xdg = {

@@ -571,11 +571,11 @@
     "vim-plugins": {
       "flake": false,
       "locked": {
-        "path": "./neovim/plugins",
+        "path": "./files/neovim/plugins",
         "type": "path"
       },
       "original": {
-        "path": "./neovim/plugins",
+        "path": "./files/neovim/plugins",
         "type": "path"
       },
       "parent": []

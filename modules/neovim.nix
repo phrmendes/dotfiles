@@ -95,7 +95,8 @@
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
       home.file = local-plugins // {
-        ".config/nvim".source = symlink "${config.home.homeDirectory}/Projects/dotfiles/neovim/config";
+        ".config/nvim".source =
+          symlink "${config.home.homeDirectory}/Projects/dotfiles/files/neovim/config";
         ".local/share/nvim/site/lua/nix.lua".text = ''
           return {
               base16 = { palette = { ${base16-palette} } },

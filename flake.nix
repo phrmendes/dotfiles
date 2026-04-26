@@ -35,7 +35,7 @@
     };
 
     vim-plugins = {
-      url = "path:./neovim/plugins";
+      url = "path:./files/neovim/plugins";
       flake = false;
     };
   };

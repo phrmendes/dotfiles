@@ -1,48 +1,77 @@
 { inputs, ... }:
 {
   modules = {
-    nixos.core.system-packages =
+    homeManager.dev.packages =
+      { pkgs, localPackages, ... }:
       {
-        pkgs,
-        lib,
-        config,
-        ...
-      }:
-      {
-        environment.systemPackages =
+        home.packages =
           with pkgs;
           [
-            inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-            cachix
-            coreutils-full
-            dig
-            egl-wayland
-            file
-            findutils
-            gcc
-            gnumake
-            gnused
-            gzip
-            lsof
-            mlocate
-            openssl
-            p7zip
-            psmisc
-            rar
-            unar
-            unzip
-            wget
-            xdg-utils
-            zip
+            curl
+            elixir
+            hurl
+            jdk
+            jqp
+            just
+            nix-prefetch-github
+            nodejs_latest
+            parallel
+            prek
+            python314
+            sqlite
+            uv
           ]
-          ++ (with pkgs.unixtools; [
-            net-tools
-            netstat
-          ])
-          ++ lib.optionals (config.machine.type != "server") [
-            docker-credential-helpers
-            libsecret
-          ];
+          ++ builtins.attrValues localPackages;
       };
+
+    nixos.core = {
+      nixpkgs = {
+        nixpkgs.config.allowUnfree = true;
+      };
+
+      system-packages =
+        {
+          pkgs,
+          lib,
+          config,
+          ...
+        }:
+        {
+          environment.systemPackages =
+            with pkgs;
+            [
+              inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+              cachix
+              coreutils-full
+              dig
+              egl-wayland
+              file
+              findutils
+              gcc
+              gnumake
+              gnused
+              gzip
+              lsof
+              mlocate
+              openssl
+              p7zip
+              psmisc
+              rar
+              unar
+              unzip
+              wget
+              xdg-utils
+              zip
+            ]
+            ++ (with pkgs.unixtools; [
+              net-tools
+              netstat
+            ])
+            ++ lib.optionals (config.machine.type != "server") [
+              docker-credential-helpers
+              libsecret
+            ];
+        };
+    };
   };
 }

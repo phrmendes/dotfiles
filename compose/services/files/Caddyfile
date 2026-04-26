@@ -58,10 +58,6 @@ jellyfin.local.ohlongjohnson.tech {
     import service jellyfin 8096
 }
 
-kosync.local.ohlongjohnson.tech {
-    import service kosync 17200
-}
-
 linkding.local.ohlongjohnson.tech {
     import service linkding 9090
 }

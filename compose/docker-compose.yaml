@@ -12,7 +12,6 @@ include:
   - ./services/gotify.yaml
   - ./services/homepage.yaml
   - ./services/jellyfin.yaml
-  - ./services/kosync.yaml
   - ./services/linkding.yaml
   - ./services/pgbackweb.yaml
   - ./services/photoview.yaml

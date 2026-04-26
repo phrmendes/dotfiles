@@ -59,7 +59,7 @@ in
                 WorkingDirectory = dotfiles;
                 ExecStartPre = [
                   "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'"
-                  "${pkgs.bash}/bin/bash -c 'until [ -f /run/agenix/transmission.json ] && [ -f /run/agenix/docker-compose.env ]; do sleep 1; done'"
+                  "${pkgs.bash}/bin/bash -c 'until [ -f /run/agenix/transmission.json ] && [ -f /run/agenix/docker-compose.env ] && [ -f /run/agenix/prunemate.json ]; do sleep 1; done'"
                 ];
                 ExecStart = "${rootJust} compose::up";
                 ExecStop = "${rootJust} compose::down";

@@ -5,7 +5,6 @@ services:
     restart: unless-stopped
     volumes:
       - prunemate_logs:/var/log
-      - prunemate_config:/config
     secrets:
       - source: prunemate
         target: /config/config.json
@@ -16,7 +15,6 @@ services:
       - diun.enable=true
 volumes:
   prunemate_logs:
-  prunemate_config:
 secrets:
   prunemate:
-    file: /run/agenix/prunemate.json
+    file: ${AGE_SECRETS_PATH}/prunemate.json

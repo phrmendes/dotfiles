@@ -24,6 +24,8 @@ in
     server.age = {
       imports = [ inputs.agenix.nixosModules.default ];
       age = {
+        secretsDir = "/var/lib/agenix";
+        secretsMountPoint = "/var/lib/agenix.d";
         secrets = {
           "docker-compose.env" = secret' ../secrets/docker-compose.env.age;
           "docker-config.json" = secret ../secrets/docker-config.json.age "0400";

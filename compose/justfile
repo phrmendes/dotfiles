@@ -1,11 +1,12 @@
-compose_command := "docker compose --env-file=/run/agenix/docker-compose.env"
+age_secrets_path := env("AGE_SECRETS_PATH", "/var/lib/agenix")
+compose_command := "docker compose --env-file=" + age_secrets_path + "/docker-compose.env"
 
 # Start all services
 default: up
 
 # Start all services, pulling missing images
 @up:
-    {{ compose_command }} up --detach --remove-orphans --pull missing --no-recreate
+    {{ compose_command }} up --detach --remove-orphans --pull missing
 
 # Stop all services, or a specific one
 @down svc="":

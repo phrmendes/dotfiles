@@ -57,10 +57,18 @@ in
                 User = settings.user;
                 Group = "users";
                 WorkingDirectory = dotfiles;
-                ExecStartPre = [
-                  "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'"
-                  "${pkgs.bash}/bin/bash -c 'until [ -f /run/agenix/transmission.json ] && [ -f /run/agenix/docker-compose.env ] && [ -f /run/agenix/prunemate.json ]; do sleep 1; done'"
-                ];
+                ExecStartPre =
+                  let
+                    secretChecks =
+                      config.age.secrets
+                      |> builtins.attrValues
+                      |> map (s: "[ -f ${s.path} ]")
+                      |> builtins.concatStringsSep " && ";
+                  in
+                  [
+                    "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'"
+                    "${pkgs.bash}/bin/bash -c 'until ${secretChecks}; do sleep 1; done'"
+                  ];
                 ExecStart = "${rootJust} compose::up";
                 ExecStop = "${rootJust} compose::down";
                 TimeoutStartSec = 0;
@@ -68,6 +76,7 @@ in
                 Environment = [
                   "PATH=${basePath}"
                   "DOCKER_HOST=${dockerHost}"
+                  "AGE_SECRETS_PATH=${config.age.secretsDir}"
                 ];
               };
             };

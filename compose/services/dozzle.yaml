@@ -18,4 +18,4 @@ services:
         condition: service_healthy
 secrets:
   users:
-    file: /run/agenix/dozzle-users.yaml
+    file: ${AGE_SECRETS_PATH}/dozzle-users.yaml

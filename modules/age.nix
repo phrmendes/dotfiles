@@ -29,7 +29,7 @@ in
           "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
           "dozzle-users.yaml" = secret' ../secrets/dozzle-users.yaml.age;
           "gh-hosts.yaml" = secret ../secrets/gh-hosts.yaml.age "0400";
-          "prunemate.json" = secret' ../secrets/prunemate.json.age;
+          "prunemate.json" = secret ../secrets/prunemate.json.age "0444";
           "transmission.json" = secret' ../secrets/transmission.json.age;
         };
       };

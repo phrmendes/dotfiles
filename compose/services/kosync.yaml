@@ -9,6 +9,20 @@ services:
       - kosync_logs:/app/koreader-sync-server/logs
       - kosync_redis_logs:/var/log/redis
       - kosync_redis_data:/var/lib/redis
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-sf",
+          "-H",
+          "Accept: application/vnd.koreader.v1+json",
+          "http://localhost:17200/healthcheck",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     labels:
       - diun.enable=true
 

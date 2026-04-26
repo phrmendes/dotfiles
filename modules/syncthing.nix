@@ -93,6 +93,17 @@ in
               "laptop"
             ];
           };
+          "reading" = {
+            path = "${config.settings.home}/Documents/reading";
+            versioning = versioning.trashcan;
+            devices = [
+              "server"
+              "phone"
+              "desktop"
+              "laptop"
+              "tablet"
+            ];
+          };
           "keepassxc" = {
             path = "${config.settings.home}/Documents/keepassxc";
             versioning = versioning.trashcan;

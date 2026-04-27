@@ -34,7 +34,7 @@ in
             port = 22;
           };
           "dev" = {
-            hostname = "dev.codlet-catfish.ts.net";
+            hostname = "server.codlet-catfish.ts.net";
             user = settings.user;
             port = 2222;
           };

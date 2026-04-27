@@ -1,4 +1,14 @@
-_: {
+let
+  noctalia =
+    cmd:
+    [
+      "noctalia-shell"
+      "ipc"
+      "call"
+    ]
+    ++ cmd;
+in
+{
   modules = {
     nixos.workstation.hyprland = {
       programs = {
@@ -17,18 +27,13 @@ _: {
           lib,
           config,
           osConfig,
-          localPackages,
           ...
         }:
         let
           inherit (lib) getExe;
           isLaptop = osConfig.machine.type == "laptop";
           inherit (osConfig.machine) monitors;
-          hyprlock = getExe pkgs.hyprlock;
           playerctl = getExe pkgs.playerctl;
-          vicinae = getExe pkgs.vicinae;
-          swayosd = "${pkgs.swayosd}/bin/swayosd-client";
-          screenshot = getExe localPackages.screenshot;
           ws = lib.range 1 9;
           mediaBinds = [
             ",XF86AudioPlay,exec,${playerctl} play-pause"
@@ -65,6 +70,7 @@ _: {
             enable = true;
             systemd.enableXdgAutostart = true;
             settings = {
+              exec-once = [ "noctalia-shell" ];
               debug.damage_tracking = 2;
               input = {
                 kb_layout = "us,br";
@@ -78,7 +84,7 @@ _: {
               };
               general = {
                 gaps_in = 3;
-                gaps_out = 6;
+                gaps_out = 8;
                 border_size = 2;
                 layout = "dwindle";
                 resize_on_border = true;
@@ -87,7 +93,19 @@ _: {
                 active_opacity = 1;
                 inactive_opacity = 0.9;
                 rounding = 10;
-                blur.enabled = false;
+                rounding_power = 2;
+                shadow = {
+                  enabled = true;
+                  range = 4;
+                  render_power = 3;
+                  color = lib.mkForce "rgba(1a1a1aee)";
+                };
+                blur = {
+                  enabled = true;
+                  size = 3;
+                  passes = 2;
+                  vibrancy = 0.1696;
+                };
               };
               animations.enabled = true;
               dwindle = {
@@ -110,6 +128,20 @@ _: {
                 "opaque on, match:class (firefox)"
                 "opaque on, match:class (mpv)"
               ];
+              layerrule = [
+                {
+                  name = "noctalia";
+                  "match:namespace" = "noctalia-background-.*$";
+                  ignore_alpha = 0.5;
+                  blur = true;
+                  blur_popups = true;
+                }
+                {
+                  name = "noctalia-screenshot";
+                  "match:namespace" = "noctalia-shell:regionSelector";
+                  no_anim = true;
+                }
+              ];
               workspace =
                 with monitors;
                 let
@@ -131,21 +163,66 @@ _: {
                 "SUPER,mouse:273,resizewindow"
               ];
               binde = [
-                ",XF86AudioRaiseVolume,exec,${swayosd} --output-volume raise --max-volume 150"
-                ",XF86AudioLowerVolume,exec,${swayosd} --output-volume lower"
-                ",XF86AudioMute,exec,${swayosd} --output-volume mute-toggle"
-                ",XF86AudioMicMute,exec,${swayosd} --input-volume mute-toggle"
-                (lib.mkIf isLaptop ",XF86MonBrightnessUp,exec,${swayosd} --brightness raise")
-                (lib.mkIf isLaptop ",XF86MonBrightnessDown,exec,${swayosd} --brightness lower")
+                ",XF86AudioRaiseVolume,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "volume"
+                    "increase"
+                  ])
+                }"
+                ",XF86AudioLowerVolume,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "volume"
+                    "decrease"
+                  ])
+                }"
+                ",XF86AudioMute,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "volume"
+                    "muteOutput"
+                  ])
+                }"
+                ",XF86AudioMicMute,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "volume"
+                    "muteInput"
+                  ])
+                }"
+                (lib.mkIf isLaptop ",XF86MonBrightnessUp,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "brightness"
+                    "increase"
+                  ])
+                }")
+                (lib.mkIf isLaptop ",XF86MonBrightnessDown,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "brightness"
+                    "decrease"
+                  ])
+                }")
                 "SUPER ALT,h,resizeactive,-20 0"
                 "SUPER ALT,j,resizeactive,0 20"
                 "SUPER ALT,k,resizeactive,0 -20"
                 "SUPER ALT,l,resizeactive,20 0"
               ];
               bind = [
-                "CTRL ALT,L,exec,${hyprlock}"
-                ",print,exec,${screenshot}"
-                "SUPER,space,exec,${vicinae} toggle"
+                ",print,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "plugin:screen-shot-and-record"
+                    "screenshot"
+                  ])
+                }"
+                "SUPER,space,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "launcher"
+                    "toggle"
+                  ])
+                }"
+                "SUPER,V,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "plugin:clipboard"
+                    "toggle"
+                  ])
+                }"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"
                 "SUPER,B,exec,${getExe config.programs.firefox.package}"
@@ -156,6 +233,12 @@ _: {
                 "SUPER,R,togglesplit"
                 "SUPER,T,lockactivegroup,toggle"
                 "SUPER,Z,fullscreen"
+                "CTRL ALT,L,exec,${
+                  lib.concatStringsSep " " (noctalia [
+                    "lockScreen"
+                    "lock"
+                  ])
+                }"
               ]
               ++ mediaBinds
               ++ focusBinds
@@ -175,6 +258,7 @@ _: {
                 "XDG_CURRENT_DESKTOP,Hyprland"
                 "XDG_SESSION_DESKTOP,Hyprland"
                 "XDG_SESSION_TYPE,wayland"
+                "QT_ICON_THEME,Papirus-Dark"
               ]
               ++ lib.optionals (!isLaptop) [
                 "LIBVA_DRIVER_NAME,nvidia"
@@ -185,66 +269,6 @@ _: {
               ];
             };
           };
-        };
-
-      hypridle =
-        {
-          pkgs,
-          lib,
-          osConfig,
-          ...
-        }:
-        let
-          isLaptop = osConfig.machine.type == "laptop";
-          hyprlock = lib.getExe pkgs.hyprlock;
-          hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-          brightnessctl = lib.getExe pkgs.brightnessctl;
-          lock_cmd = "pidof ${hyprlock} || ${hyprlock}";
-        in
-        {
-          services.hypridle = {
-            enable = true;
-            settings = {
-              general = {
-                before_sleep_cmd = lock_cmd;
-                after_sleep_cmd = "${hyprctl} dispatch dpms on";
-                ignore_dbus_inhibit = false;
-                inherit lock_cmd;
-              };
-
-              listener = [
-                (lib.mkIf isLaptop {
-                  timeout = 290;
-                  on-timeout = "${brightnessctl} set 10%";
-                  on-resume = "${brightnessctl} --restore ";
-                })
-                {
-                  timeout = 300;
-                  on-timeout = "${lock_cmd}";
-                }
-                {
-                  timeout = 330;
-                  on-timeout = "${hyprctl} dispatch dpms off";
-                  on-resume = "${hyprctl} dispatch dpms on";
-                }
-              ];
-            };
-          };
-        };
-
-      hyprlock = {
-        programs.hyprlock.enable = true;
-      };
-
-      hyprpaper =
-        { lib, ... }:
-        {
-          services.hyprpaper = {
-            enable = true;
-            settings.splash = false;
-          };
-
-          systemd.user.services.hyprpaper.Service.RestartSec = lib.mkForce "2";
         };
     };
   };

@@ -30,6 +30,12 @@ in
           proto = "tcp";
         }
       ];
+      extraCommands = ''
+        iptables -t nat -A nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${localAddress}:2222
+      '';
+      extraStopCommands = ''
+        iptables -t nat -D nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${localAddress}:2222 2>/dev/null || true
+      '';
     };
 
     containers.dev = {
@@ -69,8 +75,14 @@ in
       };
 
       config =
-        { config, lib, ... }:
         {
+          config,
+          lib,
+          pkgs,
+          ...
+        }:
+        {
+          _module.args.localPackages = pkgs: import ../pkgs { inherit pkgs; };
           imports = [
             inputs.agenix.nixosModules.default
             inputs.home-manager.nixosModules.home-manager

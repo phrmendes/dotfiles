@@ -25,11 +25,6 @@
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
-            localPackages =
-              pkgs:
-              import ../pkgs {
-                inherit pkgs;
-              };
           };
           modules = [
             module
@@ -39,6 +34,7 @@
                   stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
                 })
               ];
+              _module.args.localPackages = pkgs: import ../pkgs { inherit pkgs; };
             }
           ];
         }

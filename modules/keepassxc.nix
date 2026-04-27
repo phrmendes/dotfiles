@@ -37,6 +37,7 @@ _: {
           Security = {
             ClearClipboardTimeout = 30;
             IconDownloadFallback = true;
+            LockDatabaseIdle = false;
           };
         }
       );

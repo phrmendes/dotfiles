@@ -61,23 +61,9 @@ just lint
 just rebuild
 ```
 
-Server automation checks:
-
-```sh
-sudo systemctl status git-pull.timer git-pull.service nixos-apply.service compose-sync.service
-```
-
 ## Troubleshooting
 
-If Tailscale fails due to TPM lockout:
-
-```sh
-sudo tpm2_dictionarylockout -c -T device:/dev/tpmrm0
-```
-
-### Boot recovery (dual boot overwrite)
-
-If another OS overwrites the NixOS bootloader, boot a NixOS live USB and run:
+### chroot into the system
 
 ```sh
 sudo cryptsetup luksOpen /dev/sdX2 crypted
@@ -88,7 +74,6 @@ sudo mount -t btrfs -o subvol=persist /dev/mapper/crypted /mnt/persist
 sudo mount /dev/sdX1 /mnt/boot
 sudo mount --bind /mnt/persist/etc /mnt/etc
 sudo nixos-enter
-NIXOS_INSTALL_BOOTLOADER=1 /nix/var/nix/profiles/system/bin/switch-to-configuration boot
 ```
 
 Replace `X` with your disk letter.

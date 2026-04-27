@@ -49,21 +49,14 @@ let
     zsh
   ];
   workstationModules = with homeManager.workstation; [
-    blueman
-    dunst
+    cliphist
     firefox
     gtk
-    hypridle
     hyprland
-    hyprlock
-    hyprpaper
     keepassxc
-    nm-applet
+    noctalia
     packages
-    swayosd
     udiskie
-    vicinae
-    waybar
     xdg
   ];
 in
@@ -75,6 +68,7 @@ in
           ly
           hyprland
           libvirtd
+          noctalia
           pam
           pipewire
           persistence
@@ -84,11 +78,11 @@ in
       };
 
       ly = {
+        environment.binsh = "/run/current-system/sw/bin/bash";
         services.displayManager.ly = {
           enable = true;
           settings.animation = "matrix";
         };
-        environment.binsh = "/run/current-system/sw/bin/bash";
       };
 
       pipewire = {
@@ -120,7 +114,6 @@ in
 
       pam = {
         security.pam.services = {
-          hyprlock.gnupg.enable = true;
           login.gnupg.enable = true;
         };
       };
@@ -156,69 +149,51 @@ in
           gtk = {
             enable = true;
             iconTheme = {
-              name = "Pop";
-              package = pkgs.pop-icon-theme;
+              name = "Papirus-Dark";
+              package = pkgs.papirus-icon-theme;
             };
           };
         };
 
-      blueman =
-        { pkgs, ... }:
-        {
-          home.packages = [ pkgs.blueman ];
-
-          xdg.autostart.entries = [
-            "${pkgs.blueman}/etc/xdg/autostart/blueman-applet.desktop"
-          ];
-        };
-
-      nm-applet =
-        { pkgs, ... }:
-        {
-          home.packages = [ pkgs.networkmanagerapplet ];
-
-          xdg.autostart.entries = [
-            "${pkgs.networkmanagerapplet}/etc/xdg/autostart/nm-applet.desktop"
-          ];
-        };
-
       packages =
-        { pkgs, localPackages, ... }:
+        { pkgs, ... }:
         {
-          home.packages =
-            with pkgs;
-            [
-              deluge-gtk
-              drawing
-              exiftool
-              ffmpeg
-              ffmpegthumbnailer
-              file-roller
-              filezilla
-              gcolor3
-              gdu
-              imagemagick
-              libqalculate
-              obs-studio
-              onlyoffice-desktopeditors
-              pandoc
-              pass
-              pavucontrol
-              phockup
-              poppler
-              proton-vpn
-              quarto
-              stremio-linux-shell
-              tectonic
-              terraform
-              thunar
-              tpm2-tools
-              ungoogled-chromium
-              vesktop
-              wl-clipboard
-              zotero
-            ]
-            ++ [ localPackages.screenshot ];
+          home.packages = with pkgs; [
+            deluge-gtk
+            drawing
+            exiftool
+            ffmpeg
+            ffmpegthumbnailer
+            file-roller
+            filezilla
+            gcolor3
+            gdu
+            imagemagick
+            libqalculate
+            obs-studio
+            onlyoffice-desktopeditors
+            pandoc
+            pass
+            pavucontrol
+            phockup
+            poppler
+            proton-vpn
+            quarto
+            stremio-linux-shell
+            tectonic
+            terraform
+            thunar
+            tpm2-tools
+            ungoogled-chromium
+            grim
+            satty
+            slurp
+            tesseract
+            vesktop
+            wl-clipboard
+            wf-recorder
+            zotero
+          ];
         };
 
       xdg = {
@@ -243,10 +218,6 @@ in
           };
 
         };
-      };
-
-      swayosd = {
-        services.swayosd.enable = true;
       };
 
       udiskie = {

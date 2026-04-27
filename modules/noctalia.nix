@@ -128,7 +128,7 @@
                   chevronColor = "none";
                   colorizeIcons = false;
                   drawerEnabled = true;
-                  hidePassive = false;
+                  hidePassive = true;
                 }
                 {
                   id = "SystemMonitor";

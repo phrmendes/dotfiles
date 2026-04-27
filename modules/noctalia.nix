@@ -1,11 +1,18 @@
 { inputs, ... }:
 {
   modules.homeManager.workstation.noctalia =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      osConfig,
+      ...
+    }:
     let
       c = config.lib.stylix.colors.withHashtag;
       force = lib.mkForce;
       pluginSourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+      isLaptop = osConfig.machine.type == "laptop";
+      primaryMonitor = osConfig.machine.monitors.primary.name;
     in
     {
       imports = [ inputs.noctalia.homeModules.default ];
@@ -67,7 +74,7 @@
             showCapsule = false;
             backgroundOpacity = 0.93;
             widgetSpacing = 0;
-            monitors = [ "HDMI-A-1" ];
+            monitors = [ primaryMonitor ];
             widgets = {
               left = [
                 {
@@ -158,8 +165,8 @@
                   displayMode = "graphic-clean";
                   hideIfIdle = false;
                   hideIfNotDetected = true;
-                  showNoctaliaPerformance = false;
-                  showPowerProfiles = false;
+                  showNoctaliaPerformance = isLaptop;
+                  showPowerProfiles = isLaptop;
                 }
                 {
                   id = "Clock";
@@ -186,11 +193,12 @@
           ui = {
             fontDefault = config.stylix.fonts.sansSerif.name;
             fontFixed = config.stylix.fonts.monospace.name;
+            fontSize = config.stylix.fonts.sizes.applications;
           };
           notifications = {
             enabled = true;
             density = "compact";
-            monitors = [ "HDMI-A-1" ];
+            monitors = [ primaryMonitor ];
           };
           dock.enabled = false;
           appLauncher = {

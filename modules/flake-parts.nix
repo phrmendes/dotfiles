@@ -29,6 +29,24 @@
         type = lib.types.str;
         default = "/home/phrmendes";
       };
+      lan = {
+        subnet = lib.mkOption {
+          type = lib.types.str;
+          default = "192.168.0.0/24";
+        };
+        interface = lib.mkOption {
+          type = lib.types.str;
+          default = "enp3s0";
+        };
+        containerHostAddress = lib.mkOption {
+          type = lib.types.str;
+          default = "10.250.0.1";
+        };
+        containerLocalAddress = lib.mkOption {
+          type = lib.types.str;
+          default = "10.250.0.2";
+        };
+      };
     };
 
     modules = lib.mkOption {

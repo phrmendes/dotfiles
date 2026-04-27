@@ -142,7 +142,7 @@ in
         extraSetFlags = [
           "--advertise-exit-node"
           "--accept-routes"
-          "--advertise-routes=192.168.0.0/24"
+          "--advertise-routes=${settings.lan.subnet}"
         ];
       };
     };

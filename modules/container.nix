@@ -3,8 +3,7 @@ let
   inherit (config) settings;
   inherit (config.modules) homeManager;
   inherit (config.modules.nixos) server core;
-  hostAddress = "10.250.0.1";
-  localAddress = "10.250.0.2";
+  lan = settings.lan;
 in
 {
   modules.nixos.server.container = _: {
@@ -22,26 +21,27 @@ in
     networking.nat = {
       enable = true;
       internalInterfaces = [ "ve-+" ];
-      externalInterface = "enp3s0";
+      externalInterface = lan.interface;
       forwardPorts = [
         {
           sourcePort = 2222;
-          destination = "${localAddress}:2222";
+          destination = "${lan.containerLocalAddress}:2222";
           proto = "tcp";
         }
       ];
       extraCommands = ''
-        iptables -t nat -A nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${localAddress}:2222
+        iptables -t nat -A nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${lan.containerLocalAddress}:2222
       '';
       extraStopCommands = ''
-        iptables -t nat -D nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${localAddress}:2222 2>/dev/null || true
+        iptables -t nat -D nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${lan.containerLocalAddress}:2222 2>/dev/null || true
       '';
     };
 
     containers.dev = {
       autoStart = true;
       privateNetwork = true;
-      inherit hostAddress localAddress;
+      hostAddress = lan.containerHostAddress;
+      localAddress = lan.containerLocalAddress;
 
       enableTun = true;
 
@@ -156,7 +156,7 @@ in
 
           networking = {
             useHostResolvConf = lib.mkForce false;
-            defaultGateway = hostAddress;
+            defaultGateway = lan.containerHostAddress;
           };
 
           services.resolved = {

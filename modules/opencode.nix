@@ -1,16 +1,26 @@
 _: {
   modules.homeManager.dev.opencode =
     { pkgs, osConfig, ... }:
-    {
-      home.sessionVariables = {
-        CHROME_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
-        GOOGLE_APPLICATION_CREDENTIALS = osConfig.age.secrets."claude-service-account.json".path;
-        GOOGLE_CLOUD_PROJECT = "rj-ia-desenvolvimento";
-        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true";
-        VERTEX_LOCATION = "us-east5";
+    let
+      opencode-wrapped = pkgs.symlinkJoin {
+        name = "opencode-wrapped";
+        paths = [ pkgs.opencode ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/opencode \
+            --set CHROME_PATH "${pkgs.ungoogled-chromium}/bin/chromium" \
+            --set GOOGLE_APPLICATION_CREDENTIALS "${
+              osConfig.age.secrets."claude-service-account.json".path
+            }" \
+            --set GOOGLE_CLOUD_PROJECT "rj-ia-desenvolvimento" \
+            --set PUPPETEER_SKIP_CHROMIUM_DOWNLOAD "true" \
+            --set VERTEX_LOCATION "us-east5"
+        '';
       };
-
+    in
+    {
       programs.opencode = {
+        package = opencode-wrapped;
         enable = true;
         enableMcpIntegration = true;
         settings = {

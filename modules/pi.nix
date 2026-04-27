@@ -2,10 +2,15 @@ _: {
   modules.homeManager.dev.pi =
     { pkgs, osConfig, ... }:
     let
-      pi-wrapped = pkgs.writeShellScriptBin "p" ''
-        export OPENCODE_API_KEY="$(cat ${osConfig.age.secrets."opencode.txt".path})"
-        exec ${pkgs.pi-coding-agent}/bin/pi "$@"
-      '';
+      pi-wrapped = pkgs.symlinkJoin {
+        name = "pi-wrapped";
+        paths = [ pkgs.pi-coding-agent ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/pi \
+            --run 'export OPENCODE_API_KEY="$(cat ${osConfig.age.secrets."opencode.txt".path})"'
+        '';
+      };
     in
     {
       home.packages = [ pi-wrapped ];

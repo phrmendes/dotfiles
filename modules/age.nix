@@ -23,6 +23,14 @@ in
 
     server.age = {
       imports = [ inputs.agenix.nixosModules.default ];
+      system.activationScripts.agenixCleanup = {
+        text = ''
+          if [ -d /var/lib/agenix ] && [ ! -L /var/lib/agenix ]; then
+            rm -rf /var/lib/agenix
+          fi
+        '';
+        deps = [ ];
+      };
       age = {
         secretsDir = "/var/lib/agenix";
         secretsMountPoint = "/var/lib/agenix.d";

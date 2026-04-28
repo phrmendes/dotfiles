@@ -59,9 +59,9 @@ _: {
               space.space = "file_picker";
               space.w = ":w";
               space.q = ":q";
-              space.y.f = ":clipboard-yank %{buffer_name}";
-              space.y.l = ":clipboard-yank %{buffer_name} L%{cursor_line}:C%{cursor_column}";
-              space.y.r = ":clipboard-yank %{buffer_name} L%{selection_line_start} - L%{selection_line_end}";
+              space.y.f = ":echo %sh{printf '%s' '%{buffer_name}' | tmux load-buffer - && tmux show-buffer}";
+              space.y.l = ":echo %sh{printf '%s L%s:C%s' '%{buffer_name}' '%{cursor_line}' '%{cursor_column}' | tmux load-buffer - && tmux show-buffer}";
+              space.y.r = ":echo %sh{printf '%s L%s - L%s' '%{buffer_name}' '%{selection_line_start}' '%{selection_line_end}' | tmux load-buffer - && tmux show-buffer}";
               "tab" = "goto_next_buffer";
               "S-tab" = "goto_previous_buffer";
             };

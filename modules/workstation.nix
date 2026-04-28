@@ -159,6 +159,7 @@ in
         { pkgs, ... }:
         {
           home.packages = with pkgs; [
+            android-tools
             deluge-gtk
             drawing
             exiftool

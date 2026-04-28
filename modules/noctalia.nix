@@ -2,6 +2,7 @@
 {
   modules.homeManager.workstation.noctalia =
     {
+      pkgs,
       config,
       lib,
       osConfig,
@@ -9,7 +10,6 @@
     }:
     let
       c = config.lib.stylix.colors.withHashtag;
-      force = lib.mkForce;
       pluginSourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
       isLaptop = osConfig.machine.type == "laptop";
       primaryMonitor = osConfig.machine.monitors.primary.name;
@@ -22,22 +22,22 @@
       programs.noctalia-shell = {
         enable = true;
         colors = {
-          mPrimary = force c.base0D;
-          mOnPrimary = force c.base00;
-          mSecondary = force c.base0C;
-          mOnSecondary = force c.base00;
-          mTertiary = force c.base0E;
-          mOnTertiary = force c.base00;
-          mError = force c.base08;
-          mOnError = force c.base00;
-          mSurface = force c.base00;
-          mOnSurface = force c.base05;
-          mHover = force c.base01;
-          mOnHover = force c.base06;
-          mSurfaceVariant = force c.base01;
-          mOnSurfaceVariant = force c.base04;
-          mOutline = force c.base03;
-          mShadow = force c.base00;
+          mPrimary = lib.mkForce c.base0D;
+          mOnPrimary = lib.mkForce c.base00;
+          mSecondary = lib.mkForce c.base0C;
+          mOnSecondary = lib.mkForce c.base00;
+          mTertiary = lib.mkForce c.base0E;
+          mOnTertiary = lib.mkForce c.base00;
+          mError = lib.mkForce c.base08;
+          mOnError = lib.mkForce c.base00;
+          mSurface = lib.mkForce c.base00;
+          mOnSurface = lib.mkForce c.base05;
+          mHover = lib.mkForce c.base01;
+          mOnHover = lib.mkForce c.base06;
+          mSurfaceVariant = lib.mkForce c.base01;
+          mOnSurfaceVariant = lib.mkForce c.base04;
+          mOutline = lib.mkForce c.base03;
+          mShadow = lib.mkForce c.base00;
         };
         plugins = {
           sources = [
@@ -205,7 +205,7 @@
           appLauncher = {
             iconMode = "tabler";
             density = "comfortable";
-            terminalCommand = "kitty -e";
+            terminalCommand = "${lib.getExe pkgs.kitty} -e";
             enableSettingsSearch = true;
           };
           idle = {

@@ -44,7 +44,7 @@ _: {
       localIni = pkgs.writeText "keepassxc-local.ini" (
         lib.generators.toINI { } {
           SSHAgent = {
-            AuthSockOverride = "/run/user/1000/ssh-agent";
+            AuthSockOverride = "/run/user/%U/ssh-agent";
             SecurityKeyProviderOverride = "";
           };
         }
@@ -77,8 +77,7 @@ _: {
           PartOf = [ "graphical-session.target" ];
         };
         Service = {
-          ExecStartPre = "${pkgs.coreutils}/bin/sleep 3";
-          ExecStart = "${pkgs.keepassxc}/bin/keepassxc --minimized";
+          ExecStart = "${lib.getExe pkgs.keepassxc} --minimized";
           Environment = [ "SSH_AUTH_SOCK=%t/ssh-agent" ];
           Restart = "on-failure";
         };

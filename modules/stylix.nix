@@ -2,6 +2,12 @@
 {
   modules.nixos.core.stylix =
     { pkgs, ... }:
+    let
+      firaFont = {
+        package = pkgs.fira;
+        name = "Fira Sans";
+      };
+    in
     {
       imports = [ inputs.stylix.nixosModules.stylix ];
       stylix = {
@@ -20,14 +26,8 @@
             applications = 12;
             terminal = 13;
           };
-          serif = {
-            package = pkgs.fira;
-            name = "Fira Sans";
-          };
-          sansSerif = {
-            package = pkgs.fira;
-            name = "Fira Sans";
-          };
+          serif = firaFont;
+          sansSerif = firaFont;
           monospace = {
             package = pkgs.nerd-fonts.meslo-lg;
             name = "MesloLGMDZ Nerd Font";

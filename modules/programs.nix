@@ -6,6 +6,9 @@ _: {
       lib,
       ...
     }:
+    let
+      isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
+    in
     {
       programs = {
         nano.enable = false;
@@ -25,11 +28,10 @@ _: {
         gnupg.agent = {
           enable = true;
           enableBrowserSocket = true;
-          pinentryPackage =
-            if config.machine.type == "server" then pkgs.pinentry-curses else pkgs.pinentry-gnome3;
+          pinentryPackage = if isWorkstation then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
         };
 
-        ssh = lib.mkIf (config.machine.type != "server") {
+        ssh = lib.mkIf isWorkstation {
           startAgent = true;
           askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
         };

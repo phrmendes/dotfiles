@@ -7,17 +7,21 @@ _: {
         lib,
         ...
       }:
+      let
+        isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
+        isNotContainer = config.machine.type != "container";
+      in
       {
         imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
         hardware = {
-          keyboard.qmk = lib.mkIf (config.machine.type != "server" && config.machine.type != "container") {
+          keyboard.qmk = lib.mkIf isWorkstation {
             enable = true;
           };
-          enableAllFirmware = lib.mkIf (config.machine.type != "container") true;
-          uinput.enable = lib.mkIf (config.machine.type != "container") true;
+          enableAllFirmware = isNotContainer;
+          uinput.enable = isNotContainer;
 
-          bluetooth = lib.mkIf (config.machine.type != "server" && config.machine.type != "container") {
+          bluetooth = lib.mkIf isWorkstation {
             enable = true;
             powerOnBoot = true;
             settings.Policy.AutoEnable = true;

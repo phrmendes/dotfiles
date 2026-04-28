@@ -16,7 +16,7 @@ in
       imports = coreImports ++ [ nixos.workstation.common ];
 
       networking.hostName = "laptop";
-      programs.nh.flake = "/home/${settings.user}/Projects/dotfiles";
+      programs.nh.flake = "${settings.home}/Projects/dotfiles";
 
       machine = {
         type = "laptop";

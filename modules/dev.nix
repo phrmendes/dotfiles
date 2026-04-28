@@ -175,7 +175,7 @@
           init.defaultBranch = "main";
           merge.tool = "nvimdiff";
           pull.rebase = true;
-          submodules.recurse = true;
+          submodule.recurse = true;
           push = {
             autoSetupRemote = true;
             recurseSubmodules = "on-demand";
@@ -292,61 +292,59 @@
       };
 
     k8s =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
+      let
+        logBatPlugin =
+          {
+            scopes,
+            extraArgs ? [ ],
+          }:
+          {
+            shortCut = "Shift-L";
+            description = "Logs (bat)";
+            inherit scopes;
+            command = "bash";
+            background = false;
+            args = [
+              "-c"
+              "\"$@\" | bat"
+              "dummy-arg"
+              "kubectl"
+              "logs"
+            ]
+            ++ extraArgs
+            ++ [
+              "-n"
+              "$NAMESPACE"
+              "--context"
+              "$CONTEXT"
+              "--kubeconfig"
+              "$KUBECONFIG"
+            ];
+          };
+      in
       {
         home.packages = with pkgs; [
           kubectl
           kubernetes-helm
         ];
 
-        programs.zsh.shellAliases.k = "${pkgs.kubectl}/bin/kubectl";
+        programs.zsh.shellAliases.k = lib.getExe pkgs.kubectl;
 
         programs.k9s = {
           enable = true;
           settings.k9s.refreshRate = 1;
           plugins = {
-            log-bat = {
-              shortCut = "Shift-L";
-              description = "Logs (bat)";
+            log-bat = logBatPlugin {
               scopes = [ "po" ];
-              command = "bash";
-              background = false;
-              args = [
-                "-c"
-                "\"$@\" | bat"
-                "dummy-arg"
-                "kubectl"
-                "logs"
-                "$NAME"
-                "-n"
-                "$NAMESPACE"
-                "--context"
-                "$CONTEXT"
-                "--kubeconfig"
-                "$KUBECONFIG"
-              ];
+              extraArgs = [ "$NAME" ];
             };
-            log-bat-container = {
-              shortCut = "Shift-L";
-              description = "Logs (bat)";
+            log-bat-container = logBatPlugin {
               scopes = [ "containers" ];
-              command = "bash";
-              background = false;
-              args = [
-                "-c"
-                "\"$@\" | bat"
-                "dummy-arg"
-                "kubectl"
-                "logs"
+              extraArgs = [
                 "-c"
                 "$NAME"
                 "$POD"
-                "-n"
-                "$NAMESPACE"
-                "--context"
-                "$CONTEXT"
-                "--kubeconfig"
-                "$KUBECONFIG"
               ];
             };
           };

@@ -3,6 +3,8 @@
   modules.homeManager.dev.zsh =
     { pkgs, lib, ... }:
     {
+      home.sessionPath = [ "$HOME/.local/bin" ];
+
       programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -25,15 +27,12 @@
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
           cat = lib.getExe pkgs.bat;
-          fs = lib.getExe pkgs.fselect;
           g = lib.getExe pkgs.git;
           ld = lib.getExe pkgs.lazydocker;
           lg = lib.getExe pkgs.lazygit;
           v = "nvim";
         };
         initContent = ''
-          export PATH="$HOME/.local/bin:$PATH"
-
           if [ -z "$DOCKER_HOST" ] && [ -n "$XDG_RUNTIME_DIR" ]; then
             export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
           fi

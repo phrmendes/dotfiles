@@ -4,22 +4,22 @@ let
 in
 {
   modules.nixos.core.home-manager =
-    { pkgs, localPackages, ... }:
+    { ... }:
     {
       imports = [ inputs.home-manager.nixosModules.home-manager ];
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "bak";
-        extraSpecialArgs = {
-          inherit inputs;
-          localPackages = localPackages pkgs;
-        };
+        extraSpecialArgs = { inherit inputs; };
       };
     };
 
   modules.homeManager.user.base =
     { lib, ... }:
+    let
+      editor = lib.mkOverride 1001 "nvim";
+    in
     {
       imports = [ inputs.nix-index-database.homeModules.default ];
 
@@ -31,7 +31,6 @@ in
           "server" = {
             hostname = "server.codlet-catfish.ts.net";
             user = settings.user;
-            port = 22;
           };
           "dev" = {
             hostname = "server.codlet-catfish.ts.net";
@@ -46,10 +45,10 @@ in
         username = settings.user;
         homeDirectory = settings.home;
         sessionVariables = {
-          EDITOR = lib.mkOverride 1001 "nvim";
-          GIT_EDITOR = lib.mkOverride 1001 "nvim";
-          SUDO_EDITOR = lib.mkOverride 1001 "nvim";
-          VISUAL = lib.mkOverride 1001 "nvim";
+          EDITOR = editor;
+          GIT_EDITOR = editor;
+          SUDO_EDITOR = editor;
+          VISUAL = editor;
         };
       };
     };

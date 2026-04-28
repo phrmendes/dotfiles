@@ -1,8 +1,10 @@
 _: {
   modules.homeManager.dev.helix =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     let
       hx-tmux-send = pkgs.callPackage ../pkgs/hx-tmux-send.nix { };
+      prettierCmd = lib.getExe pkgs.prettier;
+      sclsCmd = lib.getExe pkgs.simple-completion-language-server;
     in
     {
       programs.helix = {
@@ -77,7 +79,7 @@ _: {
         };
         languages = {
           language-server.scls = {
-            command = "${pkgs.simple-completion-language-server}/bin/simple-completion-language-server";
+            command = sclsCmd;
             config = {
               feature_words = false;
               feature_snippets = true;
@@ -158,7 +160,7 @@ _: {
                 "scls"
               ];
               formatter = {
-                command = "${pkgs.prettier}/bin/prettier";
+                command = prettierCmd;
                 args = [
                   "--parser"
                   "yaml"
@@ -173,7 +175,7 @@ _: {
                 "scls"
               ];
               formatter = {
-                command = "${pkgs.prettier}/bin/prettier";
+                command = prettierCmd;
                 args = [
                   "--parser"
                   "babel"
@@ -188,7 +190,7 @@ _: {
                 "scls"
               ];
               formatter = {
-                command = "${pkgs.prettier}/bin/prettier";
+                command = prettierCmd;
                 args = [
                   "--parser"
                   "typescript"
@@ -203,7 +205,7 @@ _: {
                 "scls"
               ];
               formatter = {
-                command = "${pkgs.prettier}/bin/prettier";
+                command = prettierCmd;
                 args = [
                   "--parser"
                   "babel"
@@ -218,7 +220,7 @@ _: {
                 "scls"
               ];
               formatter = {
-                command = "${pkgs.prettier}/bin/prettier";
+                command = prettierCmd;
                 args = [
                   "--parser"
                   "typescript"
@@ -231,7 +233,7 @@ _: {
               scope = "source.md";
               language-servers = [ "scls" ];
               formatter = {
-                command = "${pkgs.prettier}/bin/prettier";
+                command = prettierCmd;
                 args = [
                   "--parser"
                   "markdown"

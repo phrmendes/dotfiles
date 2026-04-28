@@ -29,6 +29,20 @@
         type = lib.types.str;
         default = "/home/phrmendes";
       };
+      gcp = {
+        project = lib.mkOption {
+          type = lib.types.str;
+          default = "rj-ia-desenvolvimento";
+        };
+        location = lib.mkOption {
+          type = lib.types.str;
+          default = "us-east5";
+        };
+      };
+      litellmPort = lib.mkOption {
+        type = lib.types.port;
+        default = 14141;
+      };
       lan = {
         subnet = lib.mkOption {
           type = lib.types.str;

@@ -20,7 +20,7 @@ let
     "Videos"
     "Zotero"
   ];
-  devModules = with homeManager.dev; [
+  baseDevModules = with homeManager.dev; [
     atuin
     bat
     btop
@@ -33,12 +33,9 @@ let
     git
     jq
     k8s
-    kitty
     lazydocker
     lazygit
-    neovim
     nix-index
-    opencode
     packages
     ripgrep
     starship
@@ -48,6 +45,13 @@ let
     zoxide
     zsh
   ];
+  devModules =
+    baseDevModules
+    ++ (with homeManager.dev; [
+      kitty
+      neovim
+      opencode
+    ]);
   workstationModules = with homeManager.workstation; [
     cliphist
     firefox
@@ -224,7 +228,6 @@ in
               "application/pdf" = "org.pwmt.zathura.desktop";
             };
           };
-
         };
       };
 

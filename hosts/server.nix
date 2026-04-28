@@ -7,7 +7,6 @@ in
 {
   configurations.nixos.server.module =
     {
-      pkgs,
       config,
       lib,
       ...
@@ -26,7 +25,7 @@ in
         ]);
 
       networking.hostName = "server";
-      programs.nh.flake = "/home/${settings.user}/dotfiles";
+      programs.nh.flake = "${settings.home}/dotfiles";
       machine.type = "server";
 
       disko.mainDiskDevice = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
@@ -36,13 +35,6 @@ in
       boot.kernelModules = [
         "ip_tables"
         "ip6_tables"
-      ];
-
-      environment.systemPackages = with pkgs; [
-        gh
-        just
-        neovim
-        python313
       ];
 
       home-manager.users.${settings.user} = {

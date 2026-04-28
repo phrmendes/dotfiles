@@ -36,6 +36,9 @@
           config,
           ...
         }:
+        let
+          isNotContainer = config.machine.type != "container";
+        in
         {
           environment.systemPackages =
             with pkgs;
@@ -67,7 +70,7 @@
               net-tools
               netstat
             ])
-            ++ lib.optionals (config.machine.type != "server") [
+            ++ lib.optionals isNotContainer [
               docker-credential-helpers
               libsecret
             ];

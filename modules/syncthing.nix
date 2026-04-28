@@ -1,5 +1,6 @@
 { config, ... }:
 let
+  inherit (config.settings) home;
   versioning = {
     simple = {
       type = "simple";
@@ -13,13 +14,22 @@ let
       params.cleanoutDays = "15";
     };
   };
+  workstations = [
+    "desktop"
+    "laptop"
+    "server"
+  ];
+  allDevices = workstations ++ [
+    "phone"
+    "tablet"
+  ];
 in
 {
   modules.nixos.workstation.syncthing = {
     services.syncthing = {
       inherit (config.settings) user;
       enable = true;
-      configDir = "${config.settings.home}/.config/syncthing";
+      configDir = "${home}/.config/syncthing";
       openDefaultPorts = true;
       overrideDevices = true;
       overrideFolders = true;
@@ -37,83 +47,44 @@ in
         };
         folders = {
           "documents" = {
-            path = "${config.settings.home}/Documents/documents";
+            path = "${home}/Documents/documents";
             versioning = versioning.trashcan;
-            devices = [
-              "desktop"
-              "laptop"
-              "server"
-            ];
+            devices = workstations;
           };
           "images" = {
-            path = "${config.settings.home}/Pictures/images";
+            path = "${home}/Pictures/images";
             versioning = versioning.trashcan;
-            devices = [
-              "desktop"
-              "laptop"
-              "server"
-            ];
+            devices = workstations;
           };
           "notes" = {
-            path = "${config.settings.home}/Documents/notes";
+            path = "${home}/Documents/notes";
             versioning = versioning.simple;
-            devices = [
-              "desktop"
-              "laptop"
-              "phone"
-              "server"
-              "tablet"
-            ];
+            devices = allDevices;
           };
           "ufabc" = {
-            path = "${config.settings.home}/Documents/ufabc";
+            path = "${home}/Documents/ufabc";
             versioning = versioning.trashcan;
-            devices = [
-              "desktop"
-              "laptop"
-              "server"
-              "tablet"
-            ];
+            devices = workstations ++ [ "tablet" ];
           };
           "collections" = {
-            path = "${config.settings.home}/Documents/collections";
+            path = "${home}/Documents/collections";
             versioning = versioning.trashcan;
-            devices = [
-              "server"
-              "desktop"
-              "laptop"
-            ];
+            devices = workstations;
           };
           "excalidraw" = {
-            path = "${config.settings.home}/Documents/excalidraw";
+            path = "${home}/Documents/excalidraw";
             versioning = versioning.trashcan;
-            devices = [
-              "server"
-              "desktop"
-              "laptop"
-            ];
+            devices = workstations;
           };
           "reading" = {
-            path = "${config.settings.home}/Documents/reading";
+            path = "${home}/Documents/reading";
             versioning = versioning.trashcan;
-            devices = [
-              "server"
-              "phone"
-              "desktop"
-              "laptop"
-              "tablet"
-            ];
+            devices = allDevices;
           };
           "keepassxc" = {
-            path = "${config.settings.home}/Documents/keepassxc";
+            path = "${home}/Documents/keepassxc";
             versioning = versioning.trashcan;
-            devices = [
-              "server"
-              "phone"
-              "desktop"
-              "laptop"
-              "tablet"
-            ];
+            devices = allDevices;
           };
         };
       };

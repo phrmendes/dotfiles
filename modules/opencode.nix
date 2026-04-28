@@ -1,4 +1,8 @@
-_: {
+{ config, ... }:
+let
+  inherit (config.settings) gcp;
+in
+{
   modules.homeManager.dev.opencode =
     { pkgs, osConfig, ... }:
     let
@@ -12,9 +16,9 @@ _: {
             --set GOOGLE_APPLICATION_CREDENTIALS "${
               osConfig.age.secrets."claude-service-account.json".path
             }" \
-            --set GOOGLE_CLOUD_PROJECT "rj-ia-desenvolvimento" \
+            --set GOOGLE_CLOUD_PROJECT "${gcp.project}" \
             --set PUPPETEER_SKIP_CHROMIUM_DOWNLOAD "true" \
-            --set VERTEX_LOCATION "us-east5"
+            --set VERTEX_LOCATION "${gcp.location}"
         '';
       };
     in

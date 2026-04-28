@@ -2,19 +2,19 @@ let
   main = builtins.readFile ../files/ssh-keys/main.txt;
   server = builtins.readFile ../files/ssh-keys/server.txt;
   laptop = builtins.readFile ../files/ssh-keys/laptop.txt;
-  all_keys = [
+  allKeys = [
     main
     server
     laptop
   ];
 in
 {
-  "claude-service-account.json.age".publicKeys = all_keys;
-  "docker-compose.env.age".publicKeys = all_keys;
-  "docker-config.json.age".publicKeys = all_keys;
-  "dozzle-users.yaml.age".publicKeys = all_keys;
-  "gh-hosts.yaml.age".publicKeys = all_keys;
-  "opencode.txt.age".publicKeys = all_keys;
-  "prunemate.json.age".publicKeys = all_keys;
-  "transmission.json.age".publicKeys = all_keys;
+  "claude-service-account.json.age".publicKeys = allKeys;
+  "docker-compose.env.age".publicKeys = allKeys;
+  "docker-config.json.age".publicKeys = allKeys;
+  "dozzle-users.yaml.age".publicKeys = allKeys;
+  "gh-hosts.yaml.age".publicKeys = allKeys;
+  "opencode.txt.age".publicKeys = allKeys;
+  "prunemate.json.age".publicKeys = allKeys;
+  "transmission.json.age".publicKeys = allKeys;
 }

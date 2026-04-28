@@ -6,16 +6,18 @@ _: {
       lib,
       ...
     }:
+    let
+      isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
+      isNotContainer = config.machine.type != "container";
+    in
     {
       services = {
         envfs.enable = true;
         fstrim.enable = true;
-        gvfs.enable = lib.mkIf (config.machine.type != "server" && config.machine.type != "container") true;
+        gvfs.enable = isWorkstation;
         ntpd-rs.enable = true;
-        udev.enable = lib.mkIf (config.machine.type != "container") true;
-        geoclue2.enable = lib.mkIf (
-          config.machine.type != "server" && config.machine.type != "container"
-        ) true;
+        udev.enable = isNotContainer;
+        geoclue2.enable = isWorkstation;
 
         gnome = {
           gnome-keyring.enable = false;
@@ -24,7 +26,7 @@ _: {
 
         journald.extraConfig = "SystemMaxUse=1G";
 
-        btrfs.autoScrub = lib.mkIf (config.machine.type != "container") {
+        btrfs.autoScrub = lib.mkIf isNotContainer {
           enable = true;
           interval = "monthly";
         };

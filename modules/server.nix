@@ -7,7 +7,7 @@ in
     automation =
       { pkgs, config, ... }:
       let
-        dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
+        dotfiles = "${settings.home}/dotfiles";
         rootJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/justfile";
         basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin:${pkgs.docker}/bin";
         dockerSocket = "/run/docker.sock";

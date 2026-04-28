@@ -1,11 +1,15 @@
-_: {
+{ config, ... }:
+let
+  inherit (config.settings) gcp litellmPort;
+in
+{
   modules.nixos.server.litellm =
     { pkgs, config, ... }:
     {
       systemd.services.litellm.environment = {
         GOOGLE_APPLICATION_CREDENTIALS = config.age.secrets."claude-service-account.json".path;
-        GOOGLE_CLOUD_PROJECT = "rj-ia-desenvolvimento";
-        VERTEXAI_LOCATION = "us-east5";
+        GOOGLE_CLOUD_PROJECT = gcp.project;
+        VERTEXAI_LOCATION = gcp.location;
       };
 
       services.litellm = {
@@ -29,7 +33,7 @@ _: {
           '';
         });
         host = "127.0.0.1";
-        port = 14141;
+        port = litellmPort;
         settings = {
           model_list = [
             {

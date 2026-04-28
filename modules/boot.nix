@@ -1,4 +1,10 @@
 { inputs, ... }:
+let
+  btrfsOpts = [
+    "compress=zstd"
+    "noatime"
+  ];
+in
 {
   modules.nixos.core = {
     disko =
@@ -36,27 +42,12 @@
                     type = "btrfs";
                     extraArgs = [ "-f" ];
                     subvolumes = {
-                      "/root" = {
-                        mountpoint = "/";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-                      "/nix" = {
-                        mountpoint = "/nix";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-                      "/persist" = {
-                        mountpoint = "/persist";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
+                      "/root".mountpoint = "/";
+                      "/root".mountOptions = btrfsOpts;
+                      "/nix".mountpoint = "/nix";
+                      "/nix".mountOptions = btrfsOpts;
+                      "/persist".mountpoint = "/persist";
+                      "/persist".mountOptions = btrfsOpts;
                     };
                   };
                 };
@@ -145,46 +136,31 @@
         system.stateVersion = "26.05";
       };
 
-    filesystems = {
-      fileSystems = {
-        "/boot" = {
-          device = "/dev/disk/by-partlabel/disk-main-ESP";
-          fsType = "vfat";
-          options = [
-            "defaults"
-            "umask=0077"
-          ];
-        };
-        "/" = {
+    filesystems =
+      let
+        btrfsMount = subvol: {
           device = "/dev/mapper/crypted";
           fsType = "btrfs";
-          options = [
-            "subvol=root"
-            "compress=zstd"
-            "noatime"
-          ];
+          options = [ "subvol=${subvol}" ] ++ btrfsOpts;
         };
-        "/nix" = {
-          device = "/dev/mapper/crypted";
-          fsType = "btrfs";
-          options = [
-            "subvol=nix"
-            "compress=zstd"
-            "noatime"
-          ];
-        };
-        "/persist" = {
-          device = "/dev/mapper/crypted";
-          fsType = "btrfs";
-          options = [
-            "subvol=persist"
-            "compress=zstd"
-            "noatime"
-          ];
-          neededForBoot = true;
+      in
+      {
+        fileSystems = {
+          "/boot" = {
+            device = "/dev/disk/by-partlabel/disk-main-ESP";
+            fsType = "vfat";
+            options = [
+              "defaults"
+              "umask=0077"
+            ];
+          };
+          "/" = btrfsMount "root";
+          "/nix" = btrfsMount "nix";
+          "/persist" = (btrfsMount "persist") // {
+            neededForBoot = true;
+          };
         };
       };
-    };
 
     swap = {
       swapDevices = [

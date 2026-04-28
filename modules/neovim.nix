@@ -8,8 +8,9 @@
       ...
     }:
     let
-      symlink = config.lib.file.mkOutOfStoreSymlink;
       inherit (config.lib.stylix.colors) withHashtag;
+      inherit (config.lib.file) mkOutOfStoreSymlink;
+      inherit (pkgs) runCommandLocal;
       base16-palette =
         withHashtag
         |> lib.filterAttrs (n: _: builtins.match "base0[0-9A-F]" n != null)
@@ -25,18 +26,17 @@
             source = "${inputs.vim-plugins}/${name}";
           }
         );
-      treesitter-parsers =
-        pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
-      treesitter-queries =
-        pkgs.runCommandLocal "nvim-treesitter-queries"
-          {
-            nativeBuildInputs = [ pkgs.lndir ];
-          }
-          ''
-            mkdir -p $out/queries
-            lndir -silent ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
-            lndir -silent ${pkgs.vimPlugins.nvim-treesitter-textobjects}/queries $out/queries
-          '';
+      treesitter = with pkgs.vimPlugins; rec {
+        deps = {
+          nativeBuildInputs = [ pkgs.lndir ];
+        };
+        parsers = nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
+        queries = runCommandLocal "nvim-treesitter-queries" deps ''
+          mkdir -p $out/queries
+          lndir -silent ${nvim-treesitter}/runtime/queries $out/queries
+          lndir -silent ${nvim-treesitter-textobjects}/queries $out/queries
+        '';
+      };
     in
     {
       programs.neovim = {
@@ -53,7 +53,7 @@
             pymupdf
             pyqt5
           ];
-        plugins = treesitter-parsers ++ [ treesitter-queries ];
+        plugins = treesitter.parsers ++ [ treesitter.queries ];
         extraPackages = with pkgs; [
           # language servers
           astro-language-server
@@ -96,7 +96,7 @@
 
       home.file = local-plugins // {
         ".config/nvim".source =
-          symlink "${config.home.homeDirectory}/Projects/dotfiles/files/neovim/config";
+          mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/files/neovim/config";
         ".local/share/nvim/site/lua/nix.lua".text = ''
           return {
               base16 = { palette = { ${base16-palette} } },
@@ -115,7 +115,7 @@
           };
           Service = {
             Type = "oneshot";
-            ExecStart = "${pkgs.coreutils}/bin/rm -f %h/.local/state/nvim/lsp.log";
+            ExecStart = "${lib.getExe' pkgs.coreutils "rm"} -f %h/.local/state/nvim/lsp.log";
           };
         };
 

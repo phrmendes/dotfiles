@@ -7,6 +7,7 @@ let
       "call"
     ]
     ++ cmd;
+  noctaliaExec = cmd: builtins.concatStringsSep " " (noctalia cmd);
 in
 {
   modules = {
@@ -117,10 +118,14 @@ in
                 force_default_wallpaper = 0;
                 disable_hyprland_logo = true;
               };
-              monitor = with monitors; [
-                "${primary.name},${primary.resolution},${primary.position},1"
-                (lib.mkIf (secondary != null) "${secondary.name},${secondary.resolution},${secondary.position},1")
-              ];
+              monitor =
+                with monitors;
+                [
+                  "${primary.name},${primary.resolution},${primary.position},1"
+                ]
+                ++ lib.optional (
+                  secondary != null
+                ) "${secondary.name},${secondary.resolution},${secondary.position},1";
               windowrule = [
                 "float on, opaque on, match:class (.blueman-manager-wrapped)"
                 "float on, stay_focused on, opaque on, match:class (org.pulseaudio.pavucontrol)"
@@ -164,41 +169,45 @@ in
               ];
               binde = [
                 ",XF86AudioRaiseVolume,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "volume"
                     "increase"
-                  ])
+                  ]
                 }"
                 ",XF86AudioLowerVolume,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "volume"
                     "decrease"
-                  ])
+                  ]
                 }"
                 ",XF86AudioMute,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "volume"
                     "muteOutput"
-                  ])
+                  ]
                 }"
                 ",XF86AudioMicMute,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "volume"
                     "muteInput"
-                  ])
+                  ]
                 }"
-                (lib.mkIf isLaptop ",XF86MonBrightnessUp,exec,${
-                  lib.concatStringsSep " " (noctalia [
+              ]
+              ++ lib.optionals isLaptop [
+                ",XF86MonBrightnessUp,exec,${
+                  noctaliaExec [
                     "brightness"
                     "increase"
-                  ])
-                }")
-                (lib.mkIf isLaptop ",XF86MonBrightnessDown,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  ]
+                }"
+                ",XF86MonBrightnessDown,exec,${
+                  noctaliaExec [
                     "brightness"
                     "decrease"
-                  ])
-                }")
+                  ]
+                }"
+              ]
+              ++ [
                 "SUPER ALT,h,resizeactive,-20 0"
                 "SUPER ALT,j,resizeactive,0 20"
                 "SUPER ALT,k,resizeactive,0 -20"
@@ -206,22 +215,22 @@ in
               ];
               bind = [
                 ",print,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "plugin:screen-shot-and-record"
                     "screenshot"
-                  ])
+                  ]
                 }"
                 "SUPER,space,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "launcher"
                     "toggle"
-                  ])
+                  ]
                 }"
                 "SUPER,V,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "plugin:clipboard"
                     "toggle"
-                  ])
+                  ]
                 }"
                 "SUPER,tab,changegroupactive,f"
                 "SUPER,return,exec,${getExe pkgs.kitty}"
@@ -234,10 +243,10 @@ in
                 "SUPER,T,lockactivegroup,toggle"
                 "SUPER,Z,fullscreen"
                 "CTRL ALT,L,exec,${
-                  lib.concatStringsSep " " (noctalia [
+                  noctaliaExec [
                     "lockScreen"
                     "lock"
-                  ])
+                  ]
                 }"
               ]
               ++ mediaBinds

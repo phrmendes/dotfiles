@@ -12,7 +12,7 @@ in
         ...
       }:
       let
-        isWorkstation = config.machine.type != "server";
+        isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
       in
       {
         users = {

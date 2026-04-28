@@ -4,6 +4,31 @@ let
   inherit (config.modules) homeManager;
   inherit (config.modules.nixos) server core;
   lan = settings.lan;
+  baseDevModules = with homeManager.dev; [
+    atuin
+    bat
+    btop
+    direnv
+    docker
+    eza
+    fd
+    fzf
+    gh
+    git
+    jq
+    k8s
+    lazydocker
+    lazygit
+    nix-index
+    packages
+    ripgrep
+    starship
+    tealdeer
+    tmux
+    yazi
+    zoxide
+    zsh
+  ];
 in
 {
   modules.nixos.server.container = _: {
@@ -29,12 +54,6 @@ in
           proto = "tcp";
         }
       ];
-      extraCommands = ''
-        iptables -t nat -A nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${lan.containerLocalAddress}:2222
-      '';
-      extraStopCommands = ''
-        iptables -t nat -D nixos-nat-pre -p tcp --dport 2222 -j DNAT --to-destination ${lan.containerLocalAddress}:2222 2>/dev/null || true
-      '';
     };
 
     containers.dev = {
@@ -75,12 +94,7 @@ in
       };
 
       config =
-        {
-          config,
-          lib,
-          pkgs,
-          ...
-        }:
+        { config, lib, ... }:
         {
           nixpkgs.overlays = [
             (final: prev: {
@@ -113,40 +127,16 @@ in
 
           home-manager.users.${settings.user}.imports =
             (with homeManager.user; [ base ])
+            ++ baseDevModules
             ++ (with homeManager.dev; [
-              atuin
-              bat
-              btop
-              direnv
-              docker
-              eza
-              fd
-              fzf
-              gh
-              git
               helix
-              jq
-              k8s
-              lazydocker
-              lazygit
-              nix-index
-              packages
               pi
-              ripgrep
-              starship
-              tealdeer
-              tmux
-              yazi
-              zoxide
-              zsh
             ]);
 
-          systemd.tmpfiles.rules = [
-            "L+ /home/${settings.user}/.docker/config.json - - - - ${
-              config.age.secrets."docker-config.json".path
-            }"
-            "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${config.age.secrets."gh-hosts.yaml".path}"
-            "L+ /home/${settings.user}/pi - - - - /mnt/external/pi"
+          systemd.tmpfiles.rules = with config.age; [
+            "L+ /home/${settings.user}/.docker/config.json - - - - ${secrets."docker-config.json".path}"
+            "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${secrets."gh-hosts.yaml".path}"
+            "L+ /home/${settings.user}/Projects - - - - /mnt/external/pi"
           ];
 
           home-manager.sharedModules = [
@@ -171,7 +161,7 @@ in
             };
           };
 
-          system.stateVersion = "25.11";
+          system.stateVersion = "26.05";
         };
     };
   };

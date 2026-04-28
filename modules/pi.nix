@@ -1,4 +1,8 @@
-_: {
+{ config, ... }:
+let
+  litellmPort = config.settings.litellmPort;
+in
+{
   modules.homeManager.dev.pi =
     { pkgs, osConfig, ... }:
     let
@@ -18,7 +22,7 @@ _: {
       home.file.".pi/agent/models.json".text = builtins.toJSON {
         providers.vertex-claude = {
           api = "anthropic-messages";
-          baseUrl = "http://127.0.0.1:14141";
+          baseUrl = "http://127.0.0.1:${toString litellmPort}";
           apiKey = "dummy";
           models = [
             {

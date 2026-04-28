@@ -130,6 +130,7 @@
                   drawerEnabled = true;
                   hidePassive = true;
                 }
+                { id = "KeepAwake"; }
                 {
                   id = "SystemMonitor";
                   compactMode = true;

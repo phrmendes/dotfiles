@@ -26,6 +26,7 @@ _: {
             cursorline = true;
             color-modes = true;
             scrolloff = 8;
+            bufferline = "multiple";
             cursor-shape = {
               insert = "bar";
               normal = "block";
@@ -61,6 +62,8 @@ _: {
               space.y.f = ":clipboard-yank %{buffer_name}";
               space.y.l = ":clipboard-yank %{buffer_name} L%{cursor_line}:C%{cursor_column}";
               space.y.r = ":clipboard-yank %{buffer_name} L%{selection_line_start} - L%{selection_line_end}";
+              "tab" = "goto_next_buffer";
+              "S-tab" = "goto_previous_buffer";
             };
             insert = {
               j.k = "normal_mode";

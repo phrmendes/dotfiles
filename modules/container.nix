@@ -82,7 +82,11 @@ in
           ...
         }:
         {
-          _module.args.localPackages = pkgs: import ../pkgs { inherit pkgs; };
+          nixpkgs.overlays = [
+            (final: prev: {
+              local = import ../pkgs { pkgs = prev; };
+            })
+          ];
           imports = [
             inputs.agenix.nixosModules.default
             inputs.home-manager.nixosModules.home-manager

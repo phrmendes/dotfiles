@@ -352,12 +352,5 @@
           };
         };
       };
-
-    yazi = {
-      programs.yazi = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-    };
   };
 }

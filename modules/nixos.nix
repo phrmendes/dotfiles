@@ -32,9 +32,9 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
+                  local = import ../pkgs { pkgs = prev; };
                 })
               ];
-              _module.args.localPackages = pkgs: import ../pkgs { inherit pkgs; };
             }
           ];
         }

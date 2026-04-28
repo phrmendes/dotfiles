@@ -4,10 +4,10 @@
   tmux,
 }:
 writeShellApplication {
-  name = "tt";
+  name = "t";
+  text = builtins.readFile ../files/scripts/t.sh;
   runtimeInputs = [
     fzf
     tmux
   ];
-  text = builtins.readFile ../files/scripts/tt.sh;
 }

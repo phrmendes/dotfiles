@@ -1,6 +1,9 @@
 _: {
   modules.homeManager.dev.helix =
     { pkgs, ... }:
+    let
+      hx-tmux-send = pkgs.callPackage ../pkgs/hx-tmux-send.nix { };
+    in
     {
       programs.helix = {
         enable = true;
@@ -18,6 +21,7 @@ _: {
           terraform-ls
           typescript-language-server
           yaml-language-server
+          hx-tmux-send
         ];
         settings = {
           editor = {
@@ -59,9 +63,9 @@ _: {
               space.space = "file_picker";
               space.w = ":w";
               space.q = ":q";
-              space.y.f = ":echo %sh{printf '%s' '%{buffer_name}' | tmux load-buffer - && tmux show-buffer}";
-              space.y.l = ":echo %sh{printf '%s L%s:C%s' '%{buffer_name}' '%{cursor_line}' '%{cursor_column}' | tmux load-buffer - && tmux show-buffer}";
-              space.y.r = ":echo %sh{printf '%s L%s - L%s' '%{buffer_name}' '%{selection_line_start}' '%{selection_line_end}' | tmux load-buffer - && tmux show-buffer}";
+              space.t.f = ":sh hx-tmux-send %{buffer_name}";
+              space.t.l = ":sh hx-tmux-send %{buffer_name} %{cursor_line}";
+              space.t.r = ":sh hx-tmux-send %{buffer_name} %{selection_line_start} %{selection_line_end}";
               "tab" = "goto_next_buffer";
               "S-tab" = "goto_previous_buffer";
             };

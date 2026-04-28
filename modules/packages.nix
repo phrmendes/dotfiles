@@ -2,7 +2,7 @@
 {
   modules = {
     homeManager.dev.packages =
-      { pkgs, localPackages, ... }:
+      { pkgs, ... }:
       {
         home.packages =
           with pkgs;
@@ -21,7 +21,7 @@
             sqlite
             uv
           ]
-          ++ builtins.attrValues localPackages;
+          ++ builtins.attrValues pkgs.local;
       };
 
     nixos.core = {

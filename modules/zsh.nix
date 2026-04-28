@@ -40,7 +40,8 @@
 
           set -o vi
 
-          source <(${pkgs.just}/bin/just --completions zsh)
+          _just_completion() { source <(JUST_COMPLETE=zsh ${pkgs.just}/bin/just) }
+          compdef _just_completion just
         '';
       };
     };

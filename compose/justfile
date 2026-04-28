@@ -1,4 +1,4 @@
-age_secrets_path := env("AGE_SECRETS_PATH", "/var/lib/agenix")
+age_secrets_path := env("AGE_SECRETS_PATH", "/run/agenix")
 compose_command := "docker compose --env-file=" + age_secrets_path + "/docker-compose.env"
 
 # Start all services

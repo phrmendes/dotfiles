@@ -23,25 +23,13 @@ in
 
     server.age = {
       imports = [ inputs.agenix.nixosModules.default ];
-      system.activationScripts.agenixCleanup = {
-        text = ''
-          if [ -d /var/lib/agenix ] && [ ! -L /var/lib/agenix ]; then
-            rm -rf /var/lib/agenix
-          fi
-        '';
-        deps = [ ];
-      };
-      age = {
-        secretsDir = "/var/lib/agenix";
-        secretsMountPoint = "/var/lib/agenix.d";
-        secrets = {
-          "docker-compose.env" = secret' ../secrets/docker-compose.env.age;
-          "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
-          "dozzle-users.yaml" = secret' ../secrets/dozzle-users.yaml.age;
-          "gh-hosts.yaml" = secret ../secrets/gh-hosts.yaml.age "0400";
-          "prunemate.json" = secret ../secrets/prunemate.json.age "0444";
-          "transmission.json" = secret' ../secrets/transmission.json.age;
-        };
+      age.secrets = {
+        "docker-compose.env" = secret' ../secrets/docker-compose.env.age;
+        "docker-config.json" = secret ../secrets/docker-config.json.age "0400";
+        "dozzle-users.yaml" = secret' ../secrets/dozzle-users.yaml.age;
+        "gh-hosts.yaml" = secret ../secrets/gh-hosts.yaml.age "0400";
+        "prunemate.json" = secret ../secrets/prunemate.json.age "0444";
+        "transmission.json" = secret' ../secrets/transmission.json.age;
       };
     };
   };

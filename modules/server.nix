@@ -10,8 +10,7 @@ in
         dotfiles = "${config.users.users.${settings.user}.home}/dotfiles";
         rootJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/justfile";
         basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin:${pkgs.docker}/bin";
-        uid = toString config.users.users.${settings.user}.uid;
-        dockerSocket = "/run/user/${uid}/docker.sock";
+        dockerSocket = "/run/docker.sock";
         dockerHost = "unix://${dockerSocket}";
         journalOutput = {
           StandardOutput = "journal";
@@ -38,13 +37,13 @@ in
             docker-compose = {
               description = "Docker Compose services";
               after = [
-                "user@${uid}.service"
+                "docker.service"
                 "network-online.target"
                 "systemd-sysctl.service"
                 "mnt-external.mount"
               ];
               wants = [
-                "user@${uid}.service"
+                "docker.service"
                 "network-online.target"
                 "systemd-sysctl.service"
                 "mnt-external.mount"
@@ -55,7 +54,7 @@ in
               serviceConfig = oneshotService // {
                 RemainAfterExit = true;
                 User = settings.user;
-                Group = "users";
+                Group = "docker";
                 WorkingDirectory = dotfiles;
                 ExecStartPre =
                   let

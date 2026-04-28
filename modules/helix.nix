@@ -16,6 +16,7 @@ _: {
           simple-completion-language-server
           taplo
           terraform-ls
+          typescript-language-server
           yaml-language-server
         ];
         settings = {
@@ -151,6 +152,66 @@ _: {
                 args = [
                   "--parser"
                   "yaml"
+                ];
+              };
+              auto-format = true;
+            }
+            {
+              name = "javascript";
+              language-servers = [
+                "typescript-language-server"
+                "scls"
+              ];
+              formatter = {
+                command = "${pkgs.prettier}/bin/prettier";
+                args = [
+                  "--parser"
+                  "babel"
+                ];
+              };
+              auto-format = true;
+            }
+            {
+              name = "typescript";
+              language-servers = [
+                "typescript-language-server"
+                "scls"
+              ];
+              formatter = {
+                command = "${pkgs.prettier}/bin/prettier";
+                args = [
+                  "--parser"
+                  "typescript"
+                ];
+              };
+              auto-format = true;
+            }
+            {
+              name = "jsx";
+              language-servers = [
+                "typescript-language-server"
+                "scls"
+              ];
+              formatter = {
+                command = "${pkgs.prettier}/bin/prettier";
+                args = [
+                  "--parser"
+                  "babel"
+                ];
+              };
+              auto-format = true;
+            }
+            {
+              name = "tsx";
+              language-servers = [
+                "typescript-language-server"
+                "scls"
+              ];
+              formatter = {
+                command = "${pkgs.prettier}/bin/prettier";
+                args = [
+                  "--parser"
+                  "typescript"
                 ];
               };
               auto-format = true;

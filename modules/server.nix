@@ -150,7 +150,10 @@ in
       fileSystems."/mnt/external" = {
         device = "/dev/disk/by-label/external";
         fsType = "ext4";
-        options = [ "noatime" ];
+        options = [
+          "defaults"
+          "noatime"
+        ];
       };
 
       systemd.tmpfiles.rules = [

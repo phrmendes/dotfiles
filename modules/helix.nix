@@ -58,6 +58,9 @@ _: {
               space.space = "file_picker";
               space.w = ":w";
               space.q = ":q";
+              space.y.f = ":clipboard-yank %{buffer_name}";
+              space.y.l = ":clipboard-yank %{buffer_name} L%{cursor_line}:C%{cursor_column}";
+              space.y.r = ":clipboard-yank %{buffer_name} L%{selection_line_start} - L%{selection_line_end}";
             };
             insert = {
               j.k = "normal_mode";

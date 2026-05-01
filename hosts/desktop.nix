@@ -2,13 +2,24 @@
 let
   inherit (config.modules) nixos homeManager;
   inherit (config) settings;
-  coreImports = import ./imports.nix { inherit nixos; };
 in
 {
   configurations.nixos.desktop.module =
     { config, lib, ... }:
     {
-      imports = coreImports ++ [ nixos.workstation.common ];
+      imports =
+        builtins.attrValues nixos.core
+        ++ (with nixos.workstation; [
+          hyprland
+          libvirtd
+          ly
+          noctalia
+          pam
+          persistence
+          pipewire
+          syncthing
+          xdg-portal
+        ]);
 
       networking.hostName = "desktop";
       programs.nh.flake = "${settings.home}/Projects/dotfiles";
@@ -63,6 +74,52 @@ in
 
       services.xserver.videoDrivers = [ "nvidia" ];
 
-      home-manager.users.${settings.user}.imports = [ homeManager.workstation.common ];
+      home-manager.users.${settings.user}.imports =
+        (with homeManager.user; [
+          base
+          symlinks
+        ])
+        ++ (with homeManager.dev; [
+          atuin
+          bat
+          btop
+          direnv
+          docker
+          eza
+          fd
+          fzf
+          gh
+          git
+          jq
+          k8s
+          kitty
+          lazydocker
+          lazygit
+          neovim
+          nix-index
+          opencode
+          packages
+          ripgrep
+          starship
+          tealdeer
+          tmux
+          yazi
+          zoxide
+          zsh
+        ])
+        ++ (with homeManager.workstation; [
+          cliphist
+          firefox
+          gtk
+          hyprland
+          imv
+          keepassxc
+          mpv
+          noctalia
+          packages
+          udiskie
+          xdg
+          zathura
+        ]);
     };
 }

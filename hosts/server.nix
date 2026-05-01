@@ -2,7 +2,6 @@
 let
   inherit (config.modules) nixos homeManager;
   inherit (config) settings;
-  coreImports = import ./imports.nix { inherit nixos; };
 in
 {
   configurations.nixos.server.module =
@@ -13,14 +12,14 @@ in
     }:
     {
       imports =
-        coreImports
+        builtins.attrValues nixos.core
         ++ (with nixos.server; [
+          age
           automation
           container
           filesystems
           networking
           persistence
-          age
           tailscale
         ]);
 
@@ -37,24 +36,22 @@ in
         "ip6_tables"
       ];
 
-      home-manager.users.${settings.user} = {
-        imports =
-          (with homeManager.user; [
-            base
-          ])
-          ++ (with homeManager.dev; [
-            bat
-            btop
-            fd
-            fzf
-            git
-            helix
-            jq
-            packages
-            ripgrep
-            zoxide
-            zsh
-          ]);
-      };
+      home-manager.users.${settings.user}.imports =
+        (with homeManager.user; [
+          base
+        ])
+        ++ (with homeManager.dev; [
+          bat
+          btop
+          fd
+          fzf
+          git
+          helix
+          jq
+          packages
+          ripgrep
+          zoxide
+          zsh
+        ]);
     };
 }

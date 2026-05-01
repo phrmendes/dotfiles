@@ -14,10 +14,6 @@
       {
         formatter = pkgs.nixfmt;
       };
-
-    settings.maasEndpoint =
-      region:
-      "https://aiplatform.googleapis.com/v1/projects/${config.settings.gcp.project}/locations/${region}/endpoints/openapi";
   };
 
   options = {
@@ -36,7 +32,11 @@
       };
       home = lib.mkOption {
         type = lib.types.str;
-        default = "/home/phrmendes";
+        default = "/home/${config.settings.user}";
+      };
+      stateVersion = lib.mkOption {
+        type = lib.types.str;
+        default = "26.05";
       };
       gcp = {
         project = lib.mkOption {
@@ -47,15 +47,17 @@
           type = lib.types.str;
           default = "us-east5";
         };
+        maasEndpoint = lib.mkOption {
+          type = lib.types.functionTo lib.types.str;
+          default =
+            region:
+            "https://aiplatform.googleapis.com/v1/projects/${config.settings.gcp.project}/locations/${region}/endpoints/openapi";
+          readOnly = true;
+        };
       };
       litellmPort = lib.mkOption {
         type = lib.types.port;
         default = 14141;
-      };
-      maasEndpoint = lib.mkOption {
-        type = lib.types.functionTo lib.types.str;
-        readOnly = true;
-        description = "Function from region string to Vertex MaaS OpenAPI base URL.";
       };
       lan = {
         subnet = lib.mkOption {

@@ -1,0 +1,23 @@
+_: {
+  modules.homeManager.workstation.xdg = {
+    xdg = {
+      enable = true;
+      autostart.enable = true;
+      mime.enable = true;
+
+      configFile."mimeapps.list".force = true;
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "audio/*" = "mpv.desktop";
+          "image/*" = "imv.desktop";
+          "video/*" = "mpv.desktop";
+          "text/*" = "nvim.desktop";
+          "x-scheme-handler/terminal" = "kitty.desktop";
+          "application/x-terminal-emulator" = "kitty.desktop";
+          "application/pdf" = "org.pwmt.zathura.desktop";
+        };
+      };
+    };
+  };
+}

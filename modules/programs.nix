@@ -7,7 +7,7 @@ _: {
       ...
     }:
     let
-      isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
+      inherit (config.machine) isWorkstation;
     in
     {
       programs = {

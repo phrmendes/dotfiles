@@ -1,6 +1,6 @@
 _: {
   modules.nixos.core.machine =
-    { lib, ... }:
+    { lib, config, ... }:
     let
       monitorSubmodule = lib.types.submodule {
         options = {
@@ -11,6 +11,16 @@ _: {
           resolution = lib.mkOption {
             type = lib.types.str;
             description = "Monitor resolution (e.g. 1920x1080).";
+          };
+          refreshRate = lib.mkOption {
+            type = lib.types.int;
+            default = 60;
+            description = "Monitor refresh rate in Hz.";
+          };
+          scale = lib.mkOption {
+            type = lib.types.float;
+            default = 1.0;
+            description = "Monitor HiDPI scale factor.";
           };
           position = lib.mkOption {
             type = lib.types.str;
@@ -30,6 +40,11 @@ _: {
           ];
           description = "The machine type, used to select appropriate modules and settings.";
         };
+        isWorkstation = lib.mkOption {
+          type = lib.types.bool;
+          readOnly = true;
+          description = "True when the machine type is desktop or laptop.";
+        };
         monitors = {
           primary = lib.mkOption {
             type = monitorSubmodule;
@@ -47,5 +62,7 @@ _: {
           };
         };
       };
+
+      config.machine.isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
     };
 }

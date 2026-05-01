@@ -66,11 +66,11 @@ in
                   in
                   [
                     "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'"
-                    "${pkgs.bash}/bin/bash -c 'until ${secretChecks}; do sleep 1; done'"
+                    "${pkgs.bash}/bin/bash -c 'deadline=$((SECONDS+60)); until ${secretChecks}; do [ $SECONDS -lt $deadline ] || { echo \"Timed out waiting for age secrets\" >&2; exit 1; }; sleep 1; done'"
                   ];
                 ExecStart = "${rootJust} compose::up";
                 ExecStop = "${rootJust} compose::down";
-                TimeoutStartSec = 0;
+                TimeoutStartSec = 120;
                 TimeoutStopSec = 300;
                 Environment = [
                   "PATH=${basePath}"

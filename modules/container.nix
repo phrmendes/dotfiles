@@ -4,31 +4,6 @@ let
   inherit (config.modules) homeManager;
   inherit (config.modules.nixos) server core;
   lan = settings.lan;
-  baseDevModules = with homeManager.dev; [
-    atuin
-    bat
-    btop
-    direnv
-    docker
-    eza
-    fd
-    fzf
-    gh
-    git
-    jq
-    k8s
-    lazydocker
-    lazygit
-    nix-index
-    packages
-    ripgrep
-    starship
-    tealdeer
-    tmux
-    yazi
-    zoxide
-    zsh
-  ];
 in
 {
   modules.nixos.server.container = _: {
@@ -110,6 +85,7 @@ in
             core.nix-settings
             core.nixpkgs
             core.programs
+            core.resolved
             core.security
             core.services
             core.stylix
@@ -126,9 +102,11 @@ in
           services.openssh.ports = [ 2222 ];
 
           home-manager.users.${settings.user}.imports =
-            (with homeManager.user; [ base ])
-            ++ baseDevModules
+            (with homeManager.user; [
+              base
+            ])
             ++ (with homeManager.dev; [
+              common
               helix
               pi
             ]);
@@ -151,14 +129,6 @@ in
           networking = {
             useHostResolvConf = lib.mkForce false;
             defaultGateway = lan.containerHostAddress;
-          };
-
-          services.resolved = {
-            enable = true;
-            settings.Resolve = {
-              DNSSEC = "false";
-              LLMNR = "false";
-            };
           };
 
           system.stateVersion = "26.05";

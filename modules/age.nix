@@ -15,7 +15,7 @@ in
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
-          "claude-service-account.json" = secret ../secrets/claude-service-account.json.age "0444";
+          "claude-service-account.json" = secret' ../secrets/claude-service-account.json.age;
           "opencode.txt" = secret' ../secrets/opencode.txt.age;
         };
       };

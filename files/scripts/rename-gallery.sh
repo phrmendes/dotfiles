@@ -5,8 +5,8 @@ set -euo pipefail
 SCRIPT_NAME="$(basename "$0")"
 readonly SCRIPT_NAME
 
-readonly PHOTO_EXIF_FIELDS="-DateTimeOriginal -SubSecTimeOriginal"
-readonly VIDEO_EXIF_FIELDS="-DateTimeOriginal -CreateDate -MediaCreateDate"
+readonly -a PHOTO_EXIF_FIELDS=("-DateTimeOriginal" "-SubSecTimeOriginal")
+readonly -a VIDEO_EXIF_FIELDS=("-DateTimeOriginal" "-CreateDate" "-MediaCreateDate")
 readonly FILE_DATE_FIELD="-FileModifyDate"
 readonly DEFAULT_SUBSEC="000"
 readonly TARGET_PHOTO_EXT="jpg"
@@ -115,14 +115,14 @@ get_file_type() {
 }
 
 extract_photo_metadata() {
-	exiftool -T "$PHOTO_EXIF_FIELDS" "$1" 2>/dev/null || echo "- -"
+	exiftool -T "${PHOTO_EXIF_FIELDS[@]}" "$1" 2>/dev/null || echo "- -"
 }
 
 extract_video_metadata() {
 	local file="$1"
 	local datetime
 
-	for field in -DateTimeOriginal -CreateDate -MediaCreateDate; do
+	for field in "${VIDEO_EXIF_FIELDS[@]}"; do
 		datetime=$(exiftool -T "$field" "$file" 2>/dev/null || echo "-")
 		[[ $datetime != "-" ]] && {
 			echo "$datetime|-"
@@ -406,7 +406,8 @@ export -f execute_conversion execute_rename perform_conversion convert_photo con
 export -f needs_conversion is_photo is_video has_subseconds
 export -f format_datetime get_target_extension extract_subseconds get_datetime_from_metadata
 export -f find_media_files count_media_files
-export DEFAULT_SUBSEC PHOTO_EXIF_FIELDS VIDEO_EXIF_FIELDS FILE_DATE_FIELD
+export DEFAULT_SUBSEC FILE_DATE_FIELD
+export -a PHOTO_EXIF_FIELDS VIDEO_EXIF_FIELDS
 export TARGET_PHOTO_EXT TARGET_VIDEO_EXT PHOTO_QUALITY PHOTO_TYPE VIDEO_TYPE TARGET_DIR
 
 main "$@"

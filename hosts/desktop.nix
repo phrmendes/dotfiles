@@ -36,10 +36,14 @@ in
         "snd-aloop"
       ];
 
-      boot.kernelParams = [
-        "boot.shell_on_fail"
-        "video=HDMI-A-1:2560x1080@60"
-      ];
+      boot.kernelParams =
+        let
+          m = config.machine.monitors.primary;
+        in
+        [
+          "boot.shell_on_fail"
+          "video=${m.name}:${m.resolution}@${toString m.refreshRate}"
+        ];
 
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;

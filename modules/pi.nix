@@ -1,16 +1,12 @@
 { config, ... }:
 let
-  inherit (config.settings) gcp;
+  inherit (config.settings) maasEndpoint;
   litellmPort = config.settings.litellmPort;
 in
 {
   modules.homeManager.dev.pi =
     { pkgs, osConfig, ... }:
     let
-      maasEndpoint =
-        region:
-        "https://aiplatform.googleapis.com/v1/projects/${gcp.project}/locations/${region}/endpoints/openapi";
-
       pi-wrapped = pkgs.writeShellApplication {
         name = "pi";
         runtimeInputs = [

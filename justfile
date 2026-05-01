@@ -4,11 +4,11 @@ dotfiles_dir := justfile_directory()
 state_file := "/run/sync/state"
 
 # Run nixos-rebuild switch for this host
-rebuild:
+rebuild-local:
     sudo nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
 
-# Remotely rebuild a NixOS host from the desktop (usage: just deploy server)
-deploy host:
+# Remotely rebuild a NixOS host from the desktop (usage: just rebuild-remote server)
+rebuild-remote host:
     nixos-rebuild switch --flake "{{ dotfiles_dir }}#{{ host }}" --target-host "phrmendes@{{ host }}" --sudo
 
 # Format all Nix files using flake formatter
@@ -21,6 +21,8 @@ hooks:
 
 # Pull latest repo changes and record revision window (server-side)
 pull:
+    #!/usr/bin/env bash
+    set -euo pipefail
     prev=$(git -C {{ dotfiles_dir }} rev-parse HEAD)
     git -C {{ dotfiles_dir }} pull --ff-only --quiet
     next=$(git -C {{ dotfiles_dir }} rev-parse HEAD)
@@ -37,10 +39,13 @@ sync:
 
     changed=$(git -C {{ dotfiles_dir }} diff --name-only "$PREV" "$NEXT")
 
-    if echo "$changed" | grep -qE '^(hosts|modules|files|secrets|flake\.nix|flake\.lock)'; then
+    nixos_patterns='^(hosts|modules|files|secrets|flake\.nix|flake\.lock)'
+    compose_patterns='^(secrets/|compose/(docker-compose\.yaml|services/))'
+
+    if echo "$changed" | grep -qE "$nixos_patterns"; then
         echo "NixOS config changed — rebuilding..."
         nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
-    elif echo "$changed" | grep -qE '^(secrets/|compose/(docker-compose\.yaml|services/))'; then
+    elif echo "$changed" | grep -qE "$compose_patterns"; then
         echo "Compose files changed — reloading..."
         just compose::reload
     else

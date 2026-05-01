@@ -1,3 +1,5 @@
+local hostname = vim.trim(vim.fn.system("hostname"))
+
 return {
   settings = {
     nixd = {
@@ -6,7 +8,7 @@ return {
       },
       options = {
         nixos = {
-          expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.desktop.options',
+          expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.' .. hostname .. ".options",
         },
       },
     },

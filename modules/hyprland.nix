@@ -8,6 +8,15 @@ let
     ]
     ++ cmd;
   noctaliaExec = cmd: builtins.concatStringsSep " " (noctalia cmd);
+  directionalBinds = modifiers: action: [
+    "${modifiers}H,${action},l"
+    "${modifiers}J,${action},d"
+    "${modifiers}K,${action},u"
+    "${modifiers}L,${action},r"
+  ];
+  workspaceBinds =
+    modifiers: action: ws:
+    ws |> map (x: "${modifiers}${toString x},${action},${toString x}");
 in
 {
   modules = {
@@ -42,18 +51,8 @@ in
             ",XF86AudioPrev,exec,${playerctl} previous"
             ",XF86AudioNext,exec,${playerctl} next"
           ];
-          focusBinds = [
-            "SUPER,H,movefocus,l"
-            "SUPER,J,movefocus,d"
-            "SUPER,K,movefocus,u"
-            "SUPER,L,movefocus,r"
-          ];
-          moveBinds = [
-            "SUPER SHIFT,H,movewindoworgroup,l"
-            "SUPER SHIFT,J,movewindoworgroup,d"
-            "SUPER SHIFT,K,movewindoworgroup,u"
-            "SUPER SHIFT,L,movewindoworgroup,r"
-          ];
+          focusBinds = directionalBinds "SUPER," "movefocus";
+          moveBinds = directionalBinds "SUPER SHIFT," "movewindoworgroup";
           workspaceCycleBinds = [
             "SUPER CTRL,H,workspace,r-1"
             "SUPER CTRL,L,workspace,r+1"
@@ -61,9 +60,9 @@ in
             "SUPER SHIFT CTRL,L,movetoworkspace,r+1"
           ];
           workspace = {
-            move = ws |> map (x: "SUPER SHIFT, ${toString x}, movetoworkspace, ${toString x}");
-            switch = ws |> map (x: "SUPER, ${toString x}, workspace, ${toString x}");
-            moveSilent = ws |> map (x: "SUPER SHIFT CTRL, ${toString x}, movetoworkspacesilent, ${toString x}");
+            move = workspaceBinds "SUPER SHIFT," "movetoworkspace" ws;
+            switch = workspaceBinds "SUPER," "workspace" ws;
+            moveSilent = workspaceBinds "SUPER SHIFT CTRL," "movetoworkspacesilent" ws;
           };
         in
         {
@@ -120,12 +119,11 @@ in
               };
               monitor =
                 with monitors;
-                [
-                  "${primary.name},${primary.resolution},${primary.position},1"
-                ]
-                ++ lib.optional (
-                  secondary != null
-                ) "${secondary.name},${secondary.resolution},${secondary.position},1";
+                let
+                  monitorStr =
+                    m: "${m.name},${m.resolution}@${toString m.refreshRate},${m.position},${toString m.scale}";
+                in
+                [ (monitorStr primary) ] ++ lib.optional (secondary != null) (monitorStr secondary);
               windowrule = [
                 "float on, opaque on, match:class (.blueman-manager-wrapped)"
                 "float on, stay_focused on, opaque on, match:class (org.pulseaudio.pavucontrol)"

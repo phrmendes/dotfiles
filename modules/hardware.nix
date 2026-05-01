@@ -8,7 +8,7 @@ _: {
         ...
       }:
       let
-        isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
+        inherit (config.machine) isWorkstation;
         isNotContainer = config.machine.type != "container";
       in
       {
@@ -40,9 +40,9 @@ _: {
       i18n = {
         defaultLocale = "en_US.UTF-8";
         extraLocaleSettings = {
-          LC_MONETARY = "pt_BR.UTF8";
-          LC_MEASUREMENT = "pt_BR.UTF8";
-          LC_NUMERIC = "pt_BR.UTF8";
+          LC_MONETARY = "pt_BR.UTF-8";
+          LC_MEASUREMENT = "pt_BR.UTF-8";
+          LC_NUMERIC = "pt_BR.UTF-8";
         };
       };
     };

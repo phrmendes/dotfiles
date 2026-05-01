@@ -46,8 +46,6 @@ in
         '';
       };
 
-      environment.systemPackages = [ pkgs.powertop ];
-
       powerManagement = {
         enable = true;
         powertop.enable = true;

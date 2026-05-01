@@ -12,7 +12,7 @@ in
         ...
       }:
       let
-        isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
+        inherit (config.machine) isWorkstation;
       in
       {
         users = {
@@ -21,7 +21,7 @@ in
             ${settings.user} = {
               home = settings.home;
               shell = pkgs.zsh;
-              initialPassword = "password";
+              password = "changeme";
               openssh.authorizedKeys.keys = [
                 (builtins.readFile ../files/ssh-keys/main.txt)
                 (builtins.readFile ../files/ssh-keys/phone.txt)

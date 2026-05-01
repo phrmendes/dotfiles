@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  inherit (config.modules.homeManager) dev;
+in
 {
   modules.homeManager.dev = {
     bat =
@@ -350,5 +353,33 @@
           };
         };
       };
+
+    common = _: {
+      imports = with dev; [
+        atuin
+        bat
+        btop
+        direnv
+        docker
+        eza
+        fd
+        fzf
+        gh
+        git
+        jq
+        k8s
+        lazydocker
+        lazygit
+        nix-index
+        packages
+        ripgrep
+        starship
+        tealdeer
+        tmux
+        yazi
+        zoxide
+        zsh
+      ];
+    };
   };
 }

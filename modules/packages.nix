@@ -13,6 +13,7 @@
             jdk
             jqp
             just
+            lima
             nix-prefetch-github
             nodejs_latest
             parallel
@@ -20,6 +21,9 @@
             python314
             sqlite
             uv
+            (google-cloud-sdk.withExtraComponents (
+              with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
+            ))
           ]
           ++ builtins.attrValues pkgs.local;
       };

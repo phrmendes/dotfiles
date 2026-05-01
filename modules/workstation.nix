@@ -20,38 +20,12 @@ let
     "Videos"
     "Zotero"
   ];
-  baseDevModules = with homeManager.dev; [
-    atuin
-    bat
-    btop
-    direnv
-    docker
-    eza
-    fd
-    fzf
-    gh
-    git
-    jq
-    k8s
-    lazydocker
-    lazygit
-    nix-index
-    packages
-    ripgrep
-    starship
-    tealdeer
-    tmux
-    yazi
-    zoxide
-    zsh
+  devModules = with homeManager.dev; [
+    common
+    kitty
+    neovim
+    opencode
   ];
-  devModules =
-    baseDevModules
-    ++ (with homeManager.dev; [
-      kitty
-      neovim
-      opencode
-    ]);
   workstationModules = with homeManager.workstation; [
     cliphist
     firefox
@@ -222,7 +196,6 @@ in
               "image/*" = "imv.desktop";
               "video/*" = "mpv.desktop";
               "text/*" = "nvim.desktop";
-              "text/plain" = "nvim-qt.desktop";
               "x-scheme-handler/terminal" = "kitty.desktop";
               "application/x-terminal-emulator" = "kitty.desktop";
               "application/pdf" = "org.pwmt.zathura.desktop";

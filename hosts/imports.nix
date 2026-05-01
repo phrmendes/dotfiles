@@ -14,6 +14,7 @@ let
     nixpkgs
     machine
     programs
+    resolved
     security
     services
     stylix
@@ -37,6 +38,7 @@ in
   nixpkgs
   machine
   programs
+  resolved
   security
   services
   stylix

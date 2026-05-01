@@ -15,5 +15,6 @@ services:
       - 7359:7359/udp
     labels:
       - diun.enable=true
+
 volumes:
   jellyfin_data:

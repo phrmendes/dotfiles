@@ -14,5 +14,6 @@ services:
       - /mnt/external/movies:/movies
     labels:
       - diun.enable=true
+
 volumes:
   bazarr_config:

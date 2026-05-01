@@ -13,8 +13,10 @@ services:
       - PRUNEMATE_TIME_24H=true
     labels:
       - diun.enable=true
+
 volumes:
   prunemate_logs:
+
 secrets:
   prunemate:
     file: ${AGE_SECRETS_PATH}/prunemate.json

@@ -20,5 +20,6 @@ services:
     depends_on:
       socket-proxy:
         condition: service_healthy
+
 volumes:
   diun_data:

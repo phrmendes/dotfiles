@@ -16,6 +16,7 @@ services:
     depends_on:
       socket-proxy:
         condition: service_healthy
+
 secrets:
   users:
     file: ${AGE_SECRETS_PATH}/dozzle-users.yaml

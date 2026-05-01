@@ -1,0 +1,29 @@
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:v2
+    restart: always
+    command: start --log info --user root --pass root rocksdb:/opt/surrealdb/data.db
+    user: root
+    volumes:
+      - surreal_data:/opt/surrealdb
+    labels:
+      - diun.enable=true
+
+  open-notebook:
+    image: lfnovo/open_notebook:v1-latest
+    restart: always
+    environment:
+      - SURREAL_URL=ws://surrealdb:8000/rpc
+      - SURREAL_USER=open_notebook
+      - SURREAL_NAMESPACE=open_notebook
+      - SURREAL_DATABASE=open_notebook
+    volumes:
+      - notebook_data:/app/data
+    depends_on:
+      - surrealdb
+    labels:
+      - diun.enable=true
+
+volumes:
+  surreal_data:
+  notebook_data:

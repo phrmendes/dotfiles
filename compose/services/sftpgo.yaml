@@ -15,5 +15,6 @@ services:
       - 2022:2022
     labels:
       - diun.enable=true
+
 volumes:
   sftpgo_data:

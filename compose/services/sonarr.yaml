@@ -13,5 +13,6 @@ services:
       - /mnt/external/downloads:/downloads
     labels:
       - diun.enable=true
+
 volumes:
   sonarr_config:

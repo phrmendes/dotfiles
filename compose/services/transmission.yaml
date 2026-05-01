@@ -18,6 +18,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
   transmission:
     image: docker.io/linuxserver/transmission:latest
     container_name: transmission
@@ -40,9 +41,11 @@ services:
       - diun.enable=true
     depends_on:
       - transmission-init
+
 volumes:
   transmission_config:
   transmission_watch:
+
 secrets:
   transmission:
     file: ${AGE_SECRETS_PATH}/transmission.json

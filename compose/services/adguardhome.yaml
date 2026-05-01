@@ -11,6 +11,7 @@ services:
       - 53:53/udp
     labels:
       - diun.enable=true
+
 volumes:
   adguardhome_conf:
   adguardhome_work:

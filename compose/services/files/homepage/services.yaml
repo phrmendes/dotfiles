@@ -75,3 +75,7 @@
         href: https://prunemate.local.ohlongjohnson.tech
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/prunemate.webp
         description: Docker cleanup automation
+    - Open Notebook:
+        href: https://opennotebook.local.ohlongjohnson.tech
+        icon: https://cdn.jsdelivr.net/gh/lfnovo/open-notebook@main/logo.png
+        description: AI-powered note taking and knowledge management

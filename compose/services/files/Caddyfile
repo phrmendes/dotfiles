@@ -104,3 +104,7 @@ transmission.local.ohlongjohnson.tech {
 prunemate.local.ohlongjohnson.tech {
     import service prunemate 8080
 }
+
+opennotebook.local.ohlongjohnson.tech {
+    import service open_notebook 8502
+}

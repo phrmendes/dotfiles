@@ -61,9 +61,23 @@ just lint
 just rebuild
 ```
 
+## Server AI stack
+
+The server runs a [LiteLLM](https://github.com/BerriAI/litellm) proxy (systemd service, port `14141`) that authenticates to GCP Vertex AI and exposes models via an OpenAI-compatible API.
+
+### Connecting from Docker containers
+
+LiteLLM is not containerized, so Docker containers reach it via the host bridge IP:
+
+```
+http://172.17.0.1:14141/v1
+```
+
+Use any non-empty string as the API key (no master key is set).
+
 ## Troubleshooting
 
-### chroot into the system
+### `chroot` into the system
 
 ```sh
 sudo cryptsetup luksOpen /dev/sdX2 crypted

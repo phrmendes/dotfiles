@@ -12,6 +12,8 @@ in
         VERTEXAI_LOCATION = gcp.location;
       };
 
+      networking.firewall.allowedTCPPorts = [ litellmPort ];
+
       services.litellm = {
         enable = true;
         package = pkgs.litellm.overridePythonAttrs (old: {
@@ -32,9 +34,10 @@ in
             done
           '';
         });
-        host = "127.0.0.1";
+        host = "0.0.0.0";
         port = litellmPort;
         settings = {
+          litellm_settings.drop_params = true;
           model_list = [
             {
               model_name = "claude-sonnet-4-6@default";
@@ -43,8 +46,31 @@ in
                 additional_drop_params = [ "reasoningSummary" ];
               };
             }
+            {
+              model_name = "qwen3-coder-480b";
+              litellm_params = {
+                model = "vertex_ai/qwen/qwen3-coder-480b-a35b-instruct-maas";
+                vertex_project = gcp.project;
+                vertex_location = "us-south1";
+              };
+            }
+            {
+              model_name = "gemini-3-flash";
+              litellm_params = {
+                model = "vertex_ai/gemini-3-flash-preview";
+                vertex_project = gcp.project;
+                vertex_location = "global";
+              };
+            }
+            {
+              model_name = "text-embedding-005";
+              litellm_params = {
+                model = "vertex_ai/text-embedding-005";
+                vertex_project = gcp.project;
+                vertex_location = gcp.location;
+              };
+            }
           ];
-          litellm_settings.drop_params = true;
         };
       };
     };

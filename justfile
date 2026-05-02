@@ -2,13 +2,13 @@ mod compose
 
 dotfiles_dir := justfile_directory()
 
-# Run nixos-rebuild switch for this host
-rebuild-local:
-    sudo nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
+# Rebuild a NixOS host (usage: just rebuild | just rebuild server)
+rebuild target="local":
+    #!/usr/bin/env bash
+    set -euo pipefail
 
-# Remotely rebuild a NixOS host from the desktop (usage: just rebuild-remote server)
-rebuild-remote host:
-    nixos-rebuild switch --flake "{{ dotfiles_dir }}#{{ host }}" --target-host "phrmendes@{{ host }}" --sudo
+    [ "{{ target }}" = "local" ] && nh os switch && exit 0
+    nh os switch --hostname "{{ target }}" --target-host "phrmendes@{{ target }}" --elevation-strategy passwordless
 
 # Format all Nix files using flake formatter
 fmt:
@@ -22,20 +22,26 @@ hooks:
 deploy:
     #!/usr/bin/env bash
     set -euo pipefail
+
     git -C {{ dotfiles_dir }} fetch --quiet
+
     if git -C {{ dotfiles_dir }} diff --quiet HEAD @{u}; then
         echo "No upstream changes, skipping deploy."
         exit 0
     fi
+
     echo "Pulling latest changes..."
     git -C {{ dotfiles_dir }} pull --quiet
     echo "Rebuilding NixOS..."
-    nixos-rebuild switch --flake "{{ dotfiles_dir }}#$(hostname)"
+    nh os switch
     echo "Reloading compose..."
     just compose::reload
 
 # Validate SSH, KeePassXC, and age key wiring
 check-auth:
+    #!/usr/bin/env bash
+
+    set -euo pipefail
     echo "== Keys =="
     ls -l "$HOME/.ssh/age" "$HOME/.ssh/age.pub"
     echo

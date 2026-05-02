@@ -18,6 +18,7 @@ in
           automation
           container
           filesystems
+          litellm
           networking
           persistence
           tailscale
@@ -52,6 +53,9 @@ in
           ripgrep
           zoxide
           zsh
+        ])
+        ++ (with homeManager.dev; [
+          docker
         ]);
     };
 }

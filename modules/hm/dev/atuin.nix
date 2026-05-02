@@ -9,6 +9,10 @@ _: {
         auto_sync = true;
         sync_frequency = "1h";
         sync_address = "https://atuin.local.ohlongjohnson.tech";
+        ai = {
+          enabled = true;
+          endpoint = "https://litellm.local.ohlongjohnson.tech";
+        };
       };
     };
   };

@@ -91,7 +91,6 @@ in
             core.users
             core.virtualisation
             server.age
-            server.litellm
           ];
 
           age.identityPaths = [ "${settings.home}/.ssh/age" ];

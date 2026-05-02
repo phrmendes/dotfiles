@@ -31,12 +31,6 @@ services:
       - SURREAL_NAMESPACE=open_notebook
       - SURREAL_DATABASE=open_notebook
       - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPEN_NOTEBOOK_ENCRYPTION_KEY}
-      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/claude-service-account.json
-      - GOOGLE_CLOUD_PROJECT=rj-ia-desenvolvimento
-      - GOOGLE_CLOUD_LOCATION=us-east5
-    secrets:
-      - source: claude-service-account
-        target: /run/secrets/claude-service-account.json
     volumes:
       - notebook_data:/app/data
     healthcheck:
@@ -50,10 +44,6 @@ services:
         condition: service_healthy
     labels:
       - diun.enable=true
-
-secrets:
-  claude-service-account:
-    file: ${AGE_SECRETS_PATH}/claude-service-account.json
 
 volumes:
   surreal_data:

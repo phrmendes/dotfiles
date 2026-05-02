@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  modules.nixos.core.system-packages =
+  modules.nixos.core.packages =
     {
       pkgs,
       lib,
@@ -38,8 +38,7 @@
           net-tools
           netstat
         ])
-        ++ lib.optionals (!config.machine.isContainer) [
-          docker-credential-helpers
+        ++ lib.optionals config.machine.isWorkstation [
           libsecret
         ];
     };

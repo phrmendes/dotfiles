@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+_: {
   modules.homeManager.dev.packages =
     { pkgs, ... }:
     {
@@ -24,6 +23,6 @@
             with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
           ))
         ]
-        ++ builtins.attrValues (builtins.removeAttrs pkgs.local [ "server" ]);
+        ++ builtins.attrValues (removeAttrs pkgs.local [ "server" ]);
     };
 }

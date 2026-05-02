@@ -3,10 +3,20 @@ services:
     image: surrealdb/surrealdb:v2
     container_name: surrealdb
     restart: always
-    command: start --log info --user root --pass root rocksdb:/opt/surrealdb/data.db
+    command: start --log info rocksdb:/opt/surrealdb/data.db
     user: root
+    environment:
+      - SURREAL_USER=root
+      - SURREAL_PASS=${SURREAL_PASSWORD}
     volumes:
       - surreal_data:/opt/surrealdb
+    healthcheck:
+      test:
+        ["CMD", "/surreal", "is-ready", "--endpoint", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     labels:
       - diun.enable=true
 
@@ -16,15 +26,34 @@ services:
     restart: always
     environment:
       - SURREAL_URL=ws://surrealdb:8000/rpc
-      - SURREAL_USER=open_notebook
+      - SURREAL_USER=root
+      - SURREAL_PASSWORD=${SURREAL_PASSWORD}
       - SURREAL_NAMESPACE=open_notebook
       - SURREAL_DATABASE=open_notebook
+      - OPEN_NOTEBOOK_ENCRYPTION_KEY=${OPEN_NOTEBOOK_ENCRYPTION_KEY}
+      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/claude-service-account.json
+      - GOOGLE_CLOUD_PROJECT=rj-ia-desenvolvimento
+      - GOOGLE_CLOUD_LOCATION=us-east5
+    secrets:
+      - source: claude-service-account
+        target: /run/secrets/claude-service-account.json
     volumes:
       - notebook_data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsSL http://localhost:8502/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
-      - surrealdb
+      surrealdb:
+        condition: service_healthy
     labels:
       - diun.enable=true
+
+secrets:
+  claude-service-account:
+    file: ${AGE_SECRETS_PATH}/claude-service-account.json
 
 volumes:
   surreal_data:

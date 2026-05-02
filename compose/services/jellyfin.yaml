@@ -13,6 +13,12 @@ services:
       - /mnt/external/tvshows:/data/tvshows
     ports:
       - 7359:7359/udp
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsSL http://localhost:8096/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
     labels:
       - diun.enable=true
 

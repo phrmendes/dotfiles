@@ -15,6 +15,12 @@ services:
       - DIUN_PROVIDERS_DOCKER_ENDPOINT=tcp://socket-proxy:2375
       - DIUN_NOTIF_GOTIFY_ENDPOINT=${GOTIFY_URL}
       - DIUN_NOTIF_GOTIFY_TOKEN=${GOTIFY_DIUN_TOKEN}
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -x diun || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     labels:
       - diun.enable=true
     depends_on:

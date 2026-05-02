@@ -11,6 +11,16 @@ services:
     environment:
       - PRUNEMATE_TZ=${TZ}
       - PRUNEMATE_TIME_24H=true
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'python3 -c "import socket; s=socket.socket(); s.settimeout(3); s.connect((''127.0.0.1'',8080)); s.close()" || exit 1',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     labels:
       - diun.enable=true
 

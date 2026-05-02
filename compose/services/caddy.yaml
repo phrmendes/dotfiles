@@ -8,12 +8,23 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 5055:5055
     volumes:
       - ./files/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -S -O/dev/null http://localhost:80/ 2>&1 | grep -q '308\\|200'",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     labels:
       - diun.enable=true
 

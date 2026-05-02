@@ -11,6 +11,12 @@ services:
     secrets:
       - source: users
         target: /data/users.yml
+    healthcheck:
+      test: ["CMD", "/dozzle", "healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     labels:
       - diun.enable=true
     depends_on:

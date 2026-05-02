@@ -48,15 +48,8 @@ in
             "vertex-maas-global"
             "vertex-maas-us-south1"
           ];
-          model = "opencode-go/glm-5.1";
+          model = "opencode-go/deepseek-v4-pro";
           small_model = "opencode-go/qwen3.5-plus";
-          agent = {
-            claude = {
-              mode = "primary";
-              description = "Work agent using Claude Sonnet via Vertex AI";
-              model = "google-vertex-anthropic/claude-sonnet-4-6@default";
-            };
-          };
           mcp = {
             k8s = {
               type = "local";
@@ -72,6 +65,29 @@ in
           provider = {
             opencode-go = {
               options.apiKey = "{file:${osConfig.age.secrets."opencode.txt".path}}";
+              models = {
+                "kimi-k2.5" = {
+                  name = "Kimi K2.5";
+                };
+                "kimi-k2.6" = {
+                  name = "Kimi K2.6";
+                };
+                "qwen3.5-plus" = {
+                  name = "Qwen3.5 Plus";
+                };
+                "qwen3.6-plus" = {
+                  name = "Qwen3.6 Plus";
+                };
+                "glm-5.1" = {
+                  name = "GLM 5.1";
+                };
+                "deepseek-v4-pro" = {
+                  name = "DeepSeek V4 Pro";
+                };
+                "deepseek-v4-flash" = {
+                  name = "DeepSeek V4 Flash";
+                };
+              };
             };
             google-vertex-anthropic = {
               models = {
@@ -81,15 +97,12 @@ in
             google-vertex = {
               options.location = "global";
               models = {
-                "gemini-3-flash-preview" = {
-                  name = "Gemini 3 Flash Preview";
-                };
                 "gemini-3.1-pro-preview" = {
                   name = "Gemini 3.1 Pro Preview";
                 };
               };
             };
-            vertex-maas-global = vertexMaaSProvider "global" "Vertex MaaS (global)" {
+            vertex-maas-global = vertexMaaSProvider "global" "Vertex" {
               "deepseek-ai/deepseek-v3.2-maas" = {
                 name = "DeepSeek V3.2";
               };
@@ -103,7 +116,7 @@ in
                 name = "Qwen3 Next 80B Thinking";
               };
             };
-            vertex-maas-us-south1 = vertexMaaSProvider "us-south1" "Vertex MaaS (us-south1)" {
+            vertex-maas-us-south1 = vertexMaaSProvider "us-south1" "Vertex" {
               "qwen/qwen3-coder-480b-a35b-instruct-maas" = {
                 name = "Qwen3 Coder 480B";
               };

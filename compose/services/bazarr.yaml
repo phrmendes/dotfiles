@@ -12,6 +12,12 @@ services:
       - /mnt/external/tvshows:/tv
       - /mnt/external/downloads:/downloads
       - /mnt/external/movies:/movies
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsSL http://localhost:6767/ping || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     labels:
       - diun.enable=true
 

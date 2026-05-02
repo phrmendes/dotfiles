@@ -106,5 +106,9 @@ prunemate.local.ohlongjohnson.tech {
 }
 
 opennotebook.local.ohlongjohnson.tech {
-    import service open_notebook 8502
+    import service open-notebook 8502
+}
+
+opennotebook.local.ohlongjohnson.tech:5055 {
+    reverse_proxy open-notebook:5055
 }

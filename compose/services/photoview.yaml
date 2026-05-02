@@ -37,6 +37,16 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - syncthing_data:/data
       - photoview_storage:/home/photoview/media-cache
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'curl -fsS -X POST -H ''Content-Type: application/json'' --data-raw ''{"operationName":"CheckInitialSetup","variables":{},"query":"query CheckInitialSetup { siteInfo { initialSetup }}"}'' http://localhost:80/api/graphql || exit 1',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     labels:
       - diun.enable=true
 

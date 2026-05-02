@@ -77,5 +77,5 @@
         description: Docker cleanup automation
     - Open Notebook:
         href: https://opennotebook.local.ohlongjohnson.tech
-        icon: https://cdn.jsdelivr.net/gh/lfnovo/open-notebook@main/logo.png
+        icon: mdi-notebook-outline
         description: AI-powered note taking and knowledge management

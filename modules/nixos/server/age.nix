@@ -11,6 +11,7 @@ in
 {
   modules.nixos.server.age = {
     age.secrets = {
+      "claude-service-account.json" = secret ../../../secrets/claude-service-account.json.age "0440";
       "docker-compose.env" = secretReadable ../../../secrets/docker-compose.env.age;
       "docker-config.json" = secret ../../../secrets/docker-config.json.age "0400";
       "dozzle-users.yaml" = secretReadable ../../../secrets/dozzle-users.yaml.age;

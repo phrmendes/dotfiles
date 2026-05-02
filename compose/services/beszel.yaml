@@ -8,11 +8,11 @@ services:
       - beszel_agent_data:/var/lib/beszel-agent
       - beszel_socket:/beszel_socket
     environment:
-      - HUB_URL=http://beszel:8090
+      - HUB_URL=http://localhost:8090
       - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIR9/sS1/jqtENlx6ljeHtwJm8xI2Z3vMtQpTl0YThS
       - LISTEN=/beszel_socket/beszel.sock
       - TOKEN=${BESZEL_TOKEN}
-      - DOCKER_HOST=tcp://socket-proxy:2375
+      - DOCKER_HOST=tcp://localhost:2375
     healthcheck:
       test: ["CMD", "/agent", "health"]
       interval: 120s

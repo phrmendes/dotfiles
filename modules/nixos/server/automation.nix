@@ -4,26 +4,43 @@ let
 in
 {
   modules.nixos.server.automation =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
+      basePath = "${lib.makeBinPath [
+        pkgs.bash
+        pkgs.just
+        pkgs.git
+        pkgs.coreutils
+        pkgs.docker
+      ]}";
+      dockerHost = "unix:///run/docker.sock";
       dotfiles = "${settings.home}/dotfiles";
-      rootJust = "${pkgs.just}/bin/just --justfile ${dotfiles}/justfile";
-      basePath = "${pkgs.bash}/bin:${pkgs.just}/bin:${pkgs.git}/bin:${pkgs.coreutils}/bin:${pkgs.docker-compose}/bin:${pkgs.docker}/bin";
-      dockerSocket = "/run/docker.sock";
-      dockerHost = "unix://${dockerSocket}";
-      journalOutput = {
+      rootJust = "${lib.getExe pkgs.just} --justfile ${dotfiles}/justfile";
+      secretPaths = config.age.secrets |> builtins.attrValues |> map (s: s.path);
+      commonService = {
+        Type = "oneshot";
         StandardOutput = "journal";
         StandardError = "journal";
+        User = settings.user;
+        Group = "users";
+        WorkingDirectory = dotfiles;
       };
-      oneshotService = {
-        Type = "oneshot";
-      }
-      // journalOutput;
+      dockerDeps = [
+        "docker.service"
+        "network-online.target"
+        "systemd-sysctl.service"
+        "mnt-external.mount"
+      ];
     in
     {
       systemd = {
-        timers.git-pull = {
-          description = "Timer for git pull dotfiles";
+        timers.deploy = {
+          description = "Timer for dotfiles deploy";
           wantedBy = [ "timers.target" ];
           timerConfig = {
             OnCalendar = "*-*-* 06:00,18:00";
@@ -32,89 +49,54 @@ in
           };
         };
 
-        services =
-          let
-            dockerDeps = [
-              "docker.service"
-              "network-online.target"
-              "systemd-sysctl.service"
-              "mnt-external.mount"
-            ];
-            commonService = {
-              User = settings.user;
-              Group = "users";
-              WorkingDirectory = dotfiles;
-            };
-          in
-          {
-            docker-compose = {
-              description = "Docker Compose services";
-              after = dockerDeps;
-              wants = dockerDeps;
-              wantedBy = [ "multi-user.target" ];
-              startLimitIntervalSec = 300;
-              startLimitBurst = 3;
-              serviceConfig =
-                oneshotService
-                // commonService
-                // {
-                  RemainAfterExit = true;
-                  Group = "docker";
-                  ExecStartPre =
-                    let
-                      secretChecks =
-                        config.age.secrets
-                        |> builtins.attrValues
-                        |> map (s: "[ -f ${s.path} ]")
-                        |> builtins.concatStringsSep " && ";
-                    in
-                    [
-                      "${pkgs.bash}/bin/bash -c 'until [ -S ${dockerSocket} ]; do sleep 1; done'"
-                      "${pkgs.bash}/bin/bash -c 'deadline=$((SECONDS+60)); until ${secretChecks}; do [ $SECONDS -lt $deadline ] || { echo \"Timed out waiting for age secrets\" >&2; exit 1; }; sleep 1; done'"
-                    ];
-                  ExecStart = "${rootJust} compose::up";
-                  ExecStop = "${rootJust} compose::down";
-                  TimeoutStartSec = 120;
-                  TimeoutStopSec = 300;
-                  Environment = [
-                    "PATH=${basePath}"
-                    "DOCKER_HOST=${dockerHost}"
-                    "AGE_SECRETS_PATH=${config.age.secretsDir}"
-                  ];
-                };
-            };
-
-            git-pull = {
-              description = "Pull dotfiles from remote";
-              after = [ "network-online.target" ];
-              wants = [ "network-online.target" ];
-              serviceConfig =
-                oneshotService
-                // commonService
-                // {
-                  ExecStart = "${rootJust} pull";
-                  TimeoutStartSec = 120;
-                  Environment = [ "PATH=${basePath}" ];
-                };
-            };
-
-            dotfiles-sync = {
-              description = "Rebuild NixOS or reload compose if relevant files changed";
-              after = [ "git-pull.service" ];
-              requires = [ "git-pull.service" ];
-              serviceConfig =
-                oneshotService
-                // commonService
-                // {
-                  ExecStart = "${rootJust} sync";
-                  TimeoutStartSec = 0;
-                  Environment = [
-                    "PATH=${basePath}:${pkgs.nixos-rebuild}/bin:${pkgs.docker-compose}/bin:/run/wrappers/bin"
-                    "DOCKER_HOST=${dockerHost}"
-                  ];
-                };
+        services = {
+          docker-compose = {
+            description = "Docker Compose services";
+            after = dockerDeps;
+            wants = dockerDeps;
+            wantedBy = [ "multi-user.target" ];
+            startLimitIntervalSec = 300;
+            startLimitBurst = 3;
+            serviceConfig = commonService // {
+              RemainAfterExit = true;
+              Restart = "on-failure";
+              RestartSec = 10;
+              Group = "docker";
+              ExecStartPre = [
+                "${lib.getExe pkgs.local.server.wait-for-docker-socket}"
+                "${lib.getExe pkgs.local.server.wait-for-age-secrets} ${builtins.concatStringsSep " " secretPaths}"
+              ];
+              ExecStart = "${rootJust} compose::up";
+              ExecStop = "${rootJust} compose::down";
+              TimeoutStartSec = 0;
+              TimeoutStopSec = 300;
+              Environment = [
+                "PATH=${basePath}"
+                "DOCKER_HOST=${dockerHost}"
+                "AGE_SECRETS_PATH=${config.age.secretsDir}"
+              ];
             };
           };
+
+          deploy = {
+            description = "Pull dotfiles, rebuild NixOS, and reload compose";
+            after = [
+              "network-online.target"
+              "docker-compose.service"
+            ]
+            ++ dockerDeps;
+            wants = [ "network-online.target" ] ++ dockerDeps;
+            wantedBy = [ "multi-user.target" ];
+            serviceConfig = commonService // {
+              ExecStart = "${rootJust} deploy";
+              TimeoutStartSec = 0;
+              Environment = [
+                "PATH=${basePath}:${lib.makeBinPath [ pkgs.nixos-rebuild ]}:/run/wrappers/bin"
+                "DOCKER_HOST=${dockerHost}"
+              ];
+            };
+          };
+        };
       };
     };
 }

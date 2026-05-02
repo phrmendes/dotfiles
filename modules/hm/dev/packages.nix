@@ -24,6 +24,6 @@
             with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
           ))
         ]
-        ++ builtins.attrValues pkgs.local;
+        ++ builtins.attrValues (builtins.removeAttrs pkgs.local [ "server" ]);
     };
 }

@@ -4,6 +4,7 @@ _: {
       containers.enable = true;
       docker = {
         enable = true;
+        rootless.enable = false;
         daemon.settings = {
           storage-driver = "btrfs";
           dns = [

@@ -33,10 +33,6 @@
           v = "nvim";
         };
         initContent = ''
-          if [ -z "$DOCKER_HOST" ] && [ -n "$XDG_RUNTIME_DIR" ]; then
-            export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
-          fi
-
           set -o vi
 
           _just_completion() { source <(JUST_COMPLETE=zsh ${pkgs.just}/bin/just) }

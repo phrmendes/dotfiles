@@ -10,6 +10,7 @@ safely("now", function()
     statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
     image = { enabled = true },
     debug = { enabled = true },
+    terminal = { enabled = true },
   })
 
   vim.api.nvim_set_hl(0, "SnacksIndent", { fg = require("nix").base16.palette.base01 })
@@ -19,5 +20,8 @@ safely("now", function()
 
   vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
   vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
-  vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal() end, { desc = "Toggle terminal" })
+
+  if vim.env.TMUX == nil or vim.env.TMUX == "" then
+    vim.keymap.set({ "n", "t" }, "<c-\\>", function() Snacks.terminal.toggle() end, { desc = "Toggle terminal" })
+  end
 end)

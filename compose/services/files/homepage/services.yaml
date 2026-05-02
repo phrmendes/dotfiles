@@ -11,10 +11,6 @@
         href: https://beszel.local.ohlongjohnson.tech
         icon: sh-beszel
         description: System monitoring dashboard
-    - Dozzle:
-        href: https://dozzle.local.ohlongjohnson.tech
-        icon: sh-dozzle
-        description: Docker log viewer
     - Duplicati:
         href: https://duplicati.local.ohlongjohnson.tech
         icon: sh-duplicati

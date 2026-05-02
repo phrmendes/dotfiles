@@ -9,10 +9,11 @@ let
   ];
 in
 {
+  "beszel-agent.env.age".publicKeys = allKeys;
   "claude-service-account.json.age".publicKeys = allKeys;
   "docker-compose.env.age".publicKeys = allKeys;
   "docker-config.json.age".publicKeys = allKeys;
-  "dozzle-users.yaml.age".publicKeys = allKeys;
+
   "gh-hosts.yaml.age".publicKeys = allKeys;
   "opencode.txt.age".publicKeys = allKeys;
   "prunemate.json.age".publicKeys = allKeys;

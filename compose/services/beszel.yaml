@@ -1,34 +1,12 @@
 services:
-  beszel-agent:
-    image: docker.io/henrygd/beszel-agent:latest
-    container_name: beszel-agent
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - beszel_agent_data:/var/lib/beszel-agent
-      - beszel_socket:/beszel_socket
-    environment:
-      - HUB_URL=http://localhost:8090
-      - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIR9/sS1/jqtENlx6ljeHtwJm8xI2Z3vMtQpTl0YThS
-      - LISTEN=/beszel_socket/beszel.sock
-      - TOKEN=${BESZEL_TOKEN}
-      - DOCKER_HOST=tcp://localhost:2375
-    healthcheck:
-      test: ["CMD", "/agent", "health"]
-      interval: 120s
-    labels:
-      - diun.enable=true
-    depends_on:
-      socket-proxy:
-        condition: service_healthy
-
   beszel:
     image: docker.io/henrygd/beszel:latest
     container_name: beszel
     restart: unless-stopped
+    ports:
+      - 127.0.0.1:8090:8090
     volumes:
       - beszel_data:/beszel_data
-      - beszel_socket:/beszel_socket
       - /mnt/external/.beszel:/extra-filesystems/sdb:ro
     healthcheck:
       test: ["CMD", "/beszel", "health", "--url", "http://localhost:8090"]
@@ -39,5 +17,3 @@ services:
 
 volumes:
   beszel_data:
-  beszel_agent_data:
-  beszel_socket:

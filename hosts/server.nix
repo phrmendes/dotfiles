@@ -16,6 +16,7 @@ in
         ++ (with nixos.server; [
           age
           automation
+          beszel
           container
           filesystems
           litellm

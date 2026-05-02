@@ -12,7 +12,6 @@ include:
   - ./services/beszel.yaml
   - ./services/caddy.yaml
   - ./services/diun.yaml
-  - ./services/dozzle.yaml
   - ./services/duplicati.yaml
   - ./services/excalidraw.yaml
   - ./services/gotify.yaml

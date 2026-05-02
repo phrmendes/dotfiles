@@ -34,9 +34,6 @@ beszel.local.ohlongjohnson.tech {
     import service beszel 8090
 }
 
-dozzle.local.ohlongjohnson.tech {
-    import service dozzle 8080
-}
 
 duplicati.local.ohlongjohnson.tech {
     import service duplicati 8200

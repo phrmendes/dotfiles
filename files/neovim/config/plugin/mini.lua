@@ -155,7 +155,7 @@ safely("later", function()
       { mode = "n", keys = "<leader>g", desc = "+git" },
       { mode = "n", keys = "<leader>n", desc = "+notes" },
       { mode = "n", keys = "<leader>t", desc = "+todotxt" },
-      { mode = "x", keys = "<leader>g", desc = "+git" },
+      { mode = "x", keys = "<leader>a", desc = "+ai" },
     },
     window = { delay = 500, config = { width = "auto", border = vim.g.border } },
   })

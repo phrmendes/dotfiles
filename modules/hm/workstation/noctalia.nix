@@ -56,6 +56,10 @@
               enabled = true;
               sourceUrl = pluginSourceUrl;
             };
+            usb-drive-manager = {
+              enabled = true;
+              sourceUrl = pluginSourceUrl;
+            };
           };
           version = 2;
         };
@@ -64,6 +68,11 @@
             screenshotEditor = "satty";
             savePath = "~/Pictures/Screenshots";
             recordingSavePath = "~/Videos/Screenrecordings";
+          };
+          usb-drive-manager = {
+            autoMount = false;
+            fileBrowser = "${lib.getExe pkgs.xfce.thunar}";
+            notifications = true;
           };
         };
         settings = lib.mkForce {
@@ -132,6 +141,11 @@
                 }
                 { id = "KeepAwake"; }
                 {
+                  id = "plugin:usb-drive-manager";
+                  hideWhenEmpty = true;
+                  iconColor = "none";
+                }
+                {
                   id = "SystemMonitor";
                   compactMode = true;
                   diskPath = "/";
@@ -194,7 +208,6 @@
           ui = {
             fontDefault = config.stylix.fonts.sansSerif.name;
             fontFixed = config.stylix.fonts.monospace.name;
-            fontSize = config.stylix.fonts.sizes.applications;
           };
           notifications = {
             enabled = true;

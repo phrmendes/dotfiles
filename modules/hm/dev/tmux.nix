@@ -41,7 +41,7 @@ _: {
 
         extraConfig =
           let
-            status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
+            status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
           in
           ''
             set -g  default-terminal    tmux-256color
@@ -112,6 +112,16 @@ _: {
             bind -T copy-mode-vi C-j select-pane -D
             bind -T copy-mode-vi C-k select-pane -U
             bind -T copy-mode-vi C-l select-pane -R
+
+            bind -n C-h if -F "#{@pane-is-vim}" "send-keys C-h" "select-pane -L"
+            bind -n C-j if -F "#{@pane-is-vim}" "send-keys C-j" "select-pane -D"
+            bind -n C-k if -F "#{@pane-is-vim}" "send-keys C-k" "select-pane -U"
+            bind -n C-l if -F "#{@pane-is-vim}" "send-keys C-l" "select-pane -R"
+
+            bind -n M-h if -F "#{@pane-is-vim}" "send-keys M-h" "resize-pane -L 3"
+            bind -n M-j if -F "#{@pane-is-vim}" "send-keys M-j" "resize-pane -D 3"
+            bind -n M-k if -F "#{@pane-is-vim}" "send-keys M-k" "resize-pane -U 3"
+            bind -n M-l if -F "#{@pane-is-vim}" "send-keys M-l" "resize-pane -R 3"
 
             bind -n C-\\ run-shell '${floax}/share/tmux-plugins/tmux-floax/scripts/floax.sh'
 

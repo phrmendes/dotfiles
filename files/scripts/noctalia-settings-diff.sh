@@ -9,10 +9,9 @@ if [ ! -f "$SETTINGS_PATH" ]; then
 	exit 1
 fi
 
-NIX_SETTINGS=$(jq -S . "$SETTINGS_PATH")
 RUNTIME_SETTINGS=$(noctalia-shell ipc call state all | jq -S .settings) || {
 	echo "Error: Failed to get runtime settings. Is Noctalia running?" >&2
 	exit 1
 }
 
-diff <(echo "$NIX_SETTINGS") <(echo "$RUNTIME_SETTINGS")
+json-diff -C <(jq -S . "$SETTINGS_PATH") <(echo "$RUNTIME_SETTINGS") 2>/dev/null | grep -vP '^\x1b\[32m\+' || true

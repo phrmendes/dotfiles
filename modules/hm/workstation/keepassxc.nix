@@ -80,9 +80,6 @@ _: {
           ExecStart = "${lib.getExe pkgs.keepassxc} --minimized";
           Environment = [
             "SSH_AUTH_SOCK=%t/ssh-agent"
-            "QT_QPA_PLATFORM=wayland"
-            "QT_WAYLAND_SHELL_INTEGRATION=xdg-shell"
-            "QT_QPA_PLATFORM_PLUGIN=wayland"
           ];
           Restart = "on-failure";
         };

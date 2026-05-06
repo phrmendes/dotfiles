@@ -98,6 +98,7 @@ in
           neovim
           nix-index
           opencode
+          pi
           packages
           ripgrep
           starship

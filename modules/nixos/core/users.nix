@@ -26,6 +26,7 @@ in
               (builtins.readFile ../../../files/ssh-keys/phone.txt)
               (builtins.readFile ../../../files/ssh-keys/laptop.txt)
               (builtins.readFile ../../../files/ssh-keys/server.txt)
+              ''command="systemctl start docker-compose-update",restrict ${builtins.readFile ../../../files/ssh-keys/diun.txt}''
             ];
             isNormalUser = true;
             uid = 1000;

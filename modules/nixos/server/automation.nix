@@ -50,6 +50,22 @@ in
         };
 
         services = {
+          docker-compose-update = {
+            description = "Pull and recreate updated Docker Compose services";
+            after = dockerDeps;
+            wants = dockerDeps;
+            serviceConfig = commonService // {
+              Group = "docker";
+              ExecStart = "${rootJust} compose::reload";
+              TimeoutStartSec = 0;
+              Environment = [
+                "PATH=${basePath}"
+                "DOCKER_HOST=${dockerHost}"
+                "AGE_SECRETS_PATH=${config.age.secretsDir}"
+              ];
+            };
+          };
+
           docker-compose = {
             description = "Docker Compose services";
             after = dockerDeps;
@@ -91,8 +107,11 @@ in
               ExecStart = "${rootJust} deploy";
               TimeoutStartSec = 0;
               Environment = [
-                "PATH=${basePath}:${lib.makeBinPath [ pkgs.nixos-rebuild ]}:/run/wrappers/bin"
+                "PATH=${basePath}:${
+                  lib.makeBinPath [ pkgs.nixos-rebuild ]
+                }:/run/current-system/sw/bin:/run/wrappers/bin"
                 "DOCKER_HOST=${dockerHost}"
+                "NH_FLAKE=${dotfiles}"
               ];
             };
           };

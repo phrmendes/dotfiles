@@ -59,10 +59,12 @@ in
         hostPath = "/persist${settings.home}/.ssh/age";
         isReadOnly = true;
       };
+
       bindMounts."/mnt/external/pi" = {
         hostPath = "/mnt/external/pi";
         isReadOnly = false;
       };
+
       bindMounts."${settings.home}/.ssh/authorized_keys" = {
         hostPath = "/persist${settings.home}/.ssh/authorized_keys";
         isReadOnly = true;

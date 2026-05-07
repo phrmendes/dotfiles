@@ -11,6 +11,7 @@ in
 {
   "beszel-agent.env.age".publicKeys = allKeys;
   "claude-service-account.json.age".publicKeys = allKeys;
+  "diun-ssh-key.age".publicKeys = allKeys;
   "docker-compose.env.age".publicKeys = allKeys;
   "docker-config.json.age".publicKeys = allKeys;
 

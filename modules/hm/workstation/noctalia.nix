@@ -71,7 +71,7 @@
           };
           usb-drive-manager = {
             autoMount = false;
-            fileBrowser = "${lib.getExe pkgs.xfce.thunar}";
+            fileBrowser = "${lib.getExe pkgs.thunar}";
             notifications = true;
           };
         };

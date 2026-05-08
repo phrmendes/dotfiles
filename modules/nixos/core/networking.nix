@@ -17,6 +17,7 @@ in
         networkmanager = {
           enable = true;
           dns = "systemd-resolved";
+          unmanaged = [ "interface-name:tailscale0" ];
         };
         extraHosts = ''
           127.0.0.1 kubernetes.default.svc.cluster.local

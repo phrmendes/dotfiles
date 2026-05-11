@@ -9,15 +9,17 @@ in
     {
       pkgs,
       lib,
+      config,
       nvimServerPort,
       ...
     }:
-    let
-      neovim = pkgs.neovim.override {
-        configure.packages.treesitter.start = pkgs.local.nvim-treesitter;
-      };
-    in
     {
+      programs.neovim = {
+        enable = true;
+        withRuby = false;
+        plugins = pkgs.local.nvim-treesitter;
+      };
+
       home.file.".config/nvim-server/init.lua".source = ../../../files/neovim.lua;
 
       systemd.user.services.neovim-server = {
@@ -30,7 +32,7 @@ in
         Service = {
           Type = "simple";
           Environment = [ "NVIM_APPNAME=nvim-server" ];
-          ExecStart = "${lib.getExe neovim} --headless --listen 0.0.0.0:${toString nvimServerPort}";
+          ExecStart = "${lib.getExe config.programs.neovim.finalPackage} --headless --listen 0.0.0.0:${toString nvimServerPort}";
           Restart = "always";
           RestartSec = 5;
           WorkingDirectory = "%h";

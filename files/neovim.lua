@@ -164,8 +164,8 @@ vim.keymap.set("n", "<leader>gd", "<cmd>vertical Git diff<cr>", { desc = "Git di
 vim.keymap.set("n", "<leader>gl", function() vim.cmd("terminal git log --oneline --graph --decorate -20") end, { desc = "Git log" })
 vim.keymap.set("n", "<leader>gD", function() vim.cmd("windo diffthis") end, { desc = "Diff windows" })
 vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
-vim.keymap.set("]c", "]czz", { desc = "Next hunk" })
-vim.keymap.set("[c", "[czz", { desc = "Prev hunk" })
+vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })
+vim.keymap.set("n", "[c", "[czz", { desc = "Prev hunk" })
 vim.keymap.set("n", "<leader>u", "<cmd>Undotree<cr>", { desc = "Undo tree" })
 
 vim.keymap.set("n", "<leader>p", function()

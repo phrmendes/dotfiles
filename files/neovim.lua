@@ -26,6 +26,8 @@ vim.opt.undofile = true
 vim.opt.undolevels = 10000
 vim.opt.list = true
 vim.opt.listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" }
+vim.opt.autocomplete = { "lsp", "buffer" }
+vim.opt.completeopt = "menu,menuone,popup,fuzzy"
 
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
@@ -62,14 +64,16 @@ for _, name in ipairs({ "gzip", "matchit", "netrw", "netrwPlugin", "tar", "tarPl
   vim.g["loaded_" .. name] = true
 end
 
-local function lsp_status()
-  local clients = vim.lsp.get_clients({ bufnr = 0 })
-  if #clients == 0 then return "" end
-  local names = vim.iter(clients):map(function(c) return c.name:gsub("language.server", "ls") end):totable()
-  return "[" .. table.concat(names, ", ") .. "]"
+function _G.statusline()
+  local parts = { "%f", "%h%w%m%r", "%=" }
+  local diag = vim.diagnostic.status()
+  if diag ~= "" then parts[#parts + 1] = diag end
+  local progress = vim.ui.progress_status()
+  if progress ~= "" then parts[#parts + 1] = progress end
+  parts[#parts + 1] = " %-14(%l,%c%V%)"
+  parts[#parts + 1] = "%P"
+  return table.concat(parts, " ")
 end
-
-function _G.statusline() return table.concat({ "%f", "%h%w%m%r", "%=", lsp_status(), " %-14(%l,%c%V%)", "%P" }, " ") end
 
 vim.o.statusline = "%{%v:lua._G.statusline()%}"
 
@@ -132,6 +136,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end),
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = augroup("LspCompletion", {}),
+  callback = function(event) vim.lsp.completion.enable(true, event.data.client_id, event.buf, { autotrigger = true }) end,
+})
+
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true })
@@ -155,29 +164,9 @@ vim.keymap.set("n", "<leader>gd", "<cmd>vertical Git diff<cr>", { desc = "Git di
 vim.keymap.set("n", "<leader>gl", function() vim.cmd("terminal git log --oneline --graph --decorate -20") end, { desc = "Git log" })
 vim.keymap.set("n", "<leader>gD", function() vim.cmd("windo diffthis") end, { desc = "Diff windows" })
 vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
-vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })
-vim.keymap.set("n", "[c", "[czz", { desc = "Prev hunk" })
-
-vim.keymap.set("n", "<leader>u", function()
-  local entries = vim.fn.undotree().entries
-  if vim.tbl_isempty(entries) then
-    vim.notify("Undo history is empty", vim.log.levels.INFO)
-    return
-  end
-  local lines = vim.iter(entries):map(function(e) return string.format("%4d  seq=%-4d  %s", e.time, e.seq, os.date("%H:%M:%S", e.time)) end):totable()
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-  vim.bo[buf].modifiable = false
-  vim.keymap.set("n", "<cr>", function()
-    local seq = tonumber(vim.api.nvim_get_current_line():match("seq=(%d+)"))
-    if seq then
-      vim.cmd.close()
-      vim.cmd("undo " .. seq)
-    end
-  end, { buffer = buf })
-  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = buf })
-  vim.api.nvim_open_win(buf, true, { split = "below", height = 10 })
-end, { desc = "Undo history" })
+vim.keymap.set("]c", "]czz", { desc = "Next hunk" })
+vim.keymap.set("[c", "[czz", { desc = "Prev hunk" })
+vim.keymap.set("n", "<leader>u", "<cmd>Undotree<cr>", { desc = "Undo tree" })
 
 vim.keymap.set("n", "<leader>p", function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")

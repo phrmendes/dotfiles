@@ -140,7 +140,6 @@ vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true })
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true })
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
 vim.keymap.set("n", "<leader>e", "<cmd>Lexplore<cr>", { desc = "Explorer" })
@@ -156,6 +155,15 @@ vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
 vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })
 vim.keymap.set("n", "[c", "[czz", { desc = "Prev hunk" })
 vim.keymap.set("n", "<leader>u", "<cmd>Undotree<cr>", { desc = "Undo tree" })
+
+vim.keymap.set("n", "<leader>q", function()
+  if vim.list_contains(vim.v.argv, "--embed") then
+    vim.cmd.quit()
+    return
+  end
+
+  vim.cmd.detach()
+end, { desc = "Quit" })
 
 vim.keymap.set("n", "<leader><leader>", function()
   local pattern = vim.fn.input("Find: ")

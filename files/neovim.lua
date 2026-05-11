@@ -60,7 +60,10 @@ vim.diagnostic.config({
   },
 })
 
-for _, name in ipairs({ "gzip", "matchit", "netrw", "netrwPlugin", "tar", "tarPlugin", "zip", "zipPlugin", "tutor" }) do
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 0
+
+for _, name in ipairs({ "gzip", "matchit", "tar", "tarPlugin", "zip", "zipPlugin", "tutor" }) do
   vim.g["loaded_" .. name] = true
 end
 

@@ -18,9 +18,8 @@ in
         enable = true;
         withRuby = false;
         plugins = pkgs.local.nvim-treesitter;
+        extraLuaConfig = builtins.readFile ../../../files/neovim.lua;
       };
-
-      home.file.".config/nvim-server/init.lua".source = ../../../files/neovim.lua;
 
       systemd.user.services.neovim-server = {
         Install.WantedBy = [ "default.target" ];

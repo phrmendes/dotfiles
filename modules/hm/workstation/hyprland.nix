@@ -257,10 +257,8 @@ in
           ]
           ++ lib.optionals (!isLaptop) [
             "LIBVA_DRIVER_NAME,nvidia"
-            "NVD_BACKEND,direct"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-            "__GL_SYNC_TO_VBLANK,0"
-            "__GL_THREADED_OPTIMIZATIONS,0"
+            "WLR_NO_HARDWARE_CURSORS,1"
           ];
         };
       };

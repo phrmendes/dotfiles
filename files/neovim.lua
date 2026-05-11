@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
-
 vim.opt.termguicolors = true
 vim.opt.confirm = true
 vim.opt.expandtab = true
@@ -62,10 +61,12 @@ end
 local augroup = vim.api.nvim_create_augroup
 
 local line_numbers = augroup("LineNumbers", {})
+
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
   group = line_numbers,
   command = "if &nu && mode() != 'i' | set rnu | endif",
 })
+
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
   group = line_numbers,
   command = "if &nu | set nornu | endif",
@@ -124,25 +125,27 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
-
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>p", function()
+  local root = vim.fs.joinpath(vim.env.HOME, "Projects")
+  local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--no-ignore", "--max-depth", "3", "--glob", ".git", root })
+  local items = vim.iter(dirs):map(function(d) return vim.fs.dirname(d) end):totable()
+  vim.ui.select(items, { prompt = "Project" }, function(choice)
+    if choice then vim.fn.chdir(choice) end
+  end)
+end, { desc = "Projects" })
 vim.keymap.set("n", "<leader><leader>", function() vim.fn.feedkeys(":find **/*", "n") end, { desc = "Find file" })
-
 vim.keymap.set("n", "<leader>/", function() vim.fn.feedkeys(":silent grep  | copen\18", "n") end, { desc = "Grep" })
-
 vim.keymap.set("n", "<c-p>", "<cmd>buffers<cr>:b<space>", { desc = "Buffers" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-
 vim.keymap.set("n", "]q", "<cmd>cnext<cr>zz", { desc = "Next quickfix" })
 vim.keymap.set("n", "[q", "<cmd>cprevious<cr>zz", { desc = "Prev quickfix" })
 vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix list" })
-
 vim.keymap.set("n", "<leader>gs", function() vim.cmd("terminal git status") end, { desc = "Git status" })
 vim.keymap.set("n", "<leader>gd", "<cmd>vertical Git diff<cr>", { desc = "Git diff" })
 vim.keymap.set("n", "<leader>gl", function() vim.cmd("terminal git log --oneline --graph --decorate -20") end, { desc = "Git log" })
-
 vim.keymap.set("n", "<leader>gD", function() vim.cmd("windo diffthis") end, { desc = "Diff windows" })
 vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
 vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })

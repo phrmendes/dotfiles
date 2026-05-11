@@ -33,6 +33,7 @@ in
         username = settings.user;
         homeDirectory = settings.home;
         sessionVariables = {
+          COLORTERM = "truecolor";
           EDITOR = editor;
           GIT_EDITOR = editor;
           SUDO_EDITOR = editor;

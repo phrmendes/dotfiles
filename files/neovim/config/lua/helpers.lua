@@ -7,7 +7,8 @@ M.get_dictionary_words = function(lang)
   local file = vim.fs.joinpath(vim.env.HOME, "Documents", "notes", "dictionaries", lang .. ".add")
 
   if not vim.uv.fs_stat(file) then
-    vim.notify("File does not exist: " .. file, vim.log.levels.ERROR)
+    if not vim.api.nvim_list_uis()[1] then return {} end
+    vim.notify("File does not exist: " .. file, vim.log.levels.WARN)
     return {}
   end
 

@@ -22,6 +22,10 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.opt.list = true
+vim.opt.listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" }
 
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
@@ -57,6 +61,17 @@ vim.diagnostic.config({
 for _, name in ipairs({ "gzip", "matchit", "netrw", "netrwPlugin", "tar", "tarPlugin", "zip", "zipPlugin", "tutor" }) do
   vim.g["loaded_" .. name] = true
 end
+
+local function lsp_status()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if #clients == 0 then return "" end
+  local names = vim.iter(clients):map(function(c) return c.name:gsub("language.server", "ls") end):totable()
+  return "[" .. table.concat(names, ", ") .. "]"
+end
+
+function _G.statusline() return table.concat({ "%f", "%h%w%m%r", "%=", lsp_status(), " %-14(%l,%c%V%)", "%P" }, " ") end
+
+vim.o.statusline = "%{%v:lua._G.statusline()%}"
 
 local augroup = vim.api.nvim_create_augroup
 

@@ -102,7 +102,6 @@ in
             ]
             ++ dockerDeps;
             wants = [ "network-online.target" ] ++ dockerDeps;
-            wantedBy = [ "multi-user.target" ];
             serviceConfig = commonService // {
               ExecStart = "${rootJust} deploy";
               TimeoutStartSec = 0;

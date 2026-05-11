@@ -12,7 +12,7 @@
         enable = true;
         withRuby = false;
         plugins = pkgs.local.nvim-treesitter;
-        extraLuaConfig = builtins.readFile ../../../files/neovim.lua;
+        initLua = builtins.readFile ../../../files/neovim.lua;
       };
 
       systemd.user.services.neovim-server = {

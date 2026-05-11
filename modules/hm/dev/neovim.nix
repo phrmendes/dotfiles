@@ -24,7 +24,6 @@
         };
         Service = {
           Type = "simple";
-          Environment = [ "NVIM_APPNAME=nvim-server" ];
           ExecStart = "${lib.getExe config.programs.neovim.finalPackage} --headless --listen 0.0.0.0:${toString nvimServerPort}";
           Restart = "always";
           RestartSec = 5;

@@ -3,8 +3,6 @@ let
   workstationOnly =
     osConfig: pkgs: lib:
     lib.optionals osConfig.machine.isWorkstation pkgs;
-  treesitterParsers =
-    pkgs: lib: pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
 in
 {
   modules.homeManager.dev.neovim-minimal =
@@ -16,7 +14,7 @@ in
     }:
     let
       neovim = pkgs.neovim.override {
-        configure.packages.treesitter.start = treesitterParsers pkgs lib;
+        configure.packages.treesitter.start = pkgs.local.nvim-treesitter;
       };
     in
     {
@@ -40,7 +38,6 @@ in
       };
     };
 
-  # Full neovim — workstation config with all plugins, LSPs, formatters, linters.
   modules.homeManager.dev.neovim =
     {
       pkgs,
@@ -54,7 +51,6 @@ in
     let
       inherit (config.lib.stylix.colors) withHashtag;
       inherit (config.lib.file) mkOutOfStoreSymlink;
-      inherit (pkgs) runCommandLocal;
       base16-palette =
         withHashtag
         |> lib.filterAttrs (n: _: builtins.match "base0[0-9A-F]" n != null)
@@ -70,17 +66,6 @@ in
             source = "${inputs.vim-plugins}/${name}";
           }
         );
-      treesitter = with pkgs.vimPlugins; rec {
-        deps = {
-          nativeBuildInputs = [ pkgs.lndir ];
-        };
-        parsers = treesitterParsers pkgs lib;
-        queries = runCommandLocal "nvim-treesitter-queries" deps ''
-          mkdir -p $out/queries
-          lndir -silent ${nvim-treesitter}/runtime/queries $out/queries
-          lndir -silent ${nvim-treesitter-textobjects}/queries $out/queries
-        '';
-      };
     in
     {
       programs.neovim = {
@@ -92,7 +77,7 @@ in
         withPython3 = true;
         withRuby = false;
         extraPython3Packages = p: with p; [ debugpy ] ++ workstationOnly osConfig [ pymupdf pyqt5 ] lib;
-        plugins = treesitter.parsers ++ [ treesitter.queries ];
+        plugins = pkgs.local.nvim-treesitter;
         extraPackages = (
           with pkgs;
           [

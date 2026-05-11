@@ -1,37 +1,4 @@
 {
-  modules.homeManager.dev.neovim-minimal =
-    {
-      pkgs,
-      lib,
-      config,
-      nvimServerPort,
-      ...
-    }:
-    {
-      programs.neovim = {
-        enable = true;
-        withRuby = false;
-        plugins = pkgs.local.nvim-treesitter;
-        initLua = builtins.readFile ../../../files/neovim.lua;
-      };
-
-      systemd.user.services.neovim-server = {
-        Install.WantedBy = [ "default.target" ];
-        Unit = {
-          Description = "Neovim headless server";
-          Documentation = [ "https://neovim.io/" ];
-          After = [ "network.target" ];
-        };
-        Service = {
-          Type = "simple";
-          ExecStart = "${lib.getExe config.programs.neovim.finalPackage} --headless --listen 0.0.0.0:${toString nvimServerPort}";
-          Restart = "always";
-          RestartSec = 5;
-          WorkingDirectory = "%h";
-        };
-      };
-    };
-
   modules.homeManager.dev.neovim =
     {
       pkgs,

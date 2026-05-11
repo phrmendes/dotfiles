@@ -119,6 +119,8 @@ in
             core.users
             core.virtualisation
             server.age
+            server.neovim-minimal
+            server.neovim-server
           ];
 
           age.identityPaths = [ "${settings.home}/.ssh/age" ];
@@ -147,7 +149,6 @@ in
               k8s
               lazydocker
               lazygit
-              neovim-minimal
               nix-index
               packages
               pi

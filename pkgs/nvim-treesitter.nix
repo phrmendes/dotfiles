@@ -3,6 +3,7 @@
   lndir,
   runCommandLocal,
   vimPlugins,
+  vimUtils,
 }:
 let
   inherit (vimPlugins)
@@ -13,11 +14,15 @@ let
 in
 let
   parsers = nvim-treesitter-parsers |> builtins.attrValues |> builtins.filter lib.isDerivation;
-  queries = runCommandLocal "nvim-treesitter-queries" { nativeBuildInputs = [ lndir ]; } ''
-    mkdir -p $out/queries
-    lndir -silent ${nvim-treesitter}/runtime/queries $out/queries
-    lndir -silent ${nvim-treesitter-textobjects}/queries $out/queries
-  '';
+  queries = vimUtils.buildVimPlugin {
+    pname = "nvim-treesitter-queries";
+    version = nvim-treesitter.version;
+    src = runCommandLocal "nvim-treesitter-queries-src" { nativeBuildInputs = [ lndir ]; } ''
+      mkdir -p $out/queries
+      lndir -silent ${nvim-treesitter}/runtime/queries $out/queries
+      lndir -silent ${nvim-treesitter-textobjects}/queries $out/queries
+    '';
+  };
 in
 lib.flatten [
   parsers

@@ -3,6 +3,8 @@ let
   workstationOnly =
     osConfig: pkgs: lib:
     lib.optionals osConfig.machine.isWorkstation pkgs;
+  treesitterParsers =
+    pkgs: lib: pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
 in
 {
   modules.homeManager.dev.neovim-minimal =
@@ -13,10 +15,8 @@ in
       ...
     }:
     let
-      treesitterParsers =
-        pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
       neovim = pkgs.neovim.override {
-        configure.packages.treesitter.start = treesitterParsers;
+        configure.packages.treesitter.start = treesitterParsers pkgs lib;
       };
     in
     {
@@ -74,7 +74,7 @@ in
         deps = {
           nativeBuildInputs = [ pkgs.lndir ];
         };
-        parsers = nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
+        parsers = treesitterParsers pkgs lib;
         queries = runCommandLocal "nvim-treesitter-queries" deps ''
           mkdir -p $out/queries
           lndir -silent ${nvim-treesitter}/runtime/queries $out/queries

@@ -19,4 +19,7 @@ let
     lndir -silent ${nvim-treesitter-textobjects}/queries $out/queries
   '';
 in
-parsers ++ [ queries ]
+lib.flatten [
+  parsers
+  queries
+]

@@ -4,7 +4,12 @@ let
 in
 {
   modules.nixos.server.neovim-server =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       neovim = config.programs.neovim.finalPackage;
     in
@@ -14,6 +19,7 @@ in
         documentation = [ "https://neovim.io/" ];
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
+        path = [ pkgs.fd ];
         serviceConfig = {
           Type = "simple";
           User = settings.user;

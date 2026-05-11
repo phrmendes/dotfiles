@@ -5,43 +5,11 @@ let
     lib.optionals osConfig.machine.isWorkstation pkgs;
 in
 {
-  # Headless server service — depends on the full neovim module being present.
-  # Import alongside neovim on desktop/laptop.
-  modules.homeManager.dev.neovim-server =
-    {
-      config,
-      lib,
-      nvimServerPort,
-      ...
-    }:
-    {
-      systemd.user.services.neovim-server = {
-        Install.WantedBy = [ "default.target" ];
-        Unit = {
-          Description = "Neovim headless server";
-          Documentation = [ "https://neovim.io/" ];
-          After = [ "network.target" ];
-        };
-        Service = {
-          Type = "simple";
-          ExecStart = "${lib.getExe config.programs.neovim.finalPackage} --headless --listen 0.0.0.0:${toString nvimServerPort}";
-          Restart = "always";
-          RestartSec = 5;
-          WorkingDirectory = "%h";
-        };
-      };
-    };
-
-  # Minimal self-contained neovim for the server container — no LSP, no plugins,
-  # just treesitter parsers and a single-file config for code review.
-  # Import standalone (without neovim) in the container.
   modules.homeManager.dev.neovim-minimal =
     {
       pkgs,
       lib,
-      config,
       nvimServerPort,
-      dotfilesDir,
       ...
     }:
     let
@@ -52,8 +20,7 @@ in
       };
     in
     {
-      home.file.".config/nvim-server/init.lua".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/neovim.lua";
+      home.file.".config/nvim-server/init.lua".source = ../../../files/neovim.lua;
 
       systemd.user.services.neovim-server = {
         Install.WantedBy = [ "default.target" ];

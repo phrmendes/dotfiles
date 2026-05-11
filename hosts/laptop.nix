@@ -123,7 +123,6 @@ in
           lazydocker
           lazygit
           neovim
-          neovim-server
           nix-index
           opencode
           pi

@@ -126,14 +126,6 @@ vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>", { desc = "Explorer" })
-vim.keymap.set("n", "<leader>p", function()
-  local root = vim.fs.joinpath(vim.env.HOME, "Projects")
-  local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--no-ignore", "--max-depth", "3", "--glob", ".git", root })
-  local items = vim.iter(dirs):map(function(d) return vim.fs.dirname(d) end):totable()
-  vim.ui.select(items, { prompt = "Project" }, function(choice)
-    if choice then vim.fn.chdir(choice) end
-  end)
-end, { desc = "Projects" })
 vim.keymap.set("n", "<leader><leader>", function() vim.fn.feedkeys(":find **/*", "n") end, { desc = "Find file" })
 vim.keymap.set("n", "<leader>/", function() vim.fn.feedkeys(":silent grep  | copen\18", "n") end, { desc = "Grep" })
 vim.keymap.set("n", "<c-p>", "<cmd>buffers<cr>:b<space>", { desc = "Buffers" })
@@ -150,3 +142,33 @@ vim.keymap.set("n", "<leader>gD", function() vim.cmd("windo diffthis") end, { de
 vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
 vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })
 vim.keymap.set("n", "[c", "[czz", { desc = "Prev hunk" })
+
+vim.keymap.set("n", "<leader>u", function()
+  local entries = vim.fn.undotree().entries
+  if vim.tbl_isempty(entries) then
+    vim.notify("Undo history is empty", vim.log.levels.INFO)
+    return
+  end
+  local lines = vim.iter(entries):map(function(e) return string.format("%4d  seq=%-4d  %s", e.time, e.seq, os.date("%H:%M:%S", e.time)) end):totable()
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+  vim.bo[buf].modifiable = false
+  vim.keymap.set("n", "<cr>", function()
+    local seq = tonumber(vim.api.nvim_get_current_line():match("seq=(%d+)"))
+    if seq then
+      vim.cmd.close()
+      vim.cmd("undo " .. seq)
+    end
+  end, { buffer = buf })
+  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = buf })
+  vim.api.nvim_open_win(buf, true, { split = "below", height = 10 })
+end, { desc = "Undo history" })
+
+vim.keymap.set("n", "<leader>p", function()
+  local root = vim.fs.joinpath(vim.env.HOME, "Projects")
+  local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--no-ignore", "--max-depth", "3", "--glob", ".git", root })
+  local items = vim.iter(dirs):map(function(d) return vim.fs.dirname(d) end):totable()
+  vim.ui.select(items, { prompt = "Project" }, function(choice)
+    if choice then vim.fn.chdir(choice) end
+  end)
+end, { desc = "Projects" })

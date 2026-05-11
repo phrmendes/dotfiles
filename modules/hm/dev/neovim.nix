@@ -5,6 +5,8 @@ let
     lib.optionals osConfig.machine.isWorkstation pkgs;
 in
 {
+  # Headless server service — depends on the full neovim module being present.
+  # Import alongside neovim on desktop/laptop.
   modules.homeManager.dev.neovim-server =
     {
       config,
@@ -30,6 +32,48 @@ in
       };
     };
 
+  # Minimal self-contained neovim for the server container — no LSP, no plugins,
+  # just treesitter parsers and a single-file config for code review.
+  # Import standalone (without neovim) in the container.
+  modules.homeManager.dev.neovim-minimal =
+    {
+      pkgs,
+      lib,
+      config,
+      nvimServerPort,
+      dotfilesDir,
+      ...
+    }:
+    let
+      treesitterParsers =
+        pkgs.vimPlugins.nvim-treesitter-parsers |> lib.attrValues |> lib.filter lib.isDerivation;
+      neovim = pkgs.neovim.override {
+        configure.packages.treesitter.start = treesitterParsers;
+      };
+    in
+    {
+      home.file.".config/nvim-server/init.lua".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/neovim-server/init.lua";
+
+      systemd.user.services.neovim-server = {
+        Install.WantedBy = [ "default.target" ];
+        Unit = {
+          Description = "Neovim headless server";
+          Documentation = [ "https://neovim.io/" ];
+          After = [ "network.target" ];
+        };
+        Service = {
+          Type = "simple";
+          Environment = [ "NVIM_APPNAME=nvim-server" ];
+          ExecStart = "${lib.getExe neovim} --headless --listen 0.0.0.0:${toString nvimServerPort}";
+          Restart = "always";
+          RestartSec = 5;
+          WorkingDirectory = "%h";
+        };
+      };
+    };
+
+  # Full neovim — workstation config with all plugins, LSPs, formatters, linters.
   modules.homeManager.dev.neovim =
     {
       pkgs,

@@ -147,8 +147,7 @@ in
               k8s
               lazydocker
               lazygit
-              neovim
-              neovim-server
+              neovim-minimal
               nix-index
               packages
               pi

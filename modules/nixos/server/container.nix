@@ -81,8 +81,13 @@ in
         isReadOnly = true;
       };
 
-      bindMounts."/mnt/external/pi" = {
+      bindMounts."${settings.home}/Projects" = {
         hostPath = "/mnt/external/pi";
+        isReadOnly = false;
+      };
+
+      bindMounts."${settings.home}/dotfiles" = {
+        hostPath = "/mnt/external/pi/dotfiles";
         isReadOnly = false;
       };
 
@@ -155,16 +160,15 @@ in
               zsh
             ]);
 
-          systemd.tmpfiles.rules = with config.age; [
-            "L+ /home/${settings.user}/.docker/config.json - - - - ${secrets."docker-config.json".path}"
-            "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${secrets."gh-hosts.yaml".path}"
-            "L+ /home/${settings.user}/Projects - - - - /mnt/external/pi"
-          ];
-
           home-manager.extraSpecialArgs = {
             inherit inputs;
             nvimServerPort = settings.nvimServerPort;
+            dotfilesDir = "${settings.home}/dotfiles";
           };
+
+          systemd.tmpfiles.rules = with config.age; [
+            "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${secrets."gh-hosts.yaml".path}"
+          ];
 
           home-manager.sharedModules = [
             {

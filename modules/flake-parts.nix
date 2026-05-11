@@ -34,6 +34,10 @@
         type = lib.types.str;
         default = "/home/${config.settings.user}";
       };
+      dotfilesDir = lib.mkOption {
+        type = lib.types.str;
+        default = "${config.settings.home}/Projects/dotfiles";
+      };
       stateVersion = lib.mkOption {
         type = lib.types.str;
         default = "26.05";

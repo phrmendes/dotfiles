@@ -10,7 +10,7 @@
         backupFileExtension = "bak";
         extraSpecialArgs = {
           inherit inputs;
-          inherit (config.settings) nvimServerPort;
+          inherit (config.settings) nvimServerPort dotfilesDir;
         };
       };
     };

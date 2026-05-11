@@ -37,6 +37,7 @@ in
       config,
       osConfig,
       nvimServerPort,
+      dotfilesDir,
       ...
     }:
     let
@@ -130,8 +131,7 @@ in
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
       home.file = local-plugins // {
-        ".config/nvim".source =
-          mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/files/neovim/config";
+        ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
         ".local/share/nvim/site/lua/nix.lua".text = ''
           return {
               base16 = { palette = { ${base16-palette} } },

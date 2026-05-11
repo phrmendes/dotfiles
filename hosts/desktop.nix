@@ -54,6 +54,8 @@ in
         [
           "boot.shell_on_fail"
           "video=${m.name}:${m.resolution}@${toString m.refreshRate}"
+          "nvidia_drm.modeset=1"
+          "nvidia_drm.fbdev=1"
         ];
 
       hardware = {
@@ -64,7 +66,7 @@ in
           enable32Bit = true;
         };
         nvidia = {
-          open = true;
+          open = false;
           nvidiaSettings = true;
           modesetting.enable = true;
           powerManagement.enable = false;

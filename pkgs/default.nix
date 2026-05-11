@@ -4,6 +4,7 @@
   gcp-token = pkgs.callPackage ./gcp-token.nix { };
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nvim-treesitter = pkgs.callPackage ./nvim-treesitter.nix { };
+  vim-server = pkgs.callPackage ./vim-server.nix { };
   rename-gallery = pkgs.callPackage ./rename-gallery.nix { };
   server = import ./server { inherit pkgs; };
   vim-remote = pkgs.callPackage ./vim-remote.nix { };

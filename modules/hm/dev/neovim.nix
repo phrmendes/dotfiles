@@ -1,9 +1,3 @@
-{ inputs, ... }:
-let
-  workstationOnly =
-    osConfig: pkgs: lib:
-    lib.optionals osConfig.machine.isWorkstation pkgs;
-in
 {
   modules.homeManager.dev.neovim-minimal =
     {
@@ -44,7 +38,7 @@ in
       pkgs,
       lib,
       config,
-      osConfig,
+      inputs,
       nvimServerPort,
       dotfilesDir,
       ...
@@ -77,7 +71,12 @@ in
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-        extraPython3Packages = p: with p; [ debugpy ] ++ workstationOnly osConfig [ pymupdf pyqt5 ] lib;
+        extraPython3Packages =
+          p: with p; [
+            debugpy
+            pymupdf
+            pyqt5
+          ];
         plugins = pkgs.local.nvim-treesitter;
         extraPackages = (
           with pkgs;
@@ -120,6 +119,10 @@ in
 
       home.packages = [
         (pkgs.local.vim-remote.override {
+          neovim = config.programs.neovim.finalPackage;
+          inherit nvimServerPort;
+        })
+        (pkgs.local.vim-server.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })

@@ -1,11 +1,18 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 20
 vim.opt.termguicolors = true
 vim.opt.confirm = true
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.swapfile = false
+vim.opt.shiftround = true
+vim.opt.pumheight = 10
+vim.opt.pummaxwidth = 40
 vim.opt.updatetime = 200
 vim.opt.timeoutlen = 300
 vim.opt.splitbelow = true
@@ -26,7 +33,7 @@ vim.opt.undofile = true
 vim.opt.undolevels = 10000
 vim.opt.list = true
 vim.opt.listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" }
-vim.opt.autocomplete = { "lsp", "buffer" }
+vim.opt.autocomplete = true
 vim.opt.completeopt = "menu,menuone,popup,fuzzy"
 
 vim.schedule(function()
@@ -60,29 +67,11 @@ vim.diagnostic.config({
   },
 })
 
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0
-
 for _, name in ipairs({ "gzip", "matchit", "tar", "tarPlugin", "zip", "zipPlugin", "tutor" }) do
   vim.g["loaded_" .. name] = true
 end
 
-function _G.statusline()
-  local parts = { "%f", "%h%w%m%r", "%=" }
-  local diag = vim.diagnostic.status()
-  if diag ~= "" then parts[#parts + 1] = diag end
-  local progress = vim.ui.progress_status()
-  if progress ~= "" then parts[#parts + 1] = progress end
-  parts[#parts + 1] = " %-14(%l,%c%V%)"
-  parts[#parts + 1] = "%P"
-  return table.concat(parts, " ")
-end
-
-vim.o.statusline = "%{%v:lua._G.statusline()%}"
-
-local augroup = vim.api.nvim_create_augroup
-
-local line_numbers = augroup("LineNumbers", {})
+local line_numbers = vim.api.nvim_create_augroup("LineNumbers", {})
 
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
   group = line_numbers,
@@ -95,18 +84,18 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 })
 
 vim.api.nvim_create_autocmd("VimResized", {
-  group = augroup("Windows", {}),
+  group = vim.api.nvim_create_augroup("Windows", {}),
   command = "wincmd =",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("FormatOptions", {}),
+  group = vim.api.nvim_create_augroup("FormatOptions", {}),
   pattern = "*",
   callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("TransientBuffers", {}),
+  group = vim.api.nvim_create_augroup("TransientBuffers", {}),
   pattern = { "diff", "git", "help", "man", "qf", "query" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -115,14 +104,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-  group = augroup("Autoread", {}),
+  group = vim.api.nvim_create_augroup("Autoread", {}),
   callback = function()
     if vim.fn.mode() ~= "c" then vim.cmd.checktime() end
   end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("Treesitter", {}),
+  group = vim.api.nvim_create_augroup("Treesitter", {}),
   callback = function(event)
     local lang = vim.treesitter.language.get_lang(event.match) or event.match
     if not vim.treesitter.language.add(lang) then return end
@@ -131,7 +120,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  group = augroup("AutoRoot", {}),
+  group = vim.api.nvim_create_augroup("AutoRoot", {}),
   callback = vim.schedule_wrap(function(data)
     if data.buf ~= vim.api.nvim_get_current_buf() then return end
     local root = vim.fs.root(data.buf, { ".git" })
@@ -140,7 +129,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = augroup("LspCompletion", {}),
+  group = vim.api.nvim_create_augroup("LspCompletion", {}),
   callback = function(event) vim.lsp.completion.enable(true, event.data.client_id, event.buf, { autotrigger = true }) end,
 })
 
@@ -152,24 +141,30 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
-vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>", { desc = "Explorer" })
-vim.keymap.set("n", "<leader><leader>", function() vim.fn.feedkeys(":find **/*", "n") end, { desc = "Find file" })
+vim.keymap.set("n", "<leader>e", "<cmd>Lexplore<cr>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>/", function() vim.fn.feedkeys(":silent grep  | copen\18", "n") end, { desc = "Grep" })
 vim.keymap.set("n", "<c-p>", "<cmd>buffers<cr>:b<space>", { desc = "Buffers" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
-vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "]q", "<cmd>cnext<cr>zz", { desc = "Next quickfix" })
-vim.keymap.set("n", "[q", "<cmd>cprevious<cr>zz", { desc = "Prev quickfix" })
 vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix list" })
 vim.keymap.set("n", "<leader>gs", function() vim.cmd("terminal git status") end, { desc = "Git status" })
-vim.keymap.set("n", "<leader>gd", "<cmd>vertical Git diff<cr>", { desc = "Git diff" })
+vim.keymap.set("n", "<leader>gd", function() vim.cmd("vertical terminal git diff") end, { desc = "Git diff" })
 vim.keymap.set("n", "<leader>gl", function() vim.cmd("terminal git log --oneline --graph --decorate -20") end, { desc = "Git log" })
 vim.keymap.set("n", "<leader>gD", function() vim.cmd("windo diffthis") end, { desc = "Diff windows" })
 vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
 vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })
 vim.keymap.set("n", "[c", "[czz", { desc = "Prev hunk" })
 vim.keymap.set("n", "<leader>u", "<cmd>Undotree<cr>", { desc = "Undo tree" })
+
+vim.keymap.set("n", "<leader><leader>", function()
+  local pattern = vim.fn.input("Find: ")
+  if pattern == "" then return end
+  local matches = vim.fn.globpath(".", "**/" .. pattern, false, true)
+  if #matches == 0 then return vim.notify("No files found", vim.log.levels.WARN) end
+  if #matches == 1 then return vim.cmd.edit(matches[1]) end
+  vim.ui.select(matches, { prompt = "Find file" }, function(choice)
+    if choice then vim.cmd.edit(choice) end
+  end)
+end, { desc = "Find file" })
 
 vim.keymap.set("n", "<leader>p", function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")
@@ -179,3 +174,19 @@ vim.keymap.set("n", "<leader>p", function()
     if choice then vim.fn.chdir(choice) end
   end)
 end, { desc = "Projects" })
+
+vim.pack.add({ "https://github.com/folke/sidekick.nvim" })
+
+require("sidekick").setup({
+  nes = { enabled = false },
+  cli = {
+    win = { layout = "float" },
+    mux = { backend = "tmux", enabled = true },
+  },
+})
+
+vim.keymap.set({ "n", "t", "i", "x" }, "<c-.>", function() require("sidekick.cli").toggle() end, { desc = "Toggle coding agent" })
+vim.keymap.set({ "n", "x" }, "<leader>aa", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Send this" })
+vim.keymap.set({ "n", "x" }, "<leader>ad", function() require("sidekick.cli").close() end, { desc = "Detach" })
+vim.keymap.set({ "n", "x" }, "<leader>af", function() require("sidekick.cli").send({ msg = "{file}" }) end, { desc = "Send file" })
+vim.keymap.set({ "n", "x" }, "<leader>as", function() require("sidekick.cli").select() end, { desc = "Select CLI" })

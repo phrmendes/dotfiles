@@ -53,7 +53,7 @@ in
     in
     {
       home.file.".config/nvim-server/init.lua".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/neovim-server/init.lua";
+        config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/neovim.lua";
 
       systemd.user.services.neovim-server = {
         Install.WantedBy = [ "default.target" ];

@@ -1,8 +1,6 @@
--- leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- options
 vim.opt.termguicolors = true
 vim.opt.confirm = true
 vim.opt.expandtab = true
@@ -26,7 +24,6 @@ vim.opt.smartcase = true
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
--- clipboard via OSC 52 over SSH
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
   if vim.env.SSH_TTY then
@@ -44,7 +41,6 @@ vim.schedule(function()
   end
 end)
 
--- diagnostics
 vim.diagnostic.config({
   severity_sort = true,
   virtual_lines = { current_line = true },
@@ -59,12 +55,10 @@ vim.diagnostic.config({
   },
 })
 
--- disable unused builtins
 for _, name in ipairs({ "gzip", "matchit", "netrw", "netrwPlugin", "tar", "tarPlugin", "zip", "zipPlugin", "tutor" }) do
   vim.g["loaded_" .. name] = true
 end
 
--- autocmds
 local augroup = vim.api.nvim_create_augroup
 
 local line_numbers = augroup("LineNumbers", {})
@@ -113,7 +107,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- auto-root via git
 vim.api.nvim_create_autocmd("BufEnter", {
   group = augroup("AutoRoot", {}),
   callback = vim.schedule_wrap(function(data)
@@ -123,7 +116,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end),
 })
 
--- keymaps
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true })
@@ -133,30 +125,24 @@ vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { desc = "Split (H)" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
 
--- file navigation
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader><leader>", function() vim.fn.feedkeys(":find **/*", "n") end, { desc = "Find file" })
 
--- grep
 vim.keymap.set("n", "<leader>/", function() vim.fn.feedkeys(":silent grep  | copen\18", "n") end, { desc = "Grep" })
 
--- buffers
 vim.keymap.set("n", "<c-p>", "<cmd>buffers<cr>:b<space>", { desc = "Buffers" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 
--- quickfix
 vim.keymap.set("n", "]q", "<cmd>cnext<cr>zz", { desc = "Next quickfix" })
 vim.keymap.set("n", "[q", "<cmd>cprevious<cr>zz", { desc = "Prev quickfix" })
 vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix list" })
 
--- git (fugitive-style via built-in terminal)
 vim.keymap.set("n", "<leader>gs", function() vim.cmd("terminal git status") end, { desc = "Git status" })
 vim.keymap.set("n", "<leader>gd", "<cmd>vertical Git diff<cr>", { desc = "Git diff" })
 vim.keymap.set("n", "<leader>gl", function() vim.cmd("terminal git log --oneline --graph --decorate -20") end, { desc = "Git log" })
 
--- diff (built-in)
 vim.keymap.set("n", "<leader>gD", function() vim.cmd("windo diffthis") end, { desc = "Diff windows" })
 vim.keymap.set("n", "<leader>gO", "<cmd>diffoff!<cr>", { desc = "Diff off" })
 vim.keymap.set("n", "]c", "]czz", { desc = "Next hunk" })

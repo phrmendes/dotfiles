@@ -56,7 +56,10 @@ in
     {
       wayland.windowManager.hyprland = {
         enable = true;
-        systemd.enableXdgAutostart = true;
+        systemd = {
+          enable = false;
+          enableXdgAutostart = true;
+        };
         settings = {
           exec-once = [ "noctalia-shell" ];
           debug.damage_tracking = 2;

@@ -12,7 +12,7 @@ in
         ++ (with nixos.workstation; [
           hyprland
           libvirtd
-          ly
+          greetd
           noctalia
           pam
           persistence
@@ -28,12 +28,12 @@ in
         type = "desktop";
         monitors = {
           primary = {
-            name = "HDMI-A-1";
+            name = "DP-3";
             resolution = "2560x1080";
             position = "0x0";
           };
           secondary = {
-            name = "DP-2";
+            name = "HDMI-A-1";
             resolution = "1920x1080";
             position = "2560x0";
           };

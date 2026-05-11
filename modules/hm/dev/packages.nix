@@ -23,11 +23,11 @@ _: {
             with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
           ))
         ]
-        ++ builtins.attrValues (
-          removeAttrs pkgs.local [
-            "server"
-            "vim-remote"
-          ]
-        );
+        ++ (with pkgs.local; [
+          diff-persist
+          gcp-token
+          noctalia-settings-diff
+          rename-gallery
+        ]);
     };
 }

@@ -1,10 +1,42 @@
 { inputs, ... }:
+let
+  workstationOnly =
+    osConfig: pkgs: lib:
+    lib.optionals osConfig.machine.isWorkstation pkgs;
+in
 {
+  modules.homeManager.dev.neovim-server =
+    {
+      config,
+      lib,
+      nvimServerPort,
+      ...
+    }:
+    {
+      systemd.user.services.neovim-server = {
+        Install.WantedBy = [ "default.target" ];
+        Unit = {
+          Description = "Neovim headless server";
+          Documentation = [ "https://neovim.io/" ];
+          After = [ "network.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${lib.getExe config.programs.neovim.finalPackage} --headless --listen 0.0.0.0:${toString nvimServerPort}";
+          Restart = "always";
+          RestartSec = 5;
+          WorkingDirectory = "%h";
+        };
+      };
+    };
+
   modules.homeManager.dev.neovim =
     {
       pkgs,
       lib,
       config,
+      osConfig,
+      nvimServerPort,
       ...
     }:
     let
@@ -47,50 +79,53 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-        extraPython3Packages =
-          p: with p; [
-            debugpy
-            pymupdf
-            pyqt5
-          ];
+        extraPython3Packages = p: with p; [ debugpy ] ++ workstationOnly osConfig [ pymupdf pyqt5 ] lib;
         plugins = treesitter.parsers ++ [ treesitter.queries ];
-        extraPackages = with pkgs; [
-          # language servers
-          astro-language-server
-          basedpyright
-          bash-language-server
-          beamPackages.elixir-ls
-          copilot-language-server
-          docker-language-server
-          dot-language-server
-          emmet-language-server
-          helm-ls
-          just-lsp
-          ltex-ls-plus
-          lua-language-server
-          marksman
-          nixd
-          simple-completion-language-server
-          tailwindcss-language-server
-          taplo
-          terraform-ls
-          typescript-language-server
-          vscode-langservers-extracted
-          yaml-language-server
-          # formatters
-          djlint
-          nixfmt
-          prettier
-          ruff
-          shellharden
-          stylua
-          # linters
-          shellcheck
-          tflint
-          # debug
-          vscode-js-debug
-        ];
+        extraPackages = (
+          with pkgs;
+          [
+            # language servers
+            astro-language-server
+            basedpyright
+            bash-language-server
+            beamPackages.elixir-ls
+            copilot-language-server
+            docker-language-server
+            dot-language-server
+            emmet-language-server
+            helm-ls
+            just-lsp
+            ltex-ls-plus
+            lua-language-server
+            marksman
+            nixd
+            simple-completion-language-server
+            tailwindcss-language-server
+            taplo
+            terraform-ls
+            typescript-language-server
+            vscode-langservers-extracted
+            yaml-language-server
+            # formatters
+            djlint
+            nixfmt
+            prettier
+            ruff
+            shellharden
+            stylua
+            # linters
+            shellcheck
+            tflint
+          ]
+        );
       };
+
+      home.packages = [
+        (pkgs.callPackage ../../../pkgs/vim-remote.nix {
+          neovim = config.programs.neovim.finalPackage;
+          inherit nvimServerPort;
+        })
+      ];
 
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
@@ -102,7 +137,6 @@
               base16 = { palette = { ${base16-palette} } },
               luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
               typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
-              vscode_js_debug = "${pkgs.vscode-js-debug}/bin/js-debug",
           }
         '';
       };
@@ -120,6 +154,7 @@
         };
 
         timers.nvim-lsp-log-cleanup = {
+          Install.WantedBy = [ "timers.target" ];
           Unit = {
             Description = "Daily cleanup of Neovim LSP logs";
             Requires = "nvim-lsp-log-cleanup.service";
@@ -128,7 +163,6 @@
             OnCalendar = "*-*-* 11:00";
             Persistent = true;
           };
-          Install.WantedBy = [ "timers.target" ];
         };
       };
     };

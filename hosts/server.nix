@@ -48,9 +48,9 @@ in
           fd
           fzf
           git
-          helix
           jq
           packages
+          pi
           ripgrep
           zoxide
           zsh

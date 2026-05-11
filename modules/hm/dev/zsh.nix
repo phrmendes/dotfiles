@@ -31,6 +31,8 @@
           ld = lib.getExe pkgs.lazydocker;
           lg = lib.getExe pkgs.lazygit;
           v = "nvim";
+          vr = "vim-remote";
+          s = "kitten ssh";
         };
         initContent = ''
           set -o vi

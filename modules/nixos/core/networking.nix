@@ -4,7 +4,7 @@ let
 in
 {
   modules.nixos.core.networking =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       services.tailscale.useRoutingFeatures = lib.mkDefault "client";
 
@@ -12,7 +12,10 @@ in
         useDHCP = lib.mkDefault true;
         firewall = {
           enable = true;
-          allowedTCPPorts = [ 22 ];
+          allowedTCPPorts = [
+            22
+            settings.nvimServerPort
+          ];
         };
         networkmanager = {
           enable = true;

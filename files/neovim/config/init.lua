@@ -1,12 +1,11 @@
 vim.pack.add({
   "https://github.com/MagicDuck/grug-far.nvim",
-  "https://github.com/folke/sidekick.nvim",
-  "https://github.com/lewis6991/async.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
   "https://github.com/brianhuster/unnest.nvim",
   "https://github.com/folke/lazydev.nvim",
+  "https://github.com/folke/sidekick.nvim",
   "https://github.com/folke/snacks.nvim",
   "https://github.com/igorlfs/nvim-dap-view",
   "https://github.com/jalvesaq/zotcite",
@@ -15,6 +14,7 @@ vim.pack.add({
   "https://github.com/kevinhwang91/nvim-bqf",
   "https://github.com/kristijanhusak/vim-dadbod-completion",
   "https://github.com/kristijanhusak/vim-dadbod-ui",
+  "https://github.com/lewis6991/async.nvim",
   "https://github.com/mbbill/undotree",
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/mfussenegger/nvim-dap-python",
@@ -42,7 +42,6 @@ _G.safely = require("mini.misc").safely
 
 require("options")
 require("autocmds")
-require("keymaps")
 require("lsp")
 
 require("vim._core.ui2").enable({

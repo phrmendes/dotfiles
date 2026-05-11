@@ -1,12 +1,24 @@
 local augroups = {
-  line_numbers = vim.api.nvim_create_augroup("UserLineNumbers", {}),
-  transient_buffers = vim.api.nvim_create_augroup("UserTransientBuffers", {}),
-  format_options = vim.api.nvim_create_augroup("UserFormatOptions", {}),
-  shiftwidth = vim.api.nvim_create_augroup("UserShiftwidth", {}),
-  windows = vim.api.nvim_create_augroup("UserWindows", {}),
-  treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
+  auto_root = vim.api.nvim_create_augroup("UserAutoRoot", {}),
   autoread = vim.api.nvim_create_augroup("UserAutoread", {}),
+  format_options = vim.api.nvim_create_augroup("UserFormatOptions", {}),
+  line_numbers = vim.api.nvim_create_augroup("UserLineNumbers", {}),
+  shiftwidth = vim.api.nvim_create_augroup("UserShiftwidth", {}),
+  terminal = vim.api.nvim_create_augroup("UserTerminal", {}),
+  transient_buffers = vim.api.nvim_create_augroup("UserTransientBuffers", {}),
+  treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
+  windows = vim.api.nvim_create_augroup("UserWindows", {}),
 }
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Change cwd to git root of current buffer",
+  group = augroups.auto_root,
+  callback = vim.schedule_wrap(function(data)
+    if data.buf ~= vim.api.nvim_get_current_buf() then return end
+    local root = Snacks.git.get_root(vim.api.nvim_buf_get_name(data.buf))
+    if root then vim.fn.chdir(root) end
+  end),
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Enable treesitter highlighting and folding",
@@ -72,6 +84,17 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
   group = augroups.autoread,
   callback = function()
     if vim.fn.mode() ~= "c" then vim.cmd.checktime() end
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  desc = "Terminal buffer settings",
+  group = augroups.terminal,
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.scrolloff = 0
+    vim.cmd.startinsert()
   end,
 })
 

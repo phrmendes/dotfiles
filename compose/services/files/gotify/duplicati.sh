@@ -12,7 +12,7 @@ send_notification() {
 	local title="$1"
 	local priority="$2"
 	local status="$3"
-	local error_details="$4"
+	local error_details="${4:-}"
 
 	local clean_url="${REMOTEURL%%\?*}"
 

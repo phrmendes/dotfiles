@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   modules.nixos.core.home-manager =
     { ... }:
@@ -8,7 +8,10 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "bak";
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit (config.settings) nvimServerPort;
+        };
       };
     };
 }

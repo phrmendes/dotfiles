@@ -9,7 +9,10 @@ in
   modules.nixos.server.container = _: {
     boot.enableContainers = true;
     virtualisation.containers.enable = true;
-    networking.firewall.allowedTCPPorts = [ 2222 ];
+    networking.firewall.allowedTCPPorts = [
+      2222
+      settings.nvimServerPort
+    ];
 
     systemd.services."container@dev" = {
       serviceConfig = {
@@ -17,6 +20,8 @@ in
         CPUQuota = "400%";
       };
     };
+
+    boot.kernel.sysctl."net.ipv4.conf.all.route_localnet" = 1;
 
     networking.nat = {
       enable = true;
@@ -28,7 +33,23 @@ in
           destination = "${lan.containerLocalAddress}:2222";
           proto = "tcp";
         }
+        {
+          sourcePort = settings.nvimServerPort;
+          destination = "${lan.containerLocalAddress}:${toString settings.nvimServerPort}";
+          loopbackIPs = [ lan.serverAddress ];
+          proto = "tcp";
+        }
       ];
+
+      extraCommands = ''
+        iptables -t nat -A nixos-nat-pre -i tailscale0 -p tcp --dport ${toString settings.nvimServerPort} \
+          -j DNAT --to-destination ${lan.containerLocalAddress}:${toString settings.nvimServerPort}
+      '';
+
+      extraStopCommands = ''
+        iptables -t nat -D nixos-nat-pre -i tailscale0 -p tcp --dport ${toString settings.nvimServerPort} \
+          -j DNAT --to-destination ${lan.containerLocalAddress}:${toString settings.nvimServerPort} 2>/dev/null || true
+      '';
     };
 
     containers.dev = {
@@ -100,6 +121,7 @@ in
           machine.type = "container";
 
           services.openssh.ports = [ 2222 ];
+          networking.firewall.allowedTCPPorts = [ settings.nvimServerPort ];
 
           home-manager.users.${settings.user}.imports =
             (with homeManager.user; [
@@ -116,18 +138,18 @@ in
               fzf
               gh
               git
-              helix
               jq
               k8s
               lazydocker
               lazygit
+              neovim
+              neovim-server
               nix-index
               packages
               pi
               ripgrep
               starship
               tealdeer
-              tmux
               yazi
               zoxide
               zsh
@@ -138,6 +160,11 @@ in
             "L+ /home/${settings.user}/.config/gh/hosts.yml - - - - ${secrets."gh-hosts.yaml".path}"
             "L+ /home/${settings.user}/Projects - - - - /mnt/external/pi"
           ];
+
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            nvimServerPort = settings.nvimServerPort;
+          };
 
           home-manager.sharedModules = [
             {

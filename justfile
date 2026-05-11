@@ -2,12 +2,8 @@ mod compose
 
 dotfiles_dir := justfile_directory()
 
-# Rebuild a NixOS host (usage: just rebuild | just rebuild server)
-rebuild target="local":
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    [ "{{ target }}" = "local" ] && nh os switch && exit 0
+# Rebuild a remote NixOS host (usage: just rebuild-remote server)
+rebuild-remote target:
     nh os switch --hostname "{{ target }}" --target-host "phrmendes@{{ target }}" --elevation-strategy passwordless
 
 # Format all Nix files using flake formatter

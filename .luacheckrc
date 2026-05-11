@@ -18,6 +18,7 @@ globals = {
   "MiniBufremove",
   "MiniDiff",
   "MiniDoc",
+  "MiniTabline",
   "MiniTest",
 }
 

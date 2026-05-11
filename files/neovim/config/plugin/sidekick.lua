@@ -1,33 +1,17 @@
 safely("now", function()
+  local cli = require("sidekick.cli")
+
   require("sidekick").setup({
-    nes = {
-      diff = {
-        inline = "words",
-        show = "always",
-      },
-    },
+    nes = { enabled = false },
     cli = {
-      watch = true,
-      win = {
-        layout = "right",
-      },
-      tools = {
-        pi = {},
-        opencode = {},
-      },
+      win = { layout = "float" },
+      mux = { backend = "tmux", enabled = true },
     },
   })
 
-  vim.keymap.set({ "i", "n" }, "<tab>", function()
-    if require("sidekick").nes_jump_or_apply() then return end
-    if vim.lsp.inline_completion.get() then return end
-    return "<tab>"
-  end, { expr = true, desc = "Goto/Apply Next Edit Suggestion" })
-
-  vim.keymap.set({ "n", "t", "i", "x" }, "<c-.>", function() require("sidekick.cli").focus() end, { desc = "Focus" })
-  vim.keymap.set({ "n", "x" }, "<leader>ap", function() require("sidekick.cli").prompt() end, { desc = "Select prompt" })
-  vim.keymap.set({ "x", "n" }, "<leader>aa", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Send" })
-  vim.keymap.set("n", "<leader>af", function() require("sidekick.cli").send({ msg = "{file}" }) end, { desc = "Send file" })
-  vim.keymap.set("n", "<leader>aq", function() require("sidekick.cli").close() end, { desc = "Quit a CLI session" })
-  vim.keymap.set("n", "<leader>as", function() require("sidekick.cli").select() end, { desc = "Select CLI" })
+  vim.keymap.set({ "n", "t", "i", "x" }, "<c-.>", cli.toggle, { desc = "Toggle coding agent" })
+  vim.keymap.set({ "n", "x" }, "<leader>aa", function() cli.send({ msg = "{this}" }) end, { desc = "Send this" })
+  vim.keymap.set({ "n", "x" }, "<leader>ad", cli.close, { desc = "Detach" })
+  vim.keymap.set({ "n", "x" }, "<leader>af", function() cli.send({ msg = "{file}" }) end, { desc = "Send file" })
+  vim.keymap.set({ "n", "x" }, "<leader>as", cli.select, { desc = "Select CLI" })
 end)

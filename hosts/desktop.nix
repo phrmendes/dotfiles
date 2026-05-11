@@ -96,14 +96,15 @@ in
           lazydocker
           lazygit
           neovim
+          neovim-server
           nix-index
           opencode
+          tmux
           pi
           packages
           ripgrep
           starship
           tealdeer
-          tmux
           yazi
           zoxide
           zsh

@@ -27,6 +27,20 @@ return function(client, bufnr)
     { Methods.textDocument_hover, "n", "K", vim.lsp.buf.hover, "hover" },
     { Methods.textDocument_documentSymbol, "n", "<leader>s", picker("document_symbol"), "symbols (document)" },
     { Methods.workspace_symbol, "n", "<leader>S", picker("workspace_symbol"), "symbols (workspace)" },
+    {
+      Methods.textDocument_inlineCompletion,
+      "i",
+      "<tab>",
+      function()
+        if not vim.lsp.inline_completion.get() then
+          vim.api.nvim_feedkeys(vim.keycode("<tab>"), "n", false)
+          return
+        end
+
+        vim.lsp.inline_completion.select()
+      end,
+      "accept inline completion",
+    },
   }
 
   vim.iter(mappings):filter(function(m) return supports(m[1]) end):each(function(m) vim.keymap.set(m[2], m[3], m[4], opts(m[5])) end)

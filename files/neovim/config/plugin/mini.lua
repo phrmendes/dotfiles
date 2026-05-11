@@ -9,6 +9,7 @@ safely(
   end
 )
 
+safely("now", function() require("mini.base16").setup({ palette = require("nix").base16.palette }) end)
 safely("now", function() require("mini.sessions").setup() end)
 safely("now", function() require("mini.statusline").setup() end)
 safely("now", function() require("mini.tabline").setup() end)
@@ -17,13 +18,6 @@ safely("now", function()
   require("mini.icons").setup()
   safely("later", MiniIcons.tweak_lsp_kind)
   safely("later", MiniIcons.mock_nvim_web_devicons)
-end)
-
-safely("now", function()
-  require("mini.base16").setup({
-    palette = require("nix").base16.palette,
-    use_cterm = true,
-  })
 end)
 
 safely(
@@ -237,7 +231,6 @@ safely("later", function()
 end)
 
 safely("later", function()
-  MiniMisc.setup_auto_root()
   MiniMisc.setup_restore_cursor()
   MiniMisc.setup_termbg_sync()
 end)
@@ -410,7 +403,6 @@ safely("later", function()
   vim.keymap.set("n", "<leader>K", MiniExtra.pickers.keymaps, { desc = "Keymaps" })
   vim.keymap.set("n", "<leader>N", MiniNotify.show_history, { desc = "Notifications" })
   vim.keymap.set("n", "<leader>V", function() MiniExtra.pickers.visit_paths({ cwd = "" }) end, { desc = "Visits (all)" })
-  vim.keymap.set("n", "<leader>W", MiniMisc.setup_auto_root, { desc = "Change working dir" })
   vim.keymap.set("n", "<leader>bd", MiniBufremove.delete, { desc = "Delete" })
   vim.keymap.set("n", "<leader>bw", MiniBufremove.wipeout, { desc = "Wipeout" })
   vim.keymap.set("n", "<leader>gA", "<cmd>Git add --all<cr>", { desc = "Add (repo)" })
@@ -425,36 +417,46 @@ safely("later", function()
   vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, { desc = "Modified files" })
   vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
   vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
+  vim.keymap.set("n", "<leader>p", require("helpers").pick_project, { desc = "Projects" })
   vim.keymap.set("n", "<leader>v", MiniExtra.pickers.visit_paths, { desc = "Visits (cwd)" })
   vim.keymap.set("n", "<leader>Z", MiniMisc.zoom, { desc = "Zoom" })
   vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
 
   vim.keymap.set("n", "<c-p>", function()
-    MiniPick.builtin.buffers(nil, {
+    local buf_items = function()
+      return vim
+        .iter(vim.fn.getbufinfo({ buflisted = 1 }))
+        :map(function(buf)
+          local text
+          if vim.bo[buf.bufnr].buftype == "terminal" then
+            text = vim.fn.fnamemodify(buf.name, ":t")
+          else
+            local name = vim.fn.fnamemodify(buf.name, ":~:.")
+            text = name ~= "" and name or "[No Name]"
+          end
+          return { bufnr = buf.bufnr, text = text }
+        end)
+        :totable()
+    end
+
+    MiniPick.start({
+      source = {
+        name = "Buffers",
+        items = buf_items(),
+        show = function(buf_id, items, query) MiniPick.default_show(buf_id, items, query, { show_icons = true }) end,
+        choose = function(item) vim.api.nvim_set_current_buf(item.bufnr) end,
+      },
       mappings = {
         wipeout = {
           char = "<c-d>",
           func = function()
             local matches = MiniPick.get_picker_matches()
-
             if not matches then return end
-
-            local buffers = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
-
-            vim.iter(buffers):each(function(buf)
+            local to_delete = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
+            vim.iter(to_delete):each(function(buf)
               if buf then MiniBufremove.delete(buf.bufnr) end
             end)
-
-            local items = vim
-              .iter(vim.fn.getbufinfo({ buflisted = 1 }))
-              :map(function(buf)
-                local name = vim.fn.fnamemodify(buf.name, ":~:.")
-
-                return { bufnr = buf.bufnr, text = name ~= "" and name or "[No Name]" }
-              end)
-              :totable()
-
-            MiniPick.set_picker_items(items)
+            MiniPick.set_picker_items(buf_items())
           end,
         },
       },

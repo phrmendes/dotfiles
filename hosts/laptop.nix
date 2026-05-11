@@ -123,6 +123,7 @@ in
           lazydocker
           lazygit
           neovim
+          neovim-server
           nix-index
           opencode
           pi
@@ -130,7 +131,6 @@ in
           ripgrep
           starship
           tealdeer
-          tmux
           yazi
           zoxide
           zsh

@@ -69,44 +69,11 @@ local configs = {
     exitAfterTaskReturns = false,
     debugAutoInterpretAlModules = false,
   },
-  {
-    type = "pwa-node",
-    request = "launch",
-    name = "Launch current file in new node process",
-    program = "${file}",
-    cwd = "${workspaceFolder}",
-  },
-  {
-    type = "pwa-node",
-    request = "attach",
-    processId = function() return require("dap.utils").pick_process() end,
-    name = "Attach debugger to existing `node --inspect` process",
-    sourceMaps = true,
-    resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
-    cwd = "${workspaceFolder}/src",
-    skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
-  },
-  {
-    type = "pwa-chrome",
-    request = "launch",
-    name = "Launch Chrome to debug client side code",
-    url = function() return vim.fn.input("URL: ", "http://localhost:5173") end,
-    sourceMaps = true,
-    webRoot = "${workspaceFolder}/src",
-    protocol = "inspector",
-    port = 9222,
-    skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
-  },
 }
 
 local adapters = {
   lua = { type = "server", host = "127.0.0.1", port = 8086 },
   mix_task = { type = "executable", command = vim.fn.exepath("elixir-debug-adapter") },
-  ["pwa-node"] = {
-    type = "server",
-    port = "${port}",
-    executable = { command = require("nix").vscode_js_debug, args = { "${port}" } },
-  },
 }
 
 safely("later", function()
@@ -136,7 +103,7 @@ safely("later", function()
   vim.iter(adapters):each(function(lang, adapter) dap.adapters[lang] = adapter end)
 end)
 
-safely("filetype:python,lua,elixir,javascript,typescript", function()
+safely("filetype:python,lua,elixir", function()
   local dap = require("dap")
   local dap_view = require("dap-view")
 

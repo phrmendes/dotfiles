@@ -34,7 +34,6 @@ beszel.local.ohlongjohnson.tech {
     import service beszel 8090
 }
 
-
 duplicati.local.ohlongjohnson.tech {
     import service duplicati 8200
 }

@@ -57,6 +57,39 @@ M.get_subdirectories = function(path)
     :totable()
 end
 
+--- Find all git repos under ~/Projects (two levels: org/repo) and open them with MiniPick.
+--- On selection, changes cwd to the repo root and applies MiniMisc.setup_auto_root.
+M.pick_project = function()
+  local root = vim.fs.joinpath(vim.env.HOME, "Projects")
+
+  local command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--max-depth", "3", "--glob", ".git", root }
+
+  local postprocess = function(lines)
+    local items = vim
+      .iter(lines)
+      :map(function(git_dir)
+        local repo = vim.fs.dirname((git_dir:gsub("/$", "")))
+        return { text = vim.fn.fnamemodify(repo, ":~"), path = repo }
+      end)
+      :totable()
+
+    table.sort(items, function(a, b) return a.text < b.text end)
+
+    return items
+  end
+
+  MiniPick.builtin.cli({ command = command, postprocess = postprocess }, {
+    source = {
+      name = "Projects",
+      show = function(buf_id, items_, query) MiniPick.default_show(buf_id, items_, query, { show_icons = true }) end,
+      choose = function(item)
+        if not item then return end
+        vim.schedule(function() vim.cmd.cd(item.path) end)
+      end,
+    },
+  })
+end
+
 --- Quit if embedded, otherwise detach.
 M.quit_or_detach = function()
   if vim.list_contains(vim.v.argv, "--embed") then
@@ -114,6 +147,7 @@ M.zotcite_refs = function(key, cb)
   table.sort(items, function(a, b) return a.sort_val > b.sort_val end)
 
   vim.cmd("stopinsert")
+
   MiniPick.start({
     source = {
       items = items,

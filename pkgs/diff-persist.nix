@@ -9,5 +9,7 @@ writeShellApplication {
     rsync
     ripgrep
   ];
-  text = builtins.readFile ../files/scripts/diff-persist.sh;
+  text = ''
+    sudo rsync -amvxx --dry-run --no-links --exclude '/tmp/*' --exclude '/root/*' / persist/ | rg -v '^skipping|/$'
+  '';
 }

@@ -59,6 +59,10 @@
         type = lib.types.port;
         default = 14141;
       };
+      nvimServerPort = lib.mkOption {
+        type = lib.types.port;
+        default = 6666;
+      };
       lan = {
         subnet = lib.mkOption {
           type = lib.types.str;
@@ -75,6 +79,10 @@
         containerLocalAddress = lib.mkOption {
           type = lib.types.str;
           default = "10.250.0.2";
+        };
+        serverAddress = lib.mkOption {
+          type = lib.types.str;
+          default = "192.168.0.2";
         };
       };
     };

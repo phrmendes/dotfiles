@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- enable true color support unconditionally (needed for correct remote-ui colors)
+vim.opt.termguicolors = true
+
 -- confirm before operations in files with unsaved changes
 vim.opt.confirm = true
 
@@ -25,6 +28,8 @@ vim.opt.timeoutlen = 300
 
 -- default terminal
 vim.opt.shell = "zsh"
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- fold
 vim.opt.foldenable = false

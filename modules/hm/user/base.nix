@@ -20,8 +20,17 @@ in
             hostname = "server.codlet-catfish.ts.net";
             user = settings.user;
           };
+          "server-local" = {
+            hostname = settings.lan.serverAddress;
+            user = settings.user;
+          };
           "dev" = {
             hostname = "server.codlet-catfish.ts.net";
+            user = settings.user;
+            port = 2222;
+          };
+          "dev-local" = {
+            hostname = settings.lan.serverAddress;
             user = settings.user;
             port = 2222;
           };

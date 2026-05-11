@@ -6,4 +6,5 @@
   nvim-treesitter = pkgs.callPackage ./nvim-treesitter.nix { };
   rename-gallery = pkgs.callPackage ./rename-gallery.nix { };
   server = import ./server { inherit pkgs; };
+  vim-remote = pkgs.callPackage ./vim-remote.nix { };
 }

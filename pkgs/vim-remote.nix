@@ -1,7 +1,7 @@
 {
   writeShellApplication,
   neovim,
-  nvimServerPort,
+  nvimServerPort ? 6666,
 }:
 writeShellApplication {
   name = "vim-remote";

@@ -119,7 +119,7 @@ in
       };
 
       home.packages = [
-        (pkgs.callPackage ../../../pkgs/vim-remote.nix {
+        (pkgs.local.vim-remote.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })
@@ -131,9 +131,9 @@ in
         ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
         ".local/share/nvim/site/lua/nix.lua".text = ''
           return {
-              base16 = { palette = { ${base16-palette} } },
-              luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
-              typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
+            base16 = { palette = { ${base16-palette} } },
+            luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
+            typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
           }
         '';
       };

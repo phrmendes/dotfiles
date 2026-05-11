@@ -8,6 +8,8 @@ _: {
         configure = {
           packages.treesitter.start = pkgs.local.nvim-treesitter;
           customLuaRC = /* lua */ ''
+            vim.cmd("packadd nvim.undotree")
+
             vim.g.mapleader = " "
             vim.g.maplocalleader = ","
 
@@ -45,6 +47,7 @@ _: {
             vim.opt.undolevels = 10000
             vim.opt.list = true
             vim.opt.listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" }
+            vim.opt.autocomplete = true
             vim.opt.completeopt = "menu,menuone,popup,fuzzy"
 
             vim.schedule(function()
@@ -188,6 +191,21 @@ _: {
               end)
             end, { desc = "Projects" })
 
+            vim.pack.add({ "https://github.com/folke/sidekick.nvim" })
+
+            require("sidekick").setup({
+              nes = { enabled = false },
+              cli = {
+                win = { layout = "float" },
+                mux = { backend = "tmux", enabled = true },
+              },
+            })
+
+            vim.keymap.set({ "n", "t", "i", "x" }, "<c-.>", function() require("sidekick.cli").toggle() end, { desc = "Toggle coding agent" })
+            vim.keymap.set({ "n", "x" }, "<leader>aa", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Send this" })
+            vim.keymap.set({ "n", "x" }, "<leader>ad", function() require("sidekick.cli").close() end, { desc = "Detach" })
+            vim.keymap.set({ "n", "x" }, "<leader>af", function() require("sidekick.cli").send({ msg = "{file}" }) end, { desc = "Send file" })
+            vim.keymap.set({ "n", "x" }, "<leader>as", function() require("sidekick.cli").select() end, { desc = "Select CLI" })
           '';
         };
       };

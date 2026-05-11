@@ -1,16 +1,15 @@
-_: {
-  modules.nixos.workstation.ly = {
-    environment.binsh = "/run/current-system/sw/bin/bash";
-    services.displayManager.ly = {
-      enable = true;
-      settings = {
-        animation = "matrix";
-        margin_box_h = 4;
-        input_len = 44;
-        edge_margin = 2;
-        bigclock = "en";
-        text_in_center = true;
+{ config, ... }: {
+  modules.nixos.workstation.ly =
+    { pkgs, ... }:
+    {
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+            user = "greeter";
+          };
+        };
       };
     };
-  };
 }

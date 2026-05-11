@@ -47,15 +47,24 @@ in
         "snd-aloop"
       ];
 
-      boot.kernelParams =
-        let
-          m = config.machine.monitors.primary;
-        in
-        [
-          "boot.shell_on_fail"
-          "video=${m.name}:${m.resolution}@${toString m.refreshRate}"
-          "nvidia_drm.modeset=1"
+      boot = {
+        initrd.kernelModules = [
+          "nvidia"
+          "nvidia_modeset"
+          "nvidia_uvm"
+          "nvidia_drm"
         ];
+        kernelParams =
+          let
+            m = config.machine.monitors.primary;
+          in
+          [
+            "boot.shell_on_fail"
+            "video=${m.name}:${m.resolution}@${toString m.refreshRate}"
+            "nvidia_drm.modeset=1"
+            "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+          ];
+      };
 
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
@@ -68,7 +77,7 @@ in
           open = true;
           nvidiaSettings = true;
           modesetting.enable = true;
-          package = config.boot.kernelPackages.nvidiaPackages.stable;
+          package = config.boot.kernelPackages.nvidiaPackages.production;
         };
       };
 

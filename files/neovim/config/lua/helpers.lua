@@ -72,9 +72,8 @@ M.pick_project = function()
       :filter(function(dir) return vim.uv.fs_stat(vim.fs.joinpath(dir, ".git")) ~= nil end)
       :map(function(dir)
         local stat = vim.uv.fs_stat(vim.fs.joinpath(dir, ".git"))
-        local is_submodule = stat.type == "file"
-        local icon = is_submodule and "  " or "  "
-        return { text = icon .. vim.fn.fnamemodify(dir, ":~"), path = dir }
+        local prefix = stat.type == "file" and "  " or ""
+        return { text = prefix .. vim.fn.fnamemodify(dir, ":~"), path = dir }
       end)
       :totable()
 

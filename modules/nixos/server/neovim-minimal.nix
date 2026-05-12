@@ -197,7 +197,7 @@ _: {
                 d = d:gsub("/$", "")
                 local stat = vim.uv.fs_stat(vim.fs.joinpath(d, ".git"))
                 if stat ~= nil then
-                  local label = (stat.type == "file" and "[sub] " or "[pro] ") .. d
+                  local label = (stat.type == "file" and "[submodule] " or "") .. d
                   table.insert(items, { label = label, path = d })
                 end
               end

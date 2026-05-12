@@ -209,6 +209,12 @@ in
                 "screenshot"
               ]
             }"
+            "SHIFT,print,exec,${
+              noctaliaExec [
+                "plugin:screen-shot-and-record"
+                "record"
+              ]
+            }"
             "SUPER,space,exec,${
               noctaliaExec [
                 "launcher"

@@ -190,8 +190,11 @@ _: {
 
             vim.keymap.set("n", "<leader>p", function()
               local root = vim.fs.joinpath(vim.env.HOME, "Projects")
-              local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "3", "--glob", ".git", root })
-              local items = vim.iter(dirs):map(function(d) return vim.fs.dirname(vim.fs.dirname(d)) end):totable()
+              local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "2", root })
+              local items = vim.iter(dirs)
+                :map(function(d) return d:gsub("/$", "") end)
+                :filter(function(d) return vim.uv.fs_stat(vim.fs.joinpath(d, ".git")) ~= nil end)
+                :totable()
               vim.ui.select(items, { prompt = "Project" }, function(choice)
                 if choice then vim.fn.chdir(choice) end
               end)

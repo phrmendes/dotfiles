@@ -193,7 +193,10 @@ _: {
               local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "2", root })
               local items = vim.iter(dirs)
                 :map(function(d) return d:gsub("/$", "") end)
-                :filter(function(d) return vim.uv.fs_stat(vim.fs.joinpath(d, ".git")) ~= nil end)
+                :filter(function(d)
+                  local stat = vim.uv.fs_stat(vim.fs.joinpath(d, ".git"))
+                  return stat ~= nil and stat.type == "directory"
+                end)
                 :totable()
               vim.ui.select(items, { prompt = "Project" }, function(choice)
                 if choice then vim.fn.chdir(choice) end

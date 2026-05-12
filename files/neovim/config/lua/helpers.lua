@@ -69,7 +69,10 @@ M.pick_project = function()
     local items = vim
       .iter(lines)
       :map(function(dir) return dir:gsub("/$", "") end)
-      :filter(function(dir) return vim.uv.fs_stat(vim.fs.joinpath(dir, ".git")) ~= nil end)
+      :filter(function(dir)
+        local stat = vim.uv.fs_stat(vim.fs.joinpath(dir, ".git"))
+        return stat ~= nil and stat.type == "directory"
+      end)
       :map(function(dir) return { text = vim.fn.fnamemodify(dir, ":~"), path = dir } end)
       :totable()
 

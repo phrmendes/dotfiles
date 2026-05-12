@@ -14,6 +14,7 @@ _: {
         shell = lib.getExe pkgs.zsh;
         extraConfig = ''
           set -g  default-terminal   tmux-256color
+          set -g  extended-keys      on
           set -ag terminal-overrides ",xterm-256color:RGB"
           set -ag terminal-overrides ",xterm-kitty:RGB"
           set -gq allow-passthrough  on

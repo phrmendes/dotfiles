@@ -178,16 +178,19 @@ _: {
               vim.cmd.detach()
             end, { desc = "Quit" })
 
-            vim.keymap.set("n", "<leader><leader>", function()
+            local find_file = function()
               local pattern = vim.fn.input("Find: ")
               if pattern == "" then return end
-              local matches = vim.fn.systemlist({ "fd", "--type", "f", "--hidden", "--glob", pattern })
+              local matches = vim.fn.systemlist({ "fd", "--type", "f", "--hidden", "--ignore-case", pattern })
               if #matches == 0 then return vim.notify("No files found", vim.log.levels.WARN) end
               if #matches == 1 then return vim.cmd.edit(matches[1]) end
               vim.ui.select(matches, { prompt = "Find file" }, function(choice)
                 if choice then vim.cmd.edit(choice) end
               end)
-            end, { desc = "Find file" })
+            end
+
+            vim.keymap.set("n", "<leader><leader>", find_file, { desc = "Find file" })
+            vim.keymap.set("n", "<leader>f", find_file, { desc = "Find file" })
 
             vim.keymap.set("n", "<leader>p", function()
               local root = vim.fs.joinpath(vim.env.HOME, "Projects")

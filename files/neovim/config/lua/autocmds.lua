@@ -1,5 +1,4 @@
 local augroups = {
-  auto_root = vim.api.nvim_create_augroup("UserAutoRoot", {}),
   autoread = vim.api.nvim_create_augroup("UserAutoread", {}),
   format_options = vim.api.nvim_create_augroup("UserFormatOptions", {}),
   line_numbers = vim.api.nvim_create_augroup("UserLineNumbers", {}),
@@ -9,16 +8,6 @@ local augroups = {
   treesitter = vim.api.nvim_create_augroup("UserTreesitter", {}),
   windows = vim.api.nvim_create_augroup("UserWindows", {}),
 }
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  desc = "Change cwd to git root of current buffer",
-  group = augroups.auto_root,
-  callback = vim.schedule_wrap(function(data)
-    if data.buf ~= vim.api.nvim_get_current_buf() then return end
-    local root = Snacks.git.get_root(vim.api.nvim_buf_get_name(data.buf))
-    if root then vim.fn.chdir(root) end
-  end),
-})
 
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Enable treesitter highlighting and folding",

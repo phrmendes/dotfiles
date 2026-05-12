@@ -69,12 +69,13 @@ M.pick_project = function()
     local items = vim
       .iter(lines)
       :map(function(dir) return dir:gsub("/$", "") end)
-      :filter(function(dir) return vim.uv.fs_stat(vim.fs.joinpath(dir, ".git")) ~= nil end)
       :map(function(dir)
         local stat = vim.uv.fs_stat(vim.fs.joinpath(dir, ".git"))
-        local prefix = stat.type == "file" and "  " or ""
+        if not stat then return nil end
+        local prefix = stat.type == "file" and "[S] " or ""
         return { text = prefix .. vim.fn.fnamemodify(dir, ":~"), path = dir }
       end)
+      :filter(function(item) return item ~= nil end)
       :totable()
 
     table.sort(items, function(a, b) return a.text < b.text end)
@@ -88,10 +89,7 @@ M.pick_project = function()
       show = function(buf_id, items_, query) MiniPick.default_show(buf_id, items_, query, { show_icons = true }) end,
       choose = function(item)
         if not item then return end
-        vim.schedule(function()
-          vim.cmd.cd(item.path)
-          vim.cmd.edit(item.path)
-        end)
+        vim.schedule(function() vim.fn.chdir(item.path) end)
       end,
     },
   })

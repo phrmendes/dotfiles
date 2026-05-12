@@ -231,6 +231,7 @@ safely("later", function()
 end)
 
 safely("later", function()
+  MiniMisc.setup_auto_root()
   MiniMisc.setup_restore_cursor()
   MiniMisc.setup_termbg_sync()
 end)

@@ -13,7 +13,7 @@ _: {
     {
       home.packages = [ pkgs.ungoogled-chromium ];
 
-      xdg.desktopEntries.chromium = lib.mkIf isDesktop {
+      xdg.desktopEntries.chromium-browser = lib.mkIf isDesktop {
         name = "Chromium";
         genericName = "Web Browser";
         exec = "env ${mesaEnv} chromium %U";

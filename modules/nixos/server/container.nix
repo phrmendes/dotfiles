@@ -155,6 +155,7 @@ in
               ripgrep
               starship
               tealdeer
+              tmux
               yazi
               zoxide
               zsh

@@ -174,7 +174,7 @@ _: {
             vim.keymap.set("n", "<leader><leader>", function()
               local pattern = vim.fn.input("Find: ")
               if pattern == "" then return end
-              local matches = vim.fn.globpath(".", "**/" .. pattern, false, true)
+              local matches = vim.fn.systemlist({ "fd", "--type", "f", "--hidden", "--glob", pattern })
               if #matches == 0 then return vim.notify("No files found", vim.log.levels.WARN) end
               if #matches == 1 then return vim.cmd.edit(matches[1]) end
               vim.ui.select(matches, { prompt = "Find file" }, function(choice)

@@ -11,6 +11,11 @@ _: {
           customLuaRC = /* lua */ ''
             vim.cmd("packadd nvim.undotree")
 
+            vim.ui.open = function(uri)
+              vim.notify("Open: " .. uri, vim.log.levels.INFO)
+              return nil, nil
+            end
+
             vim.g.mapleader = " "
             vim.g.maplocalleader = ","
 

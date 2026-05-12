@@ -19,7 +19,10 @@ in
         documentation = [ "https://neovim.io/" ];
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
-        path = [ pkgs.fd ];
+        path = [
+          pkgs.fd
+          "/etc/profiles/per-user/${settings.user}"
+        ];
         serviceConfig = {
           Type = "simple";
           User = settings.user;

@@ -13,6 +13,7 @@ in
     age.secrets = {
       "beszel-agent.env" = secretReadable ../../../secrets/beszel-agent.env.age;
       "claude-service-account.json" = secret ../../../secrets/claude-service-account.json.age "0440";
+      "opencode.txt" = secretReadable ../../../secrets/opencode.txt.age;
       "diun-ssh-key" = secret ../../../secrets/diun-ssh-key.age "0400";
       "docker-compose.env" = secretReadable ../../../secrets/docker-compose.env.age;
       "docker-config.json" = secret ../../../secrets/docker-config.json.age "0400";

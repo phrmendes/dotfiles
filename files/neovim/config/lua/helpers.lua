@@ -63,17 +63,19 @@ end
 M.pick_project = function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")
 
-  local command = { "fd", "--type", "d", "--hidden", "--max-depth", "2", ".", root }
+  local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root }
 
   local postprocess = function(lines)
     local items = vim
       .iter(lines)
       :map(function(dir) return dir:gsub("/$", "") end)
-      :filter(function(dir)
+      :filter(function(dir) return vim.uv.fs_stat(vim.fs.joinpath(dir, ".git")) ~= nil end)
+      :map(function(dir)
         local stat = vim.uv.fs_stat(vim.fs.joinpath(dir, ".git"))
-        return stat ~= nil and stat.type == "directory"
+        local is_submodule = stat.type == "file"
+        local icon = is_submodule and "  " or "  "
+        return { text = icon .. vim.fn.fnamemodify(dir, ":~"), path = dir }
       end)
-      :map(function(dir) return { text = vim.fn.fnamemodify(dir, ":~"), path = dir } end)
       :totable()
 
     table.sort(items, function(a, b) return a.text < b.text end)

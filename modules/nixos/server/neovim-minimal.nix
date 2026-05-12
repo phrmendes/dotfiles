@@ -191,17 +191,22 @@ _: {
 
             vim.keymap.set("n", "<leader>p", function()
               local root = vim.fs.joinpath(vim.env.HOME, "Projects")
-              local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "2", ".", root })
+              local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root })
               local items = {}
               for _, d in ipairs(dirs) do
                 d = d:gsub("/$", "")
                 local stat = vim.uv.fs_stat(vim.fs.joinpath(d, ".git"))
-                if stat ~= nil and stat.type == "directory" then
-                  table.insert(items, d)
+                if stat ~= nil then
+                  local label = (stat.type == "file" and "[sub] " or "[pro] ") .. d
+                  table.insert(items, { label = label, path = d })
                 end
               end
-              vim.ui.select(items, { prompt = "Project" }, function(choice)
-                if choice then vim.fn.chdir(choice) end
+              table.sort(items, function(a, b) return a.label < b.label end)
+              vim.ui.select(items, {
+                prompt = "Project",
+                format_item = function(item) return item.label end,
+              }, function(choice)
+                if choice then vim.fn.chdir(choice.path) end
               end)
             end, { desc = "Projects" })
 

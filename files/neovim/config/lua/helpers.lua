@@ -63,7 +63,7 @@ end
 M.pick_project = function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")
 
-  local command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--max-depth", "3", "--glob", ".git", root }
+  local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", "--glob", ".git", root }
 
   local postprocess = function(lines)
     local items = vim
@@ -85,7 +85,10 @@ M.pick_project = function()
       show = function(buf_id, items_, query) MiniPick.default_show(buf_id, items_, query, { show_icons = true }) end,
       choose = function(item)
         if not item then return end
-        vim.schedule(function() vim.cmd.cd(item.path) end)
+        vim.schedule(function()
+          vim.cmd.cd(item.path)
+          vim.cmd.edit(item.path)
+        end)
       end,
     },
   })

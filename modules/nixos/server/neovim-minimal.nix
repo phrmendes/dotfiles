@@ -197,6 +197,7 @@ _: {
               cli = {
                 win = { layout = "float" },
                 mux = { backend = "tmux", enabled = true },
+                tools = { pi = {} },
               },
             })
 

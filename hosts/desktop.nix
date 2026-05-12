@@ -118,6 +118,7 @@ in
           zsh
         ])
         ++ (with homeManager.workstation; [
+          chromium
           cliphist
           firefox
           gtk

@@ -7,6 +7,7 @@ _: {
         withRuby = false;
         configure = {
           packages.treesitter.start = pkgs.local.nvim-treesitter;
+          packages.sidekick.start = [ pkgs.vimPlugins.sidekick-nvim ];
           customLuaRC = /* lua */ ''
             vim.cmd("packadd nvim.undotree")
 
@@ -190,8 +191,6 @@ _: {
                 if choice then vim.fn.chdir(choice) end
               end)
             end, { desc = "Projects" })
-
-            vim.pack.add({ "https://github.com/folke/sidekick.nvim" })
 
             require("sidekick").setup({
               nes = { enabled = false },

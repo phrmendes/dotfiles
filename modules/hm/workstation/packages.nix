@@ -29,7 +29,6 @@ _: {
         terraform
         thunar
         tpm2-tools
-        ungoogled-chromium
         grim
         satty
         slurp

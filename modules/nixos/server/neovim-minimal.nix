@@ -156,6 +156,7 @@ _: {
             vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { desc = "Split (H)" })
             vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
             vim.keymap.set("n", "<leader>e", "<cmd>Lexplore<cr>", { desc = "Explorer" })
+            vim.keymap.set("n", "<leader>t", function() vim.cmd("enew") vim.cmd("terminal") end, { desc = "Terminal" })
             vim.keymap.set("n", "<leader>/", function() vim.fn.feedkeys(":silent grep  | copen\18", "n") end, { desc = "Grep" })
             vim.keymap.set("n", "<c-p>", "<cmd>buffers<cr>:b<space>", { desc = "Buffers" })
             vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
@@ -190,7 +191,7 @@ _: {
 
             vim.keymap.set("n", "<leader>p", function()
               local root = vim.fs.joinpath(vim.env.HOME, "Projects")
-              local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "2", root })
+              local dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--max-depth", "2", ".", root })
               local items = vim.iter(dirs)
                 :map(function(d) return d:gsub("/$", "") end)
                 :filter(function(d)

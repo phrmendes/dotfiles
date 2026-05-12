@@ -63,7 +63,7 @@ end
 M.pick_project = function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")
 
-  local command = { "fd", "--type", "d", "--hidden", "--max-depth", "2", root }
+  local command = { "fd", "--type", "d", "--hidden", "--max-depth", "2", ".", root }
 
   local postprocess = function(lines)
     local items = vim

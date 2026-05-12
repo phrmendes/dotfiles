@@ -23,6 +23,7 @@ in
 
       networking.hostName = "desktop";
       programs.nh.flake = "${settings.home}/Projects/dotfiles";
+      environment.variables.NH_NO_VALIDATE = "1";
 
       machine = {
         type = "desktop";

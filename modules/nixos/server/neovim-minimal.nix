@@ -322,6 +322,7 @@ _: {
 
               local sort_recent = MiniVisits.gen_sort.default({ recency_weight = 1 })
               local iterate_opts = { sort = sort_recent, wrap = true }
+
               vim.keymap.set("n", "[v", function() MiniVisits.iterate_paths("backward", nil, iterate_opts) end, { desc = "Previous visit (MRU)" })
               vim.keymap.set("n", "]v", function() MiniVisits.iterate_paths("forward", nil, iterate_opts) end, { desc = "Next visit (MRU)" })
               vim.keymap.set("n", "[V", function() MiniVisits.iterate_paths("first", nil, iterate_opts) end, { desc = "Most recent visit" })
@@ -352,6 +353,13 @@ _: {
               vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
               vim.keymap.set("n", "<leader>v", MiniExtra.pickers.visit_paths, { desc = "Visits (cwd)" })
               vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
+              vim.keymap.set("n", "<leader>q", function()
+                if vim.list_contains(vim.v.argv, "--embed") then
+                  vim.cmd.quit()
+                  return
+                end
+                vim.cmd.detach()
+              end, { desc = "Quit / detach" })
 
               vim.keymap.set("n", "<c-p>", function()
                 local buf_items = function()

@@ -24,8 +24,7 @@
           };
         };
 
-        kernelModules = [ "tun" ];
-        initrd.kernelModules = [
+        kernelModules = [
           "tun"
           "fuse"
         ];
@@ -52,13 +51,15 @@
                 RemainAfterExit = true;
               };
               script = ''
+                set -euo pipefail
+
                 mkdir -p /btrfs_tmp
                 mount /dev/mapper/crypted /btrfs_tmp
 
                 delete_subvolume_recursively() {
                   while IFS= read -r subvol; do
                     delete_subvolume_recursively "/btrfs_tmp/$subvol"
-                  done < <(btrfs subvolume list -o "$1" | cut -f 9- -d ' ')
+                  done < <(btrfs subvolume list -o "$1" | awk '{print $NF}')
                   btrfs subvolume delete "$1"
                 }
 

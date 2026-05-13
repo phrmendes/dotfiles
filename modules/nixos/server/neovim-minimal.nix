@@ -413,6 +413,17 @@ _: {
                 local root = vim.fs.joinpath(vim.env.HOME, "Projects")
                 local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root }
                 local postprocess = function(lines)
+                  local sort = MiniVisits.gen_sort.default({ recency_weight = 1 })
+                  local visited = MiniVisits.list_paths("", { sort = sort })
+                  local recency = {}
+
+                  vim.iter(ipairs(visited)):each(function(i, path)
+                    local project = vim.fs.root(path, ".git")
+                    if project and not recency[project] then
+                      recency[project] = i
+                    end
+                  end)
+
                   local items = vim
                     .iter(lines)
                     :map(function(dir) return dir:gsub("/$", "") end)
@@ -420,11 +431,20 @@ _: {
                       local stat = vim.uv.fs_stat(vim.fs.joinpath(dir, ".git"))
                       if not stat then return nil end
                       local prefix = stat.type == "file" and "[S] " or ""
-                      return { text = prefix .. vim.fn.fnamemodify(dir, ":~"), path = dir }
+                      return {
+                        text = prefix .. vim.fn.fnamemodify(dir, ":~"),
+                        path = dir,
+                        recency = recency[dir] or math.huge,
+                      }
                     end)
                     :filter(function(item) return item ~= nil end)
                     :totable()
-                  table.sort(items, function(a, b) return a.text < b.text end)
+
+                  table.sort(items, function(a, b)
+                    if a.recency ~= b.recency then return a.recency < b.recency end
+                    return a.text < b.text
+                  end)
+
                   return items
                 end
                 MiniPick.builtin.cli({ command = command, postprocess = postprocess }, {
@@ -434,7 +454,9 @@ _: {
                     choose = function(item)
                       if not item then return end
                       vim.schedule(function()
-                        vim.fn.chdir(item.path)
+                        vim.cmd.tchdir(item.path)
+                        MiniFiles.close()
+                        MiniFiles.open(item.path, false)
                       end)
                     end,
                   },

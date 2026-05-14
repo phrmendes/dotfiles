@@ -40,13 +40,6 @@ end
 
 --- Paste the contents of the system clipboard.
 --- @return table: A table containing clipboard lines and register type.
-M.paste = function()
-  return {
-    vim.fn.split(vim.fn.getreg(""), "\n"),
-    vim.fn.getregtype(""),
-  }
-end
-
 --- Returns all subdirectories under a path. The path is absolute.
 --- @param path string The path to search for subdirectories.
 --- @return string[]: A list of subdirectory paths.

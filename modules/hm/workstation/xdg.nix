@@ -12,7 +12,7 @@ _: {
           "audio/*" = "mpv.desktop";
           "image/*" = "imv.desktop";
           "video/*" = "mpv.desktop";
-          "text/*" = "nvim.desktop";
+          "text/*" = "neovide.desktop";
           "x-scheme-handler/terminal" = "kitty.desktop";
           "application/x-terminal-emulator" = "kitty.desktop";
           "application/pdf" = "org.pwmt.zathura.desktop";

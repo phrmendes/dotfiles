@@ -126,6 +126,7 @@ in
           imv
           keepassxc
           mpv
+          neovide
           noctalia
           packages
           udiskie

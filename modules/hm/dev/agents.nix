@@ -51,14 +51,15 @@ in
           pkgs.local.gcp-token
         ];
         text = ''
-          export CHROME_PATH="${pkgs.ungoogled-chromium}/bin/chromium"
-          export GOOGLE_APPLICATION_CREDENTIALS="${keyfile}"
-          export GOOGLE_VERTEX_PROJECT="${gcp.project}"
-          export GOOGLE_VERTEX_LOCATION="${gcp.location}"
-          export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
-          VERTEX_MAAS_TOKEN="$(gcp-token)"
-          export VERTEX_MAAS_TOKEN
-          exec opencode "$@"
+          VERTEX_MAAS_TOKEN="$(GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" gcp-token)"
+          exec env \
+            CHROME_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
+            GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
+            GOOGLE_VERTEX_PROJECT="${gcp.project}" \
+            GOOGLE_VERTEX_LOCATION="${gcp.location}" \
+            PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true" \
+            VERTEX_MAAS_TOKEN="$VERTEX_MAAS_TOKEN" \
+            opencode "$@"
         '';
       };
     in
@@ -151,12 +152,13 @@ in
           pkgs.pi-coding-agent
         ];
         text = ''
-          export GOOGLE_APPLICATION_CREDENTIALS="${keyfile}"
-          VERTEX_CLAUDE_API_KEY="$(gcp-token)"
-          export VERTEX_CLAUDE_API_KEY
+          VERTEX_CLAUDE_API_KEY="$(GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" gcp-token)"
           OPENCODE_API_KEY="$(cat ${opencode-key})"
-          export OPENCODE_API_KEY
-          exec pi "$@"
+          exec env \
+            GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
+            VERTEX_CLAUDE_API_KEY="$VERTEX_CLAUDE_API_KEY" \
+            OPENCODE_API_KEY="$OPENCODE_API_KEY" \
+            pi "$@"
         '';
       };
 

@@ -12,9 +12,11 @@ permission:
 ---
 
 ## Purpose
+
 Act as a senior engineer reviewing a pull request. Produce actionable, specific feedback — not vague suggestions.
 
 ## Steps
+
 1. Read the current diff: !`git diff HEAD`
 2. Read the surrounding context for each changed file to understand intent
 3. Review across three dimensions:
@@ -39,5 +41,6 @@ Act as a senior engineer reviewing a pull request. Produce actionable, specific 
 6. Flag anything that would block a merge in a code review
 
 ## Rules
+
 - Never approve a diff that lacks tests for changed behaviour
 - Findings must reference specific files and lines — no vague feedback

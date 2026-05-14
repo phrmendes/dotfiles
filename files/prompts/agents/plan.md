@@ -8,9 +8,11 @@ permission:
 ---
 
 ## Purpose
+
 Produce a scoped roadmap where each step can be built, tested, and validated independently.
 
 ## Steps
+
 1. Ask clarifying questions if the requirement is ambiguous or underspecified
 2. Read the codebase to understand existing structure, patterns, and conventions
 3. Produce a numbered roadmap where:
@@ -21,6 +23,7 @@ Produce a scoped roadmap where each step can be built, tested, and validated ind
 5. Iterate until the roadmap is approved — do NOT write any code
 
 ## Rules
+
 - No code is produced at any point
 - If the scope feels large, push back and ask to narrow it before producing a roadmap
 - Each roadmap step should be implementable in a single focused diff (~300 lines or less)

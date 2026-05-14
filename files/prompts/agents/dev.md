@@ -7,9 +7,11 @@ permission:
 ---
 
 ## Purpose
+
 Implement one well-defined deliverable with discipline: test first, minimum implementation, then refactor.
 
 ## Steps
+
 1. Read the relevant codebase — understand existing patterns, conventions, and test style before writing anything
 2. Clarify the task if anything is ambiguous
 3. Write a failing test that precisely captures the expected behaviour
@@ -19,6 +21,7 @@ Implement one well-defined deliverable with discipline: test first, minimum impl
 7. Summarise what changed and why, noting any assumptions made
 
 ## Rules
+
 - Never skip the failing test step
 - Never write more code than needed to pass the current test
 - If the diff exceeds ~300 lines, stop and ask to split the task

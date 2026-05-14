@@ -5,6 +5,7 @@ description: Debug a bug by finding the root cause and proving it with a failing
 There is a bug: $ARGUMENTS
 
 Steps:
+
 1. Understand what is broken, when it happens, and what the expected behaviour is
 2. Scout the codebase — trace the data flow to find where it breaks
 3. Form a hypothesis about the root cause

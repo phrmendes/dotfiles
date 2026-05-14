@@ -4,6 +4,7 @@ description: Conventions and rules for JavaScript/TypeScript development. Load t
 ---
 
 ## Tooling
+
 - Use `pnpm` for package management unless the project already uses `npm` or `bun`
 - Use `tsc` for type checking; never skip it before shipping
 - Use `eslint` with `typescript-eslint` for linting
@@ -11,6 +12,7 @@ description: Conventions and rules for JavaScript/TypeScript development. Load t
 - Use `vitest` for testing; use `jest` only if the project already depends on it
 
 ## Code style
+
 - Always use TypeScript over plain JavaScript for new files
 - Prefer `type` over `interface` unless declaration merging is needed
 - No `any` — use `unknown` and narrow explicitly if the type is truly unknown
@@ -19,6 +21,7 @@ description: Conventions and rules for JavaScript/TypeScript development. Load t
 - Keep functions small and pure where possible; isolate side effects to the edges
 
 ## Testing
+
 - Name tests descriptively: `it("should <behaviour> when <condition>")`
 - Prefer `vi.mock` / `jest.mock` at the module boundary — not inside logic
 - Use `describe` blocks to group related tests

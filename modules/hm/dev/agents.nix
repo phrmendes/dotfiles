@@ -98,6 +98,22 @@ in
               command = [ "${pkgs.playwright-mcp}/bin/playwright-mcp" ];
               enabled = true;
             };
+            jira = {
+              type = "remote";
+              url = "https://mcp.atlassian.com/v1/mcp";
+              enabled = true;
+            };
+            nixos = {
+              type = "local";
+              command = [ "${pkgs.mcp-nixos}/bin/mcp-nixos" ];
+              enabled = true;
+            };
+            memory = {
+              type = "local";
+              command = [ "${pkgs.mcp-server-memory}/bin/mcp-server-memory" ];
+              environment.MEMORY_FILE_PATH = "~/.local/share/opencode/memory.jsonl";
+              enabled = true;
+            };
           };
           provider = {
             opencode-go = {

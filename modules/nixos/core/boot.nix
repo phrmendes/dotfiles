@@ -53,22 +53,37 @@
               script = ''
                 set -euo pipefail
 
-                mkdir -p /btrfs_tmp
-                mount /dev/mapper/crypted /btrfs_tmp
+                BTRFS_DEVICE=/dev/mapper/crypted
+                BTRFS_MNT=/btrfs_tmp
+                ROOT_SUBVOL=$BTRFS_MNT/root
+                OLD_ROOTS=$BTRFS_MNT/old_roots
 
-                delete_subvolume_recursively() {
-                  while IFS= read -r subvol; do
-                    delete_subvolume_recursively "/btrfs_tmp/$subvol"
-                  done < <(btrfs subvolume list -o "$1" | awk '{print $NF}')
-                  btrfs subvolume delete "$1"
+                delete_subvolume() {
+                  local subvol="$1"
+                  IFS=$'\n'
+
+                  for child in $(btrfs subvolume list -o "$subvol" | cut -f 9- -d ' '); do
+                    delete_subvolume "$BTRFS_MNT/$child"
+                  done
+
+                  btrfs subvolume delete "$subvol"
                 }
 
-                if [[ -e /btrfs_tmp/root ]]; then
-                  delete_subvolume_recursively /btrfs_tmp/root
+                mkdir -p "$BTRFS_MNT"
+                mount "$BTRFS_DEVICE" "$BTRFS_MNT"
+
+                if [[ -e $ROOT_SUBVOL ]]; then
+                  mkdir -p "$OLD_ROOTS"
+                  timestamp=$(date --date="@$(stat -c %Y $ROOT_SUBVOL)" "+%Y-%m-%-d_%H:%M:%S")
+                  mv "$ROOT_SUBVOL" "$OLD_ROOTS/$timestamp"
                 fi
 
-                btrfs subvolume create /btrfs_tmp/root
-                umount /btrfs_tmp
+                for old_root in $(find "$OLD_ROOTS/" -maxdepth 1 -mtime +7); do
+                  delete_subvolume "$old_root"
+                done
+
+                btrfs subvolume create "$ROOT_SUBVOL"
+                umount "$BTRFS_MNT"
               '';
             };
           };

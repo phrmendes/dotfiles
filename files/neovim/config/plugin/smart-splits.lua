@@ -1,7 +1,10 @@
 safely("now", function()
   local splits = require("smart-splits")
 
-  splits.setup({ cursor_follows_swapped_bufs = true })
+  splits.setup({
+    cursor_follows_swapped_bufs = true,
+    ignored_filetypes = { "sidekick_terminal" },
+  })
 
   vim.keymap.set({ "n", "t" }, "<a-h>", splits.resize_left, { desc = "Resize left" })
   vim.keymap.set({ "n", "t" }, "<a-j>", splits.resize_down, { desc = "Resize down" })

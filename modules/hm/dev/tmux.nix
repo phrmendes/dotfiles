@@ -22,7 +22,7 @@ _: {
           set -g detach-on-destroy   off
           set -g focus-events        on
           set -g renumber-windows    on
-          set -g set-clipboard       on
+          set -g set-clipboard       off
           set -g status          on
           set -g status-position top
           set -g status-left     " #S "

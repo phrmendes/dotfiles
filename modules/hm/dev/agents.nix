@@ -84,6 +84,7 @@ in
             "google-vertex"
             "vertex-maas-global"
             "vertex-maas-us-south1"
+            "github-copilot"
           ];
           model = "opencode-go/deepseek-v4-pro";
           small_model = "opencode-go/qwen3.5-plus";

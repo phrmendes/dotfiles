@@ -11,7 +11,7 @@ _: {
     in
     {
       services = {
-        envfs.enable = true;
+        envfs.enable = false;
         fstrim.enable = true;
         gvfs.enable = isWorkstation;
         ntpd-rs.enable = true;

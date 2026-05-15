@@ -20,7 +20,7 @@
           };
           systemd-boot = {
             enable = true;
-            configurationLimit = 30;
+            configurationLimit = 10;
           };
         };
 
@@ -78,9 +78,11 @@
                   mv "$ROOT_SUBVOL" "$OLD_ROOTS/$timestamp"
                 fi
 
-                for old_root in $(find "$OLD_ROOTS/" -maxdepth 1 -mtime +7); do
-                  delete_subvolume "$old_root"
-                done
+                if [[ -d $OLD_ROOTS ]]; then
+                  for old_root in $(find "$OLD_ROOTS" -maxdepth 1 -mindepth 1 -mtime +7); do
+                    delete_subvolume "$old_root"
+                  done
+                fi
 
                 btrfs subvolume create "$ROOT_SUBVOL"
                 umount "$BTRFS_MNT"

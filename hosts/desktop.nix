@@ -12,7 +12,6 @@ in
         ++ (with nixos.workstation; [
           hyprland
           libvirtd
-          greetd
           noctalia
           pam
           persistence
@@ -61,6 +60,7 @@ in
           [
             "boot.shell_on_fail"
             "video=${m.name}:${m.resolution}@${toString m.refreshRate}"
+            "video=DP-3:2560x1080@60"
             "nvidia_drm.modeset=1"
             "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
           ];

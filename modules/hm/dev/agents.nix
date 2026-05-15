@@ -92,6 +92,7 @@ in
             k8s = {
               type = "local";
               command = [ "${pkgs.mcp-k8s-go}/bin/mcp-k8s-go" ];
+              environment.GOOGLE_APPLICATION_CREDENTIALS = "$HOME/.config/gcloud/application_default_credentials.json";
               enabled = true;
             };
             playwright = {
@@ -172,7 +173,6 @@ in
           VERTEX_CLAUDE_API_KEY="$(GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" gcp-token)"
           OPENCODE_API_KEY="$(cat ${opencode-key})"
           exec env \
-            GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
             VERTEX_CLAUDE_API_KEY="$VERTEX_CLAUDE_API_KEY" \
             OPENCODE_API_KEY="$OPENCODE_API_KEY" \
             pi "$@"

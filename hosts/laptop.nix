@@ -16,7 +16,6 @@ in
         ++ (with nixos.workstation; [
           hyprland
           libvirtd
-          greetd
           noctalia
           pam
           persistence

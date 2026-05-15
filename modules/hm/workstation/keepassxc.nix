@@ -41,6 +41,7 @@ _: {
           };
         }
       );
+
       localIni = pkgs.writeText "keepassxc-local.ini" (
         lib.generators.toINI { } {
           SSHAgent = {
@@ -53,43 +54,17 @@ _: {
     {
       home.packages = [ pkgs.keepassxc ];
 
-      xdg.configFile."autostart/org.keepassxc.KeePassXC.desktop".text = ''
-        [Desktop Entry]
-        Type=Application
-        Name=KeePassXC
-        Hidden=true
-        X-GNOME-Autostart-enabled=false
-      '';
-
-      xdg.portal.config.common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
-      xdg.portal.config.hyprland.default = [
-        "hyprland"
-        "gtk"
-      ];
-
-      systemd.user.services.keepassxc = {
-        Unit = {
-          Description = "KeePassXC";
-          After = [
-            "graphical-session.target"
-            "tray.target"
-          ];
-          PartOf = [ "graphical-session.target" ];
-        };
-        Service = {
-          ExecStart = "${lib.getExe pkgs.keepassxc} --minimized";
-          Environment = [
-            "SSH_AUTH_SOCK=%t/ssh-agent"
-          ];
-          Restart = "on-failure";
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
+      xdg.portal.config = {
+        common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+        hyprland.default = [
+          "hyprland"
+          "gtk"
+        ];
       };
 
       home.activation.keepassxcConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         $DRY_RUN_CMD mkdir -p "$HOME/${configDir}"
         $DRY_RUN_CMD mkdir -p "$HOME/${localStateDir}"
-
         $DRY_RUN_CMD install -m 600 ${ini} "$HOME/${configDir}/keepassxc.ini"
         $DRY_RUN_CMD install -m 600 ${localIni} "$HOME/${localStateDir}/keepassxc.ini"
       '';

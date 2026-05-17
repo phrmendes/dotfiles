@@ -1,7 +1,6 @@
 { config, ... }:
 let
   inherit (config.settings) gcp;
-  inherit (config.settings.gcp) maasEndpoint;
   inherit (config.settings) litellmPort;
   inherit (config.settings.lan) containerHostAddress;
   litellmUrl = "http://${containerHostAddress}:${toString litellmPort}";
@@ -34,16 +33,6 @@ in
     let
       keyfile = osConfig.age.secrets."claude-service-account.json".path;
 
-      vertexMaaSProvider = region: name: models: {
-        npm = "@ai-sdk/openai-compatible";
-        inherit name;
-        options = {
-          baseURL = maasEndpoint region;
-          apiKey = "{env:VERTEX_MAAS_TOKEN}";
-        };
-        inherit models;
-      };
-
       opencode-wrapped = pkgs.writeShellApplication {
         name = "opencode";
         runtimeInputs = [
@@ -51,14 +40,12 @@ in
           pkgs.local.gcp-token
         ];
         text = ''
-          VERTEX_MAAS_TOKEN="$(GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" gcp-token)"
           exec env \
             CHROME_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
             GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
             GOOGLE_VERTEX_PROJECT="${gcp.project}" \
             GOOGLE_VERTEX_LOCATION="${gcp.location}" \
             PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true" \
-            VERTEX_MAAS_TOKEN="$VERTEX_MAAS_TOKEN" \
             opencode "$@"
         '';
       };
@@ -81,9 +68,6 @@ in
           enabled_providers = [
             "opencode-go"
             "google-vertex-anthropic"
-            "google-vertex"
-            "vertex-maas-global"
-            "vertex-maas-us-south1"
             "github-copilot"
           ];
           model = "opencode-go/deepseek-v4-pro";
@@ -125,6 +109,7 @@ in
                 "kimi-k2.6".name = "Kimi K2.6";
                 "qwen3.5-plus".name = "Qwen3.5 Plus";
                 "qwen3.6-plus".name = "Qwen3.6 Plus";
+                "glm-5".name = "GLM 5";
                 "glm-5.1".name = "GLM 5.1";
                 "deepseek-v4-pro".name = "DeepSeek V4 Pro";
                 "deepseek-v4-flash".name = "DeepSeek V4 Flash";
@@ -132,20 +117,6 @@ in
             };
             google-vertex-anthropic = {
               models."claude-sonnet-4-6@default" = { };
-            };
-            google-vertex = {
-              options.location = "global";
-              models."gemini-3.1-pro-preview".name = "Gemini 3.1 Pro Preview";
-            };
-            vertex-maas-global = vertexMaaSProvider "global" "Vertex (Global)" {
-              "deepseek-ai/deepseek-v3.2-maas".name = "DeepSeek V3.2";
-              "moonshotai/kimi-k2-thinking-maas".name = "Kimi K2 Thinking";
-              "qwen/qwen3-next-80b-a3b-instruct-maas".name = "Qwen3 Next 80B Instruct";
-              "qwen/qwen3-next-80b-a3b-thinking-maas".name = "Qwen3 Next 80B Thinking";
-            };
-            vertex-maas-us-south1 = vertexMaaSProvider "us-south1" "Vertex (US South1)" {
-              "qwen/qwen3-coder-480b-a35b-instruct-maas".name = "Qwen3 Coder 480B";
-              "qwen/qwen3-235b-a22b-instruct-2507-maas".name = "Qwen3 235B Instruct";
             };
           };
         };
@@ -170,11 +141,9 @@ in
           pkgs.pi-coding-agent
         ];
         text = ''
-          VERTEX_CLAUDE_API_KEY="$(GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" gcp-token)"
-          OPENCODE_API_KEY="$(cat ${opencode-key})"
           exec env \
-            VERTEX_CLAUDE_API_KEY="$VERTEX_CLAUDE_API_KEY" \
-            OPENCODE_API_KEY="$OPENCODE_API_KEY" \
+            VERTEX_CLAUDE_API_KEY="$(GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" gcp-token)" \
+            OPENCODE_API_KEY="$(cat ${opencode-key})" \
             pi "$@"
         '';
       };
@@ -212,21 +181,6 @@ in
                     name = "Claude Sonnet 4.6 (Vertex)";
                     contextWindow = 200000;
                     maxTokens = 8192;
-                    reasoning = false;
-                    input = [ "text" ];
-                  }
-                ];
-              };
-              vertex-maas = {
-                api = "openai-completions";
-                baseUrl = "${litellmUrl}/v1";
-                apiKey = "VERTEX_CLAUDE_API_KEY";
-                models = [
-                  {
-                    id = "qwen3-coder-480b";
-                    name = "Qwen3 Coder 480B";
-                    contextWindow = 262144;
-                    maxTokens = 16384;
                     reasoning = false;
                     input = [ "text" ];
                   }

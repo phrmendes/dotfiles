@@ -47,14 +47,6 @@ in
               };
             }
             {
-              model_name = "qwen3-coder-480b";
-              litellm_params = {
-                model = "vertex_ai/qwen/qwen3-coder-480b-a35b-instruct-maas";
-                vertex_project = gcp.project;
-                vertex_location = "us-south1";
-              };
-            }
-            {
               model_name = "gemini-3-flash";
               litellm_params = {
                 model = "vertex_ai/gemini-3-flash-preview";

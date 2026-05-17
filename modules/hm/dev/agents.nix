@@ -33,19 +33,22 @@ in
     let
       keyfile = osConfig.age.secrets."claude-service-account.json".path;
 
+      agentBrowserSkill = builtins.readFile "${pkgs.agent-browser}/share/agent-browser/skills/agent-browser/SKILL.md";
+
       opencode-wrapped = pkgs.writeShellApplication {
         name = "opencode";
-        runtimeInputs = [
-          pkgs.opencode
-          pkgs.local.gcp-token
+        runtimeInputs = with pkgs; [
+          agent-browser
+          opencode
+          local.gcp-token
         ];
         text = ''
           exec env \
-            CHROME_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
+            AGENT_BROWSER_EXECUTABLE_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
+            AGENT_BROWSER_SKILLS_DIR="${pkgs.agent-browser}/share/agent-browser/skills" \
             GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
             GOOGLE_VERTEX_PROJECT="${gcp.project}" \
             GOOGLE_VERTEX_LOCATION="${gcp.location}" \
-            PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true" \
             opencode "$@"
         '';
       };
@@ -59,9 +62,12 @@ in
         inherit
           context
           agents
-          skills
           commands
           ;
+
+        skills = skills // {
+          agent-browser = agentBrowserSkill;
+        };
 
         settings = {
           agent.build.disable = true;
@@ -77,11 +83,6 @@ in
               type = "local";
               command = [ "${pkgs.mcp-k8s-go}/bin/mcp-k8s-go" ];
               environment.GOOGLE_APPLICATION_CREDENTIALS = "$HOME/.config/gcloud/application_default_credentials.json";
-              enabled = true;
-            };
-            playwright = {
-              type = "local";
-              command = [ "${pkgs.playwright-mcp}/bin/playwright-mcp" ];
               enabled = true;
             };
             jira = {

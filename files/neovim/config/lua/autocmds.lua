@@ -10,15 +10,13 @@ local augroups = {
 }
 
 vim.api.nvim_create_autocmd("FileType", {
-  desc = "Enable treesitter highlighting and folding",
+  desc = "Enable treesitter highlighting",
   group = augroups.treesitter,
   callback = function(event)
     local language = vim.treesitter.language.get_lang(event.match) or event.match
 
     if not vim.treesitter.language.add(language) then return end
 
-    vim.wo.foldmethod = "expr"
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.treesitter.start(event.buf, language)
   end,
 })

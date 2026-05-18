@@ -2,6 +2,7 @@
 let
   inherit (config) settings;
   commonDirs = [
+    ".aws"
     ".cache"
     ".config"
     ".docker"

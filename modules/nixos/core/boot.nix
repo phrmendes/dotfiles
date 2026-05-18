@@ -5,7 +5,7 @@
     {
       boot = {
         tmp.cleanOnBoot = true;
-        kernelPackages = pkgs.linuxPackages_6_18;
+        kernelPackages = pkgs.linuxPackages;
 
         supportedFilesystems = [
           "btrfs"

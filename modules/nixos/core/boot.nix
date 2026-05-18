@@ -5,7 +5,7 @@
     {
       boot = {
         tmp.cleanOnBoot = true;
-        kernelPackages = pkgs.linuxPackages_6_12;
+        kernelPackages = pkgs.linuxPackages_6_18;
 
         supportedFilesystems = [
           "btrfs"
@@ -25,11 +25,14 @@
         };
 
         kernelModules = [
-          "tun"
           "fuse"
         ];
 
         initrd = {
+          kernelModules = [
+            "tun"
+          ];
+
           availableKernelModules = [
             "xhci_pci"
             "ahci"

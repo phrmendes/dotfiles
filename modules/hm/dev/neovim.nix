@@ -65,7 +65,7 @@
             simple-completion-language-server
             tailwindcss-language-server
             taplo
-            terraform-ls
+            tofu-ls
             typescript-language-server
             vscode-langservers-extracted
             yaml-language-server

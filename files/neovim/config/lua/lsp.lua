@@ -27,6 +27,7 @@ vim.lsp.enable({
   "tailwindcss",
   "taplo",
   "terraformls",
+  "tofu_ls",
   "ts_ls",
   "ty",
   "yamlls",

@@ -2,6 +2,7 @@
 let
   inherit (config.settings) gcp;
   inherit (config.settings) litellmPort;
+  inherit (config.settings) home;
   inherit (config.settings.lan) containerHostAddress;
   litellmUrl = "http://${containerHostAddress}:${toString litellmPort}";
   promptsDir = ../../../files/prompts;
@@ -98,7 +99,7 @@ in
             memory = {
               type = "local";
               command = [ "${pkgs.mcp-server-memory}/bin/mcp-server-memory" ];
-              environment.MEMORY_FILE_PATH = "~/.local/share/opencode/memory.jsonl";
+              environment.MEMORY_FILE_PATH = "${home}/.local/share/opencode/memory.jsonl";
               enabled = true;
             };
           };

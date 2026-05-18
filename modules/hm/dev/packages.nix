@@ -19,6 +19,7 @@ _: {
           python314
           sqlite
           uv
+          opentofu
           (google-cloud-sdk.withExtraComponents (
             with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
           ))

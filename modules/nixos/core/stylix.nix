@@ -17,9 +17,9 @@
         base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
         polarity = "dark";
         cursor = {
-          name = "Cosmic";
-          package = pkgs.cosmic-icons;
-          size = 26;
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+          size = 24;
         };
         fonts = {
           sizes = {

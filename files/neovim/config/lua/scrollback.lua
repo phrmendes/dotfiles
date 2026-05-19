@@ -3,7 +3,7 @@ return function(input_line_number, cursor_line, cursor_column)
 
   vim.opt.runtimepath:prepend({ site, site .. "/pack/core/opt/mini.nvim" })
 
-  require("mini.base16").setup({ palette = require("nix").base16.palette, use_cterm = true })
+  require("mini.base16").setup({ palette = require("nix").colors, use_cterm = true })
 
   vim.opt.compatible = false
   vim.opt.encoding = "utf-8"

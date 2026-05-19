@@ -34,7 +34,7 @@ in
     let
       keyfile = osConfig.age.secrets."claude-service-account.json".path;
 
-      agentBrowserSkill = builtins.readFile "${pkgs.agent-browser}/share/agent-browser/skills/agent-browser/SKILL.md";
+      agentBrowserSkill = builtins.readFile "${pkgs.agent-browser}/skills/agent-browser/SKILL.md";
 
       opencode-wrapped = pkgs.writeShellApplication {
         name = "opencode";
@@ -46,7 +46,7 @@ in
         text = ''
           exec env \
             AGENT_BROWSER_EXECUTABLE_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
-            AGENT_BROWSER_SKILLS_DIR="${pkgs.agent-browser}/share/agent-browser/skills" \
+            AGENT_BROWSER_SKILLS_DIR="${pkgs.agent-browser}/skills" \
             GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
             GOOGLE_VERTEX_PROJECT="${gcp.project}" \
             GOOGLE_VERTEX_LOCATION="${gcp.location}" \

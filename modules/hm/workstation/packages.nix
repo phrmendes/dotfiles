@@ -33,7 +33,13 @@ _: {
         satty
         slurp
         tesseract
-        vesktop
+        (vesktop.overrideAttrs (old: {
+          postFixup =
+            builtins.replaceStrings
+              [ "--enable-features=WaylandWindowDecorations" ]
+              [ "--enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer" ]
+              old.postFixup;
+        }))
         wl-clipboard
         wf-recorder
         zotero

@@ -108,6 +108,40 @@ M.pick_project = function()
   })
 end
 
+--- Toggle a centered zoom with a dimmed backdrop.
+M.zoom = function()
+  local width = 120
+  local col = math.floor((vim.o.columns - width) / 2)
+  local zoomed_in = MiniMisc.zoom(0, { width = width, col = col, zindex = 51 })
+
+  if not zoomed_in then return end
+
+  vim.api.nvim_set_hl(0, "ReadingModeBackdrop", { bg = "#000000" })
+  local buf = vim.api.nvim_create_buf(false, true)
+  local win = vim.api.nvim_open_win(buf, false, {
+    relative = "editor",
+    row = 0,
+    col = 0,
+    width = vim.o.columns,
+    height = vim.o.lines,
+    focusable = false,
+    style = "minimal",
+    zindex = 50,
+  })
+  vim.wo[win].winblend = 60
+  vim.wo[win].winhighlight = "Normal:ReadingModeBackdrop"
+
+  local zoom_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_create_autocmd("WinClosed", {
+    pattern = tostring(zoom_win),
+    once = true,
+    callback = function()
+      if vim.api.nvim_win_is_valid(win) then vim.api.nvim_win_close(win, true) end
+      if vim.api.nvim_buf_is_valid(buf) then vim.api.nvim_buf_delete(buf, { force = true }) end
+    end,
+  })
+end
+
 --- Quit if embedded, otherwise detach.
 M.quit_or_detach = function()
   if vim.list_contains(vim.v.argv, "--embed") then

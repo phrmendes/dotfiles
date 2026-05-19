@@ -11,6 +11,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit (config.settings) nvimServerPort dotfilesDir;
+          inherit (config) dotfilesLib;
         };
       };
     };

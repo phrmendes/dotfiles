@@ -13,7 +13,7 @@ safely("now", function()
     terminal = { enabled = true },
   })
 
-  vim.api.nvim_set_hl(0, "SnacksIndent", { fg = require("nix").base16.palette.base01 })
+  vim.api.nvim_set_hl(0, "SnacksIndent", { fg = require("nix").colors.base01 })
 
   _G.dd = function(...) Snacks.debug.inspect(...) end
   _G.bt = function() Snacks.debug.backtrace() end

@@ -9,7 +9,7 @@ safely(
   end
 )
 
-safely("now", function() require("mini.base16").setup({ palette = require("nix").base16.palette }) end)
+safely("now", function() require("mini.base16").setup({ palette = require("nix").colors }) end)
 safely("now", function() require("mini.sessions").setup() end)
 safely("now", function() require("mini.statusline").setup() end)
 safely("now", function() require("mini.tabline").setup() end)
@@ -132,6 +132,7 @@ safely("later", function()
       { mode = "i", keys = "<c-r>" },
       { mode = "c", keys = "<c-r>" },
       { mode = "n", keys = "<c-w>" },
+      { mode = "n", keys = "<c-c>" },
       { mode = "n", keys = "z" },
       { mode = "x", keys = "z" },
     },
@@ -420,7 +421,7 @@ safely("later", function()
   vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
   vim.keymap.set("n", "<leader>p", require("helpers").pick_project, { desc = "Projects" })
   vim.keymap.set("n", "<leader>v", MiniExtra.pickers.visit_paths, { desc = "Visits (cwd)" })
-  vim.keymap.set("n", "<leader>Z", MiniMisc.zoom, { desc = "Zoom" })
+  vim.keymap.set("n", "<leader>Z", require("helpers").zoom, { desc = "Zoom" })
   vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
 
   vim.keymap.set("n", "<c-p>", function()

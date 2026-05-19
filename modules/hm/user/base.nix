@@ -14,25 +14,25 @@ in
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
-          "*".addKeysToAgent = "no";
+        settings = {
+          "*".AddKeysToAgent = "no";
           "server" = {
-            hostname = "server.codlet-catfish.ts.net";
-            user = settings.user;
+            HostName = "server.codlet-catfish.ts.net";
+            User = settings.user;
           };
           "server-local" = {
-            hostname = settings.lan.serverAddress;
-            user = settings.user;
+            HostName = settings.lan.serverAddress;
+            User = settings.user;
           };
           "dev" = {
-            hostname = "server.codlet-catfish.ts.net";
-            user = settings.user;
-            port = 2222;
+            HostName = "server.codlet-catfish.ts.net";
+            User = settings.user;
+            Port = 2222;
           };
           "dev-local" = {
-            hostname = settings.lan.serverAddress;
-            user = settings.user;
-            port = 2222;
+            HostName = settings.lan.serverAddress;
+            User = settings.user;
+            Port = 2222;
           };
         };
       };

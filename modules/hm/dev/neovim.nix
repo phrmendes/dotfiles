@@ -10,13 +10,7 @@
       ...
     }:
     let
-      inherit (config.lib.stylix.colors) withHashtag;
       inherit (config.lib.file) mkOutOfStoreSymlink;
-      base16-palette =
-        withHashtag
-        |> lib.filterAttrs (n: _: builtins.match "base0[0-9A-F]" n != null)
-        |> lib.mapAttrsToList (name: value: ''${name} = "${value}"'')
-        |> lib.concatStringsSep ", ";
       local-plugins =
         inputs.vim-plugins
         |> builtins.readDir
@@ -98,13 +92,6 @@
 
       home.file = local-plugins // {
         ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
-        ".local/share/nvim/site/lua/nix.lua".text = ''
-          return {
-            base16 = { palette = { ${base16-palette} } },
-            luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
-            typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
-          }
-        '';
       };
 
       systemd.user = {

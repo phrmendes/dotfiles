@@ -17,6 +17,25 @@
     {
       imports = [ inputs.noctalia.homeModules.default ];
 
+      systemd.user.services.noctalia-shell = {
+        Unit = {
+          Description = "Noctalia shell";
+          PartOf = [ config.wayland.systemd.target ];
+          After = [
+            config.wayland.systemd.target
+            "wayland-wm@hyprland-uwsm.desktop.service"
+          ];
+        };
+        Service = {
+          ExecStart =
+            lib.getExe' inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+              "noctalia-shell";
+          Restart = "on-failure";
+          RestartSec = 3;
+        };
+        Install.WantedBy = [ config.wayland.systemd.target ];
+      };
+
       stylix.targets.qt.enable = lib.mkForce false;
 
       programs.noctalia-shell = {
@@ -137,7 +156,7 @@
                   chevronColor = "none";
                   colorizeIcons = false;
                   drawerEnabled = true;
-                  hidePassive = true;
+                  hidePassive = false;
                 }
                 { id = "KeepAwake"; }
                 {

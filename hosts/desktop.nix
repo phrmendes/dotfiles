@@ -124,6 +124,7 @@ in
           gtk
           hyprland
           imv
+          lua
           keepassxc
           mpv
           neovide

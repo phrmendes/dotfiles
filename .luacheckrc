@@ -2,6 +2,7 @@ std = "max"
 
 globals = {
   "vim",
+  "hl",
   "safely",
   "Snacks",
   "MiniPick",

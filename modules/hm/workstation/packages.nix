@@ -24,7 +24,6 @@ _: {
         poppler
         proton-vpn
         quarto
-        stremio-linux-shell
         tectonic
         terraform
         thunar

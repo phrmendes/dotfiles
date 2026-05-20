@@ -124,11 +124,12 @@ in
           neovim
           nix-index
           opencode
-          pi
           packages
+          pi
           ripgrep
           starship
           tealdeer
+          tmux
           yazi
           zoxide
           zsh

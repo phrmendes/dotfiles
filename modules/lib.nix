@@ -8,7 +8,7 @@
         colors:
         lib.filterAttrs (n: _: builtins.match "base0[0-9A-F]" n != null) colors.withHashtag
         |> lib.mapAttrsToList (name: value: ''${name} = "${value}"'')
-        |> lib.concatStringsSep ",\n";
+        |> lib.concatStringsSep ",\n    ";
     };
   };
 }

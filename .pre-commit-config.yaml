@@ -13,6 +13,13 @@ repos:
         language: system
         files: \.nix$
 
+      - id: statix
+        name: statix
+        entry: nix run nixpkgs#statix -- check
+        language: system
+        files: \.nix$
+        pass_filenames: false
+
       - id: stylua
         name: stylua
         entry: nix run nixpkgs#stylua --
@@ -25,39 +32,19 @@ repos:
         language: system
         files: \.lua$
 
-      - id: shfmt
-        name: shfmt
-        entry: nix run nixpkgs#shfmt -- -w -s
-        language: system
-        types: [shell]
-
-      - id: shellharden
-        name: shellharden
-        entry: nix run nixpkgs#shellharden -- --check
-        language: system
-        types: [shell]
-
-      - id: shellcheck
-        name: shellcheck
-        entry: nix run nixpkgs#shellcheck --
-        language: system
-        types: [shell]
-
-      - id: yamlfmt
-        name: prettier-yaml
-        entry: nix run nixpkgs#prettier -- --write
-        language: system
-        files: \.(yml|yaml)$
-
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
+        exclude: "^secrets/"
       - id: end-of-file-fixer
+        exclude: "^secrets/"
       - id: mixed-line-ending
+        exclude: "^secrets/"
       - id: check-merge-conflict
       - id: check-added-large-files
       - id: check-yaml
+        exclude: "^secrets/"
       - id: check-toml
 
   - repo: local

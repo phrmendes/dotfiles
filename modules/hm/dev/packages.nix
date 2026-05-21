@@ -1,6 +1,6 @@
 _: {
   modules.homeManager.dev.packages =
-    { pkgs, ... }:
+    { pkgs, dotfilesLib, ... }:
     {
       home.packages =
         with pkgs;
@@ -14,15 +14,13 @@ _: {
           lima
           nix-prefetch-github
           nodejs_latest
+          opentofu
           parallel
           prek
           python314
           sqlite
           uv
-          opentofu
-          (google-cloud-sdk.withExtraComponents (
-            with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
-          ))
+          (dotfilesLib.mkGoogleCloudSdk google-cloud-sdk)
         ]
         ++ (with pkgs.local; [
           diff-persist

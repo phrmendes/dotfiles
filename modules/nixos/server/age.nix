@@ -1,25 +1,30 @@
 { config, ... }:
 let
-  inherit (config) settings;
-  secret = file: mode: {
-    inherit file mode;
-    owner = settings.user;
-    group = "users";
-  };
-  secretReadable = file: secret file "0440";
+  inherit (config) settings dotfilesLib;
 in
 {
-  modules.nixos.server.age = {
-    age.secrets = {
-      "beszel-agent.env" = secretReadable ../../../secrets/beszel-agent.env.age;
-      "claude-service-account.json" = secret ../../../secrets/claude-service-account.json.age "0440";
-      "opencode.txt" = secretReadable ../../../secrets/opencode.txt.age;
-      "diun-ssh-key" = secret ../../../secrets/diun-ssh-key.age "0400";
-      "docker-compose.env" = secretReadable ../../../secrets/docker-compose.env.age;
-      "docker-config.json" = secret ../../../secrets/docker-config.json.age "0400";
-      "gh-hosts.yaml" = secret ../../../secrets/gh-hosts.yaml.age "0400";
-      "prunemate.json" = secret ../../../secrets/prunemate.json.age "0444";
-      "transmission.json" = secretReadable ../../../secrets/transmission.json.age;
+  modules.nixos.server.age =
+    _:
+    let
+      secretReadable = dotfilesLib.mkSecretReadable settings.user;
+    in
+    {
+      age.secrets = {
+        "beszel.env" = secretReadable ../../../secrets/beszel.age.env;
+        "cloudflare.env" = secretReadable ../../../secrets/cloudflare.age.env;
+        "linkding.env" = secretReadable ../../../secrets/linkding.age.env;
+        "litestream.env" = secretReadable ../../../secrets/litestream.age.env;
+        "open-notebook.env" = secretReadable ../../../secrets/open-notebook.age.env;
+        "surrealdb.env" = secretReadable ../../../secrets/surrealdb.age.env;
+        "telegram.env" = secretReadable ../../../secrets/telegram.age.env;
+        "duplicati.env" = secretReadable ../../../secrets/duplicati.age.env;
+        "dockerhub.json" = {
+          file = ../../../secrets/dockerhub.age.json;
+          path = "/root/.docker/config.json";
+          mode = "0400";
+          owner = "root";
+          group = "root";
+        };
+      };
     };
-  };
 }

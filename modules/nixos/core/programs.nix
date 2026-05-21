@@ -25,12 +25,6 @@ _: {
           ];
         };
 
-        gnupg.agent = {
-          enable = true;
-          enableBrowserSocket = true;
-          pinentryPackage = if isWorkstation then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
-        };
-
         ssh = lib.mkIf isWorkstation {
           startAgent = true;
           askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";

@@ -38,51 +38,48 @@
             pyqt5
           ];
         plugins = pkgs.local.nvim-treesitter;
-        extraPackages = (
-          with pkgs;
-          [
-            # language servers
-            astro-language-server
-            basedpyright
-            bash-language-server
-            beamPackages.elixir-ls
-            copilot-language-server
-            docker-language-server
-            dot-language-server
-            emmet-language-server
-            helm-ls
-            just-lsp
-            ltex-ls-plus
-            lua-language-server
-            marksman
-            nixd
-            simple-completion-language-server
-            tailwindcss-language-server
-            taplo
-            tofu-ls
-            typescript-language-server
-            vscode-langservers-extracted
-            yaml-language-server
-            # formatters
-            djlint
-            nixfmt
-            prettier
-            ruff
-            shellharden
-            stylua
-            # linters
-            shellcheck
-            tflint
-          ]
-        );
+        extraPackages = with pkgs; [
+          # language servers
+          astro-language-server
+          basedpyright
+          bash-language-server
+          beamPackages.elixir-ls
+          copilot-language-server
+          docker-language-server
+          dot-language-server
+          emmet-language-server
+          helm-ls
+          just-lsp
+          ltex-ls-plus
+          lua-language-server
+          marksman
+          nixd
+          simple-completion-language-server
+          tailwindcss-language-server
+          taplo
+          tofu-ls
+          typescript-language-server
+          vscode-langservers-extracted
+          yaml-language-server
+          # formatters
+          djlint
+          nixfmt
+          prettier
+          ruff
+          shellharden
+          stylua
+          # linters
+          shellcheck
+          tflint
+        ];
       };
 
       home.packages = [
-        (pkgs.local.vim-remote.override {
+        (pkgs.local.nvim-remote.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })
-        (pkgs.local.vim-server.override {
+        (pkgs.local.nvim-server.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })

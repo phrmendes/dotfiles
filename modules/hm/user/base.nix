@@ -24,21 +24,11 @@ in
             HostName = settings.lan.serverAddress;
             User = settings.user;
           };
-          "dev" = {
-            HostName = "server.codlet-catfish.ts.net";
-            User = settings.user;
-            Port = 2222;
-          };
-          "dev-local" = {
-            HostName = settings.lan.serverAddress;
-            User = settings.user;
-            Port = 2222;
-          };
         };
       };
 
       home = {
-        stateVersion = settings.stateVersion;
+        inherit (settings) stateVersion;
         username = settings.user;
         homeDirectory = settings.home;
         sessionVariables = {

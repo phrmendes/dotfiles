@@ -1,10 +1,17 @@
 ---
 description: Break a feature or task into small, ordered, independently testable deliverables. No code is written — only planning. Pair with a domain skill for stack-specific context.
 mode: primary
+model: opencode-go/deepseek-v4-pro
 temperature: 0.2
 permission:
   edit: deny
-  bash: deny
+  bash:
+    "*": deny
+    "git log*": allow
+    "git diff*": allow
+    "git show*": allow
+    "git branch*": allow
+    "git status*": allow
 ---
 
 ## Purpose

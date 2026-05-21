@@ -12,10 +12,7 @@ in
         useDHCP = lib.mkDefault true;
         firewall = {
           enable = true;
-          allowedTCPPorts = [
-            22
-            settings.nvimServerPort
-          ];
+          allowedTCPPorts = [ 22 ];
         };
         networkmanager = {
           enable = true;
@@ -38,12 +35,13 @@ in
           "tailscaled.service"
         ];
         wantedBy = [ "multi-user.target" ];
+        path = [ pkgs.iproute2 ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
-          ExecStart = "${pkgs.iproute2}/bin/ip rule add priority 5200 to ${settings.lan.subnet} table main";
-          ExecStop = "${pkgs.iproute2}/bin/ip rule del priority 5200 to ${settings.lan.subnet} table main";
         };
+        script = "ip rule add priority 5200 to ${settings.lan.subnet} table main";
+        postStop = "ip rule del priority 5200 to ${settings.lan.subnet} table main";
       };
     };
 }

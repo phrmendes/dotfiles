@@ -18,6 +18,7 @@ _: {
           set -g  extended-keys-format csi-u
           set -ag terminal-overrides ",xterm-256color:RGB"
           set -ag terminal-overrides ",xterm-kitty:RGB"
+          set -ag terminal-features  "xterm-kitty:osc11"
           set -gq allow-passthrough  on
           set -g detach-on-destroy   off
           set -g focus-events        on

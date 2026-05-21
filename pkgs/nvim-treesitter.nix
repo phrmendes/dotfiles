@@ -11,12 +11,10 @@ let
     nvim-treesitter-parsers
     nvim-treesitter-textobjects
     ;
-in
-let
   parsers = nvim-treesitter-parsers |> builtins.attrValues |> builtins.filter lib.isDerivation;
   queries = vimUtils.buildVimPlugin {
     pname = "nvim-treesitter-queries";
-    version = nvim-treesitter.version;
+    inherit (nvim-treesitter) version;
     src = runCommandLocal "nvim-treesitter-queries-src" { nativeBuildInputs = [ lndir ]; } ''
       mkdir -p $out/queries
       lndir -silent ${nvim-treesitter}/runtime/queries $out/queries

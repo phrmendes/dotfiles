@@ -13,9 +13,9 @@ in
           hyprland
           libvirtd
           noctalia
-          pam
           persistence
           pipewire
+          podman
           syncthing
           xdg-portal
         ]);
@@ -107,12 +107,11 @@ in
           neovim
           nix-index
           opencode
-          tmux
-          pi
           packages
           ripgrep
           starship
           tealdeer
+          tmux
           yazi
           zoxide
           zsh
@@ -120,7 +119,6 @@ in
         ++ (with homeManager.workstation; [
           chromium
           cliphist
-          firefox
           gtk
           hyprland
           imv

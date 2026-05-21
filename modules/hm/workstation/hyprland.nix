@@ -12,6 +12,7 @@
       wayland.windowManager.hyprland = {
         enable = true;
         systemd.enable = true;
+        settings."exec-once" = [ "hyprctl setcursor Adwaita 24" ];
       };
 
       xdg.configFile."hypr/hyprland.lua".enable = false;

@@ -36,7 +36,6 @@ _: {
             "desktop"
             "laptop"
             "server"
-            "container"
           ];
           description = "The machine type, used to select appropriate modules and settings.";
         };
@@ -49,11 +48,6 @@ _: {
           type = lib.types.bool;
           readOnly = true;
           description = "True when the machine type is laptop.";
-        };
-        isContainer = lib.mkOption {
-          type = lib.types.bool;
-          readOnly = true;
-          description = "True when the machine type is container.";
         };
         monitors = {
           primary = lib.mkOption {
@@ -76,7 +70,6 @@ _: {
       config.machine = {
         isWorkstation = config.machine.type == "desktop" || config.machine.type == "laptop";
         isLaptop = config.machine.type == "laptop";
-        isContainer = config.machine.type == "container";
       };
     };
 }

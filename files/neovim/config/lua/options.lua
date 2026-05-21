@@ -4,6 +4,7 @@ vim.g.maplocalleader = ","
 
 -- enable true color support unconditionally (needed for correct remote-ui colors)
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 -- confirm before operations in files with unsaved changes
 vim.opt.confirm = true

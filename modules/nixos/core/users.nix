@@ -16,9 +16,10 @@ in
     {
       users = {
         mutableUsers = true;
+        groups.media = { };
         users = {
           ${settings.user} = {
-            home = settings.home;
+            inherit (settings) home;
             shell = pkgs.zsh;
             password = "changeme";
             openssh.authorizedKeys.keys = [
@@ -26,14 +27,13 @@ in
               (builtins.readFile ../../../files/ssh-keys/phone.txt)
               (builtins.readFile ../../../files/ssh-keys/laptop.txt)
               (builtins.readFile ../../../files/ssh-keys/server.txt)
-              ''command="systemctl start docker-compose-update",restrict ${builtins.readFile ../../../files/ssh-keys/diun.txt}''
             ];
             isNormalUser = true;
             uid = 1000;
             linger = true;
             extraGroups = [
-              "docker"
               "keys"
+              "media"
               "networkmanager"
               "wheel"
             ]

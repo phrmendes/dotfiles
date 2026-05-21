@@ -1,4 +1,8 @@
-_: {
+{ config, ... }:
+let
+  inherit (config) settings;
+in
+{
   modules.homeManager.dev.atuin = {
     programs.atuin = {
       enable = true;
@@ -8,11 +12,7 @@ _: {
       settings = {
         auto_sync = true;
         sync_frequency = "1h";
-        sync_address = "https://atuin.local.ohlongjohnson.tech";
-        ai = {
-          enabled = true;
-          endpoint = "https://litellm.local.ohlongjohnson.tech";
-        };
+        sync_address = "https://atuin.${settings.serverDomain}";
       };
     };
   };

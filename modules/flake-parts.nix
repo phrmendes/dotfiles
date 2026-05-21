@@ -38,6 +38,10 @@
         type = lib.types.str;
         default = "${config.settings.home}/Projects/dotfiles";
       };
+      serverDomain = lib.mkOption {
+        type = lib.types.str;
+        default = "local.ohlongjohnson.tech";
+      };
       stateVersion = lib.mkOption {
         type = lib.types.str;
         default = "26.05";
@@ -59,13 +63,19 @@
           readOnly = true;
         };
       };
-      litellmPort = lib.mkOption {
-        type = lib.types.port;
-        default = 14141;
-      };
       nvimServerPort = lib.mkOption {
         type = lib.types.port;
         default = 6666;
+      };
+      podman = {
+        subnet = lib.mkOption {
+          type = lib.types.str;
+          default = "172.18.0.0/16";
+        };
+        gateway = lib.mkOption {
+          type = lib.types.str;
+          default = "172.18.0.1";
+        };
       };
       lan = {
         subnet = lib.mkOption {
@@ -76,17 +86,17 @@
           type = lib.types.str;
           default = "enp3s0";
         };
-        containerHostAddress = lib.mkOption {
-          type = lib.types.str;
-          default = "10.250.0.1";
-        };
-        containerLocalAddress = lib.mkOption {
-          type = lib.types.str;
-          default = "10.250.0.2";
-        };
         serverAddress = lib.mkOption {
           type = lib.types.str;
           default = "192.168.0.2";
+        };
+        desktopAddress = lib.mkOption {
+          type = lib.types.str;
+          default = "192.168.0.4";
+        };
+        kvmAddress = lib.mkOption {
+          type = lib.types.str;
+          default = "192.168.0.8";
         };
       };
     };

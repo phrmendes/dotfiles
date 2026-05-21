@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  modules.nixos.core.system = {
+  modules.nixos.core.nix = {
     nixpkgs.config.allowUnfree = true;
 
     nix = {

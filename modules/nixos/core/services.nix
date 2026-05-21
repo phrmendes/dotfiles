@@ -7,7 +7,7 @@ _: {
       ...
     }:
     let
-      inherit (config.machine) isWorkstation isContainer;
+      inherit (config.machine) isWorkstation;
     in
     {
       services = {
@@ -15,7 +15,7 @@ _: {
         fstrim.enable = true;
         gvfs.enable = isWorkstation;
         ntpd-rs.enable = true;
-        udev.enable = !isContainer;
+        udev.enable = true;
         geoclue2.enable = isWorkstation;
 
         gnome = {
@@ -25,7 +25,7 @@ _: {
 
         journald.extraConfig = "SystemMaxUse=1G";
 
-        btrfs.autoScrub = lib.mkIf (!isContainer) {
+        btrfs.autoScrub = {
           enable = true;
           interval = "monthly";
         };

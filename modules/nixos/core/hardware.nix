@@ -7,7 +7,7 @@ _: {
       ...
     }:
     let
-      inherit (config.machine) isWorkstation isContainer;
+      inherit (config.machine) isWorkstation;
     in
     {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -16,8 +16,8 @@ _: {
         keyboard.qmk = lib.mkIf isWorkstation {
           enable = true;
         };
-        enableAllFirmware = !isContainer;
-        uinput.enable = !isContainer;
+        enableAllFirmware = true;
+        uinput.enable = true;
 
         bluetooth = lib.mkIf isWorkstation {
           enable = true;

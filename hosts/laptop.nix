@@ -17,9 +17,9 @@ in
           hyprland
           libvirtd
           noctalia
-          pam
           persistence
           pipewire
+          podman
           syncthing
           xdg-portal
         ]);
@@ -125,7 +125,6 @@ in
           nix-index
           opencode
           packages
-          pi
           ripgrep
           starship
           tealdeer
@@ -136,7 +135,6 @@ in
         ])
         ++ (with homeManager.workstation; [
           cliphist
-          firefox
           gtk
           hyprland
           imv

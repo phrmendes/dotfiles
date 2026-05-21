@@ -50,6 +50,7 @@
       url = "path:./files/neovim/plugins";
       flake = false;
     };
+
   };
 
   outputs =

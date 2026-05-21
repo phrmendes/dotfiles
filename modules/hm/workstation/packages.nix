@@ -4,34 +4,36 @@ _: {
     {
       home.packages = with pkgs; [
         android-tools
-        deluge-gtk
         drawing
         exiftool
         ffmpeg
         ffmpegthumbnailer
         file-roller
         filezilla
+        firefox
         gcolor3
         gdu
+        grim
         imagemagick
         libqalculate
-        obs-studio
-        onlyoffice-desktopeditors
+        libreoffice
         pandoc
-        pass
         pavucontrol
         phockup
         poppler
         proton-vpn
+        qbittorrent
         quarto
-        tectonic
-        terraform
-        thunar
-        tpm2-tools
-        grim
         satty
         slurp
+        stremio-linux-shell
+        tectonic
+        terraform
         tesseract
+        thunar
+        wl-clipboard
+        wf-recorder
+        zotero
         (vesktop.overrideAttrs (old: {
           postFixup =
             builtins.replaceStrings
@@ -39,9 +41,6 @@ _: {
               [ "--enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer" ]
               old.postFixup;
         }))
-        wl-clipboard
-        wf-recorder
-        zotero
       ];
     };
 }

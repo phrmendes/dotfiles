@@ -4,6 +4,8 @@ let
   inherit (config) settings;
 in
 {
+  settings.dotfilesDir = "${settings.home}/dotfiles";
+
   configurations.nixos.server.module =
     {
       config,
@@ -14,23 +16,36 @@ in
       imports =
         builtins.attrValues nixos.core
         ++ (with nixos.server; [
+          adguardhome
           age
+          atuin
           automation
           beszel
-          container
+          caddy
+          duplicati
+          excalidraw
           filesystems
-          litellm
+          homepage
+          linkding
+          litestream
+          media
+          neovim
           networking
+          open-notebook
           persistence
+          podman
+          qbittorrent
+          server-options
+          sftpgo
+          surrealdb
+          syncthing
           tailscale
         ]);
 
       networking.hostName = "server";
       programs.nh.flake = "${settings.home}/dotfiles";
       machine.type = "server";
-
       disko.mainDiskDevice = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
-
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
 
       boot.kernelModules = [
@@ -50,13 +65,10 @@ in
           git
           jq
           packages
-          pi
           ripgrep
+          yazi
           zoxide
           zsh
-        ])
-        ++ (with homeManager.dev; [
-          docker
         ]);
     };
 }

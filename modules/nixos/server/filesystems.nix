@@ -10,13 +10,15 @@ in
       options = [
         "defaults"
         "noatime"
+        "nofail"
       ];
     };
 
     systemd.tmpfiles.rules = [
       "d /run/sync 0700 ${settings.user} users -"
-      "d /mnt/external 2777 ${settings.user} users -"
-      "a+ /mnt/external - - - - u:${settings.user}:rwx,u:100999:rwx,o::rwx,d:u:${settings.user}:rwx,d:u:100999:rwx,d:o::rwx"
+      "d /mnt/external 2775 ${settings.user} media -"
+      "d /srv 0755 root root -"
+      "d /srv/containers 0755 root root -"
     ];
   };
 }

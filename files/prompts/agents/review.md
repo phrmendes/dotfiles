@@ -1,6 +1,7 @@
 ---
 description: Review the current diff for correctness, security, and quality before shipping. Pair with a domain skill for stack-specific conventions.
 mode: primary
+model: opencode-go/deepseek-v4-pro
 temperature: 0.1
 permission:
   edit: deny

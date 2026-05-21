@@ -9,14 +9,16 @@ let
   ];
 in
 {
-  "beszel-agent.env.age".publicKeys = allKeys;
-  "claude-service-account.json.age".publicKeys = allKeys;
-  "diun-ssh-key.age".publicKeys = allKeys;
-  "docker-compose.env.age".publicKeys = allKeys;
-  "docker-config.json.age".publicKeys = allKeys;
+  "beszel.age.env".publicKeys = allKeys;
+  "claude-service-account.age.json".publicKeys = allKeys;
+  "cloudflare.age.env".publicKeys = allKeys;
+  "telegram.age.env".publicKeys = allKeys;
+  "linkding.age.env".publicKeys = allKeys;
+  "litestream.age.env".publicKeys = allKeys;
+  "open-notebook.age.env".publicKeys = allKeys;
+  "opencode.age.txt".publicKeys = allKeys;
+  "surrealdb.age.env".publicKeys = allKeys;
+  "dockerhub.age.json".publicKeys = allKeys;
+  "duplicati.age.env".publicKeys = allKeys;
 
-  "gh-hosts.yaml.age".publicKeys = allKeys;
-  "opencode.txt.age".publicKeys = allKeys;
-  "prunemate.json.age".publicKeys = allKeys;
-  "transmission.json.age".publicKeys = allKeys;
 }

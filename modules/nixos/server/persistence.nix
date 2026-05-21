@@ -4,12 +4,15 @@ let
 in
 {
   modules.nixos.server.persistence = {
-    environment.persistence."/persist".users.${settings.user}.directories = [
-      "dotfiles"
-      ".config"
-      ".ssh"
-      ".local/share"
-      ".local/state"
-    ];
+    environment.persistence."/persist" = {
+      directories = [ "/srv" ];
+      users.${settings.user}.directories = [
+        "dotfiles"
+        ".config"
+        ".ssh"
+        ".local/share"
+        ".local/state"
+      ];
+    };
   };
 }

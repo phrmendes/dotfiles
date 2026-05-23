@@ -20,7 +20,7 @@ hl.config({
     gaps_in = 3,
     gaps_out = 8,
     border_size = 2,
-    layout = "scrolling",
+    layout = "dwindle",
     resize_on_border = true,
     col = {
       active_border = nix.colors.base0D,
@@ -46,16 +46,9 @@ hl.config({
     },
   },
   animations = { enabled = true },
-  dwindle = { preserve_split = true },
-  scrolling = {
-    column_width = 0.5,
-    fullscreen_on_one_column = true,
-    focus_fit_method = 1,
-    follow_focus = true,
-    follow_min_visible = 0.4,
-    wrap_focus = true,
-    wrap_swapcol = true,
-    direction = "right",
+  dwindle = {
+    preserve_split = true,
+    use_active_for_splits = true,
   },
   group = {
     col = {
@@ -115,7 +108,7 @@ hl.permission({ binary = "/nix/store/.*/xdg-desktop-portal-hyprland", type = "sc
 hl.window_rule({ match = { class = ".blueman-manager-wrapped" }, float = true, opaque = true })
 hl.window_rule({ match = { class = "org.pulseaudio.pavucontrol" }, float = true, opaque = true, stay_focused = true })
 hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, float = true })
-hl.window_rule({ match = { class = "firefox" }, opaque = true, scrolling_width = 0.667 })
+hl.window_rule({ match = { class = "firefox" }, opaque = true })
 hl.window_rule({ match = { class = "mpv" }, opaque = true })
 
 hl.layer_rule({
@@ -150,11 +143,7 @@ hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }))
 hl.bind("SUPER + P", hl.dsp.window.pseudo())
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + R", hl.dsp.layout("togglesplit"))
-hl.bind("SUPER + E", hl.dsp.layout("consume_or_expel"))
-hl.bind("SUPER + comma", hl.dsp.layout("swapcol l"))
-hl.bind("SUPER + period", hl.dsp.layout("swapcol r"))
-hl.bind("SUPER + minus", hl.dsp.layout("fit active"))
-hl.bind("SUPER + equal", hl.dsp.layout("fit all"))
+hl.bind("SUPER + E", hl.dsp.layout("togglesplit"))
 hl.bind("SUPER + SHIFT + CTRL + H", hl.dsp.window.move({ workspace = "e-1" }))
 hl.bind("SUPER + SHIFT + CTRL + L", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind("SUPER + SHIFT + H", hl.dsp.window.move({ direction = "left" }))

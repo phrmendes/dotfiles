@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   inherit (config) settings;
 in
@@ -9,7 +9,6 @@ in
       editor = lib.mkOverride 1001 "nvim";
     in
     {
-      imports = [ inputs.nix-index-database.homeModules.default ];
 
       programs.ssh = {
         enable = true;

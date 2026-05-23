@@ -4,23 +4,25 @@
       pkgs,
       lib,
       config,
-      inputs,
-      nvimServerPort,
-      dotfilesDir,
+      osConfig,
       ...
     }:
     let
+      inherit (osConfig.machine) dotfilesDir nvimServerPort vimPlugins;
       inherit (config.lib.file) mkOutOfStoreSymlink;
       local-plugins =
-        inputs.vim-plugins
-        |> builtins.readDir
-        |> lib.filterAttrs (_: type: type == "directory")
-        |> lib.mapAttrs' (
-          name: _:
-          lib.nameValuePair ".local/share/nvim/site/pack/local/opt/${name}" {
-            source = "${inputs.vim-plugins}/${name}";
-          }
-        );
+        if vimPlugins == null then
+          { }
+        else
+          vimPlugins
+          |> builtins.readDir
+          |> lib.filterAttrs (_: type: type == "directory")
+          |> lib.mapAttrs' (
+            name: _:
+            lib.nameValuePair ".local/share/nvim/site/pack/local/opt/${name}" {
+              source = "${vimPlugins}/${name}";
+            }
+          );
     in
     {
       programs.neovim = {

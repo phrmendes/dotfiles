@@ -2,7 +2,7 @@
   modules.homeManager.workstation.hyprland =
     {
       config,
-      dotfilesDir,
+      osConfig,
       ...
     }:
     let
@@ -18,6 +18,6 @@
       xdg.configFile."hypr/hyprland.lua".enable = false;
 
       home.file.".config/hypr/hyprland.lua".source =
-        mkOutOfStoreSymlink "${dotfilesDir}/files/hyprland.lua";
+        mkOutOfStoreSymlink "${osConfig.machine.dotfilesDir}/files/hyprland.lua";
     };
 }

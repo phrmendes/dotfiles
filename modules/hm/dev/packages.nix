@@ -1,6 +1,9 @@
 _: {
   modules.homeManager.dev.packages =
-    { pkgs, dotfilesLib, ... }:
+    { pkgs, osConfig, ... }:
+    let
+      inherit (osConfig) dotfilesLib;
+    in
     {
       home.packages =
         with pkgs;

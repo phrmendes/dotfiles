@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
   inherit (config.modules) nixos homeManager;
   inherit (config) settings;
@@ -21,10 +21,11 @@ in
         ]);
 
       networking.hostName = "desktop";
-      machine.dotfilesDir = "${settings.home}/Projects/dotfiles";
       programs.nh.flake = "${settings.home}/Projects/dotfiles";
 
       machine = {
+        dotfilesDir = "${settings.home}/Projects/dotfiles";
+        vimPlugins = inputs.vim-plugins;
         type = "desktop";
         monitors = {
           primary = {

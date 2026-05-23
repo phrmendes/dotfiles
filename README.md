@@ -1,93 +1,98 @@
 # Dotfiles
 
-NixOS + Home Manager configuration built with `flake-parts` and the dendritic pattern.
+NixOS + Home Manager configuration for three machines — desktop, laptop, and server.
 
-## Layout
+## Structure
 
-```text
-flake.nix        # inputs + mkFlake + import-tree
-modules/         # feature modules (auto-imported)
-hosts/           # host compositions
+```
+flake.nix        — inputs and mkFlake entry point
+modules/         — feature modules (auto-imported via import-tree)
+  flake-parts.nix  — global settings and options
+  lib.nix          — shared helper functions (dotfilesLib)
+  nixos/           — NixOS modules
+    core/          — shared across all machines
+    server/        — server-only services
+    workstation/   — desktop and laptop only
+  hm/              — Home Manager modules
+    user/          — all users
+    dev/           — development tools
+    workstation/   — workstation UI and apps
+hosts/           — per-machine compositions
   desktop.nix
   laptop.nix
   server.nix
+pkgs/            — custom packages
+files/           — config files managed as out-of-store symlinks
+secrets/         — agenix-encrypted secrets
 ```
 
-Each file in `modules/` is a flake-parts module and typically defines one feature across NixOS and/or Home Manager.
+## Machines
 
-## Module naming
+| Host      | Type        | Notable                                   |
+| --------- | ----------- | ----------------------------------------- |
+| `desktop` | Workstation | AMD CPU, NVIDIA GPU, Hyprland             |
+| `laptop`  | Workstation | Intel CPU, Hyprland, power management     |
+| `server`  | Headless    | Intel Celeron J3455, self-hosted services |
 
-Aspects are exposed as:
+## Server services
 
-```text
-modules.<class>.<group>.<name>
-```
+| Service                             | URL                                    |
+| ----------------------------------- | -------------------------------------- |
+| AdGuard Home                        | `adguardhome.local.ohlongjohnson.tech` |
+| Atuin                               | `atuin.local.ohlongjohnson.tech`       |
+| Beszel                              | `beszel.local.ohlongjohnson.tech`      |
+| Duplicati                           | `duplicati.local.ohlongjohnson.tech`   |
+| Excalidraw                          | `excalidraw.local.ohlongjohnson.tech`  |
+| Homepage                            | `homepage.local.ohlongjohnson.tech`    |
+| Jellyfin                            | `jellyfin.local.ohlongjohnson.tech`    |
+| Linkding                            | `linkding.local.ohlongjohnson.tech`    |
+| LiteLLM                             | `litellm.local.ohlongjohnson.tech`     |
+| SFTPGo                              | `sftpgo.local.ohlongjohnson.tech`      |
+| Sonarr / Radarr / Prowlarr / Bazarr | `*.local.ohlongjohnson.tech`           |
+| Syncthing                           | `syncthing.local.ohlongjohnson.tech`   |
+| WebDAV                              | `webdav.local.ohlongjohnson.tech`      |
 
-- `class`: `nixos` or `homeManager`
-- `group`: `core`, `workstation`, `server`, `dev`, `user`, `media`
-- `name`: feature name (`boot`, `git`, `hyprland`, ...)
+## Install
 
-## Keys and auth
-
-- age identity is file-based: `~/.ssh/age` and `~/.ssh/age.pub`
-- agenix uses `~/.ssh/age` (`modules/age.nix`)
-- SSH auth keys are managed by KeePassXC and loaded into OpenSSH `ssh-agent`
-- KeePassXC SSH socket override is written to `~/.local/state/keepassxc/keepassxc.ini`
-- Git usage is primarily HTTPS (`gh` credential helper)
-
-## Install (new host)
+Enable flakes, partition with disko, then install:
 
 ```sh
-cat /etc/nix/nix.conf > /tmp/nix.conf
-echo "experimental-features = nix-command flakes pipe-operators" >> /tmp/nix.conf
-sudo mv /tmp/nix.conf /etc/nix/nix.conf
-sudo nix --experimental-features "nix-command flakes pipe-operators" run github:nix-community/disko/latest#disko -- --mode disko --flake .#{{ machine }}
-sudo nixos-install --no-channel-copy --root /mnt --flake .#{{ machine }}
+sudo nix run github:nix-community/disko/latest#disko -- --mode disko --flake .#<host>
+sudo nixos-install --no-channel-copy --root /mnt --flake .#<host>
 ```
 
 ## Workflow
 
-After cloning, install hooks once:
+Install pre-commit hooks once after cloning:
 
 ```sh
 prek install
 ```
 
-Common commands:
+Then use the justfile:
 
 ```sh
-just fmt
-just lint
-just rebuild
+just fmt      # format
+just lint     # lint
+just rebuild  # nh os switch
 ```
 
-## Server AI stack
+## Secrets
 
-The server runs a [LiteLLM](https://github.com/BerriAI/litellm) proxy (systemd service, port `14141`) that authenticates to GCP Vertex AI and exposes models via an OpenAI-compatible API.
+Secrets are encrypted with [agenix](https://github.com/ryantm/agenix) using SSH keys.
 
-### Connecting from Docker containers
+- Identity: `~/.ssh/age`
+- Declarations: `secrets/secrets.nix`
+- SSH keys for encryption: `files/ssh-keys/`
 
-LiteLLM is not containerized, so Docker containers reach it via the host bridge IP:
-
-```
-http://172.17.0.1:14141/v1
-```
-
-Use any non-empty string as the API key (no master key is set).
-
-## Troubleshooting
-
-### `chroot` into the system
+## Recovery (chroot)
 
 ```sh
 sudo cryptsetup luksOpen /dev/sdX2 crypted
 sudo mount -t btrfs -o subvolid=5 /dev/mapper/crypted /mnt
-sudo mkdir -p /mnt/boot /mnt/nix /mnt/persist /mnt/etc
 sudo mount -t btrfs -o subvol=nix /dev/mapper/crypted /mnt/nix
 sudo mount -t btrfs -o subvol=persist /dev/mapper/crypted /mnt/persist
 sudo mount /dev/sdX1 /mnt/boot
 sudo mount --bind /mnt/persist/etc /mnt/etc
 sudo nixos-enter
 ```
-
-Replace `X` with your disk letter.

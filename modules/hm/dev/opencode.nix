@@ -22,6 +22,7 @@ let
     "elixir"
     "typescript"
     "devops"
+    "research"
   ];
   commands = readPrompts "commands" [ "bugfix" ];
 in
@@ -72,6 +73,7 @@ in
           enabled_providers = [
             "opencode-go"
             "deepseek"
+            "litellm"
             "google-vertex-anthropic"
             "github-copilot"
           ];
@@ -100,7 +102,15 @@ in
               environment.MEMORY_FILE_PATH = "${home}/.local/share/opencode/memory.jsonl";
               enabled = true;
             };
-
+            docling = {
+              type = "local";
+              command = [
+                "${pkgs.python313Packages.docling-mcp}/bin/docling-mcp-server"
+                "--transport"
+                "stdio"
+              ];
+              enabled = true;
+            };
           };
           provider = {
             opencode-go = {
@@ -122,6 +132,13 @@ in
                 "deepseek-v4-pro".name = "DeepSeek V4 Pro";
                 "deepseek-v4-flash".name = "DeepSeek V4 Flash";
               };
+            };
+            litellm = {
+              options = {
+                apiKey = "dummy";
+                baseURL = "https://litellm.local.ohlongjohnson.tech";
+              };
+              models."claude-sonnet-4-6@default".name = "Claude Sonnet 4.6 (Vertex)";
             };
             google-vertex-anthropic = {
               models."claude-sonnet-4-6@default" = { };

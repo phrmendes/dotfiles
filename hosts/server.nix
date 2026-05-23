@@ -25,17 +25,16 @@ in
           filesystems
           homepage
           linkding
+          litellm
           litestream
           media
           neovim
           networking
-          open-notebook
           persistence
           podman
           qbittorrent
           server-options
           sftpgo
-          surrealdb
           syncthing
           tailscale
         ]);

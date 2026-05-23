@@ -15,7 +15,7 @@ _: {
           name = "SFTPGo";
           description = "File transfer server";
           icon = "sh-sftpgo";
-          category = "Downloads";
+          category = "Files";
         };
       };
 

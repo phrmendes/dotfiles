@@ -6,7 +6,7 @@ _: {
 
       categories = [
         "Media"
-        "Downloads"
+        "Files"
         "Services"
         "Monitoring"
       ];

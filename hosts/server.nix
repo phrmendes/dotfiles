@@ -4,8 +4,6 @@ let
   inherit (config) settings;
 in
 {
-  settings.dotfilesDir = "${settings.home}/dotfiles";
-
   configurations.nixos.server.module =
     {
       config,

@@ -11,7 +11,7 @@ in
       ...
     }:
     let
-      dotfiles = settings.dotfilesDir;
+      dotfiles = "${settings.home}/dotfiles";
     in
     {
       systemd = {

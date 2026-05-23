@@ -1,7 +1,7 @@
 { config, ... }:
 let
   inherit (config.settings) gcp;
-  port = 4000;
+  port = 14141;
 in
 {
   modules.nixos.server.litellm =

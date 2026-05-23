@@ -94,5 +94,13 @@ sudo mount -t btrfs -o subvol=nix /dev/mapper/crypted /mnt/nix
 sudo mount -t btrfs -o subvol=persist /dev/mapper/crypted /mnt/persist
 sudo mount /dev/sdX1 /mnt/boot
 sudo mount --bind /mnt/persist/etc /mnt/etc
+sudo mount --bind /etc/resolv.conf /mnt/etc/resolv.conf
 sudo nixos-enter
+```
+
+In chroot:
+
+```sh
+cd {{ path to dotfiles repo in chroot }}
+nixos-rebuild boot --flake .#desktop
 ```

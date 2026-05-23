@@ -21,6 +21,7 @@ in
         ]);
 
       networking.hostName = "desktop";
+      machine.dotfilesDir = "${settings.home}/Projects/dotfiles";
       programs.nh.flake = "${settings.home}/Projects/dotfiles";
 
       machine = {

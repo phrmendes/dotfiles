@@ -31,6 +31,10 @@ _: {
     in
     {
       options.machine = {
+        dotfilesDir = lib.mkOption {
+          type = lib.types.str;
+          description = "Path to the dotfiles directory on this machine.";
+        };
         type = lib.mkOption {
           type = lib.types.enum [
             "desktop"

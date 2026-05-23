@@ -41,6 +41,7 @@ in
         ]);
 
       networking.hostName = "server";
+      machine.dotfilesDir = "${settings.home}/dotfiles";
       programs.nh.flake = "${settings.home}/dotfiles";
       machine.type = "server";
       disko.mainDiskDevice = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";

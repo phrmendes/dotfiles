@@ -38,10 +38,6 @@
         initContent = ''
           set -o vi
 
-          if uwsm check may-start; then
-            exec uwsm start hyprland.desktop
-          fi
-
           _just_completion() { source <(JUST_COMPLETE=zsh ${pkgs.just}/bin/just) }
           compdef _just_completion just
         '';

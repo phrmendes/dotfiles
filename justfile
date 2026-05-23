@@ -1,5 +1,5 @@
 # Deploy to a remote NixOS host (usage: just deploy server [address])
-deploy target address="192.168.0.2":
+deploy target address=target:
     NIX_SSHOPTS="-o ServerAliveInterval=15 -o ServerAliveCountMax=40" \
         nixos-rebuild switch --flake ".#{{ target }}" --target-host "phrmendes@{{ address }}" --sudo
 

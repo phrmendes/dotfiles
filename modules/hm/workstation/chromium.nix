@@ -23,13 +23,6 @@ _: {
           "Network"
           "WebBrowser"
         ];
-        mimeType = [
-          "text/html"
-          "text/xml"
-          "application/xhtml+xml"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-        ];
       };
     };
 }

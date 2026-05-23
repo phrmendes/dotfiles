@@ -71,6 +71,7 @@ in
           agent.build.disable = true;
           enabled_providers = [
             "opencode-go"
+            "deepseek"
             "google-vertex-anthropic"
             "github-copilot"
           ];
@@ -111,6 +112,13 @@ in
                 "qwen3.6-plus".name = "Qwen3.6 Plus";
                 "glm-5".name = "GLM 5";
                 "glm-5.1".name = "GLM 5.1";
+                "deepseek-v4-pro".name = "DeepSeek V4 Pro";
+                "deepseek-v4-flash".name = "DeepSeek V4 Flash";
+              };
+            };
+            deepseek = {
+              options.apiKey = "{file:${osConfig.age.secrets."deepseek.txt".path}}";
+              models = {
                 "deepseek-v4-pro".name = "DeepSeek V4 Pro";
                 "deepseek-v4-flash".name = "DeepSeek V4 Flash";
               };

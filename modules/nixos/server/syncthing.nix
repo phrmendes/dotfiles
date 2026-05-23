@@ -25,12 +25,36 @@ in
 
       services.caddy.virtualHosts = config.server.caddy.mkVhost "syncthing" port;
 
-      systemd.tmpfiles.rules = [
-        "d /mnt/external/syncthing 2775 ${settings.user} media -"
-        "d /srv/syncthing 0750 syncthing syncthing -"
-        "d /srv/syncthing/.config 0750 syncthing syncthing -"
-        "d /srv/syncthing/.config/syncthing 0750 syncthing syncthing -"
-      ];
+      systemd.tmpfiles.rules =
+        let
+          mediaAcl = "g:media:rwx,d:g:media:rwx,d:mask::rwx";
+          syncDir = name: "d /mnt/external/syncthing/${name} 2775 ${settings.user} media -";
+          syncAcl = name: "a+ /mnt/external/syncthing/${name} - - - - ${mediaAcl}";
+          mkSyncDir = name: [
+            (syncDir name)
+            (syncAcl name)
+          ];
+          folders = [
+            "antennapod"
+            "camera"
+            "collections"
+            "documents"
+            "excalidraw"
+            "images"
+            "keepassxc"
+            "notes"
+            "reading"
+            "ufabc"
+          ];
+        in
+        [
+          "d /mnt/external/syncthing 2775 ${settings.user} media -"
+          "a+ /mnt/external/syncthing - - - - ${mediaAcl}"
+          "d /srv/syncthing 0750 syncthing syncthing -"
+          "d /srv/syncthing/.config 0750 syncthing syncthing -"
+          "d /srv/syncthing/.config/syncthing 0750 syncthing syncthing -"
+        ]
+        ++ builtins.concatMap mkSyncDir folders;
 
       networking.firewall = {
         allowedTCPPorts = [ 22000 ];
@@ -39,6 +63,8 @@ in
           21027
         ];
       };
+
+      systemd.services.syncthing.serviceConfig.UMask = "0002";
 
       services.syncthing = {
         enable = true;
@@ -92,6 +118,7 @@ in
               antennapod = {
                 path = "/mnt/external/syncthing/antennapod";
                 devices = [ "phone" ];
+                ignorePerms = true;
               };
               camera = {
                 path = "/mnt/external/syncthing/camera";
@@ -99,6 +126,7 @@ in
                   "laptop"
                   "phone"
                 ];
+                ignorePerms = true;
               };
               collections = {
                 path = "/mnt/external/syncthing/collections";
@@ -106,6 +134,7 @@ in
                   "desktop"
                   "laptop"
                 ];
+                ignorePerms = true;
               };
               documents = {
                 path = "/mnt/external/syncthing/documents";
@@ -113,6 +142,7 @@ in
                   "desktop"
                   "laptop"
                 ];
+                ignorePerms = true;
               };
               excalidraw = {
                 path = "/mnt/external/syncthing/excalidraw";
@@ -120,6 +150,7 @@ in
                   "desktop"
                   "laptop"
                 ];
+                ignorePerms = true;
               };
               images = {
                 path = "/mnt/external/syncthing/images";
@@ -127,22 +158,27 @@ in
                   "desktop"
                   "laptop"
                 ];
+                ignorePerms = true;
               };
               keepassxc = {
                 path = "/mnt/external/syncthing/keepassxc";
                 devices = allDevices;
+                ignorePerms = true;
               };
               notes = {
                 path = "/mnt/external/syncthing/notes";
                 devices = allDevices;
+                ignorePerms = true;
               };
               reading = {
                 path = "/mnt/external/syncthing/reading";
                 devices = allDevices;
+                ignorePerms = true;
               };
               ufabc = {
                 path = "/mnt/external/syncthing/ufabc";
                 devices = allDevices;
+                ignorePerms = true;
               };
             };
         };

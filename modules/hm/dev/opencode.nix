@@ -102,15 +102,6 @@ in
               environment.MEMORY_FILE_PATH = "${home}/.local/share/opencode/memory.jsonl";
               enabled = true;
             };
-            docling = {
-              type = "local";
-              command = [
-                "${pkgs.python313Packages.docling-mcp}/bin/docling-mcp-server"
-                "--transport"
-                "stdio"
-              ];
-              enabled = true;
-            };
           };
           provider = {
             opencode-go = {

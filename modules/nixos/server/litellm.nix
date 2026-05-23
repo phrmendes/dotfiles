@@ -65,6 +65,14 @@ in
                 additional_drop_params = [ "reasoningSummary" ];
               };
             }
+            {
+              model_name = "text-embedding-005";
+              litellm_params = {
+                model = "vertex_ai/text-embedding-005";
+                vertex_project = gcp.project;
+                vertex_location = gcp.location;
+              };
+            }
           ];
         };
       };

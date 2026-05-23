@@ -9,12 +9,6 @@
         allowedUDPPorts = [ port ];
       };
 
-      mkSecret = user: file: mode: {
-        inherit file mode;
-        owner = user;
-        group = "users";
-      };
-
       mkSecretReadable = user: file: {
         inherit file;
         mode = "0440";

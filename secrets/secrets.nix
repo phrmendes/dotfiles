@@ -17,8 +17,6 @@ in
   "duplicati.age.env".publicKeys = allKeys;
   "linkding.age.env".publicKeys = allKeys;
   "litestream.age.env".publicKeys = allKeys;
-  "open-notebook.age.env".publicKeys = allKeys;
   "opencode.age.txt".publicKeys = allKeys;
-  "surrealdb.age.env".publicKeys = allKeys;
   "telegram.age.env".publicKeys = allKeys;
 }

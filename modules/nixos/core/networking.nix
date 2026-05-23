@@ -1,10 +1,15 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
   inherit (config) settings;
 in
 {
   modules.nixos.core.networking =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     {
       services.tailscale.useRoutingFeatures = lib.mkDefault "client";
 

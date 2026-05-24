@@ -43,6 +43,108 @@ real function.
 - Use `assert` for preconditions; use `pcall` / `v:errmsg` for graceful error
   handling in Neovim.
 
+## LuaCATS type annotations
+
+Always annotate with strong types. Prefer precise types over `any`.
+
+### Primitives and basic types
+
+```lua
+---@type string
+---@type number
+---@type integer         -- lua-language-server integer subtype
+---@type boolean
+---@type nil
+---@type any             -- last resort only; document why
+```
+
+### Tables and shapes
+
+Define table shapes with `@class` and reuse them everywhere:
+
+```lua
+---@class Config
+---@field width integer
+---@field height integer
+---@field title? string  -- optional field
+
+---@type Config
+local default = { width = 80, height = 24 }
+```
+
+### Functions
+
+Annotate every parameter and return value on public functions:
+
+```lua
+---@param opts Config
+---@param callback fun(err: string|nil, result: integer): boolean
+---@return string|nil result
+---@return string? err
+local function process(opts, callback) end
+```
+
+Use `fun(...)` for inline function types:
+
+```lua
+---@type fun(name: string): integer
+```
+
+### Unions and optionals
+
+```lua
+---@type string|integer          -- union
+---@type string?                 -- shorthand for string|nil
+---@param value string|nil
+```
+
+### Arrays, dicts, and generics
+
+```lua
+---@type string[]                -- array of strings
+---@type table<string, integer>  -- dict with string keys, integer values
+---@type integer[][]             -- nested array
+
+---@class Stack<T>
+---@field _items T[]
+---@field push fun(self: Stack, item: T)
+---@field pop fun(self: Stack): T|nil
+```
+
+### Enums via `@alias`
+
+```lua
+---@alias LogLevel "debug"|"info"|"warn"|"error"
+
+---@param level LogLevel
+local function set_level(level) end
+```
+
+### Module typing
+
+Type the module table so consumers get completion:
+
+```lua
+---@class MyModule
+local M = {}
+
+---@param name string
+---@return string
+function M.greet(name)
+  return "Hello, " .. name
+end
+
+return M
+```
+
+### Rules
+
+- Never leave a public function unannotated.
+- Prefer `@class` over inline `table<...>` for shapes used in more than one place.
+- Use `@alias` for any string enum — never bare string unions repeated across files.
+- Mark optional fields with `?` on `@class`, not by union with `nil` inline.
+- Use `@generic` / `@class<T>` for reusable container types.
+
 ## Neovim-specific conventions
 
 ### API surface

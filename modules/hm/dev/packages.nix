@@ -27,7 +27,6 @@ _: {
         ]
         ++ (with pkgs.local; [
           diff-persist
-          gcp-token
           noctalia-settings-diff
           rename-gallery
         ]);

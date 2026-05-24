@@ -1,54 +1,56 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   inherit (config.settings) gcp;
-  port = 8080;
-  configJson = pkgs.writeText "bifrost-config.json" (
-    builtins.toJSON {
-      "$schema" = "https://www.getbifrost.ai/schema";
-      config_store = {
-        enabled = true;
-        type = "sqlite";
-        config.path = "/app/data/config.db";
-      };
-      providers = {
-        vertex.keys = [
-          {
-            name = "vertex-sa";
-            value = "";
-            models = [ "*" ];
-            weight = 1.0;
-            vertex_key_config = {
-              project_id = "env.VERTEX_PROJECT_ID";
-              region = "env.VERTEX_REGION";
-              auth_credentials = "";
-            };
-          }
-        ];
-        deepseek = {
-          keys = [
-            {
-              name = "deepseek-key";
-              value = "env.DEEPSEEK_API_KEY";
-              models = [ "*" ];
-              weight = 1.0;
-            }
-          ];
-          network_config.base_url = "https://api.deepseek.com";
-          custom_provider_config = {
-            base_provider_type = "openai";
-            allowed_requests = {
-              chat_completion = true;
-              chat_completion_stream = true;
-            };
-          };
-        };
-      };
-    }
-  );
+  port = 8081;
 in
 {
   modules.nixos.server.bifrost =
-    { config, ... }:
+    { config, pkgs, ... }:
+    let
+      configJson = pkgs.writeText "config.json" (
+        builtins.toJSON {
+          "$schema" = "https://www.getbifrost.ai/schema";
+          config_store = {
+            enabled = true;
+            type = "sqlite";
+            config.path = "/app/data/config.db";
+          };
+          providers = {
+            vertex.keys = [
+              {
+                name = "vertex-sa";
+                value = "";
+                models = [ "*" ];
+                weight = 1.0;
+                vertex_key_config = {
+                  project_id = "env.VERTEX_PROJECT_ID";
+                  region = "env.VERTEX_REGION";
+                  auth_credentials = "";
+                };
+              }
+            ];
+            deepseek = {
+              keys = [
+                {
+                  name = "deepseek-key";
+                  value = "env.DEEPSEEK_API_KEY";
+                  models = [ "*" ];
+                  weight = 1.0;
+                }
+              ];
+              network_config.base_url = "https://api.deepseek.com";
+              custom_provider_config = {
+                base_provider_type = "openai";
+                allowed_requests = {
+                  chat_completion = true;
+                  chat_completion_stream = true;
+                };
+              };
+            };
+          };
+        }
+      );
+    in
     {
       server.homepage.services.bifrost = {
         url = "bifrost.${config.server.caddy.domain}";
@@ -56,7 +58,7 @@ in
         homepage = {
           name = "Bifrost";
           description = "AI gateway";
-          icon = "sh-bifrost";
+          icon = "https://raw.githubusercontent.com/maximhq/bifrost/dev/.github/assets/bifrost-logo.png";
           category = "Services";
         };
       };

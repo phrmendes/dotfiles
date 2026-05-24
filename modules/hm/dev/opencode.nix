@@ -32,24 +32,20 @@ in
     { pkgs, osConfig, ... }:
     let
       agentBrowserSkill = builtins.readFile "${pkgs.agent-browser}/skills/agent-browser/SKILL.md";
-
-      opencode-wrapped = pkgs.writeShellApplication {
-        name = "opencode";
-        runtimeInputs = with pkgs; [
-          agent-browser
-          opencode
-        ];
-        text = ''
-          exec env \
-            AGENT_BROWSER_EXECUTABLE_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
-            AGENT_BROWSER_SKILLS_DIR="${pkgs.agent-browser}/skills" \
-            opencode "$@"
-        '';
-      };
     in
     {
+      home = {
+        packages = with pkgs; [
+          agent-browser
+        ];
+        sessionVariables = {
+          AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
+          AGENT_BROWSER_SKILLS_DIR = "${pkgs.agent-browser}/skills";
+        };
+      };
+
       programs.opencode = {
-        package = opencode-wrapped;
+        package = pkgs.opencode;
         enable = true;
         enableMcpIntegration = true;
 
@@ -113,7 +109,7 @@ in
             bifrost = {
               options = {
                 apiKey = "{file:${osConfig.age.secrets."bifrost.txt".path}}";
-                baseURL = "https://bifrost.local.ohlongjohnson.tech";
+                baseURL = "https://bifrost.local.ohlongjohnson.tech/v1";
               };
               models = {
                 "vertex/claude-sonnet-4-6@default".name = "Claude Sonnet 4.6 (Vertex)";

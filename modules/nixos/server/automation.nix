@@ -4,12 +4,7 @@ let
 in
 {
   modules.nixos.server.automation =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
+    { pkgs, lib, ... }:
     let
       dotfiles = "${settings.home}/dotfiles";
     in

@@ -78,8 +78,13 @@ in
         };
         tmpfiles.rules = [
           "d /mnt/external/movies 2775 ${settings.user} media -"
+          "a+ /mnt/external/movies - - - - g:media:rwx,d:g:media:rwx"
           "d /mnt/external/tvshows 2775 ${settings.user} media -"
+          "a+ /mnt/external/tvshows - - - - g:media:rwx,d:g:media:rwx"
           "d /mnt/external/downloads 2775 ${settings.user} media -"
+          "a+ /mnt/external/downloads - - - - g:media:rwx,d:g:media:rwx"
+          "d /mnt/external/comics 2775 ${settings.user} media -"
+          "a+ /mnt/external/comics - - - - g:media:rwx,d:g:media:rwx"
           "d /srv/sonarr 0750 sonarr sonarr -"
           "d /srv/radarr 0750 radarr radarr -"
           "d /srv/prowlarr 0750 prowlarr prowlarr -"

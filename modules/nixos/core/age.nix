@@ -13,9 +13,10 @@ in
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
-          "claude-service-account.json" = secretReadable ../../../secrets/claude-service-account.age.json;
-          "deepseek.txt" = secretReadable ../../../secrets/deepseek.age.txt;
+          "bifrost.env" = secretReadable ../../../secrets/bifrost.age.env;
+          "bifrost.txt" = secretReadable ../../../secrets/bifrost.age.txt;
           "opencode.txt" = secretReadable ../../../secrets/opencode.age.txt;
+          "vertex.json" = secretReadable ../../../secrets/vertex.age.json;
         };
       };
     };

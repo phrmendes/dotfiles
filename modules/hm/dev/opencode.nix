@@ -1,6 +1,5 @@
 { config, ... }:
 let
-  inherit (config.settings) gcp;
   inherit (config.settings) home;
   promptsDir = ../../../files/prompts;
   readPrompts =
@@ -32,8 +31,6 @@ in
   modules.homeManager.dev.opencode =
     { pkgs, osConfig, ... }:
     let
-      keyfile = osConfig.age.secrets."claude-service-account.json".path;
-
       agentBrowserSkill = builtins.readFile "${pkgs.agent-browser}/skills/agent-browser/SKILL.md";
 
       opencode-wrapped = pkgs.writeShellApplication {
@@ -41,15 +38,11 @@ in
         runtimeInputs = with pkgs; [
           agent-browser
           opencode
-          local.gcp-token
         ];
         text = ''
           exec env \
             AGENT_BROWSER_EXECUTABLE_PATH="${pkgs.ungoogled-chromium}/bin/chromium" \
             AGENT_BROWSER_SKILLS_DIR="${pkgs.agent-browser}/skills" \
-            GOOGLE_APPLICATION_CREDENTIALS="${keyfile}" \
-            GOOGLE_VERTEX_PROJECT="${gcp.project}" \
-            GOOGLE_VERTEX_LOCATION="${gcp.location}" \
             opencode "$@"
         '';
       };
@@ -74,9 +67,7 @@ in
           agent.build.disable = true;
           enabled_providers = [
             "opencode-go"
-            "deepseek"
-            "litellm"
-            "google-vertex-anthropic"
+            "bifrost"
             "github-copilot"
           ];
           model = "opencode-go/qwen3.5-plus";
@@ -119,22 +110,16 @@ in
                 "deepseek-v4-flash".name = "DeepSeek V4 Flash";
               };
             };
-            deepseek = {
-              options.apiKey = "{file:${osConfig.age.secrets."deepseek.txt".path}}";
-              models = {
-                "deepseek-v4-pro".name = "DeepSeek V4 Pro";
-                "deepseek-v4-flash".name = "DeepSeek V4 Flash";
-              };
-            };
-            litellm = {
+            bifrost = {
               options = {
-                apiKey = "dummy";
-                baseURL = "https://litellm.local.ohlongjohnson.tech";
+                apiKey = "{file:${osConfig.age.secrets."bifrost.txt".path}}";
+                baseURL = "https://bifrost.local.ohlongjohnson.tech";
               };
-              models."claude-sonnet-4-6@default".name = "Claude Sonnet 4.6 (Vertex)";
-            };
-            google-vertex-anthropic = {
-              models."claude-sonnet-4-6@default" = { };
+              models = {
+                "vertex/claude-sonnet-4-6@default".name = "Claude Sonnet 4.6 (Vertex)";
+                "deepseek/deepseek-chat".name = "DeepSeek Chat";
+                "deepseek/deepseek-reasoner".name = "DeepSeek Reasoner";
+              };
             };
           };
         };

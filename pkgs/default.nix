@@ -1,6 +1,5 @@
 { pkgs }:
 {
-  litellm = pkgs.callPackage ./litellm.nix { inherit (pkgs) litellm; };
   deploy = dotfiles: pkgs.callPackage ./deploy.nix { inherit dotfiles; };
   diff-persist = pkgs.callPackage ./diff-persist.nix { };
   gcp-token = pkgs.callPackage ./gcp-token.nix { };

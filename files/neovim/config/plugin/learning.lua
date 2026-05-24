@@ -1,9 +1,9 @@
 safely("later", function()
-  local key_path = "/run/agenix/deepseek.txt"
-  local ok, key_lines = pcall(vim.fn.readfile, key_path)
+  local key_path = "/run/agenix/bifrost.txt"
+  local ok, lines = pcall(vim.fn.readfile, key_path)
 
-  if not ok or #key_lines == 0 then
-    vim.notify("learning.nvim: could not read deepseek key from " .. key_path, vim.log.levels.WARN)
+  if not ok or #lines == 0 then
+    vim.notify("learning.nvim: could not read bifrost key from " .. key_path, vim.log.levels.WARN)
     return
   end
 
@@ -12,9 +12,9 @@ safely("later", function()
     debounce_ms = 250,
     win_config = { border = vim.g.border },
     provider = {
-      api_key = vim.trim(key_lines[1]),
-      api_url = "https://api.deepseek.com/chat/completions",
-      model = "deepseek-chat",
+      api_key = vim.trim(lines[1]),
+      api_url = "https://bifrost.local.ohlongjohnson.tech/v1/chat/completions",
+      model = "vertex/claude-sonnet-4-6@default",
     },
   })
 

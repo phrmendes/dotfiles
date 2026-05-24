@@ -24,8 +24,8 @@ in
           excalidraw
           filesystems
           homepage
+          bifrost
           linkding
-          litellm
           litestream
           media
           neovim

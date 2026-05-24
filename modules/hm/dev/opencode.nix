@@ -23,6 +23,8 @@ let
     "typescript"
     "devops"
     "research"
+    "guide"
+    "lua"
   ];
   commands = readPrompts "commands" [ "bugfix" ];
 in

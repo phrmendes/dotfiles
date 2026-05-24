@@ -34,7 +34,7 @@ _: {
 
       systemd.tmpfiles.rules = [ "d /srv/sftpgo 0750 sftpgo sftpgo -" ];
 
-      users.users.sftpgo.extraGroups = [ "media" ];
+      users.users.sftpgo.extraGroups = [ "external" ];
 
       services.sftpgo = {
         enable = true;

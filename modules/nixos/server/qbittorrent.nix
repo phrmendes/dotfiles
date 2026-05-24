@@ -15,7 +15,7 @@ in
       torrentingPort = 51413;
     in
     {
-      users.users.qbittorrent.extraGroups = [ "media" ];
+      users.users.qbittorrent.extraGroups = [ "external" ];
 
       networking.firewall = dotfilesLib.mkFirewallPort torrentingPort;
 

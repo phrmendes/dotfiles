@@ -67,24 +67,20 @@ in
         };
       };
 
-      users.users.jellyfin.extraGroups = [ "media" ];
+      users.users.jellyfin.extraGroups = [ "external" ];
 
       systemd = {
         services = {
-          sonarr.serviceConfig.SupplementaryGroups = [ "media" ];
-          radarr.serviceConfig.SupplementaryGroups = [ "media" ];
-          prowlarr.serviceConfig.SupplementaryGroups = [ "media" ];
-          bazarr.serviceConfig.SupplementaryGroups = [ "media" ];
+          sonarr.serviceConfig.SupplementaryGroups = [ "external" ];
+          radarr.serviceConfig.SupplementaryGroups = [ "external" ];
+          prowlarr.serviceConfig.SupplementaryGroups = [ "external" ];
+          bazarr.serviceConfig.SupplementaryGroups = [ "external" ];
         };
         tmpfiles.rules = [
-          "d /mnt/external/movies 2775 ${settings.user} media -"
-          "a+ /mnt/external/movies - - - - g:media:rwx,d:g:media:rwx"
-          "d /mnt/external/tvshows 2775 ${settings.user} media -"
-          "a+ /mnt/external/tvshows - - - - g:media:rwx,d:g:media:rwx"
-          "d /mnt/external/downloads 2775 ${settings.user} media -"
-          "a+ /mnt/external/downloads - - - - g:media:rwx,d:g:media:rwx"
-          "d /mnt/external/comics 2775 ${settings.user} media -"
-          "a+ /mnt/external/comics - - - - g:media:rwx,d:g:media:rwx"
+          "d /mnt/external/movies 2775 ${settings.user} external -"
+          "d /mnt/external/tvshows 2775 ${settings.user} external -"
+          "d /mnt/external/downloads 2775 ${settings.user} external -"
+          "d /mnt/external/comics 2775 ${settings.user} external -"
           "d /srv/sonarr 0750 sonarr sonarr -"
           "d /srv/radarr 0750 radarr radarr -"
           "d /srv/prowlarr 0750 prowlarr prowlarr -"

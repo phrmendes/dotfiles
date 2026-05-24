@@ -16,9 +16,10 @@ in
 
     systemd.tmpfiles.rules = [
       "d /run/sync 0700 ${settings.user} users -"
-      "d /mnt/external 2775 ${settings.user} media -"
-      "d /mnt/external/zotero 2775 ${settings.user} media -"
-      "a+ /mnt/external/zotero - - - - g:media:rwx,d:g:media:rwx"
+      "d /mnt/external 2775 ${settings.user} external -"
+      "a+ /mnt/external - - - - d:g:external:rwx,d:group::rwx"
+      "d /mnt/external/books 2775 ${settings.user} external -"
+      "d /mnt/external/zotero 2775 ${settings.user} external -"
       "d /srv 0755 root root -"
       "d /srv/containers 0755 root root -"
     ];

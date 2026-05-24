@@ -9,7 +9,7 @@ in
       port = 8384;
     in
     {
-      users.users.syncthing.extraGroups = [ "media" ];
+      users.users.syncthing.extraGroups = [ "external" ];
 
       server.homepage.services.syncthing = {
         dataDir = "/srv/syncthing";
@@ -27,13 +27,7 @@ in
 
       systemd.tmpfiles.rules =
         let
-          mediaAcl = "g:media:rwx,d:g:media:rwx,d:mask::rwx";
-          syncDir = name: "d /mnt/external/syncthing/${name} 2775 ${settings.user} media -";
-          syncAcl = name: "a+ /mnt/external/syncthing/${name} - - - - ${mediaAcl}";
-          mkSyncDir = name: [
-            (syncDir name)
-            (syncAcl name)
-          ];
+          syncDir = name: "d /mnt/external/syncthing/${name} 2775 ${settings.user} external -";
           folders = [
             "antennapod"
             "camera"
@@ -48,13 +42,12 @@ in
           ];
         in
         [
-          "d /mnt/external/syncthing 2775 ${settings.user} media -"
-          "a+ /mnt/external/syncthing - - - - ${mediaAcl}"
+          "d /mnt/external/syncthing 2775 ${settings.user} external -"
           "d /srv/syncthing 0750 syncthing syncthing -"
           "d /srv/syncthing/.config 0750 syncthing syncthing -"
           "d /srv/syncthing/.config/syncthing 0750 syncthing syncthing -"
         ]
-        ++ builtins.concatMap mkSyncDir folders;
+        ++ map syncDir folders;
 
       networking.firewall = {
         allowedTCPPorts = [ 22000 ];

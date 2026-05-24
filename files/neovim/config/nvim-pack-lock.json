@@ -28,6 +28,10 @@
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
     },
+    "learning.nvim": {
+      "rev": "26272481f4a057ec575aa0bf2e334cb9ef4173df",
+      "src": "https://github.com/Hashino/learning.nvim"
+    },
     "live-preview.nvim": {
       "rev": "c1fcf75c5f9c9c01dd392852de44204b60f1b5b1",
       "src": "https://github.com/brianhuster/live-preview.nvim"

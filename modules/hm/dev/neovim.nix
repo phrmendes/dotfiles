@@ -33,6 +33,7 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
+
         extraPython3Packages =
           p: with p; [
             debugpy

@@ -16,7 +16,7 @@ in
     {
       users = {
         mutableUsers = true;
-        groups.media = { };
+        groups.external = { };
         users = {
           ${settings.user} = {
             inherit (settings) home;
@@ -32,8 +32,8 @@ in
             uid = 1000;
             linger = true;
             extraGroups = [
+              "external"
               "keys"
-              "media"
               "networkmanager"
               "wheel"
             ]

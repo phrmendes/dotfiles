@@ -112,7 +112,10 @@ in
                 baseURL = "https://bifrost.local.ohlongjohnson.tech/v1";
               };
               models = {
-                "vertex/claude-sonnet-4-6@default".name = "Claude Sonnet 4.6 (Vertex)";
+                "vertex/claude-sonnet-4-6@default" = {
+                  name = "Claude Sonnet 4.6 (Vertex)";
+                  attachment = true;
+                };
                 "deepseek/deepseek-chat".name = "DeepSeek Chat";
                 "deepseek/deepseek-reasoner".name = "DeepSeek Reasoner";
               };

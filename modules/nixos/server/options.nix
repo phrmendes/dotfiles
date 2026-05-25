@@ -1,5 +1,5 @@
 _: {
-  modules.nixos.server.server-options =
+  modules.nixos.server.options =
     { lib, ... }:
     {
       options.server.homepage.services = lib.mkOption {

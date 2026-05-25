@@ -4,7 +4,6 @@ safely("now", function()
   require("sidekick").setup({
     nes = { enabled = false },
     cli = {
-      win = { layout = "float" },
       mux = { backend = "tmux", enabled = true },
       tools = { opencode = {} },
     },

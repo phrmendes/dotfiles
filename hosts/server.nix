@@ -33,7 +33,7 @@ in
           persistence
           podman
           qbittorrent
-          server-options
+          options
           sftpgo
           syncthing
           tailscale

@@ -103,7 +103,6 @@ if nix.is_laptop then
   hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia-shell ipc call brightness decrease"), { repeating = true })
 end
 
-hl.permission({ binary = "/nix/store/.*/vesktop", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/nix/store/.*/xdg-desktop-portal-hyprland", type = "screencopy", mode = "allow" })
 hl.window_rule({ match = { class = ".blueman-manager-wrapped" }, float = true, opaque = true })
 hl.window_rule({ match = { class = "org.pulseaudio.pavucontrol" }, float = true, opaque = true, stay_focused = true })

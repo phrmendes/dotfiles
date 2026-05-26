@@ -34,13 +34,6 @@ _: {
         wl-clipboard
         wf-recorder
         zotero
-        (vesktop.overrideAttrs (old: {
-          postFixup =
-            builtins.replaceStrings
-              [ "--enable-features=WaylandWindowDecorations" ]
-              [ "--enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer" ]
-              old.postFixup;
-        }))
       ];
     };
 }

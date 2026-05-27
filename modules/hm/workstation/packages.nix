@@ -4,6 +4,7 @@ _: {
     {
       home.packages = with pkgs; [
         android-tools
+        discord
         drawing
         exiftool
         ffmpeg
@@ -31,8 +32,8 @@ _: {
         terraform
         tesseract
         thunar
-        wl-clipboard
         wf-recorder
+        wl-clipboard
         zotero
       ];
     };

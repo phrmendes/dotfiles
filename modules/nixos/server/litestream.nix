@@ -54,7 +54,10 @@ _: {
           pkgs.systemd
         ];
         text = ''
-          ERROR_LOG=$(journalctl -u litestream --since "3 min ago" -p err --no-pager -n 5 -o cat)
+          ERROR_LOG=$(journalctl -u litestream --since "3 min ago" -p err --no-pager -n 5 -o cat 2>/dev/null || true)
+          if [ -z "$ERROR_LOG" ]; then
+            ERROR_LOG="No error details available. Check journalctl -u litestream.service for details."
+          fi
           telegram-notify error \
             "Litestream Replication Failed" \
             "Litestream exited on $(hostname).<pre>$ERROR_LOG</pre>"

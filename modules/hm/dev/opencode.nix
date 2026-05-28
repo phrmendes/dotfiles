@@ -115,6 +115,10 @@ in
                 "vertex/claude-sonnet-4-6@default" = {
                   name = "Claude Sonnet 4.6 (Vertex)";
                   attachment = true;
+                  limit = {
+                    context = 200000;
+                    output = 16000;
+                  };
                 };
                 "deepseek/deepseek-chat".name = "DeepSeek Chat";
                 "deepseek/deepseek-reasoner".name = "DeepSeek Reasoner";

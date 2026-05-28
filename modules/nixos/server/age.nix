@@ -43,11 +43,11 @@ _: {
         owner = "root";
         group = "root";
       };
-      "deluge.txt" = {
-        file = ../../../secrets/deluge.age.txt;
-        mode = "0440";
-        owner = "deluge";
-        group = "deluge";
+      "transmission.json" = {
+        file = ../../../secrets/transmission.age.json;
+        mode = "0400";
+        owner = "root";
+        group = "root";
       };
       "dockerhub.json" = {
         file = ../../../secrets/dockerhub.age.json;

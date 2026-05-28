@@ -33,7 +33,7 @@ in
           networking
           persistence
           podman
-          deluge
+          transmission
           options
           sftpgo
           syncthing

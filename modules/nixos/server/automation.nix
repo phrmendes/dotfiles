@@ -7,6 +7,11 @@ in
     { pkgs, lib, ... }:
     let
       dotfiles = "${settings.home}/dotfiles";
+      deployNotify = pkgs.writeShellApplication {
+        name = "deploy-notify";
+        runtimeInputs = [ pkgs.local.telegram-notify ];
+        text = ''telegram-notify error "Deploy Failed: $(hostname)" "Auto-deploy failed on $(hostname). Check journalctl -u deploy.service for details."'';
+      };
     in
     {
       systemd = {
@@ -33,6 +38,15 @@ in
             WorkingDirectory = dotfiles;
             TimeoutStartSec = 0;
             ExecStart = lib.getExe (pkgs.local.deploy dotfiles);
+          };
+          onFailure = [ "deploy-notify.service" ];
+        };
+
+        services.deploy-notify = {
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStart = lib.getExe deployNotify;
+            EnvironmentFile = config.age.secrets."telegram.env".path;
           };
         };
       };

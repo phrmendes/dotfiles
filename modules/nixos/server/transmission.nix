@@ -4,11 +4,22 @@ let
 in
 {
   modules.nixos.server.transmission =
-    { config, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     let
       webPort = 9091;
       torrentingPort = 51413;
       domain = config.server.caddy.domain;
+      notifyScript = pkgs.writeShellApplication {
+        name = "transmission-notify";
+        runtimeInputs = [ pkgs.local.telegram-notify ];
+        text = ''
+          telegram-notify info "Download Complete" "$TR_TORRENT_NAME — saved to $TR_TORRENT_DIR"
+        '';
+      };
     in
     {
       server.homepage.services.transmission = {
@@ -52,7 +63,12 @@ in
           peer-port-random-on-start = false;
           ratio-limit = 0;
           ratio-limit-enabled = true;
+          script-torrent-done-enabled = true;
+          script-torrent-done-filename = "${notifyScript}/bin/transmission-notify";
         };
       };
+
+      systemd.services.transmission.serviceConfig.EnvironmentFile =
+        config.age.secrets."telegram.env".path;
     };
 }

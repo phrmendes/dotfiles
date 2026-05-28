@@ -47,6 +47,11 @@ _: {
       ];
       dbsJson =
         dbs |> map ({ name, path }: lib.nameValuePair name path) |> lib.listToAttrs |> builtins.toJSON;
+      litestreamNotify = pkgs.writeShellApplication {
+        name = "litestream-notify";
+        runtimeInputs = [ pkgs.local.telegram-notify ];
+        text = ''telegram-notify error "Litestream Replication Failed" "SQLite backup replication failed on $(hostname). Check journalctl -u litestream.service for details."'';
+      };
     in
     {
       environment.systemPackages = [
@@ -95,6 +100,17 @@ _: {
           );
       };
 
-      systemd.services.litestream.serviceConfig.User = lib.mkForce "root";
+      systemd.services.litestream = {
+        serviceConfig.User = lib.mkForce "root";
+        onFailure = [ "litestream-notify.service" ];
+      };
+
+      systemd.services.litestream-notify = {
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = lib.getExe litestreamNotify;
+          EnvironmentFile = config.age.secrets."telegram.env".path;
+        };
+      };
     };
 }

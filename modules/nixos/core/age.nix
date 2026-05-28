@@ -13,7 +13,6 @@ in
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
-          "bifrost.env" = secretReadable ../../../secrets/bifrost.age.env;
           "bifrost.txt" = secretReadable ../../../secrets/bifrost.age.txt;
           "opencode.txt" = secretReadable ../../../secrets/opencode.age.txt;
           "vertex.json" = secretReadable ../../../secrets/vertex.age.json;

@@ -1,29 +1,61 @@
-{ config, ... }:
-let
-  inherit (config) settings dotfilesLib;
-in
-{
-  modules.nixos.server.age =
-    _:
-    let
-      secretReadable = dotfilesLib.mkSecretReadable settings.user;
-    in
-    {
-      age.secrets = {
-        "beszel.env" = secretReadable ../../../secrets/beszel.age.env;
-        "cloudflare.env" = secretReadable ../../../secrets/cloudflare.age.env;
-        "linkding.env" = secretReadable ../../../secrets/linkding.age.env;
-        "litestream.env" = secretReadable ../../../secrets/litestream.age.env;
-        "telegram.env" = secretReadable ../../../secrets/telegram.age.env;
-        "deluge.txt" = secretReadable ../../../secrets/deluge.age.txt;
-        "duplicati.env" = secretReadable ../../../secrets/duplicati.age.env;
-        "dockerhub.json" = {
-          file = ../../../secrets/dockerhub.age.json;
-          path = "/root/.docker/config.json";
-          mode = "0400";
-          owner = "root";
-          group = "root";
-        };
+_: {
+  modules.nixos.server.age = _: {
+    age.secrets = {
+      "beszel.env" = {
+        file = ../../../secrets/beszel.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "bifrost.env" = {
+        file = ../../../secrets/bifrost.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "cloudflare.env" = {
+        file = ../../../secrets/cloudflare.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "linkding.env" = {
+        file = ../../../secrets/linkding.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "litestream.env" = {
+        file = ../../../secrets/litestream.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "telegram.env" = {
+        file = ../../../secrets/telegram.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "duplicati.env" = {
+        file = ../../../secrets/duplicati.age.env;
+        mode = "0400";
+        owner = "root";
+        group = "root";
+      };
+      "deluge.txt" = {
+        file = ../../../secrets/deluge.age.txt;
+        mode = "0440";
+        owner = "deluge";
+        group = "deluge";
+      };
+      "dockerhub.json" = {
+        file = ../../../secrets/dockerhub.age.json;
+        path = "/root/.docker/config.json";
+        mode = "0400";
+        owner = "root";
+        group = "root";
       };
     };
+  };
 }

@@ -4,6 +4,7 @@ _: {
     {
       home.packages = with pkgs; [
         android-tools
+        deluge
         discord
         drawing
         exiftool
@@ -23,7 +24,6 @@ _: {
         phockup
         poppler
         proton-vpn
-        qbittorrent
         quarto
         satty
         slurp

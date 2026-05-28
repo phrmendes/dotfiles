@@ -13,8 +13,22 @@ in
     let
       webuiPort = 8080;
       torrentingPort = 51413;
+      domain = config.server.caddy.domain;
     in
     {
+      server.homepage.services.qbittorrent = {
+        url = "qbittorrent.${domain}";
+        monitoredServices = [ "qbittorrent" ];
+        homepage = {
+          name = "qBittorrent";
+          description = "Torrent client";
+          icon = "sh-qbittorrent";
+          category = "Media";
+        };
+      };
+
+      services.caddy.virtualHosts = config.server.caddy.mkVhost "qbittorrent" webuiPort;
+
       users.users.qbittorrent.extraGroups = [ "external" ];
 
       networking.firewall = dotfilesLib.mkFirewallPort torrentingPort;

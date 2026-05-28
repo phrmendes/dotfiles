@@ -108,6 +108,7 @@ in
               analyticsEnabled = false;
               level = "info";
             };
+            server.bindAddress = "127.0.0.1";
             update.mechanism = "external";
             app.instanceName = "Sonarr";
           };
@@ -124,6 +125,7 @@ in
               analyticsEnabled = false;
               level = "info";
             };
+            server.bindAddress = "127.0.0.1";
             update.mechanism = "external";
             app.instanceName = "Radarr";
           };
@@ -140,6 +142,7 @@ in
               analyticsEnabled = false;
               level = "info";
             };
+            server.bindAddress = "127.0.0.1";
             update.mechanism = "external";
             app.instanceName = "Prowlarr";
           };

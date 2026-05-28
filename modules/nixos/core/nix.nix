@@ -10,11 +10,7 @@
       settings = {
         download-buffer-size = 1048576000;
         auto-optimise-store = true;
-        accept-flake-config = true;
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
+        trusted-users = [ "root" ];
         experimental-features = [
           "flakes"
           "nix-command"

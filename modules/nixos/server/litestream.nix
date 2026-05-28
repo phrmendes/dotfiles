@@ -52,6 +52,7 @@ _: {
         runtimeInputs = [
           pkgs.local.telegram-notify
           pkgs.systemd
+          pkgs.coreutils
         ];
         text = ''
           ERROR_LOG=$(journalctl -u litestream --since "3 min ago" -p err --no-pager -n 5 -o cat 2>/dev/null || true)

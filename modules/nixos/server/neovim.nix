@@ -14,10 +14,7 @@ in
       programs.neovim = {
         enable = true;
         withRuby = false;
-        configure = {
-          packages.treesitter.start = pkgs.local.nvim-treesitter;
-          customLuaRC = builtins.readFile ../../../files/neovim/neovim-minimal.lua;
-        };
+        configure.customLuaRC = builtins.readFile ../../../files/neovim/neovim-minimal.lua;
       };
 
       environment = {

@@ -61,6 +61,8 @@ in
           incomplete-dir-enabled = true;
           peer-port = torrentingPort;
           peer-port-random-on-start = false;
+          upnp-enabled = false;
+          natpmp-enabled = false;
           ratio-limit = 0;
           ratio-limit-enabled = true;
           script-torrent-done-enabled = true;

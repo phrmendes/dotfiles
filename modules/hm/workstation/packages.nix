@@ -5,7 +5,6 @@ _: {
       home.packages = with pkgs; [
         android-tools
         deluge
-        discord
         drawing
         exiftool
         ffmpeg

@@ -33,7 +33,7 @@ _: {
           name = "radarr";
         }
         {
-          path = "/srv/prowlarr/prowlarr.db";
+          path = "/var/lib/prowlarr/prowlarr.db";
           name = "prowlarr";
         }
         {
@@ -41,7 +41,7 @@ _: {
           name = "bazarr";
         }
         {
-          path = "/var/lib/duplicati/Duplicati-server.sqlite";
+          path = "/srv/duplicati/Duplicati-server.sqlite";
           name = "duplicati";
         }
       ];

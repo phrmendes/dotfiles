@@ -33,7 +33,6 @@ in
           };
         };
         prowlarr = {
-          dataDir = "/srv/prowlarr";
           url = "prowlarr.${domain}";
           monitoredServices = [ "prowlarr" ];
           homepage = {
@@ -83,7 +82,6 @@ in
           "d /mnt/external/comics 2775 ${settings.user} external -"
           "d /srv/sonarr 0750 sonarr sonarr -"
           "d /srv/radarr 0750 radarr radarr -"
-          "d /srv/prowlarr 0750 prowlarr prowlarr -"
           "d /srv/bazarr 0750 bazarr bazarr -"
           "d /srv/jellyfin 0750 jellyfin jellyfin -"
         ];
@@ -132,7 +130,6 @@ in
         };
         prowlarr = {
           enable = true;
-          dataDir = "/srv/prowlarr";
           settings = {
             auth = {
               method = "Forms";

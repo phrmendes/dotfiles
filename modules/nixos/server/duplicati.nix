@@ -39,7 +39,7 @@ _: {
         exec ${lib.getExe' pkgs.duplicati "duplicati-server"} \
           --webservice-interface=127.0.0.1 \
           --webservice-port=${toString port} \
-          --server-datafolder=/var/lib/duplicati \
+          --server-datafolder=${config.services.duplicati.dataDir} \
           --parameters-file=${parametersFile} \
           --webservice-password="$DUPLICATI_PASSWORD"
       '';
@@ -59,6 +59,8 @@ _: {
 
       services.caddy.virtualHosts = config.server.caddy.mkVhost "duplicati" port;
 
+      systemd.tmpfiles.rules = [ "d /srv/duplicati 0750 root root -" ];
+
       systemd.services.duplicati.serviceConfig = {
         EnvironmentFile = [
           config.age.secrets."telegram.env".path
@@ -70,6 +72,7 @@ _: {
       services.duplicati = {
         enable = true;
         inherit port;
+        dataDir = "/srv/duplicati";
         interface = "127.0.0.1";
         user = "root";
       };

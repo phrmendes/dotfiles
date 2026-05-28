@@ -12,45 +12,6 @@ in
     }:
     let
       domain = config.server.caddy.domain;
-      arrNotify = pkgs.writeShellApplication {
-        name = "arr-notify";
-        runtimeInputs = [ pkgs.local.telegram-notify ];
-        text = ''
-          case "$sonarr_eventtype$radarr_eventtype" in
-            Grab*)
-              telegram-notify info "Media Grabbed" "$sonarr_seriesname$radarr_movietitle — $sonarr_releasetitle$radarr_releasetitle"
-              ;;
-            Download*)
-              telegram-notify info "Download Complete" "$sonarr_seriesname$radarr_movietitle — $sonarr_episodefile_relativpath$radarr_moviefile_relativpath"
-              ;;
-            Import*)
-              telegram-notify info "Imported" "$sonarr_seriesname$radarr_movietitle added to library"
-              ;;
-            ImportFailure*)
-              telegram-notify error "Import Failed" "$sonarr_seriesname$radarr_movietitle — $sonarr_importerror$radarr_importerror"
-              ;;
-            *)
-              exit 0
-              ;;
-          esac
-        '';
-      };
-      arrNotifyScript = {
-        enable = true;
-        name = "Telegram Notify";
-        implementation = "CustomScript";
-        configContract = "CustomScriptSettings";
-        settings = {
-          path = lib.getExe arrNotify;
-          onGrab = true;
-          onDownload = true;
-          onImport = true;
-          onUpgrade = false;
-          onRename = false;
-          onMovieDelete = false;
-          onSeriesDelete = false;
-        };
-      };
     in
     {
       server.homepage.services = {
@@ -114,14 +75,8 @@ in
 
       systemd = {
         services = {
-          sonarr.serviceConfig = {
-            SupplementaryGroups = [ "external" ];
-            EnvironmentFile = config.age.secrets."telegram.env".path;
-          };
-          radarr.serviceConfig = {
-            SupplementaryGroups = [ "external" ];
-            EnvironmentFile = config.age.secrets."telegram.env".path;
-          };
+          sonarr.serviceConfig.SupplementaryGroups = [ "external" ];
+          radarr.serviceConfig.SupplementaryGroups = [ "external" ];
           prowlarr.serviceConfig.SupplementaryGroups = [ "external" ];
           bazarr.serviceConfig.SupplementaryGroups = [ "external" ];
         };
@@ -148,13 +103,11 @@ in
           enable = true;
           dataDir = "/srv/sonarr";
           settings.server.bindAddress = "127.0.0.1";
-          settings.customScripts = [ arrNotifyScript ];
         };
         radarr = {
           enable = true;
           dataDir = "/srv/radarr";
           settings.server.bindAddress = "127.0.0.1";
-          settings.customScripts = [ arrNotifyScript ];
         };
         prowlarr = {
           enable = true;

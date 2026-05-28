@@ -3,6 +3,7 @@ let
   inherit (config) settings;
   commonDirs = [
     ".aws"
+    ".cache/keepassxc"
     ".config"
     ".docker"
     ".kube"

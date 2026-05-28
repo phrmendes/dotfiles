@@ -61,7 +61,7 @@ _: {
           fi
           telegram-notify error \
             "Litestream Replication Failed" \
-            "Litestream exited on $(hostname).<pre>$ERROR_LOG</pre>"
+            "<pre>$ERROR_LOG</pre>"
         '';
       };
     in

@@ -28,6 +28,12 @@ in
 
       users.users.transmission.extraGroups = [ "external" ];
 
+      systemd.tmpfiles.rules = [
+        "d /srv/transmission 0750 transmission transmission -"
+        "d /srv/transmission/.config 0750 transmission transmission -"
+        "d /srv/transmission/.config/transmission-daemon 0750 transmission transmission -"
+      ];
+
       services.transmission = {
         enable = true;
         home = "/srv/transmission";

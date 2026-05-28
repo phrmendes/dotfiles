@@ -39,8 +39,8 @@ in
               let
                 injectPassword = pkgs.writeShellScript "qbittorrent-inject-password" ''
                   CONF="/srv/qbittorrent/qBittorrent/config/qBittorrent.conf"
-                  ${pkgs.gnused}/bin/sed -i '/WebUI\\\\Password_PBKDF2/d' "$CONF"
-                  printf '\nWebUI\\Password_PBKDF2=%s\n' "$QBITTORRENT_PASSWORD_PBKDF2" >> "$CONF"
+                  ${pkgs.gnused}/bin/sed -i '/WebUI\\Password_PBKDF2/d' "$CONF"
+                  echo "WebUI\Password_PBKDF2=$QBITTORRENT_PASSWORD_PBKDF2" >> "$CONF"
                 '';
               in
               "+${injectPassword}"

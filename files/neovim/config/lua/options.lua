@@ -66,6 +66,7 @@ vim.filetype.add({
     [".env"] = "dosini",
   },
   pattern = {
+    ["Caddyfile.*"] = "caddy",
     ["*/.kube/config"] = "yaml",
   },
   extension = {

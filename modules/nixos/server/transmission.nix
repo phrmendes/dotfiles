@@ -42,6 +42,8 @@ in
         settings = {
           rpc-bind-address = "127.0.0.1";
           rpc-port = webPort;
+          rpc-host-whitelist = "transmission.${domain}";
+          rpc-host-whitelist-enabled = true;
           download-dir = "/mnt/external/downloads";
           incomplete-dir = "/mnt/external/downloads/.incomplete";
           incomplete-dir-enabled = true;

@@ -49,8 +49,16 @@ _: {
         dbs |> map ({ name, path }: lib.nameValuePair name path) |> lib.listToAttrs |> builtins.toJSON;
       litestreamNotify = pkgs.writeShellApplication {
         name = "litestream-notify";
-        runtimeInputs = [ pkgs.local.telegram-notify ];
-        text = ''telegram-notify error "Litestream Replication Failed" "SQLite backup replication failed on $(hostname). Check journalctl -u litestream.service for details."'';
+        runtimeInputs = [
+          pkgs.local.telegram-notify
+          pkgs.systemd
+        ];
+        text = ''
+          ERROR_LOG=$(journalctl -u litestream --since "3 min ago" -p err --no-pager -n 5 -o cat)
+          telegram-notify error \
+            "Litestream Replication Failed" \
+            "Litestream exited on $(hostname).<pre>$ERROR_LOG</pre>"
+        '';
       };
     in
     {

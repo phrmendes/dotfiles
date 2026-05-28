@@ -14,8 +14,17 @@ in
       dotfiles = "${settings.home}/dotfiles";
       deployNotify = pkgs.writeShellApplication {
         name = "deploy-notify";
-        runtimeInputs = [ pkgs.local.telegram-notify ];
-        text = ''telegram-notify error "Deploy Failed: $(hostname)" "Auto-deploy failed on $(hostname). Check journalctl -u deploy.service for details."'';
+        runtimeInputs = [
+          pkgs.local.telegram-notify
+          pkgs.systemd
+        ];
+        text = ''
+          ERROR_LOG=$(journalctl -u deploy --since "3 min ago" -p err --no-pager -n 5 -o cat 2>/dev/null || true)
+          if [ -z "$ERROR_LOG" ]; then
+            ERROR_LOG="No error details available. Check journalctl -u deploy.service for details."
+          fi
+          telegram-notify error "Deploy failed" "<pre>$ERROR_LOG</pre>"
+        '';
       };
     in
     {

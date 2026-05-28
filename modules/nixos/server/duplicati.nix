@@ -17,13 +17,13 @@ _: {
           case "''${DUPLICATI__PARSED_RESULT:-Unknown}" in
             Warning)
               telegram-notify warn \
-                "Backup Warning: ''${DUPLICATI__backup_name}" \
-                "Backup job <b>''${DUPLICATI__backup_name}</b> finished with status: Warning"
+                "Backup warning: ''${DUPLICATI__backup_name}" \
+                "<pre>finished with status: Warning</pre>"
               ;;
             Error|Fatal)
               telegram-notify error \
-                "Backup ''${DUPLICATI__PARSED_RESULT}: ''${DUPLICATI__backup_name}" \
-                "Backup job <b>''${DUPLICATI__backup_name}</b> finished with status: ''${DUPLICATI__PARSED_RESULT}"
+                "Backup failed: ''${DUPLICATI__backup_name}" \
+                "<pre>finished with status: ''${DUPLICATI__PARSED_RESULT}</pre>"
               ;;
             *)
               exit 0

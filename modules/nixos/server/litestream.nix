@@ -60,7 +60,7 @@ _: {
             ERROR_LOG="No error details available. Check journalctl -u litestream.service for details."
           fi
           telegram-notify error \
-            "Litestream Replication Failed" \
+            "Litestream replication failed" \
             "<pre>$ERROR_LOG</pre>"
         '';
       };

@@ -15,8 +15,8 @@ in
         "linkding.env" = secretReadable ../../../secrets/linkding.age.env;
         "litestream.env" = secretReadable ../../../secrets/litestream.age.env;
         "telegram.env" = secretReadable ../../../secrets/telegram.age.env;
+        "deluge.txt" = secretReadable ../../../secrets/deluge.age.txt;
         "duplicati.env" = secretReadable ../../../secrets/duplicati.age.env;
-        "qbittorrent.env" = secretReadable ../../../secrets/qbittorrent.age.env;
         "dockerhub.json" = {
           file = ../../../secrets/dockerhub.age.json;
           path = "/root/.docker/config.json";

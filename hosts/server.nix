@@ -33,7 +33,7 @@ in
           networking
           persistence
           podman
-          qbittorrent
+          deluge
           options
           sftpgo
           syncthing

@@ -23,6 +23,7 @@ in
           duplicati
           excalidraw
           filesystems
+          flaresolverr
           homepage
           bifrost
           linkding

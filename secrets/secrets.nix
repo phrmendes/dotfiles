@@ -19,5 +19,6 @@ in
   "litestream.age.env".publicKeys = allKeys;
   "opencode.age.txt".publicKeys = allKeys;
   "telegram.age.env".publicKeys = allKeys;
+  "qbittorrent.age.env".publicKeys = allKeys;
   "vertex.age.json".publicKeys = allKeys;
 }

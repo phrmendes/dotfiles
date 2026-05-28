@@ -16,6 +16,7 @@ in
         "litestream.env" = secretReadable ../../../secrets/litestream.age.env;
         "telegram.env" = secretReadable ../../../secrets/telegram.age.env;
         "duplicati.env" = secretReadable ../../../secrets/duplicati.age.env;
+        "qbittorrent.env" = secretReadable ../../../secrets/qbittorrent.age.env;
         "dockerhub.json" = {
           file = ../../../secrets/dockerhub.age.json;
           path = "/root/.docker/config.json";

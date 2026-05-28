@@ -29,6 +29,26 @@ in
 
       services.caddy.virtualHosts = config.server.caddy.mkVhost "qbittorrent" webuiPort;
 
+      systemd.services.qbittorrent = {
+        serviceConfig = {
+          EnvironmentFile = config.age.secrets."qbittorrent.env".path;
+          # Run after qBittorrent starts so the upstream ExecStartPre install
+          # has already written the conf — patch it for the next restart
+          ExecStartPost = lib.mkAfter [
+            (
+              let
+                injectPassword = pkgs.writeShellScript "qbittorrent-inject-password" ''
+                  CONF="/srv/qbittorrent/qBittorrent/config/qBittorrent.conf"
+                  ${pkgs.gnused}/bin/sed -i '/WebUI\\\\Password_PBKDF2/d' "$CONF"
+                  printf '\nWebUI\\Password_PBKDF2=%s\n' "$QBITTORRENT_PASSWORD_PBKDF2" >> "$CONF"
+                '';
+              in
+              "+${injectPassword}"
+            )
+          ];
+        };
+      };
+
       users.users.qbittorrent.extraGroups = [ "external" ];
 
       networking.firewall = dotfilesLib.mkFirewallPort torrentingPort;

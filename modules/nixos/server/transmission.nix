@@ -17,7 +17,7 @@ in
         name = "transmission-notify";
         runtimeInputs = [ pkgs.local.telegram-notify ];
         text = ''
-          telegram-notify info "Download Complete" "$TR_TORRENT_NAME — saved to $TR_TORRENT_DIR"
+          telegram-notify info "Download Complete" "$TR_TORRENT_NAME"
         '';
       };
     in

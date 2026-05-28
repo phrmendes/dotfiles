@@ -34,7 +34,7 @@ _: {
             url = "http://127.0.0.1:${toString port}";
             username = "{{HOMEPAGE_VAR_BESZEL_USERNAME}}";
             password = "{{HOMEPAGE_VAR_BESZEL_PASSWORD}}";
-            systemId = "iyrgdpmpah9xjk9";
+            systemId = "5yswssrqti43j1g";
             version = 2;
             fields = [
               "cpu"

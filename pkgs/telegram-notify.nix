@@ -12,6 +12,6 @@ writeShellApplication {
       *)     echo "Unknown level: $LEVEL" >&2; exit 1 ;;
     esac
 
-    apprise -t "''${PREFIX}$TITLE" -b "$BODY" "tgram://$TELEGRAM_BOT_TOKEN/$TELEGRAM_CHAT_ID"
+    apprise -t "''${PREFIX}$TITLE" -b "$BODY" "tgram://$TELEGRAM_BOT_TOKEN/$TELEGRAM_CHAT_ID?format=html"
   '';
 }

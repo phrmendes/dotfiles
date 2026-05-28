@@ -1,6 +1,11 @@
 _: {
   modules.homeManager.workstation.keepassxc =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       configDir = ".config/keepassxc";
       localStateDir = ".local/state/keepassxc";
@@ -53,6 +58,23 @@ _: {
     in
     {
       home.packages = [ pkgs.keepassxc ];
+
+      systemd.user.services.keepassxc = {
+        Unit = {
+          Description = "KeePassXC password manager";
+          PartOf = [ config.wayland.systemd.target ];
+          After = [
+            config.wayland.systemd.target
+            "noctalia-shell.service"
+          ];
+        };
+        Service = {
+          ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+        Install.WantedBy = [ config.wayland.systemd.target ];
+      };
 
       xdg.portal.config = {
         common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];

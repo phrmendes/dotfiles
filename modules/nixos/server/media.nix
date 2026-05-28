@@ -97,52 +97,16 @@ in
         sonarr = {
           enable = true;
           dataDir = "/srv/sonarr";
-          settings = {
-            auth = {
-              method = "Forms";
-              required = "Enabled";
-            };
-            log = {
-              analyticsEnabled = false;
-              level = "info";
-            };
-            server.bindAddress = "127.0.0.1";
-            update.mechanism = "external";
-            app.instanceName = "Sonarr";
-          };
+          settings.server.bindAddress = "127.0.0.1";
         };
         radarr = {
           enable = true;
           dataDir = "/srv/radarr";
-          settings = {
-            auth = {
-              method = "Forms";
-              required = "Enabled";
-            };
-            log = {
-              analyticsEnabled = false;
-              level = "info";
-            };
-            server.bindAddress = "127.0.0.1";
-            update.mechanism = "external";
-            app.instanceName = "Radarr";
-          };
+          settings.server.bindAddress = "127.0.0.1";
         };
         prowlarr = {
           enable = true;
-          settings = {
-            auth = {
-              method = "Forms";
-              required = "Enabled";
-            };
-            log = {
-              analyticsEnabled = false;
-              level = "info";
-            };
-            server.bindAddress = "127.0.0.1";
-            update.mechanism = "external";
-            app.instanceName = "Prowlarr";
-          };
+          settings.server.bindAddress = "127.0.0.1";
         };
         bazarr = {
           enable = true;

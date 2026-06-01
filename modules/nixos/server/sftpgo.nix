@@ -32,7 +32,13 @@ _: {
 
       networking.firewall.allowedTCPPorts = [ sftpPort ];
 
-      systemd.tmpfiles.rules = [ "d /srv/sftpgo 0750 sftpgo sftpgo -" ];
+      systemd.tmpfiles.rules = [
+        "d /srv/sftpgo 0750 sftpgo sftpgo -"
+        "d /srv/qbittorrent 0755 root root -"
+        "d /srv/qbittorrent/watch 0755 root root -"
+      ];
+
+      systemd.services.sftpgo.after = [ "mnt-external.mount" ];
 
       users.users.sftpgo.extraGroups = [ "external" ];
 

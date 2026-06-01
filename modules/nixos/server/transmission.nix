@@ -70,7 +70,9 @@ in
         };
       };
 
-      systemd.services.transmission.serviceConfig.EnvironmentFile =
-        config.age.secrets."telegram.env".path;
+      systemd.services.transmission = {
+        after = [ "mnt-external.mount" ];
+        serviceConfig.EnvironmentFile = config.age.secrets."telegram.env".path;
+      };
     };
 }

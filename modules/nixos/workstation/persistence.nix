@@ -17,6 +17,7 @@ let
     ".local/share/nvim"
     ".local/share/opencode"
     ".local/share/uv"
+    ".pi/agent/sessions"
     ".local/share/zathura"
     ".local/share/zoxide"
     ".local/share/zsh"

@@ -55,17 +55,12 @@ in
           "nvidia_uvm"
           "nvidia_drm"
         ];
-        kernelParams =
-          let
-            m = config.machine.monitors.primary;
-          in
-          [
-            "boot.shell_on_fail"
-            "video=${m.name}:${m.resolution}@${toString m.refreshRate}"
-            "nvidia_drm.modeset=1"
-            "nvidia_drm.fbdev=1"
-            "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-          ];
+        kernelParams = [
+          "boot.shell_on_fail"
+          "nvidia_drm.modeset=1"
+          "nvidia_drm.fbdev=1"
+          "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+        ];
       };
 
       hardware = {
@@ -76,7 +71,7 @@ in
           enable32Bit = true;
         };
         nvidia = {
-          open = true;
+          open = false;
           nvidiaSettings = true;
           modesetting.enable = true;
           package = config.boot.kernelPackages.nvidiaPackages.production;

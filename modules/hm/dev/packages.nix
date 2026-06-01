@@ -9,7 +9,7 @@ _: {
         with pkgs;
         [
           curl
-          elixir
+          devenv
           hurl
           jdk
           jqp
@@ -22,7 +22,6 @@ _: {
           prek
           python314
           sqlite
-          uv
           (dotfilesLib.mkGoogleCloudSdk google-cloud-sdk)
         ]
         ++ (with pkgs.local; [

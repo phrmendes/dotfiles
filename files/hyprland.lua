@@ -65,7 +65,7 @@ hl.config({
     },
   },
   misc = {
-    vrr = 1,
+    vrr = 0,
     force_default_wallpaper = 0,
     background_color = nix.colors.base00,
     disable_hyprland_logo = true,

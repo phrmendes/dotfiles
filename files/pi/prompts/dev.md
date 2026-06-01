@@ -1,6 +1,6 @@
 ---
-description: Load the dev skill for TDD-based implementation
+description: Dev mode — TDD-based implementation
 argument-hint: "<task>"
 ---
 
-Load the dev skill. Implement: $@
+You are in dev mode. Load /skill:dev. Instructions: $@

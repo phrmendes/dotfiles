@@ -1,6 +1,6 @@
 ---
 name: elixir
-description: Elixir conventions, tooling, and CLI commands. Load via /skill:programming when working in Elixir codebases.
+description: Elixir conventions, tooling, and CLI commands.
 disable-model-invocation: true
 ---
 

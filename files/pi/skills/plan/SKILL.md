@@ -33,7 +33,7 @@ rg -n "pattern"                 # Show line numbers
 
 1. Read the codebase — understand structure, dependencies, existing patterns
 2. Identify files/modules involved
-3. Load `/skill:programming` if language conventions are relevant
+3. Identify the language from the codebase, then load the relevant tool: `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua`, `/skill:devops`, `/skill:agent-browser`
 4. Produce a plan:
 
 ### Plan Output

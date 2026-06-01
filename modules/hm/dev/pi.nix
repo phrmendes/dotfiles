@@ -107,10 +107,11 @@ in
               };
             };
             profiles = {
-              plan = "opencode-go/deepseek-v4-flash";
-              dev = "opencode-go/deepseek-v4-pro";
+              plan = "opencode-go/deepseek-v4-pro";
+              dev = "opencode-go/deepseek-v4-flash";
               review = "opencode-go/deepseek-v4-pro";
               bugfix = "opencode-go/deepseek-v4-pro";
+              guide = "opencode-go/deepseek-v4-flash";
             };
           };
 

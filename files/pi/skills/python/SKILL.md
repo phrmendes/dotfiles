@@ -1,6 +1,6 @@
 ---
 name: python
-description: Python conventions, tooling, and CLI commands. Load via /skill:programming when working in Python codebases.
+description: Python conventions, tooling, and CLI commands.
 disable-model-invocation: true
 ---
 

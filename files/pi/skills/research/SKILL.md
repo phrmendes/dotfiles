@@ -1,7 +1,6 @@
 ---
 name: research
-description: Academic research workflows using PDF parsing and literature review. Load via /skill:programming when working with papers, citations, or document analysis.
-disable-model-invocation: true
+description: Academic research workflows — PDF parsing, literature review, and paper analysis. Load when working with papers, citations, or academic content.
 ---
 
 ## Workflow

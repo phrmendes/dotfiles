@@ -18,6 +18,8 @@ description: Bugfix mode — investigate bugs, find root causes, produce fix pla
 
 All tools available. `read` for source, `rg` for search, `bash` for logs and test runs, `kubectl logs` for production.
 
+Identify the language from the codebase, then load the relevant tool: `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua`, `/skill:devops`, `/skill:agent-browser`.
+
 ## Rules
 
 - Never patch symptoms — find the root cause

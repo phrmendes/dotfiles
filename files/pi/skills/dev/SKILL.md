@@ -22,6 +22,6 @@ description: Dev mode — implement features following a plan using TDD. Load wh
 
 - Stop and ask if a diff exceeds ~300 lines
 - Never skip the failing test step
-- Load `/skill:programming` before writing code
+- Identify the language from the codebase, then load the relevant tool: `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua`, `/skill:devops`, `/skill:agent-browser`
 - Delete code over adding it where possible
 - Run full test suite before considering a step done

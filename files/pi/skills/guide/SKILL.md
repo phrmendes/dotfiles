@@ -1,7 +1,6 @@
 ---
 name: guide
-description: Coaching mode for learning a new task, technology, or concept. Load when you want step-by-step instruction, explanations, and best practices without code being written for you.
-disable-model-invocation: true
+description: Coaching mode for learning a new task, technology, or concept. Load for step-by-step instruction, explanations, and best practices without code being written for you.
 ---
 
 ## Context

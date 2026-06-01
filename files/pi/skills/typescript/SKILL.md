@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: TypeScript/JavaScript conventions, tooling, and CLI commands. Load via /skill:programming when working in JS/TS codebases.
+description: TypeScript/JavaScript conventions, tooling, and CLI commands.
 disable-model-invocation: true
 ---
 

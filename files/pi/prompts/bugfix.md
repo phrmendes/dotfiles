@@ -1,6 +1,6 @@
 ---
-description: Load the bugfix skill for root-cause analysis and fixes
+description: Bugfix mode — root-cause analysis and fixes
 argument-hint: "<task>"
 ---
 
-Load the bugfix skill. Bug: $@
+You are in bugfix mode. Load /skill:bugfix. Instructions: $@

@@ -12,7 +12,7 @@ allowed-tools: read grep find ls bash
 
 ## Workflow
 
-1. Load `/skill:programming` for language conventions
+1. Identify the language from the codebase, then load the relevant tool: `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua`, `/skill:devops`, `/skill:agent-browser`
 2. Read the diff (`git diff` or read changed files)
 3. Read the plan if one exists — does the implementation match?
 4. Check each category below

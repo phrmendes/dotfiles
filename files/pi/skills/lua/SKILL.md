@@ -1,6 +1,6 @@
 ---
 name: lua
-description: Lua conventions, tooling, and CLI commands. Load via /skill:programming when working in Lua codebases, including Neovim plugins.
+description: Lua conventions, tooling, and CLI commands. For Neovim plugin development.
 disable-model-invocation: true
 ---
 

@@ -84,6 +84,7 @@ in
           "d /mnt/external/movies 2775 ${settings.user} external -"
           "d /mnt/external/tvshows 2775 ${settings.user} external -"
           "d /mnt/external/downloads 2775 ${settings.user} external -"
+          "d /mnt/external/downloads/.incomplete 2770 transmission external -"
           "d /mnt/external/comics 2775 ${settings.user} external -"
           "d /srv/sonarr 0750 sonarr sonarr -"
           "d /srv/radarr 0750 radarr radarr -"

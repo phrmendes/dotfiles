@@ -1,6 +1,6 @@
 ---
 name: devops
-description: DevOps and infrastructure conventions. Load via /skill:programming when working with infra, CI/CD, Kubernetes, Docker, or Terraform.
+description: DevOps and infrastructure conventions — Kubernetes, Docker, Terraform, CI/CD.
 disable-model-invocation: true
 ---
 

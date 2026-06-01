@@ -40,6 +40,8 @@
 
           _just_completion() { source <(JUST_COMPLETE=zsh ${pkgs.just}/bin/just) }
           compdef _just_completion just
+
+          eval "$(${lib.getExe pkgs.devenv} hook zsh)"
         '';
       };
     };

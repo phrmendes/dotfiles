@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   modules.nixos.core.nix = {
     nixpkgs.config.allowUnfree = true;
@@ -10,7 +10,10 @@
       settings = {
         download-buffer-size = 1048576000;
         auto-optimise-store = true;
-        trusted-users = [ "root" ];
+        trusted-users = [
+          "root"
+          config.settings.user
+        ];
         experimental-features = [
           "flakes"
           "nix-command"

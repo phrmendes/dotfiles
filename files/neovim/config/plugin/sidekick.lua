@@ -3,10 +3,7 @@ safely("now", function()
 
   require("sidekick").setup({
     nes = { enabled = false },
-    cli = {
-      mux = { backend = "tmux", enabled = true },
-      tools = { opencode = {} },
-    },
+    cli = { mux = { backend = "tmux", enabled = true } },
   })
 
   vim.keymap.set("n", "<leader>at", cli.toggle, { desc = "Toggle coding agent" })

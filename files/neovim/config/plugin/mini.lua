@@ -179,7 +179,7 @@ safely("later", function()
 
   vim.api.nvim_create_autocmd("FileType", {
     desc = "Disable completion in certain filetypes",
-    pattern = { "dap-view", "dap-view-term", "dap-repl", "snacks_input", "minifiles", "grug-far", "opencode_ask" },
+    pattern = { "dap-view", "dap-view-term", "dap-repl", "snacks_input", "minifiles", "grug-far" },
     callback = function(event) vim.b[event.buf].minicompletion_disable = true end,
   })
 end)

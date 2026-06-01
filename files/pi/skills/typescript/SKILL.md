@@ -1,15 +1,26 @@
 ---
 name: typescript
-description: Conventions and rules for JavaScript/TypeScript development. Load this when working in any JS/TS codebase.
+description: TypeScript/JavaScript conventions, tooling, and CLI commands. Load via /skill:programming when working in JS/TS codebases.
+disable-model-invocation: true
 ---
+
+## Quick commands
+
+```bash
+npm test                         # Run tests (vitest)
+npx oxlint                       # Lint
+npx oxfmt                        # Format
+npm install <package>            # Add dependency
+npm install                      # Install all deps
+```
 
 ## Tooling
 
-- Use `pnpm` for package management unless the project already uses `npm` or `bun`
+- Use `npm` for package management
 - Use `tsc` for type checking; never skip it before shipping
-- Use `eslint` with `typescript-eslint` for linting
-- Use `prettier` for formatting
-- Use `vitest` for testing; use `jest` only if the project already depends on it
+- Use `oxlint` for linting (never eslint)
+- Use `oxfmt` for formatting (never prettier)
+- Use `vitest` for testing
 
 ## Code style
 
@@ -22,7 +33,7 @@ description: Conventions and rules for JavaScript/TypeScript development. Load t
 
 ## Testing
 
-- Name tests descriptively: `it("should <behaviour> when <condition>")`
+- Name tests: `it("should <behaviour> when <condition>")`
 - Prefer `vi.mock` / `jest.mock` at the module boundary — not inside logic
 - Use `describe` blocks to group related tests
 - Avoid snapshot tests for logic — use explicit assertions

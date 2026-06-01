@@ -125,7 +125,7 @@ in
           lazygit
           neovim
           nix-index
-          opencode
+          pi
           packages
           ripgrep
           starship

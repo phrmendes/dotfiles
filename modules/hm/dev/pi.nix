@@ -110,7 +110,7 @@ in
               plan = "opencode-go/deepseek-v4-flash";
               dev = "opencode-go/deepseek-v4-pro";
               review = "opencode-go/deepseek-v4-pro";
-              debug = "opencode-go/deepseek-v4-pro";
+              bugfix = "opencode-go/deepseek-v4-pro";
             };
           };
 

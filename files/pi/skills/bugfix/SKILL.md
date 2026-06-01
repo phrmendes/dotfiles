@@ -1,9 +1,9 @@
 ---
-name: debug
-description: Debug mode — investigate bugs, find root causes, produce fix plans, and execute fixes. Load when asked to debug, diagnose, investigate, or fix a problem. Full tools available. Uses the most capable model.
+name: bugfix
+description: Bugfix mode — investigate bugs, find root causes, produce fix plans, and execute fixes. Load when asked to debug, diagnose, investigate, or fix a problem. Full tools available. Uses the most capable model.
 ---
 
-# Debug Mode
+# Bugfix Mode
 
 ## Workflow
 

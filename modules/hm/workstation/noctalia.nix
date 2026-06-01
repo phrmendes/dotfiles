@@ -222,6 +222,7 @@
             lockScreenAnimations = true;
             enableBlurBehind = true;
             enableShadows = true;
+            showChangelogOnStartup = false;
           };
           colorSchemes.useWallpaperColors = false;
           ui = {

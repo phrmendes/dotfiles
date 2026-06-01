@@ -71,7 +71,7 @@ hl.config({
     disable_hyprland_logo = true,
   },
   debug = { damage_tracking = 2 },
-  ecosystem = { enforce_permissions = true },
+  ecosystem = { enforce_permissions = true, no_update_news = true, no_donation_nag = true },
 })
 
 hl.monitor({

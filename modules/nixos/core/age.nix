@@ -14,6 +14,7 @@ in
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
           "bifrost.txt" = secretReadable ../../../secrets/bifrost.age.txt;
+          "jira.txt" = secretReadable ../../../secrets/jira.age.txt;
           "opencode.txt" = secretReadable ../../../secrets/opencode.age.txt;
           "vertex.json" = secretReadable ../../../secrets/vertex.age.json;
         };

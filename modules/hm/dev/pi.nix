@@ -10,12 +10,18 @@ in
       agentHome = "${home}/.pi/agent";
       opencodeKey = "!cat ${osConfig.age.secrets."opencode.txt".path}";
       bifrostKey = "!cat ${osConfig.age.secrets."bifrost.txt".path}";
+      jiraApiToken = osConfig.age.secrets."jira.txt".path;
+      jira-wrapped = pkgs.writeShellScriptBin "jira" ''
+        export JIRA_API_TOKEN="$(cat ${jiraApiToken})"
+        exec ${pkgs.jira-cli-go}/bin/jira "$@"
+      '';
     in
     {
       home = {
         packages = with pkgs; [
-          pi-coding-agent
           agent-browser
+          jira-wrapped
+          pi-coding-agent
         ];
 
         sessionVariables = {
@@ -119,6 +125,44 @@ in
           "${agentHome}/extensions".source = "${piDir}/extensions";
           "${agentHome}/prompts".source = "${piDir}/prompts";
           "${agentHome}/skills".source = "${piDir}/skills";
+
+          ".config/.jira/.config.yml".text = ''
+            installation: cloud
+            server: https://iplanrio-pcrj.atlassian.net
+            login: pedro.hrmendes@prefeitura.rio
+            project: INFRAVPIA
+            board:
+              id: 1
+              name: Board Name
+            issue:
+              types:
+                - name: Iniciativa
+                  handle: Iniciativa
+                - name: Epic
+                  handle: Epic
+                - name: História
+                  handle: História
+                - name: Nova Feature
+                  handle: Nova Feature
+                - name: Melhoria
+                  handle: Melhoria
+                - name: Ajuste
+                  handle: Ajuste
+                - name: Bug
+                  handle: Bug
+                - name: Débito técnico
+                  handle: Débito técnico
+                - name: Incidente
+                  handle: Incidente
+                - name: Estudo/Mapeamento
+                  handle: Estudo/Mapeamento
+                - name: Validação de hipótese
+                  handle: Validação de hipótese
+                - name: Spike
+                  handle: Spike
+                - name: Subtarefa
+                  handle: Subtarefa
+          '';
         };
       };
     };

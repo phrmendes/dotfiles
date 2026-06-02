@@ -47,8 +47,6 @@ in
             Type = "oneshot";
             StandardOutput = "journal";
             StandardError = "journal";
-            User = settings.user;
-            Group = "users";
             WorkingDirectory = dotfiles;
             TimeoutStartSec = 0;
             ExecStart = lib.getExe (pkgs.local.deploy dotfiles);

@@ -21,4 +21,5 @@ in
   "telegram.age.env".publicKeys = allKeys;
   "transmission.age.json".publicKeys = allKeys;
   "vertex.age.json".publicKeys = allKeys;
+  "jira.age.txt".publicKeys = allKeys;
 }

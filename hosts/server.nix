@@ -31,7 +31,7 @@ in
           media
           neovim
           networking
-          persistence
+          impermanence
           podman
           transmission
           options

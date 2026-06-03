@@ -24,10 +24,9 @@ let
     ".local/state/keepassxc"
     ".local/state/nix"
     ".local/state/nvim"
-    ".local/state/qalculate"
     ".local/state/wireplumber"
-    ".gnupg"
     ".mozilla"
+    ".password-store"
     ".ssh"
     ".zotero"
     "Documents"
@@ -39,8 +38,12 @@ let
   ];
 in
 {
-  modules.nixos.workstation.persistence = {
+  modules.nixos.workstation.impermanence = {
     environment.persistence."/persist".users.${settings.user}.directories = commonDirs ++ [
+      {
+        directory = ".gnupg";
+        mode = "0700";
+      }
       {
         directory = ".keychain";
         mode = "u=rwx,go=";

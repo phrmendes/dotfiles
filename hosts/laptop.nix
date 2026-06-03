@@ -17,7 +17,7 @@ in
           hyprland
           libvirtd
           noctalia
-          persistence
+          impermanence
           pipewire
           podman
           syncthing

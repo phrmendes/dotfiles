@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   modules.homeManager.workstation.gnupg = {
     programs.gpg = {
@@ -10,7 +11,9 @@
 
     services.gpg-agent = {
       enable = true;
-      enableSshSupport = true;
+      # SSH agent is handled by KeePassXC (SSHAgent.Enabled)
+      enableSshSupport = false;
+      pinentryPackage = pkgs.pinentry-gnome3;
       defaultCacheTtl = 1800;
       maxCacheTtl = 7200;
     };

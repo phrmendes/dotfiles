@@ -116,6 +116,7 @@ in
         ++ (with homeManager.workstation; [
           chromium
           cliphist
+          gnupg
           gtk
           hyprland
           imv

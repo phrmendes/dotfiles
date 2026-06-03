@@ -2,7 +2,6 @@
 let
   inherit (config) settings;
   commonDirs = [
-    ".aws"
     ".cache/keepassxc"
     ".config"
     ".docker"
@@ -27,6 +26,7 @@ let
     ".local/state/nvim"
     ".local/state/qalculate"
     ".local/state/wireplumber"
+    ".gnupg"
     ".mozilla"
     ".ssh"
     ".zotero"

@@ -7,10 +7,6 @@ in
     environment.persistence."/persist" = {
       directories = [ "/srv" ];
       users.${settings.user}.directories = [
-        ".config"
-        ".local/share"
-        ".local/state"
-        ".pi/agent/sessions"
         ".ssh"
         "dotfiles"
       ];

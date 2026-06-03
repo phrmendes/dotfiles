@@ -137,6 +137,7 @@ in
         ])
         ++ (with homeManager.workstation; [
           cliphist
+          gnupg
           gtk
           hyprland
           imv

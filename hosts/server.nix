@@ -61,8 +61,6 @@ in
       };
 
       systemd.services = {
-        # Work around dead CMOS battery: save/restore clock to disk.
-        # /var/lib is persisted via impermanence, so the clock survives reboots.
         fake-hwclock-restore = {
           description = "Restore system clock from disk";
           wantedBy = [ "sysinit.target" ];

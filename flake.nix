@@ -8,7 +8,7 @@
     import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-26.05";
 
     agenix = {
       url = "github:ryantm/agenix";

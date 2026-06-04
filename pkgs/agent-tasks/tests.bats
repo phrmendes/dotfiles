@@ -159,3 +159,56 @@ setup() {
   after=$(agent-tasks show "$id" | grep Updated)
   [[ "$before" != "$after" ]]
 }
+
+@test "delete --done removes all done tasks" {
+  id1=$(agent-tasks add "keep me" "active task")
+  id2=$(agent-tasks add "remove me" "done task")
+  agent-tasks status "$id2" "done"
+  agent-tasks delete --done
+  run agent-tasks list --all
+  [[ "$output" =~ $id1 ]]
+  [[ ! "$output" =~ $id2 ]]
+}
+
+@test "delete --done keeps other statuses" {
+  id1=$(agent-tasks add "planning task" "p")
+  id2=$(agent-tasks add "applying task" "a")
+  id3=$(agent-tasks add "reviewing task" "r")
+  id4=$(agent-tasks add "done task" "d")
+  agent-tasks status "$id2" "applying"
+  agent-tasks status "$id3" "reviewing"
+  agent-tasks status "$id4" "done"
+  agent-tasks delete --done
+  run agent-tasks list --all
+  [[ "$output" =~ $id1 ]]
+  [[ "$output" =~ $id2 ]]
+  [[ "$output" =~ $id3 ]]
+  [[ ! "$output" =~ $id4 ]]
+}
+
+@test "delete --done on no done tasks succeeds" {
+  id=$(agent-tasks add "active" "active context")
+  agent-tasks delete --done
+  run agent-tasks list
+  [[ "$output" =~ $id ]]
+}
+
+@test "delete --done keeps done parent with open subtask" {
+  id=$(agent-tasks add "parent done, sub open" "ctx" --subtask "open sub" "sub ctx")
+  agent-tasks status "$id" "done"
+  agent-tasks delete --done
+  run agent-tasks list --all
+  [[ "$output" =~ $id ]]
+}
+
+@test "delete --done removes done parent with all subtasks done" {
+  id=$(agent-tasks add "parent done, subs done" "ctx" --subtask "sub a" "sub ctx" --subtask "sub b" "sub ctx")
+  agent-tasks status "$id" "done"
+  # mark all subtasks done
+  jq -r '.subtasks[].id' .tasks.jsonl | while read -r sid; do
+    agent-tasks status --subtask "$sid" "done"
+  done
+  agent-tasks delete --done
+  run agent-tasks list --all
+  [[ ! "$output" =~ $id ]]
+}

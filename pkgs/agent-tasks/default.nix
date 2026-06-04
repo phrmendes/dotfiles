@@ -68,6 +68,7 @@ let
     agent-tasks show <id>                                   # Show task with subtask tree
     agent-tasks search <word>                               # Search goal and context
     agent-tasks delete <id>                                 # Remove a task
+    agent-tasks delete --done                               # Remove all done tasks
     agent-tasks edit <id> <goal|context> <value>            # Edit goal or context
     ```
 
@@ -112,6 +113,7 @@ stdenv.mkDerivation {
     mkdir -p $out/bin $out/jq $out/skills/agent-tasks
     substitute ${./cli.sh} $out/bin/agent-tasks --subst-var-by jqDir "$out/jq"
     chmod +x $out/bin/agent-tasks
+    cp ${./lib.sh} $out/lib.sh
     cp ${./jq}/*.jq $out/jq/
     cp ${skillMd} $out/skills/agent-tasks/SKILL.md
     wrapProgram $out/bin/agent-tasks --prefix PATH : ${

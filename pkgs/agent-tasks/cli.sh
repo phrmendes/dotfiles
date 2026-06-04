@@ -2,57 +2,8 @@
 set -euo pipefail
 
 JQ_DIR="${AGENT_TASKS_JQ_DIR:-@jqDir@}"
-
-# @func tasks_file
-# @desc Resolve the path to the tasks JSONL file. Uses git repo root if available, otherwise /tmp.
-# @stdout Absolute path to .tasks.jsonl
-tasks_file() {
-  local root
-
-  if root=$(git rev-parse --show-toplevel 2>/dev/null); then
-    echo "$root/.tasks.jsonl"
-    return
-  fi
-
-  echo "/tmp/.tasks.jsonl"
-}
-
-# @func genid
-# @desc Generate a short unique hexadecimal ID using timestamp and sha256.
-# @stdout 8-character hex string
-genid() {
-  date +%s%N | sha256sum | cut -c1-8
-}
-
-# @func now
-# @desc Print the current UTC timestamp in ISO 8601 format.
-# @stdout ISO 8601 timestamp
-now() {
-  date -u +"%Y-%m-%dT%H:%M:%SZ"
-}
-
-# @func require_file
-# @desc Require the tasks file to exist, exiting cleanly if it does not.
-# @stdout Path to the tasks file
-require_file() {
-  local file
-  file=$(tasks_file)
-
-  if [[ ! -f "$file" ]]; then
-    echo "No tasks found." >&2
-    exit 0
-  fi
-
-  echo "$file"
-}
-
-# @func die
-# @desc Print an error message to stderr and exit with code 1.
-# @param msg Error message
-die() {
-  echo "$1" >&2
-  exit 1
-}
+# shellcheck source=/dev/null
+source "$(dirname "$JQ_DIR")/lib.sh"
 
 # @func cmd_add
 # @desc Create a new planning task and append it to the tasks file.
@@ -86,22 +37,7 @@ cmd_add() {
   id=$(genid)
   ts=$(now)
 
-  subtasks="[]"
-  local pair_idx=0
-  while [[ $pair_idx -lt ${#subtask_pairs[@]} ]]; do
-    local sub_goal="${subtask_pairs[$pair_idx]}"
-    local sub_context="${subtask_pairs[$((pair_idx+1))]}"
-    local sid=$(genid)
-    local sts=$(now)
-    subtasks=$(echo "$subtasks" | jq -c \
-      --arg id "$sid" \
-      --arg goal "$sub_goal" \
-      --arg context "$sub_context" \
-      --arg created "$sts" \
-      --arg updated "$sts" \
-      -f "$JQ_DIR/subtask-add.jq")
-    pair_idx=$((pair_idx + 2))
-  done
+  subtasks=$(build_subtasks subtask_pairs)
 
   entry=$(jq -n \
     --arg id "$id" \
@@ -202,11 +138,18 @@ cmd_search() {
 }
 
 # @func cmd_delete
-# @desc Remove a task from the file by id.
-# @param id Task identifier
+# @desc Remove a task from the file by id, or remove all done tasks with --done.
+# @param id Task identifier (or --done flag)
 cmd_delete() {
   local tid file
   tid="${1:-}"
+
+  if [[ "$tid" == "--done" ]]; then
+    file=$(require_file)
+    jq -f "$JQ_DIR/delete-done.jq" "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+    return
+  fi
+
   [[ -z "$tid" ]] && die "Usage: agent-tasks delete <id>"
   file=$(require_file)
 
@@ -244,6 +187,7 @@ Commands:
   show <id>                                     Show task with subtasks
   search <word>                                 Search goal and context
   delete <id>                                   Remove a task
+  delete --done                                 Remove all done tasks
   edit <id> <goal|context> <value>              Edit goal or context
 EOF
   exit 1

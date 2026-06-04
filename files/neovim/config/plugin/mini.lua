@@ -13,6 +13,7 @@ safely("now", function() require("mini.base16").setup({ palette = require("nix")
 safely("now", function() require("mini.sessions").setup() end)
 safely("now", function() require("mini.statusline").setup() end)
 safely("now", function() require("mini.tabline").setup() end)
+safely("now", function() require("mini.input").setup() end)
 
 safely("now", function()
   require("mini.icons").setup()
@@ -179,7 +180,7 @@ safely("later", function()
 
   vim.api.nvim_create_autocmd("FileType", {
     desc = "Disable completion in certain filetypes",
-    pattern = { "dap-view", "dap-view-term", "dap-repl", "snacks_input", "minifiles", "grug-far" },
+    pattern = { "dap-view", "dap-view-term", "dap-repl", "minifiles", "grug-far" },
     callback = function(event) vim.b[event.buf].minicompletion_disable = true end,
   })
 end)

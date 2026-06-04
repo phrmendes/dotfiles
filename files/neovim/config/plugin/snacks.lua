@@ -1,11 +1,9 @@
 safely("now", function()
   require("snacks").setup({
-    input = { enabled = true },
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     words = { enabled = true },
     lazygit = { configure = false },
-
     indent = { enabled = true, indent = { char = "▏", hl = "SnacksIndent" }, scope = { char = "▏" }, animate = { enabled = false } },
     statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
     image = { enabled = true },

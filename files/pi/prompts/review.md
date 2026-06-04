@@ -1,5 +1,5 @@
 ---
-description: Review mode — read-only code evaluation
+description: Review mode — compare implementation against PRD, discuss gaps, decide fix vs adjust scope
 argument-hint: "<task>"
 ---
 

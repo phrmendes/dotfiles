@@ -40,6 +40,7 @@ allowed-tools: read grep find ls bash
 ## After the report
 
 **Discuss, don't dictate.** For each PRD gap or significant issue, ask:
+
 - "The implementation does X but the PRD specifies Y. Is X an intentional tradeoff, or should we align with the PRD?"
 - "This edge case isn't handled — is it worth addressing now, or should we update the scope?"
 

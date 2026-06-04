@@ -11,12 +11,16 @@ description: Dev mode — implement features following a plan using TDD. Load wh
 
 ## Workflow
 
-1. Read the plan (produced by the plan skill, or ask for one)
-2. Write a failing test that captures expected behavior
-3. Confirm it fails for the right reason (not syntax error)
-4. Write minimum implementation to pass
-5. Refactor, keeping tests green
-6. Repeat for each plan step
+1. If a task id is available, run `agent-tasks status <id> applying`
+2. Read the plan (produced by the plan skill, or ask for one)
+3. For each subtask in order:
+   a. Run `agent-tasks status --subtask <sub-id> applying`
+   b. Write a failing test that captures expected behavior
+   c. Confirm it fails for the right reason (not syntax error)
+   d. Write minimum implementation to pass
+   e. Refactor, keeping tests green
+   f. Run `agent-tasks status --subtask <sub-id> done`
+4. When all subtasks are done, run `agent-tasks status <id> reviewing`
 
 ## Rules
 

@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Plan mode — analyze codebases and produce structured implementation plans. Load when asked to plan, design, scope, architect, or research how to build something. Read-only. Uses a cost-optimized model.
+description: Iterative planning — ideate, explore code, and produce structured implementation plans. Load when asked to plan, design, scope, architect, or think through how to build something. Read-only. Uses the most capable model.
 allowed-tools: read grep find ls bash
 ---
 
@@ -10,9 +10,29 @@ allowed-tools: read grep find ls bash
 
 **READ ONLY.** Do not call `write` or `edit`. Bash is inspection-only — no destructive commands.
 
-## Search
+## Two entry paths
 
-Use `rg` (ripgrep) for all content searches via bash.
+### Exploration — "I have an idea"
+
+When the user has a loose idea, a problem to solve, or wants to think through an approach:
+
+1. **Clarify** — restate what you heard. Ask: what problem does this solve? Who is it for? What constraints exist?
+2. **Explore** — search the codebase for related work, existing patterns, prior art. Search external docs and references.
+3. **Pressure-test** — play devil's advocate. Find weak points. Propose alternatives. Walk through failure modes.
+4. **Converge** — when scope is clear, produce a structured plan (see Output below). Print the exact `agent-tasks add` command.
+
+Loop until convergence. Every response ends with a question that pushes the idea forward. Challenge gently — "Have you considered...?" not "That won't work."
+
+### Convergence — "Here's a PRD" or clear scope
+
+When the user provides a PRD, a clear scope, or exploration has converged:
+
+1. Parse the scope — extract problem, constraints, tradeoffs, open questions
+2. Map scope to the codebase — which files/modules/packages are touched?
+3. Research existing patterns and dependencies for each area
+4. Produce a structured plan — break into sequenced, independently buildable and testable subtasks
+
+## Search
 
 ```bash
 rg "pattern"                    # Search current directory
@@ -29,22 +49,32 @@ rg -n "pattern"                 # Show line numbers
 - curl: GET-only
 - psql: `SELECT` only
 
-## Workflow
+## Output
 
-1. Read the codebase — understand structure, dependencies, existing patterns
-2. Identify files/modules involved
-3. Identify the language from the codebase, then load the relevant tool: `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua`, `/skill:devops`, `/skill:agent-browser`
-4. Produce a plan:
+At convergence, produce:
 
-### Plan Output
+- **Goal** — one sentence, what's being accomplished
+- **Context** — files/modules affected, dependencies, patterns identified
+- **Subtasks** — numbered, each independently buildable and testable:
+  - **What** — concrete deliverable
+  - **Where** — files/packages touched
+  - **Test** — how to verify it's done
+- **Risks** — per subtask, what could go wrong
+- **Open decisions** — what still needs investigation
 
-- **Goal** — one sentence
-- **Context** — files/modules affected, dependencies, patterns
-- **Steps** — numbered, each independently buildable and testable
-- **Risks** — per step, what could go wrong
+Then print the task entry command:
+
+```bash
+agent-tasks add "goal" "context" --subtasks '[...]'
+```
+
+The `--subtasks` argument is a JSON array of subtask objects, each with `id` (parent-id-N), `status` ("planning"), `goal`, `context`, `created`, `updated`.
 
 ## Rules
 
 - Flag ambiguity — don't guess
-- Keep steps small (~300 line diffs)
+- Keep subtasks small (~300 line diffs each)
+- Each subtask must be independently buildable and testable — no "then implement everything" steps
 - Prefer incremental changes over rewrites
+- Acknowledge good points before countering during exploration
+- Every exploration response ends with one probing question

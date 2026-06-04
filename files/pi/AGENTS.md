@@ -24,9 +24,8 @@
 
 | Phase     | How to invoke                  | Behavior                                         |
 | --------- | ------------------------------ | ------------------------------------------------ |
-| Plan      | `/skill:plan` or `/plan`       | Read-only analysis, structured plan, cheap model |
+| Plan      | `/skill:plan` or `/plan`       | Iterative planning + analysis, best model        |
 | Dev       | `/skill:dev` or `/dev`         | Full tools, TDD, small diffs, best model         |
 | Review    | `/skill:review` or `/review`   | Read-only evaluation, issues report, best model  |
 | Bugfix    | `/skill:bugfix` or `/bugfix`   | Root cause → fix plan → execute, best model      |
-| Research  | `/skill:research` or `/research` | Academic papers, lit review, PDF analysis      |
-| Guide     | `/skill:guide` or `/guide`     | Coaching mode, step-by-step learning, cheap model |
+| Guide     | `/skill:guide` or `/guide`     | Coaching mode, step-by-step learning             |

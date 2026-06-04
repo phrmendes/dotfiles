@@ -42,6 +42,7 @@
         ".env"
         ".direnv"
         "Session.vim"
+        ".tasks.jsonl"
       ];
     };
   };

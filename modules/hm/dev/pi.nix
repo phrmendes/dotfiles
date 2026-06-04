@@ -18,11 +18,16 @@ in
     in
     {
       home = {
-        packages = with pkgs; [
-          agent-browser
-          jira-wrapped
-          pi-coding-agent
-        ];
+        packages =
+          with pkgs;
+          [
+            agent-browser
+            jira-wrapped
+            pi-coding-agent
+          ]
+          ++ [
+            pkgs.local.agent-tasks
+          ];
 
         sessionVariables = {
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
@@ -45,7 +50,10 @@ in
             defaultProvider = "opencode-go";
             defaultModel = "deepseek-v4-pro";
             theme = "dark";
-            skills = [ "${pkgs.agent-browser}/skills" ];
+            skills = [
+              "${pkgs.agent-browser}/skills"
+              "${pkgs.local.agent-tasks}/skills"
+            ];
             compaction = {
               enabled = true;
               reserveTokens = 16384;

@@ -2,6 +2,7 @@ safely("now", function()
   local splits = require("smart-splits")
 
   splits.setup({
+    multiplexer_integration = "tmux",
     cursor_follows_swapped_bufs = true,
     ignored_filetypes = { "sidekick_terminal" },
   })

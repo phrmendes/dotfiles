@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- treesitter language mappings
+vim.treesitter.language.register("bash", "sh")
+
 -- enable true color support unconditionally (needed for correct remote-ui colors)
 vim.opt.termguicolors = true
 vim.opt.background = "dark"

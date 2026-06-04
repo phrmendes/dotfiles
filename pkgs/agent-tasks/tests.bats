@@ -43,14 +43,15 @@ setup() {
 }
 
 @test "add with subtasks" {
-  id=$(agent-tasks add "multi" "nested" --subtasks '[{"id":"s1","status":"planning","goal":"sub 1","context":"first","created":"2026-06-03T18:00:00Z","updated":"2026-06-03T18:00:00Z"}]')
+  id=$(agent-tasks add "multi" "nested" --subtask "sub 1" "first")
   run agent-tasks show "$id"
-  [[ "$output" =~ s1 ]]
+  [[ "$output" =~ "sub 1" ]]
 }
 
 @test "subtask status update" {
-  id=$(agent-tasks add "subtest" "ctx" --subtasks '[{"id":"s2","status":"planning","goal":"sub 2","context":"second","created":"2026-06-03T18:00:00Z","updated":"2026-06-03T18:00:00Z"}]')
-  agent-tasks status --subtask s2 applying
+  id=$(agent-tasks add "subtest" "ctx" --subtask "sub 2" "second")
+  sub_id=$(jq -r '.subtasks[0].id' .tasks.jsonl)
+  agent-tasks status --subtask "$sub_id" applying
   run agent-tasks show "$id"
   [[ "$output" =~ applying ]]
 }
@@ -102,14 +103,12 @@ setup() {
 }
 
 @test "subtask status only updates matching subtask" {
-  id=$(agent-tasks add "multi sub" "ctx" --subtasks '[
-    {"id":"a1","status":"planning","goal":"sub a","context":"a","created":"2026-06-03T18:00:00Z","updated":"2026-06-03T18:00:00Z"},
-    {"id":"a2","status":"planning","goal":"sub b","context":"b","created":"2026-06-03T18:00:00Z","updated":"2026-06-03T18:00:00Z"}
-  ]')
-  agent-tasks status --subtask a1 applying
+  id=$(agent-tasks add "multi sub" "ctx" --subtask "sub a" "ctx a" --subtask "sub b" "ctx b")
+  sub_id_a=$(jq -r '.subtasks[] | select(.goal == "sub a") | .id' .tasks.jsonl)
+  agent-tasks status --subtask "$sub_id_a" applying
   run agent-tasks show "$id"
-  [[ "$output" =~ \[applying\].*a1 ]]
-  [[ "$output" =~ \[planning\].*a2 ]]
+  [[ "$output" =~ \[applying\].*sub\ a ]]
+  [[ "$output" =~ \[planning\].*sub\ b ]]
 }
 
 @test "show returns only the requested task" {

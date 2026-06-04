@@ -1,22 +1,14 @@
 {
-  writeShellApplication,
+  lib,
   jq,
   git,
   writeText,
   stdenv,
   runCommand,
   bats,
+  makeBinaryWrapper,
 }:
 let
-  cli = writeShellApplication {
-    name = "agent-tasks";
-    runtimeInputs = [
-      jq
-      git
-    ];
-    text = builtins.readFile ./cli.sh;
-  };
-
   skillMd = writeText "SKILL.md" ''
     ---
     name: agent-tasks
@@ -67,8 +59,8 @@ let
     ## Commands
 
     ```bash
-    agent-tasks add "goal" "context"                       # Create planning task
-    agent-tasks add "goal" "context" --subtasks '[...]'    # Create with subtasks
+    agent-tasks add "goal" "context"                                    # Create planning task
+    agent-tasks add "goal" "context" --subtask "goal" "context"  # Create with subtasks
     agent-tasks list                                        # Active tasks (not done)
     agent-tasks list --all                                  # All tasks
     agent-tasks status <id> <status>                        # Update task status
@@ -90,7 +82,7 @@ let
 
     ## Integration with the agent loop
 
-    - **Plan mode** outputs `agent-tasks add` at convergence with `--subtasks` containing the plan subtasks
+    - **Plan mode** outputs `agent-tasks add` at convergence with `--subtask` flags for each subtask
     - **Dev mode** runs `agent-tasks status <id> applying` on start, iterates subtasks with `status --subtask`, runs `status <id> reviewing` on completion
     - **Review mode** runs `agent-tasks status <id> done` on approval, `status <id> planning` on rejection
   '';
@@ -101,8 +93,8 @@ let
         {
           buildInputs = [
             bats
-            cli
             git
+            jq
           ];
         }
         ''
@@ -114,13 +106,20 @@ let
 in
 stdenv.mkDerivation {
   name = "agent-tasks";
-  buildInputs = [ cli ];
+  nativeBuildInputs = [ makeBinaryWrapper ];
   phases = [ "installPhase" ];
   installPhase = ''
     mkdir -p $out/bin $out/jq $out/skills/agent-tasks
-    cp ${cli}/bin/agent-tasks $out/bin/
+    substitute ${./cli.sh} $out/bin/agent-tasks --subst-var-by jqDir "$out/jq"
+    chmod +x $out/bin/agent-tasks
     cp ${./jq}/*.jq $out/jq/
     cp ${skillMd} $out/skills/agent-tasks/SKILL.md
+    wrapProgram $out/bin/agent-tasks --prefix PATH : ${
+      lib.makeBinPath [
+        jq
+        git
+      ]
+    }
   '';
   passthru = { inherit tests; };
   meta.mainProgram = "agent-tasks";

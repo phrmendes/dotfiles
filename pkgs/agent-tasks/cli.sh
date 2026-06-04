@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-JQ_DIR="${AGENT_TASKS_JQ_DIR:-$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/jq}"
+JQ_DIR="${AGENT_TASKS_JQ_DIR:-@jqDir@}"
 
 # @func tasks_file
 # @desc Resolve the path to the tasks JSONL file. Uses git repo root if available, otherwise /tmp.
@@ -61,14 +61,18 @@ die() {
 # @option --subtasks JSON array of subtask objects
 # @stdout The generated task ID
 cmd_add() {
-  local goal context subarg id ts subtasks entry
+  local goal context subtask_pairs id ts subtasks entry
   goal=""
   context=""
-  subarg=""
+  subtask_pairs=()
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --subtasks) subarg="$2"; shift 2 ;;
+      --subtask)
+        [[ $# -lt 3 ]] && die "--subtask requires <goal> <context>"
+        subtask_pairs+=("$2" "$3")
+        shift 3
+        ;;
       *)
         [[ -z "$goal" ]] && { goal="$1"; shift; continue; }
         [[ -z "$context" ]] && { context="$1"; shift; continue; }
@@ -77,11 +81,27 @@ cmd_add() {
     esac
   done
 
-  [[ -z "$goal" || -z "$context" ]] && die "Usage: agent-tasks add <goal> <context> [--subtasks '[...]']"
+  [[ -z "$goal" || -z "$context" ]] && die "Usage: agent-tasks add <goal> <context> [--subtask <goal> <context>]..."
 
   id=$(genid)
   ts=$(now)
-  subtasks="${subarg:-[]}"
+
+  subtasks="[]"
+  local pair_idx=0
+  while [[ $pair_idx -lt ${#subtask_pairs[@]} ]]; do
+    local sub_goal="${subtask_pairs[$pair_idx]}"
+    local sub_context="${subtask_pairs[$((pair_idx+1))]}"
+    local sid=$(genid)
+    local sts=$(now)
+    subtasks=$(echo "$subtasks" | jq -c \
+      --arg id "$sid" \
+      --arg goal "$sub_goal" \
+      --arg context "$sub_context" \
+      --arg created "$sts" \
+      --arg updated "$sts" \
+      -f "$JQ_DIR/subtask-add.jq")
+    pair_idx=$((pair_idx + 2))
+  done
 
   entry=$(jq -n \
     --arg id "$id" \

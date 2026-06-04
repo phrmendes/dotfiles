@@ -22,7 +22,6 @@ _: {
           prek
           python314
           sqlite
-          (dotfilesLib.mkGoogleCloudSdk google-cloud-sdk)
         ]
         ++ (with pkgs.local; [
           diff-persist

@@ -30,7 +30,18 @@ in
                 weight = 1.0;
                 vertex_key_config = {
                   project_id = "env.VERTEX_PROJECT_ID";
-                  region = "env.VERTEX_REGION";
+                  region = "us-east5";
+                  auth_credentials = "";
+                };
+              }
+              {
+                name = "vertex-glm-5.1";
+                value = "";
+                models = [ "z-ai/glm-5.1" ];
+                weight = 1.0;
+                vertex_key_config = {
+                  project_id = "env.VERTEX_PROJECT_ID";
+                  region = "global";
                   auth_credentials = "";
                 };
               }
@@ -94,7 +105,6 @@ in
           LOG_STYLE = "json";
           GOOGLE_APPLICATION_CREDENTIALS = "/run/secrets/vertex-sa.json";
           VERTEX_PROJECT_ID = gcp.project;
-          VERTEX_REGION = gcp.location;
         };
         environmentFiles = [ config.age.secrets."bifrost.env".path ];
         networks = [ "services" ];

@@ -90,6 +90,23 @@ in
                     };
                   }
                   {
+                    id = "vertex/z-ai/glm-5.1";
+                    name = "GLM 5.1 (Vertex)";
+                    reasoning = false;
+                    input = [
+                      "text"
+                      "image"
+                    ];
+                    contextWindow = 200000;
+                    maxTokens = 128000;
+                    cost = {
+                      input = 0;
+                      output = 0;
+                      cacheRead = 0;
+                      cacheWrite = 0;
+                    };
+                  }
+                  {
                     id = "deepseek/deepseek-chat";
                     name = "DeepSeek Chat";
                     reasoning = false;

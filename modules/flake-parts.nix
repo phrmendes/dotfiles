@@ -51,17 +51,6 @@
           type = lib.types.str;
           default = "rj-ia-desenvolvimento";
         };
-        location = lib.mkOption {
-          type = lib.types.str;
-          default = "us-east5";
-        };
-        maasEndpoint = lib.mkOption {
-          type = lib.types.functionTo lib.types.str;
-          default =
-            region:
-            "https://aiplatform.googleapis.com/v1/projects/${config.settings.gcp.project}/locations/${region}/endpoints/openapi";
-          readOnly = true;
-        };
       };
       nvimServerPort = lib.mkOption {
         type = lib.types.port;
@@ -71,10 +60,6 @@
         subnet = lib.mkOption {
           type = lib.types.str;
           default = "172.18.0.0/16";
-        };
-        gateway = lib.mkOption {
-          type = lib.types.str;
-          default = "172.18.0.1";
         };
       };
       lan = {

@@ -15,6 +15,17 @@ safely("now", function() require("mini.statusline").setup() end)
 safely("now", function() require("mini.tabline").setup() end)
 safely("now", function() require("mini.input").setup() end)
 
+safely(
+  "now",
+  function()
+    require("mini.indentscope").setup({
+      symbol = "▏",
+      draw = { animation = require("mini.indentscope").gen_animation.none() },
+      options = { try_as_border = true },
+    })
+  end
+)
+
 safely("now", function()
   require("mini.icons").setup()
   safely("later", MiniIcons.tweak_lsp_kind)
@@ -199,6 +210,7 @@ safely("later", function() require("mini.git").setup({ command = { split = "hori
 
 safely("event:BufReadPost", function()
   local hipatterns = require("mini.hipatterns")
+
   hipatterns.setup({
     highlighters = {
       fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
@@ -392,20 +404,30 @@ end)
 safely("later", function()
   local sort_recent = MiniVisits.gen_sort.default({ recency_weight = 1 })
   local iterate_opts = { sort = sort_recent, wrap = true }
+  local pin_opts = vim.tbl_extend("force", iterate_opts, { filter = "pin" })
 
   vim.keymap.set("n", "[v", function() MiniVisits.iterate_paths("backward", nil, iterate_opts) end, { desc = "Previous visit (MRU)" })
   vim.keymap.set("n", "]v", function() MiniVisits.iterate_paths("forward", nil, iterate_opts) end, { desc = "Next visit (MRU)" })
   vim.keymap.set("n", "[V", function() MiniVisits.iterate_paths("first", nil, iterate_opts) end, { desc = "Most recent visit" })
   vim.keymap.set("n", "]V", function() MiniVisits.iterate_paths("last", nil, iterate_opts) end, { desc = "Oldest visit" })
+  vim.keymap.set("n", "[[", function() MiniVisits.iterate_paths("backward", nil, pin_opts) end, { desc = "Previous pin" })
+  vim.keymap.set("n", "]]", function() MiniVisits.iterate_paths("forward", nil, pin_opts) end, { desc = "Next pin" })
+
+  vim.keymap.set("n", "<c-c>l", function() MiniExtra.pickers.visit_paths({ filter = "pin" }) end, { desc = "Pins" })
+  vim.keymap.set("n", "<c-c>p", function() MiniVisits.add_label("pin") end, { desc = "Pin file" })
+  vim.keymap.set("n", "<c-c>u", function() MiniVisits.remove_label("pin") end, { desc = "Unpin file" })
+  vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
+  vim.keymap.set("n", "<c-p>", require("helpers").pickers.buffers, { desc = "Buffers" })
+
   vim.keymap.set("n", "<leader>/", MiniPick.builtin.grep_live, { desc = "Live grep" })
   vim.keymap.set("n", "<leader>:", function() MiniExtra.pickers.history({ scope = ":" }) end, { desc = "`:` history" })
   vim.keymap.set("n", "<leader><del>", MiniNotify.clear, { desc = "Clear notifications" })
-  vim.keymap.set("n", "<leader><leader>", MiniPick.builtin.files, { desc = "Files" })
+  vim.keymap.set("n", "<leader><leader>", require("helpers").pickers.files, { desc = "Files (MRU)" })
   vim.keymap.set("n", "<leader>=", MiniMisc.resize_window, { desc = "Resize to default size" })
   vim.keymap.set("n", "<leader>?", MiniPick.builtin.help, { desc = "Help" })
   vim.keymap.set("n", "<leader>K", MiniExtra.pickers.keymaps, { desc = "Keymaps" })
   vim.keymap.set("n", "<leader>N", MiniNotify.show_history, { desc = "Notifications" })
-  vim.keymap.set("n", "<leader>V", function() MiniExtra.pickers.visit_paths({ cwd = "" }) end, { desc = "Visits (all)" })
+  vim.keymap.set("n", "<leader>V", function() MiniExtra.pickers.visit_paths({ cwd = "", sort = sort_recent }) end, { desc = "Visits (all)" })
   vim.keymap.set("n", "<leader>bd", MiniBufremove.delete, { desc = "Delete" })
   vim.keymap.set("n", "<leader>bw", MiniBufremove.wipeout, { desc = "Wipeout" })
   vim.keymap.set("n", "<leader>gA", "<cmd>Git add --all<cr>", { desc = "Add (repo)" })
@@ -420,51 +442,9 @@ safely("later", function()
   vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, { desc = "Modified files" })
   vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
   vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
-  vim.keymap.set("n", "<leader>p", require("helpers").pick_project, { desc = "Projects" })
-  vim.keymap.set("n", "<leader>v", MiniExtra.pickers.visit_paths, { desc = "Visits (cwd)" })
+  vim.keymap.set("n", "<leader>p", require("helpers").pickers.project, { desc = "Projects" })
+  vim.keymap.set("n", "<leader>v", function() MiniExtra.pickers.visit_paths({ sort = sort_recent }) end, { desc = "Visits (cwd)" })
   vim.keymap.set("n", "<leader>Z", require("helpers").zoom, { desc = "Zoom" })
-  vim.keymap.set("n", "<c-s-p>", MiniExtra.pickers.commands, { desc = "Commands" })
-
-  vim.keymap.set("n", "<c-p>", function()
-    local buf_items = function()
-      return vim
-        .iter(vim.fn.getbufinfo({ buflisted = 1 }))
-        :map(function(buf)
-          local text
-          if vim.bo[buf.bufnr].buftype == "terminal" then
-            text = vim.fn.fnamemodify(buf.name, ":t")
-          else
-            local name = vim.fn.fnamemodify(buf.name, ":~:.")
-            text = name ~= "" and name or "[No Name]"
-          end
-          return { bufnr = buf.bufnr, text = text }
-        end)
-        :totable()
-    end
-
-    MiniPick.start({
-      source = {
-        name = "Buffers",
-        items = buf_items(),
-        show = function(buf_id, items, query) MiniPick.default_show(buf_id, items, query, { show_icons = true }) end,
-        choose = function(item) vim.api.nvim_set_current_buf(item.bufnr) end,
-      },
-      mappings = {
-        wipeout = {
-          char = "<c-d>",
-          func = function()
-            local matches = MiniPick.get_picker_matches()
-            if not matches then return end
-            local to_delete = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
-            vim.iter(to_delete):each(function(buf)
-              if buf then MiniBufremove.delete(buf.bufnr) end
-            end)
-            MiniPick.set_picker_items(buf_items())
-          end,
-        },
-      },
-    })
-  end, { desc = "Buffers" })
 
   vim.keymap.set("n", "<leader>e", function()
     if not MiniFiles.close() then

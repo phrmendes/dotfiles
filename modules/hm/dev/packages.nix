@@ -1,9 +1,6 @@
 _: {
   modules.homeManager.dev.packages =
-    { pkgs, osConfig, ... }:
-    let
-      inherit (osConfig) dotfilesLib;
-    in
+    { pkgs, ... }:
     {
       home.packages =
         with pkgs;
@@ -17,8 +14,8 @@ _: {
           lima
           nix-prefetch-github
           nodejs_latest
-          opentofu
           parallel
+          pass
           prek
           python314
           sqlite

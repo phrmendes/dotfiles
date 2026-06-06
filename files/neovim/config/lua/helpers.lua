@@ -38,8 +38,6 @@ M.add_word_to_dictionary = function(lang, word)
   return unique
 end
 
---- Paste the contents of the system clipboard.
---- @return table: A table containing clipboard lines and register type.
 --- Returns all subdirectories under a path. The path is absolute.
 --- @param path string The path to search for subdirectories.
 --- @return string[]: A list of subdirectory paths.
@@ -51,10 +49,82 @@ M.get_subdirectories = function(path)
     :totable()
 end
 
+M.pickers = {}
+
+--- Pick all files in cwd sorted by MRU (visited first, then unvisited via fd).
+M.pickers.files = function()
+  local cwd = vim.fn.getcwd()
+  local sort_recent = MiniVisits.gen_sort.default({ recency_weight = 1 })
+
+  local visited = vim.iter(MiniVisits.list_paths(nil, { sort = sort_recent })):filter(function(p) return vim.startswith(p, cwd .. "/") end):totable()
+
+  local visited_set = vim.iter(visited):fold({}, function(acc, p)
+    acc[p] = true
+    return acc
+  end)
+
+  local all = vim.iter(visited):map(function(p) return vim.fn.fnamemodify(p, ":.") end):totable()
+
+  vim.iter(vim.fn.systemlist("fd --type f --hidden --absolute-path")):each(function(p)
+    if not visited_set[p] then table.insert(all, vim.fn.fnamemodify(p, ":.")) end
+  end)
+
+  MiniPick.start({
+    source = {
+      name = "Files (MRU)",
+      items = all,
+      show = function(buf_id, items, query) MiniPick.default_show(buf_id, items, query, { show_icons = true }) end,
+      choose = MiniPick.default_choose,
+    },
+  })
+end
+
+--- Pick from listed buffers with <c-d> to delete.
+M.pickers.buffers = function()
+  local buf_items = function()
+    return vim
+      .iter(vim.fn.getbufinfo({ buflisted = 1 }))
+      :map(function(buf)
+        local text
+        if vim.bo[buf.bufnr].buftype == "terminal" then
+          text = vim.fn.fnamemodify(buf.name, ":t")
+        else
+          local name = vim.fn.fnamemodify(buf.name, ":~:.")
+          text = name ~= "" and name or "[No Name]"
+        end
+        return { bufnr = buf.bufnr, text = text }
+      end)
+      :totable()
+  end
+
+  MiniPick.start({
+    source = {
+      name = "Buffers",
+      items = buf_items(),
+      show = function(buf_id, items, query) MiniPick.default_show(buf_id, items, query, { show_icons = true }) end,
+      choose = function(item) vim.api.nvim_set_current_buf(item.bufnr) end,
+    },
+    mappings = {
+      wipeout = {
+        char = "<c-d>",
+        func = function()
+          local matches = MiniPick.get_picker_matches()
+          if not matches then return end
+          local to_delete = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
+          vim.iter(to_delete):each(function(buf)
+            if buf then MiniBufremove.delete(buf.bufnr) end
+          end)
+          MiniPick.set_picker_items(buf_items())
+        end,
+      },
+    },
+  })
+end
+
 --- Find all git repos under ~/Projects and open them with MiniPick.
 --- Projects are sorted by recency (via mini.visits), falling back to alphabetical.
 --- On selection, changes cwd for the current tab and opens mini.files.
-M.pick_project = function()
+M.pickers.project = function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")
   local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root }
 

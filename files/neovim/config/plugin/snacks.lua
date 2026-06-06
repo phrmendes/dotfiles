@@ -4,7 +4,7 @@ safely("now", function()
     quickfile = { enabled = true },
     words = { enabled = true },
     lazygit = { configure = false },
-    indent = { enabled = true, indent = { char = "▏", hl = "SnacksIndent" }, scope = { char = "▏" }, animate = { enabled = false } },
+    indent = { enabled = true, indent = { char = "▏", hl = "SnacksIndent" }, scope = { enabled = false }, animate = { enabled = false } },
     statuscolumn = { enabled = true, git = { patterns = { "MiniDiffSign" } } },
     image = { enabled = true },
     debug = { enabled = true },

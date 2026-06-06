@@ -1,7 +1,6 @@
 _: {
   modules.homeManager.workstation.keepassxc =
     {
-      config,
       pkgs,
       lib,
       ...
@@ -59,21 +58,8 @@ _: {
     {
       home.packages = [ pkgs.keepassxc ];
 
-      systemd.user.services.keepassxc = {
-        Unit = {
-          Description = "KeePassXC password manager";
-          PartOf = [ config.wayland.systemd.target ];
-          After = [
-            config.wayland.systemd.target
-            "noctalia-shell.service"
-          ];
-        };
-        Service = {
-          ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
-          Restart = "on-failure";
-          RestartSec = 5;
-        };
-        Install.WantedBy = [ config.wayland.systemd.target ];
+      systemd.user.services."app-org.keepassxc.KeePassXC@autostart" = {
+        Unit.After = [ "noctalia-shell.service" ];
       };
 
       xdg.portal.config = {

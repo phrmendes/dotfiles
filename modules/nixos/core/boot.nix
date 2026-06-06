@@ -95,6 +95,8 @@
         };
       };
 
+      boot.kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
+
       nixpkgs.hostPlatform = "x86_64-linux";
       console.keyMap = "us";
       system.stateVersion = config.settings.stateVersion;

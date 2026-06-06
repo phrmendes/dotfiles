@@ -1,11 +1,23 @@
 _: {
   modules.homeManager.dev.kitty =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      osConfig,
+      ...
+    }:
     let
       kittens = "${pkgs.vimPlugins.smart-splits-nvim}/kitty";
+      themeFile = config.lib.stylix.colors {
+        templateRepo = config.stylix.inputs."tinted-kitty";
+        target = "base16";
+      };
     in
     {
+      stylix.targets.kitty.enable = false;
+
       home.file = {
+        ".config/kitty/theme.conf".source = themeFile;
         ".config/kitty/neighboring_window.py".source = "${kittens}/neighboring_window.py";
         ".config/kitty/relative_resize.py".source = "${kittens}/relative_resize.py";
         ".config/kitty/split_window.py".source = "${kittens}/split_window.py";
@@ -14,10 +26,14 @@ _: {
       programs.kitty = {
         enable = true;
         shellIntegration.enableZshIntegration = true;
+        font = with osConfig.stylix.fonts; {
+          inherit (monospace) package name;
+          size = sizes.terminal;
+        };
         settings = {
           active_tab_font_style = "bold";
           allow_remote_control = "yes";
-          bell_on_tab = " ";
+          bell_on_tab = " ";
           clear_all_shortcuts = "yes";
           enable_audio_bell = "no";
           enabled_layouts = "splits:split_axis=horizontal,stack";
@@ -32,7 +48,7 @@ _: {
           tab_bar_min_tabs = 2;
           tab_bar_style = "powerline";
           tab_powerline_style = "slanted";
-          tab_title_template = "{index}:{title.split('/')[-1].split(':')[-1]}{' ' if layout_name == 'stack' else ''}";
+          tab_title_template = "{index}:{title.split('/')[-1].split(':')[-1]}{' ' if layout_name == 'stack' else ''}";
           term = "xterm-256color";
           undercurl_style = "thin-sparse";
           scrollback_pager = ''nvim -u NONE -R -M -c 'lua require("scrollback")(INPUT_LINE_NUMBER, CURSOR_LINE, CURSOR_COLUMN)' -'';
@@ -41,6 +57,7 @@ _: {
           window_padding_width = 5;
         };
         extraConfig = ''
+          include theme.conf
           map --when-focus-on var:IS_NVIM ctrl+h
           map --when-focus-on var:IS_NVIM ctrl+j
           map --when-focus-on var:IS_NVIM ctrl+k

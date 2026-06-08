@@ -4,19 +4,6 @@ description: DevOps and infrastructure conventions — Kubernetes, Docker, Terra
 disable-model-invocation: true
 ---
 
-## Quick commands
-
-```bash
-kubectl get pods -n <ns>         # List pods
-kubectl describe deploy <name>   # Inspect deployment
-kubectl logs <pod> -n <ns>       # View logs
-kubectl apply -f <manifest>      # Apply manifest
-docker build -t <name> .         # Build image
-docker run <name>                # Run container
-terraform plan                   # Preview changes
-terraform apply                  # Apply changes
-```
-
 ## Principles
 
 - Infrastructure changes must be explicit and reversible where possible
@@ -41,14 +28,12 @@ terraform apply                  # Apply changes
 
 ## Terraform
 
-- Group logically by service
-- Always use remote state; never commit `.tfstate`
+- Group logically by service; always use remote state; never commit `.tfstate`
 - Use variables for environment-specific values
-- Run `terraform plan` and review output before `apply`
+- Run `terraform plan` and review before `apply`
 
 ## CI/CD
 
 - Keep pipeline steps small and independently retryable
-- Cache dependencies explicitly
-- Fail fast: lint and test before build, build before deploy
+- Cache dependencies explicitly; fail fast: lint → test → build → deploy
 - Secrets from CI secret store — never from env files

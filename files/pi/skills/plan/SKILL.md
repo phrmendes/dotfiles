@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Iterative planning — ideate, explore code, produce structured plans. Load when asked to plan, design, scope, architect, investigate a bug, or think through how to build or fix something. Read-only. Uses the most capable model.
+description: Iterative planning — ideate, explore code, produce structured plans. Load when asked to plan, design, scope, architect, investigate a bug, or think through how to build or fix something. Read-only.
 allowed-tools: read grep find ls bash
 ---
 

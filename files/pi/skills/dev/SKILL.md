@@ -1,6 +1,6 @@
 ---
 name: dev
-description: Dev mode — implement features following a plan using TDD. Load when asked to build, implement, code, or apply a plan. Full tools available. Uses the most capable model.
+description: Dev mode — implement features following a plan using TDD. Load when asked to build, implement, code, or apply a plan. Full tools available.
 ---
 
 # Dev Mode

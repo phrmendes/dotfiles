@@ -1,6 +1,6 @@
 ---
 name: review
-description: Review mode — evaluate implementations for correctness, security, style, and completeness. Load when asked to review, audit, evaluate, or assess code. Read-only. Uses the most capable model.
+description: Review mode — evaluate implementations for correctness, security, style, and completeness. Load when asked to review, audit, evaluate, or assess code. Read-only.
 allowed-tools: read grep find ls bash
 ---
 

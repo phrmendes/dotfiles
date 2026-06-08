@@ -5,12 +5,25 @@ let
 in
 {
   modules.homeManager.dev.pi =
-    { pkgs, osConfig, ... }:
+    {
+      pkgs,
+      osConfig,
+      lib,
+      ...
+    }:
     let
       agentHome = "${home}/.pi/agent";
       opencodeKey = "!cat ${osConfig.age.secrets."opencode.txt".path}";
       bifrostKey = "!cat ${osConfig.age.secrets."bifrost.txt".path}";
       jiraApiToken = osConfig.age.secrets."jira.txt".path;
+      authJson = pkgs.writeText "auth.json" (
+        builtins.toJSON {
+          opencode-go = {
+            type = "api_key";
+            key = opencodeKey;
+          };
+        }
+      );
       jira-wrapped = pkgs.writeShellScriptBin "jira" ''
         export JIRA_API_TOKEN="$(cat ${jiraApiToken})"
         exec ${pkgs.jira-cli-go}/bin/jira "$@"
@@ -36,17 +49,6 @@ in
         };
 
         file = {
-          "${agentHome}/auth.json".text = builtins.toJSON {
-            opencode-go = {
-              type = "api_key";
-              key = opencodeKey;
-            };
-            bifrost = {
-              type = "api_key";
-              key = bifrostKey;
-            };
-          };
-
           "${agentHome}/settings.json".text = builtins.toJSON {
             defaultProvider = "bifrost";
             defaultModel = "deepseek/deepseek-v4-flash";
@@ -131,12 +133,6 @@ in
                 ];
               };
             };
-            profiles = {
-              plan = "bifrost/deepseek/deepseek-v4-pro";
-              dev = "bifrost/deepseek/deepseek-v4-flash";
-              review = "bifrost/deepseek/deepseek-v4-flash";
-              guide = "bifrost/deepseek/deepseek-v4-flash";
-            };
           };
 
           "${agentHome}/AGENTS.md".source = "${piDir}/AGENTS.md";
@@ -183,5 +179,10 @@ in
           '';
         };
       };
+
+      home.activation.piAuthJson = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD mkdir -p ${agentHome}
+        $DRY_RUN_CMD install -m 600 ${authJson} ${agentHome}/auth.json
+      '';
     };
 }

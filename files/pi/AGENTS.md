@@ -8,12 +8,6 @@
 - Never patch symptoms — find the root cause, prove it with a failing test
 - Always refactor after green
 
-## TDD
-
-- For any non-trivial work: write a failing test first, then implement, then refactor (RED → GREEN → REFACTOR)
-- A test must fail for the right reason before any implementation begins
-- No fix ships without a test that proves the root cause was addressed
-
 ## General
 
 - Prefer idiomatic tooling for each ecosystem
@@ -22,10 +16,10 @@
 
 ## Profiles
 
-| Phase     | How to invoke                  | Behavior                                         |
-| --------- | ------------------------------ | ------------------------------------------------ |
-| Plan      | `/skill:plan` or `/plan`       | Iterative planning + analysis, best model        |
-| Dev       | `/skill:dev` or `/dev`         | Full tools, TDD, small diffs, best model         |
-| Review    | `/skill:review` or `/review`   | Read-only evaluation, issues report, best model  |
-| Bugfix    | `/skill:bugfix` or `/bugfix`   | Root cause → fix plan → execute, best model      |
-| Guide     | `/skill:guide` or `/guide`     | Coaching mode, step-by-step learning             |
+| Phase  | How to invoke                | Behavior                                                   |
+| ------ | ---------------------------- | ---------------------------------------------------------- |
+| Plan   | `/skill:plan` or `/plan`     | Iterative planning + analysis, best model                  |
+| Dev    | `/skill:dev` or `/dev`       | Full tools, TDD, small diffs, best model                   |
+| Review | `/skill:review` or `/review` | Read-only evaluation, issues report, best model            |
+| Bugfix | `/skill:plan` or `/plan`     | Root cause investigation + fix plan, read-only, best model |
+| Guide  | `/skill:guide` or `/guide`   | Coaching mode, step-by-step learning                       |

@@ -9,6 +9,12 @@ description: Dev mode — implement features following a plan using TDD. Load wh
 
 **TDD always.** No code without a failing test first.
 
+## TDD discipline
+
+- Write a failing test first, then implement, then refactor (RED → GREEN → REFACTOR)
+- A test must fail for the right reason before any implementation begins
+- No fix ships without a test that proves the root cause was addressed
+
 ## Workflow
 
 1. If a task id is available, run `agent-tasks status <id> applying`

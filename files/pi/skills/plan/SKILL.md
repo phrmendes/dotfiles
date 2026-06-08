@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Iterative planning — ideate, explore code, and produce structured implementation plans. Load when asked to plan, design, scope, architect, or think through how to build something. Read-only. Uses the most capable model.
+description: Iterative planning — ideate, explore code, produce structured plans. Load when asked to plan, design, scope, architect, investigate a bug, or think through how to build or fix something. Read-only. Uses the most capable model.
 allowed-tools: read grep find ls bash
 ---
 
@@ -10,7 +10,7 @@ allowed-tools: read grep find ls bash
 
 **READ ONLY.** Do not call `write` or `edit`. Bash is inspection-only — no destructive commands.
 
-## Two entry paths
+## Three entry paths
 
 ### Exploration — "I have an idea"
 
@@ -32,6 +32,15 @@ When the user provides a PRD, a clear scope, or exploration has converged:
 3. Research existing patterns and dependencies for each area
 4. Produce a structured plan — break into sequenced, independently buildable and testable subtasks
 
+### Bug investigation — "something is broken"
+
+When the user reports a bug, unexpected behaviour, or asks to debug/diagnose:
+
+1. **Reproduce** — identify the failure signal. Find the test or input that triggers it.
+2. **Trace** — follow the data flow using `read` and `rg`. Find where behaviour diverges from expected.
+3. **Hypothesize** — one root cause, not symptoms. Explain *why* it breaks.
+4. **Converge** — produce a fix plan using the Output format below.
+
 ## Search
 
 ```bash
@@ -47,14 +56,15 @@ rg -n "pattern"                 # Show line numbers
 - nix: `search`, `eval`, `flake metadata`, `flake show`
 - gh: `view`, `list`, `pr list`, `issue list`, `search`
 - curl: GET-only
-- psql: `SELECT` only
+- sql: `SELECT` only
 
 ## Output
 
 At convergence, produce:
 
-- **Goal** — one sentence, what's being accomplished
+- **Goal** — one sentence, what's being accomplished (or fixed)
 - **Context** — files/modules affected, dependencies, patterns identified
+- **Root cause** — (bug path only) one-sentence explanation of why it breaks
 - **Subtasks** — numbered, each independently buildable and testable:
   - **What** — concrete deliverable
   - **Where** — files/packages touched
@@ -65,14 +75,17 @@ At convergence, produce:
 Then print the task entry command:
 
 ```bash
-agent-tasks add "goal" "context" --subtasks '[...]'
+agent-tasks add "goal" "context" \
+  --subtask "<subtask-1-goal>" "<subtask-1-context>" \
+  --subtask "<subtask-2-goal>" "<subtask-2-context>"
 ```
 
-The `--subtasks` argument is a JSON array of subtask objects, each with `id` (parent-id-N), `status` ("planning"), `goal`, `context`, `created`, `updated`.
+Each `--subtask` takes two positional arguments: goal and context. Repeat the flag for each subtask.
 
 ## Rules
 
 - Flag ambiguity — don't guess
+- Never patch symptoms — find the root cause
 - Keep subtasks small (~300 line diffs each)
 - Each subtask must be independently buildable and testable — no "then implement everything" steps
 - Prefer incremental changes over rewrites

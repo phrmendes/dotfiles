@@ -15,12 +15,80 @@ in
             type = "sqlite";
             config.path = "/app/data/config.db";
           };
-          governance.auth_config = {
-            is_enabled = true;
-            admin_username = "env.BIFROST_ADMIN_USERNAME";
-            admin_password = "env.BIFROST_ADMIN_PASSWORD";
-            disable_auth_on_inference = true;
+          vector_store = {
+            enabled = true;
+            type = "qdrant";
+            config = {
+              host = "127.0.0.1";
+              port = 6334;
+            };
           };
+          plugins = [
+            {
+              name = "semantic_cache";
+              enabled = true;
+              config = {
+                dimension = 1;
+                ttl = "24h";
+                threshold = 1.0;
+                conversation_history_threshold = 3;
+                cache_by_model = true;
+                cache_by_provider = true;
+              };
+            }
+          ];
+          governance = {
+            auth_config = {
+              is_enabled = true;
+              admin_username = "env.BIFROST_ADMIN_USERNAME";
+              admin_password = "env.BIFROST_ADMIN_PASSWORD";
+              disable_auth_on_inference = true;
+            };
+            budgets = [
+              {
+                id = "claude-sonnet-4-6-daily-budget";
+                max_limit = 10;
+                reset_duration = "1d";
+              }
+            ];
+            model_configs = [
+              {
+                id = "claude-sonnet-4-6-daily";
+                model_name = "claude-sonnet-4-6";
+                provider = "vertex";
+                scope = "global";
+                calendar_aligned = true;
+                budget_ids = [ "claude-sonnet-4-6-daily-budget" ];
+              }
+            ];
+          };
+          access_profiles = [
+            {
+              name = "claude-sonnet-4-6-limits";
+              description = "Monthly token and spend cap for claude-sonnet-4-6 on Vertex AI";
+              is_active = true;
+              calendar_aligned = true;
+              budgets = [
+                {
+                  id = "claude-sonnet-4-6-monthly-budget";
+                  max_limit = 150;
+                  reset_duration = "1M";
+                }
+              ];
+              rate_limit = {
+                id = "claude-sonnet-4-6-monthly-tokens";
+                token_max_limit = 10000000;
+                token_reset_duration = "1M";
+              };
+              provider_configs = [
+                {
+                  provider_name = "vertex";
+                  all_models_allowed = false;
+                  allowed_models = [ "claude-sonnet-4-6" ];
+                }
+              ];
+            }
+          ];
           providers = {
             vertex.keys = [
               {
@@ -92,7 +160,6 @@ in
 
       virtualisation.oci-containers.containers.bifrost = {
         image = "docker.io/maximhq/bifrost:v1.5.4";
-        ports = [ "127.0.0.1:${toString port}:${toString port}" ];
         volumes = [
           "/srv/containers/bifrost:/app/data"
           "${configJson}:/app/data/config.json:ro"
@@ -107,9 +174,9 @@ in
           VERTEX_PROJECT_ID = gcp.project;
         };
         environmentFiles = [ config.age.secrets."bifrost.env".path ];
-        networks = [ "services" ];
         labels."io.containers.autoupdate" = "registry";
         extraOptions = [
+          "--network=host"
           "--health-cmd=/bin/sh -c 'for i in $(seq 1 10); do wget -qO- http://localhost:${toString port}/health >/dev/null && exit 0; sleep 2; done; exit 1'"
           "--health-interval=30s"
           "--health-timeout=5s"

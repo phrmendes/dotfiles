@@ -32,6 +32,7 @@ in
         sessionVariables = {
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
           AGENT_BROWSER_SKILLS_DIR = "${pkgs.agent-browser}/skills";
+          PI_CACHE_RETENTION = "long";
         };
 
         file = {
@@ -57,7 +58,13 @@ in
             compaction = {
               enabled = true;
               reserveTokens = 16384;
-              keepRecentTokens = 20000;
+              keepRecentTokens = 12000;
+            };
+            thinkingBudgets = {
+              minimal = 1024;
+              low = 4096;
+              medium = 8192;
+              high = 16384;
             };
             retry = {
               enabled = true;
@@ -80,13 +87,13 @@ in
                       "text"
                       "image"
                     ];
-                    contextWindow = 200000;
+                    contextWindow = 1000000;
                     maxTokens = 16000;
                     cost = {
-                      input = 0;
-                      output = 0;
-                      cacheRead = 0;
-                      cacheWrite = 0;
+                      input = 3;
+                      output = 15;
+                      cacheRead = 0.3;
+                      cacheWrite = 3.75;
                     };
                   }
                   {

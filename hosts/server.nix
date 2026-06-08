@@ -34,6 +34,7 @@ in
           impermanence
           podman
           transmission
+          qdrant
           options
           sftpgo
           syncthing

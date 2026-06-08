@@ -46,9 +46,6 @@ _: {
         };
       };
 
-      systemd.services.homepage-dashboard.serviceConfig.EnvironmentFile =
-        config.age.secrets."beszel.env".path;
-
       users = {
         groups = {
           podman.members = [ "beszel-agent" ];
@@ -62,10 +59,13 @@ _: {
       };
 
       systemd = {
-        services.beszel-hub.serviceConfig = {
-          DynamicUser = lib.mkForce false;
-          User = lib.mkForce "beszel-hub";
-          Group = lib.mkForce "beszel-hub";
+        services = {
+          homepage-dashboard.serviceConfig.EnvironmentFile = config.age.secrets."beszel.env".path;
+          beszel-hub.serviceConfig = {
+            DynamicUser = lib.mkForce false;
+            User = lib.mkForce "beszel-hub";
+            Group = lib.mkForce "beszel-hub";
+          };
         };
         tmpfiles.rules = [ "d /srv/beszel 0750 beszel-hub beszel-hub -" ];
       };

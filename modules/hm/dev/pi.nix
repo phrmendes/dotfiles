@@ -114,20 +114,6 @@ in
                     };
                   }
                   {
-                    id = "deepseek/deepseek-chat";
-                    name = "DeepSeek Chat (compaction)";
-                    reasoning = false;
-                    input = [ "text" ];
-                    contextWindow = 128000;
-                    maxTokens = 8192;
-                    cost = {
-                      input = 0;
-                      output = 0;
-                      cacheRead = 0;
-                      cacheWrite = 0;
-                    };
-                  }
-                  {
                     id = "deepseek/deepseek-v4-flash";
                     name = "DeepSeek V4 Flash";
                     reasoning = true;

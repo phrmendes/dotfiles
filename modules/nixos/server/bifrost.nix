@@ -32,8 +32,8 @@ in
                 ttl = "24h";
                 threshold = 1.0;
                 conversation_history_threshold = 3;
-                cache_by_model = true;
-                cache_by_provider = true;
+                cache_by_model = false;
+                cache_by_provider = false;
               };
             }
           ];

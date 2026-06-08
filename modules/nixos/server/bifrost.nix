@@ -50,6 +50,11 @@ in
                 max_limit = 10;
                 reset_duration = "1d";
               }
+              {
+                id = "deepseek-daily-budget";
+                max_limit = 5;
+                reset_duration = "1d";
+              }
             ];
             model_configs = [
               {
@@ -59,6 +64,22 @@ in
                 scope = "global";
                 calendar_aligned = true;
                 budget_ids = [ "claude-sonnet-4-6-daily-budget" ];
+              }
+              {
+                id = "deepseek-v4-flash-daily";
+                model_name = "deepseek-v4-flash";
+                provider = "deepseek";
+                scope = "global";
+                calendar_aligned = true;
+                budget_ids = [ "deepseek-daily-budget" ];
+              }
+              {
+                id = "deepseek-v4-pro-daily";
+                model_name = "deepseek-v4-pro";
+                provider = "deepseek";
+                scope = "global";
+                calendar_aligned = true;
+                budget_ids = [ "deepseek-daily-budget" ];
               }
             ];
           };

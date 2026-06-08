@@ -48,8 +48,8 @@ in
           };
 
           "${agentHome}/settings.json".text = builtins.toJSON {
-            defaultProvider = "opencode-go";
-            defaultModel = "deepseek-v4-pro";
+            defaultProvider = "bifrost";
+            defaultModel = "deepseek/deepseek-v4-flash";
             theme = "dark";
             skills = [
               "${pkgs.agent-browser}/skills"
@@ -115,7 +115,7 @@ in
                   }
                   {
                     id = "deepseek/deepseek-chat";
-                    name = "DeepSeek Chat";
+                    name = "DeepSeek Chat (compaction)";
                     reasoning = false;
                     input = [ "text" ];
                     contextWindow = 128000;
@@ -128,16 +128,30 @@ in
                     };
                   }
                   {
-                    id = "deepseek/deepseek-reasoner";
-                    name = "DeepSeek Reasoner";
+                    id = "deepseek/deepseek-v4-flash";
+                    name = "DeepSeek V4 Flash";
                     reasoning = true;
                     input = [ "text" ];
-                    contextWindow = 128000;
-                    maxTokens = 8192;
+                    contextWindow = 1000000;
+                    maxTokens = 32768;
                     cost = {
-                      input = 0;
-                      output = 0;
-                      cacheRead = 0;
+                      input = 0.14;
+                      output = 0.28;
+                      cacheRead = 0.0028;
+                      cacheWrite = 0;
+                    };
+                  }
+                  {
+                    id = "deepseek/deepseek-v4-pro";
+                    name = "DeepSeek V4 Pro";
+                    reasoning = true;
+                    input = [ "text" ];
+                    contextWindow = 1000000;
+                    maxTokens = 32768;
+                    cost = {
+                      input = 0.435;
+                      output = 0.87;
+                      cacheRead = 0.003625;
                       cacheWrite = 0;
                     };
                   }
@@ -145,11 +159,10 @@ in
               };
             };
             profiles = {
-              plan = "opencode-go/deepseek-v4-pro";
-              dev = "opencode-go/deepseek-v4-flash";
-              review = "opencode-go/deepseek-v4-pro";
-              bugfix = "opencode-go/deepseek-v4-pro";
-              guide = "opencode-go/deepseek-v4-flash";
+              plan = "bifrost/deepseek/deepseek-v4-pro";
+              dev = "bifrost/deepseek/deepseek-v4-flash";
+              review = "bifrost/deepseek/deepseek-v4-flash";
+              guide = "bifrost/deepseek/deepseek-v4-flash";
             };
           };
 

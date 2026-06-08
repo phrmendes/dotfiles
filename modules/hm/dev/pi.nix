@@ -78,6 +78,10 @@ in
                 baseUrl = "https://bifrost.local.ohlongjohnson.tech/v1";
                 api = "openai-completions";
                 apiKey = bifrostKey;
+                compat = {
+                  supportsDeveloperRole = false;
+                  supportsReasoningEffort = false;
+                };
                 models = [
                   {
                     id = "vertex/claude-sonnet-4-6@default";

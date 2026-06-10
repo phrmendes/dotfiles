@@ -1,15 +1,4 @@
-_:
-let
-  btrfsOpts = [
-    "compress=zstd"
-    "noatime"
-  ];
-  btrfsMount = subvol: {
-    device = "/dev/mapper/crypted";
-    fsType = "btrfs";
-    options = [ "subvol=${subvol}" ] ++ btrfsOpts;
-  };
-in
+{ lib, ... }:
 {
   modules.nixos.core.filesystems = {
     fileSystems = {
@@ -17,15 +6,10 @@ in
         device = "/dev/disk/by-partlabel/disk-main-ESP";
         fsType = "vfat";
         options = [
-          "defaults"
           "umask=0077"
         ];
       };
-      "/" = btrfsMount "root";
-      "/nix" = btrfsMount "nix";
-      "/persist" = (btrfsMount "persist") // {
-        neededForBoot = true;
-      };
+      "/persist".neededForBoot = lib.mkForce true;
     };
   };
 }

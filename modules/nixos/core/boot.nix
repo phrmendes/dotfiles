@@ -44,6 +44,13 @@
           luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
           systemd = {
             enable = true;
+            # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
+            # Race condition: filesystem mount units (sysroot-nix.mount etc.) can
+            # fire before systemd-modules-load.service finishes loading the btrfs
+            # module, causing sysroot-nix.mount to fail and cascading into
+            # initrd-find-nixos-closure.service failing. Forcing udevd to wait
+            # for modules to be loaded first closes the race.
+            services."systemd-udevd".after = [ "systemd-modules-load.service" ];
             services.initrd-btrfs-cleanup = {
               description = "Btrfs subvolume cleanup and recreation";
               requiredBy = [ "sysroot.mount" ];

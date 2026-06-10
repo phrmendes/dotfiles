@@ -49,6 +49,7 @@ in
       ];
 
       boot = {
+        initrd.systemd.emergencyAccess = true;
         initrd.kernelModules = [
           "nvidia"
           "nvidia_modeset"
@@ -56,7 +57,6 @@ in
           "nvidia_drm"
         ];
         kernelParams = [
-          "boot.shell_on_fail"
           "nvidia_drm.modeset=1"
           "nvidia_drm.fbdev=1"
           "nvidia.NVreg_PreserveVideoMemoryAllocations=1"

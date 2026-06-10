@@ -6,7 +6,6 @@ _: {
       enableBashIntegration = true;
       settings = {
         command_timeout = 1000;
-        docker_context.disabled = true;
         gcloud.disabled = true;
         python.symbol = " ";
         nix_shell = {

@@ -7,6 +7,8 @@ _: {
         [
           curl
           devenv
+          docker-credential-helpers
+          docker-compose
           hurl
           jdk
           jqp

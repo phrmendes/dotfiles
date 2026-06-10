@@ -112,7 +112,6 @@ in
           bat
           btop
           direnv
-          docker
           eza
           fd
           fzf
@@ -121,7 +120,6 @@ in
           jq
           k8s
           kitty
-          lazydocker
           lazygit
           neovim
           nix-index

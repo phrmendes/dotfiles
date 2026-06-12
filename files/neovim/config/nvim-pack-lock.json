@@ -64,6 +64,10 @@
       "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
+    "nvim-tinygit": {
+      "rev": "f12990601dfa63c623049b470dc306ca905064c8",
+      "src": "https://github.com/chrisgrieser/nvim-tinygit"
+    },
     "nvim-treesitter-context": {
       "rev": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
@@ -95,10 +99,6 @@
     "undotree": {
       "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
       "src": "https://github.com/mbbill/undotree"
-    },
-    "unnest.nvim": {
-      "rev": "865b34a9db70ad4ea8715a397fad6491baa390c4",
-      "src": "https://github.com/brianhuster/unnest.nvim"
     },
     "vim-abolish": {
       "rev": "dcbfe065297d31823561ba787f51056c147aa682",

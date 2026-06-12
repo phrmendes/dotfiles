@@ -51,34 +51,6 @@ end
 
 M.pickers = {}
 
---- Pick all files in cwd sorted by MRU (visited first, then unvisited via fd).
-M.pickers.files = function()
-  local cwd = vim.fn.getcwd()
-  local sort_recent = MiniVisits.gen_sort.default({ recency_weight = 1 })
-
-  local visited = vim.iter(MiniVisits.list_paths(nil, { sort = sort_recent })):filter(function(p) return vim.startswith(p, cwd .. "/") end):totable()
-
-  local visited_set = vim.iter(visited):fold({}, function(acc, p)
-    acc[p] = true
-    return acc
-  end)
-
-  local all = vim.iter(visited):map(function(p) return vim.fn.fnamemodify(p, ":.") end):totable()
-
-  vim.iter(vim.fn.systemlist("fd --type f --hidden --absolute-path")):each(function(p)
-    if not visited_set[p] then table.insert(all, vim.fn.fnamemodify(p, ":.")) end
-  end)
-
-  MiniPick.start({
-    source = {
-      name = "Files (MRU)",
-      items = all,
-      show = function(buf_id, items, query) MiniPick.default_show(buf_id, items, query, { show_icons = true }) end,
-      choose = MiniPick.default_choose,
-    },
-  })
-end
-
 --- Pick from listed buffers with <c-d> to delete.
 M.pickers.buffers = function()
   local buf_items = function()

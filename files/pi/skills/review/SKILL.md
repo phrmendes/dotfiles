@@ -17,7 +17,7 @@ allowed-tools: read grep find ls bash
 3. Read the diff or changed files
 4. Check each category below
 5. Produce a structured report, discuss gaps, let the user decide
-6. Approval → `agent-tasks status <id> done`; rework needed → `agent-tasks status <id> planning`
+6. Approval → mark `status:done` and prefix with `x <today>` in `todo.txt` (use `/skill:todotxt`). Rework needed → mark `status:planning`.
 
 ## Checklist
 

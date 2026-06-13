@@ -30,13 +30,7 @@ At convergence, produce:
 - **Risks** — per subtask
 - **Open decisions**
 
-Then print the task entry command:
-
-```bash
-agent-tasks add "goal" "context" \
-  --subtask "<subtask-1-goal>" "<subtask-1-context>" \
-  --subtask "<subtask-2-goal>" "<subtask-2-context>"
-```
+Then append the tasks to `todo.txt` following the `/skill:todotxt` format.
 
 ## Rules
 

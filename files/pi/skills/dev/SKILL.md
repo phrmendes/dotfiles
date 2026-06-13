@@ -11,12 +11,12 @@ description: Dev mode — implement features following a plan using TDD. Load wh
 
 ## Workflow
 
-1. `agent-tasks status <id> applying`
+1. Mark parent task `status:applying` in `todo.txt` (use `/skill:todotxt`)
 2. For each subtask:
-   - `agent-tasks status --subtask <sub-id> applying`
+   - Mark subtask `status:applying`
    - Write failing test → confirm it fails for the right reason → implement → refactor
-   - `agent-tasks status --subtask <sub-id> done`
-3. `agent-tasks status <id> reviewing`
+   - Mark subtask `status:done`
+3. Mark parent `status:reviewing`
 
 ## Rules
 

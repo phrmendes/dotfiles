@@ -31,16 +31,11 @@ in
     in
     {
       home = {
-        packages =
-          with pkgs;
-          [
-            agent-browser
-            jira-wrapped
-            pi-coding-agent
-          ]
-          ++ [
-            pkgs.local.agent-tasks
-          ];
+        packages = with pkgs; [
+          agent-browser
+          jira-wrapped
+          pi-coding-agent
+        ];
 
         sessionVariables = {
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
@@ -55,7 +50,6 @@ in
             theme = "dark";
             skills = [
               "${pkgs.agent-browser}/skills"
-              "${pkgs.local.agent-tasks}/skills"
             ];
             compaction = {
               enabled = true;

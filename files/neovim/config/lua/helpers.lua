@@ -74,7 +74,10 @@ M.pickers.buffers = function()
       name = "Buffers",
       items = buf_items(),
       show = function(buf_id, items, query) MiniPick.default_show(buf_id, items, query, { show_icons = true }) end,
-      choose = function(item) vim.api.nvim_set_current_buf(item.bufnr) end,
+      choose = function(item)
+        local win_target = MiniPick.get_picker_state().windows.target
+        vim.api.nvim_win_set_buf(win_target, item.bufnr)
+      end,
     },
     mappings = {
       wipeout = {

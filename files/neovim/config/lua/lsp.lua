@@ -1,6 +1,5 @@
 local augroups = {
   attach = vim.api.nvim_create_augroup("UserLspAttach", {}),
-  codelens = vim.api.nvim_create_augroup("UserLspCodelens", {}),
 }
 
 vim.lsp.enable({
@@ -54,14 +53,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         function() vim.lsp.inline_completion.enable(false, { bufnr = event.buf }) end,
         { desc = "Disable LSP inline completions for the current buffer" }
       )
-    end
-
-    if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, event.buf) then
-      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-        buffer = event.buf,
-        group = augroups.codelens,
-        callback = function(ev) vim.lsp.codelens.enable(true, { bufnr = ev.buf }) end,
-      })
     end
 
     require("keymaps.lsp")(client, event.buf)

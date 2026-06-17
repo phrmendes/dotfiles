@@ -25,7 +25,6 @@ in
           filesystems
           flaresolverr
           homepage
-          bifrost
           linkding
           litestream
           media

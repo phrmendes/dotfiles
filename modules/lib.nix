@@ -9,12 +9,19 @@
         allowedUDPPorts = [ port ];
       };
 
-      mkSecretReadable = user: file: {
-        inherit file;
-        mode = "0440";
-        owner = user;
-        group = "users";
-      };
+      mkSecretReadable =
+        {
+          user,
+          file,
+          path ? null,
+          mode ? "0440",
+          group ? "users",
+        }:
+        {
+          inherit file mode group;
+          owner = user;
+        }
+        // lib.optionalAttrs (path != null) { inherit path; };
 
       mkBase16Lua =
         colors:

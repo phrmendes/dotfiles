@@ -1,0 +1,35 @@
+installation: cloud
+server: https://iplanrio-pcrj.atlassian.net
+login: pedro.hrmendes@prefeitura.rio
+project: INFRAVPIA
+board:
+  id: 1
+  name: Board Name
+issue:
+  types:
+    - name: Iniciativa
+      handle: Iniciativa
+    - name: Epic
+      handle: Epic
+    - name: História
+      handle: História
+    - name: Nova Feature
+      handle: Nova Feature
+    - name: Melhoria
+      handle: Melhoria
+    - name: Ajuste
+      handle: Ajuste
+    - name: Bug
+      handle: Bug
+    - name: Débito técnico
+      handle: Débito técnico
+    - name: Incidente
+      handle: Incidente
+    - name: Estudo/Mapeamento
+      handle: Estudo/Mapeamento
+    - name: Validação de hipótese
+      handle: Validação de hipótese
+    - name: Spike
+      handle: Spike
+    - name: Subtarefa
+      handle: Subtarefa

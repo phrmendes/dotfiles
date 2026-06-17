@@ -6,17 +6,17 @@ in
   modules.nixos.core.age =
     _:
     let
-      secretReadable = dotfilesLib.mkSecretReadable settings.user;
+      secretReadable = args: dotfilesLib.mkSecretReadable ({ user = settings.user; } // args);
     in
     {
       imports = [ inputs.agenix.nixosModules.default ];
       age = {
         identityPaths = [ "/persist${settings.home}/.ssh/age" ];
         secrets = {
-          "bifrost.txt" = secretReadable ../../../secrets/bifrost.age.txt;
-          "jira.txt" = secretReadable ../../../secrets/jira.age.txt;
-          "opencode.txt" = secretReadable ../../../secrets/opencode.age.txt;
-          "vertex.json" = secretReadable ../../../secrets/vertex.age.json;
+          "pi.json" = secretReadable {
+            file = ../../../secrets/pi.age.json;
+            path = "${settings.home}/.pi/agent/auth.json";
+          };
         };
       };
     };

@@ -1,39 +1,19 @@
 { config, ... }:
 let
   inherit (config.settings) home;
-  piDir = ../../../files/pi;
 in
 {
   modules.homeManager.dev.pi =
-    {
-      pkgs,
-      osConfig,
-      lib,
-      ...
-    }:
+    { pkgs, ... }:
     let
       agentHome = "${home}/.pi/agent";
-      opencodeKey = "!cat ${osConfig.age.secrets."opencode.txt".path}";
-      bifrostKey = "!cat ${osConfig.age.secrets."bifrost.txt".path}";
-      jiraApiToken = osConfig.age.secrets."jira.txt".path;
-      authJson = pkgs.writeText "auth.json" (
-        builtins.toJSON {
-          opencode-go = {
-            type = "api_key";
-            key = opencodeKey;
-          };
-        }
-      );
-      jira-wrapped = pkgs.writeShellScriptBin "jira" ''
-        export JIRA_API_TOKEN="$(cat ${jiraApiToken})"
-        exec ${pkgs.jira-cli-go}/bin/jira "$@"
-      '';
+      piDir = ../../../files/pi;
     in
     {
       home = {
         packages = with pkgs; [
           agent-browser
-          jira-wrapped
+          jira-cli-go
           pi-coding-agent
         ];
 
@@ -45,7 +25,7 @@ in
 
         file = {
           "${agentHome}/settings.json".text = builtins.toJSON {
-            defaultProvider = "bifrost";
+            defaultProvider = "deepseek";
             defaultModel = "deepseek/deepseek-v4-flash";
             theme = "dark";
             skills = [
@@ -71,24 +51,21 @@ in
           "${agentHome}/models.json".text = builtins.toJSON {
             providers = {
               bifrost = {
-                baseUrl = "https://bifrost.local.ohlongjohnson.tech/v1";
-                api = "openai-completions";
-                apiKey = bifrostKey;
-                compat = {
-                  supportsDeveloperRole = false;
-                  supportsReasoningEffort = false;
-                };
+                name = "Bifrost";
+                baseUrl = "https://bifrost.iplan.dados.rio/anthropic";
+                api = "anthropic-messages";
+                apiKey = "!${pkgs.jq}/bin/jq -r '.bifrost.key' ${agentHome}/auth.json";
                 models = [
                   {
-                    id = "vertex/claude-sonnet-4-6@default";
-                    name = "Claude Sonnet 4.6 (Vertex)";
-                    reasoning = false;
+                    id = "claude-sonnet-4-6";
+                    name = "Claude Sonnet 4";
+                    contextWindow = 200000;
+                    maxTokens = 16384;
                     input = [
                       "text"
                       "image"
                     ];
-                    contextWindow = 1000000;
-                    maxTokens = 16000;
+                    reasoning = true;
                     cost = {
                       input = 3;
                       output = 15;
@@ -96,32 +73,60 @@ in
                       cacheWrite = 3.75;
                     };
                   }
+                ];
+              };
+              deepseek = {
+                baseUrl = "https://api.deepseek.com";
+                api = "openai-completions";
+                models = [
                   {
-                    id = "deepseek/deepseek-v4-flash";
-                    name = "DeepSeek V4 Flash";
-                    reasoning = true;
-                    input = [ "text" ];
+                    id = "deepseek-v4-pro";
+                    name = "DeepSeek V4 Pro";
                     contextWindow = 1000000;
-                    maxTokens = 32768;
+                    maxTokens = 384000;
+                    input = [ "text" ];
+                    reasoning = true;
                     cost = {
-                      input = 0.14;
-                      output = 0.28;
-                      cacheRead = 0.0028;
+                      input = 1.74;
+                      output = 3.48;
+                      cacheRead = 0.145;
                       cacheWrite = 0;
+                    };
+                    compat = {
+                      requiresReasoningContentOnAssistantMessages = true;
+                      thinkingFormat = "deepseek";
+                      reasoningEffortMap = {
+                        minimal = "high";
+                        low = "high";
+                        medium = "high";
+                        high = "high";
+                        xhigh = "max";
+                      };
                     };
                   }
                   {
-                    id = "deepseek/deepseek-v4-pro";
-                    name = "DeepSeek V4 Pro";
-                    reasoning = true;
-                    input = [ "text" ];
+                    id = "deepseek-v4-flash";
+                    name = "DeepSeek V4 Flash";
                     contextWindow = 1000000;
-                    maxTokens = 32768;
+                    maxTokens = 384000;
+                    input = [ "text" ];
+                    reasoning = true;
                     cost = {
-                      input = 0.435;
-                      output = 0.87;
-                      cacheRead = 0.003625;
+                      input = 0.14;
+                      output = 0.28;
+                      cacheRead = 0.028;
                       cacheWrite = 0;
+                    };
+                    compat = {
+                      requiresReasoningContentOnAssistantMessages = true;
+                      thinkingFormat = "deepseek";
+                      reasoningEffortMap = {
+                        minimal = "high";
+                        low = "high";
+                        medium = "high";
+                        high = "high";
+                        xhigh = "max";
+                      };
                     };
                   }
                 ];
@@ -133,50 +138,8 @@ in
           "${agentHome}/extensions".source = "${piDir}/extensions";
           "${agentHome}/prompts".source = "${piDir}/prompts";
           "${agentHome}/skills".source = "${piDir}/skills";
-
-          ".config/.jira/.config.yml".text = ''
-            installation: cloud
-            server: https://iplanrio-pcrj.atlassian.net
-            login: pedro.hrmendes@prefeitura.rio
-            project: INFRAVPIA
-            board:
-              id: 1
-              name: Board Name
-            issue:
-              types:
-                - name: Iniciativa
-                  handle: Iniciativa
-                - name: Epic
-                  handle: Epic
-                - name: História
-                  handle: História
-                - name: Nova Feature
-                  handle: Nova Feature
-                - name: Melhoria
-                  handle: Melhoria
-                - name: Ajuste
-                  handle: Ajuste
-                - name: Bug
-                  handle: Bug
-                - name: Débito técnico
-                  handle: Débito técnico
-                - name: Incidente
-                  handle: Incidente
-                - name: Estudo/Mapeamento
-                  handle: Estudo/Mapeamento
-                - name: Validação de hipótese
-                  handle: Validação de hipótese
-                - name: Spike
-                  handle: Spike
-                - name: Subtarefa
-                  handle: Subtarefa
-          '';
+          ".config/.jira/.config.yml".source = ../../../files/jira.yaml;
         };
       };
-
-      home.activation.piAuthJson = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        $DRY_RUN_CMD mkdir -p ${agentHome}
-        $DRY_RUN_CMD install -m 600 ${authJson} ${agentHome}/auth.json
-      '';
     };
 }

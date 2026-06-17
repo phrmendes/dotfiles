@@ -40,6 +40,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vim-plugins = {
       url = "path:./files/neovim/plugins";
       flake = false;
@@ -54,6 +59,7 @@
         ./hosts/desktop.nix
         ./hosts/laptop.nix
         ./hosts/server.nix
+        ./hosts/phone.nix
       ];
     };
 }

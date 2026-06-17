@@ -1,23 +1,27 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.swapfile = false
 vim.opt.shiftround = true
+vim.opt.wrap = true
 vim.opt.updatetime = 200
 vim.opt.timeoutlen = 300
 vim.opt.foldenable = false
 vim.opt.inccommand = "split"
 vim.opt.winborder = "rounded"
+vim.opt.pumborder = "rounded"
+vim.opt.cursorlineopt = "screenline"
 vim.opt.scrolloff = 8
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.undolevels = 10000
 vim.opt.autocomplete = true
-vim.opt.completeopt = "menu,menuone,popup,fuzzy"
+vim.opt.completeopt = "menuone,noselect,fuzzy"
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.path:append("**")
@@ -28,6 +32,9 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.confirm = true
+vim.opt.iskeyword:append("-")
+vim.opt.listchars:append({ tab = "▏ " })
 
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
@@ -60,7 +67,20 @@ vim.diagnostic.config({
   },
 })
 
-for _, name in ipairs({ "gzip", "matchit", "tar", "tarPlugin", "zip", "zipPlugin", "tutor" }) do
+for _, name in ipairs({
+  "gzip",
+  "matchit",
+  "netrw",
+  "netrwFileHandlers",
+  "netrwPlugin",
+  "netrwSettings",
+  "spellfile_plugin",
+  "tar",
+  "tarPlugin",
+  "zip",
+  "zipPlugin",
+  "tutor",
+}) do
   vim.g["loaded_" .. name] = true
 end
 
@@ -69,6 +89,25 @@ vim.cmd.colorscheme("retrobox")
 vim.api.nvim_create_autocmd("VimResized", {
   group = vim.api.nvim_create_augroup("Windows", {}),
   command = "wincmd =",
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+  group = vim.api.nvim_create_augroup("Windows", {}),
+  callback = function()
+    if vim.fn.winnr("$") == 1 and vim.fn.win_gettype() == "quickfix" then vim.cmd.q() end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+  group = vim.api.nvim_create_augroup("LineNumbers", {}),
+  pattern = "*",
+  command = "if &nu && mode() != 'i' | set rnu | endif",
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+  group = vim.api.nvim_create_augroup("LineNumbers", {}),
+  pattern = "*",
+  command = "if &nu | set nornu | endif",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -101,6 +140,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function() vim.hl.on_yank() end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("FormatOptions", {}),
+  pattern = "*",
+  callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end,
+})
+
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true })
@@ -114,6 +159,7 @@ vim.keymap.set("n", "<c-p>", "<cmd>buffer ", { desc = "Switch buffer" })
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>N", "<cmd>messages<cr>", { desc = "Messages" })
+vim.keymap.set("n", "<leader>z", "<cmd>set nu! rnu!<cr>", { desc = "Toggle line numbers" })
 vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>x", vim.diagnostic.setloclist, { desc = "Diagnostic list" })

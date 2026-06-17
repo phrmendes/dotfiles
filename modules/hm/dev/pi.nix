@@ -1,12 +1,9 @@
 { config, ... }:
-let
-  inherit (config.settings) home;
-in
 {
   modules.homeManager.dev.pi =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
-      agentHome = "${home}/.pi/agent";
+      agentHome = "${config.home.homeDirectory}/.pi/agent";
       piDir = ../../../files/pi;
     in
     {

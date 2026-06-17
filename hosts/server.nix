@@ -12,33 +12,7 @@ in
       ...
     }:
     {
-      imports =
-        builtins.attrValues nixos.core
-        ++ (with nixos.server; [
-          adguardhome
-          age
-          atuin
-          beszel
-          caddy
-          duplicati
-          excalidraw
-          filesystems
-          flaresolverr
-          homepage
-          linkding
-          litestream
-          media
-          neovim
-          networking
-          impermanence
-          podman
-          transmission
-          qdrant
-          options
-          sftpgo
-          syncthing
-          tailscale
-        ]);
+      imports = builtins.attrValues nixos.core ++ builtins.attrValues nixos.server;
 
       networking.hostName = "server";
       machine.dotfilesDir = "${settings.home}/dotfiles";
@@ -96,12 +70,18 @@ in
         ++ (with homeManager.dev; [
           bat
           btop
+          eza
           fd
           fzf
           git
           jq
+          lazygit
           packages
+          pi
           ripgrep
+          starship
+          tealdeer
+          tmux
           yazi
           zoxide
           zsh

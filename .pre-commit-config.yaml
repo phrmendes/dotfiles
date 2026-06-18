@@ -15,7 +15,7 @@ repos:
 
       - id: statix
         name: statix
-        entry: nix run nixpkgs#statix -- check
+        entry: nix run nixpkgs#statix -- check -i '**/.devenv/**'
         language: system
         files: \.nix$
         pass_filenames: false

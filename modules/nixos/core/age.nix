@@ -6,7 +6,8 @@ in
   modules.nixos.core.age =
     _:
     let
-      secretReadable = args: dotfilesLib.mkSecretReadable ({ user = settings.user; } // args);
+      inherit (settings) user;
+      secretReadable = args: dotfilesLib.mkSecretReadable ({ inherit user; } // args);
     in
     {
       imports = [ inputs.agenix.nixosModules.default ];

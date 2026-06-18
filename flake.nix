@@ -59,7 +59,6 @@
         ./hosts/desktop.nix
         ./hosts/laptop.nix
         ./hosts/server.nix
-        ./hosts/phone.nix
       ];
     };
 }

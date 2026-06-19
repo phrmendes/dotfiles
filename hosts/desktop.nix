@@ -114,6 +114,7 @@ in
         ++ (with homeManager.workstation; [
           chromium
           cliphist
+          flameshot
           gnupg
           gtk
           hyprland

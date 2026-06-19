@@ -99,11 +99,12 @@ for i = 8, 9 do
 end
 
 if nix.is_laptop then
-  hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia-shell ipc call brightness increase"), { repeating = true })
-  hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia-shell ipc call brightness decrease"), { repeating = true })
+  hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up"), { repeating = true })
+  hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"), { repeating = true })
 end
 
-hl.permission({ binary = "/nix/store/.*/xdg-desktop-portal-hyprland", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/nix/store/.*/libexec/xdg-desktop-portal-hyprland", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "flameshot", type = "screencopy", mode = "allow" })
 hl.window_rule({ match = { class = ".blueman-manager-wrapped" }, float = true, opaque = true })
 hl.window_rule({ match = { class = "org.pulseaudio.pavucontrol" }, float = true, opaque = true, stay_focused = true })
 hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, float = true })
@@ -111,21 +112,16 @@ hl.window_rule({ match = { class = "firefox" }, opaque = true })
 hl.window_rule({ match = { class = "mpv" }, opaque = true })
 
 hl.layer_rule({
-  match = { namespace = "noctalia-shell:regionSelector" },
-  name = "noctalia-screenshot",
-  no_anim = true,
-})
-
-hl.layer_rule({
-  match = { namespace = "noctalia-background-.*" },
   name = "noctalia",
+  match = {
+    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$",
+  },
   ignore_alpha = 0.5,
   blur = true,
   blur_popups = true,
 })
 
-hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("noctalia-shell ipc call lockScreen lock"))
-hl.bind("SHIFT + print", hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-shot-and-record record"))
+hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 hl.bind("SUPER + ALT + H", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
 hl.bind("SUPER + ALT + J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 hl.bind("SUPER + ALT + K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
@@ -150,18 +146,18 @@ hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 hl.bind("SUPER + T", hl.dsp.group.lock_active())
-hl.bind("SUPER + V", hl.dsp.exec_cmd("noctalia-shell ipc call plugin:clipboard toggle"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
 hl.bind("SUPER + Z", hl.dsp.window.fullscreen())
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("SUPER + return", hl.dsp.exec_cmd("kitty"))
-hl.bind("SUPER + space", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+hl.bind("SUPER + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind("SUPER + tab", hl.dsp.group.next())
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia-shell ipc call volume decrease"), { repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("noctalia-shell ipc call volume muteInput"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("noctalia-shell ipc call volume muteOutput"))
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia-shell ipc call volume increase"), { repeating = true })
-hl.bind("print", hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-shot-and-record screenshot"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down"), { repeating = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("noctalia msg mic-mute"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("noctalia msg volume-mute"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia msg volume-up"), { repeating = true })
+hl.bind("print", hl.dsp.exec_cmd("env QT_QPA_PLATFORM=wayland flameshot gui"))
 
 for i = 1, 9 do
   hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))

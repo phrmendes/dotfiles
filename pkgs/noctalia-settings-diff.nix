@@ -1,27 +1,22 @@
 {
   writeShellApplication,
-  jq,
-  json-diff,
 }:
 writeShellApplication {
   name = "noctalia-settings-diff";
-  runtimeInputs = [
-    jq
-    json-diff
-  ];
+  meta.mainProgram = "noctalia-settings-diff";
   text = ''
-    SETTINGS_PATH="''${1:-$HOME/.config/noctalia/settings.json}"
+    CONFIG="$HOME/.config/noctalia/config.toml"
+    STATE="$HOME/.local/state/noctalia/settings.toml"
 
-    if [ ! -f "$SETTINGS_PATH" ]; then
-      echo "Error: $SETTINGS_PATH not found" >&2
+    if [ ! -f "$STATE" ]; then
+      echo "No runtime state file at $STATE"
       exit 1
     fi
 
-    RUNTIME_SETTINGS=$(noctalia-shell ipc call state all | jq -S .settings) || {
-      echo "Error: Failed to get runtime settings. Is Noctalia running?" >&2
-      exit 1
-    }
-
-    json-diff -C <(jq -S . "$SETTINGS_PATH") <(echo "$RUNTIME_SETTINGS") 2>/dev/null | grep -vP '^\x1b\[32m\+' || true
+    echo "=== Runtime overrides (state) vs base config ==="
+    echo "State: $STATE"
+    echo "Config: $CONFIG"
+    echo "---"
+    diff -u "$CONFIG" "$STATE" 2>/dev/null || true
   '';
 }

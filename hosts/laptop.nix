@@ -135,6 +135,7 @@ in
         ])
         ++ (with homeManager.workstation; [
           cliphist
+          flameshot
           gnupg
           gtk
           hyprland

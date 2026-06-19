@@ -16,6 +16,7 @@ _: {
           };
           Browser.Enabled = true;
           FdoSecrets = {
+            ShowNotification = false;
             ConfirmAccessItem = false;
             ConfirmDeleteItem = false;
             Enabled = true;
@@ -59,7 +60,7 @@ _: {
       home.packages = [ pkgs.keepassxc ];
 
       systemd.user.services."app-org.keepassxc.KeePassXC@autostart" = {
-        Unit.After = [ "noctalia-shell.service" ];
+        Unit.After = [ "noctalia.service" ];
       };
 
       xdg.portal.config = {

@@ -5,10 +5,11 @@ _: {
       home.packages =
         with pkgs;
         [
+          bws
           curl
           devenv
-          docker-credential-helpers
           docker-compose
+          docker-credential-helpers
           hurl
           jdk
           jqp

@@ -380,12 +380,6 @@ safely("later", function()
   })
 
   vim.api.nvim_create_autocmd("User", {
-    desc = "LSP-aware file renaming",
-    pattern = "MiniFilesActionRename",
-    callback = function(event) Snacks.rename.on_rename_file(event.data.from, event.data.to) end,
-  })
-
-  vim.api.nvim_create_autocmd("User", {
     desc = "Set border for mini.files window",
     pattern = "MiniFilesWindowOpen",
     callback = function(event) vim.api.nvim_win_set_config(event.data.win_id, { border = vim.g.border }) end,
@@ -443,6 +437,8 @@ safely("later", function()
   vim.keymap.set("n", "<leader>p", require("helpers").pickers.project, { desc = "Projects" })
   vim.keymap.set("n", "<leader>v", function() MiniExtra.pickers.visit_paths({ sort = sort_recent }) end, { desc = "Visits (cwd)" })
   vim.keymap.set("n", "<leader>Z", require("helpers").zoom, { desc = "Zoom" })
+
+  vim.keymap.set("n", "<leader>R", MiniSessions.restart, { desc = "Restart (keep session)" })
 
   vim.keymap.set("n", "<leader>e", function()
     if not MiniFiles.close() then

@@ -21,6 +21,7 @@ globals = {
   "MiniDoc",
   "MiniTabline",
   "MiniTest",
+  "MiniSessions",
 }
 
 max_line_length = 150

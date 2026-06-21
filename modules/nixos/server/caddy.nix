@@ -16,7 +16,7 @@ in
       options.server.caddy = {
         domain = lib.mkOption {
           type = lib.types.str;
-          default = "local.ohlongjohnson.tech";
+          default = "local.phrmendes.xyz";
           readOnly = true;
         };
 
@@ -39,9 +39,9 @@ in
           certs."${domain}" = {
             inherit domain;
             extraDomainNames = [ "*.${domain}" ];
-            dnsProvider = "cloudflare";
-            dnsResolver = "1.1.1.1:53";
-            environmentFile = config.age.secrets."cloudflare.env".path;
+            dnsProvider = "desec";
+            dnsResolver = "ns1.desec.io:53";
+            environmentFile = config.age.secrets."caddy.env".path;
             group = config.services.caddy.group;
             reloadServices = [ "caddy.service" ];
           };

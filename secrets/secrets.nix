@@ -10,7 +10,7 @@ let
 in
 {
   "beszel.age.env".publicKeys = allKeys;
-  "cloudflare.age.env".publicKeys = allKeys;
+  "caddy.age.env".publicKeys = allKeys;
   "dockerhub.age.json".publicKeys = allKeys;
   "duplicati.age.env".publicKeys = allKeys;
   "linkding.age.env".publicKeys = allKeys;

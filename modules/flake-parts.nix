@@ -43,7 +43,7 @@
       };
       serverDomain = lib.mkOption {
         type = lib.types.str;
-        default = "local.ohlongjohnson.tech";
+        default = "local.phrmendes.xyz";
       };
       stateVersion = lib.mkOption {
         type = lib.types.str;

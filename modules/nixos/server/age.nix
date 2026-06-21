@@ -18,7 +18,7 @@
     {
       age.secrets = {
         "beszel.env" = secretReadable { file = ../../../secrets/beszel.age.env; };
-        "cloudflare.env" = secretReadable { file = ../../../secrets/cloudflare.age.env; };
+        "caddy.env" = secretReadable { file = ../../../secrets/caddy.age.env; };
         "linkding.env" = secretReadable { file = ../../../secrets/linkding.age.env; };
         "litestream.env" = secretReadable { file = ../../../secrets/litestream.age.env; };
         "telegram.env" = secretReadable { file = ../../../secrets/telegram.age.env; };

@@ -125,6 +125,7 @@ in
           neovide
           noctalia
           packages
+          stremio
           udiskie
           xdg
           zathura

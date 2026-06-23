@@ -26,7 +26,6 @@ _: {
         quarto
         satty
         slurp
-        stremio-linux-shell
         tectonic
         terraform
         tesseract

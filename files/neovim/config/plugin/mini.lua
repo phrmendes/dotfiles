@@ -242,6 +242,7 @@ safely("later", function()
   MiniKeymap.map_combo({ "i", "c", "x", "s" }, "jk", "<bs><bs><esc>")
   MiniKeymap.map_combo({ "i", "c", "x", "s" }, "kj", "<bs><bs><esc>")
   MiniKeymap.map_combo({ "i", "c", "x", "s" }, "<esc><esc>", function() vim.cmd("nohlsearch") end)
+  MiniKeymap.map_combo("t", "<esc><esc>", function() vim.cmd("stopinsert") end)
 end)
 
 safely("later", function()

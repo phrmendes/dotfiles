@@ -81,13 +81,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.scrolloff = 0
-    vim.cmd.startinsert()
-    if vim.v.servername ~= "" then
-      local editor = "nvim --server " .. vim.v.servername .. " --remote"
-      vim.env.EDITOR = editor
-      vim.env.GIT_EDITOR = editor
-      vim.env.VISUAL = editor
-    end
+
+    if vim.v.servername == "" then return end
+
+    local editor = "nvim --server " .. vim.v.servername .. " --remote"
+
+    vim.env.EDITOR = editor
+    vim.env.GIT_EDITOR = editor
+    vim.env.VISUAL = editor
   end,
 })
 

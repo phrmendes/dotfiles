@@ -26,7 +26,7 @@ _: {
           input.General = {
             ClassicBondedOnly = false;
             LEBondedOnly = false;
-            UserspaceHID = true;
+            UserspaceHID = false;
           };
         };
       };

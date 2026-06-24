@@ -18,6 +18,7 @@ in
           podman
           syncthing
           xdg-portal
+          gaming
         ]);
 
       networking.hostName = "desktop";
@@ -46,6 +47,8 @@ in
       boot.kernelModules = [
         "kvm-amd"
         "snd-aloop"
+        "hid-playstation"
+        "hidp"
       ];
 
       boot = {
@@ -115,6 +118,7 @@ in
           chromium
           cliphist
           flameshot
+          gaming
           gnupg
           gtk
           hyprland

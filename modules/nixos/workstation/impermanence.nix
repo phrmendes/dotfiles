@@ -2,6 +2,7 @@
 let
   inherit (config) settings;
   commonDirs = [
+    ".ansible"
     ".cache/helm"
     ".cache/helmfile"
     ".cache/keepassxc"
@@ -27,10 +28,11 @@ let
     ".local/state/noctalia"
     ".local/state/nvim"
     ".local/state/wireplumber"
-    ".pi/agent/sessions"
     ".mozilla"
     ".password-store"
+    ".pi/agent/sessions"
     ".ssh"
+    ".steam"
     ".zotero"
     "Documents"
     "Downloads"

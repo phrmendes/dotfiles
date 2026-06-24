@@ -2,6 +2,8 @@
 let
   inherit (config) settings;
   commonDirs = [
+    ".cache/helm"
+    ".cache/helmfile"
     ".cache/keepassxc"
     ".config"
     ".docker"

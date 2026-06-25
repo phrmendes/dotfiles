@@ -74,10 +74,10 @@ in
           enable32Bit = true;
         };
         nvidia = {
-          open = false;
+          open = true;
           nvidiaSettings = true;
           modesetting.enable = true;
-          package = config.boot.kernelPackages.nvidiaPackages.production;
+          package = config.boot.kernelPackages.nvidiaPackages.stable;
         };
       };
 

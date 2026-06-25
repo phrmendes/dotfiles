@@ -9,6 +9,7 @@ let
     ".config"
     ".docker"
     ".kube"
+    ".local/share/Steam"
     ".local/share/atuin"
     ".local/share/direnv"
     ".local/share/k9s"

@@ -6,7 +6,7 @@ _: {
         heroic
         hydralauncher
         mangohud
-        protonup-qt
+        protonup-rs
       ];
 
       home.sessionVariables = {

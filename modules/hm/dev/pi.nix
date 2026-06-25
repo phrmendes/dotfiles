@@ -12,6 +12,7 @@
           agent-browser
           jira-cli-go
           pi-coding-agent
+          rtk
         ];
 
         sessionVariables = {
@@ -25,9 +26,8 @@
             defaultProvider = "deepseek";
             defaultModel = "deepseek/deepseek-v4-flash";
             theme = "dark";
-            skills = [
-              "${pkgs.agent-browser}/skills"
-            ];
+            packages = [ "@sherif-fanous/pi-rtk" ];
+            skills = [ "${pkgs.agent-browser}/skills" ];
             compaction = {
               enabled = true;
               reserveTokens = 16384;

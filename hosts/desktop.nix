@@ -83,6 +83,16 @@ in
 
       services.xserver.videoDrivers = [ "nvidia" ];
 
+      fileSystems."/mnt/external" = {
+        device = "/dev/disk/by-label/external";
+        fsType = "ext4";
+        options = [
+          "defaults"
+          "noatime"
+          "nofail"
+        ];
+      };
+
       home-manager.users.${settings.user}.imports =
         (with homeManager.user; [
           base

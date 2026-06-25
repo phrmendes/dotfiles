@@ -93,6 +93,10 @@ in
         ];
       };
 
+      systemd.tmpfiles.rules = [
+        "d /mnt/external 0755 ${settings.user} users -"
+      ];
+
       home-manager.users.${settings.user}.imports =
         (with homeManager.user; [
           base

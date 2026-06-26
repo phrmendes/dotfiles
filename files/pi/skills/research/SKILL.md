@@ -8,7 +8,7 @@ description: Academic research workflows — PDF parsing, literature review, and
 ### Chatting with a paper
 
 1. Read the PDF and extract text
-2. For complex tables/equations, use `uv run docling` to parse the PDF to Markdown
+2. For complex tables/equations, use `docling` to parse the PDF to Markdown
 3. Answer grounded in retrieved content, cite section/page
 
 ### Literature review

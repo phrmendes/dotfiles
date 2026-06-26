@@ -10,6 +10,7 @@ _: {
           devenv
           docker-compose
           docker-credential-helpers
+          docling
           hurl
           jdk
           jqp

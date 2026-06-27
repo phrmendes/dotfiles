@@ -1,4 +1,4 @@
-safely("now", function()
+safely("later", function()
   require("codediff").setup({
     keymaps = {
       view = {

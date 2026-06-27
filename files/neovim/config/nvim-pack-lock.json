@@ -72,10 +72,6 @@
       "rev": "bfcc0171a43f22afa61d927ffe9fcb6cb85dc99e",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
-    "nvim-tinygit": {
-      "rev": "f12990601dfa63c623049b470dc306ca905064c8",
-      "src": "https://github.com/chrisgrieser/nvim-tinygit"
-    },
     "nvim-treesitter-context": {
       "rev": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"

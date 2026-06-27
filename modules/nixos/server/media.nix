@@ -6,8 +6,6 @@ in
   modules.nixos.server.media =
     {
       config,
-      pkgs,
-      lib,
       ...
     }:
     let

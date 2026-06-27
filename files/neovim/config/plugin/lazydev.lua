@@ -3,9 +3,10 @@ safely(
   function()
     require("lazydev").setup({
       library = {
-        { path = require("nix.neovim").luvit_meta, words = { "vim%.uv" } },
-        { path = require("nix.neovim").hyprland_stubs, words = { "hl%." } },
+        { path = "mini.nvim" },
         { path = "snacks.nvim", words = { "Snacks" } },
+        { path = require("nix.neovim").hyprland_stubs, words = { "hl%." } },
+        { path = require("nix.neovim").luvit_meta, words = { "vim%.uv" } },
         { vim.fs.joinpath(vim.env.HOME, "Projects", "dotfiles", "dotfiles", "nvim", "lua") },
       },
     })

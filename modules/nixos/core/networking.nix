@@ -6,7 +6,6 @@ in
   modules.nixos.core.networking =
     {
       pkgs,
-      config,
       lib,
       ...
     }:

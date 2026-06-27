@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+_: {
   modules.homeManager.dev.pi =
     { pkgs, config, ... }:
     let

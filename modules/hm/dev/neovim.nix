@@ -8,40 +8,27 @@
       ...
     }:
     let
-      inherit (osConfig.machine) dotfilesDir nvimServerPort vimPlugins;
+      inherit (osConfig.machine) dotfilesDir nvimServerPort;
       inherit (config.lib.file) mkOutOfStoreSymlink;
-      local-plugins =
-        if vimPlugins == null then
-          { }
-        else
-          vimPlugins
-          |> builtins.readDir
-          |> lib.filterAttrs (_: type: type == "directory")
-          |> lib.mapAttrs' (
-            name: _:
-            lib.nameValuePair ".local/share/nvim/site/pack/local/opt/${name}" {
-              source = "${vimPlugins}/${name}";
-            }
-          );
     in
     {
       programs.neovim = {
         enable = true;
+        package = pkgs.local.neovim.wasm;
         defaultEditor = true;
         vimAlias = true;
         vimdiffAlias = true;
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-
         extraPython3Packages =
           p: with p; [
             debugpy
             pymupdf
             pyqt5
           ];
-        plugins = pkgs.local.nvim-treesitter;
         extraPackages = with pkgs; [
+          tree-sitter
           # language servers
           astro-language-server
           basedpyright
@@ -78,11 +65,11 @@
       };
 
       home.packages = [
-        (pkgs.local.nvim-remote.override {
+        (pkgs.local.neovim.remote.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })
-        (pkgs.local.nvim-server.override {
+        (pkgs.local.neovim.server.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })
@@ -90,8 +77,10 @@
 
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
-      home.file = local-plugins // {
+      home.file = {
         ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
+        ".local/share/nvim/site/pack/local/opt".source =
+          mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/plugins";
       };
 
       systemd.user = {

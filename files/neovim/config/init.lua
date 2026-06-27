@@ -1,8 +1,10 @@
 vim.pack.add({
   "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
+  "https://github.com/arborist-ts/arborist.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
+  "https://github.com/esmuellert/codediff.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",
   "https://github.com/folke/snacks.nvim",
@@ -22,6 +24,7 @@ vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/nvim-mini/mini.nvim",
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
+  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
   "https://github.com/qvalentin/helm-ls.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/stevearc/conform.nvim",

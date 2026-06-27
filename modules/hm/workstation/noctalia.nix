@@ -11,7 +11,7 @@
     let
       c = config.lib.stylix.colors.withHashtag;
       inherit (osConfig.machine) isLaptop;
-      inherit (osConfig.machine.monitors) primary secondary;
+      inherit (osConfig.machine.monitors) secondary;
       barMonitorOverrides =
         if secondary != null then
           {

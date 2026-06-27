@@ -3,7 +3,6 @@ _: {
     {
       pkgs,
       config,
-      lib,
       ...
     }:
     let

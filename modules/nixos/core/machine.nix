@@ -40,11 +40,6 @@ _: {
           default = 6666;
           description = "Port the headless Neovim server listens on.";
         };
-        vimPlugins = lib.mkOption {
-          type = lib.types.nullOr lib.types.path;
-          default = null;
-          description = "Path to local vim plugins flake input directory.";
-        };
         type = lib.mkOption {
           type = lib.types.enum [
             "desktop"

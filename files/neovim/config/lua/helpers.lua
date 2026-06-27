@@ -1,4 +1,7 @@
 local M = {}
+M.mini = {}
+M.sidekick = {}
+M.sidekick.parse = {}
 
 --- Get the words from a dictionary file.
 --- @param lang string The language of the dictionary.
@@ -49,10 +52,8 @@ M.get_subdirectories = function(path)
     :totable()
 end
 
-M.pickers = {}
-
 --- Pick from listed buffers with <c-d> to delete.
-M.pickers.buffers = function()
+M.mini.buffers = function()
   local buf_items = function()
     return vim
       .iter(vim.fn.getbufinfo({ buflisted = 1 }))
@@ -99,7 +100,7 @@ end
 --- Find all git repos under ~/Projects and open them with MiniPick.
 --- Projects are sorted by recency (via mini.visits), falling back to alphabetical.
 --- On selection, changes cwd for the current tab and opens mini.files.
-M.pickers.project = function()
+M.mini.project = function()
   local root = vim.fs.joinpath(vim.env.HOME, "Projects")
   local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root }
 
@@ -173,10 +174,12 @@ M.zoom = function()
     style = "minimal",
     zindex = 50,
   })
+
   vim.wo[win].winblend = 60
   vim.wo[win].winhighlight = "Normal:ReadingModeBackdrop"
 
   local zoom_win = vim.api.nvim_get_current_win()
+
   vim.api.nvim_create_autocmd("WinClosed", {
     pattern = tostring(zoom_win),
     once = true,
@@ -254,6 +257,85 @@ M.zotcite_refs = function(key, cb)
       end,
     },
   })
+end
+
+M.sidekick.sources = {
+  files = "files",
+  buffers = "buffers",
+  grep = "grep_live",
+}
+
+--- Parse a table-formatted item into a location.
+--- @param item table The item to parse.
+--- @return { buf: number, name: string }?|{ name: string, row: number?, col: number? }?
+M.sidekick.parse.table = function(item)
+  local buf = item.bufnr or item.buf
+
+  if buf and vim.api.nvim_buf_is_valid(buf) then return {
+    buf = buf,
+    name = item.path or vim.api.nvim_buf_get_name(buf),
+  } end
+
+  if type(item.path) == "string" then return { name = item.path, row = item.lnum, col = item.col } end
+end
+
+--- Parse a null-delimited string item into a location.
+--- @param item string The item to parse.
+--- @return { name: string, row: number?, col: number? }?
+M.sidekick.parse.string = function(item)
+  local lnum, col = item:match("%z(%d+)%z?(%d*)")
+  local path = item:match("^(.-)%z") or item
+  if path:sub(1, 1) == "~" then path = (vim.loop.os_homedir() or "~") .. path:sub(2) end
+  if path == "" then return nil end
+  return {
+    name = path,
+    row = tonumber(lnum),
+    col = tonumber(col),
+  }
+end
+
+--- Parse an item (table or string) into a location.
+--- @param item table|string The item to parse.
+M.sidekick.parse.item = function(item)
+  if type(item) == "table" then return M.sidekick.parse.table(item) end
+  return M.sidekick.parse.string(item)
+end
+
+--- Create a picker action callback that parses items before invoking cb.
+--- @param cb function The callback to invoke with parsed location items.
+--- @return function: A MiniPick source.choose handler.
+M.sidekick.action = function(cb)
+  return function(item_or_items)
+    local items = vim.islist(item_or_items) and item_or_items or { item_or_items }
+    local result = vim.iter(items):map(M.sidekick.parse.item):filter(function(loc) return loc ~= nil end):totable()
+    if #result > 0 then cb(result) end
+  end
+end
+
+--- Open a MiniPick builtin wired to a callback.
+--- @param source string The builtin name ("files", "buffers", or "grep").
+--- @param cb function The callback to invoke with picked items.
+--- @param opts? table Additional MiniPick options.
+M.sidekick.open = function(source, cb, opts)
+  local builtin = M.sidekick.sources[source]
+  if not builtin or not MiniPick.builtin[builtin] then return end
+
+  MiniPick.builtin[builtin](
+    {},
+    vim.tbl_deep_extend("force", opts or {}, {
+      source = {
+        choose = M.sidekick.action(cb),
+        choose_marked = M.sidekick.action(cb),
+      },
+    })
+  )
+end
+
+--- Send parsed items to sidekick's CLI picker.
+--- @param ... any Items to parse and forward.
+M.sidekick.send = function(...)
+  local ok, picker = pcall(require, "sidekick.cli.picker")
+  if ok then M.sidekick.action(picker._send_cb())(...) end
 end
 
 return M

@@ -27,7 +27,7 @@
             module
             {
               nixpkgs.overlays = [
-                (final: prev: {
+                (_: prev: {
                   stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
                   local = import ../pkgs { pkgs = prev; };
                 })

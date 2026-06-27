@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+_: {
   modules.homeManager.workstation.flameshot =
     { config, ... }:
     let

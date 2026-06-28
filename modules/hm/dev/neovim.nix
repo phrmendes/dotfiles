@@ -45,7 +45,6 @@
           marksman
           nixd
           simple-completion-language-server
-          tailwindcss-language-server
           taplo
           tofu-ls
           typescript-language-server

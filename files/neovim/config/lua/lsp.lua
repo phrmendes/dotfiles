@@ -23,7 +23,6 @@ vim.lsp.enable({
   "nixd",
   "ruff",
   "scls",
-  "tailwindcss",
   "taplo",
   "terraformls",
   "tofu_ls",

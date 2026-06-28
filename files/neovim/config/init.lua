@@ -44,11 +44,3 @@ _G.safely = require("mini.misc").safely
 require("options")
 require("autocmds")
 require("lsp")
-
-require("vim._core.ui2").enable({
-  enable = true,
-  msg = {
-    msg = { height = 0.3, timeout = 5000 },
-    pager = { height = 0.5 },
-  },
-})

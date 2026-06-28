@@ -7,8 +7,8 @@ _: {
         settings = {
           promptToReturnFromSubprocess = false;
           disableStartupPopups = true;
-          gui.nerdFontsVersion = "3";
           os.editPreset = "nvim-remote";
+          gui.nerdFontsVersion = "3";
           git.pagers = [
             {
               colorArg = "always";

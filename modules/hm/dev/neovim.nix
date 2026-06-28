@@ -63,12 +63,12 @@
         ];
       };
 
-      home.packages = [
-        (pkgs.local.neovim.remote.override {
+      home.packages = with pkgs; [
+        (local.neovim.remote.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })
-        (pkgs.local.neovim.server.override {
+        (local.neovim.server.override {
           neovim = config.programs.neovim.finalPackage;
           inherit nvimServerPort;
         })

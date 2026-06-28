@@ -46,7 +46,10 @@ _: {
         }
       ];
       dbsJson =
-        dbs |> map ({ name, path }: lib.nameValuePair name path) |> lib.listToAttrs |> builtins.toJSON;
+        dbs
+        |> map ({ name, path }: lib.nameValuePair name path)
+        |> lib.listToAttrs
+        |> builtins.toJSON;
       litestreamNotify = pkgs.writeShellApplication {
         name = "litestream-notify";
         runtimeInputs = [

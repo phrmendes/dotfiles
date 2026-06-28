@@ -4,7 +4,6 @@
   writeShellApplication,
 }:
 let
-  wasm = neovim-unwrapped.override { wasmSupport = true; };
   mkWrapper =
     { name, text }:
     lib.makeOverridable (
@@ -17,10 +16,9 @@ let
         runtimeInputs = [ neovim ];
         text = text nvimServerPort;
       }
-    ) { neovim = wasm; };
+    ) { neovim = neovim-unwrapped; };
 in
 {
-  inherit wasm;
   remote = mkWrapper {
     name = "nvim-remote";
     text = port: ''nvim --remote-ui --server "$1:${toString port}"'';

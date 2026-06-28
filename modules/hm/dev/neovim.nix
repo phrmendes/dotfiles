@@ -14,7 +14,6 @@
     {
       programs.neovim = {
         enable = true;
-        package = pkgs.local.neovim.wasm;
         defaultEditor = true;
         vimAlias = true;
         vimdiffAlias = true;

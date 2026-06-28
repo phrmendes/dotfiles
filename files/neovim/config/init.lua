@@ -4,7 +4,6 @@ vim.pack.add({
   "https://github.com/arborist-ts/arborist.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
-  "https://github.com/esmuellert/codediff.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",
   "https://github.com/folke/snacks.nvim",

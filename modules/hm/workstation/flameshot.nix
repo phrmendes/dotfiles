@@ -13,7 +13,6 @@ _: {
           drawColor = c.base08;
           drawThickness = 3;
           showStartupLaunchMessage = false;
-          useGrimAdapter = true;
           disabledTrayIcon = true;
           savePath = "${config.home.homeDirectory}/Pictures/Screenshots";
           savePathFixed = true;

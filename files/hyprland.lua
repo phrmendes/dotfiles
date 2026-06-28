@@ -71,7 +71,7 @@ hl.config({
     disable_hyprland_logo = true,
   },
   debug = { damage_tracking = 2 },
-  ecosystem = { enforce_permissions = true, no_update_news = true, no_donation_nag = true },
+  ecosystem = { enforce_permissions = false, no_update_news = true, no_donation_nag = true },
 })
 
 hl.monitor({
@@ -105,6 +105,7 @@ end
 
 hl.permission({ binary = "/nix/store/.*/libexec/xdg-desktop-portal-hyprland", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "flameshot", type = "screencopy", mode = "allow" })
+hl.window_rule({ match = { title = "flameshot" }, float = true })
 hl.window_rule({ match = { class = ".blueman-manager-wrapped" }, float = true, opaque = true })
 hl.window_rule({ match = { class = "org.pulseaudio.pavucontrol" }, float = true, opaque = true, stay_focused = true })
 hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, float = true })

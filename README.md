@@ -5,8 +5,8 @@ NixOS + Home Manager configuration for three machines — desktop, laptop, and s
 ## Structure
 
 ```
-flake.nix        — inputs and mkFlake entry point
-modules/         — feature modules (auto-imported via import-tree)
+flake.nix          — inputs and mkFlake entry point
+modules/           — feature modules (auto-imported via import-tree)
   flake-parts.nix  — global settings and options
   lib.nix          — shared helper functions (dotfilesLib)
   nixos/           — NixOS modules
@@ -17,40 +17,32 @@ modules/         — feature modules (auto-imported via import-tree)
     user/          — all users
     dev/           — development tools
     workstation/   — workstation UI and apps
-hosts/           — per-machine compositions
+pkgs/              — custom packages
+files/             — config files managed as out-of-store symlinks
+secrets/           — agenix-encrypted secrets
+hosts/             — per-machine compositions
   desktop.nix
   laptop.nix
   server.nix
-pkgs/            — custom packages
-files/           — config files managed as out-of-store symlinks
-secrets/         — agenix-encrypted secrets
 ```
-
-## Machines
-
-| Host      | Type        | Notable                                   |
-| --------- | ----------- | ----------------------------------------- |
-| `desktop` | Workstation | AMD CPU, NVIDIA GPU, Hyprland             |
-| `laptop`  | Workstation | Intel CPU, Hyprland, power management     |
-| `server`  | Headless    | Intel Celeron J3455, self-hosted services |
 
 ## Server services
 
-| Service                             | URL                                    |
-| ----------------------------------- | -------------------------------------- |
-| AdGuard Home                        | `adguardhome.local.ohlongjohnson.tech` |
-| Atuin                               | `atuin.local.ohlongjohnson.tech`       |
-| Beszel                              | `beszel.local.ohlongjohnson.tech`      |
-| Duplicati                           | `duplicati.local.ohlongjohnson.tech`   |
-| Excalidraw                          | `excalidraw.local.ohlongjohnson.tech`  |
-| Homepage                            | `homepage.local.ohlongjohnson.tech`    |
-| Jellyfin                            | `jellyfin.local.ohlongjohnson.tech`    |
-| Linkding                            | `linkding.local.ohlongjohnson.tech`    |
-| LiteLLM                             | `litellm.local.ohlongjohnson.tech`     |
-| SFTPGo                              | `sftpgo.local.ohlongjohnson.tech`      |
-| Sonarr / Radarr / Prowlarr / Bazarr | `*.local.ohlongjohnson.tech`           |
-| Syncthing                           | `syncthing.local.ohlongjohnson.tech`   |
-| WebDAV                              | `webdav.local.ohlongjohnson.tech`      |
+| Service                             | URL                                |
+| ----------------------------------- | ---------------------------------- |
+| AdGuard Home                        | `adguardhome.local.phrmendes.xyz`  |
+| Atuin                               | `atuin.local.phrmendes.xyz`        |
+| Beszel                              | `beszel.local.phrmendes.xyz`       |
+| Duplicati                           | `duplicati.local.phrmendes.xyz`    |
+| Excalidraw                          | `excalidraw.local.phrmendes.xyz`   |
+| Homepage                            | `homepage.local.phrmendes.xyz`     |
+| Jellyfin                            | `jellyfin.local.phrmendes.xyz`     |
+| Linkding                            | `linkding.local.phrmendes.xyz`     |
+| SFTPGo                              | `sftpgo.local.phrmendes.xyz`       |
+| Sonarr / Radarr / Prowlarr / Bazarr | `*.local.phrmendes.xyz`            |
+| Syncthing                           | `syncthing.local.phrmendes.xyz`    |
+| Transmission                        | `transmission.local.phrmendes.xyz` |
+| WebDAV                              | `webdav.local.phrmendes.xyz`       |
 
 ## Install
 

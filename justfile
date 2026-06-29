@@ -2,10 +2,6 @@
 deploy target address=target:
     nixos-rebuild switch --flake ".#{{ target }}" --target-host "phrmendes@{{ address }}" --sudo
 
-# Format all Nix files using flake formatter
-fmt:
-    nix fmt
-
 # Run all pre-commit hooks using prek
 hooks:
     nix run nixpkgs#prek -- run --all-files

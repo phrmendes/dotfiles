@@ -29,6 +29,7 @@
         extraPackages = with pkgs; [
           tree-sitter
           # language servers
+          ansible-language-server
           astro-language-server
           basedpyright
           bash-language-server
@@ -45,20 +46,25 @@
           nixd
           simple-completion-language-server
           taplo
+          tinymist
           tofu-ls
           typescript-language-server
           vscode-langservers-extracted
           yaml-language-server
+          # linters
+          ansible-lint
+          shellcheck
+          tflint
           # formatters
           djlint
+          jq
           nixfmt
-          prettier
+          oxfmt
           ruff
           shellharden
           stylua
-          # linters
-          shellcheck
-          tflint
+          typstyle
+          yq-go
         ];
       };
 

@@ -58,7 +58,7 @@ end
 -- treat '-' as part of a word
 vim.opt.iskeyword:append("-")
 
--- add filetypes
+-- add filetypes (also registers filetype names used by nvim-lspconfig)
 vim.filetype.add({
   filename = {
     ["todo.txt"] = "todotxt",
@@ -71,10 +71,15 @@ vim.filetype.add({
   pattern = {
     ["Caddyfile.*"] = "caddy",
     ["*/.kube/config"] = "yaml",
+    ["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
+    ["%.gitlab%-ci%.ya?ml"] = "yaml.gitlab",
+    ["%.tfvars"] = "opentofu-vars",
   },
   extension = {
     http = "http",
+    mdx = "markdown.mdx",
     tf = "terraform",
+    tofu = "opentofu",
     dump = "log",
   },
 })

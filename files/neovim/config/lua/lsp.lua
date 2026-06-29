@@ -3,6 +3,7 @@ local augroups = {
 }
 
 vim.lsp.enable({
+  "ansiblels",
   "astro",
   "basedpyright",
   "bashls",
@@ -24,10 +25,9 @@ vim.lsp.enable({
   "ruff",
   "scls",
   "taplo",
-  "terraformls",
+  "tinymist",
   "tofu_ls",
   "ts_ls",
-  "ty",
   "yamlls",
 })
 

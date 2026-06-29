@@ -83,7 +83,8 @@
 
       home.file = {
         ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
-        ".local/share/nvim/site/pack/local/opt".source = ../../../files/neovim/plugins;
+        ".local/share/nvim/site/pack/local/start".source =
+          mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/plugins";
       };
 
       systemd.user = {

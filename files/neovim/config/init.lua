@@ -33,10 +33,6 @@ vim.pack.add({
   "https://github.com/tpope/vim-dadbod",
 })
 
-for name in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath("data"), "site", "pack", "local", "opt")) do
-  vim.cmd.packadd(name)
-end
-
 require("mini.misc").setup()
 
 _G.safely = require("mini.misc").safely

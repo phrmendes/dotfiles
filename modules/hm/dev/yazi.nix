@@ -10,7 +10,6 @@ _: {
             vcs-files
             git
             githead
-            lazygit
             ;
         };
         settings = {
@@ -48,8 +47,8 @@ _: {
                 "g"
                 "l"
               ];
-              run = "plugin lazygit";
-              desc = "Open lazygit";
+              run = ''shell "nvim '+Neogit kind=floating'" --block'';
+              desc = "Open Neogit";
             }
           ];
         };

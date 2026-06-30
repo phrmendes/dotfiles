@@ -28,7 +28,6 @@
           asr = "${lib.getExe pkgs.atuin} scripts run";
           cat = lib.getExe pkgs.bat;
           g = lib.getExe pkgs.git;
-          lg = lib.getExe pkgs.lazygit;
           v = "nvim";
           vr = "nvim-remote";
           vs = "nvim-server";

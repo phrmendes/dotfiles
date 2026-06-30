@@ -119,7 +119,6 @@ in
           jq
           k8s
           kitty
-          lazygit
           neovim
           nix-index
           pi

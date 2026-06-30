@@ -75,7 +75,6 @@ in
           fzf
           git
           jq
-          lazygit
           packages
           pi
           ripgrep

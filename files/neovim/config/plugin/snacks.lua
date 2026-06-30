@@ -3,12 +3,10 @@ safely("now", function()
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     words = { enabled = true },
-    lazygit = { configure = false },
     image = { enabled = true },
     terminal = { enabled = true },
   })
 
   vim.keymap.set({ "n", "t" }, "<c-t>", function() Snacks.terminal.toggle(nil, { count = vim.v.count1 }) end, { desc = "Toggle terminal" })
-  vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
   vim.keymap.set("n", "<leader>go", function() Snacks.gitbrowse() end, { desc = "Open in browser" })
 end)

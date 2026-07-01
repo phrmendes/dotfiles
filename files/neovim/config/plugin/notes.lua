@@ -4,12 +4,13 @@ safely("now", function()
   notes.setup({
     path = vim.fs.joinpath(vim.env.HOME, "Documents", "notes"),
     picker = "mini",
+    journal = { title_format = "%d/%m/%Y" },
     lsp = {
-      marksman = true,
-      ltex_plus = true,
-    },
-    journal = {
-      title_format = "%d/%m/%Y",
+      marksman = { enabled = true },
+      ltex_plus = {
+        enabled = true,
+        languages = { default = "en-US", additionals = { "pt-BR" } },
+      },
     },
   })
 

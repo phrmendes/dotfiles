@@ -6,27 +6,53 @@ issue:
   types:
     - name: Iniciativa
       handle: Iniciativa
+      id: "10060"
+      subtask: false
     - name: Epic
       handle: Epic
+      id: "10000"
+      subtask: false
     - name: História
       handle: História
+      id: "10022"
+      subtask: false
     - name: Nova Feature
       handle: Nova Feature
+      id: "10473"
+      subtask: false
     - name: Melhoria
       handle: Melhoria
+      id: "10475"
+      subtask: false
     - name: Ajuste
       handle: Ajuste
+      id: "10474"
+      subtask: false
     - name: Bug
       handle: Bug
+      id: "10007"
+      subtask: false
     - name: Débito técnico
       handle: Débito técnico
+      id: "10394"
+      subtask: false
     - name: Incidente
       handle: Incidente
+      id: "10541"
+      subtask: false
     - name: Estudo/Mapeamento
       handle: Estudo/Mapeamento
+      id: "10395"
+      subtask: false
     - name: Validação de hipótese
       handle: Validação de hipótese
+      id: "10396"
+      subtask: false
     - name: Spike
       handle: Spike
+      id: "10472"
+      subtask: false
     - name: Subtarefa
       handle: Subtarefa
+      id: "10006"
+      subtask: true

@@ -18,10 +18,12 @@ _: {
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
           AGENT_BROWSER_SKILLS_DIR = "${pkgs.agent-browser}/skills";
           PI_CACHE_RETENTION = "long";
+          PI_SKIP_VERSION_CHECK = "1";
         };
 
         file = {
           "${agentHome}/settings.json".text = builtins.toJSON {
+            quietStartup = true;
             defaultProvider = "deepseek";
             defaultModel = "deepseek/deepseek-v4-flash";
             theme = "dark";

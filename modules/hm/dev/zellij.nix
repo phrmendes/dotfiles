@@ -3,7 +3,6 @@ _: {
     programs.zellij = {
       enable = true;
       exitShellOnExit = false;
-      extraConfig = builtins.readFile ../../../files/zellij.kdl;
       settings = {
         mouse_mode = true;
         scroll_buffer_size = 10000;
@@ -13,6 +12,7 @@ _: {
         default_layout = "compact";
         show_release_notes = false;
       };
+      extraConfig = builtins.readFile ../../../files/zellij.kdl;
     };
   };
 }

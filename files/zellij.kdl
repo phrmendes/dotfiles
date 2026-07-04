@@ -1,3 +1,9 @@
+plugins {
+    welcome-screen location="zellij:session-manager" {
+        welcome_screen false
+    }
+}
+
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl Space" {

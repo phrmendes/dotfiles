@@ -1,10 +1,6 @@
-# Deploy to a remote NixOS host (usage: just deploy server [address])
-deploy target address=target:
-    nixos-rebuild switch --flake ".#{{ target }}" --target-host "phrmendes@{{ address }}" --sudo
-
-# Run all pre-commit hooks using prek
-hooks:
-    nix run nixpkgs#prek -- run --all-files
+# Format and lint all files
+fmt:
+    nix fmt
 
 # Restore a litestream-replicated DB on the server (usage: just restore-db <service>)
 restore-db service address="192.168.0.2":

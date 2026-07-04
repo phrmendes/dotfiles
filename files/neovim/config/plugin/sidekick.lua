@@ -7,7 +7,7 @@ safely("now", function()
     nes = { enabled = false },
     cli = {
       picker = "mini.pick",
-      mux = { backend = "tmux", enabled = true },
+      mux = { backend = "zellij", enabled = true },
       prompts = {
         dev = "Load /skill:dev. Instructions: ",
         plan = "Load /skill:plan. Instructions: ",

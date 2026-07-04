@@ -36,6 +36,12 @@
         initContent = ''
           set -o vi
 
+          deploy() {
+            local target="''${1:?usage: deploy <target> [address]}"
+            local address="''${2:-$target}"
+            nixos-rebuild switch --flake ".#''${target}" --target-host "phrmendes@''${address}" --sudo
+          }
+
           _just_completion() { source <(JUST_COMPLETE=zsh ${pkgs.just}/bin/just) }
           compdef _just_completion just
 

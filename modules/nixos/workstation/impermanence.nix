@@ -7,7 +7,6 @@ let
     ".cache/helmfile"
     ".cache/keepassxc"
     ".cache/noctalia"
-    ".cache/prek"
     ".config"
     ".docker"
     ".kube"

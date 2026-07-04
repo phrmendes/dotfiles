@@ -19,7 +19,6 @@ _: {
           nodejs_latest
           parallel
           pass
-          prek
           python314
           sqlite
           typst

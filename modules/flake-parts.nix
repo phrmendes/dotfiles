@@ -12,11 +12,18 @@
       "x86_64-linux"
       "aarch64-linux"
     ];
-    perSystem =
-      { pkgs, ... }:
-      {
-        formatter = pkgs.nixfmt;
+    perSystem = _: {
+      treefmt.config = {
+        projectRootFile = "flake.nix";
+        programs = {
+          nixfmt.enable = true;
+          deadnix.enable = true;
+          statix.enable = true;
+          stylua.enable = true;
+          kdlfmt.enable = true;
+        };
       };
+    };
   };
 
   options = {

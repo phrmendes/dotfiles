@@ -1,0 +1,191 @@
+keybinds clear-defaults=true {
+    locked {
+        bind "Ctrl Space" {
+            SwitchToMode "Normal"
+        }
+    }
+    normal {
+        bind "Ctrl Space" {
+            SwitchToMode "Locked"
+        }
+        bind "-" {
+            NewPane "Down"
+            SwitchToMode "Locked"
+        }
+        bind "\\" {
+            NewPane "Right"
+            SwitchToMode "Locked"
+        }
+        bind "h" {
+            MoveFocus "Left"
+            SwitchToMode "Locked"
+        }
+        bind "j" {
+            MoveFocus "Down"
+            SwitchToMode "Locked"
+        }
+        bind "k" {
+            MoveFocus "Up"
+            SwitchToMode "Locked"
+        }
+        bind "l" {
+            MoveFocus "Right"
+            SwitchToMode "Locked"
+        }
+        bind "H" {
+            Resize "Increase Left"
+        }
+        bind "J" {
+            Resize "Increase Down"
+        }
+        bind "K" {
+            Resize "Increase Up"
+        }
+        bind "L" {
+            Resize "Increase Right"
+        }
+        bind "z" {
+            ToggleFocusFullscreen
+            SwitchToMode "Locked"
+        }
+        bind "Enter" {
+            NextSwapLayout
+            SwitchToMode "Locked"
+        }
+        bind "q" {
+            CloseFocus
+            SwitchToMode "Locked"
+        }
+        bind "n" {
+            NewTab
+            SwitchToMode "Locked"
+        }
+        bind "w" {
+            SwitchToMode "Tab"
+        }
+        bind "[" {
+            GoToPreviousTab
+            SwitchToMode "Locked"
+        }
+        bind "]" {
+            GoToNextTab
+            SwitchToMode "Locked"
+        }
+        bind "d" {
+            Detach
+        }
+        bind "v" {
+            SwitchToMode "Scroll"
+        }
+    }
+    tab {
+        bind "Ctrl Space" "Esc" "q" {
+            SwitchToMode "Locked"
+        }
+        bind "h" "Left" {
+            GoToPreviousTab
+        }
+        bind "l" "Right" {
+            GoToNextTab
+        }
+        bind "Enter" {
+            SwitchToMode "Locked"
+        }
+        bind "n" {
+            NewTab
+            SwitchToMode "Locked"
+        }
+        bind "x" {
+            CloseTab
+            SwitchToMode "Locked"
+        }
+        bind "1" {
+            GoToTab 1
+            SwitchToMode "Locked"
+        }
+        bind "2" {
+            GoToTab 2
+            SwitchToMode "Locked"
+        }
+        bind "3" {
+            GoToTab 3
+            SwitchToMode "Locked"
+        }
+        bind "4" {
+            GoToTab 4
+            SwitchToMode "Locked"
+        }
+        bind "5" {
+            GoToTab 5
+            SwitchToMode "Locked"
+        }
+        bind "6" {
+            GoToTab 6
+            SwitchToMode "Locked"
+        }
+        bind "7" {
+            GoToTab 7
+            SwitchToMode "Locked"
+        }
+        bind "8" {
+            GoToTab 8
+            SwitchToMode "Locked"
+        }
+        bind "9" {
+            GoToTab 9
+            SwitchToMode "Locked"
+        }
+    }
+    scroll {
+        bind "Ctrl Space" "q" {
+            SwitchToMode "Locked"
+        }
+        bind "j" "Down" {
+            ScrollDown
+        }
+        bind "k" "Up" {
+            ScrollUp
+        }
+        bind "Ctrl d" {
+            HalfPageScrollDown
+        }
+        bind "Ctrl u" {
+            HalfPageScrollUp
+        }
+        bind "Ctrl f" {
+            PageScrollDown
+        }
+        bind "Ctrl b" {
+            PageScrollUp
+        }
+        bind "g" {
+            ScrollToTop
+        }
+        bind "G" {
+            ScrollToBottom
+        }
+        bind "/" {
+            SwitchToMode "Search"
+        }
+    }
+    search {
+        bind "Ctrl Space" "Esc" "q" {
+            SwitchToMode "Locked"
+        }
+        bind "j" "Down" {
+            ScrollDown
+        }
+        bind "k" "Up" {
+            ScrollUp
+        }
+        bind "n" {
+            Search "down"
+        }
+        bind "N" {
+            Search "up"
+        }
+        bind "Enter" {
+            SwitchToMode "Locked"
+        }
+    }
+}

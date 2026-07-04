@@ -112,6 +112,7 @@ in
           gh
           git
           jq
+          jujutsu
           k8s
           kitty
           neovim

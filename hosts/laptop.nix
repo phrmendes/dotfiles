@@ -139,11 +139,12 @@ in
           gtk
           hyprland
           imv
-          lua
           keepassxc
+          lua
           mpv
           noctalia
           packages
+          stremio
           udiskie
           xdg
           zathura

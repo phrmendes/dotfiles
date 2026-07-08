@@ -23,9 +23,8 @@ _: {
         openFirewall = true;
         configDir = "/srv/home-assistant";
         extraComponents = [
-          "default_config"
-          "met"
           "mobile_app"
+          "sun"
           "tuya"
         ];
         config = {

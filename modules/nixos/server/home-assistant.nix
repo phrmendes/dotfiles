@@ -26,8 +26,10 @@ _: {
           "mobile_app"
           "sun"
           "tuya"
+          "zeroconf"
         ];
         config = {
+          mobile_app = { };
           homeassistant = {
             name = "Home";
             latitude = -23.5505;

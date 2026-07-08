@@ -20,6 +20,7 @@ vim.lsp.enable({
   "just",
   "lua_ls",
   "nixd",
+  "panache",
   "ruff",
   "scls",
   "taplo",

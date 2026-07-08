@@ -14,7 +14,7 @@ safely(
         json = { "jq" },
         just = { "just" },
         lua = { "stylua" },
-        markdown = { "oxfmt" },
+        markdown = { "oxfmt", "panache" },
         nix = { "nixfmt" },
         python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         sh = { "shellharden", "shfmt" },

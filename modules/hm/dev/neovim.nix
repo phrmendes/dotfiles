@@ -44,6 +44,7 @@
           lua-language-server
           marksman
           nixd
+          panache
           simple-completion-language-server
           taplo
           tofu-ls

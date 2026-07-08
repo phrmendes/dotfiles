@@ -7,7 +7,7 @@ _: {
         baseIndex = 1;
         escapeTime = 0;
         mouse = true;
-        prefix = "C-space";
+        prefix = "C-b";
         shell = lib.getExe pkgs.zsh;
         extraConfig = ''
           set -g  default-terminal     tmux-256color

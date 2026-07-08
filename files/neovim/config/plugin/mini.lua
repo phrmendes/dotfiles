@@ -160,11 +160,17 @@ end)
 
 safely("later", function()
   require("mini.completion").setup({
+    fallback_action = "<c-x><c-o>",
     window = {
       info = { height = 25, width = 80 },
       signature = { height = 25, width = 80 },
     },
-    fallback_action = "<c-x><c-o>",
+    mappings = {
+      force_twostep = "<c-f>",
+      force_fallback = "<a-f>",
+      scroll_down = "<c-d>",
+      scroll_up = "<c-u>",
+    },
     lsp_completion = {
       source_func = "omnifunc",
       auto_setup = false,
@@ -174,7 +180,6 @@ safely("later", function()
         })
       end,
     },
-    mappings = { force_twostep = "<c-f>", force_fallback = "<a-f>", scroll_down = "<c-d>", scroll_up = "<c-u>" },
   })
 
   vim.lsp.config("*", { capabilities = MiniCompletion.get_lsp_capabilities() })
@@ -416,8 +421,6 @@ safely("later", function()
   vim.keymap.set("n", "<leader>bd", MiniBufremove.delete, { desc = "Delete" })
   vim.keymap.set("n", "<leader>bw", MiniBufremove.wipeout, { desc = "Wipeout" })
   vim.keymap.set("n", "<leader>gd", function() MiniDiff.toggle_overlay(0) end, { desc = "Diff (file)" })
-  vim.keymap.set("n", "<leader>gP", "<cmd>Git push<cr>", { desc = "Push" })
-  vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
   vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, { desc = "Modified files" })
   vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
   vim.keymap.set("n", "<leader>p", require("helpers").mini.project, { desc = "Projects" })

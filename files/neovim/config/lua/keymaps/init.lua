@@ -5,6 +5,7 @@ end
 vim.keymap.set({ "n", "x" }, "s", "<nop>")
 vim.keymap.set("n", "<c-d>", "<c-d>zz", { desc = "Half page down" })
 vim.keymap.set("n", "<c-u>", "<c-u>zz", { desc = "Half page up" })
+
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })

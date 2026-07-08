@@ -20,6 +20,7 @@ _: {
 
       services.home-assistant = {
         enable = true;
+        openFirewall = true;
         configDir = "/srv/home-assistant";
         extraComponents = [
           "default_config"

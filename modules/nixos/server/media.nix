@@ -36,7 +36,6 @@ in
           };
         };
         prowlarr = {
-          dataDir = "/srv/prowlarr";
           url = "prowlarr.${domain}";
           monitoredServices = [ "prowlarr" ];
           homepage = {
@@ -111,7 +110,6 @@ in
         };
         prowlarr = {
           enable = true;
-          dataDir = "/srv/prowlarr";
           settings.server.bindAddress = "127.0.0.1";
         };
         bazarr = {

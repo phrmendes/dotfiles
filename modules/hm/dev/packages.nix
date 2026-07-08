@@ -21,7 +21,6 @@ _: {
           pass
           python314
           sqlite
-          typst
         ]
         ++ (with pkgs.local; [
           diff-persist

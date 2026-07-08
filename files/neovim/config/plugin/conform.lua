@@ -20,7 +20,6 @@ safely(
         sh = { "shellharden", "shfmt" },
         terraform = { "terraform_fmt" },
         toml = { "taplo" },
-        typst = { "typstyle" },
         yaml = { "yq" },
         ["yaml.ansible"] = { "yq" },
         zsh = { "shellharden", "shfmt" },

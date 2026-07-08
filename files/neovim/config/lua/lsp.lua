@@ -23,7 +23,6 @@ vim.lsp.enable({
   "ruff",
   "scls",
   "taplo",
-  "tinymist",
   "tofu_ls",
   "ts_ls",
   "yamlls",

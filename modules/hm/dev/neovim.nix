@@ -46,7 +46,6 @@
           nixd
           simple-completion-language-server
           taplo
-          tinymist
           tofu-ls
           typescript-language-server
           vscode-langservers-extracted
@@ -63,7 +62,6 @@
           ruff
           shellharden
           stylua
-          typstyle
           yq-go
         ];
       };

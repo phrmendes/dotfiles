@@ -25,6 +25,7 @@ _: {
         extraComponents = [
           "default_config"
           "met"
+          "mobile_app"
           "tuya"
         ];
         config = {

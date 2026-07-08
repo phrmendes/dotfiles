@@ -76,7 +76,6 @@ in
           git
           jq
           packages
-          pi
           ripgrep
           starship
           tealdeer

@@ -14,6 +14,7 @@ in
       imports =
         builtins.attrValues nixos.core
         ++ (with nixos.workstation; [
+          age
           hyprland
           libvirtd
           noctalia

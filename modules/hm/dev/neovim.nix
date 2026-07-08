@@ -47,6 +47,7 @@
           panache
           simple-completion-language-server
           taplo
+          texlab
           tofu-ls
           typescript-language-server
           vscode-langservers-extracted
@@ -63,6 +64,7 @@
           ruff
           shellharden
           stylua
+          tex-fmt
           yq-go
         ];
       };

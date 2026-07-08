@@ -19,6 +19,7 @@ safely(
         python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         sh = { "shellharden", "shfmt" },
         terraform = { "terraform_fmt" },
+        tex = { "tex-fmt" },
         toml = { "taplo" },
         yaml = { "yq" },
         ["yaml.ansible"] = { "yq" },

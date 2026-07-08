@@ -24,6 +24,7 @@ vim.lsp.enable({
   "ruff",
   "scls",
   "taplo",
+  "texlab",
   "tofu_ls",
   "ts_ls",
   "yamlls",

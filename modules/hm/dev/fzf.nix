@@ -11,8 +11,9 @@ _: {
           enable = true;
           enableZshIntegration = true;
           defaultCommand = "${fd} --type f";
-          changeDirWidgetCommand = "${fd} --type d";
-          fileWidgetOptions = [ "--preview '${bat} --color=always {}'" ];
+          changeDirWidget.command = "${fd} --type d";
+          fileWidget.options = [ "--preview '${bat} --color=always {}'" ];
+          historyWidget.command = "";
         };
     };
 }

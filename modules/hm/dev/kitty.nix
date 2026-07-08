@@ -1,23 +1,12 @@
 _: {
   modules.homeManager.dev.kitty =
-    {
-      pkgs,
-      config,
-      osConfig,
-      ...
-    }:
+    { pkgs, ... }:
     let
       kittens = "${pkgs.vimPlugins.smart-splits-nvim}/kitty";
-      themeFile = config.lib.stylix.colors {
-        templateRepo = config.stylix.inputs."tinted-kitty";
-        target = "base16";
-      };
     in
     {
-      stylix.targets.kitty.enable = false;
 
       home.file = {
-        ".config/kitty/theme.conf".source = themeFile;
         ".config/kitty/neighboring_window.py".source = "${kittens}/neighboring_window.py";
         ".config/kitty/relative_resize.py".source = "${kittens}/relative_resize.py";
         ".config/kitty/split_window.py".source = "${kittens}/split_window.py";
@@ -26,10 +15,6 @@ _: {
       programs.kitty = {
         enable = true;
         shellIntegration.enableZshIntegration = true;
-        font = with osConfig.stylix.fonts; {
-          inherit (monospace) package name;
-          size = sizes.terminal;
-        };
         settings = {
           active_tab_font_style = "bold";
           allow_remote_control = "yes";

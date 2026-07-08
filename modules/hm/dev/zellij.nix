@@ -11,6 +11,7 @@ _: {
         default_mode = "locked";
         default_layout = "compact";
         show_release_notes = false;
+        show_startup_tips = false;
       };
       extraConfig = builtins.readFile ../../../files/zellij.kdl;
     };

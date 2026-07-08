@@ -33,7 +33,7 @@ _: {
           name = "radarr";
         }
         {
-          path = "/var/lib/prowlarr/prowlarr.db";
+          path = "/srv/prowlarr/prowlarr.db";
           name = "prowlarr";
         }
         {

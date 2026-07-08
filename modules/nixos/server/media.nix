@@ -36,6 +36,7 @@ in
           };
         };
         prowlarr = {
+          dataDir = "/srv/prowlarr";
           url = "prowlarr.${domain}";
           monitoredServices = [ "prowlarr" ];
           homepage = {
@@ -88,6 +89,7 @@ in
           "d /srv/radarr 0750 radarr radarr -"
           "d /srv/bazarr 0750 bazarr bazarr -"
           "d /srv/jellyfin 0750 jellyfin jellyfin -"
+          "d /srv/prowlarr 0750 prowlarr prowlarr -"
         ];
       };
 
@@ -110,6 +112,7 @@ in
         };
         prowlarr = {
           enable = true;
+          dataDir = "/srv/prowlarr";
           settings.server.bindAddress = "127.0.0.1";
         };
         bazarr = {

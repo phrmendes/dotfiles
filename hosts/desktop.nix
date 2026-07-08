@@ -122,7 +122,7 @@ in
           ripgrep
           starship
           tealdeer
-          zellij
+          tmux
           yazi
           zoxide
           zsh

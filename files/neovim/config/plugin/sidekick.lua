@@ -1,13 +1,10 @@
-package.loaded["sidekick.cli.picker.mini.pick"] = require("helpers").sidekick
-
 safely("now", function()
   local cli = require("sidekick.cli")
 
   require("sidekick").setup({
     nes = { enabled = false },
     cli = {
-      picker = "mini.pick",
-      mux = { backend = "zellij", enabled = true },
+      mux = { backend = "tmux", enabled = true },
       prompts = {
         dev = "Load /skill:dev. Instructions: ",
         plan = "Load /skill:plan. Instructions: ",

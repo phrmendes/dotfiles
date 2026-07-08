@@ -4,7 +4,6 @@ globals = {
   "vim",
   "hl",
   "safely",
-  "Snacks",
   "MiniPick",
   "MiniIcons",
   "MiniNotify",

@@ -1,14 +1,14 @@
 vim.pack.add({
   "https://github.com/MagicDuck/grug-far.nvim",
-  "https://github.com/NeogitOrg/neogit",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/arborist-ts/arborist.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
+  "https://github.com/brianhuster/unnest.nvim",
   "https://github.com/esmuellert/codediff.nvim",
+  "https://github.com/waiting-for-dev/ergoterm.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",
-  "https://github.com/folke/snacks.nvim",
   "https://github.com/igorlfs/nvim-dap-view",
   "https://github.com/jalvesaq/zotcite",
   "https://github.com/jbyuki/one-small-step-for-vimkind",
@@ -43,3 +43,4 @@ _G.safely = require("mini.misc").safely
 require("options")
 require("autocmds")
 require("lsp")
+require("keymaps")

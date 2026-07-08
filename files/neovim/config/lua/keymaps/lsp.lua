@@ -7,12 +7,9 @@ return function(client, bufnr)
     return function() require("mini.extra").pickers.lsp({ scope = scope }) end
   end
 
-  vim.keymap.set("n", "]]", function() Snacks.words.jump(vim.v.count1) end, opts("go to next reference"))
-  vim.keymap.set("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, opts("go to previous reference"))
   vim.keymap.set("n", "<leader>d", function() require("mini.extra").pickers.diagnostic({ scope = "current" }) end, opts("diagnostics"))
   vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts("diagnostics"))
   vim.keymap.set("n", "<leader>D", function() require("mini.extra").pickers.diagnostic({ scope = "all" }) end, opts("workspace diagnostics"))
-  vim.keymap.set("n", "<leader>R", function() Snacks.rename.rename_file() end, opts("rename file"))
 
   local mappings = {
     { Methods.textDocument_rename, "n", "<f2>", vim.lsp.buf.rename, "rename symbol" },
@@ -23,7 +20,6 @@ return function(client, bufnr)
     { Methods.textDocument_typeDefinition, "n", "gt", picker("type_definition"), "go to type definition" },
     { Methods.textDocument_codeAction, { "n", "x" }, "<leader>c", vim.lsp.buf.code_action, "code actions" },
     { Methods.textDocument_signatureHelp, { "n", "x" }, "<leader>h", vim.lsp.buf.signature_help, "signature help" },
-    { Methods.textDocument_inlayHint, "n", "<leader>i", Snacks.toggle.inlay_hints, "toggle inlay hints" },
     { Methods.textDocument_hover, "n", "K", vim.lsp.buf.hover, "hover" },
     { Methods.textDocument_documentSymbol, "n", "<leader>s", picker("document_symbol"), "symbols (document)" },
     { Methods.workspace_symbol, "n", "<leader>S", picker("workspace_symbol"), "symbols (workspace)" },

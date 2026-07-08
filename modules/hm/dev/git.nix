@@ -3,7 +3,10 @@
   modules.homeManager.dev.git = {
     programs.difftastic = {
       enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        mode = "both";
+      };
     };
 
     programs.git = {
@@ -14,7 +17,7 @@
         };
         http.sslVerify = true;
         init.defaultBranch = "main";
-        merge.tool = "nvimdiff";
+        merge.tool = "vimdiff";
         pull.rebase = true;
         submodule.recurse = true;
         push = {
@@ -37,9 +40,7 @@
       };
       ignores = [
         ".env"
-        ".direnv"
         "Session.vim"
-        ".tasks.jsonl"
       ];
     };
   };

@@ -11,15 +11,16 @@
           };
           ui = {
             pager = "${lib.getExe pkgs.bat} -p";
-            "diff-editor" = "nvim-codediff";
-            "merge-editor" = "nvim-codediff";
+            "diff-editor" = "nvim";
+            "merge-editor" = "nvim";
+            "default-command" = "log";
           };
           signing = {
             "sign-all" = true;
             backend = "gpg";
             key = config.settings.email;
           };
-          "merge-tools"."nvim-codediff" = {
+          "merge-tools"."nvim" = {
             program = "nvim";
             "diff-args" = [
               "$left"
@@ -34,5 +35,7 @@
           };
         };
       };
+
+      home.packages = with pkgs; [ lazyjj ];
     };
 }

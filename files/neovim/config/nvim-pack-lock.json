@@ -24,6 +24,10 @@
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "ergoterm.nvim": {
+      "rev": "d1a8f7bf99024797962f699298b07a4ec57a652b",
+      "src": "https://github.com/waiting-for-dev/ergoterm.nvim"
+    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -115,6 +119,10 @@
     "undotree": {
       "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
       "src": "https://github.com/mbbill/undotree"
+    },
+    "unnest.nvim": {
+      "rev": "865b34a9db70ad4ea8715a397fad6491baa390c4",
+      "src": "https://github.com/brianhuster/unnest.nvim"
     },
     "vim-abolish": {
       "rev": "dcbfe065297d31823561ba787f51056c147aa682",

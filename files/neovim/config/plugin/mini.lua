@@ -126,27 +126,18 @@ safely("later", function()
   local clue = require("mini.clue")
   clue.setup({
     triggers = {
-      { mode = "n", keys = "<leader>" },
-      { mode = "x", keys = "<leader>" },
-      { mode = "n", keys = "<localleader>" },
-      { mode = "x", keys = "<localleader>" },
       { mode = "i", keys = "<c-x>" },
-      { mode = "n", keys = "g" },
-      { mode = "x", keys = "g" },
-      { mode = "n", keys = "s" },
-      { mode = "x", keys = "s" },
-      { mode = "n", keys = "'" },
-      { mode = "n", keys = "`" },
-      { mode = "x", keys = "'" },
-      { mode = "x", keys = "`" },
-      { mode = "n", keys = '"' },
-      { mode = "x", keys = '"' },
-      { mode = "i", keys = "<c-r>" },
-      { mode = "c", keys = "<c-r>" },
-      { mode = "n", keys = "<c-w>" },
       { mode = "n", keys = "<c-c>" },
-      { mode = "n", keys = "z" },
-      { mode = "x", keys = "z" },
+      { mode = "n", keys = "<c-w>" },
+      { mode = { "i", "c" }, keys = "<c-r>" },
+      { mode = { "n", "x" }, keys = "'" },
+      { mode = { "n", "x" }, keys = "<leader>" },
+      { mode = { "n", "x" }, keys = "<localleader>" },
+      { mode = { "n", "x" }, keys = "`" },
+      { mode = { "n", "x" }, keys = "g" },
+      { mode = { "n", "x" }, keys = "s" },
+      { mode = { "n", "x" }, keys = "z" },
+      { mode = { "n", "x" }, keys = '"' },
     },
     clues = {
       clue.gen_clues.builtin_completion(),
@@ -157,12 +148,11 @@ safely("later", function()
       clue.gen_clues.windows(),
       clue.gen_clues.z(),
       { mode = "n", keys = "<leader><tab>", desc = "+tabs" },
-      { mode = "n", keys = "<leader>a", desc = "+ai" },
+      { mode = { "n", "x" }, keys = "<leader>a", desc = "+agent" },
       { mode = "n", keys = "<leader>b", desc = "+buffers" },
-      { mode = "n", keys = "<leader>g", desc = "+git" },
+      { mode = "n", keys = "<leader>g", desc = "+vcs" },
       { mode = "n", keys = "<leader>n", desc = "+notes" },
       { mode = "n", keys = "<leader>t", desc = "+todotxt" },
-      { mode = "x", keys = "<leader>a", desc = "+ai" },
     },
     window = { delay = 500, config = { width = "auto", border = vim.g.border } },
   })
@@ -426,6 +416,8 @@ safely("later", function()
   vim.keymap.set("n", "<leader>bd", MiniBufremove.delete, { desc = "Delete" })
   vim.keymap.set("n", "<leader>bw", MiniBufremove.wipeout, { desc = "Wipeout" })
   vim.keymap.set("n", "<leader>gd", function() MiniDiff.toggle_overlay(0) end, { desc = "Diff (file)" })
+  vim.keymap.set("n", "<leader>gP", "<cmd>Git push<cr>", { desc = "Push" })
+  vim.keymap.set("n", "<leader>gp", "<cmd>Git pull<cr>", { desc = "Pull" })
   vim.keymap.set("n", "<leader>gm", function() MiniExtra.pickers.git_files({ scope = "modified" }) end, { desc = "Modified files" })
   vim.keymap.set("n", "<leader>m", MiniExtra.pickers.marks, { desc = "Marks" })
   vim.keymap.set("n", "<leader>p", require("helpers").mini.project, { desc = "Projects" })

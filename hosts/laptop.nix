@@ -141,6 +141,7 @@ in
           imv
           keepassxc
           lua
+          moonlight
           mpv
           noctalia
           packages

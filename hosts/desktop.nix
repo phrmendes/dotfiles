@@ -14,6 +14,7 @@ in
           hyprland
           libvirtd
           noctalia
+          sunshine
           impermanence
           pipewire
           podman

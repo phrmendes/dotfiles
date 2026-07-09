@@ -24,6 +24,10 @@
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "diffs.nvim": {
+      "rev": "7ab445c39224160203ae692d3c883e2f51f2d442",
+      "src": "https://github.com/barrettruth/diffs.nvim"
+    },
     "ergoterm.nvim": {
       "rev": "d1a8f7bf99024797962f699298b07a4ec57a652b",
       "src": "https://github.com/waiting-for-dev/ergoterm.nvim"
@@ -32,9 +36,21 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "gh-review.nvim": {
+      "rev": "b9e20b1453ea09f6d679e71a990b067136038962",
+      "src": "https://github.com/gh-tui-tools/gh-review.nvim"
+    },
+    "ghlite.nvim": {
+      "rev": "dc3af8cb7304dfe6959ede75a0bfc63a52cf704f",
+      "src": "https://github.com/daliusd/ghlite.nvim"
+    },
     "grug-far.nvim": {
       "rev": "c995bbacf8229dc096ec1c3d60f8531059c86c1b",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
+    "guh.nvim": {
+      "rev": "943779f7cdb0acee203985ad531fb53ff95d9c8e",
+      "src": "https://github.com/justinmk/guh.nvim"
     },
     "helm-ls.nvim": {
       "rev": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370",
@@ -91,6 +107,10 @@
     "nvim-treesitter-textobjects": {
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    "octo.nvim": {
+      "rev": "b9a73e167f851a98d8f29d62658d3640bb8a7314",
+      "src": "https://github.com/pwntester/octo.nvim"
     },
     "one-small-step-for-vimkind": {
       "rev": "1af6ffb9b5229a856e8090fa2f690e0931a5aace",

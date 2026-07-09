@@ -148,11 +148,12 @@ safely("later", function()
       clue.gen_clues.windows(),
       clue.gen_clues.z(),
       { mode = "n", keys = "<leader><tab>", desc = "+tabs" },
-      { mode = { "n", "x" }, keys = "<leader>a", desc = "+agent" },
       { mode = "n", keys = "<leader>b", desc = "+buffers" },
-      { mode = "n", keys = "<leader>g", desc = "+vcs" },
       { mode = "n", keys = "<leader>n", desc = "+notes" },
       { mode = "n", keys = "<leader>t", desc = "+todotxt" },
+      { mode = { "n", "x" }, keys = "<leader>a", desc = "+agent" },
+      { mode = { "n", "x" }, keys = "<leader>g", desc = "+git" },
+      { mode = { "n", "x" }, keys = "<leader>gp", desc = "+PR" },
     },
     window = { delay = 500, config = { width = "auto", border = vim.g.border } },
   })
@@ -275,23 +276,26 @@ safely("event:InsertEnter", function()
   MiniSnippets.start_lsp_server()
 end)
 
-safely(
-  "later",
-  function()
-    require("mini.surround").setup({
-      mappings = {
-        add = "sa",
-        find = "sf",
-        find_left = "sF",
-        highlight = "sh",
-        replace = "sr",
-        update_n_lines = "sn",
-        suffix_last = "l",
-        suffix_next = "n",
-      },
-    })
-  end
-)
+safely("later", function()
+  require("mini.surround").setup({
+    mappings = {
+      add = "sa",
+      find = "sf",
+      find_left = "sF",
+      highlight = "sh",
+      replace = "sr",
+      update_n_lines = "sn",
+      suffix_last = "l",
+      suffix_next = "n",
+    },
+  })
+
+  vim.api.nvim_create_autocmd("FileType", {
+    desc = "Disable surround in certain filetypes",
+    pattern = "gitrebase",
+    callback = function(event) vim.b[event.buf].minisurround_disable = true end,
+  })
+end)
 
 safely("later", function()
   require("mini.pick").setup({

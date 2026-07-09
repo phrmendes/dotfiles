@@ -17,7 +17,12 @@
         };
         http.sslVerify = true;
         init.defaultBranch = "main";
-        merge.tool = "vimdiff";
+        merge.tool = "diffs-nvim";
+        mergetool = {
+          "diffs-nvim" = {
+            cmd = "nvim $MERGED";
+          };
+        };
         pull.rebase = true;
         submodule.recurse = true;
         push = {

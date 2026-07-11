@@ -135,7 +135,6 @@ safely("later", function()
       { mode = { "n", "x" }, keys = "<localleader>" },
       { mode = { "n", "x" }, keys = "`" },
       { mode = { "n", "x" }, keys = "g" },
-      { mode = { "n", "x" }, keys = "s" },
       { mode = { "n", "x" }, keys = "z" },
       { mode = { "n", "x" }, keys = '"' },
     },
@@ -281,6 +280,7 @@ safely("later", function()
   require("mini.surround").setup({
     mappings = {
       add = "gsa",
+      delete = "gsd",
       find = "gsf",
       find_left = "gsF",
       highlight = "gsh",

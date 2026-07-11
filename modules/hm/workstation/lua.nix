@@ -50,6 +50,7 @@
           typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
           luatex = "${pkgs.texlivePackages.luatex-type-definitions.tex}/tex/luatex/luatex-type-definitions",
           lualibs = "${inputs.lualibs}/library",
+          busted = "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd/busted/library",
         }
       '';
 

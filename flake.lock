@@ -318,6 +318,22 @@
         "type": "github"
       }
     },
+    "lualibs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755936068,
+        "narHash": "sha256-FK5oN4C+1MtwRHxge11naWTcQ67GmmLh6HE4gZQXgqI=",
+        "owner": "TeXLuaCATS",
+        "repo": "Lualibs",
+        "rev": "fc5208a96a38edb670423865cb5df4b04c694f0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TeXLuaCATS",
+        "repo": "Lualibs",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1783368811,
@@ -469,13 +485,13 @@
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
+        "lualibs": "lualibs",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "stylix": "stylix",
-        "teXLuaCATS-lualibs": "teXLuaCATS-lualibs",
         "treefmt-nix": "treefmt-nix"
       }
     },
@@ -539,22 +555,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "teXLuaCATS-lualibs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1755936068,
-        "narHash": "sha256-FK5oN4C+1MtwRHxge11naWTcQ67GmmLh6HE4gZQXgqI=",
-        "owner": "TeXLuaCATS",
-        "repo": "Lualibs",
-        "rev": "fc5208a96a38edb670423865cb5df4b04c694f0b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "TeXLuaCATS",
-        "repo": "Lualibs",
         "type": "github"
       }
     },

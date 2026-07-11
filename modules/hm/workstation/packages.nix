@@ -18,6 +18,7 @@ _: {
         imagemagick
         libqalculate
         libreoffice
+        localsend
         pandoc
         pavucontrol
         phockup

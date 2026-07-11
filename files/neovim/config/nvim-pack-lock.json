@@ -56,6 +56,10 @@
       "rev": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370",
       "src": "https://github.com/qvalentin/helm-ls.nvim"
     },
+    "kulala.nvim": {
+      "rev": "91cf892008c773ce74ac392c4c12ddff775b7619",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"

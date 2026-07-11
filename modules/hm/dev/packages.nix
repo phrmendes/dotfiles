@@ -10,7 +10,6 @@ _: {
           devenv
           docker-compose
           docker-credential-helpers
-          hurl
           jdk
           jqp
           just

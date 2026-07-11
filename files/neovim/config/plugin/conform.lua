@@ -9,7 +9,6 @@ safely(
         css = { "oxfmt" },
         html = { "oxfmt" },
         htmldjango = { "djlint" },
-        hurl = { "hurlfmt" },
         jinja2 = { "djlint" },
         json = { "jq" },
         just = { "just" },

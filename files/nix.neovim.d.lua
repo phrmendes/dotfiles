@@ -6,3 +6,4 @@
 ---@field openresty string
 ---@field typescript string
 ---@field luatex string
+---@field lualibs string

@@ -24,6 +24,7 @@
         { module }:
         inputs.nixpkgs.lib.nixosSystem {
           modules = [
+            inputs.nix-flatpak.nixosModules.nix-flatpak
             module
             {
               nixpkgs.overlays = [

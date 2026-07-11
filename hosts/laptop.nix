@@ -15,10 +15,11 @@ in
         builtins.attrValues nixos.core
         ++ (with nixos.workstation; [
           age
+          flatpak
           hyprland
+          impermanence
           libvirtd
           noctalia
-          impermanence
           pipewire
           podman
           syncthing

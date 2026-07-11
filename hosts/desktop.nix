@@ -11,16 +11,17 @@ in
         builtins.attrValues nixos.core
         ++ (with nixos.workstation; [
           age
+          flatpak
+          gaming
           hyprland
+          impermanence
           libvirtd
           noctalia
-          sunshine
-          impermanence
           pipewire
           podman
+          sunshine
           syncthing
           xdg-portal
-          gaming
         ]);
 
       networking.hostName = "desktop";

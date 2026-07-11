@@ -26,7 +26,7 @@
       secondaryMonitor =
         if monitors.secondary != null then "secondary = ${mkMonitor monitors.secondary}," else "";
 
-      nixLua = ''
+      nix = ''
         ---@type Nix
         return {
           colors = {
@@ -40,17 +40,18 @@
         }
       '';
 
-      nixNeovimLua = ''
+      neovim = ''
         ---@type NixNeovim
         return {
-          luvit_meta     = "${pkgs.vimPlugins.luvit-meta}/library",
-          hyprland_stubs = "${pkgs.hyprland}/share/hypr/stubs",
-          openresty      = "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd/OpenResty/library",
-          typescript     = "${pkgs.typescript}/lib/node_modules/typescript/lib",
+          luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
+          hyprland = "${pkgs.hyprland}/share/hypr/stubs",
+          openresty = "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd/OpenResty/library",
+          typescript = "${pkgs.typescript}/lib/node_modules/typescript/lib",
+          luatex = "${pkgs.texlivePackages.luatex-type-definitions.tex}/tex/luatex/luatex-type-definitions",
         }
       '';
 
-      nixHyprlandLua = ''
+      hyprland = ''
         ---@type NixHyprland
         return {}
       '';
@@ -59,13 +60,13 @@
     in
     {
       home.file = {
-        ".config/hypr/nix.lua".text = nixLua;
-        ".config/hypr/nix/hyprland.lua".text = nixHyprlandLua;
+        ".config/hypr/nix.lua".text = nix;
+        ".config/hypr/nix/hyprland.lua".text = hyprland;
         ".config/hypr/nix.d.lua".source = annotationSrc "nix.d.lua";
         ".config/hypr/nix/neovim.d.lua".source = annotationSrc "nix.neovim.d.lua";
-        ".local/share/nvim/site/lua/nix.lua".text = nixLua;
-        ".local/share/nvim/site/lua/nix/neovim.lua".text = nixNeovimLua;
-        ".local/share/nvim/site/lua/nix/hyprland.lua".text = nixHyprlandLua;
+        ".local/share/nvim/site/lua/nix.lua".text = nix;
+        ".local/share/nvim/site/lua/nix/neovim.lua".text = neovim;
+        ".local/share/nvim/site/lua/nix/hyprland.lua".text = hyprland;
         ".local/share/nvim/site/lua/nix.d.lua".source = annotationSrc "nix.d.lua";
         ".local/share/nvim/site/lua/nix/neovim.d.lua".source = annotationSrc "nix.neovim.d.lua";
       };

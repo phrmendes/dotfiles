@@ -5,3 +5,4 @@
 ---@field hyprland_stubs string
 ---@field openresty string
 ---@field typescript string
+---@field luatex string

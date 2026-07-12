@@ -26,24 +26,6 @@ hosts/             — per-machine compositions
   server.nix
 ```
 
-## Server services
-
-| Service                             | URL                                |
-| ----------------------------------- | ---------------------------------- |
-| AdGuard Home                        | `adguardhome.local.phrmendes.xyz`  |
-| Atuin                               | `atuin.local.phrmendes.xyz`        |
-| Beszel                              | `beszel.local.phrmendes.xyz`       |
-| Duplicati                           | `duplicati.local.phrmendes.xyz`    |
-| Excalidraw                          | `excalidraw.local.phrmendes.xyz`   |
-| Homepage                            | `homepage.local.phrmendes.xyz`     |
-| Jellyfin                            | `jellyfin.local.phrmendes.xyz`     |
-| Linkding                            | `linkding.local.phrmendes.xyz`     |
-| SFTPGo                              | `sftpgo.local.phrmendes.xyz`       |
-| Sonarr / Radarr / Prowlarr / Bazarr | `*.local.phrmendes.xyz`            |
-| Syncthing                           | `syncthing.local.phrmendes.xyz`    |
-| Transmission                        | `transmission.local.phrmendes.xyz` |
-| WebDAV                              | `webdav.local.phrmendes.xyz`       |
-
 ## Install
 
 Enable flakes, partition with disko, then install:

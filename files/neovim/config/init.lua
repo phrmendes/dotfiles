@@ -11,7 +11,6 @@ vim.pack.add({
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",
   "https://github.com/igorlfs/nvim-dap-view",
-  "https://github.com/jalvesaq/zotcite",
   "https://github.com/jbyuki/one-small-step-for-vimkind",
   "https://github.com/jpalardy/vim-slime",
   "https://github.com/kevinhwang91/nvim-bqf",

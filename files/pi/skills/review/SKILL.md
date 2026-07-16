@@ -13,11 +13,10 @@ allowed-tools: read grep find ls bash
 ## Workflow
 
 1. Load the relevant language skill if needed
-2. Read the PRD/plan — that is the spec
+2. Read the plan from the session (produced by `plan_mode_complete`) — that is the spec
 3. Read the diff or changed files
 4. Check each category below
 5. Produce a structured report, discuss gaps, let the user decide
-6. Approval → mark `status:done` and prefix with `x <today>` in `todo.txt` (use `/skill:todotxt`). Rework needed → mark `status:planning`.
 
 ## Checklist
 

@@ -11,12 +11,11 @@ description: Dev mode — implement features following a plan using TDD. Load wh
 
 ## Workflow
 
-1. Mark parent task `status:applying` in `todo.txt` (use `/skill:todotxt`)
-2. For each subtask:
-   - Mark subtask `status:applying`
-   - Write failing test → confirm it fails for the right reason → implement → refactor
-   - Mark subtask `status:done`
-3. Mark parent `status:reviewing`
+1. Extract subtasks from the plan and append to `todo.txt` with `status:planning`
+2. Start subtask
+3. Write failing test → confirm it fails for the right reason → implement → refactor
+4. Move to next subtask
+5. All subtasks done → mark parent `status:reviewing`, ready for review
 
 ## Rules
 

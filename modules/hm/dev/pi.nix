@@ -25,9 +25,12 @@ _: {
           "${agentHome}/settings.json".text = builtins.toJSON {
             quietStartup = true;
             defaultProvider = "deepseek";
-            defaultModel = "deepseek/deepseek-v4-flash";
+            defaultModel = "deepseek/deepseek-v4-pro";
             theme = "dark";
-            packages = [ "@sherif-fanous/pi-rtk" ];
+            packages = [
+              "@narumitw/pi-plan-mode"
+              "@sherif-fanous/pi-rtk"
+            ];
             skills = [ "${pkgs.agent-browser}/skills" ];
             compaction = {
               enabled = true;

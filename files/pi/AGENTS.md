@@ -1,25 +1,21 @@
 # Engineering Rules
 
-## Mindset
-
 - Search and read the codebase before writing anything
 - Deletion beats addition: prefer removing code over adding
-- Baby steps: small, reviewable diffs. If a change exceeds ~300 lines, stop and ask to break it down
-- Never patch symptoms — find the root cause, prove it with a failing test
+- Baby steps: small, reviewable diffs
+- Never patch symptoms — find the root cause
 - Always refactor after green
 
 ## General
 
 - Prefer idiomatic tooling for each ecosystem
-- For domain-specific work, identify the language and load the relevant tool: `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua`, `/skill:devops`, `/skill:agent-browser`
 - Use `rg` (ripgrep) for all content searches via bash
 
-## Profiles
+## Workflow
 
-| Phase  | How to invoke                | Behavior                                                   |
-| ------ | ---------------------------- | ---------------------------------------------------------- |
-| Plan   | `/skill:plan` or `/plan`     | Iterative planning + analysis, best model                  |
-| Dev    | `/skill:dev` or `/dev`       | Full tools, TDD, small diffs, best model                   |
-| Review | `/skill:review` or `/review` | Read-only evaluation, issues report, best model            |
-| Bugfix | `/skill:plan` or `/plan`     | Root cause investigation + fix plan, read-only, best model |
-| Guide  | `/skill:guide` or `/guide`   | Coaching mode, step-by-step learning                       |
+1. `/plan "task"` → agent explores, asks questions, produces plan
+2. **Implement this plan** → exits plan mode, restores tools
+3. Agent loads `/skill:dev` + `/skill:todotxt` → TDD implementation
+4. Agent loads `/skill:review` + `/skill:todotxt` → evaluation
+5. Approval → done | rework → step 3
+6. Compact → `/plan` next task

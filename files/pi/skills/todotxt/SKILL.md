@@ -28,3 +28,9 @@ x [YYYY-MM-DD] [YYYY-MM-DD] <description> ...
 | `id`     | kebab-case unique slug                         |
 | `status` | `planning` → `applying` → `reviewing` → `done` |
 | `parent` | parent task `id` (for subtasks)                |
+
+## Task lifecycle
+
+1. **Plan produces tasks** — `/plan` includes subtasks in the plan output. Plan mode is read-only, so tasks are not written to `todo.txt` yet.
+2. **Dev appends tasks** — when starting implementation, extract subtasks from the plan and append them to `todo.txt` with `status:planning`. Then mark `status:applying`, implement, mark `status:done`. When all subtasks done, mark parent `status:reviewing`.
+3. **Review completes tasks** — approval → mark `status:done` and prefix with `x <today>`. Rework → mark `status:planning`, send back to dev.

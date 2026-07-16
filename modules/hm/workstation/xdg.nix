@@ -1,9 +1,15 @@
 _: {
-  modules.homeManager.workstation.xdg = {
+  modules.homeManager.workstation.xdg =
+    { config, ... }:
+    {
     xdg = {
       enable = true;
       autostart.enable = true;
       mime.enable = true;
+      systemDirs.data = [
+        "/var/lib/flatpak/exports/share"
+        "${config.home.homeDirectory}/.local/share/flatpak/exports/share"
+      ];
 
       configFile."mimeapps.list".force = true;
       mimeApps = {

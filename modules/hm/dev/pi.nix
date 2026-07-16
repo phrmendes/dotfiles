@@ -12,7 +12,6 @@ _: {
         extraPackages = with pkgs; [
           agent-browser
           jira-cli-go
-          rtk
         ];
         settings = {
           quietStartup = true;
@@ -21,7 +20,6 @@ _: {
           theme = "dark";
           packages = [
             "npm:@narumitw/pi-plan-mode"
-            "npm:@sherif-fanous/pi-rtk"
           ];
           skills = [
             "${pkgs.agent-browser}/skills"
@@ -138,6 +136,7 @@ _: {
         };
         file = {
           "${agentHome}/extensions".source = "${piDir}/extensions";
+          "${agentHome}/pi-plan-mode.json".source = "${piDir}/pi-plan-mode.json";
           ".config/.jira/.config.yml".source = ../../../files/jira.yaml;
         };
       };

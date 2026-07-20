@@ -21,6 +21,11 @@ in
       disko.mainDiskDevice = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
 
+      hardware.graphics = {
+        enable = true;
+        extraPackages = [ pkgs.intel-media-driver ];
+      };
+
       boot.kernelModules = [
         "ip_tables"
         "ip6_tables"

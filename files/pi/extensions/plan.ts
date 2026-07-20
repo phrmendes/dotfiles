@@ -3,16 +3,13 @@ import { Key } from "@earendil-works/pi-tui";
 import { readFileSync, realpathSync } from "node:fs";
 import { join } from "node:path";
 
+const PLAN_SKILL = readFileSync(join(realpathSync(__dirname), "..", "skills", "plan", "SKILL.md"), "utf8");
 const WRITE_TOOLS = new Set(["edit", "write"]);
+const CHAIN_OPERATORS = /\|\||&&|[|;\n]/;
+const QUOTED_STRING = /"(?:[^"\\]|\\.)*"|'[^']*'/g;
+const SHELL_METACHARS = /[&`$()]/;
 
-const SAFE_TOOLS = new Set([
-    "cat", "head", "tail", "less", "more",
-    "ls", "find", "grep", "rg", "fd",
-    "wc", "sort", "uniq", "diff", "stat", "du", "df", "tree", "file", "readlink",
-    "pwd", "echo", "which", "type", "cd",
-    "uname", "whoami", "id", "date", "ps",
-    "jq", "awk", "bat", "eza", "curl", "true", "false",
-]);
+const SAFE_TOOLS = new Set(["awk", "bat", "cat", "cd", "curl", "date", "df", "diff", "du", "echo", "eza", "false", "fd", "file", "find", "grep", "head", "id", "jira", "jq", "less", "ls", "more", "ps", "pwd", "readlink", "rg", "sort", "stat", "tail", "tree", "true", "type", "uname", "uniq", "wc", "which", "whoami", "xargs"]);
 
 const SAFE_SUBCOMMANDS: Record<string, string[]> = {
     git: ["status", "log", "diff", "show", "branch", "remote", "ls-files", "ls-tree"],
@@ -21,19 +18,26 @@ const SAFE_SUBCOMMANDS: Record<string, string[]> = {
     nix: ["eval", "search", "show-config", "path-info", "why-depends", "log", "flake", "repl"],
 };
 
-const PLAN_SKILL = readFileSync(join(realpathSync(__dirname), "..", "skills", "plan", "SKILL.md"), "utf8");
+const PLAN_SUBCOMMANDS = [
+    { value: "create", label: "create  — ask the agent to draft the formal plan" },
+    { value: "approve", label: "approve — approve the plan and begin implementation" },
+    { value: "disable", label: "disable — exit plan mode without starting implementation" },
+];
+
+
+function isSegmentSafe(segment: string): boolean {
+    const [tool, subcommand] = segment.trim().split(/\s+/);
+    if (!tool) return false;
+    if (SAFE_TOOLS.has(tool)) return true;
+    const allowed = SAFE_SUBCOMMANDS[tool];
+    return allowed !== undefined && subcommand !== undefined && allowed.includes(subcommand);
+}
 
 function isSafe(command: string): boolean {
-    // Strip quoted strings so operators/metacharacters inside them are ignored
-    const bare = command.replace(/"(?:[^"\\]|\\.)*"|'[^']*'/g, "");
-    if (/[&`$()]/.test(bare)) return false;
-    return bare.split(/\|\||&&|[|;]/).every(segment => {
-        const [tool, sub] = segment.trim().split(/\s+/);
-        if (!tool) return false;
-        if (SAFE_TOOLS.has(tool)) return true;
-        const allowed = SAFE_SUBCOMMANDS[tool];
-        return allowed !== undefined && sub !== undefined && allowed.includes(sub);
-    });
+    const unquoted = command.replace(QUOTED_STRING, "");
+    return unquoted.split(CHAIN_OPERATORS).every(segment =>
+        !SHELL_METACHARS.test(segment) && isSegmentSafe(segment)
+    );
 }
 
 export default function planMode(pi: ExtensionAPI): void {
@@ -63,16 +67,10 @@ export default function planMode(pi: ExtensionAPI): void {
         ctx.ui.notify("Plan approved — switching to dev mode.");
     }
 
-    const SUBCOMMANDS = [
-        { value: "create", label: "create  — ask the agent to draft the formal plan" },
-        { value: "approve", label: "approve — approve the plan and begin implementation" },
-        { value: "disable", label: "disable — exit plan mode without starting implementation" },
-    ];
-
     pi.registerCommand("plan", {
         description: "Plan mode: enable, or run a subcommand (create / approve / disable)",
         getArgumentCompletions: (prefix: string) => {
-            const matches = SUBCOMMANDS.filter(s => s.value.startsWith(prefix));
+            const matches = PLAN_SUBCOMMANDS.filter(s => s.value.startsWith(prefix));
             return matches.length > 0 ? matches : null;
         },
         handler: async (args, ctx) => {

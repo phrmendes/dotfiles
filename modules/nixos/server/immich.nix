@@ -1,4 +1,8 @@
-_: {
+{ config, ... }:
+let
+  inherit (config) settings;
+in
+{
   modules.nixos.server.immich =
     { config, ... }:
     let
@@ -25,7 +29,7 @@ _: {
       ];
 
       systemd.tmpfiles.rules = [
-        "d /mnt/external/photos 2775 ${config.settings.user} external -"
+        "d /mnt/external/photos 2775 ${settings.user} external -"
         "d /srv/immich 0750 immich immich -"
       ];
 

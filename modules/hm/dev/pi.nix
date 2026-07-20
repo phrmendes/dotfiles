@@ -18,9 +18,6 @@ _: {
           defaultProvider = "deepseek";
           defaultModel = "deepseek/deepseek-v4-pro";
           theme = "dark";
-          packages = [
-            "npm:@narumitw/pi-plan-mode"
-          ];
           skills = [
             "${pkgs.agent-browser}/skills"
             "${piDir}/skills"
@@ -136,7 +133,6 @@ _: {
         };
         file = {
           "${agentHome}/extensions".source = "${piDir}/extensions";
-          "${agentHome}/pi-plan-mode.json".source = "${piDir}/pi-plan-mode.json";
           ".config/.jira/.config.yml".source = ../../../files/jira.yaml;
         };
       };

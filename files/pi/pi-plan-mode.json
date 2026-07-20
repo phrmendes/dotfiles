@@ -1,7 +1,0 @@
-{
-  "thinkingLevel": "inherit",
-  "safeSubcommands": {
-    "git": ["rev-parse", "blame", "describe", "merge-base", "ls-tree", "cat-file"],
-    "gh": ["pr view", "pr list", "issue view", "issue list"]
-  }
-}

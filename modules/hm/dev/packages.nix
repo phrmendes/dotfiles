@@ -6,20 +6,15 @@ _: {
         with pkgs;
         [
           bws
-          curl
           devenv
           docker-compose
-          docker-credential-helpers
           jdk
           jqp
           just
           lima
           nix-prefetch-github
-          nodejs_latest
           parallel
           pass
-          python314
-          sqlite
         ]
         ++ (with pkgs.local; [
           diff-persist

@@ -80,7 +80,6 @@ in
           fzf
           git
           jq
-          packages
           ripgrep
           starship
           tealdeer

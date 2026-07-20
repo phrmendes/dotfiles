@@ -14,7 +14,9 @@
           inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
           cachix
           coreutils-full
+          curl
           dig
+          docker-credential-helpers
           egl-wayland
           file
           findutils
@@ -24,10 +26,13 @@
           gzip
           lsof
           mlocate
+          nodejs_latest
           openssl
           p7zip
           psmisc
+          python314
           rar
+          sqlite
           unar
           unzip
           wget

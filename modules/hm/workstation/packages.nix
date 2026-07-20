@@ -24,7 +24,6 @@ _: {
         phockup
         poppler
         proton-vpn
-        quarto
         satty
         slurp
         tectonic

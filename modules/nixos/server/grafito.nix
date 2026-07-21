@@ -2,7 +2,7 @@ _: {
   modules.nixos.server.grafito =
     { config, pkgs, ... }:
     let
-      port = 3000;
+      port = 3001;
     in
     {
       server.homepage.services.grafito = {

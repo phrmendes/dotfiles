@@ -73,6 +73,7 @@ _: {
           layout = map (cat: {
             "${cat}" = {
               style = "row";
+              columns = 2;
               header = true;
             };
           }) categories;

@@ -13,6 +13,7 @@ in
   "caddy.age.env".publicKeys = allKeys;
   "dockerhub.age.json".publicKeys = allKeys;
   "duplicati.age.env".publicKeys = allKeys;
+  "grafito.age.env".publicKeys = allKeys;
   "linkding.age.env".publicKeys = allKeys;
   "litestream.age.env".publicKeys = allKeys;
   "pi.age.json".publicKeys = allKeys;

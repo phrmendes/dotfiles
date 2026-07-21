@@ -28,6 +28,12 @@ _: {
         ports = [ "127.0.0.1:${toString port}:3000" ];
         volumes = [ "/var/log/journal:/var/log/journal" ];
         networks = [ "services" ];
+        environment = {
+          GRAFITO_AI_PROVIDER = "openai";
+          GRAFITO_AI_ENDPOINT = "https://api.deepseek.com";
+          GRAFITO_AI_MODEL = "deepseek-v4-flash";
+        };
+        environmentFiles = [ config.age.secrets."grafito.env".path ];
         labels = {
           "io.containers.autoupdate" = "registry";
         };

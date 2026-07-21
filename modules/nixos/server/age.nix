@@ -19,6 +19,7 @@
       age.secrets = {
         "beszel.env" = secretReadable { file = ../../../secrets/beszel.age.env; };
         "caddy.env" = secretReadable { file = ../../../secrets/caddy.age.env; };
+        "grafito.env" = secretReadable { file = ../../../secrets/grafito.age.env; };
         "linkding.env" = secretReadable { file = ../../../secrets/linkding.age.env; };
         "litestream.env" = secretReadable { file = ../../../secrets/litestream.age.env; };
         "duplicati.env" = secretReadable { file = ../../../secrets/duplicati.age.env; };

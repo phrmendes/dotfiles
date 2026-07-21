@@ -11,7 +11,7 @@ _: {
         homepage = {
           name = "Grafito";
           description = "Systemd journal log viewer";
-          icon = "sh-grafito";
+          icon = "sh-linux";
           category = "Monitoring";
         };
       };

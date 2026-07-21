@@ -1,13 +1,13 @@
 _: {
   modules.nixos.server.grafito =
-    { config, pkgs, ... }:
+    { config, ... }:
     let
       port = 3001;
     in
     {
       server.homepage.services.grafito = {
         url = "grafito.${config.server.caddy.domain}";
-        monitoredServices = [ "grafito.service" ];
+        monitoredServices = [ "podman-grafito" ];
         homepage = {
           name = "Grafito";
           description = "Systemd journal log viewer";
@@ -18,24 +18,18 @@ _: {
 
       services.caddy.virtualHosts = config.server.caddy.mkVhost "grafito" port;
 
-      systemd.sockets.grafito = {
-        description = "Socket for Grafito log viewer";
-        wantedBy = [ "sockets.target" ];
-        listenStreams = [ "127.0.0.1:${toString port}" ];
-        socketConfig = {
-          NoDelay = true;
-          Service = "grafito.service";
-        };
+      systemd.services."podman-grafito" = {
+        after = [ "podman-network-services.service" ];
+        requires = [ "podman-network-services.service" ];
       };
 
-      systemd.services.grafito = {
-        description = "Grafito journald log viewer";
-        after = [ "network.target" ];
-        serviceConfig = {
-          DynamicUser = true;
-          Group = "systemd-journal";
-          ExecStart = "${pkgs.local.grafito}/bin/grafito --idle-timeout-sec=300";
-          Restart = "on-failure";
+      virtualisation.oci-containers.containers.grafito = {
+        image = "ghcr.io/ralsina/grafito:latest";
+        ports = [ "127.0.0.1:${toString port}:${toString port}" ];
+        volumes = [ "/var/log/journal:/var/log/journal" ];
+        networks = [ "services" ];
+        labels = {
+          "io.containers.autoupdate" = "registry";
         };
       };
     };

@@ -30,7 +30,6 @@ in
           syncDir = name: "d /mnt/external/syncthing/${name} 2775 ${settings.user} external -";
           folders = [
             "antennapod"
-            "camera"
             "collections"
             "documents"
             "excalidraw"
@@ -111,14 +110,6 @@ in
               antennapod = {
                 path = "/mnt/external/syncthing/antennapod";
                 devices = [ "phone" ];
-                ignorePerms = true;
-              };
-              camera = {
-                path = "/mnt/external/syncthing/camera";
-                devices = [
-                  "laptop"
-                  "phone"
-                ];
                 ignorePerms = true;
               };
               collections = {

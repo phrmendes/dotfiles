@@ -25,6 +25,8 @@ const PLAN_SUBCOMMANDS = [
 ];
 
 
+const REDIRECT_MERGE = /[12]>&[12]\b/g;
+
 function isSegmentSafe(segment: string): boolean {
     const [tool, subcommand] = segment.trim().split(/\s+/);
     if (!tool) return false;
@@ -34,7 +36,7 @@ function isSegmentSafe(segment: string): boolean {
 }
 
 function isSafe(command: string): boolean {
-    const unquoted = command.replace(QUOTED_STRING, "");
+    const unquoted = command.replace(QUOTED_STRING, "").replace(REDIRECT_MERGE, "");
     return unquoted.split(CHAIN_OPERATORS).every(segment =>
         !SHELL_METACHARS.test(segment) && isSegmentSafe(segment)
     );

@@ -19,12 +19,7 @@ _: {
       services.caddy.virtualHosts."grafito.${config.server.caddy.domain}" = {
         useACMEHost = config.server.caddy.domain;
         extraConfig = ''
-          handle_path /ai-providers {
-            respond `{"providers":[{"id":"openai","name":"DeepSeek","available":true}],"current":"DeepSeek","enabled":true}`
-          }
-          handle_path /ai-models {
-            respond `{"models":[{"id":"deepseek-v4-flash","name":"DeepSeek V4 Flash","default":true},{"id":"deepseek-v4-pro","name":"DeepSeek V4 Pro","default":false}]}`
-          }
+          ${builtins.readFile ../../../files/Caddyfile.grafito}
           reverse_proxy 127.0.0.1:${toString port}
           import security-headers
         '';

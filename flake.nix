@@ -50,11 +50,6 @@
       url = "github:TeXLuaCATS/Lualibs";
       flake = false;
     };
-
-    grafito = {
-      url = "https://github.com/ralsina/grafito/releases/download/v0.17.0/grafito-static-linux-amd64";
-      flake = false;
-    };
   };
 
   outputs =

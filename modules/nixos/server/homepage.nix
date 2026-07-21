@@ -72,7 +72,7 @@ _: {
           hideVersion = true;
           layout = map (cat: {
             "${cat}" = {
-              style = "column";
+              style = "row";
               header = true;
             };
           }) categories;

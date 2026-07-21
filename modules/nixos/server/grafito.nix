@@ -25,7 +25,7 @@ _: {
 
       virtualisation.oci-containers.containers.grafito = {
         image = "ghcr.io/ralsina/grafito:latest";
-        ports = [ "127.0.0.1:${toString port}:${toString port}" ];
+        ports = [ "127.0.0.1:${toString port}:3000" ];
         volumes = [ "/var/log/journal:/var/log/journal" ];
         networks = [ "services" ];
         labels = {

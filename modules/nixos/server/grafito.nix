@@ -31,7 +31,7 @@ _: {
         environment = {
           GRAFITO_AI_PROVIDER = "openai";
           GRAFITO_AI_ENDPOINT = "https://api.deepseek.com";
-          GRAFITO_AI_MODEL = "deepseek-v4-flash";
+          GRAFITO_AI_MODEL = "deepseek-chat";
         };
         environmentFiles = [ config.age.secrets."grafito.env".path ];
         labels = {

@@ -47,3 +47,7 @@ Load when relevant — do not load all upfront:
 - `/skill:jira` — issue management
 - `/skill:todotxt` — task tracking
 - `/skill:python`, `/skill:elixir`, `/skill:typescript`, `/skill:lua` — language conventions
+
+## Shell commands
+
+- `2>&1` redirect is blocked (contains `&` shell metachar). Use `2>/dev/null` instead.

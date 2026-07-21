@@ -13,7 +13,7 @@ const SAFE_TOOLS = new Set(["awk", "bat", "cat", "cd", "curl", "date", "df", "di
 
 const SAFE_SUBCOMMANDS: Record<string, string[]> = {
     git: ["status", "log", "diff", "show", "branch", "remote", "ls-files", "ls-tree"],
-    kubectl: ["get", "describe", "logs", "top", "explain", "version", "cluster-info", "api-resources", "api-versions", "events", "auth"],
+    kubectl: ["get", "describe", "logs", "top", "explain", "version", "cluster-info", "api-resources", "api-versions", "events", "auth", "config", "diff", "rollout"],
     gcloud: ["version", "info", "config", "list", "describe"],
     nix: ["eval", "search", "show-config", "path-info", "why-depends", "log", "flake", "repl"],
 };

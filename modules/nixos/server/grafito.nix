@@ -16,7 +16,19 @@ _: {
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "grafito" port;
+      services.caddy.virtualHosts."grafito.${config.server.caddy.domain}" = {
+        useACMEHost = config.server.caddy.domain;
+        extraConfig = ''
+          handle_path /ai-providers {
+            respond `{"providers":[{"id":"openai","name":"DeepSeek","available":true}],"current":"DeepSeek","enabled":true}`
+          }
+          handle_path /ai-models {
+            respond `{"models":[{"id":"deepseek-v4-flash","name":"DeepSeek V4 Flash","default":true},{"id":"deepseek-v4-pro","name":"DeepSeek V4 Pro","default":false}]}`
+          }
+          reverse_proxy 127.0.0.1:${toString port}
+          import security-headers
+        '';
+      };
 
       systemd.services."podman-grafito" = {
         after = [ "podman-network-services.service" ];
@@ -31,7 +43,7 @@ _: {
         environment = {
           GRAFITO_AI_PROVIDER = "openai";
           GRAFITO_AI_ENDPOINT = "https://api.deepseek.com/v1/chat/completions";
-          GRAFITO_AI_MODEL = "deepseek-chat";
+          GRAFITO_AI_MODEL = "deepseek-v4-flash";
         };
         environmentFiles = [ config.age.secrets."grafito.env".path ];
         labels = {

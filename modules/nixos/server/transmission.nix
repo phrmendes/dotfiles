@@ -6,7 +6,6 @@ in
   modules.nixos.server.transmission =
     {
       config,
-      pkgs,
       ...
     }:
     let

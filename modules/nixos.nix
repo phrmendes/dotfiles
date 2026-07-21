@@ -30,7 +30,10 @@
               nixpkgs.overlays = [
                 (_: prev: {
                   stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
-                  local = import ../pkgs { pkgs = prev; };
+                  local = import ../pkgs {
+                    pkgs = prev;
+                    inherit inputs;
+                  };
                 })
               ];
             }

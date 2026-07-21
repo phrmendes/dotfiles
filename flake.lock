@@ -222,6 +222,18 @@
         "type": "github"
       }
     },
+    "grafito": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-/sOUafpg2BzsOgZm1quFK1phcV9fcleNhphe8n3jUkY=",
+        "type": "file",
+        "url": "https://github.com/ralsina/grafito/releases/download/v0.17.0/grafito-static-linux-amd64"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/ralsina/grafito/releases/download/v0.17.0/grafito-static-linux-amd64"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -482,6 +494,7 @@
         "agenix": "agenix",
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "grafito": "grafito",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "import-tree": "import-tree",

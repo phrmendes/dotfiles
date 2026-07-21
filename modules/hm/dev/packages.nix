@@ -19,7 +19,6 @@ _: {
         ++ (with pkgs.local; [
           diff-persist
           noctalia-settings-diff
-          rename-gallery
         ]);
     };
 }

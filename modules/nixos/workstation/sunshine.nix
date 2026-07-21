@@ -1,6 +1,6 @@
 _: {
   modules.nixos.workstation.sunshine =
-    { ... }:
+    _:
     {
       services.sunshine = {
         enable = true;

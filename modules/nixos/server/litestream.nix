@@ -50,23 +50,6 @@ _: {
         |> map ({ name, path }: lib.nameValuePair name path)
         |> lib.listToAttrs
         |> builtins.toJSON;
-      litestreamNotify = pkgs.writeShellApplication {
-        name = "litestream-notify";
-        runtimeInputs = [
-          pkgs.local.telegram-notify
-          pkgs.systemd
-          pkgs.coreutils
-        ];
-        text = ''
-          ERROR_LOG=$(journalctl -u litestream --since "3 min ago" -p err --no-pager -n 5 -o cat 2>/dev/null || true)
-
-          if [ -z "$ERROR_LOG" ]; then
-            ERROR_LOG="No error details available. Check journalctl -u litestream.service for details."
-          fi
-
-          telegram-notify error "Litestream replication failed" "<pre>$ERROR_LOG</pre>"
-        '';
-      };
     in
     {
       environment.systemPackages = [
@@ -115,17 +98,6 @@ _: {
           );
       };
 
-      systemd.services.litestream = {
-        serviceConfig.User = lib.mkForce "root";
-        onFailure = [ "litestream-notify.service" ];
-      };
-
-      systemd.services.litestream-notify = {
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = lib.getExe litestreamNotify;
-          EnvironmentFile = config.age.secrets."telegram.env".path;
-        };
-      };
+      systemd.services.litestream.serviceConfig.User = lib.mkForce "root";
     };
 }

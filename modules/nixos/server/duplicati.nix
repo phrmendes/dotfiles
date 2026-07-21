@@ -9,30 +9,7 @@ _: {
     let
       port = 8200;
       domain = config.server.caddy.domain;
-      dupNotify = pkgs.writeShellApplication {
-        name = "dup-notify";
-        runtimeInputs = [ pkgs.local.telegram-notify ];
-        checkPhase = "";
-        text = ''
-          case "''${DUPLICATI__PARSED_RESULT:-Unknown}" in
-            Warning)
-              telegram-notify warn \
-                "Backup warning: ''${DUPLICATI__backup_name}" \
-                "<pre>finished with status: Warning</pre>"
-              ;;
-            Error|Fatal)
-              telegram-notify error \
-                "Backup failed: ''${DUPLICATI__backup_name}" \
-                "<pre>finished with status: ''${DUPLICATI__PARSED_RESULT}</pre>"
-              ;;
-            *)
-              exit 0
-              ;;
-          esac
-        '';
-      };
       parametersFile = pkgs.writeText "duplicati-parameters" ''
-        --run-script-after=${lib.getExe dupNotify}
         --webservice-allowed-hostnames=duplicati.${domain}
       '';
       startScript = pkgs.writeShellScript "duplicati-start" ''
@@ -63,7 +40,6 @@ _: {
 
       systemd.services.duplicati.serviceConfig = {
         EnvironmentFile = [
-          config.age.secrets."telegram.env".path
           config.age.secrets."duplicati.env".path
         ];
         ExecStart = lib.mkForce startScript;

@@ -21,7 +21,6 @@
         "caddy.env" = secretReadable { file = ../../../secrets/caddy.age.env; };
         "linkding.env" = secretReadable { file = ../../../secrets/linkding.age.env; };
         "litestream.env" = secretReadable { file = ../../../secrets/litestream.age.env; };
-        "telegram.env" = secretReadable { file = ../../../secrets/telegram.age.env; };
         "duplicati.env" = secretReadable { file = ../../../secrets/duplicati.age.env; };
         "transmission.json" = secretReadable { file = ../../../secrets/transmission.age.json; };
         "dockerhub.json" = secretReadable {

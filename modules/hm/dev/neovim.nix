@@ -44,7 +44,6 @@
           lua-language-server
           marksman
           nixd
-          simple-completion-language-server
           taplo
           texlab
           tofu-ls

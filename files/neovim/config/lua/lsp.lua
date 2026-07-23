@@ -21,7 +21,6 @@ vim.lsp.enable({
   "lua_ls",
   "nixd",
   "ruff",
-  "scls",
   "taplo",
   "texlab",
   "tofu_ls",

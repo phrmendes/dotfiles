@@ -1,0 +1,5 @@
+safely("now", function()
+  require("mini.icons").setup()
+  safely("later", MiniIcons.tweak_lsp_kind)
+  safely("later", MiniIcons.mock_nvim_web_devicons)
+end)

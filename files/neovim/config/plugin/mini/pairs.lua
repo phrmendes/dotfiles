@@ -1,0 +1,1 @@
+safely("event:InsertEnter", function() require("mini.pairs").setup({ modes = { insert = true, command = true, terminal = true } }) end)

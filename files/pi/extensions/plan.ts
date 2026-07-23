@@ -51,7 +51,7 @@ interface PlanStep {
 
 function extractPlanSteps(message: string): PlanStep[] {
     const items: PlanStep[] = [];
-    const headerMatch = message.match(/\*{0,2}Plan:\*{0,2}\s*\n/i);
+    const headerMatch = message.match(/#{1,3}\s*Steps\s*\n/i);
     if (!headerMatch) return items;
     const planSection = message.slice(message.indexOf(headerMatch[0]) + headerMatch[0].length);
     const numberedPattern = /^\s*(\d+)[.)]\s+\*{0,2}([^*\n]+)/gm;

@@ -44,10 +44,11 @@
           lua-language-server
           marksman
           nixd
+          svelte-language-server
           taplo
           texlab
           tofu-ls
-          typescript-language-server
+          typescript-go
           vscode-langservers-extracted
           yaml-language-server
           # linters

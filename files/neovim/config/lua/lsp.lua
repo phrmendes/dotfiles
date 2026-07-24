@@ -21,10 +21,11 @@ vim.lsp.enable({
   "lua_ls",
   "nixd",
   "ruff",
+  "svelte",
   "taplo",
   "texlab",
   "tofu_ls",
-  "ts_ls",
+  "tsgo",
   "yamlls",
 })
 

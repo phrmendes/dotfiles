@@ -33,7 +33,7 @@
 
         settings = {
           shell = {
-            corner_radius_scale = 0.2;
+            corner_radius_scale = 1.5;
             time_format = "{:%H:%M %a, %b %d}";
             date_format = "%A, %x";
             clipboard_enabled = true;

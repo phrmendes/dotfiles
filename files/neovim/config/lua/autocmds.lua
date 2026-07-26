@@ -13,11 +13,24 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Enable treesitter highlighting",
   group = augroups.treesitter,
   callback = function(event)
+    local h = require("helpers")
+
     local language = vim.treesitter.language.get_lang(event.match) or event.match
 
     if not vim.treesitter.language.add(language) then return end
 
-    vim.treesitter.start(event.buf, language)
+    if vim.fn.bufwinid(event.buf) ~= -1 then
+      h.treesitter(event.buf, language)
+      return
+    end
+
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+      desc = "Start deferred treesitter highlighting",
+      group = augroups.treesitter,
+      buffer = event.buf,
+      once = true,
+      callback = function() h.treesitter(event.buf, language) end,
+    })
   end,
 })
 

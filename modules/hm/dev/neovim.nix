@@ -22,6 +22,7 @@
         withRuby = false;
         extraPython3Packages = p: with p; [ debugpy ];
         extraPackages = with pkgs; [
+          lynx
           tree-sitter
           # language servers
           ansible-language-server

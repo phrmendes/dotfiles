@@ -31,8 +31,8 @@ hosts/             — per-machine compositions
 Enable flakes, partition with disko, then install:
 
 ```sh
-sudo nix run github:nix-community/disko/latest#disko -- --mode disko --flake .#<host>
-sudo nixos-install --no-channel-copy --root /mnt --flake .#<host>
+sudo nix run github:nix-community/disko/latest#disko -- --mode disko --flake .#{{ host }}
+sudo nixos-install --no-channel-copy --root /mnt --flake .#{{ host }}
 ```
 
 ## Workflow

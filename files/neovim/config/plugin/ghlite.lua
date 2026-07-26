@@ -3,15 +3,15 @@ safely("later", function()
     comment_hunk = true,
     keymaps = {
       diff = {
-        approve = "cA",
-        request_changes = "cR",
+        approve = "ca",
+        request_changes = "cr",
       },
       pr = {
-        approve = "cA",
-        request_changes = "cR",
-        merge = "cM",
-        comment = "ca",
+        approve = "ca",
+        comment = "cc",
         diff = "cp",
+        merge = "cm",
+        request_changes = "cr",
       },
     },
   })

@@ -20,12 +20,7 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-        extraPython3Packages =
-          p: with p; [
-            debugpy
-            pymupdf
-            pyqt5
-          ];
+        extraPython3Packages = p: with p; [ debugpy ];
         extraPackages = with pkgs; [
           tree-sitter
           # language servers

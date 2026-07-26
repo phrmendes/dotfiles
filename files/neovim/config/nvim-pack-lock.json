@@ -4,10 +4,6 @@
       "rev": "c73e2b170a4927d1dc1b48e878bba6cf0ed9b07c",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
-    "arborist.nvim": {
-      "rev": "fdeef56c2840c6772b9f68c5774ed87e9340ec7d",
-      "src": "https://github.com/arborist-ts/arborist.nvim"
-    },
     "async.nvim": {
       "rev": "e2a813be9cd143ab1181de6d8a0720e0230cd86e",
       "src": "https://github.com/lewis6991/async.nvim"
@@ -15,10 +11,6 @@
     "baleia.nvim": {
       "rev": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18",
       "src": "https://github.com/m00qek/baleia.nvim"
-    },
-    "codediff.nvim": {
-      "rev": "7608f3b436ce1f84a4888f75e53079caa981a2e9",
-      "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
@@ -36,10 +28,6 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
-    "gh-review.nvim": {
-      "rev": "b9e20b1453ea09f6d679e71a990b067136038962",
-      "src": "https://github.com/gh-tui-tools/gh-review.nvim"
-    },
     "ghlite.nvim": {
       "rev": "dc3af8cb7304dfe6959ede75a0bfc63a52cf704f",
       "src": "https://github.com/daliusd/ghlite.nvim"
@@ -47,10 +35,6 @@
     "grug-far.nvim": {
       "rev": "c995bbacf8229dc096ec1c3d60f8531059c86c1b",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
-    },
-    "guh.nvim": {
-      "rev": "943779f7cdb0acee203985ad531fb53ff95d9c8e",
-      "src": "https://github.com/justinmk/guh.nvim"
     },
     "helm-ls.nvim": {
       "rev": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370",
@@ -116,10 +100,6 @@
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
-    "octo.nvim": {
-      "rev": "b9a73e167f851a98d8f29d62658d3640bb8a7314",
-      "src": "https://github.com/pwntester/octo.nvim"
-    },
     "one-small-step-for-vimkind": {
       "rev": "1af6ffb9b5229a856e8090fa2f690e0931a5aace",
       "src": "https://github.com/jbyuki/one-small-step-for-vimkind"
@@ -139,10 +119,6 @@
     "smart-splits.nvim": {
       "rev": "c02d70257e5d6065d4154acd596ec8054a725724",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
-    },
-    "snacks.nvim": {
-      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
-      "src": "https://github.com/folke/snacks.nvim"
     },
     "sqlite.lua": {
       "rev": "50092d60feb242602d7578398c6eb53b4a8ffe7b",
@@ -175,10 +151,6 @@
     "vim-slime": {
       "rev": "2cfdc3b24e7ebaa64f5a1a04b00555600c622b79",
       "src": "https://github.com/jpalardy/vim-slime"
-    },
-    "zotcite": {
-      "rev": "49e5fb6012077d2fe60681da3d8ff71e4c2a1c12",
-      "src": "https://github.com/jalvesaq/zotcite"
     }
   }
 }

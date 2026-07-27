@@ -2,12 +2,16 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
 import { Key } from "@earendil-works/pi-tui";
 import { appendFileSync, readFileSync, realpathSync } from "node:fs";
 import { join } from "node:path";
+import { parse as parseShell } from "shell-quote";
+import { marked } from "marked";
 
-const PLAN_SKILL = readFileSync(join(realpathSync(__dirname), "..", "skills", "plan", "SKILL.md"), "utf8");
+let PLAN_SKILL: string;
+try {
+    PLAN_SKILL = readFileSync(join(realpathSync(__dirname), "..", "skills", "plan", "SKILL.md"), "utf8");
+} catch (err) {
+    throw new Error(`plan extension: could not load SKILL.md — ${err}`);
+}
 const WRITE_TOOLS = new Set(["edit", "write"]);
-const CHAIN_OPERATORS = /\|\||&&|[|;\n]/;
-const QUOTED_STRING = /"(?:[^"\\]|\\.)*"|'[^']*'/g;
-const SHELL_METACHARS = /[&`$()]/;
 
 const SAFE_TOOLS = new Set(["awk", "bat", "cat", "cd", "curl", "date", "df", "diff", "du", "echo", "eza", "false", "fd", "file", "find", "grep", "head", "id", "jira", "jq", "less", "ls", "more", "ps", "pwd", "readlink", "rg", "sort", "stat", "tail", "tree", "true", "type", "uname", "uniq", "wc", "which", "whoami", "xargs"]);
 
@@ -25,126 +29,125 @@ const PLAN_SUBCOMMANDS = [
     { value: "save", label: "save — export current plan to todo.txt" },
 ];
 
-const REDIRECT_MERGE = /[12]>&[12]\b/g;
-const DEFAULT_PLAN_MODEL = process.env.PLAN_MODEL ?? "anthropic/claude-haiku-4-5";
+const CHAIN_OPS = new Set(["|", "||", "&&", ";"]);
+const BLOCK_OPS = new Set(["&", ">&", "<&", "<(", ">", ">>"]);
 
-function isSegmentSafe(segment: string): boolean {
-    const [tool, subcommand] = segment.trim().split(/\s+/);
-    if (!tool) return false;
-    if (SAFE_TOOLS.has(tool)) return true;
-    const allowed = SAFE_SUBCOMMANDS[tool];
-    return allowed !== undefined && subcommand !== undefined && allowed.includes(subcommand);
+/**
+ * Returns true if the first word of a shell segment is an allowed read-only
+ * command, or an allowed subcommand of a known tool (e.g. `git status`).
+ */
+function isCommandSafe(words: string[]): boolean {
+    const [cmd, sub] = words;
+    if (!cmd) return false;
+    if (SAFE_TOOLS.has(cmd)) return true;
+    const allowed = SAFE_SUBCOMMANDS[cmd];
+    return allowed != null && sub != null && allowed.includes(sub);
 }
 
+/**
+ * Returns true if every segment of a shell command is safe to run in plan mode.
+ *
+ * Operator behaviour:
+ * - Backtick substitution: blocked before tokenisation (shell-quote does not flag it)
+ * - {@link BLOCK_OPS} — `&`, `>&`, `<&`, `<(`, `>`, `>>`: immediately blocked
+ * - {@link CHAIN_OPS} — `|`, `||`, `&&`, `;`: split into independently checked segments
+ * - Read redirect `<` and glob patterns: passed through
+ */
 function isSafe(command: string): boolean {
-    const unquoted = command.replace(QUOTED_STRING, "").replace(REDIRECT_MERGE, "");
-    return unquoted.split(CHAIN_OPERATORS).every(segment =>
-        !SHELL_METACHARS.test(segment) && isSegmentSafe(segment)
-    );
+    if (command.includes("`")) return false;
+    const tokens = parseShell(command);
+    const segments: string[][] = [[]];
+    for (const tok of tokens) {
+        if (typeof tok === "string") {
+            segments[segments.length - 1].push(tok);
+        } else if ("op" in tok) {
+            if (BLOCK_OPS.has(tok.op)) return false;
+            if (CHAIN_OPS.has(tok.op)) segments.push([]);
+        }
+    }
+    return segments.every(isCommandSafe);
 }
 
 interface PlanStep {
     step: number;
     text: string;
-    completed: boolean;
+}
+
+/**
+ * Extracts the title from a plan step list item.
+ * Handles the `**Title** — description` format produced by the plan skill,
+ * falling back to the text before ` —` for non-bold items.
+ */
+function extractBoldTitle(text: string): string | null {
+    if (text.startsWith("**")) {
+        const close = text.indexOf("**", 2);
+        if (close > 2) return text.slice(2, close).trim();
+    }
+    const fallback = text.split(" —")[0].trim();
+    return fallback.length > 0 ? fallback : null;
 }
 
 function extractPlanSteps(message: string): PlanStep[] {
+    const tokens = marked.lexer(message);
     const items: PlanStep[] = [];
-    const headerMatch = message.match(/#{1,3}\s*Steps\s*\n/i);
-    if (!headerMatch) return items;
-    const planSection = message.slice(message.indexOf(headerMatch[0]) + headerMatch[0].length);
-    const numberedPattern = /^\s*(\d+)[.)]\s+\*{0,2}([^*\n]+)/gm;
-    for (const match of planSection.matchAll(numberedPattern)) {
-        const text = match[2].trim().replace(/\*{1,2}$/, "").trim();
-        if (text.length > 3) items.push({ step: items.length + 1, text, completed: false });
+    let inSteps = false;
+
+    for (const tok of tokens) {
+        if (tok.type === "heading" && tok.depth <= 3
+            && tok.text.trim().toLowerCase() === "steps") {
+            inSteps = true;
+            continue;
+        }
+        if (inSteps && tok.type === "heading") break;
+        if (!inSteps || tok.type !== "list" || !tok.ordered) continue;
+
+        for (const item of tok.items) {
+            const title = extractBoldTitle(item.text);
+            if (title && title.length > 3)
+                items.push({ step: items.length + 1, text: title });
+        }
+        break;
     }
     return items;
 }
 
-function extractDoneSteps(text: string): number[] {
-    return [...text.matchAll(/\[DONE:(\d+)\]/gi)].map(m => Number(m[1])).filter(n => Number.isFinite(n));
-}
-
-function markCompletedSteps(text: string, steps: PlanStep[]): number {
-    const doneSteps = extractDoneSteps(text);
-    let count = 0;
-    for (const step of doneSteps) {
-        const item = steps.find(t => t.step === step);
-        if (item && !item.completed) { item.completed = true; count++; }
-    }
-    return count;
-}
-
 function formatTodoTxt(steps: PlanStep[], taskId: string, date: string): string {
     return steps
-        .map(s => {
-            const prefix = s.completed ? `x ${date} ` : "";
-            return `${prefix}${date} ${s.text} +plan id:${taskId}-step${s.step} status:planning parent:${taskId}`;
-        })
+        .map(s => `${date} ${s.text} +plan id:${taskId}-step${s.step} status:planning parent:${taskId}`)
         .join("\n");
 }
 
 export default function planMode(pi: ExtensionAPI): void {
     let enabled = false;
-    let executing = false;
     let steps: PlanStep[] = [];
     let savedTools: string[] | undefined;
-    let savedModel: { provider: string; id: string } | undefined;
-    let savedThinkingLevel: string | undefined;
     let skillLoaded = false;
+    let creating = false;
 
     function today(): string {
         return new Date().toISOString().slice(0, 10);
     }
 
     function persistState(): void {
-        pi.appendEntry("plan-mode", { enabled, executing, steps });
+        pi.appendEntry("plan-mode", { enabled, creating, skillLoaded, steps });
     }
 
     function updateStatus(ctx: ExtensionContext): void {
-        if (executing && steps.length > 0) {
-            ctx.ui.setStatus("plan", `plan: ${steps.filter(s => s.completed).length}/${steps.length}`);
-        } else if (enabled) {
+        if (enabled) {
             ctx.ui.setStatus("plan", "plan: enabled");
         } else {
             ctx.ui.setStatus("plan", undefined);
         }
     }
 
-    async function switchToPlanModel(ctx: ExtensionContext): Promise<void> {
-        const [provider, modelId] = DEFAULT_PLAN_MODEL.split("/");
-        if (!provider || !modelId) return;
-        const planModel = ctx.modelRegistry.find(provider, modelId);
-        if (!planModel) return;
-        if (ctx.model) {
-            savedModel = { provider: ctx.model.provider, id: ctx.model.id };
-        }
-        savedThinkingLevel = pi.getThinkingLevel();
-        await pi.setModel(planModel);
-    }
-
-    async function restoreModel(ctx: ExtensionContext): Promise<void> {
-        if (savedModel) {
-            const model = ctx.modelRegistry.find(savedModel.provider, savedModel.id);
-            if (model) await pi.setModel(model);
-            savedModel = undefined;
-        }
-        if (savedThinkingLevel) {
-            pi.setThinkingLevel(savedThinkingLevel as "off" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max");
-            savedThinkingLevel = undefined;
-        }
-    }
-
     async function enable(ctx: ExtensionContext): Promise<void> {
         if (enabled) return;
         enabled = true;
-        executing = false;
+        creating = false;
         skillLoaded = false;
         steps = [];
         savedTools = pi.getActiveTools();
         pi.setActiveTools(savedTools.filter(t => !WRITE_TOOLS.has(t)));
-        await switchToPlanModel(ctx);
         updateStatus(ctx);
         ctx.ui.notify("Plan mode on — write tools disabled.");
         persistState();
@@ -156,11 +159,10 @@ export default function planMode(pi: ExtensionAPI): void {
             return;
         }
         enabled = false;
-        executing = false;
+        creating = false;
         steps = [];
         pi.setActiveTools(savedTools ?? pi.getActiveTools());
         savedTools = undefined;
-        await restoreModel(ctx);
         updateStatus(ctx);
         ctx.ui.notify(reason === "approve"
             ? "Plan approved — switching to dev mode."
@@ -178,9 +180,14 @@ export default function planMode(pi: ExtensionAPI): void {
             switch (args?.trim()) {
                 case "create":
                     if (!enabled) { ctx.ui.notify("Not in plan mode.", "warning"); return; }
+                    creating = true;
                     pi.sendUserMessage("Produce the formal plan now.");
                     break;
                 case "approve":
+                    if (steps.length === 0) {
+                        ctx.ui.notify("No plan to approve — run /plan create first.", "warning");
+                        return;
+                    }
                     await disable(ctx, "approve");
                     pi.sendUserMessage("The plan is approved. Begin implementation now.");
                     break;
@@ -208,11 +215,6 @@ export default function planMode(pi: ExtensionAPI): void {
         handler: async (ctx) => enabled ? await disable(ctx) : await enable(ctx),
     });
 
-    pi.registerShortcut(Key.ctrl("tab"), {
-        description: "Cycle between plan and dev mode",
-        handler: async (ctx) => enabled ? await disable(ctx) : await enable(ctx),
-    });
-
     pi.on("tool_call", (event) => {
         if (!enabled || event.toolName !== "bash") return;
         const command = event.input.command;
@@ -230,33 +232,19 @@ export default function planMode(pi: ExtensionAPI): void {
         return { message: { customType: "plan-context", content: PLAN_SKILL, display: false } };
     });
 
-    pi.on("turn_end", async (event, ctx) => {
-        if (!executing || steps.length === 0) return;
-        const msg = event.message as { role?: string; content?: Array<{ type?: string; text?: string }> };
-        if (msg.role !== "assistant" || !Array.isArray(msg.content)) return;
-
-        const text = msg.content.filter(b => b.type === "text").map(b => b.text ?? "").join("\n");
-        const completed = markCompletedSteps(text, steps);
-        if (completed > 0) updateStatus(ctx);
-        persistState();
-    });
-
     pi.on("agent_end", async (event, ctx) => {
-        if (executing && steps.length > 0 && steps.every(s => s.completed)) {
-            executing = false;
-            steps = [];
-            updateStatus(ctx);
-            persistState();
-            return;
-        }
-
-        if (!enabled || executing || !ctx.hasUI) return;
-        const msgs = event.messages as Array<{ role?: string; content?: Array<{ type?: string; text?: string }> }>;
-        const last = msgs.reverse().find(m => m.role === "assistant" && Array.isArray(m.content));
+        if (!enabled || !creating || !ctx.hasUI) return;
+        type Msg = { role?: string; content?: Array<{ type?: string; text?: string }> };
+        const last = (event.messages as Msg[]).findLast(m => m.role === "assistant" && Array.isArray(m.content));
         if (!last?.content) return;
         const text = last.content.filter(b => b.type === "text").map(b => b.text ?? "").join("\n");
         const extracted = extractPlanSteps(text);
-        if (extracted.length === 0) return;
+        creating = false;
+        if (extracted.length === 0) {
+            ctx.ui.notify("No plan steps found — try /plan create again.", "warning");
+            persistState();
+            return;
+        }
         steps = extracted;
         persistState();
     });
@@ -265,33 +253,16 @@ export default function planMode(pi: ExtensionAPI): void {
         const entries = ctx.sessionManager.getEntries() as Array<{ type: string; customType?: string; data?: unknown }>;
         const planEntry = entries
             .filter(e => e.type === "custom" && e.customType === "plan-mode")
-            .pop() as { data?: { enabled?: boolean; executing?: boolean; steps?: PlanStep[] } } | undefined;
+            .pop() as { data?: { enabled?: boolean; creating?: boolean; skillLoaded?: boolean; steps?: PlanStep[] } } | undefined;
 
         if (planEntry?.data) {
             enabled = planEntry.data.enabled ?? false;
-            executing = planEntry.data.executing ?? false;
+            creating = planEntry.data.creating ?? false;
+            skillLoaded = planEntry.data.skillLoaded ?? false;
             steps = planEntry.data.steps ?? [];
         } else {
             await enable(ctx);
             return;
-        }
-
-        if (executing && steps.length > 0) {
-            let execIdx = -1;
-            for (let i = entries.length - 1; i >= 0; i--) {
-                if (entries[i].customType === "plan-execute") { execIdx = i; break; }
-            }
-            let text = "";
-            for (let i = execIdx + 1; i < entries.length; i++) {
-                const e = entries[i] as Record<string, unknown>;
-                if (e.type === "message" && e.message) {
-                    const m = e.message as { role?: string; content?: Array<{ type?: string; text?: string }> };
-                    if (m.role === "assistant" && Array.isArray(m.content)) {
-                        text += m.content.filter(b => b.type === "text").map(b => b.text ?? "").join("\n") + "\n";
-                    }
-                }
-            }
-            markCompletedSteps(text, steps);
         }
 
         if (enabled) {

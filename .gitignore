@@ -3,4 +3,4 @@ result
 result-*
 todo.txt
 node_modules/
-files/pi/extensions/*.json
+package-lock.json

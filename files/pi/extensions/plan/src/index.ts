@@ -1,13 +1,14 @@
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { Key } from "@earendil-works/pi-tui";
-import { appendFileSync, readFileSync, realpathSync } from "node:fs";
+import { appendFileSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseShell } from "shell-quote";
 import { marked } from "marked";
 
 let PLAN_SKILL: string;
 try {
-    PLAN_SKILL = readFileSync(join(realpathSync(__dirname), "..", "skills", "plan", "SKILL.md"), "utf8");
+    const agentHome = join(process.env.HOME!, ".pi", "agent");
+    PLAN_SKILL = readFileSync(join(agentHome, "skills", "plan", "SKILL.md"), "utf8");
 } catch (err) {
     throw new Error(`plan extension: could not load SKILL.md — ${err}`);
 }

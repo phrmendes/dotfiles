@@ -146,7 +146,6 @@ in
           mpv
           noctalia
           packages
-          stremio
           udiskie
           xdg
           zathura

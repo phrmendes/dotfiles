@@ -20,7 +20,6 @@ let
     ".local/share/neovide"
     ".local/share/nix"
     ".local/share/nvim"
-    ".local/share/stremio"
     ".local/share/uv"
     ".local/share/zathura"
     ".local/share/zoxide"

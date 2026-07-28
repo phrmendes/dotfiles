@@ -15,7 +15,7 @@
 
 1. `/plan "task"` → agent explores, asks questions, produces plan
 2. **Implement this plan** → exits plan mode, restores tools
-3. Agent loads `/skill:dev` + `/skill:todotxt` → TDD implementation
-4. Agent loads `/skill:review` + `/skill:todotxt` → evaluation
+3. Agent loads `/skill:dev` → TDD implementation
+4. Agent loads `/skill:review` → evaluation
 5. Approval → done | rework → step 3
 6. Compact → `/plan` next task

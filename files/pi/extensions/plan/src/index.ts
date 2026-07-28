@@ -7,7 +7,7 @@ import { marked } from "marked";
 
 const WRITE_TOOLS = new Set(["edit", "write"]);
 
-const SAFE_TOOLS = new Set(["agent-browser", "awk", "bat", "cat", "cd", "curl", "date", "df", "diff", "du", "echo", "eza", "false", "fd", "file", "find", "grep", "head", "id", "jira", "jq", "less", "ls", "more", "ps", "pwd", "readlink", "rg", "sort", "stat", "tail", "tree", "true", "type", "uname", "uniq", "wc", "which", "whoami", "xargs"]);
+const SAFE_TOOLS = new Set(["agent-browser", "bat", "cat", "cd", "curl", "date", "df", "diff", "du", "echo", "eza", "false", "fd", "file", "find", "grep", "head", "id", "jira", "jq", "less", "ls", "more", "ps", "pwd", "readlink", "rg", "sort", "stat", "tail", "tree", "true", "type", "uname", "uniq", "wc", "which", "whoami", "xargs"]);
 
 const SAFE_SUBCOMMANDS: Record<string, string[]> = {
     git: ["status", "log", "diff", "show", "branch", "remote", "ls-files", "ls-tree"],
@@ -40,13 +40,12 @@ export default function planMode(pi: ExtensionAPI): void {
     let enabled = false;
     let creating = false;
     let steps: PlanStep[] = [];
-    let skillLoaded = false;
     let savedTools: string[] | undefined;
     let skillContent: string | null = null;
 
     /** Writes current plan-mode state to the session entry. */
     function persistState(): void {
-        pi.appendEntry("plan-mode", { enabled, creating, skillLoaded, steps });
+        pi.appendEntry("plan-mode", { enabled, creating, steps });
     }
 
     /**
@@ -140,7 +139,6 @@ export default function planMode(pi: ExtensionAPI): void {
         if (enabled) return;
         enabled = true;
         creating = false;
-        skillLoaded = false;
         steps = [];
         savedTools = pi.getActiveTools();
         pi.setActiveTools(savedTools.filter(t => !WRITE_TOOLS.has(t)));
@@ -210,8 +208,7 @@ export default function planMode(pi: ExtensionAPI): void {
     });
 
     pi.on("before_agent_start", () => {
-        if (!enabled || skillLoaded) return;
-        skillLoaded = true;
+        if (!enabled || !creating) return;
         const content = skillContent ?? loadSkillContent();
         if (!content) return;
         skillContent = content;
@@ -244,7 +241,6 @@ export default function planMode(pi: ExtensionAPI): void {
         if (planEntry?.data) {
             enabled = planEntry.data.enabled ?? false;
             creating = planEntry.data.creating ?? false;
-            skillLoaded = planEntry.data.skillLoaded ?? false;
             steps = planEntry.data.steps ?? [];
         } else {
             enable(ctx);

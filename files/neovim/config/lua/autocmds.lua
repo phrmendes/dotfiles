@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end,
 })
 
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   desc = "Reload file on external changes",
   group = augroups.autoread,
   callback = function()

@@ -18,6 +18,10 @@ _: {
           defaultProvider = "deepseek";
           defaultModel = "deepseek/deepseek-v4-pro";
           theme = "dark";
+          packages = [
+            "npm:pi-tuicr"
+            "git:github.com/phrmendes/pi-plan-mode"
+          ];
           skills = [
             "${pkgs.agent-browser}/skills"
             "${piDir}/skills"
@@ -132,9 +136,7 @@ _: {
           PI_SKIP_VERSION_CHECK = "1";
         };
         file = {
-          "${agentHome}/extensions/plan/src".source = "${piDir}/extensions/plan/src";
           "${agentHome}/skills".source = "${piDir}/skills";
-          "${agentHome}/extensions/plan/package.json".source = "${piDir}/extensions/plan/package.json";
           ".config/.jira/.config.yml".source = ../../../files/jira.yaml;
         };
       };

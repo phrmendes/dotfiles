@@ -15,6 +15,7 @@ _: {
           nix-prefetch-github
           parallel
           pass
+          tuicr
         ]
         ++ (with pkgs.local; [
           diff-persist

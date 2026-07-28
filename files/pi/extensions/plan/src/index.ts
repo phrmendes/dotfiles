@@ -15,6 +15,7 @@ const SAFE_SUBCOMMANDS: Record<string, string[]> = {
     gh: ["issue", "pr", "repo", "run", "search", "status", "auth", "browse", "label", "milestone", "project", "release", "gist", "codespace", "workflow", "extension"],
     gcloud: ["version", "info", "config", "list", "describe"],
     nix: ["eval", "search", "show-config", "path-info", "why-depends", "log", "flake", "repl"],
+    systemctl: ["status", "list-units", "list-automounts", "list-paths", "list-sockets", "list-timers", "is-active", "is-failed", "show", "cat", "list-dependencies", "is-enabled", "is-system-running"],
 };
 
 const PLAN_SUBCOMMANDS = [
@@ -24,7 +25,7 @@ const PLAN_SUBCOMMANDS = [
 ];
 
 const CHAIN_OPS = new Set(["|", "||", "&&", ";"]);
-const BLOCK_OPS = new Set(["&", ">&", "<&", "<(", ">", ">>"]);
+const BLOCK_OPS = new Set(["&", "<&", "<(", ">", ">>"]);
 
 interface PlanStep {
     step: number;
@@ -70,10 +71,16 @@ export default function planMode(pi: ExtensionAPI): void {
         if (command.includes("`")) return false;
         const tokens = parseShell(command);
         const segments: string[][] = [[]];
-        for (const tok of tokens) {
+        for (let i = 0; i < tokens.length; i++) {
+            const tok = tokens[i];
             if (typeof tok === "string") {
                 segments[segments.length - 1].push(tok);
             } else if ("op" in tok) {
+                if (tok.op === ">&" && i + 1 < tokens.length) {
+                    const next = tokens[i + 1];
+                    if (typeof next === "string" && /^\d+$/.test(next)) continue;
+                    return false;
+                }
                 if (BLOCK_OPS.has(tok.op)) return false;
                 if (CHAIN_OPS.has(tok.op)) segments.push([]);
             }

@@ -26,5 +26,5 @@ safely("later", function()
     end,
   })
 
-  vim.keymap.set({ "n", "t" }, "<c-t>", function() shell:toggle() end, { desc = "Terminal" })
+  vim.keymap.set({ "n", "t" }, "<c-\\>", function() shell:toggle() end, { desc = "Terminal" })
 end)

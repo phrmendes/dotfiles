@@ -6,7 +6,6 @@ vim.pack.add({
   "https://github.com/barrettruth/diffs.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
   "https://github.com/brianhuster/unnest.nvim",
-  "https://github.com/daliusd/ghlite.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",
   "https://github.com/igorlfs/nvim-dap-view",

@@ -26,6 +26,7 @@ vim.lsp.enable({
   "texlab",
   "tofu_ls",
   "tsgo",
+  "ty",
   "yamlls",
 })
 

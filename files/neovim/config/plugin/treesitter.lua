@@ -1,5 +1,6 @@
 require("nvim-treesitter").install({
   "bash",
+  "bibtex",
   "c",
   "cpp",
   "css",
@@ -12,6 +13,7 @@ require("nvim-treesitter").install({
   "java",
   "javascript",
   "json",
+  "latex",
   "lua",
   "make",
   "markdown",

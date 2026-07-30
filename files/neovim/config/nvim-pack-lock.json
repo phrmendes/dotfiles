@@ -112,6 +112,10 @@
       "rev": "7eaa150061ea18fdbe18fbb924d236e3ddccc57d",
       "src": "https://github.com/ThePrimeagen/refactoring.nvim"
     },
+    "review.nvim": {
+      "rev": "48e0c06b3ddb8b752abfcbfceb9185533d9c2b63",
+      "src": "https://github.com/vuki656/review.nvim"
+    },
     "sidekick.nvim": {
       "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
       "src": "https://github.com/folke/sidekick.nvim"

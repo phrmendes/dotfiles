@@ -35,6 +35,7 @@ vim.pack.add({
   "https://github.com/tadmccorkle/markdown.nvim",
   "https://github.com/tpope/vim-abolish",
   "https://github.com/tpope/vim-dadbod",
+  "https://github.com/vuki656/review.nvim",
   "https://github.com/waiting-for-dev/ergoterm.nvim",
 })
 

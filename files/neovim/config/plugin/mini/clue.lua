@@ -30,7 +30,6 @@ safely("later", function()
       { mode = "n", keys = "<leader>t", desc = "+todotxt" },
       { mode = { "n", "x" }, keys = "<leader>a", desc = "+agent" },
       { mode = { "n", "x" }, keys = "<leader>g", desc = "+git" },
-      { mode = { "n", "x" }, keys = "<leader>gp", desc = "+PR" },
     },
     window = { delay = 500, config = { width = "auto", border = vim.g.border } },
   })

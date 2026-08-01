@@ -51,6 +51,9 @@ in
             "@@||freedium.cfd^"
             "@@||umami.is^"
             "@@||prod-global-mobile-analytics-global.nubank.com.br^"
+            "||softwareupdates.amazon.com^"
+            "||d1s31zyz7dcc2d.cloudfront.net^"
+            "||prod.ota-cloudfront.net^"
           ];
           filtering.filters = [
             {

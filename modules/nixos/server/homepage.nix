@@ -38,14 +38,6 @@ _: {
         listenPort = port;
         widgets = [
           {
-            search = {
-              provider = "duckduckgo";
-              focus = true;
-              showSearchSuggestions = true;
-              target = "_blank";
-            };
-          }
-          {
             datetime = {
               text_size = "xl";
               format = {

@@ -1,4 +1,5 @@
 vim.pack.add({
+  "https://codeberg.org/mfussenegger/nvim-ansible",
   "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/NeogitOrg/neogit",
   "https://github.com/ThePrimeagen/refactoring.nvim",

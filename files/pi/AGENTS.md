@@ -8,6 +8,7 @@
 
 ## General
 
+- Always talk ASD-STE100 Simplified Technical English.
 - Prefer idiomatic tooling for each ecosystem
 - Use `rg` (ripgrep) for all content searches via bash
 

@@ -10,7 +10,7 @@ safely("later", function()
     terraform = { "tflint" },
     tsx = { "oxlint" },
     typescript = { "oxlint" },
-    ["yaml.ansible"] = { "ansible-lint" },
+    ["yaml.ansible"] = { "ansible_lint" },
     zsh = { "shellcheck" },
   }
 

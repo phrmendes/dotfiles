@@ -16,7 +16,7 @@ _: {
         settings = {
           quietStartup = true;
           defaultProvider = "deepseek";
-          defaultModel = "deepseek/deepseek-v4-pro";
+          defaultModel = "deepseek/deepseek-v4-flash";
           theme = "dark";
           packages = [
             "npm:pi-tuicr"
@@ -81,9 +81,9 @@ _: {
                   input = [ "text" ];
                   reasoning = true;
                   cost = {
-                    input = 1.74;
-                    output = 3.48;
-                    cacheRead = 0.145;
+                    input = 0.435;
+                    output = 0.87;
+                    cacheRead = 0.003625;
                     cacheWrite = 0;
                   };
                   compat = {
@@ -108,7 +108,7 @@ _: {
                   cost = {
                     input = 0.14;
                     output = 0.28;
-                    cacheRead = 0.028;
+                    cacheRead = 0.0028;
                     cacheWrite = 0;
                   };
                   compat = {

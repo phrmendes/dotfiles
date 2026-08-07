@@ -35,22 +35,6 @@ sudo nix run github:nix-community/disko/latest#disko -- --mode disko --flake .#{
 sudo nixos-install --no-channel-copy --root /mnt --flake .#{{ host }}
 ```
 
-## Workflow
-
-Install pre-commit hooks once after cloning:
-
-```sh
-prek install
-```
-
-Then use the justfile:
-
-```sh
-just fmt      # format
-just lint     # lint
-just rebuild  # nh os switch
-```
-
 ## Secrets
 
 Secrets are encrypted with [agenix](https://github.com/ryantm/agenix) using SSH keys.

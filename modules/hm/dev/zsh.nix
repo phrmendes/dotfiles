@@ -35,11 +35,6 @@
             local address="''${2:-$target}"
             nixos-rebuild switch --flake ".#''${target}" --target-host "phrmendes@''${address}" --sudo
           }
-
-          _just_completion() { source <(JUST_COMPLETE=zsh ${pkgs.just}/bin/just) }
-          compdef _just_completion just
-
-          [ -x "${lib.getExe pkgs.devenv}" ] && eval "$(${lib.getExe pkgs.devenv} hook zsh)"
         '';
       };
     };

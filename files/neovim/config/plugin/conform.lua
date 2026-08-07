@@ -21,6 +21,7 @@ safely(
         tex = { "tex-fmt" },
         toml = { "taplo" },
         yaml = { "yq" },
+        kdl = { "kdlfmt" },
         ["yaml.ansible"] = { "yq" },
         zsh = { "shellharden", "shfmt" },
       },

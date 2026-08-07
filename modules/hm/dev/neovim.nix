@@ -8,7 +8,7 @@
       ...
     }:
     let
-      inherit (osConfig.machine) dotfilesDir nvimServerPort;
+      inherit (osConfig.machine) dotfilesDir;
       inherit (config.lib.file) mkOutOfStoreSymlink;
     in
     {
@@ -54,6 +54,7 @@
           # formatters
           djlint
           jq
+          kdlfmt
           nixfmt
           oxfmt
           ruff
@@ -63,17 +64,6 @@
           yq-go
         ];
       };
-
-      home.packages = with pkgs; [
-        (local.neovim.remote.override {
-          neovim = config.programs.neovim.finalPackage;
-          inherit nvimServerPort;
-        })
-        (local.neovim.server.override {
-          neovim = config.programs.neovim.finalPackage;
-          inherit nvimServerPort;
-        })
-      ];
 
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 

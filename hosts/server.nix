@@ -83,8 +83,8 @@ in
           ripgrep
           starship
           tealdeer
-          tmux
           yazi
+          tmux
           zoxide
           zsh
         ]);

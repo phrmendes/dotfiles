@@ -15,23 +15,17 @@
         plugins = [
           {
             name = "zsh-fzf-tab";
-            file = "share/fzf-tab/fzf-tab.plugin.zsh";
-            src = pkgs.zsh-fzf-tab;
+            src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
           }
           {
             name = "zsh-nix-shell";
-            file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
-            src = pkgs.zsh-nix-shell;
+            src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
           }
         ];
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
           cat = lib.getExe pkgs.bat;
-          g = lib.getExe pkgs.git;
           v = "nvim";
-          vr = "nvim-remote";
-          vs = "nvim-server";
-          s = "kitten ssh";
         };
         initContent = ''
           set -o vi

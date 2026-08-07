@@ -109,9 +109,11 @@ in
           symlinks
         ])
         ++ (with homeManager.dev; [
+          alacritty
           atuin
           bat
           btop
+          devenv
           direnv
           eza
           fd
@@ -120,12 +122,12 @@ in
           git
           jq
           k8s
-          kitty
           neovim
           nix-index
-          pi
           packages
+          pi
           ripgrep
+          sesh
           starship
           tealdeer
           tmux

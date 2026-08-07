@@ -1,4 +1,4 @@
-vim.g.slime_target = "neovim"
+vim.g.slime_target = "tmux"
 vim.g.slime_no_mappings = true
 
 safely("filetype:python,r,rmd,quarto,julia,elixir", function()

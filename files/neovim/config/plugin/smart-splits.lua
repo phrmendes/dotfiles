@@ -2,7 +2,7 @@ safely("now", function()
   local splits = require("smart-splits")
 
   splits.setup({
-    multiplexer_integration = "kitty",
+    multiplexer_integration = "tmux",
     cursor_follows_swapped_bufs = true,
   })
 

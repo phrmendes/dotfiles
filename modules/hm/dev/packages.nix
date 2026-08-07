@@ -6,7 +6,6 @@ _: {
         with pkgs;
         [
           bws
-          devenv
           docker-compose
           jdk
           jqp

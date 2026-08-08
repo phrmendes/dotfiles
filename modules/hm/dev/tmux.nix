@@ -12,7 +12,6 @@ _: {
         historyLimit = 10000;
         keyMode = "vi";
         mouse = true;
-        newSession = true;
         prefix = "C-Space";
         shell = lib.getExe pkgs.zsh;
         extraConfig =
@@ -20,8 +19,9 @@ _: {
             status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
           in
           ''
-            set -g  default-terminal    tmux-256color
-            set -ag terminal-overrides  ",alacritty:RGB"
+            set -g  default-terminal    "tmux-256color"
+            set -ag terminal-overrides  ",xterm-256color:Tc"
+            set -as terminal-features   ",*:sync"
             set -gq allow-passthrough   on
 
             set -g detach-on-destroy    off
@@ -49,10 +49,12 @@ _: {
             set-window-option -g window-status-current-format "#[bold]${status_bar}#[nobold]"
 
             unbind ','
+            unbind '`'
 
             bind '-'   split-window -v -c "#{pane_current_path}"
             bind ':'   command-prompt
             bind '\'   split-window -h -c "#{pane_current_path}"
+            bind '`'   source-file ~/.config/tmux/tmux.conf \; display-message
             bind Enter rotate-window
             bind G     last-window
             bind Q     kill-window
@@ -96,8 +98,6 @@ _: {
             bind -n M-j if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
             bind -n M-k if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
             bind -n M-l if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
-
-            run-shell "tmux has-session -t 0 2>/dev/null && tmux kill-session -t 0"
           '';
       };
     };

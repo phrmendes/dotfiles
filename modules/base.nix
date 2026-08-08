@@ -137,7 +137,8 @@
       default = { };
     };
 
-    hm = lib.mkOption {
+    homeModules = lib.mkOption {
+      description = "Home-manager modules: homeModules.<name>";
       type = lib.types.lazyAttrsOf lib.types.deferredModule;
       default = { };
     };

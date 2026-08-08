@@ -1,7 +1,7 @@
 { config, ... }:
 let
   inherit (config.modules) nixos;
-  inherit (config) settings hm;
+  inherit (config) settings homeModules;
 in
 {
   configurations.nixos.laptop.module =
@@ -103,7 +103,7 @@ in
         };
       };
 
-      home-manager.users.${settings.user}.imports = with hm; [
+      home-manager.users.${settings.user}.imports = with homeModules; [
         alacritty
         atuin
         base

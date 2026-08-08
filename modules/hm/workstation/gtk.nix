@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.workstation.gtk =
     { pkgs, ... }:
     {

@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.eza = {
     programs.eza = {
       enable = true;

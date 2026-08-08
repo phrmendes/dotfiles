@@ -1,4 +1,4 @@
-_: {
+{
   modules.nixos.server.home-assistant =
     { config, ... }:
     let

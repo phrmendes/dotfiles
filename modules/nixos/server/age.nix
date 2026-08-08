@@ -1,7 +1,6 @@
-{ config, ... }:
 {
   modules.nixos.server.age =
-    _:
+    { config, ... }:
     let
       inherit (config.dotfilesLib) mkSecretReadable;
       secretReadable =

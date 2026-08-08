@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.k8s =
     { pkgs, lib, ... }:
     let

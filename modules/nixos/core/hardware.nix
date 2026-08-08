@@ -1,4 +1,4 @@
-_: {
+{
   modules.nixos.core.hardware =
     {
       modulesPath,

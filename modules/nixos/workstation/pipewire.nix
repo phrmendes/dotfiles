@@ -1,4 +1,4 @@
-_: {
+{
   modules.nixos.workstation.pipewire = {
     services.pipewire = {
       enable = true;

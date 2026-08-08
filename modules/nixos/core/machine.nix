@@ -1,4 +1,4 @@
-_: {
+{
   modules.nixos.core.machine =
     { lib, config, ... }:
     let

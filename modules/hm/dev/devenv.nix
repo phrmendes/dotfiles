@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.devenv = {
     programs.devenv = {
       enable = true;

@@ -1,6 +1,5 @@
-{ ... }:
 {
-  modules.nixos.core.neovim = _: {
+  modules.nixos.core.neovim = {
     programs.neovim = {
       enable = true;
       withRuby = false;

@@ -1,14 +1,8 @@
-{ config, ... }:
-let
-  inherit (config) dotfilesLib;
-in
 {
   modules.nixos.server.transmission =
-    {
-      config,
-      ...
-    }:
+    { config, ... }:
     let
+      inherit (config) dotfilesLib;
       webPort = 9091;
       torrentingPort = 51413;
       domain = config.server.caddy.domain;

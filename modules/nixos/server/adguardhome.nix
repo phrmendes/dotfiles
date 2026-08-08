@@ -1,12 +1,12 @@
 { config, ... }:
 let
   inherit (config.settings) lan;
-  inherit (config) dotfilesLib;
 in
 {
   modules.nixos.server.adguardhome =
     { config, ... }:
     let
+      inherit (config) dotfilesLib;
       port = 3000;
       dnsPort = 53;
     in

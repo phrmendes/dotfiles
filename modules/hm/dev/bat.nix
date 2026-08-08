@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.bat =
     { pkgs, ... }:
     {

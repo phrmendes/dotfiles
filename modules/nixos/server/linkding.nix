@@ -1,4 +1,4 @@
-_: {
+{
   modules.nixos.server.linkding =
     { config, ... }:
     let

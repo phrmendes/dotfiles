@@ -8,10 +8,7 @@
   imports = [ inputs.flake-parts.flakeModules.modules ];
 
   config = {
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
+    systems = [ "x86_64-linux" ];
     perSystem = _: {
       treefmt.config = {
         projectRootFile = "flake.nix";
@@ -97,11 +94,11 @@
     };
 
     modules = lib.mkOption {
+      description = "Grouped modules: modules.<class>.<group>.<name>";
       type = lib.types.lazyAttrsOf (
         lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule)
       );
       default = { };
-      description = "Grouped modules: modules.<class>.<group>.<name>";
     };
   };
 }

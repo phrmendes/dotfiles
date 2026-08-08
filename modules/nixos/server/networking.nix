@@ -1,8 +1,11 @@
-_: {
+{
   modules.nixos.server.networking =
     { lib, ... }:
     {
-      services.resolved.enable = lib.mkForce false;
+      services = {
+        resolved.enable = lib.mkForce false;
+        tailscale.extraUpFlags = [ "--accept-dns=false" ];
+      };
       networking = {
         resolvconf.enable = lib.mkForce false;
         networkmanager.dns = lib.mkForce "none";
@@ -11,6 +14,5 @@ _: {
           "8.8.8.8"
         ];
       };
-      services.tailscale.extraUpFlags = [ "--accept-dns=false" ];
     };
 }

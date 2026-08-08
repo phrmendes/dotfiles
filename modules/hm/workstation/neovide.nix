@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.workstation.neovide =
     { config, ... }:
     {

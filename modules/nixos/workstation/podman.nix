@@ -1,5 +1,5 @@
-_: {
-  modules.nixos.workstation.podman = _: {
+{
+  modules.nixos.workstation.podman = {
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;

@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  modules.nixos.core.age = _: {
+  modules.nixos.core.age = {
     imports = [ inputs.agenix.nixosModules.default ];
 
     age.identityPaths = [ "/persist${settings.home}/.ssh/age" ];

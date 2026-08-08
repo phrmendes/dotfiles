@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.btop = {
     programs.btop = {
       enable = true;

@@ -1,15 +1,12 @@
 { config, ... }:
 let
-  inherit (config) settings dotfilesLib;
+  inherit (config) settings;
 in
 {
   modules.nixos.server.caddy =
-    {
-      lib,
-      config,
-      ...
-    }:
+    { lib, config, ... }:
     let
+      inherit (config) dotfilesLib;
       domain = config.server.caddy.domain;
     in
     {

@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.nix-index = {
     programs = {
       nix-index.enable = true;

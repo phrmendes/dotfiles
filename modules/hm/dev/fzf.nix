@@ -1,4 +1,4 @@
-_: {
+{
   modules.homeManager.dev.fzf =
     { pkgs, lib, ... }:
     let

@@ -58,9 +58,7 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         (inputs.import-tree ./modules)
-        ./hosts/desktop.nix
-        ./hosts/laptop.nix
-        ./hosts/server.nix
+        (inputs.import-tree ./hosts)
       ];
     };
 }

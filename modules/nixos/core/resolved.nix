@@ -1,4 +1,4 @@
-_: {
+{
   modules.nixos.core.resolved = {
     services.resolved = {
       enable = true;

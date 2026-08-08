@@ -1,7 +1,7 @@
 { config, ... }:
 let
-  inherit (config.modules) nixos homeManager;
-  inherit (config) settings;
+  inherit (config.modules) nixos;
+  inherit (config) settings hm;
 in
 {
   configurations.nixos.laptop.module =
@@ -103,54 +103,48 @@ in
         };
       };
 
-      home-manager.users.${settings.user}.imports =
-        (with homeManager.user; [
-          base
-          symlinks
-        ])
-        ++ (with homeManager.dev; [
-          alacritty
-          atuin
-          bat
-          btop
-          devenv
-          direnv
-          eza
-          fd
-          fzf
-          gh
-          git
-          jq
-          k8s
-          neovim
-          nix-index
-          packages
-          pi
-          ripgrep
-          sesh
-          starship
-          tealdeer
-          tmux
-          yazi
-          zoxide
-          zsh
-        ])
-        ++ (with homeManager.workstation; [
-          cliphist
-          flameshot
-          gnupg
-          gtk
-          hyprland
-          imv
-          keepassxc
-          lua
-          moonlight
-          mpv
-          noctalia
-          packages
-          udiskie
-          xdg
-          zathura
-        ]);
+      home-manager.users.${settings.user}.imports = with hm; [
+        alacritty
+        atuin
+        base
+        bat
+        btop
+        cliphist
+        devenv
+        direnv
+        eza
+        fd
+        flameshot
+        fzf
+        gh
+        git
+        gnupg
+        gtk
+        hyprland
+        imv
+        jq
+        k8s
+        keepassxc
+        lua
+        moonlight
+        mpv
+        neovim
+        nix-index
+        noctalia
+        packages
+        pi
+        ripgrep
+        sesh
+        starship
+        symlinks
+        tealdeer
+        tmux
+        udiskie
+        xdg
+        yazi
+        zathura
+        zoxide
+        zsh
+      ];
     };
 }

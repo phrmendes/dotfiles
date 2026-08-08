@@ -1,0 +1,24 @@
+{
+  hm.starship = {
+    programs.starship = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      settings = {
+        command_timeout = 1000;
+        gcloud.disabled = true;
+        python.symbol = " ";
+        nix_shell = {
+          symbol = " ";
+          format = "[$symbol]($style)";
+        };
+        character = {
+          success_symbol = "[󰘧](bold green)";
+          error_symbol = "[󰘧](bold red)";
+          vimcmd_symbol = "[󰘧](bold purple)";
+        };
+        right_format = "$nix_shell";
+      };
+    };
+  };
+}

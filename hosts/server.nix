@@ -1,7 +1,7 @@
 { config, ... }:
 let
-  inherit (config.modules) nixos homeManager;
-  inherit (config) settings;
+  inherit (config.modules) nixos;
+  inherit (config) settings hm;
 in
 {
   configurations.nixos.server.module =
@@ -68,25 +68,22 @@ in
         };
       };
 
-      home-manager.users.${settings.user}.imports =
-        (with homeManager.user; [
-          base
-        ])
-        ++ (with homeManager.dev; [
-          bat
-          btop
-          eza
-          fd
-          fzf
-          git
-          jq
-          ripgrep
-          starship
-          tealdeer
-          yazi
-          tmux
-          zoxide
-          zsh
-        ]);
+      home-manager.users.${settings.user}.imports = with hm; [
+        base
+        bat
+        btop
+        eza
+        fd
+        fzf
+        git
+        jq
+        ripgrep
+        starship
+        tealdeer
+        yazi
+        tmux
+        zoxide
+        zsh
+      ];
     };
 }

@@ -5,8 +5,8 @@
       port = 8123;
     in
     {
-      server.homepage.services.home-assistant = {
-        url = "home-assistant.${config.server.caddy.domain}";
+      homepage.services.home-assistant = {
+        url = "home-assistant.${config.caddy.domain}";
         monitoredServices = [ "home-assistant" ];
         homepage = {
           name = "Home Assistant";
@@ -16,7 +16,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "home-assistant" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "home-assistant" port;
 
       services.home-assistant = {
         enable = true;

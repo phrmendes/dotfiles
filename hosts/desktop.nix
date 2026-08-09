@@ -8,7 +8,7 @@ in
     {
       imports = with nixosModules; [
         dotfilesLib
-        machine
+        workstationOptions
         core
         disko
         workstation
@@ -16,18 +16,23 @@ in
         sunshine
       ];
 
-      machine = {
+      workstation = {
         type = "desktop";
+        dotfilesDir = "/home/phrmendes/Projects/dotfiles";
         monitors = {
           primary = {
             name = "DP-3";
             resolution = "2560x1080";
             position = "0x0";
+            refreshRate = 60;
+            scale = 1.0;
           };
           secondary = {
             name = "HDMI-A-1";
             resolution = "1920x1080";
             position = "2560x0";
+            refreshRate = 60;
+            scale = 1.0;
           };
         };
       };

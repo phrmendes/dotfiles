@@ -17,9 +17,9 @@
           });
         })
       ];
-      server.homepage.services.beszel = {
+      homepage.services.beszel = {
         dataDir = "/srv/beszel";
-        url = "beszel.${config.server.caddy.domain}";
+        url = "beszel.${config.caddy.domain}";
         monitoredServices = [
           "beszel-hub"
           "beszel-agent"
@@ -71,7 +71,7 @@
       };
 
       services = {
-        caddy.virtualHosts = config.server.caddy.mkVhost "beszel" port;
+        caddy.virtualHosts = config.caddy.mkVhost "beszel" port;
         beszel = {
           hub = {
             enable = true;

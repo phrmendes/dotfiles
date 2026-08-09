@@ -16,7 +16,10 @@ in
       ...
     }:
     let
-      isWorkstation = config.machine.isWorkstation;
+      isWorkstation = builtins.elem (config.workstation.type or "server") [
+        "desktop"
+        "laptop"
+      ];
     in
     {
       imports = [
@@ -358,7 +361,6 @@ in
         };
       };
 
-      nixpkgs.hostPlatform = "x86_64-linux";
       virtualisation.containers.enable = true;
       console.keyMap = "us";
       system.stateVersion = settings.stateVersion;

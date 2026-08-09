@@ -16,7 +16,6 @@ in
     {
       imports = with nixosModules; [
         dotfilesLib
-        machine
         core
         disko
         adguardhome
@@ -42,11 +41,6 @@ in
         tailscale
         transmission
       ];
-
-      machine = {
-        type = "server";
-        dotfilesDir = lib.mkForce "/home/phrmendes/dotfiles";
-      };
 
       age.secrets =
         let

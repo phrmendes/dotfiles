@@ -13,9 +13,9 @@ in
     {
       networking.firewall = dotfilesLib.mkFirewallPort dnsPort;
 
-      server.homepage.services.adguardhome = {
+      homepage.services.adguardhome = {
         dataDir = "/var/lib/AdGuardHome";
-        url = "adguardhome.${config.server.caddy.domain}";
+        url = "adguardhome.${config.caddy.domain}";
         monitoredServices = [ "adguardhome" ];
         homepage = {
           name = "AdGuard Home";
@@ -25,7 +25,7 @@ in
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "adguardhome" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "adguardhome" port;
 
       services.adguardhome = {
         enable = true;

@@ -9,7 +9,8 @@
       ...
     }:
     let
-      inherit (osConfig.machine) isLaptop monitors;
+      inherit (osConfig.workstation) monitors;
+      isLaptop = osConfig.workstation.type == "laptop";
       inherit (osConfig) dotfilesLib;
       inherit (config.lib.file) mkOutOfStoreSymlink;
       base16 = dotfilesLib.mkBase16Lua config.lib.stylix.colors;
@@ -57,7 +58,7 @@
         return {}
       '';
 
-      annotationSrc = name: mkOutOfStoreSymlink "${osConfig.machine.dotfilesDir}/files/${name}";
+      annotationSrc = name: mkOutOfStoreSymlink "${osConfig.workstation.dotfilesDir}/files/${name}";
     in
     {
       home.file = {

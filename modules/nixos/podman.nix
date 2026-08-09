@@ -35,7 +35,7 @@ in
           };
           script = ''
             if ! podman network exists services; then
-              podman network create --subnet ${settings.podman.subnet} services
+              podman network create --subnet ${settings.podmanSubnet} services
             fi
           '';
         };

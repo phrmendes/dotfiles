@@ -5,10 +5,10 @@
       inherit (config) dotfilesLib;
       webPort = 9091;
       torrentingPort = 51413;
-      domain = config.server.caddy.domain;
+      domain = config.caddy.domain;
     in
     {
-      server.homepage.services.transmission = {
+      homepage.services.transmission = {
         url = "transmission.${domain}";
         monitoredServices = [ "transmission" ];
         homepage = {
@@ -19,7 +19,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "transmission" webPort;
+      services.caddy.virtualHosts = config.caddy.mkVhost "transmission" webPort;
 
       networking.firewall = dotfilesLib.mkFirewallPort torrentingPort;
 

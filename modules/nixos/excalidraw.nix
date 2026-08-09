@@ -6,8 +6,8 @@
       containerPort = 80;
     in
     {
-      server.homepage.services.excalidraw = {
-        url = "excalidraw.${config.server.caddy.domain}";
+      homepage.services.excalidraw = {
+        url = "excalidraw.${config.caddy.domain}";
         monitoredServices = [ "podman-excalidraw" ];
         homepage = {
           name = "Excalidraw";
@@ -17,7 +17,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "excalidraw" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "excalidraw" port;
 
       systemd.services."podman-excalidraw" = {
         after = [ "podman-network-services.service" ];

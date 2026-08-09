@@ -9,10 +9,10 @@ in
       ...
     }:
     let
-      domain = config.server.caddy.domain;
+      domain = config.caddy.domain;
     in
     {
-      server.homepage.services = {
+      homepage.services = {
         sonarr = {
           dataDir = "/srv/sonarr";
           url = "sonarr.${domain}";
@@ -93,11 +93,11 @@ in
 
       services = {
         caddy.virtualHosts =
-          (config.server.caddy.mkVhost "sonarr" 8989)
-          // (config.server.caddy.mkVhost "radarr" 7878)
-          // (config.server.caddy.mkVhost "prowlarr" 9696)
-          // (config.server.caddy.mkVhost "bazarr" 6767)
-          // (config.server.caddy.mkVhost "jellyfin" 8096);
+          (config.caddy.mkVhost "sonarr" 8989)
+          // (config.caddy.mkVhost "radarr" 7878)
+          // (config.caddy.mkVhost "prowlarr" 9696)
+          // (config.caddy.mkVhost "bazarr" 6767)
+          // (config.caddy.mkVhost "jellyfin" 8096);
         sonarr = {
           enable = true;
           dataDir = "/srv/sonarr";

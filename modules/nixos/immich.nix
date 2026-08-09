@@ -5,8 +5,8 @@
       port = 2283;
     in
     {
-      server.homepage.services.immich = {
-        url = "immich.${config.server.caddy.domain}";
+      homepage.services.immich = {
+        url = "immich.${config.caddy.domain}";
         monitoredServices = [ "immich-server" ];
         homepage = {
           name = "Immich";
@@ -16,7 +16,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "immich" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "immich" port;
 
       users.users.immich.extraGroups = [
         "external"

@@ -8,7 +8,7 @@
     }:
     let
       port = 8200;
-      domain = config.server.caddy.domain;
+      domain = config.caddy.domain;
       parametersFile = pkgs.writeText "duplicati-parameters" ''
         --webservice-allowed-hostnames=duplicati.${domain}
       '';
@@ -22,7 +22,7 @@
       '';
     in
     {
-      server.homepage.services.duplicati = {
+      homepage.services.duplicati = {
         dataDir = config.services.duplicati.dataDir;
         url = "duplicati.${domain}";
         monitoredServices = [ "duplicati" ];
@@ -34,7 +34,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "duplicati" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "duplicati" port;
 
       systemd.tmpfiles.rules = [ "d /srv/duplicati 0750 root root -" ];
 

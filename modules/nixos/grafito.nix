@@ -5,8 +5,8 @@
       port = 3001;
     in
     {
-      server.homepage.services.grafito = {
-        url = "grafito.${config.server.caddy.domain}";
+      homepage.services.grafito = {
+        url = "grafito.${config.caddy.domain}";
         monitoredServices = [ "podman-grafito" ];
         homepage = {
           name = "Grafito";
@@ -16,8 +16,8 @@
         };
       };
 
-      services.caddy.virtualHosts."grafito.${config.server.caddy.domain}" = {
-        useACMEHost = config.server.caddy.domain;
+      services.caddy.virtualHosts."grafito.${config.caddy.domain}" = {
+        useACMEHost = config.caddy.domain;
         extraConfig = ''
           ${builtins.readFile ../../files/Caddyfile.grafito}
           reverse_proxy 127.0.0.1:${toString port}

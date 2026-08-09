@@ -5,9 +5,9 @@
       port = 8888;
     in
     {
-      server.homepage.services.atuin = {
+      homepage.services.atuin = {
         dataDir = "/var/lib/atuin";
-        url = "atuin.${config.server.caddy.domain}";
+        url = "atuin.${config.caddy.domain}";
         monitoredServices = [ "atuin" ];
         homepage = {
           name = "Atuin";
@@ -17,7 +17,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "atuin" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "atuin" port;
 
       services.atuin = {
         enable = true;

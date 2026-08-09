@@ -13,7 +13,7 @@
 
       servicesForCategory =
         cat:
-        config.server.homepage.services
+        config.homepage.services
         |> lib.filterAttrs (_: v: v.homepage.enable && v.homepage.category == cat)
         |> lib.mapAttrsToList (
           _: v: {
@@ -28,10 +28,10 @@
         );
     in
     {
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "homepage" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "homepage" port;
 
       systemd.services.homepage-dashboard.environment.HOMEPAGE_ALLOWED_HOSTS =
-        lib.mkForce "homepage.${config.server.caddy.domain},localhost:${toString port},127.0.0.1:${toString port}";
+        lib.mkForce "homepage.${config.caddy.domain},localhost:${toString port},127.0.0.1:${toString port}";
 
       services.homepage-dashboard = {
         enable = true;

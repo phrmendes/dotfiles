@@ -11,9 +11,9 @@ in
     {
       users.users.syncthing.extraGroups = [ "external" ];
 
-      server.homepage.services.syncthing = {
+      homepage.services.syncthing = {
         dataDir = "/srv/syncthing";
-        url = "syncthing.${config.server.caddy.domain}";
+        url = "syncthing.${config.caddy.domain}";
         monitoredServices = [ "syncthing" ];
         homepage = {
           name = "Syncthing";
@@ -23,7 +23,7 @@ in
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "syncthing" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "syncthing" port;
 
       systemd.tmpfiles.rules =
         let

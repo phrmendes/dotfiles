@@ -8,7 +8,7 @@
       ...
     }:
     let
-      inherit (osConfig.machine) dotfilesDir;
+      inherit (osConfig.workstation) dotfilesDir;
       inherit (config.lib.file) mkOutOfStoreSymlink;
     in
     {

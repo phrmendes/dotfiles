@@ -6,7 +6,7 @@ OLD_ROOTS=$BTRFS_MNT/old_roots
 delete_subvolume() {
 	local subvol="$1"
 	IFS=$'\n'
-	for child in "$(btrfs subvolume list -o "$subvol" | cut -f 9- -d ' ')"; do
+	for child in $(btrfs subvolume list -o "$subvol" | cut -f 9- -d ' '); do
 		delete_subvolume "$BTRFS_MNT/$child"
 	done
 	btrfs subvolume delete "$subvol"

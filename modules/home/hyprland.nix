@@ -18,6 +18,6 @@
       xdg.configFile."hypr/hyprland.lua".enable = false;
 
       home.file.".config/hypr/hyprland.lua".source =
-        mkOutOfStoreSymlink "${osConfig.machine.dotfilesDir}/files/hyprland.lua";
+        mkOutOfStoreSymlink "${osConfig.workstation.dotfilesDir}/files/hyprland.lua";
     };
 }

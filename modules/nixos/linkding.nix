@@ -5,9 +5,9 @@
       port = 9090;
     in
     {
-      server.homepage.services.linkding = {
+      homepage.services.linkding = {
         dataDir = "/srv/containers/linkding";
-        url = "linkding.${config.server.caddy.domain}";
+        url = "linkding.${config.caddy.domain}";
         monitoredServices = [ "podman-linkding" ];
         homepage = {
           name = "Linkding";
@@ -17,7 +17,7 @@
         };
       };
 
-      services.caddy.virtualHosts = config.server.caddy.mkVhost "linkding" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost "linkding" port;
 
       systemd = {
         tmpfiles.rules = [ "d /srv/containers/linkding 0755 root root -" ];

@@ -6,24 +6,9 @@ in
   nixosModules.caddy =
     { lib, config, ... }:
     let
-      inherit (config) dotfilesLib;
-      domain = config.server.caddy.domain;
+      domain = config.caddy.domain;
     in
     {
-      options.server.caddy = {
-        domain = lib.mkOption {
-          type = lib.types.str;
-          default = "local.phrmendes.xyz";
-          readOnly = true;
-        };
-
-        mkVhost = lib.mkOption {
-          type = lib.types.anything;
-          readOnly = true;
-          default = dotfilesLib.mkVhost domain;
-        };
-      };
-
       config = {
         networking.firewall.allowedTCPPorts = [
           80

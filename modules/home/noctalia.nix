@@ -9,8 +9,8 @@
       ...
     }:
     let
-      inherit (osConfig.machine) isLaptop;
-      inherit (osConfig.machine.monitors) secondary;
+      isLaptop = osConfig.workstation.type == "laptop";
+      inherit (osConfig.workstation.monitors) secondary;
       barMonitorOverrides =
         if secondary != null then
           {

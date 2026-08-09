@@ -2,20 +2,10 @@
   homeModules.packages = { pkgs, ... }: {
     home.packages =
       (with pkgs; [
-        bws
-        docker-compose
-        jdk
-        jqp
-        just
-        lima
-        nix-prefetch-github
-        parallel
-        pass
-        tuicr
-      ])
-      ++ (with pkgs; [
         android-tools
+        bws
         deluge
+        docker-compose
         drawing
         exiftool
         ffmpeg
@@ -27,10 +17,17 @@
         gdu
         grim
         imagemagick
+        jdk
+        jqp
+        just
         libqalculate
         libreoffice
+        lima
         localsend
+        nix-prefetch-github
         pandoc
+        parallel
+        pass
         pavucontrol
         phockup
         poppler
@@ -40,8 +37,10 @@
         terraform
         tesseract
         thunar
+        tuicr
         wf-recorder
         wl-clipboard
+        xre
         zotero
       ])
       ++ (with pkgs.local; [

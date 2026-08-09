@@ -12,8 +12,10 @@
         historyLimit = 10000;
         keyMode = "vi";
         mouse = true;
+        secureSocket = false;
         prefix = "C-Space";
         shell = lib.getExe pkgs.zsh;
+        plugins = with pkgs.tmuxPlugins; [ fingers ];
         extraConfig =
           let
             status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";

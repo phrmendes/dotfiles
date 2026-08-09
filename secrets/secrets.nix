@@ -1,7 +1,7 @@
 let
-  main = builtins.readFile ../files/ssh-keys/main.txt;
-  server = builtins.readFile ../files/ssh-keys/server.txt;
-  laptop = builtins.readFile ../files/ssh-keys/laptop.txt;
+  main = builtins.readFile ../files/ssh/main.txt;
+  server = builtins.readFile ../files/ssh/server.txt;
+  laptop = builtins.readFile ../files/ssh/laptop.txt;
   allKeys = [
     main
     server

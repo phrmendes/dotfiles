@@ -337,10 +337,10 @@ in
             shell = pkgs.zsh;
             password = "changeme";
             openssh.authorizedKeys.keys = [
-              (builtins.readFile ../../files/ssh-keys/main.txt)
-              (builtins.readFile ../../files/ssh-keys/phone.txt)
-              (builtins.readFile ../../files/ssh-keys/laptop.txt)
-              (builtins.readFile ../../files/ssh-keys/server.txt)
+              (builtins.readFile ../../files/ssh/main.txt)
+              (builtins.readFile ../../files/ssh/phone.txt)
+              (builtins.readFile ../../files/ssh/laptop.txt)
+              (builtins.readFile ../../files/ssh/server.txt)
             ];
             isNormalUser = true;
             uid = 1000;

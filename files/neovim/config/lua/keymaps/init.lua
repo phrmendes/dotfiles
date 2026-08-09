@@ -1,6 +1,4 @@
-for _, key in ipairs({ "gra", "gri", "grn", "grr", "grt", "grx" }) do
-  pcall(vim.keymap.del, "n", key)
-end
+vim.iter({ "gra", "gri", "grn", "grr", "grt", "grx" }):each(function(key) pcall(vim.keymap.del, "n", key) end)
 
 vim.keymap.set({ "n", "x" }, "s", "<nop>")
 vim.keymap.set("n", "<c-d>", "<c-d>zz", { desc = "Half page down" })

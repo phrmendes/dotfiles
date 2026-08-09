@@ -169,27 +169,27 @@ jira issue list -q 'parent = INFRAVPIA-131'       # subtasks of a parent
 
 ## Interactive UI Navigation
 
-| Key | Action |
-|---|---|
-| `j/k` or `↑/↓` | Navigate |
-| `g / G` | Top / bottom |
-| `v` | View details |
-| `m` | Transition issue |
-| `ENTER` | Open in browser |
-| `Ctrl+k` | Copy issue key |
-| `Ctrl+r` | Refresh |
-| `q / ESC` | Quit |
+| Key            | Action           |
+| -------------- | ---------------- |
+| `j/k` or `↑/↓` | Navigate         |
+| `g / G`        | Top / bottom     |
+| `v`            | View details     |
+| `m`            | Transition issue |
+| `ENTER`        | Open in browser  |
+| `Ctrl+k`       | Copy issue key   |
+| `Ctrl+r`       | Refresh          |
+| `q / ESC`      | Quit             |
 
 ---
 
 ## INFRAVPIA Issue Types
 
-| Type | Subtask |
-|---|---|
-| Iniciativa, Epic, História | false |
-| Nova Feature, Melhoria, Ajuste | false |
-| Bug, Débito técnico, Incidente | false |
-| Estudo/Mapeamento, Validação de hipótese, Spike | false |
-| Subtarefa | true |
+| Type                                            | Subtask |
+| ----------------------------------------------- | ------- |
+| Iniciativa, Epic, História                      | false   |
+| Nova Feature, Melhoria, Ajuste                  | false   |
+| Bug, Débito técnico, Incidente                  | false   |
+| Estudo/Mapeamento, Validação de hipótese, Spike | false   |
+| Subtarefa                                       | true    |
 
 **Priorities:** `Urgente` · `Alta` · `Média` · `Baixa` · `Mínima`

@@ -33,14 +33,17 @@
               inputs.nix-flatpak.nixosModules.nix-flatpak
               module
               {
-                nixpkgs.overlays = [
-                  (_: prev: {
-                    stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
-                    local = import ../pkgs {
-                      pkgs = prev;
-                    };
-                  })
-                ];
+                nixpkgs = {
+                  config.allowUnfree = true;
+                  overlays = [
+                    (_: prev: {
+                      stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
+                      local = import ../pkgs {
+                        pkgs = prev;
+                      };
+                    })
+                  ];
+                };
               }
             ];
           }
@@ -76,10 +79,6 @@
       home = lib.mkOption {
         type = lib.types.str;
         default = "/home/${config.settings.user}";
-      };
-      dotfilesDir = lib.mkOption {
-        type = lib.types.str;
-        default = "${config.settings.home}/Projects/dotfiles";
       };
       serverDomain = lib.mkOption {
         type = lib.types.str;
@@ -129,11 +128,9 @@
       };
     };
 
-    modules = lib.mkOption {
-      description = "Grouped modules: modules.<class>.<group>.<name>";
-      type = lib.types.lazyAttrsOf (
-        lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule)
-      );
+    nixosModules = lib.mkOption {
+      description = "Home-manager modules: homeModules.<name>";
+      type = lib.types.lazyAttrsOf lib.types.deferredModule;
       default = { };
     };
 

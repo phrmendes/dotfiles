@@ -7,7 +7,6 @@ vim.lsp.enable({
   "astro",
   "basedpyright",
   "bashls",
-  "copilot",
   "cssls",
   "docker_language_server",
   "dotls",
@@ -39,17 +38,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.bo[event.buf].omnifunc = "vim_dadbod_completion#omni"
     else
       vim.bo[event.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
-    end
-
-    if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, event.buf) then
-      vim.lsp.inline_completion.enable(true, { bufnr = event.buf })
-
-      vim.api.nvim_buf_create_user_command(
-        event.buf,
-        "LspCopilotDisable",
-        function() vim.lsp.inline_completion.enable(false, { bufnr = event.buf }) end,
-        { desc = "Disable LSP inline completions for the current buffer" }
-      )
     end
 
     require("keymaps.lsp")(client, event.buf)

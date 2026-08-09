@@ -30,7 +30,6 @@
           basedpyright
           bash-language-server
           beamPackages.elixir-ls
-          copilot-language-server
           docker-language-server
           dot-language-server
           emmet-language-server
@@ -59,6 +58,7 @@
           oxfmt
           ruff
           shellharden
+          shfmt
           stylua
           tex-fmt
           yq-go

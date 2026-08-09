@@ -1,5 +1,5 @@
 {
-  modules.nixos.core.lib =
+  nixosModules.dotfilesLib =
     { lib, ... }:
     {
       options.dotfilesLib = lib.mkOption {

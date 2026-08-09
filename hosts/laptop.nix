@@ -1,7 +1,6 @@
 { config, ... }:
 let
-  inherit (config.modules) nixos;
-  inherit (config) settings homeModules;
+  inherit (config) nixosModules settings homeModules;
 in
 {
   configurations.nixos.laptop.module =
@@ -11,26 +10,15 @@ in
       ...
     }:
     {
-      imports =
-        builtins.attrValues nixos.core
-        ++ (with nixos.workstation; [
-          age
-          flatpak
-          hyprland
-          impermanence
-          libvirtd
-          noctalia
-          pipewire
-          podman
-          syncthing
-          xdg-portal
-        ]);
-
-      networking.hostName = "laptop";
-      programs.nh.flake = "${settings.home}/Projects/dotfiles";
+      imports = with nixosModules; [
+        dotfilesLib
+        machine
+        core
+        disko
+        workstation
+      ];
 
       machine = {
-        dotfilesDir = "${settings.home}/Projects/dotfiles";
         type = "laptop";
         monitors.primary = {
           name = "eDP-1";
@@ -38,6 +26,9 @@ in
           position = "0x0";
         };
       };
+
+      networking.hostName = "laptop";
+      programs.nh.flake = "${settings.home}/Projects/dotfiles";
 
       disko.mainDiskDevice = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
 

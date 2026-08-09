@@ -1,34 +1,22 @@
 { config, ... }:
 let
-  inherit (config.modules) nixos;
-  inherit (config) settings homeModules;
+  inherit (config) nixosModules settings homeModules;
 in
 {
   configurations.nixos.desktop.module =
     { config, lib, ... }:
     {
-      imports =
-        builtins.attrValues nixos.core
-        ++ (with nixos.workstation; [
-          age
-          flatpak
-          gaming
-          hyprland
-          impermanence
-          libvirtd
-          noctalia
-          pipewire
-          podman
-          sunshine
-          syncthing
-          xdg-portal
-        ]);
-
-      networking.hostName = "desktop";
-      programs.nh.flake = "${settings.home}/Projects/dotfiles";
+      imports = with nixosModules; [
+        dotfilesLib
+        machine
+        core
+        disko
+        workstation
+        gaming
+        sunshine
+      ];
 
       machine = {
-        dotfilesDir = "${settings.home}/Projects/dotfiles";
         type = "desktop";
         monitors = {
           primary = {
@@ -43,6 +31,9 @@ in
           };
         };
       };
+
+      networking.hostName = "desktop";
+      programs.nh.flake = "${settings.home}/Projects/dotfiles";
 
       disko.mainDiskDevice = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
 

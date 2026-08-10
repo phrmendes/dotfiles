@@ -6,7 +6,7 @@
         enable = true;
         enableAlias = true;
         enableTmuxIntegration = true;
-        tmuxKey = "C-Space";
+        tmuxKey = "s";
         settings.frecency.list_command = "${pkgs.fd}/bin/fd --hidden --no-ignore --type d ^\\.git$ ${config.home.homeDirectory}/Projects --format {//}";
       };
     };

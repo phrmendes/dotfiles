@@ -13,15 +13,19 @@
 
           mkSecretReadable =
             {
-              user,
               file,
+              owner ? "root",
+              group ? "root",
+              mode ? "0400",
               path ? null,
-              mode ? "0440",
-              group ? "users",
             }:
             {
-              inherit file mode group;
-              owner = user;
+              inherit
+                file
+                owner
+                group
+                mode
+                ;
             }
             // lib.optionalAttrs (path != null) { inherit path; };
 
@@ -31,15 +35,36 @@
             |> lib.mapAttrsToList (name: value: ''${name} = "${value}"'')
             |> lib.concatStringsSep ",\n    ";
 
-          mkVhost = domain: name: port: {
-            "${name}.${domain}" = {
-              useACMEHost = domain;
-              extraConfig = ''
-                reverse_proxy 127.0.0.1:${toString port}
-                import security-headers
-              '';
+          mkVhost =
+            domain:
+            {
+              name,
+              port,
+              auth ? true,
+              extraConfig ? "",
+            }:
+            {
+              "${name}.${domain}" = {
+                extraConfig = ''
+                  ${extraConfig}
+
+                  @websocket {
+                    header Connection *Upgrade*
+                    header Upgrade websocket
+                  }
+
+                  handle @websocket {
+                    reverse_proxy 127.0.0.1:${toString port}
+                  }
+
+                  handle {
+                    ${lib.optionalString auth "import authelia-auth"}
+                    reverse_proxy 127.0.0.1:${toString port}
+                    import security-headers
+                  }
+                '';
+              };
             };
-          };
         };
       };
     };

@@ -21,21 +21,17 @@
             name = "zsh-nix-shell";
             src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
           }
+          {
+            name = "zsh-vi-mode";
+            src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+          }
         ];
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
           cat = lib.getExe pkgs.bat;
+          open-secret = "agenix -i ~/.ssh/age -e";
           v = "nvim";
         };
-        initContent = ''
-          set -o vi
-
-          deploy() {
-            local target="''${1:?usage: deploy <target> [address]}"
-            local address="''${2:-$target}"
-            nixos-rebuild switch --flake ".#''${target}" --target-host "phrmendes@''${address}" --sudo
-          }
-        '';
       };
     };
 }

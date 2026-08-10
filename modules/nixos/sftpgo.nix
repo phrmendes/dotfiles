@@ -19,16 +19,20 @@
         };
       };
 
-      services.caddy.virtualHosts = (config.caddy.mkVhost "sftpgo" httpPort) // {
-        "webdav.${config.caddy.domain}" = {
-          useACMEHost = config.caddy.domain;
-          extraConfig = ''
-            reverse_proxy 127.0.0.1:${toString webdavPort} {
-              header_up Host {host}
-            }
-          '';
+      services.caddy.virtualHosts =
+        (config.caddy.mkVhost {
+          name = "sftpgo";
+          port = httpPort;
+        })
+        // {
+          "webdav.${config.caddy.domain}" = {
+            extraConfig = ''
+              reverse_proxy 127.0.0.1:${toString webdavPort} {
+                header_up Host {host}
+              }
+            '';
+          };
         };
-      };
 
       networking.firewall.allowedTCPPorts = [ sftpPort ];
 

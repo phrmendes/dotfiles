@@ -52,6 +52,7 @@
 
             unbind ','
             unbind '`'
+            unbind s
 
             bind '-'   split-window -v -c "#{pane_current_path}"
             bind ':'   command-prompt
@@ -61,7 +62,6 @@
             bind G     last-window
             bind Q     kill-window
             bind R     command-prompt -I "#S" "rename-session '%%'"
-            bind S     command-prompt -p "Session name:" "new-session -s '%%'"
             bind d     detach-client
             bind k     kill-session
             bind n     new-window -c "#{pane_current_path}"

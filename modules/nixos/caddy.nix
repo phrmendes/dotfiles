@@ -49,6 +49,11 @@ in
             forward_auth 127.0.0.1:9099 {
               uri /api/authz/forward-auth
               copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+
+              @error status 401
+              handle_response @error {
+                redir * https://auth.${domain}/?rd={scheme}://{host}{uri}
+              }
             }
           }
 

@@ -49,6 +49,13 @@
         labels = {
           "io.containers.autoupdate" = "registry";
         };
+        extraOptions = [
+          "--health-cmd=timeout 3 bash -c 'echo >/dev/tcp/localhost/3000' || exit 1"
+          "--health-interval=10s"
+          "--health-timeout=3s"
+          "--health-retries=3"
+          "--health-start-period=10s"
+        ];
       };
     };
 }

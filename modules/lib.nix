@@ -40,8 +40,8 @@
             {
               name,
               port,
-              auth ? false,
               extraConfig ? "",
+              basicAuth ? null,
             }:
             {
               "${name}.${domain}" = {
@@ -58,7 +58,10 @@
                   }
 
                   handle {
-                    ${lib.optionalString auth "import authelia-auth"}
+                    ${lib.optionalString (basicAuth != null) "import authelia-auth"}
+                    ${lib.optionalString (
+                      basicAuth != null
+                    ) ''header Authorization "Basic {\$BASIC_AUTH_${basicAuth}}"''}
                     reverse_proxy 127.0.0.1:${toString port}
                     import security-headers
                   }

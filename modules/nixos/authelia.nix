@@ -29,7 +29,6 @@ in
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "auth";
           port = 9099;
-          auth = false;
         };
         authelia.instances.default = {
           name = "";

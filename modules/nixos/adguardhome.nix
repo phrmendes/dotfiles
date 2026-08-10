@@ -29,6 +29,7 @@ in
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "adguardhome";
           inherit port;
+          basicAuth = "ADGUARDHOME";
         };
         adguardhome = {
           enable = true;

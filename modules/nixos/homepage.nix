@@ -36,7 +36,6 @@
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "homepage";
           inherit port;
-          auth = false;
         };
         homepage-dashboard = {
           enable = true;

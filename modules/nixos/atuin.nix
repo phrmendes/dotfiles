@@ -21,7 +21,6 @@
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "atuin";
           inherit port;
-          auth = false;
         };
         atuin = {
           database = {

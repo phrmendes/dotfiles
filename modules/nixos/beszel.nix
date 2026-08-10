@@ -82,6 +82,7 @@
             host = "127.0.0.1";
             inherit port;
             environment = {
+              DISABLE_PASSWORD_AUTH = "true";
               USER_CREATION = "true";
             };
           };

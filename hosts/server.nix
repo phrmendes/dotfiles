@@ -44,16 +44,12 @@ in
       ];
 
       age.secrets = {
-        "authelia-users.yaml" = mkSecretReadable {
-          file = ../secrets/authelia-users.age.yaml;
+        "users.yaml" = mkSecretReadable {
+          file = ../secrets/users.yaml;
           owner = "authelia";
         };
-        "authelia-jwt-secret" = mkSecretReadable {
-          file = ../secrets/authelia-jwt.age.txt;
-          owner = "authelia";
-        };
-        "authelia-storage-key" = mkSecretReadable {
-          file = ../secrets/authelia-storage.age.txt;
+        "authelia.yaml" = mkSecretReadable {
+          file = ../secrets/authelia.yaml;
           owner = "authelia";
         };
         "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };

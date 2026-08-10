@@ -39,14 +39,14 @@ in
             server.address = "tcp://127.0.0.1:9099/";
             storage.local.path = "${dataDir}/db.sqlite3";
             notifier.filesystem.filename = "${dataDir}/notification.txt";
+            authentication_backend.file = {
+              path = config.age.secrets."users.yaml".path;
+              watch = false;
+            };
             default_2fa_method = "webauthn";
             log = {
               level = "info";
               format = "text";
-            };
-            authentication_backend.file = {
-              path = config.age.secrets."authelia-users.yaml".path;
-              watch = false;
             };
             access_control = {
               default_policy = "deny";
@@ -68,9 +68,9 @@ in
               }
             ];
           };
+          settingsFiles = [ config.age.secrets."authelia.yaml".path ];
           secrets = {
-            jwtSecretFile = config.age.secrets."authelia-jwt-secret".path;
-            storageEncryptionKeyFile = config.age.secrets."authelia-storage-key".path;
+            manual = true;
           };
         };
       };

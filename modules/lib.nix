@@ -62,7 +62,8 @@
                     reverse_proxy 127.0.0.1:${toString port} {
                       ${lib.optionalString (
                         basicAuth != null
-                      ) ''header_up Authorization "Basic {\$BASIC_AUTH_${basicAuth}}"''}
+                      ) ''header_up Authorization "Basic {\$BASIC_AUTH_${basicAuth}}"
+                      header_down -WWW-Authenticate''}
                     }
                     import security-headers
                   }

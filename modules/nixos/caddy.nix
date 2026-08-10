@@ -20,10 +20,12 @@ in
         package = pkgs.local.caddy;
         environmentFile = config.age.secrets."caddy.env".path;
         virtualHosts = {
-          "auth.${domain}" = {
+          "*.${domain}" = {
             extraConfig = ''
-              reverse_proxy 127.0.0.1:9091
-              import security-headers
+              tls {
+                dns desec
+              }
+              respond "Not Found" 404
             '';
           };
           "http://${domain}" = {

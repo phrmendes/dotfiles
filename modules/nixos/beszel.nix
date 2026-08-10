@@ -81,6 +81,9 @@
             dataDir = "/srv/beszel";
             host = "127.0.0.1";
             inherit port;
+            environment = {
+              USER_CREATION = "true";
+            };
           };
           agent = {
             enable = true;

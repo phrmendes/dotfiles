@@ -58,6 +58,10 @@ in
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
         "litestream.env" = mkSecretReadable { file = ../secrets/litestream.age.env; };
         "duplicati.env" = mkSecretReadable { file = ../secrets/duplicati.age.env; };
+        "sftpgo.env" = mkSecretReadable {
+          file = ../secrets/sftpgo.age.env;
+          owner = "sftpgo";
+        };
         "transmission.json" = mkSecretReadable { file = ../secrets/transmission.age.json; };
         "dockerhub.json" = mkSecretReadable {
           file = ../secrets/dockerhub.age.json;

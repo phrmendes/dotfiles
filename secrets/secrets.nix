@@ -19,5 +19,6 @@ in
   "linkding.age.env".publicKeys = allKeys;
   "litestream.age.env".publicKeys = allKeys;
   "pi.age.json".publicKeys = allKeys;
+  "sftpgo.age.env".publicKeys = allKeys;
   "transmission.age.json".publicKeys = allKeys;
 }

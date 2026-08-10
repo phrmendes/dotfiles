@@ -52,7 +52,6 @@
 
             unbind ','
             unbind '`'
-            unbind s
 
             bind '-'   split-window -v -c "#{pane_current_path}"
             bind ':'   command-prompt
@@ -60,6 +59,7 @@
             bind '`'   source-file ~/.config/tmux/tmux.conf \; display-message
             bind Enter rotate-window
             bind G     last-window
+            bind N     command-prompt -p "Session name:" "new-session -s '%%'"
             bind Q     kill-window
             bind R     command-prompt -I "#S" "rename-session '%%'"
             bind d     detach-client

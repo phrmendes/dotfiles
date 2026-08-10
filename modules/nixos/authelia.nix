@@ -12,19 +12,31 @@ in
         "d ${dataDir} 0700 authelia authelia -"
       ];
 
+      homepage.services.authelia = {
+        url = "auth.${config.caddy.domain}";
+        monitoredServices = [ "authelia" ];
+        homepage = {
+          name = "Authelia";
+          description = "Authentication portal";
+          icon = "sh-authelia";
+          category = "Services";
+        };
+      };
+
+      systemd.services.authelia.serviceConfig.ReadWritePaths = [ dataDir ];
+
       services = {
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "auth";
-          port = 9091;
+          port = 9099;
           auth = false;
         };
         authelia.instances.default = {
           name = "";
           enable = true;
-
           settings = {
             theme = "auto";
-            server.address = "tcp://127.0.0.1:9091/";
+            server.address = "tcp://127.0.0.1:9099/";
             storage.local.path = "${dataDir}/db.sqlite3";
             notifier.filesystem.filename = "${dataDir}/notification.txt";
             default_2fa_method = "webauthn";
@@ -56,7 +68,6 @@ in
               }
             ];
           };
-
           secrets = {
             jwtSecretFile = config.age.secrets."authelia-jwt-secret".path;
             storageEncryptionKeyFile = config.age.secrets."authelia-storage-key".path;

@@ -46,7 +46,7 @@ in
 
         extraConfig = ''
           (authelia-auth) {
-            forward_auth 127.0.0.1:9091 {
+            forward_auth 127.0.0.1:9099 {
               uri /api/authz/forward-auth
               copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
             }

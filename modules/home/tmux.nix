@@ -18,7 +18,7 @@
         plugins = with pkgs.tmuxPlugins; [ fingers ];
         extraConfig =
           let
-            status_bar = " #I:#W#{?window_zoomed_flag, ,}#{?window_bell_flag, ,} ";
+            status_bar = " #I:#W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ";
           in
           ''
             set -g  default-terminal    "tmux-256color"

@@ -45,11 +45,11 @@ in
 
       age.secrets = {
         "users.yaml" = mkSecretReadable {
-          file = ../secrets/users.yaml;
+          file = ../secrets/users.age.yaml;
           owner = "authelia";
         };
         "authelia.yaml" = mkSecretReadable {
-          file = ../secrets/authelia.yaml;
+          file = ../secrets/authelia.age.yaml;
           owner = "authelia";
         };
         "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };

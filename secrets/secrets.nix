@@ -9,8 +9,8 @@ let
   ];
 in
 {
-  "users.yaml".publicKeys = allKeys;
-  "authelia.yaml".publicKeys = allKeys;
+  "users.age.yaml".publicKeys = allKeys;
+  "authelia.age.yaml".publicKeys = allKeys;
   "beszel.age.env".publicKeys = allKeys;
   "caddy.age.env".publicKeys = allKeys;
   "dockerhub.age.json".publicKeys = allKeys;

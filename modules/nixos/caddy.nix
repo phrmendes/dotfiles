@@ -22,6 +22,11 @@ in
         virtualHosts = {
           "*.${domain}" = {
             extraConfig = ''
+              tls {
+                dns desec {
+                  token "{$DESEC_TOKEN}"
+                }
+              }
               respond "Not Found" 404
             '';
           };

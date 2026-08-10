@@ -40,7 +40,7 @@
             {
               name,
               port,
-              auth ? true,
+              auth ? false,
               extraConfig ? "",
             }:
             {

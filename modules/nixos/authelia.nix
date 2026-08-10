@@ -15,29 +15,27 @@ in
 
         settings = {
           theme = "auto";
-
           server.address = "tcp://127.0.0.1:9091/";
-
+          storage.local.path = "${dataDir}/db.sqlite3";
+          notifier.filesystem.filename = "${dataDir}/notification.txt";
+          default_2fa_method = "webauthn";
           log = {
             level = "info";
             format = "text";
           };
-
           authentication_backend.file = {
             path = config.age.secrets."authelia-users.yaml".path;
             watch = false;
           };
-
           access_control = {
             default_policy = "deny";
             rules = [
               {
                 domain = "*.local.phrmendes.xyz";
-                policy = "one_factor";
+                policy = "two_factor";
               }
             ];
           };
-
           session.cookies = [
             {
               name = "authelia_session";
@@ -48,10 +46,6 @@ in
               remember_me = "1M";
             }
           ];
-
-          storage.local.path = "${dataDir}/db.sqlite3";
-          notifier.filesystem.filename = "${dataDir}/notification.txt";
-          default_2fa_method = "webauthn";
         };
 
         secrets = {

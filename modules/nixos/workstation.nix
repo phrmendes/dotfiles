@@ -84,7 +84,7 @@ in
     in
     {
       age.secrets."pi.json" = mkSecretReadable {
-        user = settings.user;
+        owner = settings.user;
         file = ../../secrets/pi.age.json;
         path = "${settings.home}/.pi/agent/auth.json";
       };

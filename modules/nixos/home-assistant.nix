@@ -16,30 +16,35 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "home-assistant" port;
-
-      services.home-assistant = {
-        enable = true;
-        openFirewall = true;
-        configDir = "/srv/home-assistant";
-        extraComponents = [
-          "mobile_app"
-          "sun"
-          "tuya"
-          "zeroconf"
-        ];
-        config = {
-          mobile_app = { };
-          homeassistant = {
-            name = "Home";
-            latitude = -23.5505;
-            longitude = -46.6333;
-            unit_system = "metric";
-            time_zone = "America/Sao_Paulo";
-          };
-          http = {
-            use_x_forwarded_for = true;
-            trusted_proxies = [ "127.0.0.1" ];
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "home-assistant";
+          inherit port;
+        };
+        home-assistant = {
+          enable = true;
+          openFirewall = true;
+          configDir = "/srv/home-assistant";
+          extraComponents = [
+            "mobile_app"
+            "sun"
+            "tuya"
+            "zeroconf"
+          ];
+          config = {
+            mobile_app = { };
+            homeassistant = {
+              name = "Home";
+              latitude = -23.5505;
+              longitude = -46.6333;
+              unit_system = "metric";
+              time_zone = "America/Sao_Paulo";
+            };
+            http = {
+              server_port = port;
+              use_x_forwarded_for = true;
+              trusted_proxies = [ "127.0.0.1" ];
+            };
           };
         };
       };

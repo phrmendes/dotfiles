@@ -34,8 +34,6 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "duplicati" port;
-
       systemd.tmpfiles.rules = [ "d /srv/duplicati 0750 root root -" ];
 
       systemd.services.duplicati.serviceConfig = {
@@ -45,12 +43,18 @@
         ExecStart = lib.mkForce startScript;
       };
 
-      services.duplicati = {
-        enable = true;
-        inherit port;
-        dataDir = "/srv/duplicati";
-        interface = "127.0.0.1";
-        user = "root";
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "duplicati";
+          inherit port;
+        };
+        duplicati = {
+          enable = true;
+          inherit port;
+          dataDir = "/srv/duplicati";
+          interface = "127.0.0.1";
+          user = "root";
+        };
       };
     };
 }

@@ -16,8 +16,6 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "immich" port;
-
       users.users.immich.extraGroups = [
         "external"
         "video"
@@ -29,12 +27,18 @@
         "d /srv/immich 0750 immich immich -"
       ];
 
-      services.immich = {
-        enable = true;
-        host = "127.0.0.1";
-        inherit port;
-        mediaLocation = "/mnt/external/photos";
-        accelerationDevices = null;
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "immich";
+          inherit port;
+        };
+        immich = {
+          enable = true;
+          host = "127.0.0.1";
+          inherit port;
+          mediaLocation = "/mnt/external/photos";
+          accelerationDevices = null;
+        };
       };
     };
 }

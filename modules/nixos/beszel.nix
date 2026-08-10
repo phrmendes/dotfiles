@@ -59,6 +59,7 @@
       };
 
       systemd = {
+        tmpfiles.rules = [ "d /srv/beszel 0750 beszel-hub beszel-hub -" ];
         services = {
           homepage-dashboard.serviceConfig.EnvironmentFile = config.age.secrets."beszel.env".path;
           beszel-hub.serviceConfig = {
@@ -67,11 +68,13 @@
             Group = lib.mkForce "beszel-hub";
           };
         };
-        tmpfiles.rules = [ "d /srv/beszel 0750 beszel-hub beszel-hub -" ];
       };
 
       services = {
-        caddy.virtualHosts = config.caddy.mkVhost "beszel" port;
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "beszel";
+          inherit port;
+        };
         beszel = {
           hub = {
             enable = true;

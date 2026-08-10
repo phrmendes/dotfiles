@@ -17,7 +17,10 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "excalidraw" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost {
+        name = "excalidraw";
+        inherit port;
+      };
 
       systemd.services."podman-excalidraw" = {
         after = [ "podman-network-services.service" ];

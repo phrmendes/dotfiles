@@ -19,8 +19,6 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "transmission" webPort;
-
       networking.firewall = dotfilesLib.mkFirewallPort torrentingPort;
 
       users.users.transmission.extraGroups = [ "external" ];
@@ -31,26 +29,32 @@
         "d /srv/transmission/.config/transmission-daemon 0750 transmission transmission -"
       ];
 
-      services.transmission = {
-        enable = true;
-        home = "/srv/transmission";
-        credentialsFile = config.age.secrets."transmission.json".path;
-        openFirewall = false;
-        settings = {
-          rpc-bind-address = "127.0.0.1";
-          rpc-port = webPort;
-          rpc-authentication-required = true;
-          rpc-host-whitelist = "transmission.${domain}";
-          rpc-host-whitelist-enabled = true;
-          download-dir = "/mnt/external/downloads";
-          incomplete-dir = "/mnt/external/downloads/.incomplete";
-          incomplete-dir-enabled = true;
-          peer-port = torrentingPort;
-          peer-port-random-on-start = false;
-          upnp-enabled = false;
-          natpmp-enabled = false;
-          ratio-limit = 0;
-          ratio-limit-enabled = true;
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "transmission";
+          port = webPort;
+        };
+        transmission = {
+          enable = true;
+          home = "/srv/transmission";
+          credentialsFile = config.age.secrets."transmission.json".path;
+          openFirewall = false;
+          settings = {
+            rpc-bind-address = "127.0.0.1";
+            rpc-port = webPort;
+            rpc-authentication-required = true;
+            rpc-host-whitelist = "transmission.${domain}";
+            rpc-host-whitelist-enabled = true;
+            download-dir = "/mnt/external/downloads";
+            incomplete-dir = "/mnt/external/downloads/.incomplete";
+            incomplete-dir-enabled = true;
+            peer-port = torrentingPort;
+            peer-port-random-on-start = false;
+            upnp-enabled = false;
+            natpmp-enabled = false;
+            ratio-limit = 0;
+            ratio-limit-enabled = true;
+          };
         };
       };
 

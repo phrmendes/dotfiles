@@ -9,6 +9,9 @@ let
   ];
 in
 {
+  "authelia-users.age.yaml".publicKeys = allKeys;
+  "authelia-jwt.age.txt".publicKeys = allKeys;
+  "authelia-storage.age.txt".publicKeys = allKeys;
   "beszel.age.env".publicKeys = allKeys;
   "caddy.age.env".publicKeys = allKeys;
   "dockerhub.age.json".publicKeys = allKeys;

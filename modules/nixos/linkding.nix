@@ -17,7 +17,10 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "linkding" port;
+      services.caddy.virtualHosts = config.caddy.mkVhost {
+        name = "linkding";
+        inherit port;
+      };
 
       systemd = {
         tmpfiles.rules = [ "d /srv/containers/linkding 0755 root root -" ];

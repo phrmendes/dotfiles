@@ -28,49 +28,55 @@
         );
     in
     {
-      services.caddy.virtualHosts = config.caddy.mkVhost "homepage" port;
 
       systemd.services.homepage-dashboard.environment.HOMEPAGE_ALLOWED_HOSTS =
         lib.mkForce "homepage.${config.caddy.domain},localhost:${toString port},127.0.0.1:${toString port}";
 
-      services.homepage-dashboard = {
-        enable = true;
-        listenPort = port;
-        widgets = [
-          {
-            datetime = {
-              text_size = "xl";
-              format = {
-                timeStyle = "short";
-                hourCycle = "h23";
-              };
-            };
-          }
-          {
-            openmeteo = {
-              label = "São Paulo";
-              latitude = -23.5505;
-              longitude = -46.6333;
-              timezone = "America/Sao_Paulo";
-              units = "metric";
-              cache = 5;
-            };
-          }
-        ];
-        settings = {
-          headerStyle = "clean";
-
-          statusStyle = "dot";
-          hideVersion = true;
-          layout = map (cat: {
-            "${cat}" = {
-              style = "row";
-              columns = 3;
-              header = true;
-            };
-          }) categories;
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "homepage";
+          inherit port;
+          auth = false;
         };
-        services = map (cat: { "${cat}" = servicesForCategory cat; }) categories;
+        homepage-dashboard = {
+          enable = true;
+          listenPort = port;
+          widgets = [
+            {
+              datetime = {
+                text_size = "xl";
+                format = {
+                  timeStyle = "short";
+                  hourCycle = "h23";
+                };
+              };
+            }
+            {
+              openmeteo = {
+                label = "São Paulo";
+                latitude = -23.5505;
+                longitude = -46.6333;
+                timezone = "America/Sao_Paulo";
+                units = "metric";
+                cache = 5;
+              };
+            }
+          ];
+          settings = {
+            headerStyle = "clean";
+
+            statusStyle = "dot";
+            hideVersion = true;
+            layout = map (cat: {
+              "${cat}" = {
+                style = "row";
+                columns = 3;
+                header = true;
+              };
+            }) categories;
+          };
+          services = map (cat: { "${cat}" = servicesForCategory cat; }) categories;
+        };
       };
     };
 }

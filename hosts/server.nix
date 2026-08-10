@@ -16,6 +16,7 @@ in
     {
       imports = with nixosModules; [
         dotfilesLib
+        authelia
         core
         disko
         adguardhome
@@ -42,32 +43,31 @@ in
         transmission
       ];
 
-      age.secrets =
-        let
-          secretReadable =
-            args:
-            mkSecretReadable (
-              {
-                user = "root";
-                group = "root";
-                mode = "0400";
-              }
-              // args
-            );
-        in
-        {
-          "beszel.env" = secretReadable { file = ../secrets/beszel.age.env; };
-          "caddy.env" = secretReadable { file = ../secrets/caddy.age.env; };
-          "grafito.env" = secretReadable { file = ../secrets/grafito.age.env; };
-          "linkding.env" = secretReadable { file = ../secrets/linkding.age.env; };
-          "litestream.env" = secretReadable { file = ../secrets/litestream.age.env; };
-          "duplicati.env" = secretReadable { file = ../secrets/duplicati.age.env; };
-          "transmission.json" = secretReadable { file = ../secrets/transmission.age.json; };
-          "dockerhub.json" = secretReadable {
-            file = ../secrets/dockerhub.age.json;
-            path = "/root/.docker/config.json";
-          };
+      age.secrets = {
+        "authelia-users.yaml" = mkSecretReadable {
+          file = ../secrets/authelia-users.age.yaml;
+          owner = "authelia";
         };
+        "authelia-jwt-secret" = mkSecretReadable {
+          file = ../secrets/authelia-jwt.age.txt;
+          owner = "authelia";
+        };
+        "authelia-storage-key" = mkSecretReadable {
+          file = ../secrets/authelia-storage.age.txt;
+          owner = "authelia";
+        };
+        "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };
+        "caddy.env" = mkSecretReadable { file = ../secrets/caddy.age.env; };
+        "grafito.env" = mkSecretReadable { file = ../secrets/grafito.age.env; };
+        "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
+        "litestream.env" = mkSecretReadable { file = ../secrets/litestream.age.env; };
+        "duplicati.env" = mkSecretReadable { file = ../secrets/duplicati.age.env; };
+        "transmission.json" = mkSecretReadable { file = ../secrets/transmission.age.json; };
+        "dockerhub.json" = mkSecretReadable {
+          file = ../secrets/dockerhub.age.json;
+          path = "/root/.docker/config.json";
+        };
+      };
 
       networking.hostName = "server";
       programs.nh.flake = "${settings.home}/dotfiles";

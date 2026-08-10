@@ -4,12 +4,7 @@ let
 in
 {
   nixosModules.caddy =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { config, pkgs, ... }:
     let
       domain = config.caddy.domain;
     in
@@ -22,10 +17,7 @@ in
       services.caddy = {
         enable = true;
         inherit (settings) email;
-        package = pkgs.caddy.withPlugins {
-          plugins = [ "github.com/caddy-dns/desec@v1.1.0" ];
-          hash = "sha256-sy924nxkritb+DzfyI2VJowYK8JyCHQyfXCmtiFDI2w=";
-        };
+        package = pkgs.local.caddy;
         environmentFile = config.age.secrets."caddy.env".path;
         virtualHosts = {
           "auth.${domain}" = {

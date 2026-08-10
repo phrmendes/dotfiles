@@ -93,11 +93,26 @@ in
 
       services = {
         caddy.virtualHosts =
-          (config.caddy.mkVhost "sonarr" 8989)
-          // (config.caddy.mkVhost "radarr" 7878)
-          // (config.caddy.mkVhost "prowlarr" 9696)
-          // (config.caddy.mkVhost "bazarr" 6767)
-          // (config.caddy.mkVhost "jellyfin" 8096);
+          (config.caddy.mkVhost {
+            name = "sonarr";
+            port = 8989;
+          })
+          // (config.caddy.mkVhost {
+            name = "radarr";
+            port = 7878;
+          })
+          // (config.caddy.mkVhost {
+            name = "prowlarr";
+            port = 9696;
+          })
+          // (config.caddy.mkVhost {
+            name = "bazarr";
+            port = 6767;
+          })
+          // (config.caddy.mkVhost {
+            name = "jellyfin";
+            port = 8096;
+          });
         sonarr = {
           enable = true;
           dataDir = "/srv/sonarr";

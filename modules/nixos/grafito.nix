@@ -16,12 +16,17 @@
         };
       };
 
-      services.caddy.virtualHosts."grafito.${config.caddy.domain}" = {
-        useACMEHost = config.caddy.domain;
+      services.caddy.virtualHosts = config.caddy.mkVhost {
+        inherit port;
+        name = "grafito";
         extraConfig = ''
-          ${builtins.readFile ../../files/Caddyfile.grafito}
-          reverse_proxy 127.0.0.1:${toString port}
-          import security-headers
+          handle_path /ai-providers {
+            respond `{"providers":[{"id":"openai","name":"DeepSeek","available":true}],"current":"DeepSeek","enabled":true}`
+          }
+
+          handle_path /ai-models {
+            respond `{"models":[{"id":"deepseek-v4-flash","name":"DeepSeek V4 Flash","default":true}]}`
+          }
         '';
       };
 

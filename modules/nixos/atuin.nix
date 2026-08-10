@@ -17,16 +17,21 @@
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost "atuin" port;
-
-      services.atuin = {
-        enable = true;
-        host = "127.0.0.1";
-        inherit port;
-        openRegistration = false;
-        database = {
-          createLocally = false;
-          uri = "sqlite:///var/lib/atuin/atuin.db";
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "atuin";
+          inherit port;
+          auth = false;
+        };
+        atuin = {
+          database = {
+            createLocally = false;
+            uri = "sqlite:///var/lib/atuin/atuin.db";
+          };
+          enable = true;
+          host = "127.0.0.1";
+          openRegistration = false;
+          port = port;
         };
       };
 

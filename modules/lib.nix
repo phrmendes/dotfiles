@@ -59,10 +59,11 @@
 
                   handle {
                     ${lib.optionalString (basicAuth != null) "import authelia-auth"}
-                    ${lib.optionalString (
-                      basicAuth != null
-                    ) ''header Authorization "Basic {\$BASIC_AUTH_${basicAuth}}"''}
-                    reverse_proxy 127.0.0.1:${toString port}
+                    reverse_proxy 127.0.0.1:${toString port} {
+                      ${lib.optionalString (
+                        basicAuth != null
+                      ) ''header_up Authorization "Basic {\$BASIC_AUTH_${basicAuth}}"''}
+                    }
                     import security-headers
                   }
                 '';

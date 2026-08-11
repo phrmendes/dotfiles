@@ -10,7 +10,6 @@
     {
       homepage.services.transmission = {
         url = "transmission.${domain}";
-        monitoredServices = [ "transmission" ];
         homepage = {
           name = "Transmission";
           description = "Torrent client";

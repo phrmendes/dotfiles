@@ -8,7 +8,6 @@
       homepage.services.atuin = {
         dataDir = "/var/lib/atuin";
         url = "atuin.${config.caddy.domain}";
-        monitoredServices = [ "atuin" ];
         homepage = {
           name = "Atuin";
           description = "Shell history sync";

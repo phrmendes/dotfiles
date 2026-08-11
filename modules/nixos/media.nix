@@ -16,7 +16,6 @@ in
         sonarr = {
           dataDir = "/srv/sonarr";
           url = "sonarr.${domain}";
-          monitoredServices = [ "sonarr" ];
           homepage = {
             name = "Sonarr";
             description = "TV series management";
@@ -27,7 +26,6 @@ in
         radarr = {
           dataDir = "/srv/radarr";
           url = "radarr.${domain}";
-          monitoredServices = [ "radarr" ];
           homepage = {
             name = "Radarr";
             description = "Movie management";
@@ -37,7 +35,6 @@ in
         };
         prowlarr = {
           url = "prowlarr.${domain}";
-          monitoredServices = [ "prowlarr" ];
           homepage = {
             name = "Prowlarr";
             description = "Indexer management";
@@ -48,7 +45,6 @@ in
         bazarr = {
           dataDir = "/srv/bazarr";
           url = "bazarr.${domain}";
-          monitoredServices = [ "bazarr" ];
           homepage = {
             name = "Bazarr";
             description = "Subtitle management";
@@ -59,7 +55,6 @@ in
         jellyfin = {
           dataDir = "/srv/jellyfin";
           url = "jellyfin.${domain}";
-          monitoredServices = [ "jellyfin" ];
           homepage = {
             name = "Jellyfin";
             description = "Media server";
@@ -140,6 +135,7 @@ in
             Auth.Method = "External";
           };
         };
+        flaresolverr.enable = true;
         bazarr = {
           enable = true;
           dataDir = "/srv/bazarr";

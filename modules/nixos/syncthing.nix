@@ -14,7 +14,6 @@ in
       homepage.services.syncthing = {
         dataDir = "/srv/syncthing";
         url = "syncthing.${config.caddy.domain}";
-        monitoredServices = [ "syncthing" ];
         homepage = {
           name = "Syncthing";
           description = "File synchronisation";

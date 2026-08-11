@@ -16,7 +16,6 @@ in
       homepage.services.adguardhome = {
         dataDir = "/var/lib/AdGuardHome";
         url = "adguardhome.${config.caddy.domain}";
-        monitoredServices = [ "adguardhome" ];
         homepage = {
           name = "AdGuard Home";
           description = "DNS ad blocking";

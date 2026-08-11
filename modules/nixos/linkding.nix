@@ -8,7 +8,6 @@
       homepage.services.linkding = {
         dataDir = "/srv/containers/linkding";
         url = "linkding.${config.caddy.domain}";
-        monitoredServices = [ "podman-linkding" ];
         homepage = {
           name = "Linkding";
           description = "Bookmark manager";

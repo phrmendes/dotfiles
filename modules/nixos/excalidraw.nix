@@ -8,7 +8,6 @@
     {
       homepage.services.excalidraw = {
         url = "excalidraw.${config.caddy.domain}";
-        monitoredServices = [ "podman-excalidraw" ];
         homepage = {
           name = "Excalidraw";
           description = "Virtual whiteboard";

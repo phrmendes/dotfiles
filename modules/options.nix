@@ -75,10 +75,6 @@
             url = lib.mkOption {
               type = lib.types.str;
             };
-            monitoredServices = lib.mkOption {
-              type = lib.types.listOf lib.types.str;
-              default = [ name ];
-            };
             homepage = lib.mkOption {
               type = lib.types.submodule {
                 options = {

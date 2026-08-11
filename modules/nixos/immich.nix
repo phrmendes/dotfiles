@@ -7,7 +7,6 @@
     {
       homepage.services.immich = {
         url = "immich.${config.caddy.domain}";
-        monitoredServices = [ "immich-server" ];
         homepage = {
           name = "Immich";
           description = "Self-hosted photo and video management";

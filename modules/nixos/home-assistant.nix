@@ -7,7 +7,6 @@
     {
       homepage.services.home-assistant = {
         url = "home-assistant.${config.caddy.domain}";
-        monitoredServices = [ "home-assistant" ];
         homepage = {
           name = "Home Assistant";
           description = "Home automation";

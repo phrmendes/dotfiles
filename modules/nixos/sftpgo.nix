@@ -10,7 +10,6 @@
       homepage.services.sftpgo = {
         dataDir = "/srv/sftpgo";
         url = "sftpgo.${config.caddy.domain}";
-        monitoredServices = [ "sftpgo" ];
         homepage = {
           name = "SFTPGo";
           description = "File transfer server";

@@ -20,10 +20,6 @@
       homepage.services.beszel = {
         dataDir = "/srv/beszel";
         url = "beszel.${config.caddy.domain}";
-        monitoredServices = [
-          "beszel-hub"
-          "beszel-agent"
-        ];
         homepage = {
           name = "Beszel";
           description = "Server monitoring";

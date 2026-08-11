@@ -7,7 +7,6 @@
     {
       homepage.services.grafito = {
         url = "grafito.${config.caddy.domain}";
-        monitoredServices = [ "podman-grafito" ];
         homepage = {
           name = "Grafito";
           description = "Systemd journal log viewer";

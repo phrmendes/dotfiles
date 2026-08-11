@@ -14,7 +14,6 @@ in
 
       homepage.services.authelia = {
         url = "auth.${config.caddy.domain}";
-        monitoredServices = [ "authelia" ];
         homepage = {
           name = "Authelia";
           description = "Authentication portal";

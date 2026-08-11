@@ -25,7 +25,6 @@ in
         caddy
         restic
         excalidraw
-        flaresolverr
         grafito
         homeAssistant
         homepage

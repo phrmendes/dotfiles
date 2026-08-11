@@ -40,10 +40,6 @@
           path = "/srv/bazarr/db/bazarr.db";
           name = "bazarr";
         }
-        {
-          path = "/srv/duplicati/Duplicati-server.sqlite";
-          name = "duplicati";
-        }
       ];
       dbsJson =
         dbs

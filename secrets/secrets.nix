@@ -9,16 +9,15 @@ let
   ];
 in
 {
-  "users.age.yaml".publicKeys = allKeys;
   "authelia.age.yaml".publicKeys = allKeys;
   "beszel.age.env".publicKeys = allKeys;
   "caddy.age.env".publicKeys = allKeys;
   "dockerhub.age.json".publicKeys = allKeys;
-  "duplicati.age.env".publicKeys = allKeys;
   "grafito.age.env".publicKeys = allKeys;
   "linkding.age.env".publicKeys = allKeys;
   "litestream.age.env".publicKeys = allKeys;
   "pi.age.json".publicKeys = allKeys;
+  "restic.age.env".publicKeys = allKeys;
   "sftpgo.age.env".publicKeys = allKeys;
-  "transmission.age.json".publicKeys = allKeys;
+  "users.age.yaml".publicKeys = allKeys;
 }

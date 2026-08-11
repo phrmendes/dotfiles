@@ -96,18 +96,22 @@ in
           (config.caddy.mkVhost {
             name = "sonarr";
             port = 8989;
+            auth = true;
           })
           // (config.caddy.mkVhost {
             name = "radarr";
             port = 7878;
+            auth = true;
           })
           // (config.caddy.mkVhost {
             name = "prowlarr";
             port = 9696;
+            auth = true;
           })
           // (config.caddy.mkVhost {
             name = "bazarr";
             port = 6767;
+            auth = true;
           })
           // (config.caddy.mkVhost {
             name = "jellyfin";
@@ -116,16 +120,25 @@ in
         sonarr = {
           enable = true;
           dataDir = "/srv/sonarr";
-          settings.server.bindAddress = "127.0.0.1";
+          settings = {
+            server.bindAddress = "127.0.0.1";
+            Auth.Method = "External";
+          };
         };
         radarr = {
           enable = true;
           dataDir = "/srv/radarr";
-          settings.server.bindAddress = "127.0.0.1";
+          settings = {
+            server.bindAddress = "127.0.0.1";
+            Auth.Method = "External";
+          };
         };
         prowlarr = {
           enable = true;
-          settings.server.bindAddress = "127.0.0.1";
+          settings = {
+            server.bindAddress = "127.0.0.1";
+            Auth.Method = "External";
+          };
         };
         bazarr = {
           enable = true;

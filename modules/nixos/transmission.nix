@@ -33,16 +33,16 @@
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "transmission";
           port = webPort;
+          auth = true;
         };
         transmission = {
           enable = true;
           home = "/srv/transmission";
-          credentialsFile = config.age.secrets."transmission.json".path;
           openFirewall = false;
           settings = {
             rpc-bind-address = "127.0.0.1";
             rpc-port = webPort;
-            rpc-authentication-required = true;
+            rpc-authentication-required = false;
             rpc-host-whitelist = "transmission.${domain}";
             rpc-host-whitelist-enabled = true;
             download-dir = "/mnt/external/downloads";

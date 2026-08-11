@@ -19,6 +19,7 @@
       services.caddy.virtualHosts = config.caddy.mkVhost {
         inherit port;
         name = "grafito";
+        auth = true;
         extraConfig = ''
           handle_path /ai-providers {
             respond `{"providers":[{"id":"openai","name":"DeepSeek","available":true}],"current":"DeepSeek","enabled":true}`

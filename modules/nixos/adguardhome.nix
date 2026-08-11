@@ -29,14 +29,15 @@ in
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "adguardhome";
           inherit port;
-          basicAuth = "ADGUARDHOME";
+          auth = true;
         };
         adguardhome = {
           enable = true;
           host = "127.0.0.1";
-          mutableSettings = true;
+          mutableSettings = false;
           port = port;
           settings = {
+            auth.users = [];
             blocked_services = {
               ids = [
                 "betano"

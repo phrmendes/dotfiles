@@ -32,6 +32,7 @@
           open-secret = "agenix -i ~/.ssh/age -e";
           v = "nvim";
         };
+        initContent = lib.mkAfter ''zvm_after_init_commands+=('bindkey "^R" _atuin_search_widget')'';
       };
     };
 }

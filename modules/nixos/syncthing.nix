@@ -60,6 +60,7 @@ in
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "syncthing";
           inherit port;
+          auth = true;
         };
         syncthing = {
           enable = true;

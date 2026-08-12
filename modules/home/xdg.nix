@@ -19,8 +19,8 @@
             "image/*" = "imv.desktop";
             "video/*" = "mpv.desktop";
             "text/*" = "neovide.desktop";
-            "x-scheme-handler/terminal" = "kitty.desktop";
-            "application/x-terminal-emulator" = "kitty.desktop";
+            "x-scheme-handler/terminal" = "com.mitchellh.ghostty.desktop";
+            "application/x-terminal-emulator" = "com.mitchellh.ghostty.desktop";
             "application/pdf" = "org.pwmt.zathura.desktop";
             "text/html" = "firefox.desktop";
             "text/xml" = "firefox.desktop";

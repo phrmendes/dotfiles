@@ -94,7 +94,6 @@ in
       ];
 
       home-manager.users.${settings.user}.imports = with homeModules; [
-        alacritty
         atuin
         base
         bat
@@ -109,6 +108,7 @@ in
         fzf
         gaming
         gh
+        ghostty
         git
         gnupg
         gtk

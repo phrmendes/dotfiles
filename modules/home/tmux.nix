@@ -22,8 +22,8 @@
           in
           ''
             set -g  default-terminal    "tmux-256color"
-            set -ag terminal-overrides  ",xterm-256color:Tc"
-            set -as terminal-features   ",*:sync"
+            set -ag terminal-overrides  ",alacritty:RGB:Ss=\E[%p1%d q:Se=\E[2 q"
+            set -as terminal-features   ",alacritty:RGB,nosync"
             set -gq allow-passthrough   on
 
             set -g detach-on-destroy    off

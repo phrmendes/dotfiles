@@ -23,7 +23,7 @@
             decorations = "None";
           };
           cursor.style = {
-            shape = "Block";
+            shape = "Beam";
             blinking = "Off";
           };
           keyboard.bindings = [

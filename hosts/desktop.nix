@@ -7,8 +7,6 @@ in
     { config, lib, ... }:
     {
       imports = with nixosModules; [
-        dotfilesLib
-        workstationOptions
         core
         disko
         workstation

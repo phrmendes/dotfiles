@@ -11,11 +11,10 @@ in
       ...
     }:
     let
-      inherit (config.dotfilesLib) mkSecretReadable;
+      inherit (config.utils) mkSecretReadable;
     in
     {
       imports = with nixosModules; [
-        dotfilesLib
         authelia
         core
         disko
@@ -34,7 +33,6 @@ in
         litestream
         media
         networking
-        options
         podman
         sftpgo
         syncthing

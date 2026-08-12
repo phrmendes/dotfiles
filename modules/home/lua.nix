@@ -11,9 +11,9 @@
     let
       inherit (osConfig.workstation) monitors;
       isLaptop = osConfig.workstation.type == "laptop";
-      inherit (osConfig) dotfilesLib;
+      inherit (osConfig) utils;
       inherit (config.lib.file) mkOutOfStoreSymlink;
-      base16 = dotfilesLib.mkBase16Lua config.lib.stylix.colors;
+      base16 = utils.mkBase16Lua config.lib.stylix.colors;
       mkMonitor =
         m:
         [

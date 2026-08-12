@@ -6,12 +6,12 @@ in
   nixosModules.adguardhome =
     { config, ... }:
     let
-      inherit (config) dotfilesLib;
+      inherit (config) utils;
       port = 3000;
       dnsPort = 53;
     in
     {
-      networking.firewall = dotfilesLib.mkFirewallPort dnsPort;
+      networking.firewall = utils.mkFirewallPort dnsPort;
 
       homepage.services.adguardhome = {
         dataDir = "/var/lib/AdGuardHome";
@@ -34,9 +34,9 @@ in
           enable = true;
           host = "127.0.0.1";
           mutableSettings = false;
-          port = port;
+          inherit port;
           settings = {
-            auth.users = [];
+            auth.users = [ ];
             blocked_services = {
               ids = [
                 "betano"

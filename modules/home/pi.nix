@@ -51,8 +51,8 @@
               apiKey = "!${pkgs.jq}/bin/jq -r '.bifrost.key' ${agentHome}/auth.json";
               models = [
                 {
-                  id = "claude-sonnet-4-6";
-                  name = "Claude Sonnet 4";
+                  id = "claude-sonnet-5";
+                  name = "Claude Sonnet 5";
                   contextWindow = 200000;
                   maxTokens = 16384;
                   input = [
@@ -65,6 +65,57 @@
                     output = 15;
                     cacheRead = 0.3;
                     cacheWrite = 3.75;
+                  };
+                }
+                {
+                  id = "openai.gpt-5.6-luna";
+                  name = "GPT-5.6 Luna";
+                  contextWindow = 1050000;
+                  maxTokens = 128000;
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  reasoning = true;
+                  cost = {
+                    input = 0.1;
+                    output = 0.6;
+                    cacheRead = 0.01;
+                    cacheWrite = 0.125;
+                  };
+                }
+                {
+                  id = "openai.gpt-5.6-sol";
+                  name = "GPT-5.6 Sol";
+                  contextWindow = 1050000;
+                  maxTokens = 128000;
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  reasoning = true;
+                  cost = {
+                    input = 0.25;
+                    output = 1.5;
+                    cacheRead = 0.025;
+                    cacheWrite = 0.3125;
+                  };
+                }
+                {
+                  id = "openai.gpt-5.6-terra";
+                  name = "GPT-5.6 Terra";
+                  contextWindow = 1050000;
+                  maxTokens = 128000;
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  reasoning = true;
+                  cost = {
+                    input = 0.5;
+                    output = 3;
+                    cacheRead = 0.05;
+                    cacheWrite = 0.625;
                   };
                 }
               ];

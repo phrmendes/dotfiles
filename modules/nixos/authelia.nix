@@ -58,7 +58,7 @@ in
             session.cookies = [
               {
                 name = "authelia_session";
-                domain = domain;
+                inherit domain;
                 authelia_url = "https://auth.${domain}";
                 expiration = "1h";
                 inactivity = "5m";

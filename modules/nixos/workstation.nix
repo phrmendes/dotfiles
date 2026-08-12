@@ -80,130 +80,169 @@ in
       ...
     }:
     let
-      inherit (config.dotfilesLib) mkSecretReadable;
+      inherit (config.utils) mkSecretReadable;
+
+      monitor = {
+        options = {
+          name = lib.mkOption { type = lib.types.str; };
+          resolution = lib.mkOption { type = lib.types.str; };
+          position = lib.mkOption { type = lib.types.str; };
+          refreshRate = lib.mkOption { type = lib.types.int; };
+          scale = lib.mkOption { type = lib.types.float; };
+        };
+      };
     in
     {
-      age.secrets."pi.json" = mkSecretReadable {
-        owner = settings.user;
-        file = ../../secrets/pi.age.json;
-        path = "${settings.home}/.pi/agent/auth.json";
-      };
-
-      services = {
-        flatpak.enable = true;
-
-        greetd = {
-          enable = true;
-          settings = rec {
-            initial_session = {
-              user = settings.user;
-              command = "${lib.getExe pkgs.uwsm} start hyprland-uwsm.desktop";
+      options.workstation = lib.mkOption {
+        type = lib.types.submodule {
+          options = {
+            type = lib.mkOption {
+              type = lib.types.enum [
+                "desktop"
+                "laptop"
+              ];
             };
-            default_session = initial_session;
-          };
-        };
-
-        power-profiles-daemon.enable = lib.mkDefault true;
-        upower.enable = true;
-
-        pipewire = {
-          enable = true;
-          pulse.enable = true;
-          alsa = {
-            enable = true;
-            support32Bit = true;
-          };
-        };
-
-        syncthing = {
-          user = settings.user;
-          enable = true;
-          configDir = "${settings.home}/.config/syncthing";
-          openDefaultPorts = true;
-          overrideDevices = true;
-          overrideFolders = true;
-          settings = {
-            options = {
-              localAnnounceEnabled = true;
-              urAccepted = 1;
+            dotfilesDir = lib.mkOption {
+              type = lib.types.path;
             };
-            devices = {
-              "phone".id = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
-              "tablet".id = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
-              "server".id = "WO4EEDG-FAZ3VXA-VCV6ZCD-U5TFYFN-QRVFWVO-UXBR4DQ-KDOST52-HD5WNAZ";
-              "desktop".id = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
-              "laptop".id = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
-            };
-            folders = {
-              "documents" = trashcanFolder "${settings.home}/Documents/documents" workstations;
-              "images" = trashcanFolder "${settings.home}/Pictures/images" workstations;
-              "notes" = {
-                path = "${settings.home}/Documents/notes";
-                versioning = versioning.simple;
-                devices = allDevices;
+            monitors = lib.mkOption {
+              type = lib.types.submodule {
+                options = {
+                  primary = lib.mkOption { type = lib.types.submodule monitor; };
+                  secondary = lib.mkOption {
+                    type = lib.types.nullOr (lib.types.submodule monitor);
+                    default = null;
+                  };
+                };
               };
-              "ufabc" = trashcanFolder "${settings.home}/Documents/ufabc" (workstations ++ [ "tablet" ]);
-              "collections" = trashcanFolder "${settings.home}/Documents/collections" workstations;
-              "excalidraw" = trashcanFolder "${settings.home}/Documents/excalidraw" workstations;
-              "reading" = trashcanFolder "${settings.home}/Documents/reading" allDevices;
-              "keepassxc" = trashcanFolder "${settings.home}/Documents/keepassxc" allDevices;
             };
           };
         };
       };
 
-      programs = {
-        dconf.enable = true;
-        hyprland = {
-          enable = true;
-          withUWSM = true;
+      config = {
+        age.secrets."pi.json" = mkSecretReadable {
+          owner = settings.user;
+          file = ../../secrets/pi.age.json;
+          path = "${settings.home}/.pi/agent/auth.json";
         };
-        virt-manager.enable = true;
-      };
 
-      virtualisation = {
-        libvirtd = {
-          enable = true;
-          qemu = {
-            package = pkgs.qemu_kvm;
-            runAsRoot = true;
-            swtpm.enable = true;
+        services = {
+          flatpak.enable = true;
+
+          greetd = {
+            enable = true;
+            settings = rec {
+              initial_session = {
+                inherit (settings) user;
+                command = "${lib.getExe pkgs.uwsm} start hyprland-uwsm.desktop";
+              };
+              default_session = initial_session;
+            };
+          };
+
+          power-profiles-daemon.enable = lib.mkDefault true;
+          upower.enable = true;
+
+          pipewire = {
+            enable = true;
+            pulse.enable = true;
+            alsa = {
+              enable = true;
+              support32Bit = true;
+            };
+          };
+
+          syncthing = {
+            inherit (settings) user;
+            enable = true;
+            configDir = "${settings.home}/.config/syncthing";
+            openDefaultPorts = true;
+            overrideDevices = true;
+            overrideFolders = true;
+            settings = {
+              options = {
+                localAnnounceEnabled = true;
+                urAccepted = 1;
+              };
+              devices = {
+                "phone".id = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
+                "tablet".id = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
+                "server".id = "WO4EEDG-FAZ3VXA-VCV6ZCD-U5TFYFN-QRVFWVO-UXBR4DQ-KDOST52-HD5WNAZ";
+                "desktop".id = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
+                "laptop".id = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
+              };
+              folders = {
+                "documents" = trashcanFolder "${settings.home}/Documents/documents" workstations;
+                "images" = trashcanFolder "${settings.home}/Pictures/images" workstations;
+                "notes" = {
+                  path = "${settings.home}/Documents/notes";
+                  versioning = versioning.simple;
+                  devices = allDevices;
+                };
+                "ufabc" = trashcanFolder "${settings.home}/Documents/ufabc" (workstations ++ [ "tablet" ]);
+                "collections" = trashcanFolder "${settings.home}/Documents/collections" workstations;
+                "excalidraw" = trashcanFolder "${settings.home}/Documents/excalidraw" workstations;
+                "reading" = trashcanFolder "${settings.home}/Documents/reading" allDevices;
+                "keepassxc" = trashcanFolder "${settings.home}/Documents/keepassxc" allDevices;
+              };
+            };
           };
         };
-        podman = {
-          enable = true;
-          dockerCompat = true;
-          dockerSocket.enable = true;
-          defaultNetwork.settings.dns_enabled = true;
+
+        programs = {
+          dconf.enable = true;
+          hyprland = {
+            enable = true;
+            withUWSM = true;
+          };
+          virt-manager.enable = true;
         };
-      };
 
-      environment = {
-        persistence."/persist".users.${settings.user}.directories = commonDirs ++ [
-          {
-            directory = ".gnupg";
-            mode = "0700";
-          }
-          {
-            directory = ".keychain";
-            mode = "u=rwx,go=";
-          }
-        ];
-        systemPackages = [
-          inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-        ];
-      };
+        virtualisation = {
+          libvirtd = {
+            enable = true;
+            qemu = {
+              package = pkgs.qemu_kvm;
+              runAsRoot = true;
+              swtpm.enable = true;
+            };
+          };
+          podman = {
+            enable = true;
+            dockerCompat = true;
+            dockerSocket.enable = true;
+            defaultNetwork.settings.dns_enabled = true;
+          };
+        };
 
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-hyprland
-          xdg-desktop-portal-gtk
-        ];
-        config.hyprland.default = [
-          "hyprland"
-          "gtk"
-        ];
+        environment = {
+          persistence."/persist".users.${settings.user}.directories = commonDirs ++ [
+            {
+              directory = ".gnupg";
+              mode = "0700";
+            }
+            {
+              directory = ".keychain";
+              mode = "u=rwx,go=";
+            }
+          ];
+          systemPackages = [
+            inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+          ];
+        };
+
+        xdg.portal = {
+          enable = true;
+          extraPortals = with pkgs; [
+            xdg-desktop-portal-hyprland
+            xdg-desktop-portal-gtk
+          ];
+          config.hyprland.default = [
+            "hyprland"
+            "gtk"
+          ];
+        };
       };
     };
 }

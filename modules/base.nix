@@ -7,6 +7,60 @@
 {
   imports = [ inputs.flake-parts.flakeModules.modules ];
 
+  options = {
+    hostPlatform = lib.mkOption {
+      type = lib.types.str;
+      default = "x86_64-linux";
+    };
+
+    settings = lib.mkOption {
+      type = lib.types.attrs;
+      default = {
+        name = "Pedro Mendes";
+        user = "phrmendes";
+        email = "pedrohrmendes@proton.me";
+        home = "/home/phrmendes";
+        serverDomain = "local.phrmendes.xyz";
+        stateVersion = "26.11";
+        gcpProject = "rj-ia-desenvolvimento";
+        nvimServerPort = 6666;
+        podmanSubnet = "172.18.0.0/16";
+        lan = {
+          subnet = "192.168.0.0/24";
+          interface = "enp3s0";
+          serverAddress = "192.168.0.2";
+          desktopAddress = "192.168.0.4";
+          kvmAddress = "192.168.0.8";
+        };
+      };
+    };
+
+    nixosModules = lib.mkOption {
+      description = "NixOS modules: nixosModules.<name>";
+      type = lib.types.lazyAttrsOf lib.types.deferredModule;
+      default = { };
+    };
+
+    homeModules = lib.mkOption {
+      description = "Home-manager modules: homeModules.<name>";
+      type = lib.types.lazyAttrsOf lib.types.deferredModule;
+      default = { };
+    };
+
+    configurations = {
+      nixos = lib.mkOption {
+        type = lib.types.lazyAttrsOf (
+          lib.types.submodule {
+            options.module = lib.mkOption {
+              type = lib.types.deferredModule;
+            };
+          }
+        );
+        default = { };
+      };
+    };
+  };
+
   config = {
     systems = [ "x86_64-linux" ];
     perSystem = _: {

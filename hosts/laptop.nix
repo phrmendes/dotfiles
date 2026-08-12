@@ -11,8 +11,6 @@ in
     }:
     {
       imports = with nixosModules; [
-        dotfilesLib
-        workstationOptions
         core
         disko
         workstation
@@ -29,7 +27,6 @@ in
             refreshRate = 60;
             scale = 1.0;
           };
-          secondary = null;
         };
       };
 

@@ -2,7 +2,7 @@
   nixosModules.transmission =
     { config, ... }:
     let
-      inherit (config) dotfilesLib;
+      inherit (config) utils;
       webPort = 9091;
       torrentingPort = 51413;
       domain = config.caddy.domain;
@@ -18,7 +18,7 @@
         };
       };
 
-      networking.firewall = dotfilesLib.mkFirewallPort torrentingPort;
+      networking.firewall = utils.mkFirewallPort torrentingPort;
 
       users.users.transmission.extraGroups = [ "external" ];
 

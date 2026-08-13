@@ -15,7 +15,6 @@
         secureSocket = false;
         prefix = "C-Space";
         shell = lib.getExe pkgs.zsh;
-        plugins = with pkgs.tmuxPlugins; [ fingers ];
         extraConfig =
           let
             status_bar = " #I:#W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ";
@@ -62,7 +61,6 @@
             bind Q     kill-window
             bind R     command-prompt -I "#S" "rename-session '%%'"
             bind d     detach-client
-            bind k     kill-session
             bind n     new-window -c "#{pane_current_path}"
             bind p     paste-buffer
             bind q     kill-pane
@@ -81,6 +79,14 @@
             bind -r ']' next-window
             bind -r '{' swap-window -t -1 \; select-window -t -1
             bind -r '}' swap-window -t +1 \; select-window -t +1
+            bind -r h   select-pane -L
+            bind -r j   select-pane -D
+            bind -r k   select-pane -U
+            bind -r l   select-pane -R
+            bind -r H   resize-pane -L 3
+            bind -r J   resize-pane -D 3
+            bind -r K   resize-pane -U 3
+            bind -r L   resize-pane -R 3
 
             bind -T copy-mode-vi v   send-keys -X begin-selection
             bind -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
@@ -89,16 +95,6 @@
             bind -T copy-mode-vi C-j select-pane -D
             bind -T copy-mode-vi C-k select-pane -U
             bind -T copy-mode-vi C-l select-pane -R
-
-            bind -n C-h if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
-            bind -n C-j if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
-            bind -n C-k if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'
-            bind -n C-l if -F "#{@pane-is-vim}" 'send-keys C-l' 'select-pane -R'
-
-            bind -n M-h if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
-            bind -n M-j if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
-            bind -n M-k if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
-            bind -n M-l if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
           '';
       };
     };

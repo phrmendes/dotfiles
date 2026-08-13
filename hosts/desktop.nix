@@ -108,7 +108,6 @@ in
         fzf
         gaming
         gh
-        ghostty
         git
         gnupg
         gtk
@@ -117,6 +116,7 @@ in
         jq
         k8s
         keepassxc
+        kitty
         lua
         mpv
         neovide
@@ -126,7 +126,6 @@ in
         packages
         pi
         ripgrep
-        sesh
         starship
         symlinks
         tealdeer

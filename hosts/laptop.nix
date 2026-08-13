@@ -110,7 +110,7 @@ in
         flameshot
         fzf
         gh
-        ghostty
+        kitty
         git
         gnupg
         gtk
@@ -128,7 +128,6 @@ in
         packages
         pi
         ripgrep
-        sesh
         starship
         symlinks
         tealdeer

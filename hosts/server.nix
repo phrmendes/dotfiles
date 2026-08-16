@@ -89,7 +89,7 @@ in
       };
 
       fileSystems."/mnt/external" = {
-        device = "/dev/disk/by-label/external";
+        device = "/dev/disk/by-label/dock";
         fsType = "ext4";
         options = [
           "defaults"

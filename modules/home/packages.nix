@@ -25,6 +25,7 @@
         lima
         localsend
         nix-prefetch-github
+        opentofu
         pandoc
         parallel
         pass
@@ -34,11 +35,9 @@
         proton-vpn
         slurp
         tectonic
-        terraform
         tesseract
         thunar
         tuicr
-        wf-recorder
         wl-clipboard
         xre
         zotero

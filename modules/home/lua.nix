@@ -45,11 +45,12 @@
       neovim = ''
         ---@type NixNeovim
         return {
-          lua_ls = "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd",
-          luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
           hyprland = "${pkgs.hyprland}/share/hypr/stubs",
-          luatex = "${pkgs.texlivePackages.luatex-type-definitions.tex}/tex/luatex/luatex-type-definitions",
+          lua_ls = "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd",
           lualibs = "${inputs.lualibs}/library",
+          luatex = "${pkgs.texlivePackages.luatex-type-definitions.tex}/tex/luatex/luatex-type-definitions",
+          luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
+          sqlite = "${pkgs.sqlite.out}/lib/libsqlite3.so",
         }
       '';
 

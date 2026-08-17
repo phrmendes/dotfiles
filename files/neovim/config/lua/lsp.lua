@@ -24,7 +24,7 @@ vim.lsp.enable({
   "taplo",
   "texlab",
   "tofu_ls",
-  "tsgo",
+  "tsc",
   "yamlls",
 })
 

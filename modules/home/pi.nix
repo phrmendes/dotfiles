@@ -4,6 +4,9 @@
     let
       agentHome = "${config.home.homeDirectory}/.pi/agent";
       piDir = ../../files/pi;
+      pyzotero = pkgs.python314Packages.pyzotero.overridePythonAttrs (old: {
+        dependencies = old.dependencies ++ [ pkgs.python314Packages.click ];
+      });
     in
     {
       programs.pi-coding-agent = {
@@ -12,6 +15,7 @@
         extraPackages = with pkgs; [
           agent-browser
           jira-cli-go
+          pyzotero
         ];
         settings = {
           quietStartup = true;

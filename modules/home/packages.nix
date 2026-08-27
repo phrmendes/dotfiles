@@ -37,7 +37,6 @@
         tectonic
         tesseract
         thunar
-        tuicr
         wl-clipboard
         xre
         zotero

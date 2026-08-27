@@ -19,7 +19,7 @@ return function(client, bufnr)
     { Methods.textDocument_references, "n", "gr", picker("references"), "go to references" },
     { Methods.textDocument_typeDefinition, "n", "gt", picker("type_definition"), "go to type definition" },
     { Methods.textDocument_codeAction, { "n", "x" }, "<leader>c", vim.lsp.buf.code_action, "code actions" },
-    { Methods.textDocument_signatureHelp, { "n", "x" }, "<leader>h", vim.lsp.buf.signature_help, "signature help" },
+    { Methods.textDocument_signatureHelp, { "n", "x" }, "<leader>H", vim.lsp.buf.signature_help, "signature help" },
     { Methods.textDocument_hover, "n", "K", vim.lsp.buf.hover, "hover" },
     { Methods.textDocument_documentSymbol, "n", "<leader>s", picker("document_symbol"), "symbols (document)" },
     { Methods.workspace_symbol, "n", "<leader>S", picker("workspace_symbol"), "symbols (workspace)" },

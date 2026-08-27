@@ -23,7 +23,6 @@
           defaultModel = "deepseek/deepseek-v4-flash";
           theme = "dark";
           packages = [
-            "npm:pi-tuicr"
             "git:github.com/phrmendes/pi-plan-mode"
           ];
           skills = [

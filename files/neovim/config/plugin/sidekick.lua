@@ -5,6 +5,10 @@ safely("now", function()
     nes = { enabled = false },
     cli = {
       mux = { backend = "tmux", enabled = true },
+      prompts = {
+        comments_all = function() return require("haunt.sidekick").get_locations() end,
+        comments_buffer = function() return require("haunt.sidekick").get_locations({ current_buffer = true }) end,
+      },
       win = {
         keys = {
           nav_left = false,

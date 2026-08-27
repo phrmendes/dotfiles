@@ -25,6 +25,7 @@ safely("later", function()
       clue.gen_clues.z(),
       { mode = "n", keys = "<leader><tab>", desc = "+tabs" },
       { mode = "n", keys = "<leader>b", desc = "+buffers" },
+      { mode = "n", keys = "<leader>h", desc = "+haunt" },
       { mode = "n", keys = "<leader>k", desc = "+kulala" },
       { mode = "n", keys = "<leader>n", desc = "+notes" },
       { mode = "n", keys = "<leader>t", desc = "+todotxt" },

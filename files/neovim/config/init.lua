@@ -2,6 +2,7 @@ vim.pack.add({
   "https://codeberg.org/mfussenegger/nvim-ansible",
   "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/NeogitOrg/neogit",
+  "https://github.com/TheNoeTrevino/haunt.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/barrettruth/diffs.nvim",

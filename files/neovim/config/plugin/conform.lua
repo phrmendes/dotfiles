@@ -22,8 +22,8 @@ safely(
         toml = { "taplo" },
         yaml = { "yq" },
         kdl = { "kdlfmt" },
+        nu = { "nufmt" },
         ["yaml.ansible"] = { "yq" },
-        zsh = { "shellharden", "shfmt" },
       },
       format_on_save = {
         timeout_ms = 500,

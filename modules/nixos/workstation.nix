@@ -23,7 +23,7 @@ let
     ".local/share/uv"
     ".local/share/zathura"
     ".local/share/zoxide"
-    ".local/share/zsh"
+    ".local/share/nushell"
     ".local/state/comma"
     ".local/state/home-manager"
     ".local/state/keepassxc"

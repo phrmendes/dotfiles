@@ -37,8 +37,6 @@
         kubernetes-helm
       ];
 
-      programs.zsh.shellAliases.k = lib.getExe pkgs.kubectl;
-
       programs.k9s = {
         enable = true;
         settings.k9s.refreshRate = 1;

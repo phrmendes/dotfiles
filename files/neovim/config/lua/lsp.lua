@@ -19,6 +19,7 @@ vim.lsp.enable({
   "just",
   "lua_ls",
   "nixd",
+  "nushell",
   "ruff",
   "svelte",
   "taplo",

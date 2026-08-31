@@ -14,7 +14,7 @@
         mouse = true;
         secureSocket = false;
         prefix = "C-Space";
-        shell = lib.getExe pkgs.zsh;
+        shell = lib.getExe pkgs.nushell;
         extraConfig =
           let
             status_bar = " #I:#W#{?window_zoomed_flag,  ,}#{?window_bell_flag,  ,} ";

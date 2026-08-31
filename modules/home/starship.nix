@@ -2,22 +2,18 @@
   homeModules.starship = {
     programs.starship = {
       enable = true;
-      enableZshIntegration = true;
+      enableNushellIntegration = true;
       enableBashIntegration = true;
       settings = {
         command_timeout = 1000;
         gcloud.disabled = true;
-        python.symbol = " ";
-        nix_shell = {
-          symbol = " ";
-          format = "[$symbol]($style)";
-        };
+        jobs.disabled = true;
+        nix_shell.disabled = true;
         character = {
           success_symbol = "[󰘧](bold green)";
           error_symbol = "[󰘧](bold red)";
           vimcmd_symbol = "[󰘧](bold purple)";
         };
-        right_format = "$nix_shell";
       };
     };
   };

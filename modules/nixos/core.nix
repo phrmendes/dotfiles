@@ -213,7 +213,7 @@ in
           nano.enable = false;
           fuse.userAllowOther = true;
           command-not-found.enable = false;
-          zsh.enable = true;
+          nushell.enable = true;
 
           nix-ld = {
             enable = true;
@@ -342,7 +342,7 @@ in
           users = {
             ${settings.user} = {
               inherit (settings) home;
-              shell = pkgs.zsh;
+              shell = pkgs.nushell;
               password = "changeme";
               openssh.authorizedKeys.keys = [
                 (builtins.readFile ../../files/ssh/main.txt)

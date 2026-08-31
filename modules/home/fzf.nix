@@ -8,7 +8,7 @@
     {
       programs.fzf = {
         enable = true;
-        enableZshIntegration = true;
+        enableNushellIntegration = true;
         tmux.enableShellIntegration = true;
         defaultCommand = "${fd} --type f";
         changeDirWidget.command = "${fd} --type d";

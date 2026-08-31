@@ -55,6 +55,7 @@
           jq
           kdlfmt
           nixfmt
+          nufmt
           oxfmt
           ruff
           shellharden

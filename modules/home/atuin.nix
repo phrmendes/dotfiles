@@ -7,7 +7,7 @@ in
     programs.atuin = {
       enable = true;
       daemon.enable = true;
-      enableZshIntegration = true;
+      enableNushellIntegration = true;
       flags = [ "--disable-up-arrow" ];
       settings = {
         auto_sync = true;

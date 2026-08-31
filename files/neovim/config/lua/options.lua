@@ -31,7 +31,7 @@ vim.opt.updatetime = 200
 vim.opt.timeoutlen = 300
 
 -- default terminal
-vim.opt.shell = "zsh"
+vim.opt.shell = "nu"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 

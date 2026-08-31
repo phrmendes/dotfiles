@@ -141,7 +141,6 @@ in
         base
         bat
         btop
-        eza
         fd
         fzf
         git
@@ -152,7 +151,7 @@ in
         yazi
         tmux
         zoxide
-        zsh
+        nushell
       ];
     };
 }

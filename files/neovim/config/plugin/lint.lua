@@ -11,7 +11,6 @@ safely("later", function()
     tsx = { "oxlint" },
     typescript = { "oxlint" },
     ["yaml.ansible"] = { "ansible_lint" },
-    zsh = { "shellcheck" },
   }
 
   safely("event:BufWritePost,BufReadPost,InsertLeave", function() require("lint").try_lint() end)

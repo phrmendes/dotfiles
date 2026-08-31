@@ -102,7 +102,6 @@ in
         cliphist
         devenv
         direnv
-        eza
         fd
         flameshot
         fzf
@@ -135,7 +134,7 @@ in
         yazi
         zathura
         zoxide
-        zsh
+        nushell
       ];
     };
 }

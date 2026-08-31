@@ -14,7 +14,6 @@
 
       programs.kitty = {
         enable = true;
-        shellIntegration.enableZshIntegration = true;
         settings = {
           active_tab_font_style = "bold";
           allow_remote_control = "yes";
@@ -27,7 +26,7 @@
           inactive_text_alpha = "0.9";
           listen_on = "unix:/tmp/kitty";
           open_url_with = "default";
-          shell = "zsh";
+          shell = "nu";
           shell_integration = "enabled";
           tab_bar_edge = "bottom";
           tab_bar_min_tabs = 2;

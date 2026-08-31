@@ -9,6 +9,7 @@
 
 - Always talk ASD-STE100 Simplified Technical English.
 - Prefer idiomatic tooling for each ecosystem.
+- Use Nushell (`nu`) instead of Bash for shell commands and structured-data work when possible. Follow the `files/pi/skills/nushell/SKILL.md` skill for Nushell syntax and workflows. Use Bash when a command requires Bash syntax or when Nushell is not available.
 
 ## Test-Driven Development
 

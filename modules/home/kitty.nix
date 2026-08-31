@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   homeModules.kitty =
     { pkgs, ... }:
     let
@@ -41,24 +41,34 @@
           window_padding_width = 5;
         };
         extraConfig = ''
-          include theme.conf
+          action_alias relative_resize kitten ${config.settings.home}/.config/kitty/relative_resize.py
+          action_alias kitty_scrollback_nvim kitten ${config.settings.home}/.config/kitty/scrollback.py
+
           map --when-focus-on var:IS_NVIM ctrl+h
           map --when-focus-on var:IS_NVIM ctrl+j
           map --when-focus-on var:IS_NVIM ctrl+k
           map --when-focus-on var:IS_NVIM ctrl+l
+          map --when-focus-on var:IS_NVIM alt+j
+          map --when-focus-on var:IS_NVIM alt+k
+          map --when-focus-on var:IS_NVIM alt+h
+          map --when-focus-on var:IS_NVIM alt+l
         '';
         keybindings = {
           "ctrl+h" = "neighboring_window left";
           "ctrl+j" = "neighboring_window down";
           "ctrl+k" = "neighboring_window up";
           "ctrl+l" = "neighboring_window right";
+          "alt+h" = "relative_resize left 3";
+          "alt+j" = "relative_resize down 3";
+          "alt+k" = "relative_resize up 3";
+          "alt+l" = "relative_resize right 3";
           "ctrl+shift+\\" = "launch --location=vsplit --cwd=current";
           "ctrl+shift+[" = "previous_tab";
           "ctrl+shift+]" = "next_tab";
           "ctrl+shift+," = "move_tab_backward";
           "ctrl+shift+." = "move_tab_forward";
           "ctrl+shift+minus" = "launch --location=hsplit --cwd=current";
-          "ctrl+shift+enter" = "start_resizing_window";
+          "ctrl+shift+enter" = "layout_action rotate";
           "ctrl+shift+f1" = "debug_config";
           "ctrl+shift+b" = "scroll_page_down";
           "ctrl+shift+c" = "copy_to_clipboard";
@@ -81,10 +91,6 @@
           "ctrl+shift+7" = "goto_tab 7";
           "ctrl+shift+8" = "goto_tab 8";
           "ctrl+shift+9" = "goto_tab 9";
-          "ctrl+shift+left" = "move_window left";
-          "ctrl+shift+right" = "move_window down";
-          "ctrl+shift+up" = "move_window up";
-          "ctrl+shift+down" = "move_window right";
           "ctrl+minus" = "decrease_font_size";
           "ctrl+equal" = "increase_font_size";
           "ctrl+delete" = "change_font_size all 0";

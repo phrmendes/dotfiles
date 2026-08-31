@@ -13,6 +13,9 @@
         };
         environmentVariables = {
           EDITOR = "nvim";
+          DOCKER_HOST = lib.hm.nushell.mkNushellInline ''
+            $"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock"
+          '';
           GIT_EDITOR = "nvim";
           SUDO_EDITOR = "nvim";
           VISUAL = "nvim";

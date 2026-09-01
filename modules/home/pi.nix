@@ -54,23 +54,6 @@
               apiKey = "!${pkgs.jq}/bin/jq -r '.bifrost.key' ${agentHome}/auth.json";
               models = [
                 {
-                  id = "claude-sonnet-5";
-                  name = "Claude Sonnet 5";
-                  contextWindow = 200000;
-                  maxTokens = 16384;
-                  input = [
-                    "text"
-                    "image"
-                  ];
-                  reasoning = true;
-                  cost = {
-                    input = 3;
-                    output = 15;
-                    cacheRead = 0.3;
-                    cacheWrite = 3.75;
-                  };
-                }
-                {
                   id = "openai.gpt-5.6-luna";
                   name = "GPT-5.6 Luna";
                   contextWindow = 1050000;
@@ -120,6 +103,30 @@
                     cacheRead = 0.05;
                     cacheWrite = 0.625;
                   };
+                }
+                {
+                  id = "Huawei/deepseek-v4-flash";
+                  name = "DeepSeek V4 Flash (Huawei)";
+                  contextWindow = 1000000;
+                  maxTokens = 384000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
+                  id = "Huawei/deepseek-v4-pro";
+                  name = "DeepSeek V4 Pro (Huawei)";
+                  contextWindow = 1000000;
+                  maxTokens = 128000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
+                  id = "Huawei/glm-5.2";
+                  name = "GLM-5.2 (Huawei)";
+                  contextWindow = 1000000;
+                  maxTokens = 128000;
+                  input = [ "text" ];
+                  reasoning = true;
                 }
               ];
             };

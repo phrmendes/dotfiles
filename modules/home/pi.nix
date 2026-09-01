@@ -49,13 +49,20 @@
           providers = {
             bifrost = {
               name = "Bifrost";
-              baseUrl = "https://bifrost.iplan.dados.rio/anthropic";
-              api = "anthropic-messages";
-              apiKey = "!${pkgs.jq}/bin/jq -r '.bifrost.key' ${agentHome}/auth.json";
+              baseUrl = "https://bifrost.iplan.dados.rio/openai/v1";
+              api = "openai-completions";
+              apiKey = "!open ${agentHome}/auth.json | get bifrost.key | into string";
+              compat = {
+                supportsDeveloperRole = false;
+                supportsReasoningEffort = false;
+              };
               models = [
                 {
-                  id = "openai.gpt-5.6-luna";
+                  id = "bedrock_mantle/openai.gpt-5.6-luna";
                   name = "GPT-5.6 Luna";
+                  samplingParams = {
+                    reasoning_effort = "none";
+                  };
                   contextWindow = 1050000;
                   maxTokens = 128000;
                   input = [
@@ -71,8 +78,11 @@
                   };
                 }
                 {
-                  id = "openai.gpt-5.6-sol";
+                  id = "bedrock_mantle/openai.gpt-5.6-sol";
                   name = "GPT-5.6 Sol";
+                  samplingParams = {
+                    reasoning_effort = "none";
+                  };
                   contextWindow = 1050000;
                   maxTokens = 128000;
                   input = [
@@ -88,8 +98,11 @@
                   };
                 }
                 {
-                  id = "openai.gpt-5.6-terra";
+                  id = "bedrock_mantle/openai.gpt-5.6-terra";
                   name = "GPT-5.6 Terra";
+                  samplingParams = {
+                    reasoning_effort = "none";
+                  };
                   contextWindow = 1050000;
                   maxTokens = 128000;
                   input = [
@@ -107,6 +120,9 @@
                 {
                   id = "Huawei/deepseek-v4-flash";
                   name = "DeepSeek V4 Flash (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "none";
+                  };
                   contextWindow = 1000000;
                   maxTokens = 384000;
                   input = [ "text" ];
@@ -115,6 +131,9 @@
                 {
                   id = "Huawei/deepseek-v4-pro";
                   name = "DeepSeek V4 Pro (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "none";
+                  };
                   contextWindow = 1000000;
                   maxTokens = 128000;
                   input = [ "text" ];
@@ -123,6 +142,9 @@
                 {
                   id = "Huawei/glm-5.2";
                   name = "GLM-5.2 (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "none";
+                  };
                   contextWindow = 1000000;
                   maxTokens = 128000;
                   input = [ "text" ];

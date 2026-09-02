@@ -20,6 +20,8 @@
         jdk
         jqp
         just
+        kubectl
+        kubernetes-helm
         libqalculate
         libreoffice
         lima
@@ -40,6 +42,9 @@
         wl-clipboard
         xre
         zotero
+        (google-cloud-sdk.withExtraComponents (
+          with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
+        ))
       ])
       ++ (with pkgs.local; [
         diff-persist

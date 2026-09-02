@@ -19,8 +19,7 @@
           VISUAL = "nvim";
           PROMPT_INDICATOR = lib.hm.nushell.mkNushellInline ''{|| ""}'';
           PROMPT_INDICATOR_VI_INSERT = lib.hm.nushell.mkNushellInline ''{|| ""}'';
-          PROMPT_INDICATOR_VI_NORMAL =
-            lib.hm.nushell.mkNushellInline ''{|| $"(ansi purple)[N](ansi reset) "}'';
+          PROMPT_INDICATOR_VI_NORMAL = lib.hm.nushell.mkNushellInline ''{|| $"(ansi purple)[N](ansi reset) "}'';
         };
         plugins = with pkgs.nushellPlugins; [ polars ];
         shellAliases = {

@@ -76,11 +76,12 @@ vim.filetype.add({
     ["%.tfvars"] = "opentofu-vars",
   },
   extension = {
+    dump = "log",
     http = "http",
     mdx = "markdown.mdx",
+    nuon = "nu",
     tf = "terraform",
     tofu = "opentofu",
-    dump = "log",
   },
 })
 

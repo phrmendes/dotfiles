@@ -13,9 +13,7 @@
         };
         environmentVariables = {
           EDITOR = "nvim";
-          DOCKER_HOST = lib.hm.nushell.mkNushellInline ''
-            $"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock"
-          '';
+          DOCKER_HOST = lib.hm.nushell.mkNushellInline ''$"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock" '';
           GIT_EDITOR = "nvim";
           SUDO_EDITOR = "nvim";
           VISUAL = "nvim";
@@ -23,6 +21,7 @@
           PROMPT_INDICATOR_VI_INSERT = lib.hm.nushell.mkNushellInline "{|| \"\"}";
           PROMPT_INDICATOR_VI_NORMAL = lib.hm.nushell.mkNushellInline "{|| \"\"}";
         };
+        plugins = with pkgs.nushellPlugins; [ polars ];
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
           cat = lib.getExe pkgs.bat;

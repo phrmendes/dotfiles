@@ -31,6 +31,7 @@ in
         impermanence
         linkding
         litestream
+        miniflux
         media
         networking
         podman
@@ -54,6 +55,10 @@ in
         "grafito.env" = mkSecretReadable { file = ../secrets/grafito.age.env; };
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
         "litestream.env" = mkSecretReadable { file = ../secrets/litestream.age.env; };
+        "miniflux.env" = mkSecretReadable {
+          file = ../secrets/miniflux.age.env;
+          owner = "miniflux";
+        };
         "restic.env" = mkSecretReadable { file = ../secrets/restic.age.env; };
         "sftpgo.env" = mkSecretReadable {
           file = ../secrets/sftpgo.age.env;

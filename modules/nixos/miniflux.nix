@@ -1,6 +1,10 @@
 {
   nixosModules.miniflux =
-    { config, ... }:
+    {
+      config,
+      lib,
+      ...
+    }:
     let
       port = 8088;
     in
@@ -36,13 +40,14 @@
           OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://auth.${config.caddy.domain}";
           OAUTH2_REDIRECT_URL = "https://miniflux.${config.caddy.domain}/oauth2/oidc/callback";
           OAUTH2_USER_CREATION = 1;
+          CREATE_ADMIN = 0;
           RUN_MIGRATIONS = 1;
         };
       };
 
       systemd.services.miniflux = {
         serviceConfig = {
-          DynamicUser = false;
+          DynamicUser = lib.mkForce false;
           EnvironmentFile = config.age.secrets."miniflux.env".path;
         };
       };

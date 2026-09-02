@@ -22,7 +22,6 @@
         };
         home-assistant = {
           enable = true;
-          openFirewall = true;
           configDir = "/srv/home-assistant";
           extraComponents = [
             "mobile_app"

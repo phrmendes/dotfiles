@@ -17,16 +17,18 @@
           GIT_EDITOR = "nvim";
           SUDO_EDITOR = "nvim";
           VISUAL = "nvim";
-          PROMPT_INDICATOR = lib.hm.nushell.mkNushellInline "{|| \"\"}";
-          PROMPT_INDICATOR_VI_INSERT = lib.hm.nushell.mkNushellInline "{|| \"\"}";
-          PROMPT_INDICATOR_VI_NORMAL = lib.hm.nushell.mkNushellInline "{|| \"\"}";
+          PROMPT_INDICATOR = lib.hm.nushell.mkNushellInline ''{|| ""}'';
+          PROMPT_INDICATOR_VI_INSERT = lib.hm.nushell.mkNushellInline ''{|| ""}'';
+          PROMPT_INDICATOR_VI_NORMAL =
+            lib.hm.nushell.mkNushellInline ''{|| $"(ansi purple)[N](ansi reset) "}'';
         };
         plugins = with pkgs.nushellPlugins; [ polars ];
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
+          authelia-secret = "${lib.getExe pkgs.authelia} crypto hash generate argon2 --password";
           cat = lib.getExe pkgs.bat;
           k = lib.getExe pkgs.kubectl;
-          open-secret = "agenix -i ~/.ssh/age -e";
+          open-secret = "${lib.getExe pkgs.agenix-cli} -i ~/.ssh/age -e";
           v = "nvim";
         };
       };

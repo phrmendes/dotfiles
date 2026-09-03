@@ -15,6 +15,7 @@
         extraPackages = with pkgs; [
           agent-browser
           jira-cli-go
+          nushell
           pyzotero
         ];
         settings = {
@@ -215,6 +216,7 @@
       home = {
         sessionVariables = {
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
+          PI_NUSHELL_PATH = "${pkgs.nushell}/bin/nu";
           PI_CACHE_RETENTION = "long";
           PI_SKIP_VERSION_CHECK = "1";
         };

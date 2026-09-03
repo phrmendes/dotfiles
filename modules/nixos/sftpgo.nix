@@ -24,7 +24,15 @@
       systemd = {
         services.sftpgo = {
           serviceConfig.EnvironmentFile = config.age.secrets."sftpgo.env".path;
-          after = [ "mnt-external.mount" ];
+          requires = [
+            "authelia.service"
+            "caddy.service"
+          ];
+          after = [
+            "mnt-external.mount"
+            "authelia.service"
+            "caddy.service"
+          ];
         };
         tmpfiles.rules = [
           "d /srv/sftpgo 0750 sftpgo sftpgo -"

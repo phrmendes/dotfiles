@@ -12,14 +12,18 @@
           history.file_format = "sqlite";
         };
         environmentVariables = {
-          EDITOR = "nvim";
+          AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
           DOCKER_HOST = lib.hm.nushell.mkNushellInline ''$"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock" '';
+          EDITOR = "nvim";
           GIT_EDITOR = "nvim";
-          SUDO_EDITOR = "nvim";
-          VISUAL = "nvim";
+          PI_CACHE_RETENTION = "long";
+          PI_NUSHELL_PATH = "${pkgs.nushell}/bin/nu";
+          PI_SKIP_VERSION_CHECK = "1";
           PROMPT_INDICATOR = lib.hm.nushell.mkNushellInline ''{|| ""}'';
           PROMPT_INDICATOR_VI_INSERT = lib.hm.nushell.mkNushellInline ''{|| ""}'';
           PROMPT_INDICATOR_VI_NORMAL = lib.hm.nushell.mkNushellInline ''{|| $"(ansi purple)[N](ansi reset) "}'';
+          SUDO_EDITOR = "nvim";
+          VISUAL = "nvim";
         };
         plugins = with pkgs.nushellPlugins; [ polars ];
         shellAliases = {

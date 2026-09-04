@@ -214,12 +214,6 @@
       };
 
       home = {
-        sessionVariables = {
-          AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
-          PI_NUSHELL_PATH = "${pkgs.nushell}/bin/nu";
-          PI_CACHE_RETENTION = "long";
-          PI_SKIP_VERSION_CHECK = "1";
-        };
         file = {
           "${agentHome}/skills".source = "${piDir}/skills";
           ".config/.jira/.config.yml".source = ../../files/jira.yaml;

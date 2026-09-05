@@ -39,6 +39,7 @@
           lua-language-server
           marksman
           nixd
+          postgres-language-server
           svelte-language-server
           taplo
           texlab

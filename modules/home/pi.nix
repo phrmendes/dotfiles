@@ -122,7 +122,7 @@
                   id = "Huawei/deepseek-v4-flash";
                   name = "DeepSeek V4 Flash (Huawei)";
                   samplingParams = {
-                    reasoning_effort = "none";
+                    reasoning_effort = "low";
                   };
                   contextWindow = 1000000;
                   maxTokens = 384000;
@@ -133,7 +133,7 @@
                   id = "Huawei/deepseek-v4-pro";
                   name = "DeepSeek V4 Pro (Huawei)";
                   samplingParams = {
-                    reasoning_effort = "none";
+                    reasoning_effort = "low";
                   };
                   contextWindow = 1000000;
                   maxTokens = 128000;
@@ -144,7 +144,7 @@
                   id = "Huawei/glm-5.2";
                   name = "GLM-5.2 (Huawei)";
                   samplingParams = {
-                    reasoning_effort = "none";
+                    reasoning_effort = "low";
                   };
                   contextWindow = 1000000;
                   maxTokens = 128000;

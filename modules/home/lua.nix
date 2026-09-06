@@ -45,6 +45,7 @@
       neovim = ''
         ---@type NixNeovim
         return {
+          codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
           hyprland = "${pkgs.hyprland}/share/hypr/stubs",
           lua_ls = "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd",
           lualibs = "${inputs.lualibs}/library",

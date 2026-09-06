@@ -23,6 +23,7 @@ safely(
         yaml = { "yq" },
         kdl = { "kdlfmt" },
         nu = { "nufmt" },
+        rust = { "rustfmt" },
         ["yaml.ansible"] = { "yq" },
       },
       format_on_save = {

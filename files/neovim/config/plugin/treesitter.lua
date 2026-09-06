@@ -20,6 +20,7 @@ require("nvim-treesitter").install({
   "markdown_inline",
   "nix",
   "python",
+  "ron",
   "ruby",
   "rust",
   "sql",

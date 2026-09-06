@@ -50,30 +50,10 @@ local configs = {
     request = "attach",
     name = "Attach to running Neovim instance",
   },
-  {
-    type = "mix_task",
-    name = "mix:test",
-    request = "launch",
-    task = "test",
-    taskArgs = { "--trace" },
-    startApps = true,
-    projectDir = "${workspaceFolder}",
-    requireFiles = { "test/**/test_helper.exs", "test/**/*_test.exs" },
-  },
-  {
-    type = "mix_task",
-    name = "phoenix:server",
-    request = "launch",
-    task = "phx.server",
-    projectDir = "${workspaceRoot}",
-    exitAfterTaskReturns = false,
-    debugAutoInterpretAlModules = false,
-  },
 }
 
 local adapters = {
   lua = { type = "server", host = "127.0.0.1", port = 8086 },
-  mix_task = { type = "executable", command = vim.fn.exepath("elixir-debug-adapter") },
 }
 
 safely("later", function()
@@ -103,7 +83,7 @@ safely("later", function()
   vim.iter(adapters):each(function(lang, adapter) dap.adapters[lang] = adapter end)
 end)
 
-safely("filetype:python,lua,elixir", function()
+safely("filetype:python,lua,rust", function()
   local dap = require("dap")
   local dap_view = require("dap-view")
 
@@ -136,3 +116,5 @@ end)
 safely("filetype:lua", function()
   vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, { desc = "Launch debugger" })
 end)
+
+safely("filetype:rust", function() require("dap-lldb").setup({ codelldb_path = require("nix.neovim").codelldb }) end)

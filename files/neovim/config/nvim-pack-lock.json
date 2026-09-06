@@ -16,6 +16,10 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "crates.nvim": {
+      "rev": "b8281be336498035f9288d6542b2881a7140a9ec",
+      "src": "https://github.com/Saecki/crates.nvim"
+    },
     "diffs.nvim": {
       "rev": "f6567df7aee5ff3ec7e53a59e7f892ae3f9dcd02",
       "src": "https://github.com/barrettruth/diffs.nvim"
@@ -75,6 +79,10 @@
     "nvim-dap": {
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-dap-lldb": {
+      "rev": "1f531bac2896b3d9ceb098b277c419c811f4609d",
+      "src": "https://github.com/julianolf/nvim-dap-lldb"
     },
     "nvim-dap-python": {
       "rev": "1808458eba2b18f178f990e01376941a42c7f93b",

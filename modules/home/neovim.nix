@@ -29,17 +29,18 @@
           astro-language-server
           basedpyright
           bash-language-server
-          beamPackages.elixir-ls
           docker-language-server
           dot-language-server
           emmet-language-server
           helm-ls
           just-lsp
+          lldb
           ltex-ls-plus
           lua-language-server
           marksman
           nixd
           postgres-language-server
+          rust-analyzer
           svelte-language-server
           taplo
           texlab
@@ -49,6 +50,7 @@
           yaml-language-server
           # linters
           ansible-lint
+          clippy
           shellcheck
           tflint
           # formatters
@@ -59,7 +61,9 @@
           nufmt
           oxfmt
           ruff
+          rustfmt
           shellharden
+          vscode-extensions.vadimcn.vscode-lldb
           shfmt
           stylua
           tex-fmt

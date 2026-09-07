@@ -51,6 +51,7 @@
           # linters
           ansible-lint
           clippy
+          nu-lint
           shellcheck
           tflint
           # formatters

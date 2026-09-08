@@ -46,11 +46,11 @@ M.mini.buffers = function()
   })
 end
 
---- Find all git repos under ~/Projects and open them with MiniPick.
+--- Find all git repos under projects directory and open them with MiniPick.
 --- Projects are sorted by recency (via mini.visits), falling back to alphabetical.
 --- On selection, changes cwd for the current tab and opens mini.files.
 M.mini.project = function()
-  local root = vim.fs.joinpath(vim.env.HOME, "Projects")
+  local root = "/mnt/external/projects"
   local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root }
 
   local postprocess = function(lines)

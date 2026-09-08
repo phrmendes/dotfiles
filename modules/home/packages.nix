@@ -23,7 +23,6 @@
         kubectl
         kubernetes-helm
         libqalculate
-        libreoffice
         lima
         localsend
         nix-prefetch-github

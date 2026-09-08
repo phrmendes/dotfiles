@@ -40,7 +40,6 @@ let
     "Documents"
     "Downloads"
     "Pictures"
-    "Projects"
     "Videos"
     "Zotero"
   ];

@@ -1,4 +1,4 @@
-{ config, ... }:
+_:
 {
   homeModules.direnv = {
     programs.direnv = {
@@ -11,7 +11,7 @@
           warn_timeout = 0;
         };
         whitelist = {
-          prefix = [ "${config.settings.home}/Projects" ];
+          prefix = [ "/mnt/external/projects" ];
         };
       };
     };

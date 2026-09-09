@@ -4,6 +4,7 @@
       (with pkgs; [
         android-tools
         bws
+        cargo
         deluge
         docker-compose
         drawing
@@ -16,6 +17,7 @@
         gcolor3
         gdu
         grim
+        handy
         imagemagick
         jdk
         jqp
@@ -34,6 +36,7 @@
         phockup
         poppler
         proton-vpn
+        rustc
         slurp
         tectonic
         tesseract
@@ -41,8 +44,6 @@
         wl-clipboard
         xre
         zotero
-        cargo
-        rustc
         (google-cloud-sdk.withExtraComponents (
           with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
         ))

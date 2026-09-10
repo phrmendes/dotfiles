@@ -53,17 +53,11 @@
               baseUrl = "https://bifrost.iplan.dados.rio/openai/v1";
               api = "openai-completions";
               apiKey = "!open ${agentHome}/auth.json | get bifrost.key | into string";
-              compat = {
-                supportsDeveloperRole = false;
-                supportsReasoningEffort = false;
-              };
               models = [
                 {
                   id = "bedrock_mantle/openai.gpt-5.6-luna";
                   name = "GPT-5.6 Luna";
-                  samplingParams = {
-                    reasoning_effort = "none";
-                  };
+                  api = "openai-responses";
                   contextWindow = 1050000;
                   maxTokens = 128000;
                   input = [
@@ -81,9 +75,7 @@
                 {
                   id = "bedrock_mantle/openai.gpt-5.6-sol";
                   name = "GPT-5.6 Sol";
-                  samplingParams = {
-                    reasoning_effort = "none";
-                  };
+                  api = "openai-responses";
                   contextWindow = 1050000;
                   maxTokens = 128000;
                   input = [
@@ -101,9 +93,7 @@
                 {
                   id = "bedrock_mantle/openai.gpt-5.6-terra";
                   name = "GPT-5.6 Terra";
-                  samplingParams = {
-                    reasoning_effort = "none";
-                  };
+                  api = "openai-responses";
                   contextWindow = 1050000;
                   maxTokens = 128000;
                   input = [

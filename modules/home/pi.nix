@@ -52,8 +52,45 @@
               name = "Bifrost";
               baseUrl = "https://bifrost.iplan.dados.rio/openai/v1";
               api = "openai-completions";
-              apiKey = "!open ${agentHome}/auth.json | get bifrost.key | into string";
+              apiKey = "!nu -c 'open ${agentHome}/auth.json | get bifrost.key | into string'";
+              compat = {
+                supportsDeveloperRole = false;
+                requiresReasoningContentOnAssistantMessages = true;
+              };
               models = [
+                {
+                  id = "Huawei/deepseek-v4-flash";
+                  name = "DeepSeek V4 Flash (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "low";
+                  };
+                  contextWindow = 1000000;
+                  maxTokens = 384000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
+                  id = "Huawei/deepseek-v4-pro";
+                  name = "DeepSeek V4 Pro (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "low";
+                  };
+                  contextWindow = 1000000;
+                  maxTokens = 128000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
+                  id = "Huawei/glm-5.2";
+                  name = "GLM-5.2 (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "low";
+                  };
+                  contextWindow = 1000000;
+                  maxTokens = 128000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
                 {
                   id = "bedrock_mantle/openai.gpt-5.6-luna";
                   name = "GPT-5.6 Luna";
@@ -107,39 +144,6 @@
                     cacheRead = 0.05;
                     cacheWrite = 0.625;
                   };
-                }
-                {
-                  id = "Huawei/deepseek-v4-flash";
-                  name = "DeepSeek V4 Flash (Huawei)";
-                  samplingParams = {
-                    reasoning_effort = "low";
-                  };
-                  contextWindow = 1000000;
-                  maxTokens = 384000;
-                  input = [ "text" ];
-                  reasoning = true;
-                }
-                {
-                  id = "Huawei/deepseek-v4-pro";
-                  name = "DeepSeek V4 Pro (Huawei)";
-                  samplingParams = {
-                    reasoning_effort = "low";
-                  };
-                  contextWindow = 1000000;
-                  maxTokens = 128000;
-                  input = [ "text" ];
-                  reasoning = true;
-                }
-                {
-                  id = "Huawei/glm-5.2";
-                  name = "GLM-5.2 (Huawei)";
-                  samplingParams = {
-                    reasoning_effort = "low";
-                  };
-                  contextWindow = 1000000;
-                  maxTokens = 128000;
-                  input = [ "text" ];
-                  reasoning = true;
                 }
               ];
             };

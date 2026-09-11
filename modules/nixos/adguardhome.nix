@@ -60,6 +60,13 @@ in
               cache_enabled = true;
               port = dnsPort;
               refuse_any = true;
+              upstream_dns = [
+                "https://dns.adguard-dns.com/dns-query"
+                "https://dns.cloudflare.com/dns-query"
+              ];
+              upstream_mode = "load_balance";
+            };
+            filtering = {
               rewrites = [
                 {
                   domain = "server.local";
@@ -74,13 +81,6 @@ in
                   answer = lan.kvmAddress;
                 }
               ];
-              upstream_dns = [
-                "https://dns.adguard-dns.com/dns-query"
-                "https://dns.cloudflare.com/dns-query"
-              ];
-              upstream_mode = "load_balance";
-            };
-            filtering = {
               filters = [
                 {
                   id = 1;

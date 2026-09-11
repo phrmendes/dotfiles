@@ -42,6 +42,7 @@
         tesseract
         thunar
         wl-clipboard
+        worktrunk
         xre
         zotero
         (google-cloud-sdk.withExtraComponents (

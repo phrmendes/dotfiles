@@ -24,6 +24,7 @@
           PROMPT_INDICATOR_VI_NORMAL = lib.hm.nushell.mkNushellInline ''{|| $"(ansi purple)[N](ansi reset) "}'';
           SUDO_EDITOR = "nvim";
           VISUAL = "nvim";
+          _ZO_MAXAGE = "100000";
         };
         plugins = with pkgs.nushellPlugins; [ polars ];
         shellAliases = {

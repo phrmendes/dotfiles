@@ -59,10 +59,6 @@
     {
       home.packages = [ pkgs.keepassxc ];
 
-      systemd.user.services."app-org.keepassxc.KeePassXC@autostart" = {
-        Unit.After = [ "noctalia.service" ];
-      };
-
       xdg.portal.config = {
         common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
         hyprland.default = [

@@ -26,7 +26,7 @@
             ApplicationTheme = "dark";
             CompactMode = true;
             MinimizeOnClose = true;
-            MinimizeOnStartup = true;
+            MinimizeOnStartup = false;
             MinimizeToTray = true;
             MonospaceNotes = true;
             ShowExpiredEntriesOnDatabaseUnlockOffsetDays = 6;

@@ -1,6 +1,6 @@
 {
   homeModules.k8s =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     let
       logBatPlugin =
         {

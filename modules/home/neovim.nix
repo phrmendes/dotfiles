@@ -45,7 +45,7 @@
           taplo
           texlab
           tofu-ls
-          typescript-go
+          typescript
           vscode-langservers-extracted
           yaml-language-server
           # linters

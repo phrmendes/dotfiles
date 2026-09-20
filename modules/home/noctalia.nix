@@ -184,6 +184,8 @@
           ) "${config.xdg.configFile."noctalia/config.toml".source}";
         };
         Service = {
+          Type = "dbus";
+          BusName = "org.kde.StatusNotifierWatcher";
           ExecStart = lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
           Restart = "on-failure";
           RestartSec = 3;

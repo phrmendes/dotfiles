@@ -1,5 +1,4 @@
-_:
-{
+_: {
   homeModules.direnv = {
     programs.direnv = {
       enable = true;

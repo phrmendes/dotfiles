@@ -187,7 +187,6 @@ in
               gzip
               lsof
               mlocate
-              nodejs_latest
               openssl
               p7zip
               psmisc
@@ -248,13 +247,12 @@ in
         };
 
         services = {
-          dbus.packages = with pkgs; [ gcr ];
+          dbus.packages = with pkgs; [ gcr_4 ];
           udev.enable = true;
           envfs.enable = false;
           fstrim.enable = true;
           geoclue2.enable = isWorkstation;
           gvfs.enable = isWorkstation;
-          journald.extraConfig = "SystemMaxUse=1G";
           ntpd-rs.enable = true;
 
           gnome = {

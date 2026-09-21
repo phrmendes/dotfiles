@@ -81,6 +81,17 @@
                   reasoning = true;
                 }
                 {
+                  id = "Huawei/glm-5.3";
+                  name = "GLM-5.3 (Huawei)";
+                  samplingParams = {
+                    reasoning_effort = "low";
+                  };
+                  contextWindow = 1000000;
+                  maxTokens = 128000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
                   id = "Huawei/glm-5.2";
                   name = "GLM-5.2 (Huawei)";
                   samplingParams = {

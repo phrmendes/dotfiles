@@ -21,7 +21,7 @@
         settings = {
           quietStartup = true;
           defaultProvider = "deepseek";
-          defaultModel = "deepseek/deepseek-v4-flash";
+          defaultModel = "deepseek/deepseek-flash";
           theme = "dark";
           packages = [
             "git:github.com/phrmendes/pi-plan-mode"
@@ -59,24 +59,13 @@
               };
               models = [
                 {
-                  id = "Huawei/deepseek-v4-flash";
-                  name = "DeepSeek V4 Flash (Huawei)";
+                  id = "Huawei/deepseek-v4.1-flash";
+                  name = "DeepSeek Flash (Huawei)";
                   samplingParams = {
                     reasoning_effort = "low";
                   };
                   contextWindow = 1000000;
                   maxTokens = 384000;
-                  input = [ "text" ];
-                  reasoning = true;
-                }
-                {
-                  id = "Huawei/deepseek-v4-pro";
-                  name = "DeepSeek V4 Pro (Huawei)";
-                  samplingParams = {
-                    reasoning_effort = "low";
-                  };
-                  contextWindow = 1000000;
-                  maxTokens = 128000;
                   input = [ "text" ];
                   reasoning = true;
                 }
@@ -121,24 +110,6 @@
                   };
                 }
                 {
-                  id = "bedrock_mantle/openai.gpt-5.6-sol";
-                  name = "GPT-5.6 Sol";
-                  api = "openai-responses";
-                  contextWindow = 1050000;
-                  maxTokens = 128000;
-                  input = [
-                    "text"
-                    "image"
-                  ];
-                  reasoning = true;
-                  cost = {
-                    input = 0.25;
-                    output = 1.5;
-                    cacheRead = 0.025;
-                    cacheWrite = 0.3125;
-                  };
-                }
-                {
                   id = "bedrock_mantle/openai.gpt-5.6-terra";
                   name = "GPT-5.6 Terra";
                   api = "openai-responses";
@@ -156,60 +127,22 @@
                     cacheWrite = 0.625;
                   };
                 }
-              ];
-            };
-            deepseek = {
-              baseUrl = "https://api.deepseek.com";
-              api = "openai-completions";
-              models = [
                 {
-                  id = "deepseek-v4-pro";
-                  name = "DeepSeek V4 Pro";
-                  contextWindow = 1000000;
-                  maxTokens = 384000;
-                  input = [ "text" ];
+                  id = "bedrock_mantle/openai.gpt-5.6-sol";
+                  name = "GPT-5.6 Sol";
+                  api = "openai-responses";
+                  contextWindow = 1050000;
+                  maxTokens = 128000;
+                  input = [
+                    "text"
+                    "image"
+                  ];
                   reasoning = true;
                   cost = {
-                    input = 0.435;
-                    output = 0.87;
-                    cacheRead = 0.003625;
-                    cacheWrite = 0;
-                  };
-                  compat = {
-                    requiresReasoningContentOnAssistantMessages = true;
-                    thinkingFormat = "deepseek";
-                    reasoningEffortMap = {
-                      minimal = "high";
-                      low = "high";
-                      medium = "high";
-                      high = "high";
-                      xhigh = "max";
-                    };
-                  };
-                }
-                {
-                  id = "deepseek-v4-flash";
-                  name = "DeepSeek V4 Flash";
-                  contextWindow = 1000000;
-                  maxTokens = 384000;
-                  input = [ "text" ];
-                  reasoning = true;
-                  cost = {
-                    input = 0.14;
-                    output = 0.28;
-                    cacheRead = 0.0028;
-                    cacheWrite = 0;
-                  };
-                  compat = {
-                    requiresReasoningContentOnAssistantMessages = true;
-                    thinkingFormat = "deepseek";
-                    reasoningEffortMap = {
-                      minimal = "high";
-                      low = "high";
-                      medium = "high";
-                      high = "high";
-                      xhigh = "max";
-                    };
+                    input = 0.25;
+                    output = 1.5;
+                    cacheRead = 0.025;
+                    cacheWrite = 0.3125;
                   };
                 }
               ];

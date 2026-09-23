@@ -3,7 +3,6 @@
     home.packages =
       (with pkgs; [
         android-tools
-        bws
         cargo
         deluge
         docker-compose

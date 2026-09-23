@@ -19,6 +19,7 @@ require("nvim-treesitter").install({
   "markdown",
   "markdown_inline",
   "nix",
+  "nu",
   "python",
   "ron",
   "ruby",

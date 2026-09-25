@@ -1,12 +1,12 @@
 vim.pack.add({
   "https://codeberg.org/mfussenegger/nvim-ansible",
+  "https://forge.barrettruth.com/barrettruth/diffs.nvim",
   "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/NeogitOrg/neogit",
   "https://github.com/Saecki/crates.nvim",
   "https://github.com/TheNoeTrevino/haunt.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
-  "https://github.com/barrettruth/diffs.nvim",
   "https://github.com/brianhuster/live-preview.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",

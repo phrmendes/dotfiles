@@ -127,7 +127,6 @@ in
         packages
         pi
         ripgrep
-        starship
         symlinks
         tealdeer
         tmux

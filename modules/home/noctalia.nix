@@ -2,20 +2,18 @@
 {
   homeModules.noctalia =
     {
-      pkgs,
       config,
       lib,
       osConfig,
       ...
     }:
     let
-      isLaptop = osConfig.workstation.type == "laptop";
       inherit (osConfig.workstation.monitors) secondary;
+      isLaptop = osConfig.workstation.type == "laptop";
       barMonitorOverrides =
         if secondary != null then
           {
-            secondary = {
-              match = secondary.name;
+            "${secondary.name}" = {
               enabled = false;
             };
           }
@@ -29,7 +27,7 @@
 
       programs.noctalia = {
         enable = true;
-        systemd.enable = false;
+        systemd.enable = true;
 
         settings = {
           shell = {
@@ -168,29 +166,6 @@
           ]
           ++ lib.optional isLaptop { type = "wifi"; };
         };
-
-      };
-
-      systemd.user.services.noctalia = {
-        Unit = {
-          Description = "Noctalia - A lightweight Wayland shell and bar";
-          PartOf = [ config.wayland.systemd.target ];
-          After = [
-            config.wayland.systemd.target
-            "wayland-wm@hyprland-uwsm.desktop.service"
-          ];
-          X-Restart-Triggers = lib.optional (
-            config.programs.noctalia.settings != { }
-          ) "${config.xdg.configFile."noctalia/config.toml".source}";
-        };
-        Service = {
-          Type = "dbus";
-          BusName = "org.kde.StatusNotifierWatcher";
-          ExecStart = lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
-          Restart = "on-failure";
-          RestartSec = 3;
-        };
-        Install.WantedBy = [ config.wayland.systemd.target ];
       };
     };
 }

@@ -19,18 +19,24 @@
           PI_CACHE_RETENTION = "long";
           PI_NUSHELL_PATH = "${pkgs.nushell}/bin/nu";
           PI_SKIP_VERSION_CHECK = "1";
-          PROMPT_INDICATOR = lib.hm.nushell.mkNushellInline ''{|| ""}'';
-          PROMPT_INDICATOR_VI_INSERT = lib.hm.nushell.mkNushellInline ''{|| ""}'';
-          PROMPT_INDICATOR_VI_NORMAL = lib.hm.nushell.mkNushellInline ''{|| $"(ansi purple)[N](ansi reset) "}'';
+          PROMPT_COMMAND_RIGHT = "";
           SUDO_EDITOR = "nvim";
           VISUAL = "nvim";
           _ZO_MAXAGE = "100000";
         };
-        plugins = with pkgs.nushellPlugins; [ polars ];
+        extraConfig = ''
+          use ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/basic-git.nu basic-git-left-prompt
+
+          $env.PROMPT_COMMAND = {|| basic-git-left-prompt (do $env.PROMPT_COMMAND) }
+        '';
+        plugins = with pkgs.nushellPlugins; [
+          polars
+          gstat
+        ];
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
-          authelia-secret = "${lib.getExe pkgs.authelia} crypto hash generate argon2 --password";
           cat = lib.getExe pkgs.bat;
+          create-secret = "${lib.getExe pkgs.authelia} crypto hash generate argon2 --password";
           k = lib.getExe pkgs.kubectl;
           open-secret = "${lib.getExe pkgs.agenix-cli} -i ~/.ssh/age -e";
           v = "nvim";

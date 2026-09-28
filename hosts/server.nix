@@ -151,7 +151,6 @@ in
         git
         jq
         ripgrep
-        starship
         tealdeer
         yazi
         tmux

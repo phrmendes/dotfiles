@@ -1,6 +1,10 @@
 {
   homeModules.nushell =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      ...
+    }:
     {
       home.sessionPath = [ "$HOME/.local/bin" ];
 
@@ -24,11 +28,6 @@
           VISUAL = "nvim";
           _ZO_MAXAGE = "100000";
         };
-        extraConfig = ''
-          use ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/basic-git.nu basic-git-left-prompt
-
-          $env.PROMPT_COMMAND = {|| basic-git-left-prompt (do $env.PROMPT_COMMAND) }
-        '';
         plugins = with pkgs.nushellPlugins; [
           polars
           gstat
@@ -41,6 +40,11 @@
           open-secret = "${lib.getExe pkgs.agenix-cli} -i ~/.ssh/age -e";
           v = "nvim";
         };
+        extraConfig = ''
+          use ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/basic-git.nu basic-git-left-prompt
+          source ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/oh-my.nu
+          source ${../../files/prompt.nu}
+        '';
       };
     };
 }

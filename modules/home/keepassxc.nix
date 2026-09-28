@@ -1,6 +1,7 @@
 {
   homeModules.keepassxc =
     {
+      config,
       pkgs,
       lib,
       ...
@@ -66,31 +67,30 @@
     {
       home.packages = [ pkgs.keepassxc ];
 
-      home.file.".config/autostart/org.keepassxc.KeePassXC.desktop" = {
-        force = true;
-        text = ''
-          [Desktop Entry]
-          Name=KeePassXC
-          GenericName=Password Manager
-          Exec=${keepassxcAutostart}
-          TryExec=${keepassxcAutostart}
-          Icon=keepassxc
-          StartupWMClass=keepassxc
-          StartupNotify=false
-          Terminal=false
-          Type=Application
-          Version=1.0
-          Categories=Utility;Security;Qt;
-          X-GNOME-Autostart-enabled=true
-        '';
-      };
-
       xdg.portal.config = {
         common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
         hyprland.default = [
           "hyprland"
           "gtk"
         ];
+      };
+
+      systemd.user.services.keepassxc = {
+        Unit = {
+          Description = "KeePassXC password manager";
+          PartOf = [ config.wayland.systemd.target ];
+          Requires = [ "noctalia.service" ];
+          After = [
+            config.wayland.systemd.target
+            "noctalia.service"
+          ];
+        };
+        Service = {
+          ExecStart = keepassxcAutostart;
+          Restart = "on-failure";
+          RestartSec = 3;
+        };
+        Install.WantedBy = [ config.wayland.systemd.target ];
       };
 
       home.activation.keepassxcConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

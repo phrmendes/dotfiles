@@ -55,9 +55,35 @@
           };
         }
       );
+
+      keepassxcAutostart = pkgs.writeShellScript "keepassxc-autostart" ''
+        while ! ${pkgs.systemd}/bin/busctl --user --quiet status org.kde.StatusNotifierWatcher >/dev/null 2>&1; do
+          ${pkgs.coreutils}/bin/sleep 0.1
+        done
+        exec ${lib.getExe pkgs.keepassxc}
+      '';
     in
     {
       home.packages = [ pkgs.keepassxc ];
+
+      home.file.".config/autostart/org.keepassxc.KeePassXC.desktop" = {
+        force = true;
+        text = ''
+          [Desktop Entry]
+          Name=KeePassXC
+          GenericName=Password Manager
+          Exec=${keepassxcAutostart}
+          TryExec=${keepassxcAutostart}
+          Icon=keepassxc
+          StartupWMClass=keepassxc
+          StartupNotify=false
+          Terminal=false
+          Type=Application
+          Version=1.0
+          Categories=Utility;Security;Qt;
+          X-GNOME-Autostart-enabled=true
+        '';
+      };
 
       xdg.portal.config = {
         common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];

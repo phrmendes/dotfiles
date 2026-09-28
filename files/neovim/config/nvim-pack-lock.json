@@ -12,6 +12,10 @@
       "rev": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18",
       "src": "https://github.com/m00qek/baleia.nvim"
     },
+    "bib.nvim": {
+      "rev": "3650c505445a7e9ccc95380598ab1f4297b213be",
+      "src": "https://github.com/phrmendes/bib.nvim"
+    },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -63,6 +67,10 @@
     "neogit": {
       "rev": "5adc81b26232954cd7a90f158aa7844c18fc3165",
       "src": "https://github.com/NeogitOrg/neogit"
+    },
+    "notes.nvim": {
+      "rev": "4336e8a10c7ca7cdb550227eddedc6810ebd3424",
+      "src": "https://github.com/phrmendes/notes.nvim"
     },
     "nvim-ansible": {
       "rev": "c7f595d568b588942d4d0c37b5cd6cae3764a148",
@@ -131,6 +139,10 @@
     "sqlite.lua": {
       "rev": "50092d60feb242602d7578398c6eb53b4a8ffe7b",
       "src": "https://github.com/kkharji/sqlite.lua"
+    },
+    "todotxt.nvim": {
+      "rev": "1344867f9c03bb8eb36f0316d03a9ac3951dec78",
+      "src": "https://github.com/phrmendes/todotxt.nvim"
     },
     "undotree": {
       "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",

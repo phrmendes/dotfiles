@@ -76,8 +76,6 @@
 
       home.file = {
         ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
-        ".local/share/nvim/site/pack/local/start".source =
-          mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/plugins";
       };
 
       systemd.user = {

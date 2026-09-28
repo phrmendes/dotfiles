@@ -17,6 +17,7 @@ in
   "linkding.age.env".publicKeys = allKeys;
   "litestream.age.env".publicKeys = allKeys;
   "miniflux.age.env".publicKeys = allKeys;
+  "noctalia.age.txt".publicKeys = allKeys;
   "pi.age.json".publicKeys = allKeys;
   "restic.age.env".publicKeys = allKeys;
   "sftpgo.age.env".publicKeys = allKeys;

@@ -17,6 +17,7 @@
         gdu
         grim
         handy
+        hurl
         imagemagick
         jdk
         jqp
@@ -27,6 +28,7 @@
         lima
         localsend
         nix-prefetch-github
+        nodejs
         opentofu
         pandoc
         parallel
@@ -44,7 +46,6 @@
         worktrunk
         xre
         zotero
-        nodejs
         (google-cloud-sdk.withExtraComponents (
           with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
         ))

@@ -56,13 +56,6 @@
           };
         }
       );
-
-      keepassxcAutostart = pkgs.writeShellScript "keepassxc-autostart" ''
-        while ! ${pkgs.systemd}/bin/busctl --user --quiet status org.kde.StatusNotifierWatcher >/dev/null 2>&1; do
-          ${pkgs.coreutils}/bin/sleep 0.1
-        done
-        exec ${lib.getExe pkgs.keepassxc}
-      '';
     in
     {
       home.packages = [ pkgs.keepassxc ];
@@ -86,7 +79,7 @@
           ];
         };
         Service = {
-          ExecStart = keepassxcAutostart;
+          ExecStart = lib.getExe pkgs.local.keepassxc;
           Restart = "on-failure";
           RestartSec = 3;
         };

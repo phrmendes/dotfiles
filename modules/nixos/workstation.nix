@@ -120,10 +120,16 @@ in
       };
 
       config = {
-        age.secrets."pi.json" = mkSecretReadable {
-          owner = settings.user;
-          file = ../../secrets/pi.age.json;
-          path = "${settings.home}/.pi/agent/auth.json";
+        age.secrets = {
+          "pi.json" = mkSecretReadable {
+            owner = settings.user;
+            file = ../../secrets/pi.age.json;
+            path = "${settings.home}/.pi/agent/auth.json";
+          };
+          "noctalia.txt" = mkSecretReadable {
+            owner = settings.user;
+            file = ../../secrets/noctalia.age.txt;
+          };
         };
 
         services = {

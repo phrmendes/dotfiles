@@ -30,6 +30,11 @@
         systemd.enable = true;
 
         settings = {
+          storage = {
+            key_source = "file";
+            key_file = osConfig.age.secrets."noctalia.txt".path;
+          };
+
           shell = {
             corner_radius_scale = 1.5;
             time_format = "{:%H:%M %a, %b %d}";

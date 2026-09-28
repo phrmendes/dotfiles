@@ -150,12 +150,11 @@ in
         fzf
         git
         jq
-        ripgrep
-        tealdeer
-        yazi
-        tmux
-        zoxide
         nushell
+        ripgrep
+        tmux
+        yazi
+        zoxide
       ];
     };
 }

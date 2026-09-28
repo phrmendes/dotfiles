@@ -104,26 +104,29 @@ in
         btop
         cliphist
         devenv
+        difftastic
         direnv
         fd
         flameshot
         fzf
         gh
-        kitty
         git
         gnupg
         gtk
         hyprland
         imv
         jq
+        jujutsu
         k8s
         keepassxc
+        kitty
         lua
         moonlight
         mpv
         neovim
         nix-index
         noctalia
+        nushell
         packages
         pi
         ripgrep
@@ -135,7 +138,6 @@ in
         yazi
         zathura
         zoxide
-        nushell
       ];
     };
 }

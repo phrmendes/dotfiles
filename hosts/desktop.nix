@@ -101,6 +101,7 @@ in
         chromium
         cliphist
         devenv
+        difftastic
         direnv
         fd
         flameshot
@@ -113,6 +114,7 @@ in
         hyprland
         imv
         jq
+        jujutsu
         k8s
         keepassxc
         kitty
@@ -122,6 +124,7 @@ in
         neovim
         nix-index
         noctalia
+        nushell
         packages
         pi
         ripgrep
@@ -133,7 +136,6 @@ in
         yazi
         zathura
         zoxide
-        nushell
       ];
     };
 }

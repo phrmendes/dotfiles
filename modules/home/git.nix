@@ -1,14 +1,6 @@
 { config, ... }:
 {
   homeModules.git = {
-    programs.difftastic = {
-      enable = true;
-      git = {
-        enable = true;
-        mode = "both";
-      };
-    };
-
     programs.git = {
       enable = true;
       settings = {

@@ -24,7 +24,6 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/mfussenegger/nvim-lint",
-  "https://github.com/mistweaverco/kulala.nvim",
   "https://github.com/mrjones2014/smart-splits.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/nvim-mini/mini.nvim",

@@ -10,6 +10,7 @@ require("nvim-treesitter").install({
   "hcl",
   "helm",
   "html",
+  "hurl",
   "java",
   "javascript",
   "json",

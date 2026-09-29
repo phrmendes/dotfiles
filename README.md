@@ -1,7 +1,6 @@
 # Dotfiles
 
-NixOS + Home Manager configuration for three machines — desktop, laptop, and server.
-Follows the [Dendritic Pattern](https://github.com/mightyiam/dendritic).
+NixOS + Home Manager configuration for three machines — desktop, laptop, and server. Follows the [Dendritic Pattern](https://github.com/mightyiam/dendritic).
 
 ## Structure
 
@@ -9,8 +8,6 @@ Follows the [Dendritic Pattern](https://github.com/mightyiam/dendritic).
 flake.nix            — inputs and mkFlake entry point
 modules/             — every file is a flake-parts module (auto-imported)
   base.nix           — nixosSystem builder, checks, treefmt
-  options.nix        — all option declarations (flake-parts + NixOS)
-  lib.nix            — dotfilesLib (mkSecretReadable, mkVhost, etc.)
   nixos/             — NixOS modules (flat, no subdirectories)
   home/              — Home Manager modules
 pkgs/                — custom packages

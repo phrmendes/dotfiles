@@ -48,8 +48,8 @@
         };
         models = {
           providers = {
-            bifrost = {
-              name = "Bifrost";
+            bifrost-openai = {
+              name = "Bifrost (OpenAI)";
               baseUrl = "https://bifrost.iplan.dados.rio/openai/v1";
               api = "openai-completions";
               apiKey = "!nu -c 'open ${agentHome}/auth.json | get bifrost.key | into string'";
@@ -60,12 +60,28 @@
               models = [
                 {
                   id = "Huawei/deepseek-v4.1-flash";
-                  name = "DeepSeek Flash (Huawei)";
+                  name = "DeepSeek V4.1 Flash (Huawei)";
                   samplingParams = {
                     reasoning_effort = "low";
                   };
                   contextWindow = 1000000;
                   maxTokens = 384000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
+                  id = "Huawei/deepseek-v4-flash";
+                  name = "DeepSeek V4 Flash (Huawei)";
+                  contextWindow = 1000000;
+                  maxTokens = 384000;
+                  input = [ "text" ];
+                  reasoning = true;
+                }
+                {
+                  id = "Huawei/deepseek-v4-pro";
+                  name = "DeepSeek V4 Pro (Huawei)";
+                  contextWindow = 1000000;
+                  maxTokens = 128000;
                   input = [ "text" ];
                   reasoning = true;
                 }
@@ -144,6 +160,61 @@
                     cacheRead = 0.025;
                     cacheWrite = 0.3125;
                   };
+                }
+              ];
+            };
+            bifrost-anthropic = {
+              name = "Bifrost (Anthropic)";
+              baseUrl = "https://bifrost.iplan.dados.rio/anthropic";
+              api = "anthropic-messages";
+              apiKey = "!nu -c 'open ${agentHome}/auth.json | get bifrost.key | into string'";
+              models = [
+                {
+                  id = "claude-opus-5-5";
+                  name = "Claude Opus 5.5";
+                  contextWindow = 1000000;
+                  maxTokens = 64000;
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  reasoning = true;
+                  headers = {
+                    "anthropic-beta" = "context-1m-2025-08-07";
+                  };
+                }
+                {
+                  id = "claude-sonnet-5-5";
+                  name = "Claude Sonnet 5.5";
+                  contextWindow = 1000000;
+                  maxTokens = 64000;
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  reasoning = true;
+                  headers = {
+                    "anthropic-beta" = "context-1m-2025-08-07";
+                  };
+                }
+              ];
+            };
+            bifrost-vertex = {
+              name = "Bifrost (Vertex)";
+              baseUrl = "https://bifrost.iplan.dados.rio/genai/v1beta";
+              api = "google-generative-ai";
+              apiKey = "!nu -c 'open ${agentHome}/auth.json | get bifrost.key | into string'";
+              models = [
+                {
+                  id = "vertex/gemini-3.8-flash";
+                  name = "Gemini 3.8 Flash";
+                  contextWindow = 1048576;
+                  maxTokens = 65536;
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  reasoning = true;
                 }
               ];
             };

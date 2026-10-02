@@ -1,0 +1,184 @@
+{
+  "providers": {
+    "bifrost-anthropic": {
+      "api": "anthropic-messages",
+      "apiKey": "!nu -c 'open ~/.pi/agent/auth.json | get bifrost.key | into string'",
+      "baseUrl": "https://bifrost.iplan.dados.rio/anthropic",
+      "models": [
+        {
+          "contextWindow": 1000000,
+          "headers": {
+            "anthropic-beta": "context-1m-2025-08-07"
+          },
+          "id": "claude-opus-5-5",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 64000,
+          "name": "Claude Opus 5.5",
+          "reasoning": true
+        },
+        {
+          "contextWindow": 1000000,
+          "headers": {
+            "anthropic-beta": "context-1m-2025-08-07"
+          },
+          "id": "claude-sonnet-5-5",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 64000,
+          "name": "Claude Sonnet 5.5",
+          "reasoning": true
+        }
+      ],
+      "name": "Bifrost (Anthropic)"
+    },
+    "bifrost-openai": {
+      "api": "openai-completions",
+      "apiKey": "!nu -c 'open ~/.pi/agent/auth.json | get bifrost.key | into string'",
+      "baseUrl": "https://bifrost.iplan.dados.rio/openai/v1",
+      "compat": {
+        "requiresReasoningContentOnAssistantMessages": true,
+        "supportsDeveloperRole": false
+      },
+      "models": [
+        {
+          "contextWindow": 1000000,
+          "id": "Huawei/deepseek-v4.1-flash",
+          "input": [
+            "text"
+          ],
+          "maxTokens": 384000,
+          "name": "DeepSeek V4.1 Flash (Huawei)",
+          "reasoning": true,
+          "samplingParams": {
+            "reasoning_effort": "low"
+          }
+        },
+        {
+          "contextWindow": 1000000,
+          "id": "Huawei/deepseek-v4-flash",
+          "input": [
+            "text"
+          ],
+          "maxTokens": 384000,
+          "name": "DeepSeek V4 Flash (Huawei)",
+          "reasoning": true
+        },
+        {
+          "contextWindow": 1000000,
+          "id": "Huawei/deepseek-v4-pro",
+          "input": [
+            "text"
+          ],
+          "maxTokens": 128000,
+          "name": "DeepSeek V4 Pro (Huawei)",
+          "reasoning": true
+        },
+        {
+          "contextWindow": 1000000,
+          "id": "Huawei/glm-5.3",
+          "input": [
+            "text"
+          ],
+          "maxTokens": 128000,
+          "name": "GLM-5.3 (Huawei)",
+          "reasoning": true,
+          "samplingParams": {
+            "reasoning_effort": "low"
+          }
+        },
+        {
+          "contextWindow": 1000000,
+          "id": "Huawei/glm-5.2",
+          "input": [
+            "text"
+          ],
+          "maxTokens": 128000,
+          "name": "GLM-5.2 (Huawei)",
+          "reasoning": true,
+          "samplingParams": {
+            "reasoning_effort": "low"
+          }
+        },
+        {
+          "api": "openai-responses",
+          "contextWindow": 1050000,
+          "cost": {
+            "cacheRead": 0.01,
+            "cacheWrite": 0.125,
+            "input": 0.1,
+            "output": 0.6
+          },
+          "id": "bedrock_mantle/openai.gpt-5.6-luna",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 128000,
+          "name": "GPT-5.6 Luna",
+          "reasoning": true
+        },
+        {
+          "api": "openai-responses",
+          "contextWindow": 1050000,
+          "cost": {
+            "cacheRead": 0.05,
+            "cacheWrite": 0.625,
+            "input": 0.5,
+            "output": 3
+          },
+          "id": "bedrock_mantle/openai.gpt-5.6-terra",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 128000,
+          "name": "GPT-5.6 Terra",
+          "reasoning": true
+        },
+        {
+          "api": "openai-responses",
+          "contextWindow": 1050000,
+          "cost": {
+            "cacheRead": 0.025,
+            "cacheWrite": 0.3125,
+            "input": 0.25,
+            "output": 1.5
+          },
+          "id": "bedrock_mantle/openai.gpt-5.6-sol",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 128000,
+          "name": "GPT-5.6 Sol",
+          "reasoning": true
+        }
+      ],
+      "name": "Bifrost (OpenAI)"
+    },
+    "bifrost-vertex": {
+      "api": "google-generative-ai",
+      "apiKey": "!nu -c 'open ~/.pi/agent/auth.json | get bifrost.key | into string'",
+      "baseUrl": "https://bifrost.iplan.dados.rio/genai/v1beta",
+      "models": [
+        {
+          "contextWindow": 1048576,
+          "id": "vertex/gemini-3.8-flash",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 65536,
+          "name": "Gemini 3.8 Flash",
+          "reasoning": true
+        }
+      ],
+      "name": "Bifrost (Vertex)"
+    }
+  }
+}

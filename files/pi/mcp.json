@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "agent-browser": {
+      "command": "agent-browser",
+      "args": [
+        "mcp"
+      ],
+      "exposure": "direct"
+    },
+    "nushell": {
+      "command": "nu",
+      "args": [
+        "--mcp"
+      ],
+      "exposure": "direct"
+    },
+    "zotero": {
+      "command": "pyzotero-mcp",
+      "exposure": "direct"
+    }
+  }
+}

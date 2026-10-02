@@ -38,11 +38,21 @@ in
       ];
 
       config = {
-        nix.settings.experimental-features = [
-          "flakes"
-          "nix-command"
-          "pipe-operators"
-        ];
+        nix.settings = {
+          experimental-features = [
+            "flakes"
+            "nix-command"
+            "pipe-operators"
+          ];
+          extra-substituters = [
+            "https://pi.cachix.org"
+            "https://nix-community.cachix.org"
+          ];
+          extra-trusted-public-keys = [
+            "pi.cachix.org-1:lGeoGJaZ5ZDabuRzkcD5EBTNnDM4HJ1vqeOxlWk1Flk="
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          ];
+        };
 
         age.identityPaths = [ "/persist${settings.home}/.ssh/age" ];
 

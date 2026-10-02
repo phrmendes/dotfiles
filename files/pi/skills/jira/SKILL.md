@@ -16,7 +16,7 @@ Config: `~/.config/.jira/.config.yml`. Auth is handled automatically via the sys
 When creating issues non-interactively, always set:
 
 ```bash
-export JIRA_CONFIG_FILE=~/.config/.jira/config.yml
+export JIRA_CONFIG_FILE=~/.config/.jira/.config.yml
 ```
 
 > `-a` (assignee) by email or display name is unreliable — omit it and use `jira issue assign` after creation.
@@ -164,21 +164,6 @@ jira issue list -q 'created >= startOfWeek()'
 jira issue list -q 'assignee is EMPTY AND created >= -7d'
 jira issue list -q 'parent = INFRAVPIA-131'       # subtasks of a parent
 ```
-
----
-
-## Interactive UI Navigation
-
-| Key            | Action           |
-| -------------- | ---------------- |
-| `j/k` or `↑/↓` | Navigate         |
-| `g / G`        | Top / bottom     |
-| `v`            | View details     |
-| `m`            | Transition issue |
-| `ENTER`        | Open in browser  |
-| `Ctrl+k`       | Copy issue key   |
-| `Ctrl+r`       | Refresh          |
-| `q / ESC`      | Quit             |
 
 ---
 

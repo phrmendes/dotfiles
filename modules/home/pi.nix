@@ -21,14 +21,17 @@
             combinators: with combinators; [
               network
               mount-cwd
+              (ro-bind "${pkgs.bash}/bin/bash" "/bin/bash")
               (add-pkg-deps (
                 with pkgs;
                 [
                   agent-browser
+                  bash
                   diffutils
+                  git
                   jira-cli-go
-                  nushell
                   local.pyzotero
+                  local.nushell
                 ]
               ))
               (try-readonly (noescape "~/.gitconfig"))
@@ -69,6 +72,7 @@
         file = {
           ".config/.jira/.config.yml".source = ../../files/jira.yaml;
           ".pi/agent/mcp.json".source = ../../files/pi/mcp.json;
+          ".pi/agent/plan.json".source = ../../files/pi/plan.json;
         };
       };
     };

@@ -10,6 +10,7 @@
 
       programs.nushell = {
         enable = true;
+        package = pkgs.local.nushell;
         settings = {
           show_banner = false;
           edit_mode = "vi";
@@ -21,17 +22,13 @@
           EDITOR = "nvim";
           GIT_EDITOR = "nvim";
           PI_CACHE_RETENTION = "long";
-          PI_NUSHELL_PATH = "${pkgs.nushell}/bin/nu";
+          PI_NUSHELL_PATH = "${pkgs.local.nushell}/bin/nu";
           PI_SKIP_VERSION_CHECK = "1";
           PROMPT_COMMAND_RIGHT = "";
           SUDO_EDITOR = "nvim";
           VISUAL = "nvim";
           _ZO_MAXAGE = "100000";
         };
-        plugins = with pkgs.nushellPlugins; [
-          polars
-          gstat
-        ];
         shellAliases = {
           asr = "${lib.getExe pkgs.atuin} scripts run";
           cat = lib.getExe pkgs.bat;

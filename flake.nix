@@ -11,6 +11,11 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    nufmt = {
+      url = "github:nushell/nufmt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";

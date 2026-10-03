@@ -19,9 +19,9 @@
           enable = true;
           permissions =
             combinators: with combinators; [
+              no-new-session
               network
               mount-cwd
-              (ro-bind "${pkgs.bash}/bin/bash" "/bin/bash")
               (add-pkg-deps (
                 with pkgs;
                 [
@@ -36,9 +36,10 @@
               ))
               (try-readonly (noescape "~/.gitconfig"))
               (try-readonly (noescape "~/.config/.jira"))
-              (unsafe-add-raw-args "--ro-bind /nix/store /nix/store")
-              (try-readonly "/run/agenix")
+              (try-readonly "/run/agenix/pi.json")
               (try-readwrite "/mnt/external/projects")
+              (ro-bind "/nix/store" "/nix/store")
+              (ro-bind "${pkgs.bash}/bin/bash" "/bin/bash")
             ];
         };
 
@@ -47,6 +48,7 @@
           defaultProvider = "deepseek";
           defaultModel = "deepseek-flash";
           theme = "dark";
+          tuiMode = "regular";
           packages = [
             "git:github.com/phrmendes/pi-plan-mode"
           ];
@@ -72,7 +74,6 @@
         file = {
           ".config/.jira/.config.yml".source = ../../files/jira.yaml;
           ".pi/agent/mcp.json".source = ../../files/pi/mcp.json;
-          ".pi/agent/plan.json".source = ../../files/pi/plan.json;
         };
       };
     };

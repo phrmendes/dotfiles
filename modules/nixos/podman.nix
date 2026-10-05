@@ -2,13 +2,19 @@
   nixosModules.podman =
     { ... }:
     {
-      virtualisation.podman = {
-        enable = true;
-        dockerCompat = true;
-        dockerSocket.enable = true;
-        defaultNetwork.settings.dns_enabled = true;
+      virtualisation = {
+        podman = {
+          enable = true;
+          dockerCompat = true;
+          dockerSocket.enable = true;
+          defaultNetwork.settings.dns_enabled = true;
+        };
+
       };
 
-      systemd.sockets.podman.wantedBy = [ "sockets.target" ];
+      systemd = {
+        services."user@".serviceConfig.Delegate = "cpu cpuset io memory pids";
+        sockets.podman.wantedBy = [ "sockets.target" ];
+      };
     };
 }

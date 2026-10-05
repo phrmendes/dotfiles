@@ -33,7 +33,7 @@ let
     ".local/state/wireplumber"
     ".mozilla"
     ".password-store"
-    ".pi/agent/sessions"
+    ".pi"
     ".ssh"
     ".steam"
     ".zotero"

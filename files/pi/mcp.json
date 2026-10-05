@@ -7,6 +7,20 @@
       ],
       "exposure": "direct"
     },
+    "atlassian": {
+      "url": "https://mcp.atlassian.com/v2/mcp",
+      "description": "Official Atlassian MCP server for Jira and Confluence"
+    },
+    "k8s": {
+      "command": "mcp-k8s-go",
+      "exposure": "direct",
+      "description": "Inspect and manage Kubernetes clusters"
+    },
+    "nixos": {
+      "command": "mcp-nixos",
+      "exposure": "direct",
+      "description": "Search nixpkgs, NixOS and Home Manager options"
+    },
     "nushell": {
       "command": "nu",
       "args": [

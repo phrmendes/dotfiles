@@ -12,37 +12,6 @@
         enable = true;
         rules = builtins.readFile "${piDir}/AGENTS.md";
         models = "${piDir}/models.json";
-        skills = [
-          "${piDir}/skills"
-        ];
-        jail = {
-          enable = true;
-          permissions =
-            combinators: with combinators; [
-              no-new-session
-              network
-              mount-cwd
-              (add-pkg-deps (
-                with pkgs;
-                [
-                  agent-browser
-                  bash
-                  diffutils
-                  git
-                  jira-cli-go
-                  local.pyzotero
-                  local.nushell
-                ]
-              ))
-              (try-readonly (noescape "~/.gitconfig"))
-              (try-readonly (noescape "~/.config/.jira"))
-              (try-readonly "/run/agenix/pi.json")
-              (try-readwrite "/mnt/external/projects")
-              (ro-bind "/nix/store" "/nix/store")
-              (ro-bind "${pkgs.bash}/bin/bash" "/bin/bash")
-            ];
-        };
-
         settings = {
           quietStartup = true;
           defaultProvider = "deepseek";
@@ -71,8 +40,13 @@
       };
 
       home = {
+        packages = with pkgs; [
+          local.pyzotero
+          agent-browser
+          mcp-k8s-go
+          mcp-nixos
+        ];
         file = {
-          ".config/.jira/.config.yml".source = ../../files/jira.yaml;
           ".pi/agent/mcp.json".source = ../../files/pi/mcp.json;
         };
       };

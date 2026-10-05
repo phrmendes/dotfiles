@@ -13,6 +13,7 @@ in
       imports = with nixosModules; [
         core
         disko
+        podman
         workstation
       ];
 

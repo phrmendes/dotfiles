@@ -1,0 +1,32 @@
+{
+  "modes": {
+    "brainstorming": {
+      "model": "bifrost-openai/bedrock_mantle/openai.gpt-5.6-terra",
+      "deniedTools": [
+        "mcp__agent_browser__agent_browser_check",
+        "mcp__agent_browser__agent_browser_click",
+        "mcp__agent_browser__agent_browser_eval",
+        "mcp__agent_browser__agent_browser_fill",
+        "mcp__agent_browser__agent_browser_press",
+        "mcp__agent_browser__agent_browser_select",
+        "mcp__agent_browser__agent_browser_type",
+        "mcp__agent_browser__agent_browser_uncheck",
+        "mcp__k8s__apply_k8s_resource",
+        "mcp__k8s__k8s_pod_exec",
+        "mcp__atlassian__add*",
+        "mcp__atlassian__create*",
+        "mcp__atlassian__edit*",
+        "mcp__atlassian__update*",
+        "mcp__atlassian__transition*",
+        "mcp__atlassian__executeWrite",
+        "mcp__atlassian__executeDestructive"
+      ]
+    },
+    "implementing": {
+      "model": "bifrost-openai/bedrock_mantle/openai.gpt-5.6-luna"
+    },
+    "thinking": {
+      "model": "bifrost-anthropic/claude-opus-5-5"
+    }
+  }
+}

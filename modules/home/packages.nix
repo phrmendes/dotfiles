@@ -47,12 +47,10 @@
         worktrunk
         xre
         zotero
-        (google-cloud-sdk.withExtraComponents (
-          with google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
-        ))
       ])
       ++ (with pkgs.local; [
         diff-persist
+        gcp
         noctalia-settings-diff
       ]);
   };

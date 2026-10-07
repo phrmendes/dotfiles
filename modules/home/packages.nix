@@ -15,6 +15,7 @@
         firefox
         gcolor3
         gdu
+        glab
         grim
         handy
         hurl

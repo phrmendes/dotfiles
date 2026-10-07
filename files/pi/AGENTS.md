@@ -18,6 +18,7 @@
 
 - Always talk ASD-STE100 Simplified Technical English.
 - Prefer idiomatic tooling for each ecosystem.
+- Run project commands in the project environment: `devenv shell -- <cmd>` in devenv projects, `nix develop -c <cmd>` in flake projects.
 
 ## Simplicity
 

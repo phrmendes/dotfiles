@@ -93,6 +93,7 @@
               (try-readonly (noescape "~/.config/git"))
               (try-readonly (noescape "~/.config/jj"))
               (try-readonly (noescape "~/.kube"))
+              (try-readwrite "/mnt/external/pi")
               (try-readwrite "/mnt/external/projects")
               (try-readwrite "/nix/var/nix/daemon-socket")
               (try-readwrite (noescape "~/.cache/nix"))

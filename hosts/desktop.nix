@@ -92,6 +92,7 @@ in
 
       systemd.tmpfiles.rules = [
         "d /mnt/external 0755 ${settings.user} users -"
+        "d /mnt/external/pi 0700 ${settings.user} users 7d"
       ];
 
       home-manager.users.${settings.user}.imports = with homeModules; [

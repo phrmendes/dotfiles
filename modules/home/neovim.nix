@@ -32,6 +32,7 @@
           docker-language-server
           dot-language-server
           emmet-language-server
+          gitlab-ci-ls
           helm-ls
           just-lsp
           lldb

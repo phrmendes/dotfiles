@@ -12,6 +12,7 @@ vim.lsp.enable({
   "dotls",
   "emmet_language_server",
   "eslint",
+  "gitlab_ci_ls",
   "helm_ls",
   "html",
   "jsonls",

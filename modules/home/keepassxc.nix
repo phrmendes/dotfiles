@@ -18,10 +18,10 @@
           Browser.Enabled = true;
           FdoSecrets = {
             ShowNotification = false;
-            ConfirmAccessItem = false;
+            ConfirmAccessItem = true;
             ConfirmDeleteItem = false;
             Enabled = true;
-            NoConfirmAccessEnabled = true;
+            NoConfirmAccessEnabled = false;
           };
           GUI = {
             ApplicationTheme = "dark";

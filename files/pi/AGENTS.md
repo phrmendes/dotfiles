@@ -9,6 +9,7 @@
 
 - Never commit without explicit user approval — the user reviews first
 - Stage and summarize the change, then wait; the user says when to commit
+- Never push, open, or merge a pull request without explicit user approval
 - Follow the repo's commit convention — infer style from `git log`
 - Do not print or edit the contents of `secrets/**`
 - Do not hand-edit `flake.lock`; use `nix flake update`

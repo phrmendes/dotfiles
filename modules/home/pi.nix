@@ -18,6 +18,7 @@
           devenv
           diffutils
           fd
+          gh
           git
           gnutar
           gzip
@@ -76,6 +77,7 @@
               mount-cwd
               no-new-session
               (add-pkg-deps jailPackages)
+              (dbus { talk = [ "org.freedesktop.secrets" ]; })
               (fwd-env "XDG_RUNTIME_DIR")
               (ro-bind "${pkgs.bash}/bin/bash" "/bin/bash")
               (ro-bind "/nix/store" "/nix/store")
@@ -90,6 +92,7 @@
               (try-readonly "/etc/nix")
               (try-readonly "/etc/static")
               (try-readonly "/run/agenix/pi.json")
+              (try-readonly (noescape "~/.config/gh"))
               (try-readonly (noescape "~/.config/git"))
               (try-readonly (noescape "~/.config/jj"))
               (try-readonly (noescape "~/.kube"))

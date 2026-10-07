@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   homeModules.pi =
-    { pkgs, ... }:
+    { pkgs, osConfig, ... }:
     let
       piDir = ../../files/pi;
       mcpServers = with pkgs; [
@@ -85,6 +85,7 @@
               (set-env "AGENT_BROWSER_EXECUTABLE_PATH" "${pkgs.ungoogled-chromium}/bin/chromium")
               (set-env "CONTAINER_HOST" podmanHost)
               (set-env "DOCKER_HOST" podmanHost)
+              (set-env "LOCALE_ARCHIVE" "${osConfig.i18n.glibcLocales}/lib/locale/locale-archive")
               (set-env "NIX_REMOTE" "daemon")
               (set-env "pnpm_config_manage_package_manager_versions" "false")
               (set-env "pnpm_config_store_dir" (noescape "\"$HOME/.local/share/pnpm/store\""))

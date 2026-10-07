@@ -13,6 +13,7 @@
       jailPackages =
         mcpServers
         ++ (with pkgs; [
+          local.gcp
           local.nushell
           bash
           devenv
@@ -103,6 +104,7 @@
               (try-readwrite (noescape "~/.cache/pnpm"))
               (try-readwrite (noescape "~/.cache/uv"))
               (try-readwrite (noescape "~/.config/dotfiles"))
+              (try-readwrite (noescape "~/.config/gcloud"))
               (try-readwrite (noescape "~/.local/share/devenv"))
               (try-readwrite (noescape "~/.local/share/pnpm"))
               (try-readwrite (runtimePath "agent-browser"))

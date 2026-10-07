@@ -107,7 +107,6 @@
               (try-readwrite (noescape "~/.config/gcloud"))
               (try-readwrite (noescape "~/.local/share/devenv"))
               (try-readwrite (noescape "~/.local/share/pnpm"))
-              (try-readwrite (runtimePath "agent-browser"))
               (try-readwrite (runtimePath "podman/podman.sock"))
               (try-ro-bind "/usr/bin/env" "/usr/bin/env")
             ];

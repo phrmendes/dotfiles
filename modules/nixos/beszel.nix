@@ -63,6 +63,47 @@
             User = lib.mkForce "beszel-hub";
             Group = lib.mkForce "beszel-hub";
           };
+          beszel-hub-healthcheck = {
+            description = "Check Beszel hub health";
+            after = [ "beszel-hub.service" ];
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = "${config.services.beszel.hub.package}/bin/beszel-hub health --url http://127.0.0.1:${toString port}";
+              TimeoutStartSec = "5s";
+            };
+          };
+          beszel-agent-healthcheck = {
+            description = "Check Beszel agent health";
+            after = [ "beszel-agent.service" ];
+            serviceConfig = {
+              Type = "oneshot";
+              User = "beszel-agent";
+              ExecStart = "${config.services.beszel.agent.package}/bin/beszel-agent health";
+              TimeoutStartSec = "5s";
+            };
+          };
+        };
+        timers = {
+          beszel-hub-healthcheck-timer = {
+            wantedBy = [ "timers.target" ];
+            startLimitBurst = 3;
+            startLimitIntervalSec = 60;
+            timerConfig = {
+              OnBootSec = "2m";
+              OnUnitActiveSec = "1m";
+              Unit = "beszel-hub-healthcheck.service";
+            };
+          };
+          beszel-agent-healthcheck-timer = {
+            wantedBy = [ "timers.target" ];
+            startLimitBurst = 3;
+            startLimitIntervalSec = 60;
+            timerConfig = {
+              OnBootSec = "2m";
+              OnUnitActiveSec = "1m";
+              Unit = "beszel-agent-healthcheck.service";
+            };
+          };
         };
       };
 
@@ -73,10 +114,10 @@
         };
         beszel = {
           hub = {
+            inherit port;
             enable = true;
             dataDir = "/srv/beszel";
             host = "127.0.0.1";
-            inherit port;
             environment = {
               DISABLE_PASSWORD_AUTH = "true";
               USER_CREATION = "true";
@@ -89,7 +130,8 @@
               HUB_URL = "http://localhost:${toString port}";
               KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9f/ibSB0GDpqM39d3G5IIa+2iItpIuCi/XYp32o5R0";
               DOCKER_HOST = "unix:///run/podman/podman.sock";
-              SMART_DEVICES = "/dev/sda:scsi,/dev/sdb:sat";
+              EXTRA_FILESYSTEMS = "/mnt/external__external";
+              SMART_DEVICES = "/dev/sda:sat,/dev/sdb:sat";
               SMART_INTERVAL = "10m";
             };
             smartmon = {

@@ -53,7 +53,10 @@ in
         ];
       };
 
-      systemd.services.syncthing.serviceConfig.UMask = "0002";
+      systemd.services.syncthing = {
+        unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+        serviceConfig.UMask = "0002";
+      };
 
       services = {
         caddy.virtualHosts = config.caddy.mkVhost {

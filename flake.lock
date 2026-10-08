@@ -90,6 +90,23 @@
         "type": "github"
       }
     },
+    "beszel": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790961234,
+        "narHash": "sha256-/9vY7dY+pwPKj3cT3zXUJEu+FVFMYdT5xmlTTWjTsQ8=",
+        "owner": "henrygd",
+        "repo": "beszel",
+        "rev": "ec96c134660c998f7eb044e349e3715b65733fe1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "henrygd",
+        "ref": "v0.21.0",
+        "repo": "beszel",
+        "type": "github"
+      }
+    },
     "bun2nix": {
       "inputs": {
         "flake-parts": [
@@ -651,6 +668,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "beszel": "beszel",
         "disko": "disko",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",

@@ -1,5 +1,6 @@
-{ pkgs }:
+{ pkgs, inputs }:
 {
+  beszel = pkgs.callPackage ./beszel.nix { src = inputs.beszel; };
   caddy = pkgs.callPackage ./caddy.nix { };
   diff-persist = pkgs.callPackage ./diff-persist.nix { };
   gcp = pkgs.callPackage ./gcp.nix { };

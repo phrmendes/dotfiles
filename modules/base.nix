@@ -95,6 +95,7 @@
                       stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
                       nufmt = inputs.nufmt.packages.${prev.stdenv.hostPlatform.system}.default;
                       local = import ../pkgs {
+                        inherit inputs;
                         pkgs = prev;
                       };
                     })

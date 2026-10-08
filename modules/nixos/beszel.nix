@@ -3,20 +3,13 @@
     {
       lib,
       config,
+      pkgs,
       ...
     }:
     let
       port = 8090;
     in
     {
-      nixpkgs.overlays = [
-        (_: prev: {
-          beszel = prev.beszel.overrideAttrs (old: {
-            tags = builtins.filter (t: t != "testing") (old.tags or [ ]);
-            doCheck = false;
-          });
-        })
-      ];
       homepage.services.beszel = {
         dataDir = "/srv/beszel";
         url = "beszel.${config.caddy.domain}";
@@ -52,6 +45,7 @@
           isSystemUser = true;
           group = "beszel-hub";
         };
+        users.beszel-agent.extraGroups = [ "systemd-journal" ];
       };
 
       systemd = {
@@ -63,6 +57,7 @@
             User = lib.mkForce "beszel-hub";
             Group = lib.mkForce "beszel-hub";
           };
+          beszel-agent.serviceConfig.SupplementaryGroups = lib.mkAfter [ "systemd-journal" ];
           beszel-hub-healthcheck = {
             description = "Check Beszel hub health";
             after = [ "beszel-hub.service" ];
@@ -114,6 +109,7 @@
         };
         beszel = {
           hub = {
+            package = pkgs.local.beszel;
             inherit port;
             enable = true;
             dataDir = "/srv/beszel";
@@ -124,6 +120,7 @@
             };
           };
           agent = {
+            package = pkgs.local.beszel;
             enable = true;
             environmentFile = config.age.secrets."beszel.env".path;
             environment = {

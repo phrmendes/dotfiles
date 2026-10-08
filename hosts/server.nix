@@ -24,7 +24,6 @@ in
         caddy
         restic
         excalidraw
-        grafito
         homeAssistant
         homepage
         immich
@@ -52,7 +51,6 @@ in
         };
         "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };
         "caddy.env" = mkSecretReadable { file = ../secrets/caddy.age.env; };
-        "grafito.env" = mkSecretReadable { file = ../secrets/grafito.age.env; };
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
         "litestream.env" = mkSecretReadable { file = ../secrets/litestream.age.env; };
         "miniflux.env" = mkSecretReadable {

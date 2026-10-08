@@ -138,32 +138,6 @@ in
           '';
         };
 
-        fake-hwclock-restore = {
-          description = "Restore system clock from disk";
-          wantedBy = [ "sysinit.target" ];
-          after = [ "local-fs.target" ];
-          before = [ "time-sync.target" ];
-          unitConfig.DefaultDependencies = false;
-          serviceConfig.Type = "oneshot";
-          path = [ pkgs.coreutils ];
-          script = ''
-            if [ -f /var/lib/fake-hwclock ]; then
-              date -s @$(cat /var/lib/fake-hwclock)
-            fi
-          '';
-        };
-
-        fake-hwclock-save = {
-          description = "Save system clock to disk";
-          wantedBy = [ "shutdown.target" ];
-          before = [ "shutdown.target" ];
-          unitConfig.DefaultDependencies = false;
-          serviceConfig.Type = "oneshot";
-          path = [ pkgs.coreutils ];
-          script = ''
-            date +%s > /var/lib/fake-hwclock
-          '';
-        };
       };
 
       systemd.timers.podman-auto-update = {

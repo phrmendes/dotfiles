@@ -377,7 +377,10 @@ in
           };
         };
 
-        time.timeZone = "America/Sao_Paulo";
+        time = {
+          timeZone = "America/Sao_Paulo";
+          hardwareClockInLocalTime = false;
+        };
         virtualisation.containers.enable = true;
         console.keyMap = "us";
         system.stateVersion = settings.stateVersion;

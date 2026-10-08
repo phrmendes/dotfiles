@@ -41,6 +41,7 @@
           marksman
           nixd
           postgres-language-server
+          pyrefly
           rust-analyzer
           svelte-language-server
           taplo

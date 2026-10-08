@@ -172,5 +172,16 @@
           ++ lib.optional isLaptop { type = "wifi"; };
         };
       };
+
+      systemd.user.services.noctalia = {
+        Unit = {
+          Wants = [ "keepassxc.service" ];
+          After = lib.mkForce [ "graphical-session.target" ];
+        };
+        Service = {
+          Restart = "on-failure";
+          RestartSec = 2;
+        };
+      };
     };
 }

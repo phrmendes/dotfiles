@@ -18,7 +18,7 @@
           Browser.Enabled = true;
           FdoSecrets = {
             ShowNotification = false;
-            ConfirmAccessItem = true;
+            ConfirmAccessItem = false;
             ConfirmDeleteItem = false;
             Enabled = true;
             NoConfirmAccessEnabled = false;
@@ -51,13 +51,15 @@
       localIni = pkgs.writeText "keepassxc-local.ini" (
         lib.generators.toINI { } {
           SSHAgent = {
-            AuthSockOverride = "/run/user/%U/ssh-agent";
+            AuthSockOverride = "";
             SecurityKeyProviderOverride = "";
           };
         }
       );
     in
     {
+      services.ssh-agent.enable = true;
+
       home.packages = [ pkgs.keepassxc ];
 
       xdg.portal.config = {
@@ -72,14 +74,11 @@
         Unit = {
           Description = "KeePassXC password manager";
           PartOf = [ config.wayland.systemd.target ];
-          Requires = [ "noctalia.service" ];
-          After = [
-            config.wayland.systemd.target
-            "noctalia.service"
-          ];
+          After = [ config.wayland.systemd.target ];
         };
         Service = {
-          ExecStart = lib.getExe pkgs.local.keepassxc;
+          Environment = [ "SSH_AUTH_SOCK=%t/ssh-agent" ];
+          ExecStart = lib.getExe pkgs.keepassxc;
           Restart = "on-failure";
           RestartSec = 3;
         };

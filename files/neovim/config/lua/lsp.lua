@@ -22,6 +22,7 @@ vim.lsp.enable({
   "nu_lint",
   "nushell",
   "postgres_lsp",
+  "pyrefly",
   "ruff",
   "rust_analyzer",
   "svelte",

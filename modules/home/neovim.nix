@@ -27,7 +27,6 @@
           # language servers
           ansible-language-server
           astro-language-server
-          basedpyright
           bash-language-server
           docker-language-server
           dot-language-server

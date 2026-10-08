@@ -13,7 +13,6 @@ in
   "beszel.age.env".publicKeys = allKeys;
   "caddy.age.env".publicKeys = allKeys;
   "dockerhub.age.json".publicKeys = allKeys;
-  "grafito.age.env".publicKeys = allKeys;
   "linkding.age.env".publicKeys = allKeys;
   "litestream.age.env".publicKeys = allKeys;
   "miniflux.age.env".publicKeys = allKeys;

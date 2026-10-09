@@ -56,11 +56,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lualibs = {
-      url = "github:TeXLuaCATS/Lualibs";
-      flake = false;
-    };
-
     beszel = {
       url = "github:henrygd/beszel?ref=v0.21.0";
       flake = false;

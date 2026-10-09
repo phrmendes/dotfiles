@@ -10,7 +10,7 @@ return {
       },
       workspace = {
         library = { require("nix.neovim").hyprland },
-        checkThirdParty = "ApplyInMemory",
+        checkThirdParty = "Disable",
       },
     },
   },

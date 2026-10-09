@@ -1,7 +1,7 @@
 {
   "modes": {
     "brainstorming": {
-      "model": "bifrost-openai/bedrock_mantle/openai.gpt-5.6-terra",
+      "model": "bifrost-anthropic/claude-sonnet-5-5",
       "deniedTools": [
         "mcp__agent_browser__agent_browser_check",
         "mcp__agent_browser__agent_browser_click",
@@ -23,7 +23,7 @@
       ]
     },
     "implementing": {
-      "model": "bifrost-openai/bedrock_mantle/openai.gpt-5.6-luna"
+      "model": "bifrost-anthropic/claude-sonnet-5-5"
     },
     "thinking": {
       "model": "bifrost-anthropic/claude-opus-5-5"

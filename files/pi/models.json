@@ -32,6 +32,17 @@
           "maxTokens": 64000,
           "name": "Claude Sonnet 5.5",
           "reasoning": true
+        },
+        {
+          "contextWindow": 200000,
+          "id": "claude-haiku-5-5",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 64000,
+          "name": "Claude Haiku 5.5",
+          "reasoning": true
         }
       ],
       "name": "Bifrost (Anthropic)"

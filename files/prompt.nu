@@ -49,8 +49,16 @@ def lambda-prompt [mode: string = "insert"]: nothing -> string {
     $"(ansi $color)λ(ansi reset)(duration-prompt) "
 }
 
+def ssh-host-prompt []: nothing -> string {
+    if ($env.SSH_CONNECTION? == null) {
+        ""
+    } else {
+        $"(ansi magenta_bold)(whoami)@(sys host | get hostname)(ansi reset) "
+    }
+}
+
 load-env {
-    PROMPT_COMMAND: {|| $"(basic-git-left-prompt (cwd-prompt))(char newline)" }
+    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(char newline)" }
     PROMPT_COMMAND_RIGHT: {|| "" }
     PROMPT_INDICATOR: {|| lambda-prompt }
     PROMPT_INDICATOR_VI_INSERT: {|| lambda-prompt }

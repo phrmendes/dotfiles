@@ -2,7 +2,7 @@
   nixosModules.searxng =
     { config, ... }:
     let
-      port = 8888;
+      port = 8889;
     in
     {
       homepage.services.searxng = {

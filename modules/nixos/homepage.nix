@@ -4,6 +4,9 @@
     let
       port = 8082;
 
+      colors = config.lib.stylix.colors;
+      rgb = base: "${colors.${base + "-rgb-r"}} ${colors.${base + "-rgb-g"}} ${colors.${base + "-rgb-b"}}";
+
       homepageService = { name, ... }: {
         options = {
           dataDir = lib.mkOption {
@@ -88,7 +91,31 @@
           homepage-dashboard = {
             enable = true;
             listenPort = port;
+            customCSS = ''
+              :root {
+                --color-50: ${rgb "base07"};
+                --color-100: ${rgb "base06"};
+                --color-200: ${rgb "base05"};
+                --color-300: ${rgb "base04"};
+                --color-400: ${rgb "base03"};
+                --color-500: ${rgb "base0A"};
+                --color-600: ${rgb "base02"};
+                --color-700: ${rgb "base01"};
+                --color-800: ${rgb "base00"};
+                --color-900: ${rgb "base01"};
+                --color-logo-start: ${rgb "base0A"};
+                --color-logo-stop: ${rgb "base09"};
+              }
+            '';
             widgets = [
+              {
+                search = {
+                  provider = "custom";
+                  url = "https://search.${config.caddy.domain}/search?q=";
+                  target = "_blank";
+                  focus = true;
+                };
+              }
               {
                 datetime = {
                   text_size = "xl";
@@ -111,6 +138,8 @@
             ];
             settings = {
               headerStyle = "clean";
+              theme = "dark";
+              color = "slate";
 
               statusStyle = "dot";
               hideVersion = true;

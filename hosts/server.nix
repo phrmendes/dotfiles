@@ -23,6 +23,7 @@ in
         beszel
         caddy
         restic
+        searxng
         excalidraw
         homeAssistant
         homepage
@@ -61,6 +62,10 @@ in
         "sftpgo.env" = mkSecretReadable {
           file = ../secrets/sftpgo.age.env;
           owner = "sftpgo";
+        };
+        "searxng.env" = mkSecretReadable {
+          file = ../secrets/searxng.age.env;
+          owner = "searx";
         };
         "dockerhub.json" = mkSecretReadable {
           file = ../secrets/dockerhub.age.json;

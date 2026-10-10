@@ -92,7 +92,7 @@
             enable = true;
             listenPort = port;
             customCSS = ''
-              :root {
+              html:root {
                 --color-50: ${rgb "base07"};
                 --color-100: ${rgb "base06"};
                 --color-200: ${rgb "base05"};

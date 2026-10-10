@@ -42,9 +42,55 @@
 
           search = {
             safe_search = 1;
-            autocomplete = "duckduckgo";
-            default_lang = "auto";
+            autocomplete = "google";
+            default_lang = "pt-BR";
           };
+
+          engines = [
+            {
+              name = "google cse";
+              weight = 2.0;
+            }
+            {
+              name = "startpage";
+              disabled = false;
+              weight = 1.8;
+            }
+            {
+              name = "google";
+              disabled = false;
+              weight = 1.5;
+            }
+            {
+              name = "google news";
+              weight = 1.5;
+            }
+            {
+              name = "google videos";
+              weight = 1.5;
+            }
+            {
+              name = "google scholar";
+              weight = 1.5;
+            }
+
+            {
+              name = "duckduckgo";
+              weight = 0.4;
+            }
+            {
+              name = "brave";
+              weight = 0.4;
+            }
+            {
+              name = "mojeek";
+              weight = 0.2;
+            }
+            {
+              name = "wikipedia";
+              weight = 0.4;
+            }
+          ];
 
           ui.default_locale = "en";
         };

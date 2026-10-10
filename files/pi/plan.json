@@ -1,7 +1,11 @@
 {
-  "modes": {
-    "brainstorming": {
-      "model": "bifrost-anthropic/claude-sonnet-5-5",
+  "deniedTools": [
+    "mcp__atlassian__executeDestructive",
+    "mcp__k8s__apply_k8s_resource"
+  ],
+  "profiles": {
+    "work": {
+      "match": ["/mnt/external/projects/iplanrio/**"],
       "deniedTools": [
         "mcp__agent_browser__agent_browser_check",
         "mcp__agent_browser__agent_browser_click",
@@ -11,22 +15,40 @@
         "mcp__agent_browser__agent_browser_select",
         "mcp__agent_browser__agent_browser_type",
         "mcp__agent_browser__agent_browser_uncheck",
-        "mcp__k8s__apply_k8s_resource",
         "mcp__k8s__k8s_pod_exec",
         "mcp__atlassian__add*",
         "mcp__atlassian__create*",
         "mcp__atlassian__edit*",
         "mcp__atlassian__update*",
         "mcp__atlassian__transition*",
-        "mcp__atlassian__executeWrite",
-        "mcp__atlassian__executeDestructive"
-      ]
+        "mcp__atlassian__executeWrite"
+      ],
+      "brainstorming": {
+        "model": "bifrost-anthropic/claude-sonnet-5-5",
+        "thinkingLevel": "medium"
+      },
+      "thinking": {
+        "model": "bifrost-anthropic/claude-opus-5-5",
+        "thinkingLevel": "high"
+      },
+      "implementing": {
+        "model": "bifrost-anthropic/claude-sonnet-5-5",
+        "thinkingLevel": "low"
+      }
     },
-    "implementing": {
-      "model": "bifrost-anthropic/claude-sonnet-5-5"
-    },
-    "thinking": {
-      "model": "bifrost-anthropic/claude-opus-5-5"
+    "default": {
+      "brainstorming": {
+        "model": "deepseek/deepseek-flash",
+        "thinkingLevel": "high"
+      },
+      "thinking": {
+        "model": "deepseek/deepseek-flash",
+        "thinkingLevel": "max"
+      },
+      "implementing": {
+        "model": "deepseek/deepseek-flash",
+        "thinkingLevel": "low"
+      }
     }
   }
 }

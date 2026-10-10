@@ -45,6 +45,7 @@
           defaultModel = "deepseek-flash";
           theme = "dark";
           tuiMode = "regular";
+          markdown.mermaid = "streaming";
           packages = [
             "git:github.com/phrmendes/pi-plan-mode"
           ];

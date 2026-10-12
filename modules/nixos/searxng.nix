@@ -7,6 +7,7 @@
     {
       homepage.services.searxng = {
         url = "search.${config.caddy.domain}";
+        siteMonitor = "https://search.${config.caddy.domain}/healthz";
         homepage = {
           name = "SearXNG";
           description = "Private metasearch engine";

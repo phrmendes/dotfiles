@@ -16,6 +16,10 @@
           url = lib.mkOption {
             type = lib.types.str;
           };
+          siteMonitor = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = null;
+          };
           homepage = lib.mkOption {
             type = lib.types.submodule {
               options = {
@@ -67,7 +71,7 @@
               href = "https://${v.url}";
               icon = v.homepage.icon;
               description = v.homepage.description;
-              siteMonitor = "https://${v.url}";
+              siteMonitor = if v.siteMonitor != null then v.siteMonitor else "https://${v.url}";
             }
             // (lib.optionalAttrs (v.homepage.widget != null) { widget = v.homepage.widget; });
           }

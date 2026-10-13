@@ -21,6 +21,7 @@ in
         "desktop"
         "laptop"
       ];
+      isDesktop = config.workstation.type or "server" == "desktop";
     in
     {
       options.utils = lib.mkOption {
@@ -85,12 +86,42 @@ in
               "usbhid"
               "sd_mod"
               "nvme"
+            ]
+            ++ lib.optionals isDesktop [
+              "tpm_tis"
+              "tpm_crb"
             ];
-            luks.devices."crypted".device = "/dev/disk/by-partlabel/disk-main-luks";
+            luks.devices."crypted" = {
+              device = "/dev/disk/by-partlabel/disk-main-luks";
+            }
+            // lib.optionalAttrs isDesktop {
+              crypttabExtraOpts = [ "tpm2-device=auto" ];
+            };
             systemd = {
               enable = true;
+              initrdBin = [
+                pkgs.dialog
+                pkgs.local.scripts
+              ];
+              storePaths = [
+                pkgs.local.scripts
+              ];
+              contents = {
+                "/etc/dialogrc".source = ../../files/dialogrc;
+              };
               services = {
                 systemd-udevd.after = [ "systemd-modules-load.service" ]; # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
+                encryption = lib.mkIf isDesktop {
+                  description = "TPM keyslot cache for the LUKS root (12 hour window)";
+                  wantedBy = [ "systemd-cryptsetup@crypted.service" ];
+                  before = [ "systemd-cryptsetup@crypted.service" ];
+                  unitConfig.DefaultDependencies = false;
+                  serviceConfig = {
+                    Type = "oneshot";
+                    RemainAfterExit = true;
+                  };
+                  script = "encryption ensure";
+                };
                 initrd-btrfs-cleanup = {
                   description = "Btrfs subvolume cleanup and recreation";
                   requiredBy = [ "sysroot.mount" ];
@@ -104,7 +135,10 @@ in
                     Type = "oneshot";
                     RemainAfterExit = true;
                   };
-                  script = builtins.readFile ../../files/btrfs.sh;
+                  script = ''
+                    btrfs-delete-old-snapshots
+                    btrfs-choose-snapshot
+                  '';
                 };
               };
             };
@@ -336,6 +370,26 @@ in
               };
             };
           };
+
+        systemd = {
+          services.encryption-expire = lib.mkIf isDesktop {
+            description = "Expire the TPM keyslot cache after 12 hours";
+            path = [ pkgs.local.scripts ];
+            serviceConfig = {
+              Type = "oneshot";
+              Environment = [ "ESP_MNT=/boot" ];
+            };
+            script = "encryption expire";
+          };
+          timers.encryption-expire = lib.mkIf isDesktop {
+            wantedBy = [ "timers.target" ];
+            timerConfig = {
+              OnCalendar = "*:0/15";
+              Persistent = true;
+              Unit = "encryption-expire.service";
+            };
+          };
+        };
 
         swapDevices = [
           {

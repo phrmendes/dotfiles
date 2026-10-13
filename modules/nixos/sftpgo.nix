@@ -23,7 +23,11 @@
 
       systemd = {
         services.sftpgo = {
-          serviceConfig.EnvironmentFile = config.age.secrets."sftpgo.env".path;
+          serviceConfig = {
+            EnvironmentFile = config.age.secrets."sftpgo.env".path;
+            Restart = "on-failure";
+            RestartSec = 5;
+          };
           requires = [
             "authelia.service"
             "caddy.service"

@@ -26,6 +26,7 @@ require("nvim-treesitter").install({
   "ruby",
   "rust",
   "sql",
+  "svelte",
   "terraform",
   "toml",
   "tsx",

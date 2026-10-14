@@ -69,7 +69,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "notes.nvim": {
-      "rev": "4336e8a10c7ca7cdb550227eddedc6810ebd3424",
+      "rev": "4a05ac0594bbb442668e02d62468d6acbbb655db",
       "src": "https://github.com/phrmendes/notes.nvim"
     },
     "nvim-ansible": {

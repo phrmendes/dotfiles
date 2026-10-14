@@ -2,8 +2,8 @@ safely("now", function()
   local splits = require("smart-splits")
 
   splits.setup({
-    multiplexer_integration = "kitty",
-    cursor_follows_swapped_bufs = true,
+    mux = { backend = "smart-splits-backend-kitty" },
+    swap = { move_cursor = true },
   })
 
   vim.keymap.set({ "n", "t" }, "<a-h>", splits.resize_left, { desc = "Resize left" })

@@ -8,6 +8,10 @@
       "rev": "15f28ec323a75f34f317336831c00c2d1b0a7192",
       "src": "https://github.com/lewis6991/async.nvim"
     },
+    "backend-kitty": {
+      "rev": "f892244d69727b8634dd5c085fb041f4e6cc9ef3",
+      "src": "https://github.com/smart-splits-nvim/backend-kitty"
+    },
     "baleia.nvim": {
       "rev": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18",
       "src": "https://github.com/m00qek/baleia.nvim"

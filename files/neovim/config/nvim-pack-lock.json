@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "411163b2be396495c76788a016cb1354f1e8acd0",
+      "rev": "9a0312f15eb649322cec87109d9971e0ca5ffe4d",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "async.nvim": {
@@ -25,11 +25,11 @@
       "src": "https://github.com/Saecki/crates.nvim"
     },
     "diffs.nvim": {
-      "rev": "ae999b3602c451d74755b0ca248714400b8c249a",
+      "rev": "8ec45f4e1dd36567cf27d90e8fa6bc53128c54e6",
       "src": "https://forge.barrettruth.com/barrettruth/diffs.nvim"
     },
     "ergoterm.nvim": {
-      "rev": "d1a8f7bf99024797962f699298b07a4ec57a652b",
+      "rev": "6247db22d774475b19d2e483422d4ba3e0771fb7",
       "src": "https://github.com/waiting-for-dev/ergoterm.nvim"
     },
     "friendly-snippets": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "haunt.nvim": {
-      "rev": "c973175dda88236ecda342fd3654b5dc4f6b7764",
+      "rev": "a614d90be50b49dfe18aac2f3c2394c69feefd01",
       "src": "https://github.com/TheNoeTrevino/haunt.nvim"
     },
     "helm-ls.nvim": {
@@ -61,15 +61,15 @@
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {
-      "rev": "561751e839b99a4baca36b9d963166b66d2536a6",
+      "rev": "8831fa150fa26492cfe135801fa498132f1491d2",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "c51a1dc7e0e0f40c4c396a2b1ceaa44b44e96032",
+      "rev": "a6549816e62cec7037f1549d8f1659d45635370c",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "notes.nvim": {
-      "rev": "4a05ac0594bbb442668e02d62468d6acbbb655db",
+      "rev": "4336e8a10c7ca7cdb550227eddedc6810ebd3424",
       "src": "https://github.com/phrmendes/notes.nvim"
     },
     "nvim-ansible": {
@@ -97,19 +97,19 @@
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
-      "rev": "3d55c8f67c6ae5c15e1042571e107c7a3d5c5f4e",
+      "rev": "f6230a5c06ba59e6059c14637f1dbe29a7978b9b",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "a9bb4d5f4276aa5cddc015faa3ecc5a7b5a26b14",
+      "rev": "ac062d0d01c019c0dbdb798968f3e5d8b35c3853",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "728e031f6b11d03d1f0708b7dc4fb0f1d9c8a137",
+      "rev": "ca581c3436fc2b236847f5b739ebc263739e5ca6",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
-      "rev": "f3061339b8eaf9fda873600bc425b8d2d8502533",
+      "rev": "8decd73460d26ef0a0befb745d022dd1fc2c38b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
@@ -133,7 +133,7 @@
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "ec76708f1617ef9e2ac353357fe52d2c997a0f06",
+      "rev": "07dbad410256f755e69ffd31cb8d122bcd6b91f7",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "sqlite.lua": {

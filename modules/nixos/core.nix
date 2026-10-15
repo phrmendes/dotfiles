@@ -17,11 +17,12 @@ in
     }:
     let
       utils = import ../../utils { inherit lib; };
+      esp = config.boot.loader.efi.efiSysMountPoint;
+      btrfsTop = "/run/btrfs";
       isWorkstation = builtins.elem (config.workstation.type or "server") [
         "desktop"
         "laptop"
       ];
-      isDesktop = config.workstation.type or "server" == "desktop";
     in
     {
       options.utils = lib.mkOption {
@@ -71,9 +72,10 @@ in
               canTouchEfiVariables = true;
               efiSysMountPoint = "/boot";
             };
-            systemd-boot = {
+            limine = {
               enable = true;
-              configurationLimit = 10;
+              maxGenerations = 10;
+              extraInstallCommands = "ESP_MNT=${esp} BTRFS_MNT=${btrfsTop} KEEP_OLD_ROOTS=${toString settings.keepOldRoots} ${pkgs.local.scripts}/bin/limine snapshots || true";
             };
           };
           kernelModules = [ "fuse" ];
@@ -86,15 +88,11 @@ in
               "usbhid"
               "sd_mod"
               "nvme"
-            ]
-            ++ lib.optionals isDesktop [
               "tpm_tis"
               "tpm_crb"
             ];
             luks.devices."crypted" = {
               device = "/dev/disk/by-partlabel/disk-main-luks";
-            }
-            // lib.optionalAttrs isDesktop {
               crypttabExtraOpts = [ "tpm2-device=auto" ];
             };
             systemd = {
@@ -111,7 +109,7 @@ in
               };
               services = {
                 systemd-udevd.after = [ "systemd-modules-load.service" ]; # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
-                encryption = lib.mkIf isDesktop {
+                encryption = {
                   description = "TPM keyslot cache for the LUKS root (12 hour window)";
                   wantedBy = [ "systemd-cryptsetup@crypted.service" ];
                   before = [ "systemd-cryptsetup@crypted.service" ];
@@ -134,10 +132,11 @@ in
                   serviceConfig = {
                     Type = "oneshot";
                     RemainAfterExit = true;
+                    Environment = [ "KEEP_OLD_ROOTS=${toString settings.keepOldRoots}" ];
                   };
                   script = ''
                     btrfs-delete-old-snapshots
-                    btrfs-choose-snapshot
+                    btrfs-select-root
                   '';
                 };
               };
@@ -152,6 +151,16 @@ in
             fsType = "vfat";
             options = [
               "umask=0077"
+            ];
+          };
+          ${btrfsTop} = {
+            device = "/dev/mapper/crypted";
+            fsType = "btrfs";
+            options = [
+              "subvolid=5"
+              "noatime"
+              "compress=zstd"
+              "nofail"
             ];
           };
         };
@@ -193,6 +202,35 @@ in
             };
             script = "ip rule add priority 5200 to ${settings.lan.subnet} table main";
             postStop = "ip rule del priority 5200 to ${settings.lan.subnet} table main";
+          };
+
+          limine-snapshots = {
+            description = "Refresh the Limine root snapshot entries";
+            wantedBy = [ "multi-user.target" ];
+            unitConfig.RequiresMountsFor = btrfsTop;
+            path = [ pkgs.local.scripts ];
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+              Environment = [
+                "ESP_MNT=${esp}"
+                "BTRFS_MNT=${btrfsTop}"
+                "KEEP_OLD_ROOTS=${toString settings.keepOldRoots}"
+              ];
+            };
+            script = "limine snapshots";
+          };
+
+          limine-cleanup = {
+            description = "Remove leftover systemd-boot files and UEFI entry";
+            wantedBy = [ "multi-user.target" ];
+            path = [ pkgs.local.scripts ];
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+              Environment = [ "ESP_MNT=${esp}" ];
+            };
+            script = "limine cleanup";
           };
         };
 
@@ -372,16 +410,16 @@ in
           };
 
         systemd = {
-          services.encryption-expire = lib.mkIf isDesktop {
+          services.encryption-expire = {
             description = "Expire the TPM keyslot cache after 12 hours";
             path = [ pkgs.local.scripts ];
             serviceConfig = {
               Type = "oneshot";
-              Environment = [ "ESP_MNT=/boot" ];
+              Environment = [ "ESP_MNT=${esp}" ];
             };
             script = "encryption expire";
           };
-          timers.encryption-expire = lib.mkIf isDesktop {
+          timers.encryption-expire = {
             wantedBy = [ "timers.target" ];
             timerConfig = {
               OnCalendar = "*:0/15";

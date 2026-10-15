@@ -8,6 +8,7 @@
   btrfs-progs,
   dialog,
   coreutils,
+  efibootmgr,
   findutils,
   gnugrep,
   util-linux,
@@ -19,15 +20,17 @@ let
     btrfs-progs
     dialog
     coreutils
+    efibootmgr
     findutils
     gnugrep
     util-linux
   ];
 
   wrappers = {
-    btrfs-choose-snapshot = "choose-snapshot.sh";
+    btrfs-select-root = "select-root.sh";
     btrfs-delete-old-snapshots = "delete-old-snapshots.sh";
     encryption = "encryption.sh";
+    limine = "limine.sh";
   };
 in
 stdenv.mkDerivation {
@@ -48,9 +51,10 @@ stdenv.mkDerivation {
     mkdir -p $out/libexec $out/bin
 
     install -m644 lib.sh $out/libexec/lib.sh
-    install -m755 choose-snapshot.sh $out/libexec/choose-snapshot.sh
+    install -m755 select-root.sh $out/libexec/select-root.sh
     install -m755 delete-old-snapshots.sh $out/libexec/delete-old-snapshots.sh
     install -m755 encryption.sh $out/libexec/encryption.sh
+    install -m755 limine.sh $out/libexec/limine.sh
 
     patchShebangs $out/libexec
 

@@ -5,8 +5,6 @@ source lib.sh
 
 LOG_PREFIX=encryption
 LUKS_DEVICE=${LUKS_DEVICE:-/dev/disk/by-partlabel/disk-main-luks}
-ESP_DEVICE=${ESP_DEVICE:-/dev/disk/by-partlabel/disk-main-ESP}
-ESP_MNT=${ESP_MNT:-/run/esp}
 STAMP=$ESP_MNT/credential.stamp
 TTL=${TTL:-43200}
 PASS_FILE=/run/credential.pass
@@ -23,11 +21,15 @@ has_tpm_slot() {
     systemd-cryptenroll "$LUKS_DEVICE" 2>/dev/null | grep -qi tpm2
 }
 
+tpm_device_present() {
+    [[ -e /dev/tpmrm0 ]] || [[ -e /dev/tpm0 ]]
+}
+
 wait_for_tpm() {
     local _attempt
 
     for _attempt in {1..50}; do
-        if [[ -e /dev/tpmrm0 ]] || [[ -e /dev/tpm0 ]]; then
+        if tpm_device_present; then
             return 0
         fi
 
@@ -35,6 +37,10 @@ wait_for_tpm() {
     done
 
     return 1
+}
+
+has_tpm_hardware() {
+    [[ -e /sys/firmware/acpi/tables/TPM2 ]] || tpm_device_present
 }
 
 is_fresh() {
@@ -121,6 +127,11 @@ ensure() {
     trap umount_esp EXIT
 
     mount_esp
+
+    if ! has_tpm_hardware || ! wait_for_tpm; then
+        log "no TPM device; skipping the TPM cache"
+        return 0
+    fi
 
     if has_tpm_slot; then
         if is_fresh; then

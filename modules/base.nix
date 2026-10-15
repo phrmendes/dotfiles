@@ -22,6 +22,7 @@
         home = "/home/phrmendes";
         serverDomain = "local.phrmendes.xyz";
         stateVersion = "26.11";
+        keepOldRoots = 5;
         gcpProject = "rj-ia-desenvolvimento";
         nvimServerPort = 6666;
         podmanSubnet = "172.18.0.0/16";

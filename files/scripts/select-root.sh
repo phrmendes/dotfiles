@@ -4,48 +4,53 @@ set -euo pipefail
 source lib.sh
 
 LOG_PREFIX=btrfs
-ROLLBACK_TIMEOUT=${ROLLBACK_TIMEOUT:-5}
 RETIRED_ROOT=
 ROLLBACK_TARGET=
 
-choose_snapshot() {
-    local snapshots=()
-    local menu=()
-    local index
-    local choice
+snapshot_from_cmdline() {
+    local cmdline=${1:-/proc/cmdline}
+    local name
+    local word
+    local -a words=()
 
-    mapfile -t snapshots < <(list_old_roots)
+    IFS=$' \t' read -r -a words <"$cmdline" 2>/dev/null || true
 
-    if ((${#snapshots[@]} == 0)); then
-        return 0
-    fi
+    for word in "${words[@]}"; do
+        case $word in
+            "$ROOT_TOKEN"=?*)
+                name=${word#"$ROOT_TOKEN="}
 
-    menu=(0 "fresh root")
+                case $name in
+                    *[!A-Za-z0-9_.:-]*) return 0 ;;
+                esac
 
-    for index in "${!snapshots[@]}"; do
-        menu+=("$((index + 1))" "${snapshots[$index]##*/}")
+                printf '%s\n' "$name"
+                return 0
+                ;;
+        esac
     done
 
-    choice=$(TERM=${TERM:-linux} dialog \
-        --backtitle "NixOS" \
-        --title "Root snapshot" \
-        --no-shadow --aspect 12 \
-        --ok-button "Boot" --cancel-button "Fresh root" \
-        --default-item 0 --timeout "$ROLLBACK_TIMEOUT" \
-        --menu "Choose the root subvolume to boot" 0 0 0 "${menu[@]}" \
-        2>&1 1>/dev/console </dev/console) || true
-
-    if [[ ! $choice =~ ^[0-9]+$ ]]; then
-        return 0
-    fi
-
-    if ((choice < 1 || choice > ${#snapshots[@]})); then
-        return 0
-    fi
-
-    ROLLBACK_TARGET=${snapshots[$((choice - 1))]}
-
     return 0
+}
+
+snapshot_target() {
+    local name
+    local target
+
+    name=$(snapshot_from_cmdline)
+
+    if [[ -z $name ]]; then
+        return 0
+    fi
+
+    target=$OLD_ROOTS/$name
+
+    if [[ ! -d $target ]]; then
+        log "unknown root snapshot: $name"
+        return 0
+    fi
+
+    printf '%s\n' "$target"
 }
 
 retire_root() {
@@ -123,7 +128,7 @@ main() {
     trap umount_btrfs EXIT
 
     mount_btrfs
-    choose_snapshot
+    ROLLBACK_TARGET=$(snapshot_target)
 
     if [[ -n $ROLLBACK_TARGET ]]; then
         boot_snapshot
@@ -137,4 +142,6 @@ main() {
     fi
 }
 
-main
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
+    main
+fi

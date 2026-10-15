@@ -5,6 +5,9 @@ export BTRFS_MNT=${BTRFS_MNT:-/btrfs_tmp}
 export ROOT_SUBVOL=$BTRFS_MNT/root
 export OLD_ROOTS=$BTRFS_MNT/old_roots
 export KEEP_OLD_ROOTS=${KEEP_OLD_ROOTS:-5}
+export ESP_DEVICE=${ESP_DEVICE:-/dev/disk/by-partlabel/disk-main-ESP}
+export ESP_MNT=${ESP_MNT:-/run/esp}
+export ROOT_TOKEN=nixos.root_snapshot
 
 log() {
     printf '%s: %s\n' "${LOG_PREFIX:-initrd}" "$*" >&2

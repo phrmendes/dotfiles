@@ -390,6 +390,20 @@ in
             };
           };
 
+        systemd.services.expire-tpm = {
+          description = "Wipe the TPM keyslot so the next boot asks for the full passphrase";
+          path = [ config.systemd.package ];
+          serviceConfig.Type = "oneshot";
+          script = "systemd-cryptenroll --wipe-slot=tpm2 /dev/disk/by-partlabel/disk-main-luks";
+        };
+        systemd.timers.expire-tpm = {
+          wantedBy = [ "timers.target" ];
+          timerConfig = {
+            OnCalendar = "*-*-1/3";
+            Persistent = true;
+          };
+        };
+
         swapDevices = [
           {
             device = "/persist/swapfile";

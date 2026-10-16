@@ -55,7 +55,9 @@ in
           ];
         };
 
-        specialisation.pick-root.configuration.boot.kernelParams = [ "nixos.root_snapshot=ask" ];
+        specialisation.restore-ephemeral.configuration.boot.kernelParams = [
+          "nixos.restore_ephemeral=ask"
+        ];
 
         age.identityPaths = [ "/persist${settings.home}/.ssh/age" ];
 
@@ -103,14 +105,17 @@ in
               };
               services = {
                 systemd-udevd.after = [ "systemd-modules-load.service" ]; # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
-                rotate-root = {
-                  description = "Rotate the btrfs root and keep the newest old roots";
+                reset-ephemeral = {
+                  description = "Reset the ephemeral filesystem and keep the newest old copies";
                   requiredBy = [ "sysroot.mount" ];
                   before = [ "sysroot.mount" ];
                   after = [ "systemd-cryptsetup@crypted.service" ];
                   requires = [ "systemd-cryptsetup@crypted.service" ];
                   unitConfig.DefaultDependencies = false;
-                  serviceConfig.Type = "oneshot";
+                  serviceConfig = {
+                    Type = "oneshot";
+                    RemainAfterExit = true;
+                  };
                   script = ''
                     mkdir -p /top
                     mount -o subvolid=5 /dev/mapper/crypted /top
@@ -119,13 +124,13 @@ in
                     pick=
                     read -r cmdline </proc/cmdline
                     case " $cmdline " in
-                      *" nixos.root_snapshot=ask "*)
+                      *" nixos.restore_ephemeral=ask "*)
                         set --
                         for d in $(ls -d /top/old_roots/* 2>/dev/null | sort -r); do
                           set -- "$@" "''${d##*/}" ""
                         done
                         if [ $# -gt 0 ]; then
-                          pick=$(TERM=linux dialog --timeout 60 --menu "Boot which root?" 20 76 12 "$@" 2>&1 1>/dev/console </dev/console) || pick=
+                          pick=$(TERM=linux dialog --timeout 60 --menu "Restore which ephemeral state?" 20 76 12 "$@" 2>&1 1>/dev/console </dev/console) || pick=
                         fi
                         ;;
                     esac

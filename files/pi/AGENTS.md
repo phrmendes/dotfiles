@@ -37,7 +37,6 @@
 
 - Climb this ladder and stop at the first rung that holds: does it need to exist? Is it already in the repo? Does the stdlib or a native platform feature cover it? Does an installed dependency solve it? Can it be one line? Only then write the minimum code.
 - No unrequested abstractions and no scaffolding "for later": no interface with one implementation, no factory for one product, no config for a value that never changes.
-- Mark a deliberate simplification that cuts a real corner with a `ponytail:` comment that names the ceiling and the upgrade path.
 
 ## Nushell
 

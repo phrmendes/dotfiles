@@ -74,7 +74,7 @@ in
             };
             limine = {
               enable = true;
-              maxGenerations = 10;
+              maxGenerations = 3;
               extraInstallCommands = "ESP_MNT=${esp} BTRFS_MNT=${btrfsTop} KEEP_OLD_ROOTS=${toString settings.keepOldRoots} ${pkgs.local.scripts}/bin/limine snapshots || true";
             };
           };

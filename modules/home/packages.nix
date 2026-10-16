@@ -52,6 +52,7 @@
         diff-persist
         gcp
         noctalia-settings-diff
+        pin
       ]);
   };
 }

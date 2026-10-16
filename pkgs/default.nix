@@ -6,5 +6,6 @@
   gcp = pkgs.callPackage ./gcp.nix { };
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nushell = pkgs.callPackage ./nushell.nix { };
+  pin = pkgs.callPackage ./pin.nix { };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
 }

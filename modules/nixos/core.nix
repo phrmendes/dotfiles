@@ -17,7 +17,6 @@ in
     }:
     let
       utils = import ../../utils { inherit lib; };
-      esp = config.boot.loader.efi.efiSysMountPoint;
       btrfsTop = "/run/btrfs";
       isWorkstation = builtins.elem (config.workstation.type or "server") [
         "desktop"
@@ -56,6 +55,8 @@ in
           ];
         };
 
+        specialisation.pick-root.configuration.boot.kernelParams = [ "nixos.root_snapshot=ask" ];
+
         age.identityPaths = [ "/persist${settings.home}/.ssh/age" ];
 
         boot = {
@@ -75,7 +76,6 @@ in
             limine = {
               enable = true;
               maxGenerations = 3;
-              extraInstallCommands = "ESP_MNT=${esp} BTRFS_MNT=${btrfsTop} KEEP_OLD_ROOTS=${toString settings.keepOldRoots} ${pkgs.local.scripts}/bin/limine snapshots || true";
             };
           };
           kernelModules = [ "fuse" ];
@@ -97,46 +97,55 @@ in
             };
             systemd = {
               enable = true;
-              initrdBin = [
-                pkgs.dialog
-                pkgs.local.scripts
-              ];
-              storePaths = [
-                pkgs.local.scripts
-              ];
+              initrdBin = [ pkgs.dialog ];
               contents = {
                 "/etc/dialogrc".source = ../../files/dialogrc;
               };
               services = {
                 systemd-udevd.after = [ "systemd-modules-load.service" ]; # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
-                encryption = {
-                  description = "TPM keyslot cache for the LUKS root (12 hour window)";
-                  wantedBy = [ "systemd-cryptsetup@crypted.service" ];
-                  before = [ "systemd-cryptsetup@crypted.service" ];
-                  unitConfig.DefaultDependencies = false;
-                  serviceConfig = {
-                    Type = "oneshot";
-                    RemainAfterExit = true;
-                  };
-                  script = "encryption ensure";
-                };
-                initrd-btrfs-cleanup = {
-                  description = "Btrfs subvolume cleanup and recreation";
+                rotate-root = {
+                  description = "Rotate the btrfs root and keep the newest old roots";
                   requiredBy = [ "sysroot.mount" ];
                   before = [ "sysroot.mount" ];
-                  unitConfig = {
-                    After = [ "systemd-cryptsetup@crypted.service" ];
-                    Requires = [ "systemd-cryptsetup@crypted.service" ];
-                    DefaultDependencies = false;
-                  };
-                  serviceConfig = {
-                    Type = "oneshot";
-                    RemainAfterExit = true;
-                    Environment = [ "KEEP_OLD_ROOTS=${toString settings.keepOldRoots}" ];
-                  };
+                  after = [ "systemd-cryptsetup@crypted.service" ];
+                  requires = [ "systemd-cryptsetup@crypted.service" ];
+                  unitConfig.DefaultDependencies = false;
+                  serviceConfig.Type = "oneshot";
                   script = ''
-                    btrfs-delete-old-snapshots
-                    btrfs-select-root
+                    mkdir -p /top
+                    mount -o subvolid=5 /dev/mapper/crypted /top
+                    mkdir -p /top/old_roots
+
+                    pick=
+                    read -r cmdline </proc/cmdline
+                    case " $cmdline " in
+                      *" nixos.root_snapshot=ask "*)
+                        set --
+                        for d in $(ls -d /top/old_roots/* 2>/dev/null | sort -r); do
+                          set -- "$@" "''${d##*/}" ""
+                        done
+                        if [ $# -gt 0 ]; then
+                          pick=$(TERM=linux dialog --timeout 60 --menu "Boot which root?" 20 76 12 "$@" 2>&1 1>/dev/console </dev/console) || pick=
+                        fi
+                        ;;
+                    esac
+                    case $pick in */* | .*) pick= ;; esac
+
+                    if [ -e /top/root ]; then
+                      read -r uuid </proc/sys/kernel/random/uuid
+                      mv /top/root "/top/old_roots/$(date +%F_%T)_''${uuid%%-*}"
+                    fi
+
+                    if [ -n "$pick" ] && [ -d "/top/old_roots/$pick" ]; then
+                      mv "/top/old_roots/$pick" /top/root
+                    else
+                      btrfs subvolume create /top/root
+                    fi
+
+                    ls -d /top/old_roots/* 2>/dev/null | sort -r | tail -n +$((${toString settings.keepOldRoots} + 1)) | while read -r old; do
+                      btrfs subvolume delete --recursive "$old"
+                    done
+                    umount /top
                   '';
                 };
               };
@@ -204,34 +213,6 @@ in
             postStop = "ip rule del priority 5200 to ${settings.lan.subnet} table main";
           };
 
-          limine-snapshots = {
-            description = "Refresh the Limine root snapshot entries";
-            wantedBy = [ "multi-user.target" ];
-            unitConfig.RequiresMountsFor = btrfsTop;
-            path = [ pkgs.local.scripts ];
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-              Environment = [
-                "ESP_MNT=${esp}"
-                "BTRFS_MNT=${btrfsTop}"
-                "KEEP_OLD_ROOTS=${toString settings.keepOldRoots}"
-              ];
-            };
-            script = "limine snapshots";
-          };
-
-          limine-cleanup = {
-            description = "Remove leftover systemd-boot files and UEFI entry";
-            wantedBy = [ "multi-user.target" ];
-            path = [ pkgs.local.scripts ];
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-              Environment = [ "ESP_MNT=${esp}" ];
-            };
-            script = "limine cleanup";
-          };
         };
 
         home-manager = {
@@ -408,26 +389,6 @@ in
               };
             };
           };
-
-        systemd = {
-          services.encryption-expire = {
-            description = "Expire the TPM keyslot cache after 12 hours";
-            path = [ pkgs.local.scripts ];
-            serviceConfig = {
-              Type = "oneshot";
-              Environment = [ "ESP_MNT=${esp}" ];
-            };
-            script = "encryption expire";
-          };
-          timers.encryption-expire = {
-            wantedBy = [ "timers.target" ];
-            timerConfig = {
-              OnCalendar = "*:0/15";
-              Persistent = true;
-              Unit = "encryption-expire.service";
-            };
-          };
-        };
 
         swapDevices = [
           {

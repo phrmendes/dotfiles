@@ -7,5 +7,4 @@
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nushell = pkgs.callPackage ./nushell.nix { };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
-  scripts = pkgs.callPackage ./scripts.nix { };
 }

@@ -8,19 +8,30 @@
 ## Guardrails
 
 - Never commit without explicit user approval — the user reviews first
-- Stage and summarize the change, then wait; the user says when to commit
 - Never push, open, or merge a pull request without explicit user approval
 - Follow the repo's commit convention — infer style from `git log`
 - Do not print or edit the contents of `secrets/**`
-- Do not hand-edit `flake.lock`; use `nix flake update`
+- Do not hand-edit `flake.lock`. Use `nix flake update`.
 - End a Nix change with the exact rebuild command, for example `nh home switch` or `nixos-rebuild switch --flake .#desktop`
 
 ## General
 
-- Always talk ASD-STE100 Simplified Technical English.
 - Prefer idiomatic tooling for each ecosystem.
 - Run project commands in the project environment: `devenv shell -- <cmd>` in devenv projects, `nix develop -c <cmd>` in flake projects.
 - Put files you share with the user, such as screenshots, logs, and exports, in `/mnt/external/pi`. Files there are deleted after 7 days.
+
+## Writing (ASD-STE100)
+
+- Apply these rules to user-facing prose, documentation, and commit messages. Do not apply them to code identifiers.
+- Use one word for one meaning.
+- Use the same term each time.
+- Keep each sentence at most 25 words.
+- Keep each paragraph at most six sentences.
+- Use active voice. Do not use passive, perfect, or progressive tense.
+- Do not use a semicolon. Write two sentences.
+- Do not use contractions.
+- Do not use a phrasal verb. Use the approved single verb.
+- Do not use marketing or hedging words.
 
 ## Simplicity
 
@@ -37,8 +48,8 @@
 
 ## Response Style
 
-- Lead with the direct answer or the smallest useful next action; do not add a preamble.
-- Write code first, then at most three short lines: what was skipped and when to add it.
+- Lead with the direct answer or the smallest useful next action. Do not add a preamble.
+- For a code change, write the code first. Then add at most three short lines: what you skipped and when to add it.
 - Use numbered steps for multi-step work. Keep each step short and bounded.
 - Restate the current state, show completed work, and suppress unrelated tangents.
 - For incomplete practical work, end with one clear next action. Follow explicit user requests and higher-priority instructions over these defaults.
@@ -53,5 +64,5 @@
 - Keep tests independent, deterministic, and focused on observable behavior.
 - Prefer table-driven tests for multiple inputs, expected outputs, and edge cases.
 - Give each table case a clear name that explains the scenario.
-- Keep shared test setup small; avoid hiding case-specific behavior in helpers.
+- Keep shared test setup small. Do not hide case-specific behavior in helpers.
 - Do not remove or weaken a test to make the implementation pass.

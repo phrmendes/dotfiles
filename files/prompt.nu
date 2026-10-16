@@ -1,3 +1,4 @@
+# Current directory, shortened, with a marker when it is read-only.
 def cwd-prompt []: nothing -> string {
     let directory = (
         path_abbrev_if_needed (home_abbrev $nu.os-info.name) (term size).columns
@@ -27,6 +28,7 @@ def cwd-prompt []: nothing -> string {
     $"(ansi cyan_bold)($directory)(ansi reset)($marker)"
 }
 
+# Duration of the last command, shown only when it took 2 seconds or more.
 def duration-prompt []: nothing -> string {
     let duration = $env.CMD_DURATION_MS? | default 0 | into int
     if $duration < 2000 {
@@ -37,6 +39,7 @@ def duration-prompt []: nothing -> string {
     }
 }
 
+# Prompt symbol: purple in normal mode, green after success, red after failure.
 def lambda-prompt [mode: string = "insert"]: nothing -> string {
     let exit_code = $env.LAST_EXIT_CODE? | default 0 | into int
 
@@ -49,8 +52,9 @@ def lambda-prompt [mode: string = "insert"]: nothing -> string {
     $"(ansi $color)λ(ansi reset)(duration-prompt) "
 }
 
+# The user and host name, shown only inside an SSH session.
 def ssh-host-prompt []: nothing -> string {
-    if ($env.SSH_CONNECTION? == null) {
+    if $env.SSH_CONNECTION? == null {
         ""
     } else {
         $"(ansi magenta_bold)(whoami)@(sys host | get hostname)(ansi reset) "

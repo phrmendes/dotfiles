@@ -3,7 +3,10 @@
 nushell.withPlugins (
   with nushellPlugins;
   [
-    polars
+    formats
     gstat
+    inc
+    polars
+    query
   ]
 )

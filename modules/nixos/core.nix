@@ -116,42 +116,8 @@ in
                     Type = "oneshot";
                     RemainAfterExit = true;
                   };
-                  script = ''
-                    mkdir -p /top
-                    mount -o subvolid=5 /dev/mapper/crypted /top
-                    mkdir -p /top/old_roots
-
-                    pick=
-                    read -r cmdline </proc/cmdline
-                    case " $cmdline " in
-                      *" nixos.restore_ephemeral=ask "*)
-                        set --
-                        for d in $(ls -d /top/old_roots/* 2>/dev/null | sort -r); do
-                          set -- "$@" "''${d##*/}" ""
-                        done
-                        if [ $# -gt 0 ]; then
-                          pick=$(TERM=linux dialog --timeout 60 --menu "Restore which ephemeral state?" 20 76 12 "$@" 2>&1 1>/dev/console </dev/console) || pick=
-                        fi
-                        ;;
-                    esac
-                    case $pick in */* | .*) pick= ;; esac
-
-                    if [ -e /top/root ]; then
-                      read -r uuid </proc/sys/kernel/random/uuid
-                      mv /top/root "/top/old_roots/$(date +%F_%T)_''${uuid%%-*}"
-                    fi
-
-                    if [ -n "$pick" ] && [ -d "/top/old_roots/$pick" ]; then
-                      mv "/top/old_roots/$pick" /top/root
-                    else
-                      btrfs subvolume create /top/root
-                    fi
-
-                    ls -d /top/old_roots/* 2>/dev/null | sort -r | tail -n +$((${toString settings.keepOldRoots} + 1)) | while read -r old; do
-                      btrfs subvolume delete --recursive "$old"
-                    done
-                    umount /top
-                  '';
+                  environment.KEEP_OLD_ROOTS = toString settings.keepOldRoots;
+                  script = builtins.readFile ../../files/reset-ephemeral.sh;
                 };
               };
             };

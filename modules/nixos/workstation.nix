@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (config) settings;
+  inherit (config) settings homeModules;
   commonDirs = [
     ".ansible"
     ".cache/helm"
@@ -120,6 +120,48 @@ in
       };
 
       config = {
+        home-manager.users.${settings.user}.imports = with homeModules; [
+          atuin
+          base
+          bat
+          btop
+          cliphist
+          devenv
+          difftastic
+          direnv
+          fd
+          flameshot
+          fzf
+          gh
+          git
+          gnupg
+          gtk
+          hyprland
+          imv
+          jq
+          jujutsu
+          k8s
+          keepassxc
+          kitty
+          lua
+          mpv
+          neovim
+          nix-index
+          noctalia
+          nushell
+          packages
+          pi
+          ripgrep
+          symlinks
+          tealdeer
+          tmux
+          udiskie
+          xdg
+          yazi
+          zathura
+          zoxide
+        ];
+
         age.secrets = {
           "pi.json" = mkSecretReadable {
             owner = settings.user;

@@ -96,48 +96,9 @@ in
       ];
 
       home-manager.users.${settings.user}.imports = with homeModules; [
-        atuin
-        base
-        bat
-        btop
         chromium
-        cliphist
-        devenv
-        difftastic
-        direnv
-        fd
-        flameshot
-        fzf
         gaming
-        gh
-        git
-        gnupg
-        gtk
-        hyprland
-        imv
-        jq
-        jujutsu
-        k8s
-        keepassxc
-        kitty
-        lua
-        mpv
         neovide
-        neovim
-        nix-index
-        noctalia
-        nushell
-        packages
-        pi
-        ripgrep
-        symlinks
-        tealdeer
-        tmux
-        udiskie
-        xdg
-        yazi
-        zathura
-        zoxide
       ];
     };
 }

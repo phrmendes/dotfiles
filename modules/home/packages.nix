@@ -43,6 +43,7 @@
         tectonic
         tesseract
         thunar
+        tuicr
         wl-clipboard
         worktrunk
         xre

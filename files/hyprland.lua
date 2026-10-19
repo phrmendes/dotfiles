@@ -109,7 +109,7 @@ hl.window_rule({ match = { title = "flameshot" }, float = true })
 hl.window_rule({ match = { class = ".blueman-manager-wrapped" }, float = true, opaque = true })
 hl.window_rule({ match = { class = "org.pulseaudio.pavucontrol" }, float = true, opaque = true, stay_focused = true })
 hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, float = true })
-hl.window_rule({ match = { class = "firefox" }, opaque = true })
+hl.window_rule({ match = { class = "librewolf" }, opaque = true })
 hl.window_rule({ match = { class = "mpv" }, opaque = true })
 
 hl.layer_rule({
@@ -127,7 +127,7 @@ hl.bind("SUPER + ALT + H", hl.dsp.window.resize({ x = -20, y = 0, relative = tru
 hl.bind("SUPER + ALT + J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 hl.bind("SUPER + ALT + K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
 hl.bind("SUPER + ALT + L", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
-hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("librewolf"))
 hl.bind("SUPER + CTRL + H", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind("SUPER + CTRL + L", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind("SUPER + F", hl.dsp.window.float({ action = "toggle" }))

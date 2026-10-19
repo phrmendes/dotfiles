@@ -142,6 +142,7 @@ in
           k8s
           keepassxc
           kitty
+          librewolf
           lua
           mpv
           neovim

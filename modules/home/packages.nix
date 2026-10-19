@@ -11,7 +11,6 @@
         ffmpegthumbnailer
         file-roller
         filezilla
-        firefox
         gcolor3
         gdu
         glab

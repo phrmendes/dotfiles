@@ -397,7 +397,6 @@ in
               ++ lib.optionals isWorkstation [
                 "adbusers"
                 "audio"
-                "libvirtd"
                 "video"
               ];
             };

@@ -246,7 +246,10 @@ in
           nano.enable = false;
           fuse.userAllowOther = true;
           command-not-found.enable = false;
-          nushell.enable = true;
+          nushell = {
+            enable = true;
+            package = pkgs.local.nushell;
+          };
 
           nix-ld = {
             enable = true;
@@ -374,7 +377,7 @@ in
           users = {
             ${settings.user} = {
               inherit (settings) home;
-              shell = pkgs.nushell;
+              shell = pkgs.local.nushell;
               password = "changeme";
               openssh.authorizedKeys.keys = [
                 (builtins.readFile ../../files/ssh/main.txt)

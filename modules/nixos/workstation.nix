@@ -154,7 +154,6 @@ in
           symlinks
           tealdeer
           tmux
-          udiskie
           xdg
           yazi
           zathura
@@ -241,6 +240,10 @@ in
           hyprland = {
             enable = true;
             withUWSM = true;
+          };
+          thunar = {
+            enable = true;
+            plugins = with pkgs; [ thunar-volman ];
           };
           virt-manager.enable = true;
         };

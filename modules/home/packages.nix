@@ -16,7 +16,6 @@
         gcolor3
         gdu
         glab
-        grim
         handy
         hurl
         imagemagick
@@ -39,7 +38,6 @@
         poppler
         proton-vpn
         rustc
-        slurp
         tectonic
         tesseract
         thunar

@@ -32,7 +32,6 @@
         opentofu
         pandoc
         parallel
-        pass
         pavucontrol
         phockup
         poppler

@@ -8,7 +8,6 @@ vim.lsp.enable({
   "bashls",
   "cssls",
   "docker_language_server",
-  "dotls",
   "emmet_language_server",
   "eslint",
   "gitlab_ci_ls",

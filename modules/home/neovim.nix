@@ -24,12 +24,12 @@
         extraPackages = with pkgs; [
           lynx
           tree-sitter
+          vscode-extensions.vadimcn.vscode-lldb
           # language servers
           ansible-language-server
           astro-language-server
           bash-language-server
           docker-language-server
-          dot-language-server
           emmet-language-server
           gitlab-ci-ls
           helm-ls
@@ -57,15 +57,15 @@
           tflint
           # formatters
           djlint
+          eslint
           jq
           kdlfmt
           nixfmt
           nufmt
-          oxfmt
+          prettier
           ruff
           rustfmt
           shellharden
-          vscode-extensions.vadimcn.vscode-lldb
           shfmt
           stylua
           tex-fmt

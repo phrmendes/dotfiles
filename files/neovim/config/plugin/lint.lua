@@ -1,16 +1,16 @@
 safely("later", function()
   require("lint").linters_by_ft = {
-    astro = { "oxlint" },
+    astro = { "eslint" },
     bash = { "shellcheck" },
     htmldjango = { "djlint" },
-    javascript = { "oxlint" },
+    javascript = { "eslint" },
     jinja2 = { "djlint" },
-    jsx = { "oxlint" },
+    jsx = { "eslint" },
     rust = { "clippy" },
     sh = { "shellcheck" },
     terraform = { "tflint" },
-    tsx = { "oxlint" },
-    typescript = { "oxlint" },
+    tsx = { "eslint" },
+    typescript = { "eslint" },
     ["yaml.ansible"] = { "ansible_lint" },
   }
 

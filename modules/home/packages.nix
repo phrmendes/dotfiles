@@ -4,7 +4,6 @@
       (with pkgs; [
         android-tools
         cargo
-        deluge
         docker-compose
         drawing
         exiftool
@@ -39,6 +38,7 @@
         rustc
         tectonic
         tesseract
+        transmission_4-gtk
         tuicr
         wl-clipboard
         worktrunk

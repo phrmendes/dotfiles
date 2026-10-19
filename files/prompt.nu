@@ -73,3 +73,14 @@ load-env {
     TRANSIENT_PROMPT_INDICATOR_VI_INSERT: {|| lambda-prompt }
     TRANSIENT_PROMPT_INDICATOR_VI_NORMAL: {|| lambda-prompt normal }
 }
+
+$env.config.menus = (
+    $env.config.menus
+    | each {|menu|
+        if $menu.name in ["completion_menu" "ide_completion_menu"] {
+            $menu | upsert marker "λ "
+        } else {
+            $menu
+        }
+    }
+)

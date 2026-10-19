@@ -125,7 +125,6 @@ in
           base
           bat
           btop
-          cliphist
           devenv
           difftastic
           direnv

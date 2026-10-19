@@ -5,7 +5,6 @@ nushell.withPlugins (
   [
     formats
     gstat
-    inc
     polars
     query
   ]

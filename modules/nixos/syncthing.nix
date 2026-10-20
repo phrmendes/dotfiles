@@ -4,7 +4,7 @@ let
 in
 {
   nixosModules.syncthing =
-    { config, ... }:
+    { config, lib, ... }:
     let
       port = 8384;
     in
@@ -80,25 +80,16 @@ in
               urAccepted = -1;
             };
 
-            devices = {
-              desktop = {
-                id = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
-                autoAcceptFolders = false;
-              };
-              laptop = {
-                id = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
-                autoAcceptFolders = false;
-              };
-              phone = {
-                id = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
-                introducer = true;
-                autoAcceptFolders = false;
-              };
-              tablet = {
-                id = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
-                autoAcceptFolders = false;
-              };
-            };
+            devices =
+              removeAttrs settings.syncthingDevices [ "server" ]
+              |> lib.mapAttrs (
+                name: id:
+                {
+                  inherit id;
+                  autoAcceptFolders = false;
+                }
+                // lib.optionalAttrs (name == "phone") { introducer = true; }
+              );
 
             folders =
               let

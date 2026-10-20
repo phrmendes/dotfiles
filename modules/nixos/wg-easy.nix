@@ -1,6 +1,4 @@
-{ config, ... }:
 let
-  inherit (config.settings) lan;
   port = 51821;
 in
 {
@@ -50,12 +48,6 @@ in
           DISABLE_IPV6 = "true";
           DISABLE_VERSION_CHECK = "true";
           HOST = "127.0.0.1";
-          INIT_ALLOWED_IPS = "192.168.0.0/24,10.8.0.0/24";
-          INIT_DNS = lan.serverAddress;
-          INIT_ENABLED = "true";
-          INIT_HOST = "vpn.phrmendes.xyz";
-          INIT_PORT = "51820";
-          INIT_USERNAME = "admin";
           NODE_EXTRA_CA_CERTS = "/etc/ca.crt";
           OAUTH_AUTO_REGISTER = "true";
           OAUTH_OIDC_CLIENT_ID = "wg-easy";

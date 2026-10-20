@@ -30,6 +30,7 @@
           subnet = "192.168.0.0/24";
           interface = "enp3s0";
           serverAddress = "192.168.0.2";
+          serverMac = "94:c6:91:aa:e3:9e";
           desktopAddress = "192.168.0.4";
           kvmAddress = "192.168.0.8";
         };

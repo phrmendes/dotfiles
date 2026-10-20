@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
+let
+  inherit (config.settings) lan;
+in
 {
   homeModules.nushell =
     {
@@ -41,7 +44,9 @@
             create-secret = "${lib.getExe pkgs.authelia} crypto hash generate argon2 --password";
             k = lib.getExe pkgs.kubectl;
             open-secret = "${lib.getExe' agenix "agenix"} -i ~/.ssh/age -e";
+            unlock-server = "ssh server-unlock";
             v = "nvim";
+            wake-server = "${lib.getExe pkgs.wakeonlan} ${lan.serverMac}";
           };
         extraConfig = ''
           use ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/basic-git.nu basic-git-left-prompt

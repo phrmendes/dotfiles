@@ -41,7 +41,7 @@ in
           {
             asr = "${lib.getExe pkgs.atuin} scripts run";
             cat = lib.getExe pkgs.bat;
-            create-secret = "${lib.getExe pkgs.authelia} crypto hash generate argon2 --password";
+            create-secret = "${lib.getExe pkgs.authelia} crypto hash generate pbkdf2 --variant sha512 --random --random.length 72 --random.charset rfc3986";
             k = lib.getExe pkgs.kubectl;
             open-secret = "${lib.getExe' agenix "agenix"} -i ~/.ssh/age -e";
             unlock-server = "ssh server-unlock";

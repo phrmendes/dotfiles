@@ -34,7 +34,7 @@
         lan = {
           serverAddress = "192.168.0.2";
           serverMac = "94:c6:91:aa:e3:9e";
-          desktopAddress = "192.168.0.4";
+          desktopAddress = "192.168.0.3";
           kvmAddress = "192.168.0.8";
         };
       };

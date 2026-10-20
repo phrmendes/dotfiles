@@ -30,4 +30,5 @@ mkSecrets [
   "sftpgo.age.env"
   "users.age.yaml"
   "wg-easy.age.env"
+  "wg-laptop.age.conf"
 ]

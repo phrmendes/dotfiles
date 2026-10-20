@@ -9,6 +9,9 @@ in
       lib,
       ...
     }:
+    let
+      inherit (config.utils) mkSecretReadable;
+    in
     {
       imports = with nixosModules; [
         core
@@ -31,7 +34,16 @@ in
         };
       };
 
-      networking.hostName = "laptop";
+      age.secrets."wg-laptop.conf" = mkSecretReadable { file = ../secrets/wg-laptop.age.conf; };
+
+      networking = {
+        hostName = "laptop";
+        wg-quick.interfaces.home = {
+          configFile = config.age.secrets."wg-laptop.conf".path;
+          autostart = false;
+        };
+      };
+
       programs.nh.flake = "${settings.home}/.config/dotfiles";
 
       disko.mainDiskDevice = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";

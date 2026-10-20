@@ -1,5 +1,5 @@
 let
-  dataDir = "/srv/authelia";
+  dataDir = "/var/lib/authelia";
 in
 {
   nixosModules.authelia =

@@ -23,7 +23,6 @@
 
       systemd.tmpfiles.rules = [
         "d /mnt/external/photos 2770 immich external -"
-        "d /srv/immich 0750 immich immich -"
       ];
 
       services = {

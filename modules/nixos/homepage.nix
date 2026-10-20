@@ -9,10 +9,6 @@
 
       homepageService = { name, ... }: {
         options = {
-          dataDir = lib.mkOption {
-            type = lib.types.nullOr lib.types.str;
-            default = null;
-          };
           url = lib.mkOption {
             type = lib.types.str;
           };

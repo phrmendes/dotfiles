@@ -14,7 +14,6 @@ in
     {
       homepage.services = {
         sonarr = {
-          dataDir = "/srv/sonarr";
           url = "sonarr.${domain}";
           homepage = {
             name = "Sonarr";
@@ -24,7 +23,6 @@ in
           };
         };
         radarr = {
-          dataDir = "/srv/radarr";
           url = "radarr.${domain}";
           homepage = {
             name = "Radarr";
@@ -43,7 +41,6 @@ in
           };
         };
         bazarr = {
-          dataDir = "/srv/bazarr";
           url = "bazarr.${domain}";
           homepage = {
             name = "Bazarr";
@@ -53,7 +50,6 @@ in
           };
         };
         jellyfin = {
-          dataDir = "/srv/jellyfin";
           url = "jellyfin.${domain}";
           homepage = {
             name = "Jellyfin";
@@ -79,10 +75,6 @@ in
           "d /mnt/external/downloads 2775 ${settings.user} external -"
           "d /mnt/external/downloads/.incomplete 2770 transmission external -"
           "d /mnt/external/comics 2775 ${settings.user} external -"
-          "d /srv/sonarr 0750 sonarr sonarr -"
-          "d /srv/radarr 0750 radarr radarr -"
-          "d /srv/bazarr 0750 bazarr bazarr -"
-          "d /srv/jellyfin 0750 jellyfin jellyfin -"
         ];
       };
 
@@ -114,7 +106,7 @@ in
           });
         sonarr = {
           enable = true;
-          dataDir = "/srv/sonarr";
+          dataDir = "/var/lib/sonarr";
           settings = {
             server.bindAddress = "127.0.0.1";
             Auth.Method = "External";
@@ -122,7 +114,7 @@ in
         };
         radarr = {
           enable = true;
-          dataDir = "/srv/radarr";
+          dataDir = "/var/lib/radarr";
           settings = {
             server.bindAddress = "127.0.0.1";
             Auth.Method = "External";
@@ -136,14 +128,8 @@ in
           };
         };
         flaresolverr.enable = true;
-        bazarr = {
-          enable = true;
-          dataDir = "/srv/bazarr";
-        };
-        jellyfin = {
-          enable = true;
-          dataDir = "/srv/jellyfin";
-        };
+        bazarr.enable = true;
+        jellyfin.enable = true;
       };
     };
 }

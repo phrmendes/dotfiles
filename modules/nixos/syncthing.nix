@@ -12,7 +12,6 @@ in
       users.users.syncthing.extraGroups = [ "external" ];
 
       homepage.services.syncthing = {
-        dataDir = "/srv/syncthing";
         url = "syncthing.${config.caddy.domain}";
         homepage = {
           name = "Syncthing";
@@ -39,9 +38,9 @@ in
         in
         [
           "d /mnt/external/syncthing 2775 ${settings.user} external -"
-          "d /srv/syncthing 0750 syncthing syncthing -"
-          "d /srv/syncthing/.config 0750 syncthing syncthing -"
-          "d /srv/syncthing/.config/syncthing 0750 syncthing syncthing -"
+          "d /var/lib/syncthing 0750 syncthing syncthing -"
+          "d /var/lib/syncthing/.config 0750 syncthing syncthing -"
+          "d /var/lib/syncthing/.config/syncthing 0750 syncthing syncthing -"
         ]
         ++ map syncDir folders;
 
@@ -66,8 +65,6 @@ in
         };
         syncthing = {
           enable = true;
-          dataDir = "/srv/syncthing";
-          configDir = "/srv/syncthing/.config/syncthing";
           overrideDevices = true;
           overrideFolders = true;
           settings = {

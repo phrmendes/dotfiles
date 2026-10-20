@@ -6,7 +6,6 @@
     in
     {
       homepage.services.linkding = {
-        dataDir = "/srv/containers/linkding";
         url = "linkding.${config.caddy.domain}";
         homepage = {
           name = "Linkding";
@@ -22,7 +21,7 @@
       };
 
       systemd = {
-        tmpfiles.rules = [ "d /srv/containers/linkding 0755 root root -" ];
+        tmpfiles.rules = [ "d /var/lib/linkding 0755 root root -" ];
         services."podman-linkding" = {
           after = [ "podman-network-services.service" ];
           requires = [ "podman-network-services.service" ];
@@ -32,7 +31,7 @@
       virtualisation.oci-containers.containers.linkding = {
         image = "docker.io/sissbruecker/linkding:latest-plus";
         ports = [ "127.0.0.1:${toString port}:${toString port}" ];
-        volumes = [ "/srv/containers/linkding:/etc/linkding/data" ];
+        volumes = [ "/var/lib/linkding:/etc/linkding/data" ];
         environment.LD_DB_ENGINE = "sqlite";
         environmentFiles = [ config.age.secrets."linkding.env".path ];
         networks = [ "services" ];

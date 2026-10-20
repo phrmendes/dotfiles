@@ -6,7 +6,6 @@
     in
     {
       homepage.services.atuin = {
-        dataDir = "/var/lib/atuin";
         url = "atuin.${config.caddy.domain}";
         homepage = {
           name = "Atuin";

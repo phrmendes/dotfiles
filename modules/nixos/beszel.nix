@@ -11,7 +11,6 @@
     in
     {
       homepage.services.beszel = {
-        dataDir = "/srv/beszel";
         url = "beszel.${config.caddy.domain}";
         homepage = {
           name = "Beszel";
@@ -49,7 +48,7 @@
       };
 
       systemd = {
-        tmpfiles.rules = [ "d /srv/beszel 0750 beszel-hub beszel-hub -" ];
+        tmpfiles.rules = [ "d /var/lib/beszel 0750 beszel-hub beszel-hub -" ];
         services = {
           homepage-dashboard.serviceConfig.EnvironmentFile = config.age.secrets."beszel.env".path;
           beszel-hub.serviceConfig = {
@@ -112,7 +111,7 @@
             package = pkgs.local.beszel;
             inherit port;
             enable = true;
-            dataDir = "/srv/beszel";
+            dataDir = "/var/lib/beszel";
             host = "127.0.0.1";
             environment = {
               DISABLE_PASSWORD_AUTH = "true";

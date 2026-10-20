@@ -22,7 +22,7 @@
         };
         home-assistant = {
           enable = true;
-          configDir = "/srv/home-assistant";
+          configDir = "/var/lib/home-assistant";
           extraComponents = [
             "mobile_app"
             "sun"
@@ -48,7 +48,7 @@
       };
 
       systemd.tmpfiles.rules = [
-        "d /srv/home-assistant 0750 hass hass -"
+        "d /var/lib/home-assistant 0750 hass hass -"
       ];
     };
 }

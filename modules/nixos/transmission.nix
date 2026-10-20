@@ -22,12 +22,6 @@
 
       users.users.transmission.extraGroups = [ "external" ];
 
-      systemd.tmpfiles.rules = [
-        "d /srv/transmission 0750 transmission transmission -"
-        "d /srv/transmission/.config 0750 transmission transmission -"
-        "d /srv/transmission/.config/transmission-daemon 0750 transmission transmission -"
-      ];
-
       services = {
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "transmission";
@@ -36,7 +30,6 @@
         };
         transmission = {
           enable = true;
-          home = "/srv/transmission";
           openFirewall = false;
           settings = {
             rpc-bind-address = "127.0.0.1";

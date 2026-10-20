@@ -14,7 +14,6 @@ in
       networking.firewall = utils.mkFirewallPort dnsPort;
 
       homepage.services.adguardhome = {
-        dataDir = "/var/lib/AdGuardHome";
         url = "adguardhome.${config.caddy.domain}";
         homepage = {
           name = "AdGuard Home";

@@ -8,7 +8,6 @@
     in
     {
       homepage.services.sftpgo = {
-        dataDir = "/srv/sftpgo";
         url = "sftpgo.${config.caddy.domain}";
         homepage = {
           name = "SFTPGo";
@@ -39,9 +38,9 @@
           ];
         };
         tmpfiles.rules = [
-          "d /srv/sftpgo 0750 sftpgo sftpgo -"
-          "d /srv/qbittorrent 0755 root root -"
-          "d /srv/qbittorrent/watch 0755 root root -"
+          "d /var/lib/sftpgo 0750 sftpgo sftpgo -"
+          "d /var/lib/qbittorrent 0755 root root -"
+          "d /var/lib/qbittorrent/watch 0755 root root -"
         ];
       };
 
@@ -62,11 +61,11 @@
           };
         sftpgo = {
           enable = true;
-          dataDir = "/srv/sftpgo";
+          dataDir = "/var/lib/sftpgo";
           extraReadWriteDirs = [
             "/mnt/external"
-            "/srv/syncthing"
-            "/srv/qbittorrent/watch"
+            "/var/lib/syncthing"
+            "/var/lib/qbittorrent/watch"
           ];
           settings = {
             sftpd = {
@@ -77,9 +76,9 @@
                 }
               ];
               host_keys = [
-                "/srv/sftpgo/id_ecdsa"
-                "/srv/sftpgo/id_ed25519"
-                "/srv/sftpgo/id_rsa"
+                "/var/lib/sftpgo/id_ecdsa"
+                "/var/lib/sftpgo/id_ed25519"
+                "/var/lib/sftpgo/id_rsa"
               ];
             };
             webdavd.bindings = [

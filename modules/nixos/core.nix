@@ -18,10 +18,6 @@ in
     let
       utils = import ../../utils { inherit lib; };
       btrfsTop = "/run/btrfs";
-      isWorkstation = builtins.elem (config.workstation.type or "server") [
-        "desktop"
-        "laptop"
-      ];
     in
     {
       options.utils = lib.mkOption {
@@ -146,19 +142,8 @@ in
         };
 
         hardware = {
-          keyboard.qmk = lib.mkIf isWorkstation { enable = true; };
           enableAllFirmware = true;
           uinput.enable = true;
-          bluetooth = lib.mkIf isWorkstation {
-            enable = true;
-            powerOnBoot = true;
-            settings.Policy.AutoEnable = true;
-            input.General = {
-              ClassicBondedOnly = false;
-              LEBondedOnly = false;
-              UserspaceHID = true;
-            };
-          };
         };
 
         networking.networkmanager.enable = true;
@@ -191,34 +176,23 @@ in
               curl
               dig
               docker-credential-helpers
-              egl-wayland
               file
               findutils
-              gcc
-              gnumake
               gnused
               gzip
               lsof
               mlocate
               openssl
-              p7zip
               psmisc
-              python314
-              rar
               sqlite
-              unar
               unzip
               wget
-              xdg-utils
               zip
             ]
             ++ (with pkgs.unixtools; [
               net-tools
               netstat
-            ])
-            ++ lib.optionals isWorkstation [
-              libsecret
-            ];
+            ]);
         };
 
         programs = {
@@ -237,11 +211,6 @@ in
               libGL
               libxxf86vm
             ];
-          };
-
-          ssh = lib.mkIf isWorkstation {
-            startAgent = true;
-            askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
           };
 
           nh = {
@@ -267,8 +236,6 @@ in
           udev.enable = true;
           envfs.enable = false;
           fstrim.enable = true;
-          geoclue2.enable = isWorkstation;
-          gvfs.enable = isWorkstation;
           ntpd-rs.enable = true;
 
           gnome = {
@@ -346,11 +313,11 @@ in
               inherit (settings) home;
               shell = pkgs.local.nushell;
               password = "changeme";
-              openssh.authorizedKeys.keys = [
-                (builtins.readFile ../../files/ssh/main.txt)
-                (builtins.readFile ../../files/ssh/phone.txt)
-                (builtins.readFile ../../files/ssh/laptop.txt)
-                (builtins.readFile ../../files/ssh/server.txt)
+              openssh.authorizedKeys.keys = map builtins.readFile [
+                ../../files/ssh/main.txt
+                ../../files/ssh/phone.txt
+                ../../files/ssh/laptop.txt
+                ../../files/ssh/server.txt
               ];
               isNormalUser = true;
               uid = 1000;
@@ -360,11 +327,6 @@ in
                 "keys"
                 "networkmanager"
                 "wheel"
-              ]
-              ++ lib.optionals isWorkstation [
-                "adbusers"
-                "audio"
-                "video"
               ];
             };
           };

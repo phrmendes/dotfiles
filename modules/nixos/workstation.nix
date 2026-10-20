@@ -175,6 +175,26 @@ in
           };
         };
 
+        hardware = {
+          keyboard.qmk.enable = true;
+          bluetooth = {
+            enable = true;
+            powerOnBoot = true;
+            settings.Policy.AutoEnable = true;
+            input.General = {
+              ClassicBondedOnly = false;
+              LEBondedOnly = false;
+              UserspaceHID = true;
+            };
+          };
+        };
+
+        users.users.${settings.user}.extraGroups = [
+          "adbusers"
+          "audio"
+          "video"
+        ];
+
         services.tailscale = {
           enable = true;
           useRoutingFeatures = "client";
@@ -188,6 +208,8 @@ in
 
         services = {
           flatpak.enable = true;
+          geoclue2.enable = true;
+          gvfs.enable = true;
 
           greetd = {
             enable = true;
@@ -251,6 +273,10 @@ in
 
         programs = {
           dconf.enable = true;
+          ssh = {
+            startAgent = true;
+            askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
+          };
           hyprland = {
             enable = true;
             withUWSM = true;
@@ -272,8 +298,17 @@ in
               mode = "u=rwx,go=";
             }
           ];
-          systemPackages = [
+          systemPackages = with pkgs; [
+            egl-wayland
+            gcc
+            gnumake
             inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+            libsecret
+            p7zip
+            python314
+            rar
+            unar
+            xdg-utils
           ];
         };
 

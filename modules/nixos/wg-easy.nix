@@ -58,6 +58,11 @@ in
           "--network=host"
           "--cap-add=NET_ADMIN"
           "--cap-add=NET_RAW"
+          "--health-cmd=wget -q --spider http://127.0.0.1:${toString port}/"
+          "--health-interval=30s"
+          "--health-timeout=5s"
+          "--health-retries=3"
+          "--health-start-period=15s"
         ];
       };
     };

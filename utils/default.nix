@@ -60,6 +60,7 @@
           }
 
           handle @websocket {
+            ${lib.optionalString auth "import authelia-auth"}
             reverse_proxy 127.0.0.1:${toString port}
           }
 

@@ -44,7 +44,7 @@ in
       };
 
       virtualisation.oci-containers.containers.wg-easy = {
-        image = "ghcr.io/wg-easy/wg-easy:15";
+        image = "ghcr.io/wg-easy/wg-easy:latest";
         environmentFiles = [ config.age.secrets."wg-easy.env".path ];
         environment = {
           DISABLE_IPV6 = "true";

@@ -21,7 +21,6 @@ mkSecrets [
   "caddy.age.env"
   "dockerhub.age.json"
   "linkding.age.env"
-  "litestream.age.env"
   "miniflux.age.env"
   "noctalia.age.txt"
   "pi.age.json"

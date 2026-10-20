@@ -30,7 +30,6 @@ in
         immich
         impermanence
         linkding
-        litestream
         miniflux
         media
         networking
@@ -53,7 +52,6 @@ in
         "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };
         "caddy.env" = mkSecretReadable { file = ../secrets/caddy.age.env; };
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
-        "litestream.env" = mkSecretReadable { file = ../secrets/litestream.age.env; };
         "miniflux.env" = mkSecretReadable {
           file = ../secrets/miniflux.age.env;
           owner = "miniflux";

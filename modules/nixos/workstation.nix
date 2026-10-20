@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (config) settings homeModules nixosModules;
+  inherit (config) settings homeModules;
   commonDirs = [
     ".ansible"
     ".cache/helm"
@@ -88,8 +88,6 @@ in
       };
     in
     {
-      imports = [ nixosModules.networking ];
-
       options.workstation = lib.mkOption {
         type = lib.types.submodule {
           options = {
@@ -196,11 +194,15 @@ in
           useRoutingFeatures = "client";
         };
 
-        networking.nameservers = [
-          settings.lan.serverAddress
-          "1.1.1.1"
-          "8.8.8.8"
-        ];
+        services.resolved = {
+          enable = true;
+          settings.Resolve = {
+            DNS = [ settings.lan.serverAddress ];
+            Domains = [ "~${settings.serverDomain}" ];
+            DNSSEC = "false";
+            LLMNR = "false";
+          };
+        };
 
         services = {
           flatpak.enable = true;

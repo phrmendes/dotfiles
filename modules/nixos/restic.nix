@@ -21,7 +21,6 @@
           radarr = "/var/lib/radarr/radarr.db";
           sftpgo = "/var/lib/sftpgo/sftpgo.db";
           sonarr = "/var/lib/sonarr/sonarr.db";
-          wg-easy = "/var/lib/wg-easy/wg-easy.db";
         };
       };
       common = {

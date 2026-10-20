@@ -22,7 +22,6 @@ in
         atuin
         beszel
         caddy
-        ddclient
         restic
         searxng
         excalidraw
@@ -38,7 +37,6 @@ in
         podman
         sftpgo
         syncthing
-        wg-easy
       ];
 
       age.secrets = {
@@ -51,14 +49,9 @@ in
           owner = "authelia";
         };
         "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };
-        "wg-easy.env" = mkSecretReadable { file = ../secrets/wg-easy.age.env; };
         "ca.key" = mkSecretReadable {
           file = ../secrets/ca.age.key;
           owner = "caddy";
-        };
-        "ddclient.token" = mkSecretReadable {
-          file = ../secrets/ddclient.age.token;
-          owner = "ddclient";
         };
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
         "miniflux.env" = mkSecretReadable {

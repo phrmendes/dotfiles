@@ -19,7 +19,6 @@
         email = "pedrohrmendes@proton.me";
         home = "/home/phrmendes";
         serverDomain = "server.internal";
-        publicDomain = "phrmendes.xyz";
         stateVersion = "26.11";
         keepOldRoots = 5;
         podmanSubnet = "172.18.0.0/16";
@@ -35,7 +34,6 @@
           serverAddress = "192.168.10.2";
           serverMac = "94:c6:91:aa:e3:9e";
           desktopAddress = "192.168.10.3";
-          routerAddress = "192.168.10.1";
         };
       };
     };

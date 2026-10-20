@@ -36,6 +36,7 @@
           inherit port;
           mediaLocation = "/mnt/external/photos";
           accelerationDevices = null;
+          environment.NODE_EXTRA_CA_CERTS = "${../../files/ca.crt}";
         };
       };
     };

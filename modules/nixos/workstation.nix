@@ -30,7 +30,6 @@ let
     ".local/state/noctalia"
     ".local/state/nvim"
     ".local/state/wireplumber"
-    ".librewolf"
     ".pi"
     ".ssh"
     ".zotero"

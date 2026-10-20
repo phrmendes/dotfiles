@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config) settings;
+in
 {
   nixosModules.ddclient =
     { config, lib, ... }:
@@ -20,8 +24,8 @@
         enable = true;
         protocol = "dyndns2";
         server = "update.dedyn.io";
-        username = "phrmendes.xyz";
-        domains = [ "vpn.phrmendes.xyz" ];
+        username = settings.publicDomain;
+        domains = [ "vpn.${settings.publicDomain}" ];
         passwordFile = config.age.secrets."ddclient.token".path;
         interval = "5min";
         ssl = true;

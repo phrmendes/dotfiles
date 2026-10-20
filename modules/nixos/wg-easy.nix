@@ -1,4 +1,6 @@
+{ config, ... }:
 let
+  inherit (config) settings;
   port = 51821;
 in
 {
@@ -18,7 +20,7 @@ in
         firewall.allowedUDPPorts = [ 51820 ];
         nat = {
           enable = true;
-          externalInterface = "enp3s0";
+          externalInterface = settings.lan.interface;
           internalInterfaces = [ "wg0" ];
         };
       };

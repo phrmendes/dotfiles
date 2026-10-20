@@ -87,7 +87,7 @@ in
         systemd.network = {
           enable = true;
           networks."10-lan" = {
-            matchConfig.Name = "enp3s0";
+            matchConfig.Name = settings.lan.interface;
             address = [ "${settings.lan.serverAddress}/24" ];
           };
         };
@@ -145,8 +145,8 @@ in
       };
 
       systemd = {
-        network.links."40-enp3s0" = {
-          matchConfig.OriginalName = "enp3s0";
+        network.links."40-${settings.lan.interface}" = {
+          matchConfig.OriginalName = settings.lan.interface;
           linkConfig.WakeOnLan = "magic";
         };
 

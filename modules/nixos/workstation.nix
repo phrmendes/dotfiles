@@ -99,6 +99,7 @@ in
             };
             dotfilesDir = lib.mkOption {
               type = lib.types.path;
+              default = "${settings.home}/.config/dotfiles";
             };
             monitors = lib.mkOption {
               type = lib.types.submodule {
@@ -116,6 +117,8 @@ in
       };
 
       config = {
+        programs.nh.flake = config.workstation.dotfilesDir;
+
         home-manager.users.${settings.user}.imports = with homeModules; [
           atuin
           base

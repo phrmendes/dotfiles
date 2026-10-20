@@ -17,7 +17,6 @@ in
 
       workstation = {
         type = "desktop";
-        dotfilesDir = "/home/phrmendes/.config/dotfiles";
         monitors = {
           primary = {
             name = "DP-3";
@@ -37,7 +36,6 @@ in
       };
 
       networking.hostName = "desktop";
-      programs.nh.flake = "${settings.home}/.config/dotfiles";
 
       disko.mainDiskDevice = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
 

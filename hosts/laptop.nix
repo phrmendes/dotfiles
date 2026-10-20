@@ -22,7 +22,6 @@ in
 
       workstation = {
         type = "laptop";
-        dotfilesDir = "/home/phrmendes/.config/dotfiles";
         monitors = {
           primary = {
             name = "eDP-1";
@@ -43,8 +42,6 @@ in
           autostart = false;
         };
       };
-
-      programs.nh.flake = "${settings.home}/.config/dotfiles";
 
       disko.mainDiskDevice = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
 

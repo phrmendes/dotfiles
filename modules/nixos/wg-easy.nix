@@ -45,7 +45,6 @@ in
           OAUTH_OIDC_NAME = "Authelia";
           HOST = "127.0.0.1";
           PORT = toString port;
-          INSECURE = "true";
           TRUSTED_PROXIES = "127.0.0.1";
           DISABLE_IPV6 = "true";
           DISABLE_VERSION_CHECK = "true";

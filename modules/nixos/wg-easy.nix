@@ -17,7 +17,22 @@ in
       };
 
       networking = {
-        firewall.allowedUDPPorts = [ 51820 ];
+        firewall = {
+          allowedUDPPorts = [ 51820 ];
+          extraCommands = ''
+            iptables -N wg-forward 2>/dev/null || true
+            iptables -F wg-forward
+            iptables -A wg-forward -d ${settings.lan.routerAddress} -p tcp -m multiport --dports 22,80,443 -j ACCEPT
+            iptables -A wg-forward -j DROP
+            iptables -D FORWARD -i wg0 -j wg-forward 2>/dev/null || true
+            iptables -I FORWARD 1 -i wg0 -j wg-forward
+          '';
+          extraStopCommands = ''
+            iptables -D FORWARD -i wg0 -j wg-forward 2>/dev/null || true
+            iptables -F wg-forward 2>/dev/null || true
+            iptables -X wg-forward 2>/dev/null || true
+          '';
+        };
         nat = {
           enable = true;
           externalInterface = settings.lan.interface;

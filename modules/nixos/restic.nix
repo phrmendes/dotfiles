@@ -12,6 +12,7 @@
         dir = "/var/backup/databases";
         paths = {
           atuin = "/var/lib/atuin/atuin.db";
+          authelia = "/var/lib/authelia/db.sqlite3";
           bazarr = "/var/lib/bazarr/db/bazarr.db";
           beszel = "/var/lib/beszel/beszel_data/data.db";
           linkding = "/var/lib/linkding/db.sqlite3";

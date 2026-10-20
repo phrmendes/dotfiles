@@ -26,6 +26,7 @@
         interval = "5min";
         ssl = true;
         quiet = true;
+        usev6 = "";
       };
     };
 }

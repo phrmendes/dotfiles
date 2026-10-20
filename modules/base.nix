@@ -32,10 +32,10 @@
         };
         lan = {
           interface = "enp3s0";
-          serverAddress = "192.168.0.2";
+          serverAddress = "192.168.10.2";
           serverMac = "94:c6:91:aa:e3:9e";
-          desktopAddress = "192.168.0.3";
-          routerAddress = "192.168.0.4";
+          desktopAddress = "192.168.10.3";
+          routerAddress = "192.168.10.1";
         };
       };
     };

@@ -43,6 +43,7 @@ in
           OAUTH_PROVIDERS = "oidc";
           OAUTH_OIDC_SERVER = "https://auth.${config.caddy.domain}";
           OAUTH_OIDC_NAME = "Authelia";
+          OAUTH_AUTO_REGISTER = "true";
           HOST = "127.0.0.1";
           PORT = toString port;
           TRUSTED_PROXIES = "127.0.0.1";

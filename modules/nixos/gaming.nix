@@ -1,7 +1,16 @@
+{ config, ... }:
+let
+  inherit (config) settings;
+in
 {
   nixosModules.gaming =
     { pkgs, ... }:
     {
+      environment.persistence."/persist".users.${settings.user}.directories = [
+        ".local/share/Steam"
+        ".steam"
+      ];
+
       hardware.xpadneo.enable = true;
 
       programs = {

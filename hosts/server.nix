@@ -22,6 +22,7 @@ in
         atuin
         beszel
         caddy
+        ddclient
         restic
         searxng
         excalidraw
@@ -55,6 +56,10 @@ in
         "ca.key" = mkSecretReadable {
           file = ../secrets/ca.age.key;
           owner = "caddy";
+        };
+        "ddclient.token" = mkSecretReadable {
+          file = ../secrets/ddclient.age.token;
+          owner = "ddclient";
         };
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
         "miniflux.env" = mkSecretReadable {

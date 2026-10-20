@@ -23,8 +23,6 @@
         serverDomain = "server.internal";
         stateVersion = "26.11";
         keepOldRoots = 5;
-        gcpProject = "rj-ia-desenvolvimento";
-        nvimServerPort = 6666;
         podmanSubnet = "172.18.0.0/16";
         syncthingDevices = {
           desktop = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
@@ -34,8 +32,6 @@
           tablet = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
         };
         lan = {
-          subnet = "192.168.0.0/24";
-          interface = "enp3s0";
           serverAddress = "192.168.0.2";
           serverMac = "94:c6:91:aa:e3:9e";
           desktopAddress = "192.168.0.4";

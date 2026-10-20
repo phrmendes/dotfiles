@@ -42,9 +42,9 @@
           };
 
           search = {
-            safe_search = 1;
+            safe_search = 0;
             autocomplete = "google";
-            default_lang = "pt-BR";
+            default_lang = "en";
           };
 
           engines = [

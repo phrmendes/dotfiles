@@ -38,6 +38,10 @@
             "none"
             "--trurl"
             "http://127.0.0.1:${toString webPort}/transmission/rpc"
+            "--truser"
+            ""
+            "--trpass"
+            ""
           ];
         };
         transmission = {

@@ -70,18 +70,22 @@ in
                 {
                   domain = "*.${config.caddy.domain}";
                   answer = lan.serverAddress;
+                  enabled = true;
                 }
                 {
                   domain = config.caddy.domain;
                   answer = lan.serverAddress;
+                  enabled = true;
                 }
                 {
                   domain = "desktop.${config.caddy.domain}";
                   answer = lan.desktopAddress;
+                  enabled = true;
                 }
                 {
                   domain = "kvm.${config.caddy.domain}";
                   answer = lan.kvmAddress;
+                  enabled = true;
                 }
               ];
               filters = [

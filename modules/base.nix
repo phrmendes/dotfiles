@@ -20,7 +20,7 @@
         user = "phrmendes";
         email = "pedrohrmendes@proton.me";
         home = "/home/phrmendes";
-        serverDomain = "local.phrmendes.xyz";
+        serverDomain = "server.internal";
         stateVersion = "26.11";
         keepOldRoots = 5;
         gcpProject = "rj-ia-desenvolvimento";

@@ -13,12 +13,13 @@ in
     let
       inherit (config.utils) mkVhost;
       domain = config.caddy.domain;
+      caStore = pkgs.writeTextDir "ca.crt" (builtins.readFile ../../files/ca.crt);
     in
     {
       options.caddy = {
         domain = lib.mkOption {
           type = lib.types.str;
-          default = "local.phrmendes.xyz";
+          default = settings.serverDomain;
           readOnly = true;
         };
         mkVhost = lib.mkOption {
@@ -29,6 +30,8 @@ in
       };
 
       config = {
+        networking.hosts."127.0.0.1" = [ "auth.${domain}" ];
+
         networking.firewall.allowedTCPPorts = [
           80
           443
@@ -36,18 +39,21 @@ in
 
         services.caddy = {
           enable = true;
-          inherit (settings) email;
-          package = pkgs.local.caddy;
-          environmentFile = config.age.secrets."caddy.env".path;
           virtualHosts = {
             "*.${domain}" = {
               extraConfig = ''
-                tls {
-                  dns desec {
-                    token "{$DESEC_TOKEN}"
-                  }
-                }
                 respond "Not Found" 404
+              '';
+            };
+            ${domain} = {
+              extraConfig = ''
+                handle /ca.crt {
+                  root * ${caStore}
+                  file_server
+                }
+                handle {
+                  respond "Not Found" 404
+                }
               '';
             };
             "http://${domain}" = {
@@ -59,8 +65,14 @@ in
           };
 
           globalConfig = ''
-            acme_dns desec {
-              token "{$DESEC_TOKEN}"
+            local_certs
+            pki {
+              ca local {
+                root {
+                  cert ${../../files/ca.crt}
+                  key ${config.age.secrets."ca.key".path}
+                }
+              }
             }
           '';
 

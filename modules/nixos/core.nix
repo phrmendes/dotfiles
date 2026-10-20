@@ -163,6 +163,8 @@ in
 
         networking.networkmanager.enable = true;
 
+        security.pki.certificateFiles = [ ../../files/ca.crt ];
+
         systemd.services = {
           prefer-lan-routes = {
             description = "Prefer direct LAN routes over Tailscale";

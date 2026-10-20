@@ -50,7 +50,10 @@ in
           owner = "authelia";
         };
         "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };
-        "caddy.env" = mkSecretReadable { file = ../secrets/caddy.age.env; };
+        "ca.key" = mkSecretReadable {
+          file = ../secrets/ca.age.key;
+          owner = "caddy";
+        };
         "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
         "miniflux.env" = mkSecretReadable {
           file = ../secrets/miniflux.age.env;

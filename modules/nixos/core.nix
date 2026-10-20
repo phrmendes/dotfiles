@@ -165,29 +165,6 @@ in
 
         security.pki.certificateFiles = [ ../../files/ca.crt ];
 
-        systemd.services = {
-          prefer-lan-routes = {
-            description = "Prefer direct LAN routes over Tailscale";
-            after = [
-              "network-online.target"
-              "tailscaled.service"
-            ];
-            wants = [
-              "network-online.target"
-              "tailscaled.service"
-            ];
-            wantedBy = [ "multi-user.target" ];
-            path = [ pkgs.iproute2 ];
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-            };
-            script = "ip rule add priority 5200 to ${settings.lan.subnet} table main";
-            postStop = "ip rule del priority 5200 to ${settings.lan.subnet} table main";
-          };
-
-        };
-
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
@@ -315,10 +292,6 @@ in
             };
           };
 
-          tailscale = {
-            enable = true;
-            useRoutingFeatures = lib.mkDefault "client";
-          };
         };
 
         stylix =

@@ -15,7 +15,7 @@ in
         settings = {
           "*".AddKeysToAgent = "no";
           "server" = {
-            HostName = "server.codlet-catfish.ts.net";
+            HostName = settings.lan.serverAddress;
             User = settings.user;
           };
           "server-local" = {

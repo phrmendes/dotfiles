@@ -175,6 +175,11 @@ in
           };
         };
 
+        services.tailscale = {
+          enable = true;
+          useRoutingFeatures = "client";
+        };
+
         networking.nameservers = [
           settings.lan.serverAddress
           "1.1.1.1"

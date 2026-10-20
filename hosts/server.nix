@@ -37,7 +37,6 @@ in
         podman
         sftpgo
         syncthing
-        tailscale
         transmission
         wg-easy
       ];

@@ -82,11 +82,6 @@ in
                   answer = settings.lan.desktopAddress;
                   enabled = true;
                 }
-                {
-                  domain = "kvm.${config.caddy.domain}";
-                  answer = settings.lan.kvmAddress;
-                  enabled = true;
-                }
               ];
               filters = [
                 {

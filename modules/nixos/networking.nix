@@ -5,6 +5,7 @@
       networking = {
         resolvconf = {
           enable = true;
+          extraConfig = "resolv_conf_local_only=NO";
           extraOptions = [
             "timeout:1"
             "attempts:1"

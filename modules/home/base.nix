@@ -18,6 +18,11 @@ in
             HostName = settings.lan.serverAddress;
             User = settings.user;
           };
+          "desktop" = {
+            HostName = settings.lan.desktopAddress;
+            User = settings.user;
+            ProxyJump = "server";
+          };
           "server-unlock" = {
             HostName = settings.lan.serverAddress;
             Port = 2222;

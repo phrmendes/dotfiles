@@ -1,19 +1,20 @@
 {
-  nixosModules.transmission =
+  nixosModules.flood =
     { config, ... }:
     let
       inherit (config) utils;
       webPort = 9091;
+      floodPort = 3001;
       torrentingPort = 51413;
       domain = config.caddy.domain;
     in
     {
-      homepage.services.transmission = {
-        url = "transmission.${domain}";
+      homepage.services.flood = {
+        url = "flood.${domain}";
         homepage = {
-          name = "Transmission";
+          name = "Flood";
           description = "Torrent client";
-          icon = "sh-transmission";
+          icon = "sh-flood";
           category = "Media";
         };
       };
@@ -24,9 +25,20 @@
 
       services = {
         caddy.virtualHosts = config.caddy.mkVhost {
-          name = "transmission";
-          port = webPort;
+          name = "flood";
+          port = floodPort;
           auth = true;
+        };
+        flood = {
+          enable = true;
+          host = "127.0.0.1";
+          port = floodPort;
+          extraArgs = [
+            "--auth"
+            "none"
+            "--trurl"
+            "http://127.0.0.1:${toString webPort}/transmission/rpc"
+          ];
         };
         transmission = {
           enable = true;
@@ -35,7 +47,6 @@
             rpc-bind-address = "127.0.0.1";
             rpc-port = webPort;
             rpc-authentication-required = false;
-            rpc-host-whitelist = "transmission.${domain}";
             rpc-host-whitelist-enabled = true;
             download-dir = "/mnt/external/downloads";
             incomplete-dir = "/mnt/external/downloads/.incomplete";

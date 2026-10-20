@@ -26,6 +26,7 @@ in
         restic
         searxng
         excalidraw
+        flood
         homeAssistant
         homepage
         immich
@@ -37,7 +38,6 @@ in
         podman
         sftpgo
         syncthing
-        transmission
         wg-easy
       ];
 

@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.settings) lan;
+in
 {
   nixosModules.linkding =
     { config, ... }:
@@ -31,14 +35,21 @@
       virtualisation.oci-containers.containers.linkding = {
         image = "docker.io/sissbruecker/linkding:latest-plus";
         ports = [ "127.0.0.1:${toString port}:${toString port}" ];
-        volumes = [ "/var/lib/linkding:/etc/linkding/data" ];
-        environment.LD_DB_ENGINE = "sqlite";
+        volumes = [
+          "/var/lib/linkding:/etc/linkding/data"
+          "${../../files/ca.crt}:/etc/ca.crt:ro"
+        ];
+        environment = {
+          LD_DB_ENGINE = "sqlite";
+          REQUESTS_CA_BUNDLE = "/etc/ca.crt";
+        };
         environmentFiles = [ config.age.secrets."linkding.env".path ];
         networks = [ "services" ];
         labels = {
           "io.containers.autoupdate" = "registry";
         };
         extraOptions = [
+          "--add-host=auth.${config.caddy.domain}:${lan.serverAddress}"
           "--health-cmd=curl -f http://localhost:${toString port}/health"
           "--health-interval=30s"
           "--health-timeout=5s"

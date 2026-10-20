@@ -9,7 +9,6 @@ in
 {
   nixosModules.core =
     {
-      config,
       pkgs,
       lib,
       modulesPath,

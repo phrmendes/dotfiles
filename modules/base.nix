@@ -5,8 +5,6 @@
   ...
 }:
 {
-  imports = [ inputs.flake-parts.flakeModules.modules ];
-
   options = {
     hostPlatform = lib.mkOption {
       type = lib.types.str;

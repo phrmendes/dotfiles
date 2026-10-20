@@ -103,10 +103,6 @@ in
         };
       };
 
-      systemd.network.links."40-enp3s0" = {
-        matchConfig.OriginalName = "enp3s0";
-        linkConfig.WakeOnLan = "magic";
-      };
       programs.nh.flake = "${settings.home}/dotfiles";
       disko.mainDiskDevice = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
@@ -148,16 +144,21 @@ in
         ];
       };
 
-      systemd.tmpfiles.rules = [
-        "d /run/sync 0700 ${settings.user} users -"
-        "d /mnt/external 2775 ${settings.user} external -"
-        "a+ /mnt/external - - - - d:g:external:rwx,g:external:rwx,d:group::rwx,group::rwx,d:mask::rwx,mask::rwx"
-        "d /mnt/external/books 2775 ${settings.user} external -"
-        "d /mnt/external/zotero 2775 ${settings.user} external -"
-      ];
+      systemd = {
+        network.links."40-enp3s0" = {
+          matchConfig.OriginalName = "enp3s0";
+          linkConfig.WakeOnLan = "magic";
+        };
 
-      systemd.services = {
-        podman-network-services = {
+        tmpfiles.rules = [
+          "d /run/sync 0700 ${settings.user} users -"
+          "d /mnt/external 2775 ${settings.user} external -"
+          "a+ /mnt/external - - - - d:g:external:rwx,g:external:rwx,d:group::rwx,group::rwx,d:mask::rwx,mask::rwx"
+          "d /mnt/external/books 2775 ${settings.user} external -"
+          "d /mnt/external/zotero 2775 ${settings.user} external -"
+        ];
+
+        services.podman-network-services = {
           description = "Create Podman services network";
           after = [ "network-online.target" ];
           wants = [ "network-online.target" ];
@@ -174,14 +175,13 @@ in
           '';
         };
 
-      };
-
-      systemd.timers.podman-auto-update = {
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnCalendar = "daily";
-          Persistent = true;
-          RandomizedDelaySec = "1h";
+        timers.podman-auto-update = {
+          wantedBy = [ "timers.target" ];
+          timerConfig = {
+            OnCalendar = "daily";
+            Persistent = true;
+            RandomizedDelaySec = "1h";
+          };
         };
       };
 

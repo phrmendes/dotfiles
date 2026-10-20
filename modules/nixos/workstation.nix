@@ -189,22 +189,22 @@ in
           "video"
         ];
 
-        services.tailscale = {
-          enable = true;
-          useRoutingFeatures = "client";
-        };
-
-        services.resolved = {
-          enable = true;
-          settings.Resolve = {
-            DNS = [ settings.lan.serverAddress ];
-            Domains = [ "~${settings.serverDomain}" ];
-            DNSSEC = "false";
-            LLMNR = "false";
-          };
-        };
-
         services = {
+          tailscale = {
+            enable = true;
+            useRoutingFeatures = "client";
+          };
+
+          resolved = {
+            enable = true;
+            settings.Resolve = {
+              DNS = [ settings.lan.serverAddress ];
+              Domains = [ "~${settings.serverDomain}" ];
+              DNSSEC = "false";
+              LLMNR = "false";
+            };
+          };
+
           flatpak.enable = true;
           geoclue2.enable = true;
           gvfs.enable = true;

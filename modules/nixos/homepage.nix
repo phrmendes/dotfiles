@@ -5,7 +5,8 @@
       port = 8082;
 
       colors = config.lib.stylix.colors;
-      rgb = base: "${colors.${base + "-rgb-r"}} ${colors.${base + "-rgb-g"}} ${colors.${base + "-rgb-b"}}";
+      rgb =
+        base: "${colors.${base + "-rgb-r"}} ${colors.${base + "-rgb-g"}} ${colors.${base + "-rgb-b"}}";
 
       homepageService = { name, ... }: {
         options = {

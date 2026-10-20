@@ -12,9 +12,7 @@
       sqlite3,
     }:
     [ "install -d -m 0700 ${dir}" ]
-    ++ lib.mapAttrsToList (
-      name: path: ''${sqlite3} ${path} ".backup '${dir}/${name}.db'"''
-    ) paths
+    ++ lib.mapAttrsToList (name: path: ''${sqlite3} ${path} ".backup '${dir}/${name}.db'"'') paths
     |> lib.concatStringsSep "\n";
 
   mkSecretReadable =

@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (config) settings homeModules;
+  inherit (config) settings homeModules nixosModules;
   commonDirs = [
     ".ansible"
     ".cache/helm"
@@ -92,6 +92,8 @@ in
       };
     in
     {
+      imports = [ nixosModules.networking ];
+
       options.workstation = lib.mkOption {
         type = lib.types.submodule {
           options = {
@@ -172,6 +174,12 @@ in
             file = ../../secrets/noctalia.age.txt;
           };
         };
+
+        networking.nameservers = [
+          settings.lan.serverAddress
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
 
         services = {
           flatpak.enable = true;

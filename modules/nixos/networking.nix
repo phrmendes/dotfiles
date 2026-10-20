@@ -2,15 +2,17 @@
   nixosModules.networking =
     { lib, ... }:
     {
-      services = {
-        resolved.enable = lib.mkForce false;
-        tailscale.extraUpFlags = [ "--accept-dns=false" ];
-      };
       networking = {
-        networkmanager.enable = true;
-        resolvconf.enable = lib.mkForce false;
-        networkmanager.dns = lib.mkForce "none";
-        nameservers = [
+        resolvconf = {
+          enable = true;
+          extraOptions = [
+            "timeout:1"
+            "attempts:1"
+          ];
+        };
+        networkmanager.dns = "none";
+        nameservers = lib.mkDefault [
+          "127.0.0.1"
           "1.1.1.1"
           "8.8.8.8"
         ];

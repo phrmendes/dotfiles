@@ -315,14 +315,6 @@ in
             };
           };
 
-          resolved = {
-            enable = true;
-            settings.Resolve = {
-              DNSSEC = "false";
-              LLMNR = "false";
-            };
-          };
-
           tailscale = {
             enable = true;
             useRoutingFeatures = lib.mkDefault "client";

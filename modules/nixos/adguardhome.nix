@@ -68,15 +68,19 @@ in
             filtering = {
               rewrites = [
                 {
-                  domain = "server.local";
+                  domain = "*.${config.caddy.domain}";
                   answer = lan.serverAddress;
                 }
                 {
-                  domain = "desktop.local";
+                  domain = config.caddy.domain;
+                  answer = lan.serverAddress;
+                }
+                {
+                  domain = "desktop.${config.caddy.domain}";
                   answer = lan.desktopAddress;
                 }
                 {
-                  domain = "kvm.local";
+                  domain = "kvm.${config.caddy.domain}";
                   answer = lan.kvmAddress;
                 }
               ];

@@ -82,6 +82,27 @@ in
 
       networking.hostName = "server";
 
+      boot.initrd = {
+        availableKernelModules = [ "r8169" ];
+        systemd.network = {
+          enable = true;
+          networks."10-lan" = {
+            matchConfig.Name = "enp3s0";
+            address = [ "${settings.lan.serverAddress}/24" ];
+          };
+        };
+        network.ssh = {
+          enable = true;
+          port = 2222;
+          hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
+          authorizedKeys = map builtins.readFile [
+            ../files/ssh/main.txt
+            ../files/ssh/laptop.txt
+            ../files/ssh/phone.txt
+          ];
+        };
+      };
+
       systemd.network.links."40-enp3s0" = {
         matchConfig.OriginalName = "enp3s0";
         linkConfig.WakeOnLan = "magic";

@@ -18,9 +18,13 @@ in
             HostName = settings.lan.serverAddress;
             User = settings.user;
           };
-          "server-local" = {
+          "server-unlock" = {
             HostName = settings.lan.serverAddress;
-            User = settings.user;
+            Port = 2222;
+            User = "root";
+            HostKeyAlias = "server-initrd";
+            RequestTTY = "yes";
+            RemoteCommand = "systemd-tty-ask-password-agent --query";
           };
         };
       };

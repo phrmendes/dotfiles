@@ -1,4 +1,8 @@
-{ config, ... }: {
+{ config, ... }:
+let
+  inherit (config) settings;
+in
+{
   homeModules.kitty =
     { pkgs, ... }:
     let
@@ -41,8 +45,8 @@
           window_padding_width = 5;
         };
         extraConfig = ''
-          action_alias relative_resize kitten ${config.settings.home}/.config/kitty/relative_resize.py
-          action_alias kitty_scrollback_nvim kitten ${config.settings.home}/.config/kitty/scrollback.py
+          action_alias relative_resize kitten ${settings.home}/.config/kitty/relative_resize.py
+          action_alias kitty_scrollback_nvim kitten ${settings.home}/.config/kitty/scrollback.py
 
           map --when-focus-on var:IS_NVIM ctrl+h
           map --when-focus-on var:IS_NVIM ctrl+j

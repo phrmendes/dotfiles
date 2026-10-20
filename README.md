@@ -25,6 +25,7 @@ hosts/               — per-machine compositions
 - **`options.nix`** — single source of truth for all option types
 - **`workstation`** — per-host attrset (`type`, `dotfilesDir`, `monitors`), set by desktop/laptop
 - **Flat NixOS modules** — `nixosModules.<name>`, no nested directories
+- **Module header** — a file takes `{ config, ... }:` and `inherit (config) settings;` only when it needs shared `settings`, and `{ inputs, ... }:` only when it needs flake inputs
 
 ## Install
 

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config.settings) lan;
+  inherit (config) settings;
 in
 {
   nixosModules.linkding =
@@ -49,7 +49,7 @@ in
           "io.containers.autoupdate" = "registry";
         };
         extraOptions = [
-          "--add-host=auth.${config.caddy.domain}:${lan.serverAddress}"
+          "--add-host=auth.${config.caddy.domain}:${settings.lan.serverAddress}"
           "--health-cmd=curl -f http://localhost:${toString port}/health"
           "--health-interval=30s"
           "--health-timeout=5s"

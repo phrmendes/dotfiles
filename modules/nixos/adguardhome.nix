@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config.settings) lan;
+  inherit (config) settings;
 in
 {
   nixosModules.adguardhome =
@@ -48,7 +48,7 @@ in
             dns = {
               bind_hosts = [
                 "127.0.0.1"
-                lan.serverAddress
+                settings.lan.serverAddress
               ];
               bootstrap_dns = [
                 "9.9.9.10"
@@ -69,22 +69,22 @@ in
               rewrites = [
                 {
                   domain = "*.${config.caddy.domain}";
-                  answer = lan.serverAddress;
+                  answer = settings.lan.serverAddress;
                   enabled = true;
                 }
                 {
                   domain = config.caddy.domain;
-                  answer = lan.serverAddress;
+                  answer = settings.lan.serverAddress;
                   enabled = true;
                 }
                 {
                   domain = "desktop.${config.caddy.domain}";
-                  answer = lan.desktopAddress;
+                  answer = settings.lan.desktopAddress;
                   enabled = true;
                 }
                 {
                   domain = "kvm.${config.caddy.domain}";
-                  answer = lan.kvmAddress;
+                  answer = settings.lan.kvmAddress;
                   enabled = true;
                 }
               ];

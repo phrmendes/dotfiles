@@ -1,11 +1,14 @@
 { config, ... }:
+let
+  inherit (config) settings;
+in
 {
   homeModules.git = {
     programs.git = {
       enable = true;
       settings = {
         user = {
-          inherit (config.settings) email name;
+          inherit (settings) email name;
         };
         http.sslVerify = true;
         init.defaultBranch = "main";

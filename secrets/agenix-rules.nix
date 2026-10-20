@@ -19,7 +19,6 @@ mkSecrets [
   "authelia.age.yaml"
   "beszel.age.env"
   "ca.age.key"
-  "ddclient.age.token"
   "dockerhub.age.json"
   "linkding.age.env"
   "miniflux.age.env"
@@ -29,6 +28,5 @@ mkSecrets [
   "searxng.age.env"
   "sftpgo.age.env"
   "users.age.yaml"
-  "wg-easy.age.env"
   "wg-laptop.age.conf"
 ]

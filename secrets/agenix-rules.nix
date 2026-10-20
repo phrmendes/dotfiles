@@ -28,4 +28,5 @@ mkSecrets [
   "searxng.age.env"
   "sftpgo.age.env"
   "users.age.yaml"
+  "wg-easy.age.env"
 ]

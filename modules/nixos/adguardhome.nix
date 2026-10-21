@@ -35,6 +35,7 @@ in
           mutableSettings = false;
           inherit port;
           settings = {
+            theme = "dark";
             auth.users = [ ];
             blocked_services = {
               ids = [

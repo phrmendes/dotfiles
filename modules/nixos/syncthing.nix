@@ -70,6 +70,7 @@ in
           settings = {
             gui = {
               address = "127.0.0.1:${toString port}";
+              theme = "dark";
               insecureSkipHostcheck = true;
             };
 

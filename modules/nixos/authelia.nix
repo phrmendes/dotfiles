@@ -33,7 +33,7 @@ in
           name = "";
           enable = true;
           settings = {
-            theme = "auto";
+            theme = "dark";
             server.address = "tcp://127.0.0.1:9099/";
             storage.local.path = "${dataDir}/db.sqlite3";
             notifier.filesystem.filename = "${dataDir}/notification.txt";
@@ -42,6 +42,14 @@ in
               watch = false;
             };
             default_2fa_method = "webauthn";
+            webauthn = {
+              enable_passkey_login = true;
+              experimental_enable_passkey_uv_two_factors = true;
+              selection_criteria = {
+                discoverability = "preferred";
+                user_verification = "required";
+              };
+            };
             log = {
               level = "info";
               format = "text";

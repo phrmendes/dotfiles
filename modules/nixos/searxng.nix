@@ -41,6 +41,8 @@
             image_proxy = true;
           };
 
+          ui.simple_style = "dark";
+
           search = {
             safe_search = 0;
             autocomplete = "google";

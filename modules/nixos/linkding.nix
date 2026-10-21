@@ -9,6 +9,10 @@ in
       port = 9090;
     in
     {
+      age.secrets."linkding.env" = config.utils.mkSecretReadable {
+        file = ../../secrets/linkding.age.env;
+      };
+
       homepage.services.linkding = {
         url = "linkding.${config.caddy.domain}";
         homepage = {

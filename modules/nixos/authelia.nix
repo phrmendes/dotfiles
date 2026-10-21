@@ -8,6 +8,17 @@ in
       domain = config.caddy.domain;
     in
     {
+      age.secrets = {
+        "users.yaml" = config.utils.mkSecretReadable {
+          file = ../../secrets/users.age.yaml;
+          owner = "authelia";
+        };
+        "authelia.yaml" = config.utils.mkSecretReadable {
+          file = ../../secrets/authelia.age.yaml;
+          owner = "authelia";
+        };
+      };
+
       systemd.tmpfiles.rules = [
         "d ${dataDir} 0700 authelia authelia -"
       ];

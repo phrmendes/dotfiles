@@ -5,6 +5,11 @@
       port = 8889;
     in
     {
+      age.secrets."searxng.env" = config.utils.mkSecretReadable {
+        file = ../../secrets/searxng.age.env;
+        owner = "searx";
+      };
+
       homepage.services.searxng = {
         url = "search.${config.caddy.domain}";
         siteMonitor = "https://search.${config.caddy.domain}/healthz";

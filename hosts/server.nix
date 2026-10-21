@@ -11,14 +11,12 @@ in
       pkgs,
       ...
     }:
-    let
-      inherit (config.utils) mkSecretReadable;
-    in
     {
       imports = with nixos; [
         authelia
         core
         disko
+        externalStorage
         adguardhome
         atuin
         beszel
@@ -37,51 +35,13 @@ in
         media
         networking
         podman
+        podmanServer
         postgresql
         sftpgo
         syncthing
       ];
 
-      age.secrets = {
-        "users.yaml" = mkSecretReadable {
-          file = ../secrets/users.age.yaml;
-          owner = "authelia";
-        };
-        "authelia.yaml" = mkSecretReadable {
-          file = ../secrets/authelia.age.yaml;
-          owner = "authelia";
-        };
-        "beszel.env" = mkSecretReadable { file = ../secrets/beszel.age.env; };
-        "ca.key" = mkSecretReadable {
-          file = ../secrets/ca.age.key;
-          owner = "caddy";
-        };
-        "linkding.env" = mkSecretReadable { file = ../secrets/linkding.age.env; };
-        "miniflux.env" = mkSecretReadable {
-          file = ../secrets/miniflux.age.env;
-          owner = "miniflux";
-        };
-        "restic.env" = mkSecretReadable { file = ../secrets/restic.age.env; };
-        "sftpgo.env" = mkSecretReadable {
-          file = ../secrets/sftpgo.age.env;
-          owner = "sftpgo";
-        };
-        "searxng.env" = mkSecretReadable {
-          file = ../secrets/searxng.age.env;
-          owner = "searx";
-        };
-        "dockerhub.json" = mkSecretReadable {
-          file = ../secrets/dockerhub.age.json;
-          path = "/root/.docker/config.json";
-        };
-      };
-
       networking.hostName = "server";
-
-      services.restic.backups = {
-        zotero = config.restic.mkBackup "zotero" { paths = [ "/mnt/external/zotero" ]; };
-        books = config.restic.mkBackup "books" { paths = [ "/mnt/external/books" ]; };
-      };
 
       boot.initrd = {
         availableKernelModules = [ "r8169" ];
@@ -135,55 +95,12 @@ in
         persistent = true;
       };
 
-      fileSystems."/mnt/external" = {
-        device = "/dev/disk/by-label/dock";
-        fsType = "ext4";
-        options = [
-          "defaults"
-          "noatime"
-          "nofail"
-        ];
-      };
-
       systemd = {
         network.links."40-${settings.lan.interface}" = {
           matchConfig.OriginalName = settings.lan.interface;
           linkConfig.WakeOnLan = "magic";
         };
 
-        tmpfiles.rules = [
-          "d /run/sync 0700 ${settings.user} users -"
-          "d /mnt/external 2775 ${settings.user} external -"
-          "a+ /mnt/external - - - - d:g:external:rwx,g:external:rwx,d:group::rwx,group::rwx,d:mask::rwx,mask::rwx"
-          "d /mnt/external/books 2775 ${settings.user} external -"
-          "d /mnt/external/zotero 2775 ${settings.user} external -"
-        ];
-
-        services.podman-network-services = {
-          description = "Create Podman services network";
-          after = [ "network-online.target" ];
-          wants = [ "network-online.target" ];
-          wantedBy = [ "multi-user.target" ];
-          path = [ pkgs.podman ];
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-          };
-          script = ''
-            if ! podman network exists services; then
-              podman network create --subnet ${settings.podmanSubnet} services
-            fi
-          '';
-        };
-
-        timers.podman-auto-update = {
-          wantedBy = [ "timers.target" ];
-          timerConfig = {
-            OnCalendar = "daily";
-            Persistent = true;
-            RandomizedDelaySec = "1h";
-          };
-        };
       };
 
       home-manager.users.${settings.user}.imports = with homeManager; [

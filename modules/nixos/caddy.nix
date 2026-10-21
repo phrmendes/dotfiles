@@ -30,6 +30,11 @@ in
       };
 
       config = {
+        age.secrets."ca.key" = config.utils.mkSecretReadable {
+          file = ../../secrets/ca.age.key;
+          owner = "caddy";
+        };
+
         networking.hosts."127.0.0.1" = [ "auth.${domain}" ];
 
         networking.firewall.allowedTCPPorts = [

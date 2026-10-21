@@ -19,6 +19,11 @@
         };
       };
 
+      age.secrets."miniflux.env" = config.utils.mkSecretReadable {
+        file = ../../secrets/miniflux.age.env;
+        owner = "miniflux";
+      };
+
       users.users.miniflux = {
         isSystemUser = true;
         group = "miniflux";

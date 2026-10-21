@@ -7,6 +7,11 @@
       webdavPort = 10080;
     in
     {
+      age.secrets."sftpgo.env" = config.utils.mkSecretReadable {
+        file = ../../secrets/sftpgo.age.env;
+        owner = "sftpgo";
+      };
+
       homepage.services.sftpgo = {
         url = "sftpgo.${config.caddy.domain}";
         homepage = {

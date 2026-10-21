@@ -7,11 +7,12 @@ NixOS + Home Manager configuration for three machines — desktop, laptop, and s
 ```
 flake.nix            — inputs and mkFlake entry point
 modules/             — every file is a flake-parts module (auto-imported)
-  base.nix           — nixosSystem builder, checks, treefmt
-  nixos/             — NixOS modules (flat, no subdirectories)
-  home/              — Home Manager modules
+  base.nix           — settings, flake.modules registry, nixosSystem builder, checks, treefmt
+  nixos/             — NixOS aspects (flat, no subdirectories)
+  home/              — Home Manager aspects
+utils/               — helpers (mkVhost, mkPostgres, mkSecretReadable, ...)
 pkgs/                — custom packages
-files/               — config files (out-of-store symlinks)
+files/               — static files; scripts live in files/scripts/
 secrets/             — agenix-encrypted secrets
 hosts/               — per-machine compositions
   desktop.nix
@@ -22,9 +23,9 @@ hosts/               — per-machine compositions
 ## Key concepts
 
 - **Every `.nix` file is a top-level module** — auto-imported by import-tree
-- **`options.nix`** — single source of truth for all option types
 - **`workstation`** — per-host attrset (`type`, `dotfilesDir`, `monitors`), set by desktop/laptop
-- **Flat NixOS modules** — `nixosModules.<name>`, no nested directories
+- **Aspects** — a file registers `flake.modules.nixos.<name>` and, when it has a user-level part, `flake.modules.homeManager.<name>`. Hosts only import aspects
+- **Shared options** — a feature registers itself in `homepage.services`, `caddy.mkVhost`, `restic.mkBackup` and `utils.mkPostgres`, so a service file owns its vhost, database, secret and backup
 - **Module header** — a file takes `{ config, ... }:` and `inherit (config) settings;` only when it needs shared `settings`, and `{ inputs, ... }:` only when it needs flake inputs
 
 ## Install

@@ -83,6 +83,16 @@ in
                   answer = settings.lan.desktopAddress;
                   enabled = true;
                 }
+                {
+                  domain = "*.desktop.internal";
+                  answer = settings.lan.desktopAddress;
+                  enabled = true;
+                }
+                {
+                  domain = "desktop.internal";
+                  answer = settings.lan.desktopAddress;
+                  enabled = true;
+                }
               ];
               filters = [
                 {

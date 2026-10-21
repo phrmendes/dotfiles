@@ -1,1 +1,1 @@
-{ writers }: writers.writeNuBin "pin" (builtins.readFile ../files/scripts/pin.nu)
+{ writeNuBin }: writeNuBin "pin" (builtins.readFile ../files/scripts/pin.nu)

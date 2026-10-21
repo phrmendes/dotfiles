@@ -1,25 +1,16 @@
+use lib.nu fail
+
 const DEFAULT_DEVICE = "/dev/disk/by-partlabel/disk-main-luks"
 
 # TPM register that the PIN is bound to. PCR 7 holds the Secure Boot policy.
 const PCRS = "7"
-
-# Stop with an error that points at the disk.
-def fail [message: string, device: string]: nothing -> error {
-    error make {
-        msg: $message
-        label: {
-            text: "disk"
-            span: (metadata $device).span
-        }
-    }
-}
 
 # List the key slot types of the disk, for example password and tpm2.
 def slot-types [device: string]: nothing -> list<string> {
     let result = (^sudo systemd-cryptenroll $device | complete)
 
     if $result.exit_code != 0 {
-        fail $"Cannot read the key slots of ($device)." $device
+        fail $"Cannot read the key slots of ($device)." $device "disk"
     }
 
     $result.stdout | lines | skip 1 | parse --regex '^\s*\d+\s+(?<type>\S+)' | get type
@@ -33,7 +24,7 @@ def has-tpm []: nothing -> bool {
 # Stop with an error when no TPM is usable.
 def require-tpm [device: string]: nothing -> nothing {
     if not (has-tpm) {
-        fail "No usable TPM found. The boot asks for the passphrase every time." $device
+        fail "No usable TPM found. The boot asks for the passphrase every time." $device "disk"
     }
 }
 
@@ -49,7 +40,7 @@ def "main create" [
     require-tpm $device
 
     if "tpm2" in (slot-types $device) {
-        fail "A PIN already exists. Use `pin edit` to change it." $device
+        fail "A PIN already exists. Use `pin edit` to change it." $device "disk"
     }
 
     enroll $device
@@ -62,7 +53,7 @@ def "main edit" [
     require-tpm $device
 
     if "tpm2" not-in (slot-types $device) {
-        fail "No PIN yet. Use `pin create`." $device
+        fail "No PIN yet. Use `pin create`." $device "disk"
     }
 
     enroll $device
@@ -81,12 +72,12 @@ def "main delete" [
     }
 
     if "password" not-in $types {
-        fail "Refusing: no passphrase slot would remain." $device
+        fail "Refusing: no passphrase slot would remain." $device "disk"
     }
 
     if not $yes {
         let answer = (
-            try { input "Delete the PIN? The boot will ask for the passphrase. [y/N] " } catch { fail "Cannot ask here. Use --yes." $device }
+            try { input "Delete the PIN? The boot will ask for the passphrase. [y/N] " } catch { fail "Cannot ask here. Use --yes." $device "disk" }
         )
         if ($answer | str lowercase) not-in ["y" "yes"] {
             print "Cancelled."

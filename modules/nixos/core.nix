@@ -112,7 +112,7 @@ in
                     RemainAfterExit = true;
                   };
                   environment.KEEP_OLD_ROOTS = toString settings.keepOldRoots;
-                  script = builtins.readFile ../../files/reset-ephemeral.sh;
+                  script = builtins.readFile ../../files/scripts/reset-ephemeral.sh;
                 };
               };
             };

@@ -109,10 +109,7 @@
       services = {
         restic.backups.beszel = config.restic.mkBackup "beszel" {
           paths = [ backupDir ];
-          backupPrepareCommand = ''
-            install -d -m 0700 ${backupDir}
-            ${lib.getExe pkgs.sqlite} /var/lib/beszel/beszel_data/data.db ".backup '${backupDir}/data.db'"
-          '';
+          backupPrepareCommand = "${lib.getExe pkgs.local.backup-sqlite} /var/lib/beszel/beszel_data/data.db ${backupDir}/data.db";
         };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "beszel";

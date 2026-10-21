@@ -7,11 +7,13 @@ in
     {
       config,
       lib,
+      pkgs,
       ...
     }:
     let
       inherit (config.utils) mkPostgres;
       domain = config.caddy.domain;
+      jellyfinBackupDir = "/var/backup/jellyfin";
       arrs = [
         "sonarr"
         "radarr"
@@ -179,6 +181,24 @@ in
         flaresolverr.enable = true;
         bazarr.enable = true;
         jellyfin.enable = true;
+        restic.backups.jellyfin = config.restic.mkBackup "jellyfin" {
+          paths = [
+            "/var/lib/jellyfin"
+            jellyfinBackupDir
+          ];
+          exclude = [
+            "/var/lib/jellyfin/metadata"
+            "/var/lib/jellyfin/data/metadata"
+            "/var/lib/jellyfin/data/transcodes"
+            "/var/lib/jellyfin/cache"
+            "/var/lib/jellyfin/log"
+            "/var/lib/jellyfin/.cache"
+            "*.db"
+            "*.db-wal"
+            "*.db-shm"
+          ];
+          backupPrepareCommand = "${lib.getExe pkgs.local.backup-sqlite} /var/lib/jellyfin/data/jellyfin.db ${jellyfinBackupDir}/library.sqlite";
+        };
       };
     };
 }

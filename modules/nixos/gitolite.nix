@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config) settings;
+in
 {
   flake.modules.nixos.gitolite =
     {
@@ -68,4 +72,10 @@
         };
       };
     };
+  flake.modules.homeManager.gitolite = _: {
+    programs.ssh.settings.gitolite = {
+      HostName = settings.lan.serverAddress;
+      User = "gitolite";
+    };
+  };
 }

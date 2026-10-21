@@ -18,10 +18,6 @@ in
             HostName = settings.lan.serverAddress;
             User = settings.user;
           };
-          "gitolite" = {
-            HostName = settings.lan.serverAddress;
-            User = "gitolite";
-          };
           "desktop" = {
             HostName = settings.lan.desktopAddress;
             User = settings.user;

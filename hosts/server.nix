@@ -110,6 +110,7 @@ in
         fd
         fzf
         git
+        gitolite
         jq
         nushell
         ripgrep

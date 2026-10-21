@@ -122,6 +122,7 @@ in
 
         home-manager.users.${settings.user}.imports = with homeManager; [
           atuin
+          gitolite
           base
           bat
           btop

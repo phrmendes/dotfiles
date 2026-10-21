@@ -22,8 +22,8 @@ in
         "thesis"
         "todotxt.nvim"
       ];
-      backupRepos = pkgs.writers.writeNuBin "backup-repos" (
-        builtins.readFile ../../files/scripts/backup-repos.nu
+      syncRepos = pkgs.writers.writeNuBin "sync-repos" (
+        builtins.readFile ../../files/scripts/sync-repos.nu
       );
     in
     {
@@ -59,7 +59,7 @@ in
             Group = group;
             WorkingDirectory = dataDir;
             ExecStopPost = "${lib.getExe pkgs.gitolite} setup";
-            ExecStart = "${lib.getExe backupRepos} ${
+            ExecStart = "${lib.getExe syncRepos} ${
               lib.escapeShellArgs (
                 [
                   "${dataDir}/repositories"

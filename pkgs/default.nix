@@ -7,4 +7,5 @@
   nushell = pkgs.callPackage ./nushell.nix { };
   pin = pkgs.callPackage ./pin.nix { };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
+  vpn = pkgs.callPackage ./vpn.nix { };
 }

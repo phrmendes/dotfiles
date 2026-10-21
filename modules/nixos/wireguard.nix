@@ -20,9 +20,7 @@
           file = config.wireguard.configFile;
         };
 
-        environment.systemPackages = [
-          (pkgs.writers.writeNuBin "vpn" (builtins.readFile ../../files/scripts/vpn.nu))
-        ];
+        environment.systemPackages = [ pkgs.local.vpn ];
 
         networking.wg-quick.interfaces.home = {
           configFile = config.age.secrets.${secret}.path;

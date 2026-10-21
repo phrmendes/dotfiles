@@ -46,7 +46,16 @@
       port,
       auth ? false,
       extraConfig ? "",
+      upstream ? "127.0.0.1:${toString port}",
+      insecure ? false,
     }:
+    let
+      proxy =
+        if insecure then
+          "reverse_proxy ${upstream} { transport http { tls_insecure_skip_verify } }"
+        else
+          "reverse_proxy ${upstream}";
+    in
     {
       "${name}.${domain}" = {
         extraConfig = ''
@@ -59,12 +68,12 @@
 
           handle @websocket {
             ${lib.optionalString auth "import authelia-auth"}
-            reverse_proxy 127.0.0.1:${toString port}
+            ${proxy}
           }
 
           handle {
             ${lib.optionalString auth "import authelia-auth"}
-            reverse_proxy 127.0.0.1:${toString port}
+            ${proxy}
             import security-headers
           }
         '';

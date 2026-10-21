@@ -38,6 +38,7 @@ in
         podmanServer
         postgresql
         sftpgo
+        sunshineProxy
         syncthing
       ];
 

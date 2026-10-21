@@ -38,15 +38,9 @@
       };
     };
 
-    nixosModules = lib.mkOption {
-      description = "NixOS modules: nixosModules.<name>";
-      type = lib.types.lazyAttrsOf lib.types.deferredModule;
-      default = { };
-    };
-
-    homeModules = lib.mkOption {
-      description = "Home-manager modules: homeModules.<name>";
-      type = lib.types.lazyAttrsOf lib.types.deferredModule;
+    flake.modules = lib.mkOption {
+      description = "Feature aspects: modules.<class>.<name>";
+      type = lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule);
       default = { };
     };
 

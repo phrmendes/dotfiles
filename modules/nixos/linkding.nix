@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.linkding =
+  flake.modules.nixos.linkding =
     { config, ... }:
     let
       port = 9090;

@@ -1,5 +1,5 @@
 {
-  nixosModules.gitolite =
+  flake.modules.nixos.gitolite =
     {
       config,
       lib,

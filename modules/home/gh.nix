@@ -1,5 +1,5 @@
 {
-  homeModules.gh = {
+  flake.modules.homeManager.gh = {
     programs = {
       gh = {
         enable = true;

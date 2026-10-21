@@ -1,5 +1,5 @@
 {
-  homeModules.tealdeer = {
+  flake.modules.homeManager.tealdeer = {
     programs.tealdeer = {
       enable = true;
       settings = {

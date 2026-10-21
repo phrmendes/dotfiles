@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  homeModules.pi =
+  flake.modules.homeManager.pi =
     { pkgs, ... }:
     let
       piDir = ../../files/pi;

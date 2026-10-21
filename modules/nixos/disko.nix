@@ -6,7 +6,7 @@ let
   ];
 in
 {
-  nixosModules.disko =
+  flake.modules.nixos.disko =
     { lib, config, ... }:
     {
       imports = [ inputs.disko.nixosModules.disko ];

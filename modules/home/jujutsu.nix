@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  homeModules.jujutsu = {
+  flake.modules.homeManager.jujutsu = {
     programs.jujutsu = {
       enable = true;
       settings = {

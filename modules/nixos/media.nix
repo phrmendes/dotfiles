@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.media =
+  flake.modules.nixos.media =
     {
       config,
       lib,

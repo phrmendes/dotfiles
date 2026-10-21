@@ -1,5 +1,5 @@
 {
-  homeModules.librewolf =
+  flake.modules.homeManager.librewolf =
     { pkgs, ... }:
     {
       programs.librewolf = {

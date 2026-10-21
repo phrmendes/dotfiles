@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.caddy =
+  flake.modules.nixos.caddy =
     {
       config,
       lib,

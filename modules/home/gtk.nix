@@ -1,5 +1,5 @@
 {
-  homeModules.gtk =
+  flake.modules.homeManager.gtk =
     { pkgs, ... }:
     {
       gtk = {

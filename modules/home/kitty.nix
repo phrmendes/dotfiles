@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  homeModules.kitty =
+  flake.modules.homeManager.kitty =
     { pkgs, ... }:
     let
       kittens = "${pkgs.vimPlugins.smart-splits-nvim}/kitty";

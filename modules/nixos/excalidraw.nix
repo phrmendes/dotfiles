@@ -1,5 +1,5 @@
 {
-  nixosModules.excalidraw =
+  flake.modules.nixos.excalidraw =
     { config, ... }:
     let
       port = 4000;

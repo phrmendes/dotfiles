@@ -1,5 +1,5 @@
 {
-  nixosModules.sftpgo =
+  flake.modules.nixos.sftpgo =
     { config, ... }:
     let
       sftpPort = 2022;

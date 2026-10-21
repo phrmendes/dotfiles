@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.adguardhome =
+  flake.modules.nixos.adguardhome =
     { config, ... }:
     let
       inherit (config) utils;

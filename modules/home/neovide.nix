@@ -1,5 +1,5 @@
 {
-  homeModules.neovide =
+  flake.modules.homeManager.neovide =
     { config, ... }:
     {
       programs.neovide = {

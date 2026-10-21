@@ -2,7 +2,7 @@ let
   dataDir = "/var/lib/authelia";
 in
 {
-  nixosModules.authelia =
+  flake.modules.nixos.authelia =
     { config, ... }:
     let
       domain = config.caddy.domain;

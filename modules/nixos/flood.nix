@@ -1,5 +1,5 @@
 {
-  nixosModules.flood =
+  flake.modules.nixos.flood =
     { config, ... }:
     let
       inherit (config) utils;

@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  homeModules.base =
+  flake.modules.homeManager.base =
     { lib, ... }:
     let
       editor = lib.mkOverride 1001 "nvim";

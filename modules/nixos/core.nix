@@ -7,7 +7,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.core =
+  flake.modules.nixos.core =
     {
       pkgs,
       lib,

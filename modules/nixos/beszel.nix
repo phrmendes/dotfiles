@@ -1,5 +1,5 @@
 {
-  nixosModules.beszel =
+  flake.modules.nixos.beszel =
     {
       lib,
       config,

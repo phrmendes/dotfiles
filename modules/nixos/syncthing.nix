@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.syncthing =
+  flake.modules.nixos.syncthing =
     { config, lib, ... }:
     let
       port = 8384;

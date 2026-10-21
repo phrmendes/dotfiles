@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  homeModules.git = {
+  flake.modules.homeManager.git = {
     programs.git = {
       enable = true;
       settings = {

@@ -1,5 +1,5 @@
 {
-  nixosModules.homepage =
+  flake.modules.nixos.homepage =
     { lib, config, ... }:
     let
       port = 8082;

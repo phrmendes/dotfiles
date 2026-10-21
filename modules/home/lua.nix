@@ -1,5 +1,5 @@
 {
-  homeModules.lua =
+  flake.modules.homeManager.lua =
     {
       lib,
       pkgs,

@@ -1,5 +1,5 @@
 {
-  nixosModules.restic =
+  flake.modules.nixos.restic =
     { config, lib, ... }:
     let
       bucket = "b2:phrmendes-backups:restic";

@@ -1,5 +1,5 @@
 {
-  homeModules.difftastic = {
+  flake.modules.homeManager.difftastic = {
     programs.difftastic = {
       enable = true;
       jujutsu.enable = true;

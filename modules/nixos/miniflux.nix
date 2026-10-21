@@ -1,5 +1,5 @@
 {
-  nixosModules.miniflux =
+  flake.modules.nixos.miniflux =
     {
       config,
       lib,

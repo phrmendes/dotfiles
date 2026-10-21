@@ -1,5 +1,5 @@
 {
-  homeModules.packages = { pkgs, ... }: {
+  flake.modules.homeManager.packages = { pkgs, ... }: {
     home.packages =
       (with pkgs; [
         android-tools

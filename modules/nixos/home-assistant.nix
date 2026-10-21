@@ -1,5 +1,5 @@
 {
-  nixosModules.homeAssistant =
+  flake.modules.nixos.homeAssistant =
     { config, ... }:
     let
       port = 8123;

@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.impermanence = {
+  flake.modules.nixos.impermanence = {
     environment.persistence."/persist" = {
       users.${settings.user}.directories = [
         ".ssh"

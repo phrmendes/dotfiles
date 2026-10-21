@@ -1,5 +1,5 @@
 {
-  nixosModules.searxng =
+  flake.modules.nixos.searxng =
     { config, ... }:
     let
       port = 8889;

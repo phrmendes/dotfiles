@@ -1,12 +1,13 @@
 { config, ... }:
 let
-  inherit (config) nixosModules settings homeModules;
+  inherit (config) settings;
+  inherit (config.flake.modules) homeManager nixos;
 in
 {
   configurations.nixos.desktop.module =
     { config, lib, ... }:
     {
-      imports = with nixosModules; [
+      imports = with nixos; [
         core
         disko
         podman
@@ -93,7 +94,7 @@ in
         "d /mnt/external/pi 0700 ${settings.user} users 7d"
       ];
 
-      home-manager.users.${settings.user}.imports = with homeModules; [
+      home-manager.users.${settings.user}.imports = with homeManager; [
         chromium
         gaming
         neovide

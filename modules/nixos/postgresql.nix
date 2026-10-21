@@ -1,5 +1,5 @@
 {
-  nixosModules.postgresql =
+  flake.modules.nixos.postgresql =
     { config, lib, ... }:
     {
       services = {

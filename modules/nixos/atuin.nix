@@ -1,5 +1,5 @@
 {
-  nixosModules.atuin =
+  flake.modules.nixos.atuin =
     { config, ... }:
     let
       port = 8888;

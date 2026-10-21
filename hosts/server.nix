@@ -1,6 +1,7 @@
 { config, ... }:
 let
-  inherit (config) nixosModules settings homeModules;
+  inherit (config) settings;
+  inherit (config.flake.modules) homeManager nixos;
 in
 {
   configurations.nixos.server.module =
@@ -14,7 +15,7 @@ in
       inherit (config.utils) mkSecretReadable;
     in
     {
-      imports = with nixosModules; [
+      imports = with nixos; [
         authelia
         core
         disko
@@ -185,7 +186,7 @@ in
         };
       };
 
-      home-manager.users.${settings.user}.imports = with homeModules; [
+      home-manager.users.${settings.user}.imports = with homeManager; [
         base
         bat
         btop

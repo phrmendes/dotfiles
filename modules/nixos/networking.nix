@@ -1,5 +1,5 @@
 {
-  nixosModules.networking =
+  flake.modules.nixos.networking =
     { lib, ... }:
     {
       networking = {

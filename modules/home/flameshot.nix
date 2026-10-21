@@ -1,5 +1,5 @@
 {
-  homeModules.flameshot =
+  flake.modules.homeManager.flameshot =
     { config, ... }:
     let
       c = config.lib.stylix.colors.withHashtag;

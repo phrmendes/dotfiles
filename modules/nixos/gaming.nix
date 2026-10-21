@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  nixosModules.gaming =
+  flake.modules.nixos.gaming =
     { pkgs, ... }:
     {
       environment.persistence."/persist".users.${settings.user}.directories = [

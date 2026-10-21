@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  homeModules.atuin = {
+  flake.modules.homeManager.atuin = {
     programs.atuin = {
       enable = true;
       daemon.enable = true;

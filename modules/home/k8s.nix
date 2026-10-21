@@ -1,5 +1,5 @@
 {
-  homeModules.k8s =
+  flake.modules.homeManager.k8s =
     { pkgs, ... }:
     let
       logBatPlugin =

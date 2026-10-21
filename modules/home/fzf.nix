@@ -1,5 +1,5 @@
 {
-  homeModules.fzf =
+  flake.modules.homeManager.fzf =
     { pkgs, lib, ... }:
     let
       bat = lib.getExe pkgs.bat;

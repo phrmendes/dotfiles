@@ -1,5 +1,5 @@
 {
-  homeModules.chromium =
+  flake.modules.homeManager.chromium =
     {
       pkgs,
       osConfig,

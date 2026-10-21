@@ -1,6 +1,7 @@
 { config, inputs, ... }:
 let
-  inherit (config) settings homeModules;
+  inherit (config) settings;
+  inherit (config.flake.modules) homeManager;
   commonDirs = [
     ".ansible"
     ".cache/helm"
@@ -67,7 +68,7 @@ let
   };
 in
 {
-  nixosModules.workstation =
+  flake.modules.nixos.workstation =
     {
       config,
       lib,
@@ -119,7 +120,7 @@ in
       config = {
         programs.nh.flake = config.workstation.dotfilesDir;
 
-        home-manager.users.${settings.user}.imports = with homeModules; [
+        home-manager.users.${settings.user}.imports = with homeManager; [
           atuin
           base
           bat

@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  homeModules.nushell =
+  flake.modules.homeManager.nushell =
     {
       lib,
       pkgs,

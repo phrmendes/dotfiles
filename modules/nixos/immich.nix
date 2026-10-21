@@ -26,6 +26,12 @@
       ];
 
       services = {
+        restic.backups.photos = config.restic.mkBackup "photos" {
+          paths = [
+            "/mnt/external/photos/backups"
+            "/mnt/external/photos/library"
+          ];
+        };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "immich";
           inherit port;

@@ -30,11 +30,13 @@
           requires = [
             "authelia.service"
             "caddy.service"
+            "postgresql.target"
           ];
           after = [
             "mnt-external.mount"
             "authelia.service"
             "caddy.service"
+            "postgresql.target"
           ];
         };
         tmpfiles.rules = [
@@ -45,6 +47,7 @@
       };
 
       services = {
+        postgresql = config.utils.mkPostgres "sftpgo";
         caddy.virtualHosts =
           (config.caddy.mkVhost {
             name = "sftpgo";
@@ -68,6 +71,13 @@
             "/var/lib/qbittorrent/watch"
           ];
           settings = {
+            data_provider = {
+              driver = "postgresql";
+              name = "sftpgo";
+              host = "/run/postgresql";
+              port = 5432;
+              username = "sftpgo";
+            };
             sftpd = {
               bindings = [
                 {

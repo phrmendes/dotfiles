@@ -5,15 +5,15 @@
     allowedUDPPorts = [ port ];
   };
 
-  mkSqliteBackup =
-    {
-      dir,
-      paths,
-      sqlite3,
-    }:
-    [ "install -d -m 0700 ${dir}" ]
-    ++ lib.mapAttrsToList (name: path: ''${sqlite3} ${path} ".backup '${dir}/${name}.db'"'') paths
-    |> lib.concatStringsSep "\n";
+  mkPostgres = name: {
+    ensureDatabases = [ name ];
+    ensureUsers = [
+      {
+        inherit name;
+        ensureDBOwnership = true;
+      }
+    ];
+  };
 
   mkSecretReadable =
     {

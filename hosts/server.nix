@@ -35,6 +35,7 @@ in
         media
         networking
         podman
+        postgresql
         sftpgo
         syncthing
       ];
@@ -74,6 +75,11 @@ in
       };
 
       networking.hostName = "server";
+
+      services.restic.backups = {
+        zotero = config.restic.mkBackup "zotero" { paths = [ "/mnt/external/zotero" ]; };
+        books = config.restic.mkBackup "books" { paths = [ "/mnt/external/books" ]; };
+      };
 
       boot.initrd = {
         availableKernelModules = [ "r8169" ];

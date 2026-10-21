@@ -24,11 +24,22 @@ in
         inherit port;
       };
 
+      services.postgresql = config.utils.mkPostgres "linkding" // {
+        identMap = "linkding root linkding";
+        authentication = "local linkding linkding peer map=linkding";
+      };
+
       systemd = {
         tmpfiles.rules = [ "d /var/lib/linkding 0755 root root -" ];
         services."podman-linkding" = {
-          after = [ "podman-network-services.service" ];
-          requires = [ "podman-network-services.service" ];
+          after = [
+            "podman-network-services.service"
+            "postgresql.target"
+          ];
+          requires = [
+            "podman-network-services.service"
+            "postgresql.target"
+          ];
         };
       };
 
@@ -37,10 +48,14 @@ in
         ports = [ "127.0.0.1:${toString port}:${toString port}" ];
         volumes = [
           "/var/lib/linkding:/etc/linkding/data"
+          "/run/postgresql:/run/postgresql"
           "${../../files/ca.crt}:/etc/ca.crt:ro"
         ];
         environment = {
-          LD_DB_ENGINE = "sqlite";
+          LD_DB_ENGINE = "postgres";
+          LD_DB_HOST = "/run/postgresql";
+          LD_DB_USER = "linkding";
+          LD_DB_DATABASE = "linkding";
           REQUESTS_CA_BUNDLE = "/etc/ca.crt";
         };
         environmentFiles = [ config.age.secrets."linkding.env".path ];

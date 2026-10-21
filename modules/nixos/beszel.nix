@@ -8,6 +8,7 @@
     }:
     let
       port = 8090;
+      backupDir = "/var/backup/beszel";
     in
     {
       homepage.services.beszel = {
@@ -102,6 +103,13 @@
       };
 
       services = {
+        restic.backups.beszel = config.restic.mkBackup "beszel" {
+          paths = [ backupDir ];
+          backupPrepareCommand = ''
+            install -d -m 0700 ${backupDir}
+            ${lib.getExe pkgs.sqlite} /var/lib/beszel/beszel_data/data.db ".backup '${backupDir}/data.db'"
+          '';
+        };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "beszel";
           inherit port;

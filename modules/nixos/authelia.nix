@@ -22,9 +22,14 @@ in
         };
       };
 
-      systemd.services.authelia.serviceConfig.ReadWritePaths = [ dataDir ];
+      systemd.services.authelia = {
+        after = [ "postgresql.target" ];
+        requires = [ "postgresql.target" ];
+        serviceConfig.ReadWritePaths = [ dataDir ];
+      };
 
       services = {
+        postgresql = config.utils.mkPostgres "authelia";
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "auth";
           port = 9099;
@@ -35,7 +40,11 @@ in
           settings = {
             theme = "dark";
             server.address = "tcp://127.0.0.1:9099/";
-            storage.local.path = "${dataDir}/db.sqlite3";
+            storage.postgres = {
+              address = "unix:///run/postgresql";
+              database = "authelia";
+              username = "authelia";
+            };
             notifier.filesystem.filename = "${dataDir}/notification.txt";
             authentication_backend.file = {
               path = config.age.secrets."users.yaml".path;

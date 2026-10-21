@@ -6,10 +6,30 @@ in
   nixosModules.media =
     {
       config,
+      lib,
       ...
     }:
     let
+      inherit (config.utils) mkPostgres;
       domain = config.caddy.domain;
+      arrs = [
+        "sonarr"
+        "radarr"
+        "prowlarr"
+      ];
+      postgres = name: {
+        postgres = {
+          host = "/run/postgresql";
+          port = 5432;
+          user = name;
+          maindb = name;
+          logdb = "${name}_log";
+        };
+      };
+      dependsOnPostgres = {
+        after = [ "postgresql.target" ];
+        requires = [ "postgresql.target" ];
+      };
     in
     {
       homepage.services = {
@@ -64,10 +84,33 @@ in
 
       systemd = {
         services = {
-          sonarr.serviceConfig.SupplementaryGroups = [ "external" ];
-          radarr.serviceConfig.SupplementaryGroups = [ "external" ];
-          prowlarr.serviceConfig.SupplementaryGroups = [ "external" ];
-          bazarr.serviceConfig.SupplementaryGroups = [ "external" ];
+          sonarr = {
+            serviceConfig.SupplementaryGroups = [ "external" ];
+          }
+          // dependsOnPostgres;
+          radarr = {
+            serviceConfig.SupplementaryGroups = [ "external" ];
+          }
+          // dependsOnPostgres;
+          prowlarr = {
+            serviceConfig.SupplementaryGroups = [ "external" ];
+          }
+          // dependsOnPostgres;
+          bazarr = {
+            serviceConfig.SupplementaryGroups = [ "external" ];
+            environment = {
+              POSTGRES_ENABLED = "true";
+              POSTGRES_HOST = "/run/postgresql";
+              POSTGRES_PORT = "5432";
+              POSTGRES_DATABASE = "bazarr";
+              POSTGRES_USERNAME = "bazarr";
+            };
+          }
+          // dependsOnPostgres;
+          postgresql-setup.script = lib.mkAfter (
+            map (name: ''psql -tAc 'ALTER DATABASE "${name}_log" OWNER TO "${name}"' '') arrs
+            |> lib.concatStringsSep "\n"
+          );
         };
         tmpfiles.rules = [
           "d /mnt/external/movies 2775 ${settings.user} external -"
@@ -110,7 +153,8 @@ in
           settings = {
             server.bindAddress = "127.0.0.1";
             Auth.Method = "External";
-          };
+          }
+          // postgres "sonarr";
         };
         radarr = {
           enable = true;
@@ -118,15 +162,20 @@ in
           settings = {
             server.bindAddress = "127.0.0.1";
             Auth.Method = "External";
-          };
+          }
+          // postgres "radarr";
         };
         prowlarr = {
           enable = true;
           settings = {
             server.bindAddress = "127.0.0.1";
             Auth.Method = "External";
-          };
+          }
+          // postgres "prowlarr";
         };
+        postgresql = lib.mkMerge (
+          map mkPostgres (arrs ++ [ "bazarr" ]) ++ [ { ensureDatabases = map (name: "${name}_log") arrs; } ]
+        );
         flaresolverr.enable = true;
         bazarr.enable = true;
         jellyfin.enable = true;

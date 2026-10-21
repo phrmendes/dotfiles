@@ -58,6 +58,13 @@ in
       };
 
       services = {
+        restic.backups.syncthing = config.restic.mkBackup "syncthing" {
+          paths = [ "/mnt/external/syncthing" ];
+          exclude = [
+            "/mnt/external/syncthing/reading"
+            "/mnt/external/syncthing/files"
+          ];
+        };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "syncthing";
           inherit port;

@@ -21,10 +21,6 @@
           inherit port;
         };
         atuin = {
-          database = {
-            createLocally = false;
-            uri = "sqlite:///var/lib/atuin/atuin.db";
-          };
           enable = true;
           host = "127.0.0.1";
           openRegistration = false;

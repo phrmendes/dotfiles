@@ -26,6 +26,7 @@ in
         searxng
         excalidraw
         flood
+        gitolite
         homeAssistant
         homepage
         immich

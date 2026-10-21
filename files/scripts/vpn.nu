@@ -18,14 +18,21 @@ def "main status" []: nothing -> record {
     let handshake = if $seen == 0 {
         "never"
     } else {
-        let age = (date now) - ($seen * 1_000_000_000 | into datetime)
+        let now = date now
+        let seen_at = $seen * 1_000_000_000 | into datetime
+        let age = $now - $seen_at
 
         $"(($age | into int) // 1_000_000_000 * 1sec | format duration sec) ago"
     }
 
     {
         state: up
-        address: (ip -4 -o address show dev $INTERFACE | parse --regex 'inet (?<address>\S+)' | get address | first)
+        address: (
+            ip -4 -o address show dev $INTERFACE
+            | parse --regex 'inet (?<address>\S+)'
+            | get address
+            | first
+        )
         endpoint: (sudo wg show $INTERFACE endpoints | split row "\t" | last)
         handshake: $handshake
         received: ($traffic | first)

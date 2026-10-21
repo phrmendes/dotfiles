@@ -3,7 +3,7 @@ let
   inherit (config) settings;
 in
 {
-  flake.modules.nixos.externalStorage =
+  flake.modules.nixos.storage =
     { config, ... }:
     {
       fileSystems."/mnt/external" = {

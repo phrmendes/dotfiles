@@ -16,7 +16,7 @@ in
         authelia
         core
         disko
-        externalStorage
+        storage
         adguardhome
         atuin
         beszel

@@ -16,5 +16,6 @@ in
   nushell = pkgs.callPackage ./nushell.nix { };
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
+  backup-sqlite = pkgs.callPackage ./backup-sqlite.nix { inherit writeNuBin; };
   vpn = pkgs.callPackage ./vpn.nix { };
 }

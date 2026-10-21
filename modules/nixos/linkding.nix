@@ -29,8 +29,20 @@ in
       };
 
       services.postgresql = config.utils.mkPostgres "linkding" // {
-        identMap = "linkding root linkding";
+        identMap = ''
+          linkding root linkding
+          linkding linkding linkding
+        '';
         authentication = "local linkding linkding peer map=linkding";
+      };
+
+      users = {
+        groups.linkding.gid = 33;
+        users.linkding = {
+          isSystemUser = true;
+          uid = 33;
+          group = "linkding";
+        };
       };
 
       systemd = {

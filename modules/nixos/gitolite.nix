@@ -52,7 +52,7 @@ in
             openssh
             perl
           ];
-          environment.NU_LOG_FORMAT = "%LEVEL% %MSG%";
+          environment.NU_LOG_FORMAT = "%%LEVEL%% %%MSG%%";
           serviceConfig = {
             Type = "oneshot";
             User = user;

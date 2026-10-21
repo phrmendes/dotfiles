@@ -15,7 +15,7 @@ in
         core
         disko
         podman
-        wireguardClient
+        wireguard
         workstation
       ];
 
@@ -35,6 +35,8 @@ in
       networking = {
         hostName = "laptop";
       };
+
+      wireguard.configFile = ../secrets/wg-laptop.age.conf;
 
       disko.mainDiskDevice = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
 

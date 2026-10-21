@@ -7,7 +7,7 @@
       ...
     }:
     let
-      secret = "wg-${config.networking.hostName}.conf";
+      secret = "wg.${config.networking.hostName}.conf";
     in
     {
       options.wireguard.configFile = lib.mkOption {

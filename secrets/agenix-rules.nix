@@ -28,5 +28,5 @@ mkSecrets [
   "searxng.age.env"
   "sftpgo.age.env"
   "users.age.yaml"
-  "wg-laptop.age.conf"
+  "wg.laptop.age.conf"
 ]

@@ -61,8 +61,8 @@ in
               port = dnsPort;
               refuse_any = true;
               upstream_dns = [
-                "https://dns.adguard-dns.com/dns-query"
-                "https://dns.cloudflare.com/dns-query"
+                "https://1.1.1.1/dns-query"
+                "https://1.0.0.1/dns-query"
               ];
               upstream_mode = "load_balance";
             };

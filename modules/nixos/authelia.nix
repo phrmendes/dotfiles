@@ -1,10 +1,8 @@
-let
-  dataDir = "/var/lib/authelia";
-in
 {
   flake.modules.nixos.authelia =
     { config, ... }:
     let
+      dataDir = "/var/lib/authelia";
       domain = config.caddy.domain;
     in
     {

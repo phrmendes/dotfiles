@@ -74,11 +74,6 @@ in
         extraPackages = [ pkgs.intel-media-driver ];
       };
 
-      boot.kernelModules = [
-        "ip_tables"
-        "ip6_tables"
-      ];
-
       virtualisation = {
         oci-containers.backend = "podman";
         podman.autoPrune = {

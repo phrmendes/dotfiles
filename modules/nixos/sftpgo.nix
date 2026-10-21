@@ -46,8 +46,6 @@
         };
         tmpfiles.rules = [
           "d /var/lib/sftpgo 0750 sftpgo sftpgo -"
-          "d /var/lib/qbittorrent 0755 root root -"
-          "d /var/lib/qbittorrent/watch 0755 root root -"
         ];
       };
 
@@ -73,7 +71,6 @@
           extraReadWriteDirs = [
             "/mnt/external"
             "/var/lib/syncthing"
-            "/var/lib/qbittorrent/watch"
           ];
           settings = {
             data_provider = {

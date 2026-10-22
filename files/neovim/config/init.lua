@@ -7,7 +7,6 @@ vim.pack.add({
   "https://github.com/TheNoeTrevino/haunt.nvim",
   "https://github.com/ThePrimeagen/refactoring.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
-  "https://github.com/brianhuster/live-preview.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/folke/sidekick.nvim",
   "https://github.com/igorlfs/nvim-dap-view",

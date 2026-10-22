@@ -56,10 +56,6 @@
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
     },
-    "live-preview.nvim": {
-      "rev": "a6307fa340ed7c0d96f5c567afc8c991aad94ce0",
-      "src": "https://github.com/brianhuster/live-preview.nvim"
-    },
     "markdown.nvim": {
       "rev": "093be911d90de03877f3009de36081c1a6242d51",
       "src": "https://github.com/tadmccorkle/markdown.nvim"

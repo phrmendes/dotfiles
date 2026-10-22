@@ -22,7 +22,6 @@
         withRuby = false;
         extraPython3Packages = p: with p; [ debugpy ];
         extraPackages = with pkgs; [
-          local.get-wg-ip
           lynx
           tree-sitter
           vscode-extensions.vadimcn.vscode-lldb

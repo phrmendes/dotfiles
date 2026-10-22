@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 let
   inherit (config) settings;
-  inherit (config.flake.modules) homeManager;
+  inherit (config.flake.modules) homeManager nixos;
   commonDirs = [
     ".ansible"
     ".cache/helm"
@@ -40,32 +40,6 @@ let
     "Videos"
     "Zotero"
   ];
-  versioning = {
-    simple = {
-      type = "simple";
-      params = {
-        keep = "10";
-        cleanoutDays = "30";
-      };
-    };
-    trashcan = {
-      type = "trashcan";
-      params.cleanoutDays = "15";
-    };
-  };
-  workstations = [
-    "desktop"
-    "laptop"
-    "server"
-  ];
-  allDevices = workstations ++ [
-    "phone"
-    "tablet"
-  ];
-  trashcanFolder = path: devices: {
-    inherit path devices;
-    versioning = versioning.trashcan;
-  };
 in
 {
   flake.modules.nixos.workstation =
@@ -89,6 +63,15 @@ in
       };
     in
     {
+      imports = with nixos; [
+        audio
+        bluetooth
+        resolved
+        session
+        syncthingWorkstation
+        tailscale
+      ];
+
       options.workstation = lib.mkOption {
         type = lib.types.submodule {
           options = {
@@ -174,115 +157,13 @@ in
           };
         };
 
-        hardware = {
-          keyboard.qmk.enable = true;
-          bluetooth = {
-            enable = true;
-            powerOnBoot = true;
-            settings.Policy.AutoEnable = true;
-            input.General = {
-              ClassicBondedOnly = false;
-              LEBondedOnly = false;
-              UserspaceHID = true;
-            };
-          };
-        };
+        hardware.keyboard.qmk.enable = true;
 
         users.users.${settings.user}.extraGroups = [
           "adbusers"
           "audio"
           "video"
         ];
-
-        services = {
-          tailscale = {
-            enable = true;
-            useRoutingFeatures = "client";
-          };
-
-          resolved = {
-            enable = true;
-            settings.Resolve = {
-              DNS = [ settings.lan.serverAddress ];
-              Domains = [ "~${settings.serverDomain}" ];
-              DNSSEC = "false";
-              LLMNR = "false";
-            };
-          };
-
-          flatpak.enable = true;
-          geoclue2.enable = true;
-          gvfs.enable = true;
-
-          greetd = {
-            enable = true;
-            settings = rec {
-              initial_session = {
-                inherit (settings) user;
-                command = "${lib.getExe pkgs.uwsm} start hyprland-uwsm.desktop";
-              };
-              default_session = initial_session;
-            };
-          };
-
-          power-profiles-daemon.enable = lib.mkDefault true;
-          upower.enable = true;
-
-          pipewire = {
-            enable = true;
-            pulse.enable = true;
-            alsa = {
-              enable = true;
-              support32Bit = true;
-            };
-          };
-
-          syncthing = {
-            inherit (settings) user;
-            enable = true;
-            configDir = "${settings.home}/.config/syncthing";
-            openDefaultPorts = true;
-            overrideDevices = true;
-            overrideFolders = true;
-            settings = {
-              options = {
-                localAnnounceEnabled = true;
-                urAccepted = 1;
-              };
-              devices = lib.mapAttrs (_: id: { inherit id; }) settings.syncthingDevices;
-              folders = {
-                "documents" = trashcanFolder "${settings.home}/Documents/documents" workstations;
-                "images" = trashcanFolder "${settings.home}/Pictures/images" workstations;
-                "notes" = {
-                  path = "${settings.home}/Documents/notes";
-                  versioning = versioning.simple;
-                  devices = allDevices;
-                };
-                "ufabc" = trashcanFolder "${settings.home}/Documents/ufabc" (workstations ++ [ "tablet" ]);
-                "collections" = trashcanFolder "${settings.home}/Documents/collections" workstations;
-                "excalidraw" = trashcanFolder "${settings.home}/Documents/excalidraw" workstations;
-                "reading" = trashcanFolder "${settings.home}/Documents/reading" allDevices;
-                "keepassxc" = trashcanFolder "${settings.home}/Documents/keepassxc" allDevices;
-              };
-            };
-          };
-        };
-
-        programs = {
-          dconf.enable = true;
-          ssh = {
-            startAgent = true;
-            askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
-          };
-          hyprland = {
-            enable = true;
-            withUWSM = true;
-          };
-          thunar = {
-            enable = true;
-            plugins = with pkgs; [ thunar-volman ];
-          };
-        };
 
         environment = {
           persistence."/persist".users.${settings.user}.directories = commonDirs ++ [
@@ -306,18 +187,6 @@ in
             rar
             unar
             xdg-utils
-          ];
-        };
-
-        xdg.portal = {
-          enable = true;
-          extraPortals = with pkgs; [
-            xdg-desktop-portal-hyprland
-            xdg-desktop-portal-gtk
-          ];
-          config.hyprland.default = [
-            "hyprland"
-            "gtk"
           ];
         };
       };

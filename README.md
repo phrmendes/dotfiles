@@ -28,6 +28,7 @@ hosts/               — per-machine compositions
 - **`settings`** — typed options (`user`, `home`, `serverDomain`, `lan.*`, ...). A value with one consumer stays in that file
 - **Aspects** — a file registers `flake.modules.nixos.<name>` and, when it has a user-level part, `flake.modules.homeManager.<name>`. Hosts only import aspects
 - **Shared options** — a feature registers itself in `homepage.services`, `caddy.mkVhost`, `restic.mkBackup` and `utils.mkPostgres`, so a service file owns its vhost, database, secret and backup
+- **Forced passphrase** — the laptop imports `forcePassphrase`. The TPM PIN works for 48 hours after a boot that asked for the full passphrase. After that, the initrd changes PCR 7 for one boot, the TPM refuses the PIN, and the boot asks for the passphrase. The next boot uses the PIN again. A stamp on the ESP records the time. `pin status` shows it, and `pin create` and `pin edit` refuse to run in a boot that asked for the passphrase
 - **Module header** — a file takes `{ config, ... }:` and `inherit (config) settings;` only when it needs shared `settings`, and `{ inputs, ... }:` only when it needs flake inputs
 
 ## Scripts

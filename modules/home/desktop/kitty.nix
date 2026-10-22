@@ -30,6 +30,7 @@ in
           inactive_text_alpha = "0.9";
           listen_on = "unix:/tmp/kitty";
           open_url_with = "default";
+          remember_window_size = "no";
           shell = "nu";
           shell_integration = "enabled";
           tab_bar_edge = "bottom";

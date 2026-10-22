@@ -47,7 +47,7 @@
       };
 
       home = {
-        packages = mcpServers;
+        packages = mcpServers ++ [ pkgs.libnotify ];
         file = {
           ".pi/agent/mcp.json".source = ../../../files/pi/mcp.json;
           ".pi/agent/plan.json".source = ../../../files/pi/plan.json;

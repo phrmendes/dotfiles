@@ -38,7 +38,6 @@ Nushell scripts live in `files/scripts/`. `pkgs/default.nix` packages them as `p
 - **`lib.nu`** — helpers that scripts share. `fail` raises an error with a label.
 - **`writeNuBin`** — builds a command from a script. It sets `NU_LIB_DIRS` in the shebang, so a script writes `use lib.nu fail`.
 - **`backup-sqlite <source> <destination>`** — copies a live SQLite database as a consistent snapshot and checks the copy. The Beszel and Jellyfin backups use it.
-- **`get-wg-ip`** — uses `writeNuBin`. It prints the WireGuard addresses of the machine.
 - **`vpn`** — starts and stops the home tunnel, and shows its state. It uses the plain `writers.writeNuBin`.
 - **`sync-repos`** — mirrors the public GitHub repositories into Gitolite.
 

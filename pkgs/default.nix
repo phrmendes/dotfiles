@@ -17,4 +17,5 @@ in
   nushell = pkgs.callPackage ./nushell.nix { };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
   vpn = pkgs.callPackage ./vpn.nix { };
+  wait-for-tray = pkgs.callPackage ./wait-for-tray.nix { inherit writeNuBin; };
 }

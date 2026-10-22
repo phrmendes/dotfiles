@@ -23,6 +23,11 @@ in
             User = settings.user;
             ProxyJump = "server";
           };
+          "laptop" = {
+            HostName = "laptop.${settings.serverDomain}";
+            User = settings.user;
+            ConnectTimeout = 5;
+          };
           "server-unlock" = {
             HostName = settings.lan.serverAddress;
             Port = 2222;

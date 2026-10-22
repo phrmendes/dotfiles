@@ -62,6 +62,7 @@
               clipboard_placement = "floating";
               clipboard_position = "center";
               control_center_placement = "attached";
+              open_near_click_control_center = true;
               wallpaper_placement = "attached";
               session_placement = "attached";
             };

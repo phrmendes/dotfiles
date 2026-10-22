@@ -29,6 +29,8 @@ in
         };
       };
 
+      console.keyMap = "br-abnt2";
+
       networking = {
         hostName = "laptop";
       };

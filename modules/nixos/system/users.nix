@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules.nixos.users =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
 
       users = {
@@ -47,7 +47,7 @@ in
         timeZone = "America/Sao_Paulo";
         hardwareClockInLocalTime = false;
       };
-      console.keyMap = "us";
+      console.keyMap = lib.mkDefault "us";
       system.stateVersion = settings.stateVersion;
 
       home-manager = {

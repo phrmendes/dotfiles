@@ -7,7 +7,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 
 hl.config({
   input = {
-    kb_layout = "us,br",
+    kb_layout = nix.is_laptop and "br,us" or "us,br",
     kb_model = "pc104",
     kb_rules = "evdev",
     kb_options = "grp:alt_space_toggle",

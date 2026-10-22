@@ -8,6 +8,7 @@ let
     } "/bin/${name}";
 in
 {
+  backup-sqlite = pkgs.callPackage ./backup-sqlite.nix { inherit writeNuBin; };
   beszel = pkgs.callPackage ./beszel.nix { src = inputs.beszel; };
   diff-persist = pkgs.callPackage ./diff-persist.nix { };
   gcp = pkgs.callPackage ./gcp.nix { };
@@ -16,6 +17,5 @@ in
   nushell = pkgs.callPackage ./nushell.nix { };
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
-  backup-sqlite = pkgs.callPackage ./backup-sqlite.nix { inherit writeNuBin; };
   vpn = pkgs.callPackage ./vpn.nix { };
 }

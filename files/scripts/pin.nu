@@ -12,9 +12,15 @@ const FORCED_FLAG = "/run/passphrase-forced"
 # File on the ESP with the time of the last boot that asked for the passphrase.
 const STAMP = "/boot/luks-passphrase-stamp"
 
-# Encrypted disk partitions, by partition label.
+# LUKS partitions, by partition label.
 def "nu-complete pin device" []: nothing -> list<string> {
-    glob /dev/disk/by-partlabel/*
+    try {
+        lsblk --list --json --output PARTLABEL,FSTYPE
+        | from json
+        | get blockdevices
+        | where fstype == crypto_LUKS and partlabel != null
+        | each {|disk| $"/dev/disk/by-partlabel/($disk.partlabel)" }
+    } catch { [] }
 }
 
 # List the key slot types of the disk, for example password and tpm2.

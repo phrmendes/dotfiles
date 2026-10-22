@@ -13,7 +13,7 @@ in
     let
       inherit (config.utils) mkVhost;
       domain = config.caddy.domain;
-      caStore = pkgs.writeTextDir "ca.crt" (builtins.readFile ../../files/ca.crt);
+      caStore = pkgs.writeTextDir "ca.crt" (builtins.readFile ../../../files/ca.crt);
     in
     {
       options.caddy = {
@@ -31,7 +31,7 @@ in
 
       config = {
         age.secrets."ca.key" = config.utils.mkSecretReadable {
-          file = ../../secrets/ca.age.key;
+          file = ../../../secrets/ca.age.key;
           owner = "caddy";
         };
 
@@ -74,7 +74,7 @@ in
             pki {
               ca local {
                 root {
-                  cert ${../../files/ca.crt}
+                  cert ${../../../files/ca.crt}
                   key ${config.age.secrets."ca.key".path}
                 }
               }

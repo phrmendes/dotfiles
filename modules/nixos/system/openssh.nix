@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.modules.nixos.openssh = _: {
     services.openssh = {
       allowSFTP = true;

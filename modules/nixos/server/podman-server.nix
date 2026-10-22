@@ -7,7 +7,7 @@ in
     { config, pkgs, ... }:
     {
       age.secrets."dockerhub.json" = config.utils.mkSecretReadable {
-        file = ../../secrets/dockerhub.age.json;
+        file = ../../../secrets/dockerhub.age.json;
         path = "/root/.docker/config.json";
       };
 

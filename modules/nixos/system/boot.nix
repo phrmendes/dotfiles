@@ -51,7 +51,7 @@ in
             enable = true;
             initrdBin = [ pkgs.dialog ];
             contents = {
-              "/etc/dialogrc".source = ../../files/dialogrc;
+              "/etc/dialogrc".source = ../../../files/dialogrc;
             };
             services = {
               systemd-udevd.after = [ "systemd-modules-load.service" ]; # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
@@ -67,7 +67,7 @@ in
                   RemainAfterExit = true;
                 };
                 environment.KEEP_OLD_ROOTS = toString keepOldRoots;
-                script = builtins.readFile ../../files/scripts/reset-ephemeral.sh;
+                script = builtins.readFile ../../../files/scripts/reset-ephemeral.sh;
               };
             };
           };

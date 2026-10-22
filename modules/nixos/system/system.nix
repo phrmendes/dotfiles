@@ -11,7 +11,7 @@ in
 
       networking.networkmanager.enable = true;
 
-      security.pki.certificateFiles = [ ../../files/ca.crt ];
+      security.pki.certificateFiles = [ ../../../files/ca.crt ];
       virtualisation.containers.enable = true;
       services = {
         dbus.packages = with pkgs; [ gcr_4 ];

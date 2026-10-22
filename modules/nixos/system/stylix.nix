@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.modules.nixos.stylix =
     { pkgs, ... }:
     {
@@ -14,7 +13,7 @@ _:
         {
           enable = true;
           enableReleaseChecks = false;
-          image = ../../files/background.png;
+          image = ../../../files/background.png;
           base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
           polarity = "dark";
           targets.kmscon.enable = false;

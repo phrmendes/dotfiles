@@ -14,7 +14,7 @@ in
       ...
     }:
     let
-      utils = import ../../utils { inherit lib; };
+      utils = import ../../../utils { inherit lib; };
     in
     {
       options.utils = lib.mkOption {

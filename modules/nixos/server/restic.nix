@@ -28,7 +28,7 @@
       };
 
       config.age.secrets."restic.env" = config.utils.mkSecretReadable {
-        file = ../../secrets/restic.age.env;
+        file = ../../../secrets/restic.age.env;
       };
     };
 }

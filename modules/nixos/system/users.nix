@@ -16,10 +16,10 @@ in
             shell = pkgs.local.nushell;
             password = "changeme";
             openssh.authorizedKeys.keys = map builtins.readFile [
-              ../../files/ssh/main.txt
-              ../../files/ssh/phone.txt
-              ../../files/ssh/laptop.txt
-              ../../files/ssh/server.txt
+              ../../../files/ssh/main.txt
+              ../../../files/ssh/phone.txt
+              ../../../files/ssh/laptop.txt
+              ../../../files/ssh/server.txt
             ];
             isNormalUser = true;
             uid = 1000;

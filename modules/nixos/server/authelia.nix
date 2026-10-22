@@ -8,11 +8,11 @@
     {
       age.secrets = {
         "users.yaml" = config.utils.mkSecretReadable {
-          file = ../../secrets/users.age.yaml;
+          file = ../../../secrets/users.age.yaml;
           owner = "authelia";
         };
         "authelia.yaml" = config.utils.mkSecretReadable {
-          file = ../../secrets/authelia.age.yaml;
+          file = ../../../secrets/authelia.age.yaml;
           owner = "authelia";
         };
       };

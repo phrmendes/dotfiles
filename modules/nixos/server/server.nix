@@ -55,9 +55,9 @@ in
         port = 2222;
         hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
         authorizedKeys = map builtins.readFile [
-          ../../files/ssh/main.txt
-          ../../files/ssh/laptop.txt
-          ../../files/ssh/phone.txt
+          ../../../files/ssh/main.txt
+          ../../../files/ssh/laptop.txt
+          ../../../files/ssh/phone.txt
         ];
       };
     };

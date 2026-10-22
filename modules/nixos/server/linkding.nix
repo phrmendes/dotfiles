@@ -10,7 +10,7 @@ in
     in
     {
       age.secrets."linkding.env" = config.utils.mkSecretReadable {
-        file = ../../secrets/linkding.age.env;
+        file = ../../../secrets/linkding.age.env;
       };
 
       homepage.services.linkding = {
@@ -65,7 +65,7 @@ in
         volumes = [
           "/var/lib/linkding:/etc/linkding/data"
           "/run/postgresql:/run/postgresql"
-          "${../../files/ca.crt}:/etc/ca.crt:ro"
+          "${../../../files/ca.crt}:/etc/ca.crt:ro"
         ];
         environment = {
           LD_DB_ENGINE = "postgres";

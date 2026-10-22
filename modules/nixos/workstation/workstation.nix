@@ -151,12 +151,12 @@ in
         age.secrets = {
           "pi.json" = mkSecretReadable {
             owner = settings.user;
-            file = ../../secrets/pi.age.json;
+            file = ../../../secrets/pi.age.json;
             path = "${settings.home}/.pi/agent/auth.json";
           };
           "noctalia.txt" = mkSecretReadable {
             owner = settings.user;
-            file = ../../secrets/noctalia.age.txt;
+            file = ../../../secrets/noctalia.age.txt;
           };
         };
 

@@ -20,7 +20,7 @@
       };
 
       age.secrets."miniflux.env" = config.utils.mkSecretReadable {
-        file = ../../secrets/miniflux.age.env;
+        file = ../../../secrets/miniflux.age.env;
         owner = "miniflux";
       };
 

@@ -23,13 +23,13 @@ in
         "todotxt.nvim"
       ];
       syncRepos = pkgs.writers.writeNuBin "sync-repos" (
-        builtins.readFile ../../files/scripts/sync-repos.nu
+        builtins.readFile ../../../files/scripts/sync-repos.nu
       );
     in
     {
       services.gitolite = {
         enable = true;
-        adminPubkey = builtins.readFile ../../files/ssh/main.txt;
+        adminPubkey = builtins.readFile ../../../files/ssh/main.txt;
       };
 
       services.restic.backups.gitolite = config.restic.mkBackup "gitolite" {

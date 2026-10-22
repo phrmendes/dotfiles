@@ -12,7 +12,7 @@
     in
     {
       age.secrets."beszel.env" = config.utils.mkSecretReadable {
-        file = ../../secrets/beszel.age.env;
+        file = ../../../secrets/beszel.age.env;
       };
 
       homepage.services.beszel = {

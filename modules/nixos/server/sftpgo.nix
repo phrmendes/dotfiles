@@ -8,7 +8,7 @@
     in
     {
       age.secrets."sftpgo.env" = config.utils.mkSecretReadable {
-        file = ../../secrets/sftpgo.age.env;
+        file = ../../../secrets/sftpgo.age.env;
         owner = "sftpgo";
       };
 

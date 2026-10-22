@@ -6,7 +6,7 @@
     in
     {
       age.secrets."searxng.env" = config.utils.mkSecretReadable {
-        file = ../../secrets/searxng.age.env;
+        file = ../../../secrets/searxng.age.env;
         owner = "searx";
       };
 

@@ -8,7 +8,7 @@ NixOS + Home Manager configuration for three machines — desktop, laptop, and s
 flake.nix            — inputs and mkFlake entry point
 modules/             — every file is a flake-parts module (auto-imported)
   base.nix           — settings, flake.modules registry, nixosSystem builder, checks, treefmt
-  nixos/             — NixOS aspects (flat, no subdirectories)
+  nixos/             — NixOS aspects, grouped in system/, workstation/, server/ and media/
   home/              — Home Manager aspects
 utils/               — helpers (mkVhost, mkPostgres, mkSecretReadable, ...)
 pkgs/                — custom packages

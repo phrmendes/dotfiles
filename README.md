@@ -30,6 +30,17 @@ hosts/               — per-machine compositions
 - **Shared options** — a feature registers itself in `homepage.services`, `caddy.mkVhost`, `restic.mkBackup` and `utils.mkPostgres`, so a service file owns its vhost, database, secret and backup
 - **Module header** — a file takes `{ config, ... }:` and `inherit (config) settings;` only when it needs shared `settings`, and `{ inputs, ... }:` only when it needs flake inputs
 
+## Scripts
+
+Nushell scripts live in `files/scripts/`. `pkgs/default.nix` packages them as `pkgs.local.<name>`.
+
+- **`lib.nu`** — helpers that scripts share. `fail` raises an error with a label.
+- **`writeNuBin`** — builds a command from a script. It sets `NU_LIB_DIRS` in the shebang, so a script writes `use lib.nu fail`.
+- **`backup-sqlite <source> <destination>`** — copies a live SQLite database as a consistent snapshot and checks the copy. The Beszel and Jellyfin backups use it.
+- **`pin`**, **`get-wg-ip`** — use `writeNuBin`. `pin` manages the TPM PIN of the disk. `get-wg-ip` prints the WireGuard addresses of the machine.
+- **`vpn`** — starts and stops the home tunnel, and shows its state. It uses the plain `writers.writeNuBin`.
+- **`sync-repos`** — mirrors the public GitHub repositories into Gitolite.
+
 ## Install
 
 Enable flakes, partition with disko, then install:

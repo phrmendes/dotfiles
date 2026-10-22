@@ -23,7 +23,7 @@ hosts/               — per-machine compositions
 ## Key concepts
 
 - **Every `.nix` file is a top-level module** — auto-imported by import-tree
-- **`workstation`** — per-host attrset (`type`, `dotfilesDir`, `monitors`), set by desktop/laptop. The `workstation` aspect imports the `audio`, `bluetooth`, `resolved`, `session`, `syncthingWorkstation` and `tailscale` aspects
+- **`workstation`** — per-host attrset (`type`, `dotfilesDir`, `monitors`), set by desktop/laptop. The `workstation` aspect imports the `audio`, `bluetooth`, `resolved`, `session`, `syncthingWorkstation` (next to `syncthingServer` in `syncthing.nix`) and `tailscale` aspects
 - **Aspects** — a file registers `flake.modules.nixos.<name>` and, when it has a user-level part, `flake.modules.homeManager.<name>`. Hosts only import aspects
 - **Shared options** — a feature registers itself in `homepage.services`, `caddy.mkVhost`, `restic.mkBackup` and `utils.mkPostgres`, so a service file owns its vhost, database, secret and backup
 - **Module header** — a file takes `{ config, ... }:` and `inherit (config) settings;` only when it needs shared `settings`, and `{ inputs, ... }:` only when it needs flake inputs

@@ -39,7 +39,7 @@ in
         postgresql
         sftpgo
         sunshineProxy
-        syncthing
+        syncthingServer
       ];
 
       networking.hostName = "server";

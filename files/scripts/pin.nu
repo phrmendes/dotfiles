@@ -2,7 +2,8 @@ use lib.nu fail
 
 const DEFAULT_DEVICE = "/dev/disk/by-partlabel/disk-main-luks"
 
-# TPM register that the PIN is bound to. PCR 7 holds the Secure Boot policy.
+# TPM register that the PIN is bound to. PCR 7 holds the Secure Boot state. Secure Boot is off,
+# so it only changes when the firmware Secure Boot settings change.
 const PCRS = "7"
 
 # List the key slot types of the disk, for example password and tpm2.
@@ -46,7 +47,7 @@ def "main create" [
     enroll $device
 }
 
-# Change the PIN. Also use it after a Secure Boot or firmware change, to seal the key again.
+# Change the PIN. Also use it after a firmware Secure Boot setting change, to seal the key again.
 def "main edit" [
   --device (-d): string = $DEFAULT_DEVICE # Encrypted disk to use
 ]: nothing -> nothing {

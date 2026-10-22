@@ -1,13 +1,21 @@
 use lib.nu fail
 
+# Encrypted disk that the commands use when the user gives none.
 const DEFAULT_DEVICE = "/dev/disk/by-partlabel/disk-main-luks"
 
-# TPM register that the PIN is bound to. PCR 7 holds the Secure Boot state. Secure Boot is off,
-# so it only changes when the firmware Secure Boot settings change.
+# TPM register that the PIN is bound to. PCR 7 holds the Secure Boot state.
 const PCRS = "7"
 
+# Flag that the boot sets when it changed PCR 7 on purpose to ask for the passphrase.
+const FORCED_FLAG = "/run/passphrase-forced"
+
+# File on the ESP with the time of the last boot that asked for the passphrase.
+const STAMP = "/boot/luks-passphrase-stamp"
+
 # List the key slot types of the disk, for example password and tpm2.
-def slot-types [device: string]: nothing -> list<string> {
+def slot-types [
+    device: string # encrypted disk to read
+]: nothing -> list<string> {
     let result = (^sudo systemd-cryptenroll $device | complete)
 
     if $result.exit_code != 0 {
@@ -23,14 +31,36 @@ def has-tpm []: nothing -> bool {
 }
 
 # Stop with an error when no TPM is usable.
-def require-tpm [device: string]: nothing -> nothing {
+def require-tpm [
+    device: string # encrypted disk, named in the error
+]: nothing -> nothing {
     if not (has-tpm) {
         fail "No usable TPM found. The boot asks for the passphrase every time." $device "disk"
     }
 }
 
+# Time of the last boot that asked for the passphrase, or nothing when none is on record.
+def last-passphrase []: nothing -> oneof<datetime, nothing> {
+    let result = (^sudo cat $STAMP | complete)
+
+    if $result.exit_code != 0 {
+        return null
+    }
+
+    let seconds = $result.stdout | str trim | into int
+
+    $seconds * 1_000_000_000 | into datetime
+}
+
 # Seal the key to the TPM with a PIN, and replace any older PIN.
-def enroll [device: string]: nothing -> nothing {
+# Stop when this boot asked for the passphrase. PCR 7 differs on purpose now, so a new seal would never match.
+def enroll [
+    device: string # encrypted disk to seal the key of
+]: nothing -> nothing {
+    if ($FORCED_FLAG | path exists) {
+        fail "This boot asked for the passphrase, so PCR 7 differs on purpose. Reboot first." $device "disk"
+    }
+
     ^sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto $"--tpm2-pcrs=($PCRS)" --tpm2-with-pin=yes $device
 }
 
@@ -90,15 +120,17 @@ def "main delete" [
     print "PIN deleted. The boot asks for the passphrase."
 }
 
-# Show whether a TPM, a PIN, and a passphrase slot exist.
+# Show whether a TPM, a PIN, and a passphrase slot exist, and when the passphrase was last asked.
 def "main status" [
   --device (-d): string = $DEFAULT_DEVICE # Encrypted disk to use
-]: nothing -> record<tpm: bool, pin: bool, passphrase: bool> {
+]: nothing -> record {
     let types = (slot-types $device)
     {
         tpm: (has-tpm)
         pin: ("tpm2" in $types)
         passphrase: ("password" in $types)
+        passphrase_boot: ($FORCED_FLAG | path exists)
+        last_passphrase: (last-passphrase)
     }
 }
 

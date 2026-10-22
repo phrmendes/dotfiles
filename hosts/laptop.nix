@@ -12,9 +12,6 @@ in
     }:
     {
       imports = with nixos; [
-        core
-        disko
-        podman
         wireguard
         workstation
       ];

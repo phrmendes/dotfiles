@@ -66,6 +66,9 @@ in
       imports = with nixos; [
         audio
         bluetooth
+        core
+        disko
+        podman
         resolved
         session
         syncthingWorkstation

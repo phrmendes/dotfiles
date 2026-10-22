@@ -8,12 +8,9 @@ in
     { config, lib, ... }:
     {
       imports = with nixos; [
-        core
-        disko
-        podman
-        workstation
         gaming
         sunshine
+        workstation
       ];
 
       workstation = {

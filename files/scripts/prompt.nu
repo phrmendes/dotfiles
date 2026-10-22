@@ -40,7 +40,9 @@ def duration-prompt []: nothing -> string {
 }
 
 # Prompt symbol: purple in normal mode, green after success, red after failure.
-def lambda-prompt [mode: string = "insert"]: nothing -> string {
+def lambda-prompt [
+    mode: string = "insert" # editing mode: insert, or normal in vi mode
+]: nothing -> string {
     let exit_code = $env.LAST_EXIT_CODE? | default 0 | into int
 
     let color = match [$mode $exit_code] {

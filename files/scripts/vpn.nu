@@ -1,4 +1,7 @@
+# Systemd unit that runs the WireGuard tunnel.
 const UNIT = "wg-quick-home.service"
+
+# Name of the WireGuard interface.
 const INTERFACE = "home"
 
 def is-up []: nothing -> bool {

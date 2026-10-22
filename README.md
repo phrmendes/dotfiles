@@ -9,7 +9,7 @@ flake.nix            — inputs and mkFlake entry point
 modules/             — every file is a flake-parts module (auto-imported)
   base.nix           — settings, flake.modules registry, nixosSystem builder, checks, treefmt
   nixos/             — NixOS aspects, grouped in system/, workstation/, server/ and media/
-  home/              — Home Manager aspects
+  home/              — Home Manager aspects, grouped in core/, cli/, dev/ and desktop/
 utils/               — helpers (mkVhost, mkPostgres, mkSecretReadable, ...)
 pkgs/                — custom packages
 files/               — static files; scripts live in files/scripts/

@@ -51,7 +51,7 @@ in
         extraConfig = ''
           use ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/basic-git.nu basic-git-left-prompt
           source ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/oh-my.nu
-          source ${../../files/scripts/prompt.nu}
+          source ${../../../files/scripts/prompt.nu}
         '';
       };
     };

@@ -3,7 +3,7 @@
   flake.modules.homeManager.pi =
     { pkgs, ... }:
     let
-      piDir = ../../files/pi;
+      piDir = ../../../files/pi;
       mcpServers = with pkgs; [
         agent-browser
         local.pyzotero
@@ -49,8 +49,8 @@
       home = {
         packages = mcpServers;
         file = {
-          ".pi/agent/mcp.json".source = ../../files/pi/mcp.json;
-          ".pi/agent/plan.json".source = ../../files/pi/plan.json;
+          ".pi/agent/mcp.json".source = ../../../files/pi/mcp.json;
+          ".pi/agent/plan.json".source = ../../../files/pi/plan.json;
         };
       };
     };

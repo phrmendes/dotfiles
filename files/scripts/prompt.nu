@@ -1,3 +1,5 @@
+const FETCH_INTERVAL = 10min
+
 # Current directory, shortened, with a marker when it is read-only.
 def cwd-prompt []: nothing -> string {
     let directory = (
@@ -63,8 +65,75 @@ def ssh-host-prompt []: nothing -> string {
     }
 }
 
+# Commits to pull and to push, counted against the upstream as of the last fetch. Nothing without an upstream.
+def sync-counts []: nothing -> oneof<record, nothing> {
+    let result = git rev-list --left-right --count "@{upstream}...HEAD" | complete
+
+    if $result.exit_code != 0 {
+        return null
+    }
+
+    let counts = $result.stdout | str trim | split row "\t" | into int
+
+    {
+        behind: ($counts | first)
+        ahead: ($counts | last)
+    }
+}
+
+# Fetch the upstream in the background when the last fetch is older than the interval.
+def fetch-when-stale []: nothing -> nothing {
+    let result = git rev-parse --absolute-git-dir | complete
+
+    if $result.exit_code != 0 {
+        return
+    }
+
+    let gitdir = $result.stdout | str trim
+    let marker = $gitdir | path join prompt-fetch
+    let newest = [FETCH_HEAD prompt-fetch]
+    | each {|name| $gitdir | path join $name }
+    | where ($it | path exists)
+    | each {|path| try { ls --long $path | get modified | first } }
+    | compact
+    | sort
+    | last 1
+
+    if ($newest | is-not-empty) {
+        let age = date now | $in - ($newest | first)
+
+        if $age < $FETCH_INTERVAL {
+            return
+        }
+    }
+
+    try { touch $marker }
+
+    job spawn --description "fetch the upstream for the prompt" {
+        with-env {GIT_TERMINAL_PROMPT: "0", GIT_SSH_COMMAND: "ssh -o BatchMode=yes"} {
+            do --ignore-errors { ^git --git-dir $gitdir fetch --quiet --no-tags } | ignore
+        }
+    } | ignore
+}
+
+# Commits to push (up arrow) and to pull (down arrow). Starts a background fetch when the data is stale.
+def git-sync-prompt []: nothing -> string {
+    let counts = sync-counts
+
+    if $counts == null {
+        return ""
+    }
+
+    fetch-when-stale
+
+    let ahead = if $counts.ahead > 0 { $" (ansi cyan_bold)↑($counts.ahead)(ansi reset)" } else { "" }
+    let behind = if $counts.behind > 0 { $" (ansi yellow_bold)↓($counts.behind)(ansi reset)" } else { "" }
+
+    $"($ahead)($behind)"
+}
+
 load-env {
-    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(char newline)" }
+    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(git-sync-prompt)(char newline)" }
     PROMPT_COMMAND_RIGHT: {|| "" }
     PROMPT_INDICATOR: {|| lambda-prompt }
     PROMPT_INDICATOR_VI_INSERT: {|| lambda-prompt }

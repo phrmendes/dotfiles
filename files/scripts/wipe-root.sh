@@ -1,9 +1,16 @@
 #!/bin/sh
 set -e
 
+# Number of old roots to keep.
 keep=${KEEP_OLD_ROOTS:?}
+
+# Where the script mounts the top level of the btrfs volume.
 top=/top
+
+# The root that the system boots from.
 root=$top/root
+
+# Where the old roots wait until the script prunes them.
 old_roots=$top/old_roots
 
 # Mount the top level of the btrfs volume.
@@ -17,7 +24,7 @@ mount_top() {
 restore_requested() {
     read -r cmdline </proc/cmdline
     case " $cmdline " in
-    *" nixos.restore_ephemeral=ask "*) ;;
+    *" nixos.restore_old_root=ask "*) ;;
     *) return 1 ;;
     esac
 }
@@ -30,7 +37,7 @@ choose_old_root() {
         set -- "${dir##*/}" "" "$@"
     done
     [ $# -gt 0 ] || return 0
-    choice=$(TERM=linux dialog --timeout 60 --menu "Restore which ephemeral state?" 20 76 12 "$@" 2>&1 1>/dev/console </dev/console) || return 0
+    choice=$(TERM=linux dialog --timeout 60 --menu "Restore which old root?" 20 76 12 "$@" 2>&1 1>/dev/console </dev/console) || return 0
     printf '%s\n' "$choice"
 }
 

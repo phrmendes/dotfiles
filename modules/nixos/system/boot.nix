@@ -8,9 +8,10 @@ in
     { lib, pkgs, ... }:
     {
 
-      specialisation.restore-ephemeral.configuration.boot.kernelParams = [
-        "nixos.restore_ephemeral=ask"
-      ];
+      specialisation.restore-old-root.configuration = {
+        system.nixos.distroName = "NixOS (choose an old root to restore)";
+        boot.kernelParams = [ "nixos.restore_old_root=ask" ];
+      };
 
       boot = {
         kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
@@ -55,8 +56,8 @@ in
             };
             services = {
               systemd-udevd.after = [ "systemd-modules-load.service" ]; # Workaround for https://github.com/NixOS/nixpkgs/issues/428775
-              reset-ephemeral = {
-                description = "Reset the ephemeral filesystem and keep the newest old copies";
+              wipe-root = {
+                description = "Wipe the root filesystem and keep the newest old copies";
                 requiredBy = [ "sysroot.mount" ];
                 before = [ "sysroot.mount" ];
                 after = [ "systemd-cryptsetup@crypted.service" ];
@@ -67,7 +68,7 @@ in
                   RemainAfterExit = true;
                 };
                 environment.KEEP_OLD_ROOTS = toString keepOldRoots;
-                script = builtins.readFile ../../../files/scripts/reset-ephemeral.sh;
+                script = builtins.readFile ../../../files/scripts/wipe-root.sh;
               };
             };
           };

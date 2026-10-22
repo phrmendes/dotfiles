@@ -78,8 +78,6 @@
         };
         Service = {
           Environment = [ "SSH_AUTH_SOCK=%t/ssh-agent" ];
-          ExecStartPre = lib.getExe pkgs.local.wait-for-tray;
-          TimeoutStartSec = 150;
           ExecStart = lib.getExe pkgs.keepassxc;
           Restart = "on-failure";
           RestartSec = 3;

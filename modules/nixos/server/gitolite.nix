@@ -62,8 +62,9 @@ in
             ExecStart = "${lib.getExe syncRepos} ${
               lib.escapeShellArgs (
                 [
-                  "${dataDir}/repositories"
+                  "--owner"
                   owner
+                  "${dataDir}/repositories"
                 ]
                 ++ repos
               )

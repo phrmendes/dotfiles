@@ -2,7 +2,7 @@
 export def fail [
     message: string # what went wrong
     culprit?: string # the argument of the caller that the label points at, or the message when empty
-    text: string = "raised here" # the text of the label
+    --text (-t): string = "raised here" # the text of the label
 ]: oneof<nothing, record> -> error {
     $in | ignore
 

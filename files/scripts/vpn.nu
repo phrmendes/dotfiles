@@ -4,6 +4,22 @@ const UNIT = "wg-quick-home.service"
 # Name of the WireGuard interface.
 const INTERFACE = "home"
 
+# Print a WireGuard value of the tunnel, or stop with an error.
+def wg-show [
+    field: string # value to read, for example transfer
+]: nothing -> string {
+    let result = sudo wg show $INTERFACE $field | complete
+
+    if $result.exit_code != 0 {
+        error make {
+            msg: $"wg show ($field) failed: ($result.stderr | str trim)"
+            label: {text: "this field", span: (metadata $field).span}
+        }
+    }
+
+    $result.stdout
+}
+
 def is-up []: nothing -> bool {
     let result = systemctl is-active $UNIT | complete
 
@@ -16,8 +32,8 @@ def "main status" []: nothing -> record {
         return {state: down, hint: "run `vpn up` to connect"}
     }
 
-    let seen = sudo wg show $INTERFACE latest-handshakes | split row "\t" | last | into int
-    let traffic = sudo wg show $INTERFACE transfer | split row "\t" | last 2 | into int | into filesize
+    let seen = wg-show latest-handshakes | split row "\t" | last | into int
+    let traffic = wg-show transfer | split row "\t" | last 2 | into int | into filesize
     let handshake = if $seen == 0 {
         "never"
     } else {
@@ -28,15 +44,19 @@ def "main status" []: nothing -> record {
         $"(($age | into int) // 1_000_000_000 * 1sec | format duration sec) ago"
     }
 
+    let addresses = ip -4 -o address show dev $INTERFACE | complete
+
+    if $addresses.exit_code != 0 {
+        error make {
+            msg: $"ip address show failed: ($addresses.stderr | str trim)"
+            label: {text: "this output", span: (metadata $addresses).span}
+        }
+    }
+
     {
         state: up
-        address: (
-            ip -4 -o address show dev $INTERFACE
-            | parse --regex 'inet (?<address>\S+)'
-            | get address
-            | first
-        )
-        endpoint: (sudo wg show $INTERFACE endpoints | split row "\t" | last)
+        address: ($addresses.stdout | parse --regex 'inet (?<address>\S+)' | get address | first)
+        endpoint: (wg-show endpoints | split row "\t" | last)
         handshake: $handshake
         received: ($traffic | first)
         sent: ($traffic | last)

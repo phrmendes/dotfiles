@@ -13,7 +13,7 @@ def main [
 
     try {
         mkdir $folder
-        ^chmod 0700 $folder
+        chmod 0700 $folder
         rm --force $destination
     } catch {
         fail $"Cannot prepare ($folder)." $destination
@@ -31,7 +31,7 @@ def main [
         fail $"Cannot read the copy of ($source)." $source
     }
 
-    if $verdict != "ok" {
+    if $verdict != ok {
         fail $"The copy of ($source) failed the integrity check: ($verdict)" $source
     }
 }

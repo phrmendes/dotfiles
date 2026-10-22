@@ -79,7 +79,7 @@ load-env {
 $env.config.menus = (
     $env.config.menus
     | each {|menu|
-        if $menu.name in ["completion_menu" "ide_completion_menu"] {
+        if $menu.name in [completion_menu ide_completion_menu] {
             $menu | upsert marker "λ "
         } else {
             $menu

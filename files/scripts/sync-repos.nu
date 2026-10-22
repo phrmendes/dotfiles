@@ -3,9 +3,16 @@ use std/log
 # Mirror public GitHub repositories into bare repositories under <root>/<owner>.
 def main [
     root: path # directory that holds the gitolite repositories
-    owner: string # GitHub user or organisation
     ...repos: string # repository names
+    --owner (-o): string = "" # GitHub user or organisation, required
 ]: nothing -> nothing {
+    if ($owner | is-empty) {
+        error make {
+            msg: "--owner is required"
+            label: {text: "this value is empty", span: (metadata $owner).span}
+        }
+    }
+
     let target = $"($root)/($owner)"
 
     let results = $repos | par-each --keep-order {|name|

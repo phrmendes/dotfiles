@@ -15,7 +15,6 @@ in
   get-wg-ip = pkgs.callPackage ./get-wg-ip.nix { inherit writeNuBin; };
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nushell = pkgs.callPackage ./nushell.nix { };
-  pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { };
   vpn = pkgs.callPackage ./vpn.nix { };
 }

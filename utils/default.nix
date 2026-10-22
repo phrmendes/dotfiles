@@ -5,6 +5,11 @@
     allowedUDPPorts = [ port ];
   };
 
+  dependsOnPostgres = {
+    after = [ "postgresql.target" ];
+    requires = [ "postgresql.target" ];
+  };
+
   mkPostgres = name: {
     ensureDatabases = [ name ];
     ensureUsers = [

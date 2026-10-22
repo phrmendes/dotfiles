@@ -32,7 +32,12 @@ in
         impermanence
         linkding
         miniflux
-        media
+        bazarr
+        flaresolverr
+        jellyfin
+        prowlarr
+        radarr
+        sonarr
         networking
         podman
         podmanServer

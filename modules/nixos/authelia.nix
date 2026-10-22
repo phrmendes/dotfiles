@@ -31,9 +31,7 @@
         };
       };
 
-      systemd.services.authelia = {
-        after = [ "postgresql.target" ];
-        requires = [ "postgresql.target" ];
+      systemd.services.authelia = config.utils.dependsOnPostgres // {
         serviceConfig.ReadWritePaths = [ dataDir ];
       };
 

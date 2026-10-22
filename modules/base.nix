@@ -34,7 +34,9 @@ in
             serverAddress = str "192.168.10.2";
             serverMac = str "94:c6:91:aa:e3:9e";
             desktopAddress = str "192.168.10.3";
+            laptopAddress = str "192.168.10.4";
           };
+          vpn.laptopAddress = str "10.10.10.3";
         };
       };
       default = { };

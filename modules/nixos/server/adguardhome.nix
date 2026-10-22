@@ -84,6 +84,16 @@ in
                   enabled = true;
                 }
                 {
+                  domain = "laptop.${config.caddy.domain}";
+                  answer = settings.lan.laptopAddress;
+                  enabled = true;
+                }
+                {
+                  domain = "laptop.${config.caddy.domain}";
+                  answer = settings.vpn.laptopAddress;
+                  enabled = true;
+                }
+                {
                   domain = "*.desktop.internal";
                   answer = settings.lan.desktopAddress;
                   enabled = true;

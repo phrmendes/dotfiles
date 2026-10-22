@@ -32,6 +32,7 @@ in
       ]
       ++ (with nixos; [
         boot
+        logs
         nix
         openssh
         stylix

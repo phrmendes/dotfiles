@@ -33,6 +33,7 @@ in
       radarr
       restic
       searxng
+      serverLogs
       sftpgo
       sonarr
       storage

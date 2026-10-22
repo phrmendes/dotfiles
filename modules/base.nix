@@ -28,6 +28,7 @@ in
           home = str "/home/phrmendes";
           serverDomain = str "server.internal";
           stateVersion = str "26.11";
+          logRetention = str "1week";
           lan = {
             interface = str "enp3s0";
             serverAddress = str "192.168.10.2";

@@ -14,7 +14,6 @@ in
 
       boot = {
         kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
-        tmp.cleanOnBoot = true;
         kernelPackages = pkgs.linuxPackages;
         supportedFilesystems = [
           "btrfs"

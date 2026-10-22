@@ -112,6 +112,8 @@
             directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
           };
 
+          audio.enable_notification_sounds = false;
+
           notification = {
             enable_daemon = true;
             background_opacity = lib.mkForce 0.97;

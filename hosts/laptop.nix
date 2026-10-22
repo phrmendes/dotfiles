@@ -43,6 +43,10 @@ in
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
 
       boot = {
+        loader.limine.secureBoot = {
+          enable = true;
+          autoGenerateKeys = true;
+        };
         kernelModules = [ "kvm-intel" ];
         kernelParams = [
           "i915.enable_rc6=1"

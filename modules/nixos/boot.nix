@@ -1,7 +1,7 @@
-{ config, ... }:
+_:
 let
-  inherit (config) settings;
   btrfsTop = "/run/btrfs";
+  keepOldRoots = 5;
 in
 {
   flake.modules.nixos.boot =
@@ -66,7 +66,7 @@ in
                   Type = "oneshot";
                   RemainAfterExit = true;
                 };
-                environment.KEEP_OLD_ROOTS = toString settings.keepOldRoots;
+                environment.KEEP_OLD_ROOTS = toString keepOldRoots;
                 script = builtins.readFile ../../files/scripts/reset-ephemeral.sh;
               };
             };

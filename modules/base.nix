@@ -4,6 +4,14 @@
   config,
   ...
 }:
+let
+  str =
+    default:
+    lib.mkOption {
+      type = lib.types.str;
+      inherit default;
+    };
+in
 {
   options = {
     hostPlatform = lib.mkOption {
@@ -12,30 +20,23 @@
     };
 
     settings = lib.mkOption {
-      type = lib.types.attrs;
-      default = {
-        name = "Pedro Mendes";
-        user = "phrmendes";
-        email = "pedrohrmendes@proton.me";
-        home = "/home/phrmendes";
-        serverDomain = "server.internal";
-        stateVersion = "26.11";
-        keepOldRoots = 5;
-        podmanSubnet = "172.18.0.0/16";
-        syncthingDevices = {
-          desktop = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
-          laptop = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
-          phone = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
-          server = "WO4EEDG-FAZ3VXA-VCV6ZCD-U5TFYFN-QRVFWVO-UXBR4DQ-KDOST52-HD5WNAZ";
-          tablet = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
-        };
-        lan = {
-          interface = "enp3s0";
-          serverAddress = "192.168.10.2";
-          serverMac = "94:c6:91:aa:e3:9e";
-          desktopAddress = "192.168.10.3";
+      type = lib.types.submodule {
+        options = {
+          name = str "Pedro Mendes";
+          user = str "phrmendes";
+          email = str "pedrohrmendes@proton.me";
+          home = str "/home/phrmendes";
+          serverDomain = str "server.internal";
+          stateVersion = str "26.11";
+          lan = {
+            interface = str "enp3s0";
+            serverAddress = str "192.168.10.2";
+            serverMac = str "94:c6:91:aa:e3:9e";
+            desktopAddress = str "192.168.10.3";
+          };
         };
       };
+      default = { };
     };
 
     flake.modules = lib.mkOption {

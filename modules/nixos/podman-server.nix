@@ -1,6 +1,6 @@
-{ config, ... }:
+_:
 let
-  inherit (config) settings;
+  subnet = "172.18.0.0/16";
 in
 {
   flake.modules.nixos.podmanServer =
@@ -33,7 +33,7 @@ in
           };
           script = ''
             if ! podman network exists services; then
-              podman network create --subnet ${settings.podmanSubnet} services
+              podman network create --subnet ${subnet} services
             fi
           '';
         };

@@ -1,6 +1,13 @@
 { config, ... }:
 let
   inherit (config) settings;
+  syncthingDevices = {
+    desktop = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
+    laptop = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
+    phone = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
+    server = "WO4EEDG-FAZ3VXA-VCV6ZCD-U5TFYFN-QRVFWVO-UXBR4DQ-KDOST52-HD5WNAZ";
+    tablet = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
+  };
   versioning = {
     simple = {
       type = "simple";
@@ -115,7 +122,7 @@ in
             };
 
             devices =
-              removeAttrs settings.syncthingDevices [ "server" ]
+              removeAttrs syncthingDevices [ "server" ]
               |> lib.mapAttrs (
                 name: id:
                 {
@@ -213,7 +220,7 @@ in
             localAnnounceEnabled = true;
             urAccepted = 1;
           };
-          devices = lib.mapAttrs (_: id: { inherit id; }) settings.syncthingDevices;
+          devices = lib.mapAttrs (_: id: { inherit id; }) syncthingDevices;
           folders = {
             "documents" = trashcanFolder "${settings.home}/Documents/documents" workstations;
             "images" = trashcanFolder "${settings.home}/Pictures/images" workstations;

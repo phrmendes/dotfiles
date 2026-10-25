@@ -23,7 +23,10 @@
       users.users.jellyfin.extraGroups = [ "external" ];
 
       services = {
-        jellyfin.enable = true;
+        jellyfin = {
+          enable = true;
+          openFirewall = true;
+        };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "jellyfin";
           port = 8096;

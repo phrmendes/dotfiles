@@ -13,6 +13,7 @@ in
     {
       imports = with nixos; [
         forcePassphrase
+        mosh
         wireguard
         workstation
       ];

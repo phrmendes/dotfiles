@@ -9,6 +9,7 @@ in
     {
       imports = with nixos; [
         gaming
+        mosh
         sunshine
         workstation
       ];

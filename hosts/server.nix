@@ -11,7 +11,10 @@ in
       ...
     }:
     {
-      imports = [ nixos.server ];
+      imports = [
+        nixos.mosh
+        nixos.server
+      ];
 
       networking.hostName = "server";
 

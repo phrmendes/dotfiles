@@ -25,6 +25,7 @@
         libqalculate
         lima
         localsend
+        mosh
         nix-prefetch-github
         nodejs
         opentofu

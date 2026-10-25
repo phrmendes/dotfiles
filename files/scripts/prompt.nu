@@ -65,19 +65,38 @@ def ssh-host-prompt []: nothing -> string {
     }
 }
 
-# Commits to pull and to push, counted against the upstream as of the last fetch. Nothing without an upstream.
+# Commits to pull and to push, counted against every remote ref as of the last fetch. Nothing without a remote.
 def sync-counts []: nothing -> oneof<record, nothing> {
-    let result = git rev-list --left-right --count "@{upstream}...HEAD" | complete
+    let refs = git for-each-ref --format "%(refname:short)" refs/remotes | complete
 
-    if $result.exit_code != 0 {
+    if $refs.exit_code != 0 {
         return null
     }
 
-    let counts = $result.stdout | str trim | split row "\t" | into int
+    let counts = (
+        $refs.stdout
+        | lines
+        | where not ($it | str ends-with "/HEAD")
+        | each {|ref|
+            let result = git rev-list --left-right --count $"($ref)...HEAD" | complete
+
+            if $result.exit_code != 0 {
+                return null
+            }
+
+            let counts = $result.stdout | str trim | split row "\t" | into int
+            {behind: ($counts | first), ahead: ($counts | last)}
+        }
+        | compact
+    )
+
+    if ($counts | is-empty) {
+        return null
+    }
 
     {
-        behind: ($counts | first)
-        ahead: ($counts | last)
+        behind: ($counts | get behind | math max)
+        ahead: ($counts | get ahead | math max)
     }
 }
 
@@ -110,10 +129,50 @@ def fetch-when-stale []: nothing -> nothing {
     try { touch $marker }
 
     job spawn --description "fetch the upstream for the prompt" {
-        with-env {GIT_TERMINAL_PROMPT: "0", GIT_SSH_COMMAND: "ssh -o BatchMode=yes"} {
-            do --ignore-errors { ^git --git-dir $gitdir fetch --quiet --no-tags } | ignore
-        }
+        let ok_marker = $gitdir | path join prompt-fetch-ok
+        let fail_marker = $gitdir | path join prompt-fetch-fail
+        let status = (
+            try {
+                with-env {GIT_TERMINAL_PROMPT: "0", GIT_SSH_COMMAND: "ssh -o BatchMode=yes"} {
+                    ^git --git-dir $gitdir fetch --quiet --no-tags | complete | get exit_code
+                }
+            } catch { 1 }
+        )
+
+        rm -f $fail_marker
+        if $status == 0 { touch $ok_marker } else { touch $fail_marker }
     } | ignore
+}
+
+# Age of the last successful fetch, and a red ! when the last attempt failed.
+def fetch-age-prompt []: nothing -> string {
+    let result = git rev-parse --absolute-git-dir | complete
+
+    if $result.exit_code != 0 {
+        return ""
+    }
+
+    let gitdir = $result.stdout | str trim
+    let ok_marker = $gitdir | path join prompt-fetch-ok
+    let fail_marker = $gitdir | path join prompt-fetch-fail
+    let warning = if ($fail_marker | path exists) { " (ansi red_bold)!(ansi reset)" } else { "" }
+
+    if not ($ok_marker | path exists) {
+        return $warning
+    }
+
+    let modified = try {
+        ls --long $ok_marker | get modified | first
+    } catch { return $warning }
+    let secs = (date now | $in - $modified | into int) / 1_000_000_000
+    let age = if $secs >= 3600 {
+        $"($secs / 3600 | math floor)h"
+    } else if $secs >= 60 {
+        $"($secs / 60 | math floor)m"
+    } else {
+        "<1m"
+    }
+    $" (ansi dark_gray)($age)(ansi reset)($warning)"
 }
 
 # Commits to push (up arrow) and to pull (down arrow). Starts a background fetch when the data is stale.
@@ -133,7 +192,7 @@ def git-sync-prompt []: nothing -> string {
 }
 
 load-env {
-    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(git-sync-prompt)(char newline)" }
+    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(git-sync-prompt)(fetch-age-prompt)(char newline)" }
     PROMPT_COMMAND_RIGHT: {|| "" }
     PROMPT_INDICATOR: {|| lambda-prompt }
     PROMPT_INDICATOR_VI_INSERT: {|| lambda-prompt }

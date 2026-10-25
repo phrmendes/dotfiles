@@ -58,7 +58,7 @@ in
             User = user;
             Group = group;
             WorkingDirectory = dataDir;
-            ExecStopPost = "${lib.getExe pkgs.gitolite} setup";
+            ExecStopPost = "${lib.getExe' pkgs.gitolite "gitolite"} setup";
             ExecStart = "${lib.getExe syncRepos} ${
               lib.escapeShellArgs (
                 [

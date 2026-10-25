@@ -24,7 +24,6 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/mfussenegger/nvim-lint",
   "https://github.com/mrjones2014/smart-splits.nvim",
-  "https://github.com/smart-splits-nvim/backend-kitty",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/nvim-mini/mini.nvim",
   "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -35,12 +34,24 @@ vim.pack.add({
   "https://github.com/phrmendes/todotxt.nvim",
   "https://github.com/qvalentin/helm-ls.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
+  "https://github.com/ravsii/tree-sitter-d2",
+  "https://github.com/smart-splits-nvim/backend-kitty",
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/stevearc/quicker.nvim",
   "https://github.com/tadmccorkle/markdown.nvim",
   "https://github.com/tpope/vim-abolish",
   "https://github.com/tpope/vim-dadbod",
   "https://github.com/waiting-for-dev/ergoterm.nvim",
+})
+
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "tree-sitter-d2" and (kind == "install" or kind == "update") then
+      if not ev.data.active then vim.cmd.packadd("tree-sitter-d2") end
+      vim.system({ "make", "nvim-install" }, { cwd = ev.data.path })
+    end
+  end,
 })
 
 require("mini.misc").setup()

@@ -144,6 +144,10 @@
       "rev": "1344867f9c03bb8eb36f0316d03a9ac3951dec78",
       "src": "https://github.com/phrmendes/todotxt.nvim"
     },
+    "tree-sitter-d2": {
+      "rev": "200434618a6bede20ebd4982aa4d4f1edeb0b5c1",
+      "src": "https://github.com/ravsii/tree-sitter-d2"
+    },
     "undotree": {
       "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
       "src": "https://github.com/mbbill/undotree"

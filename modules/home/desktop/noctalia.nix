@@ -24,6 +24,7 @@
       imports = [ inputs.noctalia.homeModules.default ];
 
       stylix.targets.qt.enable = lib.mkForce false;
+      stylix.targets.rofi.enable = false;
 
       programs.noctalia = {
         enable = true;

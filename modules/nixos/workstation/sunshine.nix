@@ -13,20 +13,6 @@ in
         openFirewall = true;
       };
 
-      # The sunshine module in nixpkgs still sets the obsolete avahi publish
-      # options. Clear them and set the replacement settings instead.
-      services.avahi = {
-        publish = {
-          enable = null;
-          userServices = null;
-        };
-        settings.publish = {
-          "disable-publishing" = false;
-          "disable-user-service-publishing" = false;
-          "publish-addresses" = true;
-        };
-      };
-
       systemd.user.services.sunshine.serviceConfig = {
         Restart = lib.mkForce "always";
         RestartSec = "5s";

@@ -20,7 +20,7 @@ def skim-files []: nothing -> nothing {
         | where name !~ '(^|/)\.git/'
         | get name
         | str join (char nl)
-        | sk --multi --preview 'bat --color=always {}'
+        | ^sk --multi --height 50% --reverse --preview 'bat --color=always {}'
         | lines
         | each {|path| $path | to nuon }
         | str join ' '

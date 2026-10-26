@@ -79,8 +79,13 @@ def enroll [
     }
 }
 
+# Entry point: `pin <create|edit|delete|status>`.
+def main []: nothing -> nothing {
+    help main
+}
+
 # Set the PIN for the first time. Asks for the passphrase, then the PIN twice.
-export def create [
+def "main create" [
   --device (-d): string@"nu-complete pin device" = $DEFAULT_DEVICE # Encrypted disk to use
 ]: nothing -> nothing {
     require-tpm $device
@@ -93,7 +98,7 @@ export def create [
 }
 
 # Change the PIN. Also use it after a firmware Secure Boot setting change, to seal the key again.
-export def edit [
+def "main edit" [
   --device (-d): string@"nu-complete pin device" = $DEFAULT_DEVICE # Encrypted disk to use
 ]: nothing -> nothing {
     require-tpm $device
@@ -106,7 +111,7 @@ export def edit [
 }
 
 # Remove the PIN. The boot asks for the passphrase again.
-export def delete [
+def "main delete" [
   --device (-d): string@"nu-complete pin device" = $DEFAULT_DEVICE # Encrypted disk to use
   --yes (-y) # Do not ask for confirmation
 ]: nothing -> nothing {
@@ -136,11 +141,12 @@ export def delete [
     } catch {
         fail "Cannot delete the PIN." $device --text disk
     }
+
     print "PIN deleted. The boot asks for the passphrase."
 }
 
 # Show whether a TPM, a PIN, and a passphrase slot exist, and when the passphrase was last asked.
-export def status [
+def "main status" [
   --device (-d): string@"nu-complete pin device" = $DEFAULT_DEVICE # Encrypted disk to use
 ]: nothing -> record {
     let types = (slot-types $device)

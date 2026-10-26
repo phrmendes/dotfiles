@@ -43,12 +43,12 @@
         wl-clipboard
         worktrunk
         xre
-        zotero
       ])
       ++ (with pkgs.local; [
         diff-persist
         gcp
         noctalia-settings-diff
+        pin
       ]);
   };
 }

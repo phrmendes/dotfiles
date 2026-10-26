@@ -23,13 +23,6 @@ in
       };
 
       services = {
-        flatpak = {
-          enable = true;
-          packages = [
-            "org.zotero.Zotero"
-            "com.stremio.Stremio"
-          ];
-        };
         geoclue2.enable = true;
         gvfs.enable = true;
         power-profiles-daemon.enable = lib.mkDefault true;

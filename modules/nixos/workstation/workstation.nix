@@ -69,6 +69,7 @@ in
         bluetooth
         core
         disko
+        flatpak
         podman
         resolved
         session

@@ -29,6 +29,7 @@
           ansible-language-server
           astro-language-server
           bash-language-server
+          beamPackages.elixir-ls
           docker-language-server
           emmet-language-server
           gitlab-ci-ls

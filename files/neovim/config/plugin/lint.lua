@@ -2,6 +2,7 @@ safely("later", function()
   require("lint").linters_by_ft = {
     astro = { "eslint" },
     bash = { "shellcheck" },
+    elixir = { "credo" },
     htmldjango = { "djlint" },
     javascript = { "eslint" },
     jinja2 = { "djlint" },

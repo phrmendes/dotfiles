@@ -3,6 +3,7 @@
     home.packages =
       (with pkgs; [
         android-tools
+        beamPackages.elixir
         cargo
         docker-compose
         drawing

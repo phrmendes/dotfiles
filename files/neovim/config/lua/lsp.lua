@@ -10,6 +10,7 @@ vim.lsp.enable({
   "cssls",
   "docker_language_server",
   "emmet_language_server",
+  "elixirls",
   "eslint",
   "gitlab_ci_ls",
   "helm_ls",

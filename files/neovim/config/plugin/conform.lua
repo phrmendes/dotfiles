@@ -7,6 +7,7 @@ safely(
         astro = { "prettier" },
         bash = { "shellharden", "shfmt" },
         css = { "prettier" },
+        elixir = { "mix" },
         html = { "prettier" },
         htmldjango = { "djlint" },
         jinja2 = { "djlint" },

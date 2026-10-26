@@ -65,50 +65,34 @@ def ssh-host-prompt []: nothing -> string {
     }
 }
 
-# Commits to pull and to push, counted against every remote ref as of the last fetch. Nothing without a remote.
+# Git directory of the current repository, or nothing outside a repository.
+def git-dir []: nothing -> oneof<string, nothing> {
+    let result = git rev-parse --absolute-git-dir | complete
+
+    if $result.exit_code != 0 {
+        return null
+    }
+
+    $result.stdout | str trim
+}
+
+# Commits to pull and to push, counted against the upstream as of the last fetch. Nothing without an upstream.
 def sync-counts []: nothing -> oneof<record, nothing> {
-    let refs = git for-each-ref --format "%(refname:short)" refs/remotes | complete
+    let result = git rev-list --left-right --count "@{upstream}...HEAD" | complete
 
-    if $refs.exit_code != 0 {
+    if $result.exit_code != 0 {
         return null
     }
 
-    let counts = (
-        $refs.stdout
-        | lines
-        | where not ($it | str ends-with "/HEAD")
-        | each {|ref|
-            let result = git rev-list --left-right --count $"($ref)...HEAD" | complete
-
-            if $result.exit_code != 0 {
-                return null
-            }
-
-            let counts = $result.stdout | str trim | split row "\t" | into int
-            {behind: ($counts | first), ahead: ($counts | last)}
-        }
-        | compact
-    )
-
-    if ($counts | is-empty) {
-        return null
-    }
-
+    let counts = $result.stdout | str trim | split row "\t" | into int
     {
-        behind: ($counts | get behind | math max)
-        ahead: ($counts | get ahead | math max)
+        behind: ($counts | first)
+        ahead: ($counts | last)
     }
 }
 
 # Fetch the upstream in the background when the last fetch is older than the interval.
-def fetch-when-stale []: nothing -> nothing {
-    let result = git rev-parse --absolute-git-dir | complete
-
-    if $result.exit_code != 0 {
-        return
-    }
-
-    let gitdir = $result.stdout | str trim
+def fetch-when-stale [gitdir: string]: nothing -> nothing {
     let marker = $gitdir | path join prompt-fetch
     let newest = [FETCH_HEAD prompt-fetch]
     | each {|name| $gitdir | path join $name }
@@ -145,14 +129,7 @@ def fetch-when-stale []: nothing -> nothing {
 }
 
 # Age of the last successful fetch, and a red ! when the last attempt failed.
-def fetch-age-prompt []: nothing -> string {
-    let result = git rev-parse --absolute-git-dir | complete
-
-    if $result.exit_code != 0 {
-        return ""
-    }
-
-    let gitdir = $result.stdout | str trim
+def fetch-age-prompt [gitdir: string]: nothing -> string {
     let ok_marker = $gitdir | path join prompt-fetch-ok
     let fail_marker = $gitdir | path join prompt-fetch-fail
     let warning = if ($fail_marker | path exists) { " (ansi red_bold)!(ansi reset)" } else { "" }
@@ -175,24 +152,30 @@ def fetch-age-prompt []: nothing -> string {
     $" (ansi dark_gray)($age)(ansi reset)($warning)"
 }
 
-# Commits to push (up arrow) and to pull (down arrow). Starts a background fetch when the data is stale.
+# Commits to push (up arrow), to pull (down arrow), and the age of the last fetch. Starts a background fetch when the data is stale.
 def git-sync-prompt []: nothing -> string {
+    let gitdir = git-dir
+
+    if $gitdir == null {
+        return ""
+    }
+
     let counts = sync-counts
 
     if $counts == null {
         return ""
     }
 
-    fetch-when-stale
+    fetch-when-stale $gitdir
 
     let ahead = if $counts.ahead > 0 { $" (ansi cyan_bold)↑($counts.ahead)(ansi reset)" } else { "" }
     let behind = if $counts.behind > 0 { $" (ansi yellow_bold)↓($counts.behind)(ansi reset)" } else { "" }
 
-    $"($ahead)($behind)"
+    $"($ahead)($behind)(fetch-age-prompt $gitdir)"
 }
 
 load-env {
-    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(git-sync-prompt)(fetch-age-prompt)(char newline)" }
+    PROMPT_COMMAND: {|| $"(ssh-host-prompt)(basic-git-left-prompt (cwd-prompt))(git-sync-prompt)(char newline)" }
     PROMPT_COMMAND_RIGHT: {|| "" }
     PROMPT_INDICATOR: {|| lambda-prompt }
     PROMPT_INDICATOR_VI_INSERT: {|| lambda-prompt }

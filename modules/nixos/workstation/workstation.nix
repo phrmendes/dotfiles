@@ -118,7 +118,6 @@ in
           direnv
           fd
           flameshot
-          fzf
           gh
           git
           gnupg

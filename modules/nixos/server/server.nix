@@ -81,7 +81,6 @@ in
       bat
       btop
       fd
-      fzf
       git
       gitolite
       jq

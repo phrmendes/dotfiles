@@ -36,6 +36,7 @@
         poppler
         proton-vpn
         rustc
+        skim
         tectonic
         tesseract
         transmission_4-gtk

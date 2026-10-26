@@ -49,8 +49,7 @@ in
             crypttabExtraOpts = [ "tpm2-device=auto" ];
           };
           systemd = {
-            enable = true;
-            initrdBin = [ pkgs.dialog ];
+            initrdBin = with pkgs; [ dialog ];
             contents = {
               "/etc/dialogrc".source = ../../../files/dialogrc;
             };

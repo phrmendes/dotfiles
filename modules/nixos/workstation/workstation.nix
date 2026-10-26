@@ -33,6 +33,7 @@ let
     ".local/state/wireplumber"
     ".pi"
     ".ssh"
+    ".var/app"
     ".zotero"
     "Documents"
     "Downloads"

@@ -8,7 +8,6 @@
         agent-browser
         local.pyzotero
         mcp-k8s-go
-        mcp-nixos
       ];
     in
     {

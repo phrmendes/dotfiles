@@ -5,6 +5,7 @@ local augroups = {
 vim.lsp.enable({
   "ansiblels",
   "astro",
+  "basedpyright",
   "bashls",
   "cssls",
   "docker_language_server",

@@ -31,10 +31,9 @@ in
         };
         adguardhome = {
           enable = true;
-          host = "127.0.0.1";
           mutableSettings = false;
-          inherit port;
           settings = {
+            http.address = "127.0.0.1:${toString port}";
             theme = "dark";
             auth.users = [ ];
             blocked_services = {

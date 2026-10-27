@@ -55,6 +55,11 @@
       url = "github:henrygd/beszel?ref=v0.21.0";
       flake = false;
     };
+
+    pyzotero = {
+      url = "https://files.pythonhosted.org/packages/5d/96/1e0bbee05263b12b9c65cdf7eb1f15509a53cfe0bf992a2cc686ca791d40/pyzotero-1.16.0-py3-none-any.whl";
+      flake = false;
+    };
   };
 
   outputs =

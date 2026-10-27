@@ -15,6 +15,6 @@ in
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nushell = pkgs.callPackage ./nushell.nix { };
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
-  pyzotero = pkgs.callPackage ./pyzotero.nix { };
+  pyzotero = pkgs.callPackage ./pyzotero.nix { src = inputs.pyzotero; };
   vpn = pkgs.callPackage ./vpn.nix { };
 }

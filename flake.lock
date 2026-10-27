@@ -583,6 +583,18 @@
         "type": "github"
       }
     },
+    "pyzotero": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-ieoDW7srG4PGRWRwWOzVXjCvGqp8Zz7wRUncSIwP55I=",
+        "type": "file",
+        "url": "https://files.pythonhosted.org/packages/5d/96/1e0bbee05263b12b9c65cdf7eb1f15509a53cfe0bf992a2cc686ca791d40/pyzotero-1.16.0-py3-none-any.whl"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://files.pythonhosted.org/packages/5d/96/1e0bbee05263b12b9c65cdf7eb1f15509a53cfe0bf992a2cc686ca791d40/pyzotero-1.16.0-py3-none-any.whl"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -598,6 +610,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "pi": "pi",
+        "pyzotero": "pyzotero",
         "stylix": "stylix",
         "treefmt-nix": "treefmt-nix_3"
       }

@@ -14,10 +14,6 @@
       "command": "mcp-k8s-go",
       "description": "Inspect and manage Kubernetes clusters"
     },
-    "nixos": {
-      "command": "mcp-nixos",
-      "description": "Search nixpkgs, NixOS and Home Manager options"
-    },
     "zotero": {
       "command": "pyzotero-mcp"
     }

@@ -9,6 +9,8 @@ in
       editor = lib.mkOverride 1001 "nvim";
     in
     {
+      stylix.targets.rofi.enable = false;
+
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;

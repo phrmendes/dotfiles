@@ -25,6 +25,13 @@ in
         mkVhost = lib.mkOption {
           type = lib.types.anything;
           readOnly = true;
+          description = ''
+            Build a Caddy virtual host for this domain. Takes the host name and an attribute set
+            with port, auth, upstream, insecure and extraConfig.
+          '';
+          example = ''
+            mkVhost { name = "jellyfin"; port = 8096; auth = true; }
+          '';
           default = mkVhost config.caddy.domain;
         };
       };

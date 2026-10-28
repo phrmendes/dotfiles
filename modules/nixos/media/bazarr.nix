@@ -3,11 +3,10 @@
     { config, ... }:
     {
       homepage.services.bazarr = {
-        url = "bazarr.${config.caddy.domain}";
+        siteMonitor = "http://127.0.0.1:6767";
         homepage = {
           name = "Bazarr";
           description = "Subtitle management";
-          icon = "sh-bazarr";
           category = "Media";
         };
       };

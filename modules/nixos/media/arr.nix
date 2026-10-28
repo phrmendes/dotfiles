@@ -10,11 +10,10 @@ let
     { config, lib, ... }:
     {
       homepage.services.${name} = {
-        url = "${name}.${config.caddy.domain}";
+        siteMonitor = "http://127.0.0.1:${toString port}";
         homepage = {
           name = title;
           inherit description;
-          icon = "sh-${name}";
           category = "Media";
         };
       };

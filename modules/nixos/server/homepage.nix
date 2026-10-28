@@ -12,6 +12,7 @@
         options = {
           url = lib.mkOption {
             type = lib.types.str;
+            default = "${name}.${config.caddy.domain}";
           };
           siteMonitor = lib.mkOption {
             type = lib.types.nullOr lib.types.str;
@@ -34,7 +35,7 @@
                 };
                 icon = lib.mkOption {
                   type = lib.types.str;
-                  default = "${name}.svg";
+                  default = "sh-${name}";
                 };
                 category = lib.mkOption {
                   type = lib.types.str;

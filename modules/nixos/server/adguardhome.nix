@@ -6,15 +6,17 @@ in
   flake.modules.nixos.adguardhome =
     { config, ... }:
     let
-      inherit (config) utils;
       port = 3000;
       dnsPort = 53;
     in
     {
-      networking.firewall = utils.mkFirewallPort dnsPort;
+      networking.firewall = {
+        allowedTCPPorts = [ dnsPort ];
+        allowedUDPPorts = [ dnsPort ];
+      };
 
       homepage.services.adguardhome = {
-        url = "adguardhome.${config.caddy.domain}";
+        siteMonitor = "http://127.0.0.1:${toString port}";
         homepage = {
           name = "AdGuard Home";
           description = "DNS ad blocking";

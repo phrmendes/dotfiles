@@ -2,24 +2,24 @@
   flake.modules.nixos.flood =
     { config, ... }:
     let
-      inherit (config) utils;
       webPort = 9091;
       floodPort = 3001;
       torrentingPort = 51413;
-      domain = config.caddy.domain;
     in
     {
       homepage.services.flood = {
-        url = "flood.${domain}";
+        siteMonitor = "http://127.0.0.1:${toString floodPort}";
         homepage = {
           name = "Flood";
           description = "Torrent client";
-          icon = "sh-flood";
           category = "Media";
         };
       };
 
-      networking.firewall = utils.mkFirewallPort torrentingPort;
+      networking.firewall = {
+        allowedTCPPorts = [ torrentingPort ];
+        allowedUDPPorts = [ torrentingPort ];
+      };
 
       users.users.transmission.extraGroups = [ "external" ];
 

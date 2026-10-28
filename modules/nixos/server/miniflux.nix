@@ -10,11 +10,9 @@
     in
     {
       homepage.services.miniflux = {
-        url = "miniflux.${config.caddy.domain}";
         homepage = {
           name = "Miniflux";
           description = "Feed reader";
-          icon = "sh-miniflux";
           category = "Services";
         };
       };

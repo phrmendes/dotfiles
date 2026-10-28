@@ -6,11 +6,9 @@
     in
     {
       homepage.services.immich = {
-        url = "immich.${config.caddy.domain}";
         homepage = {
           name = "Immich";
           description = "Self-hosted photo and video management";
-          icon = "sh-immich";
           category = "Media";
         };
       };

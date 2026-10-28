@@ -6,11 +6,9 @@
     in
     {
       homepage.services.atuin = {
-        url = "atuin.${config.caddy.domain}";
         homepage = {
           name = "Atuin";
           description = "Shell history sync";
-          icon = "sh-atuin";
           category = "Services";
         };
       };

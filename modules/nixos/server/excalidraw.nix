@@ -7,11 +7,10 @@
     in
     {
       homepage.services.excalidraw = {
-        url = "excalidraw.${config.caddy.domain}";
+        siteMonitor = "http://127.0.0.1:${toString port}";
         homepage = {
           name = "Excalidraw";
           description = "Virtual whiteboard";
-          icon = "sh-excalidraw";
           category = "Services";
         };
       };

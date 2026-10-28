@@ -14,11 +14,9 @@ in
       };
 
       homepage.services.linkding = {
-        url = "linkding.${config.caddy.domain}";
         homepage = {
           name = "Linkding";
           description = "Bookmark manager";
-          icon = "sh-linkding";
           category = "Services";
         };
       };
@@ -48,14 +46,8 @@ in
       systemd = {
         tmpfiles.rules = [ "d /var/lib/linkding 0755 root root -" ];
         services."podman-linkding" = {
-          after = [
-            "podman-network-services.service"
-            "postgresql.target"
-          ];
-          requires = [
-            "podman-network-services.service"
-            "postgresql.target"
-          ];
+          after = [ "podman-network-services.service" ] ++ config.utils.dependsOnPostgres.after;
+          requires = [ "podman-network-services.service" ] ++ config.utils.dependsOnPostgres.requires;
         };
       };
 

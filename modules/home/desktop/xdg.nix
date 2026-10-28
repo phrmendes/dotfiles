@@ -12,16 +12,43 @@
         ];
 
         configFile."mimeapps.list".force = true;
+
+        configFile."gtk-3.0/bookmarks".text = ''
+          file://${config.home.homeDirectory}/Documents Documents
+          file://${config.home.homeDirectory}/Downloads Downloads
+          file://${config.home.homeDirectory}/Pictures Pictures
+          file://${config.home.homeDirectory}/Videos Videos
+          sftp://server SFTP
+        '';
+
+        userDirs = {
+          enable = true;
+          desktop = null;
+          music = null;
+          publicShare = null;
+          templates = null;
+        };
         mimeApps = {
           enable = true;
           defaultApplications = {
             "audio/*" = "mpv.desktop";
-            "image/*" = "imv.desktop";
+            "image/*" = "org.gnome.Loupe.desktop";
             "video/*" = "mpv.desktop";
-            "text/*" = "neovide.desktop";
+            "text/*" = "org.daa.NeovimGtk.desktop";
             "x-scheme-handler/terminal" = "kitty.desktop";
             "application/x-terminal-emulator" = "kitty.desktop";
             "application/pdf" = "org.pwmt.zathura.desktop";
+            "application/epub+zip" = "org.pwmt.zathura.desktop";
+            "application/zip" = "org.gnome.FileRoller.desktop";
+            "application/x-tar" = "org.gnome.FileRoller.desktop";
+            "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
+            "application/x-bittorrent" = "de.haeckerfelix.Fragments.desktop";
+            "x-scheme-handler/magnet" = "de.haeckerfelix.Fragments.desktop";
+            "inode/directory" = "org.gnome.Nautilus.desktop";
+            "application/json" = "org.daa.NeovimGtk.desktop";
+            "application/toml" = "org.daa.NeovimGtk.desktop";
+            "application/x-yaml" = "org.daa.NeovimGtk.desktop";
+            "application/x-shellscript" = "org.daa.NeovimGtk.desktop";
             "text/html" = "librewolf.desktop";
             "text/xml" = "librewolf.desktop";
             "application/xhtml+xml" = "librewolf.desktop";

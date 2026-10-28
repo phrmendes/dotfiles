@@ -124,7 +124,6 @@ in
           gnupg
           gtk
           hyprland
-          imv
           jq
           jujutsu
           k8s

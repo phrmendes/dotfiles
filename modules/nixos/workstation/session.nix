@@ -16,10 +16,16 @@ in
           enable = true;
           withUWSM = true;
         };
-        thunar = {
-          enable = true;
-          plugins = with pkgs; [ thunar-volman ];
-        };
+      };
+
+      environment.systemPackages = [
+        pkgs.morewaita-icon-theme
+        pkgs.nautilus
+      ];
+
+      programs.nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "kitty";
       };
 
       services = {

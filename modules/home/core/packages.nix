@@ -11,8 +11,11 @@
         ffmpeg
         ffmpegthumbnailer
         file-roller
-        filezilla
+        fragments
         gcolor3
+        gnome-calculator
+        gnome-disk-utility
+        gnome-font-viewer
         gdu
         glab
         handy
@@ -26,6 +29,7 @@
         libqalculate
         lima
         localsend
+        loupe
         mosh
         nix-prefetch-github
         nodejs
@@ -36,11 +40,11 @@
         phockup
         poppler
         proton-vpn
+        resources
         rustc
         skim
         tectonic
         tesseract
-        transmission_4-gtk
         tuicr
         wl-clipboard
         worktrunk

@@ -24,14 +24,10 @@ in
           DOCKER_HOST = lib.hm.nushell.mkNushellInline ''$"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock"'';
           DOCKER_SOCK = lib.hm.nushell.mkNushellInline ''$"($env.XDG_RUNTIME_DIR)/podman/podman.sock"'';
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
-          EDITOR = "nvim";
-          GIT_EDITOR = "nvim";
           PI_CACHE_RETENTION = "long";
           PI_NUSHELL_PATH = "${pkgs.local.nushell}/bin/nu";
           PI_SKIP_VERSION_CHECK = "1";
           PROMPT_COMMAND_RIGHT = "";
-          SUDO_EDITOR = "nvim";
-          VISUAL = "nvim";
           _ZO_MAXAGE = "100000";
         };
         shellAliases =

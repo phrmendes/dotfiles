@@ -11,6 +11,7 @@ let
     ".config"
     ".docker"
     ".kube"
+    ".local/bin"
     ".local/share/atuin"
     ".local/share/direnv"
     ".local/share/helm"

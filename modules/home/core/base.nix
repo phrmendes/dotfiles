@@ -47,6 +47,7 @@ in
           COLORTERM = "truecolor";
           EDITOR = editor;
           GIT_EDITOR = editor;
+          QT_QPA_PLATFORM = "wayland";
           SUDO_EDITOR = editor;
           VISUAL = editor;
         };

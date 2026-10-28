@@ -18,17 +18,5 @@
 ---@field base0E string
 ---@field base0F string
 
----@class NixMonitor
----@field name string
----@field mode string
----@field position string
----@field scale number
-
----@class NixMonitors
----@field primary NixMonitor
----@field secondary NixMonitor?
-
 ---@class Nix
 ---@field colors NixPalette
----@field is_laptop boolean
----@field monitors NixMonitors

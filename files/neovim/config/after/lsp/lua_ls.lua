@@ -6,10 +6,8 @@ return {
       telemetry = { enable = false },
       diagnostics = {
         disable = { "missing-fields" },
-        globals = { "hl" },
       },
       workspace = {
-        library = { require("nix.neovim").hyprland },
         checkThirdParty = "Disable",
       },
     },

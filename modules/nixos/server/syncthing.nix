@@ -45,11 +45,10 @@ in
       users.users.syncthing.extraGroups = [ "external" ];
 
       homepage.services.syncthing = {
-        url = "syncthing.${config.caddy.domain}";
+        siteMonitor = "http://127.0.0.1:${toString port}";
         homepage = {
           name = "Syncthing";
           description = "File synchronisation";
-          icon = "sh-syncthing";
           category = "Services";
         };
       };
@@ -92,10 +91,14 @@ in
 
       services = {
         restic.backups.syncthing = config.restic.mkBackup "syncthing" {
-          paths = [ "/mnt/external/syncthing" ];
+          paths = [
+            "/mnt/external/syncthing"
+            "/var/lib/syncthing"
+          ];
           exclude = [
             "/mnt/external/syncthing/reading"
             "/mnt/external/syncthing/files"
+            "/var/lib/syncthing/index-*.db"
           ];
         };
         caddy.virtualHosts = config.caddy.mkVhost {

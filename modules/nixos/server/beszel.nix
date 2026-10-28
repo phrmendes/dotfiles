@@ -15,11 +15,9 @@
       };
 
       homepage.services.beszel = {
-        url = "beszel.${config.caddy.domain}";
         homepage = {
           name = "Beszel";
           description = "Server monitoring";
-          icon = "sh-beszel";
           category = "Monitoring";
           widget = {
             type = "beszel";

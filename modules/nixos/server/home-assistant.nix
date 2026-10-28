@@ -6,17 +6,15 @@
     in
     {
       homepage.services.home-assistant = {
-        url = "home-assistant.${config.caddy.domain}";
         homepage = {
           name = "Home Assistant";
           description = "Home automation";
-          icon = "sh-home-assistant";
           category = "Services";
         };
       };
 
       services = {
-        restic.backups.homeAssistant = config.restic.mkBackup "home-assistant" {
+        restic.backups."home-assistant" = config.restic.mkBackup "home-assistant" {
           paths = [ "/var/lib/home-assistant" ];
           sqlite."/var/lib/home-assistant/home-assistant_v2.db" = "home-assistant.db";
         };

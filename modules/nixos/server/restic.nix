@@ -13,6 +13,13 @@
       options.restic.mkBackup = lib.mkOption {
         type = lib.types.anything;
         readOnly = true;
+        description = ''
+          Per-repository restic backup options. Takes the repository name and an attribute set.
+          `sqlite` maps a live database to a file name under /var/backup/<name>.
+        '';
+        example = ''
+          mkBackup "gitolite" { paths = [ "/var/lib/gitolite" ]; }
+        '';
         default =
           name:
           {
@@ -42,6 +49,7 @@
             checkOpts = [ "--read-data-subset=5%" ];
             timerConfig = {
               OnCalendar = "03:00";
+              RandomizedDelaySec = "30m";
               Persistent = true;
             };
           }

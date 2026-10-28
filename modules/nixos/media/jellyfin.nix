@@ -3,11 +3,9 @@
     { config, ... }:
     {
       homepage.services.jellyfin = {
-        url = "jellyfin.${config.caddy.domain}";
         homepage = {
           name = "Jellyfin";
           description = "Media server";
-          icon = "sh-jellyfin";
           category = "Media";
         };
       };

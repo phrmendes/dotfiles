@@ -13,11 +13,9 @@
       };
 
       homepage.services.sftpgo = {
-        url = "sftpgo.${config.caddy.domain}";
         homepage = {
           name = "SFTPGo";
           description = "File transfer server";
-          icon = "sh-sftpgo";
           category = "Files";
         };
       };
@@ -35,14 +33,14 @@
           requires = [
             "authelia.service"
             "caddy.service"
-            "postgresql.target"
-          ];
+          ]
+          ++ config.utils.dependsOnPostgres.requires;
           after = [
             "mnt-external.mount"
             "authelia.service"
             "caddy.service"
-            "postgresql.target"
-          ];
+          ]
+          ++ config.utils.dependsOnPostgres.after;
         };
         tmpfiles.rules = [
           "d /var/lib/sftpgo 0750 sftpgo sftpgo -"

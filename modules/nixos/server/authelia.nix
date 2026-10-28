@@ -26,7 +26,6 @@
         homepage = {
           name = "Authelia";
           description = "Authentication portal";
-          icon = "sh-authelia";
           category = "Services";
         };
       };

@@ -29,8 +29,8 @@ hl.config({
   },
   decoration = {
     active_opacity = 1,
-    inactive_opacity = 0.9,
-    rounding = 10,
+    inactive_opacity = 1,
+    rounding = 12,
     rounding_power = 2,
     shadow = {
       enabled = true,
@@ -139,7 +139,6 @@ hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }))
 hl.bind("SUPER + P", hl.dsp.window.pseudo())
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + R", hl.dsp.layout("togglesplit"))
-hl.bind("SUPER + E", hl.dsp.layout("togglesplit"))
 hl.bind("SUPER + SHIFT + CTRL + H", hl.dsp.window.move({ workspace = "e-1" }))
 hl.bind("SUPER + SHIFT + CTRL + L", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind("SUPER + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
@@ -158,7 +157,7 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down"), { r
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("noctalia msg mic-mute"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("noctalia msg volume-mute"))
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia msg volume-up"), { repeating = true })
-hl.bind("print", hl.dsp.exec_cmd("env QT_QPA_PLATFORM=wayland flameshot gui"))
+hl.bind("print", hl.dsp.exec_cmd("flameshot gui"))
 
 for i = 1, 9 do
   hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))

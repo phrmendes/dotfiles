@@ -95,7 +95,6 @@ in
       home-manager.users.${settings.user}.imports = with homeManager; [
         chromium
         gaming
-        neovide
       ];
     };
 }

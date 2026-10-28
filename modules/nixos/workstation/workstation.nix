@@ -17,7 +17,6 @@ let
     ".local/share/k9s"
     ".local/share/keyrings"
     ".local/share/mods"
-    ".local/share/neovide"
     ".local/share/nix"
     ".local/share/nvim"
     ".local/share/uv"

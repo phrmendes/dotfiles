@@ -127,24 +127,3 @@ local plugins = {
 }
 
 vim.iter(plugins):each(function(plugin) vim.g["loaded_" .. plugin] = true end)
-
-if vim.g.neovide then
-  vim.g.neovide_theme = "dark"
-  vim.g.neovide_hide_mouse_when_typing = true
-
-  -- padding
-  vim.g.neovide_padding_top = 10
-  vim.g.neovide_padding_bottom = 10
-  vim.g.neovide_padding_left = 10
-  vim.g.neovide_padding_right = 10
-
-  -- scroll animation
-  vim.g.neovide_scroll_animation_length = 0.2
-  vim.g.neovide_scroll_animation_far_lines = 0
-
-  -- cursor animation
-  vim.g.neovide_cursor_animation_length = 0.08
-  vim.g.neovide_cursor_short_animation_length = 0.02
-  vim.g.neovide_cursor_trail_size = 0.4
-  vim.g.neovide_cursor_animate_in_insert_mode = false
-end

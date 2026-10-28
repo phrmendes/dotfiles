@@ -5,9 +5,9 @@ _: {
 
       stylix =
         let
-          firaFont = {
-            package = pkgs.fira;
-            name = "Fira Sans";
+          adwaitaFont = {
+            package = pkgs.adwaita-fonts;
+            name = "Adwaita Sans";
           };
         in
         {
@@ -27,11 +27,14 @@ _: {
               applications = 12;
               terminal = 13;
             };
-            serif = firaFont;
-            sansSerif = firaFont;
+            serif = {
+              package = pkgs.iosevka-bin.override { variant = "Etoile"; };
+              name = "Iosevka Etoile";
+            };
+            sansSerif = adwaitaFont;
             monospace = {
-              package = pkgs.nerd-fonts.meslo-lg;
-              name = "MesloLGMDZ Nerd Font";
+              package = pkgs.nerd-fonts.adwaita-mono;
+              name = "AdwaitaMono Nerd Font Mono";
             };
             emoji = {
               package = pkgs.noto-fonts-color-emoji;

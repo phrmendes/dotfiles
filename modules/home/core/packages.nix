@@ -25,7 +25,6 @@
         lima
         localsend
         loupe
-        mosh
         nix-prefetch-github
         pandoc
         parallel

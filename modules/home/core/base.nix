@@ -24,7 +24,7 @@ in
             ProxyJump = "server";
           };
           "laptop" = {
-            HostName = "laptop.${settings.serverDomain}";
+            HostName = settings.lan.laptopAddress;
             User = settings.user;
             ConnectTimeout = 5;
           };

@@ -3,8 +3,6 @@
     home.packages =
       (with pkgs; [
         android-tools
-        beamPackages.elixir
-        cargo
         docker-compose
         drawing
         exiftool
@@ -21,19 +19,14 @@
         handy
         hurl
         imagemagick
-        jdk
         jqp
         just
-        kubectl
-        kubernetes-helm
         libqalculate
         lima
         localsend
         loupe
         mosh
         nix-prefetch-github
-        nodejs
-        opentofu
         pandoc
         parallel
         pavucontrol
@@ -41,7 +34,6 @@
         poppler
         proton-vpn
         resources
-        rustc
         skim
         tectonic
         tesseract

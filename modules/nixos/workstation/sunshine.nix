@@ -4,20 +4,14 @@ let
   port = 47990;
 in
 {
-  flake.modules.nixos.sunshine =
-    { lib, ... }:
-    {
-      services.sunshine = {
-        enable = true;
-        capSysAdmin = true;
-        openFirewall = true;
-      };
-
-      systemd.user.services.sunshine.serviceConfig = {
-        Restart = lib.mkForce "always";
-        RestartSec = "5s";
-      };
+  flake.modules.nixos.sunshine = _: {
+    services.sunshine = {
+      enable = true;
+      autoStart = false;
+      capSysAdmin = true;
+      openFirewall = true;
     };
+  };
 
   flake.modules.nixos.sunshineProxy =
     { config, ... }:

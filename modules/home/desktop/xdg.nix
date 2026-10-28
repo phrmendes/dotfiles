@@ -21,6 +21,18 @@
           sftp://server SFTP
         '';
 
+        desktopEntries."dev.lizardbyte.app.Sunshine" = {
+          name = "Sunshine";
+          genericName = "Game Stream Host";
+          exec = "/run/wrappers/bin/sunshine";
+          icon = "dev.lizardbyte.app.Sunshine";
+          terminal = false;
+          categories = [
+            "RemoteAccess"
+            "Network"
+          ];
+        };
+
         userDirs = {
           enable = true;
           desktop = null;

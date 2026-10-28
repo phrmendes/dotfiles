@@ -1,7 +1,7 @@
 _:
 let
   btrfsTop = "/run/btrfs";
-  keepOldRoots = 5;
+  generations = 5;
 in
 {
   flake.modules.nixos.boot =
@@ -28,7 +28,7 @@ in
           };
           limine = {
             enable = true;
-            maxGenerations = 3;
+            maxGenerations = generations;
           };
         };
         kernelModules = [ "fuse" ];
@@ -66,7 +66,7 @@ in
                   Type = "oneshot";
                   RemainAfterExit = true;
                 };
-                environment.KEEP_OLD_ROOTS = toString keepOldRoots;
+                environment.KEEP_OLD_ROOTS = toString generations;
                 script = builtins.readFile ../../../files/scripts/wipe-root.sh;
               };
             };

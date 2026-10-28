@@ -8,7 +8,6 @@
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     agenix = {

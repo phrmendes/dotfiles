@@ -72,7 +72,6 @@ in
           deadnix.enable = true;
           statix.enable = true;
           stylua.enable = true;
-          kdlfmt.enable = true;
         };
       };
     };
@@ -93,7 +92,6 @@ in
                   config.allowUnfree = true;
                   overlays = [
                     (_: prev: {
-                      stable = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system};
                       local = import ../pkgs {
                         inherit inputs;
                         pkgs = prev;

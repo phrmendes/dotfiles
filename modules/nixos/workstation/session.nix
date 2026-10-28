@@ -8,10 +8,7 @@ in
     {
       programs = {
         dconf.enable = true;
-        ssh = {
-          startAgent = true;
-          askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
-        };
+        ssh.askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
         niri.enable = true;
       };
 

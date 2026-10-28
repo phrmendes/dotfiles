@@ -10,6 +10,21 @@ NixOS + Home Manager for `desktop`, `laptop` and `server`, in the [Dendritic Pat
 - `utils/` — helpers such as `mkVhost`, `mkPostgres` and `mkSecretReadable`.
 - `pkgs/`, `files/` — custom packages and static files. Nushell scripts live in `files/scripts/`.
 - `secrets/` — [agenix](https://github.com/ryantm/agenix) secrets. The identity is `~/.ssh/age`. Public keys are in `files/ssh/`.
+- `agenix-rules.nix` — which host key decrypts which secret.
+
+## Secrets
+
+Rekey after you change `agenix-rules.nix`:
+
+```sh
+agenix --rekey -r agenix-rules.nix
+```
+
+## Checks
+
+```sh
+nix flake check
+```
 
 ## Install
 

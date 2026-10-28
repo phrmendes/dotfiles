@@ -64,17 +64,27 @@ in
 
   config = {
     systems = [ "x86_64-linux" ];
-    perSystem = _: {
-      treefmt.config = {
-        projectRootFile = "flake.nix";
-        programs = {
-          nixfmt.enable = true;
-          deadnix.enable = true;
-          statix.enable = true;
-          stylua.enable = true;
+    perSystem =
+      { system, ... }:
+      let
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+      in
+      {
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+          programs = {
+            nixfmt.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+            shfmt.enable = true;
+            stylua.enable = true;
+          };
+          settings.formatter.nufmt = {
+            command = "${pkgs.nufmt}/bin/nufmt";
+            includes = [ "*.nu" ];
+          };
         };
       };
-    };
 
     flake = {
       nixosConfigurations =

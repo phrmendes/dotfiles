@@ -9,7 +9,10 @@ def main [
     if ($owner | is-empty) {
         error make {
             msg: "--owner is required"
-            label: {text: "this value is empty", span: (metadata $owner).span}
+            label: {
+                text: "this value is empty"
+                span: (metadata $owner).span
+            }
         }
     }
 

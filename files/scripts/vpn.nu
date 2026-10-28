@@ -13,7 +13,10 @@ def wg-show [
     if $result.exit_code != 0 {
         error make {
             msg: $"wg show ($field) failed: ($result.stderr | str trim)"
-            label: {text: "this field", span: (metadata $field).span}
+            label: {
+                text: "this field"
+                span: (metadata $field).span
+            }
         }
     }
 
@@ -49,13 +52,21 @@ def "main status" []: nothing -> record {
     if $addresses.exit_code != 0 {
         error make {
             msg: $"ip address show failed: ($addresses.stderr | str trim)"
-            label: {text: "this output", span: (metadata $addresses).span}
+            label: {
+                text: "this output"
+                span: (metadata $addresses).span
+            }
         }
     }
 
     {
         state: up
-        address: ($addresses.stdout | parse --regex 'inet (?<address>\S+)' | get address | first)
+        address: (
+            $addresses.stdout
+            | parse --regex 'inet (?<address>\S+)'
+            | get address
+            | first
+        )
         endpoint: (wg-show endpoints | split row "\t" | last)
         handshake: $handshake
         received: ($traffic | first)

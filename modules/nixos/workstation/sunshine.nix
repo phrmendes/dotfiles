@@ -4,7 +4,7 @@ let
   port = 47990;
 in
 {
-  flake.modules.nixos.sunshine = _: {
+  flake.modules.nixos.sunshine = {
     services.sunshine = {
       enable = true;
       autoStart = false;
@@ -17,11 +17,9 @@ in
     { config, ... }:
     {
       homepage.services.sunshine = {
-        url = "sunshine.${config.caddy.domain}";
         homepage = {
           name = "Sunshine";
           description = "Game stream host";
-          icon = "sh-sunshine";
           category = "Services";
         };
       };

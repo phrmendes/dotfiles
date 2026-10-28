@@ -1,5 +1,5 @@
 _: {
-  flake.modules.nixos.mosh = _: {
+  flake.modules.nixos.mosh = {
     programs.mosh.enable = true;
   };
 }

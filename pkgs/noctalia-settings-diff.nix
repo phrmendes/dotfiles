@@ -1,9 +1,11 @@
 {
   writeShellApplication,
+  diffutils,
 }:
 writeShellApplication {
   name = "noctalia-settings-diff";
   meta.mainProgram = "noctalia-settings-diff";
+  runtimeInputs = [ diffutils ];
   text = ''
     CONFIG="$HOME/.config/noctalia/config.toml"
     STATE="$HOME/.local/state/noctalia/settings.toml"

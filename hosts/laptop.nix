@@ -6,7 +6,6 @@ in
 {
   configurations.nixos.laptop.module =
     {
-      config,
       lib,
       ...
     }:
@@ -42,7 +41,7 @@ in
 
       disko.mainDiskDevice = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
 
-      hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
+      hardware.cpu.intel.updateMicrocode = true;
 
       boot = {
         kernelModules = [ "kvm-intel" ];

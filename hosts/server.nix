@@ -5,8 +5,6 @@ in
 {
   configurations.nixos.server.module =
     {
-      config,
-      lib,
       pkgs,
       ...
     }:
@@ -21,7 +19,7 @@ in
       boot.initrd.availableKernelModules = [ "r8169" ];
 
       disko.mainDiskDevice = "/dev/disk/by-id/ata-Patriot_Burst_7F6E07090B3B00353759";
-      hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
+      hardware.cpu.intel.updateMicrocode = true;
 
       hardware.graphics = {
         enable = true;

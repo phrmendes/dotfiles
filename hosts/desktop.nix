@@ -5,7 +5,7 @@ let
 in
 {
   configurations.nixos.desktop.module =
-    { config, lib, ... }:
+    { config, ... }:
     {
       imports = with nixos; [
         gaming
@@ -63,7 +63,7 @@ in
       };
 
       hardware = {
-        cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableAllFirmware;
+        cpu.amd.updateMicrocode = true;
         nvidia-container-toolkit.enable = true;
         graphics = {
           enable = true;

@@ -27,6 +27,7 @@ in
           email = str "pedrohrmendes@proton.me";
           home = str "/home/phrmendes";
           serverDomain = str "server.internal";
+          # Tracks the nixpkgs release. Bump it only on purpose.
           stateVersion = str "26.11";
           logRetention = str "1week";
           lan = {
@@ -84,6 +85,14 @@ in
             includes = [ "*.nu" ];
           };
         };
+
+        checks.lint-scripts = pkgs.runCommand "lint-scripts" { nativeBuildInputs = [ pkgs.shellcheck ]; } ''
+          for f in ${../files/scripts}/*.sh; do
+            ${pkgs.bash}/bin/bash -n "$f"
+            shellcheck --rcfile ${../.shellcheckrc} -S error "$f"
+          done
+          touch $out
+        '';
       };
 
     flake = {

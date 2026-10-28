@@ -3,6 +3,8 @@
   flake.modules.nixos.nix =
     { pkgs, ... }:
     {
+      nix.optimise.automatic = true;
+
       nix.settings = {
         experimental-features = [
           "flakes"

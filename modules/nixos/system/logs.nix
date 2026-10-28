@@ -8,6 +8,7 @@ in
       services.journald.settings.Journal = {
         MaxRetentionSec = settings.logRetention;
         MaxFileSec = "1day";
+        SystemMaxUse = "500M";
       };
 
       systemd.tmpfiles.rules = [

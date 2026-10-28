@@ -14,7 +14,7 @@ in
           ${settings.user} = {
             inherit (settings) home;
             shell = pkgs.local.nushell;
-            password = "changeme";
+            # Key-only login: no password is set, and sudo needs none either.
             openssh.authorizedKeys.keys = map builtins.readFile [
               ../../../files/ssh/main.txt
               ../../../files/ssh/phone.txt
@@ -53,7 +53,7 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        backupFileExtension = "bak";
+        backupFileExtension = null;
         sharedModules = [ inputs.nix-index-database.homeModules.default ];
       };
     };

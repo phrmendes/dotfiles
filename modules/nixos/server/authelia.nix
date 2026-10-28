@@ -36,6 +36,9 @@
       };
 
       services = {
+        restic.backups.authelia = config.restic.mkBackup "authelia" {
+          paths = [ dataDir ];
+        };
         postgresql = config.utils.mkPostgres "authelia";
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "auth";

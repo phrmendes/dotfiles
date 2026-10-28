@@ -8,7 +8,6 @@
     }:
     let
       port = 8090;
-      backupDir = "/var/backup/beszel";
     in
     {
       age.secrets."beszel.env" = config.utils.mkSecretReadable {
@@ -108,8 +107,7 @@
 
       services = {
         restic.backups.beszel = config.restic.mkBackup "beszel" {
-          paths = [ backupDir ];
-          backupPrepareCommand = "${lib.getExe pkgs.local.backup-sqlite} /var/lib/beszel/beszel_data/data.db ${backupDir}/data.db";
+          sqlite."/var/lib/beszel/beszel_data/data.db" = "data.db";
         };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "beszel";

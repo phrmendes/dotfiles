@@ -16,6 +16,10 @@
       };
 
       services = {
+        restic.backups.homeAssistant = config.restic.mkBackup "home-assistant" {
+          paths = [ "/var/lib/home-assistant" ];
+          sqlite."/var/lib/home-assistant/home-assistant_v2.db" = "home-assistant.db";
+        };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "home-assistant";
           inherit port;

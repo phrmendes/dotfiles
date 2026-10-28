@@ -1,14 +1,6 @@
 {
   flake.modules.nixos.jellyfin =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
-    let
-      backupDir = "/var/backup/jellyfin";
-    in
+    { config, ... }:
     {
       homepage.services.jellyfin = {
         url = "jellyfin.${config.caddy.domain}";
@@ -56,10 +48,7 @@
           port = 8096;
         };
         restic.backups.jellyfin = config.restic.mkBackup "jellyfin" {
-          paths = [
-            "/var/lib/jellyfin"
-            backupDir
-          ];
+          paths = [ "/var/lib/jellyfin" ];
           exclude = [
             "/var/lib/jellyfin/metadata"
             "/var/lib/jellyfin/data/metadata"
@@ -67,11 +56,8 @@
             "/var/lib/jellyfin/cache"
             "/var/lib/jellyfin/log"
             "/var/lib/jellyfin/.cache"
-            "*.db"
-            "*.db-wal"
-            "*.db-shm"
           ];
-          backupPrepareCommand = "${lib.getExe pkgs.local.backup-sqlite} /var/lib/jellyfin/data/jellyfin.db ${backupDir}/library.sqlite";
+          sqlite."/var/lib/jellyfin/data/jellyfin.db" = "library.sqlite";
         };
       };
     };

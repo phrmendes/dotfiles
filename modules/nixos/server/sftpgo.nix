@@ -50,6 +50,9 @@
       };
 
       services = {
+        restic.backups.sftpgo = config.restic.mkBackup "sftpgo" {
+          paths = [ "/var/lib/sftpgo" ];
+        };
         postgresql = config.utils.mkPostgres "sftpgo";
         caddy.virtualHosts =
           (config.caddy.mkVhost {

@@ -1,6 +1,7 @@
 {
   flake.modules.homeManager.gtk =
     {
+      config,
       osConfig,
       pkgs,
       ...
@@ -19,7 +20,7 @@
           toString (stylix.fonts.sizes.applications - 1)
         }";
         monospace-font-name = "${stylix.fonts.monospace.name} ${toString stylix.fonts.sizes.terminal}";
-        icon-theme = "MoreWaita";
+        icon-theme = config.gtk.iconTheme.name;
         cursor-theme = stylix.cursor.name;
         cursor-size = stylix.cursor.size;
       };

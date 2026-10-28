@@ -118,7 +118,6 @@ in
           difftastic
           direnv
           fd
-          flameshot
           gh
           git
           gnupg

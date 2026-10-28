@@ -80,6 +80,8 @@
         ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
       };
 
+      home.packages = [ pkgs.neovim-gtk ];
+
       systemd.user = {
         services.nvim-lsp-log-cleanup = {
           Unit = {

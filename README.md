@@ -26,6 +26,25 @@ agenix --rekey -r agenix-rules.nix
 nix flake check
 ```
 
+## Restore
+
+Each backup has a `restic-backups-<name>.service` with a timer, and a `restic-<name>` wrapper that already carries the repository and credentials.
+
+```sh
+systemctl list-timers 'restic-backups-*'
+restic-gitolite snapshots
+restic-gitolite restore latest --target /tmp/restore
+systemctl start restic-backups-gitolite.service   # run one by hand
+```
+
+The repositories are `b2:phrmendes-backups:restic/<name>` for `authelia`, `beszel`, `books`, `databases`, `gitolite`, `home-assistant`, `jellyfin`, `photos`, `sftpgo`, `syncthing` and `zotero`.
+
+Every backup run also executes `restic check --read-data-subset=5%`. Units listed in `notifyOnFailure` report failures to the journal through a `notify-failure-<unit>` service.
+
+## Deploy
+
+The server upgrades from `github:phrmendes/dotfiles#server`, so push before you rely on it. Unpushed commits and unpushed secrets stay stale there.
+
 ## Install
 
 ```sh

@@ -1,10 +1,5 @@
 { lib }:
 {
-  mkFirewallPort = port: {
-    allowedTCPPorts = [ port ];
-    allowedUDPPorts = [ port ];
-  };
-
   dependsOnPostgres = {
     after = [ "postgresql.target" ];
     requires = [ "postgresql.target" ];

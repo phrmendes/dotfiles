@@ -14,7 +14,10 @@
         if secondary != null then
           {
             "${secondary.name}" = {
-              enabled = false;
+              start = [ ];
+              center = [ "workspaces" ];
+              end = [ ];
+              thickness = 25;
             };
           }
         else

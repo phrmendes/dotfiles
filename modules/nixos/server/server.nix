@@ -26,6 +26,7 @@ in
       linkding
       miniflux
       networking
+      notify
       podman
       podmanServer
       postgresql
@@ -70,6 +71,15 @@ in
       randomizedDelaySec = "5m";
       persistent = true;
     };
+
+    notifyOnFailure = [
+      "beszel-hub"
+      "caddy"
+      "immich"
+      "nixos-upgrade"
+      "postgresql"
+      "syncthing"
+    ];
 
     systemd.network.links."40-${settings.lan.interface}" = {
       matchConfig.OriginalName = settings.lan.interface;

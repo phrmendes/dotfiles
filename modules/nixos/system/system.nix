@@ -19,6 +19,10 @@ in
         envfs.enable = false;
         fstrim.enable = true;
         ntpd-rs.enable = true;
+        smartd = {
+          enable = true;
+          notifications.wall.enable = true;
+        };
 
         gnome = {
           gcr-ssh-agent.enable = false;

@@ -24,7 +24,8 @@ in
           primary = {
             name = "eDP-1";
             resolution = "1920x1080";
-            position = "0x0";
+            x = 0;
+            y = 0;
             refreshRate = 60;
             scale = 1.0;
           };

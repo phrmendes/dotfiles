@@ -62,14 +62,6 @@
 
       home.packages = [ pkgs.keepassxc ];
 
-      xdg.portal.config = {
-        common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
-        hyprland.default = [
-          "hyprland"
-          "gtk"
-        ];
-      };
-
       systemd.user.services.keepassxc = {
         Unit = {
           Description = "KeePassXC password manager";

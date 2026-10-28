@@ -20,14 +20,16 @@ in
           primary = {
             name = "DP-3";
             resolution = "2560x1080";
-            position = "0x0";
+            x = 0;
+            y = 0;
             refreshRate = 60;
             scale = 1.0;
           };
           secondary = {
             name = "HDMI-A-1";
             resolution = "1920x1080";
-            position = "2560x0";
+            x = 2560;
+            y = 0;
             refreshRate = 60;
             scale = 1.0;
           };

@@ -12,10 +12,7 @@ in
           startAgent = true;
           askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
         };
-        hyprland = {
-          enable = true;
-          withUWSM = true;
-        };
+        niri.enable = true;
       };
 
       environment.systemPackages = [
@@ -39,7 +36,7 @@ in
           settings = rec {
             initial_session = {
               inherit (settings) user;
-              command = "${lib.getExe pkgs.uwsm} start hyprland-uwsm.desktop";
+              command = "${lib.getExe' pkgs.niri "niri-session"}";
             };
             default_session = initial_session;
           };
@@ -48,14 +45,10 @@ in
 
       xdg.portal = {
         enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-hyprland
-          xdg-desktop-portal-gtk
-        ];
-        config.hyprland.default = [
-          "hyprland"
-          "gtk"
-        ];
+        config = {
+          common."org.freedesktop.impl.portal.Secret" = [ "keepassxc" ];
+          niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "keepassxc";
+        };
       };
     };
 }

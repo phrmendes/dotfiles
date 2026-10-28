@@ -57,7 +57,8 @@ in
         options = {
           name = lib.mkOption { type = lib.types.str; };
           resolution = lib.mkOption { type = lib.types.str; };
-          position = lib.mkOption { type = lib.types.str; };
+          x = lib.mkOption { type = lib.types.int; };
+          y = lib.mkOption { type = lib.types.int; };
           refreshRate = lib.mkOption { type = lib.types.int; };
           scale = lib.mkOption { type = lib.types.float; };
         };
@@ -122,7 +123,7 @@ in
           git
           gnupg
           gtk
-          hyprland
+          niri
           jq
           jujutsu
           k8s

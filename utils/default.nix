@@ -38,6 +38,17 @@
     }
     // lib.optionalAttrs (path != null) { inherit path; };
 
+  mkOutput = m: {
+    output = {
+      _args = [ m.name ];
+      mode = "${m.resolution}@${toString m.refreshRate}";
+      position._props = {
+        inherit (m) x y;
+      };
+      inherit (m) scale;
+    };
+  };
+
   mkBase16Lua =
     colors:
     lib.filterAttrs (n: _: builtins.match "base0[0-9A-F]" n != null) colors.withHashtag

@@ -12,6 +12,11 @@ in
     {
       home.sessionPath = [ "$HOME/.local/bin" ];
 
+      programs.carapace = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+
       programs.nushell = {
         enable = true;
         package = pkgs.local.nushell;

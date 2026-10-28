@@ -82,6 +82,17 @@
 
       home.packages = [ pkgs.neovim-gtk ];
 
+      xdg.desktopEntries."org.daa.NeovimGtk" = {
+        name = "Neovim";
+        genericName = "Text Editor";
+        exec = "${pkgs.neovim-gtk}/bin/nvim-gtk %F";
+        icon = "org.daa.NeovimGtk";
+        categories = [
+          "Utility"
+          "TextEditor"
+        ];
+      };
+
       systemd.user = {
         services.nvim-lsp-log-cleanup = {
           Unit = {

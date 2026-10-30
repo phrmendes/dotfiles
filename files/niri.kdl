@@ -14,7 +14,6 @@ window-rule {
     match title="^Picture-in-Picture$"
     open-floating true
 }
-
 window-rule {
     match app-id="^org\\.keepassxc\\.KeePassXC$"
     block-out-from "screen-capture"
@@ -41,11 +40,9 @@ binds {
     Print {
         spawn "screenshot" "screenshot"
     }
-
     Mod+Print {
         spawn "screenshot" "screenshot-window"
     }
-
     Mod+Shift+Print {
         spawn "screenshot" "screenshot-screen"
     }
@@ -106,11 +103,17 @@ binds {
     Mod+Shift+L {
         set-column-width "+5%"
     }
-    Mod+W {
+    Mod+N {
         focus-monitor-next
     }
-    Mod+Shift+W {
+    Mod+P {
+        focus-monitor-previous
+    }
+    Mod+Shift+N {
         move-window-to-monitor-next
+    }
+    Mod+Shift+P {
+        move-window-to-monitor-previous
     }
     Mod+1 {
         focus-workspace 1

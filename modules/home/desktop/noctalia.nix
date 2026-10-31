@@ -38,6 +38,8 @@
             key_file = osConfig.age.secrets."noctalia.txt".path;
           };
 
+          hooks.session_locked = "loginctl lock-session";
+
           shell = {
             corner_radius_scale = 1.5;
             time_format = "{:%H:%M %a, %b %d}";

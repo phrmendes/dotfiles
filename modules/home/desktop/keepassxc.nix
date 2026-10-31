@@ -12,6 +12,7 @@
       ini = pkgs.writeText "keepassxc.ini" (
         lib.generators.toINI { } {
           General = {
+            AutoGeneratePasswordForNewEntries = true;
             ConfigVersion = 2;
             MinimizeAfterUnlock = false;
           };
@@ -25,6 +26,7 @@
           };
           GUI = {
             ApplicationTheme = "dark";
+            ColorPasswords = true;
             CompactMode = true;
             MinimizeOnClose = true;
             MinimizeOnStartup = false;
@@ -39,11 +41,15 @@
             WordCase = 2;
             WordSeparator = "-";
           };
+          KeeShare.QuietSuccess = true;
           SSHAgent.Enabled = true;
           Security = {
             ClearClipboardTimeout = 30;
+            EnableCopyOnDoubleClick = true;
             IconDownloadFallback = true;
-            LockDatabaseIdle = false;
+            LockDatabaseIdle = true;
+            LockDatabaseIdleSeconds = 3600;
+            PasswordEmptyPlaceholder = true;
           };
         }
       );

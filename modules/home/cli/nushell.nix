@@ -28,10 +28,6 @@ in
         environmentVariables = {
           DOCKER_HOST = lib.hm.nushell.mkNushellInline ''$"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock"'';
           DOCKER_SOCK = lib.hm.nushell.mkNushellInline ''$"($env.XDG_RUNTIME_DIR)/podman/podman.sock"'';
-          AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
-          PI_CACHE_RETENTION = "long";
-          PI_NUSHELL_PATH = lib.getExe pkgs.local.nushell;
-          PI_SKIP_VERSION_CHECK = "1";
           PROMPT_COMMAND_RIGHT = "";
           _ZO_MAXAGE = "100000";
         };

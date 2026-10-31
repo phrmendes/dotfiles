@@ -46,6 +46,12 @@
       };
 
       home = {
+        sessionVariables = {
+          AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
+          PI_CACHE_RETENTION = "long";
+          PI_NUSHELL_PATH = pkgs.lib.getExe pkgs.local.nushell;
+          PI_SKIP_VERSION_CHECK = "1";
+        };
         packages = mcpServers ++ [ pkgs.libnotify ];
         file = {
           ".pi/agent/mcp.json".source = ../../../files/pi/mcp.json;

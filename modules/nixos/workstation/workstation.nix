@@ -109,6 +109,11 @@ in
       config = {
         programs.nh.flake = config.workstation.dotfilesDir;
 
+        security = {
+          sudo.wheelNeedsPassword = lib.mkForce true;
+          pam.sshAgentAuth.enable = true;
+        };
+
         home-manager.users.${settings.user}.imports = with homeManager; [
           atuin
           gitolite

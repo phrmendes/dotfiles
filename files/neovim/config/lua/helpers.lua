@@ -8,12 +8,14 @@ M.mini.buffers = function()
       .iter(vim.fn.getbufinfo({ buflisted = 1 }))
       :map(function(buf)
         local text
+
         if vim.bo[buf.bufnr].buftype == "terminal" then
           text = vim.fn.fnamemodify(buf.name, ":t")
         else
           local name = vim.fn.fnamemodify(buf.name, ":~:.")
           text = name ~= "" and name or "[No Name]"
         end
+
         return { bufnr = buf.bufnr, text = text }
       end)
       :totable()
@@ -34,11 +36,15 @@ M.mini.buffers = function()
         char = "<c-d>",
         func = function()
           local matches = MiniPick.get_picker_matches()
+
           if not matches then return end
+
           local to_delete = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
+
           vim.iter(to_delete):each(function(buf)
             if buf then MiniBufremove.delete(buf.bufnr) end
           end)
+
           MiniPick.set_picker_items(buf_items())
         end,
       },
@@ -50,7 +56,18 @@ end
 --- Projects are sorted by recency (via mini.visits), falling back to alphabetical.
 --- On selection, changes cwd for the current tab and opens mini.files.
 M.mini.project = function()
-  local root = "/mnt/external/projects"
+  local root = vim.env.PROJECTS_DIR
+
+  if not root or root == "" then
+    vim.notify("PROJECTS_DIR is not set", vim.log.levels.WARN)
+    return
+  end
+
+  if not vim.uv.fs_stat(root) then
+    vim.notify("PROJECTS_DIR does not exist: " .. root, vim.log.levels.WARN)
+    return
+  end
+
   local command = { "fd", "--type", "d", "--hidden", "--max-depth", "3", ".", root }
 
   local postprocess = function(lines)
@@ -112,7 +129,9 @@ M.zoom = function()
   if not zoomed_in then return end
 
   vim.api.nvim_set_hl(0, "ReadingModeBackdrop", { bg = "#000000" })
+
   local buf = vim.api.nvim_create_buf(false, true)
+
   local win = vim.api.nvim_open_win(buf, false, {
     relative = "editor",
     row = 0,
@@ -165,7 +184,9 @@ end
 M.treesitter = function(buf, lang)
   vim.treesitter.start(buf, lang)
   vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
   local win = vim.fn.bufwinid(buf)
+
   if win ~= -1 then
     vim.wo[win].foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.wo[win].foldmethod = "expr"

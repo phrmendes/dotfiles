@@ -174,16 +174,24 @@ in
         ];
 
         environment = {
-          persistence."/persist".users.${settings.user}.directories = commonDirs ++ [
-            {
-              directory = ".gnupg";
-              mode = "0700";
-            }
-            {
-              directory = ".keychain";
-              mode = "u=rwx,go=";
-            }
-          ];
+          persistence."/persist".users.${settings.user}.directories =
+            commonDirs
+            ++ lib.optional (config.workstation.type == "laptop") "Projects"
+            ++ [
+              {
+                directory = ".gnupg";
+                mode = "0700";
+              }
+              {
+                directory = ".keychain";
+                mode = "u=rwx,go=";
+              }
+            ];
+          sessionVariables.PROJECTS_DIR =
+            if config.workstation.type == "desktop" then
+              "/mnt/external/projects"
+            else
+              "${settings.home}/Projects";
           systemPackages = with pkgs; [
             egl-wayland
             gcc

@@ -82,8 +82,10 @@
       };
 
       config = {
-        systemd.services.homepage-dashboard.environment.HOMEPAGE_ALLOWED_HOSTS =
-          lib.mkForce "homepage.${config.caddy.domain},localhost:${toString port},127.0.0.1:${toString port}";
+        systemd.services.homepage-dashboard.environment = {
+          HOMEPAGE_ALLOWED_HOSTS = lib.mkForce "homepage.${config.caddy.domain},localhost:${toString port},127.0.0.1:${toString port}";
+          NODE_EXTRA_CA_CERTS = "${../../../files/ca.crt}";
+        };
 
         services = {
           caddy.virtualHosts = config.caddy.mkVhost {

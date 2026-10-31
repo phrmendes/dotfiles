@@ -23,6 +23,7 @@ in
       immich
       impermanence
       jellyfin
+      kosync
       linkding
       miniflux
       networking

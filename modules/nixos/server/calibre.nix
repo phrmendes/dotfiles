@@ -53,12 +53,8 @@
 
             @health path /health
             handle @health {
-              reverse_proxy 127.0.0.1:${toString port} {
-                @unauthorized status 401
-                handle_response @unauthorized {
-                  respond "OK" 200
-                }
-              }
+              rewrite * /
+              reverse_proxy 127.0.0.1:${toString port}
             }
           '';
         };

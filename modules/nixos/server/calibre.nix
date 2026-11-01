@@ -33,6 +33,7 @@
 
       systemd = {
         tmpfiles.rules = [ "d ${library} 2775 calibre calibre -" ];
+        services.caddy.serviceConfig.EnvironmentFile = [ "/var/lib/caddy/calibre-auth.env" ];
         services.calibre-server = {
           unitConfig.RequiresMountsFor = [ "/mnt/external" ];
           unitConfig.ConditionPathExists = [
@@ -48,10 +49,20 @@
           inherit port;
           auth = true;
           extraConfig = ''
-            @opds path /opds /opds/* /get /comic-manifest /cdb/add-book/*
-            handle @opds {
-              reverse_proxy 127.0.0.1:${toString port}
+            @opds-trusted {
+              path /opds /opds/* /get /comic-manifest /cdb/add-book/*
+              remote_ip 192.168.10.0/24 10.10.10.3/32
+            }
+            handle @opds-trusted {
+              reverse_proxy 127.0.0.1:${toString port} {
+                header_up Authorization "Basic {env.CALIBRE_AUTH}"
+              }
               import security-headers
+            }
+
+            @opds-blocked path /opds /opds/* /get /comic-manifest /cdb/add-book/*
+            handle @opds-blocked {
+              respond "Forbidden" 403
             }
 
             @health path /health

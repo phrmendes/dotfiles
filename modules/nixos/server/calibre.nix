@@ -46,7 +46,6 @@
           extraConfig = ''
             @opds path /opds /opds/* /get /comic-manifest
             handle @opds {
-              import authelia-auth
               reverse_proxy 127.0.0.1:${toString port}
               import security-headers
             }

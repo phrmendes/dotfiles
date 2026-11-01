@@ -92,6 +92,7 @@ in
             (authelia-auth) {
               forward_auth 127.0.0.1:9099 {
                 uri /api/authz/forward-auth
+                header_up -Authorization
                 copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
 
                 @error status 401

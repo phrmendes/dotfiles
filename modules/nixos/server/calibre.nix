@@ -48,6 +48,7 @@
           name = "calibre";
           inherit port;
           auth = true;
+          headers.Authorization = "Basic {env.CALIBRE_AUTH}";
           extraConfig = ''
             @opds-trusted {
               path /opds /opds/* /get /comic-manifest /cdb/add-book/*

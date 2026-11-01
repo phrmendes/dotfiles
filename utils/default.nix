@@ -59,13 +59,23 @@
       extraConfig ? "",
       upstream ? "127.0.0.1:${toString port}",
       insecure ? false,
+      headers ? { },
     }:
     let
+      proxyBody =
+        lib.optionalString insecure "transport http { tls_insecure_skip_verify }"
+        + lib.concatStrings (
+          lib.mapAttrsToList (header: value: ''header_up ${header} "${value}"'') headers
+        );
       proxy =
-        if insecure then
-          "reverse_proxy ${upstream} { transport http { tls_insecure_skip_verify } }"
+        if proxyBody == "" then
+          "reverse_proxy ${upstream}"
         else
-          "reverse_proxy ${upstream}";
+          ''
+            reverse_proxy ${upstream} {
+              ${proxyBody}
+            }
+          '';
     in
     {
       "${name}.${domain}" = {

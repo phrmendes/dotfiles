@@ -7,7 +7,6 @@
     let
       port = 8080;
       library = "/mnt/external/calibre";
-      userDb = "/var/lib/calibre/users.sqlite";
     in
     {
       homepage.services.calibre = {
@@ -35,7 +34,7 @@
         tmpfiles.rules = [ "d ${library} 2775 calibre calibre -" ];
         services.calibre-server = {
           unitConfig.RequiresMountsFor = [ "/mnt/external" ];
-          unitConfig.ConditionPathExists = [ userDb ];
+          unitConfig.ConditionPathExists = [ "${library}/metadata.db" ];
         };
       };
 
@@ -47,6 +46,7 @@
           extraConfig = ''
             @opds path /opds /opds/* /get /comic-manifest
             handle @opds {
+              import authelia-auth
               reverse_proxy 127.0.0.1:${toString port}
               import security-headers
             }
@@ -66,11 +66,6 @@
           libraries = [ library ];
           user = "calibre";
           group = "calibre";
-          auth = {
-            enable = true;
-            mode = "basic";
-            inherit userDb;
-          };
         };
       };
     };

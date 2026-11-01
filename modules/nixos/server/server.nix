@@ -12,6 +12,7 @@ in
       bazarr
       beszel
       caddy
+      calibre
       core
       disko
       excalidraw

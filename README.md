@@ -37,7 +37,7 @@ restic-gitolite restore latest --target /tmp/restore
 systemctl start restic-backups-gitolite.service   # run one by hand
 ```
 
-The repositories are `b2:phrmendes-backups:restic/<name>` for `authelia`, `beszel`, `books`, `databases`, `gitolite`, `home-assistant`, `jellyfin`, `kosync`, `photos`, `sftpgo`, `syncthing` and `zotero`.
+The repositories are `b2:phrmendes-backups:restic/<name>` for `authelia`, `beszel`, `calibre`, `databases`, `gitolite`, `home-assistant`, `jellyfin`, `kosync`, `photos`, `sftpgo`, `syncthing` and `zotero`.
 
 Every backup run also executes `restic check --read-data-subset=5%`. Units listed in `notifyOnFailure` report failures to the journal through a `notify-failure-<unit>` service.
 

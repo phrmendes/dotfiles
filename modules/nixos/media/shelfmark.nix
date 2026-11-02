@@ -32,7 +32,10 @@ in
       };
 
       systemd = {
-        tmpfiles.rules = [ "d ${dataDir} 0755 ${settings.user} users -" ];
+        tmpfiles.rules = [
+          "d ${dataDir} 0755 ${settings.user} users -"
+          "d ${dataDir}/books 0755 ${settings.user} users -"
+        ];
         services.podman-shelfmark.unitConfig.RequiresMountsFor = [ "/mnt/external" ];
       };
 
@@ -40,24 +43,27 @@ in
         image = "ghcr.io/calibrain/shelfmark-lite:latest";
         volumes = [
           "${dataDir}:/config"
-          "/mnt/external/calibre/ingest:/books"
+          "${dataDir}/books:/books"
+          "${../../../files/scripts/add-book-to-calibre.py}:/scripts/add-book-to-calibre.py:ro"
           "/mnt/external/downloads:/mnt/external/downloads"
           "${config.security.pki.caBundle}:/etc/ca-bundle.crt:ro"
         ];
         environment = {
-          PUID = uid;
-          PGID = gid;
-          TZ = config.time.timeZone;
+          AUTH_METHOD = "oidc";
+          CALIBRE_URL = "https://calibre.${config.caddy.domain}/cdb/add-book/0/n";
+          CUSTOM_SCRIPT = "/scripts/add-book-to-calibre.py";
+          DISABLE_LOCAL_AUTH = "true";
+          EXT_BYPASSER_URL = "http://127.0.0.1:8191";
           FLASK_HOST = "127.0.0.1";
           FLASK_PORT = toString port;
-          EXT_BYPASSER_URL = "http://127.0.0.1:8191";
+          OIDC_ADMIN_GROUP = adminGroup;
+          OIDC_CLIENT_ID = "shelfmark";
+          OIDC_DISCOVERY_URL = "https://auth.${config.caddy.domain}/.well-known/openid-configuration";
+          PGID = gid;
+          PUID = uid;
           REQUESTS_CA_BUNDLE = "/etc/ca-bundle.crt";
           SSL_CERT_FILE = "/etc/ca-bundle.crt";
-          AUTH_METHOD = "oidc";
-          DISABLE_LOCAL_AUTH = "true";
-          OIDC_DISCOVERY_URL = "https://auth.${config.caddy.domain}/.well-known/openid-configuration";
-          OIDC_CLIENT_ID = "shelfmark";
-          OIDC_ADMIN_GROUP = adminGroup;
+          TZ = config.time.timeZone;
         };
         environmentFiles = [ config.age.secrets."shelfmark.env".path ];
         networks = [ "host" ];
@@ -66,6 +72,7 @@ in
         };
         extraOptions = [
           "--add-host=auth.${config.caddy.domain}:${settings.lan.serverAddress}"
+          "--add-host=calibre.${config.caddy.domain}:${settings.lan.serverAddress}"
           "--health-cmd=curl -sf http://localhost:${toString port}/api/health"
           "--health-interval=30s"
           "--health-timeout=30s"

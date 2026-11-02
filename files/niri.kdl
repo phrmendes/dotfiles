@@ -53,6 +53,9 @@ binds {
         maximize-column
     }
     Mod+F {
+        expand-column-to-available-width
+    }
+    Mod+Shift+F {
         toggle-window-floating
     }
     Mod+R {

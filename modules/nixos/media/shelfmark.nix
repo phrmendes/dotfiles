@@ -40,7 +40,7 @@ in
       };
 
       virtualisation.oci-containers.containers.shelfmark = {
-        image = "ghcr.io/calibrain/shelfmark-lite:latest";
+        image = "ghcr.io/calibrain/shelfmark:latest";
         volumes = [
           "${dataDir}:/config"
           "${dataDir}/books:/books"
@@ -53,7 +53,6 @@ in
           CALIBRE_URL = "https://calibre.${config.caddy.domain}/cdb/add-book/0/n";
           CUSTOM_SCRIPT = "/scripts/add-book-to-calibre.py";
           DISABLE_LOCAL_AUTH = "true";
-          EXT_BYPASSER_URL = "http://127.0.0.1:8191";
           FLASK_HOST = "127.0.0.1";
           FLASK_PORT = toString port;
           OIDC_ADMIN_GROUP = adminGroup;

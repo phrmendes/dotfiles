@@ -50,7 +50,7 @@ in
           headers.Authorization = "Basic {env.CALIBRE_AUTH}";
           extraConfig = ''
             @opds-trusted {
-              path /opds /opds/* /get /comic-manifest /cdb/add-book/*
+              path /opds /opds/* /get /get/* /comic-manifest /cdb/add-book/*
               remote_ip 192.168.10.0/24 10.10.10.3/32
             }
             handle @opds-trusted {
@@ -60,7 +60,7 @@ in
               import security-headers
             }
 
-            @opds-blocked path /opds /opds/* /get /comic-manifest /cdb/add-book/*
+            @opds-blocked path /opds /opds/* /get /get/* /comic-manifest /cdb/add-book/*
             handle @opds-blocked {
               respond "Forbidden" 403
             }

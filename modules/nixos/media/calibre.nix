@@ -7,11 +7,12 @@ in
     { config, ... }:
     let
       port = 8083;
-      id = 3001;
+      uid = toString config.users.users.${settings.user}.uid;
+      gid = toString config.users.groups.users.gid;
       root = "/mnt/external/calibre";
       library = "${root}/library";
       ingest = "${root}/ingest";
-      dataDir = "/var/lib/calibre";
+      dataDir = "/var/lib/cwa";
     in
     {
       homepage.services.calibre = {
@@ -24,24 +25,13 @@ in
         };
       };
 
-      users = {
-        groups.calibre.gid = id;
-        users.calibre = {
-          isSystemUser = true;
-          uid = id;
-          group = "calibre";
-          home = dataDir;
-          createHome = true;
-          extraGroups = [ "external" ];
-        };
-      };
-
       systemd = {
         tmpfiles.rules = [
-          "d ${root} 2775 calibre calibre -"
-          "d ${library} 2775 calibre calibre -"
-          "d ${ingest} 2775 calibre calibre -"
-          "d ${dataDir}/config 0755 calibre calibre -"
+          "d ${root} 2775 ${settings.user} external -"
+          "d ${library} 2775 ${settings.user} external -"
+          "d ${ingest} 2775 ${settings.user} external -"
+          "d ${dataDir} 0755 ${settings.user} users -"
+          "d ${dataDir}/config 0755 ${settings.user} users -"
         ];
         services.podman-calibre = {
           after = [ "podman-network-services.service" ];
@@ -65,8 +55,8 @@ in
           "${config.security.pki.caBundle}:/etc/ca-bundle.crt:ro"
         ];
         environment = {
-          PUID = toString id;
-          PGID = toString id;
+          PUID = uid;
+          PGID = gid;
           TZ = config.time.timeZone;
           REQUESTS_CA_BUNDLE = "/etc/ca-bundle.crt";
           SSL_CERT_FILE = "/etc/ca-bundle.crt";

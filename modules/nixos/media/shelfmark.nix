@@ -8,7 +8,8 @@ in
     let
       port = 8084;
       dataDir = "/var/lib/shelfmark";
-      id = toString config.users.users.calibre.uid;
+      uid = toString config.users.users.${settings.user}.uid;
+      gid = toString config.users.groups.users.gid;
       adminGroup = "admins";
     in
     {
@@ -31,7 +32,7 @@ in
       };
 
       systemd = {
-        tmpfiles.rules = [ "d ${dataDir} 0755 calibre calibre -" ];
+        tmpfiles.rules = [ "d ${dataDir} 0755 ${settings.user} users -" ];
         services.podman-shelfmark.unitConfig.RequiresMountsFor = [ "/mnt/external" ];
       };
 
@@ -44,8 +45,8 @@ in
           "${config.security.pki.caBundle}:/etc/ca-bundle.crt:ro"
         ];
         environment = {
-          PUID = id;
-          PGID = id;
+          PUID = uid;
+          PGID = gid;
           TZ = config.time.timeZone;
           FLASK_PORT = toString port;
           EXT_BYPASSER_URL = "http://127.0.0.1:8191";

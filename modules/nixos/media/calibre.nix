@@ -78,6 +78,10 @@ in
           host = "127.0.0.1";
           inherit port;
           libraries = [ library ];
+          extraFlags = [
+            "--max-opds-items=8"
+            "--max-opds-ungrouped-items=20"
+          ];
           user = settings.user;
           group = "users";
           auth = {

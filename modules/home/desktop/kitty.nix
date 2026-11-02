@@ -30,8 +30,8 @@
           update_check_interval = 0;
           window_border_radius = "8px";
           window_border_width = "1px";
-          window_margin_width = 3;
-          window_padding_width = 3;
+          window_margin_width = "0.4";
+          window_padding_width = 2;
           window_resize_step_cells = 3;
           window_resize_step_lines = 3;
         };

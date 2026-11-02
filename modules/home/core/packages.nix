@@ -11,11 +11,10 @@
         file-roller
         fragments
         gcolor3
-        gnome-calculator
-        gnome-disk-utility
-        gnome-font-viewer
         gdu
         glab
+        gnome-calculator
+        gnome-disk-utility
         handy
         hurl
         imagemagick
@@ -32,6 +31,7 @@
         phockup
         poppler
         proton-vpn
+        readest
         resources
         skim
         tectonic

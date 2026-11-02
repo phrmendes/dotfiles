@@ -13,10 +13,10 @@ vim.keymap.set("t", "<c-j>", "<c-\\><c-n><c-w>j", { desc = "Below split" })
 vim.keymap.set("t", "<c-k>", "<c-\\><c-n><c-w>k", { desc = "Above split" })
 vim.keymap.set("t", "<c-l>", "<c-\\><c-n><c-w>l", { desc = "Right split" })
 
-vim.keymap.set("n", "<a-h>", "<cmd>vertical resize -3<cr>", { desc = "Narrower" })
+vim.keymap.set("n", "<a-h>", "<cmd>vertical resize +3<cr>", { desc = "Wider" })
 vim.keymap.set("n", "<a-j>", "<cmd>resize +3<cr>", { desc = "Taller" })
 vim.keymap.set("n", "<a-k>", "<cmd>resize -3<cr>", { desc = "Shorter" })
-vim.keymap.set("n", "<a-l>", "<cmd>vertical resize +3<cr>", { desc = "Wider" })
+vim.keymap.set("n", "<a-l>", "<cmd>vertical resize -3<cr>", { desc = "Narrower" })
 
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })

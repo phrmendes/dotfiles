@@ -23,6 +23,7 @@ mkSecrets
     "restic.age.env"
     "searxng.age.env"
     "sftpgo.age.env"
+    "shelfmark.age.env"
     "users.age.yaml"
   ]
 # Workstation secrets: the laptop key decrypts them, the server key does not.

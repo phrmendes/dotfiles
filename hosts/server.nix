@@ -44,6 +44,7 @@ in
         searxng
         serverLogs
         sftpgo
+        shelfmark
         sonarr
         storage
         sunshineProxy

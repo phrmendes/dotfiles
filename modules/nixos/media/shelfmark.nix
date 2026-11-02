@@ -48,6 +48,7 @@ in
           PUID = uid;
           PGID = gid;
           TZ = config.time.timeZone;
+          FLASK_HOST = "127.0.0.1";
           FLASK_PORT = toString port;
           EXT_BYPASSER_URL = "http://127.0.0.1:8191";
           REQUESTS_CA_BUNDLE = "/etc/ca-bundle.crt";

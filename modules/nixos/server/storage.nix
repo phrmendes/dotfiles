@@ -24,7 +24,6 @@ in
       systemd.tmpfiles.rules = [
         "d /mnt/external 2775 ${settings.user} external -"
         "a+ /mnt/external - - - - d:g:external:rwx,g:external:rwx,d:group::rwx,group::rwx,d:mask::rwx,mask::rwx"
-        "d /mnt/external/books 2775 ${settings.user} external -"
         "d /mnt/external/zotero 2775 ${settings.user} external -"
         "d /mnt/external/movies 2775 ${settings.user} external -"
         "d /mnt/external/tvshows 2775 ${settings.user} external -"

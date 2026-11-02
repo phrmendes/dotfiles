@@ -29,7 +29,6 @@ in
         immich
         impermanence
         jellyfin
-        kosync
         linkding
         miniflux
         mosh

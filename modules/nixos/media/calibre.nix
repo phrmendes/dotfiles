@@ -6,13 +6,11 @@ in
   flake.modules.nixos.calibre =
     { config, ... }:
     let
-      port = 8083;
-      uid = toString config.users.users.${settings.user}.uid;
-      gid = toString config.users.groups.users.gid;
+      port = 8080;
       root = "/mnt/external/calibre";
       library = "${root}/library";
-      ingest = "${root}/ingest";
-      dataDir = "/var/lib/cwa";
+      userDb = "/var/lib/calibre/users.sqlite";
+      authFile = "/var/lib/caddy/calibre-auth.env";
     in
     {
       homepage.services.calibre = {
@@ -20,7 +18,7 @@ in
         homepage = {
           name = "Calibre";
           description = "Ebook library";
-          icon = "sh-calibre-web";
+          icon = "sh-calibre";
           category = "Media";
         };
       };
@@ -29,49 +27,65 @@ in
         tmpfiles.rules = [
           "d ${root} 2775 ${settings.user} external -"
           "d ${library} 2775 ${settings.user} external -"
-          "d ${ingest} 2775 ${settings.user} external -"
-          "d ${dataDir} 0755 ${settings.user} users -"
-          "d ${dataDir}/config 0755 ${settings.user} users -"
         ];
-        services.podman-calibre = {
-          after = [ "podman-network-services.service" ];
-          requires = [ "podman-network-services.service" ];
-          unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+
+        services = {
+          caddy.serviceConfig.EnvironmentFile = [ authFile ];
+
+          calibre-server = {
+            unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+            unitConfig.ConditionPathExists = [
+              "${library}/metadata.db"
+              userDb
+            ];
+          };
         };
       };
 
-      services.caddy.virtualHosts = config.caddy.mkVhost {
-        name = "calibre";
-        inherit port;
-      };
+      services = {
+        caddy.virtualHosts = config.caddy.mkVhost {
+          name = "calibre";
+          inherit port;
+          auth = true;
+          headers.Authorization = "Basic {env.CALIBRE_AUTH}";
+          extraConfig = ''
+            @opds-trusted {
+              path /opds /opds/* /get /comic-manifest /cdb/add-book/*
+              remote_ip 192.168.10.0/24 10.10.10.3/32
+            }
+            handle @opds-trusted {
+              reverse_proxy 127.0.0.1:${toString port} {
+                header_up Authorization "Basic {env.CALIBRE_AUTH}"
+              }
+              import security-headers
+            }
 
-      virtualisation.oci-containers.containers.calibre = {
-        image = "docker.io/crocodilestick/calibre-web-automated:latest";
-        ports = [ "127.0.0.1:${toString port}:8083" ];
-        volumes = [
-          "${dataDir}/config:/config"
-          "${ingest}:/cwa-book-ingest"
-          "${library}:/calibre-library"
-          "${config.security.pki.caBundle}:/etc/ca-bundle.crt:ro"
-        ];
-        environment = {
-          PUID = uid;
-          PGID = gid;
-          TZ = config.time.timeZone;
-          REQUESTS_CA_BUNDLE = "/etc/ca-bundle.crt";
-          SSL_CERT_FILE = "/etc/ca-bundle.crt";
+            @opds-blocked path /opds /opds/* /get /comic-manifest /cdb/add-book/*
+            handle @opds-blocked {
+              respond "Forbidden" 403
+            }
+
+            @health path /health
+            handle @health {
+              rewrite * /
+              reverse_proxy 127.0.0.1:${toString port}
+            }
+          '';
         };
-        networks = [ "services" ];
-        labels = {
-          "io.containers.autoupdate" = "registry";
+
+        calibre-server = {
+          enable = true;
+          host = "127.0.0.1";
+          inherit port;
+          libraries = [ library ];
+          user = settings.user;
+          group = "users";
+          auth = {
+            enable = true;
+            mode = "basic";
+            inherit userDb;
+          };
         };
-        extraOptions = [
-          "--add-host=auth.${config.caddy.domain}:${settings.lan.serverAddress}"
-          "--health-cmd=curl -fsS http://localhost:8083/health"
-          "--health-interval=30s"
-          "--health-timeout=5s"
-          "--health-retries=3"
-        ];
       };
     };
 }

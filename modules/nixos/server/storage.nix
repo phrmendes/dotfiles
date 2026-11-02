@@ -18,10 +18,7 @@ in
 
       services.restic.backups = {
         zotero = config.restic.mkBackup "zotero" { paths = [ "/mnt/external/zotero" ]; };
-        calibre = config.restic.mkBackup "calibre" {
-          paths = [ "/mnt/external/calibre/library" ];
-          sqlite."/var/lib/cwa/config/app.db" = "app.db";
-        };
+        calibre = config.restic.mkBackup "calibre" { paths = [ "/mnt/external/calibre/library" ]; };
       };
 
       systemd.tmpfiles.rules = [

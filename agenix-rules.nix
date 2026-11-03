@@ -17,6 +17,7 @@ mkSecrets
     "authelia.age.yaml"
     "beszel.age.env"
     "ca.age.key"
+    "ddclient.age.txt"
     "dockerhub.age.json"
     "linkding.age.env"
     "miniflux.age.env"

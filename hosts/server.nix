@@ -19,6 +19,7 @@ in
         caddy
         calibre
         core
+        ddclient
         disko
         excalidraw
         flaresolverr

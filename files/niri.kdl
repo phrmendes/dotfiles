@@ -52,14 +52,17 @@ binds {
     Mod+Z {
         maximize-column
     }
-    Mod+F {
-        expand-column-to-available-width
+    Mod+Shift+Z {
+        set-window-height "100%"
     }
-    Mod+Shift+F {
+    Mod+F {
         toggle-window-floating
     }
     Mod+R {
         switch-preset-column-width
+    }
+    Mod+Shift+R {
+        switch-preset-window-height
     }
     Mod+G {
         toggle-column-tabbed-display
@@ -71,16 +74,16 @@ binds {
         consume-window-into-column
     }
     Mod+H {
-        focus-column-left
+        focus-column-or-monitor-left
     }
     Mod+J {
-        focus-window-down
+        focus-window-or-workspace-down
     }
     Mod+K {
-        focus-window-up
+        focus-window-or-workspace-up
     }
     Mod+L {
-        focus-column-right
+        focus-column-or-monitor-right
     }
     Mod+Ctrl+H {
         move-column-left
@@ -95,28 +98,28 @@ binds {
         move-column-right
     }
     Mod+Shift+H {
-        set-column-width "-5%"
+        move-window-to-monitor-left
     }
     Mod+Shift+J {
-        set-window-height "+5%"
+        move-window-to-workspace-down
     }
     Mod+Shift+K {
-        set-window-height "-5%"
+        move-window-to-workspace-up
     }
     Mod+Shift+L {
+        move-window-to-monitor-right
+    }
+    Mod+Comma {
+        set-column-width "-5%"
+    }
+    Mod+Period {
         set-column-width "+5%"
     }
-    Mod+N {
-        focus-monitor-next
+    Mod+Minus {
+        set-window-height "-5%"
     }
-    Mod+P {
-        focus-monitor-previous
-    }
-    Mod+Shift+N {
-        move-window-to-monitor-next
-    }
-    Mod+Shift+P {
-        move-window-to-monitor-previous
+    Mod+Equal {
+        set-window-height "+5%"
     }
     Mod+1 {
         focus-workspace 1

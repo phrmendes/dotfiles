@@ -30,10 +30,12 @@ vim.opt.swapfile = false
 vim.opt.updatetime = 200
 vim.opt.timeoutlen = 300
 
--- default terminal
-vim.opt.shell = "nu"
+vim.opt.shell = "bash"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- set log level
+vim.lsp.log.set_level("error")
 
 -- fold
 vim.opt.foldenable = false

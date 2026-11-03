@@ -16,7 +16,6 @@ vim.lsp.enable({
   "helm_ls",
   "html",
   "jsonls",
-  "just",
   "lua_ls",
   "nixd",
   "nushell",

@@ -72,10 +72,6 @@
       "rev": "c7f595d568b588942d4d0c37b5cd6cae3764a148",
       "src": "https://codeberg.org/mfussenegger/nvim-ansible"
     },
-    "nvim-bqf": {
-      "rev": "c282a62bec6c0621a1ef5132aa3f4c9fc4dcc2c7",
-      "src": "https://github.com/kevinhwang91/nvim-bqf"
-    },
     "nvim-dap": {
       "rev": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264",
       "src": "https://github.com/mfussenegger/nvim-dap"
@@ -139,10 +135,6 @@
     "tree-sitter-d2": {
       "rev": "200434618a6bede20ebd4982aa4d4f1edeb0b5c1",
       "src": "https://github.com/ravsii/tree-sitter-d2"
-    },
-    "undotree": {
-      "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
-      "src": "https://github.com/mbbill/undotree"
     },
     "vim-abolish": {
       "rev": "dcbfe065297d31823561ba787f51056c147aa682",

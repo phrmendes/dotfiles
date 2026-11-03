@@ -17,6 +17,7 @@ safely("later", function()
 
   local shell = ergoterm:new({
     layout = "float",
+    shell = "nu",
     auto_list = false,
     bang_target = false,
     sticky = true,

@@ -24,6 +24,7 @@
         lima
         localsend
         loupe
+        ncspot
         nix-prefetch-github
         pandoc
         parallel

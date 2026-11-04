@@ -58,16 +58,6 @@ safely("later", function()
         end)
       end, { buffer = bufnr, desc = "Open file" })
 
-      vim.keymap.set("n", "gs", function()
-        local grug_far = require("grug-far")
-        local prefills = { paths = vim.fs.dirname(MiniFiles.get_fs_entry().path) }
-        if not grug_far.has_instance("explorer") then
-          grug_far.open({ instanceName = "explorer", prefills = prefills, staticTitle = "Find and Replace from Explorer" })
-        else
-          grug_far.get_instance("explorer"):open()
-          grug_far.get_instance("explorer"):update_input_values(prefills, false)
-        end
-      end, { buffer = bufnr, desc = "Search with grug-far.nvim" })
     end,
   })
 

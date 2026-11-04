@@ -128,10 +128,6 @@
       "rev": "1344867f9c03bb8eb36f0316d03a9ac3951dec78",
       "src": "https://github.com/phrmendes/todotxt.nvim"
     },
-    "tree-sitter-d2": {
-      "rev": "200434618a6bede20ebd4982aa4d4f1edeb0b5c1",
-      "src": "https://github.com/ravsii/tree-sitter-d2"
-    },
     "vim-abolish": {
       "rev": "dcbfe065297d31823561ba787f51056c147aa682",
       "src": "https://github.com/tpope/vim-abolish"

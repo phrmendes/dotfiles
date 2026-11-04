@@ -6,6 +6,7 @@ require("nvim-treesitter").install({
   "css",
   "diff",
   "dockerfile",
+  "dot",
   "eex",
   "elixir",
   "go",

@@ -109,6 +109,12 @@ binds {
     Mod+Shift+L {
         move-window-to-monitor-right
     }
+    Mod+N {
+        focus-monitor-next
+    }
+    Mod+P {
+        focus-monitor-previous
+    }
     Mod+Comma {
         set-column-width "-5%"
     }

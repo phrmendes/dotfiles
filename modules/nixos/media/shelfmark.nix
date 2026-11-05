@@ -72,10 +72,10 @@ in
         extraOptions = [
           "--add-host=auth.${config.caddy.domain}:${settings.lan.serverAddress}"
           "--add-host=calibre.${config.caddy.domain}:${settings.lan.serverAddress}"
-          "--health-cmd=curl -sf http://localhost:${toString port}/api/health"
-          "--health-interval=30s"
-          "--health-timeout=30s"
-          "--health-retries=3"
+          "--health-cmd=curl -fsS --retry 7 --retry-delay 2 --retry-all-errors --max-time 2 http://localhost:${toString port}/api/health"
+          "--health-interval=1h"
+          "--health-timeout=15s"
+          "--health-retries=1"
         ];
       };
     };

@@ -73,10 +73,10 @@ in
         };
         extraOptions = [
           "--add-host=auth.${config.caddy.domain}:${settings.lan.serverAddress}"
-          "--health-cmd=curl -f http://localhost:${toString port}/health"
-          "--health-interval=30s"
-          "--health-timeout=5s"
-          "--health-retries=3"
+          "--health-cmd=curl -fsS --retry 7 --retry-delay 2 --retry-all-errors --max-time 2 http://localhost:${toString port}/health"
+          "--health-interval=1h"
+          "--health-timeout=15s"
+          "--health-retries=1"
         ];
       };
     };

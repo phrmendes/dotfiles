@@ -35,10 +35,9 @@
         };
         extraOptions = [
           "--health-cmd=wget -q --spider http://localhost:${toString containerPort}/"
-          "--health-interval=10s"
-          "--health-timeout=3s"
-          "--health-retries=3"
-          "--health-start-period=10s"
+          "--health-interval=1h"
+          "--health-timeout=15s"
+          "--health-retries=1"
         ];
       };
     };

@@ -96,6 +96,7 @@ in
       notifyOnFailure = [
         "beszel-hub"
         "caddy"
+        "check-external"
         "immich"
         "nixos-upgrade"
         "postgresql"

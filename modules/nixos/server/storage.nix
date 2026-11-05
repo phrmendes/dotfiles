@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules.nixos.storage =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
       fileSystems."/mnt/external" = {
         device = "/dev/disk/by-label/dock";
@@ -21,15 +21,37 @@ in
         calibre = config.restic.mkBackup "calibre" { paths = [ "/mnt/external/calibre/library" ]; };
       };
 
-      systemd.tmpfiles.rules = [
-        "d /mnt/external 2775 ${settings.user} external -"
-        "a+ /mnt/external - - - - d:g:external:rwx,g:external:rwx,d:group::rwx,group::rwx,d:mask::rwx,mask::rwx"
-        "d /mnt/external/zotero 2775 ${settings.user} external -"
-        "d /mnt/external/movies 2775 ${settings.user} external -"
-        "d /mnt/external/tvshows 2775 ${settings.user} external -"
-        "d /mnt/external/downloads 2775 ${settings.user} external -"
-        "d /mnt/external/downloads/.incomplete 2770 transmission external -"
-        "d /mnt/external/comics 2775 ${settings.user} external -"
-      ];
+      systemd = {
+        tmpfiles.rules = [
+          "d /mnt/external 2775 ${settings.user} external -"
+          "a+ /mnt/external - - - - d:g:external:rwx,g:external:rwx,d:group::rwx,group::rwx,d:mask::rwx,mask::rwx"
+          "d /mnt/external/zotero 2775 ${settings.user} external -"
+          "d /mnt/external/movies 2775 ${settings.user} external -"
+          "d /mnt/external/tvshows 2775 ${settings.user} external -"
+          "d /mnt/external/downloads 2775 ${settings.user} external -"
+          "d /mnt/external/downloads/.incomplete 2770 transmission external -"
+          "d /mnt/external/comics 2775 ${settings.user} external -"
+        ];
+
+        services.check-external = {
+          description = "Check the external filesystem";
+          serviceConfig.Type = "oneshot";
+          script = ''
+            ${pkgs.util-linux}/bin/mountpoint --quiet /mnt/external
+            marker=/mnt/external/.health-check
+            trap 'rm -f "$marker"' EXIT
+            touch "$marker"
+          '';
+        };
+
+        timers.check-external = {
+          wantedBy = [ "timers.target" ];
+          timerConfig = {
+            OnActiveSec = "5m";
+            OnUnitActiveSec = "1h";
+            Unit = "check-external.service";
+          };
+        };
+      };
     };
 }

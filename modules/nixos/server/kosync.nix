@@ -67,9 +67,9 @@
         };
         extraOptions = [
           "--health-cmd=curl -fsS -H 'Accept: application/vnd.koreader.v1+json' http://localhost:${toString port}/healthcheck"
-          "--health-interval=30s"
-          "--health-timeout=5s"
-          "--health-retries=3"
+          "--health-interval=1h"
+          "--health-timeout=15s"
+          "--health-retries=1"
         ];
       };
     };

@@ -6,8 +6,9 @@ in
   flake.modules.nixos.system =
     { pkgs, ... }:
     {
-
       age.identityPaths = [ "/persist${settings.home}/.ssh/age" ];
+
+      environment.systemPackages = [ pkgs.smartmontools ];
 
       networking.networkmanager.enable = true;
 

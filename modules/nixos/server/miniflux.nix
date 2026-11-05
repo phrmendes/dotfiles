@@ -49,9 +49,12 @@
       };
 
       systemd.services.miniflux = {
+        startLimitIntervalSec = 0;
         serviceConfig = {
           DynamicUser = lib.mkForce false;
           EnvironmentFile = config.age.secrets."miniflux.env".path;
+          Restart = lib.mkForce "always";
+          RestartSec = lib.mkForce "10s";
         };
       };
     };

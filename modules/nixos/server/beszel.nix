@@ -132,14 +132,14 @@
               KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9f/ibSB0GDpqM39d3G5IIa+2iItpIuCi/XYp32o5R0";
               DOCKER_HOST = "unix:///run/podman/podman.sock";
               EXTRA_FILESYSTEMS = "/mnt/external__external";
-              SMART_DEVICES = "/dev/sda:sat,/dev/sdb:sat";
+              SMART_DEVICES = "/dev/sda:sat,/dev/disk/by-id/ata-H_W_JBOD_QB2VPVUWKPJUOA66Y83F:sat";
               SMART_INTERVAL = "10m";
             };
             smartmon = {
               enable = true;
               deviceAllow = [
                 "/dev/sda"
-                "/dev/sdb"
+                "/dev/disk/by-id/ata-H_W_JBOD_QB2VPVUWKPJUOA66Y83F"
               ];
             };
           };

@@ -57,7 +57,6 @@ safely("later", function()
           vim.ui.open(fs_entry.path)
         end)
       end, { buffer = bufnr, desc = "Open file" })
-
     end,
   })
 

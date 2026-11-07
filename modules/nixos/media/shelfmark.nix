@@ -53,7 +53,7 @@ in
           CALIBRE_URL = "https://calibre.${config.caddy.domain}/cdb/add-book/0/n";
           CUSTOM_SCRIPT = "/scripts/add-book-to-calibre.py";
           DISABLE_LOCAL_AUTH = "true";
-          FLASK_HOST = "127.0.0.1";
+          FLASK_HOST = "0.0.0.0";
           FLASK_PORT = toString port;
           OIDC_ADMIN_GROUP = adminGroup;
           OIDC_CLIENT_ID = "shelfmark";
@@ -65,7 +65,7 @@ in
           TZ = config.time.timeZone;
         };
         environmentFiles = [ config.age.secrets."shelfmark.env".path ];
-        networks = [ "host" ];
+        ports = [ "127.0.0.1:${toString port}:${toString port}" ];
         labels = {
           "io.containers.autoupdate" = "registry";
         };

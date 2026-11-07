@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
 in
 {
   flake.modules.nixos.caddy =
@@ -23,7 +23,7 @@ in
           readOnly = true;
         };
         mkVhost = lib.mkOption {
-          type = lib.types.anything;
+          type = lib.types.functionTo lib.types.anything;
           readOnly = true;
           description = ''
             Build a Caddy virtual host for this domain. Takes the host name and an attribute set

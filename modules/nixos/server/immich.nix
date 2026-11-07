@@ -19,8 +19,12 @@
         "render"
       ];
 
-      systemd.tmpfiles.rules = [
-        "d /mnt/external/photos 2770 immich external -"
+      externalDisk.directories = [
+        {
+          path = "photos";
+          owner = "immich";
+          mode = "2770";
+        }
       ];
 
       services = {

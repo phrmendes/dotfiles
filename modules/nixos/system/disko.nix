@@ -11,7 +11,7 @@ in
     {
       imports = [ inputs.disko.nixosModules.disko ];
       options.disko.mainDiskDevice = lib.mkOption {
-        type = lib.types.str;
+        type = lib.types.path;
         description = "Device path for the main disk";
       };
 

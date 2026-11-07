@@ -23,6 +23,8 @@ in
         default = utils;
       };
 
+      config.environment.persistence."/persist".users.${config.const.user}.directories = [ ".ssh" ];
+
       imports = [
         inputs.agenix.nixosModules.default
         inputs.home-manager.nixosModules.home-manager

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
   inherit (config.flake.modules) homeManager nixos;
 in
 {
@@ -37,7 +37,7 @@ in
         hostName = "laptop";
       };
 
-      wireguard.configFile = ../secrets/wg.laptop.age.conf;
+      wireguard.configFile = ../secrets/laptop/wg.laptop.age.conf;
 
       disko.mainDiskDevice = "/dev/disk/by-id/nvme-IM2P33F8ABR2-256GB_5M182L19BN2C";
 

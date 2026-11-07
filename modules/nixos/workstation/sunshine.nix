@@ -1,7 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
-  port = 47990;
+  settings = config.const;
 in
 {
   flake.modules.nixos.sunshine = {
@@ -10,26 +9,7 @@ in
       autoStart = false;
       capSysAdmin = true;
       openFirewall = true;
+      settings.port = settings.sunshinePort;
     };
   };
-
-  flake.modules.nixos.sunshineProxy =
-    { config, ... }:
-    {
-      homepage.services.sunshine = {
-        homepage = {
-          name = "Sunshine";
-          description = "Game stream host";
-          category = "Services";
-        };
-      };
-
-      services.caddy.virtualHosts = config.caddy.mkVhost {
-        name = "sunshine";
-        inherit port;
-        auth = true;
-        upstream = "https://${settings.lan.desktopAddress}:${toString port}";
-        insecure = true;
-      };
-    };
 }

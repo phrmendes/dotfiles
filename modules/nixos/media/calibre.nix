@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
 in
 {
   flake.modules.nixos.calibre =
@@ -23,22 +23,20 @@ in
         };
       };
 
-      systemd = {
-        tmpfiles.rules = [
-          "d ${root} 2775 ${settings.user} external -"
-          "d ${library} 2775 ${settings.user} external -"
-        ];
+      externalDisk.directories = [
+        { path = "calibre"; }
+        { path = "calibre/library"; }
+      ];
 
-        services = {
-          caddy.serviceConfig.EnvironmentFile = [ authFile ];
+      systemd.services = {
+        caddy.serviceConfig.EnvironmentFile = [ authFile ];
 
-          calibre-server = {
-            unitConfig.RequiresMountsFor = [ "/mnt/external" ];
-            unitConfig.ConditionPathExists = [
-              "${library}/metadata.db"
-              userDb
-            ];
-          };
+        calibre-server = {
+          unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+          unitConfig.ConditionPathExists = [
+            "${library}/metadata.db"
+            userDb
+          ];
         };
       };
 
@@ -51,7 +49,7 @@ in
           extraConfig = ''
             @opds-trusted {
               path /opds /opds/* /get /get/* /comic-manifest /cdb/add-book/*
-              remote_ip 192.168.10.0/24 10.10.10.3/32
+              remote_ip ${settings.lan.subnet} ${settings.vpn.laptopAddress}/32
             }
             handle @opds-trusted {
               reverse_proxy 127.0.0.1:${toString port} {

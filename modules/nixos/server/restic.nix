@@ -11,7 +11,7 @@
     in
     {
       options.restic.mkBackup = lib.mkOption {
-        type = lib.types.anything;
+        type = lib.types.functionTo lib.types.anything;
         readOnly = true;
         description = ''
           Per-repository restic backup options. Takes the repository name and an attribute set.
@@ -57,8 +57,58 @@
           // sqliteBackup;
       };
 
-      config.age.secrets."restic.env" = config.utils.mkSecretReadable {
-        file = ../../../secrets/restic.age.env;
+      options.restic.restoreTests = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [
+          "databases"
+          "gitolite"
+        ];
+        description = ''
+          Backups that a monthly job restores into a temporary directory with `--verify`.
+          Keep this list to small repositories, because a restore downloads the data.
+        '';
       };
+
+      config =
+        let
+          tests = lib.filter (name: config.services.restic.backups ? ${name}) config.restic.restoreTests;
+        in
+        {
+          age.secrets."restic.env" = config.utils.mkSecretReadable {
+            file = ../../../secrets/restic.age.env;
+          };
+
+          systemd.services = lib.mapAttrs' (
+            name: _:
+            lib.nameValuePair "restic-restore-test-${name}" {
+              description = "Restore the latest ${name} backup and verify it";
+              wants = [ "network-online.target" ];
+              after = [ "network-online.target" ];
+              path = [
+                pkgs.coreutils
+                config.system.path
+              ];
+              serviceConfig = {
+                Type = "oneshot";
+                Nice = 19;
+                IOSchedulingClass = "idle";
+                ExecStart = "${lib.getExe pkgs.local.restic-restore-test} ${name} /var/tmp";
+              };
+            }
+          ) (lib.genAttrs tests (_: { }));
+
+          systemd.timers = lib.mapAttrs' (
+            name: _:
+            lib.nameValuePair "restic-restore-test-${name}" {
+              wantedBy = [ "timers.target" ];
+              timerConfig = {
+                OnCalendar = "monthly";
+                Persistent = true;
+                RandomizedDelaySec = "2h";
+                Unit = "restic-restore-test-${name}.service";
+              };
+            }
+          ) (lib.genAttrs tests (_: { }));
+        };
     };
 }

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
 in
 {
   flake.modules.nixos.gitolite =
@@ -12,7 +12,7 @@ in
     }:
     let
       inherit (config.services.gitolite) dataDir user group;
-      owner = "phrmendes";
+      owner = settings.user;
       repos = [
         "academic-templates"
         "bib.nvim"
@@ -22,9 +22,7 @@ in
         "thesis"
         "todotxt.nvim"
       ];
-      syncRepos = pkgs.writers.writeNuBin "sync-repos" (
-        builtins.readFile ../../../files/scripts/sync-repos.nu
-      );
+      syncRepos = pkgs.local.sync-repos;
     in
     {
       services.gitolite = {
@@ -73,10 +71,4 @@ in
         };
       };
     };
-  flake.modules.homeManager.gitolite = {
-    programs.ssh.settings.gitolite = {
-      HostName = settings.lan.serverAddress;
-      User = "gitolite";
-    };
-  };
 }

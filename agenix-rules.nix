@@ -1,38 +1,31 @@
 let
   main = builtins.readFile ./files/ssh/main.txt;
-  server = builtins.readFile ./files/ssh/server.txt;
-  laptop = builtins.readFile ./files/ssh/laptop.txt;
-  mkSecrets =
-    publicKeys: files:
+  keys = {
+    server = builtins.readFile ./files/ssh/server.txt;
+    laptop = builtins.readFile ./files/ssh/laptop.txt;
+  };
+
+  # The directory a secret sits in decides who can decrypt it, so the
+  # recipients cannot drift from the files on disk.
+  secretsIn =
+    dir: publicKeys:
+    let
+      base = ./secrets + "/${dir}";
+      entries = builtins.readDir base;
+      names = builtins.filter (name: entries.${name} == "regular") (builtins.attrNames entries);
+    in
     builtins.listToAttrs (
       map (name: {
-        name = "secrets/${name}";
+        name = "secrets/${dir}${name}";
         value.publicKeys = publicKeys;
-      }) files
+      }) names
     );
 in
-mkSecrets
-  [ main server ]
-  [
-    "authelia.age.yaml"
-    "beszel.age.env"
-    "ca.age.key"
-    "ddclient.age.txt"
-    "dockerhub.age.json"
-    "linkding.age.env"
-    "miniflux.age.env"
-    "restic.age.env"
-    "searxng.age.env"
-    "sftpgo.age.env"
-    "shelfmark.age.env"
-    "users.age.yaml"
-  ]
-# Workstation secrets: the laptop key decrypts them, the server key does not.
-//
-  mkSecrets
-    [ main laptop ]
-    [
-      "noctalia.age.txt"
-      "pi.age.json"
-      "wg.laptop.age.conf"
-    ]
+secretsIn "" [
+  main
+  keys.server
+]
+// secretsIn "laptop/" [
+  main
+  keys.laptop
+]

@@ -1,13 +1,10 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
   inherit (config.flake.modules) homeManager nixos;
   commonDirs = [
     ".ansible"
     ".cache/helm"
-    ".cache/helmfile"
-    ".cache/keepassxc"
-    ".cache/noctalia"
     ".config"
     ".docker"
     ".kube"
@@ -24,7 +21,6 @@ let
     ".local/share/zathura"
     ".local/share/zoxide"
     ".local/share/nushell"
-    ".local/state/comma"
     ".local/state/home-manager"
     ".local/state/keepassxc"
     ".local/state/nix"
@@ -32,7 +28,6 @@ let
     ".local/state/nvim"
     ".local/state/wireplumber"
     ".pi"
-    ".ssh"
     ".var/app"
     ".zotero"
     "Documents"
@@ -107,11 +102,29 @@ in
       };
 
       config = {
-        programs.nh.flake = config.workstation.dotfilesDir;
-
         security = {
-          sudo.wheelNeedsPassword = lib.mkForce true;
+          sudo.wheelNeedsPassword = true;
           pam.sshAgentAuth.enable = true;
+        };
+
+        systemd.services.dotfiles-check = {
+          description = "Evaluate the dotfiles flake";
+          serviceConfig = {
+            Type = "oneshot";
+            User = settings.user;
+            WorkingDirectory = "${settings.home}/.config/dotfiles";
+          };
+          path = [ pkgs.nix ];
+          script = "nix flake check --no-build";
+        };
+
+        systemd.timers.dotfiles-check = {
+          wantedBy = [ "timers.target" ];
+          timerConfig = {
+            OnCalendar = "weekly";
+            Persistent = true;
+            RandomizedDelaySec = "3h";
+          };
         };
 
         home-manager.users.${settings.user}.imports = with homeManager; [
@@ -156,12 +169,12 @@ in
         age.secrets = {
           "pi.json" = mkSecretReadable {
             owner = settings.user;
-            file = ../../../secrets/pi.age.json;
+            file = ../../../secrets/laptop/pi.age.json;
             path = "${settings.home}/.pi/agent/auth.json";
           };
           "noctalia.txt" = mkSecretReadable {
             owner = settings.user;
-            file = ../../../secrets/noctalia.age.txt;
+            file = ../../../secrets/laptop/noctalia.age.txt;
           };
         };
 
@@ -196,7 +209,6 @@ in
             egl-wayland
             gcc
             gnumake
-            inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
             libsecret
             p7zip
             python314

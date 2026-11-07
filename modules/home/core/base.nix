@@ -1,14 +1,16 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
 in
 {
   flake.modules.homeManager.base =
     { lib, ... }:
     let
-      editor = lib.mkOverride 1001 "nvim";
+      editor = lib.mkDefault "nvim";
     in
     {
+      stylix.targets.rofi.enable = false;
+
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
@@ -30,7 +32,7 @@ in
           };
           "server-unlock" = {
             HostName = settings.lan.serverAddress;
-            Port = 2222;
+            Port = settings.serverInitrdSshPort;
             User = "root";
             HostKeyAlias = "server-initrd";
             RequestTTY = "yes";

@@ -18,5 +18,9 @@ in
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { src = inputs.pyzotero; };
   screenshot = writeNuBin "screenshot" (builtins.readFile ../files/scripts/screenshot.nu);
-  vpn = pkgs.callPackage ./vpn.nix { };
+  restic-restore-test = writeNuBin "restic-restore-test" (
+    builtins.readFile ../files/scripts/restic-restore-test.nu
+  );
+  sync-repos = pkgs.callPackage ./sync-repos.nix { inherit writeNuBin; };
+  vpn = pkgs.callPackage ./vpn.nix { inherit writeNuBin; };
 }

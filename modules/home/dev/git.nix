@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
 in
 {
   flake.modules.homeManager.git = {

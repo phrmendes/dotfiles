@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
   syncthingDevices = {
     desktop = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
     laptop = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
@@ -40,6 +40,17 @@ in
     { config, lib, ... }:
     let
       port = 8384;
+      folders = [
+        "antennapod"
+        "collections"
+        "documents"
+        "excalidraw"
+        "images"
+        "keepassxc"
+        "notes"
+        "reading"
+        "ufabc"
+      ];
     in
     {
       users.users.syncthing.extraGroups = [ "external" ];
@@ -53,28 +64,16 @@ in
         };
       };
 
-      systemd.tmpfiles.rules =
-        let
-          syncDir = name: "d /mnt/external/syncthing/${name} 2775 ${settings.user} external -";
-          folders = [
-            "antennapod"
-            "collections"
-            "documents"
-            "excalidraw"
-            "images"
-            "keepassxc"
-            "notes"
-            "reading"
-            "ufabc"
-          ];
-        in
-        [
-          "d /mnt/external/syncthing 2775 ${settings.user} external -"
-          "d /var/lib/syncthing 0750 syncthing syncthing -"
-          "d /var/lib/syncthing/.config 0750 syncthing syncthing -"
-          "d /var/lib/syncthing/.config/syncthing 0750 syncthing syncthing -"
-        ]
-        ++ map syncDir folders;
+      externalDisk.directories = [
+        { path = "syncthing"; }
+      ]
+      ++ map (name: { path = "syncthing/${name}"; }) folders;
+
+      systemd.tmpfiles.rules = [
+        "d /var/lib/syncthing 0750 syncthing syncthing -"
+        "d /var/lib/syncthing/.config 0750 syncthing syncthing -"
+        "d /var/lib/syncthing/.config/syncthing 0750 syncthing syncthing -"
+      ];
 
       networking.firewall = {
         allowedTCPPorts = [ 22000 ];

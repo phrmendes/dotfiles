@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
 in
 {
   flake.modules.nixos.users =
@@ -14,7 +14,7 @@ in
           ${settings.user} = {
             inherit (settings) home;
             shell = pkgs.local.nushell;
-            # Key-only login: no password is set, and sudo needs none either.
+            # Key-only login.
             openssh.authorizedKeys.keys = map builtins.readFile [
               ../../../files/ssh/main.txt
               ../../../files/ssh/phone.txt
@@ -37,10 +37,7 @@ in
       security = {
         rtkit.enable = true;
         polkit.enable = true;
-        sudo = {
-          enable = true;
-          wheelNeedsPassword = false;
-        };
+        sudo.enable = true;
       };
 
       time = {

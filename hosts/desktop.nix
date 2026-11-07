@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
   inherit (config.flake.modules) homeManager nixos;
 in
 {
@@ -8,11 +8,14 @@ in
     { config, ... }:
     {
       imports = with nixos; [
+        externalDisk
         gaming
         mosh
         sunshine
         workstation
       ];
+
+      externalDisk.device = "/dev/disk/by-label/external";
 
       workstation = {
         type = "desktop";
@@ -78,19 +81,12 @@ in
 
       services.xserver.videoDrivers = [ "nvidia" ];
 
-      fileSystems."/mnt/external" = {
-        device = "/dev/disk/by-label/external";
-        fsType = "ext4";
-        options = [
-          "defaults"
-          "noatime"
-          "nofail"
-        ];
-      };
-
-      systemd.tmpfiles.rules = [
-        "d /mnt/external 0755 ${settings.user} users -"
-        "d /mnt/external/pi 0700 ${settings.user} users 7d"
+      externalDisk.directories = [
+        {
+          path = "pi";
+          mode = "0700";
+          age = "7d";
+        }
       ];
 
       home-manager.users.${settings.user}.imports = with homeManager; [

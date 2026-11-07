@@ -6,10 +6,10 @@
 }:
 let
   str =
-    default:
+    default: description:
     lib.mkOption {
       type = lib.types.str;
-      inherit default;
+      inherit default description;
     };
 in
 {
@@ -17,27 +17,47 @@ in
     hostPlatform = lib.mkOption {
       type = lib.types.str;
       default = "x86_64-linux";
+      description = "System that the configurations are evaluated for.";
     };
 
-    settings = lib.mkOption {
+    const = lib.mkOption {
       type = lib.types.submodule {
         options = {
-          name = str "Pedro Mendes";
-          user = str "phrmendes";
-          email = str "pedrohrmendes@proton.me";
-          home = str "/home/phrmendes";
-          serverDomain = str "server.internal";
-          # Tracks the nixpkgs release. Bump it only on purpose.
-          stateVersion = str "26.11";
-          logRetention = str "1week";
-          lan = {
-            interface = str "enp3s0";
-            serverAddress = str "192.168.10.2";
-            serverMac = str "94:c6:91:aa:e3:9e";
-            desktopAddress = str "192.168.10.3";
-            laptopAddress = str "192.168.10.4";
+          name = str "Pedro Mendes" "Full name, used by git and jujutsu.";
+          user = str "phrmendes" "Unix user name.";
+          email = str "pedrohrmendes@proton.me" "Email address, used by git and jujutsu.";
+          home = str "/home/phrmendes" "Home directory of the user.";
+          serverDomain = str "server.internal" "Domain suffix of the server virtual hosts.";
+          stateVersion = str "26.11" "NixOS release that tracks nixpkgs. Bump it only on purpose.";
+          logRetention = str "1week" "Retention of logs and coredumps, as a systemd time span.";
+          generations = lib.mkOption {
+            type = lib.types.int;
+            default = 5;
+            description = "NixOS generations kept in the bootloader.";
           };
-          vpn.laptopAddress = str "10.10.10.3";
+          oldRoots = lib.mkOption {
+            type = lib.types.int;
+            default = 2;
+            description = "Retired root subvolumes kept for a rollback.";
+          };
+          sunshinePort = lib.mkOption {
+            type = lib.types.port;
+            default = 47990;
+            description = "Base port of Sunshine, shared by the service and its proxy.";
+          };
+          serverInitrdSshPort = lib.mkOption {
+            type = lib.types.port;
+            default = 2222;
+            description = "SSH port of the server initrd.";
+          };
+          lan = {
+            subnet = str "192.168.10.0/24" "LAN subnet in CIDR form.";
+            serverAddress = str "192.168.10.2" "LAN address of the server.";
+            serverMac = str "94:c6:91:aa:e3:9e" "MAC address of the server, used for wake-on-LAN.";
+            desktopAddress = str "192.168.10.3" "LAN address of the desktop.";
+            laptopAddress = str "192.168.10.4" "LAN address of the laptop.";
+          };
+          vpn.laptopAddress = str "10.10.10.3" "WireGuard address of the laptop.";
         };
       };
       default = { };
@@ -48,13 +68,13 @@ in
       type = lib.types.lazyAttrsOf (lib.types.lazyAttrsOf lib.types.deferredModule);
       default = { };
     };
-
     configurations = {
       nixos = lib.mkOption {
         type = lib.types.lazyAttrsOf (
           lib.types.submodule {
             options.module = lib.mkOption {
               type = lib.types.deferredModule;
+              description = "NixOS module of the host.";
             };
           }
         );
@@ -66,11 +86,15 @@ in
   config = {
     systems = [ "x86_64-linux" ];
     perSystem =
-      { system, ... }:
+      { config, system, ... }:
       let
         pkgs = inputs.nixpkgs.legacyPackages.${system};
       in
       {
+        devShells.default = pkgs.mkShellNoCC {
+          packages = [ config.treefmt.build.wrapper ];
+        };
+
         treefmt.config = {
           projectRootFile = "flake.nix";
           programs = {

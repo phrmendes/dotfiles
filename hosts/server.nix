@@ -1,7 +1,8 @@
 { config, ... }:
 let
-  inherit (config) settings;
+  settings = config.const;
   inherit (config.flake.modules) homeManager nixos;
+  lanInterface = "enp3s0";
 in
 {
   configurations.nixos.server.module =
@@ -22,13 +23,13 @@ in
         ddclient
         disko
         excalidraw
+        externalDisk
         flaresolverr
         flood
         gitolite
         homeAssistant
         homepage
         immich
-        impermanence
         jellyfin
         kosync
         linkding
@@ -54,6 +55,12 @@ in
 
       networking.hostName = "server";
 
+      security.sudo.wheelNeedsPassword = false;
+
+      externalDisk.device = "/dev/disk/by-label/dock";
+
+      environment.persistence."/persist".users.${settings.user}.directories = [ "dotfiles" ];
+
       programs.nh.flake = "${settings.home}/dotfiles";
 
       boot.initrd = {
@@ -61,13 +68,13 @@ in
         systemd.network = {
           enable = true;
           networks."10-lan" = {
-            matchConfig.Name = settings.lan.interface;
+            matchConfig.Name = lanInterface;
             address = [ "${settings.lan.serverAddress}/24" ];
           };
         };
         network.ssh = {
           enable = true;
-          port = 2222;
+          port = settings.serverInitrdSshPort;
           hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
           authorizedKeys = map builtins.readFile [
             ../files/ssh/main.txt
@@ -100,11 +107,13 @@ in
         "immich"
         "nixos-upgrade"
         "postgresql"
+        "restic-restore-test-databases"
+        "restic-restore-test-gitolite"
         "syncthing"
       ];
 
-      systemd.network.links."40-${settings.lan.interface}" = {
-        matchConfig.OriginalName = settings.lan.interface;
+      systemd.network.links."40-${lanInterface}" = {
+        matchConfig.OriginalName = lanInterface;
         linkConfig.WakeOnLan = "magic";
       };
 

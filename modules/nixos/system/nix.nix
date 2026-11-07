@@ -1,7 +1,14 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
+let
+  settings = config.const;
+in
 {
   flake.modules.nixos.nix =
-    { pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      ...
+    }:
     {
       nix.optimise.automatic = true;
 
@@ -21,6 +28,7 @@
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         ];
+        trusted-users = [ "@wheel" ];
       };
 
       environment = {
@@ -47,7 +55,7 @@
             gnused
             gzip
             lsof
-            mlocate
+            plocate
             openssl
             psmisc
             sqlite
@@ -81,9 +89,10 @@
 
         nh = {
           enable = true;
+          flake = lib.mkDefault "${settings.home}/.config/dotfiles";
           clean = {
             enable = true;
-            extraArgs = "--keep-since 3d --keep 5";
+            extraArgs = "--keep-since 3d --keep ${toString settings.generations}";
           };
         };
       };

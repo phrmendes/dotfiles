@@ -50,6 +50,7 @@
             LockDatabaseIdle = true;
             LockDatabaseIdleSeconds = 3600;
             PasswordEmptyPlaceholder = true;
+            QuickUnlock = false;
           };
         }
       );

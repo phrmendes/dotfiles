@@ -73,9 +73,10 @@ in
           "--add-host=auth.${config.caddy.domain}:${settings.lan.serverAddress}"
           "--add-host=calibre.${config.caddy.domain}:${settings.lan.serverAddress}"
           "--health-cmd=curl -fsS --retry 7 --retry-delay 2 --retry-all-errors --max-time 2 http://localhost:${toString port}/api/health"
-          "--health-interval=1h"
+          "--health-interval=5m"
+          "--health-start-period=60s"
           "--health-timeout=15s"
-          "--health-retries=1"
+          "--health-retries=3"
         ];
       };
     };

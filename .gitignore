@@ -1,4 +1,5 @@
 nix/
+.direnv/
 result
 result-*
 todo.txt

@@ -47,20 +47,12 @@ in
           auth = true;
           headers.Authorization = "Basic {env.CALIBRE_AUTH}";
           extraConfig = ''
-            @opds-trusted {
-              path /opds /opds/* /get /get/* /comic-manifest /cdb/add-book/*
-              remote_ip ${settings.lan.subnet} ${settings.vpn.laptopAddress}/32
-            }
-            handle @opds-trusted {
+            @opds path /opds /opds/* /get /get/* /comic-manifest /cdb/add-book/*
+            handle @opds {
               reverse_proxy 127.0.0.1:${toString port} {
                 header_up Authorization "Basic {env.CALIBRE_AUTH}"
               }
               import security-headers
-            }
-
-            @opds-blocked path /opds /opds/* /get /get/* /comic-manifest /cdb/add-book/*
-            handle @opds-blocked {
-              respond "Forbidden" 403
             }
 
             @health path /health

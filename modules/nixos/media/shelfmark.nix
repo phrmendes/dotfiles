@@ -6,7 +6,7 @@ in
   flake.modules.nixos.shelfmark =
     { config, ... }:
     let
-      port = 8084;
+      port = 8085;
       dataDir = "/var/lib/shelfmark";
       uid = toString config.users.users.${settings.user}.uid;
       gid = toString config.users.groups.users.gid;

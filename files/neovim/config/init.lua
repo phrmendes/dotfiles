@@ -1,5 +1,7 @@
 vim.pack.add({
   "https://codeberg.org/mfussenegger/nvim-ansible",
+  "https://codeberg.org/mfussenegger/nvim-dap",
+  "https://codeberg.org/mfussenegger/nvim-dap-python",
   "https://forge.barrettruth.com/barrettruth/diffs.nvim",
   "https://github.com/NeogitOrg/neogit",
   "https://github.com/Saecki/crates.nvim",
@@ -17,8 +19,6 @@ vim.pack.add({
   "https://github.com/kristijanhusak/vim-dadbod-ui",
   "https://github.com/lewis6991/async.nvim",
   "https://github.com/m00qek/baleia.nvim",
-  "https://github.com/mfussenegger/nvim-dap",
-  "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/mfussenegger/nvim-lint",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/nvim-mini/mini.nvim",

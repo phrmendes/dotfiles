@@ -32,7 +32,6 @@
         phockup
         poppler
         proton-vpn
-        readest
         resources
         skim
         tectonic

@@ -132,6 +132,7 @@ in
           gitolite
           base
           bat
+          carapace
           btop
           devenv
           difftastic
@@ -156,6 +157,7 @@ in
           packages
           pi
           ripgrep
+          starship
           symlinks
           tealdeer
           tmux

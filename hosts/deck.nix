@@ -23,12 +23,14 @@ in
     ]
     ++ (with homeManager; [
       bat
+      carapace
       direnv
       fd
       git
       neovim
       nushell
       ripgrep
+      starship
       tmux
       yazi
     ]);

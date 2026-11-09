@@ -18,6 +18,11 @@ window-rule {
     match app-id="^org\\.keepassxc\\.KeePassXC$"
     block-out-from "screen-capture"
 }
+gestures {
+    hot-corners {
+        off
+    }
+}
 binds {
     Mod+Shift+Slash {
         show-hotkey-overlay
@@ -68,7 +73,7 @@ binds {
         toggle-column-tabbed-display
     }
     Mod+Tab {
-        toggle-column-tabbed-display
+        toggle-overview
     }
     Mod+T {
         consume-window-into-column

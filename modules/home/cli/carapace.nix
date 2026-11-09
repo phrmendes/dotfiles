@@ -1,0 +1,9 @@
+{
+  flake.modules.homeManager.carapace = {
+    programs.carapace = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+    };
+  };
+}

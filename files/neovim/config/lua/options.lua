@@ -1,3 +1,5 @@
+vim.env.PATH = vim.fs.dirname(require("nix.neovim").bash) .. ":" .. vim.env.PATH
+
 -- leader keys (must be set before any <leader> mappings)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","

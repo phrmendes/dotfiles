@@ -12,11 +12,6 @@ in
     {
       home.sessionPath = [ "$HOME/.local/bin" ];
 
-      programs.carapace = {
-        enable = true;
-        enableNushellIntegration = true;
-      };
-
       programs.nushell = {
         enable = true;
         package = pkgs.local.nushell;
@@ -28,7 +23,8 @@ in
         environmentVariables = {
           DOCKER_HOST = lib.hm.nushell.mkNushellInline ''$"unix://($env.XDG_RUNTIME_DIR)/podman/podman.sock"'';
           DOCKER_SOCK = lib.hm.nushell.mkNushellInline ''$"($env.XDG_RUNTIME_DIR)/podman/podman.sock"'';
-          PROMPT_COMMAND_RIGHT = "";
+          PROMPT_INDICATOR_VI_INSERT = "";
+          PROMPT_INDICATOR_VI_NORMAL = "";
           _ZO_MAXAGE = "100000";
         };
         shellAliases =
@@ -36,6 +32,7 @@ in
             agenix = inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default;
           in
           {
+            bash = lib.getExe pkgs.bashInteractive;
             asr = "${lib.getExe pkgs.atuin} scripts run";
             cat = lib.getExe pkgs.bat;
             create-secret = "${lib.getExe pkgs.authelia} crypto hash generate pbkdf2 --variant sha512 --random --random.length 72 --random.charset rfc3986";
@@ -46,10 +43,15 @@ in
             wake-server = "${lib.getExe pkgs.wakeonlan} ${settings.lan.serverMac}";
           };
         extraConfig = ''
-          use ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/basic-git.nu basic-git-left-prompt
-          source ${pkgs.nu_scripts}/share/nu_scripts/modules/prompt/oh-my.nu
-          source ${../../../files/scripts/prompt.nu}
           source ${../../../files/scripts/skim.nu}
+
+          $env.config.menus = ($env.config.menus | each {|menu|
+            if $menu.name in [completion_menu ide_completion_menu] {
+              $menu | upsert marker "λ "
+            } else {
+              $menu
+            }
+          })
         '';
       };
     };

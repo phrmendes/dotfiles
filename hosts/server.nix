@@ -120,12 +120,14 @@ in
       home-manager.users.${settings.user}.imports = with homeManager; [
         base
         bat
+        carapace
         btop
         fd
         git
         gitolite
         nushell
         ripgrep
+        starship
         tmux
         yazi
         zoxide

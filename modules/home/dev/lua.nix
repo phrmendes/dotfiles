@@ -23,6 +23,7 @@
       neovim = ''
         ---@type NixNeovim
         return {
+          bash = "${pkgs.bashInteractive}/bin/bash",
           codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
           luvit_meta = "${pkgs.vimPlugins.luvit-meta}/library",
           sqlite = "${pkgs.sqlite.out}/lib/libsqlite3.so",

@@ -1,4 +1,4 @@
-vim.g.slime_target = "kitty"
+vim.g.slime_target = "zellij"
 vim.g.slime_no_mappings = true
 
 safely("filetype:python,r,rmd,quarto,julia,elixir", function()

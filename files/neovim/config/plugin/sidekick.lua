@@ -4,7 +4,6 @@ safely("now", function()
   require("sidekick").setup({
     nes = { enabled = false },
     cli = {
-      mux = { backend = "tmux", enabled = true },
       prompts = {
         comments_all = function() return require("haunt.sidekick").get_locations() end,
         comments_buffer = function() return require("haunt.sidekick").get_locations({ current_buffer = true }) end,

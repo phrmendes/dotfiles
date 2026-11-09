@@ -31,8 +31,8 @@ in
       nushell
       ripgrep
       starship
-      tmux
       yazi
+      zellij
     ]);
   };
 }

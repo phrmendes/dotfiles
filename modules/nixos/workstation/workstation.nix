@@ -159,10 +159,10 @@ in
           starship
           symlinks
           tealdeer
-          tmux
           xdg
           yazi
           zathura
+          zellij
           zoxide
         ];
 

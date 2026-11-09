@@ -142,7 +142,6 @@ in
           gnupg
           gtk
           niri
-          jq
           jujutsu
           k8s
           keepassxc

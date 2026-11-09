@@ -11,6 +11,12 @@ let
       type = lib.types.str;
       inherit default description;
     };
+  localOverlay = _: prev: {
+    local = import ../pkgs {
+      inherit inputs;
+      pkgs = prev;
+    };
+  };
 in
 {
   options = {
@@ -32,7 +38,7 @@ in
           logRetention = str "1week" "Retention of logs and coredumps, as a systemd time span.";
           generations = lib.mkOption {
             type = lib.types.int;
-            default = 5;
+            default = 2;
             description = "NixOS generations kept in the bootloader.";
           };
           oldRoots = lib.mkOption {
@@ -120,6 +126,8 @@ in
       };
 
     flake = {
+      overlays.local = localOverlay;
+
       nixosConfigurations =
         config.configurations.nixos
         |> lib.mapAttrs (
@@ -133,14 +141,7 @@ in
               {
                 nixpkgs = {
                   config.allowUnfree = true;
-                  overlays = [
-                    (_: prev: {
-                      local = import ../pkgs {
-                        inherit inputs;
-                        pkgs = prev;
-                      };
-                    })
-                  ];
+                  overlays = [ localOverlay ];
                 };
               }
             ];

@@ -1,8 +1,6 @@
 # Dotfiles
 
-NixOS + Home Manager for `desktop`, `laptop` and `server`, in the [Dendritic Pattern](https://github.com/mightyiam/dendritic).
-
-`<host>` is `desktop`, `laptop` or `server`. `<disk>` is `disko.mainDiskDevice` from that host file.
+NixOS + Home Manager for my devices in the [Dendritic Pattern](https://github.com/mightyiam/dendritic).
 
 ## Rebuild
 
@@ -12,7 +10,7 @@ sudo nixos-rebuild switch --flake .#<host>
 
 ## Install
 
-On the NixOS installer:
+On the NixOS installer, with `<disk>` from `disko.mainDiskDevice` in the host file:
 
 ```sh
 git clone https://github.com/phrmendes/dotfiles
@@ -21,12 +19,19 @@ sudo git config --global --add safe.directory "$PWD"
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest#disko-install -- --flake .#<host> --disk main /dev/disk/by-id/<disk> --write-efi-boot-entries
 ```
 
-No root password is set. Log in by SSH key, then `passwd` on `desktop` and `laptop`.
+No root password is set. Log in by SSH key, then run `passwd` on `desktop` and `laptop`.
 
-## Deploy
+## Steam Deck
+
+`deck` is a standalone Home Manager profile for stock SteamOS. It installs no GUI application.
 
 ```sh
-git push   # the server upgrades from github:phrmendes/dotfiles#server
+sh <(curl -L https://nixos.org/nix/install) --daemon
+mkdir -p ~/.config/nix
+echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
+git clone https://github.com/phrmendes/dotfiles ~/.config/dotfiles
+cd ~/.config/dotfiles
+nix run github:nix-community/home-manager -- switch --flake .#deck
 ```
 
 ## Secrets
@@ -38,10 +43,8 @@ agenix --rekey -r agenix-rules.nix
 ## Restore
 
 ```sh
-systemctl list-timers 'restic-backups-*'
 restic-gitolite snapshots
 restic-gitolite restore latest --target /tmp/restore
-systemctl start restic-backups-gitolite.service   # run one now
 ```
 
 ## Recovery (chroot)
@@ -57,6 +60,4 @@ sudo mount --bind /etc/resolv.conf /mnt/etc/resolv.conf
 sudo nixos-enter
 ```
 
-```sh
-cd <dotfiles> && nixos-rebuild boot --flake .#<host>
-```
+Then run `nixos-rebuild boot --flake .#<host>`.

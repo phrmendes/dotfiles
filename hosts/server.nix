@@ -124,7 +124,6 @@ in
         fd
         git
         gitolite
-        jq
         nushell
         ripgrep
         tmux

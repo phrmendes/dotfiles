@@ -1,6 +1,10 @@
 {
   flake.modules.homeManager.direnv =
-    { osConfig, ... }:
+    {
+      config,
+      osConfig,
+      ...
+    }:
     {
       programs.direnv = {
         enable = true;
@@ -12,7 +16,9 @@
             warn_timeout = 0;
           };
           whitelist = {
-            prefix = [ osConfig.environment.sessionVariables.PROJECTS_DIR ];
+            prefix = [
+              (osConfig.environment.sessionVariables.PROJECTS_DIR or "${config.home.homeDirectory}/Projects")
+            ];
           };
         };
       };

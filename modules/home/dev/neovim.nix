@@ -8,7 +8,7 @@
       ...
     }:
     let
-      inherit (osConfig.workstation) dotfilesDir;
+      dotfilesDir = osConfig.workstation.dotfilesDir or "${config.home.homeDirectory}/.config/dotfiles";
       inherit (config.lib.file) mkOutOfStoreSymlink;
     in
     {
@@ -61,6 +61,7 @@
           kdlfmt
           nixfmt
           nufmt
+          opentofu
           prettier
           ruff
           rustfmt
@@ -68,27 +69,27 @@
           shfmt
           stylua
           tex-fmt
-          yq-go
         ];
       };
 
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
-      home.file = {
-        ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
+      home = {
+        file.".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
+        packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
       };
 
-      home.packages = [ pkgs.neovim-gtk ];
-
-      xdg.desktopEntries."org.daa.NeovimGtk" = {
-        name = "Neovim";
-        genericName = "Text Editor";
-        exec = "${pkgs.neovim-gtk}/bin/nvim-gtk %F";
-        icon = "org.daa.NeovimGtk";
-        categories = [
-          "Utility"
-          "TextEditor"
-        ];
+      xdg.desktopEntries = lib.mkIf (osConfig ? workstation) {
+        "org.daa.NeovimGtk" = {
+          name = "Neovim";
+          genericName = "Text Editor";
+          exec = "${pkgs.neovim-gtk}/bin/nvim-gtk %F";
+          icon = "org.daa.NeovimGtk";
+          categories = [
+            "Utility"
+            "TextEditor"
+          ];
+        };
       };
     };
 }

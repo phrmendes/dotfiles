@@ -7,7 +7,7 @@ safely("later", function()
     },
     mappings = {
       force_twostep = "<c-f>",
-      force_fallback = "<a-f>",
+      force_fallback = "<a-space>",
       scroll_down = "<c-d>",
       scroll_up = "<c-u>",
     },

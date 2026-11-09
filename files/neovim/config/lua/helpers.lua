@@ -120,18 +120,6 @@ M.mini.project = function()
   })
 end
 
---- Move a split edge toward a direction. The window grows when it has a neighbor that way and shrinks otherwise.
---- @param direction "h"|"j"|"k"|"l"
---- @param amount integer
-M.resize_split = function(direction, amount)
-  if vim.fn.winnr("$") == 1 then return end
-
-  local grows = vim.fn.winnr(direction) ~= vim.fn.winnr()
-  local command = (direction == "h" or direction == "l") and "vertical resize " or "resize "
-
-  vim.cmd(command .. (grows and "+" or "-") .. amount)
-end
-
 --- Toggle a centered zoom with a dimmed backdrop.
 M.zoom = function()
   local width = 120

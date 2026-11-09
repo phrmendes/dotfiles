@@ -1,0 +1,28 @@
+keybinds {
+    unbind "Ctrl h" "Ctrl n" "Ctrl b"
+    locked {
+        bind "Alt h" {
+            MoveFocusOrTab "Left"
+        }
+        bind "Alt j" {
+            MoveFocus "Down"
+        }
+        bind "Alt k" {
+            MoveFocus "Up"
+        }
+        bind "Alt l" {
+            MoveFocusOrTab "Right"
+        }
+    }
+    shared_except "move" "locked" {
+        bind "Ctrl e" {
+            SwitchToMode "Move"
+        }
+    }
+    move {
+        bind "Ctrl e" {
+            SwitchToMode "Normal"
+        }
+    }
+}
+

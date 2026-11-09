@@ -21,7 +21,7 @@ safely("later", function()
       clue.gen_clues.marks(),
       clue.gen_clues.registers(),
       clue.gen_clues.square_brackets(),
-      clue.gen_clues.windows(),
+      clue.gen_clues.windows({ submode_move = true, submode_navigate = true, submode_resize = true }),
       clue.gen_clues.z(),
       { mode = "n", keys = "<leader><tab>", desc = "+tabs" },
       { mode = "n", keys = "<leader>b", desc = "+buffers" },

@@ -4,6 +4,7 @@ safely(
     require("conform").setup({
       notify_on_error = false,
       formatters = {
+        kdlfmt = { append_args = { "--kdl-version", "v1" } },
         tofu_fmt = {
           command = "tofu",
           args = { "fmt", "-" },

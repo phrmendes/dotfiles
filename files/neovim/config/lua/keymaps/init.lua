@@ -1,6 +1,7 @@
 vim.iter({ "gra", "gri", "grn", "grr", "grt", "grx" }):each(function(key) pcall(vim.keymap.del, "n", key) end)
 
 vim.keymap.set({ "n", "x" }, "s", "<nop>")
+vim.keymap.set({ "n", "x" }, "<c-o>", "<nop>")
 vim.keymap.set("n", "<c-d>", "<c-d>zz", { desc = "Half page down" })
 vim.keymap.set("n", "<c-u>", "<c-u>zz", { desc = "Half page up" })
 
@@ -12,11 +13,6 @@ vim.keymap.set("t", "<c-h>", "<c-\\><c-n><c-w>h", { desc = "Left split" })
 vim.keymap.set("t", "<c-j>", "<c-\\><c-n><c-w>j", { desc = "Below split" })
 vim.keymap.set("t", "<c-k>", "<c-\\><c-n><c-w>k", { desc = "Above split" })
 vim.keymap.set("t", "<c-l>", "<c-\\><c-n><c-w>l", { desc = "Right split" })
-
-vim.keymap.set({ "n", "t" }, "<a-h>", function() require("helpers").resize_split("h", 3) end, { desc = "Move edge left" })
-vim.keymap.set({ "n", "t" }, "<a-j>", function() require("helpers").resize_split("j", 3) end, { desc = "Move edge down" })
-vim.keymap.set({ "n", "t" }, "<a-k>", function() require("helpers").resize_split("k", 3) end, { desc = "Move edge up" })
-vim.keymap.set({ "n", "t" }, "<a-l>", function() require("helpers").resize_split("l", 3) end, { desc = "Move edge right" })
 
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })
@@ -37,8 +33,9 @@ vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "Split (V)" })
 vim.keymap.set("n", "<leader>bk", require("helpers").keep_current_buffer, { desc = "Keep this" })
 vim.keymap.set("n", "<leader>bG", "<cmd>blast<cr>", { desc = "Last" })
 vim.keymap.set("n", "<leader>bg", "<cmd>bfirst<cr>", { desc = "First" })
+vim.keymap.set("n", "<leader>q", require("helpers").quit_or_detach, { desc = "Quit" })
+
 vim.keymap.set("n", "<leader>u", function()
   vim.cmd.packadd("nvim.undotree")
   vim.cmd.Undotree()
 end, { desc = "Undo Tree" })
-vim.keymap.set("n", "<leader>q", require("helpers").quit_or_detach, { desc = "Quit" })

@@ -131,3 +131,15 @@ local plugins = {
 }
 
 vim.iter(plugins):each(function(plugin) vim.g["loaded_" .. plugin] = true end)
+
+-- autoscroll terminal
+vim.api.nvim_create_autocmd({ "WinLeave", "BufWinEnter" }, {
+  desc = "Keep terminal windows on the last line so they follow output",
+  callback = function(event)
+    if vim.bo[event.buf].buftype ~= "terminal" then return end
+
+    local last = vim.api.nvim_buf_line_count(event.buf)
+
+    vim.iter(vim.fn.win_findbuf(event.buf)):each(function(win) vim.api.nvim_win_set_cursor(win, { last, 0 }) end)
+  end,
+})

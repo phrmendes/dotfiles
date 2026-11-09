@@ -4,10 +4,12 @@
     {
       programs.zellij = {
         enable = true;
+        extraConfig = builtins.readFile ../../../files/zellij.kdl;
         settings = {
           session_name = "default";
           attach_to_session = true;
           default_shell = "nu";
+          default_mode = "locked";
           simplified_ui = true;
           mouse_mode = true;
           scroll_buffer_size = 10000;

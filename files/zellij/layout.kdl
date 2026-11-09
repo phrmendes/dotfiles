@@ -1,0 +1,21 @@
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="zjstatus" {
+                format_left "{mode}{tabs}"
+                format_right "#[fg=@accent@,bg=@bg@,bold]{session} "
+                format_space "#[bg=@bg@]"
+                mode_normal "#[bg=@accent@] "
+                mode_tmux "#[fg=@bg@,bg=@key@,bold] {name} "
+                mode_default_to_mode "tmux"
+                tab_normal "#[fg=@muted@,bg=@bg@] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
+                tab_active "#[fg=@fg@,bg=@bg@,bold] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
+                tab_fullscreen_indicator "□ "
+                tab_sync_indicator "  "
+                tab_floating_indicator "󰉈 "
+            }
+        }
+    }
+}
+

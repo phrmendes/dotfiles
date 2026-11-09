@@ -11,8 +11,7 @@ safely("now", function()
       },
       win = {
         keys = {
-          stopinsert = { "<c-]>", "stopinsert", mode = "t", desc = "enter normal mode" },
-          hide_ctrl_q = { "<c-]>", "hide", mode = "n", desc = "hide the terminal window" },
+          stopinsert = false,
           nav_left = false,
           nav_down = false,
           nav_up = false,

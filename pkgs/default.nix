@@ -23,4 +23,5 @@ in
   );
   sync-repos = pkgs.callPackage ./sync-repos.nix { inherit writeNuBin; };
   vpn = pkgs.callPackage ./vpn.nix { inherit writeNuBin; };
+  zj-which-key = inputs.zj-which-key.packages.${pkgs.stdenv.hostPlatform.system}.default;
 }

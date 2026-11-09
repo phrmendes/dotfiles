@@ -49,6 +49,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zj-which-key = {
+      url = "github:johnae/zj-which-key";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     beszel = {
       url = "github:henrygd/beszel?ref=v0.21.0";
       flake = false;

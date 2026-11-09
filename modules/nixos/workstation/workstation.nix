@@ -5,6 +5,7 @@ let
   commonDirs = [
     ".ansible"
     ".cache/helm"
+    ".cache/zellij"
     ".config"
     ".docker"
     ".kube"

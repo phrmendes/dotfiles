@@ -8,6 +8,21 @@ in
     pkgs = inputs.nixpkgs.legacyPackages.${config.hostPlatform};
 
     modules = [
+      (
+        { pkgs, ... }:
+        {
+          imports = [ inputs.stylix.homeModules.stylix ];
+
+          stylix = {
+            enable = true;
+            autoEnable = false;
+            enableReleaseChecks = false;
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+            polarity = "dark";
+            targets.zellij.enable = true;
+          };
+        }
+      )
       {
         nixpkgs = {
           config.allowUnfree = true;

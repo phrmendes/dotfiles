@@ -1,4 +1,6 @@
 vim.g.slime_target = "zellij"
+vim.g.slime_default_config = { session_id = "current", relative_pane = "right", relative_move_back = "left" }
+vim.g.slime_dont_ask_default = 1
 vim.g.slime_no_mappings = true
 
 safely("filetype:python,r,rmd,quarto,julia,elixir", function()

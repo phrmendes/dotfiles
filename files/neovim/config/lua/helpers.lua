@@ -1,5 +1,6 @@
 local M = {}
 M.mini = {}
+M.zellij = {}
 
 --- Pick from listed buffers with <c-d> to delete.
 M.mini.buffers = function()
@@ -176,6 +177,32 @@ M.keep_current_buffer = function()
     .iter(vim.api.nvim_list_bufs())
     :filter(function(buf) return buf ~= current and vim.bo[buf].buflisted end)
     :each(function(buf) require("mini.bufremove").delete(buf) end)
+end
+
+M.zellij.hook = function()
+  if not vim.env.ZELLIJ then return end
+
+  local pipe = function(payload) vim.system({ "zellij", "pipe", "-n", "nvim_hook", payload }, { detach = true }) end
+
+  pipe("open")
+
+  vim.api.nvim_create_autocmd("VimLeavePre", {
+    group = vim.api.nvim_create_augroup("zellij_hook", { clear = true }),
+    callback = function() pipe("close") end,
+  })
+end
+
+M.zellij.move = function(direction)
+  local win = vim.api.nvim_get_current_win()
+
+  vim.cmd.stopinsert()
+  vim.api.nvim_feedkeys(vim.keycode("<c-w><" .. direction .. ">"), "nx", false)
+
+  if vim.api.nvim_get_current_win() ~= win or not vim.env.ZELLIJ then return end
+
+  local action = (direction == "left" or direction == "right") and "move-focus-or-tab" or "move-focus"
+
+  vim.system({ "zellij", "action", action, direction }, { detach = true })
 end
 
 --- Enable treesitter highlighting, indentation, and folds for a buffer.

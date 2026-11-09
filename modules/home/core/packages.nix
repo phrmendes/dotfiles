@@ -5,6 +5,7 @@
         android-tools
         docker-compose
         drawing
+        dux-gop
         exiftool
         ffmpeg
         ffmpegthumbnailer

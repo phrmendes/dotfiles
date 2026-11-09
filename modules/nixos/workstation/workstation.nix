@@ -133,7 +133,6 @@ in
           base
           bat
           carapace
-          btop
           devenv
           difftastic
           direnv

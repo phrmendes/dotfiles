@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         active_tab_font_style = "bold";
-        bell_on_tab = " ";
+        bell_on_tab = "no";
         clear_all_shortcuts = "yes";
         draw_minimal_borders = "yes";
         enable_audio_bell = "no";

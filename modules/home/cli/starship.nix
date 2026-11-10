@@ -5,10 +5,14 @@
       starship = {
         enable = true;
         enableBashIntegration = true;
-        enableNushellIntegration = true;
         settings = {
           add_newline = false;
-          format = "$username$hostname$directory$git_branch$git_status$line_break$character$cmd_duration";
+          format = "$env_var$username$hostname$directory$git_branch$git_status$line_break$character$cmd_duration";
+          env_var.DEVENV_ROOT = {
+            variable = "DEVENV_ROOT";
+            format = "[\\(devenv\\)]($style) ";
+            style = "bold blue";
+          };
           username = {
             format = "[$user]($style)@";
             style_user = "bold magenta";

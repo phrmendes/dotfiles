@@ -40,7 +40,10 @@ in
       };
       ignores = [
         ".env"
+        ".envrc"
         "Session.vim"
+        ".direnv"
+        ".devenv"
       ];
     };
   };

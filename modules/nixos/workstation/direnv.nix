@@ -4,6 +4,7 @@
     {
       programs.direnv = {
         enable = true;
+        direnvrcExtra = builtins.readFile ../../../files/scripts/direnv-layout-dir.sh;
         settings = {
           global = {
             load_dotenv = true;

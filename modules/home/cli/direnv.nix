@@ -9,6 +9,7 @@
       programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
+        stdlib = builtins.readFile ../../../files/scripts/direnv-layout-dir.sh;
         config = {
           global = {
             load_dotenv = true;

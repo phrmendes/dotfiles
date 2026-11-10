@@ -4,7 +4,6 @@
     {
       programs.yazi = {
         enable = true;
-        enableNushellIntegration = true;
         plugins = with pkgs.yaziPlugins; {
           inherit
             vcs-files

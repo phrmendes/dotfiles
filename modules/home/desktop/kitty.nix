@@ -24,6 +24,7 @@
         term = "xterm-256color";
         undercurl_style = "thin-sparse";
         scrollback_lines = 10000;
+        scrollback_pager = ''nvim -u NONE -R -M -c 'lua require("scrollback")(INPUT_LINE_NUMBER, CURSOR_LINE, CURSOR_COLUMN)' -'';
         update_check_interval = 0;
         window_border_width = "1px";
         window_margin_width = "0";

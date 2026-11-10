@@ -63,9 +63,11 @@ in
     in
     {
       imports = with nixos; [
+        angrr
         audio
         bluetooth
         core
+        direnv
         disko
         flatpak
         podman
@@ -137,7 +139,6 @@ in
           carapace
           devenv
           difftastic
-          direnv
           fd
           gh
           git

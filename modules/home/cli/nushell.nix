@@ -33,7 +33,7 @@ in
           in
           {
             bash = lib.getExe pkgs.bashInteractive;
-            asr = "${lib.getExe pkgs.atuin} scripts run";
+            a = "${lib.getExe pkgs.atuin} scripts run";
             cat = lib.getExe pkgs.bat;
             create-secret = "${lib.getExe pkgs.authelia} crypto hash generate pbkdf2 --variant sha512 --random --random.length 72 --random.charset rfc3986";
             k = lib.getExe pkgs.kubectl;
@@ -47,7 +47,7 @@ in
 
           $env.config.menus = ($env.config.menus | each {|menu|
             if $menu.name in [completion_menu ide_completion_menu] {
-              $menu | upsert marker "λ "
+              $menu | upsert marker ""
             } else {
               $menu
             }

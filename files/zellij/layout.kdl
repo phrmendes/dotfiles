@@ -9,11 +9,10 @@ layout {
                 mode_normal "#[bg=@accent@] "
                 mode_tmux "#[fg=@bg@,bg=@key@,bold] {name} "
                 mode_default_to_mode "tmux"
-                tab_normal "#[fg=@muted@,bg=@bg@] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-                tab_active "#[fg=@fg@,bg=@bg@,bold] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
+                tab_normal "#[fg=@muted@,bg=@bg@] {index} {name} {fullscreen_indicator}{sync_indicator}"
+                tab_active "#[fg=@fg@,bg=@bg@,bold] {index} {name} {fullscreen_indicator}{sync_indicator}"
                 tab_fullscreen_indicator "□ "
                 tab_sync_indicator "  "
-                tab_floating_indicator "󰉈 "
             }
         }
     }

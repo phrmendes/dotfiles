@@ -10,6 +10,13 @@
       "url": "https://mcp.atlassian.com/v2/mcp",
       "description": "Official Atlassian MCP server for Jira and Confluence"
     },
+    "atuin": {
+      "command": "atuin",
+      "args": [
+        "mcp"
+      ],
+      "description": "Search shell history"
+    },
     "k8s": {
       "command": "mcp-k8s-go",
       "description": "Inspect and manage Kubernetes clusters"

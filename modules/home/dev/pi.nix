@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.pi =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     let
       piDir = ../../../files/pi;
       mcpServers = with pkgs; [
@@ -46,6 +46,9 @@
       };
 
       home = {
+        activation.atuinPiHook = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          run ${lib.getExe pkgs.atuin} hook install pi
+        '';
         sessionVariables = {
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.ungoogled-chromium}/bin/chromium";
           PI_CACHE_RETENTION = "long";

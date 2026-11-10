@@ -610,27 +610,6 @@
         "zj-which-key": "zj-which-key"
       }
     },
-    "rust-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "zj-which-key",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762655942,
-        "narHash": "sha256-hOM12KcQNQALrhB9w6KJmV5hPpm3GA763HRe9o7JUiI=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "6ac961b02d4235572692241e333d0470637f5492",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
     "stylix": {
       "inputs": {
         "base16": "base16",
@@ -824,24 +803,15 @@
       }
     },
     "zj-which-key": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay"
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1780518742,
-        "narHash": "sha256-cnsl39DZRDtAgVGg5dVWOWIwyWPf7UuAUmB4u9yCHWE=",
-        "owner": "johnae",
-        "repo": "zj-which-key",
-        "rev": "0fb0ecc0d44637e704c8f2c3b8ac976c13ddb1b0",
-        "type": "github"
+        "narHash": "sha256-NXeOs0iznyllIgdmxgil4sPQHmrdjwHUQbz75X5E7U0=",
+        "type": "file",
+        "url": "https://github.com/johnae/zj-which-key/releases/download/v0.2.0/zj_which_key.wasm"
       },
       "original": {
-        "owner": "johnae",
-        "repo": "zj-which-key",
-        "type": "github"
+        "type": "file",
+        "url": "https://github.com/johnae/zj-which-key/releases/download/v0.2.0/zj_which_key.wasm"
       }
     }
   },

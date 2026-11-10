@@ -59,7 +59,10 @@ in
 
       externalDisk.device = "/dev/disk/by-label/dock";
 
-      environment.persistence."/persist".users.${settings.user}.directories = [ "dotfiles" ];
+      environment.persistence."/persist".users.${settings.user}.directories = [
+        "dotfiles"
+        ".local/share/zellij"
+      ];
 
       programs.nh.flake = "${settings.home}/dotfiles";
 
@@ -121,7 +124,6 @@ in
         base
         bat
         carapace
-        btop
         fd
         git
         gitolite

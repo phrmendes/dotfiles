@@ -31,8 +31,7 @@
         configFile = {
           "zellij/plugins/vim-zellij-navigator.wasm".source = pkgs.zellijPlugins.vim-zellij-navigator;
           "zellij/plugins/zjstatus.wasm".source = pkgs.zellijPlugins.zjstatus;
-          "zellij/plugins/zj_which_key.wasm".source =
-            "${pkgs.local.zj-which-key}/share/zellij/plugins/zj_which_key.wasm";
+          "zellij/plugins/zj_which_key.wasm".source = pkgs.local.zj-which-key;
         };
         cacheFile."zellij/permissions.kdl" = {
           force = true;
@@ -69,6 +68,10 @@
           pane_frames = false;
           show_release_notes = false;
           show_startup_tips = false;
+          web_server = true;
+          web_server_ip = "127.0.0.1";
+          web_server_port = 8082;
+          web_sharing = "on";
         };
         themes = lib.mkIf (config.stylix.targets.zellij.enable or false) {
           stylix.themes.default = {

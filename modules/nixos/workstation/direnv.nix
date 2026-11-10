@@ -8,7 +8,7 @@
           global = {
             load_dotenv = true;
             strict_env = true;
-            warn_timeout = 0;
+            warn_timeout = "1m";
           };
           whitelist.prefix = [ config.environment.sessionVariables.PROJECTS_DIR ];
         };

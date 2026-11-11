@@ -23,7 +23,13 @@
       };
 
       services = {
-        bazarr.enable = true;
+        bazarr = {
+          enable = true;
+          settings = {
+            backup.folder = "/var/lib/bazarr/backup";
+            translator.lingarr_url = "";
+          };
+        };
         caddy.virtualHosts = config.caddy.mkVhost {
           name = "bazarr";
           port = 6767;

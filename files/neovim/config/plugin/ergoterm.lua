@@ -9,6 +9,7 @@ safely("later", function()
       cleanup_on_success = false,
       cleanup_on_failure = false,
       sticky = true,
+      float_winblend = 0,
       float_opts = {
         border = "rounded",
       },
@@ -21,6 +22,7 @@ safely("later", function()
     auto_list = false,
     bang_target = false,
     sticky = true,
+    float_winblend = 0,
     float_opts = { border = "rounded", width = 150, height = 30 },
     on_open = function(term)
       vim.keymap.set("n", "q", function() term:close() end, { buffer = 0, desc = "Close terminal" })

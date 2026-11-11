@@ -13,13 +13,6 @@
 
       systemd.services.bazarr = config.utils.dependsOnPostgres // {
         serviceConfig.SupplementaryGroups = [ "external" ];
-        environment = {
-          POSTGRES_ENABLED = "true";
-          POSTGRES_HOST = "/run/postgresql";
-          POSTGRES_PORT = "5432";
-          POSTGRES_DATABASE = "bazarr";
-          POSTGRES_USERNAME = "bazarr";
-        };
       };
 
       services = {
@@ -27,6 +20,13 @@
           enable = true;
           settings = {
             backup.folder = "/var/lib/bazarr/backup";
+            postgresql = {
+              enabled = true;
+              host = "/run/postgresql";
+              port = 5432;
+              database = "bazarr";
+              username = "bazarr";
+            };
             translator.lingarr_url = "";
           };
         };

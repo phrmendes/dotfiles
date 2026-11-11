@@ -60,6 +60,7 @@ in
             "defaults"
             "noatime"
             "nofail"
+            "errors=remount-ro"
           ];
         };
 

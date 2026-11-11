@@ -18,7 +18,7 @@
 
 - Prefer idiomatic tooling for each ecosystem.
 - Run project commands in the project environment: `devenv shell -- <cmd>` in devenv projects, `nix develop -c <cmd>` in flake projects.
-- Put files you share with the user, such as screenshots, logs, and exports, in `/mnt/external/pi`. Files there are deleted after 7 days.
+- Put files you share with the user, such as screenshots, logs, and exports, in `/tmp/pi`.
 
 ## Writing (ASD-STE100)
 

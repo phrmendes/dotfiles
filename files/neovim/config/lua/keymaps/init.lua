@@ -17,8 +17,8 @@ for _, map in ipairs({
   { "<m-k>", "resize", -1, "Shrink height" },
   { "<m-l>", "vertical resize", 1, "Grow width" },
 }) do
-  vim.keymap.set("n", map[1], function()
-    local delta = map[3] * 2 * vim.v.count1
+  vim.keymap.set({ "n", "t" }, map[1], function()
+    local delta = map[3] * 2 * (vim.v.count1 > 0 and vim.v.count1 or 1)
     vim.cmd(("%s %s%d"):format(map[2], delta > 0 and "+" or "", delta))
   end, { desc = map[4] })
 end

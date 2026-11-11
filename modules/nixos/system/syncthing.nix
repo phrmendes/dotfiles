@@ -48,7 +48,6 @@ in
         "images"
         "keepassxc"
         "notes"
-        "reading"
         "ufabc"
       ];
     in
@@ -95,7 +94,6 @@ in
             "/var/lib/syncthing"
           ];
           exclude = [
-            "/mnt/external/syncthing/reading"
             "/mnt/external/syncthing/files"
             "/var/lib/syncthing/index-*.db"
           ];
@@ -191,11 +189,6 @@ in
                   devices = allDevices;
                   ignorePerms = true;
                 };
-                reading = {
-                  path = "/mnt/external/syncthing/reading";
-                  devices = allDevices;
-                  ignorePerms = true;
-                };
                 ufabc = {
                   path = "/mnt/external/syncthing/ufabc";
                   devices = allDevices;
@@ -234,7 +227,6 @@ in
             "ufabc" = trashcanFolder "${settings.home}/Documents/ufabc" (workstations ++ [ "tablet" ]);
             "collections" = trashcanFolder "${settings.home}/Documents/collections" workstations;
             "excalidraw" = trashcanFolder "${settings.home}/Documents/excalidraw" workstations;
-            "reading" = trashcanFolder "${settings.home}/Documents/reading" withMobile;
             "keepassxc" = trashcanFolder "${settings.home}/Documents/keepassxc" withMobile;
           };
         };

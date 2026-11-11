@@ -32,6 +32,7 @@
         pavucontrol
         phockup
         poppler
+        presenterm
         proton-vpn
         resources
         skim

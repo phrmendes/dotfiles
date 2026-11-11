@@ -46,6 +46,7 @@ in
       nushell
       ripgrep
       starship
+      vivid
       yazi
       zellij
     ]);

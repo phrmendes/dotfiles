@@ -161,6 +161,7 @@ in
           starship
           symlinks
           tealdeer
+          vivid
           xdg
           yazi
           zathura

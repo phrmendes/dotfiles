@@ -11,6 +11,18 @@ vim.keymap.set({ "n", "x", "i", "t" }, "<c-j>", function() require("helpers").ze
 vim.keymap.set({ "n", "x", "i", "t" }, "<c-k>", function() require("helpers").zellij.move("up") end, { desc = "Move up" })
 vim.keymap.set({ "n", "x", "i", "t" }, "<c-l>", function() require("helpers").zellij.move("right") end, { desc = "Move right" })
 
+for _, map in ipairs({
+  { "<m-h>", "vertical resize", -1, "Shrink width" },
+  { "<m-j>", "resize", 1, "Grow height" },
+  { "<m-k>", "resize", -1, "Shrink height" },
+  { "<m-l>", "vertical resize", 1, "Grow width" },
+}) do
+  vim.keymap.set("n", map[1], function()
+    local delta = map[3] * 2 * vim.v.count1
+    vim.cmd(("%s %s%d"):format(map[2], delta > 0 and "+" or "", delta))
+  end, { desc = map[4] })
+end
+
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })

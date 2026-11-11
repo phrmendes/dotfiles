@@ -6,15 +6,15 @@
       settings.temporary-root-policies = {
         direnv = {
           path-regex = "/\\.direnv/";
-          period = "14d";
+          period = "7d";
         };
         devenv = {
           path-regex = "/\\.devenv/";
-          period = "14d";
+          period = "7d";
         };
         result = {
           path-regex = "/result[^/]*$";
-          period = "3d";
+          period = "6h";
         };
       };
     };

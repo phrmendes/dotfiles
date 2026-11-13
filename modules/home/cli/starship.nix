@@ -4,7 +4,6 @@
       bash.enable = true;
       starship = {
         enable = true;
-        enableBashIntegration = true;
         settings = {
           add_newline = false;
           format = "$env_var$username$hostname$directory$git_branch$git_status$line_break$character$cmd_duration";

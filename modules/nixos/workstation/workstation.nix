@@ -136,7 +136,6 @@ in
           base
           bash
           bat
-          blesh
           carapace
           devenv
           difftastic

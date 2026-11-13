@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.bash = {
+  flake.modules.homeManager.eza = {
     programs.eza = {
       enable = true;
       enableNushellIntegration = false;

@@ -134,11 +134,11 @@ in
           atuin
           gitolite
           base
-          bash
           bat
           carapace
           devenv
           difftastic
+          eza
           fd
           fzf
           gh

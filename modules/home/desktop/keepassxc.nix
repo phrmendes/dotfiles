@@ -47,8 +47,7 @@
             ClearClipboardTimeout = 30;
             EnableCopyOnDoubleClick = true;
             IconDownloadFallback = true;
-            LockDatabaseIdle = true;
-            LockDatabaseIdleSeconds = 3600;
+            LockDatabaseIdle = false;
             PasswordEmptyPlaceholder = true;
             QuickUnlock = false;
           };

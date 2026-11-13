@@ -21,7 +21,7 @@
         atuin = {
           enable = true;
           host = "127.0.0.1";
-          openRegistration = false;
+          openRegistration = true;
           inherit port;
         };
       };

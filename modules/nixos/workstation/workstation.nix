@@ -135,6 +135,7 @@ in
           gitolite
           base
           bat
+          blesh
           carapace
           devenv
           difftastic

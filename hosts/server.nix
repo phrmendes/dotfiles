@@ -125,10 +125,12 @@ in
         bat
         carapace
         fd
+        fzf
         git
         gitolite
         nushell
         ripgrep
+        shell
         starship
         vivid
         yazi

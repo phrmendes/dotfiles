@@ -41,10 +41,12 @@ in
       carapace
       direnv
       fd
+      fzf
       git
       neovim
       nushell
       ripgrep
+      shell
       starship
       vivid
       yazi

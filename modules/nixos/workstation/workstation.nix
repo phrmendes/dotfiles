@@ -139,7 +139,9 @@ in
           carapace
           devenv
           difftastic
+          eza
           fd
+          fzf
           gh
           git
           gnupg
@@ -159,6 +161,7 @@ in
           packages
           pi
           ripgrep
+          shell
           starship
           symlinks
           tealdeer

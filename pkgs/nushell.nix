@@ -7,7 +7,6 @@
     gstat
     polars
     query
-    skim
   ]
 )).overrideAttrs
   (old: {

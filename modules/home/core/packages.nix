@@ -35,7 +35,6 @@
         presenterm
         proton-vpn
         resources
-        skim
         tectonic
         tesseract
         tuicr

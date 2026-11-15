@@ -12,12 +12,10 @@ in
         };
         http.sslVerify = true;
         init.defaultBranch = "main";
-        merge.tool = "diffs-nvim";
-        mergetool = {
-          "diffs-nvim" = {
-            cmd = "nvim $MERGED";
-          };
-        };
+        diff.tool = "codediff";
+        difftool.codediff.cmd = ''nvim "$LOCAL" "$REMOTE" +"CodeDiff --exit-on-close file $LOCAL $REMOTE"'';
+        merge.tool = "codediff";
+        mergetool.codediff.cmd = ''nvim "$MERGED" -c "CodeDiff --exit-on-close merge \"$MERGED\""'';
         pull.rebase = true;
         submodule.recurse = true;
         push = {

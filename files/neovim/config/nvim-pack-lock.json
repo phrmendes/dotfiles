@@ -16,6 +16,10 @@
       "rev": "3650c505445a7e9ccc95380598ab1f4297b213be",
       "src": "https://github.com/phrmendes/bib.nvim"
     },
+    "codediff.nvim": {
+      "rev": "eee54e78e6f152a6eb03b090e95f7576c96a5ad9",
+      "src": "https://github.com/esmuellert/codediff.nvim"
+    },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -23,6 +27,10 @@
     "crates.nvim": {
       "rev": "7039bc1d130e424232a7aa64ceddb170a154ff5b",
       "src": "https://github.com/Saecki/crates.nvim"
+    },
+    "diffbandit.nvim": {
+      "rev": "b4e52c8fc602e254682b4d967a2556614b28df9f",
+      "src": "https://github.com/CoreyKaylor/diffbandit.nvim"
     },
     "diffs.nvim": {
       "rev": "c149ff062ade88e39903611c77ceaa408861cc6f",

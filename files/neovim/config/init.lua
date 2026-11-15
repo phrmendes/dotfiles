@@ -1,8 +1,8 @@
 vim.pack.add({
   "https://codeberg.org/mfussenegger/nvim-ansible",
   "https://codeberg.org/mfussenegger/nvim-dap",
+  "https://github.com/esmuellert/codediff.nvim",
   "https://codeberg.org/mfussenegger/nvim-dap-python",
-  "https://forge.barrettruth.com/barrettruth/diffs.nvim",
   "https://github.com/NeogitOrg/neogit",
   "https://github.com/Saecki/crates.nvim",
   "https://github.com/TheNoeTrevino/haunt.nvim",

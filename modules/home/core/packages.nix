@@ -37,7 +37,6 @@
         resources
         tectonic
         tesseract
-        tuicr
         wl-clipboard
         worktrunk
         xre

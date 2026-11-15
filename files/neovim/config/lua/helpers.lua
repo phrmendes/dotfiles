@@ -1,6 +1,7 @@
 local M = {}
 M.mini = {}
 M.zellij = {}
+M.ergoterm = {}
 
 --- Pick from listed buffers with <c-d> to delete.
 M.mini.buffers = function()
@@ -203,6 +204,21 @@ M.zellij.move = function(direction)
   local action = (direction == "left" or direction == "right") and "move-focus-or-tab" or "move-focus"
 
   vim.system({ "zellij", "action", action, direction }, { detach = true })
+end
+
+--- Focus the next or previous ergoterm terminal, wrapping around.
+--- @param step integer 1 for next, -1 for previous
+M.ergoterm.cycle = function(step)
+  local ergoterm = require("ergoterm")
+  local terms = ergoterm.get_all()
+
+  if #terms == 0 then return end
+
+  local current = ergoterm.identify()
+  local index = vim.iter(terms):enumerate():find(function(_, term) return term == current end)
+  index = index or (step > 0 and 0 or 1)
+
+  terms[(index - 1 + step) % #terms + 1]:focus()
 end
 
 --- Enable treesitter highlighting, indentation, and folds for a buffer.

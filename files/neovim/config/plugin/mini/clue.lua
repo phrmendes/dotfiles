@@ -5,6 +5,7 @@ safely("later", function()
     triggers = {
       { mode = "i", keys = "<c-x>" },
       { mode = "n", keys = "<c-c>" },
+      { mode = { "n", "t" }, keys = "<c-\\>" },
       { mode = "n", keys = "<c-w>" },
       { mode = { "i", "c" }, keys = "<c-r>" },
       { mode = { "n", "x" }, keys = "'" },

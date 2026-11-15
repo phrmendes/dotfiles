@@ -27,6 +27,11 @@
         }
       ];
 
+      systemd.services.immich-server = {
+        unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+        wantedBy = [ "mnt-external.mount" ];
+      };
+
       services = {
         restic.backups.photos = config.restic.mkBackup "photos" {
           paths = [

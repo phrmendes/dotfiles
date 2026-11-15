@@ -16,6 +16,11 @@
         "video"
       ];
 
+      systemd.services.jellyfin = {
+        unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+        wantedBy = [ "mnt-external.mount" ];
+      };
+
       services = {
         jellyfin = {
           enable = true;

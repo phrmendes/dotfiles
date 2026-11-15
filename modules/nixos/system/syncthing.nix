@@ -84,6 +84,7 @@ in
 
       systemd.services.syncthing = {
         unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+        wantedBy = [ "mnt-external.mount" ];
         serviceConfig.UMask = "0002";
       };
 

@@ -65,6 +65,9 @@
         };
       };
 
-      systemd.services.transmission.after = [ "mnt-external.mount" ];
+      systemd.services.transmission = {
+        unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+        wantedBy = [ "mnt-external.mount" ];
+      };
     };
 }

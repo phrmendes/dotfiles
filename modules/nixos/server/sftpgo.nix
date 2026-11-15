@@ -25,6 +25,8 @@
 
       systemd = {
         services.sftpgo = {
+          unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+          wantedBy = [ "mnt-external.mount" ];
           serviceConfig = {
             EnvironmentFile = config.age.secrets."sftpgo.env".path;
             Restart = "on-failure";
@@ -36,7 +38,6 @@
           ]
           ++ config.utils.dependsOnPostgres.requires;
           after = [
-            "mnt-external.mount"
             "authelia.service"
             "caddy.service"
           ]

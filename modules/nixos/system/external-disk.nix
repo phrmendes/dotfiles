@@ -64,6 +64,13 @@ in
           ];
         };
 
+        # Start the mount as soon as the disk appears. Units that need the
+        # disk list "mnt-external.mount" in wantedBy, so the remount also
+        # starts the services that stopped when the disk went away.
+        services.udev.extraRules = lib.optionalString (lib.hasPrefix "/dev/disk/by-label/" cfg.device) ''
+          ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_LABEL}=="${builtins.baseNameOf cfg.device}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="mnt-external.mount"
+        '';
+
         systemd = {
           tmpfiles.rules = [
             "d /mnt/external 2775 ${settings.user} external -"

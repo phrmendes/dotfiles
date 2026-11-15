@@ -33,6 +33,7 @@ in
 
         calibre-server = {
           unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+          wantedBy = [ "mnt-external.mount" ];
           unitConfig.ConditionPathExists = [
             "${library}/metadata.db"
             userDb

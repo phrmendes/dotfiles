@@ -36,7 +36,10 @@ in
           "d ${dataDir} 0755 ${settings.user} users -"
           "d ${dataDir}/books 0755 ${settings.user} users -"
         ];
-        services.podman-shelfmark.unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+        services.podman-shelfmark = {
+          unitConfig.RequiresMountsFor = [ "/mnt/external" ];
+          wantedBy = [ "mnt-external.mount" ];
+        };
       };
 
       virtualisation.oci-containers.containers.shelfmark = {

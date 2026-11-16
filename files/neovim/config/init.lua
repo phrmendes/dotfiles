@@ -1,3 +1,5 @@
+local external = vim.fs.joinpath(vim.fn.stdpath("data"), "site", "pack", "external", "start")
+
 vim.pack.add({
   "https://codeberg.org/mfussenegger/nvim-ansible",
   "https://codeberg.org/mfussenegger/nvim-dap",
@@ -25,6 +27,10 @@ vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
   "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+  "https://github.com/phrmendes/bib.nvim",
+  "https://github.com/phrmendes/notes.nvim",
+  "https://github.com/phrmendes/nsm",
+  "https://github.com/phrmendes/todotxt.nvim",
   "https://github.com/qvalentin/helm-ls.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/stevearc/conform.nvim",
@@ -33,6 +39,12 @@ vim.pack.add({
   "https://github.com/tpope/vim-abolish",
   "https://github.com/tpope/vim-dadbod",
   "https://github.com/waiting-for-dev/ergoterm.nvim",
+}, {
+  load = function(plug)
+    if vim.uv.fs_stat(vim.fs.joinpath(external, plug.spec.name)) then return end
+
+    vim.cmd.packadd({ plug.spec.name, bang = true })
+  end,
 })
 
 require("mini.misc").setup()

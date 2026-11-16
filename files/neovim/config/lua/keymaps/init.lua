@@ -6,10 +6,10 @@ vim.keymap.set("n", "<c-d>", "<c-d>zz", { desc = "Half page down" })
 vim.keymap.set("n", "<c-u>", "<c-u>zz", { desc = "Half page up" })
 vim.keymap.set("t", "<c-q>", "<c-\\><c-n>", { desc = "Normal mode" })
 
-vim.keymap.set({ "n", "x", "i", "t" }, "<c-h>", function() require("helpers").zellij.move("left") end, { desc = "Move left" })
-vim.keymap.set({ "n", "x", "i", "t" }, "<c-j>", function() require("helpers").zellij.move("down") end, { desc = "Move down" })
-vim.keymap.set({ "n", "x", "i", "t" }, "<c-k>", function() require("helpers").zellij.move("up") end, { desc = "Move up" })
-vim.keymap.set({ "n", "x", "i", "t" }, "<c-l>", function() require("helpers").zellij.move("right") end, { desc = "Move right" })
+vim.keymap.set({ "n", "x", "i", "t" }, "<c-h>", function() require("helpers").move_window("left") end, { desc = "Move left" })
+vim.keymap.set({ "n", "x", "i", "t" }, "<c-j>", function() require("helpers").move_window("down") end, { desc = "Move down" })
+vim.keymap.set({ "n", "x", "i", "t" }, "<c-k>", function() require("helpers").move_window("up") end, { desc = "Move up" })
+vim.keymap.set({ "n", "x", "i", "t" }, "<c-l>", function() require("helpers").move_window("right") end, { desc = "Move right" })
 
 for _, map in ipairs({
   { "<m-h>", "vertical resize", -1, "Shrink width" },

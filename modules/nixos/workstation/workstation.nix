@@ -176,10 +176,11 @@ in
         };
 
         age.secrets = {
-          "pi.json" = mkSecretReadable {
+          "pi.json" = {
             owner = settings.user;
             file = ../../../secrets/laptop/pi.age.json;
             path = "${settings.home}/.pi/agent/auth.json";
+            symlink = false;
           };
           "noctalia.txt" = mkSecretReadable {
             owner = settings.user;

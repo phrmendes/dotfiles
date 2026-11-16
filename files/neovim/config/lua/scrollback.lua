@@ -6,7 +6,7 @@ vim.opt.scrollback = 100000
 vim.opt.laststatus = 2
 vim.o.cmdheight = 0
 
-require("mini.base16").setup({ palette = require("nix").colors, use_cterm = true })
+require("theme")({ use_cterm = true })
 
 require("mini.jump2d").setup({
   mappings = { start_jumping = "<space>j" },

@@ -1,1 +1,1 @@
-safely("now", function() require("mini.base16").setup({ palette = require("nix").colors }) end)
+safely("now", function() require("theme")() end)

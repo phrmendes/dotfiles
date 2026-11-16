@@ -535,8 +535,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1794806422,
-        "narHash": "sha256-b3vX3ZHQYYu2B6DT2bR3shX0TafdQ8zkjp4bpJ38Jg8=",
+        "lastModified": 1794807944,
+        "narHash": "sha256-aDezbtFInvn2Ki/rRui+SRvCSaWVPF6GMPFIR7XfC44=",
         "path": "/mnt/external/projects/neovim/nsm",
         "type": "path"
       },

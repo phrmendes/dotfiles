@@ -137,4 +137,8 @@ safely("filetype:lua", function()
   vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, { desc = "Launch debugger" })
 end)
 
-safely("filetype:rust", function() require("dap-lldb").setup({ codelldb_path = require("nix.neovim").codelldb }) end)
+safely("filetype:rust", function()
+  local has_nix, nix = pcall(require, "nix.neovim")
+
+  require("dap-lldb").setup({ codelldb_path = has_nix and nix.codelldb or nil })
+end)

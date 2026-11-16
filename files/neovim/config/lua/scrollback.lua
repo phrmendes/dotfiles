@@ -1,28 +1,34 @@
+local site = vim.fn.stdpath("data") .. "/site"
+
+vim.opt.runtimepath:prepend({ site, site .. "/pack/core/opt/mini.nvim" })
+vim.opt.clipboard = "unnamedplus"
+vim.opt.scrollback = 100000
+vim.opt.laststatus = 2
+vim.o.cmdheight = 0
+
+require("mini.base16").setup({ palette = require("nix").colors, use_cterm = true })
+
+require("mini.jump2d").setup({
+  mappings = { start_jumping = "<space>j" },
+  spotter = require("mini.jump2d").gen_spotter.pattern("[^%s%p]+"),
+  view = { dim = true, n_steps_ahead = 2 },
+})
+
+local buf = vim.api.nvim_create_buf(true, false)
+local chan = vim.api.nvim_open_term(buf, {})
+
+vim.iter({ "q", "<esc>" }):each(function(lhs) vim.keymap.set("n", lhs, "<cmd>q<cr>", { buffer = buf }) end)
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Quit after yanking",
+  callback = function()
+    if vim.v.event.operator ~= "y" or vim.api.nvim_get_current_buf() ~= buf then return end
+
+    vim.schedule(vim.cmd.quit)
+  end,
+})
+
 return function(input_line_number, cursor_line, cursor_column)
-  local site = vim.fn.stdpath("data") .. "/site"
-
-  vim.opt.runtimepath:prepend({ site, site .. "/pack/core/opt/mini.nvim" })
-
-  require("mini.base16").setup({ palette = require("nix").colors, use_cterm = true })
-
-  require("mini.jump2d").setup({
-    mappings = { start_jumping = "<space>j" },
-    spotter = require("mini.jump2d").gen_spotter.pattern("[^%s%p]+"),
-    view = { dim = true, n_steps_ahead = 2 },
-  })
-
-  vim.opt.clipboard = "unnamedplus"
-  vim.opt.scrollback = 100000
-  vim.opt.laststatus = 2
-  vim.o.cmdheight = 0
-
-  local buf = vim.api.nvim_create_buf(true, false)
-  local chan = vim.api.nvim_open_term(buf, {})
-
-  for _, lhs in ipairs({ "q", "<esc>" }) do
-    vim.keymap.set("n", lhs, "<cmd>q<cr>", { buffer = buf })
-  end
-
   vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function(ev)
@@ -40,9 +46,11 @@ return function(input_line_number, cursor_line, cursor_column)
       vim.defer_fn(function()
         vim.cmd.stopinsert()
         vim.schedule(function()
-          vim.cmd.normal({ input_line_number .. "Gzt", bang = true })
-          local row = math.min(input_line_number + cursor_line - 1, vim.api.nvim_buf_line_count(buf))
-          vim.api.nvim_win_set_cursor(win, { row, cursor_column - 1 })
+          pcall(function()
+            vim.cmd.normal({ input_line_number .. "Gzt", bang = true })
+            local row = math.min(input_line_number + cursor_line - 1, vim.api.nvim_buf_line_count(buf))
+            vim.api.nvim_win_set_cursor(win, { row, cursor_column - 1 })
+          end)
         end)
       end, 10)
     end,

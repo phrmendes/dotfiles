@@ -4,6 +4,7 @@
       enable = true;
       settings = {
         active_tab_font_style = "bold";
+        allow_remote_control = "socket-only";
         bell_on_tab = "no";
         clear_all_shortcuts = "yes";
         draw_minimal_borders = "yes";
@@ -11,6 +12,7 @@
         enabled_layouts = "splits:split_axis=horizontal,stack";
         hide_window_decorations = "yes";
         inactive_text_alpha = "0.6";
+        listen_on = "unix:@kitty-{kitty_pid}";
         map_timeout = 1;
         open_url_with = "default";
         remember_window_size = "no";

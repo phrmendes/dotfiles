@@ -11,18 +11,6 @@ vim.keymap.set({ "n", "x", "i", "t" }, "<c-j>", function() require("helpers").mo
 vim.keymap.set({ "n", "x", "i", "t" }, "<c-k>", function() require("helpers").move_window("up") end, { desc = "Move up" })
 vim.keymap.set({ "n", "x", "i", "t" }, "<c-l>", function() require("helpers").move_window("right") end, { desc = "Move right" })
 
-for _, map in ipairs({
-  { "<m-h>", "vertical resize", -1, "Shrink width" },
-  { "<m-j>", "resize", 1, "Grow height" },
-  { "<m-k>", "resize", -1, "Shrink height" },
-  { "<m-l>", "vertical resize", 1, "Grow width" },
-}) do
-  vim.keymap.set({ "n", "t" }, map[1], function()
-    local delta = map[3] * 2 * (vim.v.count1 > 0 and vim.v.count1 or 1)
-    vim.cmd(("%s %s%d"):format(map[2], delta > 0 and "+" or "", delta))
-  end, { desc = map[4] })
-end
-
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })
 vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, silent = true, desc = "Previous search result" })
@@ -48,3 +36,11 @@ vim.keymap.set("n", "<leader>u", function()
   vim.cmd.packadd("nvim.undotree")
   vim.cmd.Undotree()
 end, { desc = "Undo Tree" })
+
+vim.iter({ h = "left", j = "down", k = "up", l = "right" }):each(function(dir, name)
+  vim.keymap.set({ "n", "t" }, "<m-" .. dir .. ">", function()
+    local delta = (vim.fn.winnr(dir) ~= vim.fn.winnr() and 2 or -2) * vim.v.count1
+
+    vim.cmd({ cmd = "resize", args = { ("%+d"):format(delta) }, mods = { vertical = dir == "h" or dir == "l" } })
+  end, { desc = "Resize " .. name })
+end)

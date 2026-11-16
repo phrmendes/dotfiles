@@ -36,7 +36,6 @@ let
 in
 {
   inherit nushell;
-  inherit (inputs) zj-which-key;
   backup-sqlite = pkgs.callPackage ./backup-sqlite.nix { inherit writeNuBin; };
   beszel = pkgs.callPackage ./beszel.nix { src = inputs.beszel; };
   diff-persist = pkgs.callPackage ./diff-persist.nix { };

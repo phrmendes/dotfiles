@@ -61,7 +61,6 @@ in
 
       environment.persistence."/persist".users.${settings.user}.directories = [
         "dotfiles"
-        ".local/share/zellij"
       ];
 
       programs.nh.flake = "${settings.home}/dotfiles";
@@ -137,7 +136,6 @@ in
         starship
         vivid
         yazi
-        zellij
         zoxide
       ];
     };

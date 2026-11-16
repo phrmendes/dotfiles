@@ -64,11 +64,6 @@
       url = "https://files.pythonhosted.org/packages/5d/96/1e0bbee05263b12b9c65cdf7eb1f15509a53cfe0bf992a2cc686ca791d40/pyzotero-1.16.0-py3-none-any.whl";
       flake = false;
     };
-
-    zj-which-key = {
-      url = "file+https://github.com/johnae/zj-which-key/releases/download/v0.2.0/zj_which_key.wasm";
-      flake = false;
-    };
   };
 
   outputs =

@@ -698,8 +698,7 @@
         "pi": "pi",
         "pyzotero": "pyzotero",
         "stylix": "stylix",
-        "treefmt-nix": "treefmt-nix_3",
-        "zj-which-key": "zj-which-key"
+        "treefmt-nix": "treefmt-nix_3"
       }
     },
     "stylix": {
@@ -892,18 +891,6 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
-      }
-    },
-    "zj-which-key": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-NXeOs0iznyllIgdmxgil4sPQHmrdjwHUQbz75X5E7U0=",
-        "type": "file",
-        "url": "https://github.com/johnae/zj-which-key/releases/download/v0.2.0/zj_which_key.wasm"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/johnae/zj-which-key/releases/download/v0.2.0/zj_which_key.wasm"
       }
     }
   },

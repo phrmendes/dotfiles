@@ -19,7 +19,6 @@ in
             enableReleaseChecks = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
             polarity = "dark";
-            targets.zellij.enable = true;
           };
         }
       )
@@ -50,7 +49,6 @@ in
       starship
       vivid
       yazi
-      zellij
     ]);
   };
 }

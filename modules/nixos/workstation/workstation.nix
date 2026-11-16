@@ -5,7 +5,6 @@ let
   commonDirs = [
     ".ansible"
     ".cache/helm"
-    ".cache/zellij"
     ".config"
     ".docker"
     ".kube"
@@ -19,7 +18,6 @@ let
     ".local/share/nvim"
     ".local/share/uv"
     ".local/share/zathura"
-    ".local/share/zellij"
     ".local/share/zoxide"
     ".local/share/nushell"
     ".local/state/home-manager"
@@ -170,7 +168,6 @@ in
             xdg
             yazi
             zathura
-            zellij
             zoxide
           ];
         };

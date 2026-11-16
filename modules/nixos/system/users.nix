@@ -9,12 +9,11 @@ in
 
       users = {
         mutableUsers = true;
+        defaultUserShell = pkgs.local.nushell;
         groups.external = { };
         users = {
           ${settings.user} = {
             inherit (settings) home;
-            shell = pkgs.local.nushell;
-            # Key-only login.
             openssh.authorizedKeys.keys = map builtins.readFile [
               ../../../files/ssh/main.txt
               ../../../files/ssh/phone.txt

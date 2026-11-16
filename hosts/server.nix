@@ -120,6 +120,10 @@ in
         linkConfig.WakeOnLan = "magic";
       };
 
+      users.users.${settings.user}.shell = pkgs.bashInteractive;
+
+      programs.nushell.enable = false;
+
       home-manager.users.${settings.user}.imports = with homeManager; [
         base
         bat
@@ -128,7 +132,6 @@ in
         fzf
         git
         gitolite
-        nushell
         ripgrep
         shell
         starship

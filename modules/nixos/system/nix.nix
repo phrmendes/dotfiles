@@ -74,7 +74,7 @@ in
         fuse.userAllowOther = true;
         command-not-found.enable = false;
         nushell = {
-          enable = true;
+          enable = lib.mkDefault true;
           package = pkgs.local.nushell;
         };
 

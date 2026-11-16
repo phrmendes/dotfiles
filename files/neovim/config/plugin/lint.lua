@@ -36,5 +36,9 @@ safely("later", function()
     ["yaml.ansible"] = { "ansible_lint" },
   }
 
-  safely("event:BufWritePost,BufReadPost,InsertLeave", function() lint.try_lint() end)
+  vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+    desc = "Run linters",
+    group = vim.api.nvim_create_augroup("UserLint", {}),
+    callback = function() lint.try_lint() end,
+  })
 end)

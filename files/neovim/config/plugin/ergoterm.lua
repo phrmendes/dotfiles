@@ -15,7 +15,7 @@ safely("later", function()
     },
     terminal_defaults = {
       layout = "float",
-      shell = "nu",
+      shell = vim.fn.executable("nu") == 1 and "nu" or "bash",
       auto_scroll = true,
       cleanup_on_success = false,
       sticky = true,

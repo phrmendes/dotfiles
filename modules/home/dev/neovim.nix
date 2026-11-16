@@ -81,7 +81,13 @@
             source = mkOutOfStoreSymlink "/mnt/external/projects/neovim";
           };
         };
-        packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
+        packages = lib.mkIf (osConfig ? workstation) (
+          with pkgs;
+          [
+            neovim-gtk
+            local.neovim-nightly
+          ]
+        );
       };
 
       xdg.desktopEntries = lib.mkIf (osConfig ? workstation) {

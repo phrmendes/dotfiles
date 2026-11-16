@@ -35,20 +35,23 @@ let
       };
 in
 {
+  inherit nushell;
+  inherit (inputs) zj-which-key;
   backup-sqlite = pkgs.callPackage ./backup-sqlite.nix { inherit writeNuBin; };
   beszel = pkgs.callPackage ./beszel.nix { src = inputs.beszel; };
   diff-persist = pkgs.callPackage ./diff-persist.nix { };
   gcp = pkgs.callPackage ./gcp.nix { };
+  neovim-nightly = pkgs.callPackage ./neovim-nightly.nix {
+    neovim = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nsm = inputs.nsm.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  inherit nushell;
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { src = inputs.pyzotero; };
-  screenshot = writeNuBin { name = "screenshot"; } (builtins.readFile ../files/scripts/screenshot.nu);
   restic-restore-test = writeNuBin { name = "restic-restore-test"; } (
     builtins.readFile ../files/scripts/restic-restore-test.nu
   );
+  screenshot = writeNuBin { name = "screenshot"; } (builtins.readFile ../files/scripts/screenshot.nu);
   sync-repos = pkgs.callPackage ./sync-repos.nix { inherit writeNuBin; };
   vpn = pkgs.callPackage ./vpn.nix { inherit writeNuBin; };
-  inherit (inputs) zj-which-key;
 }

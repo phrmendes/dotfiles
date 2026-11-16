@@ -39,6 +39,6 @@ safely("later", function()
   vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
     desc = "Run linters",
     group = vim.api.nvim_create_augroup("UserLint", {}),
-    callback = function() lint.try_lint() end,
+    callback = function() lint.try_lint(nil, { ignore_errors = true }) end,
   })
 end)

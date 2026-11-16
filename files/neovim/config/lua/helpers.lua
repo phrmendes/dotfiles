@@ -133,6 +133,13 @@ M.ergoterm.cycle = function(step)
   terms[(index - 1 + step) % #terms + 1]:focus()
 end
 
+--- Check whether any of the given commands is not executable.
+--- @param ... string
+--- @return boolean
+M.missing = function(...)
+  return vim.iter({ ... }):any(function(cmd) return vim.fn.executable(cmd) == 0 end)
+end
+
 --- Enable treesitter highlighting, indentation, and folds for a buffer.
 --- @param buf integer
 --- @param lang string

@@ -15,10 +15,9 @@ safely("later", function()
 
   vim.ui.select = MiniPick.ui_select
 
-  vim.keymap.set("n", "<leader>bb", require("helpers").mini.buffers, { desc = "Buffers" })
+  vim.keymap.set("n", "<c-p>", require("helpers").mini.buffers, { desc = "Buffers" })
   vim.keymap.set("n", "<leader><leader>", MiniPick.builtin.files, { desc = "Files" })
   vim.keymap.set("n", "<leader>?", MiniPick.builtin.help, { desc = "Help" })
-  vim.keymap.set("n", "<leader>p", require("helpers").mini.project, { desc = "Projects" })
   vim.keymap.set("n", "<leader>/", MiniPick.builtin.grep_live, { desc = "Live grep" })
   vim.keymap.set("x", "<leader>/", function()
     local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })

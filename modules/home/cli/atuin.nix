@@ -7,7 +7,6 @@ in
     programs.atuin = {
       enable = true;
       daemon.enable = true;
-      flags = [ "--disable-up-arrow" ];
       settings = {
         auto_sync = true;
         filter_mode = "workspace";

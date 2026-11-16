@@ -14,10 +14,7 @@
         settings = {
           show_banner = false;
           edit_mode = "vi";
-          history = {
-            file_format = "plaintext";
-            path = "/dev/null";
-          };
+          history.file_format = "sqlite";
         };
         environmentVariables = {
           PROMPT_INDICATOR_VI_INSERT = "";

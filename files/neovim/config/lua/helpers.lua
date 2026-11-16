@@ -137,7 +137,8 @@ end
 --- @param buf integer
 --- @param lang string
 M.treesitter = function(buf, lang)
-  vim.treesitter.start(buf, lang)
+  if not pcall(vim.treesitter.start, buf, lang) then return end
+
   vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
   local win = vim.fn.bufwinid(buf)

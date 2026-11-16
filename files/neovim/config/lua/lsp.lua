@@ -36,7 +36,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Configure LSP buffer settings and keymaps",
   group = augroups.attach,
   callback = function(event)
-    local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    if not client then return end
 
     if vim.bo[event.buf].filetype == "sql" then
       vim.bo[event.buf].omnifunc = "vim_dadbod_completion#omni"

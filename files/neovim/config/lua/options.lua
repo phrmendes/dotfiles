@@ -1,4 +1,6 @@
-vim.env.PATH = vim.fs.dirname(require("nix.neovim").bash) .. ":" .. vim.env.PATH
+local has_nix, nix = pcall(require, "nix.neovim")
+
+if has_nix and nix.bash then vim.env.PATH = vim.fs.dirname(nix.bash) .. ":" .. vim.env.PATH end
 
 -- leader keys (must be set before any <leader> mappings)
 vim.g.mapleader = " "

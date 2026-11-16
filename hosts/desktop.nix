@@ -87,11 +87,25 @@ in
           mode = "0700";
           age = "7d";
         }
+        {
+          path = "projects";
+        }
+        {
+          path = "projects/neovim";
+          mode = "0755";
+          group = settings.user;
+        }
       ];
 
-      home-manager.users.${settings.user}.imports = with homeManager; [
-        chromium
-        gaming
-      ];
+      home-manager.users.${settings.user} =
+        { config, ... }:
+        {
+          imports = with homeManager; [
+            chromium
+            gaming
+          ];
+
+          home.file."Projects".source = config.lib.file.mkOutOfStoreSymlink "/mnt/external/projects";
+        };
     };
 }

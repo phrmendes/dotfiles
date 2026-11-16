@@ -75,7 +75,12 @@
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
       home = {
-        file.".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
+        file = {
+          ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
+          ".local/share/nvim/site/pack/external/start" = lib.mkIf (osConfig ? externalDisk) {
+            source = mkOutOfStoreSymlink "/mnt/external/projects/neovim";
+          };
+        };
         packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
       };
 

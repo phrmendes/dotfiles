@@ -130,47 +130,50 @@ in
           };
         };
 
-        home-manager.users.${settings.user}.imports = with homeManager; [
-          atuin
-          gitolite
-          base
-          bat
-          carapace
-          devenv
-          difftastic
-          eza
-          fd
-          fzf
-          gh
-          git
-          gnupg
-          gtk
-          niri
-          jujutsu
-          k8s
-          keepassxc
-          kitty
-          librewolf
-          lua
-          mpv
-          neovim
-          nix-index
-          noctalia
-          nushell
-          packages
-          pi
-          ripgrep
-          shell
-          starship
-          symlinks
-          tealdeer
-          vivid
-          xdg
-          yazi
-          zathura
-          zellij
-          zoxide
-        ];
+        home-manager.users.${settings.user} = {
+          home.packages = [ pkgs.local.nsm ];
+          imports = with homeManager; [
+            atuin
+            gitolite
+            base
+            bat
+            carapace
+            devenv
+            difftastic
+            eza
+            fd
+            fzf
+            gh
+            git
+            gnupg
+            gtk
+            niri
+            jujutsu
+            k8s
+            keepassxc
+            kitty
+            librewolf
+            lua
+            mpv
+            neovim
+            nix-index
+            noctalia
+            nushell
+            packages
+            pi
+            ripgrep
+            shell
+            starship
+            symlinks
+            tealdeer
+            vivid
+            xdg
+            yazi
+            zathura
+            zellij
+            zoxide
+          ];
+        };
 
         age.secrets = {
           "pi.json" = mkSecretReadable {

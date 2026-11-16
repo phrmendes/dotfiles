@@ -10,6 +10,11 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    nsm = {
+      url = "path:/mnt/external/projects/neovim/nsm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";

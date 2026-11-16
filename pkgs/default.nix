@@ -40,6 +40,7 @@ in
   diff-persist = pkgs.callPackage ./diff-persist.nix { };
   gcp = pkgs.callPackage ./gcp.nix { };
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
+  nsm = inputs.nsm.packages.${pkgs.stdenv.hostPlatform.system}.default;
   inherit nushell;
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { src = inputs.pyzotero; };

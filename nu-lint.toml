@@ -1,0 +1,7 @@
+[rules]
+# The quotes mark a text that has a dash, a slash, a colon or a regex character, so it reads as text.
+string_may_be_bare = "off"
+# The pipeline discards the output of a command on purpose.
+redundant_ignore = "off"
+# The error of an external command stops the script, and a `try` that only repeats it adds noise.
+unhandled_external_error = "off"

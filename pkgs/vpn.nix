@@ -1,1 +1,1 @@
-{ writeNuBin }: writeNuBin "vpn" (builtins.readFile ../files/scripts/vpn.nu)
+{ writeNuBin }: writeNuBin { name = "vpn"; } (builtins.readFile ../files/scripts/vpn.nu)

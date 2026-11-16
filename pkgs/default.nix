@@ -1,12 +1,38 @@
 { pkgs, inputs }:
 let
-  nushell = pkgs.callPackage ./nushell.nix { };
+  mkNushell = pkgs.callPackage ./nushell.nix { };
+  nushell = mkNushell (
+    with pkgs.nushellPlugins;
+    [
+      formats
+      gstat
+      polars
+      query
+    ]
+  );
   nuLib = pkgs.writeTextDir "lib.nu" (builtins.readFile ../files/scripts/lib.nu);
   writeNuBin =
-    name:
-    pkgs.writers.makeScriptWriter {
-      interpreter = "${pkgs.coreutils}/bin/env -S NU_LIB_DIRS=${nuLib} ${pkgs.lib.getExe nushell} --no-config-file";
-    } "/bin/${name}";
+    {
+      name,
+      runtimeInputs ? [ ],
+      plugins ? null,
+    }:
+    text:
+    let
+      shell = if plugins == null then nushell else mkNushell plugins;
+      script = pkgs.writers.makeScriptWriter {
+        interpreter = "${pkgs.coreutils}/bin/env -S NU_LIB_DIRS=${nuLib} ${pkgs.lib.getExe shell} --no-config-file";
+      } "/bin/${name}" text;
+    in
+    if runtimeInputs == [ ] then
+      script
+    else
+      pkgs.symlinkJoin {
+        inherit name;
+        paths = [ script ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = "wrapProgram $out/bin/${name} --prefix PATH : ${pkgs.lib.makeBinPath runtimeInputs}";
+      };
 in
 {
   backup-sqlite = pkgs.callPackage ./backup-sqlite.nix { inherit writeNuBin; };
@@ -17,8 +43,8 @@ in
   inherit nushell;
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { src = inputs.pyzotero; };
-  screenshot = writeNuBin "screenshot" (builtins.readFile ../files/scripts/screenshot.nu);
-  restic-restore-test = writeNuBin "restic-restore-test" (
+  screenshot = writeNuBin { name = "screenshot"; } (builtins.readFile ../files/scripts/screenshot.nu);
+  restic-restore-test = writeNuBin { name = "restic-restore-test"; } (
     builtins.readFile ../files/scripts/restic-restore-test.nu
   );
   sync-repos = pkgs.callPackage ./sync-repos.nix { inherit writeNuBin; };

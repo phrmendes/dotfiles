@@ -1,1 +1,1 @@
-{ writeNuBin }: writeNuBin "pin" (builtins.readFile ../files/scripts/pin.nu)
+{ writeNuBin }: writeNuBin { name = "pin"; } (builtins.readFile ../files/scripts/pin.nu)

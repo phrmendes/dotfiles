@@ -28,14 +28,6 @@
       "rev": "7039bc1d130e424232a7aa64ceddb170a154ff5b",
       "src": "https://github.com/Saecki/crates.nvim"
     },
-    "diffbandit.nvim": {
-      "rev": "b4e52c8fc602e254682b4d967a2556614b28df9f",
-      "src": "https://github.com/CoreyKaylor/diffbandit.nvim"
-    },
-    "diffs.nvim": {
-      "rev": "c149ff062ade88e39903611c77ceaa408861cc6f",
-      "src": "https://forge.barrettruth.com/barrettruth/diffs.nvim"
-    },
     "ergoterm.nvim": {
       "rev": "b0aca7e513b4da5faf4a7f35b71b3f07f5300f4b",
       "src": "https://github.com/waiting-for-dev/ergoterm.nvim"

@@ -12,7 +12,7 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     nsm = {
-      url = "path:/mnt/external/projects/neovim/nsm";
+      url = "github:phrmendes/nsm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

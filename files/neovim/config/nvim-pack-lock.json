@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "d3e2250efab001fba40d2226361c0060ccf18fd6",
+      "rev": "24123ae1335691e120f8bcd921902d5b3a98d06c",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "async.nvim": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/waiting-for-dev/ergoterm.nvim"
     },
     "friendly-snippets": {
-      "rev": "b2ea5c41a150ba72fb656eedb4ed0a86d138d945",
+      "rev": "7a1c9f7897a4eb078b157a04c7af81e5869215b1",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "haunt.nvim": {
@@ -57,7 +57,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "markdown.nvim": {
-      "rev": "4cb3e67fe8fc19a49fb3e90aa180b0ebba550a38",
+      "rev": "b65176ed072c725bc922d73d5239da52807c0cfa",
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {

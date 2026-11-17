@@ -17,6 +17,7 @@
         enable = true;
         rules = builtins.readFile "${piDir}/AGENTS.md";
         models = "${piDir}/models.json";
+        extensions = [ ../../../files/pi/extensions/clear.ts ];
         settings = {
           quietStartup = true;
           defaultProvider = "deepseek";

@@ -24,15 +24,15 @@
         "mcp__atlassian__executeWrite"
       ],
       "brainstorming": {
-        "model": "bifrost-anthropic/claude-sonnet-5-5",
+        "model": "salesforce-anthropic/claude-sonnet-5-5",
         "thinkingLevel": "medium"
       },
       "thinking": {
-        "model": "bifrost-anthropic/claude-opus-5-5",
+        "model": "salesforce-anthropic/claude-opus-5-5",
         "thinkingLevel": "high"
       },
       "implementing": {
-        "model": "bifrost-anthropic/claude-sonnet-5-5",
+        "model": "salesforce-anthropic/claude-sonnet-5-5",
         "thinkingLevel": "low"
       }
     },

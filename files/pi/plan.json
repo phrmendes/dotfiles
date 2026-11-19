@@ -5,7 +5,9 @@
   ],
   "profiles": {
     "work": {
-      "match": ["/mnt/external/projects/iplanrio/**"],
+      "match": [
+        "/mnt/external/projects/iplanrio/**"
+      ],
       "deniedTools": [
         "mcp__agent_browser__agent_browser_check",
         "mcp__agent_browser__agent_browser_click",

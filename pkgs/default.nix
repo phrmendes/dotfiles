@@ -40,9 +40,6 @@ in
   beszel = pkgs.callPackage ./beszel.nix { src = inputs.beszel; };
   diff-persist = pkgs.callPackage ./diff-persist.nix { };
   gcp = pkgs.callPackage ./gcp.nix { };
-  neovim-nightly = pkgs.callPackage ./neovim-nightly.nix {
-    neovim = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  };
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nsm = inputs.nsm.packages.${pkgs.stdenv.hostPlatform.system}.default;
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };

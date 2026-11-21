@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.neovim =
     {
@@ -8,12 +9,14 @@
       ...
     }:
     let
+      neovimNightly = inputs.neovim-nightly;
       dotfilesDir = osConfig.workstation.dotfilesDir or "${config.home.homeDirectory}/.config/dotfiles";
       inherit (config.lib.file) mkOutOfStoreSymlink;
     in
     {
       programs.neovim = {
         enable = true;
+        package = neovimNightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
         defaultEditor = true;
         vimAlias = true;
         vimdiffAlias = true;
@@ -81,13 +84,7 @@
             source = mkOutOfStoreSymlink "/mnt/external/projects/neovim";
           };
         };
-        packages = lib.mkIf (osConfig ? workstation) (
-          with pkgs;
-          [
-            neovim-gtk
-            local.neovim-nightly
-          ]
-        );
+        packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
       };
 
       xdg.desktopEntries = lib.mkIf (osConfig ? workstation) {

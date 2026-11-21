@@ -18,11 +18,12 @@
         };
         environmentVariables = {
           PROMPT_INDICATOR_VI_INSERT = "";
-          PROMPT_INDICATOR_VI_NORMAL = "";
           _ZO_MAXAGE = "100000";
         };
         shellAliases.bash = lib.getExe pkgs.bashInteractive;
         extraConfig = ''
+          $env.PROMPT_INDICATOR_VI_NORMAL = {|| $"(ansi yellow_bold)[N](ansi reset) " }
+
           $env.config.menus = ($env.config.menus | each {|menu|
             if $menu.name in [completion_menu ide_completion_menu] {
               $menu | upsert marker ""

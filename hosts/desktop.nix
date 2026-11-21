@@ -21,7 +21,7 @@ in
         type = "desktop";
         monitors = {
           primary = {
-            name = "DP-3";
+            name = "HDMI-A-1";
             resolution = "2560x1080";
             x = 0;
             y = 0;
@@ -29,7 +29,7 @@ in
             scale = 1.0;
           };
           secondary = {
-            name = "HDMI-A-1";
+            name = "DP-3";
             resolution = "1920x1080";
             x = 2560;
             y = 0;

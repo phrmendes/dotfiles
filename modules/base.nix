@@ -63,6 +63,7 @@ in
             desktopAddress = str "192.168.10.3" "LAN address of the desktop.";
             desktopMac = str "f4:b5:20:24:dd:51" "MAC address of the desktop, used for wake-on-LAN.";
             laptopAddress = str "192.168.10.4" "LAN address of the laptop.";
+            kvmAddress = str "192.168.10.5" "LAN address of the KVM.";
           };
           vpn.laptopAddress = str "10.10.10.3" "WireGuard address of the laptop.";
         };

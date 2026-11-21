@@ -14,6 +14,7 @@ in
         k = lib.getExe pkgs.kubectl;
         open-secret = "${lib.getExe' agenix "agenix"} -i ~/.ssh/age -e";
         unlock-server = "ssh server-unlock";
+        update-kvm = "${lib.getExe pkgs.nh} os switch --hostname kvm --target-host ${settings.user}@${settings.lan.kvmAddress} --elevation-strategy passwordless";
         v = "nvim";
         wake-desktop = "${lib.getExe pkgs.wakeonlan} ${settings.lan.desktopMac}";
         wake-server = "${lib.getExe pkgs.wakeonlan} ${settings.lan.serverMac}";

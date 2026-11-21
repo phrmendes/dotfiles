@@ -12,6 +12,7 @@ in
 {
   configurations.nixos.server.module =
     {
+      config,
       lib,
       pkgs,
       ...
@@ -70,6 +71,11 @@ in
         networks."10-lan" = lanNetwork;
       };
       services.resolved.enable = false;
+      services.caddy.virtualHosts = config.caddy.mkVhost {
+        name = "kvm";
+        port = 80;
+        upstream = "${settings.lan.kvmAddress}:80";
+      };
       time.hardwareClockInLocalTime = lib.mkForce true;
 
       security.sudo.wheelNeedsPassword = false;

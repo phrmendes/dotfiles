@@ -50,6 +50,7 @@ in
       disko.mainDiskDevice = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
 
       boot = {
+        binfmt.emulatedSystems = [ "aarch64-linux" ];
         kernelModules = [
           "kvm-amd"
           "snd-aloop"

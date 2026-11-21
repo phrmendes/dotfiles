@@ -43,6 +43,7 @@ in
   noctalia-settings-diff = pkgs.callPackage ./noctalia-settings-diff.nix { };
   nsm = inputs.nsm.packages.${pkgs.stdenv.hostPlatform.system}.default;
   pin = pkgs.callPackage ./pin.nix { inherit writeNuBin; };
+  pikvm = pkgs.callPackage ./pikvm.nix { src = inputs.kvmd; };
   pyzotero = pkgs.callPackage ./pyzotero.nix { src = inputs.pyzotero; };
   restic-restore-test = writeNuBin { name = "restic-restore-test"; } (
     builtins.readFile ../files/scripts/restic-restore-test.nu

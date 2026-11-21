@@ -405,6 +405,23 @@
         "type": "sourcehut"
       }
     },
+    "kvmd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783584599,
+        "narHash": "sha256-SsGrshhntiktUdA/tcIKcnlN6WtiA9vq5we7l+1mYw8=",
+        "owner": "pikvm",
+        "repo": "kvmd",
+        "rev": "bcab4d85923e21b30f66410fa0438c12dd161fbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pikvm",
+        "ref": "v4.180",
+        "repo": "kvmd",
+        "type": "github"
+      }
+    },
     "neovim-nightly": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -692,6 +709,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
+        "kvmd": "kvmd",
         "neovim-nightly": "neovim-nightly",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",

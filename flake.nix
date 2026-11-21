@@ -60,6 +60,11 @@
       flake = false;
     };
 
+    kvmd = {
+      url = "github:pikvm/kvmd?ref=v4.180";
+      flake = false;
+    };
+
     pyzotero = {
       url = "https://files.pythonhosted.org/packages/5d/96/1e0bbee05263b12b9c65cdf7eb1f15509a53cfe0bf992a2cc686ca791d40/pyzotero-1.16.0-py3-none-any.whl";
       flake = false;

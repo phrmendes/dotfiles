@@ -3,10 +3,16 @@ let
   settings = config.const;
   inherit (config.flake.modules) homeManager nixos;
   lanInterface = "enp3s0";
+  lanNetwork = {
+    matchConfig.Name = lanInterface;
+    address = [ "${settings.lan.serverAddress}/24" ];
+    gateway = [ "192.168.10.1" ];
+  };
 in
 {
   configurations.nixos.server.module =
     {
+      lib,
       pkgs,
       ...
     }:
@@ -53,7 +59,17 @@ in
         syncthingServer
       ];
 
-      networking.hostName = "server";
+      networking = {
+        hostName = "server";
+        networkmanager.enable = lib.mkForce false;
+        useDHCP = false;
+        useNetworkd = true;
+      };
+      systemd.network = {
+        enable = true;
+        networks."10-lan" = lanNetwork;
+      };
+      services.resolved.enable = false;
 
       security.sudo.wheelNeedsPassword = false;
 
@@ -69,10 +85,7 @@ in
         availableKernelModules = [ "r8169" ];
         systemd.network = {
           enable = true;
-          networks."10-lan" = {
-            matchConfig.Name = lanInterface;
-            address = [ "${settings.lan.serverAddress}/24" ];
-          };
+          networks."10-lan" = lanNetwork;
         };
         network.ssh = {
           enable = true;

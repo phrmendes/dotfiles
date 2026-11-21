@@ -70,6 +70,7 @@ in
         networks."10-lan" = lanNetwork;
       };
       services.resolved.enable = false;
+      time.hardwareClockInLocalTime = lib.mkForce true;
 
       security.sudo.wheelNeedsPassword = false;
 

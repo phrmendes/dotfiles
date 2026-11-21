@@ -2,6 +2,7 @@
 let
   settings = config.const;
   inherit (config.flake.modules) homeManager nixos;
+  lanInterface = "enp4s0";
 in
 {
   configurations.nixos.desktop.module =
@@ -40,6 +41,11 @@ in
       };
 
       networking.hostName = "desktop";
+
+      systemd.network.links."40-${lanInterface}" = {
+        matchConfig.OriginalName = lanInterface;
+        linkConfig.WakeOnLan = "magic";
+      };
 
       disko.mainDiskDevice = "/dev/disk/by-id/ata-ADATA_SU630_2M032LSQCCH7";
 

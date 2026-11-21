@@ -15,6 +15,7 @@ in
         open-secret = "${lib.getExe' agenix "agenix"} -i ~/.ssh/age -e";
         unlock-server = "ssh server-unlock";
         v = "nvim";
+        wake-desktop = "${lib.getExe pkgs.wakeonlan} ${settings.lan.desktopMac}";
         wake-server = "${lib.getExe pkgs.wakeonlan} ${settings.lan.serverMac}";
       };
     in

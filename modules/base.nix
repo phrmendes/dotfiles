@@ -61,6 +61,7 @@ in
             serverAddress = str "192.168.10.2" "LAN address of the server.";
             serverMac = str "94:c6:91:aa:e3:9e" "MAC address of the server, used for wake-on-LAN.";
             desktopAddress = str "192.168.10.3" "LAN address of the desktop.";
+            desktopMac = str "f4:b5:20:24:dd:51" "MAC address of the desktop, used for wake-on-LAN.";
             laptopAddress = str "192.168.10.4" "LAN address of the laptop.";
           };
           vpn.laptopAddress = str "10.10.10.3" "WireGuard address of the laptop.";

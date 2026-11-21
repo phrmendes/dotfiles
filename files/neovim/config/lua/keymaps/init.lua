@@ -34,13 +34,15 @@ vim.keymap.set("n", "<leader>q", require("helpers").quit_or_detach, { desc = "Qu
 
 vim.keymap.set("n", "<leader>u", function()
   vim.cmd.packadd("nvim.undotree")
-  vim.cmd.Undotree()
+  require("undotree").open({ command = "topleft 30vnew" })
 end, { desc = "Undo Tree" })
 
 vim.iter({ h = "left", j = "down", k = "up", l = "right" }):each(function(dir, name)
   vim.keymap.set({ "n", "t" }, "<m-" .. dir .. ">", function()
-    local delta = (vim.fn.winnr(dir) ~= vim.fn.winnr() and 2 or -2) * vim.v.count1
+    local vertical = dir == "h" or dir == "l"
+    local delta = ((dir == "h" or dir == "j") and -2 or 2) * vim.v.count1
+    if vim.fn.winnr(vertical and "l" or "j") == vim.fn.winnr() then delta = -delta end
 
-    vim.cmd({ cmd = "resize", args = { ("%+d"):format(delta) }, mods = { vertical = dir == "h" or dir == "l" } })
+    vim.cmd({ cmd = "resize", args = { ("%+d"):format(delta) }, mods = { vertical = vertical } })
   end, { desc = "Resize " .. name })
 end)

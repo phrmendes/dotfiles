@@ -83,6 +83,9 @@ binds {
         set-window-height "100%"
     }
     Mod+F {
+        fullscreen-window
+    }
+    Mod+Shift+F {
         toggle-window-floating
     }
     Mod+R {

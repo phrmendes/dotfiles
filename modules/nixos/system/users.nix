@@ -15,7 +15,7 @@ in
           ${settings.user} = {
             inherit (settings) home;
             openssh.authorizedKeys.keys = map builtins.readFile [
-              ../../../files/ssh/main.txt
+              ../../../files/ssh/desktop.txt
               ../../../files/ssh/phone.txt
               ../../../files/ssh/laptop.txt
               ../../../files/ssh/server.txt

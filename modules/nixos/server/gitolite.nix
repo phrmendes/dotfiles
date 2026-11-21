@@ -27,7 +27,7 @@ in
     {
       services.gitolite = {
         enable = true;
-        adminPubkey = builtins.readFile ../../../files/ssh/main.txt;
+        adminPubkey = builtins.readFile ../../../files/ssh/desktop.txt;
       };
 
       services.restic.backups.gitolite = config.restic.mkBackup "gitolite" {

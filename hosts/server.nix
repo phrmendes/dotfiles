@@ -79,7 +79,7 @@ in
           port = settings.serverInitrdSshPort;
           hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
           authorizedKeys = map builtins.readFile [
-            ../files/ssh/main.txt
+            ../files/ssh/desktop.txt
             ../files/ssh/laptop.txt
             ../files/ssh/phone.txt
           ];

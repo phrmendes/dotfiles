@@ -1,5 +1,5 @@
 let
-  main = builtins.readFile ./files/ssh/main.txt;
+  main = builtins.readFile ./files/ssh/desktop.txt;
   keys = {
     server = builtins.readFile ./files/ssh/server.txt;
     laptop = builtins.readFile ./files/ssh/laptop.txt;

@@ -45,6 +45,8 @@ in
         };
       };
 
+      systemd.services.greetd.serviceConfig.Type = lib.mkForce "exec";
+
       xdg.portal = {
         enable = true;
         config = {

@@ -5,21 +5,18 @@ M.ergoterm = {}
 --- Pick from listed buffers with <c-d> to delete.
 M.mini.buffers = function()
   local buf_items = function()
-    return vim
-      .iter(vim.fn.getbufinfo({ buflisted = 1 }))
-      :map(function(buf)
-        local text
+    return vim.tbl_map(function(buf)
+      local text
 
-        if vim.bo[buf.bufnr].buftype == "terminal" then
-          text = vim.fn.fnamemodify(buf.name, ":t")
-        else
-          local name = vim.fn.fnamemodify(buf.name, ":~:.")
-          text = name ~= "" and name or "[No Name]"
-        end
+      if vim.bo[buf.bufnr].buftype == "terminal" then
+        text = vim.fn.fnamemodify(buf.name, ":t")
+      else
+        local name = vim.fn.fnamemodify(buf.name, ":~:.")
+        text = name ~= "" and name or "[No Name]"
+      end
 
-        return { bufnr = buf.bufnr, text = text }
-      end)
-      :totable()
+      return { bufnr = buf.bufnr, text = text }
+    end, vim.fn.getbufinfo({ buflisted = 1 }))
   end
 
   MiniPick.start({
@@ -42,9 +39,9 @@ M.mini.buffers = function()
 
           local to_delete = matches.marked and #matches.marked > 0 and matches.marked or { matches.current }
 
-          vim.iter(to_delete):each(function(buf)
+          for _, buf in ipairs(to_delete) do
             if buf then MiniBufremove.delete(buf.bufnr) end
-          end)
+          end
 
           MiniPick.set_picker_items(buf_items())
         end,
@@ -105,10 +102,9 @@ end
 M.keep_current_buffer = function()
   local current = vim.api.nvim_get_current_buf()
 
-  vim
-    .iter(vim.api.nvim_list_bufs())
-    :filter(function(buf) return buf ~= current and vim.bo[buf].buflisted end)
-    :each(function(buf) require("mini.bufremove").delete(buf) end)
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current and vim.bo[buf].buflisted then require("mini.bufremove").delete(buf) end
+  end
 end
 
 --- Move focus to the window in the given direction.
@@ -137,7 +133,10 @@ end
 --- @param ... string
 --- @return boolean
 M.missing = function(...)
-  return vim.iter({ ... }):any(function(cmd) return vim.fn.executable(cmd) == 0 end)
+  for _, cmd in ipairs({ ... }) do
+    if vim.fn.executable(cmd) == 0 then return true end
+  end
+  return false
 end
 
 --- Enable treesitter highlighting, indentation, and folds for a buffer.

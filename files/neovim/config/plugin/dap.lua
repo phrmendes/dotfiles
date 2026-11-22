@@ -87,18 +87,25 @@ safely("later", function()
 
   require("dap-python").setup(vim.fn.exepath("nvim-python3"))
 
-  vim.iter(pairs(icons)):each(function(type, icon)
-    local thl = "Dap" .. type
-    local nhl = (type == "Stopped") and "DapStop" or "DapBreak"
-    vim.fn.sign_define(thl, { text = icon, texthl = thl, numhl = nhl })
-  end)
+  vim.iter(icons):each(
+    ---@param type string
+    ---@param icon string
+    function(type, icon)
+      local thl = "Dap" .. type
+      local nhl = (type == "Stopped") and "DapStop" or "DapBreak"
+      vim.fn.sign_define(thl, { text = icon, texthl = thl, numhl = nhl })
+    end
+  )
 
-  vim.iter(configs):each(function(config)
-    local type = config.type
+  vim.iter(configs):each(
+    ---@param config dap.Configuration
+    function(config)
+      local type = config.type
 
-    dap.configurations[type] = dap.configurations[type] or {}
-    table.insert(dap.configurations[type], config)
-  end)
+      dap.configurations[type] = dap.configurations[type] or {}
+      table.insert(dap.configurations[type], config)
+    end
+  )
 
   vim.iter(adapters):each(function(lang, adapter) dap.adapters[lang] = adapter end)
 end)

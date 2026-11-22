@@ -25,8 +25,12 @@ in
       services = {
         geoclue2.enable = true;
         gvfs.enable = true;
-        power-profiles-daemon.enable = lib.mkDefault true;
         upower.enable = true;
+
+        keyd = {
+          enable = true;
+          keyboards.default.settings.main.meta = "overload(meta, f13)";
+        };
 
         greetd = {
           enable = true;

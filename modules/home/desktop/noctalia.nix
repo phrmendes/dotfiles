@@ -66,8 +66,9 @@
               launcher_position = "center";
               clipboard_placement = "floating";
               clipboard_position = "center";
-              control_center_placement = "attached";
-              open_near_click_control_center = true;
+              control_center_placement = "floating";
+              control_center_position = "center";
+              open_near_click_control_center = false;
               wallpaper_placement = "attached";
               session_placement = "attached";
             };
@@ -94,9 +95,9 @@
               "caffeine"
               "sysmon"
               "volume"
-              "battery"
-              "clock"
-            ];
+            ]
+            ++ lib.optional isLaptop "battery"
+            ++ [ "clock" ];
           };
 
           bar.main.monitor = barMonitorOverrides;
@@ -172,14 +173,17 @@
           system.monitor.enabled = true;
           desktop_widgets.enabled = false;
 
+          control_center.hidden_tabs = lib.optional (!isLaptop) "network";
           control_center.shortcuts = [
             { type = "bluetooth"; }
             { type = "caffeine"; }
             { type = "nightlight"; }
             { type = "notification"; }
-            { type = "power_profile"; }
           ]
-          ++ lib.optional isLaptop { type = "wifi"; };
+          ++ lib.optionals isLaptop [
+            { type = "power_profile"; }
+            { type = "wifi"; }
+          ];
         };
       };
 

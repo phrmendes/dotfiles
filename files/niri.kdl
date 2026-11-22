@@ -46,6 +46,9 @@ gestures {
     }
 }
 binds {
+    XF86Tools repeat=false {
+        spawn "noctalia" "msg" "panel-toggle" "control-center"
+    }
     Mod+Shift+Slash {
         show-hotkey-overlay
     }

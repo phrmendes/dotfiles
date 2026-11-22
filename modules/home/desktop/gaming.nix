@@ -3,7 +3,6 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        heroic
         hydralauncher
         mangohud
         protonup-rs

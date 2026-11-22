@@ -3,47 +3,26 @@ let
   settings = config.const;
 in
 {
-  flake.modules.nixos.gaming =
-    { pkgs, ... }:
-    {
-      environment.persistence."/persist".users.${settings.user}.directories = [
-        ".local/share/Steam"
-        ".steam"
-      ];
+  flake.modules.nixos.gaming = {
+    environment.persistence."/persist".users.${settings.user}.directories = [
+      ".local/share/Steam"
+      ".steam"
+    ];
 
-      hardware.xpadneo.enable = true;
+    hardware.xpadneo.enable = true;
 
-      programs = {
-        steam = {
-          enable = true;
-          remotePlay.openFirewall = true;
-          dedicatedServer.openFirewall = true;
-          gamescopeSession.enable = true;
-          extraCompatPackages = with pkgs; [ proton-ge-bin ];
-        };
+    programs = {
+      steam.enable = true;
 
-        gamemode = {
-          enable = true;
-          settings = {
-            general = {
-              renice = 10;
-              ioprio = 0;
-            };
-            gpu = {
-              gpu_io_percent = 100;
-            };
+      gamemode = {
+        enable = true;
+        settings = {
+          general = {
+            renice = 10;
+            ioprio = 0;
           };
         };
-
-        gamescope = {
-          enable = true;
-          capSysNice = true;
-        };
       };
-
-      environment.systemPackages = with pkgs; [
-        steam-run
-        steamcmd
-      ];
     };
+  };
 }

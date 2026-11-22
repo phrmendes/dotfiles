@@ -13,6 +13,8 @@
       stylix.targets.gnome.enable = false;
       stylix.targets.kde.enable = false;
 
+      fonts.fontconfig.enable = false;
+
       dconf.settings."org/gnome/desktop/interface" = {
         color-scheme = if stylix.polarity == "dark" then "prefer-dark" else "default";
         font-name = "${stylix.fonts.sansSerif.name} ${toString stylix.fonts.sizes.applications}";

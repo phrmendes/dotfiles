@@ -4,39 +4,21 @@
       (with pkgs; [
         android-tools
         docker-compose
-        drawing
         dux-gop
-        exiftool
-        ffmpeg
-        ffmpegthumbnailer
         file-roller
         fragments
         gcolor3
         gdu
         glab
-        gnome-calculator
         gnome-disk-utility
-        handy
-        hurl
-        imagemagick
-        jqp
-        just
         libqalculate
         lima
         localsend
         loupe
-        ncspot
         nix-prefetch-github
-        pandoc
-        parallel
         pavucontrol
-        phockup
-        poppler
         presenterm
         proton-vpn
-        resources
-        tectonic
-        tesseract
         wl-clipboard
         worktrunk
         xre

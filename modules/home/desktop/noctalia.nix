@@ -50,6 +50,7 @@
             polkit_agent = false;
             telemetry_enabled = false;
             shared_gl_context = true;
+            launcher.fetch_exchange_rates = false;
             animation = {
               enabled = true;
               speed = 1.0;
@@ -111,6 +112,9 @@
           widget.control-center = {
             custom_image = "/run/current-system/sw/share/icons/hicolor/128x128/apps/nix-snowflake.png";
           };
+
+          theme.templates.enable_community_templates = false;
+          plugins.auto_update = "none";
 
           wallpaper = {
             enabled = true;

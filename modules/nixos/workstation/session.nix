@@ -12,9 +12,9 @@ in
         niri.enable = true;
       };
 
-      environment.systemPackages = [
-        pkgs.morewaita-icon-theme
-        pkgs.nautilus
+      environment.systemPackages = with pkgs; [
+        morewaita-icon-theme
+        nautilus
       ];
 
       programs.nautilus-open-any-terminal = {
@@ -25,6 +25,7 @@ in
       services = {
         geoclue2.enable = true;
         gvfs.enable = true;
+        speechd.enable = false;
         upower.enable = true;
 
         keyd = {

@@ -625,11 +625,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795104047,
-        "narHash": "sha256-MsS/IXpWbuRoRsEMg/BMGnPzkziMpv/l2hoOMMKRWnM=",
+        "lastModified": 1795106924,
+        "narHash": "sha256-OLrM92hFmSrumAwK5wRT96CSrNkXVlttMrsCK7dkka0=",
         "owner": "phrmendes",
         "repo": "nsm",
-        "rev": "c909eda6f803d10fb11c7b3b8c0532069b6ea365",
+        "rev": "27704f36b12c9af98527995b8dcc797b1c10f398",
         "type": "github"
       },
       "original": {

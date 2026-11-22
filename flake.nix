@@ -2,8 +2,6 @@
   description = "My personal NixOS configuration";
 
   inputs = {
-    self.submodules = true;
-
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";

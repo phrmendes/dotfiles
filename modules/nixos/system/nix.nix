@@ -92,6 +92,7 @@ in
           flake = lib.mkDefault "${settings.home}/.config/dotfiles";
           clean = {
             enable = true;
+            dates = "daily";
             extraArgs = "--keep-since 3d --keep ${toString settings.generations}";
           };
         };

@@ -9,16 +9,6 @@ local configs = {
   {
     type = "python",
     request = "launch",
-    name = "django:server",
-    program = function() return vim.uv.cwd() .. "/manage.py" end,
-    args = function() return { "runserver", "--noreload", vim.fn.input("Port: ", "8000") } end,
-    justMyCode = true,
-    django = true,
-    console = "integratedTerminal",
-  },
-  {
-    type = "python",
-    request = "launch",
     name = "fastapi:server",
     module = "fastapi",
     args = function() return { "run", vim.fn.input("Entrypoint: ", "src/main.py"), "--port", vim.fn.input("Port: ", "8000") } end,
@@ -85,7 +75,7 @@ safely("later", function()
   dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
   dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
 
-  require("dap-python").setup(vim.fn.exepath("nvim-python3"))
+  require("dap-python").setup("debugpy-adapter")
 
   vim.iter(icons):each(
     ---@param type string
@@ -144,8 +134,4 @@ safely("filetype:lua", function()
   vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, { desc = "Launch debugger" })
 end)
 
-safely("filetype:rust", function()
-  local has_nix, nix = pcall(require, "nix.neovim")
-
-  require("dap-lldb").setup({ codelldb_path = has_nix and nix.codelldb or nil })
-end)
+safely("filetype:rust", function() require("dap-lldb").setup() end)

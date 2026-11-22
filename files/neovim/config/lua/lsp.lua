@@ -20,7 +20,6 @@ vim.lsp.enable({
   "lua_ls",
   "nixd",
   "nushell",
-  "postgres_lsp",
   "pyrefly",
   "ruff",
   "rust_analyzer",

@@ -23,68 +23,38 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = false;
-        extraPython3Packages = p: with p; [ debugpy ];
         extraPackages = with pkgs; [
-          tree-sitter
-          vscode-extensions.vadimcn.vscode-lldb
-          # language servers
-          ansible-language-server
-          astro-language-server
           bash-language-server
-          beamPackages.elixir-ls
           docker-language-server
-          dot-language-server
-          emmet-language-server
-          gitlab-ci-ls
-          helm-ls
+          kdlfmt
           ltex-ls-plus
           lua-language-server
           marksman
           nixd
-          postgres-language-server
-          pyrefly
-          rust-analyzer
-          svelte-language-server
-          taplo
-          texlab
-          tofu-ls
-          typescript
-          vscode-langservers-extracted
-          yaml-language-server
-          # linters
-          ansible-lint
-          clippy
-          nu-lint
-          shellcheck
-          tflint
-          # formatters
-          djlint
-          eslint
-          jq
-          kdlfmt
           nixfmt
+          nu-lint
           nufmt
-          opentofu
           prettier
-          ruff
-          rustfmt
+          shellcheck
           shellharden
           shfmt
           stylua
-          tex-fmt
+          tree-sitter
+          vscode-langservers-extracted
+          yaml-language-server
         ];
       };
 
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
       home = {
+        packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
         file = {
           ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
           ".local/share/nvim/site/pack/external/start" = lib.mkIf (osConfig ? externalDisk) {
             source = mkOutOfStoreSymlink "/mnt/external/projects/neovim";
           };
         };
-        packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
       };
 
       xdg.desktopEntries = lib.mkIf (osConfig ? workstation) {

@@ -23,7 +23,6 @@ safely("later", function()
     astro = { "eslint" },
     bash = { "shellcheck" },
     elixir = { "credo" },
-    htmldjango = { "djlint" },
     javascript = { "eslint" },
     jinja2 = { "djlint" },
     jsx = { "eslint" },

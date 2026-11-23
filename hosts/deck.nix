@@ -7,48 +7,55 @@ in
   flake.homeConfigurations.deck = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.${config.hostPlatform};
     modules = [
-      ({ pkgs, ... }: {
+      ({ lib, pkgs, ... }: {
         imports = with inputs; [
           stylix.homeModules.stylix
           agenix.homeManagerModules.default
         ];
 
-        stylix = {
-          enable = true;
-          enableReleaseChecks = false;
-          base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
-          polarity = "dark";
+        options.home.file = lib.mkOption {
+          type = lib.types.attrsOf (lib.types.submodule { config.force = lib.mkForce true; });
         };
 
-        nixpkgs = {
-          config.allowUnfree = true;
-          overlays = [ config.flake.overlays.local ];
-        };
+        config = {
+          stylix = {
+            enable = true;
+            enableReleaseChecks = false;
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+            polarity = "dark";
+          };
 
-        home = {
-          inherit (settings) stateVersion;
-          username = "deck";
-          homeDirectory = "/home/deck";
-          packages = [ pkgs.moonlight-qt ];
-          file.".config/plasma-workspace/env/nix.sh".text = ''
-            export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
-            export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
-          '';
-        };
+          nixpkgs = {
+            config.allowUnfree = true;
+            overlays = [ config.flake.overlays.local ];
+          };
 
-        age.secrets."pi.json" = {
-          file = ../secrets/pi.age.json;
-          path = "/home/deck/.pi/agent/auth.json";
-          mode = "0600";
-          symlink = false;
-        };
+          home = {
+            inherit (settings) stateVersion;
+            username = "deck";
+            homeDirectory = "/home/deck";
+            packages = [ pkgs.moonlight-qt ];
+            file.".config/plasma-workspace/env/nix.sh".text = ''
+              export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+              export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+            '';
+          };
 
-        services.syncthing = {
-          overrideDevices = false;
-          overrideFolders = false;
-        };
+          age.secrets."pi.json" = {
+            file = ../secrets/pi.age.json;
+            path = "/home/deck/.pi/agent/auth.json";
+            mode = "0600";
+            symlink = false;
+          };
 
-        targets.genericLinux.enable = true;
+          services.syncthing = {
+            overrideDevices = false;
+            overrideFolders = false;
+          };
+
+          programs.kitty.settings.hide_window_decorations = lib.mkForce "no";
+          targets.genericLinux.enable = true;
+        };
       })
     ]
     ++ (with homeManager; [

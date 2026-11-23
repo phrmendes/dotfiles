@@ -1,44 +1,8 @@
-{ config, ... }:
-let
-  settings = config.const;
-  syncthingDevices = {
-    desktop = "GX2DVTR-JHGAK4J-FSWUSWO-T6LXWWV-M7KWB6C-RQHO3YA-XCRMS3P-76YHUAG";
-    laptop = "IAG66TX-VIHT5YS-4T7AZBC-IK2OR6D-BHLITJL-H5O27NZ-VGKUTSD-WJ7YIQE";
-    phone = "XIO67NF-ENODCEU-AXYLQBT-TNYRTXK-UXOWJX3-S4AZ23F-EIN2CAI-UI6DMQH";
-    server = "WO4EEDG-FAZ3VXA-VCV6ZCD-U5TFYFN-QRVFWVO-UXBR4DQ-KDOST52-HD5WNAZ";
-    tablet = "N6ESTXQ-B2CWCVM-SHBRV7Y-KOP5JE5-P7CQJ2Q-LQIILS3-NWMBIBU-TTJ74QG";
-  };
-  versioning = {
-    simple = {
-      type = "simple";
-      params = {
-        keep = "10";
-        cleanoutDays = "30";
-      };
-    };
-    trashcan = {
-      type = "trashcan";
-      params.cleanoutDays = "15";
-    };
-  };
-  workstations = [
-    "desktop"
-    "laptop"
-    "server"
-  ];
-  withMobile = workstations ++ [
-    "phone"
-    "tablet"
-  ];
-  trashcanFolder = path: devices: {
-    inherit path devices;
-    versioning = versioning.trashcan;
-  };
-in
 {
   flake.modules.nixos.syncthingServer =
     { config, lib, ... }:
     let
+      inherit (config.utils) syncthingDevices;
       port = 8384;
       folders = [
         "antennapod"
@@ -196,39 +160,6 @@ in
                   ignorePerms = true;
                 };
               };
-          };
-        };
-      };
-    };
-
-  flake.modules.nixos.syncthingWorkstation =
-    { lib, ... }:
-    {
-      services.syncthing = {
-        inherit (settings) user;
-        enable = true;
-        configDir = "${settings.home}/.config/syncthing";
-        openDefaultPorts = true;
-        overrideDevices = true;
-        overrideFolders = true;
-        settings = {
-          options = {
-            localAnnounceEnabled = true;
-            urAccepted = 1;
-          };
-          devices = lib.mapAttrs (_: id: { inherit id; }) syncthingDevices;
-          folders = {
-            "documents" = trashcanFolder "${settings.home}/Documents/documents" workstations;
-            "images" = trashcanFolder "${settings.home}/Pictures/images" workstations;
-            "notes" = {
-              path = "${settings.home}/Documents/notes";
-              versioning = versioning.simple;
-              devices = withMobile;
-            };
-            "ufabc" = trashcanFolder "${settings.home}/Documents/ufabc" (workstations ++ [ "tablet" ]);
-            "collections" = trashcanFolder "${settings.home}/Documents/collections" workstations;
-            "excalidraw" = trashcanFolder "${settings.home}/Documents/excalidraw" workstations;
-            "keepassxc" = trashcanFolder "${settings.home}/Documents/keepassxc" withMobile;
           };
         };
       };

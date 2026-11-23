@@ -32,6 +32,10 @@ in
           homeDirectory = "/home/deck";
           inherit (settings) stateVersion;
         };
+        services.syncthing = {
+          overrideDevices = false;
+          overrideFolders = false;
+        };
         targets.genericLinux.enable = true;
       }
     ]
@@ -48,6 +52,7 @@ in
       ripgrep
       shell
       starship
+      syncthing
       vivid
       yazi
     ]);

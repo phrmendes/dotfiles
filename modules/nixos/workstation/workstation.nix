@@ -70,7 +70,6 @@ in
         podman
         resolved
         session
-        syncthingWorkstation
         tailscale
       ];
 
@@ -103,6 +102,14 @@ in
       };
 
       config = {
+        networking.firewall = {
+          allowedTCPPorts = [ 22000 ];
+          allowedUDPPorts = [
+            21027
+            22000
+          ];
+        };
+
         security = {
           sudo.wheelNeedsPassword = true;
           pam.sshAgentAuth.enable = true;
@@ -163,6 +170,7 @@ in
             ripgrep
             shell
             starship
+            syncthing
             symlinks
             tealdeer
             vivid

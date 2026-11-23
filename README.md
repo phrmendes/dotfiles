@@ -19,7 +19,7 @@ No root password is set. Log in by SSH key, then run `passwd` on `desktop` and `
 
 ### Steam Deck
 
-`deck` is a standalone Home Manager profile for stock SteamOS. It installs no GUI application.
+`deck` is a standalone Home Manager profile for stock SteamOS.
 
 ```bash
 sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -29,6 +29,8 @@ git clone https://github.com/phrmendes/dotfiles ~/.config/dotfiles
 cd ~/.config/dotfiles
 nix run github:nix-community/home-manager -- switch --flake .#deck
 ```
+
+Run `syncthing device-id` on the Deck. Add its device ID and folder shares to the NixOS Syncthing configurations.
 
 ### KVM
 

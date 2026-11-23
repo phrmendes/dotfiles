@@ -15,7 +15,6 @@ in
 
           stylix = {
             enable = true;
-            autoEnable = false;
             enableReleaseChecks = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
             polarity = "dark";
@@ -28,9 +27,13 @@ in
           overlays = [ config.flake.overlays.local ];
         };
         home = {
+          inherit (settings) stateVersion;
           username = "deck";
           homeDirectory = "/home/deck";
-          inherit (settings) stateVersion;
+          file.".config/plasma-workspace/env/nix.sh".text = ''
+            export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+            export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+          '';
         };
         services.syncthing = {
           overrideDevices = false;
@@ -40,21 +43,31 @@ in
       }
     ]
     ++ (with homeManager; [
+      atuin
       bat
       carapace
+      devenv
+      difftastic
       direnv
       fd
       fzf
+      gh
       git
+      keepassxc
+      kitty
+      lua
       neovim
       nh
       nushell
       ripgrep
       shell
+      ssh
       starship
       syncthing
+      tealdeer
       vivid
       yazi
+      zoxide
     ]);
   };
 }

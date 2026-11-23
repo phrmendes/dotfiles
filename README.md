@@ -24,7 +24,7 @@ No root password is set. Log in by SSH key, then run `passwd` on `desktop` and `
 ```bash
 sh <(curl -L https://nixos.org/nix/install) --daemon
 mkdir -p ~/.config/nix
-echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
+echo 'experimental-features = nix-command flakes pipe-operators' >> ~/.config/nix/nix.conf
 git clone https://github.com/phrmendes/dotfiles ~/.config/dotfiles
 cd ~/.config/dotfiles
 nix run github:nix-community/home-manager -- switch --flake .#deck

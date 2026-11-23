@@ -53,12 +53,17 @@ in
       fzf
       gh
       git
+      gitolite
+      gnupg
+      k8s
       keepassxc
       kitty
+      librewolf
       lua
       neovim
       nh
       nushell
+      pi
       ripgrep
       sharedPackages
       shell

@@ -1,7 +1,4 @@
-{ config, inputs, ... }:
-let
-  settings = config.const;
-in
+{ inputs, ... }:
 {
   flake.modules.nixos.nix =
     {
@@ -87,15 +84,6 @@ in
           ];
         };
 
-        nh = {
-          enable = true;
-          flake = lib.mkDefault "${settings.home}/.config/dotfiles";
-          clean = {
-            enable = true;
-            dates = "daily";
-            extraArgs = "--keep-since 3d --keep ${toString settings.generations}";
-          };
-        };
       };
     };
 }

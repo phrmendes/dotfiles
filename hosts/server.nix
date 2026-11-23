@@ -85,8 +85,6 @@ in
         "dotfiles"
       ];
 
-      programs.nh.flake = "${settings.home}/dotfiles";
-
       boot.initrd = {
         availableKernelModules = [ "r8169" ];
         systemd.network = {
@@ -142,20 +140,24 @@ in
 
       programs.nushell.enable = false;
 
-      home-manager.users.${settings.user}.imports = with homeManager; [
-        base
-        bat
-        carapace
-        fd
-        fzf
-        git
-        gitolite
-        ripgrep
-        shell
-        starship
-        vivid
-        yazi
-        zoxide
-      ];
+      home-manager.users.${settings.user} = {
+        programs.nh.flake = "${settings.home}/dotfiles";
+        imports = with homeManager; [
+          base
+          bat
+          carapace
+          fd
+          fzf
+          git
+          gitolite
+          nh
+          ripgrep
+          shell
+          starship
+          vivid
+          yazi
+          zoxide
+        ];
+      };
     };
 }

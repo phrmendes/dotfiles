@@ -43,6 +43,7 @@ in
       fzf
       git
       neovim
+      nh
       nushell
       ripgrep
       shell

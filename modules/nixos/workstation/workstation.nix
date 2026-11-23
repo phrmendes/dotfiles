@@ -154,6 +154,7 @@ in
             lua
             mpv
             neovim
+            nh
             nix-index
             noctalia
             nushell

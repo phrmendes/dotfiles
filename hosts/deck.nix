@@ -6,26 +6,25 @@ in
 {
   flake.homeConfigurations.deck = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.${config.hostPlatform};
-
     modules = [
-      (
-        { pkgs, ... }:
-        {
-          imports = [ inputs.stylix.homeModules.stylix ];
-
-          stylix = {
-            enable = true;
-            enableReleaseChecks = false;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
-            polarity = "dark";
-          };
-        }
-      )
       ({ pkgs, ... }: {
+        imports = with inputs; [
+          stylix.homeModules.stylix
+          agenix.homeManagerModules.default
+        ];
+
+        stylix = {
+          enable = true;
+          enableReleaseChecks = false;
+          base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+          polarity = "dark";
+        };
+
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [ config.flake.overlays.local ];
         };
+
         home = {
           inherit (settings) stateVersion;
           username = "deck";
@@ -36,10 +35,19 @@ in
             export XDG_DATA_DIRS="$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
           '';
         };
+
+        age.secrets."pi.json" = {
+          file = ../secrets/pi.age.json;
+          path = "/home/deck/.pi/agent/auth.json";
+          mode = "0600";
+          symlink = false;
+        };
+
         services.syncthing = {
           overrideDevices = false;
           overrideFolders = false;
         };
+
         targets.genericLinux.enable = true;
       })
     ]

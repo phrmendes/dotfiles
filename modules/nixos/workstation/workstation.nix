@@ -182,13 +182,13 @@ in
         age.secrets = {
           "pi.json" = {
             owner = settings.user;
-            file = ../../../secrets/laptop/pi.age.json;
+            file = ../../../secrets/pi.age.json;
             path = "${settings.home}/.pi/agent/auth.json";
             symlink = false;
           };
           "noctalia.txt" = mkSecretReadable {
             owner = settings.user;
-            file = ../../../secrets/laptop/noctalia.age.txt;
+            file = ../../../secrets/noctalia.age.txt;
           };
         };
 

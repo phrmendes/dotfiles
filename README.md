@@ -37,7 +37,7 @@ Run `syncthing device-id` on the Deck. Add its device ID and folder shares to th
 Reserve `192.168.10.5` for the Pi. Build the SD image on `desktop` with ARM emulation enabled:
 
 ```bash
-nix develop -c nix build .#nixosConfigurations.kvm.config.system.build.sdImage
+nix build .#nixosConfigurations.kvm.config.system.build.sdImage
 ```
 
 Identify the SD card with `lsblk` and unmount its partitions.
@@ -56,17 +56,21 @@ ssh -t phrmendes@192.168.10.5 'sudo -u kvmd kvmd-htpasswd add admin'
 
 ## Secrets
 
-After changing recipients in `agenix-rules.nix`, re-encrypt the existing secrets:
+Encrypted files use `secrets/` directory.
+
+After changing recipients in `agenix-rules.nix`, re-encrypt all secrets on the desktop:
 
 ```bash
-agenix --rekey
+rekey-secrets
 ```
 
 ## Restore backups (server)
 
+Replace `<name>` with the backup name.
+
 ```bash
-restic-gitolite snapshots
-restic-gitolite restore latest --target /tmp/restore
+restic-<name> snapshots
+restic-<name> restore latest --target /tmp/restore
 ```
 
 ## Recovery (chroot)

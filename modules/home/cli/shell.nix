@@ -13,6 +13,7 @@ in
         create-secret = "${lib.getExe pkgs.authelia} crypto hash generate pbkdf2 --variant sha512 --random --random.length 72 --random.charset rfc3986";
         k = lib.getExe pkgs.kubectl;
         open-secret = "${lib.getExe' agenix "agenix"} -i ~/.ssh/age -e";
+        rekey-secrets = "${lib.getExe' agenix "agenix"} --rekey -i ~/.ssh/age";
         unlock-server = "ssh server-unlock";
         update-kvm = "${lib.getExe pkgs.nh} os switch --hostname kvm --target-host ${settings.user}@${settings.lan.kvmAddress} --elevation-strategy passwordless";
         v = "nvim";

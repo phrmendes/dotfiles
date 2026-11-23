@@ -17,6 +17,7 @@
           file://${config.home.homeDirectory}/Documents Documents
           file://${config.home.homeDirectory}/Downloads Downloads
           file://${config.home.homeDirectory}/Pictures Pictures
+          file://${config.home.homeDirectory}/Projects Projects
           file://${config.home.homeDirectory}/Videos Videos
           sftp://server SFTP
         '';

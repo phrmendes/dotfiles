@@ -25,7 +25,7 @@
         desktopEntries."dev.lizardbyte.app.Sunshine" = {
           name = "Sunshine";
           genericName = "Game Stream Host";
-          exec = "/run/wrappers/bin/sunshine";
+          exec = "systemctl --user start sunshine.service";
           icon = "dev.lizardbyte.app.Sunshine";
           terminal = false;
           categories = [

@@ -75,7 +75,9 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   desc = "Reload file on external changes",
   group = augroups.autoread,
   callback = function()
-    if vim.fn.mode() ~= "c" then vim.cmd.checktime() end
+    vim.schedule(function()
+      if vim.fn.mode() ~= "c" then vim.cmd.checktime() end
+    end)
   end,
 })
 

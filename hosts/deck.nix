@@ -41,6 +41,7 @@ in
             '';
           };
 
+          age.identityPaths = [ "/home/deck/.ssh/age" ];
           age.secrets."pi.json" = {
             file = ../secrets/pi.age.json;
             path = "/home/deck/.pi/agent/auth.json";

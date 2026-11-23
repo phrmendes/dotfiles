@@ -3,6 +3,10 @@ window-rule {
     clip-to-geometry true
 }
 window-rule {
+    match app-id="^steam$" title="^Steam Big Picture Mode$"
+    open-fullscreen true
+}
+window-rule {
     match app-id="^\\.blueman-manager-wrapped$"
     open-floating true
 }

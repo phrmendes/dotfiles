@@ -54,6 +54,7 @@ in
           };
 
           programs.kitty.settings.hide_window_decorations = lib.mkForce "no";
+          xdg.systemDirs.config = [ "/etc/xdg" ];
           targets.genericLinux.enable = true;
         };
       })

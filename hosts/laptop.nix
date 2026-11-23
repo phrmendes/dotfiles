@@ -1,6 +1,5 @@
 { config, ... }:
 let
-  settings = config.const;
   inherit (config.flake.modules) nixos;
 in
 {
@@ -12,7 +11,6 @@ in
     {
       imports = with nixos; [
         forcePassphrase
-        moonlight
         mosh
         wireguard
         workstation

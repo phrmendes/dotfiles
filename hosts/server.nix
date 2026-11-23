@@ -34,7 +34,6 @@ in
         flaresolverr
         flood
         gitolite
-        homeAssistant
         homepage
         immich
         jellyfin

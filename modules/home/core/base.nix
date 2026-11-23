@@ -9,37 +9,9 @@ in
       editor = lib.mkDefault "nvim";
     in
     {
-      stylix.targets.rofi.enable = false;
+      imports = [ config.flake.modules.homeManager.ssh ];
 
-      programs.ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-        settings = {
-          "*".AddKeysToAgent = "no";
-          "server" = {
-            HostName = settings.lan.serverAddress;
-            User = settings.user;
-          };
-          "desktop" = {
-            HostName = settings.lan.desktopAddress;
-            User = settings.user;
-            ProxyJump = "server";
-          };
-          "laptop" = {
-            HostName = settings.lan.laptopAddress;
-            User = settings.user;
-            ConnectTimeout = 5;
-          };
-          "server-unlock" = {
-            HostName = settings.lan.serverAddress;
-            Port = settings.serverInitrdSshPort;
-            User = "root";
-            HostKeyAlias = "server-initrd";
-            RequestTTY = "yes";
-            RemoteCommand = "systemd-tty-ask-password-agent --query";
-          };
-        };
-      };
+      stylix.targets.rofi.enable = false;
 
       home = {
         inherit (settings) stateVersion;

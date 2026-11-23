@@ -73,6 +73,7 @@ in
         extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keys = map builtins.readFile [
           ../files/ssh/desktop.txt
+          ../files/ssh/deck.txt
           ../files/ssh/laptop.txt
           ../files/ssh/phone.txt
         ];

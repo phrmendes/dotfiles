@@ -16,6 +16,7 @@ in
             inherit (settings) home;
             openssh.authorizedKeys.keys = map builtins.readFile [
               ../../../files/ssh/desktop.txt
+              ../../../files/ssh/deck.txt
               ../../../files/ssh/phone.txt
               ../../../files/ssh/laptop.txt
               ../../../files/ssh/server.txt

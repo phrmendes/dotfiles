@@ -1,7 +1,7 @@
 { config, ... }:
 let
   settings = config.const;
-  inherit (config.flake.modules) homeManager nixos;
+  inherit (config.flake.modules) nixos;
 in
 {
   configurations.nixos.laptop.module =
@@ -12,6 +12,7 @@ in
     {
       imports = with nixos; [
         forcePassphrase
+        moonlight
         mosh
         wireguard
         workstation
@@ -102,9 +103,5 @@ in
           useStockConfig = true;
         };
       };
-
-      home-manager.users.${settings.user}.imports = with homeManager; [
-        moonlight
-      ];
     };
 }

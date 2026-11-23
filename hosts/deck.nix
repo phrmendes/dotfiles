@@ -51,6 +51,7 @@ in
       direnv
       fd
       fzf
+      gaming
       gh
       git
       gitolite

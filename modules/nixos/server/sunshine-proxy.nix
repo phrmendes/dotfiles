@@ -1,7 +1,7 @@
 { config, ... }:
 let
   settings = config.const;
-  port = settings.sunshinePort;
+  port = settings.sunshinePort + 1;
 in
 {
   flake.modules.nixos.sunshineProxy =

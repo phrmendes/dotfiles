@@ -48,8 +48,8 @@ in
           };
           sunshinePort = lib.mkOption {
             type = lib.types.port;
-            default = 47990;
-            description = "Base port of Sunshine, shared by the service and its proxy.";
+            default = 47989;
+            description = "Sunshine base port. The web interface uses the next port.";
           };
           serverInitrdSshPort = lib.mkOption {
             type = lib.types.port;

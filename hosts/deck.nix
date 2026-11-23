@@ -60,6 +60,7 @@ in
       nh
       nushell
       ripgrep
+      sharedPackages
       shell
       ssh
       starship

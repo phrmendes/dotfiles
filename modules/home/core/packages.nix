@@ -1,31 +1,39 @@
+{ config, ... }:
 {
+  flake.modules.homeManager.sharedPackages = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      android-tools
+      docker-compose
+      dux-gop
+      gdu
+      glab
+      localsend
+      nix-prefetch-github
+      presenterm
+      proton-vpn
+      worktrunk
+      local.gcp
+    ];
+  };
+
   flake.modules.homeManager.packages = { pkgs, ... }: {
+    imports = [ config.flake.modules.homeManager.sharedPackages ];
+
     home.packages =
       (with pkgs; [
-        android-tools
-        docker-compose
-        dux-gop
         file-roller
         fragments
         gcolor3
-        gdu
-        glab
         gnome-disk-utility
         libqalculate
         lima
-        localsend
         loupe
-        nix-prefetch-github
         pavucontrol
-        presenterm
-        proton-vpn
         wl-clipboard
-        worktrunk
         xre
       ])
       ++ (with pkgs.local; [
         diff-persist
-        gcp
         noctalia-settings-diff
         pin
         screenshot

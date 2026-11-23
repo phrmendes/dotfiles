@@ -55,6 +55,7 @@ in
           };
 
           programs.kitty.settings.hide_window_decorations = lib.mkForce "no";
+          programs.starship.enableBashIntegration = false;
           xdg.systemDirs.config = [ "/etc/xdg" ];
           targets.genericLinux.enable = true;
         };

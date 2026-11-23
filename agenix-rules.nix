@@ -62,10 +62,6 @@ in
     desktop
     server
   ];
-  "secrets/wg.deck.age.conf".publicKeys = [
-    desktop
-    deck
-  ];
   "secrets/wg.laptop.age.conf".publicKeys = [
     desktop
     laptop

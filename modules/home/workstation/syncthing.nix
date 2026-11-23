@@ -41,8 +41,13 @@ in
           folders = {
             documents = trashcanFolder "${homeDir}/Documents/documents" workstations;
             images = trashcanFolder "${homeDir}/Pictures/images" withDeck;
+            ufabc = trashcanFolder "${homeDir}/Documents/ufabc" (withDeck ++ [ "tablet" ]);
+            collections = trashcanFolder "${homeDir}/Documents/collections" withDeck;
+            excalidraw = trashcanFolder "${homeDir}/Documents/excalidraw" withDeck;
+            keepassxc = trashcanFolder "${homeDir}/Documents/keepassxc" withMobile;
             notes = {
               path = "${homeDir}/Documents/notes";
+              devices = withMobile;
               versioning = {
                 type = "simple";
                 params = {
@@ -50,12 +55,7 @@ in
                   cleanoutDays = "30";
                 };
               };
-              devices = withMobile;
             };
-            ufabc = trashcanFolder "${homeDir}/Documents/ufabc" (withDeck ++ [ "tablet" ]);
-            collections = trashcanFolder "${homeDir}/Documents/collections" withDeck;
-            excalidraw = trashcanFolder "${homeDir}/Documents/excalidraw" withDeck;
-            keepassxc = trashcanFolder "${homeDir}/Documents/keepassxc" withMobile;
           };
         };
       };

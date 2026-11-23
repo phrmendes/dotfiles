@@ -4,12 +4,11 @@ let
 in
 {
   flake.modules.nixos.users =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
 
       users = {
         mutableUsers = true;
-        defaultUserShell = pkgs.local.nushell;
         groups.external = { };
         users = {
           ${settings.user} = {

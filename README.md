@@ -27,6 +27,20 @@ mkdir -p ~/.config/nix
 echo 'experimental-features = nix-command flakes pipe-operators' >> ~/.config/nix/nix.conf
 git clone https://github.com/phrmendes/dotfiles ~/.config/dotfiles
 cd ~/.config/dotfiles
+```
+
+Install the Nix daemon units outside `/nix` so systemd can load them before the disk mount:
+
+```bash
+sudo install -m 0644 files/deck/nix-daemon.socket /etc/systemd/system/nix-daemon.socket
+sudo install -m 0644 files/deck/nix-daemon.service /etc/systemd/system/nix-daemon.service
+sudo systemctl daemon-reload
+sudo systemctl reenable --now nix-daemon.socket
+```
+
+Then apply the Home Manager configuration:
+
+```bash
 nix run github:nix-community/home-manager -- switch --flake .#deck
 ```
 

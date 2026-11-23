@@ -4,7 +4,9 @@ window-rule {
 }
 window-rule {
     match app-id="^steam$" title="^Steam Big Picture Mode$"
+    open-on-output "DP-3"
     open-fullscreen true
+    open-focused true
 }
 window-rule {
     match app-id="^\\.blueman-manager-wrapped$"

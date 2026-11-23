@@ -6,6 +6,18 @@ let
       description,
       port,
       dataDir ? null,
+      logDatabase ? true,
+      settings ? {
+        server.bindAddress = "127.0.0.1";
+        Auth.Method = "External";
+        postgres = {
+          host = "/run/postgresql";
+          port = 5432;
+          user = name;
+          maindb = name;
+          logdb = "${name}_log";
+        };
+      },
     }:
     { config, lib, ... }:
     {
@@ -22,7 +34,9 @@ let
         ${name} = config.utils.dependsOnPostgres // {
           serviceConfig.SupplementaryGroups = [ "external" ];
         };
-        postgresql-setup.script = lib.mkAfter ''psql -tAc 'ALTER DATABASE "${name}_log" OWNER TO "${name}"' '';
+        postgresql-setup.script = lib.mkIf logDatabase (
+          lib.mkAfter ''psql -tAc 'ALTER DATABASE "${name}_log" OWNER TO "${name}"' ''
+        );
       };
 
       services = {
@@ -32,28 +46,37 @@ let
         };
         ${name} = {
           enable = true;
-          settings = {
-            server.bindAddress = "127.0.0.1";
-            Auth.Method = "External";
-            postgres = {
-              host = "/run/postgresql";
-              port = 5432;
-              user = name;
-              maindb = name;
-              logdb = "${name}_log";
-            };
-          };
+          inherit settings;
         }
         // lib.optionalAttrs (dataDir != null) { inherit dataDir; };
         postgresql = lib.mkMerge [
           (config.utils.mkPostgres name)
-          { ensureDatabases = [ "${name}_log" ]; }
+          (lib.mkIf logDatabase { ensureDatabases = [ "${name}_log" ]; })
         ];
       };
     };
 in
 {
   flake.modules.nixos = {
+    bazarr = mkArr {
+      name = "bazarr";
+      title = "Bazarr";
+      description = "Subtitle management";
+      port = 6767;
+      logDatabase = false;
+      settings = {
+        backup.folder = "/var/lib/bazarr/backup";
+        postgresql = {
+          enabled = true;
+          host = "/run/postgresql";
+          port = 5432;
+          database = "bazarr";
+          username = "bazarr";
+        };
+        translator.lingarr_url = "";
+      };
+    };
+
     sonarr = mkArr {
       name = "sonarr";
       title = "Sonarr";

@@ -24,7 +24,7 @@ in
       ...
     }:
     let
-      inherit (import ../../utils { inherit lib; }) syncthingDevices;
+      inherit (import ../../../utils { inherit lib; }) syncthingDevices;
       homeDir = config.home.homeDirectory;
     in
     {

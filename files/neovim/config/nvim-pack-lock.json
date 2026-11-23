@@ -65,7 +65,7 @@
       "src": "https://github.com/phrmendes/notes.nvim"
     },
     "nsm": {
-      "rev": "cbb16623b749891e464f48c950a99763bb3242a0",
+      "rev": "27704f36b12c9af98527995b8dcc797b1c10f398",
       "src": "https://github.com/phrmendes/nsm"
     },
     "nvim-ansible": {

@@ -2,12 +2,12 @@
   flake.modules.homeManager.lua =
     {
       pkgs,
+      lib,
       config,
-      osConfig,
       ...
     }:
     let
-      inherit (osConfig) utils;
+      utils = import ../../../utils { inherit lib; };
       base16 = utils.mkBase16Lua config.lib.stylix.colors;
 
       nix = ''

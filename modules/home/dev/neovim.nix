@@ -48,7 +48,10 @@
       xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
       home = {
-        packages = lib.mkIf (osConfig ? workstation) [ pkgs.neovim-gtk ];
+        packages = with pkgs; [
+          local.nsm
+          neovim-gtk
+        ];
         file = {
           ".config/nvim".source = mkOutOfStoreSymlink "${dotfilesDir}/files/neovim/config";
           ".local/share/nvim/site/pack/external/start" = lib.mkIf (osConfig ? externalDisk) {
@@ -57,7 +60,7 @@
         };
       };
 
-      xdg.desktopEntries = lib.mkIf (osConfig ? workstation) {
+      xdg.desktopEntries = {
         "org.daa.NeovimGtk" = {
           name = "Neovim";
           genericName = "Text Editor";

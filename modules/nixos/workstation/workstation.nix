@@ -136,7 +136,6 @@ in
         };
 
         home-manager.users.${settings.user} = {
-          home.packages = [ pkgs.local.nsm ];
           imports = with homeManager; [
             atuin
             gitolite

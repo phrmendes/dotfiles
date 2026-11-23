@@ -100,6 +100,7 @@
             folders =
               let
                 allDevices = [
+                  "deck"
                   "desktop"
                   "laptop"
                   "phone"
@@ -115,6 +116,7 @@
                 collections = {
                   path = "/mnt/external/syncthing/collections";
                   devices = [
+                    "deck"
                     "desktop"
                     "laptop"
                   ];
@@ -131,6 +133,7 @@
                 excalidraw = {
                   path = "/mnt/external/syncthing/excalidraw";
                   devices = [
+                    "deck"
                     "desktop"
                     "laptop"
                   ];
@@ -139,6 +142,7 @@
                 images = {
                   path = "/mnt/external/syncthing/images";
                   devices = [
+                    "deck"
                     "desktop"
                     "laptop"
                   ];

@@ -11,6 +11,10 @@ window-rule {
     open-floating true
 }
 window-rule {
+    match title="Syncthing Tray$"
+    open-floating true
+}
+window-rule {
     match title="^Picture-in-Picture$"
     open-floating true
 }

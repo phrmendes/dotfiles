@@ -1,6 +1,5 @@
 safely("later", function()
   require("mini.completion").setup({
-    fallback_action = "<c-x><c-o>",
     window = {
       info = { height = 25, width = 80 },
       signature = { height = 25, width = 80 },

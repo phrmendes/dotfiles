@@ -5,7 +5,7 @@ safely("later", function()
     triggers = {
       { mode = "i", keys = "<c-x>" },
       { mode = "n", keys = "<c-c>" },
-      { mode = { "n", "t" }, keys = "<c-\\>" },
+      { mode = { "n", "t" }, keys = "<C-Bslash>" },
       { mode = "n", keys = "<c-w>" },
       { mode = { "i", "c" }, keys = "<c-r>" },
       { mode = { "n", "x" }, keys = "'" },
@@ -33,5 +33,10 @@ safely("later", function()
       { mode = { "n", "x" }, keys = "<leader>g", desc = "+git" },
     },
     window = { delay = 500, config = { width = "auto", border = vim.g.border } },
+  })
+
+  vim.api.nvim_create_autocmd("TermOpen", {
+    desc = "Enable clues in terminal buffers",
+    callback = function(event) clue.enable_buf_triggers(event.buf) end,
   })
 end)

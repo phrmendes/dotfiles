@@ -16,7 +16,18 @@ safely("now", function()
 end)
 
 vim.api.nvim_create_autocmd("FileType", {
-  desc = "Disable statusline in sidekick terminal",
-  pattern = "sidekick_terminal",
-  callback = function(event) vim.b[event.buf].ministatusline_disable = true end,
+  desc = "Show only the mode in terminal windows",
+  pattern = { "sidekick_terminal" },
+  callback = function(event)
+    vim.b[event.buf].ministatusline_config = {
+      content = {
+        active = function()
+          local st = require("mini.statusline")
+          local mode, hl = st.section_mode({ trunc_width = 120 })
+          return st.combine_groups({ { hl = hl, strings = { mode } } }) .. "%#MiniStatuslineInactive#%="
+        end,
+        inactive = function() return "" end,
+      },
+    }
+  end,
 })

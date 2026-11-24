@@ -5,6 +5,7 @@ if has_nix and nix.bash then vim.env.PATH = vim.fs.dirname(nix.bash) .. ":" .. v
 -- leader keys (must be set before any <leader> mappings)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+vim.g.terminalleader = "<c-;>"
 
 -- treesitter language mappings
 vim.treesitter.language.register("bash", "sh")

@@ -24,12 +24,14 @@ safely("later", function()
     },
   })
 
-  vim.keymap.set({ "n", "t" }, "<c-\\><c-\\>", function() (et.get_target_for_bang() or et:new()):toggle() end, { desc = "Terminal" })
-  vim.keymap.set({ "n", "t" }, "<c-\\>n", "<cmd>TermNew<cr>", { desc = "New terminal" })
-  vim.keymap.set({ "n", "t" }, "<c-\\>]", function() require("helpers").ergoterm.cycle(1) end, { desc = "Next terminal" })
-  vim.keymap.set({ "n", "t" }, "<c-\\>[", function() require("helpers").ergoterm.cycle(-1) end, { desc = "Previous terminal" })
-  vim.keymap.set({ "n", "t" }, "<c-\\>s", "<cmd>TermSelect<cr>", { desc = "Select terminal" })
-  vim.keymap.set({ "n", "t" }, "<c-\\>x", function() et.cleanup_all({ force = true }) end, { desc = "Delete all terminals" })
-  vim.keymap.set("n", "<c-\\>r", ":TermUpdate! name=", { desc = "Rename terminal" })
-  vim.keymap.set("t", "<c-\\>r", "<c-\\><c-n>:TermUpdate! name=", { desc = "Rename terminal" })
+  local leader = vim.g.terminalleader
+
+  vim.keymap.set({ "n", "t" }, leader .. leader, function() (et.get_target_for_bang() or et:new()):toggle() end, { desc = "Terminal" })
+  vim.keymap.set({ "n", "t" }, leader .. "n", "<cmd>TermNew<cr>", { desc = "New terminal" })
+  vim.keymap.set({ "n", "t" }, leader .. "]", function() require("helpers").ergoterm.cycle(1) end, { desc = "Next terminal" })
+  vim.keymap.set({ "n", "t" }, leader .. "[", function() require("helpers").ergoterm.cycle(-1) end, { desc = "Previous terminal" })
+  vim.keymap.set({ "n", "t" }, leader .. "s", "<cmd>TermSelect<cr>", { desc = "Select terminal" })
+  vim.keymap.set({ "n", "t" }, leader .. "x", function() et.cleanup_all({ force = true }) end, { desc = "Delete all terminals" })
+  vim.keymap.set("n", leader .. "r", ":TermUpdate! name=", { desc = "Rename terminal" })
+  vim.keymap.set("t", leader .. "r", "<c-\\><c-n>:TermUpdate! name=", { desc = "Rename terminal" })
 end)

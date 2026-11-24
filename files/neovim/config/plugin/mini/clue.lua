@@ -5,7 +5,7 @@ safely("later", function()
     triggers = {
       { mode = "i", keys = "<c-x>" },
       { mode = "n", keys = "<c-c>" },
-      { mode = { "n", "t" }, keys = "<C-Bslash>" },
+      { mode = { "n", "t" }, keys = vim.g.terminalleader },
       { mode = "n", keys = "<c-w>" },
       { mode = { "i", "c" }, keys = "<c-r>" },
       { mode = { "n", "x" }, keys = "'" },

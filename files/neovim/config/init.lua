@@ -4,6 +4,7 @@ vim.pack.add({
   "https://codeberg.org/mfussenegger/nvim-ansible",
   "https://codeberg.org/mfussenegger/nvim-dap",
   "https://codeberg.org/mfussenegger/nvim-dap-python",
+  "https://github.com/MagicDuck/grug-far.nvim",
   "https://github.com/NeogitOrg/neogit",
   "https://github.com/Saecki/crates.nvim",
   "https://github.com/TheNoeTrevino/haunt.nvim",

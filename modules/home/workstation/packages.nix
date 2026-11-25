@@ -9,7 +9,6 @@
         fragments
         gcolor3
         gnome-disk-utility
-        leaf-markdown-viewer
         libqalculate
         lima
         loupe

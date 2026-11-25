@@ -155,6 +155,7 @@ in
             k8s
             keepassxc
             kitty
+            leaf
             librewolf
             lua
             mpv

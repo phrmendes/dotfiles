@@ -23,13 +23,7 @@ end
 ---@return lsp.Unregistration
 local function to_unregistration(registration) return { id = registration.id, method = method } end
 
--- pyrefly registers several file watchers under the same id. Neovim keeps one watcher per id, so
--- each new registration cancels the previous one and the project's .py files stop being watched.
--- Suffix every id with a hash of its watchers, and unregister all the suffixed ids together.
 return {
-  capabilities = {
-    workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
-  },
   handlers = {
     ---@type lsp.Handler
     ["client/registerCapability"] = function(err, result, ctx)

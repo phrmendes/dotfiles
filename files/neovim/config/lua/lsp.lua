@@ -2,6 +2,10 @@ local augroups = {
   attach = vim.api.nvim_create_augroup("UserLspAttach", {}),
 }
 
+vim.lsp.config("*", {
+  capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } },
+})
+
 vim.lsp.enable({
   "ansiblels",
   "astro",

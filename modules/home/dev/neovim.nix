@@ -26,6 +26,7 @@
         extraPackages = with pkgs; [
           bash-language-server
           docker-language-server
+          inotify-tools
           kdlfmt
           ltex-ls-plus
           lua-language-server

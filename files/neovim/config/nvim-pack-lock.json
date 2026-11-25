@@ -36,6 +36,10 @@
       "rev": "7a1c9f7897a4eb078b157a04c7af81e5869215b1",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "grug-far.nvim": {
+      "rev": "91b7e58b6ffc6ddad5acb7a7c1df21257724449e",
+      "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
     "haunt.nvim": {
       "rev": "a614d90be50b49dfe18aac2f3c2394c69feefd01",
       "src": "https://github.com/TheNoeTrevino/haunt.nvim"

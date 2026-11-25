@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "24123ae1335691e120f8bcd921902d5b3a98d06c",
+      "rev": "5926c7899b2e36cd0f944ef3a933abd68c0fcdb8",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "async.nvim": {
@@ -13,7 +13,7 @@
       "src": "https://github.com/m00qek/baleia.nvim"
     },
     "bib.nvim": {
-      "rev": "3650c505445a7e9ccc95380598ab1f4297b213be",
+      "rev": "9221967b1f8aee99ee9242c664af5d0630a61987",
       "src": "https://github.com/phrmendes/bib.nvim"
     },
     "codediff.nvim": {
@@ -53,19 +53,19 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "markdown.nvim": {
-      "rev": "b65176ed072c725bc922d73d5239da52807c0cfa",
+      "rev": "b2fd7066a1be273ac98ec8cbeef2898912118d06",
       "src": "https://github.com/tadmccorkle/markdown.nvim"
     },
     "mini.nvim": {
-      "rev": "f9550dd81d0514927b7ad1794fd8eb8606ca28cd",
+      "rev": "24cf4ad5840f0d092e3d8296b17eaf7026bf27f3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "ba2f33b64b996ff5530c4c45a3c432fb63aaa95b",
+      "rev": "0468adaa4af22ede35c0df6bdd81e93a9c217733",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "notes.nvim": {
-      "rev": "4a05ac0594bbb442668e02d62468d6acbbb655db",
+      "rev": "baf37f5c2086aeda52c9ad62eff4c620a981793e",
       "src": "https://github.com/phrmendes/notes.nvim"
     },
     "nsm": {
@@ -89,19 +89,19 @@
       "src": "https://codeberg.org/mfussenegger/nvim-dap-python"
     },
     "nvim-dap-view": {
-      "rev": "bfaf50b3f513f78d8ab3e5fe02128dda05be4945",
+      "rev": "1c3b9cc295303fc173f24d442739a8557e23e987",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
-      "rev": "52107ce2076a27a285af781248e2c59bad817cd0",
+      "rev": "6bf29b9dbdad60b38b489b23309c22ba6d4c915a",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "993d048db0d83d8e8ba3f9cb376456321acdcce3",
+      "rev": "9691c9af52cd12c9accc6dc6d0540593c705bca8",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "19bdfc04f40ed2ccb3340591d125f759b0406875",
+      "rev": "52773f0d13a0c11d0c3ef33c14ab6ecc1c17148b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -121,7 +121,7 @@
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "refactoring.nvim": {
-      "rev": "ea18f97c58276e213736c9f0193f7aa4c690693e",
+      "rev": "642f608edad8776d65a0d5a402cb153c1e19a0b6",
       "src": "https://github.com/ThePrimeagen/refactoring.nvim"
     },
     "sidekick.nvim": {
@@ -133,7 +133,7 @@
       "src": "https://github.com/kkharji/sqlite.lua"
     },
     "todotxt.nvim": {
-      "rev": "1344867f9c03bb8eb36f0316d03a9ac3951dec78",
+      "rev": "c8340ebf8e84ad0d1c52a0acc6f62c24db78f909",
       "src": "https://github.com/phrmendes/todotxt.nvim"
     },
     "vim-abolish": {
@@ -153,7 +153,7 @@
       "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
     },
     "vim-slime": {
-      "rev": "305b4d81ff4630af5137fdeffb54aa0fef14761b",
+      "rev": "375999b91aa9bd227350140d4aedc6d2ff8554ac",
       "src": "https://github.com/jpalardy/vim-slime"
     }
   }

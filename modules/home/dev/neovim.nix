@@ -25,7 +25,12 @@
         withRuby = false;
         extraPackages = with pkgs; [
           bash-language-server
+          delve
           docker-language-server
+          gofumpt
+          golangci-lint
+          golangci-lint-langserver
+          gopls
           inotify-tools
           kdlfmt
           ltex-ls-plus

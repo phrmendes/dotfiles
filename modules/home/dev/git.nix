@@ -10,6 +10,7 @@ in
         user = {
           inherit (settings) email name;
         };
+        gpg.ssh.allowedSignersFile = builtins.toFile "git-allowed-signers" "${settings.email} ${builtins.readFile ../../../files/ssh/signing.txt}";
         http.sslVerify = true;
         init.defaultBranch = "main";
         diff.tool = "codediff";

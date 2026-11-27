@@ -17,6 +17,8 @@ vim.lsp.enable({
   "emmet_language_server",
   "eslint",
   "gitlab_ci_ls",
+  "golangci_lint_ls",
+  "gopls",
   "helm_ls",
   "html",
   "jsonls",

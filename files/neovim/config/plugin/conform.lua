@@ -15,6 +15,7 @@ safely(
         astro = { "prettier" },
         bash = { "shellharden", "shfmt" },
         css = { "prettier" },
+        go = { "gofumpt" },
         html = { "prettier" },
         jinja2 = { "djlint" },
         json = { "prettier" },

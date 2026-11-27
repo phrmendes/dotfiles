@@ -80,38 +80,65 @@ safely("later", function()
   vim.iter(adapters):each(function(lang, adapter) dap.adapters[lang] = adapter end)
 end)
 
-safely("filetype:python,lua,rust", function()
-  local dap = require("dap")
-  local dap_view = require("dap-view")
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "lua", "rust", "go" },
+  callback = function(event)
+    local dap = require("dap")
+    local dap_view = require("dap-view")
+    local opts = function(desc) return { buffer = event.buf, desc = desc } end
 
-  vim.keymap.set("n", "<F7>", dap.step_back, { desc = "DAP: step back" })
-  vim.keymap.set("n", "<F8>", dap.continue, { desc = "DAP: continue" })
-  vim.keymap.set("n", "<F9>", dap.step_over, { desc = "DAP: step over" })
-  vim.keymap.set("n", "<S-F8>", dap.pause, { desc = "DAP: pause" })
-  vim.keymap.set("n", "<BS>", dap.close, { desc = "DAP: close" })
-  vim.keymap.set("n", "<localleader>d", "", { desc = "+dap" })
-  vim.keymap.set("n", "<localleader>dd", dap.run_last, { desc = "Debug last" })
-  vim.keymap.set("n", "<localleader>di", dap.step_into, { desc = "Step into" })
-  vim.keymap.set("n", "<localleader>do", dap.step_out, { desc = "Step out" })
-  vim.keymap.set("n", "<localleader>dq", dap.terminate, { desc = "Terminate" })
-  vim.keymap.set("n", "<localleader>du", dap_view.toggle, { desc = "Toggle UI" })
-  vim.keymap.set("n", "<localleader>d<del>", dap.clear_breakpoints, { desc = "Clear breakpoints" })
-  vim.keymap.set("n", "<localleader>db", dap.toggle_breakpoint, { desc = "Breakpoint" })
-  vim.keymap.set("n", "<localleader>dB", function()
-    vim.ui.input({ prompt = "Condition: " }, function(input) dap.set_breakpoint(input) end)
-  end, { desc = "Conditional breakpoint" })
-end)
+    vim.keymap.set("n", "<F7>", dap.step_back, opts("DAP: step back"))
+    vim.keymap.set("n", "<F8>", dap.continue, opts("DAP: continue"))
+    vim.keymap.set("n", "<F9>", dap.step_over, opts("DAP: step over"))
+    vim.keymap.set("n", "<S-F8>", dap.pause, opts("DAP: pause"))
+    vim.keymap.set("n", "<BS>", dap.close, opts("DAP: close"))
+    vim.keymap.set("n", "<localleader>d", "", opts("+dap"))
+    vim.keymap.set("n", "<localleader>dd", dap.run_last, opts("Debug last"))
+    vim.keymap.set("n", "<localleader>di", dap.step_into, opts("Step into"))
+    vim.keymap.set("n", "<localleader>do", dap.step_out, opts("Step out"))
+    vim.keymap.set("n", "<localleader>dq", dap.terminate, opts("Terminate"))
+    vim.keymap.set("n", "<localleader>du", dap_view.toggle, opts("Toggle UI"))
+    vim.keymap.set("n", "<localleader>d<del>", dap.clear_breakpoints, opts("Clear breakpoints"))
+    vim.keymap.set("n", "<localleader>db", dap.toggle_breakpoint, opts("Breakpoint"))
+    vim.keymap.set("n", "<localleader>dB", function()
+      vim.ui.input({ prompt = "Condition: " }, function(input) dap.set_breakpoint(input) end)
+    end, opts("Conditional breakpoint"))
+  end,
+})
 
-safely("filetype:python", function()
-  local dap_python = require("dap-python")
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  once = true,
+  callback = function() require("dap-go").setup() end,
+})
 
-  vim.keymap.set("n", "<localleader>dc", dap_python.test_class, { desc = "Debug class" })
-  vim.keymap.set("n", "<localleader>df", dap_python.test_method, { desc = "Debug function/method" })
-  vim.keymap.set("x", "<localleader>ds", dap_python.debug_selection, { desc = "Debug selection" })
-end)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function(event)
+    vim.keymap.set("n", "<localleader>df", function() require("dap-go").debug_test() end, { buffer = event.buf, desc = "Debug test" })
+  end,
+})
 
-safely("filetype:lua", function()
-  vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, { desc = "Launch debugger" })
-end)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function(event)
+    local dap_python = require("dap-python")
 
-safely("filetype:rust", function() require("dap-lldb").setup() end)
+    vim.keymap.set("n", "<localleader>dc", dap_python.test_class, { buffer = event.buf, desc = "Debug class" })
+    vim.keymap.set("n", "<localleader>df", dap_python.test_method, { buffer = event.buf, desc = "Debug function/method" })
+    vim.keymap.set("x", "<localleader>ds", dap_python.debug_selection, { buffer = event.buf, desc = "Debug selection" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function(event)
+    vim.keymap.set("n", "<localleader>dl", function() require("osv").launch({ port = 8086 }) end, { buffer = event.buf, desc = "Launch debugger" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  once = true,
+  callback = function() require("dap-lldb").setup() end,
+})

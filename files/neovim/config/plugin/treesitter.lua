@@ -56,6 +56,7 @@ safely("now", function()
   if not missing("tree-sitter") then return treesitter.install(pending) end
 
   local uname = vim.uv.os_uname()
+  if not uname then return end
   local arch = archs[uname.machine]
 
   if uname.sysname ~= "Linux" or not arch or missing("curl", "gzip") then return end

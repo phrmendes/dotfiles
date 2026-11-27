@@ -80,6 +80,10 @@
       "rev": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264",
       "src": "https://codeberg.org/mfussenegger/nvim-dap"
     },
+    "nvim-dap-go": {
+      "rev": "b4421153ead5d726603b02743ea40cf26a51ed5f",
+      "src": "https://github.com/leoluz/nvim-dap-go"
+    },
     "nvim-dap-lldb": {
       "rev": "7ebee01f2d455dfdb46f4ad77eafc7577ccdcd2b",
       "src": "https://github.com/julianolf/nvim-dap-lldb"

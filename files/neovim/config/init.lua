@@ -20,6 +20,7 @@ vim.pack.add({
   "https://github.com/kkharji/sqlite.lua",
   "https://github.com/kristijanhusak/vim-dadbod-completion",
   "https://github.com/kristijanhusak/vim-dadbod-ui",
+  "https://github.com/leoluz/nvim-dap-go",
   "https://github.com/lewis6991/async.nvim",
   "https://github.com/m00qek/baleia.nvim",
   "https://github.com/mfussenegger/nvim-lint",

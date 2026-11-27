@@ -1,23 +1,23 @@
 safely("later", function()
   local lint = require("lint")
 
-  lint.linters.nu_lint = {
-    cmd = "nu-lint",
-    args = {
-      "--format",
-      "compact",
-      "--config",
-      function()
-        local root = vim.fs.root(0, "nu-lint.toml")
+  lint.linters.nu_lint = function()
+    local args = { "--format", "compact" }
+    local root = vim.fs.root(0, "nu-lint.toml")
+    if root then vim.list_extend(args, { "--config", vim.fs.joinpath(root, "nu-lint.toml") }) end
 
-        return root and vim.fs.joinpath(root, "nu-lint.toml") or ""
-      end,
-    },
-    stream = "stderr",
-    ignore_exitcode = true,
-    name = "nu_lint",
-    parser = require("lint.parser").from_errorformat("%f:%l:%c: %m", { source = "nu-lint" }),
-  }
+    return {
+      cmd = "nu-lint",
+      args = args,
+      ignore_exitcode = true,
+      parser = require("lint.parser").from_pattern(
+        "^(.-):(%d+):(%d+): (%a+)%(([^)]+)%): (.+)$",
+        { "file", "lnum", "col", "severity", "code", "message" },
+        { error = vim.diagnostic.severity.ERROR, warning = vim.diagnostic.severity.WARN, hint = vim.diagnostic.severity.HINT },
+        { source = "nu-lint" }
+      ),
+    }
+  end
 
   lint.linters_by_ft = {
     astro = { "eslint" },

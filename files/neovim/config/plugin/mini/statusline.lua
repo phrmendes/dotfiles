@@ -8,7 +8,8 @@ safely("now", function()
 
   st.section_git = function(args)
     local git = old(args)
-    local session = require("nsm").current()
+    local session = vim.env.NSM_SESSION
+    if session == "" then session = nil end
     if session and vim.fn.strchars(session) > max_len then session = vim.fn.strcharpart(session, 0, max_len - 1) .. "…" end
     local label = session and (" " .. session) or ""
     return vim.trim(label .. " " .. git)

@@ -1,5 +1,4 @@
 local augroups = {
-  autoread = vim.api.nvim_create_augroup("UserAutoread", {}),
   format_options = vim.api.nvim_create_augroup("UserFormatOptions", {}),
   line_numbers = vim.api.nvim_create_augroup("UserLineNumbers", {}),
   shiftwidth = vim.api.nvim_create_augroup("UserShiftwidth", {}),
@@ -69,16 +68,6 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroups.format_options,
   pattern = "*",
   callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end,
-})
-
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
-  desc = "Reload file on external changes",
-  group = augroups.autoread,
-  callback = function()
-    vim.schedule(function()
-      if vim.fn.mode() ~= "c" then vim.cmd.checktime() end
-    end)
-  end,
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {

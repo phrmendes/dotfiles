@@ -14,7 +14,6 @@ vim.lsp.enable({
   "cssls",
   "docker_language_server",
   "dot",
-  "elixirls",
   "emmet_language_server",
   "eslint",
   "gitlab_ci_ls",

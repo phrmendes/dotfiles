@@ -3,67 +3,34 @@ let
   server = builtins.readFile ./files/ssh/server.txt;
   laptop = builtins.readFile ./files/ssh/laptop.txt;
   deck = builtins.readFile ./files/ssh/deck.txt;
-in
-{
-  "secrets/authelia.age.yaml".publicKeys = [
+  serverRecipients = [
     desktop
     server
   ];
-  "secrets/beszel.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/ca.age.key".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/ddclient.age.txt".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/dockerhub.age.json".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/linkding.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/miniflux.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/noctalia.age.txt".publicKeys = [
+  laptopRecipients = [
     desktop
     laptop
   ];
-  "secrets/pi.age.json".publicKeys = [
+  sharedRecipients = [
     desktop
     laptop
     deck
   ];
-  "secrets/restic.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/searxng.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/sftpgo.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/shelfmark.age.env".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/users.age.yaml".publicKeys = [
-    desktop
-    server
-  ];
-  "secrets/wg.laptop.age.conf".publicKeys = [
-    desktop
-    laptop
-  ];
+in
+{
+  "secrets/authelia.age.yaml".publicKeys = serverRecipients;
+  "secrets/beszel.age.env".publicKeys = serverRecipients;
+  "secrets/ca.age.key".publicKeys = serverRecipients;
+  "secrets/ddclient.age.txt".publicKeys = serverRecipients;
+  "secrets/dockerhub.age.json".publicKeys = serverRecipients;
+  "secrets/linkding.age.env".publicKeys = serverRecipients;
+  "secrets/miniflux.age.env".publicKeys = serverRecipients;
+  "secrets/noctalia.age.txt".publicKeys = laptopRecipients;
+  "secrets/pi.age.json".publicKeys = sharedRecipients;
+  "secrets/restic.age.env".publicKeys = serverRecipients;
+  "secrets/searxng.age.env".publicKeys = serverRecipients;
+  "secrets/sftpgo.age.env".publicKeys = serverRecipients;
+  "secrets/shelfmark.age.env".publicKeys = serverRecipients;
+  "secrets/users.age.yaml".publicKeys = serverRecipients;
+  "secrets/wg.laptop.age.conf".publicKeys = laptopRecipients;
 }

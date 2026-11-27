@@ -1,0 +1,96 @@
+[all_follow]
+flake-parts = "flake-parts"
+home-manager = "home-manager"
+nixpkgs = "nixpkgs"
+nixpkgs-lib = "flake-parts/nixpkgs-lib"
+systems = "stylix/systems"
+treefmt-nix = "treefmt-nix"
+
+[inputs]
+
+[inputs.agenix]
+url = "github:ryantm/agenix"
+
+[inputs.agenix.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.beszel]
+url = "github:henrygd/beszel?ref=v0.21.0"
+type = "fetch"
+
+[inputs.disko]
+url = "github:nix-community/disko/latest"
+
+[inputs.disko.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.flake-parts]
+url = "github:hercules-ci/flake-parts"
+
+[inputs.home-manager]
+url = "github:nix-community/home-manager"
+
+[inputs.home-manager.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.impermanence]
+url = "github:nix-community/impermanence"
+
+[inputs.import-tree]
+url = "github:vic/import-tree"
+
+[inputs.kvmd]
+url = "github:pikvm/kvmd?ref=v4.180"
+type = "fetch"
+
+[inputs.neovim-nightly]
+url = "github:nix-community/neovim-nightly-overlay"
+
+[inputs.nix-flatpak]
+url = "github:gmodena/nix-flatpak"
+
+[inputs.nix-index-database]
+url = "github:nix-community/nix-index-database"
+
+[inputs.nix-index-database.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.nixpkgs]
+url = "github:nixos/nixpkgs?ref=nixos-unstable"
+
+[inputs.noctalia]
+url = "github:noctalia-dev/noctalia-shell"
+exclude_follow = ["nixpkgs"]
+
+[inputs.nsm]
+url = "github:phrmendes/nsm"
+
+[inputs.nsm.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.pi]
+url = "github:lukasl-dev/pi.nix"
+
+[inputs.pi.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.pyzotero]
+url = "https://files.pythonhosted.org/packages/5d/96/1e0bbee05263b12b9c65cdf7eb1f15509a53cfe0bf992a2cc686ca791d40/pyzotero-1.16.0-py3-none-any.whl"
+type = "fixed"
+unpack = "file"
+
+[inputs.stylix]
+url = "github:danth/stylix"
+
+[inputs.stylix.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.treefmt-nix]
+url = "github:numtide/treefmt-nix"
+
+[inputs.treefmt-nix.follows]
+nixpkgs = "nixpkgs"
+
+[inputs.tack]
+url = "github:manic-systems/tack/v2.0.0"
+exclude_follow = ["*"]

@@ -1,6 +1,7 @@
 # Engineering Rules
 
 - Search and read the codebase before writing anything
+- Before editing, trace affected callers, tests, fixtures, configuration, and exports. Complete all changes the task requires.
 - Deletion beats addition: prefer removing code over adding
 - Baby steps: small, reviewable diffs
 - Never patch symptoms — find the root cause
@@ -37,18 +38,12 @@
 
 - Climb this ladder and stop at the first rung that holds: does it need to exist? Is it already in the repo? Does the stdlib or a native platform feature cover it? Does an installed dependency solve it? Can it be one line? Only then write the minimum code.
 - No unrequested abstractions and no scaffolding "for later": no interface with one implementation, no factory for one product, no config for a value that never changes.
-
-## Nushell
-
-- Use Nushell (`nu`) instead of Bash for shell commands and structured-data work.
-- Run one pipeline, then read `$history.<history_index>`. Do not add `head`, `first`, or `tail` to a live pipeline.
-- Use `complete` for external commands to get `stdout`, `stderr`, and `exit_code`. Use `par-each` when order does not matter.
-- Redirection is `o>` (stdout), `e>` (stderr), and `o+e>|` (both into a pipeline). There is no `2>&1`.
+- Preserve validation, data-loss handling, security, and accessibility. Prefer readable code over a cryptic one-liner.
 
 ## Response Style
 
 - Lead with the direct answer or the smallest useful next action. Do not add a preamble.
-- For a code change, write the code first. Then add at most three short lines: what you skipped and when to add it.
+- For a code change, write the code first. Then add at most three short lines: relevant risks, skipped verification, and omitted work and when to add it.
 - Use numbered steps for multi-step work. Keep each step short and bounded.
 - Restate the current state, show completed work, and suppress unrelated tangents.
 - For incomplete practical work, end with one clear next action. Follow explicit user requests and higher-priority instructions over these defaults.

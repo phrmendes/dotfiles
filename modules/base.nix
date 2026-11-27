@@ -99,12 +99,18 @@ in
         pkgs = inputs.nixpkgs.legacyPackages.${system};
       in
       {
+        _module.args.pkgs = pkgs;
+
         devShells.default = pkgs.mkShellNoCC {
-          packages = [ config.treefmt.build.wrapper ];
+          packages = [
+            config.treefmt.build.wrapper
+            inputs.tack.packages.${system}.default
+          ];
         };
 
         treefmt.config = {
           projectRootFile = "flake.nix";
+          settings.excludes = [ ".tack/default.nix" ];
           programs = {
             nixfmt.enable = true;
             deadnix.enable = true;

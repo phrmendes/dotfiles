@@ -22,7 +22,6 @@ safely("later", function()
   lint.linters_by_ft = {
     astro = { "eslint" },
     bash = { "shellcheck" },
-    elixir = { "credo" },
     javascript = { "eslint" },
     jinja2 = { "djlint" },
     jsx = { "eslint" },

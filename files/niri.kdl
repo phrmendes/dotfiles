@@ -77,6 +77,9 @@ binds {
     Ctrl+Alt+L {
         spawn "noctalia" "msg" "session" "lock"
     }
+    Super+Semicolon repeat=false {
+        spawn "handy" "--toggle-transcription"
+    }
     Print {
         spawn "screenshot" "screenshot"
     }

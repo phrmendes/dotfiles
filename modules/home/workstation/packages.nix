@@ -9,6 +9,7 @@
         fragments
         gcolor3
         gnome-disk-utility
+        handy
         libqalculate
         lima
         loupe

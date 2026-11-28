@@ -9,7 +9,10 @@ in
       settings = {
         user = {
           inherit (settings) email name;
+          signingKey = "${../../../files/ssh/signing.txt}";
         };
+        commit.gpgSign = true;
+        gpg.format = "ssh";
         gpg.ssh.allowedSignersFile = builtins.toFile "git-allowed-signers" "${settings.email} ${builtins.readFile ../../../files/ssh/signing.txt}";
         http.sslVerify = true;
         init.defaultBranch = "main";
